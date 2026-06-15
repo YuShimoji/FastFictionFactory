@@ -1,0 +1,44 @@
+﻿{
+    "artifact_id":  "fff-visual-review-hub-001",
+    "preview_url":  "http://127.0.0.1:8765/public/review/index.html",
+    "created_at":  "2026-06-14T19:53:32.188Z",
+    "hubCheck":  {
+                     "artifactRows":  6,
+                     "exportButtons":  1,
+                     "hubPanels":  10,
+                     "importButtons":  1,
+                     "missing":  [
+
+                                 ],
+                     "progressSteps":  8,
+                     "qaItems":  8,
+                     "requiredVisible":  [
+                                             "fff-visual-review-hub-001",
+                                             "Current MVP Status Packet",
+                                             "Completed features",
+                                             "Pending features",
+                                             "Artifacts",
+                                             "How to review this locally",
+                                             "Export JSON",
+                                             "Import pasted JSON",
+                                             "Unresolved Creative Decisions",
+                                             "QA gates",
+                                             "1-minute video",
+                                             "local file persistence adapter",
+                                             "Decision Log"
+                                         ],
+                     "title":  "Fast Fiction Factory - MVP Review Workbench",
+                     "unresolvedCards":  3
+                 },
+    "screenshot":  {
+                       "path":  "artifacts/fff-current-review-screenshot.png",
+                       "bytes":  124786
+                   },
+    "contactSheet":  {
+                         "path":  "artifacts/fff-review-contact-sheet.png",
+                         "bytes":  182673,
+                         "views":  3,
+                         "generation":  "local System.Drawing composition from three rendered viewport captures"
+                     },
+    "passed":  true
+}

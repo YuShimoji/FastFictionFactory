@@ -1,0 +1,57 @@
+{
+  "artifact_id": "fff-claim-ledger-001",
+  "preview_path": "public/review/index.html",
+  "created_at": "2026-06-15T03:03:16.025Z",
+  "htmlCheck": {
+    "requiredVisibleText": [
+      "fff-claim-ledger-001",
+      "Visual Review Hub",
+      "Claim Ledger",
+      "Group claims",
+      "By claim scope",
+      "By world truth status",
+      "By reality/reference status",
+      "By canon risk",
+      "By unresolved dependency",
+      "By review status",
+      "By source",
+      "Unresolved dependencies only",
+      "Canon risk high only",
+      "Unverified reality status only",
+      "Hidden from viewer only",
+      "spoiler",
+      "Toma fate",
+      "brass moth truth",
+      "Council motive"
+    ],
+    "missing": []
+  },
+  "stateCheck": {
+    "schemaVersion": "fff.projectState.v1",
+    "sampleStatePath": "artifacts/sample-project-state.json",
+    "currentStatePath": "artifacts/current-project-state.json",
+    "claimCount": 9,
+    "reviewStatusCount": 51,
+    "claimSummary": {
+      "totalClaims": 9,
+      "byReviewStatus": {
+        "hold": 9
+      },
+      "withUnresolvedDependencies": 5,
+      "highCanonRisk": 5,
+      "unverifiedRealityStatus": 1,
+      "hiddenOrSpoilerProtected": 4
+    }
+  },
+  "files": {
+    "screenshot": {
+      "path": "artifacts/fff-current-review-screenshot.png",
+      "bytes": 125553
+    },
+    "contactSheet": {
+      "path": "artifacts/fff-review-contact-sheet.png",
+      "bytes": 552084
+    }
+  },
+  "passed": true
+}

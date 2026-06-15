@@ -1,0 +1,71 @@
+# Artifacts
+
+## fff-mvp-skeleton-001
+
+- Title: Fast Fiction Factory MVP Skeleton Review Workbench
+- Purpose: Local review of memo intake, structured candidates, review states, task cards, outlines, and QA gates.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Screenshot: `artifacts/fff-mvp-skeleton-review.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Review status: `ready_for_local_review`
+
+## fff-mvp-export-import-001
+
+- Title: Fast Fiction Factory JSON Export Import Review Workbench
+- Purpose: Portable local review of memo, candidates, review statuses, unresolved creative decisions, QA gates, generated outlines, and decision log.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Sample state: `artifacts/sample-project-state.json`
+- Smoke result: `artifacts/export-import-smoke-result.json`
+- Review doc: `docs/review/json-export-import-review.md`
+- Manifest: `artifacts/artifact-manifest.json`
+- Review status: `ready_for_local_review`
+
+## fff-visual-review-hub-001
+
+- Title: Fast Fiction Factory Visual Review Hub
+- Purpose: One local review entry point for current MVP status, artifact inventory, local inspection steps, export/import testing, unresolved creative decisions, QA gates, missing features, and next slice.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Current status: `docs/review/current-status.md`
+- Review doc: `docs/review/visual-review-hub-review.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Smoke result: `artifacts/visual-review-smoke-result.json`
+- Manifest: `artifacts/artifact-manifest.json`
+- Review status: `ready_for_local_review`
+
+## fff-local-persistence-ergonomics-001
+
+- Title: Fast Fiction Factory Local Persistence And Review Ergonomics Workbench
+- Purpose: Extend the Visual Review Hub with explicit local file save/load, JSON fallback import/export, repo-local state validation commands, candidate status filters, search, collapse/expand controls, updated state artifacts, smoke evidence, and refreshed visual review images.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Current state: `artifacts/current-project-state.json`
+- State adapter: `tools/fff-state.mjs`
+- File persistence smoke result: `artifacts/file-persistence-smoke-result.json`
+- Review ergonomics smoke result: `artifacts/review-ergonomics-smoke-result.json`
+- Current status: `docs/review/current-status.md`
+- Persistence review doc: `docs/review/file-persistence-review.md`
+- Ergonomics review doc: `docs/review/review-ergonomics-review.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Review status: `ready_for_local_review`
+
+## fff-claim-ledger-001
+
+- Title: Fast Fiction Factory Claim Ledger Workbench
+- Purpose: Extend the Visual Review Hub with a reviewable Claim Ledger for source, truth status, reality/reference status, canon risk, unresolved dependencies, viewer disclosure, spoiler protection, and claim review decisions.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Current state: `artifacts/current-project-state.json`
+- State adapter: `tools/fff-state.mjs`
+- Claim Ledger smoke result: `artifacts/claim-ledger-smoke-result.json`
+- Current status: `docs/review/current-status.md`
+- Claim Ledger review doc: `docs/review/claim-ledger-review.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Review status: `ready_for_local_review`

@@ -1,0 +1,43 @@
+{
+  "artifact_id": "fff-mvp-export-import-001",
+  "preview_url": "http://127.0.0.1:8765/public/review/index.html",
+  "created_at": "2026-06-14T18:40:28.581Z",
+  "initialExportCheck": {
+    "exportButtons": 1,
+    "importButtons": 1,
+    "sampleButtons": 1,
+    "title": "Fast Fiction Factory - MVP Review Workbench",
+    "unresolvedItems": 3
+  },
+  "exportedState": {
+    "schemaVersion": "fff.projectState.v1",
+    "parseable": true,
+    "reviewStatusProfileMira": "adopt",
+    "decisionLogCount": 2,
+    "unresolvedCreativeDecisionCount": 3,
+    "qaGateCount": 8,
+    "generatedOutlineCount": 4
+  },
+  "afterClear": {
+    "adoptCount": "0",
+    "decisionLog": "No review decisions yet. Choose adopt, provisional, hold, or reject on any candidate.",
+    "miraAdoptActive": "false"
+  },
+  "afterImport": {
+    "adoptCount": "1",
+    "decisionLogMentionsMira": true,
+    "message": "Imported project state. Memo, candidates, review statuses, QA gates, outlines, unresolved decisions, and decision log were restored.",
+    "miraAdoptActive": "true",
+    "outlineTextPresent": true,
+    "qaItems": 8,
+    "unresolvedItems": 3
+  },
+  "invalidJsonCheck": {
+    "decisionLogMentionsMira": true,
+    "message": "Invalid JSON. Current state was not changed.",
+    "messageClass": "state-message error",
+    "miraAdoptActive": "true"
+  },
+  "unknownFieldPreserved": true,
+  "passed": true
+}

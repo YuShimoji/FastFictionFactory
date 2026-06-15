@@ -1,0 +1,48 @@
+# Idea Ledger
+
+## Residual Work
+
+### Timeline View
+
+- Purpose: Separate story order, calendar time, historical references, and production order.
+- Effect: Makes sequence claims reviewable before outline or video packaging decisions.
+- Requirements: Keep it local-only, use existing review states, and avoid database or publishing work.
+- State: Next recommended slice.
+- Owner: Product implementer, with human author review for canon-sensitive sequence decisions.
+- Next move: Add a Timeline view to `public/review/index.html` and update state/export smoke evidence.
+
+### Profile Page And Ghost Node Flow
+
+- Purpose: Make characters, objects, and uncertain entities easier to inspect across claims and timelines.
+- Effect: Improves review ergonomics for unresolved identity, fate, and source relationships.
+- Requirements: Must not finalize Toma fate, brass moth truth, or Council motive.
+- State: Not started.
+- Owner: Product implementer for UI; human author for final story authority.
+- Next move: Define the smallest profile detail panel that can link to existing claims.
+
+### Real Extraction Engine
+
+- Purpose: Replace deterministic mock extraction with an actual extraction workflow.
+- Effect: Turns raw memo intake into generated candidates instead of static seed data.
+- Requirements: Needs source tracking, schema validation, review controls, and clear generated-vs-human authority boundaries.
+- State: Not started.
+- Owner: Product/AI implementer.
+- Next move: Specify an extraction contract before adding any model or API dependency.
+
+### Durable Project Database
+
+- Purpose: Persist projects beyond local browser state and JSON files.
+- Effect: Enables multi-session project continuity without manual import/export.
+- Requirements: Needs schema decisions, migration policy, backup/export path, and no silent canon promotion.
+- State: Not started.
+- Owner: Product implementer.
+- Next move: Decide whether the first durable store is file-backed, SQLite, or browser storage expansion.
+
+### Publishing And Video Generation
+
+- Purpose: Eventually package reviewed fiction outputs for YouTube or AI-video workflows.
+- Effect: Connects reviewed outlines to production surfaces.
+- Requirements: Requires final rights review, credential isolation, production approval gates, and explicit human release decisions.
+- State: Out of scope for the current MVP.
+- Owner: Human product owner plus production implementer.
+- Next move: Do not start until review workflow and source/canon gates are accepted.

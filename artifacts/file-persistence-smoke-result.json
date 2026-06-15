@@ -1,0 +1,52 @@
+{
+  "artifact_id": "fff-local-persistence-ergonomics-001",
+  "preview_url": "http://127.0.0.1:8876/public/review/index.html",
+  "created_at": "2026-06-14T20:22:49.121Z",
+  "controlsVisible": {
+    "saveStateToLocalFile": true,
+    "loadStateFromLocalFile": true,
+    "downloadJsonFallback": true,
+    "uploadJsonFallback": true
+  },
+  "browserFileAccess": {
+    "supportMessage": "Direct local save/load appears supported. Download/upload fallback remains available.",
+    "automationProbe": false,
+    "directPickerSmoke": "not_exercised_to_avoid_native_file_picker; explicit JSON fallback round trip was exercised"
+  },
+  "exportFallback": {
+    "parseable": true,
+    "schemaVersion": "fff.projectState.v1",
+    "reviewStatusProfileMira": "adopt",
+    "unresolvedCreativeDecisionCount": 3,
+    "decisionLogCount": 2,
+    "outputBytes": 42309
+  },
+  "clearCheck": {
+    "statusCounts": {
+      "adopt": "0",
+      "hold": "45",
+      "provisional": "0",
+      "reject": "0"
+    },
+    "decisionLogCleared": true
+  },
+  "importCheck": {
+    "statusCounts": {
+      "adopt": "1",
+      "hold": "42",
+      "provisional": "2",
+      "reject": "0"
+    },
+    "miraAdoptActive": "true",
+    "decisionLogMentionsMira": true,
+    "unresolvedCards": 3,
+    "message": "Imported project state. Memo, candidates, review statuses, QA gates, outlines, unresolved decisions, and decision log were restored."
+  },
+  "invalidJsonCheck": {
+    "message": "Invalid JSON. Current state was not changed.",
+    "messageClass": "state-message error",
+    "statePreserved": true
+  },
+  "unknownFieldPreserved": true,
+  "passed": true
+}

@@ -1,0 +1,46 @@
+{
+  "artifact_id": "fff-local-persistence-ergonomics-001",
+  "preview_url": "http://127.0.0.1:8876/public/review/index.html",
+  "created_at": "2026-06-14T20:22:49.122Z",
+  "hubVisible": true,
+  "artifactVisible": true,
+  "statusCountsBeforeFilter": {
+    "adopt": "1",
+    "hold": "42",
+    "provisional": "2",
+    "reject": "0"
+  },
+  "adoptFilter": {
+    "visibleItems": 1,
+    "totalItems": 48,
+    "filterSummary": "Showing 1 of 48 review items for adopt status."
+  },
+  "searchWithinAdoptFilter": {
+    "query": "brass",
+    "visibleItems": 0,
+    "totalItems": 48,
+    "filterSummary": "Showing 0 of 48 review items for adopt status matching \"brass\".",
+    "groupCardsHidden": 14
+  },
+  "collapse": {
+    "collapsedSections": 7,
+    "filterSummary": "Showing 0 of 48 review items for adopt status matching \"brass\". 7 groups collapsed."
+  },
+  "expand": {
+    "collapsedSections": 0,
+    "filterSummary": "Showing 0 of 48 review items for adopt status matching \"brass\"."
+  },
+  "finalPageState": {
+    "visibleItems": 48,
+    "totalItems": 48,
+    "statusCounts": {
+      "adopt": "1",
+      "hold": "42",
+      "provisional": "2",
+      "reject": "0"
+    },
+    "filterSummary": "Showing 48 of 48 review items for all statuses."
+  },
+  "passed": true,
+  "resetMethod": "Control+A then Backspace on candidate search input"
+}
