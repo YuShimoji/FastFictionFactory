@@ -82,3 +82,39 @@
 - Open command: `python -m mkdocs serve -a 127.0.0.1:8000`
 - Alternate open command when port 8000 is busy: `python -m mkdocs serve -a 127.0.0.1:8001`
 - Review status: `ready_for_local_review`
+
+## fff-timeline-view-001
+
+- Title: Fast Fiction Factory Timeline View Workbench
+- Purpose: Extend the Visual Review Hub with v1.3 operating contract visibility and a reviewable multi-axis Timeline View for story order, calendar time, viewer disclosure order, production order, historical/reference order, Claim Ledger linkage, unresolved dependencies, spoiler protection, and timeline review decisions.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Current state: `artifacts/current-project-state.json`
+- State adapter: `tools/fff-state.mjs`
+- Timeline smoke result: `artifacts/timeline-smoke-result.json`
+- v1.3 compliance smoke result: `artifacts/v1-3-compliance-smoke-result.json`
+- Current status: `docs/review/current-status.md`
+- Timeline review doc: `docs/review/timeline-view-review.md`
+- v1.3 compliance review doc: `docs/review/v1-3-compliance-review.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Review status: `ready_for_local_review`
+
+## fff-profile-ghost-flow-001
+
+- Title: Fast Fiction Factory Profile/Ghost Flow Workbench
+- Purpose: Extend the Visual Review Hub with profile pages and ghost node flow for people, places, organizations, events, objects, concepts, documents, visual assets, and placeholders while preserving Claim Ledger, Timeline View, local persistence, import/export, and human-owned canon boundaries.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Current state: `artifacts/current-project-state.json`
+- State adapter: `tools/fff-state.mjs`
+- Checkpoint readback: `artifacts/checkpoint-readback-result.json`
+- Profile/Ghost smoke result: `artifacts/profile-ghost-smoke-result.json`
+- Current status: `docs/review/current-status.md`
+- Profile/Ghost review doc: `docs/review/profile-ghost-flow-review.md`
+- Checkpoint readback doc: `docs/review/checkpoint-readback.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Review status: `ready_for_local_review`

@@ -7,18 +7,18 @@
 - Purpose: Separate story order, calendar time, historical references, and production order.
 - Effect: Makes sequence claims reviewable before outline or video packaging decisions.
 - Requirements: Keep it local-only, use existing review states, and avoid database or publishing work.
-- State: Next recommended slice.
+- State: Implemented in `fff-timeline-view-001`.
 - Owner: Product implementer, with human author review for canon-sensitive sequence decisions.
-- Next move: Add a Timeline view to `public/review/index.html` and update state/export smoke evidence.
+- Next move: Keep Timeline entries linked into Profile/Ghost and future extraction-contract checks.
 
 ### Profile Page And Ghost Node Flow
 
 - Purpose: Make characters, objects, and uncertain entities easier to inspect across claims and timelines.
 - Effect: Improves review ergonomics for unresolved identity, fate, and source relationships.
 - Requirements: Must not finalize Toma fate, brass moth truth, or Council motive.
-- State: Not started.
+- State: Implemented in `fff-profile-ghost-flow-001`.
 - Owner: Product implementer for UI; human author for final story authority.
-- Next move: Define the smallest profile detail panel that can link to existing claims.
+- Next move: Use profile/ghost records as source-tracked extraction contract fixtures before adding any model/API behavior.
 
 ### Real Extraction Engine
 
@@ -27,7 +27,7 @@
 - Requirements: Needs source tracking, schema validation, review controls, and clear generated-vs-human authority boundaries.
 - State: Not started.
 - Owner: Product/AI implementer.
-- Next move: Specify an extraction contract before adding any model or API dependency.
+- Next move: Specify an extraction contract that emits elements, profiles, claims, timeline entries, unresolved dependencies, and review-safe source refs.
 
 ### Durable Project Database
 

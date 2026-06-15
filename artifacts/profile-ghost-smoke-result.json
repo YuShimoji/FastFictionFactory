@@ -1,0 +1,125 @@
+{
+  "artifact_id": "fff-profile-ghost-flow-001",
+  "preview_path": "public/review/index.html",
+  "created_at": "2026-06-15T09:45:27.1455476Z",
+  "browserSmoke": {
+    "renderedVia": "http://127.0.0.1:8877/public/review/index.html",
+    "profileGhostRendered": true,
+    "profileCount": 11,
+    "claimLedgerStillRendered": true,
+    "claimCount": 9,
+    "timelineStillRendered": true,
+    "timelineCount": 8,
+    "groupingChecked": "ghostNodeStatus",
+    "typeSelectorChecked": "visual_asset",
+    "filtersChecked": [
+      "ghost",
+      "unresolved",
+      "high-risk",
+      "spoiler"
+    ],
+    "searchChecked": "brass",
+    "promotionChecked": "profile-arcade-917-closure -> provisional_profile",
+    "decisionLogUpdated": true,
+    "exportImportRoundTripPreservedProfiles": true,
+    "invalidJsonSafe": true,
+    "favicon404OnlyConsoleError": true
+  },
+  "stateCheck": {
+    "schemaVersion": "fff.projectState.v1",
+    "sampleStatePath": "artifacts/sample-project-state.json",
+    "currentStatePath": "artifacts/current-project-state.json",
+    "profileSummary": {
+      "totalProfiles": 11,
+      "byProfileType": {
+        "person": 2,
+        "organization": 1,
+        "object": 1,
+        "place": 1,
+        "event": 1,
+        "concept": 1,
+        "document": 1,
+        "visual_asset": 1,
+        "placeholder": 2
+      },
+      "byGhostNodeStatus": {
+        "adopted_profile": 1,
+        "needs_human_decision": 4,
+        "provisional_profile": 1,
+        "extracted_candidate": 1,
+        "held_ghost": 3,
+        "rejected_candidate": 1
+      },
+      "byReviewStatus": {
+        "adopt": 0,
+        "provisional": 0,
+        "hold": 10,
+        "reject": 1,
+        "other": 0
+      },
+      "withUnresolvedDependencies": 7,
+      "highCanonRisk": 7,
+      "spoilerProtected": 7,
+      "linkedToClaims": 11,
+      "linkedToTimeline": 11,
+      "placeholderProfiles": 2
+    },
+    "claimSummary": {
+      "totalClaims": 9,
+      "byReviewStatus": {
+        "adopt": 0,
+        "provisional": 0,
+        "hold": 9,
+        "reject": 0,
+        "other": 0
+      },
+      "withUnresolvedDependencies": 5,
+      "highCanonRisk": 5,
+      "unverifiedRealityStatus": 1,
+      "hiddenOrSpoilerProtected": 4
+    },
+    "timelineSummary": {
+      "totalTimelineEntries": 8,
+      "byTimelineAxis": {
+        "story_order": 3,
+        "calendar_time": 1,
+        "historical_reference_order": 1,
+        "viewer_disclosure_order": 2,
+        "production_order": 1
+      },
+      "byReviewStatus": {
+        "adopt": 0,
+        "provisional": 0,
+        "hold": 8,
+        "reject": 0,
+        "other": 0
+      },
+      "withUnresolvedDependencies": 4,
+      "hiddenOrSpoilerProtected": 4,
+      "highCanonRisk": 4,
+      "linkedToClaims": 8
+    },
+    "requiredHumanDependencies": [
+      "Toma fate",
+      "brass moth truth",
+      "Council motive"
+    ]
+  },
+  "files": {
+    "screenshot": {
+      "path": "artifacts/fff-current-review-screenshot.png",
+      "bytes": 634961
+    },
+    "contactSheet": {
+      "path": "artifacts/fff-review-contact-sheet.png",
+      "bytes": 1049891
+    }
+  },
+  "consoleMessages": [
+    {
+      "type": "error",
+      "text": "Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8877/favicon.ico:0"
+    }
+  ],
+  "passed": true
+}

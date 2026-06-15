@@ -46,12 +46,14 @@
   "files": {
     "screenshot": {
       "path": "artifacts/fff-current-review-screenshot.png",
-      "bytes": 125553
+      "bytes": 348942
     },
     "contactSheet": {
       "path": "artifacts/fff-review-contact-sheet.png",
-      "bytes": 552084
+      "bytes": 1251044
     }
   },
+  "visualEvidenceRefreshedAt": "2026-06-15T09:09:19.856Z",
+  "visualEvidenceNote": "Shared screenshot and contact sheet now reflect the Timeline View slice; the contact sheet includes Claim Ledger continuity.",
   "passed": true
 }

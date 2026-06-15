@@ -23,6 +23,8 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Visual Review Hub | Ready for local review | [`review/visual-review-hub-review.md`](review/visual-review-hub-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Local file persistence and review ergonomics | Ready for local review | [`review/file-persistence-review.md`](review/file-persistence-review.md), [`review/review-ergonomics-review.md`](review/review-ergonomics-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Claim Ledger | Ready for local review | [`review/claim-ledger-review.md`](review/claim-ledger-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
+| Timeline View and v1.3 contract | Ready for local review | [`review/timeline-view-review.md`](review/timeline-view-review.md), [`review/v1-3-compliance-review.md`](review/v1-3-compliance-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
+| Profile/Ghost Flow | Ready for local review | [`review/profile-ghost-flow-review.md`](review/profile-ghost-flow-review.md), [`review/checkpoint-readback.md`](review/checkpoint-readback.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 
 The implementation details are itemized inside the review documents under headings such as `What Was Implemented`, `What Exists Now`, `Validation`, `Known Limitations`, and `Next Recommended Slice`.
 
@@ -47,8 +49,7 @@ Invoke-Item .\artifacts\fff-review-contact-sheet.png
 
 | Work | Current state | Where it is tracked | Boundary to keep |
 | --- | --- | --- | --- |
-| Timeline view | Next recommended slice | [`idea-ledger.md`](idea-ledger.md), [`review/current-status.md`](review/current-status.md) | Keep story order, calendar time, historical context, and production order separate. |
-| Profile page and ghost node flow | Not started | [`idea-ledger.md`](idea-ledger.md) | Do not finalize Toma fate, brass moth truth, or Council motive. |
+| Profile page and ghost node flow | Ready for local review | [`idea-ledger.md`](idea-ledger.md), [`review/current-status.md`](review/current-status.md), [`review/profile-ghost-flow-review.md`](review/profile-ghost-flow-review.md) | Do not finalize Toma fate, brass moth truth, or Council motive. |
 | Real extraction engine | Not started | [`idea-ledger.md`](idea-ledger.md) | Define source tracking and schema validation before adding model/API behavior. |
 | Durable project database | Not started | [`idea-ledger.md`](idea-ledger.md) | Decide storage and migration policy before persistence work. |
 | Publishing and video generation | Out of scope for the current MVP | [`product-brief.md`](product-brief.md), [`idea-ledger.md`](idea-ledger.md) | No upload, credentials, public release, or AI video generation in the current review lane. |
@@ -59,9 +60,8 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Timeline view | A separate reviewable timeline slice with local state/export smoke evidence. | Sequence review before outline or video packaging decisions. |
-| Following 1 turn | Profile page and ghost node flow | A smallest useful profile inspection surface linked to existing claims. | Safer review of unresolved identity, fate, source, and dependency relationships. |
-| Following 1 turn | Extraction contract | A written contract for generated candidates, source refs, validation, and human authority boundaries. | Later model/API work without silently promoting generated content to canon. |
+| Next 1 turn | Extraction contract | A written contract for generated candidates, source refs, validation, and human authority boundaries. | Later model/API work without silently promoting generated content to canon. |
+| Following 1 turn | Extraction adapter spike | A local-only adapter stub that emits the same reviewed state shape from deterministic input. | Model/API integration can be evaluated without changing canon or persistence authority. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
 
@@ -104,4 +104,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The next recommended implementation slice remains the Timeline view.
+The next recommended implementation slice is the extraction contract.

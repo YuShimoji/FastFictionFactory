@@ -45,6 +45,12 @@ type ProjectStateEnvelope = {
     viewerFacingInformation: string;
     productionOnlyNotes: string[];
     importedUnknownFields: Record<string, unknown>;
+    activeArtifactId?: string;
+    profileGhostFlow?: {
+      requiredProfileTypes: Profile["profileType"][];
+      requiredGhostNodeStatuses: Profile["ghostNodeStatus"][];
+      humanOwnedDependencies: string[];
+    };
   };
 };
 ```
@@ -114,28 +120,35 @@ type Draft = {
 ```ts
 type Profile = {
   id: string;
-  work_id: string;
-  profile_type: "person" | "place" | "organization" | "object" | "concept";
-  display_name: string;
+  displayName: string;
+  aliases: string[];
+  profileType: "person" | "place" | "organization" | "event" | "object" | "concept" | "document" | "visual_asset" | "placeholder";
+  profileStatus: string;
+  ghostNodeStatus: "extracted_candidate" | "provisional_profile" | "adopted_profile" | "held_ghost" | "rejected_candidate" | "needs_human_decision";
+  worldStatus: string;
+  realityStatus: "inference" | "plausible fiction" | "alternate history" | "pure fiction" | "unverified" | "local review only" | string;
+  firstAppearanceWorkId: string;
+  linkedClaimIds: string[];
+  linkedTimelineEntryIds: string[];
+  relatedProfileIds: string[];
+  unresolvedDependencies: string[];
+  knownBy: string[];
+  unknownBy: string[];
+  believedBy: string[];
+  misunderstoodBy: string[];
+  ownedItems: string[];
+  sourceRefs: SourceRef[];
+  assetRefs: string[];
+  canonRisk: "low" | "medium" | "high";
+  spoilerLevel: "low" | "medium" | "high";
+  reviewStatus: ReviewStatus;
+  notes: string;
   summary: string;
-  aliases: Alias[];
-  source_refs: SourceRef[];
   open_questions: string[];
-  review_status: ReviewStatus;
 };
 ```
 
-## Alias
-
-```ts
-type Alias = {
-  id: string;
-  profile_id: string;
-  label: string;
-  context: string;
-  review_status: ReviewStatus;
-};
-```
+Legacy compatibility fields may also appear on local MVP profiles: `title`, `profile_type`, `profile_status`, `ghost_node_status`, `world_status`, `reality_status`, `first_appearance_work_id`, `linked_claim_ids`, `linked_timeline_entry_ids`, `related_profile_ids`, `unresolved_dependencies`, `known_by`, `unknown_by`, `believed_by`, `misunderstood_by`, `owned_items`, `source_refs`, `asset_refs`, `canon_risk`, `spoiler_level`, `review_status`, and `source`. They mirror the richer Profile/Ghost fields for older cards and exports.
 
 ## Claim
 
@@ -181,14 +194,29 @@ type SourceRef = {
 type TimelineEvent = {
   id: string;
   work_id: string;
-  label: string;
-  sequence_scope: "story_order" | "calendar_time" | "historical_context" | "production_order";
-  date_or_position: string;
-  description: string;
-  source_refs: SourceRef[];
-  review_status: ReviewStatus;
+  title: string;
+  summary: string;
+  timelineAxis: "story_order" | "calendar_time" | "viewer_disclosure_order" | "production_order" | "historical_reference_order";
+  storyOrder: string;
+  calendarTime: string;
+  calendarPrecision: "clock_time" | "recurring_clock_time" | "relative_sequence" | "historical_reference" | "production_timing" | "ending_candidate" | string;
+  viewerDisclosureOrder: string;
+  viewerDisclosureStatus: "viewer-facing now" | "partial reveal" | "hidden from viewer" | "not yet viewer-facing" | "production-only";
+  productionOrder: string;
+  historicalReferenceTime: string;
+  linkedClaimIds: string[];
+  linkedProfileIds: string[];
+  linkedWorkIds: string[];
+  unresolvedDependencies: string[];
+  spoilerLevel: "low" | "medium" | "high";
+  canonRisk: "low" | "medium" | "high";
+  reviewStatus: ReviewStatus;
+  sourceRefs: SourceRef[];
+  notes: string;
 };
 ```
+
+Legacy compatibility fields may also appear on local MVP timeline entries: `label`, `sequence_scope`, `date_or_position`, `description`, `source`, and `review_status`. They mirror the richer Timeline View fields for older cards and exports.
 
 ## GraphEdge
 

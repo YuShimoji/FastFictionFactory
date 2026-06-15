@@ -34,7 +34,8 @@
 
     button,
     textarea,
-    input {
+    input,
+    select {
       font: inherit;
     }
 
@@ -365,7 +366,9 @@
       font-size: 12px;
     }
 
-    .claim-toolbar {
+    .claim-toolbar,
+    .timeline-toolbar,
+    .profile-toolbar {
       display: grid;
       gap: 10px;
       border: 1px solid var(--line);
@@ -374,14 +377,18 @@
       background: #fffefb;
     }
 
-    .claim-toolbar-row {
+    .claim-toolbar-row,
+    .timeline-toolbar-row,
+    .profile-toolbar-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
       align-items: center;
     }
 
-    .claim-select {
+    .claim-select,
+    .timeline-select,
+    .profile-select {
       min-height: 36px;
       border: 1px solid var(--line);
       border-radius: 6px;
@@ -390,31 +397,41 @@
       color: var(--ink);
     }
 
-    .claim-summary {
+    .claim-summary,
+    .timeline-summary,
+    .profile-summary {
       color: var(--muted);
       font-size: 12px;
     }
 
-    .claim-ledger-grid {
+    .claim-ledger-grid,
+    .timeline-ledger-grid,
+    .profile-ghost-grid {
       display: grid;
       gap: 12px;
       margin-top: 12px;
     }
 
-    .claim-ledger-group {
+    .claim-ledger-group,
+    .timeline-ledger-group,
+    .profile-ghost-group {
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 12px;
       background: var(--paper);
     }
 
-    .claim-ledger-list {
+    .claim-ledger-list,
+    .timeline-ledger-list,
+    .profile-ghost-list {
       display: grid;
       gap: 10px;
       margin-top: 10px;
     }
 
-    .claim-ledger-item {
+    .claim-ledger-item,
+    .timeline-ledger-item,
+    .profile-ghost-item {
       border: 1px solid var(--line);
       border-left: 4px solid var(--blue);
       border-radius: 8px;
@@ -422,16 +439,30 @@
       background: #fbfcfd;
     }
 
-    .claim-ledger-item[data-canon-risk="high"] {
+    .claim-ledger-item[data-canon-risk="high"],
+    .timeline-ledger-item[data-canon-risk="high"],
+    .profile-ghost-item[data-canon-risk="high"] {
       border-left-color: var(--red);
     }
 
-    .claim-ledger-item[data-canon-risk="medium"] {
+    .claim-ledger-item[data-canon-risk="medium"],
+    .timeline-ledger-item[data-canon-risk="medium"],
+    .profile-ghost-item[data-canon-risk="medium"] {
       border-left-color: var(--gold);
     }
 
-    .claim-ledger-item[data-canon-risk="low"] {
+    .claim-ledger-item[data-canon-risk="low"],
+    .timeline-ledger-item[data-canon-risk="low"],
+    .profile-ghost-item[data-canon-risk="low"] {
       border-left-color: var(--green);
+    }
+
+    .ghost-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 10px;
     }
 
     .claim-ledger-item[data-claim-hidden="true"] {
@@ -779,7 +810,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Current MVP Status Packet</h2>
-            <p class="lede">Active artifact id: <strong>fff-claim-ledger-001</strong>. Current phase: the Claim Ledger makes source, truth status, reality/reference status, canon risk, unresolved dependencies, viewer disclosure, and spoiler protection reviewable without finalizing human-owned canon.</p>
+            <p class="lede">Active artifact id: <strong>fff-profile-ghost-flow-001</strong>. Current phase: the Profile/Ghost Flow links provisional entities, held ghost nodes, claims, and timeline entries without finalizing human-owned canon.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -794,9 +825,10 @@
           <div class="progress-step done"><strong>JSON export/import</strong><span class="tag green">done</span><p class="section-note">Versioned portable state and smoke evidence.</p></div>
           <div class="progress-step done"><strong>Visual review hub</strong><span class="tag green">done</span><p class="section-note">One entry point for status and inspection.</p></div>
           <div class="progress-step done"><strong>Local file persistence adapter</strong><span class="tag green">done</span><p class="section-note">Explicit save/load path with download/upload fallback.</p></div>
-          <div class="progress-step current"><strong>Claim Ledger</strong><span class="tag blue">current</span><p class="section-note">Review source, truth, disclosure, canon risk, and dependencies at claim level.</p></div>
-          <div class="progress-step next"><strong>Next: Timeline view</strong><span class="tag gold">next</span><p class="section-note">Separate story, calendar, historical, production order.</p></div>
-          <div class="progress-step"><strong>Later: Profile page / ghost node flow</strong><span class="tag">later</span><p class="section-note">Resolve aliases, placeholders, and weak graph nodes.</p></div>
+          <div class="progress-step done"><strong>Claim Ledger</strong><span class="tag green">done</span><p class="section-note">Review source, truth, disclosure, canon risk, and dependencies at claim level.</p></div>
+          <div class="progress-step done"><strong>Timeline View</strong><span class="tag green">done</span><p class="section-note">Separate story, calendar, viewer, production, and historical order.</p></div>
+          <div class="progress-step done"><strong>v1.3 contract check</strong><span class="tag green">done</span><p class="section-note">Artifact, report, path, and decision-boundary conventions are visible.</p></div>
+          <div class="progress-step current"><strong>Profile page / ghost node flow</strong><span class="tag blue">current</span><p class="section-note">Review aliases, placeholders, weak graph nodes, and cross-links.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;">
@@ -811,14 +843,16 @@
               <li>Explicit local file save/load with browser fallback.</li>
               <li>Status filters, search, and collapse/expand controls.</li>
               <li>Claim Ledger grouping by scope, truth, reality, risk, dependency, review status, and source.</li>
+              <li>Timeline View grouping by axis, status, disclosure, dependency, risk, linked claim, and calendar precision.</li>
+              <li>Profile/Ghost grouping by type, ghost node status, review status, dependency, risk, claim, timeline, reality, and world status.</li>
+              <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
           <div class="hub-panel">
             <h3>Pending features</h3>
             <ul class="hub-list">
-              <li>Timeline view.</li>
-              <li>Profile page and ghost node flow.</li>
               <li>Real extraction engine and durable project database.</li>
+              <li>Automated release or publishing adapters.</li>
             </ul>
           </div>
           <div class="hub-panel">
@@ -840,9 +874,13 @@
               <li>unresolvedCreativeDecisions, taskCards, qaGateResults.</li>
               <li>generatedOutlines and importedUnknownFields metadata.</li>
               <li>claim ledger fields for scope, truth, reality status, disclosure, spoiler level, canon risk, and dependencies.</li>
+              <li>timeline fields for axis, order labels, disclosure, linked claims, dependencies, spoiler level, and canon risk.</li>
+              <li>profile fields for aliases, ghost node status, world/reality status, known/unknown belief maps, links, assets, sources, dependencies, and spoiler protection.</li>
             </ul>
             <p class="section-note"><a href="#state-portability">Go to export/import controls</a></p>
+            <p class="section-note"><a href="#profile-ghost-section">Go to Profile/Ghost Flow</a></p>
             <p class="section-note"><a href="#claim-ledger-section">Go to Claim Ledger</a></p>
+            <p class="section-note"><a href="#timeline-view-section">Go to Timeline View</a></p>
           </div>
         </div>
 
@@ -861,6 +899,10 @@
                 <tr><td>Persistence smoke</td><td>artifacts/file-persistence-smoke-result.json</td></tr>
                 <tr><td>Ergonomics smoke</td><td>artifacts/review-ergonomics-smoke-result.json</td></tr>
                 <tr><td>Claim Ledger smoke</td><td>artifacts/claim-ledger-smoke-result.json</td></tr>
+                <tr><td>Timeline smoke</td><td>artifacts/timeline-smoke-result.json</td></tr>
+                <tr><td>v1.3 compliance smoke</td><td>artifacts/v1-3-compliance-smoke-result.json</td></tr>
+                <tr><td>Checkpoint readback</td><td>artifacts/checkpoint-readback-result.json</td></tr>
+                <tr><td>Profile/Ghost smoke</td><td>artifacts/profile-ghost-smoke-result.json</td></tr>
                 <tr><td>Current status doc</td><td>docs/review/current-status.md</td></tr>
               </tbody>
             </table>
@@ -869,10 +911,12 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows artifact id <strong>fff-local-persistence-ergonomics-001</strong>.</li>
+              <li>Confirm this hub shows artifact id <strong>fff-profile-ghost-flow-001</strong>.</li>
               <li>Use <strong>Save state to local file</strong> where supported, or <strong>Download JSON fallback</strong>.</li>
               <li>Use <strong>Load state from local file</strong> where supported, or upload/paste JSON fallback.</li>
               <li>Use <strong>Claim Ledger</strong> grouping and filters before adopting story-sensitive truth.</li>
+              <li>Use <strong>Timeline View</strong> axes before adopting sequence-sensitive story truth.</li>
+              <li>Use <strong>Profile/Ghost Flow</strong> before turning aliases, placeholders, or extracted weak nodes into profile pages.</li>
               <li>Try status filters and collapse/expand controls before scanning all candidates.</li>
             </ul>
           </div>
@@ -905,11 +949,26 @@
             <span class="tag green">save/load reachable</span>
             <span class="tag green">filters available</span>
             <span class="tag green">Claim Ledger visible</span>
+            <span class="tag green">Timeline View visible</span>
+            <span class="tag green">Profile/Ghost Flow visible</span>
+            <span class="tag green">v1.3 compliance visible</span>
             <span class="tag green">unresolved decisions visible</span>
             <span class="tag green">QA gates visible</span>
             <span class="tag green">completed and pending features visible</span>
-            <span class="tag gold">Timeline view is next</span>
+            <span class="tag gold">real extraction remains next</span>
           </div>
+        </div>
+
+        <div class="hub-panel" id="v1-3-compliance-section" style="margin-top: 12px;">
+          <h3>v1.3 operating contract</h3>
+          <ul class="hub-list">
+            <li>Self-contained autonomous loop is represented through local-only review UI, state JSON, smoke results, and docs.</li>
+            <li>Reviewable artifacts use repo-relative paths under <strong>artifacts/</strong>, <strong>public/review/</strong>, and <strong>docs/review/</strong>.</li>
+            <li>Visual work has screenshot and contact sheet paths in the active manifest.</li>
+            <li>Human-owned decisions remain visible for Toma fate, brass moth truth, and Council motive.</li>
+            <li>Report-facing docs avoid non-user-facing execution settings, interface labels from tooling, and full-path artifact authority.</li>
+          </ul>
+          <p class="section-note"><a href="docs/review/v1-3-compliance-review.md">Open v1.3 compliance review</a></p>
         </div>
       </div>
     </section>
@@ -944,6 +1003,60 @@
       </aside>
 
       <section class="review-stack" aria-live="polite">
+        <div class="section-band" id="profile-ghost-section">
+          <div class="section-head">
+            <div>
+              <h2>Profile/Ghost Flow</h2>
+              <p class="section-note">Inspect profile pages, weak extracted nodes, placeholders, and cross-links before promoting anything into durable canon.</p>
+            </div>
+            <p class="section-note"><a href="#decision-log-section">Jump to decision log</a></p>
+          </div>
+          <div class="profile-toolbar" aria-label="Profile and Ghost Flow controls">
+            <div class="profile-toolbar-row">
+              <label for="profile-group-mode"><strong>Group profiles</strong></label>
+              <select class="profile-select" id="profile-group-mode" aria-label="Profile grouping mode">
+                <option value="profileType">By profile type</option>
+                <option value="ghostNodeStatus">By ghost node status</option>
+                <option value="reviewStatus">By review status</option>
+                <option value="unresolvedDependency">By unresolved dependency</option>
+                <option value="canonRisk">By canon risk</option>
+                <option value="linkedClaim">By linked claim</option>
+                <option value="linkedTimelineEntry">By linked timeline entry</option>
+                <option value="realityStatus">By reality status</option>
+                <option value="worldStatus">By world status</option>
+              </select>
+              <label for="profile-type-filter"><strong>Type</strong></label>
+              <select class="profile-select" id="profile-type-filter" aria-label="Profile type selector">
+                <option value="all">All profile types</option>
+                <option value="person">person</option>
+                <option value="place">place</option>
+                <option value="organization">organization</option>
+                <option value="event">event</option>
+                <option value="object">object</option>
+                <option value="concept">concept</option>
+                <option value="document">document</option>
+                <option value="visual_asset">visual_asset</option>
+                <option value="placeholder">placeholder</option>
+              </select>
+              <input class="search-input" id="profile-search-input" type="search" placeholder="Search profiles, links, dependency" aria-label="Search Profile and Ghost Flow">
+            </div>
+            <div class="segmented" aria-label="Profile and Ghost Flow filters">
+              <button class="filter-button" type="button" data-profile-filter="all" data-active="true">Show all profiles</button>
+              <button class="filter-button" type="button" data-profile-filter="ghost">Ghost nodes only</button>
+              <button class="filter-button" type="button" data-profile-filter="unresolved">Unresolved dependencies only</button>
+              <button class="filter-button" type="button" data-profile-filter="high-risk">High canon risk only</button>
+              <button class="filter-button" type="button" data-profile-filter="spoiler">Spoiler-protected only</button>
+              <button class="filter-button" type="button" data-profile-filter="adopted">Adopted only</button>
+              <button class="filter-button" type="button" data-profile-filter="provisional">Provisional only</button>
+              <button class="filter-button" type="button" data-profile-filter="held">Held only</button>
+              <button class="filter-button" type="button" data-profile-filter="rejected">Rejected only</button>
+              <button class="filter-button" type="button" data-profile-filter="placeholder">Placeholders only</button>
+            </div>
+            <div class="profile-summary" id="profile-ghost-summary">Profile/Ghost Flow not rendered yet.</div>
+          </div>
+          <div class="profile-ghost-grid" id="profile-ghost-root"></div>
+        </div>
+
         <div class="section-band" id="claim-ledger-section">
           <div class="section-head">
             <div>
@@ -980,6 +1093,44 @@
             <div class="claim-summary" id="claim-ledger-summary">Claim Ledger not rendered yet.</div>
           </div>
           <div class="claim-ledger-grid" id="claim-ledger-root"></div>
+        </div>
+
+        <div class="section-band" id="timeline-view-section">
+          <div class="section-head">
+            <div>
+              <h2>Timeline View</h2>
+              <p class="section-note">Separate story order, calendar time, viewer disclosure, production decisions, and historical/reference order before adopting sequence-sensitive truth.</p>
+            </div>
+            <p class="section-note"><a href="#decision-log-section">Jump to decision log</a></p>
+          </div>
+          <div class="timeline-toolbar" aria-label="Timeline View controls">
+            <div class="timeline-toolbar-row">
+              <label for="timeline-group-mode"><strong>Group timeline</strong></label>
+              <select class="timeline-select" id="timeline-group-mode" aria-label="Timeline grouping mode">
+                <option value="timelineAxis">By timeline axis</option>
+                <option value="reviewStatus">By review status</option>
+                <option value="viewerDisclosureStatus">By viewer disclosure status</option>
+                <option value="unresolvedDependency">By unresolved dependency</option>
+                <option value="canonRisk">By canon risk</option>
+                <option value="linkedClaim">By linked claim</option>
+                <option value="calendarPrecision">By calendar precision</option>
+              </select>
+              <input class="search-input" id="timeline-search-input" type="search" placeholder="Search timeline, claim, dependency" aria-label="Search Timeline View">
+            </div>
+            <div class="segmented" aria-label="Timeline View filters">
+              <button class="filter-button" type="button" data-timeline-filter="all" data-active="true">Show all timeline entries</button>
+              <button class="filter-button" type="button" data-timeline-filter="unresolved">Unresolved dependencies only</button>
+              <button class="filter-button" type="button" data-timeline-filter="hidden">Hidden from viewer only</button>
+              <button class="filter-button" type="button" data-timeline-filter="spoiler">Spoiler-protected only</button>
+              <button class="filter-button" type="button" data-timeline-filter="high-risk">High canon risk only</button>
+              <button class="filter-button" type="button" data-timeline-filter="adopt">Adopted only</button>
+              <button class="filter-button" type="button" data-timeline-filter="provisional">Provisional only</button>
+              <button class="filter-button" type="button" data-timeline-filter="hold">Held only</button>
+              <button class="filter-button" type="button" data-timeline-filter="reject">Rejected only</button>
+            </div>
+            <div class="timeline-summary" id="timeline-view-summary">Timeline View not rendered yet.</div>
+          </div>
+          <div class="timeline-ledger-grid" id="timeline-view-root"></div>
         </div>
 
         <div class="review-toolbar" aria-label="Candidate visibility controls">
@@ -1096,6 +1247,26 @@
       reviewStatus: "review status",
       source: "source"
     };
+    const TIMELINE_GROUP_LABELS = {
+      timelineAxis: "timeline axis",
+      reviewStatus: "review status",
+      viewerDisclosureStatus: "viewer disclosure status",
+      unresolvedDependency: "unresolved dependency",
+      canonRisk: "canon risk",
+      linkedClaim: "linked claim",
+      calendarPrecision: "calendar precision"
+    };
+    const PROFILE_GROUP_LABELS = {
+      profileType: "profile type",
+      ghostNodeStatus: "ghost node status",
+      reviewStatus: "review status",
+      unresolvedDependency: "unresolved dependency",
+      canonRisk: "canon risk",
+      linkedClaim: "linked claim",
+      linkedTimelineEntry: "linked timeline entry",
+      realityStatus: "reality status",
+      worldStatus: "world status"
+    };
 
     const sampleMemo = `Working title: The Clockmaker Under Glass.
 
@@ -1116,13 +1287,22 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     let activeClaimGroupMode = "claimScope";
     let activeClaimFilter = "all";
     let activeClaimSearchQuery = "";
+    let activeTimelineGroupMode = "timelineAxis";
+    let activeTimelineFilter = "all";
+    let activeTimelineSearchQuery = "";
+    let activeProfileGroupMode = "profileType";
+    let activeProfileFilter = "all";
+    let activeProfileTypeFilter = "all";
+    let activeProfileSearchQuery = "";
 
     const memoInput = document.querySelector("#memo-input");
     const roots = {
       elements: document.querySelector("#elements-root"),
       profiles: document.querySelector("#profiles-root"),
+      profileGhost: document.querySelector("#profile-ghost-root"),
       claims: document.querySelector("#claims-root"),
       claimLedger: document.querySelector("#claim-ledger-root"),
+      timelineView: document.querySelector("#timeline-view-root"),
       timeline: document.querySelector("#timeline-root"),
       tasks: document.querySelector("#tasks-root"),
       unresolved: document.querySelector("#unresolved-root"),
@@ -1139,6 +1319,13 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const claimGroupMode = document.querySelector("#claim-group-mode");
     const claimSearchInput = document.querySelector("#claim-search-input");
     const claimLedgerSummary = document.querySelector("#claim-ledger-summary");
+    const timelineGroupMode = document.querySelector("#timeline-group-mode");
+    const timelineSearchInput = document.querySelector("#timeline-search-input");
+    const timelineViewSummary = document.querySelector("#timeline-view-summary");
+    const profileGroupMode = document.querySelector("#profile-group-mode");
+    const profileTypeFilter = document.querySelector("#profile-type-filter");
+    const profileSearchInput = document.querySelector("#profile-search-input");
+    const profileGhostSummary = document.querySelector("#profile-ghost-summary");
 
     memoInput.value = state.memo || sampleMemo;
     jsonExportOutput.value = state.exportPreview || "";
@@ -1148,6 +1335,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     document.querySelector("#generate-button").addEventListener("click", () => {
       state.memo = memoInput.value;
       state.importedProjectState = null;
+      state.profilePromotions = {};
       saveState();
       renderAll();
       showStateMessage("Generated local candidates from the current memo. Imported candidate overrides are cleared.", "success");
@@ -1157,6 +1345,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       memoInput.value = sampleMemo;
       state.memo = sampleMemo;
       state.importedProjectState = null;
+      state.profilePromotions = {};
       saveState();
       renderAll();
       showStateMessage("Sample memo restored. Imported candidate overrides are cleared.", "success");
@@ -1164,6 +1353,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     document.querySelector("#clear-decisions-button").addEventListener("click", () => {
       state.decisions = {};
+      state.profilePromotions = {};
       state.log = [];
       saveState();
       renderAll();
@@ -1216,7 +1406,30 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     document.addEventListener("click", (event) => {
       const button = event.target.closest("[data-review-action]");
-      if (!button) {
+      const promoteButton = event.target.closest("[data-profile-promote]");
+      if (!button && !promoteButton) {
+        return;
+      }
+
+      if (promoteButton) {
+        const id = promoteButton.getAttribute("data-profile-promote");
+        const label = promoteButton.getAttribute("data-label") || id;
+        state.profilePromotions[id] = true;
+        state.decisions[id] = "provisional";
+        state.log.unshift({
+          id: `decision-${Date.now()}`,
+          subject_id: id,
+          subject_type: "Profile",
+          decision: "provisional",
+          effect: "Ghost node is promoted to a reversible provisional profile. Human-owned canon decisions remain unresolved.",
+          owner: "human_author",
+          created_at: new Date().toISOString(),
+          label
+        });
+        state.log = state.log.slice(0, 80);
+        saveState();
+        renderAll();
+        showStateMessage(`${label} is now a provisional profile candidate.`, "success");
         return;
       }
 
@@ -1270,6 +1483,51 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       renderClaimLedger(currentModel ? currentModel.claim_candidates : []);
     });
 
+    timelineGroupMode.addEventListener("change", () => {
+      activeTimelineGroupMode = timelineGroupMode.value;
+      renderTimelineView(currentModel ? currentModel.timeline_candidates : []);
+    });
+
+    document.querySelectorAll("[data-timeline-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeTimelineFilter = button.getAttribute("data-timeline-filter") || "all";
+        document.querySelectorAll("[data-timeline-filter]").forEach((item) => {
+          item.setAttribute("data-active", String(item === button));
+        });
+        renderTimelineView(currentModel ? currentModel.timeline_candidates : []);
+      });
+    });
+
+    timelineSearchInput.addEventListener("input", () => {
+      activeTimelineSearchQuery = timelineSearchInput.value.trim().toLowerCase();
+      renderTimelineView(currentModel ? currentModel.timeline_candidates : []);
+    });
+
+    profileGroupMode.addEventListener("change", () => {
+      activeProfileGroupMode = profileGroupMode.value;
+      renderProfileGhostView(currentModel ? currentModel.profile_candidates : []);
+    });
+
+    profileTypeFilter.addEventListener("change", () => {
+      activeProfileTypeFilter = profileTypeFilter.value;
+      renderProfileGhostView(currentModel ? currentModel.profile_candidates : []);
+    });
+
+    document.querySelectorAll("[data-profile-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeProfileFilter = button.getAttribute("data-profile-filter") || "all";
+        document.querySelectorAll("[data-profile-filter]").forEach((item) => {
+          item.setAttribute("data-active", String(item === button));
+        });
+        renderProfileGhostView(currentModel ? currentModel.profile_candidates : []);
+      });
+    });
+
+    profileSearchInput.addEventListener("input", () => {
+      activeProfileSearchQuery = profileSearchInput.value.trim().toLowerCase();
+      renderProfileGhostView(currentModel ? currentModel.profile_candidates : []);
+    });
+
     candidateSearchInput.addEventListener("input", () => {
       activeSearchQuery = candidateSearchInput.value.trim().toLowerCase();
       applyReviewFilters();
@@ -1300,9 +1558,11 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     function renderAll() {
       currentModel = applyImportedModelOverrides(buildWorkbenchModel(memoInput.value || sampleMemo));
       renderElements(currentModel.extracted_elements);
+      renderProfileGhostView(currentModel.profile_candidates);
       renderCards(roots.profiles, currentModel.profile_candidates, renderProfileCard);
       renderCards(roots.claims, currentModel.claim_candidates, renderClaimCard);
       renderClaimLedger(currentModel.claim_candidates);
+      renderTimelineView(currentModel.timeline_candidates);
       renderCards(roots.timeline, currentModel.timeline_candidates, renderTimelineCard);
       renderCards(roots.tasks, currentModel.task_cards, renderTaskCard);
       renderUnresolvedDecisions(currentModel.unresolved_creative_decisions);
@@ -1317,6 +1577,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       return {
         memo: "",
         decisions: {},
+        profilePromotions: {},
         log: [],
         importedProjectState: null,
         exportPreview: ""
@@ -1331,6 +1592,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       return {
         memo: typeof raw.memo === "string" ? raw.memo : "",
         decisions: normalizeReviewStatuses(raw.decisions),
+        profilePromotions: normalizeBooleanMap(raw.profilePromotions),
         log: normalizeDecisionLog(raw.log),
         importedProjectState: raw.importedProjectState && typeof raw.importedProjectState === "object" ? raw.importedProjectState : null,
         exportPreview: typeof raw.exportPreview === "string" ? raw.exportPreview : ""
@@ -1410,87 +1672,11 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         ])
       ];
 
-      const profiles = [
-        {
-          id: "profile-mira",
-          type: "Profile",
-          profile_type: "person",
-          title: "Mira Vale",
-          summary: "Clock repairer with personal stakes in the stolen-time mystery.",
-          aliases: ["Mira", "the clockmaker"],
-          open_questions: ["How much does Mira know before the first scene?", "What does repair work cost her emotionally?"],
-          source_refs: [sourceRef],
-          review_status: "hold"
-        },
-        {
-          id: "profile-toma",
-          type: "Profile",
-          profile_type: "person",
-          title: "Toma Vale",
-          summary: "Missing brother whose fate controls the story's grief, hope, and final reveal.",
-          aliases: ["Toma", "missing brother"],
-          open_questions: ["Alive, dead, erased, or transformed?", "Was the note voluntary?"],
-          source_refs: [sourceRef],
-          review_status: "hold"
-        },
-        {
-          id: "profile-council",
-          type: "Profile",
-          profile_type: "organization",
-          title: hasCouncil ? "City council" : "Unnamed authority",
-          summary: "Institutional actor connected to selling or reallocating stolen time.",
-          aliases: ["council", "authority"],
-          open_questions: ["Villainous, desperate, divided, or misled?", "Who benefits from the trade?"],
-          source_refs: [sourceRef],
-          review_status: "hold"
-        },
-        {
-          id: "profile-brass-moth",
-          type: "Profile",
-          profile_type: "object",
-          title: "Brass moth",
-          summary: "Compact story engine that may serve as spy, key, or memory container.",
-          aliases: ["moth", "brass moth"],
-          open_questions: ["What does it do on-screen?", "Can it be explained visually without exposition?"],
-          source_refs: [sourceRef],
-          review_status: "hold"
-        }
-      ];
+      const profiles = buildProfileCandidates(sourceRef, hasCouncil);
 
       const claims = buildClaimCandidates(sourceRef);
 
-      const timeline = [
-        {
-          id: "timeline-917",
-          type: "TimelineEvent",
-          title: "Arcade closes at 9:17",
-          sequence_scope: "story_order",
-          date_or_position: "Recurring nightly marker",
-          description: "Use as a structural tick before discoveries or reversals.",
-          source: "Raw story memo",
-          review_status: "hold"
-        },
-        {
-          id: "timeline-curfew",
-          type: "TimelineEvent",
-          title: "Winter curfew bell removal",
-          sequence_scope: "historical_context",
-          date_or_position: "Before present action",
-          description: "Background event explaining why the noon bell is impossible.",
-          source: "Raw story memo",
-          review_status: "hold"
-        },
-        {
-          id: "timeline-production-open",
-          type: "TimelineEvent",
-          title: "Open video with the bell paradox",
-          sequence_scope: "production_order",
-          date_or_position: "First 8 seconds",
-          description: "Production outline candidate, not story chronology.",
-          source: "Derived from memo",
-          review_status: "hold"
-        }
-      ];
+      const timeline = buildTimelineCandidates(sourceRef);
 
       const tasks = [
         {
@@ -1633,6 +1819,323 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       ];
     }
 
+    function buildProfileCandidates(sourceRef, hasCouncil) {
+      const rawMemoSource = {
+        id: sourceRef.id,
+        label: sourceRef.label,
+        source_type: sourceRef.source_type,
+        locator: sourceRef.locator,
+        trust: sourceRef.trust
+      };
+      const derivedProfileSource = {
+        id: "src-derived-profile-ghost-001",
+        label: "Derived Profile/Ghost candidate",
+        source_type: "derived_candidate",
+        locator: "local deterministic profile and ghost grouping",
+        trust: "derived_candidate"
+      };
+
+      return [
+        profileEntry({
+          id: "profile-mira",
+          displayName: "Mira Vale",
+          aliases: ["Mira", "the clockmaker"],
+          profileType: "person",
+          profileStatus: "reviewable_profile_page",
+          ghostNodeStatus: "adopted_profile",
+          worldStatus: "protagonist candidate",
+          realityStatus: "plausible fiction",
+          linkedClaimIds: ["claim-mira-clockmaker", "claim-ending-restores-hour"],
+          linkedTimelineEntryIds: ["timeline-917-cycle", "timeline-ending-hour-return"],
+          relatedProfileIds: ["profile-toma", "profile-brass-moth", "profile-council"],
+          unresolvedDependencies: [],
+          knownBy: ["raw memo", "viewer-facing opening"],
+          unknownBy: ["final council motive route"],
+          believedBy: ["raw memo narrator"],
+          misunderstoodBy: [],
+          ownedItems: ["cracked station clock candidate", "workshop drawer"],
+          sourceRefs: [rawMemoSource],
+          assetRefs: [],
+          canonRisk: "low",
+          spoilerLevel: "low",
+          reviewStatus: "hold",
+          notes: "A local profile page can exist without deciding the ending route.",
+          summary: "Clock repairer with personal stakes in the stolen-time mystery.",
+          openQuestions: ["How much does Mira know before the first scene?", "What does repair work cost her emotionally?"]
+        }),
+        profileEntry({
+          id: "profile-toma",
+          displayName: "Toma Vale",
+          aliases: ["Toma", "missing brother"],
+          profileType: "person",
+          profileStatus: "dependency_bound_profile",
+          ghostNodeStatus: "needs_human_decision",
+          worldStatus: "unresolved story person",
+          realityStatus: "plausible fiction",
+          linkedClaimIds: ["claim-toma-left-note", "claim-ending-restores-hour"],
+          linkedTimelineEntryIds: ["timeline-toma-note", "timeline-brass-moth-first-use", "timeline-ending-hour-return"],
+          relatedProfileIds: ["profile-mira", "profile-brass-moth", "profile-final-answer-ghost"],
+          unresolvedDependencies: ["Toma fate"],
+          knownBy: ["Mira", "raw memo narrator"],
+          unknownBy: ["viewer until reveal route is chosen"],
+          believedBy: ["Mira may believe Toma left the note"],
+          misunderstoodBy: ["council route remains undecided"],
+          ownedItems: ["note about stolen minutes"],
+          sourceRefs: [rawMemoSource],
+          assetRefs: [],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          reviewStatus: "hold",
+          notes: "Do not decide alive, dead, erased, transformed, or deliberately unknown inside this slice.",
+          summary: "Missing brother whose fate controls grief, hope, and final reveal pressure.",
+          openQuestions: ["Alive, dead, erased, transformed, or deliberately unknown?", "Was the note voluntary?"]
+        }),
+        profileEntry({
+          id: "profile-council",
+          displayName: hasCouncil ? "City council" : "Unnamed authority",
+          aliases: ["council", "authority"],
+          profileType: "organization",
+          profileStatus: "dependency_bound_profile",
+          ghostNodeStatus: "needs_human_decision",
+          worldStatus: "unresolved institutional actor",
+          realityStatus: "pure fiction",
+          linkedClaimIds: ["claim-city-sells-time", "claim-council-desperate", "claim-ending-restores-hour"],
+          linkedTimelineEntryIds: ["timeline-council-motive-disclosure", "timeline-toma-note", "timeline-ending-hour-return"],
+          relatedProfileIds: ["profile-mira", "profile-toma", "profile-stolen-time"],
+          unresolvedDependencies: ["Council motive"],
+          knownBy: ["raw memo narrator", "Toma note candidate"],
+          unknownBy: ["viewer until motive disclosure route is chosen"],
+          believedBy: ["Toma note accuses the council"],
+          misunderstoodBy: ["villainous versus desperate route is not decided"],
+          ownedItems: ["ledger of minutes candidate"],
+          sourceRefs: [rawMemoSource, derivedProfileSource],
+          assetRefs: [],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          reviewStatus: "hold",
+          notes: "Keep villainous, desperate, divided, and misled routes reversible.",
+          summary: "Institutional actor connected to selling or reallocating stolen time.",
+          openQuestions: ["Villainous, desperate, divided, or misled?", "Who benefits from the trade?"]
+        }),
+        profileEntry({
+          id: "profile-brass-moth",
+          displayName: "Brass moth",
+          aliases: ["moth", "brass moth"],
+          profileType: "object",
+          profileStatus: "dependency_bound_profile",
+          ghostNodeStatus: "needs_human_decision",
+          worldStatus: "unresolved story object",
+          realityStatus: "pure fiction",
+          linkedClaimIds: ["claim-brass-moth-function", "claim-toma-left-note"],
+          linkedTimelineEntryIds: ["timeline-brass-moth-first-use", "timeline-toma-note"],
+          relatedProfileIds: ["profile-toma", "profile-mira", "profile-magic-rules"],
+          unresolvedDependencies: ["brass moth truth"],
+          knownBy: ["Mira finds the object", "raw memo narrator"],
+          unknownBy: ["viewer until first-use rule is chosen"],
+          believedBy: ["raw memo offers spy, key, or memory container routes"],
+          misunderstoodBy: ["function must not be inferred as final"],
+          ownedItems: [],
+          sourceRefs: [rawMemoSource],
+          assetRefs: ["asset-placeholder-brass-moth"],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          reviewStatus: "hold",
+          notes: "Profile can collect references while the object's truth remains human-owned.",
+          summary: "Compact story engine that may serve as spy, key, or memory container.",
+          openQuestions: ["What does it do on-screen?", "Can it be explained visually without exposition?"]
+        }),
+        profileEntry({
+          id: "profile-north-bell-station",
+          displayName: "North Bell Station",
+          aliases: ["station", "old observatory station"],
+          profileType: "place",
+          profileStatus: "provisional_profile",
+          ghostNodeStatus: "provisional_profile",
+          worldStatus: "setting candidate",
+          realityStatus: "pure fiction",
+          linkedClaimIds: ["claim-bell-rings", "claim-winter-curfew"],
+          linkedTimelineEntryIds: ["timeline-noon-bell", "timeline-winter-curfew", "timeline-production-open-bell"],
+          relatedProfileIds: ["profile-mira", "profile-stolen-time"],
+          unresolvedDependencies: [],
+          knownBy: ["viewer-facing public landmark"],
+          unknownBy: ["full winter curfew history"],
+          believedBy: ["raw memo narrator"],
+          misunderstoodBy: ["bell paradox may be read as continuity error until reviewed"],
+          ownedItems: ["old observatory", "removed bell trace"],
+          sourceRefs: [rawMemoSource],
+          assetRefs: [],
+          canonRisk: "medium",
+          spoilerLevel: "medium",
+          reviewStatus: "hold",
+          notes: "Place profile supports Timeline links without turning the curfew into sourced real-world history.",
+          summary: "Transit landmark tied to the observatory, bell paradox, and winter curfew.",
+          openQuestions: ["How much of the curfew is visible early?", "Is the observatory inside or above the station?"]
+        }),
+        profileEntry({
+          id: "profile-arcade-917-closure",
+          displayName: "9:17 arcade closure",
+          aliases: ["nightly closing", "9:17 motif"],
+          profileType: "event",
+          profileStatus: "extracted_event_candidate",
+          ghostNodeStatus: "extracted_candidate",
+          worldStatus: "repeatable story event",
+          realityStatus: "pure fiction",
+          linkedClaimIds: ["claim-arcade-closes-917"],
+          linkedTimelineEntryIds: ["timeline-917-cycle"],
+          relatedProfileIds: ["profile-mira"],
+          unresolvedDependencies: [],
+          knownBy: ["viewer-facing opening"],
+          unknownBy: ["reason for exact time"],
+          believedBy: ["raw memo narrator"],
+          misunderstoodBy: [],
+          ownedItems: [],
+          sourceRefs: [rawMemoSource],
+          assetRefs: [],
+          canonRisk: "low",
+          spoilerLevel: "low",
+          reviewStatus: "hold",
+          notes: "Weak event node is inspectable before deciding whether it deserves a full profile page.",
+          summary: "Repeatable closing-time motif that anchors story rhythm.",
+          openQuestions: ["Is 9:17 literal time, ritual time, or production timing?", "Should the motif link to stolen minutes later?"]
+        }),
+        profileEntry({
+          id: "profile-stolen-time",
+          displayName: "Stolen time",
+          aliases: ["sold minutes", "abandoned lives mechanism"],
+          profileType: "concept",
+          profileStatus: "held_concept_ghost",
+          ghostNodeStatus: "held_ghost",
+          worldStatus: "unresolved speculative mechanism",
+          realityStatus: "pure fiction",
+          linkedClaimIds: ["claim-city-sells-time", "claim-ending-restores-hour"],
+          linkedTimelineEntryIds: ["timeline-council-motive-disclosure", "timeline-ending-hour-return"],
+          relatedProfileIds: ["profile-council", "profile-ledger-of-minutes", "profile-magic-rules"],
+          unresolvedDependencies: ["Council motive"],
+          knownBy: ["Toma note candidate", "possible ending note"],
+          unknownBy: ["viewer until reveal pacing is selected"],
+          believedBy: ["Mira may treat the note as evidence"],
+          misunderstoodBy: ["mechanism cannot become full magic system yet"],
+          ownedItems: ["ledger of minutes candidate"],
+          sourceRefs: [rawMemoSource, derivedProfileSource],
+          assetRefs: [],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          reviewStatus: "hold",
+          notes: "Hold as a concept ghost until the council route and first explanation boundary are chosen.",
+          summary: "Speculative mechanism behind the city's stolen minutes.",
+          openQuestions: ["Is time stolen, traded, harvested, or misreported?", "Who knows the mechanism?"]
+        }),
+        profileEntry({
+          id: "profile-ledger-of-minutes",
+          displayName: "Ledger of minutes",
+          aliases: ["council ledger", "ledger"],
+          profileType: "document",
+          profileStatus: "held_document_ghost",
+          ghostNodeStatus: "held_ghost",
+          worldStatus: "evidence candidate",
+          realityStatus: "pure fiction",
+          linkedClaimIds: ["claim-city-sells-time", "claim-ending-restores-hour"],
+          linkedTimelineEntryIds: ["timeline-council-motive-disclosure", "timeline-ending-hour-return"],
+          relatedProfileIds: ["profile-council", "profile-stolen-time"],
+          unresolvedDependencies: ["Council motive"],
+          knownBy: ["Toma note candidate", "Mira investigation route"],
+          unknownBy: ["viewer until evidence route is chosen"],
+          believedBy: ["raw memo implies physical proof"],
+          misunderstoodBy: ["document authority is not final source truth"],
+          ownedItems: [],
+          sourceRefs: [rawMemoSource],
+          assetRefs: ["asset-placeholder-ledger"],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          reviewStatus: "hold",
+          notes: "Document profile remains a ghost because its contents imply ending and motive routes.",
+          summary: "Physical proof candidate for abandoned lives and stolen minutes.",
+          openQuestions: ["Who wrote the ledger?", "Does it name erased people or only account balances?"]
+        }),
+        profileEntry({
+          id: "profile-placeholder-visuals",
+          displayName: "Placeholder visual assets",
+          aliases: ["text-only visuals", "asset placeholder"],
+          profileType: "visual_asset",
+          profileStatus: "held_asset_placeholder",
+          ghostNodeStatus: "held_ghost",
+          worldStatus: "production placeholder",
+          realityStatus: "local review only",
+          linkedClaimIds: ["claim-bell-rings"],
+          linkedTimelineEntryIds: ["timeline-production-open-bell"],
+          relatedProfileIds: ["profile-north-bell-station", "profile-brass-moth"],
+          unresolvedDependencies: [],
+          knownBy: ["local reviewer"],
+          unknownBy: ["public audience because nothing publishes"],
+          believedBy: ["production notes only"],
+          misunderstoodBy: ["must not be treated as release asset"],
+          ownedItems: [],
+          sourceRefs: [derivedProfileSource],
+          assetRefs: ["asset-placeholder-brass-moth", "asset-placeholder-bell-paradox"],
+          canonRisk: "medium",
+          spoilerLevel: "low",
+          reviewStatus: "hold",
+          notes: "Keeps asset needs visible without adding rights, publishing, or AI video work.",
+          summary: "Local-only placeholder asset node for review screenshots and future production notes.",
+          openQuestions: ["Which assets are truly needed later?", "What rights status applies once real assets exist?"]
+        }),
+        profileEntry({
+          id: "profile-magic-rules",
+          displayName: "Magic rules placeholder",
+          aliases: ["rules placeholder", "explanation boundary"],
+          profileType: "placeholder",
+          profileStatus: "needs_author_rule",
+          ghostNodeStatus: "needs_human_decision",
+          worldStatus: "unresolved rule boundary",
+          realityStatus: "pure fiction",
+          linkedClaimIds: ["claim-brass-moth-function", "claim-city-sells-time"],
+          linkedTimelineEntryIds: ["timeline-brass-moth-first-use", "timeline-council-motive-disclosure"],
+          relatedProfileIds: ["profile-brass-moth", "profile-stolen-time"],
+          unresolvedDependencies: ["brass moth truth", "Council motive"],
+          knownBy: ["local reviewer as missing boundary"],
+          unknownBy: ["viewer until explanation timing is selected"],
+          believedBy: ["raw memo says not to explain too early"],
+          misunderstoodBy: ["not a full magic system"],
+          ownedItems: [],
+          sourceRefs: [rawMemoSource, derivedProfileSource],
+          assetRefs: [],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          reviewStatus: "hold",
+          notes: "A placeholder profile exists only to prevent hidden rule decisions from leaking into other nodes.",
+          summary: "Review placeholder for the boundary between mystery and explanation.",
+          openQuestions: ["Which rule must be known in act one?", "Which rule should remain hidden?"]
+        }),
+        profileEntry({
+          id: "profile-final-answer-ghost",
+          displayName: "Rejected final-answer ghost",
+          aliases: ["overresolved ghost", "false certainty node"],
+          profileType: "placeholder",
+          profileStatus: "rejected_extraction_candidate",
+          ghostNodeStatus: "rejected_candidate",
+          worldStatus: "non-canon review artifact",
+          realityStatus: "local review only",
+          linkedClaimIds: ["claim-toma-left-note", "claim-brass-moth-function", "claim-council-desperate"],
+          linkedTimelineEntryIds: ["timeline-toma-note", "timeline-brass-moth-first-use", "timeline-council-motive-disclosure"],
+          relatedProfileIds: ["profile-toma", "profile-brass-moth", "profile-council"],
+          unresolvedDependencies: ["Toma fate", "brass moth truth", "Council motive"],
+          knownBy: ["local reviewer"],
+          unknownBy: ["story world"],
+          believedBy: [],
+          misunderstoodBy: ["would falsely imply the unresolved decisions are already solved"],
+          ownedItems: [],
+          sourceRefs: [derivedProfileSource],
+          assetRefs: [],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          reviewStatus: "reject",
+          notes: "Rejecting this node guards against accidental final canon decisions by extraction.",
+          summary: "A deliberately rejected placeholder for any extractor output that pretends to settle Toma, the moth, or the Council.",
+          openQuestions: ["None; keep rejected unless a human explicitly creates separate final decisions."]
+        })
+      ];
+    }
+
     function buildClaimCandidates(sourceRef) {
       const rawMemoSource = {
         id: sourceRef.id,
@@ -1700,7 +2203,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           worldTruthStatus: "uncertain",
           realityStatus: "pure fiction",
           sourceRefs: [rawMemoSource],
-          subjectRefs: ["profile-council", "claim-ledger-of-minutes"],
+          subjectRefs: ["profile-council", "profile-ledger-of-minutes"],
           speakerOrNarratorRef: "Toma Vale note",
           viewerDisclosureStatus: "partial reveal",
           spoilerLevel: "medium",
@@ -1822,6 +2325,193 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       ];
     }
 
+    function buildTimelineCandidates(sourceRef) {
+      const rawMemoSource = {
+        id: sourceRef.id,
+        label: sourceRef.label,
+        source_type: sourceRef.source_type,
+        locator: sourceRef.locator,
+        trust: sourceRef.trust
+      };
+      const derivedTimelineSource = {
+        id: "src-derived-timeline-view-001",
+        label: "Derived Timeline View candidate",
+        source_type: "derived_candidate",
+        locator: "local deterministic timeline separation",
+        trust: "derived_candidate"
+      };
+      const possibleEndingSource = {
+        id: "src-possible-ending-001",
+        label: "Possible ending note",
+        source_type: "memo",
+        locator: "memo paragraph: Possible ending",
+        trust: "author_memo"
+      };
+
+      return [
+        timelineEntry({
+          id: "timeline-917-cycle",
+          title: "The glass arcade closes at 9:17.",
+          summary: "Use the nightly closing time as the first repeatable story-order marker.",
+          timelineAxis: "story_order",
+          storyOrder: "01 recurring opening rhythm",
+          calendarTime: "Every night at 9:17",
+          calendarPrecision: "recurring_clock_time",
+          viewerDisclosureOrder: "01 visible opening rule",
+          viewerDisclosureStatus: "viewer-facing now",
+          productionOrder: "Establish before the first clue.",
+          historicalReferenceTime: "present action",
+          linkedClaimIds: ["claim-arcade-closes-917"],
+          linkedProfileIds: ["profile-mira"],
+          unresolvedDependencies: [],
+          spoilerLevel: "low",
+          canonRisk: "low",
+          sourceRefs: [rawMemoSource],
+          notes: "Safe ordering candidate; adoption does not explain why the time matters."
+        }),
+        timelineEntry({
+          id: "timeline-toma-note",
+          title: "Toma's note points Mira toward stolen minutes.",
+          summary: "Inciting clue connects family stakes to the council ledger without deciding Toma's fate.",
+          timelineAxis: "story_order",
+          storyOrder: "02 inciting clue",
+          calendarTime: "Before Mira's first investigation",
+          calendarPrecision: "relative_sequence",
+          viewerDisclosureOrder: "02 viewer learns the accusation",
+          viewerDisclosureStatus: "viewer-facing now",
+          productionOrder: "Introduce after the 9:17 motif.",
+          historicalReferenceTime: "present action",
+          linkedClaimIds: ["claim-toma-left-note", "claim-city-sells-time"],
+          linkedProfileIds: ["profile-toma", "profile-mira", "profile-council"],
+          unresolvedDependencies: ["Toma fate"],
+          spoilerLevel: "medium",
+          canonRisk: "high",
+          sourceRefs: [rawMemoSource],
+          notes: "Keep Toma's agency reversible until the human author chooses his fate."
+        }),
+        timelineEntry({
+          id: "timeline-noon-bell",
+          title: "The observatory rings at noon despite the missing bell.",
+          summary: "Calendar-time event separates the noon cue from the 9:17 story rhythm.",
+          timelineAxis: "calendar_time",
+          storyOrder: "03 impossible public signal",
+          calendarTime: "Noon during present action",
+          calendarPrecision: "clock_time",
+          viewerDisclosureOrder: "03 visible contradiction",
+          viewerDisclosureStatus: "viewer-facing now",
+          productionOrder: "Use as the visual proof beat.",
+          historicalReferenceTime: "after winter curfew",
+          linkedClaimIds: ["claim-bell-rings", "claim-winter-curfew"],
+          linkedProfileIds: ["el-place-001"],
+          unresolvedDependencies: [],
+          spoilerLevel: "medium",
+          canonRisk: "medium",
+          sourceRefs: [rawMemoSource],
+          notes: "Treat as intentional impossible image unless continuity review rejects it."
+        }),
+        timelineEntry({
+          id: "timeline-winter-curfew",
+          title: "Winter curfew precedes the present action.",
+          summary: "Historical/reference entry explains why the missing bell is source-sensitive.",
+          timelineAxis: "historical_reference_order",
+          storyOrder: "background before present action",
+          calendarTime: "Prior winter",
+          calendarPrecision: "historical_reference",
+          viewerDisclosureOrder: "held for later explanation",
+          viewerDisclosureStatus: "not yet viewer-facing",
+          productionOrder: "Mention only after the bell paradox lands.",
+          historicalReferenceTime: "winter curfew before current story",
+          linkedClaimIds: ["claim-winter-curfew", "claim-bell-rings"],
+          linkedProfileIds: ["el-history-001", "el-place-001"],
+          unresolvedDependencies: [],
+          spoilerLevel: "medium",
+          canonRisk: "medium",
+          sourceRefs: [rawMemoSource],
+          notes: "In-world history only; do not treat as sourced real-world history."
+        }),
+        timelineEntry({
+          id: "timeline-council-motive-disclosure",
+          title: "Council motive may be revealed as villainous, desperate, divided, or misled.",
+          summary: "Viewer disclosure route stays separate from final world truth.",
+          timelineAxis: "viewer_disclosure_order",
+          storyOrder: "midpoint or later",
+          calendarTime: "After ledger evidence appears",
+          calendarPrecision: "relative_sequence",
+          viewerDisclosureOrder: "misleadingly revealed before final motive",
+          viewerDisclosureStatus: "hidden from viewer",
+          productionOrder: "Delay until Claim Ledger review narrows the route.",
+          historicalReferenceTime: "not set",
+          linkedClaimIds: ["claim-city-sells-time", "claim-council-desperate"],
+          linkedProfileIds: ["profile-council"],
+          unresolvedDependencies: ["Council motive"],
+          spoilerLevel: "high",
+          canonRisk: "high",
+          sourceRefs: [derivedTimelineSource],
+          notes: "Do not resolve the council motive in this timeline slice."
+        }),
+        timelineEntry({
+          id: "timeline-brass-moth-first-use",
+          title: "The brass moth gets one reversible first-use beat.",
+          summary: "Object function is sequenced as a candidate action, not final magic truth.",
+          timelineAxis: "viewer_disclosure_order",
+          storyOrder: "early investigation candidate",
+          calendarTime: "After Toma's note is found",
+          calendarPrecision: "relative_sequence",
+          viewerDisclosureOrder: "hinted before explanation",
+          viewerDisclosureStatus: "partial reveal",
+          productionOrder: "Show one concrete action before any exposition.",
+          historicalReferenceTime: "not set",
+          linkedClaimIds: ["claim-brass-moth-function", "claim-toma-left-note"],
+          linkedProfileIds: ["profile-brass-moth", "profile-toma"],
+          unresolvedDependencies: ["brass moth truth"],
+          spoilerLevel: "high",
+          canonRisk: "high",
+          sourceRefs: [rawMemoSource],
+          notes: "Keep spy, key, and memory-container options reversible."
+        }),
+        timelineEntry({
+          id: "timeline-production-open-bell",
+          title: "Open the reviewable video outline with the bell paradox.",
+          summary: "Production order starts with an inspectable image, not a canon explanation.",
+          timelineAxis: "production_order",
+          storyOrder: "production cold open",
+          calendarTime: "First 8 seconds",
+          calendarPrecision: "production_timing",
+          viewerDisclosureOrder: "01 visible hook",
+          viewerDisclosureStatus: "viewer-facing now",
+          productionOrder: "01 cold open",
+          historicalReferenceTime: "references winter curfew only later",
+          linkedClaimIds: ["claim-bell-rings"],
+          linkedProfileIds: ["el-place-001"],
+          unresolvedDependencies: [],
+          spoilerLevel: "low",
+          canonRisk: "low",
+          sourceRefs: [derivedTimelineSource],
+          notes: "Production timeline only; no automated video generation is active."
+        }),
+        timelineEntry({
+          id: "timeline-ending-hour-return",
+          title: "Mira may give one lost hour back to every erased person.",
+          summary: "Possible ending route remains hidden and dependency-bound.",
+          timelineAxis: "story_order",
+          storyOrder: "candidate ending",
+          calendarTime: "After the council ledger conflict",
+          calendarPrecision: "ending_candidate",
+          viewerDisclosureOrder: "spoiler-protected ending route",
+          viewerDisclosureStatus: "hidden from viewer",
+          productionOrder: "Do not storyboard as final until human review.",
+          historicalReferenceTime: "not set",
+          linkedClaimIds: ["claim-ending-restores-hour", "claim-city-sells-time"],
+          linkedProfileIds: ["profile-mira", "profile-toma", "profile-council"],
+          unresolvedDependencies: ["Toma fate", "Council motive"],
+          spoilerLevel: "high",
+          canonRisk: "high",
+          sourceRefs: [possibleEndingSource],
+          notes: "Ending route only; keep held or provisional until human-owned decisions are made."
+        })
+      ];
+    }
+
     function applyImportedModelOverrides(model) {
       const imported = state.importedProjectState;
       if (!imported || typeof imported !== "object") {
@@ -1834,13 +2524,95 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         project: imported.project || model.project,
         work: imported.work || model.work,
         extracted_elements: Array.isArray(extracted.elements) ? extracted.elements : model.extracted_elements,
-        profile_candidates: Array.isArray(extracted.profiles) ? extracted.profiles : model.profile_candidates,
+        profile_candidates: normalizeProfileCandidates(extracted.profiles, model.profile_candidates),
         claim_candidates: normalizeClaimCandidates(extracted.claims, model.claim_candidates),
-        timeline_candidates: Array.isArray(extracted.timelineCandidates) ? extracted.timelineCandidates : model.timeline_candidates,
+        timeline_candidates: normalizeTimelineCandidates(extracted.timelineCandidates, model.timeline_candidates),
         task_cards: Array.isArray(imported.taskCards) ? imported.taskCards : model.task_cards,
         unresolved_creative_decisions: Array.isArray(imported.unresolvedCreativeDecisions) ? imported.unresolvedCreativeDecisions : model.unresolved_creative_decisions,
         output_packages: Array.isArray(imported.generatedOutlines) ? imported.generatedOutlines : model.output_packages,
         quality_gate_results: Array.isArray(imported.qaGateResults) ? imported.qaGateResults : model.quality_gate_results
+      };
+    }
+
+    function normalizeProfileCandidates(importedProfiles, defaultProfiles) {
+      const merged = new Map(defaultProfiles.map((profileItem) => [profileItem.id, profileItem]));
+      if (Array.isArray(importedProfiles)) {
+        importedProfiles
+          .filter((profileItem) => profileItem && typeof profileItem === "object" && typeof profileItem.id === "string")
+          .forEach((profileItem) => {
+            const fallback = merged.get(profileItem.id) || {};
+            const normalized = normalizeProfileRecord({ ...fallback, ...profileItem }, fallback);
+            merged.set(normalized.id, normalized);
+          });
+      }
+      return Array.from(merged.values()).map((profileItem) => normalizeProfileRecord(profileItem, profileItem));
+    }
+
+    function normalizeProfileRecord(profileItem, fallback) {
+      const readArray = (...values) => {
+        const found = values.find((value) => Array.isArray(value));
+        return found ? found : [];
+      };
+      const displayName = profileItem.displayName || profileItem.title || profileItem.name || fallback.displayName || fallback.title || "Untitled profile";
+      const profileType = profileItem.profileType || profileItem.profile_type || fallback.profileType || fallback.profile_type || "placeholder";
+      const reviewStatus = state.decisions[profileItem.id] || profileItem.reviewStatus || profileItem.review_status || fallback.reviewStatus || fallback.review_status || "hold";
+      const sourceRefs = readArray(profileItem.sourceRefs, profileItem.source_refs, fallback.sourceRefs, fallback.source_refs);
+      const promoted = state.profilePromotions[profileItem.id] === true && !["adopted_profile", "rejected_candidate"].includes(profileItem.ghostNodeStatus || profileItem.ghost_node_status || fallback.ghostNodeStatus || fallback.ghost_node_status);
+      const ghostNodeStatus = promoted ? "provisional_profile" : profileItem.ghostNodeStatus || profileItem.ghost_node_status || fallback.ghostNodeStatus || fallback.ghost_node_status || "held_ghost";
+      const profileStatus = promoted ? "provisional_profile" : profileItem.profileStatus || profileItem.profile_status || fallback.profileStatus || fallback.profile_status || "profile_candidate";
+      const unresolvedDependencies = readArray(profileItem.unresolvedDependencies, profileItem.unresolved_dependencies, fallback.unresolvedDependencies, fallback.unresolved_dependencies);
+      const openQuestions = readArray(profileItem.openQuestions, profileItem.open_questions, fallback.openQuestions, fallback.open_questions);
+      return {
+        ...fallback,
+        ...profileItem,
+        type: "Profile",
+        title: displayName,
+        displayName,
+        aliases: readArray(profileItem.aliases, fallback.aliases),
+        profileType,
+        profile_type: profileType,
+        profileStatus,
+        profile_status: profileStatus,
+        ghostNodeStatus,
+        ghost_node_status: ghostNodeStatus,
+        worldStatus: profileItem.worldStatus || profileItem.world_status || fallback.worldStatus || fallback.world_status || "unresolved profile candidate",
+        world_status: profileItem.worldStatus || profileItem.world_status || fallback.worldStatus || fallback.world_status || "unresolved profile candidate",
+        realityStatus: profileItem.realityStatus || profileItem.reality_status || fallback.realityStatus || fallback.reality_status || "pure fiction",
+        reality_status: profileItem.realityStatus || profileItem.reality_status || fallback.realityStatus || fallback.reality_status || "pure fiction",
+        firstAppearanceWorkId: profileItem.firstAppearanceWorkId || profileItem.first_appearance_work_id || fallback.firstAppearanceWorkId || fallback.first_appearance_work_id || "work-clockmaker-under-glass",
+        first_appearance_work_id: profileItem.firstAppearanceWorkId || profileItem.first_appearance_work_id || fallback.firstAppearanceWorkId || fallback.first_appearance_work_id || "work-clockmaker-under-glass",
+        linkedClaimIds: readArray(profileItem.linkedClaimIds, profileItem.linked_claim_ids, fallback.linkedClaimIds, fallback.linked_claim_ids),
+        linked_claim_ids: readArray(profileItem.linkedClaimIds, profileItem.linked_claim_ids, fallback.linkedClaimIds, fallback.linked_claim_ids),
+        linkedTimelineEntryIds: readArray(profileItem.linkedTimelineEntryIds, profileItem.linked_timeline_entry_ids, fallback.linkedTimelineEntryIds, fallback.linked_timeline_entry_ids),
+        linked_timeline_entry_ids: readArray(profileItem.linkedTimelineEntryIds, profileItem.linked_timeline_entry_ids, fallback.linkedTimelineEntryIds, fallback.linked_timeline_entry_ids),
+        relatedProfileIds: readArray(profileItem.relatedProfileIds, profileItem.related_profile_ids, fallback.relatedProfileIds, fallback.related_profile_ids),
+        related_profile_ids: readArray(profileItem.relatedProfileIds, profileItem.related_profile_ids, fallback.relatedProfileIds, fallback.related_profile_ids),
+        unresolvedDependencies,
+        unresolved_dependencies: unresolvedDependencies,
+        knownBy: readArray(profileItem.knownBy, profileItem.known_by, fallback.knownBy, fallback.known_by),
+        known_by: readArray(profileItem.knownBy, profileItem.known_by, fallback.knownBy, fallback.known_by),
+        unknownBy: readArray(profileItem.unknownBy, profileItem.unknown_by, fallback.unknownBy, fallback.unknown_by),
+        unknown_by: readArray(profileItem.unknownBy, profileItem.unknown_by, fallback.unknownBy, fallback.unknown_by),
+        believedBy: readArray(profileItem.believedBy, profileItem.believed_by, fallback.believedBy, fallback.believed_by),
+        believed_by: readArray(profileItem.believedBy, profileItem.believed_by, fallback.believedBy, fallback.believed_by),
+        misunderstoodBy: readArray(profileItem.misunderstoodBy, profileItem.misunderstood_by, fallback.misunderstoodBy, fallback.misunderstood_by),
+        misunderstood_by: readArray(profileItem.misunderstoodBy, profileItem.misunderstood_by, fallback.misunderstoodBy, fallback.misunderstood_by),
+        ownedItems: readArray(profileItem.ownedItems, profileItem.owned_items, fallback.ownedItems, fallback.owned_items),
+        owned_items: readArray(profileItem.ownedItems, profileItem.owned_items, fallback.ownedItems, fallback.owned_items),
+        sourceRefs,
+        source_refs: sourceRefs,
+        assetRefs: readArray(profileItem.assetRefs, profileItem.asset_refs, fallback.assetRefs, fallback.asset_refs),
+        asset_refs: readArray(profileItem.assetRefs, profileItem.asset_refs, fallback.assetRefs, fallback.asset_refs),
+        canonRisk: profileItem.canonRisk || profileItem.canon_risk || fallback.canonRisk || fallback.canon_risk || "medium",
+        canon_risk: profileItem.canonRisk || profileItem.canon_risk || fallback.canonRisk || fallback.canon_risk || "medium",
+        spoilerLevel: profileItem.spoilerLevel || profileItem.spoiler_level || fallback.spoilerLevel || fallback.spoiler_level || "medium",
+        spoiler_level: profileItem.spoilerLevel || profileItem.spoiler_level || fallback.spoilerLevel || fallback.spoiler_level || "medium",
+        reviewStatus,
+        review_status: reviewStatus,
+        notes: profileItem.notes || fallback.notes || "",
+        summary: profileItem.summary || fallback.summary || "Review profile before adoption.",
+        open_questions: openQuestions,
+        source: sourceRefs.map((source) => source.label || source.id).join(", ") || profileItem.source || fallback.source || "not set"
       };
     }
 
@@ -1891,6 +2663,59 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       };
     }
 
+    function normalizeTimelineCandidates(importedEntries, defaultEntries) {
+      const merged = new Map(defaultEntries.map((timelineItem) => [timelineItem.id, timelineItem]));
+      if (Array.isArray(importedEntries)) {
+        importedEntries
+          .filter((timelineItem) => timelineItem && typeof timelineItem === "object" && typeof timelineItem.id === "string")
+          .forEach((timelineItem) => {
+            const fallback = merged.get(timelineItem.id) || {};
+            const normalized = normalizeTimelineRecord({ ...fallback, ...timelineItem }, fallback);
+            merged.set(normalized.id, normalized);
+          });
+      }
+      return Array.from(merged.values()).map((timelineItem) => normalizeTimelineRecord(timelineItem, timelineItem));
+    }
+
+    function normalizeTimelineRecord(timelineItem, fallback) {
+      const title = timelineItem.title || timelineItem.label || fallback.title || fallback.label || "Untitled timeline entry";
+      const summary = timelineItem.summary || timelineItem.description || fallback.summary || fallback.description || "Review timeline placement before adoption.";
+      const timelineAxis = timelineItem.timelineAxis || timelineItem.sequence_scope || fallback.timelineAxis || fallback.sequence_scope || "story_order";
+      const reviewStatus = state.decisions[timelineItem.id] || timelineItem.reviewStatus || timelineItem.review_status || fallback.reviewStatus || fallback.review_status || "hold";
+      const sourceRefs = Array.isArray(timelineItem.sourceRefs) ? timelineItem.sourceRefs : Array.isArray(timelineItem.source_refs) ? timelineItem.source_refs : Array.isArray(fallback.sourceRefs) ? fallback.sourceRefs : timelineItem.source ? [{ id: `src-${timelineItem.id}`, label: timelineItem.source, source_type: "memo", locator: "imported timeline", trust: "author_memo" }] : [];
+      const calendarTime = timelineItem.calendarTime || timelineItem.date_or_position || fallback.calendarTime || fallback.date_or_position || "not set";
+      return {
+        ...fallback,
+        ...timelineItem,
+        type: "TimelineEvent",
+        title,
+        label: title,
+        summary,
+        description: summary,
+        timelineAxis,
+        sequence_scope: timelineAxis,
+        storyOrder: timelineItem.storyOrder || fallback.storyOrder || timelineItem.date_or_position || "not set",
+        calendarTime,
+        date_or_position: calendarTime,
+        calendarPrecision: timelineItem.calendarPrecision || fallback.calendarPrecision || "relative_sequence",
+        viewerDisclosureOrder: timelineItem.viewerDisclosureOrder || fallback.viewerDisclosureOrder || "not set",
+        viewerDisclosureStatus: timelineItem.viewerDisclosureStatus || fallback.viewerDisclosureStatus || "not yet viewer-facing",
+        productionOrder: timelineItem.productionOrder || fallback.productionOrder || "not set",
+        historicalReferenceTime: timelineItem.historicalReferenceTime || fallback.historicalReferenceTime || "not set",
+        linkedClaimIds: Array.isArray(timelineItem.linkedClaimIds) ? timelineItem.linkedClaimIds : Array.isArray(fallback.linkedClaimIds) ? fallback.linkedClaimIds : [],
+        linkedProfileIds: Array.isArray(timelineItem.linkedProfileIds) ? timelineItem.linkedProfileIds : Array.isArray(fallback.linkedProfileIds) ? fallback.linkedProfileIds : [],
+        linkedWorkIds: Array.isArray(timelineItem.linkedWorkIds) ? timelineItem.linkedWorkIds : Array.isArray(fallback.linkedWorkIds) ? fallback.linkedWorkIds : ["work-clockmaker-under-glass"],
+        unresolvedDependencies: Array.isArray(timelineItem.unresolvedDependencies) ? timelineItem.unresolvedDependencies : Array.isArray(fallback.unresolvedDependencies) ? fallback.unresolvedDependencies : [],
+        spoilerLevel: timelineItem.spoilerLevel || fallback.spoilerLevel || "medium",
+        canonRisk: timelineItem.canonRisk || fallback.canonRisk || "medium",
+        reviewStatus,
+        review_status: reviewStatus,
+        sourceRefs,
+        source: sourceRefs.map((source) => source.label || source.id).join(", ") || timelineItem.source || fallback.source || "not set",
+        notes: timelineItem.notes || fallback.notes || ""
+      };
+    }
+
     function exportProjectState() {
       const model = currentModel || applyImportedModelOverrides(buildWorkbenchModel(memoInput.value || sampleMemo));
       const reviewStatuses = buildReviewStatusMap(model);
@@ -1913,9 +2738,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         rawMemo: memoInput.value || sampleMemo,
         extractedCandidates: {
           elements: model.extracted_elements,
-          profiles: model.profile_candidates,
-          claims: model.claim_candidates,
-          timelineCandidates: model.timeline_candidates
+          profiles: normalizeProfileCandidates(model.profile_candidates, model.profile_candidates),
+          claims: normalizeClaimCandidates(model.claim_candidates, model.claim_candidates),
+          timelineCandidates: normalizeTimelineCandidates(model.timeline_candidates, model.timeline_candidates)
         },
         reviewStatuses,
         reviewStatusBuckets: buckets,
@@ -1949,6 +2774,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       const normalized = normalizeImportedEnvelope(envelope);
       state.memo = normalized.rawMemo;
       state.decisions = normalizeReviewStatuses(normalized.reviewStatuses);
+      state.profilePromotions = {};
       state.log = normalizeDecisionLog(normalized.decisionLog);
       state.importedProjectState = normalized;
       state.exportPreview = JSON.stringify(normalized, null, 2);
@@ -2102,9 +2928,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         rawMemo: typeof envelope.rawMemo === "string" ? envelope.rawMemo : sampleMemo,
         extractedCandidates: {
           elements: Array.isArray(extracted.elements) ? extracted.elements : baseModel.extracted_elements,
-          profiles: Array.isArray(extracted.profiles) ? extracted.profiles : baseModel.profile_candidates,
+          profiles: normalizeProfileCandidates(extracted.profiles, baseModel.profile_candidates),
           claims: normalizeClaimCandidates(extracted.claims, baseModel.claim_candidates),
-          timelineCandidates: Array.isArray(extracted.timelineCandidates) ? extracted.timelineCandidates : baseModel.timeline_candidates
+          timelineCandidates: normalizeTimelineCandidates(extracted.timelineCandidates, baseModel.timeline_candidates)
         },
         reviewStatuses: normalizeReviewStatuses(envelope.reviewStatuses),
         reviewStatusBuckets: envelope.reviewStatusBuckets && typeof envelope.reviewStatusBuckets === "object" ? envelope.reviewStatusBuckets : {},
@@ -2169,6 +2995,19 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       return statuses;
     }
 
+    function normalizeBooleanMap(value) {
+      const map = {};
+      if (!value || typeof value !== "object" || Array.isArray(value)) {
+        return map;
+      }
+      Object.entries(value).forEach(([id, enabled]) => {
+        if (enabled === true) {
+          map[id] = true;
+        }
+      });
+      return map;
+    }
+
     function normalizeDecisionLog(value) {
       if (!Array.isArray(value)) {
         return [];
@@ -2206,6 +3045,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     function createSampleProjectState() {
       const originalDecisions = state.decisions;
+      const originalProfilePromotions = state.profilePromotions;
       const originalLog = state.log;
       state.decisions = {
         "profile-mira": "adopt",
@@ -2213,8 +3053,10 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         "task-toma-fate": "hold",
         "outline-1m": "provisional",
         "claim-mira-clockmaker": "provisional",
-        "claim-bell-rings": "hold"
+        "claim-bell-rings": "hold",
+        "timeline-917-cycle": "provisional"
       };
+      state.profilePromotions = {};
       state.log = [
         {
           id: "sample-decision-profile-mira",
@@ -2245,6 +3087,16 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           owner: "human_author",
           created_at: "2026-06-15T05:40:00+09:00",
           label: "Mira Vale repairs antique clocks in the glass arcade."
+        },
+        {
+          id: "sample-decision-timeline-917",
+          subject_id: "timeline-917-cycle",
+          subject_type: "TimelineEvent",
+          decision: "provisional",
+          effect: decisionEffect("provisional"),
+          owner: "human_author",
+          created_at: "2026-06-15T16:25:00+09:00",
+          label: "The glass arcade closes at 9:17."
         }
       ];
       const sampleModel = buildWorkbenchModel(sampleMemo);
@@ -2253,6 +3105,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         exportedAt: "2026-06-15T03:06:00+09:00"
       };
       state.decisions = originalDecisions;
+      state.profilePromotions = originalProfilePromotions;
       state.log = originalLog;
       return sampleState;
     }
@@ -2267,9 +3120,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         rawMemo,
         extractedCandidates: {
           elements: model.extracted_elements,
-          profiles: model.profile_candidates,
-          claims: model.claim_candidates,
-          timelineCandidates: model.timeline_candidates
+          profiles: normalizeProfileCandidates(model.profile_candidates, model.profile_candidates),
+          claims: normalizeClaimCandidates(model.claim_candidates, model.claim_candidates),
+          timelineCandidates: normalizeTimelineCandidates(model.timeline_candidates, model.timeline_candidates)
         },
         reviewStatuses,
         reviewStatusBuckets: buildReviewStatusBuckets(model, reviewStatuses),
@@ -2303,6 +3156,63 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       return { id, type: "ExtractedElement", title, description, source, review_status: "hold" };
     }
 
+    function profileEntry(config) {
+      const reviewStatus = config.reviewStatus || "hold";
+      const sourceRefs = config.sourceRefs || [];
+      const openQuestions = config.openQuestions || config.open_questions || [];
+      return {
+        id: config.id,
+        type: "Profile",
+        title: config.displayName,
+        displayName: config.displayName,
+        aliases: config.aliases || [],
+        profileType: config.profileType,
+        profile_type: config.profileType,
+        profileStatus: config.profileStatus,
+        profile_status: config.profileStatus,
+        ghostNodeStatus: config.ghostNodeStatus,
+        ghost_node_status: config.ghostNodeStatus,
+        worldStatus: config.worldStatus,
+        world_status: config.worldStatus,
+        realityStatus: config.realityStatus,
+        reality_status: config.realityStatus,
+        firstAppearanceWorkId: config.firstAppearanceWorkId || "work-clockmaker-under-glass",
+        first_appearance_work_id: config.firstAppearanceWorkId || "work-clockmaker-under-glass",
+        linkedClaimIds: config.linkedClaimIds || [],
+        linked_claim_ids: config.linkedClaimIds || [],
+        linkedTimelineEntryIds: config.linkedTimelineEntryIds || [],
+        linked_timeline_entry_ids: config.linkedTimelineEntryIds || [],
+        relatedProfileIds: config.relatedProfileIds || [],
+        related_profile_ids: config.relatedProfileIds || [],
+        unresolvedDependencies: config.unresolvedDependencies || [],
+        unresolved_dependencies: config.unresolvedDependencies || [],
+        knownBy: config.knownBy || [],
+        known_by: config.knownBy || [],
+        unknownBy: config.unknownBy || [],
+        unknown_by: config.unknownBy || [],
+        believedBy: config.believedBy || [],
+        believed_by: config.believedBy || [],
+        misunderstoodBy: config.misunderstoodBy || [],
+        misunderstood_by: config.misunderstoodBy || [],
+        ownedItems: config.ownedItems || [],
+        owned_items: config.ownedItems || [],
+        sourceRefs,
+        source_refs: sourceRefs,
+        assetRefs: config.assetRefs || [],
+        asset_refs: config.assetRefs || [],
+        canonRisk: config.canonRisk || "medium",
+        canon_risk: config.canonRisk || "medium",
+        spoilerLevel: config.spoilerLevel || "medium",
+        spoiler_level: config.spoilerLevel || "medium",
+        reviewStatus,
+        review_status: reviewStatus,
+        notes: config.notes || "",
+        summary: config.summary || "Review profile before adoption.",
+        open_questions: openQuestions,
+        source: sourceRefs.map((source) => source.label || source.id).join(", ") || "not set"
+      };
+    }
+
     function claim(config) {
       return {
         id: config.id,
@@ -2328,6 +3238,39 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         truth_status: config.worldTruthStatus,
         source: (config.sourceRefs || []).map((source) => source.label || source.id).join(", ") || "not set",
         risk: `${config.canonRisk} canon risk`
+      };
+    }
+
+    function timelineEntry(config) {
+      const reviewStatus = config.reviewStatus || "hold";
+      const sourceRefs = config.sourceRefs || [];
+      return {
+        id: config.id,
+        type: "TimelineEvent",
+        title: config.title,
+        summary: config.summary,
+        timelineAxis: config.timelineAxis,
+        storyOrder: config.storyOrder,
+        calendarTime: config.calendarTime,
+        calendarPrecision: config.calendarPrecision,
+        viewerDisclosureOrder: config.viewerDisclosureOrder,
+        viewerDisclosureStatus: config.viewerDisclosureStatus,
+        productionOrder: config.productionOrder,
+        historicalReferenceTime: config.historicalReferenceTime,
+        linkedClaimIds: config.linkedClaimIds || [],
+        linkedProfileIds: config.linkedProfileIds || [],
+        linkedWorkIds: config.linkedWorkIds || ["work-clockmaker-under-glass"],
+        unresolvedDependencies: config.unresolvedDependencies || [],
+        spoilerLevel: config.spoilerLevel,
+        canonRisk: config.canonRisk,
+        reviewStatus,
+        review_status: reviewStatus,
+        sourceRefs,
+        notes: config.notes || "",
+        sequence_scope: config.timelineAxis,
+        date_or_position: config.calendarTime || config.storyOrder,
+        description: config.summary,
+        source: sourceRefs.map((source) => source.label || source.id).join(", ") || "not set"
       };
     }
 
@@ -2401,12 +3344,200 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     function renderProfileCard(profile) {
       return card(profile, `
         <div class="tag-row">
-          <span class="tag green">${escapeHtml(profile.profile_type)}</span>
-          ${profile.aliases.map((alias) => `<span class="tag">${escapeHtml(alias)}</span>`).join("")}
+          <span class="tag green">${escapeHtml(profile.profileType || profile.profile_type)}</span>
+          <span class="tag blue">${escapeHtml(profile.ghostNodeStatus || profile.ghost_node_status || "held_ghost")}</span>
+          <span class="tag ${profile.canonRisk === "high" ? "red" : profile.canonRisk === "low" ? "green" : "gold"}">${escapeHtml(profile.canonRisk || "medium")} canon risk</span>
+          ${(profile.aliases || []).map((alias) => `<span class="tag">${escapeHtml(alias)}</span>`).join("")}
         </div>
         <p>${escapeHtml(profile.summary)}</p>
-        <div class="field"><strong>Open questions:</strong> ${escapeHtml(profile.open_questions.join(" "))}</div>
+        <div class="field"><strong>Open questions:</strong> ${escapeHtml(formatList(profile.open_questions, "none"))}</div>
+        <div class="field"><strong>Dependencies:</strong> ${escapeHtml(formatList(profile.unresolvedDependencies || profile.unresolved_dependencies, "none"))}</div>
       `);
+    }
+
+    function renderProfileGhostView(profiles) {
+      const normalizedProfiles = normalizeProfileCandidates(profiles, buildProfileCandidates(currentModel?.source_refs?.[0] || {
+        id: "src-raw-memo-001",
+        source_type: "memo",
+        label: "Raw story memo",
+        locator: "memo textarea",
+        trust: "author_memo"
+      }, /council/i.test(memoInput.value || sampleMemo)));
+      const visibleProfiles = normalizedProfiles.filter(matchesProfileFilter);
+      const grouped = groupProfilesForGhostView(visibleProfiles, activeProfileGroupMode);
+
+      roots.profileGhost.innerHTML = grouped.map(([groupName, groupProfiles]) => `
+        <article class="profile-ghost-group">
+          <div class="category-title">
+            <h3>${escapeHtml(groupName)}</h3>
+            <span class="tag blue">${groupProfiles.length} profiles</span>
+          </div>
+          <div class="profile-ghost-list">
+            ${groupProfiles.map(renderProfileGhostItem).join("")}
+          </div>
+        </article>
+      `).join("") || '<div class="empty-state">No profile or ghost nodes match the current Profile/Ghost filters.</div>';
+
+      updateProfileGhostSummary(normalizedProfiles, visibleProfiles);
+    }
+
+    function renderProfileGhostItem(profile) {
+      const status = getReviewStatus(profile);
+      const ghostNodeStatus = profile.ghostNodeStatus || profile.ghost_node_status || "held_ghost";
+      const canPromote = canPromoteProfileGhost(profile);
+      const promoteControl = canPromote ? `
+        <div class="ghost-action-row">
+          <button class="secondary" type="button" data-profile-promote="${escapeHtml(profile.id)}" data-label="${escapeHtml(profile.displayName || profile.title)}">Promote ghost to provisional profile</button>
+          <span class="section-note">This does not adopt final canon.</span>
+        </div>
+      ` : "";
+      return `
+        <article class="profile-ghost-item" data-profile-id="${escapeHtml(profile.id)}" data-canon-risk="${escapeHtml(profile.canonRisk || "medium")}" data-review-status="${escapeHtml(status)}" data-ghost-node-status="${escapeHtml(ghostNodeStatus)}">
+          <div class="candidate-title">
+            <h3>${escapeHtml(profile.displayName || profile.title)}</h3>
+            <span class="tag ${status === "adopt" ? "green" : status === "reject" ? "red" : status === "provisional" ? "blue" : "gold"}">${escapeHtml(status)}</span>
+          </div>
+          <p>${escapeHtml(profile.summary || "Review profile before adoption.")}</p>
+          <div class="tag-row">
+            <span class="tag green">${escapeHtml(profile.profileType || profile.profile_type)}</span>
+            <span class="tag blue">${escapeHtml(ghostNodeStatus)}</span>
+            <span class="tag">${escapeHtml(profile.profileStatus || profile.profile_status || "profile_candidate")}</span>
+            <span class="tag gold">${escapeHtml(profile.worldStatus || profile.world_status || "unresolved profile candidate")}</span>
+            <span class="tag">${escapeHtml(profile.realityStatus || profile.reality_status || "pure fiction")}</span>
+            <span class="tag ${profile.canonRisk === "high" ? "red" : profile.canonRisk === "low" ? "green" : "gold"}">${escapeHtml(profile.canonRisk || "medium")} canon risk</span>
+            <span class="tag ${profile.spoilerLevel === "high" ? "red" : profile.spoilerLevel === "low" ? "green" : "gold"}">spoiler ${escapeHtml(profile.spoilerLevel || "medium")}</span>
+          </div>
+          ${field("Aliases", formatList(profile.aliases, "none"))}
+          ${field("First appearance work", profile.firstAppearanceWorkId || profile.first_appearance_work_id || "not set")}
+          ${field("Linked claims", formatList(profile.linkedClaimIds || profile.linked_claim_ids, "none"))}
+          ${field("Linked timeline entries", formatList(profile.linkedTimelineEntryIds || profile.linked_timeline_entry_ids, "none"))}
+          ${field("Related profiles", formatList(profile.relatedProfileIds || profile.related_profile_ids, "none"))}
+          ${field("Unresolved dependencies", formatList(profile.unresolvedDependencies || profile.unresolved_dependencies, "none"))}
+          ${field("Known by", formatList(profile.knownBy || profile.known_by, "none"))}
+          ${field("Unknown by", formatList(profile.unknownBy || profile.unknown_by, "none"))}
+          ${field("Believed by", formatList(profile.believedBy || profile.believed_by, "none"))}
+          ${field("Misunderstood by", formatList(profile.misunderstoodBy || profile.misunderstood_by, "none"))}
+          ${field("Owned items", formatList(profile.ownedItems || profile.owned_items, "none"))}
+          ${field("Sources", formatSources(profile.sourceRefs || profile.source_refs, profile.source))}
+          ${field("Assets", formatList(profile.assetRefs || profile.asset_refs, "none"))}
+          ${field("Notes", profile.notes || "Review before profile adoption.")}
+          ${promoteControl}
+          ${reviewControls(profile)}
+        </article>
+      `;
+    }
+
+    function canPromoteProfileGhost(profile) {
+      const ghostNodeStatus = profile.ghostNodeStatus || profile.ghost_node_status || "held_ghost";
+      return ["extracted_candidate", "held_ghost", "needs_human_decision"].includes(ghostNodeStatus) && getReviewStatus(profile) !== "reject";
+    }
+
+    function groupProfilesForGhostView(profiles, mode) {
+      const groups = new Map();
+      profiles.forEach((profile) => {
+        const values = profileGroupValues(profile, mode);
+        values.forEach((value) => {
+          const key = value || "not set";
+          if (!groups.has(key)) {
+            groups.set(key, []);
+          }
+          groups.get(key).push(profile);
+        });
+      });
+      return Array.from(groups.entries()).sort(([a], [b]) => a.localeCompare(b));
+    }
+
+    function profileGroupValues(profile, mode) {
+      if (mode === "reviewStatus") {
+        return [getReviewStatus(profile)];
+      }
+      if (mode === "unresolvedDependency") {
+        return (profile.unresolvedDependencies || profile.unresolved_dependencies || []).length ? profile.unresolvedDependencies || profile.unresolved_dependencies : ["no unresolved dependency"];
+      }
+      if (mode === "linkedClaim") {
+        return (profile.linkedClaimIds || profile.linked_claim_ids || []).length ? profile.linkedClaimIds || profile.linked_claim_ids : ["no linked claim"];
+      }
+      if (mode === "linkedTimelineEntry") {
+        return (profile.linkedTimelineEntryIds || profile.linked_timeline_entry_ids || []).length ? profile.linkedTimelineEntryIds || profile.linked_timeline_entry_ids : ["no linked timeline entry"];
+      }
+      return [profile[mode] || profile[mode.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`)] || "not set"];
+    }
+
+    function matchesProfileFilter(profile) {
+      const status = getReviewStatus(profile);
+      const profileType = profile.profileType || profile.profile_type || "placeholder";
+      const ghostNodeStatus = profile.ghostNodeStatus || profile.ghost_node_status || "held_ghost";
+      const dependencies = profile.unresolvedDependencies || profile.unresolved_dependencies || [];
+      const searchText = `${JSON.stringify(profile)} ${status}`.toLowerCase();
+      const matchesSearch = !activeProfileSearchQuery || searchText.includes(activeProfileSearchQuery);
+      const matchesType = activeProfileTypeFilter === "all" || profileType === activeProfileTypeFilter;
+      let matchesFilter = true;
+
+      if (activeProfileFilter === "ghost") {
+        matchesFilter = !["adopted_profile", "provisional_profile"].includes(ghostNodeStatus);
+      } else if (activeProfileFilter === "unresolved") {
+        matchesFilter = dependencies.length > 0;
+      } else if (activeProfileFilter === "high-risk") {
+        matchesFilter = profile.canonRisk === "high";
+      } else if (activeProfileFilter === "spoiler") {
+        matchesFilter = profile.spoilerLevel === "high";
+      } else if (activeProfileFilter === "adopted") {
+        matchesFilter = status === "adopt";
+      } else if (activeProfileFilter === "provisional") {
+        matchesFilter = status === "provisional";
+      } else if (activeProfileFilter === "held") {
+        matchesFilter = status === "hold";
+      } else if (activeProfileFilter === "rejected") {
+        matchesFilter = status === "reject";
+      } else if (activeProfileFilter === "placeholder") {
+        matchesFilter = profileType === "placeholder";
+      }
+
+      return matchesFilter && matchesSearch && matchesType;
+    }
+
+    function updateProfileGhostSummary(allProfiles, visibleProfiles) {
+      const counts = countProfiles(allProfiles);
+      const groupLabel = PROFILE_GROUP_LABELS[activeProfileGroupMode] || activeProfileGroupMode;
+      const searchLabel = activeProfileSearchQuery ? ` matching "${activeProfileSearchQuery}"` : "";
+      const typeLabel = activeProfileTypeFilter === "all" ? "" : ` for ${activeProfileTypeFilter}`;
+      profileGhostSummary.textContent = `Showing ${visibleProfiles.length} of ${allProfiles.length} profiles${typeLabel} grouped by ${groupLabel}${searchLabel}. Statuses: adopt ${counts.byReviewStatus.adopt}, provisional ${counts.byReviewStatus.provisional}, hold ${counts.byReviewStatus.hold}, reject ${counts.byReviewStatus.reject}. Ghost nodes ${counts.ghostNodes}; high risk ${counts.highCanonRisk}; unresolved ${counts.withUnresolvedDependencies}; spoiler-protected ${counts.spoilerProtected}; linked to claims ${counts.linkedToClaims}; linked to timeline ${counts.linkedToTimeline}.`;
+    }
+
+    function countProfiles(profiles) {
+      const byReviewStatus = { adopt: 0, provisional: 0, hold: 0, reject: 0 };
+      let ghostNodes = 0;
+      let withUnresolvedDependencies = 0;
+      let highCanonRisk = 0;
+      let spoilerProtected = 0;
+      let linkedToClaims = 0;
+      let linkedToTimeline = 0;
+
+      profiles.forEach((profile) => {
+        const status = getReviewStatus(profile);
+        const ghostNodeStatus = profile.ghostNodeStatus || profile.ghost_node_status || "held_ghost";
+        byReviewStatus[status] = (byReviewStatus[status] || 0) + 1;
+        if (!["adopted_profile", "provisional_profile"].includes(ghostNodeStatus)) {
+          ghostNodes += 1;
+        }
+        if ((profile.unresolvedDependencies || profile.unresolved_dependencies || []).length > 0) {
+          withUnresolvedDependencies += 1;
+        }
+        if (profile.canonRisk === "high") {
+          highCanonRisk += 1;
+        }
+        if (profile.spoilerLevel === "high") {
+          spoilerProtected += 1;
+        }
+        if ((profile.linkedClaimIds || profile.linked_claim_ids || []).length > 0) {
+          linkedToClaims += 1;
+        }
+        if ((profile.linkedTimelineEntryIds || profile.linked_timeline_entry_ids || []).length > 0) {
+          linkedToTimeline += 1;
+        }
+      });
+
+      return { byReviewStatus, ghostNodes, withUnresolvedDependencies, highCanonRisk, spoilerProtected, linkedToClaims, linkedToTimeline };
     }
 
     function renderClaimLedger(claims) {
@@ -2548,6 +3679,148 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       return { byReviewStatus, withUnresolvedDependencies, highCanonRisk, unverified, hiddenOrSpoilerProtected };
     }
 
+    function renderTimelineView(entries) {
+      const normalizedEntries = normalizeTimelineCandidates(entries, buildTimelineCandidates(currentModel?.source_refs?.[0] || {
+        id: "src-raw-memo-001",
+        source_type: "memo",
+        label: "Raw story memo",
+        locator: "memo textarea",
+        trust: "author_memo"
+      }));
+      const visibleEntries = normalizedEntries.filter(matchesTimelineFilter);
+      const grouped = groupTimelineForView(visibleEntries, activeTimelineGroupMode);
+
+      roots.timelineView.innerHTML = grouped.map(([groupName, groupEntries]) => `
+        <article class="timeline-ledger-group">
+          <div class="category-title">
+            <h3>${escapeHtml(groupName)}</h3>
+            <span class="tag blue">${groupEntries.length} entries</span>
+          </div>
+          <div class="timeline-ledger-list">
+            ${groupEntries.map(renderTimelineViewItem).join("")}
+          </div>
+        </article>
+      `).join("") || '<div class="empty-state">No timeline entries match the current Timeline View filters.</div>';
+
+      updateTimelineViewSummary(normalizedEntries, visibleEntries);
+    }
+
+    function renderTimelineViewItem(entry) {
+      const status = getReviewStatus(entry);
+      return `
+        <article class="timeline-ledger-item" data-timeline-id="${escapeHtml(entry.id)}" data-canon-risk="${escapeHtml(entry.canonRisk || "medium")}" data-review-status="${escapeHtml(status)}">
+          <div class="candidate-title">
+            <h3>${escapeHtml(entry.title)}</h3>
+            <span class="tag ${status === "adopt" ? "green" : status === "reject" ? "red" : status === "provisional" ? "blue" : "gold"}">${escapeHtml(status)}</span>
+          </div>
+          <p>${escapeHtml(entry.summary || entry.description)}</p>
+          <div class="tag-row">
+            <span class="tag violet">${escapeHtml(entry.timelineAxis)}</span>
+            <span class="tag">${escapeHtml(entry.calendarPrecision)}</span>
+            <span class="tag ${entry.viewerDisclosureStatus && entry.viewerDisclosureStatus.includes("hidden") ? "red" : entry.viewerDisclosureStatus && entry.viewerDisclosureStatus.includes("partial") ? "gold" : "green"}">${escapeHtml(entry.viewerDisclosureStatus)}</span>
+            <span class="tag ${entry.spoilerLevel === "high" ? "red" : entry.spoilerLevel === "low" ? "green" : "gold"}">spoiler ${escapeHtml(entry.spoilerLevel)}</span>
+            <span class="tag ${entry.canonRisk === "high" ? "red" : entry.canonRisk === "low" ? "green" : "gold"}">${escapeHtml(entry.canonRisk)} canon risk</span>
+          </div>
+          ${field("Story order", entry.storyOrder)}
+          ${field("Calendar time", entry.calendarTime)}
+          ${field("Viewer disclosure order", entry.viewerDisclosureOrder)}
+          ${field("Production order", entry.productionOrder)}
+          ${field("Historical/reference order", entry.historicalReferenceTime)}
+          ${field("Linked claims", formatList(entry.linkedClaimIds, "none"))}
+          ${field("Linked profiles", formatList(entry.linkedProfileIds, "none"))}
+          ${field("Unresolved dependencies", formatList(entry.unresolvedDependencies, "none"))}
+          ${field("Source", formatSources(entry.sourceRefs, entry.source))}
+          ${field("Notes", entry.notes)}
+          ${reviewControls(entry)}
+        </article>
+      `;
+    }
+
+    function groupTimelineForView(entries, mode) {
+      const groups = new Map();
+      entries.forEach((entry) => {
+        const values = timelineGroupValues(entry, mode);
+        values.forEach((value) => {
+          const key = value || "not set";
+          if (!groups.has(key)) {
+            groups.set(key, []);
+          }
+          groups.get(key).push(entry);
+        });
+      });
+      return Array.from(groups.entries()).sort(([a], [b]) => a.localeCompare(b));
+    }
+
+    function timelineGroupValues(entry, mode) {
+      if (mode === "reviewStatus") {
+        return [getReviewStatus(entry)];
+      }
+      if (mode === "unresolvedDependency") {
+        return entry.unresolvedDependencies && entry.unresolvedDependencies.length ? entry.unresolvedDependencies : ["no unresolved dependency"];
+      }
+      if (mode === "linkedClaim") {
+        return entry.linkedClaimIds && entry.linkedClaimIds.length ? entry.linkedClaimIds : ["no linked claim"];
+      }
+      return [entry[mode] || "not set"];
+    }
+
+    function matchesTimelineFilter(entry) {
+      const status = getReviewStatus(entry);
+      const dependencies = entry.unresolvedDependencies || [];
+      const disclosure = entry.viewerDisclosureStatus || "";
+      const searchText = `${JSON.stringify(entry)} ${status}`.toLowerCase();
+      const matchesSearch = !activeTimelineSearchQuery || searchText.includes(activeTimelineSearchQuery);
+      let matchesFilter = true;
+
+      if (activeTimelineFilter === "unresolved") {
+        matchesFilter = dependencies.length > 0;
+      } else if (activeTimelineFilter === "hidden") {
+        matchesFilter = disclosure.includes("hidden") || disclosure.includes("not yet");
+      } else if (activeTimelineFilter === "spoiler") {
+        matchesFilter = entry.spoilerLevel === "high" || disclosure.includes("hidden") || disclosure.includes("not yet");
+      } else if (activeTimelineFilter === "high-risk") {
+        matchesFilter = entry.canonRisk === "high";
+      } else if (REVIEW_STATUSES.includes(activeTimelineFilter)) {
+        matchesFilter = status === activeTimelineFilter;
+      }
+
+      return matchesFilter && matchesSearch;
+    }
+
+    function updateTimelineViewSummary(allEntries, visibleEntries) {
+      const counts = countTimelineEntries(allEntries);
+      const groupLabel = TIMELINE_GROUP_LABELS[activeTimelineGroupMode] || activeTimelineGroupMode;
+      const searchLabel = activeTimelineSearchQuery ? ` matching "${activeTimelineSearchQuery}"` : "";
+      timelineViewSummary.textContent = `Showing ${visibleEntries.length} of ${allEntries.length} timeline entries grouped by ${groupLabel}${searchLabel}. Statuses: adopt ${counts.byReviewStatus.adopt}, provisional ${counts.byReviewStatus.provisional}, hold ${counts.byReviewStatus.hold}, reject ${counts.byReviewStatus.reject}. High risk ${counts.highCanonRisk}; unresolved ${counts.withUnresolvedDependencies}; hidden/spoiler ${counts.hiddenOrSpoilerProtected}; linked to claims ${counts.linkedToClaims}.`;
+    }
+
+    function countTimelineEntries(entries) {
+      const byReviewStatus = { adopt: 0, provisional: 0, hold: 0, reject: 0 };
+      let withUnresolvedDependencies = 0;
+      let highCanonRisk = 0;
+      let hiddenOrSpoilerProtected = 0;
+      let linkedToClaims = 0;
+
+      entries.forEach((entry) => {
+        const status = getReviewStatus(entry);
+        byReviewStatus[status] = (byReviewStatus[status] || 0) + 1;
+        if ((entry.unresolvedDependencies || []).length > 0) {
+          withUnresolvedDependencies += 1;
+        }
+        if (entry.canonRisk === "high") {
+          highCanonRisk += 1;
+        }
+        if ((entry.viewerDisclosureStatus || "").includes("hidden") || (entry.viewerDisclosureStatus || "").includes("not yet") || entry.spoilerLevel === "high") {
+          hiddenOrSpoilerProtected += 1;
+        }
+        if ((entry.linkedClaimIds || []).length > 0) {
+          linkedToClaims += 1;
+        }
+      });
+
+      return { byReviewStatus, withUnresolvedDependencies, highCanonRisk, hiddenOrSpoilerProtected, linkedToClaims };
+    }
+
     function renderClaimCard(claim) {
       return card(claim, `
         <div class="tag-row">
@@ -2566,11 +3839,16 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     function renderTimelineCard(event) {
       return card(event, `
         <div class="tag-row">
-          <span class="tag violet">${escapeHtml(event.sequence_scope)}</span>
-          <span class="tag">${escapeHtml(event.date_or_position)}</span>
+          <span class="tag violet">${escapeHtml(event.timelineAxis || event.sequence_scope)}</span>
+          <span class="tag">${escapeHtml(event.calendarTime || event.date_or_position)}</span>
+          <span class="tag ${event.viewerDisclosureStatus && event.viewerDisclosureStatus.includes("hidden") ? "red" : "green"}">${escapeHtml(event.viewerDisclosureStatus || "not yet viewer-facing")}</span>
+          <span class="tag ${event.canonRisk === "high" ? "red" : event.canonRisk === "low" ? "green" : "gold"}">${escapeHtml(event.canonRisk || "medium")} canon risk</span>
         </div>
-        <p>${escapeHtml(event.description)}</p>
-        <div class="field"><strong>Source:</strong> ${escapeHtml(event.source)}</div>
+        <p>${escapeHtml(event.summary || event.description)}</p>
+        ${field("Viewer disclosure order", event.viewerDisclosureOrder || "not set")}
+        ${field("Linked claims", formatList(event.linkedClaimIds, "none"))}
+        ${field("Dependencies", formatList(event.unresolvedDependencies, "none"))}
+        <div class="field"><strong>Source:</strong> ${escapeHtml(formatSources(event.sourceRefs, event.source))}</div>
       `);
     }
 
@@ -2667,7 +3945,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     }
 
     function inferCandidateCategory(item) {
-      return item.profile_type || item.claim_type || item.sequence_scope || item.classification || item.package_type || item.type || "candidate";
+      return item.profile_type || item.claim_type || item.timelineAxis || item.sequence_scope || item.classification || item.package_type || item.type || "candidate";
     }
 
     function buildSearchText(item, category) {

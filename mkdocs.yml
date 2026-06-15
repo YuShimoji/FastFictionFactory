@@ -67,7 +67,11 @@ nav:
       - File Persistence Review: review/file-persistence-review.md
       - First MVP Review: review/first-mvp-review.md
       - JSON Export Import Review: review/json-export-import-review.md
+      - Checkpoint Readback: review/checkpoint-readback.md
+      - Profile Ghost Flow Review: review/profile-ghost-flow-review.md
       - Review Ergonomics Review: review/review-ergonomics-review.md
+      - Timeline View Review: review/timeline-view-review.md
+      - v1.3 Compliance Review: review/v1-3-compliance-review.md
       - Visual Review Hub Review: review/visual-review-hub-review.md
   - Artifacts:
       - Artifact Inventory: local-view/artifacts.md

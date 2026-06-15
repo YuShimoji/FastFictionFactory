@@ -1,0 +1,83 @@
+{
+  "artifactId": "checkpoint-readback",
+  "createdAt": "2026-06-15T18:30:00+09:00",
+  "passed": true,
+  "branch": "master",
+  "tracking": "master...origin/master",
+  "remote": {
+    "name": "origin",
+    "fetchUrl": "https://github.com/YuShimoji/FastFictionFactory.git",
+    "pushUrl": "https://github.com/YuShimoji/FastFictionFactory.git"
+  },
+  "latestCommits": [
+    {
+      "sha": "e54acf4",
+      "decorations": "HEAD -> master, origin/master, origin/HEAD",
+      "message": "Add local docs view handoff"
+    },
+    {
+      "sha": "c5d1363",
+      "message": "Initial Fast Fiction Factory review workbench"
+    }
+  ],
+  "workingTree": {
+    "dirty": true,
+    "trackedModifiedCount": 15,
+    "untrackedCount": 4,
+    "trackedModified": [
+      "artifacts/ARTIFACTS.md",
+      "artifacts/artifact-manifest.json",
+      "artifacts/claim-ledger-smoke-result.json",
+      "artifacts/current-project-state.json",
+      "artifacts/fff-current-review-screenshot.png",
+      "artifacts/fff-review-contact-sheet.png",
+      "artifacts/sample-project-state.json",
+      "docs/data-model.md",
+      "docs/idea-ledger.md",
+      "docs/project-context.md",
+      "docs/project-overview.md",
+      "docs/review/current-status.md",
+      "mkdocs.yml",
+      "public/review/index.html",
+      "tools/fff-state.mjs"
+    ],
+    "untracked": [
+      "artifacts/timeline-smoke-result.json",
+      "artifacts/v1-3-compliance-smoke-result.json",
+      "docs/review/timeline-view-review.md",
+      "docs/review/v1-3-compliance-review.md"
+    ]
+  },
+  "authority": {
+    "agentsPresent": true,
+    "projectLocalInstructionsFirst": true,
+    "requiredDocsRead": [
+      "docs/project-context.md",
+      "docs/review/current-status.md",
+      "docs/workflow.md",
+      "docs/qa-gates.md",
+      "docs/decision-log.md",
+      "docs/idea-ledger.md"
+    ],
+    "trueStopConditionFound": false
+  },
+  "tooling": {
+    "packageJsonPresent": false,
+    "packageLockPresent": false,
+    "pnpmLockPresent": false,
+    "yarnLockPresent": false,
+    "readmePresent": false,
+    "mkdocsPresent": true,
+    "shallowTestDirectoryFound": false
+  },
+  "activeArtifactsBeforeProfileGhostSlice": {
+    "manifestArtifactId": "fff-timeline-view-001",
+    "reviewUiPath": "public/review/index.html",
+    "screenshotPath": "artifacts/fff-current-review-screenshot.png",
+    "screenshotBytes": 348942,
+    "contactSheetPath": "artifacts/fff-review-contact-sheet.png",
+    "contactSheetBytes": 1251044,
+    "screenshotsReflectActiveArtifactByManifestReference": true
+  },
+  "nextSlice": "fff-profile-ghost-flow-001"
+}

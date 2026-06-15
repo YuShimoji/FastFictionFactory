@@ -39,6 +39,77 @@ const CLAIM_REQUIRED_FIELDS = [
   "notes"
 ];
 
+const TIMELINE_REQUIRED_FIELDS = [
+  "id",
+  "title",
+  "summary",
+  "timelineAxis",
+  "storyOrder",
+  "calendarTime",
+  "calendarPrecision",
+  "viewerDisclosureOrder",
+  "viewerDisclosureStatus",
+  "productionOrder",
+  "historicalReferenceTime",
+  "linkedClaimIds",
+  "linkedProfileIds",
+  "linkedWorkIds",
+  "unresolvedDependencies",
+  "spoilerLevel",
+  "canonRisk",
+  "reviewStatus",
+  "sourceRefs",
+  "notes"
+];
+
+const PROFILE_REQUIRED_FIELDS = [
+  "id",
+  "displayName",
+  "aliases",
+  "profileType",
+  "profileStatus",
+  "ghostNodeStatus",
+  "worldStatus",
+  "realityStatus",
+  "firstAppearanceWorkId",
+  "linkedClaimIds",
+  "linkedTimelineEntryIds",
+  "relatedProfileIds",
+  "unresolvedDependencies",
+  "knownBy",
+  "unknownBy",
+  "believedBy",
+  "misunderstoodBy",
+  "ownedItems",
+  "sourceRefs",
+  "assetRefs",
+  "canonRisk",
+  "spoilerLevel",
+  "reviewStatus",
+  "notes"
+];
+
+const REQUIRED_PROFILE_TYPES = [
+  "person",
+  "place",
+  "organization",
+  "event",
+  "object",
+  "concept",
+  "document",
+  "visual_asset",
+  "placeholder"
+];
+
+const REQUIRED_GHOST_NODE_STATUSES = [
+  "extracted_candidate",
+  "provisional_profile",
+  "adopted_profile",
+  "held_ghost",
+  "rejected_candidate",
+  "needs_human_decision"
+];
+
 async function main() {
   const [command, inputPath, outputPath] = process.argv.slice(2);
 
@@ -134,6 +205,49 @@ function validateState(state) {
     errors.push("reviewStatuses must be an object");
   }
 
+  const profiles = state.extractedCandidates?.profiles;
+  if (profiles !== undefined) {
+    if (!Array.isArray(profiles)) {
+      errors.push("extractedCandidates.profiles must be an array");
+    } else {
+      const profileTypes = new Set();
+      const ghostStatuses = new Set();
+      profiles.forEach((profile, index) => {
+        if (!profile || typeof profile !== "object" || Array.isArray(profile)) {
+          errors.push(`profile ${index} must be an object`);
+          return;
+        }
+        for (const field of PROFILE_REQUIRED_FIELDS) {
+          if (!(field in profile)) {
+            errors.push(`profile ${profile.id || index} missing ${field}`);
+          }
+        }
+        for (const arrayField of ["aliases", "linkedClaimIds", "linkedTimelineEntryIds", "relatedProfileIds", "unresolvedDependencies", "knownBy", "unknownBy", "believedBy", "misunderstoodBy", "ownedItems", "sourceRefs", "assetRefs"]) {
+          if (arrayField in profile && !Array.isArray(profile[arrayField])) {
+            errors.push(`profile ${profile.id || index} ${arrayField} must be an array`);
+          }
+        }
+        if (profile.profileType) {
+          profileTypes.add(profile.profileType);
+        }
+        if (profile.ghostNodeStatus) {
+          ghostStatuses.add(profile.ghostNodeStatus);
+        }
+      });
+
+      for (const profileType of REQUIRED_PROFILE_TYPES) {
+        if (!profileTypes.has(profileType)) {
+          errors.push(`profiles missing required profileType ${profileType}`);
+        }
+      }
+      for (const ghostStatus of REQUIRED_GHOST_NODE_STATUSES) {
+        if (!ghostStatuses.has(ghostStatus)) {
+          errors.push(`profiles missing required ghostNodeStatus ${ghostStatus}`);
+        }
+      }
+    }
+  }
+
   const claims = state.extractedCandidates?.claims;
   if (claims !== undefined) {
     if (!Array.isArray(claims)) {
@@ -152,6 +266,30 @@ function validateState(state) {
         for (const arrayField of ["sourceRefs", "subjectRefs", "unresolvedDependencies", "supportsClaimIds", "contradictsClaimIds"]) {
           if (arrayField in claim && !Array.isArray(claim[arrayField])) {
             errors.push(`claim ${claim.id || index} ${arrayField} must be an array`);
+          }
+        }
+      });
+    }
+  }
+
+  const timelineEntries = state.extractedCandidates?.timelineCandidates;
+  if (timelineEntries !== undefined) {
+    if (!Array.isArray(timelineEntries)) {
+      errors.push("extractedCandidates.timelineCandidates must be an array");
+    } else {
+      timelineEntries.forEach((entry, index) => {
+        if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+          errors.push(`timeline entry ${index} must be an object`);
+          return;
+        }
+        for (const field of TIMELINE_REQUIRED_FIELDS) {
+          if (!(field in entry)) {
+            errors.push(`timeline entry ${entry.id || index} missing ${field}`);
+          }
+        }
+        for (const arrayField of ["linkedClaimIds", "linkedProfileIds", "linkedWorkIds", "unresolvedDependencies", "sourceRefs"]) {
+          if (arrayField in entry && !Array.isArray(entry[arrayField])) {
+            errors.push(`timeline entry ${entry.id || index} ${arrayField} must be an array`);
           }
         }
       });
@@ -182,14 +320,117 @@ function summarizeState(state) {
     reviewStatusCounts: countStatuses(state.reviewStatuses),
     extractedCategories: Array.isArray(state.extractedCandidates?.elements) ? state.extractedCandidates.elements.length : 0,
     profiles: Array.isArray(state.extractedCandidates?.profiles) ? state.extractedCandidates.profiles.length : 0,
+    profileSummary: summarizeProfiles(state),
     claims: Array.isArray(state.extractedCandidates?.claims) ? state.extractedCandidates.claims.length : 0,
     claimSummary: summarizeClaims(state),
     timelineCandidates: Array.isArray(state.extractedCandidates?.timelineCandidates) ? state.extractedCandidates.timelineCandidates.length : 0,
+    timelineSummary: summarizeTimeline(state),
     unresolvedCreativeDecisions: state.unresolvedCreativeDecisions.length,
     taskCards: state.taskCards.length,
     qaGateResults: state.qaGateResults.length,
     generatedOutlines: state.generatedOutlines.length,
     decisionLogEntries: state.decisionLog.length
+  };
+}
+
+function summarizeProfiles(state) {
+  const profiles = Array.isArray(state.extractedCandidates?.profiles) ? state.extractedCandidates.profiles : [];
+  const byProfileType = {};
+  const byGhostNodeStatus = {};
+  const byReviewStatus = { adopt: 0, provisional: 0, hold: 0, reject: 0, other: 0 };
+  let withUnresolvedDependencies = 0;
+  let highCanonRisk = 0;
+  let spoilerProtected = 0;
+  let linkedToClaims = 0;
+  let linkedToTimeline = 0;
+  let placeholderProfiles = 0;
+
+  for (const profile of profiles) {
+    const profileType = profile.profileType || profile.profile_type || "not set";
+    const ghostNodeStatus = profile.ghostNodeStatus || profile.ghost_node_status || "not set";
+    byProfileType[profileType] = (byProfileType[profileType] || 0) + 1;
+    byGhostNodeStatus[ghostNodeStatus] = (byGhostNodeStatus[ghostNodeStatus] || 0) + 1;
+
+    const status = state.reviewStatuses?.[profile.id] || profile.reviewStatus || profile.review_status || "hold";
+    if (status in byReviewStatus) {
+      byReviewStatus[status] += 1;
+    } else {
+      byReviewStatus.other += 1;
+    }
+    if (Array.isArray(profile.unresolvedDependencies) && profile.unresolvedDependencies.length > 0) {
+      withUnresolvedDependencies += 1;
+    }
+    if (profile.canonRisk === "high") {
+      highCanonRisk += 1;
+    }
+    if (profile.spoilerLevel === "high") {
+      spoilerProtected += 1;
+    }
+    if (Array.isArray(profile.linkedClaimIds) && profile.linkedClaimIds.length > 0) {
+      linkedToClaims += 1;
+    }
+    if (Array.isArray(profile.linkedTimelineEntryIds) && profile.linkedTimelineEntryIds.length > 0) {
+      linkedToTimeline += 1;
+    }
+    if (profileType === "placeholder") {
+      placeholderProfiles += 1;
+    }
+  }
+
+  return {
+    totalProfiles: profiles.length,
+    byProfileType,
+    byGhostNodeStatus,
+    byReviewStatus,
+    withUnresolvedDependencies,
+    highCanonRisk,
+    spoilerProtected,
+    linkedToClaims,
+    linkedToTimeline,
+    placeholderProfiles
+  };
+}
+
+function summarizeTimeline(state) {
+  const entries = Array.isArray(state.extractedCandidates?.timelineCandidates) ? state.extractedCandidates.timelineCandidates : [];
+  const byTimelineAxis = {};
+  const byReviewStatus = { adopt: 0, provisional: 0, hold: 0, reject: 0, other: 0 };
+  let withUnresolvedDependencies = 0;
+  let hiddenOrSpoilerProtected = 0;
+  let highCanonRisk = 0;
+  let linkedToClaims = 0;
+
+  for (const entry of entries) {
+    const axis = entry.timelineAxis || entry.sequence_scope || "not set";
+    byTimelineAxis[axis] = (byTimelineAxis[axis] || 0) + 1;
+    const status = state.reviewStatuses?.[entry.id] || entry.reviewStatus || entry.review_status || "hold";
+    if (status in byReviewStatus) {
+      byReviewStatus[status] += 1;
+    } else {
+      byReviewStatus.other += 1;
+    }
+    if (Array.isArray(entry.unresolvedDependencies) && entry.unresolvedDependencies.length > 0) {
+      withUnresolvedDependencies += 1;
+    }
+    if (entry.spoilerLevel === "high" || String(entry.viewerDisclosureStatus || "").includes("hidden") || String(entry.viewerDisclosureStatus || "").includes("not yet")) {
+      hiddenOrSpoilerProtected += 1;
+    }
+    if (entry.canonRisk === "high") {
+      highCanonRisk += 1;
+    }
+    if (Array.isArray(entry.linkedClaimIds) && entry.linkedClaimIds.length > 0) {
+      linkedToClaims += 1;
+    }
+  }
+
+  return {
+    totalTimelineEntries: entries.length,
+    byTimelineAxis,
+    byReviewStatus,
+    withUnresolvedDependencies,
+    hiddenOrSpoilerProtected,
+    highCanonRisk,
+    linkedToClaims
   };
 }
 

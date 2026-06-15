@@ -1,6 +1,6 @@
 {
   "schemaVersion": "fff.projectState.v1",
-  "exportedAt": "2026-06-15T03:03:16.025Z",
+  "exportedAt": "2026-06-15T18:45:00+09:00",
   "project": {
     "id": "project-fast-fiction-factory",
     "title": "Fast Fiction Factory",
@@ -312,102 +312,1306 @@
       {
         "id": "profile-mira",
         "type": "Profile",
-        "profile_type": "person",
         "title": "Mira Vale",
-        "summary": "Clock repairer with personal stakes in the stolen-time mystery.",
+        "displayName": "Mira Vale",
         "aliases": [
           "Mira",
           "the clockmaker"
         ],
+        "profileType": "person",
+        "profile_type": "person",
+        "profileStatus": "reviewable_profile_page",
+        "profile_status": "reviewable_profile_page",
+        "ghostNodeStatus": "adopted_profile",
+        "ghost_node_status": "adopted_profile",
+        "worldStatus": "protagonist candidate",
+        "world_status": "protagonist candidate",
+        "realityStatus": "plausible fiction",
+        "reality_status": "plausible fiction",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-mira-clockmaker",
+          "claim-ending-restores-hour"
+        ],
+        "linked_claim_ids": [
+          "claim-mira-clockmaker",
+          "claim-ending-restores-hour"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-917-cycle",
+          "timeline-ending-hour-return"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-917-cycle",
+          "timeline-ending-hour-return"
+        ],
+        "relatedProfileIds": [
+          "profile-toma",
+          "profile-brass-moth",
+          "profile-council"
+        ],
+        "related_profile_ids": [
+          "profile-toma",
+          "profile-brass-moth",
+          "profile-council"
+        ],
+        "unresolvedDependencies": [],
+        "unresolved_dependencies": [],
+        "knownBy": [
+          "raw memo",
+          "viewer-facing opening"
+        ],
+        "known_by": [
+          "raw memo",
+          "viewer-facing opening"
+        ],
+        "unknownBy": [
+          "final council motive route"
+        ],
+        "unknown_by": [
+          "final council motive route"
+        ],
+        "believedBy": [
+          "raw memo narrator"
+        ],
+        "believed_by": [
+          "raw memo narrator"
+        ],
+        "misunderstoodBy": [],
+        "misunderstood_by": [],
+        "ownedItems": [
+          "cracked station clock candidate",
+          "workshop drawer"
+        ],
+        "owned_items": [
+          "cracked station clock candidate",
+          "workshop drawer"
+        ],
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "source_refs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "assetRefs": [],
+        "asset_refs": [],
+        "canonRisk": "low",
+        "canon_risk": "low",
+        "spoilerLevel": "low",
+        "spoiler_level": "low",
+        "reviewStatus": "adopt",
+        "review_status": "adopt",
+        "notes": "A local profile page can exist without deciding the ending route.",
+        "summary": "Clock repairer with personal stakes in the stolen-time mystery.",
         "open_questions": [
           "How much does Mira know before the first scene?",
           "What does repair work cost her emotionally?"
         ],
-        "source_refs": [
-          {
-            "id": "src-raw-memo-001",
-            "source_type": "memo",
-            "label": "Raw story memo",
-            "locator": "memo textarea",
-            "trust": "author_memo"
-          }
-        ],
-        "review_status": "hold"
+        "source": "Raw story memo"
       },
       {
         "id": "profile-toma",
         "type": "Profile",
-        "profile_type": "person",
         "title": "Toma Vale",
-        "summary": "Missing brother whose fate controls the story's grief, hope, and final reveal.",
+        "displayName": "Toma Vale",
         "aliases": [
           "Toma",
           "missing brother"
         ],
-        "open_questions": [
-          "Alive, dead, erased, or transformed?",
-          "Was the note voluntary?"
+        "profileType": "person",
+        "profile_type": "person",
+        "profileStatus": "dependency_bound_profile",
+        "profile_status": "dependency_bound_profile",
+        "ghostNodeStatus": "needs_human_decision",
+        "ghost_node_status": "needs_human_decision",
+        "worldStatus": "unresolved story person",
+        "world_status": "unresolved story person",
+        "realityStatus": "plausible fiction",
+        "reality_status": "plausible fiction",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-toma-left-note",
+          "claim-ending-restores-hour"
         ],
-        "source_refs": [
+        "linked_claim_ids": [
+          "claim-toma-left-note",
+          "claim-ending-restores-hour"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-toma-note",
+          "timeline-brass-moth-first-use",
+          "timeline-ending-hour-return"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-toma-note",
+          "timeline-brass-moth-first-use",
+          "timeline-ending-hour-return"
+        ],
+        "relatedProfileIds": [
+          "profile-mira",
+          "profile-brass-moth",
+          "profile-final-answer-ghost"
+        ],
+        "related_profile_ids": [
+          "profile-mira",
+          "profile-brass-moth",
+          "profile-final-answer-ghost"
+        ],
+        "unresolvedDependencies": [
+          "Toma fate"
+        ],
+        "unresolved_dependencies": [
+          "Toma fate"
+        ],
+        "knownBy": [
+          "Mira",
+          "raw memo narrator"
+        ],
+        "known_by": [
+          "Mira",
+          "raw memo narrator"
+        ],
+        "unknownBy": [
+          "viewer until reveal route is chosen"
+        ],
+        "unknown_by": [
+          "viewer until reveal route is chosen"
+        ],
+        "believedBy": [
+          "Mira may believe Toma left the note"
+        ],
+        "believed_by": [
+          "Mira may believe Toma left the note"
+        ],
+        "misunderstoodBy": [
+          "council route remains undecided"
+        ],
+        "misunderstood_by": [
+          "council route remains undecided"
+        ],
+        "ownedItems": [
+          "note about stolen minutes"
+        ],
+        "owned_items": [
+          "note about stolen minutes"
+        ],
+        "sourceRefs": [
           {
             "id": "src-raw-memo-001",
-            "source_type": "memo",
             "label": "Raw story memo",
+            "source_type": "memo",
             "locator": "memo textarea",
             "trust": "author_memo"
           }
         ],
-        "review_status": "hold"
+        "source_refs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "assetRefs": [],
+        "asset_refs": [],
+        "canonRisk": "high",
+        "canon_risk": "high",
+        "spoilerLevel": "high",
+        "spoiler_level": "high",
+        "reviewStatus": "provisional",
+        "review_status": "provisional",
+        "notes": "Do not decide alive, dead, erased, transformed, or deliberately unknown inside this slice.",
+        "summary": "Missing brother whose fate controls grief, hope, and final reveal pressure.",
+        "open_questions": [
+          "Alive, dead, erased, transformed, or deliberately unknown?",
+          "Was the note voluntary?"
+        ],
+        "source": "Raw story memo"
       },
       {
         "id": "profile-council",
         "type": "Profile",
-        "profile_type": "organization",
         "title": "City council",
-        "summary": "Institutional actor connected to selling or reallocating stolen time.",
+        "displayName": "City council",
         "aliases": [
           "council",
           "authority"
         ],
+        "profileType": "organization",
+        "profile_type": "organization",
+        "profileStatus": "dependency_bound_profile",
+        "profile_status": "dependency_bound_profile",
+        "ghostNodeStatus": "needs_human_decision",
+        "ghost_node_status": "needs_human_decision",
+        "worldStatus": "unresolved institutional actor",
+        "world_status": "unresolved institutional actor",
+        "realityStatus": "pure fiction",
+        "reality_status": "pure fiction",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-city-sells-time",
+          "claim-council-desperate",
+          "claim-ending-restores-hour"
+        ],
+        "linked_claim_ids": [
+          "claim-city-sells-time",
+          "claim-council-desperate",
+          "claim-ending-restores-hour"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-council-motive-disclosure",
+          "timeline-toma-note",
+          "timeline-ending-hour-return"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-council-motive-disclosure",
+          "timeline-toma-note",
+          "timeline-ending-hour-return"
+        ],
+        "relatedProfileIds": [
+          "profile-mira",
+          "profile-toma",
+          "profile-stolen-time"
+        ],
+        "related_profile_ids": [
+          "profile-mira",
+          "profile-toma",
+          "profile-stolen-time"
+        ],
+        "unresolvedDependencies": [
+          "Council motive"
+        ],
+        "unresolved_dependencies": [
+          "Council motive"
+        ],
+        "knownBy": [
+          "raw memo narrator",
+          "Toma note candidate"
+        ],
+        "known_by": [
+          "raw memo narrator",
+          "Toma note candidate"
+        ],
+        "unknownBy": [
+          "viewer until motive disclosure route is chosen"
+        ],
+        "unknown_by": [
+          "viewer until motive disclosure route is chosen"
+        ],
+        "believedBy": [
+          "Toma note accuses the council"
+        ],
+        "believed_by": [
+          "Toma note accuses the council"
+        ],
+        "misunderstoodBy": [
+          "villainous versus desperate route is not decided"
+        ],
+        "misunderstood_by": [
+          "villainous versus desperate route is not decided"
+        ],
+        "ownedItems": [
+          "ledger of minutes candidate"
+        ],
+        "owned_items": [
+          "ledger of minutes candidate"
+        ],
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          },
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "source_refs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          },
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "assetRefs": [],
+        "asset_refs": [],
+        "canonRisk": "high",
+        "canon_risk": "high",
+        "spoilerLevel": "high",
+        "spoiler_level": "high",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "notes": "Keep villainous, desperate, divided, and misled routes reversible.",
+        "summary": "Institutional actor connected to selling or reallocating stolen time.",
         "open_questions": [
           "Villainous, desperate, divided, or misled?",
           "Who benefits from the trade?"
         ],
-        "source_refs": [
-          {
-            "id": "src-raw-memo-001",
-            "source_type": "memo",
-            "label": "Raw story memo",
-            "locator": "memo textarea",
-            "trust": "author_memo"
-          }
-        ],
-        "review_status": "hold"
+        "source": "Raw story memo, Derived Profile/Ghost candidate"
       },
       {
         "id": "profile-brass-moth",
         "type": "Profile",
-        "profile_type": "object",
         "title": "Brass moth",
-        "summary": "Compact story engine that may serve as spy, key, or memory container.",
+        "displayName": "Brass moth",
         "aliases": [
           "moth",
           "brass moth"
         ],
-        "open_questions": [
-          "What does it do on-screen?",
-          "Can it be explained visually without exposition?"
+        "profileType": "object",
+        "profile_type": "object",
+        "profileStatus": "dependency_bound_profile",
+        "profile_status": "dependency_bound_profile",
+        "ghostNodeStatus": "needs_human_decision",
+        "ghost_node_status": "needs_human_decision",
+        "worldStatus": "unresolved story object",
+        "world_status": "unresolved story object",
+        "realityStatus": "pure fiction",
+        "reality_status": "pure fiction",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-brass-moth-function",
+          "claim-toma-left-note"
         ],
-        "source_refs": [
+        "linked_claim_ids": [
+          "claim-brass-moth-function",
+          "claim-toma-left-note"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-brass-moth-first-use",
+          "timeline-toma-note"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-brass-moth-first-use",
+          "timeline-toma-note"
+        ],
+        "relatedProfileIds": [
+          "profile-toma",
+          "profile-mira",
+          "profile-magic-rules"
+        ],
+        "related_profile_ids": [
+          "profile-toma",
+          "profile-mira",
+          "profile-magic-rules"
+        ],
+        "unresolvedDependencies": [
+          "brass moth truth"
+        ],
+        "unresolved_dependencies": [
+          "brass moth truth"
+        ],
+        "knownBy": [
+          "Mira finds the object",
+          "raw memo narrator"
+        ],
+        "known_by": [
+          "Mira finds the object",
+          "raw memo narrator"
+        ],
+        "unknownBy": [
+          "viewer until first-use rule is chosen"
+        ],
+        "unknown_by": [
+          "viewer until first-use rule is chosen"
+        ],
+        "believedBy": [
+          "raw memo offers spy, key, or memory container routes"
+        ],
+        "believed_by": [
+          "raw memo offers spy, key, or memory container routes"
+        ],
+        "misunderstoodBy": [
+          "function must not be inferred as final"
+        ],
+        "misunderstood_by": [
+          "function must not be inferred as final"
+        ],
+        "ownedItems": [],
+        "owned_items": [],
+        "sourceRefs": [
           {
             "id": "src-raw-memo-001",
-            "source_type": "memo",
             "label": "Raw story memo",
+            "source_type": "memo",
             "locator": "memo textarea",
             "trust": "author_memo"
           }
         ],
-        "review_status": "hold"
+        "source_refs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "assetRefs": [
+          "asset-placeholder-brass-moth"
+        ],
+        "asset_refs": [
+          "asset-placeholder-brass-moth"
+        ],
+        "canonRisk": "high",
+        "canon_risk": "high",
+        "spoilerLevel": "high",
+        "spoiler_level": "high",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "notes": "Profile can collect references while the object's truth remains human-owned.",
+        "summary": "Compact story engine that may serve as spy, key, or memory container.",
+        "open_questions": [
+          "What does it do on-screen?",
+          "Can it be explained visually without exposition?"
+        ],
+        "source": "Raw story memo"
+      },
+      {
+        "id": "profile-north-bell-station",
+        "type": "Profile",
+        "title": "North Bell Station",
+        "displayName": "North Bell Station",
+        "aliases": [
+          "station",
+          "old observatory station"
+        ],
+        "profileType": "place",
+        "profile_type": "place",
+        "profileStatus": "provisional_profile",
+        "profile_status": "provisional_profile",
+        "ghostNodeStatus": "provisional_profile",
+        "ghost_node_status": "provisional_profile",
+        "worldStatus": "setting candidate",
+        "world_status": "setting candidate",
+        "realityStatus": "pure fiction",
+        "reality_status": "pure fiction",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-bell-rings",
+          "claim-winter-curfew"
+        ],
+        "linked_claim_ids": [
+          "claim-bell-rings",
+          "claim-winter-curfew"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-noon-bell",
+          "timeline-winter-curfew",
+          "timeline-production-open-bell"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-noon-bell",
+          "timeline-winter-curfew",
+          "timeline-production-open-bell"
+        ],
+        "relatedProfileIds": [
+          "profile-mira",
+          "profile-stolen-time"
+        ],
+        "related_profile_ids": [
+          "profile-mira",
+          "profile-stolen-time"
+        ],
+        "unresolvedDependencies": [],
+        "unresolved_dependencies": [],
+        "knownBy": [
+          "viewer-facing public landmark"
+        ],
+        "known_by": [
+          "viewer-facing public landmark"
+        ],
+        "unknownBy": [
+          "full winter curfew history"
+        ],
+        "unknown_by": [
+          "full winter curfew history"
+        ],
+        "believedBy": [
+          "raw memo narrator"
+        ],
+        "believed_by": [
+          "raw memo narrator"
+        ],
+        "misunderstoodBy": [
+          "bell paradox may be read as continuity error until reviewed"
+        ],
+        "misunderstood_by": [
+          "bell paradox may be read as continuity error until reviewed"
+        ],
+        "ownedItems": [
+          "old observatory",
+          "removed bell trace"
+        ],
+        "owned_items": [
+          "old observatory",
+          "removed bell trace"
+        ],
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "source_refs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "assetRefs": [],
+        "asset_refs": [],
+        "canonRisk": "medium",
+        "canon_risk": "medium",
+        "spoilerLevel": "medium",
+        "spoiler_level": "medium",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "notes": "Place profile supports Timeline links without turning the curfew into sourced real-world history.",
+        "summary": "Transit landmark tied to the observatory, bell paradox, and winter curfew.",
+        "open_questions": [
+          "How much of the curfew is visible early?",
+          "Is the observatory inside or above the station?"
+        ],
+        "source": "Raw story memo"
+      },
+      {
+        "id": "profile-arcade-917-closure",
+        "type": "Profile",
+        "title": "9:17 arcade closure",
+        "displayName": "9:17 arcade closure",
+        "aliases": [
+          "nightly closing",
+          "9:17 motif"
+        ],
+        "profileType": "event",
+        "profile_type": "event",
+        "profileStatus": "extracted_event_candidate",
+        "profile_status": "extracted_event_candidate",
+        "ghostNodeStatus": "extracted_candidate",
+        "ghost_node_status": "extracted_candidate",
+        "worldStatus": "repeatable story event",
+        "world_status": "repeatable story event",
+        "realityStatus": "pure fiction",
+        "reality_status": "pure fiction",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-arcade-closes-917"
+        ],
+        "linked_claim_ids": [
+          "claim-arcade-closes-917"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-917-cycle"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-917-cycle"
+        ],
+        "relatedProfileIds": [
+          "profile-mira"
+        ],
+        "related_profile_ids": [
+          "profile-mira"
+        ],
+        "unresolvedDependencies": [],
+        "unresolved_dependencies": [],
+        "knownBy": [
+          "viewer-facing opening"
+        ],
+        "known_by": [
+          "viewer-facing opening"
+        ],
+        "unknownBy": [
+          "reason for exact time"
+        ],
+        "unknown_by": [
+          "reason for exact time"
+        ],
+        "believedBy": [
+          "raw memo narrator"
+        ],
+        "believed_by": [
+          "raw memo narrator"
+        ],
+        "misunderstoodBy": [],
+        "misunderstood_by": [],
+        "ownedItems": [],
+        "owned_items": [],
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "source_refs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "assetRefs": [],
+        "asset_refs": [],
+        "canonRisk": "low",
+        "canon_risk": "low",
+        "spoilerLevel": "low",
+        "spoiler_level": "low",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "notes": "Weak event node is inspectable before deciding whether it deserves a full profile page.",
+        "summary": "Repeatable closing-time motif that anchors story rhythm.",
+        "open_questions": [
+          "Is 9:17 literal time, ritual time, or production timing?",
+          "Should the motif link to stolen minutes later?"
+        ],
+        "source": "Raw story memo"
+      },
+      {
+        "id": "profile-stolen-time",
+        "type": "Profile",
+        "title": "Stolen time",
+        "displayName": "Stolen time",
+        "aliases": [
+          "sold minutes",
+          "abandoned lives mechanism"
+        ],
+        "profileType": "concept",
+        "profile_type": "concept",
+        "profileStatus": "held_concept_ghost",
+        "profile_status": "held_concept_ghost",
+        "ghostNodeStatus": "held_ghost",
+        "ghost_node_status": "held_ghost",
+        "worldStatus": "unresolved speculative mechanism",
+        "world_status": "unresolved speculative mechanism",
+        "realityStatus": "pure fiction",
+        "reality_status": "pure fiction",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-city-sells-time",
+          "claim-ending-restores-hour"
+        ],
+        "linked_claim_ids": [
+          "claim-city-sells-time",
+          "claim-ending-restores-hour"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-council-motive-disclosure",
+          "timeline-ending-hour-return"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-council-motive-disclosure",
+          "timeline-ending-hour-return"
+        ],
+        "relatedProfileIds": [
+          "profile-council",
+          "profile-ledger-of-minutes",
+          "profile-magic-rules"
+        ],
+        "related_profile_ids": [
+          "profile-council",
+          "profile-ledger-of-minutes",
+          "profile-magic-rules"
+        ],
+        "unresolvedDependencies": [
+          "Council motive"
+        ],
+        "unresolved_dependencies": [
+          "Council motive"
+        ],
+        "knownBy": [
+          "Toma note candidate",
+          "possible ending note"
+        ],
+        "known_by": [
+          "Toma note candidate",
+          "possible ending note"
+        ],
+        "unknownBy": [
+          "viewer until reveal pacing is selected"
+        ],
+        "unknown_by": [
+          "viewer until reveal pacing is selected"
+        ],
+        "believedBy": [
+          "Mira may treat the note as evidence"
+        ],
+        "believed_by": [
+          "Mira may treat the note as evidence"
+        ],
+        "misunderstoodBy": [
+          "mechanism cannot become full magic system yet"
+        ],
+        "misunderstood_by": [
+          "mechanism cannot become full magic system yet"
+        ],
+        "ownedItems": [
+          "ledger of minutes candidate"
+        ],
+        "owned_items": [
+          "ledger of minutes candidate"
+        ],
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          },
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "source_refs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          },
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "assetRefs": [],
+        "asset_refs": [],
+        "canonRisk": "high",
+        "canon_risk": "high",
+        "spoilerLevel": "high",
+        "spoiler_level": "high",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "notes": "Hold as a concept ghost until the council route and first explanation boundary are chosen.",
+        "summary": "Speculative mechanism behind the city's stolen minutes.",
+        "open_questions": [
+          "Is time stolen, traded, harvested, or misreported?",
+          "Who knows the mechanism?"
+        ],
+        "source": "Raw story memo, Derived Profile/Ghost candidate"
+      },
+      {
+        "id": "profile-ledger-of-minutes",
+        "type": "Profile",
+        "title": "Ledger of minutes",
+        "displayName": "Ledger of minutes",
+        "aliases": [
+          "council ledger",
+          "ledger"
+        ],
+        "profileType": "document",
+        "profile_type": "document",
+        "profileStatus": "held_document_ghost",
+        "profile_status": "held_document_ghost",
+        "ghostNodeStatus": "held_ghost",
+        "ghost_node_status": "held_ghost",
+        "worldStatus": "evidence candidate",
+        "world_status": "evidence candidate",
+        "realityStatus": "pure fiction",
+        "reality_status": "pure fiction",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-city-sells-time",
+          "claim-ending-restores-hour"
+        ],
+        "linked_claim_ids": [
+          "claim-city-sells-time",
+          "claim-ending-restores-hour"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-council-motive-disclosure",
+          "timeline-ending-hour-return"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-council-motive-disclosure",
+          "timeline-ending-hour-return"
+        ],
+        "relatedProfileIds": [
+          "profile-council",
+          "profile-stolen-time"
+        ],
+        "related_profile_ids": [
+          "profile-council",
+          "profile-stolen-time"
+        ],
+        "unresolvedDependencies": [
+          "Council motive"
+        ],
+        "unresolved_dependencies": [
+          "Council motive"
+        ],
+        "knownBy": [
+          "Toma note candidate",
+          "Mira investigation route"
+        ],
+        "known_by": [
+          "Toma note candidate",
+          "Mira investigation route"
+        ],
+        "unknownBy": [
+          "viewer until evidence route is chosen"
+        ],
+        "unknown_by": [
+          "viewer until evidence route is chosen"
+        ],
+        "believedBy": [
+          "raw memo implies physical proof"
+        ],
+        "believed_by": [
+          "raw memo implies physical proof"
+        ],
+        "misunderstoodBy": [
+          "document authority is not final source truth"
+        ],
+        "misunderstood_by": [
+          "document authority is not final source truth"
+        ],
+        "ownedItems": [],
+        "owned_items": [],
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "source_refs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "assetRefs": [
+          "asset-placeholder-ledger"
+        ],
+        "asset_refs": [
+          "asset-placeholder-ledger"
+        ],
+        "canonRisk": "high",
+        "canon_risk": "high",
+        "spoilerLevel": "high",
+        "spoiler_level": "high",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "notes": "Document profile remains a ghost because its contents imply ending and motive routes.",
+        "summary": "Physical proof candidate for abandoned lives and stolen minutes.",
+        "open_questions": [
+          "Who wrote the ledger?",
+          "Does it name erased people or only account balances?"
+        ],
+        "source": "Raw story memo"
+      },
+      {
+        "id": "profile-placeholder-visuals",
+        "type": "Profile",
+        "title": "Placeholder visual assets",
+        "displayName": "Placeholder visual assets",
+        "aliases": [
+          "text-only visuals",
+          "asset placeholder"
+        ],
+        "profileType": "visual_asset",
+        "profile_type": "visual_asset",
+        "profileStatus": "held_asset_placeholder",
+        "profile_status": "held_asset_placeholder",
+        "ghostNodeStatus": "held_ghost",
+        "ghost_node_status": "held_ghost",
+        "worldStatus": "production placeholder",
+        "world_status": "production placeholder",
+        "realityStatus": "local review only",
+        "reality_status": "local review only",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-bell-rings"
+        ],
+        "linked_claim_ids": [
+          "claim-bell-rings"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-production-open-bell"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-production-open-bell"
+        ],
+        "relatedProfileIds": [
+          "profile-north-bell-station",
+          "profile-brass-moth"
+        ],
+        "related_profile_ids": [
+          "profile-north-bell-station",
+          "profile-brass-moth"
+        ],
+        "unresolvedDependencies": [],
+        "unresolved_dependencies": [],
+        "knownBy": [
+          "local reviewer"
+        ],
+        "known_by": [
+          "local reviewer"
+        ],
+        "unknownBy": [
+          "public audience because nothing publishes"
+        ],
+        "unknown_by": [
+          "public audience because nothing publishes"
+        ],
+        "believedBy": [
+          "production notes only"
+        ],
+        "believed_by": [
+          "production notes only"
+        ],
+        "misunderstoodBy": [
+          "must not be treated as release asset"
+        ],
+        "misunderstood_by": [
+          "must not be treated as release asset"
+        ],
+        "ownedItems": [],
+        "owned_items": [],
+        "sourceRefs": [
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "source_refs": [
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "assetRefs": [
+          "asset-placeholder-brass-moth",
+          "asset-placeholder-bell-paradox"
+        ],
+        "asset_refs": [
+          "asset-placeholder-brass-moth",
+          "asset-placeholder-bell-paradox"
+        ],
+        "canonRisk": "medium",
+        "canon_risk": "medium",
+        "spoilerLevel": "low",
+        "spoiler_level": "low",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "notes": "Keeps asset needs visible without adding rights, publishing, or AI video work.",
+        "summary": "Local-only placeholder asset node for review screenshots and future production notes.",
+        "open_questions": [
+          "Which assets are truly needed later?",
+          "What rights status applies once real assets exist?"
+        ],
+        "source": "Derived Profile/Ghost candidate"
+      },
+      {
+        "id": "profile-magic-rules",
+        "type": "Profile",
+        "title": "Magic rules placeholder",
+        "displayName": "Magic rules placeholder",
+        "aliases": [
+          "rules placeholder",
+          "explanation boundary"
+        ],
+        "profileType": "placeholder",
+        "profile_type": "placeholder",
+        "profileStatus": "needs_author_rule",
+        "profile_status": "needs_author_rule",
+        "ghostNodeStatus": "needs_human_decision",
+        "ghost_node_status": "needs_human_decision",
+        "worldStatus": "unresolved rule boundary",
+        "world_status": "unresolved rule boundary",
+        "realityStatus": "pure fiction",
+        "reality_status": "pure fiction",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-brass-moth-function",
+          "claim-city-sells-time"
+        ],
+        "linked_claim_ids": [
+          "claim-brass-moth-function",
+          "claim-city-sells-time"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-brass-moth-first-use",
+          "timeline-council-motive-disclosure"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-brass-moth-first-use",
+          "timeline-council-motive-disclosure"
+        ],
+        "relatedProfileIds": [
+          "profile-brass-moth",
+          "profile-stolen-time"
+        ],
+        "related_profile_ids": [
+          "profile-brass-moth",
+          "profile-stolen-time"
+        ],
+        "unresolvedDependencies": [
+          "brass moth truth",
+          "Council motive"
+        ],
+        "unresolved_dependencies": [
+          "brass moth truth",
+          "Council motive"
+        ],
+        "knownBy": [
+          "local reviewer as missing boundary"
+        ],
+        "known_by": [
+          "local reviewer as missing boundary"
+        ],
+        "unknownBy": [
+          "viewer until explanation timing is selected"
+        ],
+        "unknown_by": [
+          "viewer until explanation timing is selected"
+        ],
+        "believedBy": [
+          "raw memo says not to explain too early"
+        ],
+        "believed_by": [
+          "raw memo says not to explain too early"
+        ],
+        "misunderstoodBy": [
+          "not a full magic system"
+        ],
+        "misunderstood_by": [
+          "not a full magic system"
+        ],
+        "ownedItems": [],
+        "owned_items": [],
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          },
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "source_refs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          },
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "assetRefs": [],
+        "asset_refs": [],
+        "canonRisk": "high",
+        "canon_risk": "high",
+        "spoilerLevel": "high",
+        "spoiler_level": "high",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "notes": "A placeholder profile exists only to prevent hidden rule decisions from leaking into other nodes.",
+        "summary": "Review placeholder for the boundary between mystery and explanation.",
+        "open_questions": [
+          "Which rule must be known in act one?",
+          "Which rule should remain hidden?"
+        ],
+        "source": "Raw story memo, Derived Profile/Ghost candidate"
+      },
+      {
+        "id": "profile-final-answer-ghost",
+        "type": "Profile",
+        "title": "Rejected final-answer ghost",
+        "displayName": "Rejected final-answer ghost",
+        "aliases": [
+          "overresolved ghost",
+          "false certainty node"
+        ],
+        "profileType": "placeholder",
+        "profile_type": "placeholder",
+        "profileStatus": "rejected_extraction_candidate",
+        "profile_status": "rejected_extraction_candidate",
+        "ghostNodeStatus": "rejected_candidate",
+        "ghost_node_status": "rejected_candidate",
+        "worldStatus": "non-canon review artifact",
+        "world_status": "non-canon review artifact",
+        "realityStatus": "local review only",
+        "reality_status": "local review only",
+        "firstAppearanceWorkId": "work-clockmaker-under-glass",
+        "first_appearance_work_id": "work-clockmaker-under-glass",
+        "linkedClaimIds": [
+          "claim-toma-left-note",
+          "claim-brass-moth-function",
+          "claim-council-desperate"
+        ],
+        "linked_claim_ids": [
+          "claim-toma-left-note",
+          "claim-brass-moth-function",
+          "claim-council-desperate"
+        ],
+        "linkedTimelineEntryIds": [
+          "timeline-toma-note",
+          "timeline-brass-moth-first-use",
+          "timeline-council-motive-disclosure"
+        ],
+        "linked_timeline_entry_ids": [
+          "timeline-toma-note",
+          "timeline-brass-moth-first-use",
+          "timeline-council-motive-disclosure"
+        ],
+        "relatedProfileIds": [
+          "profile-toma",
+          "profile-brass-moth",
+          "profile-council"
+        ],
+        "related_profile_ids": [
+          "profile-toma",
+          "profile-brass-moth",
+          "profile-council"
+        ],
+        "unresolvedDependencies": [
+          "Toma fate",
+          "brass moth truth",
+          "Council motive"
+        ],
+        "unresolved_dependencies": [
+          "Toma fate",
+          "brass moth truth",
+          "Council motive"
+        ],
+        "knownBy": [
+          "local reviewer"
+        ],
+        "known_by": [
+          "local reviewer"
+        ],
+        "unknownBy": [
+          "story world"
+        ],
+        "unknown_by": [
+          "story world"
+        ],
+        "believedBy": [],
+        "believed_by": [],
+        "misunderstoodBy": [
+          "would falsely imply the unresolved decisions are already solved"
+        ],
+        "misunderstood_by": [
+          "would falsely imply the unresolved decisions are already solved"
+        ],
+        "ownedItems": [],
+        "owned_items": [],
+        "sourceRefs": [
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "source_refs": [
+          {
+            "id": "src-derived-profile-ghost-001",
+            "label": "Derived Profile/Ghost candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic profile and ghost grouping",
+            "trust": "derived_candidate"
+          }
+        ],
+        "assetRefs": [],
+        "asset_refs": [],
+        "canonRisk": "high",
+        "canon_risk": "high",
+        "spoilerLevel": "high",
+        "spoiler_level": "high",
+        "reviewStatus": "reject",
+        "review_status": "reject",
+        "notes": "Rejecting this node guards against accidental final canon decisions by extraction.",
+        "summary": "A deliberately rejected placeholder for any extractor output that pretends to settle Toma, the moth, or the Council.",
+        "open_questions": [
+          "None; keep rejected unless a human explicitly creates separate final decisions."
+        ],
+        "source": "Derived Profile/Ghost candidate"
       }
     ],
     "claims": [
@@ -441,8 +1645,8 @@
           "claim-arcade-closes-917"
         ],
         "contradictsClaimIds": [],
-        "reviewStatus": "hold",
-        "review_status": "hold",
+        "reviewStatus": "provisional",
+        "review_status": "provisional",
         "notes": "Safe adoption candidate because it names the protagonist role without deciding the magic system.",
         "claim_type": "world truth",
         "truth_status": "canon fact",
@@ -506,7 +1710,7 @@
         ],
         "subjectRefs": [
           "profile-council",
-          "claim-ledger-of-minutes"
+          "profile-ledger-of-minutes"
         ],
         "speakerOrNarratorRef": "Toma Vale note",
         "viewerDisclosureStatus": "partial reveal",
@@ -770,34 +1974,369 @@
     ],
     "timelineCandidates": [
       {
-        "id": "timeline-917",
+        "id": "timeline-917-cycle",
         "type": "TimelineEvent",
-        "title": "Arcade closes at 9:17",
+        "title": "The glass arcade closes at 9:17.",
+        "summary": "Use the nightly closing time as the first repeatable story-order marker.",
+        "timelineAxis": "story_order",
+        "storyOrder": "01 recurring opening rhythm",
+        "calendarTime": "Every night at 9:17",
+        "calendarPrecision": "recurring_clock_time",
+        "viewerDisclosureOrder": "01 visible opening rule",
+        "viewerDisclosureStatus": "viewer-facing now",
+        "productionOrder": "Establish before the first clue.",
+        "historicalReferenceTime": "present action",
+        "linkedClaimIds": [
+          "claim-arcade-closes-917"
+        ],
+        "linkedProfileIds": [
+          "profile-mira"
+        ],
+        "linkedWorkIds": [
+          "work-clockmaker-under-glass"
+        ],
+        "unresolvedDependencies": [],
+        "spoilerLevel": "low",
+        "canonRisk": "low",
+        "reviewStatus": "provisional",
+        "review_status": "provisional",
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "notes": "Safe ordering candidate; adoption does not explain why the time matters.",
         "sequence_scope": "story_order",
-        "date_or_position": "Recurring nightly marker",
-        "description": "Use as a structural tick before discoveries or reversals.",
+        "date_or_position": "Every night at 9:17",
+        "description": "Use the nightly closing time as the first repeatable story-order marker.",
         "source": "Raw story memo",
-        "review_status": "hold"
+        "label": "The glass arcade closes at 9:17."
       },
       {
-        "id": "timeline-curfew",
+        "id": "timeline-toma-note",
         "type": "TimelineEvent",
-        "title": "Winter curfew bell removal",
-        "sequence_scope": "historical_context",
-        "date_or_position": "Before present action",
-        "description": "Background event explaining why the noon bell is impossible.",
+        "title": "Toma's note points Mira toward stolen minutes.",
+        "summary": "Inciting clue connects family stakes to the council ledger without deciding Toma's fate.",
+        "timelineAxis": "story_order",
+        "storyOrder": "02 inciting clue",
+        "calendarTime": "Before Mira's first investigation",
+        "calendarPrecision": "relative_sequence",
+        "viewerDisclosureOrder": "02 viewer learns the accusation",
+        "viewerDisclosureStatus": "viewer-facing now",
+        "productionOrder": "Introduce after the 9:17 motif.",
+        "historicalReferenceTime": "present action",
+        "linkedClaimIds": [
+          "claim-toma-left-note",
+          "claim-city-sells-time"
+        ],
+        "linkedProfileIds": [
+          "profile-toma",
+          "profile-mira",
+          "profile-council"
+        ],
+        "linkedWorkIds": [
+          "work-clockmaker-under-glass"
+        ],
+        "unresolvedDependencies": [
+          "Toma fate"
+        ],
+        "spoilerLevel": "medium",
+        "canonRisk": "high",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "notes": "Keep Toma's agency reversible until the human author chooses his fate.",
+        "sequence_scope": "story_order",
+        "date_or_position": "Before Mira's first investigation",
+        "description": "Inciting clue connects family stakes to the council ledger without deciding Toma's fate.",
         "source": "Raw story memo",
-        "review_status": "hold"
+        "label": "Toma's note points Mira toward stolen minutes."
       },
       {
-        "id": "timeline-production-open",
+        "id": "timeline-noon-bell",
         "type": "TimelineEvent",
-        "title": "Open video with the bell paradox",
+        "title": "The observatory rings at noon despite the missing bell.",
+        "summary": "Calendar-time event separates the noon cue from the 9:17 story rhythm.",
+        "timelineAxis": "calendar_time",
+        "storyOrder": "03 impossible public signal",
+        "calendarTime": "Noon during present action",
+        "calendarPrecision": "clock_time",
+        "viewerDisclosureOrder": "03 visible contradiction",
+        "viewerDisclosureStatus": "viewer-facing now",
+        "productionOrder": "Use as the visual proof beat.",
+        "historicalReferenceTime": "after winter curfew",
+        "linkedClaimIds": [
+          "claim-bell-rings",
+          "claim-winter-curfew"
+        ],
+        "linkedProfileIds": [
+          "el-place-001"
+        ],
+        "linkedWorkIds": [
+          "work-clockmaker-under-glass"
+        ],
+        "unresolvedDependencies": [],
+        "spoilerLevel": "medium",
+        "canonRisk": "medium",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "notes": "Treat as intentional impossible image unless continuity review rejects it.",
+        "sequence_scope": "calendar_time",
+        "date_or_position": "Noon during present action",
+        "description": "Calendar-time event separates the noon cue from the 9:17 story rhythm.",
+        "source": "Raw story memo",
+        "label": "The observatory rings at noon despite the missing bell."
+      },
+      {
+        "id": "timeline-winter-curfew",
+        "type": "TimelineEvent",
+        "title": "Winter curfew precedes the present action.",
+        "summary": "Historical/reference entry explains why the missing bell is source-sensitive.",
+        "timelineAxis": "historical_reference_order",
+        "storyOrder": "background before present action",
+        "calendarTime": "Prior winter",
+        "calendarPrecision": "historical_reference",
+        "viewerDisclosureOrder": "held for later explanation",
+        "viewerDisclosureStatus": "not yet viewer-facing",
+        "productionOrder": "Mention only after the bell paradox lands.",
+        "historicalReferenceTime": "winter curfew before current story",
+        "linkedClaimIds": [
+          "claim-winter-curfew",
+          "claim-bell-rings"
+        ],
+        "linkedProfileIds": [
+          "el-history-001",
+          "el-place-001"
+        ],
+        "linkedWorkIds": [
+          "work-clockmaker-under-glass"
+        ],
+        "unresolvedDependencies": [],
+        "spoilerLevel": "medium",
+        "canonRisk": "medium",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "notes": "In-world history only; do not treat as sourced real-world history.",
+        "sequence_scope": "historical_reference_order",
+        "date_or_position": "Prior winter",
+        "description": "Historical/reference entry explains why the missing bell is source-sensitive.",
+        "source": "Raw story memo",
+        "label": "Winter curfew precedes the present action."
+      },
+      {
+        "id": "timeline-council-motive-disclosure",
+        "type": "TimelineEvent",
+        "title": "Council motive may be revealed as villainous, desperate, divided, or misled.",
+        "summary": "Viewer disclosure route stays separate from final world truth.",
+        "timelineAxis": "viewer_disclosure_order",
+        "storyOrder": "midpoint or later",
+        "calendarTime": "After ledger evidence appears",
+        "calendarPrecision": "relative_sequence",
+        "viewerDisclosureOrder": "misleadingly revealed before final motive",
+        "viewerDisclosureStatus": "hidden from viewer",
+        "productionOrder": "Delay until Claim Ledger review narrows the route.",
+        "historicalReferenceTime": "not set",
+        "linkedClaimIds": [
+          "claim-city-sells-time",
+          "claim-council-desperate"
+        ],
+        "linkedProfileIds": [
+          "profile-council"
+        ],
+        "linkedWorkIds": [
+          "work-clockmaker-under-glass"
+        ],
+        "unresolvedDependencies": [
+          "Council motive"
+        ],
+        "spoilerLevel": "high",
+        "canonRisk": "high",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "sourceRefs": [
+          {
+            "id": "src-derived-timeline-view-001",
+            "label": "Derived Timeline View candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic timeline separation",
+            "trust": "derived_candidate"
+          }
+        ],
+        "notes": "Do not resolve the council motive in this timeline slice.",
+        "sequence_scope": "viewer_disclosure_order",
+        "date_or_position": "After ledger evidence appears",
+        "description": "Viewer disclosure route stays separate from final world truth.",
+        "source": "Derived Timeline View candidate",
+        "label": "Council motive may be revealed as villainous, desperate, divided, or misled."
+      },
+      {
+        "id": "timeline-brass-moth-first-use",
+        "type": "TimelineEvent",
+        "title": "The brass moth gets one reversible first-use beat.",
+        "summary": "Object function is sequenced as a candidate action, not final magic truth.",
+        "timelineAxis": "viewer_disclosure_order",
+        "storyOrder": "early investigation candidate",
+        "calendarTime": "After Toma's note is found",
+        "calendarPrecision": "relative_sequence",
+        "viewerDisclosureOrder": "hinted before explanation",
+        "viewerDisclosureStatus": "partial reveal",
+        "productionOrder": "Show one concrete action before any exposition.",
+        "historicalReferenceTime": "not set",
+        "linkedClaimIds": [
+          "claim-brass-moth-function",
+          "claim-toma-left-note"
+        ],
+        "linkedProfileIds": [
+          "profile-brass-moth",
+          "profile-toma"
+        ],
+        "linkedWorkIds": [
+          "work-clockmaker-under-glass"
+        ],
+        "unresolvedDependencies": [
+          "brass moth truth"
+        ],
+        "spoilerLevel": "high",
+        "canonRisk": "high",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "sourceRefs": [
+          {
+            "id": "src-raw-memo-001",
+            "label": "Raw story memo",
+            "source_type": "memo",
+            "locator": "memo textarea",
+            "trust": "author_memo"
+          }
+        ],
+        "notes": "Keep spy, key, and memory-container options reversible.",
+        "sequence_scope": "viewer_disclosure_order",
+        "date_or_position": "After Toma's note is found",
+        "description": "Object function is sequenced as a candidate action, not final magic truth.",
+        "source": "Raw story memo",
+        "label": "The brass moth gets one reversible first-use beat."
+      },
+      {
+        "id": "timeline-production-open-bell",
+        "type": "TimelineEvent",
+        "title": "Open the reviewable video outline with the bell paradox.",
+        "summary": "Production order starts with an inspectable image, not a canon explanation.",
+        "timelineAxis": "production_order",
+        "storyOrder": "production cold open",
+        "calendarTime": "First 8 seconds",
+        "calendarPrecision": "production_timing",
+        "viewerDisclosureOrder": "01 visible hook",
+        "viewerDisclosureStatus": "viewer-facing now",
+        "productionOrder": "01 cold open",
+        "historicalReferenceTime": "references winter curfew only later",
+        "linkedClaimIds": [
+          "claim-bell-rings"
+        ],
+        "linkedProfileIds": [
+          "el-place-001"
+        ],
+        "linkedWorkIds": [
+          "work-clockmaker-under-glass"
+        ],
+        "unresolvedDependencies": [],
+        "spoilerLevel": "low",
+        "canonRisk": "low",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "sourceRefs": [
+          {
+            "id": "src-derived-timeline-view-001",
+            "label": "Derived Timeline View candidate",
+            "source_type": "derived_candidate",
+            "locator": "local deterministic timeline separation",
+            "trust": "derived_candidate"
+          }
+        ],
+        "notes": "Production timeline only; no automated video generation is active.",
         "sequence_scope": "production_order",
         "date_or_position": "First 8 seconds",
-        "description": "Production outline candidate, not story chronology.",
-        "source": "Derived from memo",
-        "review_status": "hold"
+        "description": "Production order starts with an inspectable image, not a canon explanation.",
+        "source": "Derived Timeline View candidate",
+        "label": "Open the reviewable video outline with the bell paradox."
+      },
+      {
+        "id": "timeline-ending-hour-return",
+        "type": "TimelineEvent",
+        "title": "Mira may give one lost hour back to every erased person.",
+        "summary": "Possible ending route remains hidden and dependency-bound.",
+        "timelineAxis": "story_order",
+        "storyOrder": "candidate ending",
+        "calendarTime": "After the council ledger conflict",
+        "calendarPrecision": "ending_candidate",
+        "viewerDisclosureOrder": "spoiler-protected ending route",
+        "viewerDisclosureStatus": "hidden from viewer",
+        "productionOrder": "Do not storyboard as final until human review.",
+        "historicalReferenceTime": "not set",
+        "linkedClaimIds": [
+          "claim-ending-restores-hour",
+          "claim-city-sells-time"
+        ],
+        "linkedProfileIds": [
+          "profile-mira",
+          "profile-toma",
+          "profile-council"
+        ],
+        "linkedWorkIds": [
+          "work-clockmaker-under-glass"
+        ],
+        "unresolvedDependencies": [
+          "Toma fate",
+          "Council motive"
+        ],
+        "spoilerLevel": "high",
+        "canonRisk": "high",
+        "reviewStatus": "hold",
+        "review_status": "hold",
+        "sourceRefs": [
+          {
+            "id": "src-possible-ending-001",
+            "label": "Possible ending note",
+            "source_type": "memo",
+            "locator": "memo paragraph: Possible ending",
+            "trust": "author_memo"
+          }
+        ],
+        "notes": "Ending route only; keep held or provisional until human-owned decisions are made.",
+        "sequence_scope": "story_order",
+        "date_or_position": "After the council ledger conflict",
+        "description": "Possible ending route remains hidden and dependency-bound.",
+        "source": "Possible ending note",
+        "label": "Mira may give one lost hour back to every erased person."
       }
     ]
   },
@@ -834,7 +2373,14 @@
     "profile-toma": "provisional",
     "profile-council": "hold",
     "profile-brass-moth": "hold",
-    "claim-mira-clockmaker": "hold",
+    "profile-north-bell-station": "hold",
+    "profile-arcade-917-closure": "hold",
+    "profile-stolen-time": "hold",
+    "profile-ledger-of-minutes": "hold",
+    "profile-placeholder-visuals": "hold",
+    "profile-magic-rules": "hold",
+    "profile-final-answer-ghost": "reject",
+    "claim-mira-clockmaker": "provisional",
     "claim-arcade-closes-917": "hold",
     "claim-city-sells-time": "hold",
     "claim-council-desperate": "hold",
@@ -843,9 +2389,14 @@
     "claim-bell-rings": "hold",
     "claim-winter-curfew": "hold",
     "claim-ending-restores-hour": "hold",
-    "timeline-917": "hold",
-    "timeline-curfew": "hold",
-    "timeline-production-open": "hold",
+    "timeline-917-cycle": "provisional",
+    "timeline-toma-note": "hold",
+    "timeline-noon-bell": "hold",
+    "timeline-winter-curfew": "hold",
+    "timeline-council-motive-disclosure": "hold",
+    "timeline-brass-moth-first-use": "hold",
+    "timeline-production-open-bell": "hold",
+    "timeline-ending-hour-return": "hold",
     "task-toma-fate": "hold",
     "task-moth-function": "hold",
     "task-rights": "hold",
@@ -868,6 +2419,18 @@
         "id": "profile-toma",
         "type": "Profile",
         "title": "Toma Vale",
+        "reviewStatus": "provisional"
+      },
+      {
+        "id": "claim-mira-clockmaker",
+        "type": "Claim",
+        "title": "Mira Vale repairs antique clocks in the glass arcade.",
+        "reviewStatus": "provisional"
+      },
+      {
+        "id": "timeline-917-cycle",
+        "type": "TimelineEvent",
+        "title": "The glass arcade closes at 9:17.",
         "reviewStatus": "provisional"
       },
       {
@@ -1059,9 +2622,39 @@
         "reviewStatus": "hold"
       },
       {
-        "id": "claim-mira-clockmaker",
-        "type": "Claim",
-        "title": "Mira Vale repairs antique clocks in the glass arcade.",
+        "id": "profile-north-bell-station",
+        "type": "Profile",
+        "title": "North Bell Station",
+        "reviewStatus": "hold"
+      },
+      {
+        "id": "profile-arcade-917-closure",
+        "type": "Profile",
+        "title": "9:17 arcade closure",
+        "reviewStatus": "hold"
+      },
+      {
+        "id": "profile-stolen-time",
+        "type": "Profile",
+        "title": "Stolen time",
+        "reviewStatus": "hold"
+      },
+      {
+        "id": "profile-ledger-of-minutes",
+        "type": "Profile",
+        "title": "Ledger of minutes",
+        "reviewStatus": "hold"
+      },
+      {
+        "id": "profile-placeholder-visuals",
+        "type": "Profile",
+        "title": "Placeholder visual assets",
+        "reviewStatus": "hold"
+      },
+      {
+        "id": "profile-magic-rules",
+        "type": "Profile",
+        "title": "Magic rules placeholder",
         "reviewStatus": "hold"
       },
       {
@@ -1113,21 +2706,45 @@
         "reviewStatus": "hold"
       },
       {
-        "id": "timeline-917",
+        "id": "timeline-toma-note",
         "type": "TimelineEvent",
-        "title": "Arcade closes at 9:17",
+        "title": "Toma's note points Mira toward stolen minutes.",
         "reviewStatus": "hold"
       },
       {
-        "id": "timeline-curfew",
+        "id": "timeline-noon-bell",
         "type": "TimelineEvent",
-        "title": "Winter curfew bell removal",
+        "title": "The observatory rings at noon despite the missing bell.",
         "reviewStatus": "hold"
       },
       {
-        "id": "timeline-production-open",
+        "id": "timeline-winter-curfew",
         "type": "TimelineEvent",
-        "title": "Open video with the bell paradox",
+        "title": "Winter curfew precedes the present action.",
+        "reviewStatus": "hold"
+      },
+      {
+        "id": "timeline-council-motive-disclosure",
+        "type": "TimelineEvent",
+        "title": "Council motive may be revealed as villainous, desperate, divided, or misled.",
+        "reviewStatus": "hold"
+      },
+      {
+        "id": "timeline-brass-moth-first-use",
+        "type": "TimelineEvent",
+        "title": "The brass moth gets one reversible first-use beat.",
+        "reviewStatus": "hold"
+      },
+      {
+        "id": "timeline-production-open-bell",
+        "type": "TimelineEvent",
+        "title": "Open the reviewable video outline with the bell paradox.",
+        "reviewStatus": "hold"
+      },
+      {
+        "id": "timeline-ending-hour-return",
+        "type": "TimelineEvent",
+        "title": "Mira may give one lost hour back to every erased person.",
         "reviewStatus": "hold"
       },
       {
@@ -1167,7 +2784,14 @@
         "reviewStatus": "hold"
       }
     ],
-    "rejectedCandidate": []
+    "rejectedCandidate": [
+      {
+        "id": "profile-final-answer-ghost",
+        "type": "Profile",
+        "title": "Rejected final-answer ghost",
+        "reviewStatus": "reject"
+      }
+    ]
   },
   "unresolvedCreativeDecisions": [
     {
@@ -1622,6 +3246,26 @@
       "owner": "human_author",
       "created_at": "2026-06-15T03:06:00+09:00",
       "label": "1-minute video"
+    },
+    {
+      "id": "sample-decision-claim-mira-clockmaker",
+      "subject_id": "claim-mira-clockmaker",
+      "subject_type": "Claim",
+      "decision": "provisional",
+      "effect": "Candidate can be used temporarily but must remain visibly reversible.",
+      "owner": "human_author",
+      "created_at": "2026-06-15T05:40:00+09:00",
+      "label": "Mira Vale repairs antique clocks in the glass arcade."
+    },
+    {
+      "id": "sample-decision-timeline-917",
+      "subject_id": "timeline-917-cycle",
+      "subject_type": "TimelineEvent",
+      "decision": "provisional",
+      "effect": "Candidate can be used temporarily but must remain visibly reversible.",
+      "owner": "human_author",
+      "created_at": "2026-06-15T16:25:00+09:00",
+      "label": "The glass arcade closes at 9:17."
     }
   ],
   "metadata": {
@@ -1632,10 +3276,32 @@
       "Placeholder visuals are not release assets."
     ],
     "importedUnknownFields": {},
-    "contextSync": {
-      "updatedAt": "2026-06-15T03:03:16.025Z",
-      "reason": "Align exported state with fff-claim-ledger-001 review artifact.",
-      "claimLedgerClaimCount": 9
+    "activeArtifactId": "fff-profile-ghost-flow-001",
+    "profileGhostFlow": {
+      "requiredProfileTypes": [
+        "person",
+        "place",
+        "organization",
+        "event",
+        "object",
+        "concept",
+        "document",
+        "visual_asset",
+        "placeholder"
+      ],
+      "requiredGhostNodeStatuses": [
+        "extracted_candidate",
+        "provisional_profile",
+        "adopted_profile",
+        "held_ghost",
+        "rejected_candidate",
+        "needs_human_decision"
+      ],
+      "humanOwnedDependencies": [
+        "Toma fate",
+        "brass moth truth",
+        "Council motive"
+      ]
     }
   }
 }

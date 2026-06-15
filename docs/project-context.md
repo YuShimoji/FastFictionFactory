@@ -2,11 +2,11 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-claim-ledger-001`, served as a static local review UI at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-profile-ghost-flow-001`, served as a static local review UI at `public/review/index.html`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is a Claim Ledger review surface for source, truth status, reality/reference status, canon risk, unresolved dependencies, viewer disclosure, spoiler protection, grouping, filtering, and local review decisions.
+Keep the MVP reviewable without production commitments. The current lane is a Profile/Ghost Flow surface that links profile pages, ghost nodes, Claim Ledger claims, and Timeline View entries while preserving local persistence behavior.
 
 ## Current Slice
 
@@ -19,6 +19,10 @@ The active slice is complete enough for local review:
 - Current state: `artifacts/current-project-state.json`
 - Sample state: `artifacts/sample-project-state.json`
 - Claim Ledger smoke evidence: `artifacts/claim-ledger-smoke-result.json`
+- Timeline smoke evidence: `artifacts/timeline-smoke-result.json`
+- v1.3 compliance smoke evidence: `artifacts/v1-3-compliance-smoke-result.json`
+- Checkpoint readback evidence: `artifacts/checkpoint-readback-result.json`
+- Profile/Ghost smoke evidence: `artifacts/profile-ghost-smoke-result.json`
 - Screenshot: `artifacts/fff-current-review-screenshot.png`
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Local docs view: `mkdocs.yml`
@@ -37,9 +41,11 @@ node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
 Result summary:
 
 - Both state JSON files validate with `schemaVersion: "fff.projectState.v1"`.
-- Current state contains 9 Claim Ledger claims.
+- Current state contains 11 Profile/Ghost records, 9 Claim Ledger claims, and 8 Timeline View entries.
+- Profile/Ghost summary covers all required profile types, all required ghost node statuses, 7 high canon risk profiles, 7 dependency-bound profiles, and 11 profiles linked to both claims and timeline entries.
 - Claim summary: 5 high canon risk claims, 5 claims with unresolved dependencies, 1 unverified reality status claim, and 4 hidden or spoiler-protected claims.
-- The Claim Ledger manifest validation command passes.
+- Timeline summary reports all five timeline axes, 4 high canon risk entries, 4 dependency-bound entries, and 8 entries linked to claims.
+- The Profile/Ghost manifest validation command passes.
 
 ## Boundaries
 
@@ -68,4 +74,4 @@ Run the state adapter:
 node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
 ```
 
-First next move: add the Timeline view as a separate reviewable slice.
+First next move: define the real extraction contract without adding model/API behavior yet.

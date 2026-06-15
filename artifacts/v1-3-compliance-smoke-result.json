@@ -1,0 +1,35 @@
+{
+  "artifact_id": "fff-profile-ghost-flow-001",
+  "preview_path": "public/review/index.html",
+  "created_at": "2026-06-15T09:45:27.2172833Z",
+  "checks": {
+    "hasManifest": true,
+    "hasArtifactsIndex": true,
+    "hasReviewUi": true,
+    "hasCurrentStatus": true,
+    "hasScreenshot": true,
+    "hasContactSheet": true,
+    "hasSmokeArtifacts": true,
+    "activeArtifactVisible": true,
+    "v13SectionVisible": true,
+    "humanOwnedDecisionPacketVisible": true,
+    "repoRelativePathsVisible": true,
+    "noFullWindowsPathInReportDocs": true,
+    "noModelUiLabelsInReviewDocs": true
+  },
+  "files": {
+    "manifest": "artifacts/artifact-manifest.json",
+    "artifactsIndex": "artifacts/ARTIFACTS.md",
+    "currentStatus": "docs/review/current-status.md",
+    "complianceReview": "docs/review/v1-3-compliance-review.md",
+    "screenshot": {
+      "path": "artifacts/fff-current-review-screenshot.png",
+      "bytes": 634961
+    },
+    "contactSheet": {
+      "path": "artifacts/fff-review-contact-sheet.png",
+      "bytes": 1049891
+    }
+  },
+  "passed": true
+}
