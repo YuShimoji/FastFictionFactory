@@ -69,3 +69,16 @@
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
 - Review status: `ready_for_local_review`
+
+## fff-local-docs-view-001
+
+- Title: Fast Fiction Factory Local Markdown Docs View
+- Purpose: Provide a local MkDocs Material tree view for reading, auditing, browser-assisted translation checks, project overview, screenshot locations, and turn-count-based development planning without translating or rewriting source specifications.
+- Repo relative path: `mkdocs.yml`
+- Entry page: `docs/index.md`
+- Project overview map: `docs/project-overview.md`
+- External Markdown wrappers: `docs/local-view/`
+- Nav candidate generator: `tools/generate-doc-nav.mjs`
+- Open command: `python -m mkdocs serve -a 127.0.0.1:8000`
+- Alternate open command when port 8000 is busy: `python -m mkdocs serve -a 127.0.0.1:8001`
+- Review status: `ready_for_local_review`

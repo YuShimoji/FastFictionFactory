@@ -1,0 +1,74 @@
+site_name: Fast Fiction Factory Local Docs
+site_description: Local Markdown review and browser-assisted translation view.
+docs_dir: docs
+site_dir: build/mkdocs-site
+
+theme:
+  name: material
+  language: en
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - pymdownx.snippets:
+      base_path: .
+      check_paths: true
+  - pymdownx.superfences
+
+exclude_docs: |
+  .git/**
+  .serena/**
+  node_modules/**
+  dist/**
+  build/**
+  .venv/**
+  venv/**
+  __pycache__/**
+  public/**
+  tools/**
+  artifacts/*.json
+  artifacts/*.png
+  artifacts/*.jpg
+  artifacts/*.jpeg
+  artifacts/*.webp
+  artifacts/*.gif
+  artifacts/*.html
+  *.json
+  *.png
+  *.jpg
+  *.jpeg
+  *.webp
+  *.gif
+  *.html
+
+nav:
+  - Overview:
+      - Local Docs View: index.md
+      - Project Overview Map: project-overview.md
+      - Repo Instructions: local-view/agents.md
+      - Project Context: project-context.md
+  - Specs:
+      - Product Brief: product-brief.md
+      - Workflow: workflow.md
+      - Data Model: data-model.md
+      - QA Gates: qa-gates.md
+  - Runtime State:
+      - Current Status Packet: review/current-status.md
+      - Decision Log: decision-log.md
+      - Idea Ledger: idea-ledger.md
+  - Development Notes:
+      - Claim Ledger Review: review/claim-ledger-review.md
+      - File Persistence Review: review/file-persistence-review.md
+      - First MVP Review: review/first-mvp-review.md
+      - JSON Export Import Review: review/json-export-import-review.md
+      - Review Ergonomics Review: review/review-ergonomics-review.md
+      - Visual Review Hub Review: review/visual-review-hub-review.md
+  - Artifacts:
+      - Artifact Inventory: local-view/artifacts.md
+      - Sample Story Memo: local-view/sample-story-memo.md

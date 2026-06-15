@@ -21,6 +21,8 @@ The active slice is complete enough for local review:
 - Claim Ledger smoke evidence: `artifacts/claim-ledger-smoke-result.json`
 - Screenshot: `artifacts/fff-current-review-screenshot.png`
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Local docs view: `mkdocs.yml`
+- Project overview map: `docs/project-overview.md`
 
 ## Verification Snapshot
 
@@ -50,6 +52,15 @@ Open the review UI from the repo root:
 ```powershell
 Invoke-Item .\public\review\index.html
 ```
+
+Open the local Markdown docs view from the repo root:
+
+```powershell
+python -m pip install mkdocs-material
+python -m mkdocs serve -a 127.0.0.1:8000
+```
+
+If port `8000` is already in use, use a neighboring local port such as `8001`.
 
 Run the state adapter:
 

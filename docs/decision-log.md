@@ -17,3 +17,7 @@
 - Decision: Preserve a thin repo-local agent entry point.
   - Reason: Future work should read the repo context without turning `AGENTS.md` into a status document.
   - Effect: `AGENTS.md` points to current docs and keeps project instructions separate from history.
+
+- Decision: Add a local Markdown docs view for audit and browser-assisted translation checks.
+  - Reason: Project context was spread across multiple Markdown files, and another terminal needed a single restartable map without rewriting source specifications.
+  - Effect: `mkdocs.yml`, `docs/index.md`, `docs/project-overview.md`, `docs/local-view/`, and `tools/generate-doc-nav.mjs` provide a local tree view, original-source wrappers, a project overview map, screenshot locations, and a turn-count-based development plan.

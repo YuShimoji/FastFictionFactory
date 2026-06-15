@@ -27,6 +27,10 @@
 - Review ergonomics smoke evidence at `artifacts/review-ergonomics-smoke-result.json`.
 - Claim Ledger smoke evidence at `artifacts/claim-ledger-smoke-result.json`.
 - Repo-local zero-dependency state adapter at `tools/fff-state.mjs`.
+- MkDocs Material local docs view at `mkdocs.yml`.
+- Project-wide Markdown overview map at `docs/project-overview.md`.
+- Root and artifact Markdown viewing wrappers under `docs/local-view/`.
+- Turn-count-based development plan in `docs/project-overview.md`.
 
 ## What Was Verified
 
@@ -40,6 +44,8 @@
 - Browser smoke confirmed export/import fallback round trip, invalid JSON safety, unresolved decision survival, decision log survival, unknown field preservation, status filters, and collapse/expand behavior.
 - Browser smoke confirmed Claim Ledger grouping, filtering, search, claim review controls, decision log update, export/import claim persistence, and invalid JSON safety.
 - Screenshot and contact sheet output were generated at `artifacts/fff-current-review-screenshot.png` and `artifacts/fff-review-contact-sheet.png`.
+- `mkdocs build --strict` passed for the local docs view using MkDocs Material in a temporary verification environment.
+- Local docs view pages were checked over HTTP on `127.0.0.1:8001` because port `8000` was already in use during verification.
 
 ## What Remains Missing
 
@@ -72,6 +78,29 @@ State persistence review path:
 3. Use Download JSON fallback and Upload JSON fallback when direct file access is unsupported.
 4. Use Import pasted JSON to test invalid JSON handling or unknown-field preservation.
 ```
+
+## How To Open The Local Docs View
+
+From the repo root, run:
+
+```powershell
+python -m pip install mkdocs-material
+python -m mkdocs serve -a 127.0.0.1:8000
+```
+
+Then open:
+
+```text
+http://127.0.0.1:8000/
+```
+
+If port `8000` is already in use, run:
+
+```powershell
+python -m mkdocs serve -a 127.0.0.1:8001
+```
+
+Start with `docs/project-overview.md` for the project map, implemented-slice index, screenshot paths, and turn-count-based development plan.
 
 ## Human-Owned Decision Packet
 
