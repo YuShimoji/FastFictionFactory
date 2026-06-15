@@ -1,83 +1,110 @@
 {
   "artifactId": "checkpoint-readback",
-  "createdAt": "2026-06-15T18:30:00+09:00",
+  "createdAt": "2026-06-15T19:35:00+09:00",
   "passed": true,
   "branch": "master",
-  "tracking": "master...origin/master",
-  "remote": {
-    "name": "origin",
-    "fetchUrl": "https://github.com/YuShimoji/FastFictionFactory.git",
-    "pushUrl": "https://github.com/YuShimoji/FastFictionFactory.git"
+  "upstream": "origin/master",
+  "checkpointCommit": {
+    "sha": "eda00ff",
+    "message": "Add Profile/Ghost Flow review slice"
   },
-  "latestCommits": [
-    {
-      "sha": "e54acf4",
-      "decorations": "HEAD -> master, origin/master, origin/HEAD",
-      "message": "Add local docs view handoff"
+  "push": {
+    "attempted": true,
+    "command": "git push",
+    "result": "succeeded",
+    "remote": "origin",
+    "branch": "master"
+  },
+  "postPushReadback": {
+    "statusShortBranch": "## master...origin/master",
+    "aheadBehind": {
+      "ahead": 0,
+      "behind": 0
     },
-    {
-      "sha": "c5d1363",
-      "message": "Initial Fast Fiction Factory review workbench"
-    }
-  ],
-  "workingTree": {
-    "dirty": true,
-    "trackedModifiedCount": 15,
-    "untrackedCount": 4,
-    "trackedModified": [
-      "artifacts/ARTIFACTS.md",
-      "artifacts/artifact-manifest.json",
-      "artifacts/claim-ledger-smoke-result.json",
-      "artifacts/current-project-state.json",
-      "artifacts/fff-current-review-screenshot.png",
-      "artifacts/fff-review-contact-sheet.png",
-      "artifacts/sample-project-state.json",
-      "docs/data-model.md",
-      "docs/idea-ledger.md",
-      "docs/project-context.md",
-      "docs/project-overview.md",
-      "docs/review/current-status.md",
-      "mkdocs.yml",
-      "public/review/index.html",
-      "tools/fff-state.mjs"
+    "recentLog": [
+      "eda00ff (HEAD -> master, origin/master, origin/HEAD) Add Profile/Ghost Flow review slice",
+      "e54acf4 Add local docs view handoff",
+      "c5d1363 Initial Fast Fiction Factory review workbench"
     ],
-    "untracked": [
-      "artifacts/timeline-smoke-result.json",
-      "artifacts/v1-3-compliance-smoke-result.json",
-      "docs/review/timeline-view-review.md",
-      "docs/review/v1-3-compliance-review.md"
+    "workingTreeCleanBeforeReadbackUpdate": true
+  },
+  "validation": {
+    "passed": true,
+    "commands": [
+      {
+        "command": "git fetch origin",
+        "result": "passed"
+      },
+      {
+        "command": "git status --short --branch",
+        "result": "master...origin/master before commit, master...origin/master after push"
+      },
+      {
+        "command": "git rev-list --left-right --count 'HEAD...@{u}'",
+        "result": "0 0 before commit, 1 0 before push, 0 0 after push"
+      },
+      {
+        "command": "git diff --check",
+        "result": "passed"
+      },
+      {
+        "command": "node tools/fff-state.mjs validate artifacts/current-project-state.json",
+        "result": "passed"
+      },
+      {
+        "command": "node tools/fff-state.mjs validate artifacts/sample-project-state.json",
+        "result": "passed"
+      },
+      {
+        "command": "manifest validation command from artifacts/artifact-manifest.json",
+        "result": "passed"
+      },
+      {
+        "command": "Playwright smoke via temporary localhost preview",
+        "result": "passed; Profile/Ghost 11, Claim Ledger 9, Timeline 8"
+      },
+      {
+        "command": "python -m mkdocs build --strict",
+        "result": "passed with upstream Material warning only"
+      },
+      {
+        "command": "git diff --cached --check",
+        "result": "passed"
+      }
     ]
   },
-  "authority": {
-    "agentsPresent": true,
-    "projectLocalInstructionsFirst": true,
-    "requiredDocsRead": [
-      "docs/project-context.md",
-      "docs/review/current-status.md",
-      "docs/workflow.md",
-      "docs/qa-gates.md",
-      "docs/decision-log.md",
-      "docs/idea-ledger.md"
-    ],
-    "trueStopConditionFound": false
+  "artifactStatus": {
+    "activeArtifactId": "fff-profile-ghost-flow-001",
+    "repoRelativePath": "public/review/index.html",
+    "openCommand": "Invoke-Item .\\public\\review\\index.html",
+    "manifest": "artifacts/artifact-manifest.json",
+    "screenshot": {
+      "path": "artifacts/fff-current-review-screenshot.png",
+      "bytes": 634961
+    },
+    "contactSheet": {
+      "path": "artifacts/fff-review-contact-sheet.png",
+      "bytes": 1049891
+    },
+    "profileGhostSmoke": "artifacts/profile-ghost-smoke-result.json",
+    "currentState": "artifacts/current-project-state.json",
+    "sampleState": "artifacts/sample-project-state.json"
   },
-  "tooling": {
-    "packageJsonPresent": false,
-    "packageLockPresent": false,
-    "pnpmLockPresent": false,
-    "yarnLockPresent": false,
-    "readmePresent": false,
-    "mkdocsPresent": true,
-    "shallowTestDirectoryFound": false
+  "stateSummary": {
+    "profiles": 11,
+    "claims": 9,
+    "timelineEntries": 8,
+    "requiredHumanOwnedDecisionsStillUnresolved": [
+      "Toma fate",
+      "brass moth truth",
+      "Council motive"
+    ]
   },
-  "activeArtifactsBeforeProfileGhostSlice": {
-    "manifestArtifactId": "fff-timeline-view-001",
-    "reviewUiPath": "public/review/index.html",
-    "screenshotPath": "artifacts/fff-current-review-screenshot.png",
-    "screenshotBytes": 348942,
-    "contactSheetPath": "artifacts/fff-review-contact-sheet.png",
-    "contactSheetBytes": 1251044,
-    "screenshotsReflectActiveArtifactByManifestReference": true
-  },
-  "nextSlice": "fff-profile-ghost-flow-001"
+  "excludedFromCheckpoint": [
+    "temporary server files",
+    ".playwright-cli",
+    "build/mkdocs-site",
+    "checkpoint smoke runner"
+  ],
+  "nextSliceNotStarted": "Extraction Contract"
 }
