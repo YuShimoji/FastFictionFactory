@@ -30,10 +30,11 @@ The active slice is complete enough for local review:
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Local docs view: `mkdocs.yml`
 - Project overview map: `docs/project-overview.md`
+- Next-terminal handoff: `docs/review/next-terminal-handoff.md`
 
 ## Verification Snapshot
 
-Last verified on 2026-06-15:
+Last verified on 2026-06-17:
 
 ```powershell
 node .\tools\fff-state.mjs validate .\artifacts\sample-project-state.json
@@ -85,3 +86,7 @@ node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
 ```
 
 First next move: build a local-only extraction adapter spike that emits the reviewed contract shape without adding model/API behavior yet.
+
+## Handoff Path
+
+For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.

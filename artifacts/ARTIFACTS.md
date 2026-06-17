@@ -135,6 +135,7 @@
 - Current status: `docs/review/current-status.md`
 - Extraction Contract review doc: `docs/review/extraction-contract-review.md`
 - Freeform Review Intake doc: `docs/review/freeform-review-intake.md`
+- Next-terminal handoff: `docs/review/next-terminal-handoff.md`
 - Screenshot: `artifacts/fff-current-review-screenshot.png`
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`

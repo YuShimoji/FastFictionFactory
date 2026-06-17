@@ -60,6 +60,7 @@ nav:
       - QA Gates: qa-gates.md
   - Runtime State:
       - Current Status Packet: review/current-status.md
+      - Next Terminal Handoff: review/next-terminal-handoff.md
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:

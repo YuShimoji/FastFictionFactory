@@ -7,6 +7,7 @@
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local launcher: `.\scripts\operator\open_review.ps1`
 - Manifest: `artifacts/artifact-manifest.json`
+- Next-terminal handoff: `docs/review/next-terminal-handoff.md`
 
 ## What Exists Now
 
@@ -32,6 +33,7 @@
 
 ## What Was Verified
 
+- Latest handoff context is stored in `docs/review/next-terminal-handoff.md` so a new terminal can resume from project files after `git pull --ff-only`.
 - The artifact manifest parses and references `fff-extraction-contract-001`.
 - The sample and current state JSON files parse with `schemaVersion: "fff.projectState.v1"`.
 - The state adapter validates both state JSON files.
@@ -44,7 +46,7 @@
 - Profile/Ghost records keep Toma fate, brass moth truth, and Council motive as unresolved human-owned dependencies.
 - Browser smoke confirmed Profile/Ghost rendering, grouping, type selector, ghost filters, unresolved/high-risk/spoiler filters, ghost promotion to provisional profile, decision log update, export/import persistence, invalid JSON safety, and Claim Ledger/Timeline continuity.
 - Browser smoke confirmed Extraction Contract rendering, grouping, filtering, search, decision log update, export/import preservation, invalid JSON safety, and Claim Ledger/Timeline/Profile continuity.
-- Screenshot and contact sheet were regenerated from the Profile/Ghost Flow UI.
+- Screenshot and contact sheet were regenerated from the current Visual Review Hub with the Extraction Contract active.
 - `git diff --check` passed.
 - `python -m mkdocs build --strict` passed.
 
@@ -94,3 +96,7 @@ State persistence review path:
 ## Next Recommended Slice
 
 Build a local-only extraction adapter spike that emits the reviewed contract shape from deterministic input. Keep it source-tracked and schema-validated before adding any model/API dependency, database persistence, publishing adapter, AI video generation, or final canon decision.
+
+## Resume From Another Terminal
+
+From a fresh terminal, run `git pull --ff-only`, read `docs/review/next-terminal-handoff.md`, open the review UI with `.\scripts\operator\open_review.ps1`, and run the manifest validation command before changing behavior.
