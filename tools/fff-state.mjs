@@ -110,6 +110,59 @@ const REQUIRED_GHOST_NODE_STATUSES = [
   "needs_human_decision"
 ];
 
+const EXTRACTION_CONTRACT_REQUIRED_FIELDS = [
+  "extractionRunId",
+  "schemaVersion",
+  "sourceDraftId",
+  "sourceMemoRef",
+  "sourceRefs",
+  "generatedAt",
+  "generatorType",
+  "generatorLabel",
+  "extractionMode",
+  "confidencePolicy",
+  "extractedElements",
+  "profileCandidates",
+  "claimCandidates",
+  "timelineEntryCandidates",
+  "unresolvedDependencies",
+  "reviewSafeDefaults",
+  "decisionLogSafeMetadata",
+  "warnings",
+  "unknownFieldsPolicy",
+  "humanAuthorityBoundaries",
+  "notes"
+];
+
+const EXTRACTION_ELEMENT_REQUIRED_FIELDS = [
+  "id",
+  "displayText",
+  "elementType",
+  "aliases",
+  "sourceSpan",
+  "sourceRefIds",
+  "confidence",
+  "suggestedReviewStatus",
+  "unresolvedDependencies",
+  "canonRisk",
+  "spoilerLevel",
+  "notes"
+];
+
+const REQUIRED_EXTRACTION_ELEMENT_TYPES = [
+  "person",
+  "place",
+  "organization",
+  "event",
+  "object",
+  "concept",
+  "document",
+  "visual_asset",
+  "placeholder",
+  "source_reference",
+  "unresolved_decision"
+];
+
 async function main() {
   const [command, inputPath, outputPath] = process.argv.slice(2);
 
@@ -296,6 +349,52 @@ function validateState(state) {
     }
   }
 
+  const extractionContracts = Array.isArray(state.extractionContracts) ? state.extractionContracts : state.extractionContract ? [state.extractionContract] : [];
+  extractionContracts.forEach((contract, contractIndex) => {
+    if (!contract || typeof contract !== "object" || Array.isArray(contract)) {
+      errors.push(`extraction contract ${contractIndex} must be an object`);
+      return;
+    }
+    for (const field of EXTRACTION_CONTRACT_REQUIRED_FIELDS) {
+      if (!(field in contract)) {
+        errors.push(`extraction contract ${contract.extractionRunId || contractIndex} missing ${field}`);
+      }
+    }
+    for (const arrayField of ["sourceRefs", "extractedElements", "profileCandidates", "claimCandidates", "timelineEntryCandidates", "unresolvedDependencies", "warnings", "humanAuthorityBoundaries"]) {
+      if (arrayField in contract && !Array.isArray(contract[arrayField])) {
+        errors.push(`extraction contract ${contract.extractionRunId || contractIndex} ${arrayField} must be an array`);
+      }
+    }
+
+    const elementTypes = new Set();
+    if (Array.isArray(contract.extractedElements)) {
+      contract.extractedElements.forEach((element, elementIndex) => {
+        if (!element || typeof element !== "object" || Array.isArray(element)) {
+          errors.push(`extraction element ${elementIndex} must be an object`);
+          return;
+        }
+        for (const field of EXTRACTION_ELEMENT_REQUIRED_FIELDS) {
+          if (!(field in element)) {
+            errors.push(`extraction element ${element.id || elementIndex} missing ${field}`);
+          }
+        }
+        for (const arrayField of ["aliases", "sourceRefIds", "unresolvedDependencies"]) {
+          if (arrayField in element && !Array.isArray(element[arrayField])) {
+            errors.push(`extraction element ${element.id || elementIndex} ${arrayField} must be an array`);
+          }
+        }
+        if (element.elementType) {
+          elementTypes.add(element.elementType);
+        }
+      });
+      for (const elementType of REQUIRED_EXTRACTION_ELEMENT_TYPES) {
+        if (!elementTypes.has(elementType)) {
+          errors.push(`extraction contract ${contract.extractionRunId || contractIndex} missing elementType ${elementType}`);
+        }
+      }
+    }
+  });
+
   return { ok: errors.length === 0, errors };
 }
 
@@ -325,11 +424,54 @@ function summarizeState(state) {
     claimSummary: summarizeClaims(state),
     timelineCandidates: Array.isArray(state.extractedCandidates?.timelineCandidates) ? state.extractedCandidates.timelineCandidates.length : 0,
     timelineSummary: summarizeTimeline(state),
+    extractionContractSummary: summarizeExtractionContracts(state),
     unresolvedCreativeDecisions: state.unresolvedCreativeDecisions.length,
     taskCards: state.taskCards.length,
     qaGateResults: state.qaGateResults.length,
     generatedOutlines: state.generatedOutlines.length,
     decisionLogEntries: state.decisionLog.length
+  };
+}
+
+function summarizeExtractionContracts(state) {
+  const contracts = Array.isArray(state.extractionContracts) ? state.extractionContracts : state.extractionContract ? [state.extractionContract] : [];
+  const byElementType = {};
+  let extractedElementCount = 0;
+  let profileCandidateCount = 0;
+  let claimCandidateCount = 0;
+  let timelineCandidateCount = 0;
+  let unresolvedDependencyCount = 0;
+  let highCanonRiskCount = 0;
+  let warningsCount = 0;
+
+  for (const contract of contracts) {
+    const elements = Array.isArray(contract.extractedElements) ? contract.extractedElements : [];
+    extractedElementCount += elements.length;
+    profileCandidateCount += Array.isArray(contract.profileCandidates) ? contract.profileCandidates.length : 0;
+    claimCandidateCount += Array.isArray(contract.claimCandidates) ? contract.claimCandidates.length : 0;
+    timelineCandidateCount += Array.isArray(contract.timelineEntryCandidates) ? contract.timelineEntryCandidates.length : 0;
+    unresolvedDependencyCount += Array.isArray(contract.unresolvedDependencies) ? contract.unresolvedDependencies.length : 0;
+    warningsCount += Array.isArray(contract.warnings) ? contract.warnings.length : 0;
+
+    for (const element of elements) {
+      const elementType = element.elementType || "not set";
+      byElementType[elementType] = (byElementType[elementType] || 0) + 1;
+      if (element.canonRisk === "high") {
+        highCanonRiskCount += 1;
+      }
+    }
+  }
+
+  return {
+    extractionRunCount: contracts.length,
+    extractedElementCount,
+    byElementType,
+    profileCandidateCount,
+    claimCandidateCount,
+    timelineCandidateCount,
+    unresolvedDependencyCount,
+    highCanonRiskCount,
+    warningsCount
   };
 }
 

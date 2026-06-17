@@ -1,0 +1,54 @@
+{
+  "artifact_id": "fff-extraction-contract-001",
+  "preview_path": "public/review/index.html",
+  "created_at": "2026-06-17T14:56:00+09:00",
+  "browserSmoke": {
+    "renderedVia": "http://127.0.0.1:8877/public/review/index.html?slice=extraction-contract-001",
+    "activeArtifactRendered": true,
+    "extractionRendered": true,
+    "freeformRendered": true,
+    "claimLedgerStillRendered": true,
+    "timelineStillRendered": true,
+    "profileGhostStillRendered": true,
+    "extractionElementCount": 12,
+    "profileCount": 11,
+    "claimCount": 9,
+    "timelineCount": 8,
+    "groupingChecked": "targetDestination",
+    "filterChecked": "claim",
+    "filterResult": "Showing 9 of 12 extraction candidates grouped by target destination.",
+    "searchChecked": "brass",
+    "searchResult": "Showing 2 of 12 extraction candidates grouped by target destination matching \"brass\".",
+    "decisionLogUpdated": true,
+    "exportImportRoundTripPreservedExtractionContract": true,
+    "invalidJsonSafe": true,
+    "favicon404OnlyConsoleError": true
+  },
+  "stateCheck": {
+    "schemaVersion": "fff.projectState.v1",
+    "extractionContractSchemaVersion": "fff.extractionContract.v1",
+    "samplePayloadPath": "artifacts/sample-extraction-payload.json",
+    "sampleStatePath": "artifacts/sample-project-state.json",
+    "currentStatePath": "artifacts/current-project-state.json",
+    "requiredElementTypes": [
+      "person",
+      "place",
+      "organization",
+      "event",
+      "object",
+      "concept",
+      "document",
+      "visual_asset",
+      "placeholder",
+      "source_reference",
+      "unresolved_decision"
+    ],
+    "humanOwnedDependencies": [
+      "Toma fate",
+      "brass moth truth",
+      "Council motive"
+    ],
+    "warnings": 5
+  },
+  "passed": true
+}

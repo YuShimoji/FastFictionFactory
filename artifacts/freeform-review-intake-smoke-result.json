@@ -1,0 +1,25 @@
+{
+  "artifact_id": "fff-extraction-contract-001",
+  "created_at": "2026-06-17T14:56:00+09:00",
+  "reviewInputMode": "freeform",
+  "checks": {
+    "fixedPhraseRequired": false,
+    "reviewCardContractDocumented": true,
+    "reviewDebtAllowed": true,
+    "mediumOrHighConfidenceContinuesReversibleWork": true,
+    "lowConfidenceUsesOneClarificationCard": true,
+    "freeformReviewAuthorityVisibleInExtractionContract": true,
+    "humanOwnedDecisionsStillUnresolved": [
+      "Toma fate",
+      "brass moth truth",
+      "Council motive"
+    ]
+  },
+  "repoEvidence": [
+    "docs/review/freeform-review-intake.md",
+    "artifacts/artifact-manifest.json",
+    "artifacts/sample-extraction-payload.json",
+    "public/review/index.html"
+  ],
+  "passed": true
+}

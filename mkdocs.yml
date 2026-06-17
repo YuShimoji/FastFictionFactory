@@ -66,6 +66,8 @@ nav:
       - Claim Ledger Review: review/claim-ledger-review.md
       - File Persistence Review: review/file-persistence-review.md
       - First MVP Review: review/first-mvp-review.md
+      - Extraction Contract Review: review/extraction-contract-review.md
+      - Freeform Review Intake: review/freeform-review-intake.md
       - JSON Export Import Review: review/json-export-import-review.md
       - Checkpoint Readback: review/checkpoint-readback.md
       - Profile Ghost Flow Review: review/profile-ghost-flow-review.md

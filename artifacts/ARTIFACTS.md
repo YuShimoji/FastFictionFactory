@@ -118,3 +118,25 @@
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
 - Review status: `ready_for_local_review`
+
+## fff-extraction-contract-001
+
+- Title: Fast Fiction Factory Extraction Contract Workbench
+- Purpose: Extend the Visual Review Hub with a local-first extraction contract for source refs, extracted elements, profile/claim/timeline candidate routing, unresolved dependencies, review-safe defaults, warnings, freeform review intake, and human authority boundaries before any model/API extractor exists.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local launcher: `scripts/operator/open_review.ps1`
+- Current state: `artifacts/current-project-state.json`
+- Sample state: `artifacts/sample-project-state.json`
+- Sample extraction payload: `artifacts/sample-extraction-payload.json`
+- State adapter: `tools/fff-state.mjs`
+- Extraction Contract smoke result: `artifacts/extraction-contract-smoke-result.json`
+- Freeform review intake smoke result: `artifacts/freeform-review-intake-smoke-result.json`
+- Current status: `docs/review/current-status.md`
+- Extraction Contract review doc: `docs/review/extraction-contract-review.md`
+- Freeform Review Intake doc: `docs/review/freeform-review-intake.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Review status: `ready_for_local_review`
+- Review input mode: `freeform`

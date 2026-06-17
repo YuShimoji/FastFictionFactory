@@ -23,6 +23,7 @@ type ProjectStateEnvelope = {
   project: Project;
   work: Work;
   rawMemo: string;
+  extractionContracts?: ExtractionContract[];
   extractedCandidates: {
     elements: Array<{ category: string; items: unknown[] }>;
     profiles: Profile[];
@@ -52,6 +53,93 @@ type ProjectStateEnvelope = {
       humanOwnedDependencies: string[];
     };
   };
+};
+```
+
+## ExtractionContract
+
+`fff-extraction-contract-001` adds a local contract for generated candidates before any model/API extractor exists. It is an adapter target and review surface, not an extraction engine and not canon authority.
+
+```ts
+type ExtractionContract = {
+  extractionRunId: string;
+  schemaVersion: "fff.extractionContract.v1";
+  sourceDraftId: string;
+  sourceMemoRef: string;
+  sourceRefs: SourceRef[];
+  generatedAt: string;
+  generatorType: "local_contract_fixture" | "model_api" | "manual_import" | string;
+  generatorLabel: string;
+  extractionMode: string;
+  confidencePolicy: {
+    defaultConfidence: number;
+    lowConfidenceAction: ReviewStatus;
+    highCanonRiskAction: string;
+    freeformReviewAuthority: string;
+  };
+  extractedElements: ExtractionElement[];
+  profileCandidates: Profile[];
+  claimCandidates: Claim[];
+  timelineEntryCandidates: TimelineEvent[];
+  unresolvedDependencies: string[];
+  reviewSafeDefaults: {
+    defaultReviewStatus: ReviewStatus;
+    allowAdopt: boolean;
+    allowProvisional: boolean;
+    allowReject: boolean;
+    autoCanonPromotion: false;
+    autoChronologyPromotion: false;
+    unknownSourceHandling: string;
+  };
+  decisionLogSafeMetadata: {
+    owner: "human_author";
+    statusVocabulary: ReviewStatus[];
+    fixedPhraseRequired: false;
+    freeformReviewAllowed: true;
+    reversibleActionsOnly: true;
+  };
+  warnings: string[];
+  unknownFieldsPolicy: string;
+  humanAuthorityBoundaries: string[];
+  notes: string;
+};
+```
+
+## ExtractionElement
+
+```ts
+type ExtractionElement = {
+  id: string;
+  displayText: string;
+  elementType:
+    | "person"
+    | "place"
+    | "organization"
+    | "event"
+    | "object"
+    | "concept"
+    | "document"
+    | "visual_asset"
+    | "placeholder"
+    | "source_reference"
+    | "unresolved_decision";
+  aliases: string[];
+  sourceSpan: {
+    text: string;
+    start: number | null;
+    end: number | null;
+  };
+  sourceRefIds: string[];
+  confidence: number;
+  suggestedReviewStatus: ReviewStatus;
+  unresolvedDependencies: string[];
+  canonRisk: "low" | "medium" | "high";
+  spoilerLevel: "low" | "medium" | "high";
+  targetDestinations: Array<"profile" | "claim" | "timeline" | "source_reference" | "unresolved_decision">;
+  targetProfileIds?: string[];
+  targetClaimIds?: string[];
+  targetTimelineEntryIds?: string[];
+  notes: string;
 };
 ```
 

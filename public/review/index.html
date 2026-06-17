@@ -368,7 +368,8 @@
 
     .claim-toolbar,
     .timeline-toolbar,
-    .profile-toolbar {
+    .profile-toolbar,
+    .extraction-toolbar {
       display: grid;
       gap: 10px;
       border: 1px solid var(--line);
@@ -379,7 +380,8 @@
 
     .claim-toolbar-row,
     .timeline-toolbar-row,
-    .profile-toolbar-row {
+    .profile-toolbar-row,
+    .extraction-toolbar-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -388,7 +390,8 @@
 
     .claim-select,
     .timeline-select,
-    .profile-select {
+    .profile-select,
+    .extraction-select {
       min-height: 36px;
       border: 1px solid var(--line);
       border-radius: 6px;
@@ -399,14 +402,16 @@
 
     .claim-summary,
     .timeline-summary,
-    .profile-summary {
+    .profile-summary,
+    .extraction-summary {
       color: var(--muted);
       font-size: 12px;
     }
 
     .claim-ledger-grid,
     .timeline-ledger-grid,
-    .profile-ghost-grid {
+    .profile-ghost-grid,
+    .extraction-contract-grid {
       display: grid;
       gap: 12px;
       margin-top: 12px;
@@ -414,7 +419,8 @@
 
     .claim-ledger-group,
     .timeline-ledger-group,
-    .profile-ghost-group {
+    .profile-ghost-group,
+    .extraction-contract-group {
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 12px;
@@ -423,7 +429,8 @@
 
     .claim-ledger-list,
     .timeline-ledger-list,
-    .profile-ghost-list {
+    .profile-ghost-list,
+    .extraction-contract-list {
       display: grid;
       gap: 10px;
       margin-top: 10px;
@@ -431,7 +438,8 @@
 
     .claim-ledger-item,
     .timeline-ledger-item,
-    .profile-ghost-item {
+    .profile-ghost-item,
+    .extraction-contract-item {
       border: 1px solid var(--line);
       border-left: 4px solid var(--blue);
       border-radius: 8px;
@@ -441,19 +449,22 @@
 
     .claim-ledger-item[data-canon-risk="high"],
     .timeline-ledger-item[data-canon-risk="high"],
-    .profile-ghost-item[data-canon-risk="high"] {
+    .profile-ghost-item[data-canon-risk="high"],
+    .extraction-contract-item[data-canon-risk="high"] {
       border-left-color: var(--red);
     }
 
     .claim-ledger-item[data-canon-risk="medium"],
     .timeline-ledger-item[data-canon-risk="medium"],
-    .profile-ghost-item[data-canon-risk="medium"] {
+    .profile-ghost-item[data-canon-risk="medium"],
+    .extraction-contract-item[data-canon-risk="medium"] {
       border-left-color: var(--gold);
     }
 
     .claim-ledger-item[data-canon-risk="low"],
     .timeline-ledger-item[data-canon-risk="low"],
-    .profile-ghost-item[data-canon-risk="low"] {
+    .profile-ghost-item[data-canon-risk="low"],
+    .extraction-contract-item[data-canon-risk="low"] {
       border-left-color: var(--green);
     }
 
@@ -463,6 +474,18 @@
       gap: 8px;
       align-items: center;
       margin-top: 10px;
+    }
+
+    .contract-run-card {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .contract-run-card .metric {
+      min-width: 0;
+      background: #fffefb;
     }
 
     .claim-ledger-item[data-claim-hidden="true"] {
@@ -774,6 +797,7 @@
       .summary-strip,
       .hub-grid,
       .progress-map,
+      .contract-run-card,
       .category-grid,
       .candidate-grid,
       .decision-list,
@@ -810,7 +834,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Current MVP Status Packet</h2>
-            <p class="lede">Active artifact id: <strong>fff-profile-ghost-flow-001</strong>. Current phase: the Profile/Ghost Flow links provisional entities, held ghost nodes, claims, and timeline entries without finalizing human-owned canon.</p>
+            <p class="lede">Active artifact id: <strong>fff-extraction-contract-001</strong>. Current phase: the local Extraction Contract defines review-safe generated candidates without adding model/API behavior or finalizing human-owned canon.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -828,7 +852,8 @@
           <div class="progress-step done"><strong>Claim Ledger</strong><span class="tag green">done</span><p class="section-note">Review source, truth, disclosure, canon risk, and dependencies at claim level.</p></div>
           <div class="progress-step done"><strong>Timeline View</strong><span class="tag green">done</span><p class="section-note">Separate story, calendar, viewer, production, and historical order.</p></div>
           <div class="progress-step done"><strong>v1.3 contract check</strong><span class="tag green">done</span><p class="section-note">Artifact, report, path, and decision-boundary conventions are visible.</p></div>
-          <div class="progress-step current"><strong>Profile page / ghost node flow</strong><span class="tag blue">current</span><p class="section-note">Review aliases, placeholders, weak graph nodes, and cross-links.</p></div>
+          <div class="progress-step done"><strong>Profile page / ghost node flow</strong><span class="tag green">done</span><p class="section-note">Review aliases, placeholders, weak graph nodes, and cross-links.</p></div>
+          <div class="progress-step current"><strong>Extraction Contract</strong><span class="tag blue">current</span><p class="section-note">Define source refs, review-safe defaults, warnings, and candidate routing.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;">
@@ -845,13 +870,14 @@
               <li>Claim Ledger grouping by scope, truth, reality, risk, dependency, review status, and source.</li>
               <li>Timeline View grouping by axis, status, disclosure, dependency, risk, linked claim, and calendar precision.</li>
               <li>Profile/Ghost grouping by type, ghost node status, review status, dependency, risk, claim, timeline, reality, and world status.</li>
+              <li>Extraction Contract grouping by type, status, source, routing destination, dependency, canon risk, and spoiler level.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
           <div class="hub-panel">
             <h3>Pending features</h3>
             <ul class="hub-list">
-              <li>Real extraction engine and durable project database.</li>
+              <li>Model/API extraction adapter and durable project database.</li>
               <li>Automated release or publishing adapters.</li>
             </ul>
           </div>
@@ -862,6 +888,7 @@
               <li>No AI video generation.</li>
               <li>No database persistence.</li>
               <li>No remote sync or production sync.</li>
+              <li>No model/API extraction call.</li>
               <li>No final canon decision for Toma, the brass moth, or the Council.</li>
             </ul>
           </div>
@@ -876,8 +903,10 @@
               <li>claim ledger fields for scope, truth, reality status, disclosure, spoiler level, canon risk, and dependencies.</li>
               <li>timeline fields for axis, order labels, disclosure, linked claims, dependencies, spoiler level, and canon risk.</li>
               <li>profile fields for aliases, ghost node status, world/reality status, known/unknown belief maps, links, assets, sources, dependencies, and spoiler protection.</li>
+              <li>extraction contract fields for run identity, source refs, generated candidates, review-safe defaults, warnings, and human authority boundaries.</li>
             </ul>
             <p class="section-note"><a href="#state-portability">Go to export/import controls</a></p>
+            <p class="section-note"><a href="#extraction-contract-section">Go to Extraction Contract</a></p>
             <p class="section-note"><a href="#profile-ghost-section">Go to Profile/Ghost Flow</a></p>
             <p class="section-note"><a href="#claim-ledger-section">Go to Claim Ledger</a></p>
             <p class="section-note"><a href="#timeline-view-section">Go to Timeline View</a></p>
@@ -903,6 +932,9 @@
                 <tr><td>v1.3 compliance smoke</td><td>artifacts/v1-3-compliance-smoke-result.json</td></tr>
                 <tr><td>Checkpoint readback</td><td>artifacts/checkpoint-readback-result.json</td></tr>
                 <tr><td>Profile/Ghost smoke</td><td>artifacts/profile-ghost-smoke-result.json</td></tr>
+                <tr><td>Extraction payload</td><td>artifacts/sample-extraction-payload.json</td></tr>
+                <tr><td>Extraction smoke</td><td>artifacts/extraction-contract-smoke-result.json</td></tr>
+                <tr><td>Freeform review smoke</td><td>artifacts/freeform-review-intake-smoke-result.json</td></tr>
                 <tr><td>Current status doc</td><td>docs/review/current-status.md</td></tr>
               </tbody>
             </table>
@@ -911,7 +943,8 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows artifact id <strong>fff-profile-ghost-flow-001</strong>.</li>
+              <li>Confirm this hub shows artifact id <strong>fff-extraction-contract-001</strong>.</li>
+              <li>Use <strong>Extraction Contract</strong> grouping and filters before wiring any generated candidate into profile, claim, or timeline review.</li>
               <li>Use <strong>Save state to local file</strong> where supported, or <strong>Download JSON fallback</strong>.</li>
               <li>Use <strong>Load state from local file</strong> where supported, or upload/paste JSON fallback.</li>
               <li>Use <strong>Claim Ledger</strong> grouping and filters before adopting story-sensitive truth.</li>
@@ -951,11 +984,12 @@
             <span class="tag green">Claim Ledger visible</span>
             <span class="tag green">Timeline View visible</span>
             <span class="tag green">Profile/Ghost Flow visible</span>
+            <span class="tag green">Extraction Contract visible</span>
             <span class="tag green">v1.3 compliance visible</span>
             <span class="tag green">unresolved decisions visible</span>
             <span class="tag green">QA gates visible</span>
             <span class="tag green">completed and pending features visible</span>
-            <span class="tag gold">real extraction remains next</span>
+            <span class="tag gold">model/API extraction remains next</span>
           </div>
         </div>
 
@@ -1003,6 +1037,46 @@
       </aside>
 
       <section class="review-stack" aria-live="polite">
+        <div class="section-band" id="extraction-contract-section">
+          <div class="section-head">
+            <div>
+              <h2>Extraction Contract</h2>
+              <p class="section-note">Review the local candidate contract before any model/API extraction adapter exists. Candidates stay reversible and must not become canon automatically.</p>
+            </div>
+            <p class="section-note"><a href="#decision-log-section">Jump to decision log</a></p>
+          </div>
+          <div class="contract-run-card" id="extraction-run-card"></div>
+          <div class="extraction-toolbar" aria-label="Extraction Contract controls">
+            <div class="extraction-toolbar-row">
+              <label for="extraction-group-mode"><strong>Group extraction</strong></label>
+              <select class="extraction-select" id="extraction-group-mode" aria-label="Extraction Contract grouping mode">
+                <option value="elementType">By element type</option>
+                <option value="reviewStatus">By suggested review status</option>
+                <option value="unresolvedDependency">By unresolved dependency</option>
+                <option value="canonRisk">By canon risk</option>
+                <option value="spoilerLevel">By spoiler level</option>
+                <option value="sourceRef">By source ref</option>
+                <option value="targetDestination">By target destination</option>
+              </select>
+              <input class="search-input" id="extraction-search-input" type="search" placeholder="Search extraction contract" aria-label="Search Extraction Contract">
+            </div>
+            <div class="segmented" aria-label="Extraction Contract filters">
+              <button class="filter-button" type="button" data-extraction-filter="all" data-active="true">Show all</button>
+              <button class="filter-button" type="button" data-extraction-filter="unresolved">Unresolved dependencies only</button>
+              <button class="filter-button" type="button" data-extraction-filter="high-risk">High canon risk only</button>
+              <button class="filter-button" type="button" data-extraction-filter="placeholder">Placeholder only</button>
+              <button class="filter-button" type="button" data-extraction-filter="source_reference">Source references only</button>
+              <button class="filter-button" type="button" data-extraction-filter="profile">Profile candidates only</button>
+              <button class="filter-button" type="button" data-extraction-filter="claim">Claim candidates only</button>
+              <button class="filter-button" type="button" data-extraction-filter="timeline">Timeline candidates only</button>
+              <button class="filter-button" type="button" data-extraction-filter="hold">Held only</button>
+              <button class="filter-button" type="button" data-extraction-filter="reject">Rejected only</button>
+            </div>
+            <div class="extraction-summary" id="extraction-contract-summary">Extraction Contract not rendered yet.</div>
+          </div>
+          <div class="extraction-contract-grid" id="extraction-contract-root"></div>
+        </div>
+
         <div class="section-band" id="profile-ghost-section">
           <div class="section-head">
             <div>
@@ -1267,6 +1341,15 @@
       realityStatus: "reality status",
       worldStatus: "world status"
     };
+    const EXTRACTION_GROUP_LABELS = {
+      elementType: "element type",
+      reviewStatus: "suggested review status",
+      unresolvedDependency: "unresolved dependency",
+      canonRisk: "canon risk",
+      spoilerLevel: "spoiler level",
+      sourceRef: "source ref",
+      targetDestination: "target destination"
+    };
 
     const sampleMemo = `Working title: The Clockmaker Under Glass.
 
@@ -1294,10 +1377,14 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     let activeProfileFilter = "all";
     let activeProfileTypeFilter = "all";
     let activeProfileSearchQuery = "";
+    let activeExtractionGroupMode = "elementType";
+    let activeExtractionFilter = "all";
+    let activeExtractionSearchQuery = "";
 
     const memoInput = document.querySelector("#memo-input");
     const roots = {
       elements: document.querySelector("#elements-root"),
+      extractionContract: document.querySelector("#extraction-contract-root"),
       profiles: document.querySelector("#profiles-root"),
       profileGhost: document.querySelector("#profile-ghost-root"),
       claims: document.querySelector("#claims-root"),
@@ -1326,6 +1413,10 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const profileTypeFilter = document.querySelector("#profile-type-filter");
     const profileSearchInput = document.querySelector("#profile-search-input");
     const profileGhostSummary = document.querySelector("#profile-ghost-summary");
+    const extractionGroupMode = document.querySelector("#extraction-group-mode");
+    const extractionSearchInput = document.querySelector("#extraction-search-input");
+    const extractionContractSummary = document.querySelector("#extraction-contract-summary");
+    const extractionRunCard = document.querySelector("#extraction-run-card");
 
     memoInput.value = state.memo || sampleMemo;
     jsonExportOutput.value = state.exportPreview || "";
@@ -1528,6 +1619,26 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       renderProfileGhostView(currentModel ? currentModel.profile_candidates : []);
     });
 
+    extractionGroupMode.addEventListener("change", () => {
+      activeExtractionGroupMode = extractionGroupMode.value;
+      renderExtractionContract(currentModel ? currentModel.extraction_contract : null);
+    });
+
+    document.querySelectorAll("[data-extraction-filter]").forEach((button) => {
+      button.addEventListener("click", () => {
+        activeExtractionFilter = button.getAttribute("data-extraction-filter") || "all";
+        document.querySelectorAll("[data-extraction-filter]").forEach((item) => {
+          item.setAttribute("data-active", String(item === button));
+        });
+        renderExtractionContract(currentModel ? currentModel.extraction_contract : null);
+      });
+    });
+
+    extractionSearchInput.addEventListener("input", () => {
+      activeExtractionSearchQuery = extractionSearchInput.value.trim().toLowerCase();
+      renderExtractionContract(currentModel ? currentModel.extraction_contract : null);
+    });
+
     candidateSearchInput.addEventListener("input", () => {
       activeSearchQuery = candidateSearchInput.value.trim().toLowerCase();
       applyReviewFilters();
@@ -1557,6 +1668,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     function renderAll() {
       currentModel = applyImportedModelOverrides(buildWorkbenchModel(memoInput.value || sampleMemo));
+      renderExtractionContract(currentModel.extraction_contract);
       renderElements(currentModel.extracted_elements);
       renderProfileGhostView(currentModel.profile_candidates);
       renderCards(roots.profiles, currentModel.profile_candidates, renderProfileCard);
@@ -1678,6 +1790,14 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
       const timeline = buildTimelineCandidates(sourceRef);
 
+      const extractionContract = buildExtractionContract({
+        sourceRef,
+        extracted,
+        profiles,
+        claims,
+        timeline
+      });
+
       const tasks = [
         {
           id: "task-toma-fate",
@@ -1773,6 +1893,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           title
         },
         source_refs: [sourceRef],
+        extraction_contract: extractionContract,
         extracted_elements: extracted,
         profile_candidates: profiles,
         claim_candidates: claims,
@@ -1817,6 +1938,327 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           related_candidate_ids: ["profile-council", "el-placeholder-002", "el-ambiguity-001"]
         }
       ];
+    }
+
+    function buildExtractionContract({ sourceRef, extracted, profiles, claims, timeline }) {
+      const rawMemoSource = {
+        id: sourceRef.id,
+        label: sourceRef.label,
+        source_type: sourceRef.source_type,
+        locator: sourceRef.locator,
+        trust: sourceRef.trust
+      };
+      const derivedContractSource = {
+        id: "src-extraction-contract-001",
+        label: "Local extraction contract fixture",
+        source_type: "derived_candidate",
+        locator: "fff-extraction-contract-001",
+        trust: "derived_candidate"
+      };
+      const reviewSource = {
+        id: "src-human-review-freeform-001",
+        label: "Freeform human review intake",
+        source_type: "human_review",
+        locator: "Review Card / freeform response",
+        trust: "human_review"
+      };
+      const extractionElements = [
+        extractionElement({
+          id: "x-el-person-mira",
+          displayText: "Mira Vale",
+          elementType: "person",
+          aliases: ["Mira", "the clockmaker"],
+          sourceSpan: span("People: Mira Vale"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.97,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: [],
+          canonRisk: "low",
+          spoilerLevel: "low",
+          targetDestinations: ["profile", "claim"],
+          targetProfileIds: ["profile-mira"],
+          targetClaimIds: ["claim-mira-clockmaker"],
+          notes: "Safe profile candidate, but still a review candidate until human adoption."
+        }),
+        extractionElement({
+          id: "x-el-person-toma",
+          displayText: "Toma Vale",
+          elementType: "person",
+          aliases: ["Toma", "missing brother"],
+          sourceSpan: span("missing brother left a brass moth"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.94,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: ["Toma fate"],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          targetDestinations: ["profile", "claim", "timeline", "unresolved_decision"],
+          targetProfileIds: ["profile-toma"],
+          targetClaimIds: ["claim-toma-left-note"],
+          targetTimelineEntryIds: ["timeline-toma-note"],
+          notes: "Extractor may identify Toma, but must not choose alive, dead, erased, transformed, or deliberately unknown."
+        }),
+        extractionElement({
+          id: "x-el-place-north-bell",
+          displayText: "North Bell Station",
+          elementType: "place",
+          aliases: ["North Bell"],
+          sourceSpan: span("old observatory above North Bell Station"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.9,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: [],
+          canonRisk: "medium",
+          spoilerLevel: "medium",
+          targetDestinations: ["profile", "timeline"],
+          targetProfileIds: ["profile-north-bell-station"],
+          targetTimelineEntryIds: ["timeline-noon-bell"],
+          notes: "Place extraction can route to Timeline without fixing the bell paradox explanation."
+        }),
+        extractionElement({
+          id: "x-el-org-council",
+          displayText: "City council",
+          elementType: "organization",
+          aliases: ["council"],
+          sourceSpan: span("city council has been selling minutes"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.92,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: ["Council motive"],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          targetDestinations: ["profile", "claim", "timeline", "unresolved_decision"],
+          targetProfileIds: ["profile-council"],
+          targetClaimIds: ["claim-city-sells-time", "claim-council-desperate"],
+          targetTimelineEntryIds: ["timeline-council-motive-disclosure"],
+          notes: "The contract allows institutional extraction while preserving motive as human-owned."
+        }),
+        extractionElement({
+          id: "x-el-event-917",
+          displayText: "Arcade closes at 9:17",
+          elementType: "event",
+          aliases: ["nightly closing time", "9:17 closure"],
+          sourceSpan: span("closes every night at 9:17"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.96,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: [],
+          canonRisk: "low",
+          spoilerLevel: "low",
+          targetDestinations: ["claim", "timeline"],
+          targetClaimIds: ["claim-arcade-closes-917"],
+          targetTimelineEntryIds: ["timeline-917-cycle"],
+          notes: "A structured event candidate can stay held until the reviewer accepts the rhythm."
+        }),
+        extractionElement({
+          id: "x-el-object-brass-moth",
+          displayText: "Brass moth",
+          elementType: "object",
+          aliases: ["moth", "brass clue"],
+          sourceSpan: span("left a brass moth in the workshop drawer"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.95,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: ["brass moth truth"],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          targetDestinations: ["profile", "claim", "timeline", "unresolved_decision"],
+          targetProfileIds: ["profile-brass-moth"],
+          targetClaimIds: ["claim-brass-moth-function"],
+          targetTimelineEntryIds: ["timeline-brass-moth-first-use"],
+          notes: "The object may be routed without selecting spy, key, or memory-container truth."
+        }),
+        extractionElement({
+          id: "x-el-concept-stolen-time",
+          displayText: "Selling minutes from abandoned lives",
+          elementType: "concept",
+          aliases: ["stolen time", "abandoned lives"],
+          sourceSpan: span("selling minutes from abandoned lives"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.89,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: ["Council motive"],
+          canonRisk: "high",
+          spoilerLevel: "medium",
+          targetDestinations: ["profile", "claim"],
+          targetProfileIds: ["profile-stolen-time"],
+          targetClaimIds: ["claim-city-sells-time"],
+          notes: "Core premise concept is source-backed but motive-sensitive."
+        }),
+        extractionElement({
+          id: "x-el-document-ledger",
+          displayText: "Ledger of minutes",
+          elementType: "document",
+          aliases: ["ledger"],
+          sourceSpan: span("ledger of minutes"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.84,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: ["Council motive"],
+          canonRisk: "medium",
+          spoilerLevel: "medium",
+          targetDestinations: ["profile", "claim"],
+          targetProfileIds: ["profile-ledger-of-minutes"],
+          targetClaimIds: ["claim-city-sells-time"],
+          notes: "Document-like objects can be tracked as profiles without implying production asset readiness."
+        }),
+        extractionElement({
+          id: "x-el-visual-observatory",
+          displayText: "Observatory bell without a bell",
+          elementType: "visual_asset",
+          aliases: ["bell paradox", "empty tower"],
+          sourceSpan: span("still rings at noon even though its bell was removed"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.78,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: [],
+          canonRisk: "medium",
+          spoilerLevel: "medium",
+          targetDestinations: ["profile", "claim", "timeline"],
+          targetProfileIds: ["profile-observatory-bell-image"],
+          targetClaimIds: ["claim-bell-rings"],
+          targetTimelineEntryIds: ["timeline-noon-bell", "timeline-production-open-bell"],
+          notes: "Visual extraction remains a review cue, not a release asset or generated image."
+        }),
+        extractionElement({
+          id: "x-el-placeholder-magic-rules",
+          displayText: "Magic rules placeholder",
+          elementType: "placeholder",
+          aliases: ["explanation timing", "magic boundary"],
+          sourceSpan: span("not explain the magic too early"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 0.7,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: ["brass moth truth", "Council motive"],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          targetDestinations: ["profile", "unresolved_decision"],
+          targetProfileIds: ["profile-magic-rules-placeholder"],
+          notes: "Placeholder keeps missing structure visible without letting extraction fill the gap as canon."
+        }),
+        extractionElement({
+          id: "x-el-source-raw-memo",
+          displayText: "Raw story memo",
+          elementType: "source_reference",
+          aliases: ["memo textarea"],
+          sourceSpan: span("Working title: The Clockmaker Under Glass"),
+          sourceRefIds: [rawMemoSource.id],
+          confidence: 1,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: [],
+          canonRisk: "low",
+          spoilerLevel: "low",
+          targetDestinations: ["source_reference"],
+          notes: "All generated candidates must retain a source ref rather than silently becoming project truth."
+        }),
+        extractionElement({
+          id: "x-el-unresolved-council-motive",
+          displayText: "Council motive",
+          elementType: "unresolved_decision",
+          aliases: ["villainous or desperate", "motive route"],
+          sourceSpan: span("whether the council is villainous or desperate"),
+          sourceRefIds: [rawMemoSource.id, reviewSource.id],
+          confidence: 0.86,
+          suggestedReviewStatus: "hold",
+          unresolvedDependencies: ["Council motive"],
+          canonRisk: "high",
+          spoilerLevel: "high",
+          targetDestinations: ["unresolved_decision", "claim", "timeline"],
+          targetClaimIds: ["claim-council-desperate"],
+          targetTimelineEntryIds: ["timeline-council-motive-disclosure"],
+          notes: "Freeform human review is the source of truth for this route; the contract only preserves the decision slot."
+        })
+      ];
+
+      return {
+        extractionRunId: "extract-run-clockmaker-contract-001",
+        schemaVersion: "fff.extractionContract.v1",
+        sourceDraftId: "draft-clockmaker-raw-memo-001",
+        sourceMemoRef: "rawMemo",
+        sourceRefs: [rawMemoSource, derivedContractSource, reviewSource],
+        generatedAt: "2026-06-17T14:20:00+09:00",
+        generatorType: "local_contract_fixture",
+        generatorLabel: "Deterministic local contract fixture; no model/API call",
+        extractionMode: "contract_only_no_model_api",
+        confidencePolicy: {
+          defaultConfidence: 0.75,
+          lowConfidenceAction: "hold",
+          highCanonRiskAction: "hold_until_human_review",
+          freeformReviewAuthority: "human review text overrides generated suggestions"
+        },
+        extractedElements: extractionElements,
+        profileCandidates: normalizeProfileCandidates(profiles, profiles),
+        claimCandidates: normalizeClaimCandidates(claims, claims),
+        timelineEntryCandidates: normalizeTimelineCandidates(timeline, timeline),
+        unresolvedDependencies: ["Toma fate", "brass moth truth", "Council motive"],
+        reviewSafeDefaults: {
+          defaultReviewStatus: "hold",
+          allowAdopt: true,
+          allowProvisional: true,
+          allowReject: true,
+          autoCanonPromotion: false,
+          autoChronologyPromotion: false,
+          unknownSourceHandling: "preserve_unknown_fields_and_hold_candidate"
+        },
+        decisionLogSafeMetadata: {
+          owner: "human_author",
+          statusVocabulary: REVIEW_STATUSES,
+          fixedPhraseRequired: false,
+          freeformReviewAllowed: true,
+          reversibleActionsOnly: true
+        },
+        warnings: [
+          "This contract is not a model/API extraction engine.",
+          "Generated candidates must not finalize Toma fate, brass moth truth, or Council motive.",
+          "Timeline candidates must not become fixed chronology automatically.",
+          "Profile candidates may remain ghost nodes.",
+          "Visual asset candidates are placeholders and not release assets."
+        ],
+        unknownFieldsPolicy: "Preserve unknown imported top-level fields under metadata.importedUnknownFields and keep unrecognized extraction fields visible in JSON review.",
+        humanAuthorityBoundaries: [
+          "Freeform user review is the source of truth.",
+          "Toma fate remains human-owned.",
+          "Brass moth truth remains human-owned.",
+          "Council motive remains human-owned.",
+          "No publishing, database persistence, production sync, model/API call, or AI video generation is introduced by this contract."
+        ],
+        notes: "The contract prepares an adapter target for future extraction while preserving the current Visual Review Hub, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, and decision log behavior."
+      };
+    }
+
+    function extractionElement(config) {
+      const reviewStatus = config.reviewStatus || config.suggestedReviewStatus || "hold";
+      return {
+        id: config.id,
+        type: "ExtractionElement",
+        title: config.displayText,
+        displayText: config.displayText,
+        elementType: config.elementType,
+        aliases: config.aliases || [],
+        sourceSpan: config.sourceSpan || { text: "", start: null, end: null },
+        sourceRefIds: config.sourceRefIds || [],
+        confidence: config.confidence,
+        suggestedReviewStatus: reviewStatus,
+        reviewStatus,
+        unresolvedDependencies: config.unresolvedDependencies || [],
+        canonRisk: config.canonRisk || "medium",
+        spoilerLevel: config.spoilerLevel || "medium",
+        targetDestinations: config.targetDestinations || [],
+        targetProfileIds: config.targetProfileIds || [],
+        targetClaimIds: config.targetClaimIds || [],
+        targetTimelineEntryIds: config.targetTimelineEntryIds || [],
+        notes: config.notes || ""
+      };
+    }
+
+    function span(text) {
+      const memo = sampleMemo;
+      const start = memo.indexOf(text);
+      return {
+        text,
+        start: start >= 0 ? start : null,
+        end: start >= 0 ? start + text.length : null
+      };
     }
 
     function buildProfileCandidates(sourceRef, hasCouncil) {
@@ -2523,6 +2965,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         ...model,
         project: imported.project || model.project,
         work: imported.work || model.work,
+        extraction_contract: normalizeExtractionContract(Array.isArray(imported.extractionContracts) ? imported.extractionContracts[0] : imported.extractionContract, model.extraction_contract),
         extracted_elements: Array.isArray(extracted.elements) ? extracted.elements : model.extracted_elements,
         profile_candidates: normalizeProfileCandidates(extracted.profiles, model.profile_candidates),
         claim_candidates: normalizeClaimCandidates(extracted.claims, model.claim_candidates),
@@ -2725,9 +3168,18 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         productionOnlyNotes: [
           "No external publishing adapter is active.",
           "No automated video generation is active.",
-          "Placeholder visuals are not release assets."
+          "Placeholder visuals are not release assets.",
+          "No model/API extraction behavior is active."
         ],
-        importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {}
+        importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
+        activeArtifactId: "fff-extraction-contract-001",
+        reviewInputMode: "freeform",
+        extractionContract: {
+          schemaVersion: model.extraction_contract.schemaVersion,
+          extractionRunId: model.extraction_contract.extractionRunId,
+          reviewSafeDefault: model.extraction_contract.reviewSafeDefaults.defaultReviewStatus,
+          humanOwnedDependencies: model.extraction_contract.unresolvedDependencies
+        }
       };
 
       return {
@@ -2736,6 +3188,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         project: model.project,
         work: model.work,
         rawMemo: memoInput.value || sampleMemo,
+        extractionContracts: [normalizeExtractionContract(model.extraction_contract, model.extraction_contract)],
         extractedCandidates: {
           elements: model.extracted_elements,
           profiles: normalizeProfileCandidates(model.profile_candidates, model.profile_candidates),
@@ -2767,7 +3220,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       }
 
       applyImportedProjectState(parsed);
-      return { ok: true, message: "Imported project state. Memo, candidates, review statuses, QA gates, outlines, unresolved decisions, and decision log were restored." };
+      return { ok: true, message: "Imported project state. Memo, extraction contract, candidates, review statuses, QA gates, outlines, unresolved decisions, and decision log were restored." };
     }
 
     function applyImportedProjectState(envelope) {
@@ -2896,6 +3349,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         "extractedCandidates",
         "reviewStatuses",
         "reviewStatusBuckets",
+        "extractionContracts",
+        "extractionContract",
         "unresolvedCreativeDecisions",
         "taskCards",
         "qaGateResults",
@@ -2926,6 +3381,12 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         project: envelope.project && typeof envelope.project === "object" ? envelope.project : baseModel.project,
         work: envelope.work && typeof envelope.work === "object" ? envelope.work : baseModel.work,
         rawMemo: typeof envelope.rawMemo === "string" ? envelope.rawMemo : sampleMemo,
+        extractionContracts: [
+          normalizeExtractionContract(
+            Array.isArray(envelope.extractionContracts) ? envelope.extractionContracts[0] : envelope.extractionContract,
+            baseModel.extraction_contract
+          )
+        ],
         extractedCandidates: {
           elements: Array.isArray(extracted.elements) ? extracted.elements : baseModel.extracted_elements,
           profiles: normalizeProfileCandidates(extracted.profiles, baseModel.profile_candidates),
@@ -2943,6 +3404,55 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       };
     }
 
+    function normalizeExtractionContract(importedContract, defaultContract) {
+      const fallback = defaultContract || {};
+      const contract = importedContract && typeof importedContract === "object" && !Array.isArray(importedContract) ? importedContract : fallback;
+      const normalizeElements = (items) => Array.isArray(items) ? items
+        .filter((item) => item && typeof item === "object" && typeof item.id === "string")
+        .map((item) => {
+          const reviewStatus = state.decisions[item.id] || item.reviewStatus || item.suggestedReviewStatus || "hold";
+          return {
+            ...item,
+            type: "ExtractionElement",
+            title: item.displayText || item.title || item.id,
+            displayText: item.displayText || item.title || item.id,
+            aliases: Array.isArray(item.aliases) ? item.aliases : [],
+            sourceRefIds: Array.isArray(item.sourceRefIds) ? item.sourceRefIds : [],
+            sourceSpan: item.sourceSpan && typeof item.sourceSpan === "object" ? item.sourceSpan : { text: "", start: null, end: null },
+            confidence: typeof item.confidence === "number" ? item.confidence : 0,
+            suggestedReviewStatus: REVIEW_STATUSES.includes(item.suggestedReviewStatus) ? item.suggestedReviewStatus : reviewStatus,
+            reviewStatus,
+            unresolvedDependencies: Array.isArray(item.unresolvedDependencies) ? item.unresolvedDependencies : [],
+            canonRisk: item.canonRisk || "medium",
+            spoilerLevel: item.spoilerLevel || "medium",
+            targetDestinations: Array.isArray(item.targetDestinations) ? item.targetDestinations : [],
+            targetProfileIds: Array.isArray(item.targetProfileIds) ? item.targetProfileIds : [],
+            targetClaimIds: Array.isArray(item.targetClaimIds) ? item.targetClaimIds : [],
+            targetTimelineEntryIds: Array.isArray(item.targetTimelineEntryIds) ? item.targetTimelineEntryIds : [],
+            notes: item.notes || ""
+          };
+        }) : [];
+
+      return {
+        ...fallback,
+        ...contract,
+        extractionRunId: contract.extractionRunId || fallback.extractionRunId || "extract-run-clockmaker-contract-001",
+        schemaVersion: contract.schemaVersion || fallback.schemaVersion || "fff.extractionContract.v1",
+        sourceDraftId: contract.sourceDraftId || fallback.sourceDraftId || "draft-clockmaker-raw-memo-001",
+        sourceMemoRef: contract.sourceMemoRef || fallback.sourceMemoRef || "rawMemo",
+        sourceRefs: Array.isArray(contract.sourceRefs) ? contract.sourceRefs : Array.isArray(fallback.sourceRefs) ? fallback.sourceRefs : [],
+        extractedElements: normalizeElements(contract.extractedElements || fallback.extractedElements),
+        profileCandidates: normalizeProfileCandidates(contract.profileCandidates, fallback.profileCandidates || []),
+        claimCandidates: normalizeClaimCandidates(contract.claimCandidates, fallback.claimCandidates || []),
+        timelineEntryCandidates: normalizeTimelineCandidates(contract.timelineEntryCandidates, fallback.timelineEntryCandidates || []),
+        unresolvedDependencies: Array.isArray(contract.unresolvedDependencies) ? contract.unresolvedDependencies : Array.isArray(fallback.unresolvedDependencies) ? fallback.unresolvedDependencies : [],
+        reviewSafeDefaults: contract.reviewSafeDefaults && typeof contract.reviewSafeDefaults === "object" ? contract.reviewSafeDefaults : fallback.reviewSafeDefaults || {},
+        decisionLogSafeMetadata: contract.decisionLogSafeMetadata && typeof contract.decisionLogSafeMetadata === "object" ? contract.decisionLogSafeMetadata : fallback.decisionLogSafeMetadata || {},
+        warnings: Array.isArray(contract.warnings) ? contract.warnings : Array.isArray(fallback.warnings) ? fallback.warnings : [],
+        humanAuthorityBoundaries: Array.isArray(contract.humanAuthorityBoundaries) ? contract.humanAuthorityBoundaries : Array.isArray(fallback.humanAuthorityBoundaries) ? fallback.humanAuthorityBoundaries : []
+      };
+    }
+
     function buildReviewStatusMap(model) {
       const statuses = {};
       collectReviewableItems(model).forEach((item) => {
@@ -2952,7 +3462,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     }
 
     function getReviewStatus(item) {
-      return state.decisions[item.id] || item.reviewStatus || item.review_status || "hold";
+      return state.decisions[item.id] || item.reviewStatus || item.review_status || item.suggestedReviewStatus || "hold";
     }
 
     function buildReviewStatusBuckets(model, statuses) {
@@ -3118,6 +3628,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         project: model.project,
         work: model.work,
         rawMemo,
+        extractionContracts: [normalizeExtractionContract(model.extraction_contract, model.extraction_contract)],
         extractedCandidates: {
           elements: model.extracted_elements,
           profiles: normalizeProfileCandidates(model.profile_candidates, model.profile_candidates),
@@ -3136,9 +3647,18 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           productionOnlyNotes: [
             "No external publishing adapter is active.",
             "No automated video generation is active.",
-            "Placeholder visuals are not release assets."
+            "Placeholder visuals are not release assets.",
+            "No model/API extraction behavior is active."
           ],
-          importedUnknownFields: {}
+          importedUnknownFields: {},
+          activeArtifactId: "fff-extraction-contract-001",
+          reviewInputMode: "freeform",
+          extractionContract: {
+            schemaVersion: model.extraction_contract.schemaVersion,
+            extractionRunId: model.extraction_contract.extractionRunId,
+            reviewSafeDefault: model.extraction_contract.reviewSafeDefaults.defaultReviewStatus,
+            humanOwnedDependencies: model.extraction_contract.unresolvedDependencies
+          }
         }
       };
     }
@@ -3314,6 +3834,179 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     function gate(id, gateName, status, finding, nextMove) {
       return { id, gate: gateName, status, finding, next_move: nextMove };
+    }
+
+    function renderExtractionContract(contract) {
+      const normalizedContract = normalizeExtractionContract(contract, currentModel?.extraction_contract || contract || {});
+      const items = normalizedContract.extractedElements || [];
+      const visibleItems = items.filter((item) => matchesExtractionFilter(item));
+      const grouped = groupExtractionItems(visibleItems, activeExtractionGroupMode);
+      const counts = countExtractionContract(normalizedContract);
+
+      extractionRunCard.innerHTML = `
+        <div class="metric"><strong>${escapeHtml(normalizedContract.extractionRunId)}</strong><span>run id</span></div>
+        <div class="metric"><strong>${items.length}</strong><span>elements</span></div>
+        <div class="metric"><strong>${normalizedContract.profileCandidates.length}</strong><span>profiles</span></div>
+        <div class="metric"><strong>${normalizedContract.claimCandidates.length}</strong><span>claims</span></div>
+        <div class="metric"><strong>${normalizedContract.timelineEntryCandidates.length}</strong><span>timeline</span></div>
+        <div class="metric"><strong>${normalizedContract.unresolvedDependencies.length}</strong><span>human-owned decisions</span></div>
+        <div class="metric"><strong>${normalizedContract.warnings.length}</strong><span>warnings</span></div>
+        <div class="metric"><strong>${escapeHtml(normalizedContract.extractionMode)}</strong><span>mode</span></div>
+      `;
+
+      roots.extractionContract.innerHTML = `
+        <article class="extraction-contract-group">
+          <div class="category-title">
+            <h3>Contract summary</h3>
+            <span class="tag blue">${escapeHtml(normalizedContract.schemaVersion)}</span>
+          </div>
+          <div class="tag-row">
+            <span class="tag gold">${escapeHtml(normalizedContract.generatorLabel)}</span>
+            <span class="tag green">freeform review allowed</span>
+            <span class="tag gold">auto canon promotion off</span>
+            <span class="tag gold">auto chronology promotion off</span>
+          </div>
+          ${field("Source refs", normalizedContract.sourceRefs.map((source) => `${source.id}: ${source.label || source.locator}`).join("; "))}
+          ${field("Review-safe defaults", Object.entries(normalizedContract.reviewSafeDefaults || {}).map(([key, value]) => `${key}=${value}`).join("; "))}
+          ${field("Decision-log-safe metadata", Object.entries(normalizedContract.decisionLogSafeMetadata || {}).map(([key, value]) => `${key}=${Array.isArray(value) ? value.join("|") : value}`).join("; "))}
+          ${field("Warnings", normalizedContract.warnings.join("; "))}
+          ${field("Human authority boundaries", normalizedContract.humanAuthorityBoundaries.join("; "))}
+          ${field("Unknown fields policy", normalizedContract.unknownFieldsPolicy || "not set")}
+          ${field("Notes", normalizedContract.notes || "not set")}
+        </article>
+        ${grouped.map(([groupName, groupItems]) => `
+          <article class="extraction-contract-group">
+            <div class="category-title">
+              <h3>${escapeHtml(groupName)}</h3>
+              <span class="tag blue">${groupItems.length} extraction candidates</span>
+            </div>
+            <div class="extraction-contract-list">
+              ${groupItems.map(renderExtractionContractItem).join("")}
+            </div>
+          </article>
+        `).join("") || '<div class="empty-state">No extraction candidates match the current filters.</div>'}
+      `;
+
+      const groupLabel = EXTRACTION_GROUP_LABELS[activeExtractionGroupMode] || activeExtractionGroupMode;
+      const searchLabel = activeExtractionSearchQuery ? ` matching "${activeExtractionSearchQuery}"` : "";
+      extractionContractSummary.textContent = `Showing ${visibleItems.length} of ${items.length} extraction candidates grouped by ${groupLabel}${searchLabel}. Element types ${Object.keys(counts.byElementType).length}; profiles ${counts.profileCandidateCount}; claims ${counts.claimCandidateCount}; timeline ${counts.timelineCandidateCount}; unresolved ${counts.withUnresolvedDependencies}; high risk ${counts.highCanonRisk}; warnings ${counts.warningsCount}.`;
+    }
+
+    function renderExtractionContractItem(item) {
+      const status = getReviewStatus(item);
+      return `
+        <article class="extraction-contract-item" data-extraction-id="${escapeHtml(item.id)}" data-canon-risk="${escapeHtml(item.canonRisk || "medium")}" ${reviewItemAttributes(item, `extraction-${item.elementType}`)}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(item.displayText || item.title)}</h3>
+            <span class="tag ${status === "adopt" ? "green" : status === "reject" ? "red" : status === "provisional" ? "blue" : "gold"}">${escapeHtml(status)}</span>
+          </div>
+          <div class="tag-row">
+            <span class="tag green">${escapeHtml(item.elementType)}</span>
+            <span class="tag blue">confidence ${escapeHtml(item.confidence)}</span>
+            <span class="tag ${item.canonRisk === "high" ? "red" : item.canonRisk === "low" ? "green" : "gold"}">${escapeHtml(item.canonRisk)} canon risk</span>
+            <span class="tag ${item.spoilerLevel === "high" ? "red" : item.spoilerLevel === "low" ? "green" : "gold"}">spoiler ${escapeHtml(item.spoilerLevel)}</span>
+          </div>
+          ${field("Aliases", formatList(item.aliases, "none"))}
+          ${field("Source span", item.sourceSpan?.text || "not set")}
+          ${field("Source refs", formatList(item.sourceRefIds, "none"))}
+          ${field("Target destinations", formatList(item.targetDestinations, "none"))}
+          ${field("Profile candidate links", formatList(item.targetProfileIds, "none"))}
+          ${field("Claim candidate links", formatList(item.targetClaimIds, "none"))}
+          ${field("Timeline candidate links", formatList(item.targetTimelineEntryIds, "none"))}
+          ${field("Unresolved dependencies", formatList(item.unresolvedDependencies, "none"))}
+          ${field("Notes", item.notes || "Review before routing.")}
+          ${reviewControls(item)}
+        </article>
+      `;
+    }
+
+    function groupExtractionItems(items, mode) {
+      const groups = new Map();
+      items.forEach((item) => {
+        extractionGroupValues(item, mode).forEach((value) => {
+          const key = value || "not set";
+          if (!groups.has(key)) {
+            groups.set(key, []);
+          }
+          groups.get(key).push(item);
+        });
+      });
+      return Array.from(groups.entries()).sort(([a], [b]) => a.localeCompare(b));
+    }
+
+    function extractionGroupValues(item, mode) {
+      if (mode === "reviewStatus") {
+        return [getReviewStatus(item)];
+      }
+      if (mode === "unresolvedDependency") {
+        return item.unresolvedDependencies && item.unresolvedDependencies.length ? item.unresolvedDependencies : ["no unresolved dependency"];
+      }
+      if (mode === "sourceRef") {
+        return item.sourceRefIds && item.sourceRefIds.length ? item.sourceRefIds : ["no source ref"];
+      }
+      if (mode === "targetDestination") {
+        return item.targetDestinations && item.targetDestinations.length ? item.targetDestinations : ["no target destination"];
+      }
+      return [item[mode] || "not set"];
+    }
+
+    function matchesExtractionFilter(item) {
+      const status = getReviewStatus(item);
+      const searchText = `${JSON.stringify(item)} ${status}`.toLowerCase();
+      const matchesSearch = !activeExtractionSearchQuery || searchText.includes(activeExtractionSearchQuery);
+      let matchesFilter = true;
+
+      if (activeExtractionFilter === "unresolved") {
+        matchesFilter = (item.unresolvedDependencies || []).length > 0;
+      } else if (activeExtractionFilter === "high-risk") {
+        matchesFilter = item.canonRisk === "high";
+      } else if (activeExtractionFilter === "placeholder") {
+        matchesFilter = item.elementType === "placeholder";
+      } else if (activeExtractionFilter === "source_reference") {
+        matchesFilter = item.elementType === "source_reference";
+      } else if (activeExtractionFilter === "profile") {
+        matchesFilter = (item.targetDestinations || []).includes("profile");
+      } else if (activeExtractionFilter === "claim") {
+        matchesFilter = (item.targetDestinations || []).includes("claim");
+      } else if (activeExtractionFilter === "timeline") {
+        matchesFilter = (item.targetDestinations || []).includes("timeline");
+      } else if (activeExtractionFilter === "hold") {
+        matchesFilter = status === "hold";
+      } else if (activeExtractionFilter === "reject") {
+        matchesFilter = status === "reject";
+      }
+
+      return matchesFilter && matchesSearch;
+    }
+
+    function countExtractionContract(contract) {
+      const elements = contract.extractedElements || [];
+      const byElementType = {};
+      let withUnresolvedDependencies = 0;
+      let highCanonRisk = 0;
+
+      elements.forEach((item) => {
+        byElementType[item.elementType || "not set"] = (byElementType[item.elementType || "not set"] || 0) + 1;
+        if ((item.unresolvedDependencies || []).length > 0) {
+          withUnresolvedDependencies += 1;
+        }
+        if (item.canonRisk === "high") {
+          highCanonRisk += 1;
+        }
+      });
+
+      return {
+        byElementType,
+        extractionRunCount: 1,
+        extractedElementCount: elements.length,
+        profileCandidateCount: (contract.profileCandidates || []).length,
+        claimCandidateCount: (contract.claimCandidates || []).length,
+        timelineCandidateCount: (contract.timelineEntryCandidates || []).length,
+        unresolvedDependencyCount: (contract.unresolvedDependencies || []).length,
+        withUnresolvedDependencies,
+        highCanonRisk,
+        warningsCount: (contract.warnings || []).length
+      };
     }
 
     function renderElements(groups) {
@@ -3945,7 +4638,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     }
 
     function inferCandidateCategory(item) {
-      return item.profile_type || item.claim_type || item.timelineAxis || item.sequence_scope || item.classification || item.package_type || item.type || "candidate";
+      return item.elementType || item.profile_type || item.claim_type || item.timelineAxis || item.sequence_scope || item.classification || item.package_type || item.type || "candidate";
     }
 
     function buildSearchText(item, category) {
@@ -4071,7 +4764,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     function collectReviewableItems(model) {
       const extracted = model.extracted_elements.flatMap((groupItem) => groupItem.items);
+      const extractionContractItems = model.extraction_contract?.extractedElements || [];
       return [
+        ...extractionContractItems,
         ...extracted,
         ...model.profile_candidates,
         ...model.claim_candidates,
@@ -4106,6 +4801,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       createSampleProjectState,
       exportProjectState,
       importProjectStateFromJson,
+      normalizeExtractionContract,
       validateProjectStateEnvelope,
       getModel: () => currentModel,
       getState: () => state

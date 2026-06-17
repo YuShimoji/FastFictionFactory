@@ -25,9 +25,18 @@
 - Purpose: Replace deterministic mock extraction with an actual extraction workflow.
 - Effect: Turns raw memo intake into generated candidates instead of static seed data.
 - Requirements: Needs source tracking, schema validation, review controls, and clear generated-vs-human authority boundaries.
-- State: Not started.
+- State: Extraction Contract implemented in `fff-extraction-contract-001`; model/API extraction adapter not started.
 - Owner: Product/AI implementer.
-- Next move: Specify an extraction contract that emits elements, profiles, claims, timeline entries, unresolved dependencies, and review-safe source refs.
+- Next move: Build a local-only adapter spike that emits the reviewed contract shape from deterministic input before adding any model/API behavior.
+
+### Freeform Review Intake
+
+- Purpose: Let user review arrive as natural feedback instead of fixed accept/reject phrases.
+- Effect: Keeps human review expressive while still allowing the agent to continue reversible scoped work when interpretation confidence is medium or high.
+- Requirements: Use Review Cards when review is required, record Review Debt when review is useful but non-blocking, and treat freeform user review as source of truth.
+- State: Documented in `docs/review/freeform-review-intake.md` and reflected in `fff-extraction-contract-001`.
+- Owner: Agent for parsing and reversible updates; human reviewer for review truth.
+- Next move: Exercise the intake rule against extraction contract review feedback before building model/API behavior.
 
 ### Durable Project Database
 
