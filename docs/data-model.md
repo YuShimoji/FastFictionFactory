@@ -143,6 +143,41 @@ type ExtractionElement = {
 };
 ```
 
+## Extraction Validator Hardening
+
+`fff-extraction-validator-hardening-001` treats Extraction Contract payloads as adapter candidates, not canon. The zero-dependency validator in `tools/fff-state.mjs` checks both full project-state envelopes and standalone extraction payloads.
+
+Validator commands:
+
+```powershell
+node .\tools\fff-state.mjs validate-extraction .\artifacts\sample-extraction-payload.json
+node .\tools\fff-state.mjs validate-extraction-fixtures .\artifacts\extraction-negative-fixtures
+```
+
+The fixture set includes:
+
+```ts
+type ExtractionValidatorFixture =
+  | "valid-minimal"
+  | "missing-source-refs"
+  | "overconfident-human-owned-decision"
+  | "invalid-routing-visual-asset-to-claim"
+  | "auto-canon-leak";
+```
+
+Hardening rules:
+
+- `extractionRunId` and `schemaVersion` are required.
+- Every extracted element needs at least one source ref and all refs must resolve.
+- `elementType` must be one of the documented ExtractionElement types.
+- `targetDestinations` must be explicit and within the documented routing vocabulary.
+- `visual_asset` candidates cannot route directly to Claim Ledger without profile/asset-side review.
+- Human-owned unresolved decisions cannot suggest `adopt`, even with high confidence.
+- `reviewSafeDefaults.defaultReviewStatus` cannot be `adopt`.
+- `autoCanonPromotion` and `autoChronologyPromotion` must be `false`.
+- `unknownSourceHandling`, `decisionLogSafeMetadata`, `warnings`, and `humanAuthorityBoundaries` must remain present for review-safe fallback behavior.
+- Unknown top-level extraction fields are warning-level preservation cases so future adapter data can remain visible for JSON review without silently becoming canon.
+
 ## UnresolvedCreativeDecision
 
 ```ts

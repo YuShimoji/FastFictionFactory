@@ -834,7 +834,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Current MVP Status Packet</h2>
-            <p class="lede">Active artifact id: <strong>fff-extraction-contract-001</strong>. Current phase: the local Extraction Contract defines review-safe generated candidates without adding model/API behavior or finalizing human-owned canon.</p>
+            <p class="lede">Active artifact id: <strong>fff-extraction-validator-hardening-001</strong>. Current phase: harden the local Extraction Contract validator with negative fixtures while preserving <strong>fff-extraction-contract-001</strong>, human-owned canon boundaries, and the single Visual Review Hub entry point.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -853,7 +853,8 @@
           <div class="progress-step done"><strong>Timeline View</strong><span class="tag green">done</span><p class="section-note">Separate story, calendar, viewer, production, and historical order.</p></div>
           <div class="progress-step done"><strong>v1.3 contract check</strong><span class="tag green">done</span><p class="section-note">Artifact, report, path, and decision-boundary conventions are visible.</p></div>
           <div class="progress-step done"><strong>Profile page / ghost node flow</strong><span class="tag green">done</span><p class="section-note">Review aliases, placeholders, weak graph nodes, and cross-links.</p></div>
-          <div class="progress-step current"><strong>Extraction Contract</strong><span class="tag blue">current</span><p class="section-note">Define source refs, review-safe defaults, warnings, and candidate routing.</p></div>
+          <div class="progress-step done"><strong>Extraction Contract</strong><span class="tag green">done</span><p class="section-note">Define source refs, review-safe defaults, warnings, and candidate routing.</p></div>
+          <div class="progress-step current"><strong>Validator hardening</strong><span class="tag blue">current</span><p class="section-note">Negative fixtures catch unsafe extraction payloads before adapter work.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;">
@@ -871,6 +872,7 @@
               <li>Timeline View grouping by axis, status, disclosure, dependency, risk, linked claim, and calendar precision.</li>
               <li>Profile/Ghost grouping by type, ghost node status, review status, dependency, risk, claim, timeline, reality, and world status.</li>
               <li>Extraction Contract grouping by type, status, source, routing destination, dependency, canon risk, and spoiler level.</li>
+              <li>Extraction validator fixture matrix for valid minimal payload, missing source refs, overconfident human-owned decisions, invalid visual-asset routing, auto-canon leaks, missing review-safe defaults, unknown-field preservation, and missing identity guards.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
@@ -934,6 +936,9 @@
                 <tr><td>Profile/Ghost smoke</td><td>artifacts/profile-ghost-smoke-result.json</td></tr>
                 <tr><td>Extraction payload</td><td>artifacts/sample-extraction-payload.json</td></tr>
                 <tr><td>Extraction smoke</td><td>artifacts/extraction-contract-smoke-result.json</td></tr>
+                <tr><td>Extraction validator fixtures</td><td>artifacts/extraction-negative-fixtures/</td></tr>
+                <tr><td>Extraction validator smoke</td><td>artifacts/extraction-validator-smoke-result.json</td></tr>
+                <tr><td>Validator hardening review</td><td>docs/review/extraction-validator-hardening-review.md</td></tr>
                 <tr><td>Freeform review smoke</td><td>artifacts/freeform-review-intake-smoke-result.json</td></tr>
                 <tr><td>Current status doc</td><td>docs/review/current-status.md</td></tr>
               </tbody>
@@ -943,7 +948,8 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows artifact id <strong>fff-extraction-contract-001</strong>.</li>
+              <li>Confirm this hub shows artifact id <strong>fff-extraction-validator-hardening-001</strong>.</li>
+              <li>Use <strong>artifacts/extraction-validator-smoke-result.json</strong> to review the pass/fail fixture matrix before adapter work.</li>
               <li>Use <strong>Extraction Contract</strong> grouping and filters before wiring any generated candidate into profile, claim, or timeline review.</li>
               <li>Use <strong>Save state to local file</strong> where supported, or <strong>Download JSON fallback</strong>.</li>
               <li>Use <strong>Load state from local file</strong> where supported, or upload/paste JSON fallback.</li>
@@ -985,6 +991,7 @@
             <span class="tag green">Timeline View visible</span>
             <span class="tag green">Profile/Ghost Flow visible</span>
             <span class="tag green">Extraction Contract visible</span>
+            <span class="tag green">validator fixtures checked</span>
             <span class="tag green">v1.3 compliance visible</span>
             <span class="tag green">unresolved decisions visible</span>
             <span class="tag green">QA gates visible</span>
@@ -3172,13 +3179,18 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-extraction-contract-001",
+        activeArtifactId: "fff-extraction-validator-hardening-001",
         reviewInputMode: "freeform",
         extractionContract: {
           schemaVersion: model.extraction_contract.schemaVersion,
           extractionRunId: model.extraction_contract.extractionRunId,
           reviewSafeDefault: model.extraction_contract.reviewSafeDefaults.defaultReviewStatus,
           humanOwnedDependencies: model.extraction_contract.unresolvedDependencies
+        },
+        extractionValidator: {
+          artifactId: "fff-extraction-validator-hardening-001",
+          fixtureDirectory: "artifacts/extraction-negative-fixtures",
+          smokeResult: "artifacts/extraction-validator-smoke-result.json"
         }
       };
 
@@ -3651,13 +3663,18 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-extraction-contract-001",
+          activeArtifactId: "fff-extraction-validator-hardening-001",
           reviewInputMode: "freeform",
           extractionContract: {
             schemaVersion: model.extraction_contract.schemaVersion,
             extractionRunId: model.extraction_contract.extractionRunId,
             reviewSafeDefault: model.extraction_contract.reviewSafeDefaults.defaultReviewStatus,
             humanOwnedDependencies: model.extraction_contract.unresolvedDependencies
+          },
+          extractionValidator: {
+            artifactId: "fff-extraction-validator-hardening-001",
+            fixtureDirectory: "artifacts/extraction-negative-fixtures",
+            smokeResult: "artifacts/extraction-validator-smoke-result.json"
           }
         }
       };

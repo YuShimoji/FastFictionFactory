@@ -1,0 +1,91 @@
+{
+  "extractionRunId": "fixture-invalid-routing-visual-asset-to-claim-001",
+  "schemaVersion": "fff.extractionContract.v1",
+  "sourceDraftId": "draft-fixture-001",
+  "sourceMemoRef": "rawMemo",
+  "sourceRefs": [
+    {
+      "id": "src-fixture-memo-001",
+      "source_type": "memo",
+      "label": "Fixture memo",
+      "locator": "artifacts/extraction-negative-fixtures/invalid-routing-visual-asset-to-claim.json",
+      "trust": "author_memo"
+    }
+  ],
+  "generatedAt": "2026-06-17T00:00:00.000Z",
+  "generatorType": "local_contract_fixture",
+  "generatorLabel": "Negative fixture; no model/API call",
+  "extractionMode": "validator_fixture",
+  "confidencePolicy": {
+    "defaultConfidence": 0.71,
+    "lowConfidenceAction": "hold",
+    "highCanonRiskAction": "hold_until_human_review",
+    "freeformReviewAuthority": "human review text overrides generated suggestions"
+  },
+  "extractedElements": [
+    {
+      "id": "fixture-el-visual-direct-claim",
+      "displayText": "Observatory bell image",
+      "elementType": "visual_asset",
+      "aliases": [],
+      "sourceSpan": {
+        "text": "Observatory bell image",
+        "start": 0,
+        "end": 22
+      },
+      "sourceRefIds": [
+        "src-fixture-memo-001"
+      ],
+      "confidence": 0.71,
+      "suggestedReviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "targetDestinations": [
+        "claim"
+      ],
+      "targetProfileIds": [],
+      "targetClaimIds": [
+        "claim-visual-is-release-asset"
+      ],
+      "targetTimelineEntryIds": [],
+      "notes": "Intentionally routes a visual asset directly into Claim Ledger without a profile/asset-side route."
+    }
+  ],
+  "profileCandidates": [],
+  "claimCandidates": [],
+  "timelineEntryCandidates": [],
+  "unresolvedDependencies": [],
+  "reviewSafeDefaults": {
+    "defaultReviewStatus": "hold",
+    "allowAdopt": true,
+    "allowProvisional": true,
+    "allowReject": true,
+    "autoCanonPromotion": false,
+    "autoChronologyPromotion": false,
+    "unknownSourceHandling": "preserve_unknown_fields_and_hold_candidate"
+  },
+  "decisionLogSafeMetadata": {
+    "owner": "human_author",
+    "statusVocabulary": [
+      "adopt",
+      "provisional",
+      "hold",
+      "reject"
+    ],
+    "fixedPhraseRequired": false,
+    "freeformReviewAllowed": true,
+    "reversibleActionsOnly": true
+  },
+  "warnings": [
+    "Visual assets should stay on profile/asset-side review before any claim linkage."
+  ],
+  "unknownFieldsPolicy": "Preserve unknown imported top-level fields under metadata.importedUnknownFields and keep unrecognized extraction fields visible in JSON review.",
+  "humanAuthorityBoundaries": [
+    "Freeform user review is the source of truth.",
+    "Toma fate remains human-owned.",
+    "brass moth truth remains human-owned.",
+    "Council motive remains human-owned."
+  ],
+  "notes": "Negative fixture: visual asset is routed straight to Claim Ledger."
+}

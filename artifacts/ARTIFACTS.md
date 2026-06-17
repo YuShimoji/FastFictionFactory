@@ -141,3 +141,25 @@
 - Manifest: `artifacts/artifact-manifest.json`
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
+
+## fff-extraction-validator-hardening-001
+
+- Title: Fast Fiction Factory Extraction Validator Hardening
+- Purpose: Harden the local Extraction Contract with negative fixtures and stricter zero-dependency validation before any adapter, model/API behavior, database persistence, publishing adapter, AI video generation, or final canon decision exists.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local launcher: `scripts/operator/open_review.ps1`
+- Fixture directory: `artifacts/extraction-negative-fixtures/`
+- Fixture files: `valid-minimal.json`, `missing-source-refs.json`, `overconfident-human-owned-decision.json`, `invalid-routing-visual-asset-to-claim.json`, `auto-canon-leak.json`
+- Validator smoke result: `artifacts/extraction-validator-smoke-result.json`
+- State adapter: `tools/fff-state.mjs`
+- Current status: `docs/review/current-status.md`
+- Review doc: `docs/review/extraction-validator-hardening-review.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Validation command: `node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures`
+- Validation result: expected-valid fixture passed, expected-invalid fixtures failed for intended reasons, built-in guard checks passed for missing identity fields, invalid element type, missing human authority boundaries, and missing high-risk warnings; unknown-field preservation warning was reported.
+- Review status: `ready_for_local_review`
+- Review input mode: `freeform`
+- Next action: Use the fixture matrix as the gate for a local-only extraction adapter spike.

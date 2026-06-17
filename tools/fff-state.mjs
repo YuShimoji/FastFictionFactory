@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const SCHEMA_VERSION = "fff.projectState.v1";
+const EXTRACTION_SCHEMA_VERSION = "fff.extractionContract.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 
 const REQUIRED_FIELDS = [
@@ -146,6 +147,7 @@ const EXTRACTION_ELEMENT_REQUIRED_FIELDS = [
   "unresolvedDependencies",
   "canonRisk",
   "spoilerLevel",
+  "targetDestinations",
   "notes"
 ];
 
@@ -163,6 +165,63 @@ const REQUIRED_EXTRACTION_ELEMENT_TYPES = [
   "unresolved_decision"
 ];
 
+const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
+
+const EXTRACTION_TARGET_DESTINATIONS = [
+  "profile",
+  "claim",
+  "timeline",
+  "source_reference",
+  "unresolved_decision"
+];
+
+const REVIEW_SAFE_DEFAULT_FIELDS = [
+  "defaultReviewStatus",
+  "allowAdopt",
+  "allowProvisional",
+  "allowReject",
+  "autoCanonPromotion",
+  "autoChronologyPromotion",
+  "unknownSourceHandling"
+];
+
+const DECISION_LOG_SAFE_FIELDS = [
+  "owner",
+  "statusVocabulary",
+  "fixedPhraseRequired",
+  "freeformReviewAllowed",
+  "reversibleActionsOnly"
+];
+
+const HUMAN_OWNED_DECISIONS = ["Toma fate", "brass moth truth", "Council motive"];
+
+const EXTRACTION_FIXTURE_EXPECTATIONS = {
+  "valid-minimal.json": {
+    expectedValid: true,
+    expectedWarnings: ["unknown top-level field"]
+  },
+  "missing-source-refs.json": {
+    expectedValid: false,
+    expectedErrors: ["sourceRefIds must reference at least one source ref"]
+  },
+  "overconfident-human-owned-decision.json": {
+    expectedValid: false,
+    expectedErrors: ["human-owned decision", "must not suggest adopt"]
+  },
+  "invalid-routing-visual-asset-to-claim.json": {
+    expectedValid: false,
+    expectedErrors: ["visual_asset must not route directly to Claim Ledger"]
+  },
+  "auto-canon-leak.json": {
+    expectedValid: false,
+    expectedErrors: [
+      "reviewSafeDefaults missing unknownSourceHandling",
+      "reviewSafeDefaults.defaultReviewStatus must not be adopt",
+      "reviewSafeDefaults.autoCanonPromotion must be false"
+    ]
+  }
+};
+
 async function main() {
   const [command, inputPath, outputPath] = process.argv.slice(2);
 
@@ -172,10 +231,40 @@ async function main() {
   }
 
   if (!inputPath) {
-    fail("Missing input JSON path.");
+    fail("Missing input JSON path or fixture directory.");
+  }
+
+  if (command === "validate-extraction-fixtures") {
+    const matrix = await validateExtractionFixtures(inputPath);
+    console.log(JSON.stringify(matrix, null, 2));
+    if (!matrix.passed) {
+      fail(`Extraction fixture matrix failed: ${matrix.failures.join("; ")}`);
+    }
+    return;
   }
 
   const state = await readState(inputPath);
+
+  if (command === "validate-extraction") {
+    const validation = validateExtractionPayload(state);
+    if (!validation.ok) {
+      fail(`Invalid extraction payload: ${validation.errors.join("; ")}`);
+    }
+    console.log(`valid extraction ${inputPath}`);
+    printWarnings(validation.warnings);
+    return;
+  }
+
+  if (command === "summarize-extraction") {
+    const validation = validateExtractionPayload(state);
+    if (!validation.ok) {
+      fail(`Invalid extraction payload: ${validation.errors.join("; ")}`);
+    }
+    console.log(JSON.stringify(validation.summary, null, 2));
+    printWarnings(validation.warnings);
+    return;
+  }
+
   const validation = validateState(state);
 
   if (command === "validate") {
@@ -222,6 +311,435 @@ async function readState(inputPath) {
   } catch (error) {
     fail(`Invalid JSON in ${inputPath}: ${error.message}`);
   }
+}
+
+async function validateExtractionFixtures(fixtureDir) {
+  let entries;
+  try {
+    entries = await readdir(fixtureDir, { withFileTypes: true });
+  } catch (error) {
+    fail(`Cannot read fixture directory ${fixtureDir}: ${error.message}`);
+  }
+
+  const files = entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+    .map((entry) => entry.name)
+    .sort();
+  const expectedFiles = Object.keys(EXTRACTION_FIXTURE_EXPECTATIONS).sort();
+  const missingExpectedFiles = expectedFiles.filter((name) => !files.includes(name));
+  const unexpectedFiles = files.filter((name) => !(name in EXTRACTION_FIXTURE_EXPECTATIONS));
+  const results = [];
+
+  for (const fileName of files) {
+    const filePath = path.join(fixtureDir, fileName);
+    const payload = await readState(filePath);
+    const validation = validateExtractionPayload(payload);
+    const expectation = EXTRACTION_FIXTURE_EXPECTATIONS[fileName] || { expectedValid: true };
+    const errorMatches = (expectation.expectedErrors || []).map((text) => ({
+      text,
+      matched: validation.errors.some((error) => error.includes(text))
+    }));
+    const warningMatches = (expectation.expectedWarnings || []).map((text) => ({
+      text,
+      matched: validation.warnings.some((warning) => warning.includes(text))
+    }));
+    const passed =
+      validation.ok === expectation.expectedValid &&
+      errorMatches.every((match) => match.matched) &&
+      warningMatches.every((match) => match.matched);
+
+    results.push({
+      fixture: fileName,
+      expected: expectation.expectedValid ? "valid" : "invalid",
+      actual: validation.ok ? "valid" : "invalid",
+      passed,
+      expectedErrorMatches: errorMatches,
+      expectedWarningMatches: warningMatches,
+      errors: validation.errors,
+      warnings: validation.warnings,
+      summary: validation.summary
+    });
+  }
+
+  const validMinimalPath = path.join(fixtureDir, "valid-minimal.json");
+  const builtInGuardResults = files.includes("valid-minimal.json")
+    ? await validateExtractionBuiltInGuards(validMinimalPath)
+    : [];
+
+  const failures = [];
+  for (const missing of missingExpectedFiles) {
+    failures.push(`missing expected fixture ${missing}`);
+  }
+  for (const unexpected of unexpectedFiles) {
+    failures.push(`unexpected fixture ${unexpected}`);
+  }
+  for (const result of results) {
+    if (!result.passed) {
+      failures.push(`${result.fixture} expected ${result.expected} but validator reported ${result.actual}`);
+    }
+  }
+  for (const result of builtInGuardResults) {
+    if (!result.passed) {
+      failures.push(`${result.guard} did not trigger expected validator error`);
+    }
+  }
+
+  return {
+    artifact_id: "fff-extraction-validator-hardening-001",
+    fixtureDirectory: fixtureDir,
+    generatedAt: new Date().toISOString(),
+    passed: failures.length === 0,
+    failures,
+    summary: {
+      fixtureCount: files.length,
+      expectedFixtureCount: expectedFiles.length,
+      expectedValid: results.filter((result) => result.expected === "valid").length,
+      expectedInvalid: results.filter((result) => result.expected === "invalid").length,
+      builtInGuardCount: builtInGuardResults.length,
+      unknownFieldsPreservationCovered: results.some((result) =>
+        result.warnings.some((warning) => warning.includes("unknown top-level field"))
+      ),
+      missingReviewSafeDefaultsCovered: results.some((result) =>
+        result.errors.some((error) => error.includes("reviewSafeDefaults missing"))
+      )
+    },
+    results,
+    builtInGuardResults
+  };
+}
+
+async function validateExtractionBuiltInGuards(validMinimalPath) {
+  const basePayload = await readState(validMinimalPath);
+  const guardCases = [
+    {
+      guard: "missing extractionRunId",
+      expectedError: "missing extractionRunId",
+      mutate: (payload) => {
+        delete payload.extractionRunId;
+      }
+    },
+    {
+      guard: "missing schemaVersion",
+      expectedError: "missing schemaVersion",
+      mutate: (payload) => {
+        delete payload.schemaVersion;
+      }
+    },
+    {
+      guard: "invalid element type",
+      expectedError: "invalid elementType",
+      mutate: (payload) => {
+        payload.extractedElements[0].elementType = "unsupported_signal";
+      }
+    },
+    {
+      guard: "missing humanAuthorityBoundaries",
+      expectedError: "missing humanAuthorityBoundaries",
+      mutate: (payload) => {
+        delete payload.humanAuthorityBoundaries;
+      }
+    },
+    {
+      guard: "warnings missing when risk is high",
+      expectedError: "warnings array must be present and non-empty when canon risk is high",
+      mutate: (payload) => {
+        payload.extractedElements[0].canonRisk = "high";
+        payload.warnings = [];
+      }
+    }
+  ];
+
+  return guardCases.map((guardCase) => {
+    const payload = JSON.parse(JSON.stringify(basePayload));
+    guardCase.mutate(payload);
+    const validation = validateExtractionPayload(payload);
+    return {
+      guard: guardCase.guard,
+      expected: "invalid",
+      actual: validation.ok ? "valid" : "invalid",
+      passed: !validation.ok && validation.errors.some((error) => error.includes(guardCase.expectedError)),
+      expectedError: guardCase.expectedError,
+      errors: validation.errors,
+      warnings: validation.warnings
+    };
+  });
+}
+
+function validateExtractionPayload(payload) {
+  const contracts = getExtractionContracts(payload);
+  const errors = [];
+  const warnings = [];
+
+  if (contracts.length === 0) {
+    errors.push("extraction payload must contain an extraction contract");
+  }
+
+  contracts.forEach((contract, index) => {
+    const validation = validateExtractionContract(contract, {
+      label: `extraction contract ${contract?.extractionRunId || index}`,
+      requireCompleteElementTypeCoverage: false
+    });
+    errors.push(...validation.errors);
+    warnings.push(...validation.warnings);
+  });
+
+  return {
+    ok: errors.length === 0,
+    errors,
+    warnings,
+    summary: summarizeExtractionContractList(contracts)
+  };
+}
+
+function getExtractionContracts(payload) {
+  if (!payload || typeof payload !== "object" || Array.isArray(payload)) {
+    return [];
+  }
+  if (Array.isArray(payload.extractionContracts)) {
+    return payload.extractionContracts;
+  }
+  if (payload.extractionContract && typeof payload.extractionContract === "object") {
+    return [payload.extractionContract];
+  }
+  return [payload];
+}
+
+function validateExtractionContract(contract, options = {}) {
+  const label = options.label || "extraction contract";
+  const errors = [];
+  const warnings = [];
+
+  if (!contract || typeof contract !== "object" || Array.isArray(contract)) {
+    return { ok: false, errors: [`${label} must be an object`], warnings };
+  }
+
+  const knownContractFields = new Set(EXTRACTION_CONTRACT_REQUIRED_FIELDS);
+  for (const field of Object.keys(contract)) {
+    if (!knownContractFields.has(field)) {
+      warnings.push(`${label} unknown top-level field ${field} will be preserved for JSON review`);
+    }
+  }
+
+  for (const field of EXTRACTION_CONTRACT_REQUIRED_FIELDS) {
+    if (!(field in contract)) {
+      errors.push(`${label} missing ${field}`);
+    }
+  }
+
+  if (contract.schemaVersion !== undefined && contract.schemaVersion !== EXTRACTION_SCHEMA_VERSION) {
+    errors.push(`${label} schemaVersion must be ${EXTRACTION_SCHEMA_VERSION}`);
+  }
+
+  for (const arrayField of ["sourceRefs", "extractedElements", "profileCandidates", "claimCandidates", "timelineEntryCandidates", "unresolvedDependencies", "warnings", "humanAuthorityBoundaries"]) {
+    if (arrayField in contract && !Array.isArray(contract[arrayField])) {
+      errors.push(`${label} ${arrayField} must be an array`);
+    }
+  }
+
+  const sourceRefIds = validateExtractionSources(contract, label, errors);
+  validateReviewSafeDefaults(contract, label, errors);
+  validateDecisionLogSafety(contract, label, errors);
+  validateHumanAuthorityBoundaries(contract, label, errors);
+  validateExtractionElements(contract, label, sourceRefIds, options, errors);
+
+  return { ok: errors.length === 0, errors, warnings };
+}
+
+function validateExtractionSources(contract, label, errors) {
+  const sourceRefIds = new Set();
+  if (!Array.isArray(contract.sourceRefs)) {
+    return sourceRefIds;
+  }
+
+  contract.sourceRefs.forEach((sourceRef, index) => {
+    if (!sourceRef || typeof sourceRef !== "object" || Array.isArray(sourceRef)) {
+      errors.push(`${label} sourceRef ${index} must be an object`);
+      return;
+    }
+    if (!sourceRef.id || typeof sourceRef.id !== "string") {
+      errors.push(`${label} sourceRef ${index} missing id`);
+      return;
+    }
+    if (sourceRefIds.has(sourceRef.id)) {
+      errors.push(`${label} duplicate sourceRef id ${sourceRef.id}`);
+    }
+    sourceRefIds.add(sourceRef.id);
+  });
+
+  return sourceRefIds;
+}
+
+function validateReviewSafeDefaults(contract, label, errors) {
+  const defaults = contract.reviewSafeDefaults;
+  if (!defaults || typeof defaults !== "object" || Array.isArray(defaults)) {
+    errors.push(`${label} reviewSafeDefaults must be an object`);
+    return;
+  }
+
+  for (const field of REVIEW_SAFE_DEFAULT_FIELDS) {
+    if (!(field in defaults)) {
+      errors.push(`${label} reviewSafeDefaults missing ${field}`);
+    }
+  }
+
+  if (defaults.defaultReviewStatus === "adopt") {
+    errors.push(`${label} reviewSafeDefaults.defaultReviewStatus must not be adopt`);
+  }
+  if (defaults.autoCanonPromotion !== false) {
+    errors.push(`${label} reviewSafeDefaults.autoCanonPromotion must be false`);
+  }
+  if (defaults.autoChronologyPromotion !== false) {
+    errors.push(`${label} reviewSafeDefaults.autoChronologyPromotion must be false`);
+  }
+  if (defaults.defaultReviewStatus && !REVIEW_STATUSES.includes(defaults.defaultReviewStatus)) {
+    errors.push(`${label} reviewSafeDefaults.defaultReviewStatus must be one of ${REVIEW_STATUSES.join(", ")}`);
+  }
+}
+
+function validateDecisionLogSafety(contract, label, errors) {
+  const metadata = contract.decisionLogSafeMetadata;
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) {
+    errors.push(`${label} decisionLogSafeMetadata must be an object`);
+    return;
+  }
+
+  for (const field of DECISION_LOG_SAFE_FIELDS) {
+    if (!(field in metadata)) {
+      errors.push(`${label} decisionLogSafeMetadata missing ${field}`);
+    }
+  }
+
+  if (metadata.owner !== "human_author") {
+    errors.push(`${label} decisionLogSafeMetadata.owner must be human_author`);
+  }
+  if (metadata.fixedPhraseRequired !== false) {
+    errors.push(`${label} decisionLogSafeMetadata.fixedPhraseRequired must be false`);
+  }
+  if (metadata.freeformReviewAllowed !== true) {
+    errors.push(`${label} decisionLogSafeMetadata.freeformReviewAllowed must be true`);
+  }
+  if (metadata.reversibleActionsOnly !== true) {
+    errors.push(`${label} decisionLogSafeMetadata.reversibleActionsOnly must be true`);
+  }
+}
+
+function validateHumanAuthorityBoundaries(contract, label, errors) {
+  if (!("humanAuthorityBoundaries" in contract)) {
+    return;
+  }
+  if (!Array.isArray(contract.humanAuthorityBoundaries) || contract.humanAuthorityBoundaries.length === 0) {
+    errors.push(`${label} missing humanAuthorityBoundaries`);
+    return;
+  }
+
+  const boundaryText = contract.humanAuthorityBoundaries.join(" ").toLowerCase();
+  if (!boundaryText.includes("freeform") || !boundaryText.includes("source of truth")) {
+    errors.push(`${label} humanAuthorityBoundaries must preserve freeform user review as source of truth`);
+  }
+  for (const decision of HUMAN_OWNED_DECISIONS) {
+    if (!boundaryText.includes(decision.toLowerCase())) {
+      errors.push(`${label} humanAuthorityBoundaries missing ${decision}`);
+    }
+  }
+}
+
+function validateExtractionElements(contract, label, sourceRefIds, options, errors) {
+  const elements = Array.isArray(contract.extractedElements) ? contract.extractedElements : [];
+  const elementTypes = new Set();
+  const hasHighRisk = elements.some((element) => element?.canonRisk === "high" || touchesHumanOwnedDecision(element));
+
+  if (hasHighRisk && (!Array.isArray(contract.warnings) || contract.warnings.length === 0)) {
+    errors.push(`${label} warnings array must be present and non-empty when canon risk is high`);
+  }
+
+  elements.forEach((element, elementIndex) => {
+    const elementLabel = `extraction element ${element?.id || elementIndex}`;
+    if (!element || typeof element !== "object" || Array.isArray(element)) {
+      errors.push(`${elementLabel} must be an object`);
+      return;
+    }
+
+    for (const field of EXTRACTION_ELEMENT_REQUIRED_FIELDS) {
+      if (!(field in element)) {
+        errors.push(`${elementLabel} missing ${field}`);
+      }
+    }
+    for (const arrayField of ["aliases", "sourceRefIds", "unresolvedDependencies", "targetDestinations"]) {
+      if (arrayField in element && !Array.isArray(element[arrayField])) {
+        errors.push(`${elementLabel} ${arrayField} must be an array`);
+      }
+    }
+
+    if (element.elementType) {
+      elementTypes.add(element.elementType);
+      if (!REQUIRED_EXTRACTION_ELEMENT_TYPES.includes(element.elementType)) {
+        errors.push(`${elementLabel} invalid elementType ${element.elementType}`);
+      }
+    }
+
+    if (Array.isArray(element.sourceRefIds)) {
+      if (element.sourceRefIds.length === 0) {
+        errors.push(`${elementLabel} sourceRefIds must reference at least one source ref`);
+      }
+      for (const sourceRefId of element.sourceRefIds) {
+        if (!sourceRefIds.has(sourceRefId)) {
+          errors.push(`${elementLabel} sourceRefIds contains unknown source ref ${sourceRefId}`);
+        }
+      }
+    }
+
+    if (typeof element.confidence === "number" && (element.confidence < 0 || element.confidence > 1)) {
+      errors.push(`${elementLabel} confidence must be between 0 and 1`);
+    }
+    if (element.suggestedReviewStatus && !REVIEW_STATUSES.includes(element.suggestedReviewStatus)) {
+      errors.push(`${elementLabel} suggestedReviewStatus must be one of ${REVIEW_STATUSES.join(", ")}`);
+    }
+
+    if (Array.isArray(element.targetDestinations)) {
+      if (element.targetDestinations.length === 0) {
+        errors.push(`${elementLabel} targetDestinations must not be empty`);
+      }
+      for (const destination of element.targetDestinations) {
+        if (!EXTRACTION_TARGET_DESTINATIONS.includes(destination)) {
+          errors.push(`${elementLabel} invalid targetDestination ${destination}`);
+        }
+      }
+      if (element.elementType === "visual_asset" && element.targetDestinations.includes("claim") && !element.targetDestinations.includes("profile")) {
+        errors.push(`${elementLabel} visual_asset must not route directly to Claim Ledger`);
+      }
+    }
+
+    if (touchesHumanOwnedDecision(element) && element.suggestedReviewStatus === "adopt") {
+      errors.push(`${elementLabel} touches a human-owned decision and must not suggest adopt`);
+    }
+    if (touchesHumanOwnedDecision(element) && typeof element.confidence === "number" && element.confidence >= 0.9 && element.suggestedReviewStatus !== "hold") {
+      errors.push(`${elementLabel} is overconfident on a human-owned decision; suggestedReviewStatus must remain hold`);
+    }
+  });
+
+  if (options.requireCompleteElementTypeCoverage) {
+    for (const elementType of REQUIRED_EXTRACTION_ELEMENT_TYPES) {
+      if (!elementTypes.has(elementType)) {
+        errors.push(`${label} missing elementType ${elementType}`);
+      }
+    }
+  }
+}
+
+function touchesHumanOwnedDecision(element) {
+  if (!element || typeof element !== "object") {
+    return false;
+  }
+  if (element.elementType === "unresolved_decision") {
+    return true;
+  }
+  const dependencies = Array.isArray(element.unresolvedDependencies) ? element.unresolvedDependencies : [];
+  const searchable = [
+    element.displayText,
+    element.notes,
+    ...dependencies
+  ].filter(Boolean).join(" ").toLowerCase();
+  return HUMAN_OWNED_DECISIONS.some((decision) => searchable.includes(decision.toLowerCase()));
 }
 
 function validateState(state) {
@@ -351,48 +869,11 @@ function validateState(state) {
 
   const extractionContracts = Array.isArray(state.extractionContracts) ? state.extractionContracts : state.extractionContract ? [state.extractionContract] : [];
   extractionContracts.forEach((contract, contractIndex) => {
-    if (!contract || typeof contract !== "object" || Array.isArray(contract)) {
-      errors.push(`extraction contract ${contractIndex} must be an object`);
-      return;
-    }
-    for (const field of EXTRACTION_CONTRACT_REQUIRED_FIELDS) {
-      if (!(field in contract)) {
-        errors.push(`extraction contract ${contract.extractionRunId || contractIndex} missing ${field}`);
-      }
-    }
-    for (const arrayField of ["sourceRefs", "extractedElements", "profileCandidates", "claimCandidates", "timelineEntryCandidates", "unresolvedDependencies", "warnings", "humanAuthorityBoundaries"]) {
-      if (arrayField in contract && !Array.isArray(contract[arrayField])) {
-        errors.push(`extraction contract ${contract.extractionRunId || contractIndex} ${arrayField} must be an array`);
-      }
-    }
-
-    const elementTypes = new Set();
-    if (Array.isArray(contract.extractedElements)) {
-      contract.extractedElements.forEach((element, elementIndex) => {
-        if (!element || typeof element !== "object" || Array.isArray(element)) {
-          errors.push(`extraction element ${elementIndex} must be an object`);
-          return;
-        }
-        for (const field of EXTRACTION_ELEMENT_REQUIRED_FIELDS) {
-          if (!(field in element)) {
-            errors.push(`extraction element ${element.id || elementIndex} missing ${field}`);
-          }
-        }
-        for (const arrayField of ["aliases", "sourceRefIds", "unresolvedDependencies"]) {
-          if (arrayField in element && !Array.isArray(element[arrayField])) {
-            errors.push(`extraction element ${element.id || elementIndex} ${arrayField} must be an array`);
-          }
-        }
-        if (element.elementType) {
-          elementTypes.add(element.elementType);
-        }
-      });
-      for (const elementType of REQUIRED_EXTRACTION_ELEMENT_TYPES) {
-        if (!elementTypes.has(elementType)) {
-          errors.push(`extraction contract ${contract.extractionRunId || contractIndex} missing elementType ${elementType}`);
-        }
-      }
-    }
+    const validation = validateExtractionContract(contract, {
+      label: `extraction contract ${contract?.extractionRunId || contractIndex}`,
+      requireCompleteElementTypeCoverage: true
+    });
+    errors.push(...validation.errors);
   });
 
   return { ok: errors.length === 0, errors };
@@ -435,6 +916,10 @@ function summarizeState(state) {
 
 function summarizeExtractionContracts(state) {
   const contracts = Array.isArray(state.extractionContracts) ? state.extractionContracts : state.extractionContract ? [state.extractionContract] : [];
+  return summarizeExtractionContractList(contracts);
+}
+
+function summarizeExtractionContractList(contracts) {
   const byElementType = {};
   let extractedElementCount = 0;
   let profileCandidateCount = 0;
@@ -634,10 +1119,22 @@ Usage:
   node tools/fff-state.mjs validate <state.json>
   node tools/fff-state.mjs summarize <state.json>
   node tools/fff-state.mjs normalize <state.json> [output.json]
+  node tools/fff-state.mjs validate-extraction <payload.json>
+  node tools/fff-state.mjs summarize-extraction <payload.json>
+  node tools/fff-state.mjs validate-extraction-fixtures <fixture-directory>
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
 `);
+}
+
+function printWarnings(warnings) {
+  if (!warnings || warnings.length === 0) {
+    return;
+  }
+  for (const warning of warnings) {
+    console.warn(`warning: ${warning}`);
+  }
 }
 
 function fail(message) {

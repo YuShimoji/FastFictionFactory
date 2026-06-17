@@ -1,0 +1,94 @@
+{
+  "extractionRunId": "fixture-valid-minimal-001",
+  "schemaVersion": "fff.extractionContract.v1",
+  "sourceDraftId": "draft-fixture-001",
+  "sourceMemoRef": "rawMemo",
+  "sourceRefs": [
+    {
+      "id": "src-fixture-memo-001",
+      "source_type": "memo",
+      "label": "Fixture memo",
+      "locator": "artifacts/extraction-negative-fixtures/valid-minimal.json",
+      "trust": "author_memo"
+    }
+  ],
+  "generatedAt": "2026-06-17T00:00:00.000Z",
+  "generatorType": "local_contract_fixture",
+  "generatorLabel": "Minimal valid local fixture; no model/API call",
+  "extractionMode": "validator_fixture",
+  "confidencePolicy": {
+    "defaultConfidence": 0.62,
+    "lowConfidenceAction": "hold",
+    "highCanonRiskAction": "hold_until_human_review",
+    "freeformReviewAuthority": "human review text overrides generated suggestions"
+  },
+  "extractedElements": [
+    {
+      "id": "fixture-el-mira",
+      "displayText": "Mira Vale",
+      "elementType": "person",
+      "aliases": [
+        "Mira"
+      ],
+      "sourceSpan": {
+        "text": "Mira Vale",
+        "start": 0,
+        "end": 9
+      },
+      "sourceRefIds": [
+        "src-fixture-memo-001"
+      ],
+      "confidence": 0.62,
+      "suggestedReviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "low",
+      "spoilerLevel": "low",
+      "targetDestinations": [
+        "profile"
+      ],
+      "targetProfileIds": [
+        "profile-mira"
+      ],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [],
+      "notes": "Minimal safe profile-side candidate."
+    }
+  ],
+  "profileCandidates": [],
+  "claimCandidates": [],
+  "timelineEntryCandidates": [],
+  "unresolvedDependencies": [],
+  "reviewSafeDefaults": {
+    "defaultReviewStatus": "hold",
+    "allowAdopt": true,
+    "allowProvisional": true,
+    "allowReject": true,
+    "autoCanonPromotion": false,
+    "autoChronologyPromotion": false,
+    "unknownSourceHandling": "preserve_unknown_fields_and_hold_candidate"
+  },
+  "decisionLogSafeMetadata": {
+    "owner": "human_author",
+    "statusVocabulary": [
+      "adopt",
+      "provisional",
+      "hold",
+      "reject"
+    ],
+    "fixedPhraseRequired": false,
+    "freeformReviewAllowed": true,
+    "reversibleActionsOnly": true
+  },
+  "warnings": [],
+  "unknownFieldsPolicy": "Preserve unknown imported top-level fields under metadata.importedUnknownFields and keep unrecognized extraction fields visible in JSON review.",
+  "humanAuthorityBoundaries": [
+    "Freeform user review is the source of truth.",
+    "Toma fate remains human-owned.",
+    "brass moth truth remains human-owned.",
+    "Council motive remains human-owned."
+  ],
+  "notes": "Valid minimal fixture for local validator hardening.",
+  "unknownAdapterEcho": {
+    "purpose": "Exercise unknown field preservation without failing the contract."
+  }
+}

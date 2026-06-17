@@ -1,0 +1,90 @@
+{
+  "extractionRunId": "fixture-auto-canon-leak-001",
+  "schemaVersion": "fff.extractionContract.v1",
+  "sourceDraftId": "draft-fixture-001",
+  "sourceMemoRef": "rawMemo",
+  "sourceRefs": [
+    {
+      "id": "src-fixture-memo-001",
+      "source_type": "memo",
+      "label": "Fixture memo",
+      "locator": "artifacts/extraction-negative-fixtures/auto-canon-leak.json",
+      "trust": "author_memo"
+    }
+  ],
+  "generatedAt": "2026-06-17T00:00:00.000Z",
+  "generatorType": "local_contract_fixture",
+  "generatorLabel": "Negative fixture; no model/API call",
+  "extractionMode": "validator_fixture",
+  "confidencePolicy": {
+    "defaultConfidence": 0.8,
+    "lowConfidenceAction": "hold",
+    "highCanonRiskAction": "hold_until_human_review",
+    "freeformReviewAuthority": "human review text overrides generated suggestions"
+  },
+  "extractedElements": [
+    {
+      "id": "fixture-el-auto-canon-person",
+      "displayText": "Mira Vale",
+      "elementType": "person",
+      "aliases": [
+        "Mira"
+      ],
+      "sourceSpan": {
+        "text": "Mira Vale",
+        "start": 0,
+        "end": 9
+      },
+      "sourceRefIds": [
+        "src-fixture-memo-001"
+      ],
+      "confidence": 0.8,
+      "suggestedReviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "low",
+      "spoilerLevel": "low",
+      "targetDestinations": [
+        "profile"
+      ],
+      "targetProfileIds": [
+        "profile-mira"
+      ],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [],
+      "notes": "The element is safe; the defaults intentionally leak automatic canon."
+    }
+  ],
+  "profileCandidates": [],
+  "claimCandidates": [],
+  "timelineEntryCandidates": [],
+  "unresolvedDependencies": [],
+  "reviewSafeDefaults": {
+    "defaultReviewStatus": "adopt",
+    "allowAdopt": true,
+    "allowProvisional": true,
+    "allowReject": true,
+    "autoCanonPromotion": true,
+    "autoChronologyPromotion": true
+  },
+  "decisionLogSafeMetadata": {
+    "owner": "human_author",
+    "statusVocabulary": [
+      "adopt",
+      "provisional",
+      "hold",
+      "reject"
+    ],
+    "fixedPhraseRequired": false,
+    "freeformReviewAllowed": true,
+    "reversibleActionsOnly": true
+  },
+  "warnings": [],
+  "unknownFieldsPolicy": "Preserve unknown imported top-level fields under metadata.importedUnknownFields and keep unrecognized extraction fields visible in JSON review.",
+  "humanAuthorityBoundaries": [
+    "Freeform user review is the source of truth.",
+    "Toma fate remains human-owned.",
+    "brass moth truth remains human-owned.",
+    "Council motive remains human-owned."
+  ],
+  "notes": "Negative fixture: review-safe defaults try to adopt automatically and omit unknownSourceHandling."
+}
