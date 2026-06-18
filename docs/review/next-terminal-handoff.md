@@ -18,7 +18,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected at this handoff: `master` at `1c7f402 Harden Extraction Contract validation fixtures`, with `HEAD...@{u}` reporting `0 0`.
+Expected at this handoff: `master` is clean and synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The latest product implementation checkpoint is `1c7f402 Harden Extraction Contract validation fixtures`; newer commits may contain handoff-only context sync.
 
 3. Read these files in this order:
 
