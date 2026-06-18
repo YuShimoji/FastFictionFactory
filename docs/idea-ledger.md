@@ -25,9 +25,18 @@
 - Purpose: Replace deterministic mock extraction with an actual extraction workflow.
 - Effect: Turns raw memo intake into generated candidates instead of static seed data.
 - Requirements: Needs source tracking, schema validation, review controls, and clear generated-vs-human authority boundaries.
-- State: Extraction Contract implemented in `fff-extraction-contract-001`; model/API extraction adapter not started.
+- State: Extraction Contract implemented in `fff-extraction-contract-001`; validator hardening implemented in `fff-extraction-validator-hardening-001`; model/API extraction adapter not started.
 - Owner: Product/AI implementer.
-- Next move: Build a local-only adapter spike that emits the reviewed contract shape from deterministic input before adding any model/API behavior.
+- Next move: Build a local-only adapter spike that emits the reviewed contract shape from deterministic input, then run the output through `node .\tools\fff-state.mjs validate-extraction` and the fixture matrix before adding any model/API behavior.
+
+### Extraction Validator Hardening
+
+- Purpose: Prevent unsafe extraction payloads from entering review surfaces before adapter work.
+- Effect: Catches missing source refs, missing extraction identity fields, invalid element types, unsafe human-owned decision adoption, direct visual-asset-to-claim routing, auto-canon leaks, missing review-safe defaults, missing human authority boundaries, and missing high-risk warnings.
+- Requirements: Keep validation zero-dependency, local-first, fixture-backed, and non-canon-producing.
+- State: Implemented in `fff-extraction-validator-hardening-001` with fixtures under `artifacts/extraction-negative-fixtures/` and smoke evidence at `artifacts/extraction-validator-smoke-result.json`.
+- Owner: Product/AI implementer for validator and adapter shape; human author for final story authority.
+- Next move: Use the validator fixture matrix as the first gate for the local-only extraction adapter spike.
 
 ### Freeform Review Intake
 

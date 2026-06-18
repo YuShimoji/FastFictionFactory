@@ -36,19 +36,23 @@
     "artifacts/freeform-review-intake-smoke-result.json",
     "artifacts/fff-current-review-screenshot.png",
     "artifacts/fff-review-contact-sheet.png",
+    "docs/project-context.md",
     "docs/review/current-status.md",
+    "docs/review/next-terminal-handoff.md",
     "docs/review/extraction-validator-hardening-review.md",
     "docs/review/extraction-contract-review.md",
     "docs/review/freeform-review-intake.md",
     "docs/data-model.md",
+    "docs/idea-ledger.md",
+    "docs/decision-log.md",
     "artifacts/ARTIFACTS.md"
   ],
   "created_at": "2026-06-18T00:14:48+09:00",
   "validation_command": "& { node tools/fff-state.mjs validate artifacts/current-project-state.json; node tools/fff-state.mjs validate artifacts/sample-project-state.json; node tools/fff-state.mjs validate-extraction artifacts/sample-extraction-payload.json; node tools/fff-state.mjs validate-extraction artifacts/extraction-negative-fixtures/valid-minimal.json; node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures; $smoke = Get-Content artifacts/extraction-validator-smoke-result.json -Raw | ConvertFrom-Json; if (-not $smoke.passed) { throw \"Extraction validator smoke failed\" }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw | ConvertFrom-Json; if ($manifest.artifact_id -ne \"fff-extraction-validator-hardening-001\") { throw \"Manifest artifact id mismatch\" }; @(\"public/review/index.html\", \"docs/review/extraction-validator-hardening-review.md\", \"artifacts/fff-current-review-screenshot.png\", \"artifacts/fff-review-contact-sheet.png\") | ForEach-Object { if (-not (Test-Path $_)) { throw (\"Missing required artifact: \" + $_) } }; @(\"artifacts/fff-current-review-screenshot.png\", \"artifacts/fff-review-contact-sheet.png\") | ForEach-Object { if ((Get-Item $_).Length -le 0) { throw (\"Empty visual artifact: \" + $_) } }; Write-Output \"Extraction validator hardening validation passed\" }",
-  "validation_result": "passed 2026-06-18T00:23:16+09:00; current/sample project-state validation passed, sample extraction payload validation passed, valid fixture passed with unknown-field preservation warning, expected-invalid fixtures failed for intended reasons, built-in guards passed for missing extractionRunId, missing schemaVersion, invalid element type, missing humanAuthorityBoundaries, and missing high-risk warnings, Visual Review Hub rendered on localhost with Extraction Contract, Claim Ledger, Timeline View, Profile/Ghost Flow, validator fixture links, and no browser console warnings/errors, screenshot/contact sheet regenerated, manifest validation command passed, git diff whitespace check passed, and MkDocs strict build passed with only non-fatal Material upstream notice and nav-info output",
+  "validation_result": "passed 2026-06-18T09:57:26+09:00; current/sample project-state validation passed, sample extraction payload validation passed, valid fixture passed with unknown-field preservation warning, expected-invalid fixtures failed for intended reasons, built-in guards passed for missing extractionRunId, missing schemaVersion, invalid element type, missing humanAuthorityBoundaries, and missing high-risk warnings, Visual Review Hub rendered on localhost with Extraction Contract, Claim Ledger, Timeline View, Profile/Ghost Flow, validator fixture links, and no browser console warnings/errors, screenshot/contact sheet regenerated, next-terminal handoff, project context, decision log, and idea ledger synced for immediate restart, manifest validation command passed, git diff whitespace check passed, and MkDocs strict build passed with only non-fatal Material upstream notice and nav-info output",
   "review_status": "ready_for_local_review",
   "review_input_mode": "freeform",
   "review_prompt_hint": "Review the validator hardening in natural language. Useful feedback can mention missing fixture classes, overly strict checks, unsafe routing that should fail, or any case that should remain review debt before adapter work.",
   "next_action": "Use the fixture matrix as the gate for a local-only extraction adapter spike. Keep adapter output source-tracked, review-held by default, and blocked from auto-canon promotion.",
-  "context_synced_at": "2026-06-18T00:14:48+09:00"
+  "context_synced_at": "2026-06-18T09:57:26+09:00"
 }

@@ -2,11 +2,11 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-extraction-contract-001`, served as a static local review UI at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-extraction-validator-hardening-001`, served through the static local Visual Review Hub at `public/review/index.html`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is an Extraction Contract surface that defines source refs, candidate routing, review-safe defaults, and human authority boundaries before any model/API extractor exists.
+Keep the MVP reviewable without production commitments. The current lane is Extraction Contract validator hardening: source refs, candidate routing, review-safe defaults, warnings, and human authority boundaries must be checked locally before any adapter or model/API extractor exists.
 
 ## Current Slice
 
@@ -25,6 +25,9 @@ The active slice is complete enough for local review:
 - Profile/Ghost smoke evidence: `artifacts/profile-ghost-smoke-result.json`
 - Extraction payload: `artifacts/sample-extraction-payload.json`
 - Extraction Contract smoke evidence: `artifacts/extraction-contract-smoke-result.json`
+- Extraction validator fixture directory: `artifacts/extraction-negative-fixtures/`
+- Extraction validator smoke evidence: `artifacts/extraction-validator-smoke-result.json`
+- Extraction validator review doc: `docs/review/extraction-validator-hardening-review.md`
 - Freeform review intake smoke evidence: `artifacts/freeform-review-intake-smoke-result.json`
 - Screenshot: `artifacts/fff-current-review-screenshot.png`
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
@@ -34,23 +37,30 @@ The active slice is complete enough for local review:
 
 ## Verification Snapshot
 
-Last verified on 2026-06-17:
+Last verified on 2026-06-18:
 
 ```powershell
 node .\tools\fff-state.mjs validate .\artifacts\sample-project-state.json
 node .\tools\fff-state.mjs validate .\artifacts\current-project-state.json
+node .\tools\fff-state.mjs validate-extraction .\artifacts\sample-extraction-payload.json
+node .\tools\fff-state.mjs validate-extraction .\artifacts\extraction-negative-fixtures\valid-minimal.json
+node .\tools\fff-state.mjs validate-extraction-fixtures .\artifacts\extraction-negative-fixtures
 node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
 ```
 
 Result summary:
 
 - Both state JSON files validate with `schemaVersion: "fff.projectState.v1"`.
+- The sample extraction payload validates as `schemaVersion: "fff.extractionContract.v1"`.
+- The validator fixture matrix passes: 1 expected-valid fixture, 4 expected-invalid fixtures, and 5 built-in mutation guards.
+- The validator catches missing source refs, missing extraction identity fields, invalid element types, unsafe human-owned decision adoption, direct visual asset routing to Claim Ledger, auto-canon/default-review leaks, missing human authority boundaries, and missing high-risk warnings.
+- Unknown top-level extraction fields are reported as preservation warnings for JSON review instead of being silently dropped.
 - Current state contains 1 Extraction Contract run, 12 extraction elements, 11 Profile/Ghost records, 9 Claim Ledger claims, and 8 Timeline View entries.
 - Extraction Contract summary covers all required element types, 6 high-canon-risk extraction elements, 3 human-owned unresolved dependencies, 5 warnings, and candidate routing into Profile/Ghost, Claim Ledger, and Timeline View.
 - Profile/Ghost summary covers all required profile types, all required ghost node statuses, 7 high canon risk profiles, 7 dependency-bound profiles, and 11 profiles linked to both claims and timeline entries.
 - Claim summary: 5 high canon risk claims, 5 claims with unresolved dependencies, 1 unverified reality status claim, and 4 hidden or spoiler-protected claims.
 - Timeline summary reports all five timeline axes, 4 high canon risk entries, 4 dependency-bound entries, and 8 entries linked to claims.
-- The Profile/Ghost manifest validation command passes.
+- The active manifest validation command passes.
 
 ## Boundaries
 
@@ -83,9 +93,10 @@ Run the state adapter:
 
 ```powershell
 node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
+node .\tools\fff-state.mjs validate-extraction-fixtures .\artifacts\extraction-negative-fixtures
 ```
 
-First next move: build a local-only extraction adapter spike that emits the reviewed contract shape without adding model/API behavior yet.
+First next move: build a local-only extraction adapter spike that emits the reviewed contract shape from deterministic input, then run that output through the validator before adding model/API behavior.
 
 ## Handoff Path
 
