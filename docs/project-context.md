@@ -103,3 +103,5 @@ First next move: build a local-only extraction adapter spike that emits the revi
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
+
+Latest handoff refresh: 2026-06-19T18:58:54+09:00. At refresh time, `git fetch origin --prune` completed, `HEAD...@{u}` reported `0 0`, and the active manifest validation command passed.

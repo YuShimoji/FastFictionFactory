@@ -2,6 +2,8 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
+Latest handoff refresh: 2026-06-19T18:58:54+09:00. At refresh time, `git fetch origin --prune` completed, `HEAD...@{u}` reported `0 0`, and the active manifest validation command passed. The smoke evidence was regenerated at `artifacts/extraction-validator-smoke-result.json`.
+
 ## Start Here
 
 1. Pull the latest remote state:
