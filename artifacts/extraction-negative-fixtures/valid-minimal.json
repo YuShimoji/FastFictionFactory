@@ -1,0 +1,80 @@
+{
+  "extractionRunId": "fixture-valid-minimal",
+  "schemaVersion": "fff.extractionContract.v1",
+  "sourceDraftId": "draft-fixture-001",
+  "sourceMemoRef": "rawMemo",
+  "sourceRefs": [
+    {
+      "id": "src-fixture-memo",
+      "label": "Fixture memo",
+      "source_type": "memo",
+      "locator": "fixture memo",
+      "trust": "author_memo"
+    }
+  ],
+  "generatedAt": "2026-06-19T00:00:00+09:00",
+  "generatorType": "local_contract_fixture",
+  "generatorLabel": "Minimal local fixture; no model/API call",
+  "extractionMode": "contract_only_no_model_api",
+  "confidencePolicy": {
+    "defaultConfidence": 0.75,
+    "lowConfidenceAction": "hold",
+    "highCanonRiskAction": "hold_until_human_review",
+    "freeformReviewAuthority": "human review text overrides generated suggestions"
+  },
+  "extractedElements": [
+    {"id":"fixture-person","displayText":"Mira Vale","elementType":"person","aliases":["Mira"],"sourceSpan":{"text":"Mira Vale","start":0,"end":9},"sourceRefIds":["src-fixture-memo"],"confidence":0.91,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":[],"canonRisk":"low","spoilerLevel":"low","targetDestinations":["profile"],"targetProfileIds":["profile-mira"],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"Profile candidate remains reviewable."},
+    {"id":"fixture-place","displayText":"North Bell Station","elementType":"place","aliases":["North Bell"],"sourceSpan":{"text":"North Bell Station","start":10,"end":28},"sourceRefIds":["src-fixture-memo"],"confidence":0.86,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":[],"canonRisk":"medium","spoilerLevel":"medium","targetDestinations":["profile"],"targetProfileIds":["profile-north-bell"],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"Place candidate remains local review state."},
+    {"id":"fixture-organization","displayText":"City council","elementType":"organization","aliases":["council"],"sourceSpan":{"text":"city council","start":29,"end":41},"sourceRefIds":["src-fixture-memo"],"confidence":0.84,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":["Council motive"],"canonRisk":"high","spoilerLevel":"high","targetDestinations":["profile","unresolved_decision"],"targetProfileIds":["profile-council"],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"Motive remains human-owned."},
+    {"id":"fixture-event","displayText":"Arcade closes at 9:17","elementType":"event","aliases":["9:17 closure"],"sourceSpan":{"text":"closes at 9:17","start":42,"end":56},"sourceRefIds":["src-fixture-memo"],"confidence":0.9,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":[],"canonRisk":"low","spoilerLevel":"low","targetDestinations":["timeline"],"targetProfileIds":[],"targetClaimIds":[],"targetTimelineEntryIds":["timeline-917-cycle"],"notes":"Timeline route stays reviewable."},
+    {"id":"fixture-object","displayText":"Brass moth","elementType":"object","aliases":["moth"],"sourceSpan":{"text":"brass moth","start":57,"end":67},"sourceRefIds":["src-fixture-memo"],"confidence":0.88,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":["brass moth truth"],"canonRisk":"high","spoilerLevel":"high","targetDestinations":["profile","unresolved_decision"],"targetProfileIds":["profile-brass-moth"],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"Object function remains human-owned."},
+    {"id":"fixture-concept","displayText":"Stolen minutes","elementType":"concept","aliases":["stolen time"],"sourceSpan":{"text":"stolen minutes","start":68,"end":82},"sourceRefIds":["src-fixture-memo"],"confidence":0.82,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":["Council motive"],"canonRisk":"high","spoilerLevel":"medium","targetDestinations":["claim"],"targetProfileIds":[],"targetClaimIds":["claim-city-sells-time"],"targetTimelineEntryIds":[],"notes":"Concept can route to a held claim."},
+    {"id":"fixture-document","displayText":"Ledger of minutes","elementType":"document","aliases":["ledger"],"sourceSpan":{"text":"ledger of minutes","start":83,"end":100},"sourceRefIds":["src-fixture-memo"],"confidence":0.78,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":["Council motive"],"canonRisk":"medium","spoilerLevel":"medium","targetDestinations":["profile"],"targetProfileIds":["profile-ledger-of-minutes"],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"Document-like object remains a profile candidate."},
+    {"id":"fixture-visual","displayText":"Observatory bell image","elementType":"visual_asset","aliases":["bell paradox"],"sourceSpan":{"text":"bell was removed","start":101,"end":117},"sourceRefIds":["src-fixture-memo"],"confidence":0.74,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":[],"canonRisk":"medium","spoilerLevel":"medium","targetDestinations":["profile","timeline"],"targetProfileIds":["profile-observatory-bell-image"],"targetClaimIds":[],"targetTimelineEntryIds":["timeline-noon-bell"],"notes":"Visual asset is not a release asset."},
+    {"id":"fixture-placeholder","displayText":"Magic rules placeholder","elementType":"placeholder","aliases":["magic boundary"],"sourceSpan":{"text":"not explain the magic too early","start":118,"end":149},"sourceRefIds":["src-fixture-memo"],"confidence":0.7,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":["brass moth truth","Council motive"],"canonRisk":"high","spoilerLevel":"high","targetDestinations":["profile","unresolved_decision"],"targetProfileIds":["profile-magic-rules-placeholder"],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"Placeholder keeps missing structure visible."},
+    {"id":"fixture-source-reference","displayText":"Raw story memo","elementType":"source_reference","aliases":["memo"],"sourceSpan":{"text":"Working title","start":150,"end":163},"sourceRefIds":["src-fixture-memo"],"confidence":1,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":[],"canonRisk":"low","spoilerLevel":"low","targetDestinations":["source_reference"],"targetProfileIds":[],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"Source reference is explicit."},
+    {"id":"fixture-unresolved-decision","displayText":"Toma fate","elementType":"unresolved_decision","aliases":["alive or dead"],"sourceSpan":{"text":"whether Toma is alive","start":164,"end":186},"sourceRefIds":["src-fixture-memo"],"confidence":0.8,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":["Toma fate"],"canonRisk":"high","spoilerLevel":"high","targetDestinations":["unresolved_decision"],"targetProfileIds":[],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"The contract preserves the decision slot without deciding it."}
+  ],
+  "profileCandidates": [],
+  "claimCandidates": [],
+  "timelineEntryCandidates": [],
+  "unresolvedDependencies": [
+    "Toma fate",
+    "brass moth truth",
+    "Council motive"
+  ],
+  "reviewSafeDefaults": {
+    "defaultReviewStatus": "hold",
+    "allowAdopt": true,
+    "allowProvisional": true,
+    "allowReject": true,
+    "autoCanonPromotion": false,
+    "autoChronologyPromotion": false,
+    "unknownSourceHandling": "preserve_unknown_fields_and_hold_candidate"
+  },
+  "decisionLogSafeMetadata": {
+    "owner": "human_author",
+    "statusVocabulary": [
+      "adopt",
+      "provisional",
+      "hold",
+      "reject"
+    ],
+    "fixedPhraseRequired": false,
+    "freeformReviewAllowed": true,
+    "reversibleActionsOnly": true
+  },
+  "warnings": [
+    "This fixture is not a model/API extraction engine.",
+    "Generated candidates must not finalize Toma fate, brass moth truth, or Council motive.",
+    "Visual asset candidates are placeholders and not release assets."
+  ],
+  "unknownFieldsPolicy": "Preserve unknown imported top-level fields and hold unrecognized candidates for review.",
+  "humanAuthorityBoundaries": [
+    "Toma fate remains human-owned.",
+    "Brass moth truth remains human-owned.",
+    "Council motive remains human-owned.",
+    "No model/API call, database persistence, production sync, publishing, or AI video generation is introduced by this fixture."
+  ],
+  "notes": "Valid minimal fixture for Extraction Contract validator hardening."
+}

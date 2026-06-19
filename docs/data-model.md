@@ -6,7 +6,7 @@ All entities are local-first MVP records. The prototype uses mocked data in `pub
 
 ```ts
 type ReviewStatus = "adopt" | "provisional" | "hold" | "reject";
-type SourceTrust = "author_memo" | "derived_candidate" | "external_unverified" | "rights_unknown";
+type SourceTrust = "author_memo" | "derived_candidate" | "external_unverified" | "rights_unknown" | "human_review";
 type GateStatus = "pass" | "warn" | "block" | "not_checked";
 ```
 
@@ -47,6 +47,7 @@ type ProjectStateEnvelope = {
     productionOnlyNotes: string[];
     importedUnknownFields: Record<string, unknown>;
     activeArtifactId?: string;
+    preservedArtifactId?: string;
     profileGhostFlow?: {
       requiredProfileTypes: Profile["profileType"][];
       requiredGhostNodeStatuses: Profile["ghostNodeStatus"][];
@@ -132,6 +133,7 @@ type ExtractionElement = {
   sourceRefIds: string[];
   confidence: number;
   suggestedReviewStatus: ReviewStatus;
+  reviewStatus: ReviewStatus;
   unresolvedDependencies: string[];
   canonRisk: "low" | "medium" | "high";
   spoilerLevel: "low" | "medium" | "high";
@@ -142,6 +144,29 @@ type ExtractionElement = {
   notes: string;
 };
 ```
+
+## Extraction Validator Fixtures
+
+`fff-extraction-validator-hardening-001` adds local fixture validation around the extraction contract before any adapter or model/API behavior exists.
+
+The validator command is:
+
+```powershell
+node .\tools\fff-state.mjs validate-extraction .\artifacts\sample-extraction-payload.json
+node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
+```
+
+The fixture matrix is intentionally mixed:
+
+| Fixture | Expected | Purpose |
+| --- | --- | --- |
+| `valid-minimal.json` | valid | Confirms the minimal local contract still covers required extraction element types and review-safe defaults. |
+| `missing-source-refs.json` | invalid | Blocks candidates that cannot point back to a declared source ref. |
+| `overconfident-human-owned-decision.json` | invalid | Blocks extraction from adopting Toma fate, brass moth truth, Council motive, or other human-owned decisions. |
+| `invalid-routing-visual-asset-to-claim.json` | invalid | Blocks direct visual-asset-to-claim routing without a Profile/Ghost or Timeline review buffer. |
+| `auto-canon-leak.json` | invalid | Blocks defaults that silently promote candidates into canon or chronology. |
+| `missing-review-safe-defaults.json` | invalid | Requires review-safe defaults before adapter output can be accepted. |
+| `unknown-fields-preservation.json` | valid | Confirms unknown adapter fields are tolerated for preservation and JSON review instead of being silently applied. |
 
 ## UnresolvedCreativeDecision
 
@@ -269,7 +294,7 @@ Legacy compatibility fields may also appear on local MVP claims: `title`, `claim
 ```ts
 type SourceRef = {
   id: string;
-  source_type: "memo" | "draft" | "external_note" | "asset" | "human_review";
+  source_type: "memo" | "draft" | "external_note" | "asset" | "human_review" | "derived_candidate";
   label: string;
   locator: string;
   trust: SourceTrust;

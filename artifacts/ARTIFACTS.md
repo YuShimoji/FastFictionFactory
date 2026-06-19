@@ -141,3 +141,22 @@
 - Manifest: `artifacts/artifact-manifest.json`
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
+
+## fff-extraction-validator-hardening-001
+
+- Title: Fast Fiction Factory Extraction Validator Hardening
+- Purpose: Harden the local Extraction Contract with valid and invalid fixture payloads before any adapter, model/API behavior, database persistence, publishing, production sync, or final canon decision exists.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local launcher: `scripts/operator/open_review.ps1`
+- Preserved contract artifact: `fff-extraction-contract-001`
+- Validator fixtures: `artifacts/extraction-negative-fixtures/`
+- Validator smoke result: `artifacts/extraction-validator-smoke-result.json`
+- State adapter: `tools/fff-state.mjs`
+- Review doc: `docs/review/extraction-validator-hardening-review.md`
+- Current status: `docs/review/current-status.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Review status: `ready_for_local_review`
+- Review input mode: `freeform`

@@ -1,0 +1,155 @@
+{
+  "artifact_id": "fff-extraction-validator-hardening-001",
+  "generated_at": "2026-06-19T02:18:56.704Z",
+  "validator": "tools/fff-state.mjs smoke-extraction-fixtures",
+  "fixture_dir": "artifacts/extraction-negative-fixtures",
+  "required_fixtures": [
+    "valid-minimal.json",
+    "missing-source-refs.json",
+    "overconfident-human-owned-decision.json",
+    "invalid-routing-visual-asset-to-claim.json",
+    "auto-canon-leak.json",
+    "missing-review-safe-defaults.json",
+    "unknown-fields-preservation.json"
+  ],
+  "summary": {
+    "total": 7,
+    "expectedValid": 2,
+    "expectedInvalid": 5,
+    "matched": 7,
+    "mismatched": 0,
+    "passed": true
+  },
+  "matrix": [
+    {
+      "file": "auto-canon-leak.json",
+      "expectedValid": false,
+      "actualValid": false,
+      "matchedExpectation": true,
+      "intendedReason": "review-safe defaults must prevent automatic canon or chronology promotion",
+      "errors": [
+        "extraction contract fixture-auto-canon-leak reviewSafeDefaults.defaultReviewStatus must be hold",
+        "extraction contract fixture-auto-canon-leak reviewSafeDefaults.autoCanonPromotion must be false",
+        "extraction contract fixture-auto-canon-leak reviewSafeDefaults.autoChronologyPromotion must be false",
+        "extraction contract fixture-auto-canon-leak reviewSafeDefaults.unknownSourceHandling must preserve unknown fields and hold candidates",
+        "extraction contract fixture-auto-canon-leak missing elementType place",
+        "extraction contract fixture-auto-canon-leak missing elementType organization",
+        "extraction contract fixture-auto-canon-leak missing elementType event",
+        "extraction contract fixture-auto-canon-leak missing elementType object",
+        "extraction contract fixture-auto-canon-leak missing elementType concept",
+        "extraction contract fixture-auto-canon-leak missing elementType document",
+        "extraction contract fixture-auto-canon-leak missing elementType visual_asset",
+        "extraction contract fixture-auto-canon-leak missing elementType placeholder",
+        "extraction contract fixture-auto-canon-leak missing elementType source_reference",
+        "extraction contract fixture-auto-canon-leak missing elementType unresolved_decision"
+      ]
+    },
+    {
+      "file": "invalid-routing-visual-asset-to-claim.json",
+      "expectedValid": false,
+      "actualValid": false,
+      "matchedExpectation": true,
+      "intendedReason": "visual assets cannot route directly into claims without review buffer",
+      "errors": [
+        "extraction element fixture-visual-direct-claim visual_asset claim routing must include profile or timeline review buffer",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType person",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType place",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType organization",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType event",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType object",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType concept",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType document",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType placeholder",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType source_reference",
+        "extraction contract fixture-invalid-routing-visual-asset-to-claim missing elementType unresolved_decision"
+      ]
+    },
+    {
+      "file": "missing-review-safe-defaults.json",
+      "expectedValid": false,
+      "actualValid": false,
+      "matchedExpectation": true,
+      "intendedReason": "reviewSafeDefaults is required",
+      "errors": [
+        "extraction contract fixture-missing-review-safe-defaults missing reviewSafeDefaults",
+        "extraction contract fixture-missing-review-safe-defaults reviewSafeDefaults must be an object",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType place",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType organization",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType event",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType object",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType concept",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType document",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType visual_asset",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType placeholder",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType source_reference",
+        "extraction contract fixture-missing-review-safe-defaults missing elementType unresolved_decision"
+      ]
+    },
+    {
+      "file": "missing-source-refs.json",
+      "expectedValid": false,
+      "actualValid": false,
+      "matchedExpectation": true,
+      "intendedReason": "sourceRefIds must exist and point at sourceRefs",
+      "errors": [
+        "extraction element fixture-source-missing sourceRefIds must not be empty",
+        "extraction contract fixture-missing-source-refs missing elementType place",
+        "extraction contract fixture-missing-source-refs missing elementType organization",
+        "extraction contract fixture-missing-source-refs missing elementType event",
+        "extraction contract fixture-missing-source-refs missing elementType object",
+        "extraction contract fixture-missing-source-refs missing elementType concept",
+        "extraction contract fixture-missing-source-refs missing elementType document",
+        "extraction contract fixture-missing-source-refs missing elementType visual_asset",
+        "extraction contract fixture-missing-source-refs missing elementType placeholder",
+        "extraction contract fixture-missing-source-refs missing elementType source_reference",
+        "extraction contract fixture-missing-source-refs missing elementType unresolved_decision"
+      ]
+    },
+    {
+      "file": "overconfident-human-owned-decision.json",
+      "expectedValid": false,
+      "actualValid": false,
+      "matchedExpectation": true,
+      "intendedReason": "human-owned decisions cannot be adopted by extraction",
+      "errors": [
+        "extraction element fixture-toma-finalized high-risk or human-owned dependency candidates must not be adopt",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType person",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType place",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType organization",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType event",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType object",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType concept",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType document",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType visual_asset",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType placeholder",
+        "extraction contract fixture-overconfident-human-owned-decision missing elementType source_reference"
+      ]
+    },
+    {
+      "file": "unknown-fields-preservation.json",
+      "expectedValid": true,
+      "actualValid": true,
+      "matchedExpectation": true,
+      "intendedReason": "unknown fields are accepted so they can be preserved for JSON review",
+      "errors": []
+    },
+    {
+      "file": "valid-minimal.json",
+      "expectedValid": true,
+      "actualValid": true,
+      "matchedExpectation": true,
+      "intendedReason": "minimal valid contract covers required element types and review-safe defaults",
+      "errors": []
+    }
+  ],
+  "rules": [
+    "Extraction contract schema version is required.",
+    "Every extraction element keeps sourceRefIds that point to sourceRefs.",
+    "Every required extraction element type is represented.",
+    "High-risk and human-owned dependency candidates cannot be adopt.",
+    "Review-safe defaults disable automatic canon and chronology promotion.",
+    "Visual asset claim routing needs a profile or timeline review buffer.",
+    "Unknown fields are accepted for preservation rather than rejected."
+  ],
+  "passed": true
+}

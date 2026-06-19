@@ -2,11 +2,14 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-extraction-contract-001`
+- Artifact id: `fff-extraction-validator-hardening-001`
+- Preserved contract artifact: `fff-extraction-contract-001`
 - Review UI: `public/review/index.html`
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local launcher: `.\scripts\operator\open_review.ps1`
 - Manifest: `artifacts/artifact-manifest.json`
+- Validator fixtures: `artifacts/extraction-negative-fixtures/`
+- Validator smoke: `artifacts/extraction-validator-smoke-result.json`
 - Next-terminal handoff: `docs/review/next-terminal-handoff.md`
 
 ## What Exists Now
@@ -27,6 +30,8 @@
 - Checkpoint readback evidence for authority, Git, tooling, and active artifacts.
 - Smoke evidence for export/import, file persistence, review ergonomics, Claim Ledger, Timeline View, v1.3 compliance, and Profile/Ghost Flow.
 - Extraction Contract payload and smoke evidence at `artifacts/sample-extraction-payload.json` and `artifacts/extraction-contract-smoke-result.json`.
+- Extraction Contract validator fixtures covering valid minimal payload, missing source refs, overconfident human-owned decisions, unsafe direct visual-to-claim routing, auto-canon leaks, missing review-safe defaults, and unknown-field preservation.
+- Extraction validator smoke evidence at `artifacts/extraction-validator-smoke-result.json`.
 - Freeform review intake smoke evidence at `artifacts/freeform-review-intake-smoke-result.json`.
 - Screenshot and contact sheet at `artifacts/fff-current-review-screenshot.png` and `artifacts/fff-review-contact-sheet.png`.
 - MkDocs Material local docs view at `mkdocs.yml`.
@@ -34,7 +39,7 @@
 ## What Was Verified
 
 - Latest handoff context is stored in `docs/review/next-terminal-handoff.md` so a new terminal can resume from project files after `git pull --ff-only`.
-- The artifact manifest parses and references `fff-extraction-contract-001`.
+- The artifact manifest parses and references `fff-extraction-validator-hardening-001` while preserving `fff-extraction-contract-001` as the reviewed contract surface.
 - The sample and current state JSON files parse with `schemaVersion: "fff.projectState.v1"`.
 - The state adapter validates both state JSON files.
 - The state adapter summary reports Claim Ledger, Timeline, and Profile/Ghost summaries.
@@ -46,7 +51,8 @@
 - Profile/Ghost records keep Toma fate, brass moth truth, and Council motive as unresolved human-owned dependencies.
 - Browser smoke confirmed Profile/Ghost rendering, grouping, type selector, ghost filters, unresolved/high-risk/spoiler filters, ghost promotion to provisional profile, decision log update, export/import persistence, invalid JSON safety, and Claim Ledger/Timeline continuity.
 - Browser smoke confirmed Extraction Contract rendering, grouping, filtering, search, decision log update, export/import preservation, invalid JSON safety, and Claim Ledger/Timeline/Profile continuity.
-- Screenshot and contact sheet were regenerated from the current Visual Review Hub with the Extraction Contract active.
+- Extraction validator smoke confirmed 7 of 7 fixture expectations: 2 valid payloads pass and 5 invalid payloads fail for the intended risk class.
+- Screenshot and contact sheet were regenerated from the current Visual Review Hub with validator hardening visible and the Extraction Contract preserved.
 - `git diff --check` passed.
 - `python -m mkdocs build --strict` passed.
 
@@ -95,7 +101,7 @@ State persistence review path:
 
 ## Next Recommended Slice
 
-Build a local-only extraction adapter spike that emits the reviewed contract shape from deterministic input. Keep it source-tracked and schema-validated before adding any model/API dependency, database persistence, publishing adapter, AI video generation, or final canon decision.
+Build a local-only extraction adapter spike that emits the reviewed contract shape from deterministic input and runs through `tools/fff-state.mjs validate-extraction` plus the fixture smoke before its output is shown in the Review Hub. Keep it source-tracked and schema-validated before adding any model/API dependency, database persistence, publishing adapter, AI video generation, or final canon decision.
 
 ## Resume From Another Terminal
 

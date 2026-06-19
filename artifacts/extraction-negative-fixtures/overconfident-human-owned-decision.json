@@ -1,0 +1,52 @@
+{
+  "extractionRunId": "fixture-overconfident-human-owned-decision",
+  "schemaVersion": "fff.extractionContract.v1",
+  "sourceDraftId": "draft-fixture-001",
+  "sourceMemoRef": "rawMemo",
+  "sourceRefs": [
+    {
+      "id": "src-fixture-memo",
+      "label": "Fixture memo",
+      "source_type": "memo",
+      "locator": "fixture memo",
+      "trust": "author_memo"
+    }
+  ],
+  "generatedAt": "2026-06-19T00:00:00+09:00",
+  "generatorType": "local_contract_fixture",
+  "generatorLabel": "Invalid overconfident human-owned fixture; no model/API call",
+  "extractionMode": "contract_only_no_model_api",
+  "confidencePolicy": {
+    "defaultConfidence": 0.75,
+    "lowConfidenceAction": "hold",
+    "highCanonRiskAction": "hold_until_human_review",
+    "freeformReviewAuthority": "human review text overrides generated suggestions"
+  },
+  "extractedElements": [
+    {"id":"fixture-toma-finalized","displayText":"Toma is alive","elementType":"unresolved_decision","aliases":["Toma fate"],"sourceSpan":{"text":"whether Toma is alive","start":0,"end":22},"sourceRefIds":["src-fixture-memo"],"confidence":0.99,"suggestedReviewStatus":"adopt","reviewStatus":"adopt","unresolvedDependencies":["Toma fate"],"canonRisk":"high","spoilerLevel":"high","targetDestinations":["unresolved_decision"],"targetProfileIds":[],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"Invalid because extraction tries to adopt a human-owned story decision."}
+  ],
+  "profileCandidates": [],
+  "claimCandidates": [],
+  "timelineEntryCandidates": [],
+  "unresolvedDependencies": ["Toma fate", "brass moth truth", "Council motive"],
+  "reviewSafeDefaults": {
+    "defaultReviewStatus": "hold",
+    "allowAdopt": true,
+    "allowProvisional": true,
+    "allowReject": true,
+    "autoCanonPromotion": false,
+    "autoChronologyPromotion": false,
+    "unknownSourceHandling": "preserve_unknown_fields_and_hold_candidate"
+  },
+  "decisionLogSafeMetadata": {
+    "owner": "human_author",
+    "statusVocabulary": ["adopt", "provisional", "hold", "reject"],
+    "fixedPhraseRequired": false,
+    "freeformReviewAllowed": true,
+    "reversibleActionsOnly": true
+  },
+  "warnings": ["Generated candidates must not finalize Toma fate, brass moth truth, or Council motive."],
+  "unknownFieldsPolicy": "Preserve unknown imported top-level fields and hold unrecognized candidates for review.",
+  "humanAuthorityBoundaries": ["Toma fate remains human-owned.", "Brass moth truth remains human-owned.", "Council motive remains human-owned."],
+  "notes": "Expected invalid: overconfident human-owned decision."
+}

@@ -1,0 +1,43 @@
+{
+  "extractionRunId": "fixture-missing-review-safe-defaults",
+  "schemaVersion": "fff.extractionContract.v1",
+  "sourceDraftId": "draft-fixture-001",
+  "sourceMemoRef": "rawMemo",
+  "sourceRefs": [
+    {
+      "id": "src-fixture-memo",
+      "label": "Fixture memo",
+      "source_type": "memo",
+      "locator": "fixture memo",
+      "trust": "author_memo"
+    }
+  ],
+  "generatedAt": "2026-06-19T00:00:00+09:00",
+  "generatorType": "local_contract_fixture",
+  "generatorLabel": "Invalid missing defaults fixture; no model/API call",
+  "extractionMode": "contract_only_no_model_api",
+  "confidencePolicy": {
+    "defaultConfidence": 0.75,
+    "lowConfidenceAction": "hold",
+    "highCanonRiskAction": "hold_until_human_review",
+    "freeformReviewAuthority": "human review text overrides generated suggestions"
+  },
+  "extractedElements": [
+    {"id":"fixture-person","displayText":"Mira Vale","elementType":"person","aliases":["Mira"],"sourceSpan":{"text":"Mira Vale","start":0,"end":9},"sourceRefIds":["src-fixture-memo"],"confidence":0.91,"suggestedReviewStatus":"hold","reviewStatus":"hold","unresolvedDependencies":[],"canonRisk":"low","spoilerLevel":"low","targetDestinations":["profile"],"targetProfileIds":["profile-mira"],"targetClaimIds":[],"targetTimelineEntryIds":[],"notes":"Otherwise safe candidate."}
+  ],
+  "profileCandidates": [],
+  "claimCandidates": [],
+  "timelineEntryCandidates": [],
+  "unresolvedDependencies": ["Toma fate", "brass moth truth", "Council motive"],
+  "decisionLogSafeMetadata": {
+    "owner": "human_author",
+    "statusVocabulary": ["adopt", "provisional", "hold", "reject"],
+    "fixedPhraseRequired": false,
+    "freeformReviewAllowed": true,
+    "reversibleActionsOnly": true
+  },
+  "warnings": ["This fixture is not a model/API extraction engine."],
+  "unknownFieldsPolicy": "Preserve unknown imported top-level fields and hold unrecognized candidates for review.",
+  "humanAuthorityBoundaries": ["Toma fate remains human-owned.", "Brass moth truth remains human-owned.", "Council motive remains human-owned."],
+  "notes": "Expected invalid: reviewSafeDefaults omitted."
+}

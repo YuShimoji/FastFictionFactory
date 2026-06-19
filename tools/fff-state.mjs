@@ -1,10 +1,17 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const SCHEMA_VERSION = "fff.projectState.v1";
+const EXTRACTION_SCHEMA_VERSION = "fff.extractionContract.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
+const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
+
+const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
+const RISK_LEVELS = ["low", "medium", "high"];
+const EXTRACTION_TARGET_DESTINATIONS = ["profile", "claim", "timeline", "source_reference", "unresolved_decision"];
+const HUMAN_OWNED_DEPENDENCIES = ["Toma fate", "brass moth truth", "Council motive"];
 
 const REQUIRED_FIELDS = [
   "schemaVersion",
@@ -143,9 +150,11 @@ const EXTRACTION_ELEMENT_REQUIRED_FIELDS = [
   "sourceRefIds",
   "confidence",
   "suggestedReviewStatus",
+  "reviewStatus",
   "unresolvedDependencies",
   "canonRisk",
   "spoilerLevel",
+  "targetDestinations",
   "notes"
 ];
 
@@ -175,10 +184,9 @@ async function main() {
     fail("Missing input JSON path.");
   }
 
-  const state = await readState(inputPath);
-  const validation = validateState(state);
-
   if (command === "validate") {
+    const state = await readJson(inputPath);
+    const validation = validateState(state);
     if (!validation.ok) {
       fail(`Invalid state: ${validation.errors.join("; ")}`);
     }
@@ -187,6 +195,8 @@ async function main() {
   }
 
   if (command === "summarize") {
+    const state = await readJson(inputPath);
+    const validation = validateState(state);
     if (!validation.ok) {
       fail(`Invalid state: ${validation.errors.join("; ")}`);
     }
@@ -195,6 +205,8 @@ async function main() {
   }
 
   if (command === "normalize") {
+    const state = await readJson(inputPath);
+    const validation = validateState(state);
     if (!validation.ok) {
       fail(`Invalid state: ${validation.errors.join("; ")}`);
     }
@@ -206,21 +218,43 @@ async function main() {
     return;
   }
 
+  if (command === "validate-extraction") {
+    const contract = await readJson(inputPath);
+    const validation = validateExtractionContract(contract);
+    if (!validation.ok) {
+      fail(`Invalid extraction contract: ${validation.errors.join("; ")}`);
+    }
+    console.log(`valid extraction ${inputPath}`);
+    return;
+  }
+
+  if (command === "smoke-extraction-fixtures") {
+    const target = outputPath || DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT;
+    const result = await smokeExtractionFixtures(inputPath);
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    if (!result.passed) {
+      fail(`Extraction fixture smoke failed: ${result.summary.mismatched} mismatched fixture(s)`);
+    }
+    console.log(`extraction fixture smoke passed ${inputPath} -> ${target}`);
+    return;
+  }
+
   fail(`Unknown command: ${command}`);
 }
 
-async function readState(inputPath) {
+async function readJson(inputPath) {
   let text;
   try {
     text = await readFile(inputPath, "utf8");
   } catch (error) {
-    fail(`Cannot read ${inputPath}: ${error.message}`);
+    throw new Error(`Cannot read ${inputPath}: ${error.message}`);
   }
 
   try {
     return JSON.parse(text);
   } catch (error) {
-    fail(`Invalid JSON in ${inputPath}: ${error.message}`);
+    throw new Error(`Invalid JSON in ${inputPath}: ${error.message}`);
   }
 }
 
@@ -351,51 +385,398 @@ function validateState(state) {
 
   const extractionContracts = Array.isArray(state.extractionContracts) ? state.extractionContracts : state.extractionContract ? [state.extractionContract] : [];
   extractionContracts.forEach((contract, contractIndex) => {
-    if (!contract || typeof contract !== "object" || Array.isArray(contract)) {
-      errors.push(`extraction contract ${contractIndex} must be an object`);
-      return;
-    }
-    for (const field of EXTRACTION_CONTRACT_REQUIRED_FIELDS) {
-      if (!(field in contract)) {
-        errors.push(`extraction contract ${contract.extractionRunId || contractIndex} missing ${field}`);
-      }
-    }
-    for (const arrayField of ["sourceRefs", "extractedElements", "profileCandidates", "claimCandidates", "timelineEntryCandidates", "unresolvedDependencies", "warnings", "humanAuthorityBoundaries"]) {
-      if (arrayField in contract && !Array.isArray(contract[arrayField])) {
-        errors.push(`extraction contract ${contract.extractionRunId || contractIndex} ${arrayField} must be an array`);
-      }
-    }
-
-    const elementTypes = new Set();
-    if (Array.isArray(contract.extractedElements)) {
-      contract.extractedElements.forEach((element, elementIndex) => {
-        if (!element || typeof element !== "object" || Array.isArray(element)) {
-          errors.push(`extraction element ${elementIndex} must be an object`);
-          return;
-        }
-        for (const field of EXTRACTION_ELEMENT_REQUIRED_FIELDS) {
-          if (!(field in element)) {
-            errors.push(`extraction element ${element.id || elementIndex} missing ${field}`);
-          }
-        }
-        for (const arrayField of ["aliases", "sourceRefIds", "unresolvedDependencies"]) {
-          if (arrayField in element && !Array.isArray(element[arrayField])) {
-            errors.push(`extraction element ${element.id || elementIndex} ${arrayField} must be an array`);
-          }
-        }
-        if (element.elementType) {
-          elementTypes.add(element.elementType);
-        }
-      });
-      for (const elementType of REQUIRED_EXTRACTION_ELEMENT_TYPES) {
-        if (!elementTypes.has(elementType)) {
-          errors.push(`extraction contract ${contract.extractionRunId || contractIndex} missing elementType ${elementType}`);
-        }
-      }
-    }
+    const label = `extraction contract ${contract?.extractionRunId || contractIndex}`;
+    const validation = validateExtractionContract(contract, { label });
+    errors.push(...validation.errors);
   });
 
   return { ok: errors.length === 0, errors };
+}
+
+function validateExtractionContract(contract, options = {}) {
+  const errors = [];
+  const label = options.label || `extraction contract ${contract?.extractionRunId || "payload"}`;
+
+  if (!contract || typeof contract !== "object" || Array.isArray(contract)) {
+    return { ok: false, errors: [`${label} must be an object`] };
+  }
+
+  if (contract.schemaVersion !== EXTRACTION_SCHEMA_VERSION) {
+    errors.push(`${label} schemaVersion must be ${EXTRACTION_SCHEMA_VERSION}`);
+  }
+
+  for (const field of EXTRACTION_CONTRACT_REQUIRED_FIELDS) {
+    if (!(field in contract)) {
+      errors.push(`${label} missing ${field}`);
+    }
+  }
+
+  for (const arrayField of ["sourceRefs", "extractedElements", "profileCandidates", "claimCandidates", "timelineEntryCandidates", "unresolvedDependencies", "warnings", "humanAuthorityBoundaries"]) {
+    if (arrayField in contract && !Array.isArray(contract[arrayField])) {
+      errors.push(`${label} ${arrayField} must be an array`);
+    }
+  }
+
+  const sourceRefIds = new Set();
+  if (Array.isArray(contract.sourceRefs)) {
+    contract.sourceRefs.forEach((sourceRef, sourceIndex) => {
+      if (!sourceRef || typeof sourceRef !== "object" || Array.isArray(sourceRef)) {
+        errors.push(`${label} sourceRef ${sourceIndex} must be an object`);
+        return;
+      }
+      if (typeof sourceRef.id !== "string" || sourceRef.id.trim() === "") {
+        errors.push(`${label} sourceRef ${sourceIndex} missing id`);
+      } else if (sourceRefIds.has(sourceRef.id)) {
+        errors.push(`${label} duplicate sourceRef id ${sourceRef.id}`);
+      } else {
+        sourceRefIds.add(sourceRef.id);
+      }
+      for (const field of ["label", "source_type", "locator", "trust"]) {
+        if (typeof sourceRef[field] !== "string" || sourceRef[field].trim() === "") {
+          errors.push(`${label} sourceRef ${sourceRef.id || sourceIndex} missing ${field}`);
+        }
+      }
+    });
+  }
+
+  validateConfidencePolicy(contract.confidencePolicy, label, errors);
+  validateReviewSafeDefaults(contract.reviewSafeDefaults, label, errors);
+  validateDecisionLogSafeMetadata(contract.decisionLogSafeMetadata, label, errors);
+  validateHumanAuthority(contract, label, errors);
+  validateExtractionElements(contract, sourceRefIds, label, errors);
+
+  return { ok: errors.length === 0, errors };
+}
+
+function validateConfidencePolicy(policy, label, errors) {
+  if (!policy || typeof policy !== "object" || Array.isArray(policy)) {
+    errors.push(`${label} confidencePolicy must be an object`);
+    return;
+  }
+  if (!isNumberInRange(policy.defaultConfidence, 0, 1)) {
+    errors.push(`${label} confidencePolicy.defaultConfidence must be a number from 0 to 1`);
+  }
+  if (policy.lowConfidenceAction !== "hold") {
+    errors.push(`${label} confidencePolicy.lowConfidenceAction must be hold`);
+  }
+  if (!String(policy.highCanonRiskAction || "").toLowerCase().includes("hold")) {
+    errors.push(`${label} confidencePolicy.highCanonRiskAction must hold high-canon-risk candidates`);
+  }
+  if (!String(policy.freeformReviewAuthority || "").toLowerCase().includes("human")) {
+    errors.push(`${label} confidencePolicy.freeformReviewAuthority must name human review authority`);
+  }
+}
+
+function validateReviewSafeDefaults(defaults, label, errors) {
+  if (!defaults || typeof defaults !== "object" || Array.isArray(defaults)) {
+    errors.push(`${label} reviewSafeDefaults must be an object`);
+    return;
+  }
+  if (defaults.defaultReviewStatus !== "hold") {
+    errors.push(`${label} reviewSafeDefaults.defaultReviewStatus must be hold`);
+  }
+  for (const field of ["allowAdopt", "allowProvisional", "allowReject"]) {
+    if (typeof defaults[field] !== "boolean") {
+      errors.push(`${label} reviewSafeDefaults.${field} must be a boolean`);
+    }
+  }
+  if (defaults.autoCanonPromotion !== false) {
+    errors.push(`${label} reviewSafeDefaults.autoCanonPromotion must be false`);
+  }
+  if (defaults.autoChronologyPromotion !== false) {
+    errors.push(`${label} reviewSafeDefaults.autoChronologyPromotion must be false`);
+  }
+  const unknownSourceHandling = String(defaults.unknownSourceHandling || "").toLowerCase();
+  if (!unknownSourceHandling.includes("preserve") || !unknownSourceHandling.includes("hold")) {
+    errors.push(`${label} reviewSafeDefaults.unknownSourceHandling must preserve unknown fields and hold candidates`);
+  }
+}
+
+function validateDecisionLogSafeMetadata(metadata, label, errors) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) {
+    errors.push(`${label} decisionLogSafeMetadata must be an object`);
+    return;
+  }
+  if (metadata.owner !== "human_author") {
+    errors.push(`${label} decisionLogSafeMetadata.owner must be human_author`);
+  }
+  if (!Array.isArray(metadata.statusVocabulary)) {
+    errors.push(`${label} decisionLogSafeMetadata.statusVocabulary must be an array`);
+  } else {
+    for (const status of REVIEW_STATUSES) {
+      if (!metadata.statusVocabulary.includes(status)) {
+        errors.push(`${label} decisionLogSafeMetadata.statusVocabulary missing ${status}`);
+      }
+    }
+  }
+  if (metadata.fixedPhraseRequired !== false) {
+    errors.push(`${label} decisionLogSafeMetadata.fixedPhraseRequired must be false`);
+  }
+  if (metadata.freeformReviewAllowed !== true) {
+    errors.push(`${label} decisionLogSafeMetadata.freeformReviewAllowed must be true`);
+  }
+  if (metadata.reversibleActionsOnly !== true) {
+    errors.push(`${label} decisionLogSafeMetadata.reversibleActionsOnly must be true`);
+  }
+}
+
+function validateHumanAuthority(contract, label, errors) {
+  const unresolvedDependencies = Array.isArray(contract.unresolvedDependencies) ? contract.unresolvedDependencies : [];
+  const boundaries = Array.isArray(contract.humanAuthorityBoundaries) ? contract.humanAuthorityBoundaries.join(" ").toLowerCase() : "";
+  for (const dependency of HUMAN_OWNED_DEPENDENCIES) {
+    if (!unresolvedDependencies.includes(dependency)) {
+      errors.push(`${label} unresolvedDependencies missing human-owned dependency ${dependency}`);
+    }
+    if (!boundaries.includes(dependency.toLowerCase())) {
+      errors.push(`${label} humanAuthorityBoundaries missing ${dependency}`);
+    }
+  }
+}
+
+function validateExtractionElements(contract, sourceRefIds, label, errors) {
+  const elementTypes = new Set();
+  if (!Array.isArray(contract.extractedElements)) {
+    return;
+  }
+
+  contract.extractedElements.forEach((element, elementIndex) => {
+    const elementLabel = `extraction element ${element?.id || elementIndex}`;
+    if (!element || typeof element !== "object" || Array.isArray(element)) {
+      errors.push(`${elementLabel} must be an object`);
+      return;
+    }
+    for (const field of EXTRACTION_ELEMENT_REQUIRED_FIELDS) {
+      if (!(field in element)) {
+        errors.push(`${elementLabel} missing ${field}`);
+      }
+    }
+    for (const arrayField of ["aliases", "sourceRefIds", "unresolvedDependencies", "targetDestinations"]) {
+      if (arrayField in element && !Array.isArray(element[arrayField])) {
+        errors.push(`${elementLabel} ${arrayField} must be an array`);
+      }
+    }
+    for (const optionalArrayField of ["targetProfileIds", "targetClaimIds", "targetTimelineEntryIds"]) {
+      if (optionalArrayField in element && !Array.isArray(element[optionalArrayField])) {
+        errors.push(`${elementLabel} ${optionalArrayField} must be an array`);
+      }
+    }
+
+    if (!REQUIRED_EXTRACTION_ELEMENT_TYPES.includes(element.elementType)) {
+      errors.push(`${elementLabel} elementType must be one of ${REQUIRED_EXTRACTION_ELEMENT_TYPES.join(", ")}`);
+    } else {
+      elementTypes.add(element.elementType);
+    }
+
+    validateElementSourceRefs(element, sourceRefIds, elementLabel, errors);
+    validateElementSourceSpan(element, elementLabel, errors);
+    validateElementReviewSafety(element, elementLabel, errors);
+    validateElementRouting(element, elementLabel, errors);
+  });
+
+  for (const elementType of REQUIRED_EXTRACTION_ELEMENT_TYPES) {
+    if (!elementTypes.has(elementType)) {
+      errors.push(`${label} missing elementType ${elementType}`);
+    }
+  }
+}
+
+function validateElementSourceRefs(element, sourceRefIds, elementLabel, errors) {
+  if (!Array.isArray(element.sourceRefIds)) {
+    return;
+  }
+  if (element.sourceRefIds.length === 0) {
+    errors.push(`${elementLabel} sourceRefIds must not be empty`);
+  }
+  for (const sourceRefId of element.sourceRefIds) {
+    if (!sourceRefIds.has(sourceRefId)) {
+      errors.push(`${elementLabel} unknown sourceRefId ${sourceRefId}`);
+    }
+  }
+}
+
+function validateElementSourceSpan(element, elementLabel, errors) {
+  const span = element.sourceSpan;
+  if (!span || typeof span !== "object" || Array.isArray(span)) {
+    errors.push(`${elementLabel} sourceSpan must be an object`);
+    return;
+  }
+  if (typeof span.text !== "string" || span.text.trim() === "") {
+    errors.push(`${elementLabel} sourceSpan.text must be a non-empty string`);
+  }
+  for (const field of ["start", "end"]) {
+    if (!(typeof span[field] === "number" || span[field] === null)) {
+      errors.push(`${elementLabel} sourceSpan.${field} must be a number or null`);
+    }
+  }
+  if (typeof span.start === "number" && typeof span.end === "number" && span.start > span.end) {
+    errors.push(`${elementLabel} sourceSpan.start must be less than or equal to sourceSpan.end`);
+  }
+}
+
+function validateElementReviewSafety(element, elementLabel, errors) {
+  if (!isNumberInRange(element.confidence, 0, 1)) {
+    errors.push(`${elementLabel} confidence must be a number from 0 to 1`);
+  }
+  for (const field of ["suggestedReviewStatus", "reviewStatus"]) {
+    if (!REVIEW_STATUSES.includes(element[field])) {
+      errors.push(`${elementLabel} ${field} must be one of ${REVIEW_STATUSES.join(", ")}`);
+    }
+  }
+  if (!RISK_LEVELS.includes(element.canonRisk)) {
+    errors.push(`${elementLabel} canonRisk must be one of ${RISK_LEVELS.join(", ")}`);
+  }
+  if (!RISK_LEVELS.includes(element.spoilerLevel)) {
+    errors.push(`${elementLabel} spoilerLevel must be one of ${RISK_LEVELS.join(", ")}`);
+  }
+
+  const unresolvedDependencies = Array.isArray(element.unresolvedDependencies) ? element.unresolvedDependencies : [];
+  const touchesHumanOwnedDependency = unresolvedDependencies.some((dependency) => HUMAN_OWNED_DEPENDENCIES.includes(dependency));
+  const isHumanOwnedDecision = touchesHumanOwnedDependency || element.elementType === "unresolved_decision";
+  if (element.elementType === "unresolved_decision" && element.canonRisk !== "high") {
+    errors.push(`${elementLabel} unresolved_decision candidates must keep canonRisk high`);
+  }
+  if ((isHumanOwnedDecision || element.canonRisk === "high") && (element.suggestedReviewStatus === "adopt" || element.reviewStatus === "adopt")) {
+    errors.push(`${elementLabel} high-risk or human-owned dependency candidates must not be adopt`);
+  }
+}
+
+function validateElementRouting(element, elementLabel, errors) {
+  if (!Array.isArray(element.targetDestinations)) {
+    return;
+  }
+  if (element.targetDestinations.length === 0) {
+    errors.push(`${elementLabel} targetDestinations must not be empty`);
+  }
+  for (const destination of element.targetDestinations) {
+    if (!EXTRACTION_TARGET_DESTINATIONS.includes(destination)) {
+      errors.push(`${elementLabel} unknown target destination ${destination}`);
+    }
+  }
+  if (element.targetDestinations.includes("profile") && (!Array.isArray(element.targetProfileIds) || element.targetProfileIds.length === 0)) {
+    errors.push(`${elementLabel} routes to profile but targetProfileIds is empty`);
+  }
+  if (element.targetDestinations.includes("claim") && (!Array.isArray(element.targetClaimIds) || element.targetClaimIds.length === 0)) {
+    errors.push(`${elementLabel} routes to claim but targetClaimIds is empty`);
+  }
+  if (element.targetDestinations.includes("timeline") && (!Array.isArray(element.targetTimelineEntryIds) || element.targetTimelineEntryIds.length === 0)) {
+    errors.push(`${elementLabel} routes to timeline but targetTimelineEntryIds is empty`);
+  }
+  if (element.elementType === "source_reference" && !element.targetDestinations.includes("source_reference")) {
+    errors.push(`${elementLabel} source_reference elements must route to source_reference`);
+  }
+  if (element.elementType === "unresolved_decision" && !element.targetDestinations.includes("unresolved_decision")) {
+    errors.push(`${elementLabel} unresolved_decision elements must route to unresolved_decision`);
+  }
+  if (element.elementType === "visual_asset" && element.targetDestinations.includes("claim")) {
+    const hasReviewBuffer = element.targetDestinations.includes("profile") || element.targetDestinations.includes("timeline");
+    if (!hasReviewBuffer) {
+      errors.push(`${elementLabel} visual_asset claim routing must include profile or timeline review buffer`);
+    }
+  }
+}
+
+async function smokeExtractionFixtures(fixtureDir) {
+  const requiredFixtures = [
+    "valid-minimal.json",
+    "missing-source-refs.json",
+    "overconfident-human-owned-decision.json",
+    "invalid-routing-visual-asset-to-claim.json",
+    "auto-canon-leak.json",
+    "missing-review-safe-defaults.json",
+    "unknown-fields-preservation.json"
+  ];
+  const expectedByFile = {
+    "valid-minimal.json": { valid: true, reason: "minimal valid contract covers required element types and review-safe defaults" },
+    "missing-source-refs.json": { valid: false, reason: "sourceRefIds must exist and point at sourceRefs", includes: ["sourceRefIds must not be empty", "unknown sourceRefId"] },
+    "overconfident-human-owned-decision.json": { valid: false, reason: "human-owned decisions cannot be adopted by extraction", includes: ["must not be adopt", "canonRisk high"] },
+    "invalid-routing-visual-asset-to-claim.json": { valid: false, reason: "visual assets cannot route directly into claims without review buffer", includes: ["visual_asset claim routing must include profile or timeline review buffer"] },
+    "auto-canon-leak.json": { valid: false, reason: "review-safe defaults must prevent automatic canon or chronology promotion", includes: ["autoCanonPromotion must be false", "autoChronologyPromotion must be false"] },
+    "missing-review-safe-defaults.json": { valid: false, reason: "reviewSafeDefaults is required", includes: ["reviewSafeDefaults must be an object", "missing reviewSafeDefaults"] },
+    "unknown-fields-preservation.json": { valid: true, reason: "unknown fields are accepted so they can be preserved for JSON review" }
+  };
+
+  const entries = await readdir(fixtureDir, { withFileTypes: true });
+  const files = entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith(".json"))
+    .map((entry) => entry.name)
+    .sort();
+  const seen = new Set(files);
+  const matrix = [];
+
+  for (const requiredFixture of requiredFixtures) {
+    if (!seen.has(requiredFixture)) {
+      matrix.push({
+        file: requiredFixture,
+        expectedValid: expectedByFile[requiredFixture].valid,
+        actualValid: false,
+        matchedExpectation: false,
+        intendedReason: expectedByFile[requiredFixture].reason,
+        errors: [`missing fixture file ${requiredFixture}`]
+      });
+    }
+  }
+
+  for (const file of files) {
+    const fixturePath = path.join(fixtureDir, file);
+    let payload;
+    let parseError = null;
+    try {
+      payload = await readJson(fixturePath);
+    } catch (error) {
+      parseError = error;
+    }
+
+    const expectation = expectedByFile[file] || { valid: false, reason: "unregistered fixture should be classified before use", includes: [] };
+    const validation = parseError ? { ok: false, errors: [parseError.message] } : validateExtractionContract(payload);
+    const includes = expectation.includes || [];
+    const foundIntendedReason = expectation.valid || includes.length === 0 || includes.some((part) => validation.errors.some((error) => error.includes(part)));
+    const matchedExpectation = validation.ok === expectation.valid && foundIntendedReason;
+
+    matrix.push({
+      file,
+      expectedValid: expectation.valid,
+      actualValid: validation.ok,
+      matchedExpectation,
+      intendedReason: expectation.reason,
+      errors: validation.errors
+    });
+  }
+
+  const mismatched = matrix.filter((row) => !row.matchedExpectation).length;
+  const expectedValid = matrix.filter((row) => row.expectedValid).length;
+  const expectedInvalid = matrix.filter((row) => !row.expectedValid).length;
+  const passed = mismatched === 0;
+
+  return {
+    artifact_id: "fff-extraction-validator-hardening-001",
+    generated_at: new Date().toISOString(),
+    validator: "tools/fff-state.mjs smoke-extraction-fixtures",
+    fixture_dir: fixtureDir.replaceAll("\\", "/"),
+    required_fixtures: requiredFixtures,
+    summary: {
+      total: matrix.length,
+      expectedValid,
+      expectedInvalid,
+      matched: matrix.length - mismatched,
+      mismatched,
+      passed
+    },
+    matrix,
+    rules: [
+      "Extraction contract schema version is required.",
+      "Every extraction element keeps sourceRefIds that point to sourceRefs.",
+      "Every required extraction element type is represented.",
+      "High-risk and human-owned dependency candidates cannot be adopt.",
+      "Review-safe defaults disable automatic canon and chronology promotion.",
+      "Visual asset claim routing needs a profile or timeline review buffer.",
+      "Unknown fields are accepted for preservation rather than rejected."
+    ],
+    passed
+  };
+}
+
+function isNumberInRange(value, min, max) {
+  return typeof value === "number" && Number.isFinite(value) && value >= min && value <= max;
 }
 
 function normalizeState(state) {
@@ -634,9 +1015,14 @@ Usage:
   node tools/fff-state.mjs validate <state.json>
   node tools/fff-state.mjs summarize <state.json>
   node tools/fff-state.mjs normalize <state.json> [output.json]
+  node tools/fff-state.mjs validate-extraction <extraction-contract.json>
+  node tools/fff-state.mjs smoke-extraction-fixtures <fixture-dir> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
+
+Default extraction fixture smoke output:
+  ${DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT}
 `);
 }
 
