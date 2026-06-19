@@ -47,6 +47,6 @@
   },
   "warnings": ["Generated candidates must not finalize Toma fate, brass moth truth, or Council motive."],
   "unknownFieldsPolicy": "Preserve unknown imported top-level fields and hold unrecognized candidates for review.",
-  "humanAuthorityBoundaries": ["Toma fate remains human-owned.", "Brass moth truth remains human-owned.", "Council motive remains human-owned."],
+  "humanAuthorityBoundaries": ["Freeform user review is the source of truth.", "Toma fate remains human-owned.", "Brass moth truth remains human-owned.", "Council motive remains human-owned."],
   "notes": "Expected invalid: overconfident human-owned decision."
 }

@@ -71,10 +71,15 @@
   ],
   "unknownFieldsPolicy": "Preserve unknown imported top-level fields and hold unrecognized candidates for review.",
   "humanAuthorityBoundaries": [
+    "Freeform user review is the source of truth.",
     "Toma fate remains human-owned.",
     "Brass moth truth remains human-owned.",
     "Council motive remains human-owned.",
     "No model/API call, database persistence, production sync, publishing, or AI video generation is introduced by this fixture."
   ],
+  "adapterUnknownTopLevel": {
+    "shouldRemainAvailableForReview": true,
+    "source": "future adapter scratch field"
+  },
   "notes": "Valid minimal fixture for Extraction Contract validator hardening."
 }

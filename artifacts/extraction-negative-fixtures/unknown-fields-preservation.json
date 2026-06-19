@@ -74,6 +74,7 @@
   ],
   "unknownFieldsPolicy": "Preserve unknown imported top-level fields and hold unrecognized candidates for review.",
   "humanAuthorityBoundaries": [
+    "Freeform user review is the source of truth.",
     "Toma fate remains human-owned.",
     "Brass moth truth remains human-owned.",
     "Council motive remains human-owned.",

@@ -24,6 +24,7 @@
 - Timeline View with five-axis separation for story order, calendar time, viewer disclosure order, production order, and historical/reference order.
 - Profile/Ghost Flow with type selector, ghost node grouping, profile cards, linked Claim Ledger and Timeline references, unresolved dependencies, canon/spoiler/source labels, local review controls, and a reversible ghost-to-provisional-profile action.
 - Extraction Contract with run identity, source refs, extracted elements, candidate routing links, unresolved dependencies, review-safe defaults, warnings, human authority boundary labels, grouping, filters, search, and local review controls.
+- Extraction Validator Hardening with local fixture coverage for valid minimal payloads, missing source refs, overconfident human-owned decisions, invalid visual-asset routing, auto-canon leaks, missing review-safe defaults, unknown-field preservation, missing extraction identity fields, invalid element types, missing human authority boundaries, and high-risk warnings.
 - Freeform Review Intake contract documented for user review without fixed response phrases.
 - Repo-local zero-dependency state adapter at `tools/fff-state.mjs`.
 - Sample and current state JSON at `artifacts/sample-project-state.json` and `artifacts/current-project-state.json`.
@@ -42,6 +43,10 @@
 - The artifact manifest parses and references `fff-extraction-validator-hardening-001` while preserving `fff-extraction-contract-001` as the reviewed contract surface.
 - The sample and current state JSON files parse with `schemaVersion: "fff.projectState.v1"`.
 - The state adapter validates both state JSON files.
+- The state adapter validates `artifacts/sample-extraction-payload.json` as an Extraction Contract payload.
+- `node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures` passes the expected-valid and expected-invalid fixture matrix.
+- The validator catches empty or unknown `sourceRefIds`, missing `extractionRunId`, missing `schemaVersion`, invalid element types, unsafe `adopt` suggestions for human-owned decisions, direct visual asset routing to Claim Ledger without profile-side routing, auto-canon/default-review leaks, missing `humanAuthorityBoundaries`, and missing warnings when canon risk is high.
+- The valid fixture reports unknown-field preservation as a warning rather than dropping or failing preserved data.
 - The state adapter summary reports Claim Ledger, Timeline, and Profile/Ghost summaries.
 - The state adapter summary reports Extraction Contract run, element, candidate, dependency, high-risk, and warning counts.
 - Current state contains 1 Extraction Contract run and 12 extraction elements covering person, place, organization, event, object, concept, document, visual_asset, placeholder, source_reference, and unresolved_decision.

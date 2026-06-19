@@ -145,14 +145,15 @@ type ExtractionElement = {
 };
 ```
 
-## Extraction Validator Fixtures
+## Extraction Validator Hardening
 
-`fff-extraction-validator-hardening-001` adds local fixture validation around the extraction contract before any adapter or model/API behavior exists.
+`fff-extraction-validator-hardening-001` treats Extraction Contract payloads as adapter candidates, not canon. The zero-dependency validator in `tools/fff-state.mjs` checks both full project-state envelopes and standalone extraction payloads.
 
-The validator command is:
+Validator commands:
 
 ```powershell
 node .\tools\fff-state.mjs validate-extraction .\artifacts\sample-extraction-payload.json
+node .\tools\fff-state.mjs validate-extraction-fixtures .\artifacts\extraction-negative-fixtures
 node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
 ```
 
@@ -160,13 +161,26 @@ The fixture matrix is intentionally mixed:
 
 | Fixture | Expected | Purpose |
 | --- | --- | --- |
-| `valid-minimal.json` | valid | Confirms the minimal local contract still covers required extraction element types and review-safe defaults. |
+| `valid-minimal.json` | valid | Confirms a minimal local contract still covers required extraction element types, review-safe defaults, human authority boundaries, and unknown-field warning behavior. |
 | `missing-source-refs.json` | invalid | Blocks candidates that cannot point back to a declared source ref. |
 | `overconfident-human-owned-decision.json` | invalid | Blocks extraction from adopting Toma fate, brass moth truth, Council motive, or other human-owned decisions. |
 | `invalid-routing-visual-asset-to-claim.json` | invalid | Blocks direct visual-asset-to-claim routing without a Profile/Ghost or Timeline review buffer. |
 | `auto-canon-leak.json` | invalid | Blocks defaults that silently promote candidates into canon or chronology. |
 | `missing-review-safe-defaults.json` | invalid | Requires review-safe defaults before adapter output can be accepted. |
 | `unknown-fields-preservation.json` | valid | Confirms unknown adapter fields are tolerated for preservation and JSON review instead of being silently applied. |
+
+Hardening rules:
+
+- `extractionRunId` and `schemaVersion` are required.
+- Every extracted element needs at least one source ref and all refs must resolve.
+- `elementType` must be one of the documented ExtractionElement types.
+- `targetDestinations` must be explicit and within the documented routing vocabulary.
+- `visual_asset` candidates cannot route directly to Claim Ledger without profile/asset-side review.
+- Human-owned unresolved decisions cannot suggest `adopt`, even with high confidence.
+- `reviewSafeDefaults.defaultReviewStatus` cannot be `adopt`.
+- `autoCanonPromotion` and `autoChronologyPromotion` must be `false`.
+- `unknownSourceHandling`, `decisionLogSafeMetadata`, `warnings`, and `humanAuthorityBoundaries` must remain present for review-safe fallback behavior.
+- Unknown top-level extraction fields are warning-level preservation cases so future adapter data can remain visible for JSON review without silently becoming canon.
 
 ## UnresolvedCreativeDecision
 

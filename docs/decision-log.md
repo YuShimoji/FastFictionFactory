@@ -21,3 +21,13 @@
 - Decision: Add a local Markdown docs view for audit and browser-assisted translation checks.
   - Reason: Project context was spread across multiple Markdown files, and another terminal needed a single restartable map without rewriting source specifications.
   - Effect: `mkdocs.yml`, `docs/index.md`, `docs/project-overview.md`, `docs/local-view/`, and `tools/generate-doc-nav.mjs` provide a local tree view, original-source wrappers, a project overview map, screenshot locations, and a turn-count-based development plan.
+
+## 2026-06-18
+
+- Decision: Treat Extraction Contract validator hardening as the active artifact before adapter work.
+  - Reason: A future adapter needs a local pass/fail gate before generated candidates can affect Profile/Ghost Flow, Claim Ledger, or Timeline View.
+  - Effect: `fff-extraction-validator-hardening-001` adds standalone extraction validation commands, negative fixtures, fixture matrix smoke evidence, updated Visual Review Hub evidence, and active manifest/status handoff context.
+
+- Decision: Keep validator failures review-safe rather than canon-producing.
+  - Reason: Missing source refs, overconfident human-owned decisions, direct visual-asset-to-claim routing, and auto-canon defaults are adapter risks, not story truths.
+  - Effect: Toma fate, brass moth truth, and Council motive remain unresolved human-owned decisions; generated confidence and fixture coverage do not imply final canon.

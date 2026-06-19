@@ -145,12 +145,13 @@
 ## fff-extraction-validator-hardening-001
 
 - Title: Fast Fiction Factory Extraction Validator Hardening
-- Purpose: Harden the local Extraction Contract with valid and invalid fixture payloads before any adapter, model/API behavior, database persistence, publishing, production sync, or final canon decision exists.
+- Purpose: Harden the local Extraction Contract with seven valid/invalid fixture payloads, built-in guard checks, and stricter zero-dependency validation before any adapter, model/API behavior, database persistence, publishing adapter, AI video generation, production sync, or final canon decision exists.
 - Repo relative path: `public/review/index.html`
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local launcher: `scripts/operator/open_review.ps1`
 - Preserved contract artifact: `fff-extraction-contract-001`
-- Validator fixtures: `artifacts/extraction-negative-fixtures/`
+- Fixture directory: `artifacts/extraction-negative-fixtures/`
+- Fixture files: `valid-minimal.json`, `missing-source-refs.json`, `overconfident-human-owned-decision.json`, `invalid-routing-visual-asset-to-claim.json`, `auto-canon-leak.json`, `missing-review-safe-defaults.json`, `unknown-fields-preservation.json`
 - Validator smoke result: `artifacts/extraction-validator-smoke-result.json`
 - State adapter: `tools/fff-state.mjs`
 - Review doc: `docs/review/extraction-validator-hardening-review.md`
@@ -158,5 +159,8 @@
 - Screenshot: `artifacts/fff-current-review-screenshot.png`
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
+- Validation command: `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json`
+- Validation result: expected-valid fixtures passed, expected-invalid fixtures failed for intended reasons, built-in guard checks passed for missing identity fields, invalid element type, missing human authority boundaries, and missing high-risk warnings; unknown-field preservation warnings were reported.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
+- Next action: Use the fixture matrix as the gate for a local-only extraction adapter spike.
