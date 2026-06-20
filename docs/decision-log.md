@@ -37,3 +37,11 @@
 - Decision: Expand the local deterministic adapter through a fixture matrix before model/API extraction work.
   - Reason: The single-sample adapter proved the contract path, but source-span usefulness, routing safety, and review-held defaults need multi-memo regression coverage before generated candidates can safely grow.
   - Effect: `fff-local-extraction-adapter-expansion-001` adds local fixture memos, per-fixture adapter outputs, aggregate source/routing smoke evidence, and Review Hub/manifest/status updates while preserving no model/API behavior and no final canon decisions for Toma fate, brass moth truth, or Council motive.
+
+- Decision: Keep model/API extraction behind a spec-only boundary before provider implementation.
+  - Reason: Future provider output needs an envelope, validation gates, failure policy, fallback behavior, and forbidden-action list before any external call or credential flow is allowed.
+  - Effect: `fff-model-api-boundary-spec-001` records the boundary doc, envelope example, and smoke result while preserving no model/API call, no credentials, no database persistence, no publishing, and no final canon decisions.
+
+- Decision: Add a source-span routing review pack before freeform review and before model/API adapter work.
+  - Reason: Reviewing the three fixture outputs as a span/routing supervision pack is more efficient than asking for unstructured review against raw JSON and smoke output.
+  - Effect: `fff-source-span-routing-review-pack-001` adds a generated pack artifact, Review Hub section, review doc, manifest/status/handoff updates, and Review Debt categories while preserving `fff-model-api-boundary-spec-001`, held defaults, source refs, human-owned decision guards, and no model/API behavior.

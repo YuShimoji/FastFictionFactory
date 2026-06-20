@@ -2,11 +2,11 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-model-api-boundary-spec-001`, served through the static local Visual Review Hub at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-source-span-routing-review-pack-001`, served through the static local Visual Review Hub at `public/review/index.html`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is a spec-only model/API boundary: future provider output must become a review-held `fff.extractionContract.v1` payload and pass the existing validator, fixture, source-span, routing, and human-authority gates before it can enter local review.
+Keep the MVP reviewable without production commitments. The current lane is source-span and routing supervision for the deterministic extraction adapter: existing local fixture outputs must be easy for a human reviewer to inspect before freeform review drives adapter changes or any model/API extractor exists.
 
 ## Current Slice
 
@@ -15,6 +15,9 @@ The active slice is complete enough for local review:
 - Review UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Source-span review pack: `artifacts/source-span-routing-review-pack.json`
+- Source-span pack generator: `tools/fff-source-span-review-pack.mjs`
+- Source-span pack review doc: `docs/review/source-span-routing-review-pack.md`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 - Model/API boundary envelope: `artifacts/model-api-boundary-envelope.example.json`
 - Model/API boundary smoke evidence: `artifacts/model-api-boundary-smoke-result.json`
@@ -50,31 +53,26 @@ Last verified on 2026-06-20:
 node .\tools\fff-state.mjs validate .\artifacts\sample-project-state.json
 node .\tools\fff-state.mjs validate .\artifacts\current-project-state.json
 node .\tools\fff-state.mjs validate-extraction .\artifacts\sample-extraction-payload.json
-node .\tools\fff-state.mjs validate-extraction .\artifacts\extraction-negative-fixtures\valid-minimal.json
-node .\tools\fff-state.mjs validate-extraction .\artifacts\extraction-negative-fixtures\unknown-fields-preservation.json
 node .\tools\fff-state.mjs validate-extraction-fixtures .\artifacts\extraction-negative-fixtures
-node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
 node .\tools\fff-extract-local.mjs .\artifacts\sample-raw-memo.md .\artifacts\local-extraction-adapter-output.json .\artifacts\local-extraction-adapter-smoke-result.json
 node .\tools\fff-extract-local.mjs --matrix .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json
-node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
+node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
 ```
 
 Result summary:
 
 - Both state JSON files validate with `schemaVersion: "fff.projectState.v1"`.
 - The sample extraction payload validates as `schemaVersion: "fff.extractionContract.v1"`.
-- The model/API boundary envelope parses as `schemaVersion: "fff.modelApiBoundaryEnvelope.v1"` and declares no external call, no provider endpoint, no secret names, no direct state mutation, and no credentials for this slice.
-- The boundary smoke passes and records the validator gate, fixture matrix gate, adapter expansion gate, source integrity gates, review-safe defaults, human-owned decision guards, retry/timeout policy, failure modes, and review-safe fallback.
-- The validator fixture matrix passes: 2 expected-valid fixtures, 5 expected-invalid fixtures, and 5 built-in mutation guards.
-- The validator catches missing source refs, missing extraction identity fields, invalid element types, unsafe human-owned decision adoption, direct visual asset routing to Claim Ledger, auto-canon/default-review leaks, missing human authority boundaries, and missing high-risk warnings.
-- Unknown top-level extraction fields are reported as preservation warnings for JSON review instead of being silently dropped.
+- The validator fixture matrix passes: 2 expected-valid fixtures, 5 expected-invalid fixtures, and built-in mutation guards.
 - Current state contains 1 Extraction Contract run, 12 extraction elements, 11 Profile/Ghost records, 9 Claim Ledger claims, and 8 Timeline View entries.
-- Local adapter expansion generated 3 fixture outputs with 36 total extracted elements, complete required element-type coverage, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
+- Local adapter expansion generated 3 fixture outputs with 36 total extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
+- Source-span review pack generated from those three outputs and records 17 human-owned guarded elements plus Review Debt categories for weak spans, over-broad spans, vague extraction, ambiguous routing, confident defaults, and missing fixture classes.
+- Model/API boundary spec remains preserved as a spec-only, no-external-call boundary for future provider work.
 - Extraction Contract summary covers all required element types, 6 high-canon-risk extraction elements, 3 human-owned unresolved dependencies, 5 warnings, and candidate routing into Profile/Ghost, Claim Ledger, and Timeline View.
 - Profile/Ghost summary covers all required profile types, all required ghost node statuses, 7 high canon risk profiles, 7 dependency-bound profiles, and 11 profiles linked to both claims and timeline entries.
 - Claim summary: 5 high canon risk claims, 5 claims with unresolved dependencies, 1 unverified reality status claim, and 4 hidden or spoiler-protected claims.
 - Timeline summary reports all five timeline axes, 4 high canon risk entries, 4 dependency-bound entries, and 8 entries linked to claims.
-- The active manifest validation command passes.
+- The active manifest validation command passed for this slice; MkDocs strict, Playwright browser smoke, and git diff whitespace checks also passed during triage.
 
 ## Boundaries
 
@@ -103,17 +101,18 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-Run the state and boundary checks:
+Run the state, adapter, and pack checks:
 
 ```powershell
 node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
 node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
+node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
 ```
 
-First next move: review the model/API boundary spec and choose whether the next implementation should be a no-network mock provider or an explicitly configured provider adapter behind the same validator boundary.
+First next move: freeform review of source-span usefulness and routing quality, then one narrow fixture/span/routing change if review identifies a concrete gap.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
 
-Latest handoff refresh: 2026-06-20T00:00:00+09:00. At refresh time, the active artifact is `fff-model-api-boundary-spec-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, or final canon decision existed.
+Latest handoff refresh: 2026-06-20T00:00:00+09:00. At refresh time, the active artifact is `fff-source-span-routing-review-pack-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, or final canon decision existed.

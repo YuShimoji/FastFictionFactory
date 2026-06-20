@@ -1,0 +1,1600 @@
+{
+  "artifact_id": "fff-source-span-routing-review-pack-001",
+  "title": "Fast Fiction Factory Source-Span Routing Review Pack",
+  "purpose": "Focused local review pack for checking source spans, source references, routing targets, held defaults, and human-owned guardrails across the three deterministic adapter fixture outputs before freeform review or any model/API behavior.",
+  "generatedAt": "2026-06-20T00:00:00+09:00",
+  "review_status": "ready_for_local_review",
+  "review_input_mode": "freeform",
+  "repo_relative_path": "public/review/index.html",
+  "open_command": "Invoke-Item .\\public\\review\\index.html",
+  "pack_path": "artifacts/source-span-routing-review-pack.json",
+  "preserved_artifacts": [
+    "fff-model-api-boundary-spec-001",
+    "fff-local-extraction-adapter-expansion-001",
+    "fff-local-extraction-adapter-spike-001",
+    "fff-extraction-validator-hardening-001",
+    "fff-extraction-contract-001"
+  ],
+  "source_inputs": {
+    "fixture_dir": "artifacts/extraction-adapter-fixtures",
+    "output_dir": "artifacts/extraction-adapter-outputs",
+    "expansion_smoke": "artifacts/local-extraction-adapter-expansion-smoke-result.json",
+    "validator_fixture_dir": "artifacts/extraction-negative-fixtures"
+  },
+  "cross_fixture_summary": {
+    "fixture_count": 3,
+    "total_elements": 36,
+    "profile_candidates": 27,
+    "claim_candidates": 20,
+    "timeline_candidates": 12,
+    "source_span_mismatches": 0,
+    "missing_source_refs": 0,
+    "unsafe_visual_routing": 0,
+    "non_held_review_defaults": 0,
+    "human_owned_decision_adopt_suggestions": 0,
+    "human_owned_guarded_elements": 17,
+    "visual_asset_elements": 3,
+    "review_held_elements": 36,
+    "fixture_class_gaps": [
+      "contradictory memo claims",
+      "very broad source spans",
+      "missing or malformed source span payloads",
+      "multilingual or translated memo text",
+      "sparse bullet-only notes",
+      "model/API provider envelope output"
+    ],
+    "smoke_crosscheck": {
+      "fixture_count": 3,
+      "output_count": 3,
+      "element_count": 36,
+      "profile_candidate_count": 27,
+      "claim_candidate_count": 20,
+      "timeline_candidate_count": 12
+    }
+  },
+  "review_debt": [
+    {
+      "category": "weak_span",
+      "automated_findings": 0,
+      "review_state": "needs_human_quality_review"
+    },
+    {
+      "category": "over_broad_span",
+      "automated_findings": 0,
+      "review_state": "needs_human_quality_review"
+    },
+    {
+      "category": "vague_extraction",
+      "automated_findings": 0,
+      "review_state": "needs_human_quality_review"
+    },
+    {
+      "category": "routing_ambiguous",
+      "automated_findings": 0,
+      "review_state": "needs_human_quality_review"
+    },
+    {
+      "category": "default_too_confident",
+      "automated_findings": 0,
+      "review_state": "clear_in_automated_audit"
+    },
+    {
+      "category": "fixture_class_missing",
+      "automated_findings": 6,
+      "review_state": "intentional_next_fixture_candidates"
+    }
+  ],
+  "human_owned_boundaries": [
+    {
+      "dependency": "Toma fate",
+      "guard": "remain held until human author chooses a route"
+    },
+    {
+      "dependency": "brass moth truth",
+      "guard": "remain held until human author chooses a route"
+    },
+    {
+      "dependency": "Council motive",
+      "guard": "remain held until human author chooses a route"
+    }
+  ],
+  "fixtures": [
+    {
+      "fixture_id": "clockmaker-sample",
+      "memo_title": "Sample Raw Memo: The Clockmaker Under Glass",
+      "source_memo_path": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
+      "output_path": "artifacts/extraction-adapter-outputs/clockmaker-sample.json",
+      "extraction_run_id": "local-extract-clockmaker-adapter-001",
+      "counts": {
+        "extracted_elements": 12,
+        "profile_candidates": 9,
+        "claim_candidates": 7,
+        "timeline_candidates": 5,
+        "visual_assets": 1,
+        "human_owned_guarded_elements": 6
+      },
+      "source_refs": [
+        {
+          "id": "src-local-adapter-raw-memo-001",
+          "label": "Sample raw memo",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
+          "trust": "author_memo"
+        },
+        {
+          "id": "src-local-adapter-deterministic-001",
+          "label": "Deterministic local extraction adapter",
+          "locator": "tools/fff-extract-local.mjs",
+          "trust": "derived_candidate"
+        },
+        {
+          "id": "src-local-adapter-freeform-review-001",
+          "label": "Freeform human review boundary",
+          "locator": "docs/review/freeform-review-intake.md",
+          "trust": "human_review"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "status": 0,
+        "stdout": "valid extraction artifacts/extraction-adapter-outputs/clockmaker-sample.json",
+        "stderr": "warning: extraction contract local-extract-clockmaker-adapter-001 unknown top-level field adapterTrace will be preserved for JSON review"
+      },
+      "audit": {
+        "element_count": 12,
+        "source_span_matched_count": 12,
+        "source_span_mismatch_count": 0,
+        "source_span_mismatches": [],
+        "missing_source_ref_count": 0,
+        "missing_source_refs": [],
+        "unsafe_visual_routing_count": 0,
+        "unsafe_visual_routing": [],
+        "non_held_review_default_count": 0,
+        "non_held_review_defaults": [],
+        "human_owned_decision_adopt_count": 0,
+        "human_owned_decision_adopts": [],
+        "passed": true
+      },
+      "review_safe_defaults": {
+        "default_review_status": "hold",
+        "auto_canon_promotion": false,
+        "auto_chronology_promotion": false,
+        "freeform_review_allowed": true
+      },
+      "representative_elements": [
+        {
+          "id": "local-x-person-mira",
+          "element_type": "person",
+          "extracted_value": "Mira Vale",
+          "raw_source_snippet": "Mira Vale repairs clocks",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=91-115",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.95,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Adapter can identify the protagonist candidate, but generated output remains review-held."
+        },
+        {
+          "id": "local-x-object-brass-moth",
+          "element_type": "object",
+          "extracted_value": "brass moth",
+          "raw_source_snippet": "brass moth in the workshop drawer",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=199-232",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.95,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter may extract the object, but must not decide whether it is proof, key, spy, or memory."
+        },
+        {
+          "id": "local-x-visual-observatory",
+          "element_type": "visual_asset",
+          "extracted_value": "observatory rings without a bell",
+          "raw_source_snippet": "still rings at noon even though its bell was removed",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=364-416",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.78,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual asset routing keeps profile-side review and does not create a release asset."
+        },
+        {
+          "id": "local-x-placeholder-magic",
+          "element_type": "placeholder",
+          "extracted_value": "magic explanation placeholder",
+          "raw_source_snippet": "Do not explain the magic too early",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=914-948",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.7,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter surfaces a gap instead of inventing the magic rule."
+        },
+        {
+          "id": "local-x-unresolved-council-motive",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Council motive",
+          "raw_source_snippet": "Council motive is unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=756-784",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.86,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review remains the source of truth for the motive route."
+        },
+        {
+          "id": "local-x-source-raw-memo",
+          "element_type": "source_reference",
+          "extracted_value": "sample raw memo",
+          "raw_source_snippet": "Working title: The Clockmaker Under Glass",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=47-88",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Every adapter candidate must remain traceable to this source memo."
+        }
+      ],
+      "elements": [
+        {
+          "id": "local-x-person-mira",
+          "element_type": "person",
+          "extracted_value": "Mira Vale",
+          "raw_source_snippet": "Mira Vale repairs clocks",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=91-115",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.95,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Adapter can identify the protagonist candidate, but generated output remains review-held."
+        },
+        {
+          "id": "local-x-person-toma",
+          "element_type": "person",
+          "extracted_value": "Toma",
+          "raw_source_snippet": "missing brother Toma",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=171-191",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Name extraction is allowed, but Toma fate stays human-owned and held."
+        },
+        {
+          "id": "local-x-place-north-bell",
+          "element_type": "place",
+          "extracted_value": "North Bell Station",
+          "raw_source_snippet": "North Bell Station",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=345-363",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline"
+          ],
+          "confidence": 0.91,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Place routing can support timeline review without explaining the bell paradox."
+        },
+        {
+          "id": "local-x-organization-council",
+          "element_type": "organization",
+          "extracted_value": "city council",
+          "raw_source_snippet": "city council has been selling minutes",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=258-295",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Human Review"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter preserves the institution as a candidate while keeping motive undecided."
+        },
+        {
+          "id": "local-x-event-917",
+          "element_type": "event",
+          "extracted_value": "arcade closes at 9:17",
+          "raw_source_snippet": "closes every night at 9:17",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=139-165",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.96,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "A repeatable time cue can be routed as a held event candidate."
+        },
+        {
+          "id": "local-x-object-brass-moth",
+          "element_type": "object",
+          "extracted_value": "brass moth",
+          "raw_source_snippet": "brass moth in the workshop drawer",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=199-232",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.95,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter may extract the object, but must not decide whether it is proof, key, spy, or memory."
+        },
+        {
+          "id": "local-x-concept-stolen-minutes",
+          "element_type": "concept",
+          "extracted_value": "selling minutes from abandoned lives",
+          "raw_source_snippet": "selling minutes from abandoned lives",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=280-316",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.88,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Premise concept is extracted as a review candidate, not as final canon motive."
+        },
+        {
+          "id": "local-x-document-ledger",
+          "element_type": "document",
+          "extracted_value": "ledger of minutes",
+          "raw_source_snippet": "ledger of minutes",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=583-600",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.84,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Document-like evidence remains a candidate until reviewed."
+        },
+        {
+          "id": "local-x-visual-observatory",
+          "element_type": "visual_asset",
+          "extracted_value": "observatory rings without a bell",
+          "raw_source_snippet": "still rings at noon even though its bell was removed",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=364-416",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.78,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual asset routing keeps profile-side review and does not create a release asset."
+        },
+        {
+          "id": "local-x-placeholder-magic",
+          "element_type": "placeholder",
+          "extracted_value": "magic explanation placeholder",
+          "raw_source_snippet": "Do not explain the magic too early",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=914-948",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.7,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter surfaces a gap instead of inventing the magic rule."
+        },
+        {
+          "id": "local-x-source-raw-memo",
+          "element_type": "source_reference",
+          "extracted_value": "sample raw memo",
+          "raw_source_snippet": "Working title: The Clockmaker Under Glass",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=47-88",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Every adapter candidate must remain traceable to this source memo."
+        },
+        {
+          "id": "local-x-unresolved-council-motive",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Council motive",
+          "raw_source_snippet": "Council motive is unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=756-784",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-001",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.86,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review remains the source of truth for the motive route."
+        }
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "memo_title": "Adapter Fixture: Council Minutes Edge",
+      "source_memo_path": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md",
+      "output_path": "artifacts/extraction-adapter-outputs/council-minutes-edge.json",
+      "extraction_run_id": "local-extract-council-minutes-edge-001",
+      "counts": {
+        "extracted_elements": 12,
+        "profile_candidates": 9,
+        "claim_candidates": 7,
+        "timeline_candidates": 3,
+        "visual_assets": 1,
+        "human_owned_guarded_elements": 5
+      },
+      "source_refs": [
+        {
+          "id": "src-local-adapter-raw-memo-003",
+          "label": "Council minutes edge memo",
+          "locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md",
+          "trust": "author_memo"
+        },
+        {
+          "id": "src-local-adapter-deterministic-001",
+          "label": "Deterministic local extraction adapter",
+          "locator": "tools/fff-extract-local.mjs",
+          "trust": "derived_candidate"
+        },
+        {
+          "id": "src-local-adapter-freeform-review-001",
+          "label": "Freeform human review boundary",
+          "locator": "docs/review/freeform-review-intake.md",
+          "trust": "human_review"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "status": 0,
+        "stdout": "valid extraction artifacts/extraction-adapter-outputs/council-minutes-edge.json",
+        "stderr": "warning: extraction contract local-extract-council-minutes-edge-001 unknown top-level field adapterTrace will be preserved for JSON review"
+      },
+      "audit": {
+        "element_count": 12,
+        "source_span_matched_count": 12,
+        "source_span_mismatch_count": 0,
+        "source_span_mismatches": [],
+        "missing_source_ref_count": 0,
+        "missing_source_refs": [],
+        "unsafe_visual_routing_count": 0,
+        "unsafe_visual_routing": [],
+        "non_held_review_default_count": 0,
+        "non_held_review_defaults": [],
+        "human_owned_decision_adopt_count": 0,
+        "human_owned_decision_adopts": [],
+        "passed": true
+      },
+      "review_safe_defaults": {
+        "default_review_status": "hold",
+        "auto_canon_promotion": false,
+        "auto_chronology_promotion": false,
+        "freeform_review_allowed": true
+      },
+      "representative_elements": [
+        {
+          "id": "minutes-x-person-rowan",
+          "element_type": "person",
+          "extracted_value": "Rowan Ise",
+          "raw_source_snippet": "apprentice Rowan Ise",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=50-70",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The adapter can add a new person candidate while preserving review-held defaults."
+        },
+        {
+          "id": "minutes-x-object-brass-moth",
+          "element_type": "object",
+          "extracted_value": "brass moth",
+          "raw_source_snippet": "The brass moth flickers like a warning",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=364-402",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The object stays review-held and does not become proof or answer."
+        },
+        {
+          "id": "minutes-x-visual-moth-warning",
+          "element_type": "visual_asset",
+          "extracted_value": "flickering brass moth visual",
+          "raw_source_snippet": "brass moth flickers like a warning",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=368-402",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.76,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual asset routing is profile-buffered and not production-ready art."
+        },
+        {
+          "id": "minutes-x-placeholder-proof-bait",
+          "element_type": "placeholder",
+          "extracted_value": "proof, bait, or false record placeholder",
+          "raw_source_snippet": "do not decide whether it is proof, bait, or a false record",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=408-466",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.79,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter marks a decision gap instead of selecting the meaning."
+        },
+        {
+          "id": "minutes-x-unresolved-council-motive",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Council motive",
+          "raw_source_snippet": "Council motive remains unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=563-596",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Claim"
+          ],
+          "confidence": 0.87,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review is required before motive language can become canon."
+        },
+        {
+          "id": "minutes-x-source-council-minutes",
+          "element_type": "source_reference",
+          "extracted_value": "council minutes edge memo",
+          "raw_source_snippet": "Adapter Fixture: Council Minutes Edge",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=2-39",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The fixture title remains visible as a source reference."
+        }
+      ],
+      "elements": [
+        {
+          "id": "minutes-x-person-rowan",
+          "element_type": "person",
+          "extracted_value": "Rowan Ise",
+          "raw_source_snippet": "apprentice Rowan Ise",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=50-70",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The adapter can add a new person candidate while preserving review-held defaults."
+        },
+        {
+          "id": "minutes-x-person-mira",
+          "element_type": "person",
+          "extracted_value": "Mira Vale",
+          "raw_source_snippet": "Mira Vale hides the repair log",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=103-133",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.88,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The protagonist can be mapped from a different action phrase."
+        },
+        {
+          "id": "minutes-x-place-glass-arcade",
+          "element_type": "place",
+          "extracted_value": "glass arcade",
+          "raw_source_snippet": "glass arcade",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=84-96",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline"
+          ],
+          "confidence": 0.91,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Place extraction remains stable across a smaller phrase."
+        },
+        {
+          "id": "minutes-x-organization-archivists",
+          "element_type": "organization",
+          "extracted_value": "Council archivists",
+          "raw_source_snippet": "Council archivists offer Mira a permit",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=136-174",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Human Review"
+          ],
+          "confidence": 0.84,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The council remains a held organization candidate, not a motive decision."
+        },
+        {
+          "id": "minutes-x-event-rowan-waits",
+          "element_type": "event",
+          "extracted_value": "Rowan waits at 9:17",
+          "raw_source_snippet": "At 9:17, apprentice Rowan Ise waits",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=41-76",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.85,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Event extraction handles a time cue with a new actor."
+        },
+        {
+          "id": "minutes-x-object-brass-moth",
+          "element_type": "object",
+          "extracted_value": "brass moth",
+          "raw_source_snippet": "The brass moth flickers like a warning",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=364-402",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The object stays review-held and does not become proof or answer."
+        },
+        {
+          "id": "minutes-x-concept-abandoned-lives",
+          "element_type": "concept",
+          "extracted_value": "abandoned lives still pay minutes",
+          "raw_source_snippet": "abandoned lives still pay minutes",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=199-232",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.82,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The concept is extracted as suspicious accounting, not final world truth."
+        },
+        {
+          "id": "minutes-x-document-paper-map",
+          "element_type": "document",
+          "extracted_value": "paper map of the under-arcade cabinet",
+          "raw_source_snippet": "A paper map of the under-arcade cabinet",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=253-292",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.8,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Document extraction covers a physical guide rather than a ledger."
+        },
+        {
+          "id": "minutes-x-visual-moth-warning",
+          "element_type": "visual_asset",
+          "extracted_value": "flickering brass moth visual",
+          "raw_source_snippet": "brass moth flickers like a warning",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=368-402",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.76,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual asset routing is profile-buffered and not production-ready art."
+        },
+        {
+          "id": "minutes-x-placeholder-proof-bait",
+          "element_type": "placeholder",
+          "extracted_value": "proof, bait, or false record placeholder",
+          "raw_source_snippet": "do not decide whether it is proof, bait, or a false record",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=408-466",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.79,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter marks a decision gap instead of selecting the meaning."
+        },
+        {
+          "id": "minutes-x-source-council-minutes",
+          "element_type": "source_reference",
+          "extracted_value": "council minutes edge memo",
+          "raw_source_snippet": "Adapter Fixture: Council Minutes Edge",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=2-39",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The fixture title remains visible as a source reference."
+        },
+        {
+          "id": "minutes-x-unresolved-council-motive",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Council motive",
+          "raw_source_snippet": "Council motive remains unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=563-596",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-003",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Claim"
+          ],
+          "confidence": 0.87,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review is required before motive language can become canon."
+        }
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "memo_title": "Adapter Fixture: Observatory Ledger Edge",
+      "source_memo_path": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
+      "output_path": "artifacts/extraction-adapter-outputs/observatory-ledger-edge.json",
+      "extraction_run_id": "local-extract-observatory-ledger-edge-001",
+      "counts": {
+        "extracted_elements": 12,
+        "profile_candidates": 9,
+        "claim_candidates": 6,
+        "timeline_candidates": 4,
+        "visual_assets": 1,
+        "human_owned_guarded_elements": 6
+      },
+      "source_refs": [
+        {
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
+          "trust": "author_memo"
+        },
+        {
+          "id": "src-local-adapter-deterministic-001",
+          "label": "Deterministic local extraction adapter",
+          "locator": "tools/fff-extract-local.mjs",
+          "trust": "derived_candidate"
+        },
+        {
+          "id": "src-local-adapter-freeform-review-001",
+          "label": "Freeform human review boundary",
+          "locator": "docs/review/freeform-review-intake.md",
+          "trust": "human_review"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "status": 0,
+        "stdout": "valid extraction artifacts/extraction-adapter-outputs/observatory-ledger-edge.json",
+        "stderr": "warning: extraction contract local-extract-observatory-ledger-edge-001 unknown top-level field adapterTrace will be preserved for JSON review"
+      },
+      "audit": {
+        "element_count": 12,
+        "source_span_matched_count": 12,
+        "source_span_mismatch_count": 0,
+        "source_span_mismatches": [],
+        "missing_source_ref_count": 0,
+        "missing_source_refs": [],
+        "unsafe_visual_routing_count": 0,
+        "unsafe_visual_routing": [],
+        "non_held_review_default_count": 0,
+        "non_held_review_defaults": [],
+        "human_owned_decision_adopt_count": 0,
+        "human_owned_decision_adopts": [],
+        "passed": true
+      },
+      "review_safe_defaults": {
+        "default_review_status": "hold",
+        "auto_canon_promotion": false,
+        "auto_chronology_promotion": false,
+        "freeform_review_allowed": true
+      },
+      "representative_elements": [
+        {
+          "id": "edge-x-person-mira",
+          "element_type": "person",
+          "extracted_value": "Mira Vale",
+          "raw_source_snippet": "Mira Vale writes a repair log",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=44-73",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.93,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The adapter can map a protagonist mention even when the action differs from the sample phrasing."
+        },
+        {
+          "id": "edge-x-object-brass-moth-key",
+          "element_type": "object",
+          "extracted_value": "brass moth key",
+          "raw_source_snippet": "brass moth key",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=288-302",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.89,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The object can be extracted while its function remains undecided."
+        },
+        {
+          "id": "edge-x-visual-bellless-tower",
+          "element_type": "visual_asset",
+          "extracted_value": "bellless tower silhouette",
+          "raw_source_snippet": "bellless tower silhouette",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=409-434",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.73,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual asset routing is profile-buffered and avoids direct Claim Ledger-only use."
+        },
+        {
+          "id": "edge-x-placeholder-moth-function",
+          "element_type": "placeholder",
+          "extracted_value": "moth function unanswered",
+          "raw_source_snippet": "Keep the moth's function unanswered",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=521-556",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.75,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter marks a missing rule instead of inventing the moth function."
+        },
+        {
+          "id": "edge-x-unresolved-toma-fate",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Toma fate",
+          "raw_source_snippet": "Toma fate stays unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=558-584",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Timeline"
+          ],
+          "confidence": 0.86,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review remains required before any Toma fate route is adopted."
+        },
+        {
+          "id": "edge-x-source-observatory-ledger",
+          "element_type": "source_reference",
+          "extracted_value": "observatory ledger edge memo",
+          "raw_source_snippet": "Adapter Fixture: Observatory Ledger Edge",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=2-42",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The fixture title is preserved as a source reference element."
+        }
+      ],
+      "elements": [
+        {
+          "id": "edge-x-person-mira",
+          "element_type": "person",
+          "extracted_value": "Mira Vale",
+          "raw_source_snippet": "Mira Vale writes a repair log",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=44-73",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.93,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The adapter can map a protagonist mention even when the action differs from the sample phrasing."
+        },
+        {
+          "id": "edge-x-person-toma",
+          "element_type": "person",
+          "extracted_value": "Toma",
+          "raw_source_snippet": "Toma's last route",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=252-269",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.86,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Toma remains a held person candidate tied to a route note, not a fate decision."
+        },
+        {
+          "id": "edge-x-place-north-bell",
+          "element_type": "place",
+          "extracted_value": "North Bell Station",
+          "raw_source_snippet": "North Bell Station",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=106-124",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Place extraction stays useful across differently ordered memo paragraphs."
+        },
+        {
+          "id": "edge-x-organization-archive-office",
+          "element_type": "organization",
+          "extracted_value": "city council archive office",
+          "raw_source_snippet": "city council archive office",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=308-335",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Human Review"
+          ],
+          "confidence": 0.84,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Organization routing is review-held because motive language remains uncertain."
+        },
+        {
+          "id": "edge-x-event-closing-repeat",
+          "element_type": "event",
+          "extracted_value": "closing bell repeats three times",
+          "raw_source_snippet": "closing bell repeats three times",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=217-249",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.78,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Event detection handles a repeated signal rather than only the sample 9:17 clause."
+        },
+        {
+          "id": "edge-x-object-brass-moth-key",
+          "element_type": "object",
+          "extracted_value": "brass moth key",
+          "raw_source_snippet": "brass moth key",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=288-302",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.89,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The object can be extracted while its function remains undecided."
+        },
+        {
+          "id": "edge-x-concept-borrowed-minutes",
+          "element_type": "concept",
+          "extracted_value": "borrowed minutes from abandoned lives",
+          "raw_source_snippet": "borrowed minutes from abandoned lives",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=481-518",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.82,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Concept extraction stays provisional and cannot settle why the council tracks minutes."
+        },
+        {
+          "id": "edge-x-document-ledger-page",
+          "element_type": "document",
+          "extracted_value": "ledger page",
+          "raw_source_snippet": "A ledger page",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=461-474",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.8,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Document routing covers partial evidence without treating it as proof."
+        },
+        {
+          "id": "edge-x-visual-bellless-tower",
+          "element_type": "visual_asset",
+          "extracted_value": "bellless tower silhouette",
+          "raw_source_snippet": "bellless tower silhouette",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=409-434",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.73,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual asset routing is profile-buffered and avoids direct Claim Ledger-only use."
+        },
+        {
+          "id": "edge-x-placeholder-moth-function",
+          "element_type": "placeholder",
+          "extracted_value": "moth function unanswered",
+          "raw_source_snippet": "Keep the moth's function unanswered",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=521-556",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.75,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter marks a missing rule instead of inventing the moth function."
+        },
+        {
+          "id": "edge-x-source-observatory-ledger",
+          "element_type": "source_reference",
+          "extracted_value": "observatory ledger edge memo",
+          "raw_source_snippet": "Adapter Fixture: Observatory Ledger Edge",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=2-42",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The fixture title is preserved as a source reference element."
+        },
+        {
+          "id": "edge-x-unresolved-toma-fate",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Toma fate",
+          "raw_source_snippet": "Toma fate stays unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=558-584",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-002",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Timeline"
+          ],
+          "confidence": 0.86,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review remains required before any Toma fate route is adopted."
+        }
+      ]
+    }
+  ],
+  "next_human_review_prompt": "Review whether each representative source span is narrow enough, whether extracted values preserve the memo wording, whether routing targets are safe, and whether any fixture class is missing before freeform review moves to adapter changes.",
+  "passed": true
+}

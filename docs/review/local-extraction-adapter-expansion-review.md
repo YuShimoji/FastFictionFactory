@@ -83,4 +83,4 @@ The adapter does not decide Toma fate, brass moth truth, or Council motive.
 
 ## Next Recommended Continuation
 
-Review whether the expanded deterministic output has useful source spans and safe routing. The next slice can add more local source-span edge fixtures or prepare a model/API adapter behind the same `validate-extraction`, fixture-matrix, review-held default, and human-authority boundary checks.
+Use `fff-source-span-routing-review-pack-001` for the source-span and routing quality review. The Review Hub section and `artifacts/source-span-routing-review-pack.json` now provide the compact representative rows and the full 36-element readback. After freeform review, the next slice can revise deterministic spans/routing, add one local source-span edge fixture, or prepare a model/API adapter behind the same `validate-extraction`, fixture-matrix, review-held default, and human-authority boundary checks.

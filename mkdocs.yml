@@ -68,8 +68,10 @@ nav:
       - File Persistence Review: review/file-persistence-review.md
       - First MVP Review: review/first-mvp-review.md
       - Extraction Contract Review: review/extraction-contract-review.md
+      - Model API Boundary Spec: review/model-api-boundary-spec.md
       - Local Extraction Adapter Expansion Review: review/local-extraction-adapter-expansion-review.md
       - Source-Span Routing Review Pack: review/source-span-routing-review-pack.md
+      - Source-Span Routing Triage: review/source-span-routing-triage.md
       - Freeform Review Intake: review/freeform-review-intake.md
       - JSON Export Import Review: review/json-export-import-review.md
       - Checkpoint Readback: review/checkpoint-readback.md

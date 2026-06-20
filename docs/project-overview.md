@@ -28,6 +28,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Extraction Contract and freeform review intake | Ready for local review | [`review/extraction-contract-review.md`](review/extraction-contract-review.md), [`review/freeform-review-intake.md`](review/freeform-review-intake.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Local extraction adapter expansion | Ready for local review | [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Model/API boundary spec | Ready for local review | [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md) | `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json` |
+| Source-span routing review pack | Ready for local review | [`review/source-span-routing-review-pack.md`](review/source-span-routing-review-pack.md) | `artifacts/source-span-routing-review-pack.json`, `artifacts/fff-current-review-screenshot.png` |
 
 The implementation details are itemized inside the review documents under headings such as `What Was Implemented`, `What Exists Now`, `Validation`, `Known Limitations`, and `Next Recommended Slice`.
 
@@ -53,7 +54,7 @@ Invoke-Item .\artifacts\fff-review-contact-sheet.png
 | Work | Current state | Where it is tracked | Boundary to keep |
 | --- | --- | --- | --- |
 | Profile page and ghost node flow | Ready for local review | [`idea-ledger.md`](idea-ledger.md), [`review/current-status.md`](review/current-status.md), [`review/profile-ghost-flow-review.md`](review/profile-ghost-flow-review.md) | Do not finalize Toma fate, brass moth truth, or Council motive. |
-| Actual Model/API extraction adapter | Not started | [`idea-ledger.md`](idea-ledger.md), [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md), [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | Keep model/API work behind the boundary envelope, local validator, source-span, routing, and review-safe default gates. |
+| Actual Model/API extraction adapter | Not started | [`idea-ledger.md`](idea-ledger.md), [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md), [`review/source-span-routing-review-pack.md`](review/source-span-routing-review-pack.md), [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | Keep model/API work behind the boundary envelope, local validator, source-span, routing, and review-safe default gates. |
 | Durable project database | Not started | [`idea-ledger.md`](idea-ledger.md) | Decide storage and migration policy before persistence work. |
 | Publishing and video generation | Out of scope for the current MVP | [`product-brief.md`](product-brief.md), [`idea-ledger.md`](idea-ledger.md) | No upload, credentials, public release, or AI video generation in the current review lane. |
 
@@ -63,7 +64,7 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Boundary implementation decision | A no-network mock provider or explicitly configured provider adapter can be chosen behind the current validator. | Model/API integration can be evaluated without changing canon or persistence authority. |
+| Next 1 turn | Source-span freeform review response | A concrete weak span, vague extraction, ambiguous route, or missing fixture class can be chosen from review feedback. | Deterministic adapter quality improves before any model/API integration. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
@@ -107,4 +108,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The next recommended implementation slice is a no-network mock provider or explicitly configured model/API adapter behind the boundary spec and existing local validator.
+The next recommended implementation slice is freeform review response for `fff-source-span-routing-review-pack-001`, followed by only targeted fixture/span/routing changes if review identifies a concrete gap.

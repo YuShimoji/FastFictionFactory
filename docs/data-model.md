@@ -225,6 +225,89 @@ node .\tools\fff-extract-local.mjs --matrix .\artifacts\extraction-adapter-fixtu
 
 Matrix mode currently generates three valid Extraction Contract payloads from Clockmaker-local raw memo fixtures. The expansion smoke records aggregate coverage across 36 extracted elements, complete required element-type coverage, source-span integrity, source-ref integrity, review-held defaults, profile-buffered visual assets, freeform review authority, and human-owned decision guards. This is still deterministic fixture coverage, not model/API behavior and not canon authority.
 
+## Source-Span Routing Review Pack
+
+`fff-source-span-routing-review-pack-001` is a review artifact, not project state and not an Extraction Contract payload. It reads existing `fff.extractionContract.v1` adapter outputs and makes their source spans, source refs, routing targets, held defaults, human-owned guards, and review debt easier to inspect before freeform review.
+
+The generated pack lives at `artifacts/source-span-routing-review-pack.json`. The generator lives at `tools/fff-source-span-review-pack.mjs`.
+
+```ts
+type SourceSpanRoutingReviewPack = {
+  artifact_id: "fff-source-span-routing-review-pack-001";
+  title: string;
+  purpose: string;
+  generatedAt: string;
+  review_status: "ready_for_local_review";
+  review_input_mode: "freeform";
+  repo_relative_path: "public/review/index.html";
+  pack_path: "artifacts/source-span-routing-review-pack.json";
+  preserved_artifacts: string[];
+  source_inputs: {
+    fixture_dir: "artifacts/extraction-adapter-fixtures";
+    output_dir: "artifacts/extraction-adapter-outputs";
+    expansion_smoke: "artifacts/local-extraction-adapter-expansion-smoke-result.json";
+    validator_fixture_dir: "artifacts/extraction-negative-fixtures";
+  };
+  cross_fixture_summary: {
+    fixture_count: number;
+    total_elements: number;
+    profile_candidates: number;
+    claim_candidates: number;
+    timeline_candidates: number;
+    source_span_mismatches: number;
+    missing_source_refs: number;
+    unsafe_visual_routing: number;
+    non_held_review_defaults: number;
+    human_owned_decision_adopt_suggestions: number;
+    human_owned_guarded_elements: number;
+    visual_asset_elements: number;
+    review_held_elements: number;
+    fixture_class_gaps: string[];
+  };
+  review_debt: Array<{
+    category: "weak_span" | "over_broad_span" | "vague_extraction" | "routing_ambiguous" | "default_too_confident" | "fixture_class_missing";
+    automated_findings: number;
+    review_state: string;
+  }>;
+  fixtures: Array<{
+    fixture_id: string;
+    memo_title: string;
+    source_memo_path: string;
+    output_path: string;
+    extraction_run_id: string;
+    counts: {
+      extracted_elements: number;
+      profile_candidates: number;
+      claim_candidates: number;
+      timeline_candidates: number;
+      visual_assets: number;
+      human_owned_guarded_elements: number;
+    };
+    representative_elements: SourceSpanReviewElement[];
+    elements: SourceSpanReviewElement[];
+  }>;
+};
+
+type SourceSpanReviewElement = {
+  id: string;
+  element_type: string;
+  extracted_value: string;
+  raw_source_snippet: string;
+  source_span_locator: string;
+  source_ref_ids: string[];
+  source_span_matches_raw_memo: boolean;
+  routing_targets: Array<"Claim" | "Timeline" | "Profile" | "Visual" | "Human Review" | "Source Reference">;
+  confidence: number;
+  suggested_review_status: "hold";
+  review_status: "hold";
+  human_owned_guard: "held_human_review_required" | "none";
+  risk_flags: string[];
+  review_notes: string;
+};
+```
+
+This pack must not promote candidates into canon, write project state, add provider credentials, or call a model/API. It is a supervision aid for the existing deterministic adapter outputs.
+
 ## Model/API Boundary Envelope
 
 `fff-model-api-boundary-spec-001` defines a spec-only wrapper for future provider-facing extraction work. The envelope is not an Extraction Contract payload and is not project state. It is a local review artifact that describes allowed inputs, provider-call status, output contract, validation gates, failure modes, retry/timeout policy, review-safe fallback, and forbidden actions.
@@ -304,7 +387,7 @@ The boundary requires any future provider output to be converted into `fff.extra
 - visual-asset routing guards
 - human-owned decision guards for Toma fate, brass moth truth, and Council motive
 
-This slice does not define a provider, endpoint, credential flow, timeout value, retry count, or model/API implementation.
+This boundary does not define a provider, endpoint, credential flow, timeout value, retry count, or model/API implementation.
 
 ## UnresolvedCreativeDecision
 

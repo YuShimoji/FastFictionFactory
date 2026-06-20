@@ -1,0 +1,146 @@
+{
+  "artifact_id": "fff-source-span-routing-triage-001",
+  "slice": "fff-source-span-routing-triage-001",
+  "created_at": "2026-06-20T00:00:00+09:00",
+  "base_head": "d367bc2",
+  "upstream_parity_at_triage_start": {
+    "ahead": 0,
+    "behind": 0,
+    "branch": "master",
+    "upstream": "origin/master"
+  },
+  "classification_counts": {
+    "source_span_routing_intentional": 18,
+    "model_boundary_residue": 0,
+    "generated_temp": 0,
+    "unrelated_dirty_work": 0,
+    "unknown_needs_decision": 0
+  },
+  "files": [
+    {
+      "path": "artifacts/ARTIFACTS.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "artifact inventory update for the source-span pack and preserved model/API boundary"
+    },
+    {
+      "path": "artifacts/artifact-manifest.json",
+      "classification": "source_span_routing_intentional",
+      "reason": "active source-span review artifact manifest with preserved model/API boundary artifact id"
+    },
+    {
+      "path": "artifacts/local-extraction-adapter-expansion-smoke-result.json",
+      "classification": "source_span_routing_intentional",
+      "reason": "deterministic adapter matrix smoke readback used by the source-span pack; final diff must show no semantic metric drift"
+    },
+    {
+      "path": "artifacts/source-span-routing-review-pack.json",
+      "classification": "source_span_routing_intentional",
+      "reason": "generated full source-span and routing review pack"
+    },
+    {
+      "path": "artifacts/source-span-routing-triage-result.json",
+      "classification": "source_span_routing_intentional",
+      "reason": "machine-readable dirty-work triage evidence"
+    },
+    {
+      "path": "docs/data-model.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "documents the source-span pack shape while preserving the model/API boundary envelope"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "records the review-pack decision and its no-model/API boundary"
+    },
+    {
+      "path": "docs/idea-ledger.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "updates extraction-engine residual work to source-span review before model/API adapter work"
+    },
+    {
+      "path": "docs/project-context.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "updates restart context for the source-span pack and preserved model/API boundary"
+    },
+    {
+      "path": "docs/project-overview.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "adds source-span pack navigation and next-turn guidance"
+    },
+    {
+      "path": "docs/review/current-status.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "updates current status to the source-span pack while preserving prior artifacts"
+    },
+    {
+      "path": "docs/review/local-extraction-adapter-expansion-review.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "points adapter expansion review to the source-span pack"
+    },
+    {
+      "path": "docs/review/next-terminal-handoff.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "updates restart commands and boundaries for the source-span pack"
+    },
+    {
+      "path": "docs/review/source-span-routing-review-pack.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "human-readable source-span pack review guide"
+    },
+    {
+      "path": "docs/review/source-span-routing-triage.md",
+      "classification": "source_span_routing_intentional",
+      "reason": "dirty-work classification and checkpoint gate"
+    },
+    {
+      "path": "mkdocs.yml",
+      "classification": "source_span_routing_intentional",
+      "reason": "local docs navigation entry for the source-span pack"
+    },
+    {
+      "path": "public/review/index.html",
+      "classification": "source_span_routing_intentional",
+      "reason": "Visual Review Hub source-span pack section and preserved model/API boundary metadata"
+    },
+    {
+      "path": "tools/fff-source-span-review-pack.mjs",
+      "classification": "source_span_routing_intentional",
+      "reason": "local pack generator and guard auditor"
+    }
+  ],
+  "model_boundary_preservation": {
+    "preserved": true,
+    "artifact_id": "fff-model-api-boundary-spec-001",
+    "checked_surfaces": [
+      "artifacts/artifact-manifest.json",
+      "artifacts/ARTIFACTS.md",
+      "docs/data-model.md",
+      "docs/project-context.md",
+      "docs/review/current-status.md",
+      "docs/review/source-span-routing-review-pack.md",
+      "public/review/index.html"
+    ]
+  },
+  "semantic_metric_change_note": {
+    "source_span_pack": {
+      "fixture_count": 3,
+      "total_elements": 36,
+      "profile_candidates": 27,
+      "claim_candidates": 20,
+      "timeline_candidates": 12,
+      "source_span_mismatches": 0,
+      "missing_source_refs": 0,
+      "unsafe_visual_routing": 0,
+      "non_held_review_defaults": 0,
+      "human_owned_decision_adopt_suggestions": 0
+    },
+    "adapter_expansion_smoke": "No semantic metric change expected; only nested validator stdout generatedAt may refresh during validation."
+  },
+  "checkpoint_decision": "checkpoint_allowed_after_validation",
+  "validation": {
+    "manifest_validation": "passed",
+    "mkdocs_strict": "passed_with_existing_material_warning",
+    "review_hub_browser_smoke": "playwright_browser_smoke_passed_in_app_browser_bridge_unavailable",
+    "git_diff_check": "passed"
+  }
+}

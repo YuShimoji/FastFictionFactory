@@ -206,6 +206,33 @@
       text-transform: uppercase;
     }
 
+    .table-scroll {
+      overflow-x: auto;
+    }
+
+    .source-span-pack {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .source-span-fixture {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: #ffffff;
+    }
+
+    .source-span-fixture summary {
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .source-span-table {
+      min-width: 980px;
+      margin-top: 10px;
+    }
+
     .code-line {
       display: block;
       overflow-wrap: anywhere;
@@ -835,7 +862,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Current MVP Status Packet</h2>
-            <p class="lede">Active artifact id: <strong>fff-model-api-boundary-spec-001</strong>. Current phase: define the model/API boundary envelope before any external extraction call while preserving <strong>fff-local-extraction-adapter-expansion-001</strong>, <strong>fff-local-extraction-adapter-spike-001</strong>, <strong>fff-extraction-validator-hardening-001</strong>, <strong>fff-extraction-contract-001</strong>, human-owned canon boundaries, and the single Visual Review Hub entry point.</p>
+            <p class="lede">Active artifact id: <strong>fff-source-span-routing-review-pack-001</strong>. Current phase: review source spans, source refs, routing targets, held defaults, and human-owned guardrails across the three deterministic adapter fixture outputs while preserving <strong>fff-model-api-boundary-spec-001</strong>, <strong>fff-local-extraction-adapter-expansion-001</strong>, <strong>fff-local-extraction-adapter-spike-001</strong>, <strong>fff-extraction-validator-hardening-001</strong>, <strong>fff-extraction-contract-001</strong>, human-owned canon boundaries, and the single Visual Review Hub entry point.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -857,7 +884,8 @@
           <div class="progress-step done"><strong>Extraction Contract</strong><span class="tag green">done</span><p class="section-note">Define source refs, review-safe defaults, warnings, and candidate routing.</p></div>
           <div class="progress-step done"><strong>Validator hardening</strong><span class="tag green">done</span><p class="section-note">Exercise valid, unsafe, unknown-field, and missing-default extraction payloads before adapter work.</p></div>
           <div class="progress-step done"><strong>Local extraction adapter expansion</strong><span class="tag green">done</span><p class="section-note">Generate validated Extraction Contract payloads from multiple local raw memo fixtures before model/API work.</p></div>
-          <div class="progress-step current"><strong>Model/API boundary spec</strong><span class="tag blue">current</span><p class="section-note">Define provider output, failure, retry, fallback, and validator gates before any model/API call.</p></div>
+          <div class="progress-step done"><strong>Model/API boundary spec</strong><span class="tag green">done</span><p class="section-note">Define provider output, failure, retry, fallback, and validator gates before any model/API call.</p></div>
+          <div class="progress-step current"><strong>Source-span routing review pack</strong><span class="tag blue">current</span><p class="section-note">Compare fixture spans, routing, held defaults, and human-owned guards before freeform review.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;">
@@ -878,13 +906,14 @@
               <li>Extraction validator fixture matrix for valid minimal payload, missing source refs, overconfident human-owned decisions, invalid visual-asset routing, auto-canon leaks, missing review-safe defaults, unknown-field preservation, and built-in identity guards.</li>
               <li>Local deterministic extraction adapter expansion from three raw memo fixtures to validated Extraction Contract payloads.</li>
               <li>Model/API boundary spec with envelope, failure modes, retry/fallback policy, validator gates, and forbidden actions before provider work.</li>
+              <li>Source-span routing review pack across three deterministic fixture outputs.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
           <div class="hub-panel">
             <h3>Pending features</h3>
             <ul class="hub-list">
-              <li>Actual model/API extraction adapter behind the boundary envelope and local validator gates.</li>
+              <li>Model/API extraction adapter behind the local validator gates.</li>
               <li>Durable project database.</li>
               <li>Automated release or publishing adapters.</li>
             </ul>
@@ -956,6 +985,9 @@
                 <tr><td>Model/API boundary spec</td><td>docs/review/model-api-boundary-spec.md</td></tr>
                 <tr><td>Model/API boundary envelope</td><td>artifacts/model-api-boundary-envelope.example.json</td></tr>
                 <tr><td>Model/API boundary smoke</td><td>artifacts/model-api-boundary-smoke-result.json</td></tr>
+                <tr><td>Source-span review pack</td><td>artifacts/source-span-routing-review-pack.json</td></tr>
+                <tr><td>Source-span pack tool</td><td>tools/fff-source-span-review-pack.mjs</td></tr>
+                <tr><td>Source-span pack review</td><td>docs/review/source-span-routing-review-pack.md</td></tr>
                 <tr><td>Freeform review smoke</td><td>artifacts/freeform-review-intake-smoke-result.json</td></tr>
                 <tr><td>Current status doc</td><td>docs/review/current-status.md</td></tr>
               </tbody>
@@ -965,9 +997,9 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows artifact id <strong>fff-model-api-boundary-spec-001</strong>.</li>
-              <li>Use <strong>docs/review/model-api-boundary-spec.md</strong> to review provider output, failure, retry, fallback, and forbidden-action policy before adapter work.</li>
-              <li>Use <strong>artifacts/model-api-boundary-envelope.example.json</strong> and <strong>artifacts/model-api-boundary-smoke-result.json</strong> to review the boundary readback.</li>
+              <li>Confirm this hub shows artifact id <strong>fff-source-span-routing-review-pack-001</strong>.</li>
+              <li>Use <strong>Source-Span Routing Review Pack</strong> below to review fixture summaries, representative source spans, routing targets, held defaults, and human-owned guards.</li>
+              <li>Use <strong>artifacts/source-span-routing-review-pack.json</strong> when all 36 extracted elements need full source-span/routing readback.</li>
               <li>Use <strong>artifacts/local-extraction-adapter-expansion-smoke-result.json</strong> to review fixture inputs, adapter outputs, validator status, source-span audit, and guard status.</li>
               <li>Use <strong>artifacts/extraction-validator-smoke-result.json</strong> to review the preserved pass/fail fixture matrix before model/API work.</li>
               <li>Use <strong>Extraction Contract</strong> grouping and filters before wiring any generated candidate into profile, claim, or timeline review.</li>
@@ -1000,6 +1032,115 @@
           </div>
         </div>
 
+        <div class="hub-panel" id="source-span-routing-review-pack-section" style="margin-top: 12px;">
+          <h3>Source-Span Routing Review Pack</h3>
+          <p class="section-note">Artifact id: <strong>fff-source-span-routing-review-pack-001</strong>. Full 36-row readback lives at <strong>artifacts/source-span-routing-review-pack.json</strong>; this panel keeps the review surface compact for freeform supervision.</p>
+          <div class="summary-strip" aria-label="Source-span review pack summary">
+            <div class="metric"><strong>3</strong><span>fixtures</span></div>
+            <div class="metric"><strong>36</strong><span>elements</span></div>
+            <div class="metric"><strong>27</strong><span>profiles</span></div>
+            <div class="metric"><strong>20</strong><span>claims</span></div>
+            <div class="metric"><strong>12</strong><span>timeline</span></div>
+            <div class="metric"><strong>0</strong><span>span mismatch</span></div>
+            <div class="metric"><strong>0</strong><span>missing refs</span></div>
+            <div class="metric"><strong>36</strong><span>held defaults</span></div>
+          </div>
+
+          <div class="hub-grid" style="margin-top: 12px;">
+            <div class="hub-panel">
+              <h3>Cross-fixture readback</h3>
+              <ul class="hub-list">
+                <li>Source-span mismatch count: 0.</li>
+                <li>Missing source refs: 0.</li>
+                <li>Unsafe visual routing: 0.</li>
+                <li>Non-held review defaults: 0.</li>
+                <li>Human-owned decision adopt suggestions: 0.</li>
+                <li>Human-owned guarded elements: 17.</li>
+              </ul>
+            </div>
+            <div class="hub-panel">
+              <h3>Review Debt</h3>
+              <ul class="hub-list">
+                <li>Weak span: no automated mismatch; needs human quality review.</li>
+                <li>Over-broad span: qualitative review required.</li>
+                <li>Vague extraction: qualitative review required.</li>
+                <li>Routing ambiguous: no unsafe visual route; still review target usefulness.</li>
+                <li>Default too confident: clear in automated audit.</li>
+                <li>Fixture class missing: contradictory memo, broad span, malformed span, multilingual memo, sparse notes, and model/API envelope cases.</li>
+              </ul>
+            </div>
+            <div class="hub-panel">
+              <h3>Human-owned guards</h3>
+              <ul class="hub-list">
+                <li>Toma fate remains held until the human author chooses a route.</li>
+                <li>Brass moth truth remains held until the human author chooses a route.</li>
+                <li>Council motive remains held until the human author chooses a route.</li>
+              </ul>
+            </div>
+            <div class="hub-panel">
+              <h3>Pack commands</h3>
+              <code class="code-line">node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json</code>
+              <p class="section-note">The command validates each fixture output through the Extraction Contract validator while building the pack.</p>
+            </div>
+          </div>
+
+          <div class="source-span-pack">
+            <details class="source-span-fixture" open>
+              <summary>clockmaker-sample - Sample Raw Memo: The Clockmaker Under Glass</summary>
+              <p class="section-note">12 elements; 9 profile candidates; 7 claim candidates; 5 timeline candidates.</p>
+              <div class="table-scroll">
+                <table class="artifact-table source-span-table">
+                  <thead><tr><th>Element</th><th>Source span</th><th>Routing</th><th>Status</th><th>Guard and notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Mira Vale<br><span class="tag green">person</span></td><td>Mira Vale repairs clocks<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=91-115</code></td><td>Profile; Claim</td><td>confidence 0.95<br>hold</td><td>no automated issue; protagonist candidate remains review-held.</td></tr>
+                    <tr><td>brass moth<br><span class="tag gold">object</span></td><td>brass moth in the workshop drawer<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=199-232</code></td><td>Profile; Claim; Timeline; Human Review</td><td>confidence 0.95<br>hold</td><td>held human review required; high canon risk; brass moth truth unresolved.</td></tr>
+                    <tr><td>observatory rings without a bell<br><span class="tag blue">visual_asset</span></td><td>still rings at noon even though its bell was removed<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=364-416</code></td><td>Profile; Claim; Timeline; Visual</td><td>confidence 0.78<br>hold</td><td>visual review only; no release asset is created.</td></tr>
+                    <tr><td>magic explanation placeholder<br><span class="tag red">placeholder</span></td><td>Do not explain the magic too early<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=914-948</code></td><td>Profile; Human Review</td><td>confidence 0.70<br>hold</td><td>held human review required; surfaces a rule gap instead of inventing magic.</td></tr>
+                    <tr><td>Council motive<br><span class="tag red">unresolved_decision</span></td><td>Council motive is unresolved<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=756-784</code></td><td>Human Review; Claim; Timeline</td><td>confidence 0.86<br>hold</td><td>held human review required; freeform review remains source of truth.</td></tr>
+                    <tr><td>sample raw memo<br><span class="tag green">source_reference</span></td><td>Working title: The Clockmaker Under Glass<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=47-88</code></td><td>Source Reference</td><td>confidence 1.00<br>hold</td><td>source anchor for every adapter candidate.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            <details class="source-span-fixture" open>
+              <summary>council-minutes-edge - Adapter Fixture: Council Minutes Edge</summary>
+              <p class="section-note">12 elements; 9 profile candidates; 7 claim candidates; 3 timeline candidates.</p>
+              <div class="table-scroll">
+                <table class="artifact-table source-span-table">
+                  <thead><tr><th>Element</th><th>Source span</th><th>Routing</th><th>Status</th><th>Guard and notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Rowan Ise<br><span class="tag green">person</span></td><td>apprentice Rowan Ise<br><code>artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=50-70</code></td><td>Profile; Timeline</td><td>confidence 0.90<br>hold</td><td>no automated issue; new person candidate remains held.</td></tr>
+                    <tr><td>brass moth<br><span class="tag gold">object</span></td><td>The brass moth flickers like a warning<br><code>artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=364-402</code></td><td>Profile; Claim; Timeline; Human Review</td><td>confidence 0.90<br>hold</td><td>held human review required; does not decide proof, bait, or false record.</td></tr>
+                    <tr><td>flickering brass moth visual<br><span class="tag blue">visual_asset</span></td><td>brass moth flickers like a warning<br><code>artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=368-402</code></td><td>Profile; Timeline; Visual</td><td>confidence 0.76<br>hold</td><td>visual review only; profile-buffered and not production-ready art.</td></tr>
+                    <tr><td>proof, bait, or false record placeholder<br><span class="tag red">placeholder</span></td><td>do not decide whether it is proof, bait, or a false record<br><code>artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=408-466</code></td><td>Profile; Human Review</td><td>confidence 0.79<br>hold</td><td>held human review required; records a decision gap.</td></tr>
+                    <tr><td>Council motive<br><span class="tag red">unresolved_decision</span></td><td>Council motive remains unresolved<br><code>artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=563-596</code></td><td>Human Review; Claim</td><td>confidence 0.87<br>hold</td><td>held human review required; motive language cannot become canon here.</td></tr>
+                    <tr><td>council minutes edge memo<br><span class="tag green">source_reference</span></td><td>Adapter Fixture: Council Minutes Edge<br><code>artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=2-39</code></td><td>Source Reference</td><td>confidence 1.00<br>hold</td><td>fixture title remains visible as a source reference.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+
+            <details class="source-span-fixture" open>
+              <summary>observatory-ledger-edge - Adapter Fixture: Observatory Ledger Edge</summary>
+              <p class="section-note">12 elements; 9 profile candidates; 6 claim candidates; 4 timeline candidates.</p>
+              <div class="table-scroll">
+                <table class="artifact-table source-span-table">
+                  <thead><tr><th>Element</th><th>Source span</th><th>Routing</th><th>Status</th><th>Guard and notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Mira Vale<br><span class="tag green">person</span></td><td>Mira Vale writes a repair log<br><code>artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=44-73</code></td><td>Profile; Claim</td><td>confidence 0.93<br>hold</td><td>no automated issue; protagonist mention maps from alternate phrasing.</td></tr>
+                    <tr><td>brass moth key<br><span class="tag gold">object</span></td><td>brass moth key<br><code>artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=288-302</code></td><td>Profile; Claim; Timeline; Human Review</td><td>confidence 0.89<br>hold</td><td>held human review required; object function remains undecided.</td></tr>
+                    <tr><td>bellless tower silhouette<br><span class="tag blue">visual_asset</span></td><td>bellless tower silhouette<br><code>artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=409-434</code></td><td>Profile; Timeline; Visual</td><td>confidence 0.73<br>hold</td><td>visual review only; avoids direct Claim Ledger-only use.</td></tr>
+                    <tr><td>moth function unanswered<br><span class="tag red">placeholder</span></td><td>Keep the moth's function unanswered<br><code>artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=521-556</code></td><td>Profile; Human Review</td><td>confidence 0.75<br>hold</td><td>held human review required; marks missing rule rather than inventing it.</td></tr>
+                    <tr><td>Toma fate<br><span class="tag red">unresolved_decision</span></td><td>Toma fate stays unresolved<br><code>artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=558-584</code></td><td>Human Review; Timeline</td><td>confidence 0.86<br>hold</td><td>held human review required; no Toma fate route is adopted.</td></tr>
+                    <tr><td>observatory ledger edge memo<br><span class="tag green">source_reference</span></td><td>Adapter Fixture: Observatory Ledger Edge<br><code>artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=2-42</code></td><td>Source Reference</td><td>confidence 1.00<br>hold</td><td>fixture title remains visible as a source reference.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          </div>
+        </div>
+
         <div class="hub-panel" style="margin-top: 12px;">
           <h3>Smoke checklist</h3>
           <div class="tag-row">
@@ -1014,7 +1155,7 @@
             <span class="tag green">Extraction Contract visible</span>
             <span class="tag green">validator fixtures checked</span>
             <span class="tag green">local adapter smoke checked</span>
-            <span class="tag green">model/API boundary visible</span>
+            <span class="tag green">source-span review pack visible</span>
             <span class="tag green">v1.3 compliance visible</span>
             <span class="tag green">unresolved decisions visible</span>
             <span class="tag green">QA gates visible</span>
@@ -1083,7 +1224,7 @@
             <div class="metric"><strong>0</strong><span>mismatches</span></div>
             <div class="metric"><strong>local only</strong><span>validator mode</span></div>
           </div>
-          <p class="section-note">Boundary evidence: artifacts/model-api-boundary-envelope.example.json and artifacts/model-api-boundary-smoke-result.json. Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while keeping future model/API output behind validation gates.</p>
+          <p class="section-note">Source-span pack evidence: artifacts/source-span-routing-review-pack.json. Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while keeping future model/API output behind validation gates.</p>
           <div class="extraction-toolbar" aria-label="Extraction Contract controls">
             <div class="extraction-toolbar-row">
               <label for="extraction-group-mode"><strong>Group extraction</strong></label>
@@ -3210,8 +3351,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-model-api-boundary-spec-001",
-        preservedArtifactId: "fff-extraction-contract-001",
+        activeArtifactId: "fff-source-span-routing-review-pack-001",
+        preservedArtifactId: "fff-local-extraction-adapter-expansion-001",
         reviewInputMode: "freeform",
         extractionContract: {
           schemaVersion: model.extraction_contract.schemaVersion,
@@ -3237,6 +3378,15 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           smokeResult: "artifacts/model-api-boundary-smoke-result.json",
           externalCallAllowed: false,
           targetSchemaVersion: "fff.extractionContract.v1"
+        },
+        sourceSpanReviewPack: {
+          artifactId: "fff-source-span-routing-review-pack-001",
+          packPath: "artifacts/source-span-routing-review-pack.json",
+          generator: "tools/fff-source-span-review-pack.mjs",
+          fixtureCount: 3,
+          elementCount: 36,
+          sourceSpanMismatchCount: 0,
+          reviewInputMode: "freeform"
         }
       };
 
@@ -3709,8 +3859,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-model-api-boundary-spec-001",
-          preservedArtifactId: "fff-extraction-contract-001",
+          activeArtifactId: "fff-source-span-routing-review-pack-001",
+          preservedArtifactId: "fff-local-extraction-adapter-expansion-001",
           reviewInputMode: "freeform",
           extractionContract: {
             schemaVersion: model.extraction_contract.schemaVersion,
@@ -3736,6 +3886,15 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             smokeResult: "artifacts/model-api-boundary-smoke-result.json",
             externalCallAllowed: false,
             targetSchemaVersion: "fff.extractionContract.v1"
+          },
+          sourceSpanReviewPack: {
+            artifactId: "fff-source-span-routing-review-pack-001",
+            packPath: "artifacts/source-span-routing-review-pack.json",
+            generator: "tools/fff-source-span-review-pack.mjs",
+            fixtureCount: 3,
+            elementCount: 36,
+            sourceSpanMismatchCount: 0,
+            reviewInputMode: "freeform"
           }
         }
       };

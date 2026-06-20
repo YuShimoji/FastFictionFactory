@@ -25,9 +25,9 @@
 - Purpose: Replace deterministic mock extraction with an actual extraction workflow.
 - Effect: Turns raw memo intake into generated candidates instead of static seed data.
 - Requirements: Needs source tracking, schema validation, review controls, and clear generated-vs-human authority boundaries.
-- State: Extraction Contract implemented in `fff-extraction-contract-001`; validator hardening implemented in `fff-extraction-validator-hardening-001`; deterministic local adapter spike implemented in `fff-local-extraction-adapter-spike-001`; deterministic adapter expansion implemented in `fff-local-extraction-adapter-expansion-001`; model/API extraction adapter not started.
+- State: Extraction Contract implemented in `fff-extraction-contract-001`; validator hardening implemented in `fff-extraction-validator-hardening-001`; deterministic local adapter spike implemented in `fff-local-extraction-adapter-spike-001`; deterministic adapter expansion implemented in `fff-local-extraction-adapter-expansion-001`; source-span routing review pack implemented in `fff-source-span-routing-review-pack-001`; model/API extraction adapter not started.
 - Owner: Product/AI implementer.
-- Next move: Review source-span usefulness and routing quality across the local adapter fixture matrix, then either add more deterministic edge fixtures or design a model/API adapter behind `node .\tools\fff-state.mjs validate-extraction`, the fixture matrix, and the adapter expansion smoke guards before adding any model/API behavior.
+- Next move: Use freeform review on the source-span routing review pack, then either revise deterministic spans/routing, add one missing fixture class, or design a model/API adapter behind `node .\tools\fff-state.mjs validate-extraction`, the fixture matrix, and the adapter expansion smoke guards before adding any model/API behavior.
 
 ### Extraction Validator Hardening
 

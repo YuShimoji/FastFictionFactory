@@ -223,20 +223,20 @@
 - State: Preserved by `fff-source-span-routing-review-pack-001`.
 - Next action: Use the source-span routing review pack before revising fixture spans/routing or placing any model/API adapter behind the same validator boundary.
 
-## fff-source-span-routing-review-pack-001
+## fff-model-api-boundary-spec-001
 
-- Title: Fast Fiction Factory Source-Span Routing Review Pack
-- Purpose: Turn the existing three adapter fixture outputs into a compact human supervision pack for source spans, source refs, routing targets, held defaults, confidence/default status, human-owned guards, risk flags, review notes, and review debt before freeform review or model/API behavior.
+- Title: Fast Fiction Factory Model/API Boundary Specification
+- Purpose: Define a local-first boundary for future model/API extraction output before any external provider call, credential setup, adapter implementation, database persistence, publishing adapter, AI video generation, production sync, or final canon decision exists.
 - Repo relative path: `public/review/index.html`
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local launcher: `scripts/operator/open_review.ps1`
-- Pack artifact: `artifacts/source-span-routing-review-pack.json`
-- Pack generator: `tools/fff-source-span-review-pack.mjs`
-- Review doc: `docs/review/source-span-routing-review-pack.md`
-- Preserved adapter expansion artifact: `fff-local-extraction-adapter-expansion-001`
+- Preserved local adapter expansion artifact: `fff-local-extraction-adapter-expansion-001`
 - Preserved adapter artifact: `fff-local-extraction-adapter-spike-001`
 - Preserved validator artifact: `fff-extraction-validator-hardening-001`
 - Preserved contract artifact: `fff-extraction-contract-001`
+- Boundary spec doc: `docs/review/model-api-boundary-spec.md`
+- Boundary envelope example: `artifacts/model-api-boundary-envelope.example.json`
+- Boundary smoke result: `artifacts/model-api-boundary-smoke-result.json`
 - Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
 - Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
 - Adapter expansion smoke result: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
@@ -247,8 +247,53 @@
 - Screenshot: `artifacts/fff-current-review-screenshot.png`
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
+- Validation command: parse `artifacts/model-api-boundary-envelope.example.json`, parse `artifacts/model-api-boundary-smoke-result.json`, run current/sample state validation, validate sample and generated Extraction Contract payloads, run validator fixture matrix, run deterministic adapter matrix, and check Review Hub text plus screenshot/contact-sheet existence.
+- Validation result: boundary envelope parsed; boundary smoke passed; no model/API call, credentials, provider endpoint, direct state mutation, database persistence, publishing, production sync, AI video generation, or final canon decision added; adapter expansion and validator gates remained passing.
+- Review status: `ready_for_local_review`
+- Review input mode: `freeform`
+- State: Preserved by `fff-source-span-routing-review-pack-001`.
+- Next action: Use the source-span routing review pack before choosing a no-network mock provider or explicitly configured provider adapter behind the same validation gates.
+
+## fff-source-span-routing-review-pack-001
+
+- Title: Fast Fiction Factory Source-Span Routing Review Pack
+- Purpose: Turn the existing three adapter fixture outputs into a compact human supervision pack for source spans, source refs, routing targets, held defaults, confidence/default status, human-owned guards, risk flags, review notes, and review debt before freeform review or model/API behavior.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local launcher: `scripts/operator/open_review.ps1`
+- Pack artifact: `artifacts/source-span-routing-review-pack.json`
+- Pack generator: `tools/fff-source-span-review-pack.mjs`
+- Review doc: `docs/review/source-span-routing-review-pack.md`
+- Dirty-work triage result: `artifacts/source-span-routing-triage-result.json`
+- Dirty-work triage doc: `docs/review/source-span-routing-triage.md`
+- Preserved adapter expansion artifact: `fff-local-extraction-adapter-expansion-001`
+- Preserved adapter artifact: `fff-local-extraction-adapter-spike-001`
+- Preserved validator artifact: `fff-extraction-validator-hardening-001`
+- Preserved contract artifact: `fff-extraction-contract-001`
+- Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
+- Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
+- Adapter expansion smoke result: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
+- Validator fixtures: `artifacts/extraction-negative-fixtures/`
+- State adapter: `tools/fff-state.mjs`
+- Current status: `docs/review/current-status.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
 - Validation command: `node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json`
 - Validation result: source-span review pack generated from three fixture outputs; pack records 36 extracted elements, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, 0 human-owned decision adopt suggestions, 17 human-owned guarded elements, and Review Debt categories for weak spans, over-broad spans, vague extraction, ambiguous routing, confident defaults, and missing fixture classes.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - Next action: Review the pack in the Visual Review Hub or `artifacts/source-span-routing-review-pack.json`, then decide whether to revise deterministic spans/routing or add new edge fixtures before model/API adapter work.
+
+## fff-source-span-routing-triage-001
+
+- Title: Fast Fiction Factory Source-Span Routing Dirty-Work Triage
+- Purpose: Classify every dirty or untracked source-span routing file after `fff-model-api-boundary-spec-001` and decide whether a separate source-span checkpoint is safe.
+- Triage result: `artifacts/source-span-routing-triage-result.json`
+- Triage doc: `docs/review/source-span-routing-triage.md`
+- Related active artifact: `fff-source-span-routing-review-pack-001`
+- Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
+- Validation result: all dirty/untracked files classified as `source_span_routing_intentional`; model boundary residue, generated temp, unrelated dirty work, and unknown-needs-decision buckets are empty; manifest validation, MkDocs strict, Playwright browser smoke, and git diff whitespace checks passed.
+- Review status: `ready_for_local_review`
+- Review input mode: `freeform`
+- Next action: Use the source-span review pack for human freeform review, then revise only concrete span/routing issues or fixture classes identified by review.
