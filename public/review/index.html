@@ -834,7 +834,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Current MVP Status Packet</h2>
-            <p class="lede">Active artifact id: <strong>fff-extraction-validator-hardening-001</strong>. Current phase: harden the local Extraction Contract validator with seven fixture classes and validator smoke while preserving <strong>fff-extraction-contract-001</strong>, human-owned canon boundaries, and the single Visual Review Hub entry point.</p>
+            <p class="lede">Active artifact id: <strong>fff-local-extraction-adapter-spike-001</strong>. Current phase: convert a sample raw memo into a validator-backed local Extraction Contract payload while preserving <strong>fff-extraction-validator-hardening-001</strong>, <strong>fff-extraction-contract-001</strong>, human-owned canon boundaries, and the single Visual Review Hub entry point.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -854,7 +854,8 @@
           <div class="progress-step done"><strong>v1.3 contract check</strong><span class="tag green">done</span><p class="section-note">Artifact, report, path, and decision-boundary conventions are visible.</p></div>
           <div class="progress-step done"><strong>Profile page / ghost node flow</strong><span class="tag green">done</span><p class="section-note">Review aliases, placeholders, weak graph nodes, and cross-links.</p></div>
           <div class="progress-step done"><strong>Extraction Contract</strong><span class="tag green">done</span><p class="section-note">Define source refs, review-safe defaults, warnings, and candidate routing.</p></div>
-          <div class="progress-step current"><strong>Validator hardening</strong><span class="tag blue">current</span><p class="section-note">Exercise valid, unsafe, unknown-field, and missing-default extraction payloads before adapter work.</p></div>
+          <div class="progress-step done"><strong>Validator hardening</strong><span class="tag green">done</span><p class="section-note">Exercise valid, unsafe, unknown-field, and missing-default extraction payloads before adapter work.</p></div>
+          <div class="progress-step current"><strong>Local extraction adapter</strong><span class="tag blue">current</span><p class="section-note">Generate a deterministic local Extraction Contract payload from a sample raw memo and validate it before model/API work.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;">
@@ -873,13 +874,14 @@
               <li>Profile/Ghost grouping by type, ghost node status, review status, dependency, risk, claim, timeline, reality, and world status.</li>
               <li>Extraction Contract grouping by type, status, source, routing destination, dependency, canon risk, and spoiler level.</li>
               <li>Extraction validator fixture matrix for valid minimal payload, missing source refs, overconfident human-owned decisions, invalid visual-asset routing, auto-canon leaks, missing review-safe defaults, unknown-field preservation, and built-in identity guards.</li>
+              <li>Local deterministic extraction adapter from sample raw memo to validated Extraction Contract payload.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
           <div class="hub-panel">
             <h3>Pending features</h3>
             <ul class="hub-list">
-              <li>Model/API extraction adapter and durable project database.</li>
+              <li>Model/API extraction adapter behind the local validator boundary and durable project database.</li>
               <li>Automated release or publishing adapters.</li>
             </ul>
           </div>
@@ -939,6 +941,11 @@
                 <tr><td>Extraction validator fixtures</td><td>artifacts/extraction-negative-fixtures/</td></tr>
                 <tr><td>Extraction validator smoke</td><td>artifacts/extraction-validator-smoke-result.json</td></tr>
                 <tr><td>Validator hardening review</td><td>docs/review/extraction-validator-hardening-review.md</td></tr>
+                <tr><td>Sample raw memo</td><td>artifacts/sample-raw-memo.md</td></tr>
+                <tr><td>Local extraction adapter</td><td>tools/fff-extract-local.mjs</td></tr>
+                <tr><td>Local adapter output</td><td>artifacts/local-extraction-adapter-output.json</td></tr>
+                <tr><td>Local adapter smoke</td><td>artifacts/local-extraction-adapter-smoke-result.json</td></tr>
+                <tr><td>Local adapter review</td><td>docs/review/local-extraction-adapter-review.md</td></tr>
                 <tr><td>Freeform review smoke</td><td>artifacts/freeform-review-intake-smoke-result.json</td></tr>
                 <tr><td>Current status doc</td><td>docs/review/current-status.md</td></tr>
               </tbody>
@@ -948,10 +955,11 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows artifact id <strong>fff-extraction-validator-hardening-001</strong>.</li>
-              <li>Use <strong>artifacts/extraction-validator-smoke-result.json</strong> to review the pass/fail fixture matrix before adapter work.</li>
+              <li>Confirm this hub shows artifact id <strong>fff-local-extraction-adapter-spike-001</strong>.</li>
+              <li>Use <strong>artifacts/local-extraction-adapter-smoke-result.json</strong> to review sample memo input, adapter output, validator status, and guard status.</li>
+              <li>Use <strong>artifacts/extraction-validator-smoke-result.json</strong> to review the preserved pass/fail fixture matrix before model/API work.</li>
               <li>Use <strong>Extraction Contract</strong> grouping and filters before wiring any generated candidate into profile, claim, or timeline review.</li>
-              <li>Run the extraction validator fixture smoke listed in the active manifest before local-only adapter spikes.</li>
+              <li>Run the local extraction adapter command listed in the active manifest before widening adapter behavior.</li>
               <li>Use <strong>Save state to local file</strong> where supported, or <strong>Download JSON fallback</strong>.</li>
               <li>Use <strong>Load state from local file</strong> where supported, or upload/paste JSON fallback.</li>
               <li>Use <strong>Claim Ledger</strong> grouping and filters before adopting story-sensitive truth.</li>
@@ -993,11 +1001,12 @@
             <span class="tag green">Profile/Ghost Flow visible</span>
             <span class="tag green">Extraction Contract visible</span>
             <span class="tag green">validator fixtures checked</span>
+            <span class="tag green">local adapter smoke checked</span>
             <span class="tag green">v1.3 compliance visible</span>
             <span class="tag green">unresolved decisions visible</span>
             <span class="tag green">QA gates visible</span>
             <span class="tag green">completed and pending features visible</span>
-            <span class="tag gold">model/API extraction remains next</span>
+            <span class="tag gold">model/API extraction remains behind validator boundary</span>
           </div>
         </div>
 
@@ -1040,7 +1049,7 @@
           <div class="state-message" id="state-message">No project state exported or imported in this session.</div>
         </div>
         <div class="source-note">
-          Extraction is mocked in this MVP. The workbench is validating review shape, not final canon, factual accuracy, or video production.
+          Extraction is local and deterministic in this MVP. The workbench is validating review shape, not final canon, factual accuracy, model/API behavior, or video production.
         </div>
       </aside>
 
@@ -1061,7 +1070,7 @@
             <div class="metric"><strong>0</strong><span>mismatches</span></div>
             <div class="metric"><strong>local only</strong><span>validator mode</span></div>
           </div>
-          <p class="section-note">Validator evidence: artifacts/extraction-validator-smoke-result.json. Fixtures: artifacts/extraction-negative-fixtures/. This hardening preserves fff-extraction-contract-001 while adding pass/fail rails for future local adapter output.</p>
+          <p class="section-note">Local adapter evidence: artifacts/local-extraction-adapter-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-extraction-validator-hardening-001 and fff-extraction-contract-001 while adding a deterministic raw memo to payload path before model/API output.</p>
           <div class="extraction-toolbar" aria-label="Extraction Contract controls">
             <div class="extraction-toolbar-row">
               <label for="extraction-group-mode"><strong>Group extraction</strong></label>
@@ -3188,7 +3197,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-extraction-validator-hardening-001",
+        activeArtifactId: "fff-local-extraction-adapter-spike-001",
         preservedArtifactId: "fff-extraction-contract-001",
         reviewInputMode: "freeform",
         extractionContract: {
@@ -3198,9 +3207,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           humanOwnedDependencies: model.extraction_contract.unresolvedDependencies
         },
         extractionValidator: {
-          artifactId: "fff-extraction-validator-hardening-001",
+          artifactId: "fff-local-extraction-adapter-spike-001",
           fixtureDirectory: "artifacts/extraction-negative-fixtures",
-          smokeResult: "artifacts/extraction-validator-smoke-result.json"
+          smokeResult: "artifacts/local-extraction-adapter-smoke-result.json"
         }
       };
 
@@ -3673,7 +3682,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-extraction-validator-hardening-001",
+          activeArtifactId: "fff-local-extraction-adapter-spike-001",
           preservedArtifactId: "fff-extraction-contract-001",
           reviewInputMode: "freeform",
           extractionContract: {
@@ -3683,9 +3692,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             humanOwnedDependencies: model.extraction_contract.unresolvedDependencies
           },
           extractionValidator: {
-            artifactId: "fff-extraction-validator-hardening-001",
+            artifactId: "fff-local-extraction-adapter-spike-001",
             fixtureDirectory: "artifacts/extraction-negative-fixtures",
-            smokeResult: "artifacts/extraction-validator-smoke-result.json"
+            smokeResult: "artifacts/local-extraction-adapter-smoke-result.json"
           }
         }
       };

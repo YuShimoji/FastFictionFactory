@@ -1,6 +1,6 @@
 # Fast Fiction Factory Data Model
 
-All entities are local-first MVP records. The prototype uses mocked data in `public/review/index.html`; this document defines the intended shape for later persistence.
+All entities are local-first MVP records. The prototype uses static review data in `public/review/index.html` plus a deterministic local adapter spike; this document defines the intended shape for later persistence.
 
 ## Shared Types
 
@@ -181,6 +181,38 @@ Hardening rules:
 - `autoCanonPromotion` and `autoChronologyPromotion` must be `false`.
 - `unknownSourceHandling`, `decisionLogSafeMetadata`, `warnings`, and `humanAuthorityBoundaries` must remain present for review-safe fallback behavior.
 - Unknown top-level extraction fields are warning-level preservation cases so future adapter data can remain visible for JSON review without silently becoming canon.
+
+## Local Extraction Adapter Spike
+
+`fff-local-extraction-adapter-spike-001` adds a deterministic local adapter that reads one sample raw memo and emits an Extraction Contract payload. It is a spike for the adapter boundary, not a model/API extractor and not database persistence.
+
+Adapter command:
+
+```powershell
+node .\tools\fff-extract-local.mjs .\artifacts\sample-raw-memo.md .\artifacts\local-extraction-adapter-output.json .\artifacts\local-extraction-adapter-smoke-result.json
+```
+
+Adapter artifacts:
+
+| Artifact | Purpose |
+| --- | --- |
+| `artifacts/sample-raw-memo.md` | Source memo used by the deterministic adapter. |
+| `tools/fff-extract-local.mjs` | Zero-dependency adapter that maps literal memo phrases into Extraction Contract records. |
+| `artifacts/local-extraction-adapter-output.json` | Generated Extraction Contract payload. |
+| `artifacts/local-extraction-adapter-smoke-result.json` | Smoke evidence recording input, output, validator status, fixture matrix status, and guard status. |
+
+The adapter output must keep:
+
+- `generatorType: "local_deterministic_adapter"`.
+- `reviewSafeDefaults.defaultReviewStatus: "hold"`.
+- `autoCanonPromotion: false`.
+- `autoChronologyPromotion: false`.
+- Source refs on every extracted element.
+- Human authority boundaries for Toma fate, brass moth truth, and Council motive.
+- Visual asset candidates buffered through Profile/Ghost review.
+- Freeform review allowed as the source of truth.
+
+The current sample output contains 12 extraction elements, all required element types, 9 profile candidates, 7 claim candidates, 5 timeline candidates, and 3 unresolved human-owned dependencies.
 
 ## UnresolvedCreativeDecision
 

@@ -164,3 +164,29 @@
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - Next action: Use the fixture matrix as the gate for a local-only extraction adapter spike.
+
+## fff-local-extraction-adapter-spike-001
+
+- Title: Fast Fiction Factory Local Extraction Adapter Spike
+- Purpose: Convert a sample raw memo into a local Extraction Contract payload with deterministic zero-dependency rules, then validate the payload through the existing Extraction Contract validator and fixture matrix before any model/API extraction behavior exists.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local launcher: `scripts/operator/open_review.ps1`
+- Preserved validator artifact: `fff-extraction-validator-hardening-001`
+- Preserved contract artifact: `fff-extraction-contract-001`
+- Sample raw memo: `artifacts/sample-raw-memo.md`
+- Adapter tool: `tools/fff-extract-local.mjs`
+- Adapter output: `artifacts/local-extraction-adapter-output.json`
+- Adapter smoke result: `artifacts/local-extraction-adapter-smoke-result.json`
+- Validator fixtures: `artifacts/extraction-negative-fixtures/`
+- State adapter: `tools/fff-state.mjs`
+- Review doc: `docs/review/local-extraction-adapter-review.md`
+- Current status: `docs/review/current-status.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Validation command: `node tools/fff-extract-local.mjs artifacts/sample-raw-memo.md artifacts/local-extraction-adapter-output.json artifacts/local-extraction-adapter-smoke-result.json`
+- Validation result: deterministic adapter output validated as `fff.extractionContract.v1`; output contains 12 extracted elements covering all required element types, 9 profile candidates, 7 claim candidates, 5 timeline candidates, 3 unresolved human-owned dependencies, review-safe defaults, and source refs; fixture matrix remained passing.
+- Review status: `ready_for_local_review`
+- Review input mode: `freeform`
+- Next action: Review adapter output quality and source-span usefulness before widening deterministic parsing or placing a model/API adapter behind the same validator boundary.
