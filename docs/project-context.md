@@ -2,11 +2,11 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-local-extraction-adapter-expansion-001`, served through the static local Visual Review Hub at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-model-api-boundary-spec-001`, served through the static local Visual Review Hub at `public/review/index.html`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is local deterministic extraction adapter expansion: multiple raw memo fixtures must emit source-tracked, review-held Extraction Contract payloads and pass validator/routing/source-span checks before any model/API extractor exists.
+Keep the MVP reviewable without production commitments. The current lane is a spec-only model/API boundary: future provider output must become a review-held `fff.extractionContract.v1` payload and pass the existing validator, fixture, source-span, routing, and human-authority gates before it can enter local review.
 
 ## Current Slice
 
@@ -15,6 +15,9 @@ The active slice is complete enough for local review:
 - Review UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
+- Model/API boundary envelope: `artifacts/model-api-boundary-envelope.example.json`
+- Model/API boundary smoke evidence: `artifacts/model-api-boundary-smoke-result.json`
 - State adapter: `tools/fff-state.mjs`
 - Current state: `artifacts/current-project-state.json`
 - Sample state: `artifacts/sample-project-state.json`
@@ -60,6 +63,8 @@ Result summary:
 
 - Both state JSON files validate with `schemaVersion: "fff.projectState.v1"`.
 - The sample extraction payload validates as `schemaVersion: "fff.extractionContract.v1"`.
+- The model/API boundary envelope parses as `schemaVersion: "fff.modelApiBoundaryEnvelope.v1"` and declares no external call, no provider endpoint, no secret names, no direct state mutation, and no credentials for this slice.
+- The boundary smoke passes and records the validator gate, fixture matrix gate, adapter expansion gate, source integrity gates, review-safe defaults, human-owned decision guards, retry/timeout policy, failure modes, and review-safe fallback.
 - The validator fixture matrix passes: 2 expected-valid fixtures, 5 expected-invalid fixtures, and 5 built-in mutation guards.
 - The validator catches missing source refs, missing extraction identity fields, invalid element types, unsafe human-owned decision adoption, direct visual asset routing to Claim Ledger, auto-canon/default-review leaks, missing human authority boundaries, and missing high-risk warnings.
 - Unknown top-level extraction fields are reported as preservation warnings for JSON review instead of being silently dropped.
@@ -73,7 +78,7 @@ Result summary:
 
 ## Boundaries
 
-Do not treat local review state as final canon. Do not add publishing, upload credentials, AI video generation, production sync, database persistence, or final decisions for Toma, the brass moth, or the Council unless explicitly requested.
+Do not treat local review state as final canon. Do not add model/API behavior, provider credentials, publishing, upload credentials, AI video generation, production sync, database persistence, or final decisions for Toma, the brass moth, or the Council unless explicitly requested.
 
 ## Restart Path
 
@@ -98,17 +103,17 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-Run the state adapter:
+Run the state and boundary checks:
 
 ```powershell
 node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
 node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
 ```
 
-First next move: review the local adapter expansion output quality, then add more source-span edge fixtures or design a model/API adapter behind the same validator boundary.
+First next move: review the model/API boundary spec and choose whether the next implementation should be a no-network mock provider or an explicitly configured provider adapter behind the same validator boundary.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
 
-Latest handoff refresh: 2026-06-19T18:58:54+09:00. At refresh time, `git fetch origin --prune` completed, `HEAD...@{u}` reported `0 0`, and the active manifest validation command passed.
+Latest handoff refresh: 2026-06-20T00:00:00+09:00. At refresh time, the active artifact is `fff-model-api-boundary-spec-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, or final canon decision existed.

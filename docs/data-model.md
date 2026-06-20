@@ -225,6 +225,87 @@ node .\tools\fff-extract-local.mjs --matrix .\artifacts\extraction-adapter-fixtu
 
 Matrix mode currently generates three valid Extraction Contract payloads from Clockmaker-local raw memo fixtures. The expansion smoke records aggregate coverage across 36 extracted elements, complete required element-type coverage, source-span integrity, source-ref integrity, review-held defaults, profile-buffered visual assets, freeform review authority, and human-owned decision guards. This is still deterministic fixture coverage, not model/API behavior and not canon authority.
 
+## Model/API Boundary Envelope
+
+`fff-model-api-boundary-spec-001` defines a spec-only wrapper for future provider-facing extraction work. The envelope is not an Extraction Contract payload and is not project state. It is a local review artifact that describes allowed inputs, provider-call status, output contract, validation gates, failure modes, retry/timeout policy, review-safe fallback, and forbidden actions.
+
+The example envelope lives at `artifacts/model-api-boundary-envelope.example.json`. The readback smoke lives at `artifacts/model-api-boundary-smoke-result.json`.
+
+```ts
+type ModelApiBoundaryEnvelope = {
+  schemaVersion: "fff.modelApiBoundaryEnvelope.v1";
+  artifact_id: "fff-model-api-boundary-spec-001";
+  boundaryMode: "spec_only_no_external_call";
+  generatedAt: string;
+  preserves: string[];
+  inputContract: {
+    allowedInputs: string[];
+    forbiddenInputs: string[];
+    stateMutationAllowed: false;
+  };
+  providerBoundary: {
+    providerConfigured: false;
+    providerName: null | string;
+    endpoint: null | string;
+    externalCallAllowed: false;
+    sliceRequiresCredentials: false;
+    credentialStorage: string;
+    secretNames: string[];
+  };
+  outputContract: {
+    targetSchemaVersion: "fff.extractionContract.v1";
+    outputIsProjectState: false;
+    directStateMutationAllowed: false;
+    requiredFields: string[];
+    reviewSafeDefaults: {
+      defaultReviewStatus: "hold";
+      autoCanonPromotion: false;
+      autoChronologyPromotion: false;
+      freeformReviewAllowed: true;
+    };
+  };
+  validationGates: string[];
+  failureModes: Array<{
+    code: string;
+    category: string;
+    reviewAction: string;
+  }>;
+  timeoutAndRetryPolicy: {
+    automaticRetriesAllowed: boolean;
+    retryScope: "transient_transport_only";
+    retryInputMutationAllowed: false;
+    silentProviderFallbackAllowed: false;
+    afterRetriesExhausted: string;
+  };
+  reviewSafety: {
+    defaultCandidateStatus: "hold";
+    autoCanonAllowed: false;
+    autoChronologyAllowed: false;
+    freeformReviewIsAuthority: true;
+    humanOwnedDecisions: string[];
+  };
+  forbiddenActions: string[];
+  exampleTrace: {
+    noModelApiCall: true;
+    generatedBy: "manual_boundary_spec";
+    rawProviderResponseStored: false;
+    credentialsTouched: false;
+  };
+};
+```
+
+The boundary requires any future provider output to be converted into `fff.extractionContract.v1` and pass:
+
+- `node .\tools\fff-state.mjs validate-extraction <payload>`
+- `node .\tools\fff-state.mjs validate-extraction-fixtures .\artifacts\extraction-negative-fixtures`
+- the deterministic adapter expansion matrix
+- source-ref and source-span checks
+- review-held defaults
+- visual-asset routing guards
+- human-owned decision guards for Toma fate, brass moth truth, and Council motive
+
+This slice does not define a provider, endpoint, credential flow, timeout value, retry count, or model/API implementation.
+
 ## UnresolvedCreativeDecision
 
 ```ts

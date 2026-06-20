@@ -220,4 +220,35 @@
 - Validation result: deterministic adapter output validated as `fff.extractionContract.v1` for three fixture memos; output matrix contains 36 extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions; fixture matrix remained passing.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
-- Next action: Review adapter output quality and source-span usefulness before adding more deterministic edge fixtures or placing a model/API adapter behind the same validator boundary.
+- State: Preserved by `fff-source-span-routing-review-pack-001`.
+- Next action: Use the source-span routing review pack before revising fixture spans/routing or placing any model/API adapter behind the same validator boundary.
+
+## fff-source-span-routing-review-pack-001
+
+- Title: Fast Fiction Factory Source-Span Routing Review Pack
+- Purpose: Turn the existing three adapter fixture outputs into a compact human supervision pack for source spans, source refs, routing targets, held defaults, confidence/default status, human-owned guards, risk flags, review notes, and review debt before freeform review or model/API behavior.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local launcher: `scripts/operator/open_review.ps1`
+- Pack artifact: `artifacts/source-span-routing-review-pack.json`
+- Pack generator: `tools/fff-source-span-review-pack.mjs`
+- Review doc: `docs/review/source-span-routing-review-pack.md`
+- Preserved adapter expansion artifact: `fff-local-extraction-adapter-expansion-001`
+- Preserved adapter artifact: `fff-local-extraction-adapter-spike-001`
+- Preserved validator artifact: `fff-extraction-validator-hardening-001`
+- Preserved contract artifact: `fff-extraction-contract-001`
+- Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
+- Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
+- Adapter expansion smoke result: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
+- Validator fixtures: `artifacts/extraction-negative-fixtures/`
+- State adapter: `tools/fff-state.mjs`
+- Review doc: `docs/review/model-api-boundary-spec.md`
+- Current status: `docs/review/current-status.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Validation command: `node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json`
+- Validation result: source-span review pack generated from three fixture outputs; pack records 36 extracted elements, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, 0 human-owned decision adopt suggestions, 17 human-owned guarded elements, and Review Debt categories for weak spans, over-broad spans, vague extraction, ambiguous routing, confident defaults, and missing fixture classes.
+- Review status: `ready_for_local_review`
+- Review input mode: `freeform`
+- Next action: Review the pack in the Visual Review Hub or `artifacts/source-span-routing-review-pack.json`, then decide whether to revise deterministic spans/routing or add new edge fixtures before model/API adapter work.

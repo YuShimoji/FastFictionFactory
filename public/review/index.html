@@ -835,7 +835,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Current MVP Status Packet</h2>
-            <p class="lede">Active artifact id: <strong>fff-local-extraction-adapter-expansion-001</strong>. Current phase: expand deterministic raw memo fixtures into validator-backed Extraction Contract payloads while preserving <strong>fff-local-extraction-adapter-spike-001</strong>, <strong>fff-extraction-validator-hardening-001</strong>, <strong>fff-extraction-contract-001</strong>, human-owned canon boundaries, and the single Visual Review Hub entry point.</p>
+            <p class="lede">Active artifact id: <strong>fff-model-api-boundary-spec-001</strong>. Current phase: define the model/API boundary envelope before any external extraction call while preserving <strong>fff-local-extraction-adapter-expansion-001</strong>, <strong>fff-local-extraction-adapter-spike-001</strong>, <strong>fff-extraction-validator-hardening-001</strong>, <strong>fff-extraction-contract-001</strong>, human-owned canon boundaries, and the single Visual Review Hub entry point.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -856,7 +856,8 @@
           <div class="progress-step done"><strong>Profile page / ghost node flow</strong><span class="tag green">done</span><p class="section-note">Review aliases, placeholders, weak graph nodes, and cross-links.</p></div>
           <div class="progress-step done"><strong>Extraction Contract</strong><span class="tag green">done</span><p class="section-note">Define source refs, review-safe defaults, warnings, and candidate routing.</p></div>
           <div class="progress-step done"><strong>Validator hardening</strong><span class="tag green">done</span><p class="section-note">Exercise valid, unsafe, unknown-field, and missing-default extraction payloads before adapter work.</p></div>
-          <div class="progress-step current"><strong>Local extraction adapter expansion</strong><span class="tag blue">current</span><p class="section-note">Generate validated Extraction Contract payloads from multiple local raw memo fixtures before model/API work.</p></div>
+          <div class="progress-step done"><strong>Local extraction adapter expansion</strong><span class="tag green">done</span><p class="section-note">Generate validated Extraction Contract payloads from multiple local raw memo fixtures before model/API work.</p></div>
+          <div class="progress-step current"><strong>Model/API boundary spec</strong><span class="tag blue">current</span><p class="section-note">Define provider output, failure, retry, fallback, and validator gates before any model/API call.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;">
@@ -876,13 +877,15 @@
               <li>Extraction Contract grouping by type, status, source, routing destination, dependency, canon risk, and spoiler level.</li>
               <li>Extraction validator fixture matrix for valid minimal payload, missing source refs, overconfident human-owned decisions, invalid visual-asset routing, auto-canon leaks, missing review-safe defaults, unknown-field preservation, and built-in identity guards.</li>
               <li>Local deterministic extraction adapter expansion from three raw memo fixtures to validated Extraction Contract payloads.</li>
+              <li>Model/API boundary spec with envelope, failure modes, retry/fallback policy, validator gates, and forbidden actions before provider work.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
           <div class="hub-panel">
             <h3>Pending features</h3>
             <ul class="hub-list">
-              <li>Model/API extraction adapter behind the local validator boundary and durable project database.</li>
+              <li>Actual model/API extraction adapter behind the boundary envelope and local validator gates.</li>
+              <li>Durable project database.</li>
               <li>Automated release or publishing adapters.</li>
             </ul>
           </div>
@@ -950,6 +953,9 @@
                 <tr><td>Local adapter smoke</td><td>artifacts/local-extraction-adapter-smoke-result.json</td></tr>
                 <tr><td>Adapter expansion smoke</td><td>artifacts/local-extraction-adapter-expansion-smoke-result.json</td></tr>
                 <tr><td>Local adapter review</td><td>docs/review/local-extraction-adapter-expansion-review.md</td></tr>
+                <tr><td>Model/API boundary spec</td><td>docs/review/model-api-boundary-spec.md</td></tr>
+                <tr><td>Model/API boundary envelope</td><td>artifacts/model-api-boundary-envelope.example.json</td></tr>
+                <tr><td>Model/API boundary smoke</td><td>artifacts/model-api-boundary-smoke-result.json</td></tr>
                 <tr><td>Freeform review smoke</td><td>artifacts/freeform-review-intake-smoke-result.json</td></tr>
                 <tr><td>Current status doc</td><td>docs/review/current-status.md</td></tr>
               </tbody>
@@ -959,7 +965,9 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows artifact id <strong>fff-local-extraction-adapter-expansion-001</strong>.</li>
+              <li>Confirm this hub shows artifact id <strong>fff-model-api-boundary-spec-001</strong>.</li>
+              <li>Use <strong>docs/review/model-api-boundary-spec.md</strong> to review provider output, failure, retry, fallback, and forbidden-action policy before adapter work.</li>
+              <li>Use <strong>artifacts/model-api-boundary-envelope.example.json</strong> and <strong>artifacts/model-api-boundary-smoke-result.json</strong> to review the boundary readback.</li>
               <li>Use <strong>artifacts/local-extraction-adapter-expansion-smoke-result.json</strong> to review fixture inputs, adapter outputs, validator status, source-span audit, and guard status.</li>
               <li>Use <strong>artifacts/extraction-validator-smoke-result.json</strong> to review the preserved pass/fail fixture matrix before model/API work.</li>
               <li>Use <strong>Extraction Contract</strong> grouping and filters before wiring any generated candidate into profile, claim, or timeline review.</li>
@@ -1006,6 +1014,7 @@
             <span class="tag green">Extraction Contract visible</span>
             <span class="tag green">validator fixtures checked</span>
             <span class="tag green">local adapter smoke checked</span>
+            <span class="tag green">model/API boundary visible</span>
             <span class="tag green">v1.3 compliance visible</span>
             <span class="tag green">unresolved decisions visible</span>
             <span class="tag green">QA gates visible</span>
@@ -1074,7 +1083,7 @@
             <div class="metric"><strong>0</strong><span>mismatches</span></div>
             <div class="metric"><strong>local only</strong><span>validator mode</span></div>
           </div>
-          <p class="section-note">Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while expanding deterministic raw memo to payload coverage before model/API output.</p>
+          <p class="section-note">Boundary evidence: artifacts/model-api-boundary-envelope.example.json and artifacts/model-api-boundary-smoke-result.json. Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while keeping future model/API output behind validation gates.</p>
           <div class="extraction-toolbar" aria-label="Extraction Contract controls">
             <div class="extraction-toolbar-row">
               <label for="extraction-group-mode"><strong>Group extraction</strong></label>
@@ -3201,7 +3210,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-local-extraction-adapter-expansion-001",
+        activeArtifactId: "fff-model-api-boundary-spec-001",
         preservedArtifactId: "fff-extraction-contract-001",
         reviewInputMode: "freeform",
         extractionContract: {
@@ -3220,6 +3229,14 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           fixtureDirectory: "artifacts/extraction-adapter-fixtures",
           outputDirectory: "artifacts/extraction-adapter-outputs",
           smokeResult: "artifacts/local-extraction-adapter-expansion-smoke-result.json"
+        },
+        modelApiBoundary: {
+          artifactId: "fff-model-api-boundary-spec-001",
+          specDoc: "docs/review/model-api-boundary-spec.md",
+          envelope: "artifacts/model-api-boundary-envelope.example.json",
+          smokeResult: "artifacts/model-api-boundary-smoke-result.json",
+          externalCallAllowed: false,
+          targetSchemaVersion: "fff.extractionContract.v1"
         }
       };
 
@@ -3692,7 +3709,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-local-extraction-adapter-expansion-001",
+          activeArtifactId: "fff-model-api-boundary-spec-001",
           preservedArtifactId: "fff-extraction-contract-001",
           reviewInputMode: "freeform",
           extractionContract: {
@@ -3711,6 +3728,14 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             fixtureDirectory: "artifacts/extraction-adapter-fixtures",
             outputDirectory: "artifacts/extraction-adapter-outputs",
             smokeResult: "artifacts/local-extraction-adapter-expansion-smoke-result.json"
+          },
+          modelApiBoundary: {
+            artifactId: "fff-model-api-boundary-spec-001",
+            specDoc: "docs/review/model-api-boundary-spec.md",
+            envelope: "artifacts/model-api-boundary-envelope.example.json",
+            smokeResult: "artifacts/model-api-boundary-smoke-result.json",
+            externalCallAllowed: false,
+            targetSchemaVersion: "fff.extractionContract.v1"
           }
         }
       };

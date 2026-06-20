@@ -1,0 +1,39 @@
+{
+  "artifact_id": "fff-model-api-boundary-spec-001",
+  "schemaVersion": "fff.modelApiBoundarySmoke.v1",
+  "generatedAt": "2026-06-20T00:00:00+09:00",
+  "specDoc": "docs/review/model-api-boundary-spec.md",
+  "envelopePath": "artifacts/model-api-boundary-envelope.example.json",
+  "mode": "spec_only_no_external_call",
+  "checks": {
+    "specDocExists": true,
+    "envelopeParses": true,
+    "noExternalCall": true,
+    "noCredentials": true,
+    "targetContractIsExtractionContract": true,
+    "validatorGateListed": true,
+    "fixtureMatrixGateListed": true,
+    "adapterExpansionPreserved": true,
+    "reviewSafeDefaults": true,
+    "humanAuthorityBoundaries": true,
+    "freeformReviewAuthority": true,
+    "noBypassRules": true,
+    "failureModesCovered": true,
+    "timeoutRetryPolicyCovered": true,
+    "reviewSafeFallbackCovered": true
+  },
+  "failureModeCount": 11,
+  "humanOwnedDecisions": [
+    "Toma fate",
+    "brass moth truth",
+    "Council motive"
+  ],
+  "preservedArtifacts": [
+    "fff-local-extraction-adapter-expansion-001",
+    "fff-local-extraction-adapter-spike-001",
+    "fff-extraction-validator-hardening-001",
+    "fff-extraction-contract-001"
+  ],
+  "passed": true,
+  "notes": "Boundary spec readback only. No model/API call, credential setup, provider adapter, project-state mutation, canon adoption, database persistence, publishing, production sync, or AI video generation was added."
+}

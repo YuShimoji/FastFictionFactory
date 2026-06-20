@@ -2,20 +2,22 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-local-extraction-adapter-expansion-001`
-- Preserved adapter artifact: `fff-local-extraction-adapter-spike-001`
+- Artifact id: `fff-model-api-boundary-spec-001`
+- Preserved local adapter expansion artifact: `fff-local-extraction-adapter-expansion-001`
+- Preserved adapter spike artifact: `fff-local-extraction-adapter-spike-001`
 - Preserved validator artifact: `fff-extraction-validator-hardening-001`
 - Preserved contract artifact: `fff-extraction-contract-001`
 - Review UI: `public/review/index.html`
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local launcher: `.\scripts\operator\open_review.ps1`
 - Manifest: `artifacts/artifact-manifest.json`
+- Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
+- Model/API boundary envelope: `artifacts/model-api-boundary-envelope.example.json`
+- Model/API boundary smoke: `artifacts/model-api-boundary-smoke-result.json`
 - Sample raw memo: `artifacts/sample-raw-memo.md`
 - Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
 - Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
 - Local extraction adapter: `tools/fff-extract-local.mjs`
-- Local adapter output: `artifacts/local-extraction-adapter-output.json`
-- Local adapter smoke: `artifacts/local-extraction-adapter-smoke-result.json`
 - Adapter expansion smoke: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
 - Validator fixtures: `artifacts/extraction-negative-fixtures/`
 - Validator smoke: `artifacts/extraction-validator-smoke-result.json`
@@ -47,27 +49,33 @@
   - `artifacts/extraction-adapter-outputs/council-minutes-edge.json`
   - `artifacts/extraction-adapter-outputs/observatory-ledger-edge.json`
 - Local adapter expansion smoke evidence at `artifacts/local-extraction-adapter-expansion-smoke-result.json`.
+- Model/API boundary spec at `docs/review/model-api-boundary-spec.md`.
+- Model/API boundary envelope example at `artifacts/model-api-boundary-envelope.example.json`.
+- Model/API boundary smoke evidence at `artifacts/model-api-boundary-smoke-result.json`.
 - Freeform review intake smoke evidence at `artifacts/freeform-review-intake-smoke-result.json`.
 - Screenshot and contact sheet at `artifacts/fff-current-review-screenshot.png` and `artifacts/fff-review-contact-sheet.png`.
 - MkDocs Material local docs view at `mkdocs.yml`.
 
 ## What Was Verified
 
-- `master` matched `origin/master` at the start of this slice before product edits.
-- Latest compatible pre-slice HEAD was `e329e8e Add local extraction adapter spike`.
-- The artifact manifest now references `fff-local-extraction-adapter-expansion-001` while preserving `fff-local-extraction-adapter-spike-001`, `fff-extraction-validator-hardening-001`, and `fff-extraction-contract-001`.
+- The artifact manifest now references `fff-model-api-boundary-spec-001` while preserving `fff-local-extraction-adapter-expansion-001`, `fff-local-extraction-adapter-spike-001`, `fff-extraction-validator-hardening-001`, and `fff-extraction-contract-001`.
+- `artifacts/model-api-boundary-envelope.example.json` parses as JSON and declares `schemaVersion: "fff.modelApiBoundaryEnvelope.v1"`.
+- The boundary envelope records `externalCallAllowed: false`, no provider endpoint, no secret names, no direct state mutation, and no credentials required for this spec slice.
+- The boundary output target is `fff.extractionContract.v1`, not project state.
+- The boundary validation gates require `validate-extraction`, the validator fixture matrix, the deterministic adapter expansion matrix, source refs, source spans, review-safe defaults, human-owned decision guards, visual-asset routing guards, and freeform review authority.
+- The boundary smoke reports `passed: true` with no model/API call, no credentials, failure-mode coverage, retry/timeout policy coverage, fallback coverage, and preserved adapter/validator/contract artifacts.
 - The single adapter command still regenerates `artifacts/local-extraction-adapter-output.json` from `artifacts/sample-raw-memo.md`.
-- Matrix mode generates three fixture outputs from `artifacts/extraction-adapter-fixtures/` into `artifacts/extraction-adapter-outputs/`.
+- Matrix mode still generates three fixture outputs from `artifacts/extraction-adapter-fixtures/` into `artifacts/extraction-adapter-outputs/`.
 - Each fixture output validates as `fff.extractionContract.v1`.
-- The adapter expansion smoke reports 3 fixture inputs, 3 outputs, 36 extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, and 12 timeline candidates.
-- The source/routing audit reports 36 of 36 source spans matched their raw memo text, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
-- Guard checks pass for no model/API behavior, source refs, review-safe defaults, human authority boundaries, profile-buffered visual assets, freeform review, and aggregate element coverage.
+- The adapter expansion smoke still reports 3 fixture inputs, 3 outputs, 36 extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, and 12 timeline candidates.
+- The source/routing audit still reports 36 of 36 source spans matched their raw memo text, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
 - The extraction validator fixture matrix still passes with 7 fixtures and 0 mismatches.
 - Toma fate, brass moth truth, and Council motive remain human-owned unresolved decisions.
 
 ## What Remains Missing
 
-- Model/API extraction adapter behind the local deterministic adapter and validator boundary.
+- Actual model/API extraction adapter behind the boundary spec.
+- Provider choice, credential flow, timeout value, and retry count for a future integration.
 - Durable project database.
 - YouTube publishing, automated upload, and AI video generation.
 - Complete world chronology.
@@ -101,7 +109,7 @@ public/review/index.html
 
 ## Next Recommended Slice
 
-Review the adapter expansion output for source-span usefulness and routing quality across the three local fixtures. Then either add more deterministic source-span edge cases or prepare a model/API adapter behind the same `tools/fff-state.mjs validate-extraction` and fixture-matrix boundary. Keep all generated output source-tracked, review-held by default, and blocked from auto-canon promotion before adding any database persistence, publishing adapter, AI video generation, or final canon decision.
+Review `docs/review/model-api-boundary-spec.md` and `artifacts/model-api-boundary-envelope.example.json`. Then choose whether the next implementation should be a no-network mock provider that emits the same envelope/payload shape or an explicitly configured provider adapter behind `tools/fff-state.mjs validate-extraction`, the validator fixture matrix, the adapter expansion matrix, source-span checks, review-held defaults, and human-owned decision guards.
 
 ## Resume From Another Terminal
 

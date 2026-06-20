@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "fff.modelApiBoundaryEnvelope.v1",
+  "artifact_id": "fff-model-api-boundary-spec-001",
+  "boundaryMode": "spec_only_no_external_call",
+  "generatedAt": "2026-06-20T00:00:00+09:00",
+  "preserves": [
+    "fff-local-extraction-adapter-expansion-001",
+    "fff-local-extraction-adapter-spike-001",
+    "fff-extraction-validator-hardening-001",
+    "fff-extraction-contract-001",
+    "Claim Ledger",
+    "Timeline View",
+    "Profile/Ghost Flow",
+    "local persistence",
+    "JSON import/export",
+    "freeform review intake",
+    "human-owned canon boundaries"
+  ],
+  "inputContract": {
+    "allowedInputs": [
+      "rawMemoText",
+      "sourceRefs",
+      "localFixtureId",
+      "extractionRunId",
+      "generatorLabel",
+      "reviewSafeConfig"
+    ],
+    "forbiddenInputs": [
+      "credentials",
+      "hiddenProjectState",
+      "databaseRecords",
+      "publishingTargets",
+      "productionSyncTargets",
+      "releaseAssets"
+    ],
+    "stateMutationAllowed": false
+  },
+  "providerBoundary": {
+    "providerConfigured": false,
+    "providerName": null,
+    "endpoint": null,
+    "externalCallAllowed": false,
+    "sliceRequiresCredentials": false,
+    "credentialStorage": "not_defined_in_this_slice",
+    "secretNames": []
+  },
+  "outputContract": {
+    "targetSchemaVersion": "fff.extractionContract.v1",
+    "outputIsProjectState": false,
+    "directStateMutationAllowed": false,
+    "requiredFields": [
+      "extractionRunId",
+      "schemaVersion",
+      "sourceRefs",
+      "extractedElements",
+      "reviewSafeDefaults",
+      "decisionLogSafeMetadata",
+      "warnings",
+      "humanAuthorityBoundaries"
+    ],
+    "reviewSafeDefaults": {
+      "defaultReviewStatus": "hold",
+      "autoCanonPromotion": false,
+      "autoChronologyPromotion": false,
+      "freeformReviewAllowed": true
+    }
+  },
+  "validationGates": [
+    "parse_boundary_envelope_json",
+    "parse_provider_response_json",
+    "convert_to_fff_extractionContract_v1",
+    "node tools/fff-state.mjs validate-extraction <payload>",
+    "node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures",
+    "node tools/fff-extract-local.mjs --matrix artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json",
+    "source_refs_resolve",
+    "source_spans_match_local_text",
+    "review_safe_defaults_hold",
+    "visual_assets_buffered_through_profile_or_timeline",
+    "human_owned_decisions_blocked",
+    "freeform_review_authority_preserved"
+  ],
+  "failureModes": [
+    {
+      "code": "auth_missing",
+      "category": "provider_setup",
+      "reviewAction": "block_before_external_call"
+    },
+    {
+      "code": "external_call_blocked",
+      "category": "slice_boundary",
+      "reviewAction": "record_no_call_status"
+    },
+    {
+      "code": "timeout",
+      "category": "transport",
+      "reviewAction": "write_failure_artifact_without_candidates"
+    },
+    {
+      "code": "rate_limit",
+      "category": "transport",
+      "reviewAction": "bounded_retry_identical_input_or_stop"
+    },
+    {
+      "code": "invalid_json",
+      "category": "provider_output",
+      "reviewAction": "block_conversion"
+    },
+    {
+      "code": "schema_mismatch",
+      "category": "contract_validation",
+      "reviewAction": "block_review_surface_import"
+    },
+    {
+      "code": "source_ref_missing",
+      "category": "source_integrity",
+      "reviewAction": "block_candidate"
+    },
+    {
+      "code": "source_span_mismatch",
+      "category": "source_integrity",
+      "reviewAction": "hold_or_block_with_warning"
+    },
+    {
+      "code": "unsafe_routing",
+      "category": "candidate_routing",
+      "reviewAction": "block_until_routing_is_corrected"
+    },
+    {
+      "code": "human_owned_decision_attempt",
+      "category": "human_authority",
+      "reviewAction": "block_and_report_boundary_violation"
+    },
+    {
+      "code": "overconfident_defaults",
+      "category": "review_safety",
+      "reviewAction": "block_until_hold_defaults_are_restored"
+    }
+  ],
+  "timeoutAndRetryPolicy": {
+    "automaticRetriesAllowed": true,
+    "retryScope": "transient_transport_only",
+    "retryInputMutationAllowed": false,
+    "silentProviderFallbackAllowed": false,
+    "afterRetriesExhausted": "manual_freeform_review_no_candidate_adoption"
+  },
+  "reviewSafety": {
+    "defaultCandidateStatus": "hold",
+    "autoCanonAllowed": false,
+    "autoChronologyAllowed": false,
+    "freeformReviewIsAuthority": true,
+    "humanOwnedDecisions": [
+      "Toma fate",
+      "brass moth truth",
+      "Council motive"
+    ]
+  },
+  "forbiddenActions": [
+    "store_or_print_secrets",
+    "call_external_provider_in_this_slice",
+    "mutate_project_state_directly",
+    "bypass_validate_extraction",
+    "bypass_fixture_matrix",
+    "auto_promote_to_canon",
+    "auto_promote_to_chronology",
+    "finalize_toma_fate",
+    "finalize_brass_moth_truth",
+    "finalize_council_motive",
+    "publish_or_upload",
+    "generate_ai_video",
+    "sync_production",
+    "write_durable_database"
+  ],
+  "exampleTrace": {
+    "noModelApiCall": true,
+    "generatedBy": "manual_boundary_spec",
+    "rawProviderResponseStored": false,
+    "credentialsTouched": false
+  }
+}
