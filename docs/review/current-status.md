@@ -2,7 +2,8 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-local-extraction-adapter-spike-001`
+- Artifact id: `fff-local-extraction-adapter-expansion-001`
+- Preserved adapter artifact: `fff-local-extraction-adapter-spike-001`
 - Preserved validator artifact: `fff-extraction-validator-hardening-001`
 - Preserved contract artifact: `fff-extraction-contract-001`
 - Review UI: `public/review/index.html`
@@ -10,9 +11,12 @@
 - Repo-local launcher: `.\scripts\operator\open_review.ps1`
 - Manifest: `artifacts/artifact-manifest.json`
 - Sample raw memo: `artifacts/sample-raw-memo.md`
+- Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
+- Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
 - Local extraction adapter: `tools/fff-extract-local.mjs`
 - Local adapter output: `artifacts/local-extraction-adapter-output.json`
 - Local adapter smoke: `artifacts/local-extraction-adapter-smoke-result.json`
+- Adapter expansion smoke: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
 - Validator fixtures: `artifacts/extraction-negative-fixtures/`
 - Validator smoke: `artifacts/extraction-validator-smoke-result.json`
 - Next-terminal handoff: `docs/review/next-terminal-handoff.md`
@@ -33,49 +37,37 @@
 - Freeform Review Intake contract documented for user review without fixed response phrases.
 - Repo-local zero-dependency state adapter at `tools/fff-state.mjs`.
 - Sample and current state JSON at `artifacts/sample-project-state.json` and `artifacts/current-project-state.json`.
-- Checkpoint readback evidence for authority, Git, tooling, and active artifacts.
-- Smoke evidence for export/import, file persistence, review ergonomics, Claim Ledger, Timeline View, v1.3 compliance, and Profile/Ghost Flow.
-- Extraction Contract payload and smoke evidence at `artifacts/sample-extraction-payload.json` and `artifacts/extraction-contract-smoke-result.json`.
-- Extraction Contract validator fixtures covering valid minimal payload, missing source refs, overconfident human-owned decisions, unsafe direct visual-to-claim routing, auto-canon leaks, missing review-safe defaults, and unknown-field preservation.
-- Extraction validator smoke evidence at `artifacts/extraction-validator-smoke-result.json`.
 - Deterministic local extraction adapter at `tools/fff-extract-local.mjs`.
-- Sample raw memo at `artifacts/sample-raw-memo.md`.
-- Adapter output payload at `artifacts/local-extraction-adapter-output.json`.
-- Local adapter smoke evidence at `artifacts/local-extraction-adapter-smoke-result.json`.
+- Adapter expansion fixtures:
+  - `artifacts/extraction-adapter-fixtures/clockmaker-sample.md`
+  - `artifacts/extraction-adapter-fixtures/council-minutes-edge.md`
+  - `artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md`
+- Adapter expansion outputs:
+  - `artifacts/extraction-adapter-outputs/clockmaker-sample.json`
+  - `artifacts/extraction-adapter-outputs/council-minutes-edge.json`
+  - `artifacts/extraction-adapter-outputs/observatory-ledger-edge.json`
+- Local adapter expansion smoke evidence at `artifacts/local-extraction-adapter-expansion-smoke-result.json`.
 - Freeform review intake smoke evidence at `artifacts/freeform-review-intake-smoke-result.json`.
 - Screenshot and contact sheet at `artifacts/fff-current-review-screenshot.png` and `artifacts/fff-review-contact-sheet.png`.
 - MkDocs Material local docs view at `mkdocs.yml`.
 
 ## What Was Verified
 
-- Latest handoff context is stored in `docs/review/next-terminal-handoff.md` so a new terminal can resume from project files after `git pull --ff-only`.
-- The artifact manifest parses and references `fff-local-extraction-adapter-spike-001` while preserving `fff-extraction-validator-hardening-001` and `fff-extraction-contract-001` as the validator and reviewed contract surfaces.
-- The sample and current state JSON files parse with `schemaVersion: "fff.projectState.v1"`.
-- The state adapter validates both state JSON files.
-- The state adapter validates `artifacts/sample-extraction-payload.json` as an Extraction Contract payload.
-- `node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures` passes the expected-valid and expected-invalid fixture matrix.
-- The validator catches empty or unknown `sourceRefIds`, missing `extractionRunId`, missing `schemaVersion`, invalid element types, unsafe `adopt` suggestions for human-owned decisions, direct visual asset routing to Claim Ledger without profile-side routing, auto-canon/default-review leaks, missing `humanAuthorityBoundaries`, and missing warnings when canon risk is high.
-- The valid fixture reports unknown-field preservation as a warning rather than dropping or failing preserved data.
-- The state adapter summary reports Claim Ledger, Timeline, and Profile/Ghost summaries.
-- The state adapter summary reports Extraction Contract run, element, candidate, dependency, high-risk, and warning counts.
-- Current state contains 1 Extraction Contract run and 12 extraction elements covering person, place, organization, event, object, concept, document, visual_asset, placeholder, source_reference, and unresolved_decision.
-- Current state contains 11 Profile/Ghost records, 9 Claim Ledger claims, and 8 Timeline View entries.
-- Profile/Ghost records cover required profile types: person, place, organization, event, object, concept, document, visual_asset, and placeholder.
-- Profile/Ghost records cover required ghost node statuses: extracted_candidate, provisional_profile, adopted_profile, held_ghost, rejected_candidate, and needs_human_decision.
-- Profile/Ghost records keep Toma fate, brass moth truth, and Council motive as unresolved human-owned dependencies.
-- Browser smoke confirmed Profile/Ghost rendering, grouping, type selector, ghost filters, unresolved/high-risk/spoiler filters, ghost promotion to provisional profile, decision log update, export/import persistence, invalid JSON safety, and Claim Ledger/Timeline continuity.
-- Browser smoke confirmed Extraction Contract rendering, grouping, filtering, search, decision log update, export/import preservation, invalid JSON safety, and Claim Ledger/Timeline/Profile continuity.
-- Extraction validator smoke confirmed 7 of 7 fixture expectations: 2 valid payloads pass and 5 invalid payloads fail for the intended risk class.
-- Local adapter smoke confirmed the sample memo can be converted into a valid Extraction Contract payload with 12 extracted elements, 9 profile candidates, 7 claim candidates, 5 timeline candidates, source refs, review-safe defaults, and human-owned boundaries.
-- Local adapter output validates with `node tools/fff-state.mjs validate-extraction artifacts/local-extraction-adapter-output.json`.
-- The local adapter fixture matrix check still passes through `node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures`.
-- Screenshot and contact sheet were regenerated from the current Visual Review Hub with the local extraction adapter slice visible while preserving validator hardening and the Extraction Contract.
-- `git diff --check` passed.
-- `python -m mkdocs build --strict` passed.
+- `master` matched `origin/master` at the start of this slice before product edits.
+- Latest compatible pre-slice HEAD was `e329e8e Add local extraction adapter spike`.
+- The artifact manifest now references `fff-local-extraction-adapter-expansion-001` while preserving `fff-local-extraction-adapter-spike-001`, `fff-extraction-validator-hardening-001`, and `fff-extraction-contract-001`.
+- The single adapter command still regenerates `artifacts/local-extraction-adapter-output.json` from `artifacts/sample-raw-memo.md`.
+- Matrix mode generates three fixture outputs from `artifacts/extraction-adapter-fixtures/` into `artifacts/extraction-adapter-outputs/`.
+- Each fixture output validates as `fff.extractionContract.v1`.
+- The adapter expansion smoke reports 3 fixture inputs, 3 outputs, 36 extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, and 12 timeline candidates.
+- The source/routing audit reports 36 of 36 source spans matched their raw memo text, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
+- Guard checks pass for no model/API behavior, source refs, review-safe defaults, human authority boundaries, profile-buffered visual assets, freeform review, and aggregate element coverage.
+- The extraction validator fixture matrix still passes with 7 fixtures and 0 mismatches.
+- Toma fate, brass moth truth, and Council motive remain human-owned unresolved decisions.
 
 ## What Remains Missing
 
-- Model/API extraction adapter behind the local deterministic adapter boundary.
+- Model/API extraction adapter behind the local deterministic adapter and validator boundary.
 - Durable project database.
 - YouTube publishing, automated upload, and AI video generation.
 - Complete world chronology.
@@ -101,15 +93,6 @@ Primary review path:
 public/review/index.html
 ```
 
-State persistence review path:
-
-```text
-1. Use Save state to local file if the browser supports direct file save.
-2. Use Load state from local file if the browser supports direct file load.
-3. Use Download JSON fallback and Upload JSON fallback when direct file access is unsupported.
-4. Use Import pasted JSON to test invalid JSON handling or unknown-field preservation.
-```
-
 ## Human-Owned Decision Packet
 
 - Toma fate remains unresolved. Next move: choose provisional fate before adopting ending-sensitive profile or timeline entries.
@@ -118,8 +101,8 @@ State persistence review path:
 
 ## Next Recommended Slice
 
-Review the local adapter output for source-span usefulness and routing quality. Then either broaden deterministic source mapping or prepare a model/API adapter behind the same `tools/fff-state.mjs validate-extraction` and fixture-matrix boundary. Keep all generated output source-tracked, review-held by default, and blocked from auto-canon promotion before adding any database persistence, publishing adapter, AI video generation, or final canon decision.
+Review the adapter expansion output for source-span usefulness and routing quality across the three local fixtures. Then either add more deterministic source-span edge cases or prepare a model/API adapter behind the same `tools/fff-state.mjs validate-extraction` and fixture-matrix boundary. Keep all generated output source-tracked, review-held by default, and blocked from auto-canon promotion before adding any database persistence, publishing adapter, AI video generation, or final canon decision.
 
 ## Resume From Another Terminal
 
-From a fresh terminal, run `git pull --ff-only`, read `docs/review/next-terminal-handoff.md`, open the review UI with `.\scripts\operator\open_review.ps1`, and run the manifest validation command before changing behavior.
+From a fresh terminal, run `git pull --ff-only`, read `AGENTS.md`, `docs/project-context.md`, `docs/review/current-status.md`, `docs/workflow.md`, `docs/qa-gates.md`, `docs/decision-log.md`, `docs/idea-ledger.md`, and `artifacts/artifact-manifest.json`, then open the review UI with `.\scripts\operator\open_review.ps1` and run the manifest validation command before changing behavior.

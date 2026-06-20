@@ -31,3 +31,9 @@
 - Decision: Keep validator failures review-safe rather than canon-producing.
   - Reason: Missing source refs, overconfident human-owned decisions, direct visual-asset-to-claim routing, and auto-canon defaults are adapter risks, not story truths.
   - Effect: Toma fate, brass moth truth, and Council motive remain unresolved human-owned decisions; generated confidence and fixture coverage do not imply final canon.
+
+## 2026-06-20
+
+- Decision: Expand the local deterministic adapter through a fixture matrix before model/API extraction work.
+  - Reason: The single-sample adapter proved the contract path, but source-span usefulness, routing safety, and review-held defaults need multi-memo regression coverage before generated candidates can safely grow.
+  - Effect: `fff-local-extraction-adapter-expansion-001` adds local fixture memos, per-fixture adapter outputs, aggregate source/routing smoke evidence, and Review Hub/manifest/status updates while preserving no model/API behavior and no final canon decisions for Toma fate, brass moth truth, or Council motive.

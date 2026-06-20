@@ -163,7 +163,7 @@
 - Validation result: expected-valid fixtures passed, expected-invalid fixtures failed for intended reasons, built-in guard checks passed for missing identity fields, invalid element type, missing human authority boundaries, and missing high-risk warnings; unknown-field preservation warnings were reported.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
-- Next action: Use the fixture matrix as the gate for a local-only extraction adapter spike.
+- Next action: Preserve this validator matrix as the gate for adapter expansion and any future model/API adapter.
 
 ## fff-local-extraction-adapter-spike-001
 
@@ -189,4 +189,35 @@
 - Validation result: deterministic adapter output validated as `fff.extractionContract.v1`; output contains 12 extracted elements covering all required element types, 9 profile candidates, 7 claim candidates, 5 timeline candidates, 3 unresolved human-owned dependencies, review-safe defaults, and source refs; fixture matrix remained passing.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
-- Next action: Review adapter output quality and source-span usefulness before widening deterministic parsing or placing a model/API adapter behind the same validator boundary.
+- State: Preserved by `fff-local-extraction-adapter-expansion-001`.
+- Next action: Use the expansion artifact for current adapter review.
+
+## fff-local-extraction-adapter-expansion-001
+
+- Title: Fast Fiction Factory Local Extraction Adapter Expansion
+- Purpose: Expand deterministic local raw memo extraction across multiple fixtures, generate one Extraction Contract payload per fixture, validate every output, and audit source spans, source refs, review-safe defaults, visual-asset routing, freeform review, and human-owned decision guards before any model/API extraction behavior exists.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local launcher: `scripts/operator/open_review.ps1`
+- Preserved adapter artifact: `fff-local-extraction-adapter-spike-001`
+- Preserved validator artifact: `fff-extraction-validator-hardening-001`
+- Preserved contract artifact: `fff-extraction-contract-001`
+- Sample raw memo: `artifacts/sample-raw-memo.md`
+- Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
+- Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
+- Adapter tool: `tools/fff-extract-local.mjs`
+- Adapter output: `artifacts/local-extraction-adapter-output.json`
+- Adapter smoke result: `artifacts/local-extraction-adapter-smoke-result.json`
+- Adapter expansion smoke result: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
+- Validator fixtures: `artifacts/extraction-negative-fixtures/`
+- State adapter: `tools/fff-state.mjs`
+- Review doc: `docs/review/local-extraction-adapter-expansion-review.md`
+- Current status: `docs/review/current-status.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Validation command: `node tools/fff-extract-local.mjs --matrix artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json`
+- Validation result: deterministic adapter output validated as `fff.extractionContract.v1` for three fixture memos; output matrix contains 36 extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions; fixture matrix remained passing.
+- Review status: `ready_for_local_review`
+- Review input mode: `freeform`
+- Next action: Review adapter output quality and source-span usefulness before adding more deterministic edge fixtures or placing a model/API adapter behind the same validator boundary.

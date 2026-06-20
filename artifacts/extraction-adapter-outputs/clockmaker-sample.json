@@ -2,13 +2,13 @@
   "extractionRunId": "local-extract-clockmaker-adapter-001",
   "schemaVersion": "fff.extractionContract.v1",
   "sourceDraftId": "draft-clockmaker-local-adapter-001",
-  "sourceMemoRef": "artifacts/sample-raw-memo.md",
+  "sourceMemoRef": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
   "sourceRefs": [
     {
       "id": "src-local-adapter-raw-memo-001",
       "label": "Sample raw memo",
       "source_type": "memo",
-      "locator": "artifacts/sample-raw-memo.md",
+      "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
       "trust": "author_memo"
     },
     {
@@ -503,7 +503,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -543,7 +543,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -585,7 +585,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -627,7 +627,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -667,7 +667,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -707,7 +707,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -747,7 +747,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -785,7 +785,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -826,7 +826,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -855,7 +855,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -884,7 +884,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -913,7 +913,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -945,7 +945,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -976,7 +976,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -1005,7 +1005,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -1036,7 +1036,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -1084,7 +1084,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -1119,7 +1119,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -1152,7 +1152,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -1187,7 +1187,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -1222,7 +1222,7 @@
           "id": "src-local-adapter-raw-memo-001",
           "label": "Sample raw memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
           "trust": "author_memo"
         }
       ],
@@ -1273,7 +1273,7 @@
   ],
   "notes": "Local deterministic extraction adapter expansion connecting multiple raw memo fixtures to validator-backed Extraction Contract payloads while preserving human-owned canon boundaries.",
   "adapterTrace": {
-    "inputPath": "artifacts/sample-raw-memo.md",
+    "inputPath": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md",
     "fixtureKey": "clockmaker-sample",
     "toolPath": "tools/fff-extract-local.mjs",
     "deterministicRules": [

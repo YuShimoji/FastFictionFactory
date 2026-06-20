@@ -26,6 +26,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Timeline View and v1.3 contract | Ready for local review | [`review/timeline-view-review.md`](review/timeline-view-review.md), [`review/v1-3-compliance-review.md`](review/v1-3-compliance-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Profile/Ghost Flow | Ready for local review | [`review/profile-ghost-flow-review.md`](review/profile-ghost-flow-review.md), [`review/checkpoint-readback.md`](review/checkpoint-readback.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Extraction Contract and freeform review intake | Ready for local review | [`review/extraction-contract-review.md`](review/extraction-contract-review.md), [`review/freeform-review-intake.md`](review/freeform-review-intake.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
+| Local extraction adapter expansion | Ready for local review | [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 
 The implementation details are itemized inside the review documents under headings such as `What Was Implemented`, `What Exists Now`, `Validation`, `Known Limitations`, and `Next Recommended Slice`.
 
@@ -51,7 +52,7 @@ Invoke-Item .\artifacts\fff-review-contact-sheet.png
 | Work | Current state | Where it is tracked | Boundary to keep |
 | --- | --- | --- | --- |
 | Profile page and ghost node flow | Ready for local review | [`idea-ledger.md`](idea-ledger.md), [`review/current-status.md`](review/current-status.md), [`review/profile-ghost-flow-review.md`](review/profile-ghost-flow-review.md) | Do not finalize Toma fate, brass moth truth, or Council motive. |
-| Local extraction adapter spike | Not started | [`idea-ledger.md`](idea-ledger.md), [`review/extraction-contract-review.md`](review/extraction-contract-review.md) | Emit the reviewed contract shape deterministically before adding model/API behavior. |
+| Model/API extraction adapter | Not started | [`idea-ledger.md`](idea-ledger.md), [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | Keep model/API work behind the local validator, source-span, routing, and review-safe default boundary. |
 | Durable project database | Not started | [`idea-ledger.md`](idea-ledger.md) | Decide storage and migration policy before persistence work. |
 | Publishing and video generation | Out of scope for the current MVP | [`product-brief.md`](product-brief.md), [`idea-ledger.md`](idea-ledger.md) | No upload, credentials, public release, or AI video generation in the current review lane. |
 
@@ -61,8 +62,8 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Extraction adapter spike | A local-only adapter stub that emits the reviewed contract shape from deterministic input. | Model/API integration can be evaluated without changing canon or persistence authority. |
-| Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, and freeform review override handling. | Later extractor work gets stricter safety rails. |
+| Next 1 turn | Adapter source-span/routing review | More local edge fixtures or a boundary spec for model/API extraction behind the current validator. | Model/API integration can be evaluated without changing canon or persistence authority. |
+| Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
 
@@ -105,4 +106,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The next recommended implementation slice is the local extraction adapter spike.
+The next recommended implementation slice is adapter source-span/routing review or a model/API boundary design behind the existing local validator.

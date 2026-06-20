@@ -1,5 +1,7 @@
 # Local Extraction Adapter Review
 
+Status note: this review doc now describes preserved artifact `fff-local-extraction-adapter-spike-001`. The active continuation is `fff-local-extraction-adapter-expansion-001` in `docs/review/local-extraction-adapter-expansion-review.md`.
+
 ## What Was Implemented
 
 `fff-local-extraction-adapter-spike-001` adds a zero-dependency deterministic local extraction adapter at `tools/fff-extract-local.mjs`.

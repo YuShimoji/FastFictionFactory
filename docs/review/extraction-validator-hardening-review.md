@@ -102,7 +102,7 @@ This slice does not add:
 
 ## Next Recommended Continuation
 
-Use `fff-extraction-validator-hardening-001` as the gate for the next local-only extraction adapter spike. The adapter should emit the reviewed Extraction Contract shape from deterministic input, then pass:
+Use `fff-extraction-validator-hardening-001` as the preserved gate for local adapter expansion and any future model/API adapter. Adapter output should emit the reviewed Extraction Contract shape, then pass:
 
 ```powershell
 node .\tools\fff-state.mjs validate-extraction <adapter-output.json>

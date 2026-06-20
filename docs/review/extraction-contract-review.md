@@ -53,4 +53,4 @@ Browser smoke should confirm:
 
 ## Next Recommended Slice
 
-Build a local-only extraction adapter spike that emits this same contract shape from deterministic input. Keep it schema-validated and source-tracked before adding any model/API dependency.
+Continue adapter work behind this same contract shape. Keep output schema-validated, source-tracked, review-held by default, and blocked from model/API or canon promotion until the local validator and fixture-matrix boundary pass.

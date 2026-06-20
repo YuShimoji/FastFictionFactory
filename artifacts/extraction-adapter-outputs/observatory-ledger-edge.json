@@ -1,14 +1,14 @@
 {
-  "extractionRunId": "local-extract-clockmaker-adapter-001",
+  "extractionRunId": "local-extract-observatory-ledger-edge-001",
   "schemaVersion": "fff.extractionContract.v1",
-  "sourceDraftId": "draft-clockmaker-local-adapter-001",
-  "sourceMemoRef": "artifacts/sample-raw-memo.md",
+  "sourceDraftId": "draft-observatory-ledger-edge-001",
+  "sourceMemoRef": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
   "sourceRefs": [
     {
-      "id": "src-local-adapter-raw-memo-001",
-      "label": "Sample raw memo",
+      "id": "src-local-adapter-raw-memo-002",
+      "label": "Observatory ledger edge memo",
       "source_type": "memo",
-      "locator": "artifacts/sample-raw-memo.md",
+      "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
       "trust": "author_memo"
     },
     {
@@ -38,22 +38,22 @@
   },
   "extractedElements": [
     {
-      "id": "local-x-person-mira",
+      "id": "edge-x-person-mira",
       "displayText": "Mira Vale",
       "elementType": "person",
       "aliases": [
         "Mira",
-        "the clock repairer"
+        "repair log writer"
       ],
       "sourceSpan": {
-        "text": "Mira Vale repairs clocks",
-        "start": 91,
-        "end": 115
+        "text": "Mira Vale writes a repair log",
+        "start": 44,
+        "end": 73
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.95,
+      "confidence": 0.93,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [],
@@ -64,31 +64,31 @@
         "claim"
       ],
       "targetProfileIds": [
-        "local-profile-mira"
+        "edge-profile-mira"
       ],
       "targetClaimIds": [
-        "local-claim-mira-repairs-clocks"
+        "edge-claim-repair-log"
       ],
       "targetTimelineEntryIds": [],
-      "notes": "Adapter can identify the protagonist candidate, but generated output remains review-held."
+      "notes": "The adapter can map a protagonist mention even when the action differs from the sample phrasing."
     },
     {
-      "id": "local-x-person-toma",
+      "id": "edge-x-person-toma",
       "displayText": "Toma",
       "elementType": "person",
       "aliases": [
-        "Toma Vale",
-        "missing brother"
+        "Toma",
+        "last route"
       ],
       "sourceSpan": {
-        "text": "missing brother Toma",
-        "start": 171,
-        "end": 191
+        "text": "Toma's last route",
+        "start": 252,
+        "end": 269
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.9,
+      "confidence": 0.86,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [
@@ -103,18 +103,18 @@
         "unresolved_decision"
       ],
       "targetProfileIds": [
-        "local-profile-toma"
+        "edge-profile-toma"
       ],
       "targetClaimIds": [
-        "local-claim-toma-left-moth"
+        "edge-claim-toma-route"
       ],
       "targetTimelineEntryIds": [
-        "local-timeline-toma-note"
+        "edge-timeline-toma-route"
       ],
-      "notes": "Name extraction is allowed, but Toma fate stays human-owned and held."
+      "notes": "Toma remains a held person candidate tied to a route note, not a fate decision."
     },
     {
-      "id": "local-x-place-north-bell",
+      "id": "edge-x-place-north-bell",
       "displayText": "North Bell Station",
       "elementType": "place",
       "aliases": [
@@ -122,13 +122,13 @@
       ],
       "sourceSpan": {
         "text": "North Bell Station",
-        "start": 345,
-        "end": 363
+        "start": 106,
+        "end": 124
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.91,
+      "confidence": 0.9,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [],
@@ -139,30 +139,31 @@
         "timeline"
       ],
       "targetProfileIds": [
-        "local-profile-north-bell"
+        "edge-profile-north-bell"
       ],
       "targetClaimIds": [],
       "targetTimelineEntryIds": [
-        "local-timeline-noon-bell"
+        "edge-timeline-noon-repeat"
       ],
-      "notes": "Place routing can support timeline review without explaining the bell paradox."
+      "notes": "Place extraction stays useful across differently ordered memo paragraphs."
     },
     {
-      "id": "local-x-organization-council",
-      "displayText": "city council",
+      "id": "edge-x-organization-archive-office",
+      "displayText": "city council archive office",
       "elementType": "organization",
       "aliases": [
-        "council"
+        "council archive",
+        "archive office"
       ],
       "sourceSpan": {
-        "text": "city council has been selling minutes",
-        "start": 258,
-        "end": 295
+        "text": "city council archive office",
+        "start": 308,
+        "end": 335
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.9,
+      "confidence": 0.84,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [
@@ -176,66 +177,66 @@
         "unresolved_decision"
       ],
       "targetProfileIds": [
-        "local-profile-council"
+        "edge-profile-archive-office"
       ],
       "targetClaimIds": [
-        "local-claim-council-selling-minutes"
+        "edge-claim-clerical-error"
       ],
       "targetTimelineEntryIds": [],
-      "notes": "The adapter preserves the institution as a candidate while keeping motive undecided."
+      "notes": "Organization routing is review-held because motive language remains uncertain."
     },
     {
-      "id": "local-x-event-917",
-      "displayText": "arcade closes at 9:17",
+      "id": "edge-x-event-closing-repeat",
+      "displayText": "closing bell repeats three times",
       "elementType": "event",
       "aliases": [
-        "9:17 closing",
-        "nightly arcade closing"
+        "repeat bell",
+        "three closing bells"
       ],
       "sourceSpan": {
-        "text": "closes every night at 9:17",
-        "start": 139,
-        "end": 165
+        "text": "closing bell repeats three times",
+        "start": 217,
+        "end": 249
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.96,
+      "confidence": 0.78,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [],
-      "canonRisk": "low",
-      "spoilerLevel": "low",
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
       "targetDestinations": [
         "claim",
         "timeline"
       ],
       "targetProfileIds": [],
       "targetClaimIds": [
-        "local-claim-arcade-closes-917"
+        "edge-claim-closing-repeat"
       ],
       "targetTimelineEntryIds": [
-        "local-timeline-917"
+        "edge-timeline-closing-repeat"
       ],
-      "notes": "A repeatable time cue can be routed as a held event candidate."
+      "notes": "Event detection handles a repeated signal rather than only the sample 9:17 clause."
     },
     {
-      "id": "local-x-object-brass-moth",
-      "displayText": "brass moth",
+      "id": "edge-x-object-brass-moth-key",
+      "displayText": "brass moth key",
       "elementType": "object",
       "aliases": [
-        "moth",
-        "workshop moth"
+        "moth key",
+        "brass key"
       ],
       "sourceSpan": {
-        "text": "brass moth in the workshop drawer",
-        "start": 199,
-        "end": 232
+        "text": "brass moth key",
+        "start": 288,
+        "end": 302
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.95,
+      "confidence": 0.89,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [
@@ -250,33 +251,33 @@
         "unresolved_decision"
       ],
       "targetProfileIds": [
-        "local-profile-brass-moth"
+        "edge-profile-brass-moth-key"
       ],
       "targetClaimIds": [
-        "local-claim-brass-moth-found"
+        "edge-claim-brass-moth-key"
       ],
       "targetTimelineEntryIds": [
-        "local-timeline-brass-moth"
+        "edge-timeline-moth-key"
       ],
-      "notes": "The adapter may extract the object, but must not decide whether it is proof, key, spy, or memory."
+      "notes": "The object can be extracted while its function remains undecided."
     },
     {
-      "id": "local-x-concept-stolen-minutes",
-      "displayText": "selling minutes from abandoned lives",
+      "id": "edge-x-concept-borrowed-minutes",
+      "displayText": "borrowed minutes from abandoned lives",
       "elementType": "concept",
       "aliases": [
-        "stolen minutes",
+        "borrowed minutes",
         "abandoned lives"
       ],
       "sourceSpan": {
-        "text": "selling minutes from abandoned lives",
-        "start": 280,
-        "end": 316
+        "text": "borrowed minutes from abandoned lives",
+        "start": 481,
+        "end": 518
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.88,
+      "confidence": 0.82,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [
@@ -289,31 +290,31 @@
         "claim"
       ],
       "targetProfileIds": [
-        "local-profile-stolen-minutes"
+        "edge-profile-borrowed-minutes"
       ],
       "targetClaimIds": [
-        "local-claim-council-selling-minutes"
+        "edge-claim-borrowed-minutes"
       ],
       "targetTimelineEntryIds": [],
-      "notes": "Premise concept is extracted as a review candidate, not as final canon motive."
+      "notes": "Concept extraction stays provisional and cannot settle why the council tracks minutes."
     },
     {
-      "id": "local-x-document-ledger",
-      "displayText": "ledger of minutes",
+      "id": "edge-x-document-ledger-page",
+      "displayText": "ledger page",
       "elementType": "document",
       "aliases": [
-        "ledger",
-        "locked cabinet record"
+        "ledger page",
+        "page of minutes"
       ],
       "sourceSpan": {
-        "text": "ledger of minutes",
-        "start": 583,
-        "end": 600
+        "text": "A ledger page",
+        "start": 461,
+        "end": 474
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.84,
+      "confidence": 0.8,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [],
@@ -324,31 +325,31 @@
         "claim"
       ],
       "targetProfileIds": [
-        "local-profile-ledger"
+        "edge-profile-ledger-page"
       ],
       "targetClaimIds": [
-        "local-claim-ledger-exists"
+        "edge-claim-ledger-page"
       ],
       "targetTimelineEntryIds": [],
-      "notes": "Document-like evidence remains a candidate until reviewed."
+      "notes": "Document routing covers partial evidence without treating it as proof."
     },
     {
-      "id": "local-x-visual-observatory",
-      "displayText": "observatory rings without a bell",
+      "id": "edge-x-visual-bellless-tower",
+      "displayText": "bellless tower silhouette",
       "elementType": "visual_asset",
       "aliases": [
-        "empty bell tower",
-        "noon bell paradox"
+        "tower silhouette",
+        "bellless tower"
       ],
       "sourceSpan": {
-        "text": "still rings at noon even though its bell was removed",
-        "start": 364,
-        "end": 416
+        "text": "bellless tower silhouette",
+        "start": 409,
+        "end": 434
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.78,
+      "confidence": 0.73,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [],
@@ -356,42 +357,38 @@
       "spoilerLevel": "medium",
       "targetDestinations": [
         "profile",
-        "claim",
         "timeline"
       ],
       "targetProfileIds": [
-        "local-profile-observatory-visual"
+        "edge-profile-bellless-tower"
       ],
-      "targetClaimIds": [
-        "local-claim-bell-rings"
-      ],
+      "targetClaimIds": [],
       "targetTimelineEntryIds": [
-        "local-timeline-noon-bell"
+        "edge-timeline-noon-repeat"
       ],
-      "notes": "Visual asset routing keeps profile-side review and does not create a release asset."
+      "notes": "Visual asset routing is profile-buffered and avoids direct Claim Ledger-only use."
     },
     {
-      "id": "local-x-placeholder-magic",
-      "displayText": "magic explanation placeholder",
+      "id": "edge-x-placeholder-moth-function",
+      "displayText": "moth function unanswered",
       "elementType": "placeholder",
       "aliases": [
-        "magic timing",
-        "rule gap"
+        "function gap",
+        "moth rule gap"
       ],
       "sourceSpan": {
-        "text": "Do not explain the magic too early",
-        "start": 914,
-        "end": 948
+        "text": "Keep the moth's function unanswered",
+        "start": 521,
+        "end": 556
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
-      "confidence": 0.7,
+      "confidence": 0.75,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [
-        "brass moth truth",
-        "Council motive"
+        "brass moth truth"
       ],
       "canonRisk": "high",
       "spoilerLevel": "high",
@@ -400,27 +397,27 @@
         "unresolved_decision"
       ],
       "targetProfileIds": [
-        "local-profile-magic-placeholder"
+        "edge-profile-moth-placeholder"
       ],
       "targetClaimIds": [],
       "targetTimelineEntryIds": [],
-      "notes": "The adapter surfaces a gap instead of inventing the magic rule."
+      "notes": "The adapter marks a missing rule instead of inventing the moth function."
     },
     {
-      "id": "local-x-source-raw-memo",
-      "displayText": "sample raw memo",
+      "id": "edge-x-source-observatory-ledger",
+      "displayText": "observatory ledger edge memo",
       "elementType": "source_reference",
       "aliases": [
-        "sample memo",
-        "raw memo file"
+        "edge memo",
+        "observatory ledger fixture"
       ],
       "sourceSpan": {
-        "text": "Working title: The Clockmaker Under Glass",
-        "start": 47,
-        "end": 88
+        "text": "Adapter Fixture: Observatory Ledger Edge",
+        "start": 2,
+        "end": 42
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001"
+        "src-local-adapter-raw-memo-002"
       ],
       "confidence": 1,
       "suggestedReviewStatus": "hold",
@@ -434,51 +431,48 @@
       "targetProfileIds": [],
       "targetClaimIds": [],
       "targetTimelineEntryIds": [],
-      "notes": "Every adapter candidate must remain traceable to this source memo."
+      "notes": "The fixture title is preserved as a source reference element."
     },
     {
-      "id": "local-x-unresolved-council-motive",
-      "displayText": "Council motive",
+      "id": "edge-x-unresolved-toma-fate",
+      "displayText": "Toma fate",
       "elementType": "unresolved_decision",
       "aliases": [
-        "villainous or desperate",
-        "motive route"
+        "Toma outcome",
+        "route decision"
       ],
       "sourceSpan": {
-        "text": "Council motive is unresolved",
-        "start": 756,
-        "end": 784
+        "text": "Toma fate stays unresolved",
+        "start": 558,
+        "end": 584
       },
       "sourceRefIds": [
-        "src-local-adapter-raw-memo-001",
+        "src-local-adapter-raw-memo-002",
         "src-local-adapter-freeform-review-001"
       ],
       "confidence": 0.86,
       "suggestedReviewStatus": "hold",
       "reviewStatus": "hold",
       "unresolvedDependencies": [
-        "Council motive"
+        "Toma fate"
       ],
       "canonRisk": "high",
       "spoilerLevel": "high",
       "targetDestinations": [
         "unresolved_decision",
-        "claim",
         "timeline"
       ],
       "targetProfileIds": [],
-      "targetClaimIds": [
-        "local-claim-council-motive-open"
-      ],
+      "targetClaimIds": [],
       "targetTimelineEntryIds": [
-        "local-timeline-council-motive"
+        "edge-timeline-toma-route"
       ],
-      "notes": "Freeform human review remains the source of truth for the motive route."
+      "notes": "Freeform human review remains required before any Toma fate route is adopted."
     }
   ],
   "profileCandidates": [
     {
-      "id": "local-profile-mira",
+      "id": "edge-profile-mira",
       "displayName": "Mira Vale",
       "aliases": [],
       "profileType": "person",
@@ -492,7 +486,7 @@
       "relatedProfileIds": [],
       "unresolvedDependencies": [],
       "knownBy": [
-        "sample raw memo"
+        "observatory ledger edge memo"
       ],
       "unknownBy": [],
       "believedBy": [],
@@ -500,10 +494,10 @@
       "ownedItems": [],
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
@@ -512,11 +506,11 @@
       "spoilerLevel": "medium",
       "reviewStatus": "hold",
       "notes": "Generated by deterministic local adapter; remains review-held.",
-      "summary": "Clock repairer candidate extracted from the sample memo.",
+      "summary": "Repair-log author candidate from the edge memo.",
       "open_questions": []
     },
     {
-      "id": "local-profile-toma",
+      "id": "edge-profile-toma",
       "displayName": "Toma",
       "aliases": [],
       "profileType": "person",
@@ -532,7 +526,7 @@
         "Toma fate"
       ],
       "knownBy": [
-        "sample raw memo"
+        "observatory ledger edge memo"
       ],
       "unknownBy": [],
       "believedBy": [],
@@ -540,10 +534,10 @@
       "ownedItems": [],
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
@@ -552,14 +546,52 @@
       "spoilerLevel": "high",
       "reviewStatus": "hold",
       "notes": "Generated by deterministic local adapter; remains review-held.",
-      "summary": "Missing brother candidate; fate stays unresolved.",
+      "summary": "Route-linked person candidate; fate is still unresolved.",
       "open_questions": [
         "Resolve Toma fate before canon adoption."
       ]
     },
     {
-      "id": "local-profile-council",
-      "displayName": "City council",
+      "id": "edge-profile-north-bell",
+      "displayName": "North Bell Station",
+      "aliases": [],
+      "profileType": "place",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "extracted_candidate",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [],
+      "knownBy": [
+        "observatory ledger edge memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "Place candidate for the noon-repeat event.",
+      "open_questions": []
+    },
+    {
+      "id": "edge-profile-archive-office",
+      "displayName": "City council archive office",
       "aliases": [],
       "profileType": "organization",
       "profileStatus": "local_adapter_candidate",
@@ -574,7 +606,7 @@
         "Council motive"
       ],
       "knownBy": [
-        "sample raw memo"
+        "observatory ledger edge memo"
       ],
       "unknownBy": [],
       "believedBy": [],
@@ -582,10 +614,10 @@
       "ownedItems": [],
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
@@ -594,14 +626,14 @@
       "spoilerLevel": "high",
       "reviewStatus": "hold",
       "notes": "Generated by deterministic local adapter; remains review-held.",
-      "summary": "Institution candidate with unresolved motive.",
+      "summary": "Council-side organization candidate with motive held.",
       "open_questions": [
         "Resolve Council motive before canon adoption."
       ]
     },
     {
-      "id": "local-profile-brass-moth",
-      "displayName": "Brass moth",
+      "id": "edge-profile-brass-moth-key",
+      "displayName": "Brass moth key",
       "aliases": [],
       "profileType": "object",
       "profileStatus": "local_adapter_candidate",
@@ -616,7 +648,7 @@
         "brass moth truth"
       ],
       "knownBy": [
-        "sample raw memo"
+        "observatory ledger edge memo"
       ],
       "unknownBy": [],
       "believedBy": [],
@@ -624,10 +656,10 @@
       "ownedItems": [],
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
@@ -636,52 +668,14 @@
       "spoilerLevel": "high",
       "reviewStatus": "hold",
       "notes": "Generated by deterministic local adapter; remains review-held.",
-      "summary": "Object candidate with unresolved function.",
+      "summary": "Object candidate with function held.",
       "open_questions": [
         "Resolve brass moth truth before canon adoption."
       ]
     },
     {
-      "id": "local-profile-north-bell",
-      "displayName": "North Bell Station",
-      "aliases": [],
-      "profileType": "place",
-      "profileStatus": "local_adapter_candidate",
-      "ghostNodeStatus": "extracted_candidate",
-      "worldStatus": "review candidate",
-      "realityStatus": "pure fiction",
-      "firstAppearanceWorkId": "work-clockmaker-under-glass",
-      "linkedClaimIds": [],
-      "linkedTimelineEntryIds": [],
-      "relatedProfileIds": [],
-      "unresolvedDependencies": [],
-      "knownBy": [
-        "sample raw memo"
-      ],
-      "unknownBy": [],
-      "believedBy": [],
-      "misunderstoodBy": [],
-      "ownedItems": [],
-      "sourceRefs": [
-        {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
-          "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
-          "trust": "author_memo"
-        }
-      ],
-      "assetRefs": [],
-      "canonRisk": "medium",
-      "spoilerLevel": "medium",
-      "reviewStatus": "hold",
-      "notes": "Generated by deterministic local adapter; remains review-held.",
-      "summary": "Place candidate for timeline review.",
-      "open_questions": []
-    },
-    {
-      "id": "local-profile-stolen-minutes",
-      "displayName": "Stolen minutes",
+      "id": "edge-profile-borrowed-minutes",
+      "displayName": "Borrowed minutes",
       "aliases": [],
       "profileType": "concept",
       "profileStatus": "local_adapter_candidate",
@@ -696,7 +690,7 @@
         "Council motive"
       ],
       "knownBy": [
-        "sample raw memo"
+        "observatory ledger edge memo"
       ],
       "unknownBy": [],
       "believedBy": [],
@@ -704,10 +698,10 @@
       "ownedItems": [],
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
@@ -716,14 +710,14 @@
       "spoilerLevel": "high",
       "reviewStatus": "hold",
       "notes": "Generated by deterministic local adapter; remains review-held.",
-      "summary": "Concept candidate, not canon motive.",
+      "summary": "Concept candidate tied to unresolved council motive.",
       "open_questions": [
         "Resolve Council motive before canon adoption."
       ]
     },
     {
-      "id": "local-profile-ledger",
-      "displayName": "Ledger of minutes",
+      "id": "edge-profile-ledger-page",
+      "displayName": "Ledger page",
       "aliases": [],
       "profileType": "document",
       "profileStatus": "local_adapter_candidate",
@@ -736,7 +730,7 @@
       "relatedProfileIds": [],
       "unresolvedDependencies": [],
       "knownBy": [
-        "sample raw memo"
+        "observatory ledger edge memo"
       ],
       "unknownBy": [],
       "believedBy": [],
@@ -744,10 +738,10 @@
       "ownedItems": [],
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
@@ -756,12 +750,12 @@
       "spoilerLevel": "medium",
       "reviewStatus": "hold",
       "notes": "Generated by deterministic local adapter; remains review-held.",
-      "summary": "Document candidate from the sample memo.",
+      "summary": "Document candidate for later evidence review.",
       "open_questions": []
     },
     {
-      "id": "local-profile-observatory-visual",
-      "displayName": "Observatory bell visual",
+      "id": "edge-profile-bellless-tower",
+      "displayName": "Bellless tower silhouette",
       "aliases": [],
       "profileType": "visual_asset",
       "profileStatus": "local_adapter_candidate",
@@ -774,7 +768,7 @@
       "relatedProfileIds": [],
       "unresolvedDependencies": [],
       "knownBy": [
-        "sample raw memo"
+        "observatory ledger edge memo"
       ],
       "unknownBy": [],
       "believedBy": [],
@@ -782,10 +776,10 @@
       "ownedItems": [],
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
@@ -794,12 +788,12 @@
       "spoilerLevel": "medium",
       "reviewStatus": "hold",
       "notes": "Generated by deterministic local adapter; remains review-held.",
-      "summary": "Visual review cue, not release asset.",
+      "summary": "Visual cue candidate, not a release asset.",
       "open_questions": []
     },
     {
-      "id": "local-profile-magic-placeholder",
-      "displayName": "Magic explanation placeholder",
+      "id": "edge-profile-moth-placeholder",
+      "displayName": "Moth function placeholder",
       "aliases": [],
       "profileType": "placeholder",
       "profileStatus": "local_adapter_candidate",
@@ -811,11 +805,10 @@
       "linkedTimelineEntryIds": [],
       "relatedProfileIds": [],
       "unresolvedDependencies": [
-        "brass moth truth",
-        "Council motive"
+        "brass moth truth"
       ],
       "knownBy": [
-        "sample raw memo"
+        "observatory ledger edge memo"
       ],
       "unknownBy": [],
       "believedBy": [],
@@ -823,10 +816,10 @@
       "ownedItems": [],
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
@@ -835,34 +828,33 @@
       "spoilerLevel": "high",
       "reviewStatus": "hold",
       "notes": "Generated by deterministic local adapter; remains review-held.",
-      "summary": "Gap marker for later human review.",
+      "summary": "Held placeholder for the moth rule.",
       "open_questions": [
-        "Resolve brass moth truth before canon adoption.",
-        "Resolve Council motive before canon adoption."
+        "Resolve brass moth truth before canon adoption."
       ]
     }
   ],
   "claimCandidates": [
     {
-      "id": "local-claim-mira-repairs-clocks",
+      "id": "edge-claim-repair-log",
       "work_id": "work-clockmaker-under-glass",
-      "claimText": "Mira repairs clocks in the glass arcade.",
-      "claimScope": "world truth",
+      "claimText": "Mira writes a repair log after the observatory rings.",
+      "claimScope": "viewer knowledge",
       "worldTruthStatus": "planned reversal",
       "realityStatus": "pure fiction",
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
       "subjectRefs": [
-        "local-profile-mira"
+        "edge-profile-mira"
       ],
-      "speakerOrNarratorRef": "sample raw memo",
+      "speakerOrNarratorRef": "observatory ledger edge memo",
       "viewerDisclosureStatus": "viewer-facing now",
       "spoilerLevel": "medium",
       "canonRisk": "medium",
@@ -873,54 +865,25 @@
       "notes": "Generated by deterministic local adapter; review-held by default."
     },
     {
-      "id": "local-claim-arcade-closes-917",
+      "id": "edge-claim-toma-route",
       "work_id": "work-clockmaker-under-glass",
-      "claimText": "The glass arcade closes every night at 9:17.",
-      "claimScope": "world truth",
-      "worldTruthStatus": "planned reversal",
-      "realityStatus": "pure fiction",
-      "sourceRefs": [
-        {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
-          "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
-          "trust": "author_memo"
-        }
-      ],
-      "subjectRefs": [
-        "local-x-event-917"
-      ],
-      "speakerOrNarratorRef": "sample raw memo",
-      "viewerDisclosureStatus": "viewer-facing now",
-      "spoilerLevel": "medium",
-      "canonRisk": "medium",
-      "unresolvedDependencies": [],
-      "supportsClaimIds": [],
-      "contradictsClaimIds": [],
-      "reviewStatus": "hold",
-      "notes": "Generated by deterministic local adapter; review-held by default."
-    },
-    {
-      "id": "local-claim-toma-left-moth",
-      "work_id": "work-clockmaker-under-glass",
-      "claimText": "Toma left a brass moth and a note in the workshop drawer.",
+      "claimText": "Toma's last route is pinned under a brass moth key.",
       "claimScope": "unresolved candidate",
       "worldTruthStatus": "uncertain",
       "realityStatus": "pure fiction",
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
       "subjectRefs": [
-        "local-profile-toma"
+        "edge-profile-toma"
       ],
-      "speakerOrNarratorRef": "sample raw memo",
+      "speakerOrNarratorRef": "observatory ledger edge memo",
       "viewerDisclosureStatus": "hidden from viewer",
       "spoilerLevel": "high",
       "canonRisk": "high",
@@ -934,25 +897,25 @@
       "notes": "Generated by deterministic local adapter; review-held by default."
     },
     {
-      "id": "local-claim-council-selling-minutes",
+      "id": "edge-claim-clerical-error",
       "work_id": "work-clockmaker-under-glass",
-      "claimText": "The city council may be selling minutes from abandoned lives.",
-      "claimScope": "unresolved candidate",
+      "claimText": "The council archive office calls Toma's route a clerical error.",
+      "claimScope": "character belief",
       "worldTruthStatus": "uncertain",
       "realityStatus": "pure fiction",
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
       "subjectRefs": [
-        "local-profile-council"
+        "edge-profile-archive-office"
       ],
-      "speakerOrNarratorRef": "sample raw memo",
+      "speakerOrNarratorRef": "observatory ledger edge memo",
       "viewerDisclosureStatus": "hidden from viewer",
       "spoilerLevel": "high",
       "canonRisk": "high",
@@ -965,25 +928,25 @@
       "notes": "Generated by deterministic local adapter; review-held by default."
     },
     {
-      "id": "local-claim-bell-rings",
+      "id": "edge-claim-closing-repeat",
       "work_id": "work-clockmaker-under-glass",
-      "claimText": "The observatory rings at noon despite its bell being removed.",
+      "claimText": "The closing bell repeats three times during the 9:17 closing.",
       "claimScope": "viewer knowledge",
       "worldTruthStatus": "planned reversal",
       "realityStatus": "pure fiction",
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
       "subjectRefs": [
-        "local-profile-observatory-visual"
+        "edge-x-event-closing-repeat"
       ],
-      "speakerOrNarratorRef": "sample raw memo",
+      "speakerOrNarratorRef": "observatory ledger edge memo",
       "viewerDisclosureStatus": "viewer-facing now",
       "spoilerLevel": "medium",
       "canonRisk": "medium",
@@ -994,25 +957,25 @@
       "notes": "Generated by deterministic local adapter; review-held by default."
     },
     {
-      "id": "local-claim-ledger-exists",
+      "id": "edge-claim-borrowed-minutes",
       "work_id": "work-clockmaker-under-glass",
-      "claimText": "A ledger of minutes is kept in a locked cabinet.",
+      "claimText": "A ledger page lists borrowed minutes from abandoned lives.",
       "claimScope": "unresolved candidate",
       "worldTruthStatus": "uncertain",
       "realityStatus": "pure fiction",
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
       "subjectRefs": [
-        "local-profile-ledger"
+        "edge-profile-borrowed-minutes"
       ],
-      "speakerOrNarratorRef": "sample raw memo",
+      "speakerOrNarratorRef": "observatory ledger edge memo",
       "viewerDisclosureStatus": "hidden from viewer",
       "spoilerLevel": "high",
       "canonRisk": "high",
@@ -1025,25 +988,25 @@
       "notes": "Generated by deterministic local adapter; review-held by default."
     },
     {
-      "id": "local-claim-council-motive-open",
+      "id": "edge-claim-ledger-page",
       "work_id": "work-clockmaker-under-glass",
-      "claimText": "The council motive may be villainous, desperate, divided, or misled.",
+      "claimText": "The ledger page is evidence but not yet proof.",
       "claimScope": "production note",
       "worldTruthStatus": "uncertain",
       "realityStatus": "pure fiction",
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
       "subjectRefs": [
-        "local-profile-council"
+        "edge-profile-ledger-page"
       ],
-      "speakerOrNarratorRef": "sample raw memo",
+      "speakerOrNarratorRef": "observatory ledger edge memo",
       "viewerDisclosureStatus": "hidden from viewer",
       "spoilerLevel": "high",
       "canonRisk": "high",
@@ -1058,81 +1021,13 @@
   ],
   "timelineEntryCandidates": [
     {
-      "id": "local-timeline-917",
+      "id": "edge-timeline-noon-repeat",
       "work_id": "work-clockmaker-under-glass",
-      "title": "The arcade closes at 9:17.",
-      "summary": "Generated by deterministic local adapter for review-held timeline routing.",
-      "timelineAxis": "story_order",
-      "storyOrder": "local adapter candidate",
-      "calendarTime": "Every night at 9:17",
-      "calendarPrecision": "relative_sequence",
-      "viewerDisclosureOrder": "viewer-facing candidate",
-      "viewerDisclosureStatus": "viewer-facing now",
-      "productionOrder": "Do not storyboard as final from adapter output.",
-      "historicalReferenceTime": "not set",
-      "linkedClaimIds": [],
-      "linkedProfileIds": [],
-      "linkedWorkIds": [
-        "work-clockmaker-under-glass"
-      ],
-      "unresolvedDependencies": [],
-      "spoilerLevel": "medium",
-      "canonRisk": "medium",
-      "reviewStatus": "hold",
-      "sourceRefs": [
-        {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
-          "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
-          "trust": "author_memo"
-        }
-      ],
-      "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
-    },
-    {
-      "id": "local-timeline-toma-note",
-      "work_id": "work-clockmaker-under-glass",
-      "title": "Toma's note points Mira toward stolen minutes.",
-      "summary": "Generated by deterministic local adapter for review-held timeline routing.",
-      "timelineAxis": "story_order",
-      "storyOrder": "local adapter candidate",
-      "calendarTime": "Before Mira investigates the council ledger",
-      "calendarPrecision": "relative_sequence",
-      "viewerDisclosureOrder": "held for human review",
-      "viewerDisclosureStatus": "hidden from viewer",
-      "productionOrder": "Do not storyboard as final from adapter output.",
-      "historicalReferenceTime": "not set",
-      "linkedClaimIds": [],
-      "linkedProfileIds": [],
-      "linkedWorkIds": [
-        "work-clockmaker-under-glass"
-      ],
-      "unresolvedDependencies": [
-        "Toma fate"
-      ],
-      "spoilerLevel": "high",
-      "canonRisk": "high",
-      "reviewStatus": "hold",
-      "sourceRefs": [
-        {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
-          "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
-          "trust": "author_memo"
-        }
-      ],
-      "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
-    },
-    {
-      "id": "local-timeline-noon-bell",
-      "work_id": "work-clockmaker-under-glass",
-      "title": "The observatory rings at noon without its bell.",
+      "title": "The observatory rings at noon and leaves a bellless visual cue.",
       "summary": "Generated by deterministic local adapter for review-held timeline routing.",
       "timelineAxis": "calendar_time",
       "storyOrder": "local adapter candidate",
-      "calendarTime": "Noon during present action",
+      "calendarTime": "Noon during the edge memo",
       "calendarPrecision": "clock_time",
       "viewerDisclosureOrder": "viewer-facing candidate",
       "viewerDisclosureStatus": "viewer-facing now",
@@ -1149,23 +1044,91 @@
       "reviewStatus": "hold",
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
       "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
     },
     {
-      "id": "local-timeline-brass-moth",
+      "id": "edge-timeline-closing-repeat",
       "work_id": "work-clockmaker-under-glass",
-      "title": "The brass moth gets a reversible first-use beat.",
+      "title": "The 9:17 closing bell repeats three times.",
+      "summary": "Generated by deterministic local adapter for review-held timeline routing.",
+      "timelineAxis": "story_order",
+      "storyOrder": "local adapter candidate",
+      "calendarTime": "After the repair log begins",
+      "calendarPrecision": "relative_sequence",
+      "viewerDisclosureOrder": "viewer-facing candidate",
+      "viewerDisclosureStatus": "viewer-facing now",
+      "productionOrder": "Do not storyboard as final from adapter output.",
+      "historicalReferenceTime": "not set",
+      "linkedClaimIds": [],
+      "linkedProfileIds": [],
+      "linkedWorkIds": [
+        "work-clockmaker-under-glass"
+      ],
+      "unresolvedDependencies": [],
+      "spoilerLevel": "medium",
+      "canonRisk": "medium",
+      "reviewStatus": "hold",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
+          "trust": "author_memo"
+        }
+      ],
+      "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
+    },
+    {
+      "id": "edge-timeline-toma-route",
+      "work_id": "work-clockmaker-under-glass",
+      "title": "Toma's route is found under the brass moth key.",
       "summary": "Generated by deterministic local adapter for review-held timeline routing.",
       "timelineAxis": "viewer_disclosure_order",
       "storyOrder": "local adapter candidate",
-      "calendarTime": "After Toma's note is found",
+      "calendarTime": "Held until Toma fate review",
+      "calendarPrecision": "relative_sequence",
+      "viewerDisclosureOrder": "held for human review",
+      "viewerDisclosureStatus": "hidden from viewer",
+      "productionOrder": "Do not storyboard as final from adapter output.",
+      "historicalReferenceTime": "not set",
+      "linkedClaimIds": [],
+      "linkedProfileIds": [],
+      "linkedWorkIds": [
+        "work-clockmaker-under-glass"
+      ],
+      "unresolvedDependencies": [
+        "Toma fate"
+      ],
+      "spoilerLevel": "high",
+      "canonRisk": "high",
+      "reviewStatus": "hold",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
+          "trust": "author_memo"
+        }
+      ],
+      "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
+    },
+    {
+      "id": "edge-timeline-moth-key",
+      "work_id": "work-clockmaker-under-glass",
+      "title": "The brass moth key appears before its function is known.",
+      "summary": "Generated by deterministic local adapter for review-held timeline routing.",
+      "timelineAxis": "viewer_disclosure_order",
+      "storyOrder": "local adapter candidate",
+      "calendarTime": "Before moth truth review",
       "calendarPrecision": "relative_sequence",
       "viewerDisclosureOrder": "held for human review",
       "viewerDisclosureStatus": "hidden from viewer",
@@ -1184,45 +1147,10 @@
       "reviewStatus": "hold",
       "sourceRefs": [
         {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
+          "id": "src-local-adapter-raw-memo-002",
+          "label": "Observatory ledger edge memo",
           "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
-          "trust": "author_memo"
-        }
-      ],
-      "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
-    },
-    {
-      "id": "local-timeline-council-motive",
-      "work_id": "work-clockmaker-under-glass",
-      "title": "Council motive remains a held reveal route.",
-      "summary": "Generated by deterministic local adapter for review-held timeline routing.",
-      "timelineAxis": "viewer_disclosure_order",
-      "storyOrder": "local adapter candidate",
-      "calendarTime": "After ledger evidence appears",
-      "calendarPrecision": "relative_sequence",
-      "viewerDisclosureOrder": "held for human review",
-      "viewerDisclosureStatus": "hidden from viewer",
-      "productionOrder": "Do not storyboard as final from adapter output.",
-      "historicalReferenceTime": "not set",
-      "linkedClaimIds": [],
-      "linkedProfileIds": [],
-      "linkedWorkIds": [
-        "work-clockmaker-under-glass"
-      ],
-      "unresolvedDependencies": [
-        "Council motive"
-      ],
-      "spoilerLevel": "high",
-      "canonRisk": "high",
-      "reviewStatus": "hold",
-      "sourceRefs": [
-        {
-          "id": "src-local-adapter-raw-memo-001",
-          "label": "Sample raw memo",
-          "source_type": "memo",
-          "locator": "artifacts/sample-raw-memo.md",
+          "locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
           "trust": "author_memo"
         }
       ],
@@ -1273,8 +1201,8 @@
   ],
   "notes": "Local deterministic extraction adapter expansion connecting multiple raw memo fixtures to validator-backed Extraction Contract payloads while preserving human-owned canon boundaries.",
   "adapterTrace": {
-    "inputPath": "artifacts/sample-raw-memo.md",
-    "fixtureKey": "clockmaker-sample",
+    "inputPath": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md",
+    "fixtureKey": "observatory-ledger-edge",
     "toolPath": "tools/fff-extract-local.mjs",
     "deterministicRules": [
       "fixture profile selection",

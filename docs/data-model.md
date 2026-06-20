@@ -182,7 +182,7 @@ Hardening rules:
 - `unknownSourceHandling`, `decisionLogSafeMetadata`, `warnings`, and `humanAuthorityBoundaries` must remain present for review-safe fallback behavior.
 - Unknown top-level extraction fields are warning-level preservation cases so future adapter data can remain visible for JSON review without silently becoming canon.
 
-## Local Extraction Adapter Spike
+## Local Extraction Adapter Spike And Expansion
 
 `fff-local-extraction-adapter-spike-001` adds a deterministic local adapter that reads one sample raw memo and emits an Extraction Contract payload. It is a spike for the adapter boundary, not a model/API extractor and not database persistence.
 
@@ -199,7 +199,10 @@ Adapter artifacts:
 | `artifacts/sample-raw-memo.md` | Source memo used by the deterministic adapter. |
 | `tools/fff-extract-local.mjs` | Zero-dependency adapter that maps literal memo phrases into Extraction Contract records. |
 | `artifacts/local-extraction-adapter-output.json` | Generated Extraction Contract payload. |
-| `artifacts/local-extraction-adapter-smoke-result.json` | Smoke evidence recording input, output, validator status, fixture matrix status, and guard status. |
+| `artifacts/local-extraction-adapter-smoke-result.json` | Smoke evidence recording input, output, validator status, fixture matrix status, source/routing audit, and guard status. |
+| `artifacts/extraction-adapter-fixtures/` | Local raw memo fixtures for adapter expansion coverage. |
+| `artifacts/extraction-adapter-outputs/` | One generated Extraction Contract payload per adapter fixture. |
+| `artifacts/local-extraction-adapter-expansion-smoke-result.json` | Matrix smoke evidence covering fixture outputs, source spans, routing guards, aggregate element coverage, and validator status. |
 
 The adapter output must keep:
 
@@ -212,7 +215,15 @@ The adapter output must keep:
 - Visual asset candidates buffered through Profile/Ghost review.
 - Freeform review allowed as the source of truth.
 
-The current sample output contains 12 extraction elements, all required element types, 9 profile candidates, 7 claim candidates, 5 timeline candidates, and 3 unresolved human-owned dependencies.
+The preserved sample output contains 12 extraction elements, all required element types, 9 profile candidates, 7 claim candidates, 5 timeline candidates, and 3 unresolved human-owned dependencies.
+
+`fff-local-extraction-adapter-expansion-001` keeps the same contract shape and adds matrix mode:
+
+```powershell
+node .\tools\fff-extract-local.mjs --matrix .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json
+```
+
+Matrix mode currently generates three valid Extraction Contract payloads from Clockmaker-local raw memo fixtures. The expansion smoke records aggregate coverage across 36 extracted elements, complete required element-type coverage, source-span integrity, source-ref integrity, review-held defaults, profile-buffered visual assets, freeform review authority, and human-owned decision guards. This is still deterministic fixture coverage, not model/API behavior and not canon authority.
 
 ## UnresolvedCreativeDecision
 

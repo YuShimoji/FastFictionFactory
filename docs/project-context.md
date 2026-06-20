@@ -2,11 +2,11 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-extraction-validator-hardening-001`, served through the static local Visual Review Hub at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-local-extraction-adapter-expansion-001`, served through the static local Visual Review Hub at `public/review/index.html`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is Extraction Contract validator hardening: source refs, candidate routing, review-safe defaults, warnings, and human authority boundaries must be checked locally before any adapter or model/API extractor exists.
+Keep the MVP reviewable without production commitments. The current lane is local deterministic extraction adapter expansion: multiple raw memo fixtures must emit source-tracked, review-held Extraction Contract payloads and pass validator/routing/source-span checks before any model/API extractor exists.
 
 ## Current Slice
 
@@ -29,6 +29,10 @@ The active slice is complete enough for local review:
 - Extraction validator smoke evidence: `artifacts/extraction-validator-smoke-result.json`
 - Extraction validator review doc: `docs/review/extraction-validator-hardening-review.md`
 - Freeform review intake smoke evidence: `artifacts/freeform-review-intake-smoke-result.json`
+- Local extraction adapter: `tools/fff-extract-local.mjs`
+- Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
+- Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
+- Adapter expansion smoke evidence: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
 - Screenshot: `artifacts/fff-current-review-screenshot.png`
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Local docs view: `mkdocs.yml`
@@ -37,7 +41,7 @@ The active slice is complete enough for local review:
 
 ## Verification Snapshot
 
-Last verified on 2026-06-19:
+Last verified on 2026-06-20:
 
 ```powershell
 node .\tools\fff-state.mjs validate .\artifacts\sample-project-state.json
@@ -47,6 +51,8 @@ node .\tools\fff-state.mjs validate-extraction .\artifacts\extraction-negative-f
 node .\tools\fff-state.mjs validate-extraction .\artifacts\extraction-negative-fixtures\unknown-fields-preservation.json
 node .\tools\fff-state.mjs validate-extraction-fixtures .\artifacts\extraction-negative-fixtures
 node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
+node .\tools\fff-extract-local.mjs .\artifacts\sample-raw-memo.md .\artifacts\local-extraction-adapter-output.json .\artifacts\local-extraction-adapter-smoke-result.json
+node .\tools\fff-extract-local.mjs --matrix .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json
 node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
 ```
 
@@ -58,6 +64,7 @@ Result summary:
 - The validator catches missing source refs, missing extraction identity fields, invalid element types, unsafe human-owned decision adoption, direct visual asset routing to Claim Ledger, auto-canon/default-review leaks, missing human authority boundaries, and missing high-risk warnings.
 - Unknown top-level extraction fields are reported as preservation warnings for JSON review instead of being silently dropped.
 - Current state contains 1 Extraction Contract run, 12 extraction elements, 11 Profile/Ghost records, 9 Claim Ledger claims, and 8 Timeline View entries.
+- Local adapter expansion generated 3 fixture outputs with 36 total extracted elements, complete required element-type coverage, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
 - Extraction Contract summary covers all required element types, 6 high-canon-risk extraction elements, 3 human-owned unresolved dependencies, 5 warnings, and candidate routing into Profile/Ghost, Claim Ledger, and Timeline View.
 - Profile/Ghost summary covers all required profile types, all required ghost node statuses, 7 high canon risk profiles, 7 dependency-bound profiles, and 11 profiles linked to both claims and timeline entries.
 - Claim summary: 5 high canon risk claims, 5 claims with unresolved dependencies, 1 unverified reality status claim, and 4 hidden or spoiler-protected claims.
@@ -98,7 +105,7 @@ node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
 node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
 ```
 
-First next move: build a local-only extraction adapter spike that emits the reviewed contract shape from deterministic input, then run that output through the validator before adding model/API behavior.
+First next move: review the local adapter expansion output quality, then add more source-span edge fixtures or design a model/API adapter behind the same validator boundary.
 
 ## Handoff Path
 
