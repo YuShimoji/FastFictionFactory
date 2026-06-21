@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-20T00:00:00+09:00. At refresh time, the active artifact is `fff-source-span-routing-review-pack-001`; the preserved model/API boundary artifact is `fff-model-api-boundary-spec-001`; the preserved adapter expansion artifact is `fff-local-extraction-adapter-expansion-001`; the preserved adapter artifact is `fff-local-extraction-adapter-spike-001`; the preserved validator artifact is `fff-extraction-validator-hardening-001`; and the preserved contract artifact is `fff-extraction-contract-001`.
+Latest handoff refresh: 2026-06-22T00:00:00+09:00. At refresh time, the active artifact is `fff-review-hub-ia-mode-split-001`; the preserved source-span artifact is `fff-source-span-routing-review-pack-001`; the preserved model/API boundary artifact is `fff-model-api-boundary-spec-001`; the preserved adapter expansion artifact is `fff-local-extraction-adapter-expansion-001`; the preserved adapter artifact is `fff-local-extraction-adapter-spike-001`; the preserved validator artifact is `fff-extraction-validator-hardening-001`; and the preserved contract artifact is `fff-extraction-contract-001`.
 
 ## Start Here
 
@@ -66,7 +66,8 @@ If `uvx` is unavailable, use a real Python/MkDocs Material runtime instead of th
 
 ## Current Project State
 
-- Active artifact: `fff-source-span-routing-review-pack-001`
+- Active artifact: `fff-review-hub-ia-mode-split-001`
+- Preserved source-span artifact: `fff-source-span-routing-review-pack-001`
 - Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
 - Preserved adapter expansion artifact: `fff-local-extraction-adapter-expansion-001`
 - Preserved adapter artifact: `fff-local-extraction-adapter-spike-001`
@@ -88,7 +89,7 @@ If `uvx` is unavailable, use a real Python/MkDocs Material runtime instead of th
 - Validator smoke result: `artifacts/extraction-validator-smoke-result.json`
 - Current lane: source-span and routing supervision for existing local deterministic adapter outputs before freeform review drives adapter changes.
 
-The active artifact extends the Visual Review Hub with a compact review pack while keeping the Extraction Contract, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and state validation intact.
+The active artifact splits the Visual Review Hub into Story Review, Source Audit, Project Cockpit, and Artifacts modes while keeping the source-span review pack, Extraction Contract, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and state validation intact.
 
 ## What Finished
 
@@ -145,7 +146,7 @@ When review is useful but not required to continue, record it as Review Debt ins
 - Purpose: Decide whether the fixture matrix catches the source and routing problems that matter before model/API work.
 - Effect: Keeps future generated candidates reviewable and source-tracked.
 - Requirements: Must stay local-only, zero external services, source-tracked, validator-gated, review-held by default, and non-canon-producing.
-- State: Ready for freeform review through `fff-source-span-routing-review-pack-001`.
+- State: Ready for freeform review through `fff-review-hub-ia-mode-split-001`, with `fff-source-span-routing-review-pack-001` preserved in Source Audit mode.
 - Owner: Product/AI implementer for fixtures and validator shape; human author for final story authority.
 - Next move: Revise only the span/routing issues or fixture classes identified by review.
 
@@ -163,5 +164,5 @@ When review is useful but not required to continue, record it as Review Debt ins
 Use this prompt in a new terminal if you want the next agent to continue directly:
 
 ```text
-Continue in C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory. Pull with git pull --ff-only, then read AGENTS.md, docs/project-context.md, docs/review/current-status.md, docs/review/next-terminal-handoff.md, artifacts/artifact-manifest.json, docs/review/source-span-routing-review-pack.md, docs/review/model-api-boundary-spec.md, docs/review/local-extraction-adapter-expansion-review.md, docs/review/local-extraction-adapter-review.md, docs/review/extraction-validator-hardening-review.md, docs/data-model.md, docs/idea-ledger.md, and docs/decision-log.md first. Preserve the local-first Visual Review Hub, fff-model-api-boundary-spec-001, fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-contract-001, fff-extraction-validator-hardening-001, Claim Ledger, Timeline View, Profile/Ghost Flow, freeform review intake, and human-owned canon boundaries. The active artifact is fff-source-span-routing-review-pack-001. Do not add model/API behavior, publishing, AI video generation, database persistence, production sync, credentials, or final canon decisions unless explicitly requested. Start by running the state, adapter, source-span pack, fixture, manifest, MkDocs, and git diff checks from docs/review/next-terminal-handoff.md. The next product move is freeform review of source-span/routing quality, then only targeted fixture/span/routing changes if review identifies a concrete gap.
+Continue in C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory. Pull with git pull --ff-only, then read AGENTS.md, docs/project-context.md, docs/review/current-status.md, docs/review/review-hub-ia-mode-split.md, docs/review/next-terminal-handoff.md, artifacts/artifact-manifest.json, docs/review/source-span-routing-review-pack.md, docs/review/model-api-boundary-spec.md, docs/review/local-extraction-adapter-expansion-review.md, docs/review/local-extraction-adapter-review.md, docs/review/extraction-validator-hardening-review.md, docs/data-model.md, docs/idea-ledger.md, and docs/decision-log.md first. Preserve the local-first Visual Review Hub, fff-review-hub-ia-mode-split-001, fff-source-span-routing-review-pack-001, fff-model-api-boundary-spec-001, fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-contract-001, fff-extraction-validator-hardening-001, Claim Ledger, Timeline View, Profile/Ghost Flow, freeform review intake, and human-owned canon boundaries. The active artifact is fff-review-hub-ia-mode-split-001. Do not add model/API behavior, publishing, AI video generation, database persistence, production sync, credentials, or final canon decisions unless explicitly requested. Start by running the manifest validation command, Review Hub IA smoke, source-span pack, fixture, MkDocs, and git diff checks. The next product move is freeform review of the Review Hub IA split and source-span/routing quality, then only targeted IA, fixture/span/routing changes if review identifies a concrete gap.
 ```

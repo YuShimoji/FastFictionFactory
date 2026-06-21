@@ -2,11 +2,11 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-source-span-routing-review-pack-001`, served through the static local Visual Review Hub at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-review-hub-ia-mode-split-001`, served through the static local Visual Review Hub at `public/review/index.html`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is source-span and routing supervision for the deterministic extraction adapter: existing local fixture outputs must be easy for a human reviewer to inspect before freeform review drives adapter changes or any model/API extractor exists.
+Keep the MVP reviewable without production commitments. The current lane is Review Hub IA usability: story review, source audit, project cockpit, and artifact governance must be easy to distinguish before freeform review drives adapter changes or any model/API extractor exists.
 
 ## Current Slice
 
@@ -15,6 +15,8 @@ The active slice is complete enough for local review:
 - Review UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Review Hub IA smoke: `artifacts/review-hub-ia-mode-split-smoke-result.json`
+- Review Hub IA review doc: `docs/review/review-hub-ia-mode-split.md`
 - Source-span review pack: `artifacts/source-span-routing-review-pack.json`
 - Source-span pack generator: `tools/fff-source-span-review-pack.mjs`
 - Source-span pack review doc: `docs/review/source-span-routing-review-pack.md`
@@ -47,7 +49,7 @@ The active slice is complete enough for local review:
 
 ## Verification Snapshot
 
-Last verified on 2026-06-20:
+Last verified on 2026-06-22:
 
 ```powershell
 node .\tools\fff-state.mjs validate .\artifacts\sample-project-state.json
@@ -67,6 +69,7 @@ Result summary:
 - Current state contains 1 Extraction Contract run, 12 extraction elements, 11 Profile/Ghost records, 9 Claim Ledger claims, and 8 Timeline View entries.
 - Local adapter expansion generated 3 fixture outputs with 36 total extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
 - Source-span review pack generated from those three outputs and records 17 human-owned guarded elements plus Review Debt categories for weak spans, over-broad spans, vague extraction, ambiguous routing, confident defaults, and missing fixture classes.
+- Review Hub IA mode split adds Story Review, Source Audit, Project Cockpit, and Artifacts modes with Japanese-facing display labels, non-sticky Raw Story Memo behavior, and collapsed source-span fixture details by default.
 - Model/API boundary spec remains preserved as a spec-only, no-external-call boundary for future provider work.
 - Extraction Contract summary covers all required element types, 6 high-canon-risk extraction elements, 3 human-owned unresolved dependencies, 5 warnings, and candidate routing into Profile/Ghost, Claim Ledger, and Timeline View.
 - Profile/Ghost summary covers all required profile types, all required ghost node statuses, 7 high canon risk profiles, 7 dependency-bound profiles, and 11 profiles linked to both claims and timeline entries.
@@ -109,10 +112,10 @@ node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-nega
 node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
 ```
 
-First next move: freeform review of source-span usefulness and routing quality, then one narrow fixture/span/routing change if review identifies a concrete gap.
+First next move: freeform review of the Review Hub IA mode split and source-span usefulness/routing quality, then one narrow IA, fixture, span, or routing change if review identifies a concrete gap.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
 
-Latest handoff refresh: 2026-06-20T00:00:00+09:00. At refresh time, the active artifact is `fff-source-span-routing-review-pack-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, or final canon decision existed.
+Latest handoff refresh: 2026-06-22T00:00:00+09:00. At refresh time, the active artifact is `fff-review-hub-ia-mode-split-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, or final canon decision existed.

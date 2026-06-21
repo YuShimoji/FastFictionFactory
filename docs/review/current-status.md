@@ -2,7 +2,8 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-source-span-routing-review-pack-001`
+- Artifact id: `fff-review-hub-ia-mode-split-001`
+- Preserved source-span artifact: `fff-source-span-routing-review-pack-001`
 - Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
 - Preserved adapter expansion artifact: `fff-local-extraction-adapter-expansion-001`
 - Preserved adapter spike artifact: `fff-local-extraction-adapter-spike-001`
@@ -15,6 +16,8 @@
 - Source-span review pack: `artifacts/source-span-routing-review-pack.json`
 - Source-span pack generator: `tools/fff-source-span-review-pack.mjs`
 - Source-span pack review doc: `docs/review/source-span-routing-review-pack.md`
+- Review Hub IA mode split doc: `docs/review/review-hub-ia-mode-split.md`
+- Review Hub IA smoke: `artifacts/review-hub-ia-mode-split-smoke-result.json`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 - Model/API boundary envelope: `artifacts/model-api-boundary-envelope.example.json`
 - Model/API boundary smoke: `artifacts/model-api-boundary-smoke-result.json`
@@ -30,7 +33,10 @@
 ## What Exists Now
 
 - Local static review UI with Visual Review Hub as the single entry point.
-- Source-Span Routing Review Pack section in the Review Hub.
+- Four Review Hub modes separating Story Review, Source Audit, Project Cockpit, and Artifacts.
+- Japanese-facing labels for the major review modes and story review sections while keeping schema IDs, artifact IDs, JSON keys, and file paths stable.
+- Non-sticky Raw Story Memo panel with stable inline scroll behavior.
+- Source-Span Routing Review Pack section in the Review Hub Source Audit mode.
 - Machine-readable source-span/routing pack at `artifacts/source-span-routing-review-pack.json`.
 - Repo-local pack generator at `tools/fff-source-span-review-pack.mjs`.
 - Preserved model/API boundary spec, envelope example, and smoke evidence.
@@ -62,7 +68,8 @@
 
 ## What Was Verified
 
-- The artifact manifest now references `fff-source-span-routing-review-pack-001` while preserving `fff-model-api-boundary-spec-001`, `fff-local-extraction-adapter-expansion-001`, `fff-local-extraction-adapter-spike-001`, `fff-extraction-validator-hardening-001`, and `fff-extraction-contract-001`.
+- The artifact manifest now references `fff-review-hub-ia-mode-split-001` while preserving `fff-source-span-routing-review-pack-001`, `fff-model-api-boundary-spec-001`, `fff-local-extraction-adapter-expansion-001`, `fff-local-extraction-adapter-spike-001`, `fff-extraction-validator-hardening-001`, and `fff-extraction-contract-001`.
+- Review Hub static smoke confirms mode labels, Japanese display labels, collapsed source-span fixture tables, removed sticky memo behavior, source-span pack reachability, preserved model/API boundary text, and no external model/API behavior.
 - The source-span pack generator reads the three adapter fixture outputs and validates each output as `fff.extractionContract.v1`.
 - The generated pack records 3 fixture inputs, 3 outputs, 36 extracted elements, 27 profile candidates, 20 claim candidates, and 12 timeline candidates.
 - The source/routing audit reports 36 of 36 source spans matched their raw memo text, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
@@ -77,7 +84,7 @@
 
 ## What Remains Missing
 
-- Human freeform review of source-span usefulness and routing quality.
+- Human freeform review of the IA mode split and source-span usefulness/routing quality.
 - More edge fixture classes if review finds gaps: contradictory memo claims, very broad source spans, malformed/missing spans, multilingual or translated memo text, sparse bullet-only notes, and model/API provider envelope output.
 - Actual model/API extraction adapter behind the validator boundary.
 - Provider choice, credential flow, timeout value, and retry count for a future integration.
@@ -114,8 +121,8 @@ public/review/index.html
 
 ## Next Recommended Slice
 
-Review the Source-Span Routing Review Pack in `public/review/index.html` or `artifacts/source-span-routing-review-pack.json`. Then decide whether to revise deterministic source spans/routing, add one missing fixture class, or defer adapter changes until freeform review identifies a concrete gap. Keep all generated output source-tracked, review-held by default, and blocked from auto-canon promotion before adding any database persistence, publishing adapter, AI video generation, model/API behavior, or final canon decision.
+Review the `Story Review`, `Source Audit`, `Project Cockpit`, and `Artifacts` modes in `public/review/index.html`. Then decide whether the IA split is sufficient for daily review and whether the Source Audit pack reveals any concrete span/routing issue. Keep all generated output source-tracked, review-held by default, and blocked from auto-canon promotion before adding any database persistence, publishing adapter, AI video generation, model/API behavior, or final canon decision.
 
 ## Resume From Another Terminal
 
-From a fresh terminal, run `git pull --ff-only`, read `AGENTS.md`, `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/next-terminal-handoff.md`, `docs/workflow.md`, `docs/qa-gates.md`, `docs/decision-log.md`, `docs/idea-ledger.md`, and `artifacts/artifact-manifest.json`, then open the review UI with `.\scripts\operator\open_review.ps1` and run the manifest validation command before changing behavior.
+From a fresh terminal, run `git pull --ff-only`, read `AGENTS.md`, `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/review-hub-ia-mode-split.md`, `docs/review/next-terminal-handoff.md`, `docs/workflow.md`, `docs/qa-gates.md`, `docs/decision-log.md`, `docs/idea-ledger.md`, and `artifacts/artifact-manifest.json`, then open the review UI with `.\scripts\operator\open_review.ps1` and run the manifest validation command before changing behavior.

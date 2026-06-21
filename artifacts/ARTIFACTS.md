@@ -297,3 +297,26 @@
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - Next action: Use the source-span review pack for human freeform review, then revise only concrete span/routing issues or fixture classes identified by review.
+
+## fff-review-hub-ia-mode-split-001
+
+- Title: Fast Fiction Factory Review Hub IA Mode Split
+- Purpose: Split the local Review Hub into Story Review, Source Audit, Project Cockpit, and Artifacts modes; add Japanese-facing display labels; remove awkward sticky Raw Story Memo behavior; and reduce first-load vertical overload while preserving source-span and model/API boundary evidence.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local launcher: `scripts/operator/open_review.ps1`
+- Review doc: `docs/review/review-hub-ia-mode-split.md`
+- Smoke result: `artifacts/review-hub-ia-mode-split-smoke-result.json`
+- Preserved source-span artifact: `fff-source-span-routing-review-pack-001`
+- Preserved source-span pack: `artifacts/source-span-routing-review-pack.json`
+- Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
+- Preserved model/API boundary spec: `docs/review/model-api-boundary-spec.md`
+- Current status: `docs/review/current-status.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Validation command: run the active manifest validation command, Review Hub static smoke, MkDocs strict build, and `git diff --check`.
+- Validation result: manifest validation command passed; Review Hub IA static smoke passed; Story Review, Source Audit, Project Cockpit, and Artifacts labels are visible with Japanese display labels; Raw Story Memo sticky positioning was removed; source-span fixture details are collapsed by default; source-span pack remains reachable and passed with 0 guard failures; model/API boundary text remains present with `externalCallAllowed: false`; state, extraction payload, and extraction fixture validation passed.
+- Review status: `ready_for_local_review`
+- Review input mode: `freeform`
+- Next action: Review whether the four modes, Japanese labels, collapsed source audit details, and non-sticky Raw Story Memo panel reduce daily review friction while keeping source-span evidence reachable.

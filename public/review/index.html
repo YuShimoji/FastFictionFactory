@@ -31,6 +31,16 @@
       color: var(--ink);
       font-family: "Segoe UI", Arial, sans-serif;
       line-height: 1.45;
+      overflow-x: hidden;
+    }
+
+    .topbar-inner > *,
+    .hub-header > *,
+    .workspace > *,
+    .hub-panel,
+    .mode-summary,
+    .metric {
+      min-width: 0;
     }
 
     button,
@@ -103,6 +113,7 @@
       margin-bottom: 0;
       color: var(--muted);
       font-size: 14px;
+      overflow-wrap: anywhere;
     }
 
     .summary-strip {
@@ -184,6 +195,84 @@
 
     .hub-list li {
       margin-bottom: 5px;
+    }
+
+    .mode-switcher {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper);
+    }
+
+    .mode-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .mode-tab {
+      min-height: 54px;
+      padding: 8px 10px;
+      text-align: left;
+      background: #fbfcfd;
+    }
+
+    .mode-tab strong,
+    .mode-tab span {
+      display: block;
+    }
+
+    .mode-tab span {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .mode-tab[aria-pressed="true"] {
+      border-color: var(--blue);
+      background: #eef5fa;
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    .mode-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .mode-summary {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: #fffefb;
+      font-size: 13px;
+    }
+
+    .mode-summary strong,
+    .jp-label {
+      display: block;
+      color: var(--ink);
+    }
+
+    .jp-label {
+      margin-top: 2px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    [data-mode-panel] {
+      display: none !important;
+    }
+
+    body[data-review-mode="story"] [data-mode-panel="story"],
+    body[data-review-mode="source"] [data-mode-panel="source"],
+    body[data-review-mode="project"] [data-mode-panel="project"],
+    body[data-review-mode="artifacts"] [data-mode-panel="artifacts"] {
+      display: grid !important;
     }
 
     .artifact-table {
@@ -284,14 +373,12 @@
       margin: 0 auto;
       padding: 18px 24px 36px;
       display: grid;
-      grid-template-columns: 360px minmax(0, 1fr);
+      grid-template-columns: 320px minmax(0, 1fr);
       gap: 18px;
       align-items: start;
     }
 
     .intake {
-      position: sticky;
-      top: 16px;
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 16px;
@@ -301,7 +388,8 @@
 
     .intake textarea {
       width: 100%;
-      min-height: 360px;
+      min-height: 260px;
+      max-height: 520px;
       resize: vertical;
       border: 1px solid var(--line);
       border-radius: 6px;
@@ -824,6 +912,8 @@
 
       .summary-strip,
       .hub-grid,
+      .mode-tabs,
+      .mode-summary-grid,
       .progress-map,
       .contract-run-card,
       .category-grid,
@@ -839,7 +929,7 @@
     }
   </style>
 </head>
-<body>
+<body data-review-mode="story">
   <div class="app-shell">
     <header class="topbar">
       <div class="topbar-inner">
@@ -861,8 +951,8 @@
         <div class="hub-header">
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
-            <h2 id="visual-review-title">Current MVP Status Packet</h2>
-            <p class="lede">Active artifact id: <strong>fff-source-span-routing-review-pack-001</strong>. Current phase: review source spans, source refs, routing targets, held defaults, and human-owned guardrails across the three deterministic adapter fixture outputs while preserving <strong>fff-model-api-boundary-spec-001</strong>, <strong>fff-local-extraction-adapter-expansion-001</strong>, <strong>fff-local-extraction-adapter-spike-001</strong>, <strong>fff-extraction-validator-hardening-001</strong>, <strong>fff-extraction-contract-001</strong>, human-owned canon boundaries, and the single Visual Review Hub entry point.</p>
+            <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
+            <p class="lede">Active artifact id: <strong>fff-review-hub-ia-mode-split-001</strong>. This slice separates story review, source-span audit, project cockpit, and artifact governance while preserving <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -871,7 +961,23 @@
           </div>
         </div>
 
-        <div class="progress-map" aria-label="Progress map">
+        <nav class="mode-switcher" aria-label="Review mode navigation">
+          <div class="mode-tabs">
+            <button class="mode-tab" type="button" data-mode-target="story" aria-pressed="true"><strong>Story Review</strong><span>ストーリーレビュー</span></button>
+            <button class="mode-tab" type="button" data-mode-target="source" aria-pressed="false"><strong>Source Audit</strong><span>抽出根拠レビュー</span></button>
+            <button class="mode-tab" type="button" data-mode-target="project" aria-pressed="false"><strong>Project Cockpit</strong><span>プロジェクト状態</span></button>
+            <button class="mode-tab" type="button" data-mode-target="artifacts" aria-pressed="false"><strong>Artifacts</strong><span>成果物・検証</span></button>
+          </div>
+          <div class="mode-summary-grid">
+            <div class="mode-summary"><strong>Story Review</strong><span class="jp-label">本文・候補・未決定を確認</span></div>
+            <div class="mode-summary"><strong>Source Audit</strong><span class="jp-label">source span と routing を確認</span></div>
+            <div class="mode-summary"><strong>Project Cockpit</strong><span class="jp-label">進行状況と境界を確認</span></div>
+            <div class="mode-summary"><strong>Artifacts</strong><span class="jp-label">ファイル・検証・再現手順</span></div>
+          </div>
+          <p class="section-note">Stable IDs, JSON keys, artifact IDs, and file paths remain English. Japanese labels are display-only review aids.</p>
+        </nav>
+
+        <div class="progress-map" aria-label="Progress map" data-mode-panel="project">
           <div class="progress-step done"><strong>MVP skeleton</strong><span class="tag green">done</span><p class="section-note">Memo intake, generated candidates, task cards, outlines, QA.</p></div>
           <div class="progress-step done"><strong>Candidate review</strong><span class="tag green">done</span><p class="section-note">Adopt, provisional, hold, reject controls.</p></div>
           <div class="progress-step done"><strong>JSON export/import</strong><span class="tag green">done</span><p class="section-note">Versioned portable state and smoke evidence.</p></div>
@@ -888,7 +994,7 @@
           <div class="progress-step current"><strong>Source-span routing review pack</strong><span class="tag blue">current</span><p class="section-note">Compare fixture spans, routing, held defaults, and human-owned guards before freeform review.</p></div>
         </div>
 
-        <div class="hub-grid" style="margin-top: 12px;">
+        <div class="hub-grid" style="margin-top: 12px;" data-mode-panel="project">
           <div class="hub-panel">
             <h3>Completed features</h3>
             <ul class="hub-list">
@@ -950,7 +1056,7 @@
           </div>
         </div>
 
-        <div class="hub-grid" style="margin-top: 12px;">
+        <div class="hub-grid" style="margin-top: 12px;" data-mode-panel="artifacts">
           <div class="hub-panel">
             <h3>Artifacts</h3>
             <table class="artifact-table">
@@ -997,8 +1103,8 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows artifact id <strong>fff-source-span-routing-review-pack-001</strong>.</li>
-              <li>Use <strong>Source-Span Routing Review Pack</strong> below to review fixture summaries, representative source spans, routing targets, held defaults, and human-owned guards.</li>
+              <li>Confirm this hub shows active artifact id <strong>fff-review-hub-ia-mode-split-001</strong>.</li>
+              <li>Use the <strong>Source Audit / 抽出根拠レビュー</strong> mode to review fixture summaries, representative source spans, routing targets, held defaults, and human-owned guards.</li>
               <li>Use <strong>artifacts/source-span-routing-review-pack.json</strong> when all 36 extracted elements need full source-span/routing readback.</li>
               <li>Use <strong>artifacts/local-extraction-adapter-expansion-smoke-result.json</strong> to review fixture inputs, adapter outputs, validator status, source-span audit, and guard status.</li>
               <li>Use <strong>artifacts/extraction-validator-smoke-result.json</strong> to review the preserved pass/fail fixture matrix before model/API work.</li>
@@ -1032,8 +1138,8 @@
           </div>
         </div>
 
-        <div class="hub-panel" id="source-span-routing-review-pack-section" style="margin-top: 12px;">
-          <h3>Source-Span Routing Review Pack</h3>
+        <div class="hub-panel" id="source-span-routing-review-pack-section" style="margin-top: 12px;" data-mode-panel="source">
+          <h3>Source-Span Routing Review Pack <span class="jp-label">抽出根拠レビュー</span></h3>
           <p class="section-note">Artifact id: <strong>fff-source-span-routing-review-pack-001</strong>. Full 36-row readback lives at <strong>artifacts/source-span-routing-review-pack.json</strong>; this panel keeps the review surface compact for freeform supervision.</p>
           <div class="summary-strip" aria-label="Source-span review pack summary">
             <div class="metric"><strong>3</strong><span>fixtures</span></div>
@@ -1059,7 +1165,7 @@
               </ul>
             </div>
             <div class="hub-panel">
-              <h3>Review Debt</h3>
+              <h3>Review Debt <span class="jp-label">要確認事項</span></h3>
               <ul class="hub-list">
                 <li>Weak span: no automated mismatch; needs human quality review.</li>
                 <li>Over-broad span: qualitative review required.</li>
@@ -1070,7 +1176,7 @@
               </ul>
             </div>
             <div class="hub-panel">
-              <h3>Human-owned guards</h3>
+              <h3>Human-owned guards <span class="jp-label">人間判断で保持</span></h3>
               <ul class="hub-list">
                 <li>Toma fate remains held until the human author chooses a route.</li>
                 <li>Brass moth truth remains held until the human author chooses a route.</li>
@@ -1085,7 +1191,7 @@
           </div>
 
           <div class="source-span-pack">
-            <details class="source-span-fixture" open>
+            <details class="source-span-fixture">
               <summary>clockmaker-sample - Sample Raw Memo: The Clockmaker Under Glass</summary>
               <p class="section-note">12 elements; 9 profile candidates; 7 claim candidates; 5 timeline candidates.</p>
               <div class="table-scroll">
@@ -1103,7 +1209,7 @@
               </div>
             </details>
 
-            <details class="source-span-fixture" open>
+            <details class="source-span-fixture">
               <summary>council-minutes-edge - Adapter Fixture: Council Minutes Edge</summary>
               <p class="section-note">12 elements; 9 profile candidates; 7 claim candidates; 3 timeline candidates.</p>
               <div class="table-scroll">
@@ -1121,7 +1227,7 @@
               </div>
             </details>
 
-            <details class="source-span-fixture" open>
+            <details class="source-span-fixture">
               <summary>observatory-ledger-edge - Adapter Fixture: Observatory Ledger Edge</summary>
               <p class="section-note">12 elements; 9 profile candidates; 6 claim candidates; 4 timeline candidates.</p>
               <div class="table-scroll">
@@ -1141,7 +1247,7 @@
           </div>
         </div>
 
-        <div class="hub-panel" style="margin-top: 12px;">
+        <div class="hub-panel" style="margin-top: 12px;" data-mode-panel="artifacts">
           <h3>Smoke checklist</h3>
           <div class="tag-row">
             <span class="tag green">review hub renders</span>
@@ -1164,7 +1270,7 @@
           </div>
         </div>
 
-        <div class="hub-panel" id="v1-3-compliance-section" style="margin-top: 12px;">
+        <div class="hub-panel" id="v1-3-compliance-section" style="margin-top: 12px;" data-mode-panel="project">
           <h3>v1.3 operating contract</h3>
           <ul class="hub-list">
             <li>Self-contained autonomous loop is represented through local-only review UI, state JSON, smoke results, and docs.</li>
@@ -1178,9 +1284,9 @@
       </div>
     </section>
 
-    <main class="workspace">
+    <main class="workspace" data-mode-panel="story">
       <aside class="intake" aria-label="Memo intake">
-        <h2>Raw Story Memo</h2>
+        <h2>Raw Story Memo <span class="jp-label">原稿メモ</span></h2>
         <textarea id="memo-input" spellcheck="true" aria-label="Raw story memo"></textarea>
         <div class="toolbar">
           <button class="primary" id="generate-button" type="button">Generate candidates</button>
@@ -1211,7 +1317,7 @@
         <div class="section-band" id="extraction-contract-section">
           <div class="section-head">
             <div>
-              <h2>Extraction Contract</h2>
+              <h2>Extraction Contract <span class="jp-label">抽出契約</span></h2>
               <p class="section-note">Review the local candidate contract before any model/API extraction adapter exists. Candidates stay reversible and must not become canon automatically.</p>
             </div>
             <p class="section-note"><a href="#decision-log-section">Jump to decision log</a></p>
@@ -1259,7 +1365,7 @@
         <div class="section-band" id="profile-ghost-section">
           <div class="section-head">
             <div>
-              <h2>Profile/Ghost Flow</h2>
+              <h2>Profile/Ghost Flow <span class="jp-label">人物・場所・未確定ノード</span></h2>
               <p class="section-note">Inspect profile pages, weak extracted nodes, placeholders, and cross-links before promoting anything into durable canon.</p>
             </div>
             <p class="section-note"><a href="#decision-log-section">Jump to decision log</a></p>
@@ -1313,7 +1419,7 @@
         <div class="section-band" id="claim-ledger-section">
           <div class="section-head">
             <div>
-              <h2>Claim Ledger</h2>
+              <h2>Claim Ledger <span class="jp-label">主張台帳</span></h2>
               <p class="section-note">Review fiction truth-management without promoting unresolved story choices into final canon.</p>
             </div>
             <p class="section-note"><a href="#decision-log-section">Jump to decision log</a></p>
@@ -1351,7 +1457,7 @@
         <div class="section-band" id="timeline-view-section">
           <div class="section-head">
             <div>
-              <h2>Timeline View</h2>
+              <h2>Timeline View <span class="jp-label">時系列レビュー</span></h2>
               <p class="section-note">Separate story order, calendar time, viewer disclosure, production decisions, and historical/reference order before adopting sequence-sensitive truth.</p>
             </div>
             <p class="section-note"><a href="#decision-log-section">Jump to decision log</a></p>
@@ -1389,7 +1495,7 @@
         <div class="review-toolbar" aria-label="Candidate visibility controls">
           <div class="section-head">
             <div>
-              <h2>Review Controls</h2>
+              <h2>Review Controls <span class="jp-label">表示フィルター</span></h2>
               <p class="section-note">Filter candidate visibility without changing review status. Counts stay based on the full current model.</p>
             </div>
             <p class="section-note"><a href="#decision-log-section">Jump to decision log</a></p>
@@ -1412,7 +1518,7 @@
 
         <div class="section-band" data-collapsible-section="true">
           <div class="section-head">
-            <h2>Extracted Elements</h2>
+            <h2>Extracted Elements <span class="jp-label">抽出要素</span></h2>
             <p class="section-note">Required categories are represented as candidate groups.</p>
           </div>
           <div class="category-grid" id="elements-root"></div>
@@ -1420,7 +1526,7 @@
 
         <div class="section-band" data-collapsible-section="true">
           <div class="section-head">
-            <h2>Profile Candidates</h2>
+            <h2>Profile Candidates <span class="jp-label">プロフィール候補</span></h2>
             <p class="section-note">Characters, places, organizations, objects, and concepts remain provisional until adopted.</p>
           </div>
           <div class="candidate-grid" id="profiles-root"></div>
@@ -1428,7 +1534,7 @@
 
         <div class="section-band" data-collapsible-section="true">
           <div class="section-head">
-            <h2>Claim Candidates</h2>
+            <h2>Claim Candidates <span class="jp-label">主張候補</span></h2>
             <p class="section-note">Truth and source status are visible before any canon promotion.</p>
           </div>
           <div class="candidate-grid" id="claims-root"></div>
@@ -1436,7 +1542,7 @@
 
         <div class="section-band" data-collapsible-section="true">
           <div class="section-head">
-            <h2>Timeline Candidates</h2>
+            <h2>Timeline Candidates <span class="jp-label">時系列候補</span></h2>
             <p class="section-note">Story order, calendar time, historical references, and production order stay separate.</p>
           </div>
           <div class="candidate-grid" id="timeline-root"></div>
@@ -1444,7 +1550,7 @@
 
         <div class="section-band" data-collapsible-section="true">
           <div class="section-head">
-            <h2>Task Cards</h2>
+            <h2>Task Cards <span class="jp-label">残作業カード</span></h2>
             <p class="section-note">Residual work includes purpose, effect, requirements, state, owner, and next move.</p>
           </div>
           <div class="candidate-grid" id="tasks-root"></div>
@@ -1452,7 +1558,7 @@
 
         <div class="section-band" data-collapsible-section="true">
           <div class="section-head">
-            <h2>Unresolved Creative Decisions</h2>
+            <h2>Unresolved Creative Decisions <span class="jp-label">未決定の創作判断</span></h2>
             <p class="section-note">These remain human-owned and are not imported as accepted canon.</p>
           </div>
           <div class="decision-list" id="unresolved-root"></div>
@@ -1460,7 +1566,7 @@
 
         <div class="section-band" data-collapsible-section="true">
           <div class="section-head">
-            <h2>Video Outline Candidates</h2>
+            <h2>Video Outline Candidates <span class="jp-label">動画構成候補</span></h2>
             <p class="section-note">Includes 1-minute video, 3-minute video, 10-minute video, and series candidate outlines. No automated video generation or upload is implemented.</p>
           </div>
           <div class="candidate-grid wide-grid" id="outlines-root"></div>
@@ -1468,7 +1574,7 @@
 
         <div class="section-band">
           <div class="section-head">
-            <h2>QA Panel</h2>
+            <h2>QA Panel <span class="jp-label">QAゲート</span></h2>
             <p class="section-note">Gates identify review risk and do not approve public release.</p>
           </div>
           <div class="qa-list" id="qa-root"></div>
@@ -1476,7 +1582,7 @@
 
         <div class="section-band" id="decision-log-section">
           <div class="section-head">
-            <h2>Decision Log</h2>
+            <h2>Decision Log <span class="jp-label">判断ログ</span></h2>
             <p class="section-note">Local review actions are stored in this browser only.</p>
           </div>
           <div class="decision-log" id="decision-log"></div>
@@ -1596,11 +1702,28 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const extractionSearchInput = document.querySelector("#extraction-search-input");
     const extractionContractSummary = document.querySelector("#extraction-contract-summary");
     const extractionRunCard = document.querySelector("#extraction-run-card");
+    const modeButtons = Array.from(document.querySelectorAll("[data-mode-target]"));
+    const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "story";
 
     memoInput.value = state.memo || sampleMemo;
     jsonExportOutput.value = state.exportPreview || "";
+    setReviewMode(initialReviewMode);
     renderAll();
     showFileSupportMessage();
+
+    modeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setReviewMode(button.getAttribute("data-mode-target") || "story");
+      });
+    });
+
+    function setReviewMode(mode) {
+      const nextMode = ["story", "source", "project", "artifacts"].includes(mode) ? mode : "story";
+      document.body.setAttribute("data-review-mode", nextMode);
+      modeButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", button.getAttribute("data-mode-target") === nextMode ? "true" : "false");
+      });
+    }
 
     document.querySelector("#generate-button").addEventListener("click", () => {
       state.memo = memoInput.value;
@@ -3351,8 +3474,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-source-span-routing-review-pack-001",
-        preservedArtifactId: "fff-local-extraction-adapter-expansion-001",
+        activeArtifactId: "fff-review-hub-ia-mode-split-001",
+        preservedArtifactId: "fff-source-span-routing-review-pack-001",
+        preservedAdapterExpansionArtifactId: "fff-local-extraction-adapter-expansion-001",
         reviewInputMode: "freeform",
         extractionContract: {
           schemaVersion: model.extraction_contract.schemaVersion,
@@ -3859,8 +3983,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-source-span-routing-review-pack-001",
-          preservedArtifactId: "fff-local-extraction-adapter-expansion-001",
+          activeArtifactId: "fff-review-hub-ia-mode-split-001",
+          preservedArtifactId: "fff-source-span-routing-review-pack-001",
+          preservedAdapterExpansionArtifactId: "fff-local-extraction-adapter-expansion-001",
           reviewInputMode: "freeform",
           extractionContract: {
             schemaVersion: model.extraction_contract.schemaVersion,

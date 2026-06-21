@@ -4,7 +4,7 @@
 
 `fff-source-span-routing-review-pack-001` turns the existing deterministic adapter expansion outputs into a focused supervision packet. It does not change extraction behavior. It gives the reviewer one place to inspect whether the current fixture spans and routing are useful enough before freeform review drives more adapter work.
 
-The primary UI is still `public/review/index.html`. The full machine-readable pack is `artifacts/source-span-routing-review-pack.json`.
+The primary UI is still `public/review/index.html`. In `fff-review-hub-ia-mode-split-001`, open the `Source Audit` / `抽出根拠レビュー` mode to reach this pack without scanning the full story review and project cockpit layers. The full machine-readable pack is `artifacts/source-span-routing-review-pack.json`.
 
 This pack preserves `fff-model-api-boundary-spec-001`; it does not replace the boundary spec or start provider integration. It inserts a source-span/routing supervision step before deciding whether model/API work should proceed.
 

@@ -45,3 +45,9 @@
 - Decision: Add a source-span routing review pack before freeform review and before model/API adapter work.
   - Reason: Reviewing the three fixture outputs as a span/routing supervision pack is more efficient than asking for unstructured review against raw JSON and smoke output.
   - Effect: `fff-source-span-routing-review-pack-001` adds a generated pack artifact, Review Hub section, review doc, manifest/status/handoff updates, and Review Debt categories while preserving `fff-model-api-boundary-spec-001`, held defaults, source refs, human-owned decision guards, and no model/API behavior.
+
+## 2026-06-22
+
+- Decision: Split the Review Hub into review modes before continuing adapter work.
+  - Reason: Freeform UI review found the one-page hub too vertically long, English-first, conceptually layered between story review and project governance, and awkward because the Raw Story Memo panel used sticky behavior.
+  - Effect: `fff-review-hub-ia-mode-split-001` adds Story Review, Source Audit, Project Cockpit, and Artifacts modes, Japanese-facing display labels, non-sticky Raw Story Memo behavior, collapsed source audit details, updated visual evidence, and smoke evidence while preserving `fff-source-span-routing-review-pack-001`, `fff-model-api-boundary-spec-001`, freeform review, and human-owned canon boundaries.

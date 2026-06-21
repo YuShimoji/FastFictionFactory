@@ -1,0 +1,38 @@
+﻿{
+    "artifact_id":  "fff-review-hub-ia-mode-split-001",
+    "schemaVersion":  "fff.reviewHubIaSmoke.v1",
+    "generatedAt":  "2026-06-21T17:44:04.234Z",
+    "passed":  true,
+    "failures":  [
+
+                 ],
+    "checks":  {
+                   "activeArtifactVisible":  true,
+                   "modeStoryVisible":  true,
+                   "modeSourceVisible":  true,
+                   "modeProjectVisible":  true,
+                   "modeArtifactsVisible":  true,
+                   "reviewDebtJapaneseVisible":  true,
+                   "humanGuardsJapaneseVisible":  true,
+                   "sourceSpanReachable":  true,
+                   "modelBoundaryPreserved":  true,
+                   "stickyRemoved":  true,
+                   "sourceFixtureDetailsCollapsed":  true,
+                   "urlModeSupported":  true,
+                   "freeformReviewPreserved":  true,
+                   "sourcePackPassed":  true,
+                   "sourcePackGuardFailures":  true
+               },
+    "visualEvidence":  {
+                           "screenshot":  "artifacts/fff-current-review-screenshot.png",
+                           "contactSheet":  "artifacts/fff-review-contact-sheet.png"
+                       },
+    "preservedArtifacts":  [
+                               "fff-source-span-routing-review-pack-001",
+                               "fff-model-api-boundary-spec-001",
+                               "fff-local-extraction-adapter-expansion-001",
+                               "fff-extraction-validator-hardening-001",
+                               "fff-extraction-contract-001"
+                           ],
+    "notes":  "Static Review Hub IA smoke. Confirms mode split labels, Japanese display labels, source-span reachability, collapsed source audit details, removed sticky memo behavior, URL-selected initial modes, freeform review, and no-call model/API boundary text."
+}
