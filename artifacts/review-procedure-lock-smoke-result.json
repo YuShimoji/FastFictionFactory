@@ -1,0 +1,48 @@
+{
+  "artifact_id": "fff-review-procedure-lock-001",
+  "schemaVersion": "fff.reviewProcedureLockSmoke.v1",
+  "generatedAt": "2026-06-22T13:26:45+09:00",
+  "passed": true,
+  "failures": [],
+  "checks": {
+    "activeArtifactVisible": true,
+    "reviewProcedureDocPresent": true,
+    "reviewProcedureLinkedFromHub": true,
+    "identityAccessSplitDocumented": true,
+    "screenshotMapDocumented": true,
+    "optionalRequiredReviewSplitDocumented": true,
+    "freeformReviewPreserved": true,
+    "sourceSpanPackPreserved": true,
+    "modelApiBoundaryPreserved": true,
+    "noExternalCallAdded": true,
+    "powerShellLauncherPresent": true,
+    "shellLauncherPresent": true,
+    "modeScreenshotsExpected": true
+  },
+  "visualEvidence": {
+    "screenshot": "artifacts/fff-current-review-screenshot.png",
+    "contactSheet": "artifacts/fff-review-contact-sheet.png",
+    "modeScreens": [
+      "artifacts/review-screens/story-review.png",
+      "artifacts/review-screens/source-audit.png",
+      "artifacts/review-screens/project-cockpit.png",
+      "artifacts/review-screens/artifacts-validation.png"
+    ]
+  },
+  "preservedArtifacts": [
+    "fff-review-hub-ia-mode-split-001",
+    "fff-source-span-routing-review-pack-001",
+    "fff-model-api-boundary-spec-001",
+    "fff-local-extraction-adapter-expansion-001",
+    "fff-extraction-validator-hardening-001",
+    "fff-extraction-contract-001"
+  ],
+  "notes": "Static Review Procedure Lock smoke. Confirms the procedure doc, identity/access split, screenshot map, optional-vs-required review split, freeform review, launchers, and no-call model/API boundary remain visible.",
+  "validation": {
+    "manifestCommand": "passed",
+    "mkdocsStrict": "passed",
+    "gitDiffCheck": "passed",
+    "browserScreenshotChannel": "msedge",
+    "bundledChromiumInstallSkipped": "bundled Playwright Chromium was unavailable; local Microsoft Edge channel was used without downloading browsers"
+  }
+}

@@ -70,6 +70,7 @@ nav:
       - Extraction Contract Review: review/extraction-contract-review.md
       - Model API Boundary Spec: review/model-api-boundary-spec.md
       - Local Extraction Adapter Expansion Review: review/local-extraction-adapter-expansion-review.md
+      - Review Procedure Lock: review/review-procedure.md
       - Review Hub IA Mode Split: review/review-hub-ia-mode-split.md
       - Source-Span Routing Review Pack: review/source-span-routing-review-pack.md
       - Source-Span Routing Triage: review/source-span-routing-triage.md

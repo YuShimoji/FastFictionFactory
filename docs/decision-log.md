@@ -51,3 +51,7 @@
 - Decision: Split the Review Hub into review modes before continuing adapter work.
   - Reason: Freeform UI review found the one-page hub too vertically long, English-first, conceptually layered between story review and project governance, and awkward because the Raw Story Memo panel used sticky behavior.
   - Effect: `fff-review-hub-ia-mode-split-001` adds Story Review, Source Audit, Project Cockpit, and Artifacts modes, Japanese-facing display labels, non-sticky Raw Story Memo behavior, collapsed source audit details, updated visual evidence, and smoke evidence while preserving `fff-source-span-routing-review-pack-001`, `fff-model-api-boundary-spec-001`, freeform review, and human-owned canon boundaries.
+
+- Decision: Lock the review procedure before model/API implementation.
+  - Reason: Future review checkpoints need stable identity, access, screenshot, contact-sheet, mode-purpose, optional-review, required-review, and Review Debt guidance that does not depend on prior chat context.
+  - Effect: `fff-review-procedure-lock-001` adds `docs/review/review-procedure.md`, updates the Review Hub Artifacts mode, refreshes manifest/status/artifact inventory access paths, adds a shell launcher, expects mode-specific screenshots, and keeps model/API calls, credentials, database persistence, publishing, production sync, AI video generation, and final canon decisions out of scope.

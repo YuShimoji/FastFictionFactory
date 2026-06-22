@@ -320,3 +320,33 @@
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - Next action: Review whether the four modes, Japanese labels, collapsed source audit details, and non-sticky Raw Story Memo panel reduce daily review friction while keeping source-span evidence reachable.
+
+## fff-review-procedure-lock-001
+
+- Title: Fast Fiction Factory Review Procedure Lock
+- Purpose: Lock the local review procedure, screenshot/contact-sheet evidence map, mode-specific screenshot paths, optional-vs-required review boundary, freeform review intake guidance, and identity/access split before model/API implementation work.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review procedure: `docs/review/review-procedure.md`
+- Smoke result: `artifacts/review-procedure-lock-smoke-result.json`
+- Preserved Review Hub IA artifact: `fff-review-hub-ia-mode-split-001`
+- Preserved source-span artifact: `fff-source-span-routing-review-pack-001`
+- Preserved source-span pack: `artifacts/source-span-routing-review-pack.json`
+- Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
+- Preserved model/API boundary spec: `docs/review/model-api-boundary-spec.md`
+- Current status: `docs/review/current-status.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Mode screenshots:
+  - `artifacts/review-screens/story-review.png`
+  - `artifacts/review-screens/source-audit.png`
+  - `artifacts/review-screens/project-cockpit.png`
+  - `artifacts/review-screens/artifacts-validation.png`
+- Manifest: `artifacts/artifact-manifest.json`
+- Validation command: run the active manifest validation command, Review Hub procedure static smoke, screenshot non-empty checks, MkDocs strict build, and `git diff --check`.
+- Validation result: passed 2026-06-22T13:26:45+09:00; manifest validation command passed; Review Procedure Lock smoke passed; screenshot, contact sheet, and four mode screenshots were refreshed and non-empty; MkDocs strict build passed; `git diff --check` passed. Bundled Playwright Chromium was unavailable, so screenshot refresh used the local Microsoft Edge channel without downloading browsers.
+- Review status: `ready_for_optional_local_review`
+- Review input mode: `freeform`
+- Next action: Use optional freeform review to decide whether the fixed procedure, screenshot map, and access paths reduce future review friction; then make only one narrow procedure, IA, fixture, span, or routing change if review identifies a concrete gap.

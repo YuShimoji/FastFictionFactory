@@ -952,12 +952,12 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-review-hub-ia-mode-split-001</strong>. This slice separates story review, source-span audit, project cockpit, and artifact governance while preserving <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-review-procedure-lock-001</strong>. This slice locks the local review procedure, screenshot evidence map, and access paths while preserving <strong>fff-review-hub-ia-mode-split-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
             <code class="code-line">Invoke-Item .\public\review\index.html</code>
-            <p class="section-note">Authority path: <strong>public/review/index.html</strong>. Temporary localhost previews are validation-only.</p>
+            <p class="section-note">Launchers: <strong>.\scripts\operator\open_review.ps1</strong> or <strong>./scripts/operator/open_review.sh</strong>. Repo paths: <strong>scripts/operator/open_review.ps1</strong> and <strong>scripts/operator/open_review.sh</strong>. Authority path: <strong>public/review/index.html</strong>. Temporary localhost previews are validation-only.</p>
           </div>
         </div>
 
@@ -991,7 +991,8 @@
           <div class="progress-step done"><strong>Validator hardening</strong><span class="tag green">done</span><p class="section-note">Exercise valid, unsafe, unknown-field, and missing-default extraction payloads before adapter work.</p></div>
           <div class="progress-step done"><strong>Local extraction adapter expansion</strong><span class="tag green">done</span><p class="section-note">Generate validated Extraction Contract payloads from multiple local raw memo fixtures before model/API work.</p></div>
           <div class="progress-step done"><strong>Model/API boundary spec</strong><span class="tag green">done</span><p class="section-note">Define provider output, failure, retry, fallback, and validator gates before any model/API call.</p></div>
-          <div class="progress-step current"><strong>Source-span routing review pack</strong><span class="tag blue">current</span><p class="section-note">Compare fixture spans, routing, held defaults, and human-owned guards before freeform review.</p></div>
+          <div class="progress-step done"><strong>Source-span routing review pack</strong><span class="tag green">done</span><p class="section-note">Compare fixture spans, routing, held defaults, and human-owned guards before freeform review.</p></div>
+          <div class="progress-step current"><strong>Review procedure lock</strong><span class="tag blue">current</span><p class="section-note">Fix what to open, what screenshots prove, when review is optional, and where access paths live.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;" data-mode-panel="project">
@@ -1094,6 +1095,11 @@
                 <tr><td>Source-span review pack</td><td>artifacts/source-span-routing-review-pack.json</td></tr>
                 <tr><td>Source-span pack tool</td><td>tools/fff-source-span-review-pack.mjs</td></tr>
                 <tr><td>Source-span pack review</td><td>docs/review/source-span-routing-review-pack.md</td></tr>
+                <tr><td>Review procedure</td><td>docs/review/review-procedure.md</td></tr>
+                <tr><td>Review procedure smoke</td><td>artifacts/review-procedure-lock-smoke-result.json</td></tr>
+                <tr><td>Current review screenshot</td><td>artifacts/fff-current-review-screenshot.png</td></tr>
+                <tr><td>Review contact sheet</td><td>artifacts/fff-review-contact-sheet.png</td></tr>
+                <tr><td>Mode screenshot directory</td><td>artifacts/review-screens/</td></tr>
                 <tr><td>Freeform review smoke</td><td>artifacts/freeform-review-intake-smoke-result.json</td></tr>
                 <tr><td>Current status doc</td><td>docs/review/current-status.md</td></tr>
               </tbody>
@@ -1103,7 +1109,8 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows active artifact id <strong>fff-review-hub-ia-mode-split-001</strong>.</li>
+              <li>Confirm this hub shows active artifact id <strong>fff-review-procedure-lock-001</strong>.</li>
+              <li>Use <strong>docs/review/review-procedure.md</strong> as the fixed review procedure and Review Debt map.</li>
               <li>Use the <strong>Source Audit / 抽出根拠レビュー</strong> mode to review fixture summaries, representative source spans, routing targets, held defaults, and human-owned guards.</li>
               <li>Use <strong>artifacts/source-span-routing-review-pack.json</strong> when all 36 extracted elements need full source-span/routing readback.</li>
               <li>Use <strong>artifacts/local-extraction-adapter-expansion-smoke-result.json</strong> to review fixture inputs, adapter outputs, validator status, source-span audit, and guard status.</li>
@@ -1116,6 +1123,17 @@
               <li>Use <strong>Timeline View</strong> axes before adopting sequence-sensitive story truth.</li>
               <li>Use <strong>Profile/Ghost Flow</strong> before turning aliases, placeholders, or extracted weak nodes into profile pages.</li>
               <li>Try status filters and collapse/expand controls before scanning all candidates.</li>
+            </ul>
+          </div>
+          <div class="hub-panel">
+            <h3>Screenshot evidence map</h3>
+            <ul class="hub-list">
+              <li><strong>artifacts/fff-current-review-screenshot.png</strong>: current first-screen Story Review evidence.</li>
+              <li><strong>artifacts/fff-review-contact-sheet.png</strong>: four-mode contact sheet for fast local scan.</li>
+              <li><strong>artifacts/review-screens/story-review.png</strong>: Story Review mode.</li>
+              <li><strong>artifacts/review-screens/source-audit.png</strong>: Source Audit mode and source-span pack access.</li>
+              <li><strong>artifacts/review-screens/project-cockpit.png</strong>: Project Cockpit progress and boundaries.</li>
+              <li><strong>artifacts/review-screens/artifacts-validation.png</strong>: Artifacts, review procedure, and validation paths.</li>
             </ul>
           </div>
           <div class="hub-panel">
@@ -1275,7 +1293,7 @@
           <ul class="hub-list">
             <li>Self-contained autonomous loop is represented through local-only review UI, state JSON, smoke results, and docs.</li>
             <li>Reviewable artifacts use repo-relative paths under <strong>artifacts/</strong>, <strong>public/review/</strong>, and <strong>docs/review/</strong>.</li>
-            <li>Visual work has screenshot and contact sheet paths in the active manifest.</li>
+            <li>Visual work has screenshot, contact sheet, mode screenshot, and review procedure paths in the active manifest.</li>
             <li>Human-owned decisions remain visible for Toma fate, brass moth truth, and Council motive.</li>
             <li>Report-facing docs avoid non-user-facing execution settings, interface labels from tooling, and full-path artifact authority.</li>
           </ul>
@@ -3474,7 +3492,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-review-hub-ia-mode-split-001",
+        activeArtifactId: "fff-review-procedure-lock-001",
+        preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
         preservedArtifactId: "fff-source-span-routing-review-pack-001",
         preservedAdapterExpansionArtifactId: "fff-local-extraction-adapter-expansion-001",
         reviewInputMode: "freeform",
@@ -3983,7 +4002,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-review-hub-ia-mode-split-001",
+          activeArtifactId: "fff-review-procedure-lock-001",
+          preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
           preservedArtifactId: "fff-source-span-routing-review-pack-001",
           preservedAdapterExpansionArtifactId: "fff-local-extraction-adapter-expansion-001",
           reviewInputMode: "freeform",

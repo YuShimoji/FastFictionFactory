@@ -2,7 +2,8 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-review-hub-ia-mode-split-001`
+- Artifact id: `fff-review-procedure-lock-001`
+- Preserved Review Hub IA artifact: `fff-review-hub-ia-mode-split-001`
 - Preserved source-span artifact: `fff-source-span-routing-review-pack-001`
 - Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
 - Preserved adapter expansion artifact: `fff-local-extraction-adapter-expansion-001`
@@ -11,81 +12,67 @@
 - Preserved contract artifact: `fff-extraction-contract-001`
 - Review UI: `public/review/index.html`
 - Open command: `Invoke-Item .\public\review\index.html`
-- Repo-local launcher: `.\scripts\operator\open_review.ps1`
+- Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
+- Repo-local shell launcher: `./scripts/operator/open_review.sh`
 - Manifest: `artifacts/artifact-manifest.json`
+- Review procedure: `docs/review/review-procedure.md`
+- Review procedure smoke: `artifacts/review-procedure-lock-smoke-result.json`
+- Review Hub IA mode split doc: `docs/review/review-hub-ia-mode-split.md`
+- Review Hub IA smoke: `artifacts/review-hub-ia-mode-split-smoke-result.json`
 - Source-span review pack: `artifacts/source-span-routing-review-pack.json`
 - Source-span pack generator: `tools/fff-source-span-review-pack.mjs`
 - Source-span pack review doc: `docs/review/source-span-routing-review-pack.md`
-- Review Hub IA mode split doc: `docs/review/review-hub-ia-mode-split.md`
-- Review Hub IA smoke: `artifacts/review-hub-ia-mode-split-smoke-result.json`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 - Model/API boundary envelope: `artifacts/model-api-boundary-envelope.example.json`
 - Model/API boundary smoke: `artifacts/model-api-boundary-smoke-result.json`
-- Sample raw memo: `artifacts/sample-raw-memo.md`
+- Local extraction adapter: `tools/fff-extract-local.mjs`
 - Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
 - Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
-- Local extraction adapter: `tools/fff-extract-local.mjs`
 - Adapter expansion smoke: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
 - Validator fixtures: `artifacts/extraction-negative-fixtures/`
 - Validator smoke: `artifacts/extraction-validator-smoke-result.json`
-- Next-terminal handoff: `docs/review/next-terminal-handoff.md`
+- Screenshot: `artifacts/fff-current-review-screenshot.png`
+- Contact sheet: `artifacts/fff-review-contact-sheet.png`
+- Mode screenshots: `artifacts/review-screens/`
+- Local docs view: `mkdocs.yml`
 
 ## What Exists Now
 
-- Local static review UI with Visual Review Hub as the single entry point.
-- Four Review Hub modes separating Story Review, Source Audit, Project Cockpit, and Artifacts.
-- Japanese-facing labels for the major review modes and story review sections while keeping schema IDs, artifact IDs, JSON keys, and file paths stable.
-- Non-sticky Raw Story Memo panel with stable inline scroll behavior.
-- Source-Span Routing Review Pack section in the Review Hub Source Audit mode.
-- Machine-readable source-span/routing pack at `artifacts/source-span-routing-review-pack.json`.
-- Repo-local pack generator at `tools/fff-source-span-review-pack.mjs`.
-- Preserved model/API boundary spec, envelope example, and smoke evidence.
-- v1.3 operating contract section covering autonomous loop, reviewable artifacts, repo-relative paths, visual evidence, and human-owned decision boundaries.
-- Raw memo intake with deterministic mock extraction.
-- Local file save/load controls where browser support allows.
-- Download/upload/pasted JSON fallback controls.
-- Candidate review controls for `adopt`, `provisional`, `hold`, and `reject`.
-- Claim Ledger with grouping, filters, search, source/truth/reality status, canon risk, unresolved dependencies, viewer disclosure, spoiler level, and decision log updates.
-- Timeline View with five-axis separation for story order, calendar time, viewer disclosure order, production order, and historical/reference order.
-- Profile/Ghost Flow with type selector, ghost node grouping, profile cards, linked Claim Ledger and Timeline references, unresolved dependencies, canon/spoiler/source labels, local review controls, and a reversible ghost-to-provisional-profile action.
-- Extraction Contract with run identity, source refs, extracted elements, candidate routing links, unresolved dependencies, review-safe defaults, warnings, human authority boundary labels, grouping, filters, search, and local review controls.
-- Extraction Validator Hardening with local fixture coverage for valid minimal payloads, missing source refs, overconfident human-owned decisions, invalid visual-asset routing, auto-canon leaks, missing review-safe defaults, unknown-field preservation, missing extraction identity fields, invalid element types, missing human authority boundaries, and high-risk warnings.
-- Freeform Review Intake contract documented for user review without fixed response phrases.
-- Repo-local zero-dependency state adapter at `tools/fff-state.mjs`.
-- Deterministic local extraction adapter at `tools/fff-extract-local.mjs`.
-- Adapter expansion fixtures:
-  - `artifacts/extraction-adapter-fixtures/clockmaker-sample.md`
-  - `artifacts/extraction-adapter-fixtures/council-minutes-edge.md`
-  - `artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md`
-- Adapter expansion outputs:
-  - `artifacts/extraction-adapter-outputs/clockmaker-sample.json`
-  - `artifacts/extraction-adapter-outputs/council-minutes-edge.json`
-  - `artifacts/extraction-adapter-outputs/observatory-ledger-edge.json`
-- Local adapter expansion smoke evidence at `artifacts/local-extraction-adapter-expansion-smoke-result.json`.
-- Freeform review intake smoke evidence at `artifacts/freeform-review-intake-smoke-result.json`.
-- Screenshot and contact sheet at `artifacts/fff-current-review-screenshot.png` and `artifacts/fff-review-contact-sheet.png`.
-- MkDocs Material local docs view at `mkdocs.yml`.
+- Local static Visual Review Hub remains the single entry point.
+- The Hub exposes Story Review, Source Audit, Project Cockpit, and Artifacts modes.
+- The active Review Hub identity now points to `fff-review-procedure-lock-001`.
+- `docs/review/review-procedure.md` defines what to open, what each screenshot represents, what each mode is for, when review is optional or required, what freeform review should cover, and which items are Review Debt.
+- The Artifacts mode lists the procedure doc, smoke evidence, screenshot/contact-sheet paths, mode screenshot directory, manifest, and local launcher paths.
+- `scripts/operator/open_review.ps1` remains the Windows launcher, and `scripts/operator/open_review.sh` adds a dependency-free sh launcher for Unix-like terminals.
+- Source-span review remains reachable through Source Audit and `artifacts/source-span-routing-review-pack.json`.
+- The model/API boundary remains a no-call spec artifact with `externalCallAllowed: false`.
+- Review input remains freeform.
+- Local persistence, JSON import/export, Extraction Contract, Claim Ledger, Timeline View, Profile/Ghost Flow, and human-owned canon boundaries remain preserved.
 
 ## What Was Verified
 
-- The artifact manifest now references `fff-review-hub-ia-mode-split-001` while preserving `fff-source-span-routing-review-pack-001`, `fff-model-api-boundary-spec-001`, `fff-local-extraction-adapter-expansion-001`, `fff-local-extraction-adapter-spike-001`, `fff-extraction-validator-hardening-001`, and `fff-extraction-contract-001`.
-- Review Hub static smoke confirms mode labels, Japanese display labels, collapsed source-span fixture tables, removed sticky memo behavior, source-span pack reachability, preserved model/API boundary text, and no external model/API behavior.
-- The source-span pack generator reads the three adapter fixture outputs and validates each output as `fff.extractionContract.v1`.
-- The generated pack records 3 fixture inputs, 3 outputs, 36 extracted elements, 27 profile candidates, 20 claim candidates, and 12 timeline candidates.
-- The source/routing audit reports 36 of 36 source spans matched their raw memo text, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
-- The pack records 17 elements guarded by human-owned review boundaries.
-- The Review Hub exposes a compact representative table for each fixture and points to `artifacts/source-span-routing-review-pack.json` for all 36 rows.
-- The manifest validation command passed; MkDocs strict build passed; Playwright browser smoke confirmed the source-span pack text and exported metadata preserved `fff-model-api-boundary-spec-001` with `externalCallAllowed: false`.
-- The single adapter command still regenerates `artifacts/local-extraction-adapter-output.json` from `artifacts/sample-raw-memo.md`.
-- Matrix mode still generates three fixture outputs from `artifacts/extraction-adapter-fixtures/` into `artifacts/extraction-adapter-outputs/`.
-- Each fixture output validates as `fff.extractionContract.v1`.
-- The extraction validator fixture matrix still passes with 7 fixtures and 0 mismatches.
-- Toma fate, brass moth truth, and Council motive remain human-owned unresolved decisions.
+- Git parity after fetch: `git rev-list --left-right --count HEAD...origin/master` reported `0 0` before this slice.
+- Local working tree started clean on `master` at `e862c81 Refresh review hub handoff`.
+- The existing Review Hub IA smoke evidence was present and passing before this slice.
+- Existing screenshot and contact sheet files were present and non-empty before refresh.
+- Project-local instructions and required context docs were read before changing review claims.
+
+Final verification for this slice is tracked by:
+
+- Manifest validation command in `artifacts/artifact-manifest.json`: passed.
+- Review procedure smoke at `artifacts/review-procedure-lock-smoke-result.json`: passed.
+- Screenshot/contact-sheet files under `artifacts/`: refreshed and non-empty.
+- Mode screenshots under `artifacts/review-screens/`: refreshed and non-empty.
+- MkDocs strict build: passed.
+- `git diff --check`: passed.
+
+Screenshot refresh used local Microsoft Edge through Playwright CLI because bundled Playwright Chromium was unavailable and downloading browsers was out of scope for this slice.
 
 ## What Remains Missing
 
-- Human freeform review of the IA mode split and source-span usefulness/routing quality.
-- More edge fixture classes if review finds gaps: contradictory memo claims, very broad source spans, malformed/missing spans, multilingual or translated memo text, sparse bullet-only notes, and model/API provider envelope output.
+- Human freeform review of whether the procedure, screenshot map, and four modes reduce future review friction.
+- Human freeform review of source-span usefulness and routing quality.
+- More edge fixture classes if review finds gaps: contradictory memo claims, very broad source spans, malformed or missing spans, multilingual or translated memo text, sparse bullet-only notes, and model/API provider envelope output.
 - Actual model/API extraction adapter behind the validator boundary.
 - Provider choice, credential flow, timeout value, and retry count for a future integration.
 - Durable project database.
@@ -101,17 +88,34 @@ From the repo root, run:
 Invoke-Item .\public\review\index.html
 ```
 
-Or use the repo-local launcher:
+Or use the repo-local launchers:
 
 ```powershell
 .\scripts\operator\open_review.ps1
 ```
 
-Primary review path:
+```sh
+./scripts/operator/open_review.sh
+```
+
+Mode-specific local paths:
 
 ```text
-public/review/index.html
+public/review/index.html?mode=story
+public/review/index.html?mode=source
+public/review/index.html?mode=project
+public/review/index.html?mode=artifacts
 ```
+
+## Review Debt
+
+| Target | Purpose | State | Next move |
+| --- | --- | --- | --- |
+| Review procedure | Confirm the access paths and screenshot map are clear enough across terminals | Ready for optional freeform review | Review `docs/review/review-procedure.md` and the Artifacts mode when convenient |
+| Source-span quality | Decide whether current spans and routing are useful, not just valid | Ready for optional freeform review | Use Source Audit and `artifacts/source-span-routing-review-pack.json` |
+| Missing fixture classes | Cover memo shapes not yet represented by deterministic fixtures | Held until review names a need | Add one fixture class at a time |
+| Model/API adapter | Implement provider-backed extraction only behind existing gates | Not started | Keep blocked until explicit authorization and reviewed source-span gates |
+| Durable database and publishing | Persist and release production work | Out of scope | Do not start until review workflow and release authority are accepted |
 
 ## Human-Owned Decision Packet
 
@@ -121,8 +125,4 @@ public/review/index.html
 
 ## Next Recommended Slice
 
-Review the `Story Review`, `Source Audit`, `Project Cockpit`, and `Artifacts` modes in `public/review/index.html`. Then decide whether the IA split is sufficient for daily review and whether the Source Audit pack reveals any concrete span/routing issue. Keep all generated output source-tracked, review-held by default, and blocked from auto-canon promotion before adding any database persistence, publishing adapter, AI video generation, model/API behavior, or final canon decision.
-
-## Resume From Another Terminal
-
-From a fresh terminal, run `git pull --ff-only`, read `AGENTS.md`, `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/review-hub-ia-mode-split.md`, `docs/review/next-terminal-handoff.md`, `docs/workflow.md`, `docs/qa-gates.md`, `docs/decision-log.md`, `docs/idea-ledger.md`, and `artifacts/artifact-manifest.json`, then open the review UI with `.\scripts\operator\open_review.ps1` and run the manifest validation command before changing behavior.
+Use optional freeform review on `fff-review-procedure-lock-001` and the Source Audit pack. If review identifies a concrete gap, make one narrow procedure, IA, screenshot, fixture, span, or routing change. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, or final canon decisions in the next slice unless explicitly requested.

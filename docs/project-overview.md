@@ -29,6 +29,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Local extraction adapter expansion | Ready for local review | [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Model/API boundary spec | Ready for local review | [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md) | `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json` |
 | Source-span routing review pack | Ready for local review | [`review/source-span-routing-review-pack.md`](review/source-span-routing-review-pack.md) | `artifacts/source-span-routing-review-pack.json`, `artifacts/fff-current-review-screenshot.png` |
+| Review procedure lock | Ready for local review | [`review/review-procedure.md`](review/review-procedure.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png`, `artifacts/review-screens/` |
 
 The implementation details are itemized inside the review documents under headings such as `What Was Implemented`, `What Exists Now`, `Validation`, `Known Limitations`, and `Next Recommended Slice`.
 
@@ -39,7 +40,11 @@ The current quick visual review files are stored under `artifacts/`:
 | File | Use |
 | --- | --- |
 | `artifacts/fff-current-review-screenshot.png` | Current single-screen review evidence for the active local UI. |
-| `artifacts/fff-review-contact-sheet.png` | Multi-scroll contact sheet for fast visual scanning of the current review UI. |
+| `artifacts/fff-review-contact-sheet.png` | Four-mode contact sheet for fast visual scanning of the current review UI. |
+| `artifacts/review-screens/story-review.png` | Mode-specific Story Review screenshot. |
+| `artifacts/review-screens/source-audit.png` | Mode-specific Source Audit screenshot. |
+| `artifacts/review-screens/project-cockpit.png` | Mode-specific Project Cockpit screenshot. |
+| `artifacts/review-screens/artifacts-validation.png` | Mode-specific Artifacts and validation screenshot. |
 | `artifacts/fff-mvp-skeleton-review.png` | Earlier MVP skeleton screenshot. |
 
 From Windows PowerShell at the repository root:
@@ -108,4 +113,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The next recommended implementation slice is freeform review response for `fff-source-span-routing-review-pack-001`, followed by only targeted fixture/span/routing changes if review identifies a concrete gap.
+The next recommended implementation slice is freeform review response for `fff-review-procedure-lock-001` and `fff-source-span-routing-review-pack-001`, followed by only targeted procedure, fixture, span, or routing changes if review identifies a concrete gap.
