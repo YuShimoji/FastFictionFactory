@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-22T00:00:00+09:00. At refresh time, the active artifact is `fff-review-hub-ia-mode-split-001`; the preserved source-span artifact is `fff-source-span-routing-review-pack-001`; the preserved model/API boundary artifact is `fff-model-api-boundary-spec-001`; the preserved adapter expansion artifact is `fff-local-extraction-adapter-expansion-001`; the preserved adapter artifact is `fff-local-extraction-adapter-spike-001`; the preserved validator artifact is `fff-extraction-validator-hardening-001`; and the preserved contract artifact is `fff-extraction-contract-001`.
+Latest handoff refresh: 2026-06-22T10:01:13+09:00. At refresh time, the active artifact is `fff-review-hub-ia-mode-split-001`; the preserved source-span artifact is `fff-source-span-routing-review-pack-001`; the preserved model/API boundary artifact is `fff-model-api-boundary-spec-001`; the preserved adapter expansion artifact is `fff-local-extraction-adapter-expansion-001`; the preserved adapter artifact is `fff-local-extraction-adapter-spike-001`; the preserved validator artifact is `fff-extraction-validator-hardening-001`; and the preserved contract artifact is `fff-extraction-contract-001`.
 
 ## Start Here
 
@@ -87,22 +87,27 @@ If `uvx` is unavailable, use a real Python/MkDocs Material runtime instead of th
 - Adapter expansion smoke result: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
 - Validator fixture directory: `artifacts/extraction-negative-fixtures/`
 - Validator smoke result: `artifacts/extraction-validator-smoke-result.json`
-- Current lane: source-span and routing supervision for existing local deterministic adapter outputs before freeform review drives adapter changes.
+- Current lane: Review Hub IA usability and source audit reviewability before freeform review drives adapter changes or any model/API extractor work.
 
 The active artifact splits the Visual Review Hub into Story Review, Source Audit, Project Cockpit, and Artifacts modes while keeping the source-span review pack, Extraction Contract, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and state validation intact.
 
 ## What Finished
 
+- Split the Visual Review Hub into four modes: Story Review, Source Audit, Project Cockpit, and Artifacts.
+- Added Japanese-facing display labels for the primary review modes and story review sections while keeping artifact IDs, schema IDs, JSON keys, and file paths stable.
+- Removed sticky Raw Story Memo behavior and kept source-span fixture details collapsed by default.
+- Preserved `fff-source-span-routing-review-pack-001` in Source Audit mode for span/routing review.
 - Preserved `fff-model-api-boundary-spec-001` as the prior no-external-call provider boundary artifact.
 - Added `tools/fff-source-span-review-pack.mjs`.
 - Generated `artifacts/source-span-routing-review-pack.json`.
 - Added a Source-Span Routing Review Pack section to `public/review/index.html`.
 - Added representative fixture tables for `clockmaker-sample`, `council-minutes-edge`, and `observatory-ledger-edge`.
 - Recorded Review Debt categories for weak spans, over-broad spans, vague extraction, ambiguous routing, confident defaults, and missing fixture classes.
-- Updated manifest, current status packet, review doc, data model notes, artifact inventory, project context, MkDocs nav, idea ledger, decision log, and this handoff.
+- Updated manifest, current status packet, Review Hub IA review doc, source-span review doc, data model notes, artifact inventory, project context, MkDocs nav, idea ledger, decision log, and this handoff.
 
 ## Verified Checks
 
+- Review Hub IA static smoke confirmed the four mode tabs, Japanese-facing labels, source-span pack reachability, preserved model/API boundary text, removed sticky memo behavior, and collapsed source-span fixture tables.
 - Source-span pack generation passed for the existing three fixture outputs.
 - Matrix adapter smoke still passed with 3 fixture inputs, 3 outputs, 36 extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, and 12 timeline candidates.
 - Source/routing audit passed with 36/36 source spans matched, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.

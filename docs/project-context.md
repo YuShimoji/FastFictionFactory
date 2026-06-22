@@ -118,4 +118,4 @@ First next move: freeform review of the Review Hub IA mode split and source-span
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
 
-Latest handoff refresh: 2026-06-22T00:00:00+09:00. At refresh time, the active artifact is `fff-review-hub-ia-mode-split-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, or final canon decision existed.
+Latest handoff refresh: 2026-06-22T10:01:13+09:00. At refresh time, the active artifact is `fff-review-hub-ia-mode-split-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, or final canon decision existed.
