@@ -6,9 +6,11 @@ import path from "node:path";
 const SCHEMA_VERSION = "fff.projectState.v1";
 const EXTRACTION_SCHEMA_VERSION = "fff.extractionContract.v1";
 const ROUTING_POLICY_REGRESSION_SCHEMA_VERSION = "fff.routingPolicyRegression.v1";
+const BROAD_SPAN_SPLIT_SCHEMA_VERSION = "fff.broadSpanSplit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
+const DEFAULT_BROAD_SPAN_SPLIT_OUTPUT = "artifacts/broad-span-split-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -286,6 +288,25 @@ async function main() {
     }
     if (command === "smoke-routing-policy" || outputPath) {
       console.log(`routing policy regression passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-broad-span-split" || command === "smoke-broad-span-split") {
+    const audit = await readJson(inputPath);
+    const result = await validateBroadSpanSplit(audit, inputPath);
+    const target = outputPath || DEFAULT_BROAD_SPAN_SPLIT_OUTPUT;
+    if (command === "smoke-broad-span-split" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Broad-span split failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-broad-span-split" || outputPath) {
+      console.log(`broad-span split passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -713,6 +734,212 @@ async function validateRoutingPolicyRegression(resolution, resolutionPath) {
     },
     failures,
     passed: failures.length === 0
+  };
+}
+
+async function validateBroadSpanSplit(audit, auditPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const routingRegression = await readJson(manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT);
+  const boundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
+  const boundaryEnvelope = await readJson(manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json");
+  const broadRows = getBroadSpanRows(audit);
+  const decisions = broadRows.map(resolveBroadSpanRow);
+  const allowedActions = ["split_into_narrower_spans", "shrink_to_more_precise_span", "keep_with_reason", "hold_for_human_review"];
+  const decisionIds = decisions.map((decision) => decision.id).sort();
+  const expectedIds = ["local-x-visual-observatory", "minutes-x-placeholder-proof-bait"];
+  const sourceQualityMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-source-span-quality-audit-001");
+  const routingMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-routing-policy-regression-hardening-001");
+  const splitDecision = decisions.find((decision) => decision.id === "local-x-visual-observatory");
+  const keptDecision = decisions.find((decision) => decision.id === "minutes-x-placeholder-proof-bait");
+
+  check(
+    "source_quality_audit_loaded",
+    audit?.artifact_id === "fff-source-span-quality-audit-001" && audit?.passed === true,
+    `loaded ${auditPath}`
+  );
+  check(
+    "broad_span_rows_loaded",
+    broadRows.length === 2 && expectedIds.every((id) => decisionIds.includes(id)),
+    `broad rows=${broadRows.length}; ids=${decisionIds.join(", ")}`
+  );
+  check(
+    "all_broad_spans_resolved",
+    decisions.length === 2 && decisions.every((decision) => allowedActions.includes(decision.action)) && decisions.every((decision) => decision.action !== "hold_for_human_review"),
+    "each current broad span has a split, shrink, or explicit keep reason without adding a new hold-only outcome"
+  );
+  check(
+    "observatory_split_is_narrower",
+    splitDecision?.action === "split_into_narrower_spans" &&
+      splitDecision.proposed_spans?.length === 2 &&
+      splitDecision.proposed_spans.every((span) => splitDecision.raw_source_snippet.includes(span.source_text)) &&
+      splitDecision.proposed_spans.every((span) => span.source_text.length < splitDecision.raw_source_snippet.length),
+    "observatory row is split into narrower visual and timeline evidence snippets"
+  );
+  check(
+    "placeholder_keep_reason_preserves_alternatives",
+    keptDecision?.action === "keep_with_reason" &&
+      keptDecision.review_status === "hold" &&
+      keptDecision.human_owned_guard === "held_human_review_required" &&
+      ["proof", "bait", "false record"].every((term) => keptDecision.preserved_alternatives?.includes(term)),
+    "proof/bait/false-record row remains a single held human-owned instruction"
+  );
+  check(
+    "source_refs_preserved",
+    decisions.every((decision) => typeof decision.source_span_locator === "string" && decision.source_span_locator.includes("#char=") && decision.source_ref_preserved === true),
+    "each decision preserves the original source span locator"
+  );
+  check(
+    "routing_policy_regression_preserved",
+    routingRegression?.artifact_id === "fff-routing-policy-regression-hardening-001" && routingRegression?.passed === true && routingRegression?.summary?.failures === 0,
+    "current routing policy regression result still passes"
+  );
+  check(
+    "review_memory_checked",
+    Boolean(sourceQualityMemory) && Boolean(routingMemory),
+    "manifest review memory includes source-span quality audit and routing policy regression hardening"
+  );
+  check(
+    "canon_boundaries_preserved",
+    decisions.every((decision) => decision.review_status === "hold") &&
+      decisions.every((decision) => decision.canon_boundary === "no_final_canon_decision") &&
+      keptDecision?.keep_reason?.includes("would imply separate canon choices"),
+    "Toma fate, brass moth truth, Council motive, and placeholder alternatives remain human-owned"
+  );
+  check(
+    "no_model_api_behavior_added",
+    manifest.preserved_model_api_boundary_artifact_id === "fff-model-api-boundary-spec-001" &&
+      boundarySmoke?.passed === true &&
+      boundarySmoke?.checks?.noExternalCall === true &&
+      boundaryEnvelope?.providerBoundary?.externalCallAllowed === false,
+    "model/API boundary remains preserved by structured no-call evidence"
+  );
+
+  return {
+    schemaVersion: BROAD_SPAN_SPLIT_SCHEMA_VERSION,
+    artifact_id: "fff-broad-span-split-001",
+    title: "Fast Fiction Factory Broad Source-Span Split",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    source_audit_artifact_id: audit?.artifact_id,
+    source_audit_path: toRepoPath(auditPath),
+    routing_policy_regression_artifact_id: routingRegression?.artifact_id,
+    routing_policy_regression_path: manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT,
+    review_memory_checked: {
+      checked: true,
+      target: "fff-source-span-quality-audit-001",
+      prior_review_count: sourceQualityMemory?.prior_review_count ?? 0,
+      prior_signal_summary: sourceQualityMemory?.latest_user_signal_summary || "No user review was requested for the source-span quality audit slice.",
+      axis: "broad_span_split",
+      what_changed: "The two broad source-span rows now have deterministic split/keep decisions with source locators preserved.",
+      what_this_review_decides: "No user review is needed; this readback decides whether broad-span debt is resolved enough to move to weak-span or fixture-class work later.",
+      not_asking: [
+        "general Review Hub review",
+        "repeat source-span quality review",
+        "model/API approval",
+        "production approval",
+        "canon decisions for Toma fate, brass moth truth, or Council motive"
+      ],
+      next_nonredundant_axis: "one bounded weak-span repair or one missing fixture class after explicit need"
+    },
+    summary: {
+      broad_span_rows_loaded: broadRows.length,
+      split_into_narrower_spans: decisions.filter((decision) => decision.action === "split_into_narrower_spans").length,
+      shrink_to_more_precise_span: decisions.filter((decision) => decision.action === "shrink_to_more_precise_span").length,
+      keep_with_reason: decisions.filter((decision) => decision.action === "keep_with_reason").length,
+      hold_for_human_review: decisions.filter((decision) => decision.action === "hold_for_human_review").length,
+      source_refs_preserved: decisions.filter((decision) => decision.source_ref_preserved === true).length,
+      routing_policy_regression_preserved: routingRegression?.passed === true,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      failures: failures.length
+    },
+    decisions,
+    broad_span_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+function getBroadSpanRows(audit) {
+  const rows = Array.isArray(audit?.row_classifications) ? audit.row_classifications : [];
+  const taggedRows = rows.filter((row) => arrayIncludesIgnoreCase(row.quality_tags, "overly_broad_span"));
+  if (taggedRows.length > 0) {
+    return taggedRows;
+  }
+  return Array.isArray(audit?.categories?.overly_broad_span) ? audit.categories.overly_broad_span : [];
+}
+
+function resolveBroadSpanRow(row) {
+  const base = {
+    fixture_id: row.fixture_id,
+    id: row.id,
+    element_type: row.element_type,
+    extracted_value: row.extracted_value,
+    source_span_locator: row.source_span_locator,
+    raw_source_snippet: row.raw_source_snippet,
+    previous_routing_targets: row.routing_targets || [],
+    confidence: row.confidence,
+    review_status: row.review_status || "hold",
+    human_owned_guard: row.human_owned_guard || "none",
+    source_ref_preserved: true,
+    canon_boundary: "no_final_canon_decision"
+  };
+
+  if (row.id === "local-x-visual-observatory") {
+    return {
+      ...base,
+      action: "split_into_narrower_spans",
+      reason: "The original span combines visual evidence and timeline evidence in one clause; splitting the evidence makes review intent clearer without changing adapter output or restoring a direct Claim route.",
+      proposed_spans: [
+        {
+          span_id: "local-x-visual-observatory.visual-evidence",
+          source_text: "its bell was removed",
+          route_role: "visual_profile_evidence",
+          recommended_primary_route: "Visual",
+          secondary_evidence: ["Profile"],
+          review_status: "hold",
+          routing_boundary: "visual/profile evidence only; no direct Claim target",
+          reason: "This snippet carries the visible missing-bell image."
+        },
+        {
+          span_id: "local-x-visual-observatory.timeline-evidence",
+          source_text: "still rings at noon",
+          route_role: "timeline_secondary_evidence",
+          recommended_primary_route: "Timeline context",
+          secondary_evidence: ["Profile"],
+          review_status: "hold",
+          routing_boundary: "timeline context remains secondary and held",
+          reason: "This snippet carries the noon event without bundling the removed-bell image."
+        }
+      ],
+      routing_policy_effect: "Preserves fff-routing-policy-regression-hardening-001: visual rows remain out of direct Claim targets."
+    };
+  }
+
+  if (row.id === "minutes-x-placeholder-proof-bait") {
+    return {
+      ...base,
+      action: "keep_with_reason",
+      keep_reason: "The whole negated instruction is the evidence; splitting proof, bait, and false record would imply separate canon choices before the human-owned decision exists.",
+      preserved_alternatives: ["proof", "bait", "false record"],
+      routing_policy_effect: "Preserves one held placeholder routed to Profile/Human Review until a future fixture explicitly needs separate alternatives."
+    };
+  }
+
+  return {
+    ...base,
+    action: "hold_for_human_review",
+    reason: "Unexpected broad span id. Holding is safer than inventing a split rule."
   };
 }
 
@@ -1409,6 +1636,8 @@ Usage:
   node tools/fff-state.mjs smoke-extraction-fixtures <fixture-directory> [output.json]
   node tools/fff-state.mjs validate-routing-policy <ambiguous-routing-resolution.json>
   node tools/fff-state.mjs smoke-routing-policy <ambiguous-routing-resolution.json> [output.json]
+  node tools/fff-state.mjs validate-broad-span-split <source-span-quality-audit.json>
+  node tools/fff-state.mjs smoke-broad-span-split <source-span-quality-audit.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -1418,6 +1647,9 @@ Default extraction fixture smoke output:
 
 Default routing policy regression output:
   ${DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT}
+
+Default broad-span split output:
+  ${DEFAULT_BROAD_SPAN_SPLIT_OUTPUT}
 `);
 }
 

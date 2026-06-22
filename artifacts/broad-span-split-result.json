@@ -1,0 +1,160 @@
+{
+  "schemaVersion": "fff.broadSpanSplit.v1",
+  "artifact_id": "fff-broad-span-split-001",
+  "title": "Fast Fiction Factory Broad Source-Span Split",
+  "generatedAt": "2026-06-22T19:48:16.643Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "source_audit_artifact_id": "fff-source-span-quality-audit-001",
+  "source_audit_path": "artifacts/source-span-quality-audit-result.json",
+  "routing_policy_regression_artifact_id": "fff-routing-policy-regression-hardening-001",
+  "routing_policy_regression_path": "artifacts/routing-policy-regression-hardening-result.json",
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-source-span-quality-audit-001",
+    "prior_review_count": 0,
+    "prior_signal_summary": "No user review was requested or recorded for this quality audit slice; the prior source-span pack had automated guard pass only.",
+    "axis": "broad_span_split",
+    "what_changed": "The two broad source-span rows now have deterministic split/keep decisions with source locators preserved.",
+    "what_this_review_decides": "No user review is needed; this readback decides whether broad-span debt is resolved enough to move to weak-span or fixture-class work later.",
+    "not_asking": [
+      "general Review Hub review",
+      "repeat source-span quality review",
+      "model/API approval",
+      "production approval",
+      "canon decisions for Toma fate, brass moth truth, or Council motive"
+    ],
+    "next_nonredundant_axis": "one bounded weak-span repair or one missing fixture class after explicit need"
+  },
+  "summary": {
+    "broad_span_rows_loaded": 2,
+    "split_into_narrower_spans": 1,
+    "shrink_to_more_precise_span": 0,
+    "keep_with_reason": 1,
+    "hold_for_human_review": 0,
+    "source_refs_preserved": 2,
+    "routing_policy_regression_preserved": true,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "failures": 0
+  },
+  "decisions": [
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-visual-observatory",
+      "element_type": "visual_asset",
+      "extracted_value": "observatory rings without a bell",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=364-416",
+      "raw_source_snippet": "still rings at noon even though its bell was removed",
+      "previous_routing_targets": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Visual"
+      ],
+      "confidence": 0.78,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "source_ref_preserved": true,
+      "canon_boundary": "no_final_canon_decision",
+      "action": "split_into_narrower_spans",
+      "reason": "The original span combines visual evidence and timeline evidence in one clause; splitting the evidence makes review intent clearer without changing adapter output or restoring a direct Claim route.",
+      "proposed_spans": [
+        {
+          "span_id": "local-x-visual-observatory.visual-evidence",
+          "source_text": "its bell was removed",
+          "route_role": "visual_profile_evidence",
+          "recommended_primary_route": "Visual",
+          "secondary_evidence": [
+            "Profile"
+          ],
+          "review_status": "hold",
+          "routing_boundary": "visual/profile evidence only; no direct Claim target",
+          "reason": "This snippet carries the visible missing-bell image."
+        },
+        {
+          "span_id": "local-x-visual-observatory.timeline-evidence",
+          "source_text": "still rings at noon",
+          "route_role": "timeline_secondary_evidence",
+          "recommended_primary_route": "Timeline context",
+          "secondary_evidence": [
+            "Profile"
+          ],
+          "review_status": "hold",
+          "routing_boundary": "timeline context remains secondary and held",
+          "reason": "This snippet carries the noon event without bundling the removed-bell image."
+        }
+      ],
+      "routing_policy_effect": "Preserves fff-routing-policy-regression-hardening-001: visual rows remain out of direct Claim targets."
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-placeholder-proof-bait",
+      "element_type": "placeholder",
+      "extracted_value": "proof, bait, or false record placeholder",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=408-466",
+      "raw_source_snippet": "do not decide whether it is proof, bait, or a false record",
+      "previous_routing_targets": [
+        "Profile",
+        "Human Review"
+      ],
+      "confidence": 0.79,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "source_ref_preserved": true,
+      "canon_boundary": "no_final_canon_decision",
+      "action": "keep_with_reason",
+      "keep_reason": "The whole negated instruction is the evidence; splitting proof, bait, and false record would imply separate canon choices before the human-owned decision exists.",
+      "preserved_alternatives": [
+        "proof",
+        "bait",
+        "false record"
+      ],
+      "routing_policy_effect": "Preserves one held placeholder routed to Profile/Human Review until a future fixture explicitly needs separate alternatives."
+    }
+  ],
+  "broad_span_checks": {
+    "source_quality_audit_loaded": {
+      "passed": true,
+      "detail": "loaded artifacts/source-span-quality-audit-result.json"
+    },
+    "broad_span_rows_loaded": {
+      "passed": true,
+      "detail": "broad rows=2; ids=local-x-visual-observatory, minutes-x-placeholder-proof-bait"
+    },
+    "all_broad_spans_resolved": {
+      "passed": true,
+      "detail": "each current broad span has a split, shrink, or explicit keep reason without adding a new hold-only outcome"
+    },
+    "observatory_split_is_narrower": {
+      "passed": true,
+      "detail": "observatory row is split into narrower visual and timeline evidence snippets"
+    },
+    "placeholder_keep_reason_preserves_alternatives": {
+      "passed": true,
+      "detail": "proof/bait/false-record row remains a single held human-owned instruction"
+    },
+    "source_refs_preserved": {
+      "passed": true,
+      "detail": "each decision preserves the original source span locator"
+    },
+    "routing_policy_regression_preserved": {
+      "passed": true,
+      "detail": "current routing policy regression result still passes"
+    },
+    "review_memory_checked": {
+      "passed": true,
+      "detail": "manifest review memory includes source-span quality audit and routing policy regression hardening"
+    },
+    "canon_boundaries_preserved": {
+      "passed": true,
+      "detail": "Toma fate, brass moth truth, Council motive, and placeholder alternatives remain human-owned"
+    },
+    "no_model_api_behavior_added": {
+      "passed": true,
+      "detail": "model/API boundary remains preserved by structured no-call evidence"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

@@ -952,7 +952,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-routing-policy-regression-hardening-001</strong>. This slice turns the ambiguous-routing policy into a reusable regression smoke command while preserving <strong>fff-ambiguous-routing-resolution-001</strong>, <strong>fff-source-span-quality-audit-001</strong>, <strong>fff-review-memory-dedup-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-broad-span-split-001</strong>. This slice resolves the two broad source-span rows by recording one narrower split and one explicit keep reason while preserving <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-ambiguous-routing-resolution-001</strong>, <strong>fff-source-span-quality-audit-001</strong>, <strong>fff-review-memory-dedup-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1103,6 +1103,8 @@
                 <tr><td>Source-span pack review</td><td>docs/review/source-span-routing-review-pack.md</td></tr>
                 <tr><td>Source-span quality audit</td><td>docs/review/source-span-quality-audit.md</td></tr>
                 <tr><td>Source-span quality result</td><td>artifacts/source-span-quality-audit-result.json</td></tr>
+                <tr><td>Broad source-span split</td><td>docs/review/broad-span-split.md</td></tr>
+                <tr><td>Broad source-span split result</td><td>artifacts/broad-span-split-result.json</td></tr>
                 <tr><td>Ambiguous routing resolution</td><td>docs/review/ambiguous-routing-resolution.md</td></tr>
                 <tr><td>Ambiguous routing result</td><td>artifacts/ambiguous-routing-resolution-result.json</td></tr>
                 <tr><td>Routing policy regression</td><td>docs/review/routing-policy-regression-hardening.md</td></tr>
@@ -1123,8 +1125,9 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows active artifact id <strong>fff-routing-policy-regression-hardening-001</strong>.</li>
-              <li>Use <strong>docs/review/routing-policy-regression-hardening.md</strong> and <strong>artifacts/routing-policy-regression-hardening-result.json</strong> for the routing policy regression hardening axis.</li>
+              <li>Confirm this hub shows active artifact id <strong>fff-broad-span-split-001</strong>.</li>
+              <li>Use <strong>docs/review/broad-span-split.md</strong> and <strong>artifacts/broad-span-split-result.json</strong> for the broad source-span split axis.</li>
+              <li>Use <strong>docs/review/routing-policy-regression-hardening.md</strong> and <strong>artifacts/routing-policy-regression-hardening-result.json</strong> for the preserved routing policy regression hardening axis.</li>
               <li>Use <strong>docs/review/ambiguous-routing-resolution.md</strong> and <strong>artifacts/ambiguous-routing-resolution-result.json</strong> for the non-redundant ambiguous routing resolution axis.</li>
               <li>Use <strong>docs/review/source-span-quality-audit.md</strong> and <strong>artifacts/source-span-quality-audit-result.json</strong> for the non-redundant source-span quality axis.</li>
               <li>Use <strong>docs/review/review-memory-dedup.md</strong> before asking for another review of the same target, evidence, and axis.</li>
@@ -1201,7 +1204,10 @@
             <div class="hub-panel">
               <h3>Routing resolution and regression</h3>
               <ul class="hub-list">
-                <li>Active hardening: <strong>fff-routing-policy-regression-hardening-001</strong>.</li>
+                <li>Active broad-span split: <strong>fff-broad-span-split-001</strong>.</li>
+                <li>Broad-span readback: <strong>artifacts/broad-span-split-result.json</strong>.</li>
+                <li>Broad-span outcome: 2 rows loaded; 1 split into narrower spans; 1 kept with reason; 0 failures.</li>
+                <li>Preserved hardening: <strong>fff-routing-policy-regression-hardening-001</strong>.</li>
                 <li>Regression readback: <strong>artifacts/routing-policy-regression-hardening-result.json</strong>.</li>
                 <li>Active resolution: <strong>fff-ambiguous-routing-resolution-001</strong>.</li>
                 <li>Readback: <strong>artifacts/ambiguous-routing-resolution-result.json</strong>.</li>
@@ -1334,6 +1340,7 @@
             <span class="tag green">local adapter smoke checked</span>
             <span class="tag green">source-span review pack visible</span>
             <span class="tag green">source-span quality audit classified</span>
+            <span class="tag green">broad source spans resolved</span>
             <span class="tag green">ambiguous routing resolved</span>
             <span class="tag green">routing policy regression checked</span>
             <span class="tag green">v1.3 compliance visible</span>
@@ -3548,7 +3555,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-routing-policy-regression-hardening-001",
+        activeArtifactId: "fff-broad-span-split-001",
         preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
         preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
         preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -3621,6 +3628,18 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           sourcePackRowsChecked: 36,
           adapterPayloadsChecked: 4,
           adapterElementsChecked: 48,
+          failures: 0,
+          reviewCardEmitted: false
+        },
+        broadSpanSplit: {
+          artifactId: "fff-broad-span-split-001",
+          docPath: "docs/review/broad-span-split.md",
+          resultPath: "artifacts/broad-span-split-result.json",
+          broadSpanRowsLoaded: 2,
+          splitIntoNarrowerSpans: 1,
+          keepWithReason: 1,
+          holdForHumanReview: 0,
+          sourceRefsPreserved: 2,
           failures: 0,
           reviewCardEmitted: false
         },
@@ -4103,7 +4122,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-routing-policy-regression-hardening-001",
+          activeArtifactId: "fff-broad-span-split-001",
           preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
           preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
           preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -4176,6 +4195,18 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             sourcePackRowsChecked: 36,
             adapterPayloadsChecked: 4,
             adapterElementsChecked: 48,
+            failures: 0,
+            reviewCardEmitted: false
+          },
+          broadSpanSplit: {
+            artifactId: "fff-broad-span-split-001",
+            docPath: "docs/review/broad-span-split.md",
+            resultPath: "artifacts/broad-span-split-result.json",
+            broadSpanRowsLoaded: 2,
+            splitIntoNarrowerSpans: 1,
+            keepWithReason: 1,
+            holdForHumanReview: 0,
+            sourceRefsPreserved: 2,
             failures: 0,
             reviewCardEmitted: false
           },

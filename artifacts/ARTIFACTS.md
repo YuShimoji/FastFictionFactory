@@ -454,3 +454,24 @@
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Add one missing fixture class only if route-policy hardening later exposes drift.
+
+## fff-broad-span-split-001
+
+- Title: Fast Fiction Factory Broad Source-Span Split
+- Purpose: Resolve the two broad source-span rows from `fff-source-span-quality-audit-001` by recording one narrower split and one explicit keep reason while preserving routing regression, source refs, review memory, model/API boundaries, and human-owned canon boundaries.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/broad-span-split.md`
+- Split result: `artifacts/broad-span-split-result.json`
+- Broad-span validator: `tools/fff-state.mjs`
+- Source audit artifact: `fff-source-span-quality-audit-001`
+- Source audit result: `artifacts/source-span-quality-audit-result.json`
+- Routing policy regression artifact: `fff-routing-policy-regression-hardening-001`
+- Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json`
+- Validation result: passed; broad-span split parsed `fff-source-span-quality-audit-001`, loaded 2 broad rows, split `local-x-visual-observatory` into narrower visual/profile and timeline snippets, kept `minutes-x-placeholder-proof-bait` with an explicit human-owned reason, preserved both source locators, preserved routing regression, and reported 0 failures.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- Next action: Pick one weak span repair or one missing fixture class only after explicit need; do not reopen broad-span debt unless source output changes.

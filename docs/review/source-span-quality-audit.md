@@ -69,6 +69,8 @@ Weak spans are not validator failures. They are review-usefulness gaps.
 
 Broad spans are useful for surfacing risk, but they are not ideal compact review evidence.
 
+`fff-broad-span-split-001` resolves this broad-span debt for the current fixture outputs. See `docs/review/broad-span-split.md` and `artifacts/broad-span-split-result.json`.
+
 ## Routing Quality
 
 The audit identifies 7 guarded ambiguous-routing rows. These are not unsafe validator failures; they are candidates for future bounded cleanup if they slow review.
@@ -100,7 +102,7 @@ The audit does not resolve:
 | Debt | Current state | Next move |
 | --- | --- | --- |
 | Weak spans | 6 valid spans need more context for review usefulness. | Pick one row and widen or split it in a later bounded slice. |
-| Broad spans | 2 valid spans pack too much decision context into one row. | Split only if a future fixture or review needs clearer evidence. |
+| Broad spans | 2 valid spans are resolved by `fff-broad-span-split-001`: one split and one kept with explicit reason. | Do not reopen unless source output changes. |
 | Ambiguous routing | 7 rows are guarded but route across multiple review surfaces. | Choose a primary route or split row only after selecting one concrete case. |
 | Missing fixture classes | Contradictory claims, broad spans, malformed spans, multilingual text, sparse bullets, and provider envelope cases remain uncovered. | Add one fixture class at a time. |
 

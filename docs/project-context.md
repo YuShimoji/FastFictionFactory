@@ -2,7 +2,7 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-routing-policy-regression-hardening-001`, served through the static local Visual Review Hub at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-broad-span-split-001`, served through the static local Visual Review Hub at `public/review/index.html`.
 
 ## Current Lane
 
@@ -15,6 +15,8 @@ The active slice is complete enough for local review:
 - Review UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Broad source-span split doc: `docs/review/broad-span-split.md`
+- Broad source-span split result: `artifacts/broad-span-split-result.json`
 - Routing policy regression doc: `docs/review/routing-policy-regression-hardening.md`
 - Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
 - Ambiguous routing resolution doc: `docs/review/ambiguous-routing-resolution.md`
@@ -73,15 +75,17 @@ node .\tools\fff-state.mjs validate-extraction-fixtures .\artifacts\extraction-n
 node .\tools\fff-extract-local.mjs .\artifacts\sample-raw-memo.md .\artifacts\local-extraction-adapter-output.json .\artifacts\local-extraction-adapter-smoke-result.json
 node .\tools\fff-extract-local.mjs --matrix .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json
 node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
+node .\tools\fff-state.mjs smoke-broad-span-split .\artifacts\source-span-quality-audit-result.json .\artifacts\broad-span-split-result.json
 node .\tools\fff-state.mjs smoke-routing-policy .\artifacts\ambiguous-routing-resolution-result.json .\artifacts\routing-policy-regression-hardening-result.json
 ```
 
 Result summary:
 
-- Active manifest validation passes for `fff-routing-policy-regression-hardening-001`.
+- Active manifest validation passes for `fff-broad-span-split-001`.
+- Broad source-span split parses and passes with 2 broad rows loaded, 1 row split into narrower spans, 1 row kept with explicit reason, 2 source refs preserved, and 0 failures.
 - Routing policy regression hardening parses and passes with 7 resolved rows, 36 source-pack rows, 4 adapter payloads, 48 adapter elements, and 0 failures.
 - Ambiguous routing resolution parses and passes with 7 resolved rows: 3 Profile-primary routes, 1 Visual-primary route, and 3 Human Review holds.
-- Review Dedup Gate is recorded with axis `ambiguous_routing_resolution`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub request.
+- Review Dedup Gate is recorded with axis `broad_span_split`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub request.
 - All visual asset rows avoid direct Claim routing and keep `targetClaimIds: []`.
 - Source-span quality audit classifies 36 existing review-pack rows: 28 useful spans, 6 weak spans, 2 overly broad spans, 0 missing source refs, 7 ambiguous routing rows, 3 guarded visual/source-sensitive rows, and 17 human-owned boundary rows.
 - Both state JSON files validate with `schemaVersion: "fff.projectState.v1"`.
@@ -139,10 +143,10 @@ node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-nega
 node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
 ```
 
-First next move: apply the Review Dedup Gate before asking for review. The next non-redundant move is one bounded fixture improvement: widen or split one weak span, split one broad span, or add one missing fixture class if the routing policy regression hardening exposes drift.
+First next move: apply the Review Dedup Gate before asking for review. The next non-redundant move is one bounded weak-span repair or one missing fixture class after explicit need; do not reopen broad-span debt unless source output changes.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
 
-Latest handoff refresh: 2026-06-23T03:38:23+09:00. At refresh time, the active artifact is `fff-routing-policy-regression-hardening-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, repeated review requirement, or final canon decision existed.
+Latest handoff refresh: 2026-06-23T04:41:55+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, repeated review requirement, or final canon decision existed.

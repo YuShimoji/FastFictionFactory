@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-23T03:38:23+09:00. At refresh time, the active artifact is `fff-routing-policy-regression-hardening-001`. The local branch was synced to `origin/master` before this slice began.
+Latest handoff refresh: 2026-06-23T04:41:55+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`. The local branch was synced to `origin/master` before this slice began.
 
 ## Start Here
 
@@ -30,6 +30,8 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/broad-span-split.md
+artifacts/broad-span-split-result.json
 docs/review/routing-policy-regression-hardening.md
 artifacts/routing-policy-regression-hardening-result.json
 docs/review/ambiguous-routing-resolution.md
@@ -70,9 +72,11 @@ If `python -m mkdocs build --strict` is unavailable, use a real Python/MkDocs Ma
 
 ## Current Project State
 
-- Active artifact: `fff-routing-policy-regression-hardening-001`
+- Active artifact: `fff-broad-span-split-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
+- Broad source-span split doc: `docs/review/broad-span-split.md`
+- Broad source-span split result: `artifacts/broad-span-split-result.json`
 - Routing policy regression doc: `docs/review/routing-policy-regression-hardening.md`
 - Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
 - Ambiguous routing resolution doc: `docs/review/ambiguous-routing-resolution.md`
@@ -88,7 +92,7 @@ If `python -m mkdocs build --strict` is unavailable, use a real Python/MkDocs Ma
 - Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact hardens the seven-row routing policy from `fff-ambiguous-routing-resolution-001` into a reusable validator smoke command. It checks the resolution artifact, source-span pack, single adapter output, and three adapter matrix outputs so future route drift is visible. It keeps Review Hub as the single entry point and preserves Review Memory, the source-span review pack, model/API boundary, adapter artifacts, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and human-owned canon boundaries.
+The current artifact resolves the two broad rows found by `fff-source-span-quality-audit-001` without changing adapter output. `local-x-visual-observatory` is split into narrower visual/profile and timeline evidence snippets, while `minutes-x-placeholder-proof-bait` is kept as one held placeholder because splitting its alternatives would imply canon choices. It keeps Review Hub as the single entry point and preserves routing policy regression, Review Memory, the source-span review pack, model/API boundary, adapter artifacts, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and human-owned canon boundaries.
 
 ## What Finished
 
@@ -100,18 +104,21 @@ The current artifact hardens the seven-row routing policy from `fff-ambiguous-ro
 - All visual asset rows now avoid direct Claim targets in deterministic adapter outputs.
 - `fff-routing-policy-regression-hardening-001` adds `node tools/fff-state.mjs smoke-routing-policy ...`.
 - The routing regression result checks 7 resolved rows, 36 source-pack rows, 4 adapter payloads, 48 adapter elements, 1 visual resolution row, 3 unresolved-decision rows, 3 source-reference pack rows, and 4 source-reference adapter rows with 0 failures.
-- Review Dedup Gate was checked with axis `ambiguous_routing_resolution`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub review request.
+- `fff-broad-span-split-001` adds `node tools/fff-state.mjs smoke-broad-span-split ...`.
+- The broad-span split result checks 2 broad rows, splits `local-x-visual-observatory` into `its bell was removed` and `still rings at noon`, keeps `minutes-x-placeholder-proof-bait` with an explicit human-owned reason, preserves 2 source refs, and reports 0 failures.
+- Review Dedup Gate was checked with axis `broad_span_split`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub review request.
 - No model/API behavior, credentials, database persistence, publishing adapter, production sync, AI video generation, or final canon decision was added.
 
 ## Validation Readback
 
-The active manifest validation command passed for the latest slice. It parsed the regression and resolution JSON, regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, validated adapter outputs, validated current/sample state, validated the sample extraction payload, ran extraction fixture validation, checked Review Hub text, confirmed `externalCallAllowed: false`, confirmed the local visual row no longer appears as Claim-routed in the source-span pack, and ran the reusable routing policy regression smoke command.
+The active manifest validation command passed for the latest slice. It parsed the broad-span split, regression, and resolution JSON, regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, validated adapter outputs, validated current/sample state, validated the sample extraction payload, ran extraction fixture validation, checked Review Hub text, confirmed `externalCallAllowed: false`, confirmed the local visual row no longer appears as Claim-routed in the source-span pack, ran the broad-span split smoke command, and ran the reusable routing policy regression smoke command.
 
 Additional checks already passed during the latest slice:
 
 - `uvx --with mkdocs-material mkdocs build --strict`
 - `git diff --check`
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` before the handoff refresh began.
+- `node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json`
 
 ## Preserved Boundaries
 
@@ -131,7 +138,7 @@ When review is needed, accept natural freeform review text instead of fixed phra
 
 Before emitting a Review Card, check the review memory. Do not ask the same target/evidence/axis again unless target, axis, evidence, decision value, or an explicit user request changed.
 
-No general Review Hub review is needed for the current state. Future review should be bounded to one concrete target such as a weak span, broad span, or missing fixture class exposed by routing-policy drift.
+No general Review Hub review is needed for the current state. Future review should be bounded to one concrete target such as a weak span or missing fixture class; do not reopen broad-span debt unless source output changes.
 
 ## Next Useful Entrances
 
@@ -139,14 +146,14 @@ No general Review Hub review is needed for the current state. Future review shou
 | --- | --- | --- |
 | Advance: one missing fixture class | Covers a memo shape not represented by the current three fixtures | Future adapter/model work gets clearer regression coverage |
 | Verify: route-policy regression smoke | Re-runs the named routing policy validator after adapter changes | Future deterministic or model-backed outputs can be rejected earlier |
-| Audit: weak or broad source spans | Improves the remaining source-span quality debt without reopening all routing | A future review can focus on one concrete span fix |
+| Audit: weak source spans | Improves the remaining source-span quality debt without reopening all routing or broad-span decisions | A future review can focus on one concrete weak-span fix |
 | Explore: model/API adapter boundary | Uses the existing no-call boundary and validation contract | Provider-backed extraction can start later only after explicit authorization |
 
 ## Residual Work
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
-| Source-span quality | Make source evidence useful, not only valid | 7 ambiguous routes resolved; weak/broad span debt remains | Pick one weak or broad span and adjust only that row/class |
+| Source-span quality | Make source evidence useful, not only valid | 7 ambiguous routes resolved; 2 broad spans resolved by split/keep readback; weak span debt remains | Pick one weak span and adjust only that row/class |
 | Fixture coverage | Cover unrepresented memo shapes | Current three fixtures cover object, visual, unresolved-decision routing | Add one missing fixture class at a time |
 | Validator hardening | Prevent future route drift | Named routing policy regression smoke now checks current route policy | Add one missing fixture class only if drift returns |
 | Model/API adapter | Replace deterministic extraction with provider-backed extraction | Explicitly not started | Keep blocked until user authorizes provider/credential/API scope |

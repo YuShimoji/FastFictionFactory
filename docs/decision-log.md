@@ -71,3 +71,7 @@
 - Decision: Promote ambiguous-routing policy into a reusable regression smoke command.
   - Reason: The prior manifest checked the current route policy, but future adapter edits needed a named validator command that fails when Visual, Claim, Timeline, Source Reference, or Human Review routing drifts.
   - Effect: `fff-routing-policy-regression-hardening-001` adds `node tools/fff-state.mjs smoke-routing-policy ...`, records `artifacts/routing-policy-regression-hardening-result.json`, checks the resolution artifact, source-span pack, single adapter output, and three adapter matrix outputs, and preserves no model/API behavior or final canon decision.
+
+- Decision: Resolve the two broad source-span rows as readback debt before moving to weak spans or fixtures.
+  - Reason: `fff-source-span-quality-audit-001` found two valid but broad spans, and the next non-redundant source-span quality move was to split, shrink, or explicitly justify them without reopening general review.
+  - Effect: `fff-broad-span-split-001` records one narrower split for `local-x-visual-observatory`, one explicit keep reason for `minutes-x-placeholder-proof-bait`, `artifacts/broad-span-split-result.json`, and `node tools/fff-state.mjs smoke-broad-span-split ...` while preserving routing regression, source locators, model/API boundaries, and human-owned canon decisions.
