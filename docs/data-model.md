@@ -342,6 +342,81 @@ type SourceSpanReviewElement = {
 
 This pack must not promote candidates into canon, write project state, add provider credentials, or call a model/API. It is a supervision aid for the existing deterministic adapter outputs.
 
+## Source-Span Quality Audit
+
+`fff-source-span-quality-audit-001` is an audit artifact, not project state and not an Extraction Contract payload. It reads the existing source-span routing review pack and records qualitative review-usefulness categories before any model/API behavior exists.
+
+The audit result lives at `artifacts/source-span-quality-audit-result.json`.
+
+```ts
+type SourceSpanQualityAudit = {
+  schemaVersion: "fff.sourceSpanQualityAudit.v1";
+  artifact_id: "fff-source-span-quality-audit-001";
+  title: string;
+  generatedAt: string;
+  review_status: "ready_for_optional_local_review";
+  review_input_mode: "freeform";
+  source_artifact_id: "fff-source-span-routing-review-pack-001";
+  source_pack_path: "artifacts/source-span-routing-review-pack.json";
+  review_doc_path: "docs/review/source-span-quality-audit.md";
+  review_memory_checked: {
+    checked: true;
+    target: "fff-source-span-routing-review-pack-001";
+    axis: "source_span_quality";
+    prior_review_count: number;
+    prior_signal_summary: string;
+    what_changed: string;
+    what_this_review_decides: string;
+    not_asking: string[];
+    next_nonredundant_axis: string;
+  };
+  review_dedup_gate_result: {
+    review_card_emitted: false;
+    repeated_general_review_request_emitted: false;
+    review_debt_recorded: true;
+  } & Record<string, string | boolean>;
+  summary: {
+    fixture_count: number;
+    total_elements: number;
+    rows_classified: number;
+    useful_span_count: number;
+    weak_span_count: number;
+    overly_broad_span_count: number;
+    missing_source_ref_count: number;
+    ambiguous_routing_count: number;
+    unsafe_routing_guarded_count: number;
+    human_owned_boundary_preserved_count: number;
+    passed: true;
+  };
+  category_counts: Record<
+    "useful_span" | "weak_span" | "overly_broad_span" | "missing_source_ref" | "ambiguous_routing" | "unsafe_routing_guarded" | "human_owned_boundary_preserved",
+    number
+  >;
+  row_classifications: SourceSpanQualityRow[];
+  passed: true;
+};
+
+type SourceSpanQualityRow = {
+  fixture_id: string;
+  id: string;
+  element_type: SourceSpanReviewElement["element_type"];
+  extracted_value: string;
+  source_span_locator: string;
+  raw_source_snippet: string;
+  routing_targets: SourceSpanReviewElement["routing_targets"];
+  confidence: number;
+  review_status: "hold";
+  human_owned_guard: "held_human_review_required" | "none";
+  risk_flags: string[];
+  quality_tags: Array<
+    "useful_span" | "weak_span" | "overly_broad_span" | "missing_source_ref" | "ambiguous_routing" | "unsafe_routing_guarded" | "human_owned_boundary_preserved"
+  >;
+  decision_note: string[];
+};
+```
+
+This audit can identify a bounded next fix. It cannot ask for repeated general review, authorize model/API work, or convert review-held candidates into canon.
+
 ## Model/API Boundary Envelope
 
 `fff-model-api-boundary-spec-001` defines a spec-only wrapper for future provider-facing extraction work. The envelope is not an Extraction Contract payload and is not project state. It is a local review artifact that describes allowed inputs, provider-call status, output contract, validation gates, failure modes, retry/timeout policy, review-safe fallback, and forbidden actions.

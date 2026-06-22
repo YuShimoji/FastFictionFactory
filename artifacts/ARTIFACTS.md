@@ -378,3 +378,29 @@
 - Review status: `ready_for_optional_local_review`
 - Review input mode: `freeform`
 - Next action: Use the Review Dedup Gate before asking for review. The next non-redundant axis is source-span usefulness and routing quality only when target, evidence, axis, or decision value changes enough to justify asking.
+
+## fff-source-span-quality-audit-001
+
+- Title: Fast Fiction Factory Source-Span Quality Audit
+- Purpose: Classify source-span usefulness and routing quality across the existing 36-row source-span review pack without asking for a repeated general Review Hub review or starting model/API work.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/source-span-quality-audit.md`
+- Audit result: `artifacts/source-span-quality-audit-result.json`
+- Source-span review pack: `artifacts/source-span-routing-review-pack.json`
+- Review memory / dedup doc: `docs/review/review-memory-dedup.md`
+- Manifest: `artifacts/artifact-manifest.json`
+- Preserved review memory artifact: `fff-review-memory-dedup-001`
+- Preserved review procedure artifact: `fff-review-procedure-lock-001`
+- Preserved Review Hub IA artifact: `fff-review-hub-ia-mode-split-001`
+- Preserved source-span artifact: `fff-source-span-routing-review-pack-001`
+- Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
+- Classification counts: 28 useful spans, 6 weak spans, 2 overly broad spans, 0 missing source refs, 7 ambiguous routing rows, 3 guarded visual/source-sensitive rows, and 17 human-owned boundary rows.
+- Review Dedup result: review memory checked, axis set to `source_span_quality`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub request emitted.
+- Validation command: run the active manifest validation command, parse `artifacts/source-span-quality-audit-result.json`, regenerate the source-span review pack, validate adapter outputs, validate current/sample state, validate sample extraction payload, run extraction fixture validation, run MkDocs strict build, and run `git diff --check`.
+- Validation result: passed; active manifest validation parsed the audit JSON, confirmed 36 classified rows, regenerated the source-span review pack, validated adapter outputs, validated current/sample state, validated the sample extraction payload, ran extraction fixture validation, and preserved no model/API behavior.
+- Review status: `ready_for_optional_local_review`
+- Review input mode: `freeform`
+- Next action: Choose one bounded weak-span, broad-span, ambiguous-routing, or missing-fixture improvement before any model/API adapter work.

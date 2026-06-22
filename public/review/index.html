@@ -952,7 +952,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-review-memory-dedup-001</strong>. This slice adds review memory, Acceptance Ladder, Review Dedup Gate, and non-redundant Review Card rules while preserving <strong>fff-review-procedure-lock-001</strong>, <strong>fff-review-hub-ia-mode-split-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-source-span-quality-audit-001</strong>. This slice audits source-span usefulness and routing quality while preserving <strong>fff-review-memory-dedup-001</strong>, <strong>fff-review-procedure-lock-001</strong>, <strong>fff-review-hub-ia-mode-split-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -993,7 +993,8 @@
           <div class="progress-step done"><strong>Model/API boundary spec</strong><span class="tag green">done</span><p class="section-note">Define provider output, failure, retry, fallback, and validator gates before any model/API call.</p></div>
           <div class="progress-step done"><strong>Source-span routing review pack</strong><span class="tag green">done</span><p class="section-note">Compare fixture spans, routing, held defaults, and human-owned guards before freeform review.</p></div>
           <div class="progress-step done"><strong>Review procedure lock</strong><span class="tag green">done</span><p class="section-note">Fix what to open, what screenshots prove, when review is optional, and where access paths live.</p></div>
-          <div class="progress-step current"><strong>Review memory dedup</strong><span class="tag blue">current</span><p class="section-note">Track prior signal, accepted scope, next non-redundant axis, and when repeated review is allowed.</p></div>
+          <div class="progress-step done"><strong>Review memory dedup</strong><span class="tag green">done</span><p class="section-note">Track prior signal, accepted scope, next non-redundant axis, and when repeated review is allowed.</p></div>
+          <div class="progress-step current"><strong>Source-span quality audit</strong><span class="tag blue">current</span><p class="section-note">Classify useful spans, weak spans, broad spans, missing refs, ambiguous routing, guarded routes, and human-owned boundaries.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;" data-mode-panel="project">
@@ -1015,6 +1016,8 @@
               <li>Local deterministic extraction adapter expansion from three raw memo fixtures to validated Extraction Contract payloads.</li>
               <li>Model/API boundary spec with envelope, failure modes, retry/fallback policy, validator gates, and forbidden actions before provider work.</li>
               <li>Source-span routing review pack across three deterministic fixture outputs.</li>
+              <li>Review memory and dedup gate for non-redundant review asks.</li>
+              <li>Source-span quality audit classifying all 36 review-pack rows.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
@@ -1096,6 +1099,8 @@
                 <tr><td>Source-span review pack</td><td>artifacts/source-span-routing-review-pack.json</td></tr>
                 <tr><td>Source-span pack tool</td><td>tools/fff-source-span-review-pack.mjs</td></tr>
                 <tr><td>Source-span pack review</td><td>docs/review/source-span-routing-review-pack.md</td></tr>
+                <tr><td>Source-span quality audit</td><td>docs/review/source-span-quality-audit.md</td></tr>
+                <tr><td>Source-span quality result</td><td>artifacts/source-span-quality-audit-result.json</td></tr>
                 <tr><td>Review memory dedup</td><td>docs/review/review-memory-dedup.md</td></tr>
                 <tr><td>Review memory smoke</td><td>artifacts/review-memory-dedup-smoke-result.json</td></tr>
                 <tr><td>Review procedure</td><td>docs/review/review-procedure.md</td></tr>
@@ -1112,7 +1117,8 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows active artifact id <strong>fff-review-memory-dedup-001</strong>.</li>
+              <li>Confirm this hub shows active artifact id <strong>fff-source-span-quality-audit-001</strong>.</li>
+              <li>Use <strong>docs/review/source-span-quality-audit.md</strong> and <strong>artifacts/source-span-quality-audit-result.json</strong> for the non-redundant source-span quality axis.</li>
               <li>Use <strong>docs/review/review-memory-dedup.md</strong> before asking for another review of the same target, evidence, and axis.</li>
               <li>Use <strong>docs/review/review-procedure.md</strong> as the fixed review procedure and Review Debt map.</li>
               <li>Use the <strong>Source Audit / 抽出根拠レビュー</strong> mode to review fixture summaries, representative source spans, routing targets, held defaults, and human-owned guards.</li>
@@ -1184,6 +1190,17 @@
           </div>
 
           <div class="hub-grid" style="margin-top: 12px;">
+            <div class="hub-panel">
+              <h3>Quality audit</h3>
+              <ul class="hub-list">
+                <li>Active audit: <strong>fff-source-span-quality-audit-001</strong>.</li>
+                <li>Readback: <strong>artifacts/source-span-quality-audit-result.json</strong>.</li>
+                <li>Useful spans: 28; weak spans: 6; broad spans: 2.</li>
+                <li>Missing source refs: 0; ambiguous routing rows: 7.</li>
+                <li>Visual/source-sensitive guarded rows: 3; human-owned preserved rows: 17.</li>
+                <li>No Review Card emitted; this is Review Debt for a future bounded span, routing, or fixture change.</li>
+              </ul>
+            </div>
             <div class="hub-panel">
               <h3>Cross-fixture readback</h3>
               <ul class="hub-list">
@@ -1293,6 +1310,7 @@
             <span class="tag green">validator fixtures checked</span>
             <span class="tag green">local adapter smoke checked</span>
             <span class="tag green">source-span review pack visible</span>
+            <span class="tag green">source-span quality audit classified</span>
             <span class="tag green">v1.3 compliance visible</span>
             <span class="tag green">unresolved decisions visible</span>
             <span class="tag green">QA gates visible</span>
@@ -3505,7 +3523,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-review-memory-dedup-001",
+        activeArtifactId: "fff-source-span-quality-audit-001",
         preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
         preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
         preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -3544,6 +3562,18 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           elementCount: 36,
           sourceSpanMismatchCount: 0,
           reviewInputMode: "freeform"
+        },
+        sourceSpanQualityAudit: {
+          artifactId: "fff-source-span-quality-audit-001",
+          docPath: "docs/review/source-span-quality-audit.md",
+          resultPath: "artifacts/source-span-quality-audit-result.json",
+          usefulSpanCount: 28,
+          weakSpanCount: 6,
+          overlyBroadSpanCount: 2,
+          missingSourceRefCount: 0,
+          ambiguousRoutingCount: 7,
+          humanOwnedBoundaryPreservedCount: 17,
+          reviewCardEmitted: false
         },
         reviewMemory: {
           artifactId: "fff-review-memory-dedup-001",
@@ -4024,7 +4054,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-review-memory-dedup-001",
+          activeArtifactId: "fff-source-span-quality-audit-001",
           preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
           preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
           preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -4063,6 +4093,18 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             elementCount: 36,
             sourceSpanMismatchCount: 0,
             reviewInputMode: "freeform"
+          },
+          sourceSpanQualityAudit: {
+            artifactId: "fff-source-span-quality-audit-001",
+            docPath: "docs/review/source-span-quality-audit.md",
+            resultPath: "artifacts/source-span-quality-audit-result.json",
+            usefulSpanCount: 28,
+            weakSpanCount: 6,
+            overlyBroadSpanCount: 2,
+            missingSourceRefCount: 0,
+            ambiguousRoutingCount: 7,
+            humanOwnedBoundaryPreservedCount: 17,
+            reviewCardEmitted: false
           },
           reviewMemory: {
             artifactId: "fff-review-memory-dedup-001",

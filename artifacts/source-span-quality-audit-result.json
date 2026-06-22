@@ -1,0 +1,2018 @@
+{
+  "schemaVersion": "fff.sourceSpanQualityAudit.v1",
+  "artifact_id": "fff-source-span-quality-audit-001",
+  "title": "Fast Fiction Factory Source-Span Quality Audit",
+  "generatedAt": "2026-06-22T13:56:22+09:00",
+  "review_status": "ready_for_optional_local_review",
+  "review_input_mode": "freeform",
+  "source_artifact_id": "fff-source-span-routing-review-pack-001",
+  "source_pack_path": "artifacts/source-span-routing-review-pack.json",
+  "review_doc_path": "docs/review/source-span-quality-audit.md",
+  "repo_relative_path": "public/review/index.html",
+  "review_memory_checked": {
+    "source_memory_artifact_id": "fff-review-memory-dedup-001",
+    "checked": true,
+    "target": "fff-source-span-routing-review-pack-001",
+    "axis": "source_span_quality",
+    "prior_review_count": 0,
+    "prior_signal_summary": "The source-span routing review pack was generated and automated guards passed, but human quality acceptance of span usefulness and routing judgment was not recorded.",
+    "what_changed": "This slice classifies the existing 36 source-span rows into usefulness, weak-span, overly-broad-span, missing-ref, ambiguous-routing, guarded-unsafe-route, and human-owned-boundary categories.",
+    "what_this_review_decides": "No user review is required now; this audit decides which non-redundant span/routing issues are concrete enough for a future bounded fixture or routing fix.",
+    "not_asking": [
+      "general Review Hub review",
+      "repeat review of access procedure or four-mode IA",
+      "production acceptance",
+      "model/API implementation approval",
+      "canon decisions for Toma fate, brass moth truth, or Council motive"
+    ],
+    "next_nonredundant_axis": "one bounded weak-span, broad-span, or ambiguous-routing fix, or one missing fixture class"
+  },
+  "review_dedup_gate_result": {
+    "same_target_check": "changed_axis_from_reachability_to_source_span_quality",
+    "same_axis_check": "passes_new_axis",
+    "evidence_changed_check": "passes_new_classification_artifact_from_existing_pack",
+    "decision_value_check": "passes_identifies_concrete_next_fixture_or_routing_work",
+    "prior_signal_check": "passes_prior_signal_does_not_accept_quality",
+    "user_fatigue_check": "passes_no_review_card_emitted",
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "review_debt_recorded": true
+  },
+  "summary": {
+    "fixture_count": 3,
+    "total_elements": 36,
+    "rows_classified": 36,
+    "useful_span_count": 28,
+    "weak_span_count": 6,
+    "overly_broad_span_count": 2,
+    "missing_source_ref_count": 0,
+    "ambiguous_routing_count": 7,
+    "unsafe_routing_guarded_count": 3,
+    "human_owned_boundary_preserved_count": 17,
+    "source_span_mismatches": 0,
+    "missing_source_refs_from_pack": 0,
+    "unsafe_visual_routing_from_pack": 0,
+    "non_held_review_defaults": 0,
+    "human_owned_decision_adopt_suggestions": 0,
+    "passed": true
+  },
+  "classification_rules": {
+    "useful_span": "source span matches the raw memo, has source refs, and is neither marked weak nor overly broad in this qualitative pass",
+    "weak_span": "span is valid but too thin for the routing/decision it supports without surrounding context",
+    "overly_broad_span": "span is valid but carries a larger clause or multiple unresolved alternatives that should be narrowed or split later",
+    "missing_source_ref": "source ref is absent or unresolved; current audit found none",
+    "ambiguous_routing": "routing is guarded but may ask one row to serve too many review surfaces",
+    "unsafe_routing_guarded": "visual/source-sensitive routing remains review-held and covered by existing guards; current audit found no unsafe failure",
+    "human_owned_boundary_preserved": "row touches protected human-owned decisions and remains held instead of adopt/provisional"
+  },
+  "category_counts": {
+    "useful_span": 28,
+    "weak_span": 6,
+    "overly_broad_span": 2,
+    "missing_source_ref": 0,
+    "ambiguous_routing": 7,
+    "unsafe_routing_guarded": 3,
+    "human_owned_boundary_preserved": 17
+  },
+  "categories": {
+    "useful_span": [
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-person-mira",
+        "element_type": "person",
+        "extracted_value": "Mira Vale",
+        "raw_source_snippet": "Mira Vale repairs clocks",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-person-toma",
+        "element_type": "person",
+        "extracted_value": "Toma",
+        "raw_source_snippet": "missing brother Toma",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-organization-council",
+        "element_type": "organization",
+        "extracted_value": "city council",
+        "raw_source_snippet": "city council has been selling minutes",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Human Review"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-event-917",
+        "element_type": "event",
+        "extracted_value": "arcade closes at 9:17",
+        "raw_source_snippet": "closes every night at 9:17",
+        "routing_targets": [
+          "Claim",
+          "Timeline"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-object-brass-moth",
+        "element_type": "object",
+        "extracted_value": "brass moth",
+        "raw_source_snippet": "brass moth in the workshop drawer",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-concept-stolen-minutes",
+        "element_type": "concept",
+        "extracted_value": "selling minutes from abandoned lives",
+        "raw_source_snippet": "selling minutes from abandoned lives",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-placeholder-magic",
+        "element_type": "placeholder",
+        "extracted_value": "magic explanation placeholder",
+        "raw_source_snippet": "Do not explain the magic too early",
+        "routing_targets": [
+          "Profile",
+          "Human Review"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-source-raw-memo",
+        "element_type": "source_reference",
+        "extracted_value": "sample raw memo",
+        "raw_source_snippet": "Working title: The Clockmaker Under Glass",
+        "routing_targets": [
+          "Source Reference"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-unresolved-council-motive",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Council motive",
+        "raw_source_snippet": "Council motive is unresolved",
+        "routing_targets": [
+          "Human Review",
+          "Claim",
+          "Timeline"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-person-rowan",
+        "element_type": "person",
+        "extracted_value": "Rowan Ise",
+        "raw_source_snippet": "apprentice Rowan Ise",
+        "routing_targets": [
+          "Profile",
+          "Timeline"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-person-mira",
+        "element_type": "person",
+        "extracted_value": "Mira Vale",
+        "raw_source_snippet": "Mira Vale hides the repair log",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-organization-archivists",
+        "element_type": "organization",
+        "extracted_value": "Council archivists",
+        "raw_source_snippet": "Council archivists offer Mira a permit",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Human Review"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-event-rowan-waits",
+        "element_type": "event",
+        "extracted_value": "Rowan waits at 9:17",
+        "raw_source_snippet": "At 9:17, apprentice Rowan Ise waits",
+        "routing_targets": [
+          "Claim",
+          "Timeline"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-object-brass-moth",
+        "element_type": "object",
+        "extracted_value": "brass moth",
+        "raw_source_snippet": "The brass moth flickers like a warning",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-concept-abandoned-lives",
+        "element_type": "concept",
+        "extracted_value": "abandoned lives still pay minutes",
+        "raw_source_snippet": "abandoned lives still pay minutes",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-document-paper-map",
+        "element_type": "document",
+        "extracted_value": "paper map of the under-arcade cabinet",
+        "raw_source_snippet": "A paper map of the under-arcade cabinet",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-visual-moth-warning",
+        "element_type": "visual_asset",
+        "extracted_value": "flickering brass moth visual",
+        "raw_source_snippet": "brass moth flickers like a warning",
+        "routing_targets": [
+          "Profile",
+          "Timeline",
+          "Visual"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-source-council-minutes",
+        "element_type": "source_reference",
+        "extracted_value": "council minutes edge memo",
+        "raw_source_snippet": "Adapter Fixture: Council Minutes Edge",
+        "routing_targets": [
+          "Source Reference"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-unresolved-council-motive",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Council motive",
+        "raw_source_snippet": "Council motive remains unresolved",
+        "routing_targets": [
+          "Human Review",
+          "Claim"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-person-mira",
+        "element_type": "person",
+        "extracted_value": "Mira Vale",
+        "raw_source_snippet": "Mira Vale writes a repair log",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-person-toma",
+        "element_type": "person",
+        "extracted_value": "Toma",
+        "raw_source_snippet": "Toma's last route",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-organization-archive-office",
+        "element_type": "organization",
+        "extracted_value": "city council archive office",
+        "raw_source_snippet": "city council archive office",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Human Review"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-event-closing-repeat",
+        "element_type": "event",
+        "extracted_value": "closing bell repeats three times",
+        "raw_source_snippet": "closing bell repeats three times",
+        "routing_targets": [
+          "Claim",
+          "Timeline"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-concept-borrowed-minutes",
+        "element_type": "concept",
+        "extracted_value": "borrowed minutes from abandoned lives",
+        "raw_source_snippet": "borrowed minutes from abandoned lives",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-visual-bellless-tower",
+        "element_type": "visual_asset",
+        "extracted_value": "bellless tower silhouette",
+        "raw_source_snippet": "bellless tower silhouette",
+        "routing_targets": [
+          "Profile",
+          "Timeline",
+          "Visual"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-placeholder-moth-function",
+        "element_type": "placeholder",
+        "extracted_value": "moth function unanswered",
+        "raw_source_snippet": "Keep the moth's function unanswered",
+        "routing_targets": [
+          "Profile",
+          "Human Review"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-source-observatory-ledger",
+        "element_type": "source_reference",
+        "extracted_value": "observatory ledger edge memo",
+        "raw_source_snippet": "Adapter Fixture: Observatory Ledger Edge",
+        "routing_targets": [
+          "Source Reference"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-unresolved-toma-fate",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Toma fate",
+        "raw_source_snippet": "Toma fate stays unresolved",
+        "routing_targets": [
+          "Human Review",
+          "Timeline"
+        ],
+        "reason": "Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      }
+    ],
+    "weak_span": [
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-place-north-bell",
+        "element_type": "place",
+        "extracted_value": "North Bell Station",
+        "raw_source_snippet": "North Bell Station",
+        "routing_targets": [
+          "Profile",
+          "Timeline"
+        ],
+        "reason": "Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-document-ledger",
+        "element_type": "document",
+        "extracted_value": "ledger of minutes",
+        "raw_source_snippet": "ledger of minutes",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-place-glass-arcade",
+        "element_type": "place",
+        "extracted_value": "glass arcade",
+        "raw_source_snippet": "glass arcade",
+        "routing_targets": [
+          "Profile",
+          "Timeline"
+        ],
+        "reason": "Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-place-north-bell",
+        "element_type": "place",
+        "extracted_value": "North Bell Station",
+        "raw_source_snippet": "North Bell Station",
+        "routing_targets": [
+          "Profile",
+          "Timeline"
+        ],
+        "reason": "Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-object-brass-moth-key",
+        "element_type": "object",
+        "extracted_value": "brass moth key",
+        "raw_source_snippet": "brass moth key",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-document-ledger-page",
+        "element_type": "document",
+        "extracted_value": "ledger page",
+        "raw_source_snippet": "A ledger page",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      }
+    ],
+    "overly_broad_span": [
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-visual-observatory",
+        "element_type": "visual_asset",
+        "extracted_value": "observatory rings without a bell",
+        "raw_source_snippet": "still rings at noon even though its bell was removed",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Visual"
+        ],
+        "reason": "Span resolves but carries a larger clause or multiple alternatives, so a narrower source window would reduce review ambiguity."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-placeholder-proof-bait",
+        "element_type": "placeholder",
+        "extracted_value": "proof, bait, or false record placeholder",
+        "raw_source_snippet": "do not decide whether it is proof, bait, or a false record",
+        "routing_targets": [
+          "Profile",
+          "Human Review"
+        ],
+        "reason": "Span resolves but carries a larger clause or multiple alternatives, so a narrower source window would reduce review ambiguity."
+      }
+    ],
+    "missing_source_ref": [],
+    "ambiguous_routing": [
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-object-brass-moth",
+        "element_type": "object",
+        "extracted_value": "brass moth",
+        "raw_source_snippet": "brass moth in the workshop drawer",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-visual-observatory",
+        "element_type": "visual_asset",
+        "extracted_value": "observatory rings without a bell",
+        "raw_source_snippet": "still rings at noon even though its bell was removed",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Visual"
+        ],
+        "reason": "Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-unresolved-council-motive",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Council motive",
+        "raw_source_snippet": "Council motive is unresolved",
+        "routing_targets": [
+          "Human Review",
+          "Claim",
+          "Timeline"
+        ],
+        "reason": "Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-object-brass-moth",
+        "element_type": "object",
+        "extracted_value": "brass moth",
+        "raw_source_snippet": "The brass moth flickers like a warning",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-unresolved-council-motive",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Council motive",
+        "raw_source_snippet": "Council motive remains unresolved",
+        "routing_targets": [
+          "Human Review",
+          "Claim"
+        ],
+        "reason": "Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-object-brass-moth-key",
+        "element_type": "object",
+        "extracted_value": "brass moth key",
+        "raw_source_snippet": "brass moth key",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-unresolved-toma-fate",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Toma fate",
+        "raw_source_snippet": "Toma fate stays unresolved",
+        "routing_targets": [
+          "Human Review",
+          "Timeline"
+        ],
+        "reason": "Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it."
+      }
+    ],
+    "unsafe_routing_guarded": [
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-visual-observatory",
+        "element_type": "visual_asset",
+        "extracted_value": "observatory rings without a bell",
+        "raw_source_snippet": "still rings at noon even though its bell was removed",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Visual"
+        ],
+        "reason": "Visual/source-sensitive route remains review-held and covered by visual routing guards; no unsafe routing failure is present in the pack."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-visual-moth-warning",
+        "element_type": "visual_asset",
+        "extracted_value": "flickering brass moth visual",
+        "raw_source_snippet": "brass moth flickers like a warning",
+        "routing_targets": [
+          "Profile",
+          "Timeline",
+          "Visual"
+        ],
+        "reason": "Visual/source-sensitive route remains review-held and covered by visual routing guards; no unsafe routing failure is present in the pack."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-visual-bellless-tower",
+        "element_type": "visual_asset",
+        "extracted_value": "bellless tower silhouette",
+        "raw_source_snippet": "bellless tower silhouette",
+        "routing_targets": [
+          "Profile",
+          "Timeline",
+          "Visual"
+        ],
+        "reason": "Visual/source-sensitive route remains review-held and covered by visual routing guards; no unsafe routing failure is present in the pack."
+      }
+    ],
+    "human_owned_boundary_preserved": [
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-person-toma",
+        "element_type": "person",
+        "extracted_value": "Toma",
+        "raw_source_snippet": "missing brother Toma",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-organization-council",
+        "element_type": "organization",
+        "extracted_value": "city council",
+        "raw_source_snippet": "city council has been selling minutes",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-object-brass-moth",
+        "element_type": "object",
+        "extracted_value": "brass moth",
+        "raw_source_snippet": "brass moth in the workshop drawer",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-concept-stolen-minutes",
+        "element_type": "concept",
+        "extracted_value": "selling minutes from abandoned lives",
+        "raw_source_snippet": "selling minutes from abandoned lives",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-placeholder-magic",
+        "element_type": "placeholder",
+        "extracted_value": "magic explanation placeholder",
+        "raw_source_snippet": "Do not explain the magic too early",
+        "routing_targets": [
+          "Profile",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-unresolved-council-motive",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Council motive",
+        "raw_source_snippet": "Council motive is unresolved",
+        "routing_targets": [
+          "Human Review",
+          "Claim",
+          "Timeline"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-organization-archivists",
+        "element_type": "organization",
+        "extracted_value": "Council archivists",
+        "raw_source_snippet": "Council archivists offer Mira a permit",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-object-brass-moth",
+        "element_type": "object",
+        "extracted_value": "brass moth",
+        "raw_source_snippet": "The brass moth flickers like a warning",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-concept-abandoned-lives",
+        "element_type": "concept",
+        "extracted_value": "abandoned lives still pay minutes",
+        "raw_source_snippet": "abandoned lives still pay minutes",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-placeholder-proof-bait",
+        "element_type": "placeholder",
+        "extracted_value": "proof, bait, or false record placeholder",
+        "raw_source_snippet": "do not decide whether it is proof, bait, or a false record",
+        "routing_targets": [
+          "Profile",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-unresolved-council-motive",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Council motive",
+        "raw_source_snippet": "Council motive remains unresolved",
+        "routing_targets": [
+          "Human Review",
+          "Claim"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-person-toma",
+        "element_type": "person",
+        "extracted_value": "Toma",
+        "raw_source_snippet": "Toma's last route",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-organization-archive-office",
+        "element_type": "organization",
+        "extracted_value": "city council archive office",
+        "raw_source_snippet": "city council archive office",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-object-brass-moth-key",
+        "element_type": "object",
+        "extracted_value": "brass moth key",
+        "raw_source_snippet": "brass moth key",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-concept-borrowed-minutes",
+        "element_type": "concept",
+        "extracted_value": "borrowed minutes from abandoned lives",
+        "raw_source_snippet": "borrowed minutes from abandoned lives",
+        "routing_targets": [
+          "Profile",
+          "Claim"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-placeholder-moth-function",
+        "element_type": "placeholder",
+        "extracted_value": "moth function unanswered",
+        "raw_source_snippet": "Keep the moth's function unanswered",
+        "routing_targets": [
+          "Profile",
+          "Human Review"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-unresolved-toma-fate",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Toma fate",
+        "raw_source_snippet": "Toma fate stays unresolved",
+        "routing_targets": [
+          "Human Review",
+          "Timeline"
+        ],
+        "reason": "Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      }
+    ]
+  },
+  "row_classifications": [
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-person-mira",
+      "element_type": "person",
+      "extracted_value": "Mira Vale",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=91-115",
+      "raw_source_snippet": "Mira Vale repairs clocks",
+      "routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.95,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-person-toma",
+      "element_type": "person",
+      "extracted_value": "Toma",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=171-191",
+      "raw_source_snippet": "missing brother Toma",
+      "routing_targets": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "confidence": 0.9,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-place-north-bell",
+      "element_type": "place",
+      "extracted_value": "North Bell Station",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=345-363",
+      "raw_source_snippet": "North Bell Station",
+      "routing_targets": [
+        "Profile",
+        "Timeline"
+      ],
+      "confidence": 0.91,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "weak_span"
+      ],
+      "decision_note": [
+        "weak_span: Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-organization-council",
+      "element_type": "organization",
+      "extracted_value": "city council",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=258-295",
+      "raw_source_snippet": "city council has been selling minutes",
+      "routing_targets": [
+        "Profile",
+        "Claim",
+        "Human Review"
+      ],
+      "confidence": 0.9,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-event-917",
+      "element_type": "event",
+      "extracted_value": "arcade closes at 9:17",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=139-165",
+      "raw_source_snippet": "closes every night at 9:17",
+      "routing_targets": [
+        "Claim",
+        "Timeline"
+      ],
+      "confidence": 0.96,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-object-brass-moth",
+      "element_type": "object",
+      "extracted_value": "brass moth",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=199-232",
+      "raw_source_snippet": "brass moth in the workshop drawer",
+      "routing_targets": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "confidence": 0.95,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "ambiguous_routing",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "ambiguous_routing: Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-concept-stolen-minutes",
+      "element_type": "concept",
+      "extracted_value": "selling minutes from abandoned lives",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=280-316",
+      "raw_source_snippet": "selling minutes from abandoned lives",
+      "routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.88,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-document-ledger",
+      "element_type": "document",
+      "extracted_value": "ledger of minutes",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=583-600",
+      "raw_source_snippet": "ledger of minutes",
+      "routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.84,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "weak_span"
+      ],
+      "decision_note": [
+        "weak_span: Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-visual-observatory",
+      "element_type": "visual_asset",
+      "extracted_value": "observatory rings without a bell",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=364-416",
+      "raw_source_snippet": "still rings at noon even though its bell was removed",
+      "routing_targets": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Visual"
+      ],
+      "confidence": 0.78,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "visual_review_only"
+      ],
+      "quality_tags": [
+        "overly_broad_span",
+        "ambiguous_routing",
+        "unsafe_routing_guarded"
+      ],
+      "decision_note": [
+        "overly_broad_span: Span resolves but carries a larger clause or multiple alternatives, so a narrower source window would reduce review ambiguity.",
+        "ambiguous_routing: Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it.",
+        "unsafe_routing_guarded: Visual/source-sensitive route remains review-held and covered by visual routing guards; no unsafe routing failure is present in the pack."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-placeholder-magic",
+      "element_type": "placeholder",
+      "extracted_value": "magic explanation placeholder",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=914-948",
+      "raw_source_snippet": "Do not explain the magic too early",
+      "routing_targets": [
+        "Profile",
+        "Human Review"
+      ],
+      "confidence": 0.7,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-source-raw-memo",
+      "element_type": "source_reference",
+      "extracted_value": "sample raw memo",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=47-88",
+      "raw_source_snippet": "Working title: The Clockmaker Under Glass",
+      "routing_targets": [
+        "Source Reference"
+      ],
+      "confidence": 1,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-unresolved-council-motive",
+      "element_type": "unresolved_decision",
+      "extracted_value": "Council motive",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=756-784",
+      "raw_source_snippet": "Council motive is unresolved",
+      "routing_targets": [
+        "Human Review",
+        "Claim",
+        "Timeline"
+      ],
+      "confidence": 0.86,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "ambiguous_routing",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "ambiguous_routing: Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-person-rowan",
+      "element_type": "person",
+      "extracted_value": "Rowan Ise",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=50-70",
+      "raw_source_snippet": "apprentice Rowan Ise",
+      "routing_targets": [
+        "Profile",
+        "Timeline"
+      ],
+      "confidence": 0.9,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-person-mira",
+      "element_type": "person",
+      "extracted_value": "Mira Vale",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=103-133",
+      "raw_source_snippet": "Mira Vale hides the repair log",
+      "routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.88,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-place-glass-arcade",
+      "element_type": "place",
+      "extracted_value": "glass arcade",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=84-96",
+      "raw_source_snippet": "glass arcade",
+      "routing_targets": [
+        "Profile",
+        "Timeline"
+      ],
+      "confidence": 0.91,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "weak_span"
+      ],
+      "decision_note": [
+        "weak_span: Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-organization-archivists",
+      "element_type": "organization",
+      "extracted_value": "Council archivists",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=136-174",
+      "raw_source_snippet": "Council archivists offer Mira a permit",
+      "routing_targets": [
+        "Profile",
+        "Claim",
+        "Human Review"
+      ],
+      "confidence": 0.84,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-event-rowan-waits",
+      "element_type": "event",
+      "extracted_value": "Rowan waits at 9:17",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=41-76",
+      "raw_source_snippet": "At 9:17, apprentice Rowan Ise waits",
+      "routing_targets": [
+        "Claim",
+        "Timeline"
+      ],
+      "confidence": 0.85,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-object-brass-moth",
+      "element_type": "object",
+      "extracted_value": "brass moth",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=364-402",
+      "raw_source_snippet": "The brass moth flickers like a warning",
+      "routing_targets": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "confidence": 0.9,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "ambiguous_routing",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "ambiguous_routing: Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-concept-abandoned-lives",
+      "element_type": "concept",
+      "extracted_value": "abandoned lives still pay minutes",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=199-232",
+      "raw_source_snippet": "abandoned lives still pay minutes",
+      "routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.82,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-document-paper-map",
+      "element_type": "document",
+      "extracted_value": "paper map of the under-arcade cabinet",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=253-292",
+      "raw_source_snippet": "A paper map of the under-arcade cabinet",
+      "routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.8,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-visual-moth-warning",
+      "element_type": "visual_asset",
+      "extracted_value": "flickering brass moth visual",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=368-402",
+      "raw_source_snippet": "brass moth flickers like a warning",
+      "routing_targets": [
+        "Profile",
+        "Timeline",
+        "Visual"
+      ],
+      "confidence": 0.76,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "visual_review_only"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "unsafe_routing_guarded"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "unsafe_routing_guarded: Visual/source-sensitive route remains review-held and covered by visual routing guards; no unsafe routing failure is present in the pack."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-placeholder-proof-bait",
+      "element_type": "placeholder",
+      "extracted_value": "proof, bait, or false record placeholder",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=408-466",
+      "raw_source_snippet": "do not decide whether it is proof, bait, or a false record",
+      "routing_targets": [
+        "Profile",
+        "Human Review"
+      ],
+      "confidence": 0.79,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "overly_broad_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "overly_broad_span: Span resolves but carries a larger clause or multiple alternatives, so a narrower source window would reduce review ambiguity.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-source-council-minutes",
+      "element_type": "source_reference",
+      "extracted_value": "council minutes edge memo",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=2-39",
+      "raw_source_snippet": "Adapter Fixture: Council Minutes Edge",
+      "routing_targets": [
+        "Source Reference"
+      ],
+      "confidence": 1,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-unresolved-council-motive",
+      "element_type": "unresolved_decision",
+      "extracted_value": "Council motive",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=563-596",
+      "raw_source_snippet": "Council motive remains unresolved",
+      "routing_targets": [
+        "Human Review",
+        "Claim"
+      ],
+      "confidence": 0.87,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "ambiguous_routing",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "ambiguous_routing: Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-person-mira",
+      "element_type": "person",
+      "extracted_value": "Mira Vale",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=44-73",
+      "raw_source_snippet": "Mira Vale writes a repair log",
+      "routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.93,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-person-toma",
+      "element_type": "person",
+      "extracted_value": "Toma",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=252-269",
+      "raw_source_snippet": "Toma's last route",
+      "routing_targets": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "confidence": 0.86,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-place-north-bell",
+      "element_type": "place",
+      "extracted_value": "North Bell Station",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=106-124",
+      "raw_source_snippet": "North Bell Station",
+      "routing_targets": [
+        "Profile",
+        "Timeline"
+      ],
+      "confidence": 0.9,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "weak_span"
+      ],
+      "decision_note": [
+        "weak_span: Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-organization-archive-office",
+      "element_type": "organization",
+      "extracted_value": "city council archive office",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=308-335",
+      "raw_source_snippet": "city council archive office",
+      "routing_targets": [
+        "Profile",
+        "Claim",
+        "Human Review"
+      ],
+      "confidence": 0.84,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-event-closing-repeat",
+      "element_type": "event",
+      "extracted_value": "closing bell repeats three times",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=217-249",
+      "raw_source_snippet": "closing bell repeats three times",
+      "routing_targets": [
+        "Claim",
+        "Timeline"
+      ],
+      "confidence": 0.78,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-object-brass-moth-key",
+      "element_type": "object",
+      "extracted_value": "brass moth key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=288-302",
+      "raw_source_snippet": "brass moth key",
+      "routing_targets": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "confidence": 0.89,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "weak_span",
+        "ambiguous_routing",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "weak_span: Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context.",
+        "ambiguous_routing: Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-concept-borrowed-minutes",
+      "element_type": "concept",
+      "extracted_value": "borrowed minutes from abandoned lives",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=481-518",
+      "raw_source_snippet": "borrowed minutes from abandoned lives",
+      "routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.82,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-document-ledger-page",
+      "element_type": "document",
+      "extracted_value": "ledger page",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=461-474",
+      "raw_source_snippet": "A ledger page",
+      "routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.8,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "weak_span"
+      ],
+      "decision_note": [
+        "weak_span: Span resolves but is mostly a bare entity/title or too short to justify all review destinations without opening surrounding memo context."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-visual-bellless-tower",
+      "element_type": "visual_asset",
+      "extracted_value": "bellless tower silhouette",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=409-434",
+      "raw_source_snippet": "bellless tower silhouette",
+      "routing_targets": [
+        "Profile",
+        "Timeline",
+        "Visual"
+      ],
+      "confidence": 0.73,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "visual_review_only"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "unsafe_routing_guarded"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "unsafe_routing_guarded: Visual/source-sensitive route remains review-held and covered by visual routing guards; no unsafe routing failure is present in the pack."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-placeholder-moth-function",
+      "element_type": "placeholder",
+      "extracted_value": "moth function unanswered",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=521-556",
+      "raw_source_snippet": "Keep the moth's function unanswered",
+      "routing_targets": [
+        "Profile",
+        "Human Review"
+      ],
+      "confidence": 0.75,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-source-observatory-ledger",
+      "element_type": "source_reference",
+      "extracted_value": "observatory ledger edge memo",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=2-42",
+      "raw_source_snippet": "Adapter Fixture: Observatory Ledger Edge",
+      "routing_targets": [
+        "Source Reference"
+      ],
+      "confidence": 1,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "quality_tags": [
+        "useful_span"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt."
+      ]
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-unresolved-toma-fate",
+      "element_type": "unresolved_decision",
+      "extracted_value": "Toma fate",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=558-584",
+      "raw_source_snippet": "Toma fate stays unresolved",
+      "routing_targets": [
+        "Human Review",
+        "Timeline"
+      ],
+      "confidence": 0.86,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "quality_tags": [
+        "useful_span",
+        "ambiguous_routing",
+        "human_owned_boundary_preserved"
+      ],
+      "decision_note": [
+        "useful_span: Span resolves to the raw memo, carries a source ref, and gives enough local wording for the current route without needing a broader excerpt.",
+        "ambiguous_routing: Route is guarded but spans multiple decision surfaces, so future review should decide whether one destination is primary or whether a fixture should split it.",
+        "human_owned_boundary_preserved: Row touches Toma fate, brass moth truth, Council motive, or another high-risk decision and remains held for human review."
+      ]
+    }
+  ],
+  "routing_audit": {
+    "visual_asset_rows": [
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-visual-observatory",
+        "extracted_value": "observatory rings without a bell",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Visual"
+        ],
+        "quality_tags": [
+          "overly_broad_span",
+          "ambiguous_routing",
+          "unsafe_routing_guarded"
+        ]
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-visual-moth-warning",
+        "extracted_value": "flickering brass moth visual",
+        "routing_targets": [
+          "Profile",
+          "Timeline",
+          "Visual"
+        ],
+        "quality_tags": [
+          "useful_span",
+          "unsafe_routing_guarded"
+        ]
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-visual-bellless-tower",
+        "extracted_value": "bellless tower silhouette",
+        "routing_targets": [
+          "Profile",
+          "Timeline",
+          "Visual"
+        ],
+        "quality_tags": [
+          "useful_span",
+          "unsafe_routing_guarded"
+        ]
+      }
+    ],
+    "guarded_multi_surface_rows": [
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-object-brass-moth",
+        "element_type": "object",
+        "extracted_value": "brass moth",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "human_owned_guard": "held_human_review_required"
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-visual-observatory",
+        "element_type": "visual_asset",
+        "extracted_value": "observatory rings without a bell",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Visual"
+        ],
+        "human_owned_guard": "none"
+      },
+      {
+        "fixture_id": "clockmaker-sample",
+        "id": "local-x-unresolved-council-motive",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Council motive",
+        "routing_targets": [
+          "Human Review",
+          "Claim",
+          "Timeline"
+        ],
+        "human_owned_guard": "held_human_review_required"
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-object-brass-moth",
+        "element_type": "object",
+        "extracted_value": "brass moth",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "human_owned_guard": "held_human_review_required"
+      },
+      {
+        "fixture_id": "council-minutes-edge",
+        "id": "minutes-x-unresolved-council-motive",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Council motive",
+        "routing_targets": [
+          "Human Review",
+          "Claim"
+        ],
+        "human_owned_guard": "held_human_review_required"
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-object-brass-moth-key",
+        "element_type": "object",
+        "extracted_value": "brass moth key",
+        "routing_targets": [
+          "Profile",
+          "Claim",
+          "Timeline",
+          "Human Review"
+        ],
+        "human_owned_guard": "held_human_review_required"
+      },
+      {
+        "fixture_id": "observatory-ledger-edge",
+        "id": "edge-x-unresolved-toma-fate",
+        "element_type": "unresolved_decision",
+        "extracted_value": "Toma fate",
+        "routing_targets": [
+          "Human Review",
+          "Timeline"
+        ],
+        "human_owned_guard": "held_human_review_required"
+      }
+    ],
+    "pack_guard_readback": {
+      "unsafe_visual_routing": 0,
+      "non_held_review_defaults": 0,
+      "human_owned_decision_adopt_suggestions": 0,
+      "review_held_elements": 36,
+      "human_owned_guarded_elements": 17
+    }
+  },
+  "review_debt": [
+    {
+      "debt": "weak_span_examples",
+      "current_state": "6 valid spans need more surrounding context or a narrower follow-up fixture before they can prove routing usefulness by themselves.",
+      "next_move": "Pick one weak row and either widen the span slightly or add a fixture that supplies surrounding context."
+    },
+    {
+      "debt": "overly_broad_span_examples",
+      "current_state": "2 valid spans carry too much clause-level information for a compact review surface.",
+      "next_move": "Split broad visual/placeholder spans into narrower evidence and unresolved-decision rows."
+    },
+    {
+      "debt": "ambiguous_routing_examples",
+      "current_state": "7 rows are guarded but route across multiple decision surfaces.",
+      "next_move": "Decide primary route or split target destinations only after a bounded fixture change, not a general review request."
+    },
+    {
+      "debt": "missing_fixture_classes",
+      "current_state": "The prior pack still lacks contradictory claims, broad spans, malformed spans, multilingual text, sparse bullets, and provider envelope cases.",
+      "next_move": "Add one fixture class at a time after choosing which audit category creates the most review friction."
+    }
+  ],
+  "validation": {
+    "json_parse_expected": true,
+    "source_pack_passed": true,
+    "total_rows_match_pack": true,
+    "missing_source_refs_match_pack": true,
+    "human_owned_guarded_matches_pack": true,
+    "no_model_api_behavior_added": true,
+    "no_external_call_required": true,
+    "canon_boundaries_preserved": true
+  },
+  "passed": true
+}
