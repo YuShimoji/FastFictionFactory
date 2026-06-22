@@ -10,6 +10,40 @@ type SourceTrust = "author_memo" | "derived_candidate" | "external_unverified" |
 type GateStatus = "pass" | "warn" | "block" | "not_checked";
 ```
 
+## Review Memory Metadata
+
+`fff-review-memory-dedup-001` adds manifest-level review memory metadata. It is not project state, not canon, and not database persistence. Its job is to prevent repeated Review Cards for the same target, evidence, and axis.
+
+```ts
+type ReviewMemory = {
+  artifact_id: string;
+  subject: string;
+  current_scope: string;
+  prior_review_count: number;
+  latest_user_signal: "none_recorded" | "candidate_seen" | "positive_signal" | "diagnostic_representative_accept" | "provisional_baseline" | string;
+  latest_user_signal_summary: string;
+  accepted_scope: string[];
+  not_accepted_scope: string[];
+  next_nonredundant_axis: string;
+  repeated_review_allowed: boolean;
+  review_reset_trigger: string[];
+};
+
+type NonRedundantReviewCard = {
+  target: string;
+  axis: string;
+  prior_review_count: number;
+  prior_signal_summary: string;
+  what_changed: string;
+  what_this_review_decides: string;
+  input_mode: "freeform";
+  not_asking: string[];
+  completion_signal: string;
+};
+```
+
+Review memory can narrow or suppress repeated review requests. It cannot promote candidates into canon, imply source-span quality acceptance, authorize model/API calls, or approve production release.
+
 ## Portable Project State Envelope
 
 The JSON export/import and local file persistence slices use a versioned envelope. Unknown imported top-level fields are not applied to the UI, but they are preserved under `metadata.importedUnknownFields` on the next export.

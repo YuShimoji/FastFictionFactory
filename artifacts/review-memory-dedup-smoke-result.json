@@ -1,0 +1,62 @@
+{
+  "artifact_id": "fff-review-memory-dedup-001",
+  "schemaVersion": "fff.reviewMemoryDedupSmoke.v1",
+  "generatedAt": "2026-06-22T13:45:00+09:00",
+  "passed": true,
+  "failures": [],
+  "checks": {
+    "reviewMemoryDocPresent": true,
+    "reviewMemoryFieldsPresent": true,
+    "procedureLockMemoryPresent": true,
+    "hubIaMemoryPresent": true,
+    "sourceSpanMemoryPresent": true,
+    "acceptanceLadderDocumented": true,
+    "dedupGateDocumented": true,
+    "nonRedundantReviewCardDocumented": true,
+    "freeformReviewPreserved": true,
+    "noRepeatedReviewCardRequired": true,
+    "noModelApiWorkAdded": true,
+    "noMojibakeTargetGuidancePresent": true,
+    "noPseudoGitTagGuidancePresent": true
+  },
+  "requiredReviewMemoryFields": [
+    "artifact_id",
+    "subject",
+    "current_scope",
+    "prior_review_count",
+    "latest_user_signal",
+    "latest_user_signal_summary",
+    "accepted_scope",
+    "not_accepted_scope",
+    "next_nonredundant_axis",
+    "repeated_review_allowed",
+    "review_reset_trigger"
+  ],
+  "reviewCardRequiredFields": [
+    "target",
+    "axis",
+    "prior_review_count",
+    "prior_signal_summary",
+    "what_changed",
+    "what_this_review_decides",
+    "input_mode",
+    "not_asking",
+    "completion_signal"
+  ],
+  "preservedArtifacts": [
+    "fff-review-procedure-lock-001",
+    "fff-review-hub-ia-mode-split-001",
+    "fff-source-span-routing-review-pack-001",
+    "fff-model-api-boundary-spec-001",
+    "fff-local-extraction-adapter-expansion-001",
+    "fff-extraction-validator-hardening-001",
+    "fff-extraction-contract-001"
+  ],
+  "notes": "Static Review Memory Dedup smoke. Confirms review_memory fields, Acceptance Ladder, Review Dedup Gate, Non-Redundant Review Card requirements, freeform review, no repeated review requirement, and no model/API behavior.",
+  "validation": {
+    "manifestCommand": "passed",
+    "mkdocsStrict": "passed",
+    "gitDiffCheck": "passed",
+    "revListHeadOriginMasterBeforeCommit": "0 0"
+  }
+}

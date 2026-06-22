@@ -30,6 +30,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Model/API boundary spec | Ready for local review | [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md) | `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json` |
 | Source-span routing review pack | Ready for local review | [`review/source-span-routing-review-pack.md`](review/source-span-routing-review-pack.md) | `artifacts/source-span-routing-review-pack.json`, `artifacts/fff-current-review-screenshot.png` |
 | Review procedure lock | Ready for local review | [`review/review-procedure.md`](review/review-procedure.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png`, `artifacts/review-screens/` |
+| Review memory dedup | Ready for local review | [`review/review-memory-dedup.md`](review/review-memory-dedup.md) | `artifacts/review-memory-dedup-smoke-result.json`, `artifacts/artifact-manifest.json` |
 
 The implementation details are itemized inside the review documents under headings such as `What Was Implemented`, `What Exists Now`, `Validation`, `Known Limitations`, and `Next Recommended Slice`.
 
@@ -113,4 +114,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The next recommended implementation slice is freeform review response for `fff-review-procedure-lock-001` and `fff-source-span-routing-review-pack-001`, followed by only targeted procedure, fixture, span, or routing changes if review identifies a concrete gap.
+The next recommended implementation slice should first apply the Review Dedup Gate from `fff-review-memory-dedup-001`. The next non-redundant axis is source-span usefulness/routing quality only when evidence, target, axis, or decision value changes enough to justify asking.

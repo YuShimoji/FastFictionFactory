@@ -1,18 +1,18 @@
 {
-  "artifact_id": "fff-review-procedure-lock-001",
+  "artifact_id": "fff-review-memory-dedup-001",
   "preserved_source_span_artifact_id": "fff-source-span-routing-review-pack-001",
   "preserved_model_api_boundary_artifact_id": "fff-model-api-boundary-spec-001",
   "preserved_adapter_expansion_artifact_id": "fff-local-extraction-adapter-expansion-001",
   "preserved_adapter_artifact_id": "fff-local-extraction-adapter-spike-001",
   "preserved_artifact_id": "fff-extraction-validator-hardening-001",
   "preserved_contract_artifact_id": "fff-extraction-contract-001",
-  "title": "Fast Fiction Factory Review Procedure Lock",
-  "purpose": "Focused local Review Hub procedure improvement that fixes what to open, what screenshot/contact-sheet evidence represents, what each mode is for, when review is optional or required, and where identity/access paths live while preserving source-span/model-boundary evidence without starting model/API work.",
+  "title": "Fast Fiction Factory Review Memory Dedup",
+  "purpose": "Focused local Review Hub operating improvement that records review memory, Acceptance Ladder, Review Dedup Gate, and Non-Redundant Review Card requirements so future reviews do not repeat the same target, evidence, and axis while preserving source-span/model-boundary evidence without starting model/API work.",
   "repo_relative_path": "public/review/index.html",
   "open_command": "Invoke-Item .\\public\\review\\index.html",
   "repo_local_launcher": "scripts/operator/open_review.ps1",
-  "review_doc_path": "docs/review/review-procedure.md",
-  "smoke_result_path": "artifacts/review-procedure-lock-smoke-result.json",
+  "review_doc_path": "docs/review/review-memory-dedup.md",
+  "smoke_result_path": "artifacts/review-memory-dedup-smoke-result.json",
   "source_span_review_pack_path": "artifacts/source-span-routing-review-pack.json",
   "source_span_review_pack_tool_path": "tools/fff-source-span-review-pack.mjs",
   "source_span_review_pack_doc_path": "docs/review/source-span-routing-review-pack.md",
@@ -33,6 +33,7 @@
   "screenshot_path": "artifacts/fff-current-review-screenshot.png",
   "contact_sheet_path": "artifacts/fff-review-contact-sheet.png",
   "preserves": [
+    "fff-review-procedure-lock-001",
     "fff-review-hub-ia-mode-split-001",
     "fff-source-span-routing-review-pack-001",
     "fff-model-api-boundary-spec-001",
@@ -49,6 +50,8 @@
     "human-owned canon boundaries"
   ],
   "generated_from": [
+    "Supervisor slice: fff-review-memory-dedup-001",
+    "docs/review/review-memory-dedup.md",
     "Supervisor slice: fff-review-procedure-lock-001",
     "docs/review/review-procedure.md",
     "User review: Review Hub too vertically long, English-first, layered between story and project information, and Raw Story Memo sticky behavior feels awkward",
@@ -67,13 +70,13 @@
     "artifacts/model-api-boundary-smoke-result.json"
   ],
   "created_at": "2026-06-22T00:00:00+09:00",
-  "validation_command": "& { $files = @('public/review/index.html', 'tools/fff-state.mjs', 'tools/fff-extract-local.mjs', 'tools/fff-source-span-review-pack.mjs', 'artifacts/artifact-manifest.json', 'artifacts/ARTIFACTS.md', 'artifacts/review-procedure-lock-smoke-result.json', 'artifacts/source-span-routing-review-pack.json', 'artifacts/source-span-routing-triage-result.json', 'docs/review/review-procedure.md', 'docs/review/review-hub-ia-mode-split.md', 'docs/review/source-span-routing-review-pack.md', 'docs/review/current-status.md', 'docs/review/model-api-boundary-spec.md', 'artifacts/model-api-boundary-envelope.example.json', 'artifacts/model-api-boundary-smoke-result.json', 'artifacts/sample-project-state.json', 'artifacts/current-project-state.json', 'artifacts/sample-extraction-payload.json', 'artifacts/extraction-validator-smoke-result.json', 'scripts/operator/open_review.ps1', 'scripts/operator/open_review.sh', 'artifacts/fff-current-review-screenshot.png', 'artifacts/fff-review-contact-sheet.png', 'artifacts/review-screens/story-review.png', 'artifacts/review-screens/source-audit.png', 'artifacts/review-screens/project-cockpit.png', 'artifacts/review-screens/artifacts-validation.png'); $missing = $files | Where-Object { -not (Test-Path $_) }; if ($missing) { throw ('Missing files: ' + ($missing -join ', ')) }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($manifest.artifact_id -ne 'fff-review-procedure-lock-001') { throw 'Manifest artifact id mismatch' }; if ($manifest.preserved_review_hub_ia_mode_split_artifact_id -ne 'fff-review-hub-ia-mode-split-001') { throw 'Preserved Review Hub IA artifact mismatch' }; if ($manifest.preserved_source_span_artifact_id -ne 'fff-source-span-routing-review-pack-001') { throw 'Preserved source-span artifact mismatch' }; if ($manifest.preserved_model_api_boundary_artifact_id -ne 'fff-model-api-boundary-spec-001') { throw 'Preserved model/API boundary artifact id mismatch' }; if ($manifest.review_input_mode -ne 'freeform') { throw 'Review input mode mismatch' }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; @('fff-review-procedure-lock-001', 'fff-review-hub-ia-mode-split-001', 'Story Review', 'Source Audit', 'Project Cockpit', 'Artifacts', 'docs/review/review-procedure.md', 'artifacts/review-procedure-lock-smoke-result.json', 'artifacts/fff-current-review-screenshot.png', 'artifacts/fff-review-contact-sheet.png', 'artifacts/review-screens/story-review.png', 'scripts/operator/open_review.ps1', 'scripts/operator/open_review.sh', 'fff-source-span-routing-review-pack-001', 'artifacts/source-span-routing-review-pack.json', 'fff-model-api-boundary-spec-001', 'externalCallAllowed: false', 'data-review-mode=\"story\"', 'data-mode-target=\"source\"', 'data-mode-panel=\"source\"') | ForEach-Object { if (-not $html.Contains($_)) { throw ('Missing required Review Hub text: ' + $_) } }; if ($html -match 'position:\\s*sticky') { throw 'Unexpected sticky positioning remains' }; if ($html -match '<details class=\"source-span-fixture\" open') { throw 'Source-span fixtures must not default open' }; $procedure = Get-Content docs/review/review-procedure.md -Raw -Encoding UTF8; @('What To Open', 'What The Screenshots Represent', 'Optional Vs Required Review', 'Freeform Review Intake', 'Review Debt', 'Completion Signal') | ForEach-Object { if (-not $procedure.Contains($_)) { throw ('Missing review procedure section: ' + $_) } }; node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json; Get-ChildItem artifacts/extraction-adapter-outputs -Filter *.json | ForEach-Object { node tools/fff-state.mjs validate-extraction $_.FullName; if ($LASTEXITCODE -ne 0) { throw ('Adapter output validation failed: ' + $_.Name) } }; node tools/fff-state.mjs validate artifacts/current-project-state.json; node tools/fff-state.mjs validate artifacts/sample-project-state.json; node tools/fff-state.mjs validate-extraction artifacts/sample-extraction-payload.json; node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures; $pack = Get-Content artifacts/source-span-routing-review-pack.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $pack.passed) { throw 'Source-span review pack failed' }; if ($pack.cross_fixture_summary.fixture_count -ne 3 -or $pack.cross_fixture_summary.total_elements -ne 36 -or $pack.cross_fixture_summary.source_span_mismatches -ne 0 -or $pack.cross_fixture_summary.missing_source_refs -ne 0 -or $pack.cross_fixture_summary.unsafe_visual_routing -ne 0 -or $pack.cross_fixture_summary.non_held_review_defaults -ne 0 -or $pack.cross_fixture_summary.human_owned_decision_adopt_suggestions -ne 0) { throw 'Source-span review pack guard mismatch' }; $smoke = Get-Content artifacts/review-procedure-lock-smoke-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $smoke.passed) { throw 'Review procedure lock smoke failed' }; @('artifacts/fff-current-review-screenshot.png', 'artifacts/fff-review-contact-sheet.png', 'artifacts/review-screens/story-review.png', 'artifacts/review-screens/source-audit.png', 'artifacts/review-screens/project-cockpit.png', 'artifacts/review-screens/artifacts-validation.png') | ForEach-Object { $item = Get-Item $_; if ($item.Length -lt 1024) { throw ('Visual evidence too small: ' + $_) } }; Write-Output 'Review procedure lock validation passed' }",
-  "validation_result": "passed 2026-06-22T13:26:45+09:00; manifest validation command passed; Review Procedure Lock static smoke passed; Review Hub active artifact and identity/access paths are present; review procedure sections are present; source-span review pack remains reachable and passed with 3 fixtures, 36 elements, and 0 guard failures; model/API boundary text remains present with externalCallAllowed false; state, extraction payload, and extraction fixture validation passed; screenshot, contact sheet, and four mode screenshots are non-empty.",
+  "validation_command": "& { $files = @('public/review/index.html', 'tools/fff-state.mjs', 'tools/fff-extract-local.mjs', 'tools/fff-source-span-review-pack.mjs', 'artifacts/artifact-manifest.json', 'artifacts/ARTIFACTS.md', 'artifacts/review-memory-dedup-smoke-result.json', 'artifacts/review-procedure-lock-smoke-result.json', 'artifacts/source-span-routing-review-pack.json', 'artifacts/source-span-routing-triage-result.json', 'docs/review/review-memory-dedup.md', 'docs/review/review-procedure.md', 'docs/review/review-hub-ia-mode-split.md', 'docs/review/source-span-routing-review-pack.md', 'docs/review/current-status.md', 'docs/review/model-api-boundary-spec.md', 'docs/data-model.md', 'artifacts/model-api-boundary-envelope.example.json', 'artifacts/model-api-boundary-smoke-result.json', 'artifacts/sample-project-state.json', 'artifacts/current-project-state.json', 'artifacts/sample-extraction-payload.json', 'artifacts/extraction-validator-smoke-result.json', 'scripts/operator/open_review.ps1', 'scripts/operator/open_review.sh'); $missing = $files | Where-Object { -not (Test-Path $_) }; if ($missing) { throw ('Missing files: ' + ($missing -join ', ')) }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($manifest.artifact_id -ne 'fff-review-memory-dedup-001') { throw 'Manifest artifact id mismatch' }; if ($manifest.preserved_review_procedure_lock_artifact_id -ne 'fff-review-procedure-lock-001') { throw 'Preserved review procedure artifact mismatch' }; if ($manifest.preserved_review_hub_ia_mode_split_artifact_id -ne 'fff-review-hub-ia-mode-split-001') { throw 'Preserved Review Hub IA artifact mismatch' }; if ($manifest.preserved_source_span_artifact_id -ne 'fff-source-span-routing-review-pack-001') { throw 'Preserved source-span artifact mismatch' }; if ($manifest.preserved_model_api_boundary_artifact_id -ne 'fff-model-api-boundary-spec-001') { throw 'Preserved model/API boundary artifact mismatch' }; if ($manifest.review_input_mode -ne 'freeform') { throw 'Review input mode mismatch' }; $requiredMemoryFields = @('artifact_id', 'subject', 'current_scope', 'prior_review_count', 'latest_user_signal', 'latest_user_signal_summary', 'accepted_scope', 'not_accepted_scope', 'next_nonredundant_axis', 'repeated_review_allowed', 'review_reset_trigger'); $memory = @($manifest.review_memory); if ($memory.Count -lt 3) { throw 'Review memory entry count mismatch' }; @('fff-review-procedure-lock-001', 'fff-review-hub-ia-mode-split-001', 'fff-source-span-routing-review-pack-001') | ForEach-Object { $artifactId = $_; $entry = $memory | Where-Object { $_.artifact_id -eq $artifactId }; if (-not $entry) { throw ('Missing review memory entry: ' + $artifactId) } }; foreach ($entry in $memory) { foreach ($field in $requiredMemoryFields) { if (-not ($entry.PSObject.Properties.Name -contains $field)) { throw ('Missing review memory field ' + $field + ' for ' + $entry.artifact_id) } } }; @('candidate_seen', 'positive_signal', 'diagnostic_representative_accept', 'provisional_baseline', 'stress_test_required', 'bounded_adjustment', 'production_candidate', 'production_acceptance') | ForEach-Object { if ($manifest.acceptance_ladder -notcontains $_) { throw ('Missing acceptance ladder stage: ' + $_) } }; @('same_target_check', 'same_axis_check', 'evidence_changed_check', 'decision_value_check', 'prior_signal_check', 'user_fatigue_check') | ForEach-Object { if ($manifest.review_dedup_gate -notcontains $_) { throw ('Missing review dedup gate check: ' + $_) } }; @('target', 'axis', 'prior_review_count', 'prior_signal_summary', 'what_changed', 'what_this_review_decides', 'input_mode', 'not_asking', 'completion_signal') | ForEach-Object { if (-not ($manifest.non_redundant_review_card_template.PSObject.Properties.Name -contains $_)) { throw ('Missing Review Card template field: ' + $_) } }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; @('fff-review-memory-dedup-001', 'Review memory / dedup gate', 'docs/review/review-memory-dedup.md', 'artifacts/review-memory-dedup-smoke-result.json', 'fff-review-procedure-lock-001', 'fff-source-span-routing-review-pack-001', 'fff-model-api-boundary-spec-001', 'externalCallAllowed: false', 'data-review-mode=\"story\"', 'data-mode-target=\"source\"', 'data-mode-panel=\"source\"') | ForEach-Object { if (-not $html.Contains($_)) { throw ('Missing required Review Hub text: ' + $_) } }; if ($html -match 'position:\\s*sticky') { throw 'Unexpected sticky positioning remains' }; $doc = Get-Content docs/review/review-memory-dedup.md -Raw -Encoding UTF8; @('Review Memory Fields', 'Acceptance Ladder', 'Review Dedup Gate', 'Non-Redundant Review Card Template', 'Reporting Guardrails') | ForEach-Object { if (-not $doc.Contains($_)) { throw ('Missing review memory doc section: ' + $_) } }; $smoke = Get-Content artifacts/review-memory-dedup-smoke-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $smoke.passed) { throw 'Review memory smoke failed' }; node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json; Get-ChildItem artifacts/extraction-adapter-outputs -Filter *.json | ForEach-Object { node tools/fff-state.mjs validate-extraction $_.FullName; if ($LASTEXITCODE -ne 0) { throw ('Adapter output validation failed: ' + $_.Name) } }; node tools/fff-state.mjs validate artifacts/current-project-state.json; node tools/fff-state.mjs validate artifacts/sample-project-state.json; node tools/fff-state.mjs validate-extraction artifacts/sample-extraction-payload.json; node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures; $pack = Get-Content artifacts/source-span-routing-review-pack.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $pack.passed) { throw 'Source-span review pack failed' }; if ($pack.cross_fixture_summary.fixture_count -ne 3 -or $pack.cross_fixture_summary.total_elements -ne 36 -or $pack.cross_fixture_summary.source_span_mismatches -ne 0 -or $pack.cross_fixture_summary.missing_source_refs -ne 0 -or $pack.cross_fixture_summary.unsafe_visual_routing -ne 0 -or $pack.cross_fixture_summary.non_held_review_defaults -ne 0 -or $pack.cross_fixture_summary.human_owned_decision_adopt_suggestions -ne 0) { throw 'Source-span review pack guard mismatch' }; Write-Output 'Review memory dedup validation passed' }",
+  "validation_result": "passed 2026-06-22T13:45:00+09:00; manifest validation command passed; review_memory contains required fields for fff-review-procedure-lock-001, fff-review-hub-ia-mode-split-001, and fff-source-span-routing-review-pack-001; Acceptance Ladder, Review Dedup Gate, and Non-Redundant Review Card template are present; Review Hub static smoke text is present; source-span pack remains reachable and passed with 3 fixtures, 36 elements, and 0 guard failures; model/API boundary text remains present with externalCallAllowed false; state, extraction payload, and extraction fixture validation passed; MkDocs strict build passed; git diff --check passed.",
   "review_status": "ready_for_optional_local_review",
   "review_input_mode": "freeform",
-  "review_prompt_hint": "Optional freeform review can mention whether the fixed procedure, identity/access split, screenshot map, four modes, and Review Debt list make future review checkpoints easier.",
-  "next_action": "Use optional freeform review on the procedure, mode screenshots, and Source Audit pack; then make one narrow procedure, IA, fixture, span, or routing change only if review identifies a concrete gap.",
-  "context_synced_at": "2026-06-22T13:26:45+09:00",
+  "review_prompt_hint": "Do not ask for repeated review of the same target, evidence, and axis. Optional freeform review should move to the next non-redundant axis only when evidence or decision value changes.",
+  "next_action": "Apply the Review Dedup Gate before issuing any Review Card; the next non-redundant axis is source-span usefulness and routing quality when concrete changed evidence or decision value exists.",
+  "context_synced_at": "2026-06-22T13:45:00+09:00",
   "preserved_review_hub_ia_mode_split_artifact_id": "fff-review-hub-ia-mode-split-001",
   "repo_local_shell_launcher": "scripts/operator/open_review.sh",
   "review_hub_ia_mode_split_doc_path": "docs/review/review-hub-ia-mode-split.md",
@@ -83,5 +86,126 @@
     "source_audit": "artifacts/review-screens/source-audit.png",
     "project_cockpit": "artifacts/review-screens/project-cockpit.png",
     "artifacts_validation": "artifacts/review-screens/artifacts-validation.png"
+  },
+  "preserved_review_procedure_lock_artifact_id": "fff-review-procedure-lock-001",
+  "review_memory_doc_path": "docs/review/review-memory-dedup.md",
+  "review_memory_smoke_result_path": "artifacts/review-memory-dedup-smoke-result.json",
+  "review_procedure_doc_path": "docs/review/review-procedure.md",
+  "review_procedure_smoke_result_path": "artifacts/review-procedure-lock-smoke-result.json",
+  "review_memory": [
+    {
+      "artifact_id": "fff-review-procedure-lock-001",
+      "subject": "Review procedure, identity/access split, and screenshot evidence map",
+      "current_scope": "Local review access procedure and optional-vs-required review boundary are documented and validated.",
+      "prior_review_count": 1,
+      "latest_user_signal": "diagnostic_representative_accept",
+      "latest_user_signal_summary": "Procedure/access evidence is good enough to continue without immediate user review.",
+      "accepted_scope": [
+        "local open commands are documented",
+        "screenshot/contact-sheet meanings are documented",
+        "review optional vs required boundary is documented"
+      ],
+      "not_accepted_scope": [
+        "production release approval",
+        "source-span quality acceptance",
+        "model/API implementation approval",
+        "database or publishing approval",
+        "final canon decisions"
+      ],
+      "next_nonredundant_axis": "Review Card non-redundancy and source-span usefulness/routing quality",
+      "repeated_review_allowed": false,
+      "review_reset_trigger": [
+        "review procedure changes materially",
+        "screenshot evidence changes materially",
+        "access path breaks",
+        "user explicitly asks to re-review"
+      ]
+    },
+    {
+      "artifact_id": "fff-review-hub-ia-mode-split-001",
+      "subject": "Story Review, Source Audit, Project Cockpit, and Artifacts mode split",
+      "current_scope": "Four-mode local Review Hub IA is the provisional navigation baseline.",
+      "prior_review_count": 1,
+      "latest_user_signal": "positive_signal",
+      "latest_user_signal_summary": "The IA split addressed the earlier one-page review friction enough to continue.",
+      "accepted_scope": [
+        "four-mode split can remain as provisional baseline",
+        "Japanese-facing labels can remain display-only",
+        "non-sticky Raw Story Memo behavior can remain"
+      ],
+      "not_accepted_scope": [
+        "final IA perfection",
+        "production acceptance",
+        "source-span quality acceptance",
+        "model/API implementation approval"
+      ],
+      "next_nonredundant_axis": "Only re-review IA if navigation evidence or mode responsibility changes",
+      "repeated_review_allowed": false,
+      "review_reset_trigger": [
+        "mode structure changes",
+        "navigation labels change materially",
+        "new review layer is added",
+        "user explicitly asks to re-review"
+      ]
+    },
+    {
+      "artifact_id": "fff-source-span-routing-review-pack-001",
+      "subject": "Source-span routing review pack and fixture readback",
+      "current_scope": "Pack exists, is reachable from Source Audit, and automated guard checks pass for 36 elements.",
+      "prior_review_count": 0,
+      "latest_user_signal": "candidate_seen",
+      "latest_user_signal_summary": "Automated readback is ready; human quality review has not accepted span usefulness or routing judgment.",
+      "accepted_scope": [
+        "pack generation and automated guard pass are visible",
+        "representative rows are reachable in Source Audit",
+        "full 36-row JSON pack is available"
+      ],
+      "not_accepted_scope": [
+        "human quality acceptance of source-span usefulness",
+        "extraction wording acceptance",
+        "routing judgment acceptance",
+        "fixture coverage acceptance",
+        "model/API implementation approval"
+      ],
+      "next_nonredundant_axis": "source-span usefulness and routing quality",
+      "repeated_review_allowed": true,
+      "review_reset_trigger": [
+        "new fixture class added",
+        "span/routing output changes",
+        "review asks a different axis than reachability",
+        "user explicitly asks to review source-span quality"
+      ]
+    }
+  ],
+  "acceptance_ladder": [
+    "candidate_seen",
+    "positive_signal",
+    "diagnostic_representative_accept",
+    "provisional_baseline",
+    "stress_test_required",
+    "bounded_adjustment",
+    "production_candidate",
+    "production_acceptance"
+  ],
+  "review_dedup_gate": [
+    "same_target_check",
+    "same_axis_check",
+    "evidence_changed_check",
+    "decision_value_check",
+    "prior_signal_check",
+    "user_fatigue_check"
+  ],
+  "non_redundant_review_card_template": {
+    "target": "<artifact or section>",
+    "axis": "<non-redundant review axis>",
+    "prior_review_count": 0,
+    "prior_signal_summary": "<what prior review already covered>",
+    "what_changed": "<changed target, evidence, axis, or decision value>",
+    "what_this_review_decides": "<specific next decision unlocked by review>",
+    "input_mode": "freeform",
+    "not_asking": [
+      "<scope not being re-asked or not being promoted>"
+    ],
+    "completion_signal": "<what response is enough to continue>"
   }
 }

@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-22. At refresh time, the active artifact is `fff-review-procedure-lock-001`; the preserved Review Hub IA artifact is `fff-review-hub-ia-mode-split-001`; the preserved source-span artifact is `fff-source-span-routing-review-pack-001`; the preserved model/API boundary artifact is `fff-model-api-boundary-spec-001`; the preserved adapter expansion artifact is `fff-local-extraction-adapter-expansion-001`; the preserved adapter artifact is `fff-local-extraction-adapter-spike-001`; the preserved validator artifact is `fff-extraction-validator-hardening-001`; and the preserved contract artifact is `fff-extraction-contract-001`.
+Latest handoff refresh: 2026-06-22. At refresh time, the active artifact is `fff-review-memory-dedup-001`; the preserved review procedure artifact is `fff-review-procedure-lock-001`; the preserved Review Hub IA artifact is `fff-review-hub-ia-mode-split-001`; the preserved source-span artifact is `fff-source-span-routing-review-pack-001`; the preserved model/API boundary artifact is `fff-model-api-boundary-spec-001`; the preserved adapter expansion artifact is `fff-local-extraction-adapter-expansion-001`; the preserved adapter artifact is `fff-local-extraction-adapter-spike-001`; the preserved validator artifact is `fff-extraction-validator-hardening-001`; and the preserved contract artifact is `fff-extraction-contract-001`.
 
 ## Start Here
 
@@ -28,6 +28,7 @@ Expected after this handoff is published: `master` is clean and synced with `ori
 AGENTS.md
 docs/project-context.md
 docs/review/current-status.md
+docs/review/review-memory-dedup.md
 docs/review/review-procedure.md
 docs/review/review-hub-ia-mode-split.md
 docs/review/next-terminal-handoff.md
@@ -65,11 +66,14 @@ If `uvx` is unavailable, use a real Python/MkDocs Material runtime instead of th
 
 ## Current Project State
 
-- Active artifact: `fff-review-procedure-lock-001`
+- Active artifact: `fff-review-memory-dedup-001`
+- Preserved review procedure artifact: `fff-review-procedure-lock-001`
 - Preserved Review Hub IA artifact: `fff-review-hub-ia-mode-split-001`
 - Preserved source-span artifact: `fff-source-span-routing-review-pack-001`
 - Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
 - Active UI: `public/review/index.html`
+- Review memory / dedup doc: `docs/review/review-memory-dedup.md`
+- Review memory / dedup smoke: `artifacts/review-memory-dedup-smoke-result.json`
 - Review procedure: `docs/review/review-procedure.md`
 - Manifest: `artifacts/artifact-manifest.json`
 - Review procedure smoke: `artifacts/review-procedure-lock-smoke-result.json`
@@ -81,12 +85,16 @@ If `uvx` is unavailable, use a real Python/MkDocs Material runtime instead of th
   - `artifacts/review-screens/project-cockpit.png`
   - `artifacts/review-screens/artifacts-validation.png`
 
-The active artifact locks the local review procedure, identity/access split, screenshot evidence map, optional-vs-required review boundary, and Review Debt list while keeping the Review Hub four-mode split, source-span review pack, Extraction Contract, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and state validation intact.
+The active artifact adds review memory, Acceptance Ladder, Review Dedup Gate, and Non-Redundant Review Card rules while keeping the review procedure lock, Review Hub four-mode split, source-span review pack, Extraction Contract, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and state validation intact.
 
 ## What Finished
 
 - Kept `public/review/index.html` as the single local Visual Review Hub entry point.
-- Updated the Review Hub active artifact id to `fff-review-procedure-lock-001`.
+- Updated the Review Hub active artifact id to `fff-review-memory-dedup-001`.
+- Added `docs/review/review-memory-dedup.md`.
+- Added `artifacts/review-memory-dedup-smoke-result.json`.
+- Added manifest-level `review_memory` entries for `fff-review-procedure-lock-001`, `fff-review-hub-ia-mode-split-001`, and `fff-source-span-routing-review-pack-001`.
+- Documented Acceptance Ladder, Review Dedup Gate, and Non-Redundant Review Card fields.
 - Added `docs/review/review-procedure.md`.
 - Added `artifacts/review-procedure-lock-smoke-result.json`.
 - Added `scripts/operator/open_review.sh` while preserving `scripts/operator/open_review.ps1`.
@@ -109,13 +117,15 @@ The local review state is not final canon. Claims, profiles, timeline entries, e
 
 When review is needed, accept natural freeform review text instead of fixed phrases.
 
+Before emitting a Review Card, check the review memory. Do not ask the same target/evidence/axis again unless target, axis, evidence, decision value, or an explicit user request changed.
+
 When review is useful but not required to continue, record it as Review Debt and keep moving through reversible scoped work. This slice intentionally does not require immediate user review.
 
 ## Next Useful Entrances
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
-| Verify: review procedure | Confirms that identity, access, screenshot map, and optional/required review boundaries are easy to follow | Future review checkpoints can start without reconstructing context |
+| Verify: review memory | Confirms that prior signal, accepted scope, not-accepted scope, and next non-redundant axis are clear | Future Review Cards avoid repeated target/evidence/axis asks |
 | Audit: source-span pack | Confirms whether spans and routing are useful, not merely valid | A freeform review can name concrete span/routing changes |
 | Advance: one missing fixture class | Covers a new memo shape such as broad spans, contradictory notes, or sparse bullets | Future adapter/model work gets clearer regression coverage |
 | Explore: model/API adapter boundary | Uses the same validator, review-held defaults, source refs, and human-owned boundaries | Model/API work can start later only after explicit authorization |

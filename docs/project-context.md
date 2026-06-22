@@ -2,11 +2,11 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-review-procedure-lock-001`, served through the static local Visual Review Hub at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-review-memory-dedup-001`, served through the static local Visual Review Hub at `public/review/index.html`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is Review Hub procedure stability: story review, source audit, project cockpit, artifact governance, screenshot evidence, and local access paths must be easy to distinguish before freeform review drives adapter changes or any model/API extractor exists.
+Keep the MVP reviewable without production commitments. The current lane is review-memory-aware procedure stability: story review, source audit, project cockpit, artifact governance, screenshot evidence, local access paths, and non-redundant review requests must be easy to distinguish before freeform review drives adapter changes or any model/API extractor exists.
 
 ## Current Slice
 
@@ -15,6 +15,8 @@ The active slice is complete enough for local review:
 - Review UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Review memory / dedup doc: `docs/review/review-memory-dedup.md`
+- Review memory / dedup smoke: `artifacts/review-memory-dedup-smoke-result.json`
 - Review procedure: `docs/review/review-procedure.md`
 - Review procedure smoke: `artifacts/review-procedure-lock-smoke-result.json`
 - Review Hub IA smoke: `artifacts/review-hub-ia-mode-split-smoke-result.json`
@@ -75,6 +77,7 @@ Result summary:
 - Source-span review pack generated from those three outputs and records 17 human-owned guarded elements plus Review Debt categories for weak spans, over-broad spans, vague extraction, ambiguous routing, confident defaults, and missing fixture classes.
 - Review Hub IA mode split adds Story Review, Source Audit, Project Cockpit, and Artifacts modes with Japanese-facing display labels, non-sticky Raw Story Memo behavior, and collapsed source-span fixture details by default.
 - Review Procedure Lock adds fixed local open commands, identity/access split, screenshot/contact-sheet map, mode-specific screenshot evidence paths, optional-vs-required review boundaries, freeform review guidance, and Review Debt without asking for immediate user review.
+- Review Memory Dedup adds manifest-level review memory, Acceptance Ladder, Review Dedup Gate, and Non-Redundant Review Card rules so future review requests do not repeat the same target, evidence, and axis.
 - Model/API boundary spec remains preserved as a spec-only, no-external-call boundary for future provider work.
 - Extraction Contract summary covers all required element types, 6 high-canon-risk extraction elements, 3 human-owned unresolved dependencies, 5 warnings, and candidate routing into Profile/Ghost, Claim Ledger, and Timeline View.
 - Profile/Ghost summary covers all required profile types, all required ghost node statuses, 7 high canon risk profiles, 7 dependency-bound profiles, and 11 profiles linked to both claims and timeline entries.
@@ -121,10 +124,10 @@ node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-nega
 node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
 ```
 
-First next move: optional freeform review of the Review Procedure Lock, Review Hub IA mode split, and source-span usefulness/routing quality, then one narrow procedure, IA, fixture, span, or routing change if review identifies a concrete gap.
+First next move: apply the Review Dedup Gate before asking for review. The next non-redundant axis is source-span usefulness and routing quality only when evidence, target, axis, or decision value has changed enough to justify asking.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
 
-Latest handoff refresh: 2026-06-22. At refresh time, the active artifact is `fff-review-procedure-lock-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, or final canon decision existed.
+Latest handoff refresh: 2026-06-22. At refresh time, the active artifact is `fff-review-memory-dedup-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, repeated review requirement, or final canon decision existed.

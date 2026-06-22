@@ -55,3 +55,7 @@
 - Decision: Lock the review procedure before model/API implementation.
   - Reason: Future review checkpoints need stable identity, access, screenshot, contact-sheet, mode-purpose, optional-review, required-review, and Review Debt guidance that does not depend on prior chat context.
   - Effect: `fff-review-procedure-lock-001` adds `docs/review/review-procedure.md`, updates the Review Hub Artifacts mode, refreshes manifest/status/artifact inventory access paths, adds a shell launcher, expects mode-specific screenshots, and keeps model/API calls, credentials, database persistence, publishing, production sync, AI video generation, and final canon decisions out of scope.
+
+- Decision: Add review memory and a dedup gate before asking for more review.
+  - Reason: Positive diagnostic signals should not be re-requested as the same target/evidence/axis, and they should not silently expand into production acceptance, source-span quality acceptance, model/API approval, or canon approval.
+  - Effect: `fff-review-memory-dedup-001` adds `docs/review/review-memory-dedup.md`, manifest-level `review_memory`, Acceptance Ladder, Review Dedup Gate, Non-Redundant Review Card requirements, and smoke evidence while preserving freeform review and no model/API behavior.

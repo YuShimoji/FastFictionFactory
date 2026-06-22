@@ -67,6 +67,10 @@ Future review can be natural language. Useful feedback can name:
 
 No fixed labels are required. If feedback is clear enough, the next agent can make a narrow reversible change, refresh evidence, and re-run validation.
 
+Before emitting a Review Card, check `docs/review/review-memory-dedup.md` and `artifacts/artifact-manifest.json`. If the target, axis, evidence, and decision value are the same as a prior positive signal, do not ask again. Record Review Debt and move to the next non-redundant axis instead.
+
+Required non-redundant Review Card fields are: `target`, `axis`, `prior_review_count`, `prior_signal_summary`, `what_changed`, `what_this_review_decides`, `input_mode: freeform`, `not_asking`, and `completion_signal`.
+
 ## Review Debt
 
 | Review Debt | Why it remains | Next move |

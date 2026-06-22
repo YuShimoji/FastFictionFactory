@@ -350,3 +350,31 @@
 - Review status: `ready_for_optional_local_review`
 - Review input mode: `freeform`
 - Next action: Use optional freeform review to decide whether the fixed procedure, screenshot map, and access paths reduce future review friction; then make only one narrow procedure, IA, fixture, span, or routing change if review identifies a concrete gap.
+
+## fff-review-memory-dedup-001
+
+- Title: Fast Fiction Factory Review Memory Dedup
+- Purpose: Add v1.14-style review memory, Acceptance Ladder, Review Dedup Gate, and Non-Redundant Review Card conventions so future review requests do not repeat the same target, evidence, and axis.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review memory / dedup doc: `docs/review/review-memory-dedup.md`
+- Smoke result: `artifacts/review-memory-dedup-smoke-result.json`
+- Manifest review memory source of truth: `artifacts/artifact-manifest.json`
+- Preserved review procedure artifact: `fff-review-procedure-lock-001`
+- Preserved Review Hub IA artifact: `fff-review-hub-ia-mode-split-001`
+- Preserved source-span artifact: `fff-source-span-routing-review-pack-001`
+- Preserved source-span pack: `artifacts/source-span-routing-review-pack.json`
+- Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
+- Preserved model/API boundary spec: `docs/review/model-api-boundary-spec.md`
+- Current status: `docs/review/current-status.md`
+- Manifest review memory entries:
+  - `fff-review-procedure-lock-001`
+  - `fff-review-hub-ia-mode-split-001`
+  - `fff-source-span-routing-review-pack-001`
+- Validation command: run the active manifest validation command, Review Memory Dedup smoke/readback, Review Hub static smoke, MkDocs strict build, and `git diff --check`.
+- Validation result: passed 2026-06-22T13:45:00+09:00; manifest validation command passed; `review_memory` contains required fields for `fff-review-procedure-lock-001`, `fff-review-hub-ia-mode-split-001`, and `fff-source-span-routing-review-pack-001`; Acceptance Ladder, Review Dedup Gate, and Non-Redundant Review Card template are present; Review Hub static smoke text is present; source-span pack and extraction validators remained passing; MkDocs strict build passed; `git diff --check` passed.
+- Review status: `ready_for_optional_local_review`
+- Review input mode: `freeform`
+- Next action: Use the Review Dedup Gate before asking for review. The next non-redundant axis is source-span usefulness and routing quality only when target, evidence, axis, or decision value changes enough to justify asking.
