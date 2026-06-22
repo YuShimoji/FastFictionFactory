@@ -404,3 +404,31 @@
 - Review status: `ready_for_optional_local_review`
 - Review input mode: `freeform`
 - Next action: Choose one bounded weak-span, broad-span, ambiguous-routing, or missing-fixture improvement before any model/API adapter work.
+
+## fff-ambiguous-routing-resolution-001
+
+- Title: Fast Fiction Factory Ambiguous Routing Resolution
+- Purpose: Resolve the seven ambiguous routing rows from `fff-source-span-quality-audit-001` into explicit primary destinations, secondary evidence roles, held defaults, and regression checks without asking for a repeated general review or starting model/API work.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/ambiguous-routing-resolution.md`
+- Resolution result: `artifacts/ambiguous-routing-resolution-result.json`
+- Preserved source-span quality audit artifact: `fff-source-span-quality-audit-001`
+- Preserved review memory artifact: `fff-review-memory-dedup-001`
+- Preserved source-span artifact: `fff-source-span-routing-review-pack-001`
+- Preserved model/API boundary artifact: `fff-model-api-boundary-spec-001`
+- Updated deterministic adapter: `tools/fff-extract-local.mjs`
+- Updated adapter output: `artifacts/local-extraction-adapter-output.json`
+- Updated adapter matrix outputs: `artifacts/extraction-adapter-outputs/`
+- Updated adapter smoke evidence: `artifacts/local-extraction-adapter-smoke-result.json`, `artifacts/local-extraction-adapter-expansion-smoke-result.json`
+- Updated source-span review pack: `artifacts/source-span-routing-review-pack.json`
+- Resolution counts: 7 ambiguous rows resolved; 3 primary Profile routes, 1 primary Visual route, 3 Human Review holds, 5 Claim secondary evidence rows, and 6 Timeline secondary evidence rows.
+- Adapter rule applied: `local-x-visual-observatory` no longer routes to Claim Ledger target ids; all visual asset rows keep `targetClaimIds: []`.
+- Review Dedup result: review memory checked, axis set to `ambiguous_routing_resolution`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub request emitted.
+- Validation command: run the active manifest validation command, parse the resolution result, regenerate adapter matrix and source-span pack, validate adapter outputs and state files, run extraction fixture validation, run MkDocs strict build, and run `git diff --check`.
+- Validation result: passed 2026-06-22T15:49:25+09:00; active manifest validation parsed the resolution JSON, confirmed all 7 ambiguous rows resolved, regenerated adapter smoke/matrix output and source-span review pack, verified every visual asset keeps `targetClaimIds: []` and avoids direct Claim routing, validated adapter outputs/current state/sample state/sample extraction/extraction fixtures, preserved model/API boundary text, passed MkDocs strict build, and passed `git diff --check`.
+- Review status: `ready_for_optional_local_review`
+- Review input mode: `freeform`
+- Next action: Add one missing fixture class or validator-hardening case only if route policy drift appears again.

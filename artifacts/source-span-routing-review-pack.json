@@ -222,7 +222,6 @@
           "source_span_matches_raw_memo": true,
           "routing_targets": [
             "Profile",
-            "Claim",
             "Timeline",
             "Visual"
           ],
@@ -514,7 +513,6 @@
           "source_span_matches_raw_memo": true,
           "routing_targets": [
             "Profile",
-            "Claim",
             "Timeline",
             "Visual"
           ],

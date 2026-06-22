@@ -1,0 +1,396 @@
+{
+  "schemaVersion": "fff.ambiguousRoutingResolution.v1",
+  "artifact_id": "fff-ambiguous-routing-resolution-001",
+  "title": "Fast Fiction Factory Ambiguous Routing Resolution",
+  "generatedAt": "2026-06-22T15:41:13+09:00",
+  "review_status": "ready_for_optional_local_review",
+  "review_input_mode": "freeform",
+  "repo_relative_path": "public/review/index.html",
+  "source_audit_artifact_id": "fff-source-span-quality-audit-001",
+  "source_audit_path": "artifacts/source-span-quality-audit-result.json",
+  "source_pack_path": "artifacts/source-span-routing-review-pack.json",
+  "review_doc_path": "docs/review/ambiguous-routing-resolution.md",
+  "review_memory_checked": {
+    "source_memory_artifact_id": "fff-review-memory-dedup-001",
+    "checked": true,
+    "target": "fff-source-span-quality-audit-001",
+    "axis": "ambiguous_routing_resolution",
+    "prior_review_count": 0,
+    "prior_signal_summary": "The quality audit classified 7 ambiguous routing rows but did not record user acceptance of final routing policy.",
+    "what_changed": "The 7 ambiguous rows now have primary destination rules, secondary route roles, hold reasons, and regression checks; the local visual asset row no longer routes to Claim Ledger.",
+    "what_this_review_decides": "No user review is required now; this slice records deterministic routing policy and regression checks for the ambiguous rows.",
+    "not_asking": [
+      "general Review Hub review",
+      "repeat review of source-span quality counts",
+      "model/API implementation approval",
+      "production acceptance",
+      "canon decisions for Toma fate, brass moth truth, or Council motive"
+    ],
+    "next_nonredundant_axis": "one missing fixture class or a validator hardening case for route policy drift"
+  },
+  "review_dedup_gate_result": {
+    "same_target_check": "passes_changed_target_from_quality_audit_to_routing_resolution",
+    "same_axis_check": "passes_new_axis_ambiguous_routing_resolution",
+    "evidence_changed_check": "passes_adapter_output_and_source_pack_changed_for_visual_asset_route",
+    "decision_value_check": "passes_records_primary_route_and_regression_policy_for_all_7_rows",
+    "prior_signal_check": "passes_prior_signal_does_not_accept_routing_policy",
+    "user_fatigue_check": "passes_no_review_card_emitted",
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "review_debt_recorded": true
+  },
+  "summary": {
+    "total_ambiguous_rows": 7,
+    "route_to_profile_candidate": 3,
+    "route_to_claim_candidate": 0,
+    "route_to_timeline_candidate": 0,
+    "route_to_source_reference": 0,
+    "route_to_visual_asset": 1,
+    "hold_for_human_decision": 3,
+    "reject_or_ignore": 0,
+    "rows_with_claim_as_secondary_evidence": 5,
+    "rows_with_timeline_as_secondary_evidence": 6
+  },
+  "destination_policy": {
+    "visual_asset": "route_to_visual_asset through Profile/Ghost and optional Timeline context; never carry Claim target ids in deterministic adapter output.",
+    "human_owned_object": "route_to_profile_candidate first; Claim and Timeline are secondary evidence surfaces while unresolved_decision keeps final meaning held.",
+    "unresolved_decision": "hold_for_human_decision first; Claim or Timeline may preserve review context but cannot become adoption surfaces.",
+    "source_reference": "No ambiguous source_reference rows were present; source refs remain support evidence only.",
+    "reject_or_ignore": "No ambiguous rows were rejected or ignored; all remain visible and review-held."
+  },
+  "decisions": [
+    {
+      "id": "local-x-object-brass-moth",
+      "fixture_id": "clockmaker-sample",
+      "element_type": "object",
+      "extracted_value": "brass moth",
+      "source_span": "brass moth in the workshop drawer",
+      "audit_routing_targets_before": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "current_target_destinations": [
+        "profile",
+        "claim",
+        "timeline",
+        "unresolved_decision"
+      ],
+      "current_review_pack_routes": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "primary_resolution": "route_to_profile_candidate",
+      "secondary_routes": [
+        "route_to_claim_candidate",
+        "route_to_timeline_candidate",
+        "hold_for_human_decision"
+      ],
+      "destination_rule": "Object candidates with unresolved brass moth truth route first to Profile/Ghost; Claim and Timeline remain evidence surfaces only while unresolved_decision keeps the truth decision held.",
+      "hold_reason": "Human-owned dependency remains unresolved: brass moth truth.",
+      "guard_condition": "Must remain hold, must keep brass moth truth as unresolved dependency, must include unresolved_decision route, and must not suggest adopt.",
+      "regression_check": "object_human_owned_profile_primary_hold",
+      "review_status": "hold",
+      "suggested_review_status": "hold",
+      "source_ref_ids": [
+        "src-local-adapter-raw-memo-001"
+      ],
+      "target_profile_ids": [
+        "local-profile-brass-moth"
+      ],
+      "target_claim_ids": [
+        "local-claim-brass-moth-found"
+      ],
+      "target_timeline_entry_ids": [
+        "local-timeline-brass-moth"
+      ]
+    },
+    {
+      "id": "local-x-visual-observatory",
+      "fixture_id": "clockmaker-sample",
+      "element_type": "visual_asset",
+      "extracted_value": "observatory rings without a bell",
+      "source_span": "still rings at noon even though its bell was removed",
+      "audit_routing_targets_before": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Visual"
+      ],
+      "current_target_destinations": [
+        "profile",
+        "timeline"
+      ],
+      "current_review_pack_routes": [
+        "Profile",
+        "Timeline",
+        "Visual"
+      ],
+      "primary_resolution": "route_to_visual_asset",
+      "secondary_routes": [
+        "route_to_profile_candidate",
+        "route_to_timeline_candidate"
+      ],
+      "destination_rule": "Visual asset rows route through Profile/Ghost plus Timeline for review context, and must not target Claim Ledger directly or carry targetClaimIds.",
+      "hold_reason": "Visual route is held as review evidence and not release artwork.",
+      "guard_condition": "Must remain hold, targetDestinations must exclude claim, targetClaimIds must be empty, and Visual remains a review label only.",
+      "regression_check": "visual_asset_no_claim_route",
+      "review_status": "hold",
+      "suggested_review_status": "hold",
+      "source_ref_ids": [
+        "src-local-adapter-raw-memo-001"
+      ],
+      "target_profile_ids": [
+        "local-profile-observatory-visual"
+      ],
+      "target_claim_ids": [],
+      "target_timeline_entry_ids": [
+        "local-timeline-noon-bell"
+      ]
+    },
+    {
+      "id": "local-x-unresolved-council-motive",
+      "fixture_id": "clockmaker-sample",
+      "element_type": "unresolved_decision",
+      "extracted_value": "Council motive",
+      "source_span": "Council motive is unresolved",
+      "audit_routing_targets_before": [
+        "Human Review",
+        "Claim",
+        "Timeline"
+      ],
+      "current_target_destinations": [
+        "unresolved_decision",
+        "claim",
+        "timeline"
+      ],
+      "current_review_pack_routes": [
+        "Human Review",
+        "Claim",
+        "Timeline"
+      ],
+      "primary_resolution": "hold_for_human_decision",
+      "secondary_routes": [
+        "route_to_claim_candidate",
+        "route_to_timeline_candidate"
+      ],
+      "destination_rule": "Unresolved Council motive rows route first to Human Review; Claim and Timeline are evidence/readback surfaces, not adoption targets.",
+      "hold_reason": "Human-owned dependency remains unresolved: Council motive.",
+      "guard_condition": "Must remain hold, must include unresolved_decision, must include Council motive dependency, and must keep human review source ref.",
+      "regression_check": "unresolved_decision_human_review_hold",
+      "review_status": "hold",
+      "suggested_review_status": "hold",
+      "source_ref_ids": [
+        "src-local-adapter-raw-memo-001",
+        "src-local-adapter-freeform-review-001"
+      ],
+      "target_profile_ids": [],
+      "target_claim_ids": [
+        "local-claim-council-motive-open"
+      ],
+      "target_timeline_entry_ids": [
+        "local-timeline-council-motive"
+      ]
+    },
+    {
+      "id": "minutes-x-object-brass-moth",
+      "fixture_id": "council-minutes-edge",
+      "element_type": "object",
+      "extracted_value": "brass moth",
+      "source_span": "The brass moth flickers like a warning",
+      "audit_routing_targets_before": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "current_target_destinations": [
+        "profile",
+        "claim",
+        "timeline",
+        "unresolved_decision"
+      ],
+      "current_review_pack_routes": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "primary_resolution": "route_to_profile_candidate",
+      "secondary_routes": [
+        "route_to_claim_candidate",
+        "route_to_timeline_candidate",
+        "hold_for_human_decision"
+      ],
+      "destination_rule": "Warning-style brass moth object rows route first to Profile/Ghost; Claim/Timeline may preserve evidence but truth remains held.",
+      "hold_reason": "Human-owned dependency remains unresolved: brass moth truth.",
+      "guard_condition": "Must remain hold, must keep brass moth truth dependency, must include unresolved_decision route, and must not decide proof/bait/false-record meaning.",
+      "regression_check": "object_human_owned_profile_primary_hold",
+      "review_status": "hold",
+      "suggested_review_status": "hold",
+      "source_ref_ids": [
+        "src-local-adapter-raw-memo-003"
+      ],
+      "target_profile_ids": [
+        "minutes-profile-brass-moth"
+      ],
+      "target_claim_ids": [
+        "minutes-claim-moth-warning"
+      ],
+      "target_timeline_entry_ids": [
+        "minutes-timeline-moth-warning"
+      ]
+    },
+    {
+      "id": "minutes-x-unresolved-council-motive",
+      "fixture_id": "council-minutes-edge",
+      "element_type": "unresolved_decision",
+      "extracted_value": "Council motive",
+      "source_span": "Council motive remains unresolved",
+      "audit_routing_targets_before": [
+        "Human Review",
+        "Claim"
+      ],
+      "current_target_destinations": [
+        "unresolved_decision",
+        "claim"
+      ],
+      "current_review_pack_routes": [
+        "Human Review",
+        "Claim"
+      ],
+      "primary_resolution": "hold_for_human_decision",
+      "secondary_routes": [
+        "route_to_claim_candidate"
+      ],
+      "destination_rule": "Unresolved Council motive rows route first to Human Review; Claim is only a held open-question record.",
+      "hold_reason": "Human-owned dependency remains unresolved: Council motive.",
+      "guard_condition": "Must remain hold, must include unresolved_decision, must include Council motive dependency, and must keep human review source ref.",
+      "regression_check": "unresolved_decision_human_review_hold",
+      "review_status": "hold",
+      "suggested_review_status": "hold",
+      "source_ref_ids": [
+        "src-local-adapter-raw-memo-003",
+        "src-local-adapter-freeform-review-001"
+      ],
+      "target_profile_ids": [],
+      "target_claim_ids": [
+        "minutes-claim-council-motive-open"
+      ],
+      "target_timeline_entry_ids": []
+    },
+    {
+      "id": "edge-x-object-brass-moth-key",
+      "fixture_id": "observatory-ledger-edge",
+      "element_type": "object",
+      "extracted_value": "brass moth key",
+      "source_span": "brass moth key",
+      "audit_routing_targets_before": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "current_target_destinations": [
+        "profile",
+        "claim",
+        "timeline",
+        "unresolved_decision"
+      ],
+      "current_review_pack_routes": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "primary_resolution": "route_to_profile_candidate",
+      "secondary_routes": [
+        "route_to_claim_candidate",
+        "route_to_timeline_candidate",
+        "hold_for_human_decision"
+      ],
+      "destination_rule": "Short brass moth key object rows route first to Profile/Ghost; Claim/Timeline are allowed only as held evidence because function remains undecided.",
+      "hold_reason": "Human-owned dependency remains unresolved: brass moth truth.",
+      "guard_condition": "Must remain hold, must keep brass moth truth dependency, must include unresolved_decision route, and must not infer key function.",
+      "regression_check": "object_human_owned_profile_primary_hold",
+      "review_status": "hold",
+      "suggested_review_status": "hold",
+      "source_ref_ids": [
+        "src-local-adapter-raw-memo-002"
+      ],
+      "target_profile_ids": [
+        "edge-profile-brass-moth-key"
+      ],
+      "target_claim_ids": [
+        "edge-claim-brass-moth-key"
+      ],
+      "target_timeline_entry_ids": [
+        "edge-timeline-moth-key"
+      ]
+    },
+    {
+      "id": "edge-x-unresolved-toma-fate",
+      "fixture_id": "observatory-ledger-edge",
+      "element_type": "unresolved_decision",
+      "extracted_value": "Toma fate",
+      "source_span": "Toma fate stays unresolved",
+      "audit_routing_targets_before": [
+        "Human Review",
+        "Timeline"
+      ],
+      "current_target_destinations": [
+        "unresolved_decision",
+        "timeline"
+      ],
+      "current_review_pack_routes": [
+        "Human Review",
+        "Timeline"
+      ],
+      "primary_resolution": "hold_for_human_decision",
+      "secondary_routes": [
+        "route_to_timeline_candidate"
+      ],
+      "destination_rule": "Unresolved Toma fate rows route first to Human Review; Timeline is a held placement cue until fate is chosen by the human author.",
+      "hold_reason": "Human-owned dependency remains unresolved: Toma fate.",
+      "guard_condition": "Must remain hold, must include unresolved_decision, must include Toma fate dependency, and must keep human review source ref.",
+      "regression_check": "unresolved_decision_human_review_hold",
+      "review_status": "hold",
+      "suggested_review_status": "hold",
+      "source_ref_ids": [
+        "src-local-adapter-raw-memo-002",
+        "src-local-adapter-freeform-review-001"
+      ],
+      "target_profile_ids": [],
+      "target_claim_ids": [],
+      "target_timeline_entry_ids": [
+        "edge-timeline-toma-route"
+      ]
+    }
+  ],
+  "regression_checks": {
+    "ambiguous_rows_loaded": true,
+    "all_ambiguous_rows_resolved": true,
+    "visual_asset_no_claim_route": true,
+    "unresolved_decision_human_review_hold": true,
+    "object_human_owned_profile_primary_hold": true,
+    "source_reference_cases_classified": true,
+    "reject_or_ignore_cases_classified": true,
+    "source_pack_passed": true,
+    "no_model_api_behavior_added": true,
+    "canon_boundaries_preserved": true
+  },
+  "validation": {
+    "source_audit_ambiguous_count": 7,
+    "current_pack_passed": true,
+    "visual_asset_target_claim_ids_empty": true,
+    "unresolved_rows_keep_human_review_source": true,
+    "human_owned_objects_keep_profile_and_hold": true,
+    "no_model_api_behavior_added": true,
+    "no_external_call_required": true,
+    "canon_boundaries_preserved": true
+  },
+  "passed": true
+}

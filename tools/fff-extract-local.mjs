@@ -175,9 +175,9 @@ const CLOCKMAKER_SAMPLE_ELEMENTS = [
     confidence: 0.78,
     canonRisk: "medium",
     spoilerLevel: "medium",
-    targetDestinations: ["profile", "claim", "timeline"],
+    targetDestinations: ["profile", "timeline"],
     targetProfileIds: ["local-profile-observatory-visual"],
-    targetClaimIds: ["local-claim-bell-rings"],
+    targetClaimIds: [],
     targetTimelineEntryIds: ["local-timeline-noon-bell"],
     notes: "Visual asset routing keeps profile-side review and does not create a release asset."
   },

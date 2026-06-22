@@ -356,15 +356,12 @@
       "spoilerLevel": "medium",
       "targetDestinations": [
         "profile",
-        "claim",
         "timeline"
       ],
       "targetProfileIds": [
         "local-profile-observatory-visual"
       ],
-      "targetClaimIds": [
-        "local-claim-bell-rings"
-      ],
+      "targetClaimIds": [],
       "targetTimelineEntryIds": [
         "local-timeline-noon-bell"
       ],
