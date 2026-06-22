@@ -432,3 +432,25 @@
 - Review status: `ready_for_optional_local_review`
 - Review input mode: `freeform`
 - Next action: Add one missing fixture class or validator-hardening case only if route policy drift appears again.
+
+## fff-routing-policy-regression-hardening-001
+
+- Title: Fast Fiction Factory Routing Policy Regression Hardening
+- Purpose: Promote the ambiguous-routing policy into a reusable validator smoke command so future adapter changes cannot silently drift across Visual, Profile/Ghost, Claim, Timeline, Source Reference, and Human Review boundaries.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/routing-policy-regression-hardening.md`
+- Regression result: `artifacts/routing-policy-regression-hardening-result.json`
+- Routing policy validator: `tools/fff-state.mjs`
+- Source resolution artifact: `fff-ambiguous-routing-resolution-001`
+- Source resolution result: `artifacts/ambiguous-routing-resolution-result.json`
+- Source-span review pack: `artifacts/source-span-routing-review-pack.json`
+- Adapter output: `artifacts/local-extraction-adapter-output.json`
+- Adapter matrix outputs: `artifacts/extraction-adapter-outputs/`
+- Validation command: `node tools/fff-state.mjs smoke-routing-policy artifacts/ambiguous-routing-resolution-result.json artifacts/routing-policy-regression-hardening-result.json`
+- Validation result: passed 2026-06-23T03:38:23+09:00; manifest validation command passed; routing policy regression smoke parsed `fff-routing-policy-regression-hardening-001`, checked 7 resolved rows, 36 source-pack rows, 4 adapter payloads, 48 adapter elements, and 0 failures; visual direct-Claim guard, human-review hold guard, Claim secondary-evidence rule, Timeline secondary-evidence rule, source_reference preservation, unsafe/unclear hold rule, and adapter drift readback passed; MkDocs strict build and `git diff --check` passed.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- Next action: Add one missing fixture class only if route-policy hardening later exposes drift.

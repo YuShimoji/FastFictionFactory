@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-22. At refresh time, the active artifact is `fff-ambiguous-routing-resolution-001`. The local branch was already synced to `origin/master` at `641ac48 Resolve ambiguous routing rows` before this handoff refresh began.
+Latest handoff refresh: 2026-06-23T03:38:23+09:00. At refresh time, the active artifact is `fff-routing-policy-regression-hardening-001`. The local branch was synced to `origin/master` before this slice began.
 
 ## Start Here
 
@@ -30,6 +30,8 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/routing-policy-regression-hardening.md
+artifacts/routing-policy-regression-hardening-result.json
 docs/review/ambiguous-routing-resolution.md
 artifacts/ambiguous-routing-resolution-result.json
 docs/review/source-span-quality-audit.md
@@ -68,9 +70,11 @@ If `python -m mkdocs build --strict` is unavailable, use a real Python/MkDocs Ma
 
 ## Current Project State
 
-- Active artifact: `fff-ambiguous-routing-resolution-001`
+- Active artifact: `fff-routing-policy-regression-hardening-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
+- Routing policy regression doc: `docs/review/routing-policy-regression-hardening.md`
+- Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
 - Ambiguous routing resolution doc: `docs/review/ambiguous-routing-resolution.md`
 - Ambiguous routing resolution result: `artifacts/ambiguous-routing-resolution-result.json`
 - Source-span quality audit doc: `docs/review/source-span-quality-audit.md`
@@ -84,7 +88,7 @@ If `python -m mkdocs build --strict` is unavailable, use a real Python/MkDocs Ma
 - Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact resolves the seven ambiguous routing rows from `fff-source-span-quality-audit-001` into explicit primary route policy, secondary evidence roles, held defaults, and regression checks. It keeps Review Hub as the single entry point and preserves Review Memory, the source-span review pack, model/API boundary, adapter artifacts, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and human-owned canon boundaries.
+The current artifact hardens the seven-row routing policy from `fff-ambiguous-routing-resolution-001` into a reusable validator smoke command. It checks the resolution artifact, source-span pack, single adapter output, and three adapter matrix outputs so future route drift is visible. It keeps Review Hub as the single entry point and preserves Review Memory, the source-span review pack, model/API boundary, adapter artifacts, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and human-owned canon boundaries.
 
 ## What Finished
 
@@ -94,18 +98,20 @@ The current artifact resolves the seven ambiguous routing rows from `fff-source-
 - Resolution counts: 3 Profile-primary rows, 1 Visual-primary row, 3 Human Review holds, 5 Claim secondary-evidence rows, and 6 Timeline secondary-evidence rows.
 - `local-x-visual-observatory` no longer routes directly to Claim Ledger and keeps `targetClaimIds: []`.
 - All visual asset rows now avoid direct Claim targets in deterministic adapter outputs.
+- `fff-routing-policy-regression-hardening-001` adds `node tools/fff-state.mjs smoke-routing-policy ...`.
+- The routing regression result checks 7 resolved rows, 36 source-pack rows, 4 adapter payloads, 48 adapter elements, 1 visual resolution row, 3 unresolved-decision rows, 3 source-reference pack rows, and 4 source-reference adapter rows with 0 failures.
 - Review Dedup Gate was checked with axis `ambiguous_routing_resolution`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub review request.
 - No model/API behavior, credentials, database persistence, publishing adapter, production sync, AI video generation, or final canon decision was added.
 
 ## Validation Readback
 
-The active manifest validation command passed for the latest slice. It parsed the resolution JSON, regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, validated adapter outputs, validated current/sample state, validated the sample extraction payload, ran extraction fixture validation, checked Review Hub text, confirmed `externalCallAllowed: false`, and confirmed the local visual row no longer appears as Claim-routed in the source-span pack.
+The active manifest validation command passed for the latest slice. It parsed the regression and resolution JSON, regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, validated adapter outputs, validated current/sample state, validated the sample extraction payload, ran extraction fixture validation, checked Review Hub text, confirmed `externalCallAllowed: false`, confirmed the local visual row no longer appears as Claim-routed in the source-span pack, and ran the reusable routing policy regression smoke command.
 
 Additional checks already passed during the latest slice:
 
-- `python -m mkdocs build --strict`
+- `uvx --with mkdocs-material mkdocs build --strict`
 - `git diff --check`
-- `git rev-list --left-right --count HEAD...origin/master` reported `0 0` before the handoff refresh began.
+- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` before the handoff refresh began.
 
 ## Preserved Boundaries
 
@@ -125,14 +131,14 @@ When review is needed, accept natural freeform review text instead of fixed phra
 
 Before emitting a Review Card, check the review memory. Do not ask the same target/evidence/axis again unless target, axis, evidence, decision value, or an explicit user request changed.
 
-No general Review Hub review is needed for the current state. Future review should be bounded to one concrete target such as a weak span, broad span, missing fixture class, or route-policy validator-hardening question.
+No general Review Hub review is needed for the current state. Future review should be bounded to one concrete target such as a weak span, broad span, or missing fixture class exposed by routing-policy drift.
 
 ## Next Useful Entrances
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
 | Advance: one missing fixture class | Covers a memo shape not represented by the current three fixtures | Future adapter/model work gets clearer regression coverage |
-| Verify: route-policy validator hardening | Turns the visual/direct-Claim policy into a broader automated guard if drift appears again | Future deterministic or model-backed outputs can be rejected earlier |
+| Verify: route-policy regression smoke | Re-runs the named routing policy validator after adapter changes | Future deterministic or model-backed outputs can be rejected earlier |
 | Audit: weak or broad source spans | Improves the remaining source-span quality debt without reopening all routing | A future review can focus on one concrete span fix |
 | Explore: model/API adapter boundary | Uses the existing no-call boundary and validation contract | Provider-backed extraction can start later only after explicit authorization |
 
@@ -142,5 +148,5 @@ No general Review Hub review is needed for the current state. Future review shou
 | --- | --- | --- | --- |
 | Source-span quality | Make source evidence useful, not only valid | 7 ambiguous routes resolved; weak/broad span debt remains | Pick one weak or broad span and adjust only that row/class |
 | Fixture coverage | Cover unrepresented memo shapes | Current three fixtures cover object, visual, unresolved-decision routing | Add one missing fixture class at a time |
-| Validator hardening | Prevent future route drift | Manifest validation checks current route policy | Promote route policy into validator rules only if drift returns |
+| Validator hardening | Prevent future route drift | Named routing policy regression smoke now checks current route policy | Add one missing fixture class only if drift returns |
 | Model/API adapter | Replace deterministic extraction with provider-backed extraction | Explicitly not started | Keep blocked until user authorizes provider/credential/API scope |

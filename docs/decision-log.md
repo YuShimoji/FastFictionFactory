@@ -67,3 +67,7 @@
 - Decision: Resolve ambiguous source-span routing into explicit primary routes and held defaults.
   - Reason: The 7 ambiguous routing rows needed a local route policy before any further fixture, validator, or future model/API adapter work could safely use the pack.
   - Effect: `fff-ambiguous-routing-resolution-001` resolves the 7 rows into 3 Profile-primary routes, 1 Visual-primary route, and 3 Human Review holds; Claim and Timeline remain secondary evidence where needed, `local-x-visual-observatory` no longer carries Claim target ids, and no model/API behavior or final canon decision is added.
+
+- Decision: Promote ambiguous-routing policy into a reusable regression smoke command.
+  - Reason: The prior manifest checked the current route policy, but future adapter edits needed a named validator command that fails when Visual, Claim, Timeline, Source Reference, or Human Review routing drifts.
+  - Effect: `fff-routing-policy-regression-hardening-001` adds `node tools/fff-state.mjs smoke-routing-policy ...`, records `artifacts/routing-policy-regression-hardening-result.json`, checks the resolution artifact, source-span pack, single adapter output, and three adapter matrix outputs, and preserves no model/API behavior or final canon decision.

@@ -5,8 +5,10 @@ import path from "node:path";
 
 const SCHEMA_VERSION = "fff.projectState.v1";
 const EXTRACTION_SCHEMA_VERSION = "fff.extractionContract.v1";
+const ROUTING_POLICY_REGRESSION_SCHEMA_VERSION = "fff.routingPolicyRegression.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
+const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -269,6 +271,25 @@ async function main() {
     return;
   }
 
+  if (command === "validate-routing-policy" || command === "smoke-routing-policy") {
+    const resolution = await readJson(inputPath);
+    const regression = await validateRoutingPolicyRegression(resolution, inputPath);
+    const target = outputPath || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT;
+    if (command === "smoke-routing-policy" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(regression, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(regression, null, 2));
+    }
+    if (!regression.passed) {
+      fail(`Routing policy regression failed: ${regression.failures.join("; ")}`);
+    }
+    if (command === "smoke-routing-policy" || outputPath) {
+      console.log(`routing policy regression passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
   if (command === "summarize-extraction") {
     const payload = await readJson(inputPath);
     const validation = validateExtractionPayload(payload);
@@ -524,6 +545,243 @@ function getExtractionContracts(payload) {
     return [payload.extractionContract];
   }
   return [payload];
+}
+
+async function validateRoutingPolicyRegression(resolution, resolutionPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const sourcePackPath = resolution?.source_pack_path || manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json";
+  const sourcePack = await readJson(sourcePackPath);
+  const boundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
+  const boundaryEnvelope = await readJson(manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json");
+  const adapterPayloads = await readAdapterPayloads();
+  const decisions = Array.isArray(resolution?.decisions) ? resolution.decisions : [];
+  const packElements = flattenSourcePackElements(sourcePack);
+  const adapterElements = adapterPayloads.flatMap((payload) => Array.isArray(payload.extractedElements) ? payload.extractedElements : []);
+  const packById = new Map(packElements.map((element) => [element.id, element]));
+  const adapterById = new Map(adapterElements.map((element) => [element.id, element]));
+  const visualDecisions = decisions.filter((decision) => decision.element_type === "visual_asset");
+  const unresolvedDecisionRows = decisions.filter((decision) => decision.element_type === "unresolved_decision");
+  const humanOwnedObjectRows = decisions.filter((decision) => {
+    const value = String(decision.extracted_value || "").toLowerCase();
+    return decision.element_type === "object" && (value.includes("brass moth") || hasHumanOwnedDependency(decision));
+  });
+  const sourceReferencePackRows = packElements.filter((element) => element.element_type === "source_reference");
+  const sourceReferenceAdapterRows = adapterElements.filter((element) => element.elementType === "source_reference");
+
+  check(
+    "resolution_artifact_loaded",
+    resolution?.artifact_id === "fff-ambiguous-routing-resolution-001" && resolution?.passed === true,
+    `loaded ${resolutionPath}`
+  );
+  check(
+    "review_memory_checked",
+    manifest.review_memory?.some((entry) => entry.artifact_id === "fff-ambiguous-routing-resolution-001") &&
+      resolution.review_memory_checked?.checked === true,
+    "manifest and resolution both expose review memory for ambiguous routing"
+  );
+  check(
+    "route_policy_checks_defined",
+    decisions.length === 7 &&
+      resolution.regression_checks?.visual_asset_no_claim_route === true &&
+      resolution.regression_checks?.unresolved_decision_human_review_hold === true &&
+      resolution.regression_checks?.object_human_owned_profile_primary_hold === true,
+    `decision rows=${decisions.length}`
+  );
+  check(
+    "visual_direct_claim_guard",
+    visualDecisions.length > 0 &&
+      visualDecisions.every((decision) => !arrayIncludesIgnoreCase(decision.current_target_destinations, "claim") && !arrayIncludesIgnoreCase(decision.current_review_pack_routes, "Claim") && arrayLength(decision.target_claim_ids) === 0) &&
+      packElements.filter((element) => element.element_type === "visual_asset").every((element) => !arrayIncludesIgnoreCase(element.routing_targets, "Claim")) &&
+      adapterElements.filter((element) => element.elementType === "visual_asset").every((element) => !arrayIncludesIgnoreCase(element.targetDestinations, "claim") && arrayLength(element.targetClaimIds) === 0),
+    "visual rows must not target Claim directly in resolution, pack, or adapter outputs"
+  );
+  check(
+    "human_review_hold_guard",
+    unresolvedDecisionRows.length === 3 &&
+      unresolvedDecisionRows.every((decision) => decision.primary_resolution === "hold_for_human_decision" && decision.review_status === "hold" && decision.suggested_review_status === "hold" && arrayIncludesIgnoreCase(decision.current_target_destinations, "unresolved_decision") && arrayIncludesSubstring(decision.source_ref_ids, "freeform-review")) &&
+      adapterElements.filter((element) => element.elementType === "unresolved_decision").every((element) => element.reviewStatus === "hold" && element.suggestedReviewStatus === "hold" && arrayIncludesIgnoreCase(element.targetDestinations, "unresolved_decision")),
+    "unresolved/human-owned decision rows must stay held with human review routing"
+  );
+  check(
+    "claim_secondary_evidence_rule",
+    resolution.summary?.rows_with_claim_as_secondary_evidence === 5 &&
+      decisions.every((decision) => decision.primary_resolution !== "route_to_claim_candidate") &&
+      decisions.filter((decision) => arrayIncludesIgnoreCase(decision.secondary_routes, "route_to_claim_candidate")).every((decision) => decision.review_status === "hold"),
+    "Claim routes in resolved rows must remain secondary evidence and held"
+  );
+  check(
+    "timeline_secondary_evidence_rule",
+    resolution.summary?.rows_with_timeline_as_secondary_evidence === 6 &&
+      decisions.every((decision) => decision.primary_resolution !== "route_to_timeline_candidate") &&
+      decisions.filter((decision) => arrayIncludesIgnoreCase(decision.secondary_routes, "route_to_timeline_candidate")).every((decision) => decision.review_status === "hold"),
+    "Timeline routes in resolved rows must remain secondary evidence and held"
+  );
+  check(
+    "source_reference_preservation",
+    sourceReferencePackRows.length > 0 &&
+      sourceReferencePackRows.every((element) => arrayEqualsIgnoreCase(element.routing_targets, ["Source Reference"])) &&
+      sourceReferenceAdapterRows.length > 0 &&
+      sourceReferenceAdapterRows.every((element) => arrayEqualsIgnoreCase(element.targetDestinations, ["source_reference"]) && arrayLength(element.targetClaimIds) === 0),
+    "source_reference rows must remain source references, not claims"
+  );
+  check(
+    "unsafe_unclear_hold_rule",
+    decisions.every((decision) => decision.review_status === "hold" && decision.suggested_review_status === "hold") &&
+      sourcePack.cross_fixture_summary?.non_held_review_defaults === 0 &&
+      sourcePack.cross_fixture_summary?.human_owned_decision_adopt_suggestions === 0,
+    "unsafe or unclear routing must stay held and must not suggest adopt"
+  );
+  check(
+    "adapter_drift_readback",
+    decisions.every((decision) => packById.has(decision.id) && adapterById.has(decision.id)) &&
+      adapterPayloads.length >= 4 &&
+      sourcePack.passed === true,
+    "resolved rows must be visible in source pack and adapter outputs"
+  );
+  check(
+    "human_owned_object_profile_primary_hold",
+    humanOwnedObjectRows.length === 3 &&
+      humanOwnedObjectRows.every((decision) => decision.primary_resolution === "route_to_profile_candidate" && decision.review_status === "hold" && arrayIncludesIgnoreCase(decision.current_target_destinations, "profile") && arrayIncludesIgnoreCase(decision.current_target_destinations, "unresolved_decision")),
+    "human-owned object rows must route first to Profile/Ghost and remain held"
+  );
+  check(
+    "no_model_api_behavior_added",
+    manifest.preserved_model_api_boundary_artifact_id === "fff-model-api-boundary-spec-001" &&
+      boundarySmoke?.passed === true &&
+      boundarySmoke?.checks?.noExternalCall === true &&
+      boundaryEnvelope?.providerBoundary?.externalCallAllowed === false,
+    "model/API boundary remains preserved by structured no-call evidence"
+  );
+
+  return {
+    schemaVersion: ROUTING_POLICY_REGRESSION_SCHEMA_VERSION,
+    artifact_id: "fff-routing-policy-regression-hardening-001",
+    title: "Fast Fiction Factory Routing Policy Regression Hardening",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    source_resolution_artifact_id: resolution?.artifact_id,
+    source_resolution_path: toRepoPath(resolutionPath),
+    source_pack_path: sourcePackPath,
+    adapter_output_paths: adapterPayloads.map((payload) => toRepoPath(payload.__path)),
+    review_memory_checked: {
+      checked: true,
+      target: "fff-ambiguous-routing-resolution-001",
+      prior_review_count: manifest.review_memory?.find((entry) => entry.artifact_id === "fff-ambiguous-routing-resolution-001")?.prior_review_count ?? 0,
+      prior_signal_summary: manifest.review_memory?.find((entry) => entry.artifact_id === "fff-ambiguous-routing-resolution-001")?.latest_user_signal_summary || "No user review was requested for the prior routing-resolution slice.",
+      axis: "routing_policy_regression_hardening",
+      what_changed: "Resolved routing policy is now rechecked against the resolution artifact, source-span pack, and current adapter outputs.",
+      what_this_review_decides: "No user review is needed; this readback decides whether route policy drift is visible before future adapter changes proceed.",
+      not_asking: [
+        "general Review Hub review",
+        "repeat ambiguous routing review",
+        "model/API approval",
+        "production approval",
+        "canon decisions for Toma fate, brass moth truth, or Council motive"
+      ],
+      next_nonredundant_axis: "one missing fixture class if regression hardening later exposes drift"
+    },
+    summary: {
+      resolved_rows_checked: decisions.length,
+      source_pack_rows_checked: packElements.length,
+      adapter_payloads_checked: adapterPayloads.length,
+      adapter_elements_checked: adapterElements.length,
+      visual_rows_checked: visualDecisions.length,
+      unresolved_decision_rows_checked: unresolvedDecisionRows.length,
+      source_reference_pack_rows_checked: sourceReferencePackRows.length,
+      source_reference_adapter_rows_checked: sourceReferenceAdapterRows.length,
+      failures: failures.length
+    },
+    routing_policy_checks: checks,
+    route_policy: {
+      visual_evidence: "visual_asset rows must not create direct Claim targets",
+      human_review_hold: "unresolved and human-owned decision rows must remain hold with Human Review routing",
+      claim_secondary_evidence: "Claim routing in resolved rows is secondary evidence unless a later safe policy explicitly changes it",
+      timeline_secondary_evidence: "Timeline routing in resolved rows is secondary evidence unless a later safe policy explicitly changes it",
+      source_reference_preservation: "source_reference rows remain source references and never become claims",
+      unsafe_unclear_hold: "unsafe or unclear routing remains held, not adopted",
+      adapter_drift_readback: "resolution, source pack, and adapter output ids must agree so drift is visible"
+    },
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+async function readAdapterPayloads() {
+  const payloads = [];
+  for (const filePath of ["artifacts/local-extraction-adapter-output.json"]) {
+    const payload = await readJson(filePath);
+    payload.__path = toRepoPath(filePath);
+    payloads.push(payload);
+  }
+
+  const outputDir = "artifacts/extraction-adapter-outputs";
+  const entries = await readdir(outputDir, { withFileTypes: true });
+  for (const entry of entries.filter((item) => item.isFile() && item.name.endsWith(".json")).sort((a, b) => a.name.localeCompare(b.name))) {
+    const filePath = toRepoPath(path.join(outputDir, entry.name));
+    const payload = await readJson(filePath);
+    payload.__path = filePath;
+    payloads.push(payload);
+  }
+  return payloads;
+}
+
+function flattenSourcePackElements(sourcePack) {
+  if (!Array.isArray(sourcePack?.fixtures)) {
+    return [];
+  }
+  return sourcePack.fixtures.flatMap((fixture) => Array.isArray(fixture.elements) ? fixture.elements : []);
+}
+
+function arrayLength(value) {
+  return Array.isArray(value) ? value.length : 0;
+}
+
+function arrayIncludesIgnoreCase(value, expected) {
+  if (!Array.isArray(value)) {
+    return false;
+  }
+  const target = String(expected).toLowerCase();
+  return value.some((item) => String(item).toLowerCase() === target);
+}
+
+function arrayIncludesSubstring(value, expected) {
+  if (!Array.isArray(value)) {
+    return false;
+  }
+  const target = String(expected).toLowerCase();
+  return value.some((item) => String(item).toLowerCase().includes(target));
+}
+
+function arrayEqualsIgnoreCase(value, expected) {
+  if (!Array.isArray(value) || value.length !== expected.length) {
+    return false;
+  }
+  return value.every((item, index) => String(item).toLowerCase() === String(expected[index]).toLowerCase());
+}
+
+function hasHumanOwnedDependency(decision) {
+  const searchable = [
+    decision.extracted_value,
+    decision.hold_reason,
+    decision.guard_condition,
+    ...(Array.isArray(decision.unresolvedDependencies) ? decision.unresolvedDependencies : [])
+  ].filter(Boolean).join(" ").toLowerCase();
+  return HUMAN_OWNED_DECISIONS.some((item) => searchable.includes(item.toLowerCase()));
+}
+
+function toRepoPath(filePath) {
+  const relativePath = path.isAbsolute(filePath) ? path.relative(process.cwd(), filePath) : filePath;
+  return relativePath.replace(/\\/g, "/");
 }
 
 function validateExtractionContract(contract, options = {}) {
@@ -1149,12 +1407,17 @@ Usage:
   node tools/fff-state.mjs summarize-extraction <payload.json>
   node tools/fff-state.mjs validate-extraction-fixtures <fixture-directory>
   node tools/fff-state.mjs smoke-extraction-fixtures <fixture-directory> [output.json]
+  node tools/fff-state.mjs validate-routing-policy <ambiguous-routing-resolution.json>
+  node tools/fff-state.mjs smoke-routing-policy <ambiguous-routing-resolution.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
 
 Default extraction fixture smoke output:
   ${DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT}
+
+Default routing policy regression output:
+  ${DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT}
 `);
 }
 

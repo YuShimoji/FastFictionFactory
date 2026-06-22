@@ -73,6 +73,7 @@ nav:
       - Review Memory Dedup: review/review-memory-dedup.md
       - Review Procedure Lock: review/review-procedure.md
       - Review Hub IA Mode Split: review/review-hub-ia-mode-split.md
+      - Routing Policy Regression Hardening: review/routing-policy-regression-hardening.md
       - Source-Span Routing Review Pack: review/source-span-routing-review-pack.md
       - Source-Span Routing Triage: review/source-span-routing-triage.md
       - Freeform Review Intake: review/freeform-review-intake.md

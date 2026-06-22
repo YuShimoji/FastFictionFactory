@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "fff.routingPolicyRegression.v1",
+  "artifact_id": "fff-routing-policy-regression-hardening-001",
+  "title": "Fast Fiction Factory Routing Policy Regression Hardening",
+  "generatedAt": "2026-06-22T18:44:51.418Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "source_resolution_artifact_id": "fff-ambiguous-routing-resolution-001",
+  "source_resolution_path": "artifacts/ambiguous-routing-resolution-result.json",
+  "source_pack_path": "artifacts/source-span-routing-review-pack.json",
+  "adapter_output_paths": [
+    "artifacts/local-extraction-adapter-output.json",
+    "artifacts/extraction-adapter-outputs/clockmaker-sample.json",
+    "artifacts/extraction-adapter-outputs/council-minutes-edge.json",
+    "artifacts/extraction-adapter-outputs/observatory-ledger-edge.json"
+  ],
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-ambiguous-routing-resolution-001",
+    "prior_review_count": 0,
+    "prior_signal_summary": "No user review was requested or recorded for this routing-resolution slice; the prior quality audit classified the rows but did not accept routing policy.",
+    "axis": "routing_policy_regression_hardening",
+    "what_changed": "Resolved routing policy is now rechecked against the resolution artifact, source-span pack, and current adapter outputs.",
+    "what_this_review_decides": "No user review is needed; this readback decides whether route policy drift is visible before future adapter changes proceed.",
+    "not_asking": [
+      "general Review Hub review",
+      "repeat ambiguous routing review",
+      "model/API approval",
+      "production approval",
+      "canon decisions for Toma fate, brass moth truth, or Council motive"
+    ],
+    "next_nonredundant_axis": "one missing fixture class if regression hardening later exposes drift"
+  },
+  "summary": {
+    "resolved_rows_checked": 7,
+    "source_pack_rows_checked": 36,
+    "adapter_payloads_checked": 4,
+    "adapter_elements_checked": 48,
+    "visual_rows_checked": 1,
+    "unresolved_decision_rows_checked": 3,
+    "source_reference_pack_rows_checked": 3,
+    "source_reference_adapter_rows_checked": 4,
+    "failures": 0
+  },
+  "routing_policy_checks": {
+    "resolution_artifact_loaded": {
+      "passed": true,
+      "detail": "loaded artifacts/ambiguous-routing-resolution-result.json"
+    },
+    "review_memory_checked": {
+      "passed": true,
+      "detail": "manifest and resolution both expose review memory for ambiguous routing"
+    },
+    "route_policy_checks_defined": {
+      "passed": true,
+      "detail": "decision rows=7"
+    },
+    "visual_direct_claim_guard": {
+      "passed": true,
+      "detail": "visual rows must not target Claim directly in resolution, pack, or adapter outputs"
+    },
+    "human_review_hold_guard": {
+      "passed": true,
+      "detail": "unresolved/human-owned decision rows must stay held with human review routing"
+    },
+    "claim_secondary_evidence_rule": {
+      "passed": true,
+      "detail": "Claim routes in resolved rows must remain secondary evidence and held"
+    },
+    "timeline_secondary_evidence_rule": {
+      "passed": true,
+      "detail": "Timeline routes in resolved rows must remain secondary evidence and held"
+    },
+    "source_reference_preservation": {
+      "passed": true,
+      "detail": "source_reference rows must remain source references, not claims"
+    },
+    "unsafe_unclear_hold_rule": {
+      "passed": true,
+      "detail": "unsafe or unclear routing must stay held and must not suggest adopt"
+    },
+    "adapter_drift_readback": {
+      "passed": true,
+      "detail": "resolved rows must be visible in source pack and adapter outputs"
+    },
+    "human_owned_object_profile_primary_hold": {
+      "passed": true,
+      "detail": "human-owned object rows must route first to Profile/Ghost and remain held"
+    },
+    "no_model_api_behavior_added": {
+      "passed": true,
+      "detail": "model/API boundary remains preserved by structured no-call evidence"
+    }
+  },
+  "route_policy": {
+    "visual_evidence": "visual_asset rows must not create direct Claim targets",
+    "human_review_hold": "unresolved and human-owned decision rows must remain hold with Human Review routing",
+    "claim_secondary_evidence": "Claim routing in resolved rows is secondary evidence unless a later safe policy explicitly changes it",
+    "timeline_secondary_evidence": "Timeline routing in resolved rows is secondary evidence unless a later safe policy explicitly changes it",
+    "source_reference_preservation": "source_reference rows remain source references and never become claims",
+    "unsafe_unclear_hold": "unsafe or unclear routing remains held, not adopted",
+    "adapter_drift_readback": "resolution, source pack, and adapter output ids must agree so drift is visible"
+  },
+  "failures": [],
+  "passed": true
+}
