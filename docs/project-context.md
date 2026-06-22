@@ -2,11 +2,11 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-review-memory-dedup-001`, served through the static local Visual Review Hub at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-ambiguous-routing-resolution-001`, served through the static local Visual Review Hub at `public/review/index.html`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is review-memory-aware procedure stability: story review, source audit, project cockpit, artifact governance, screenshot evidence, local access paths, and non-redundant review requests must be easy to distinguish before freeform review drives adapter changes or any model/API extractor exists.
+Keep the MVP reviewable without production commitments. The current lane is review-memory-aware source-span governance: story review, source audit, project cockpit, artifact governance, screenshot evidence, local access paths, non-redundant review requests, and routing policy must remain easy to distinguish before freeform review drives adapter changes or any model/API extractor exists.
 
 ## Current Slice
 
@@ -15,6 +15,10 @@ The active slice is complete enough for local review:
 - Review UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Ambiguous routing resolution doc: `docs/review/ambiguous-routing-resolution.md`
+- Ambiguous routing resolution result: `artifacts/ambiguous-routing-resolution-result.json`
+- Source-span quality audit doc: `docs/review/source-span-quality-audit.md`
+- Source-span quality audit result: `artifacts/source-span-quality-audit-result.json`
 - Review memory / dedup doc: `docs/review/review-memory-dedup.md`
 - Review memory / dedup smoke: `artifacts/review-memory-dedup-smoke-result.json`
 - Review procedure: `docs/review/review-procedure.md`
@@ -58,6 +62,8 @@ The active slice is complete enough for local review:
 Last verified on 2026-06-22:
 
 ```powershell
+$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
 node .\tools\fff-state.mjs validate .\artifacts\sample-project-state.json
 node .\tools\fff-state.mjs validate .\artifacts\current-project-state.json
 node .\tools\fff-state.mjs validate-extraction .\artifacts\sample-extraction-payload.json
@@ -69,12 +75,17 @@ node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixt
 
 Result summary:
 
+- Active manifest validation passes for `fff-ambiguous-routing-resolution-001`.
+- Ambiguous routing resolution parses and passes with 7 resolved rows: 3 Profile-primary routes, 1 Visual-primary route, and 3 Human Review holds.
+- Review Dedup Gate is recorded with axis `ambiguous_routing_resolution`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub request.
+- All visual asset rows avoid direct Claim routing and keep `targetClaimIds: []`.
+- Source-span quality audit classifies 36 existing review-pack rows: 28 useful spans, 6 weak spans, 2 overly broad spans, 0 missing source refs, 7 ambiguous routing rows, 3 guarded visual/source-sensitive rows, and 17 human-owned boundary rows.
 - Both state JSON files validate with `schemaVersion: "fff.projectState.v1"`.
 - The sample extraction payload validates as `schemaVersion: "fff.extractionContract.v1"`.
 - The validator fixture matrix passes: 2 expected-valid fixtures, 5 expected-invalid fixtures, and built-in mutation guards.
 - Current state contains 1 Extraction Contract run, 12 extraction elements, 11 Profile/Ghost records, 9 Claim Ledger claims, and 8 Timeline View entries.
 - Local adapter expansion generated 3 fixture outputs with 36 total extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
-- Source-span review pack generated from those three outputs and records 17 human-owned guarded elements plus Review Debt categories for weak spans, over-broad spans, vague extraction, ambiguous routing, confident defaults, and missing fixture classes.
+- Source-span review pack generated from those three outputs and records 17 human-owned guarded elements plus Review Debt categories for weak spans, over-broad spans, vague extraction, previously ambiguous routing, confident defaults, and missing fixture classes.
 - Review Hub IA mode split adds Story Review, Source Audit, Project Cockpit, and Artifacts modes with Japanese-facing display labels, non-sticky Raw Story Memo behavior, and collapsed source-span fixture details by default.
 - Review Procedure Lock adds fixed local open commands, identity/access split, screenshot/contact-sheet map, mode-specific screenshot evidence paths, optional-vs-required review boundaries, freeform review guidance, and Review Debt without asking for immediate user review.
 - Review Memory Dedup adds manifest-level review memory, Acceptance Ladder, Review Dedup Gate, and Non-Redundant Review Card rules so future review requests do not repeat the same target, evidence, and axis.
@@ -83,7 +94,7 @@ Result summary:
 - Profile/Ghost summary covers all required profile types, all required ghost node statuses, 7 high canon risk profiles, 7 dependency-bound profiles, and 11 profiles linked to both claims and timeline entries.
 - Claim summary: 5 high canon risk claims, 5 claims with unresolved dependencies, 1 unverified reality status claim, and 4 hidden or spoiler-protected claims.
 - Timeline summary reports all five timeline axes, 4 high canon risk entries, 4 dependency-bound entries, and 8 entries linked to claims.
-- The active manifest validation command passed for this slice; MkDocs strict, Playwright browser smoke, and git diff whitespace checks also passed during triage.
+- The active manifest validation command, MkDocs strict build, and git diff whitespace checks passed for the latest slice.
 
 ## Boundaries
 
@@ -124,10 +135,10 @@ node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-nega
 node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
 ```
 
-First next move: apply the Review Dedup Gate before asking for review. The next non-redundant axis is source-span usefulness and routing quality only when evidence, target, axis, or decision value has changed enough to justify asking.
+First next move: apply the Review Dedup Gate before asking for review. The next non-redundant move is one bounded fixture or validator improvement: widen or split one weak span, split one broad span, add one missing fixture class, or harden route-policy validation if drift appears again.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
 
-Latest handoff refresh: 2026-06-22. At refresh time, the active artifact is `fff-review-memory-dedup-001`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, repeated review requirement, or final canon decision existed.
+Latest handoff refresh: 2026-06-22. At refresh time, the active artifact is `fff-ambiguous-routing-resolution-001` at commit `641ac48` before this handoff refresh; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, repeated review requirement, or final canon decision existed.

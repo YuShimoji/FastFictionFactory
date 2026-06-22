@@ -59,3 +59,11 @@
 - Decision: Add review memory and a dedup gate before asking for more review.
   - Reason: Positive diagnostic signals should not be re-requested as the same target/evidence/axis, and they should not silently expand into production acceptance, source-span quality acceptance, model/API approval, or canon approval.
   - Effect: `fff-review-memory-dedup-001` adds `docs/review/review-memory-dedup.md`, manifest-level `review_memory`, Acceptance Ladder, Review Dedup Gate, Non-Redundant Review Card requirements, and smoke evidence while preserving freeform review and no model/API behavior.
+
+- Decision: Audit source-span usefulness and routing quality before revising adapter or model/API behavior.
+  - Reason: The source-span routing review pack was valid, but validity alone did not show whether spans were useful, overly broad, weak, missing source refs, ambiguously routed, or safely held around human-owned decisions.
+  - Effect: `fff-source-span-quality-audit-001` classifies all 36 review-pack rows, records 28 useful spans, 6 weak spans, 2 overly broad spans, 0 missing source refs, 7 ambiguous routing rows, 3 guarded visual/source-sensitive rows, and 17 human-owned boundary rows without asking for a repeated general Review Hub review.
+
+- Decision: Resolve ambiguous source-span routing into explicit primary routes and held defaults.
+  - Reason: The 7 ambiguous routing rows needed a local route policy before any further fixture, validator, or future model/API adapter work could safely use the pack.
+  - Effect: `fff-ambiguous-routing-resolution-001` resolves the 7 rows into 3 Profile-primary routes, 1 Visual-primary route, and 3 Human Review holds; Claim and Timeline remain secondary evidence where needed, `local-x-visual-observatory` no longer carries Claim target ids, and no model/API behavior or final canon decision is added.

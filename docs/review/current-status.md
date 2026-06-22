@@ -56,7 +56,7 @@
 - `artifacts/source-span-quality-audit-result.json` classifies 28 useful spans, 6 weak spans, 2 overly broad spans, 0 missing source refs, 7 ambiguous routing rows, 3 guarded visual/source-sensitive rows, and 17 human-owned boundary rows.
 - The deterministic adapter now keeps `local-x-visual-observatory` out of Claim Ledger target ids; all visual asset rows route through Profile/Ghost plus Timeline context and remain held.
 - `docs/review/review-memory-dedup.md` defines review memory fields, Acceptance Ladder stages, Review Dedup Gate checks, and the Non-Redundant Review Card template.
-- `artifacts/artifact-manifest.json` records `review_memory` for `fff-review-procedure-lock-001`, `fff-review-hub-ia-mode-split-001`, `fff-source-span-routing-review-pack-001`, and `fff-source-span-quality-audit-001`.
+- `artifacts/artifact-manifest.json` records `review_memory` for `fff-review-procedure-lock-001`, `fff-review-hub-ia-mode-split-001`, `fff-source-span-routing-review-pack-001`, `fff-source-span-quality-audit-001`, and `fff-ambiguous-routing-resolution-001`.
 - `docs/review/review-procedure.md` defines what to open, what each screenshot represents, what each mode is for, when review is optional or required, what freeform review should cover, and which items are Review Debt.
 - The Artifacts mode lists the procedure doc, smoke evidence, screenshot/contact-sheet paths, mode screenshot directory, manifest, and local launcher paths.
 - `scripts/operator/open_review.ps1` remains the Windows launcher, and `scripts/operator/open_review.sh` adds a dependency-free sh launcher for Unix-like terminals.
