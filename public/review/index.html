@@ -1117,6 +1117,8 @@
                 <tr><td>Source-span pack review</td><td>docs/review/source-span-routing-review-pack.md</td></tr>
                 <tr><td>Source-span quality audit</td><td>docs/review/source-span-quality-audit.md</td></tr>
                 <tr><td>Source-span quality result</td><td>artifacts/source-span-quality-audit-result.json</td></tr>
+                <tr><td>Downstream source-span adoption gate</td><td>docs/review/downstream-source-span-adoption-gate.md</td></tr>
+                <tr><td>Downstream source-span adoption result</td><td>artifacts/downstream-source-span-adoption-gate-result.json</td></tr>
                 <tr><td>Malformed source-span guard</td><td>docs/review/malformed-missing-span-guard.md</td></tr>
                 <tr><td>Malformed source-span guard result</td><td>artifacts/malformed-missing-span-guard-result.json</td></tr>
                 <tr><td>Malformed source-span fixture</td><td>artifacts/extraction-negative-fixtures/malformed-missing-source-span.json</td></tr>
@@ -1153,7 +1155,8 @@
               <li>Open <strong>public/review/index.html</strong>.</li>
               <li>Confirm this hub shows active artifact id <strong>fff-contradictory-claim-guard-001</strong>.</li>
               <li>Use <strong>docs/review/contradictory-claim-guard.md</strong> and <strong>artifacts/contradictory-claim-guard-result.json</strong> for the contradictory claim guard axis.</li>
-              <li>Use <strong>docs/review/malformed-missing-span-guard.md</strong> and <strong>artifacts/malformed-missing-span-guard-result.json</strong> for the malformed/missing source-span guard axis.</li>
+              <li>Use <strong>docs/review/downstream-source-span-adoption-gate.md</strong> and <strong>artifacts/downstream-source-span-adoption-gate-result.json</strong> for the preserved downstream source-span adoption gate readback.</li>
+              <li>Use <strong>docs/review/malformed-missing-span-guard.md</strong> and <strong>artifacts/malformed-missing-span-guard-result.json</strong> for the preserved malformed/missing source-span guard axis.</li>
               <li>Use <strong>docs/review/missing-fixture-class-probe.md</strong> and <strong>artifacts/missing-fixture-class-probe-result.json</strong> for the sparse bullet-only fixture probe axis.</li>
               <li>Use <strong>docs/review/weak-span-repair.md</strong> and <strong>artifacts/weak-span-repair-result.json</strong> for the weak source-span repair axis.</li>
               <li>Use <strong>docs/review/broad-span-split.md</strong> and <strong>artifacts/broad-span-split-result.json</strong> for the preserved broad source-span split axis.</li>
@@ -1284,6 +1287,7 @@
                 <li>Vague extraction: qualitative review required.</li>
                 <li>Routing ambiguous: no unsafe visual route; still review target usefulness.</li>
                 <li>Default too confident: clear in automated audit.</li>
+                <li>Downstream adoption gate: 44 source-tracked Profile / Claim / Timeline review candidates, 0 unsafe routes, and 0 adopted downstream candidates.</li>
                 <li>Fixture class covered in this slice: sparse bullet-only notes.</li>
                 <li>Fixture class covered by the active guard: malformed or missing source-span payloads.</li>
                 <li>Fixture class covered by the active guard: contradictory memo claims.</li>
@@ -1315,7 +1319,7 @@
                   <tbody>
                     <tr><td>Mira Vale<br><span class="tag green">person</span></td><td>Mira Vale repairs clocks<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=91-115</code></td><td>Profile; Claim</td><td>confidence 0.95<br>hold</td><td>no automated issue; protagonist candidate remains review-held.</td></tr>
                     <tr><td>brass moth<br><span class="tag gold">object</span></td><td>brass moth in the workshop drawer<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=199-232</code></td><td>Profile; Claim; Timeline; Human Review</td><td>confidence 0.95<br>hold</td><td>held human review required; high canon risk; brass moth truth unresolved.</td></tr>
-                    <tr><td>observatory rings without a bell<br><span class="tag blue">visual_asset</span></td><td>still rings at noon even though its bell was removed<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=364-416</code></td><td>Profile; Claim; Timeline; Visual</td><td>confidence 0.78<br>hold</td><td>visual review only; no release asset is created.</td></tr>
+                    <tr><td>observatory rings without a bell<br><span class="tag blue">visual_asset</span></td><td>still rings at noon even though its bell was removed<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=364-416</code></td><td>Profile; Timeline; Visual</td><td>confidence 0.78<br>hold</td><td>visual review only; no release asset is created.</td></tr>
                     <tr><td>magic explanation placeholder<br><span class="tag red">placeholder</span></td><td>Do not explain the magic too early<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=914-948</code></td><td>Profile; Human Review</td><td>confidence 0.70<br>hold</td><td>held human review required; surfaces a rule gap instead of inventing magic.</td></tr>
                     <tr><td>Council motive<br><span class="tag red">unresolved_decision</span></td><td>Council motive is unresolved<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=756-784</code></td><td>Human Review; Claim; Timeline</td><td>confidence 0.86<br>hold</td><td>held human review required; freeform review remains source of truth.</td></tr>
                     <tr><td>sample raw memo<br><span class="tag green">source_reference</span></td><td>Working title: The Clockmaker Under Glass<br><code>artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=47-88</code></td><td>Source Reference</td><td>confidence 1.00<br>hold</td><td>source anchor for every adapter candidate.</td></tr>
@@ -1395,9 +1399,11 @@
             <span class="tag green">validator fixtures checked</span>
             <span class="tag green">malformed source spans guarded</span>
             <span class="tag green">contradictory claims guarded</span>
+            <span class="tag green">downstream adoption gate passed</span>
             <span class="tag green">9 validator fixtures</span>
             <span class="tag green">0 accepted routed candidates</span>
             <span class="tag green">0 adopted conflict claims</span>
+            <span class="tag green">0 adopted downstream candidates</span>
             <span class="tag green">local adapter smoke checked</span>
             <span class="tag green">source-span review pack visible</span>
             <span class="tag green">source-span quality audit classified</span>
@@ -3673,6 +3679,20 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           humanOwnedBoundaryPreservedCount: 17,
           reviewCardEmitted: false
         },
+        downstreamSourceSpanAdoptionGate: {
+          artifactId: "fff-downstream-source-span-adoption-gate-001",
+          docPath: "docs/review/downstream-source-span-adoption-gate.md",
+          resultPath: "artifacts/downstream-source-span-adoption-gate-result.json",
+          sourcePackRowsChecked: 48,
+          downstreamCandidatesReportedForReview: 44,
+          sourceTrackedDownstreamCandidates: 44,
+          malformedOrMissingSpanCandidates: 0,
+          unsafeRoutingCandidates: 0,
+          humanOwnedCandidatesHeld: 22,
+          adoptedProfileClaimTimelineCandidates: 0,
+          actualDownstreamAdoptionImplemented: false,
+          reviewCardEmitted: false
+        },
         ambiguousRoutingResolution: {
           artifactId: "fff-ambiguous-routing-resolution-001",
           docPath: "docs/review/ambiguous-routing-resolution.md",
@@ -4300,7 +4320,21 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             overlyBroadSpanCount: 2,
             missingSourceRefCount: 0,
             ambiguousRoutingCount: 7,
-            humanOwnedBoundaryPreservedCount: 17,
+          humanOwnedBoundaryPreservedCount: 17,
+          reviewCardEmitted: false
+        },
+          downstreamSourceSpanAdoptionGate: {
+            artifactId: "fff-downstream-source-span-adoption-gate-001",
+            docPath: "docs/review/downstream-source-span-adoption-gate.md",
+            resultPath: "artifacts/downstream-source-span-adoption-gate-result.json",
+            sourcePackRowsChecked: 48,
+            downstreamCandidatesReportedForReview: 44,
+            sourceTrackedDownstreamCandidates: 44,
+            malformedOrMissingSpanCandidates: 0,
+            unsafeRoutingCandidates: 0,
+            humanOwnedCandidatesHeld: 22,
+            adoptedProfileClaimTimelineCandidates: 0,
+            actualDownstreamAdoptionImplemented: false,
             reviewCardEmitted: false
           },
           ambiguousRoutingResolution: {

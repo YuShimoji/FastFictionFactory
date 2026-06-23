@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-23T16:06:44+09:00. At refresh time, the active artifact is `fff-contradictory-claim-guard-001`. Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
+Latest handoff refresh: 2026-06-23T16:14:15+09:00. At refresh time, the active artifact is `fff-contradictory-claim-guard-001`. Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
 
 ## Start Here
 
