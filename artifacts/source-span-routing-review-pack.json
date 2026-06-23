@@ -1160,7 +1160,7 @@
           "element_type": "person",
           "extracted_value": "Mira Vale",
           "raw_source_snippet": "Mira Vale は夜明け前に時計を修理する",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=44-67",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=46-69",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1184,7 +1184,7 @@
           "element_type": "object",
           "extracted_value": "brass moth key / 真鍮の蛾の鍵",
           "raw_source_snippet": "brass moth key is called \"真鍮の蛾の鍵\"",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1210,7 +1210,7 @@
           "element_type": "visual_asset",
           "extracted_value": "bellless tower silhouette",
           "raw_source_snippet": "bellless tower silhouette above North Bell Station",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=466-516",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=478-528",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1234,7 +1234,7 @@
           "element_type": "placeholder",
           "extracted_value": "translation boundary placeholder",
           "raw_source_snippet": "English gloss is in-line only",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=551-580",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1258,7 +1258,7 @@
           "element_type": "unresolved_decision",
           "extracted_value": "Council motive",
           "raw_source_snippet": "Council motive remains unresolved",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=246-279",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=252-285",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005",
             "src-local-adapter-freeform-review-001"
@@ -1307,7 +1307,7 @@
           "element_type": "person",
           "extracted_value": "Mira Vale",
           "raw_source_snippet": "Mira Vale は夜明け前に時計を修理する",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=44-67",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=46-69",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1331,7 +1331,7 @@
           "element_type": "place",
           "extracted_value": "North Bell Station / 北鐘駅",
           "raw_source_snippet": "北鐘駅の古い observatory rings at noon",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=117-149",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=121-153",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1354,7 +1354,7 @@
           "element_type": "organization",
           "extracted_value": "Council archivists",
           "raw_source_snippet": "Council archivists の記録 says Toma's route is a clerical error",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=180-240",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=186-246",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1379,7 +1379,7 @@
           "element_type": "event",
           "extracted_value": "observatory rings at noon",
           "raw_source_snippet": "observatory rings at noon even though bell is missing",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=124-177",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=128-181",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1402,7 +1402,7 @@
           "element_type": "object",
           "extracted_value": "brass moth key / 真鍮の蛾の鍵",
           "raw_source_snippet": "brass moth key is called \"真鍮の蛾の鍵\"",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1428,7 +1428,7 @@
           "element_type": "document",
           "extracted_value": "ledger page",
           "raw_source_snippet": "A ledger page says borrowed minutes from abandoned lives",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=373-429",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=383-439",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1451,7 +1451,7 @@
           "element_type": "concept",
           "extracted_value": "borrowed minutes from abandoned lives",
           "raw_source_snippet": "borrowed minutes from abandoned lives are still being paid",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=392-450",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=402-460",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1475,7 +1475,7 @@
           "element_type": "visual_asset",
           "extracted_value": "bellless tower silhouette",
           "raw_source_snippet": "bellless tower silhouette above North Bell Station",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=466-516",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=478-528",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1499,7 +1499,7 @@
           "element_type": "placeholder",
           "extracted_value": "translation boundary placeholder",
           "raw_source_snippet": "English gloss is in-line only",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=551-580",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005"
           ],
@@ -1545,7 +1545,7 @@
           "element_type": "unresolved_decision",
           "extracted_value": "Council motive",
           "raw_source_snippet": "Council motive remains unresolved",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=246-279",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=252-285",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005",
             "src-local-adapter-freeform-review-001"
@@ -1570,7 +1570,7 @@
           "element_type": "unresolved_decision",
           "extracted_value": "Toma fate",
           "raw_source_snippet": "Toma fate remains unresolved",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=647-675",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=663-691",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-005",
             "src-local-adapter-freeform-review-001"
@@ -2157,7 +2157,7 @@
           "element_type": "person",
           "extracted_value": "Mira Vale",
           "raw_source_snippet": "Mira Vale repairs clocks after midnight",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=42-81",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=44-83",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2181,7 +2181,7 @@
           "element_type": "object",
           "extracted_value": "brass moth key",
           "raw_source_snippet": "Brass moth key",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=262-276",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=268-282",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2207,7 +2207,7 @@
           "element_type": "visual_asset",
           "extracted_value": "bellless tower silhouette",
           "raw_source_snippet": "Bellless tower silhouette above North Bell Station",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=370-420",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=378-428",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2231,7 +2231,7 @@
           "element_type": "placeholder",
           "extracted_value": "moth function unanswered",
           "raw_source_snippet": "Moth function unanswered",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=424-448",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=433-457",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2255,7 +2255,7 @@
           "element_type": "unresolved_decision",
           "extracted_value": "Council motive",
           "raw_source_snippet": "Council motive unresolved",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=496-521",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=506-531",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004",
             "src-local-adapter-freeform-review-001"
@@ -2304,7 +2304,7 @@
           "element_type": "person",
           "extracted_value": "Mira Vale",
           "raw_source_snippet": "Mira Vale repairs clocks after midnight",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=42-81",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=44-83",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2328,7 +2328,7 @@
           "element_type": "place",
           "extracted_value": "North Bell Station",
           "raw_source_snippet": "North Bell Station",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=85-103",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=88-106",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2351,7 +2351,7 @@
           "element_type": "organization",
           "extracted_value": "Council archivists",
           "raw_source_snippet": "Council archivists label Toma's last route a clerical error",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=151-210",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=155-214",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2376,7 +2376,7 @@
           "element_type": "event",
           "extracted_value": "Rowan waits at 9:17",
           "raw_source_snippet": "At 9:17, Rowan Ise waits",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=214-238",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=219-243",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2399,7 +2399,7 @@
           "element_type": "person",
           "extracted_value": "Rowan Ise",
           "raw_source_snippet": "Rowan Ise waits in the glass arcade",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=223-258",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=228-263",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2422,7 +2422,7 @@
           "element_type": "object",
           "extracted_value": "brass moth key",
           "raw_source_snippet": "Brass moth key",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=262-276",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=268-282",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2448,7 +2448,7 @@
           "element_type": "document",
           "extracted_value": "ledger page",
           "raw_source_snippet": "Ledger page",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=311-322",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=318-329",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2471,7 +2471,7 @@
           "element_type": "concept",
           "extracted_value": "borrowed minutes from abandoned lives",
           "raw_source_snippet": "borrowed minutes from abandoned lives",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=329-366",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=336-373",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2495,7 +2495,7 @@
           "element_type": "visual_asset",
           "extracted_value": "bellless tower silhouette",
           "raw_source_snippet": "Bellless tower silhouette above North Bell Station",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=370-420",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=378-428",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2519,7 +2519,7 @@
           "element_type": "placeholder",
           "extracted_value": "moth function unanswered",
           "raw_source_snippet": "Moth function unanswered",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=424-448",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=433-457",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004"
           ],
@@ -2565,7 +2565,7 @@
           "element_type": "unresolved_decision",
           "extracted_value": "Council motive",
           "raw_source_snippet": "Council motive unresolved",
-          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=496-521",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=506-531",
           "source_ref_ids": [
             "src-local-adapter-raw-memo-004",
             "src-local-adapter-freeform-review-001"

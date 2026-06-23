@@ -14,6 +14,7 @@ const CONTRADICTORY_CLAIM_GUARD_SCHEMA_VERSION = "fff.contradictoryClaimGuard.v1
 const DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_SCHEMA_VERSION = "fff.downstreamSourceSpanAdoptionGate.v1";
 const PROVIDER_ENVELOPE_READINESS_NO_CALL_SCHEMA_VERSION = "fff.providerEnvelopeReadinessNoCall.v1";
 const REMAINING_FIXTURE_COVERAGE_SCHEMA_VERSION = "fff.remainingFixtureCoverageOneClass.v1";
+const TRANSLATED_MEMO_FIXTURE_AUDIT_SCHEMA_VERSION = "fff.translatedMemoFixtureAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -25,6 +26,7 @@ const DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT = "artifacts/contradictory-claim-
 const DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT = "artifacts/downstream-source-span-adoption-gate-result.json";
 const DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT = "artifacts/provider-envelope-readiness-no-call-result.json";
 const DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT = "artifacts/remaining-fixture-coverage-one-class-result.json";
+const DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT = "artifacts/translated-memo-fixture-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -390,6 +392,25 @@ async function main() {
     }
     if (command === "smoke-remaining-fixture-coverage-one-class" || outputPath) {
       console.log(`remaining fixture coverage readback passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-translated-memo-fixture-audit" || command === "smoke-translated-memo-fixture-audit") {
+    const smoke = await readJson(inputPath);
+    const result = await validateTranslatedMemoFixtureAudit(smoke, inputPath);
+    const target = outputPath || DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT;
+    if (command === "smoke-translated-memo-fixture-audit" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Translated memo fixture audit failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-translated-memo-fixture-audit" || outputPath) {
+      console.log(`translated memo fixture audit passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -1912,6 +1933,308 @@ async function validateRemainingFixtureCoverageOneClass(smoke, smokePath) {
       failures: failures.length
     },
     fixture_coverage_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+async function validateTranslatedMemoFixtureAudit(smoke, smokePath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const exists = async (filePath) => {
+    try {
+      await readFile(filePath, "utf8");
+      return true;
+    } catch {
+      return false;
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const sourcePackPath = manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json";
+  const sourcePack = await readJson(sourcePackPath);
+  const remainingPath = manifest.remaining_fixture_coverage_one_class_result_path || DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT;
+  const remaining = await readJson(remainingPath);
+  const downstreamPath = manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT;
+  const downstreamGate = await readJson(downstreamPath);
+  const scopeLockPath = manifest.downstream_adoption_gate_scope_lock_result_path || "artifacts/downstream-adoption-gate-scope-lock-result.json";
+  const scopeLock = await readJson(scopeLockPath);
+  const providerPath = manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT;
+  const providerEnvelope = await readJson(providerPath);
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+  const sourcePackGaps = Array.isArray(sourcePack.cross_fixture_summary?.fixture_class_gaps)
+    ? sourcePack.cross_fixture_summary.fixture_class_gaps
+    : [];
+  const fixtureFiles = Array.isArray(smoke.fixtureFiles) ? smoke.fixtureFiles : [];
+  const sourcePackFixtureIds = Array.isArray(sourcePack.fixtures) ? sourcePack.fixtures.map((fixture) => fixture.fixture_id).filter(Boolean) : [];
+  const translatedFixtureMatches = [...new Set([
+    ...fixtureFiles.filter((file) => /translat/i.test(file)),
+    ...sourcePackFixtureIds.filter((fixtureId) => /translat/i.test(fixtureId))
+  ])];
+  const outputPath = remaining.selected_output_path || manifest.remaining_fixture_coverage_one_class_output_path || "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json";
+  const output = await readJson(outputPath);
+  const fixturePath = remaining.selected_fixture_path || manifest.remaining_fixture_coverage_one_class_fixture_path || "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md";
+  const rawMemo = await readFile(fixturePath, "utf8");
+  const sourceRefIds = new Set((output.sourceRefs || []).map((sourceRef) => sourceRef.id));
+  const fixtureElements = Array.isArray(output.extractedElements) ? output.extractedElements : [];
+  const sourceSpanMismatches = fixtureElements.filter((element) => {
+    const sourceSpan = element.sourceSpan || {};
+    return typeof sourceSpan.start !== "number" ||
+      typeof sourceSpan.end !== "number" ||
+      rawMemo.slice(sourceSpan.start, sourceSpan.end) !== sourceSpan.text;
+  }).map((element) => element.id);
+  const missingSourceRefs = fixtureElements.filter((element) =>
+    !Array.isArray(element.sourceRefIds) ||
+    element.sourceRefIds.length === 0 ||
+    element.sourceRefIds.some((sourceRefId) => !sourceRefIds.has(sourceRefId))
+  ).map((element) => element.id);
+  const unsafeVisualRoutes = fixtureElements.filter((element) =>
+    element.elementType === "visual_asset" &&
+    Array.isArray(element.targetDestinations) &&
+    element.targetDestinations.includes("claim") &&
+    !element.targetDestinations.includes("profile")
+  ).map((element) => element.id);
+  const nonHeldDefaults = fixtureElements.filter((element) =>
+    element.reviewStatus !== "hold" || element.suggestedReviewStatus !== "hold"
+  ).map((element) => element.id);
+  const humanOwnedAdoptSuggestions = fixtureElements.filter((element) =>
+    touchesHumanOwnedDecision(element) && element.suggestedReviewStatus === "adopt"
+  ).map((element) => element.id);
+  const nonAsciiSpanElements = fixtureElements.filter((element) => /[^\x00-\x7F]/.test(String(element.sourceSpan?.text || "")));
+  const fullManifestRegenerationCommand = manifest.full_manifest_regeneration_command ||
+    manifest.manifest_regeneration_command ||
+    manifest.artifact_regeneration_command ||
+    manifest.regeneration_command ||
+    null;
+  const regenerationCommandEvidence = [
+    {
+      path: "package.json",
+      exists: await exists("package.json"),
+      interpretation: "no package scripts are available when absent"
+    },
+    {
+      path: "tools/generate-artifact-manifest.mjs",
+      exists: await exists("tools/generate-artifact-manifest.mjs"),
+      interpretation: "candidate full manifest generator"
+    },
+    {
+      path: "tools/generate-manifest.mjs",
+      exists: await exists("tools/generate-manifest.mjs"),
+      interpretation: "candidate manifest generator"
+    },
+    {
+      path: "scripts/generate-artifact-manifest.ps1",
+      exists: await exists("scripts/generate-artifact-manifest.ps1"),
+      interpretation: "candidate PowerShell manifest generator"
+    },
+    {
+      path: "tools/generate-doc-nav.mjs",
+      exists: await exists("tools/generate-doc-nav.mjs"),
+      interpretation: "docs navigation helper, not a manifest regeneration command"
+    }
+  ];
+  const regenerationCandidatesPresent = regenerationCommandEvidence
+    .filter((entry) => entry.path !== "tools/generate-doc-nav.mjs")
+    .some((entry) => entry.exists);
+  const manifestValidationCommand = String(manifest.validation_command || "");
+
+  check(
+    "resume_scope_lock_loaded",
+    scopeLock?.artifact_id === "fff-downstream-adoption-gate-scope-lock-001" &&
+      scopeLock?.passed === true &&
+      scopeLock.scope_policy?.gate_is_readback_only === true &&
+      scopeLock.scope_policy?.actual_downstream_adoption_implemented === false &&
+      scopeLock.summary?.downstream_candidates_reported_for_review === 55 &&
+      scopeLock.summary?.human_owned_candidates_held === 28 &&
+      scopeLock.summary?.adopted_profile_claim_timeline_candidates === 0,
+    `scopeLock=${scopeLock?.artifact_id}; candidates=${scopeLock.summary?.downstream_candidates_reported_for_review}; held=${scopeLock.summary?.human_owned_candidates_held}; adopted=${scopeLock.summary?.adopted_profile_claim_timeline_candidates}`
+  );
+  check(
+    "previous_validation_unknown_closed",
+    Boolean(manifest.validation_command) &&
+      !fullManifestRegenerationCommand &&
+      !regenerationCandidatesPresent &&
+      manifestValidationCommand.includes("smoke-translated-memo-fixture-audit"),
+    `manifest validation defined=${Boolean(manifest.validation_command)}; full regeneration command=${fullManifestRegenerationCommand ? "defined" : "not_available"}; candidate generators=${regenerationCandidatesPresent ? "present" : "none"}`
+  );
+  check(
+    "existing_multilingual_coverage_audited",
+    remaining?.artifact_id === "fff-remaining-fixture-coverage-one-class-001" &&
+      remaining?.passed === true &&
+      remaining.selected_fixture_class === "multilingual_memo_text" &&
+      remaining.summary?.current_fixture_count === 5 &&
+      remaining.summary?.selected_fixture_elements_checked === 12 &&
+      remaining.summary?.multilingual_source_span_elements >= 4,
+    `remaining=${remaining?.artifact_id}; fixtures=${remaining.summary?.current_fixture_count}; selectedElements=${remaining.summary?.selected_fixture_elements_checked}; multilingualSpans=${remaining.summary?.multilingual_source_span_elements}`
+  );
+  check(
+    "translated_fixture_not_duplicated",
+    translatedFixtureMatches.length === 0 &&
+      sourcePackGaps.includes("translated memo text") &&
+      !sourcePackGaps.includes("multilingual memo text"),
+    `translated fixtures=${translatedFixtureMatches.join(", ") || "none"}; gaps=${sourcePackGaps.join(", ") || "none"}`
+  );
+  check(
+    "source_routing_hold_preserved",
+    sourceSpanMismatches.length === 0 &&
+      missingSourceRefs.length === 0 &&
+      unsafeVisualRoutes.length === 0 &&
+      nonHeldDefaults.length === 0 &&
+      humanOwnedAdoptSuggestions.length === 0,
+    `mismatches=${sourceSpanMismatches.length}; missingRefs=${missingSourceRefs.length}; unsafeVisual=${unsafeVisualRoutes.length}; nonHeld=${nonHeldDefaults.length}; humanAdopt=${humanOwnedAdoptSuggestions.length}`
+  );
+  check(
+    "downstream_and_guard_boundaries_preserved",
+    downstreamGate?.passed === true &&
+      downstreamGate.summary?.source_pack_rows_checked === 60 &&
+      downstreamGate.summary?.downstream_candidates_reported_for_review === 55 &&
+      downstreamGate.summary?.human_owned_candidates_held === 28 &&
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates === 0 &&
+      contradictoryGuard?.passed === true &&
+      contradictoryGuard.summary?.held_conflicting_claims === 2 &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      malformedGuard?.passed === true &&
+      malformedGuard.summary?.accepted_routed_candidates === 0,
+    `downstream rows=${downstreamGate.summary?.source_pack_rows_checked}; downstream adopted=${downstreamGate.summary?.adopted_profile_claim_timeline_candidates}; held conflicts=${contradictoryGuard.summary?.held_conflicting_claims}; malformed accepted=${malformedGuard.summary?.accepted_routed_candidates}`
+  );
+  check(
+    "provider_api_boundary_not_crossed",
+    providerEnvelope?.passed === true &&
+      providerEnvelope.provider_metadata?.providerConfigured === false &&
+      providerEnvelope.provider_metadata?.externalCallAttempted === false &&
+      providerEnvelope.provider_metadata?.credentialsTouched === false,
+    `providerConfigured=${providerEnvelope.provider_metadata?.providerConfigured}; externalCall=${providerEnvelope.provider_metadata?.externalCallAttempted}; credentials=${providerEnvelope.provider_metadata?.credentialsTouched}`
+  );
+  check(
+    "review_nonredundancy_preserved",
+    manifest.review_memory?.some((entry) => entry.artifact_id === "fff-remaining-fixture-coverage-one-class-001") &&
+      manifest.review_input_mode === "freeform" &&
+      remaining.review_memory_checked?.prior_review_count === 0 &&
+      remaining.summary?.review_card_emitted === false &&
+      remaining.summary?.operator_observation_card_emitted === false,
+    `reviewMemory=${Array.isArray(manifest.review_memory) ? manifest.review_memory.length : 0}; reviewInput=${manifest.review_input_mode}; reviewCard=${remaining.summary?.review_card_emitted}; observation=${remaining.summary?.operator_observation_card_emitted}`
+  );
+
+  return {
+    schemaVersion: TRANSLATED_MEMO_FIXTURE_AUDIT_SCHEMA_VERSION,
+    artifact_id: "fff-translated-memo-fixture-audit-001",
+    title: "Fast Fiction Factory Translated / Multilingual Memo Fixture Audit",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    audit_scope: {
+      translated_fixture_added: false,
+      multilingual_fixture_added: false,
+      audit_only: true,
+      source_fixture_path: toRepoPath(fixturePath),
+      source_output_path: toRepoPath(outputPath),
+      source_pack_path: sourcePackPath,
+      adapter_matrix_smoke_path: toRepoPath(smokePath)
+    },
+    resume_validation_closure: {
+      scope_lock_result_path: scopeLockPath,
+      scope_lock_passed: scopeLock?.passed === true,
+      manifest_validation_command_defined: Boolean(manifest.validation_command),
+      manifest_validation_command_includes_audit: manifestValidationCommand.includes("smoke-translated-memo-fixture-audit"),
+      full_manifest_regeneration_command_status: fullManifestRegenerationCommand ? "defined" : "not_available",
+      prior_unknown_closed_as: fullManifestRegenerationCommand ? "defined" : "not_available_non_blocking",
+      regeneration_command_evidence: regenerationCommandEvidence
+    },
+    review_memory_checked: {
+      checked: true,
+      target: "fff-remaining-fixture-coverage-one-class-001",
+      prior_review_count: manifest.review_memory?.find((entry) => entry.artifact_id === "fff-remaining-fixture-coverage-one-class-001")?.prior_review_count ?? 0,
+      prior_signal_summary: manifest.review_memory?.find((entry) => entry.artifact_id === "fff-remaining-fixture-coverage-one-class-001")?.latest_user_signal_summary || "No user review was requested for the multilingual fixture coverage slice.",
+      axis: "translated_memo_fixture_audit",
+      what_changed: "Existing multilingual memo fixture coverage and the translated memo gap were audited without adding another fixture class.",
+      what_this_review_decides: "No user review is needed; this readback classifies multilingual coverage as already present and translated memo text as still policy-dependent.",
+      not_asking: [
+        "general Review Hub review",
+        "fixed-form review",
+        "translation policy approval",
+        "provider choice",
+        "credentials",
+        "model/API call approval",
+        "database persistence",
+        "publishing or production sync",
+        "AI video generation",
+        "downstream adoption implementation",
+        "canon promotion",
+        "contradictory claim truth decision"
+      ],
+      next_nonredundant_axis: "very broad source-span shape only if coverage remains the bottleneck; otherwise provider adapter implementation only after explicit authorization"
+    },
+    coverage_audit: {
+      existing_multilingual_coverage: {
+        artifact_id: remaining.artifact_id,
+        selected_fixture_class: remaining.selected_fixture_class,
+        fixture_path: remaining.selected_fixture_path,
+        output_path: remaining.selected_output_path,
+        selected_fixture_elements_checked: remaining.summary?.selected_fixture_elements_checked,
+        multilingual_source_span_elements: remaining.summary?.multilingual_source_span_elements,
+        source_span_mismatches: remaining.summary?.source_span_mismatches,
+        missing_source_refs: remaining.summary?.missing_source_refs,
+        non_held_review_defaults: remaining.summary?.non_held_review_defaults
+      },
+      translated_memo_text: {
+        fixture_present: translatedFixtureMatches.length > 0,
+        fixture_matches: translatedFixtureMatches,
+        gap_present_in_source_pack: sourcePackGaps.includes("translated memo text"),
+        audit_decision: "not_added_in_this_slice",
+        reason: "A useful translated memo fixture needs source-of-truth language, translation provenance, and original-vs-translation span ownership policy before it can add decision value."
+      },
+      remaining_fixture_class_candidates: [
+        "translated memo text",
+        "very broad source-span shape"
+      ],
+      source_pack_current_gap_list: sourcePackGaps
+    },
+    summary: {
+      current_fixture_count: smoke.aggregate?.fixtureCount,
+      current_output_count: smoke.aggregate?.outputCount,
+      current_matrix_element_count: smoke.aggregate?.elementCount,
+      source_pack_rows_checked: sourcePack.cross_fixture_summary?.total_elements,
+      selected_multilingual_fixture_elements_checked: fixtureElements.length,
+      multilingual_source_span_elements: nonAsciiSpanElements.length,
+      translated_fixture_count: translatedFixtureMatches.length,
+      translated_gap_present: sourcePackGaps.includes("translated memo text"),
+      source_span_mismatches: sourceSpanMismatches.length,
+      missing_source_refs: missingSourceRefs.length,
+      unsafe_visual_routes: unsafeVisualRoutes.length,
+      non_held_review_defaults: nonHeldDefaults.length,
+      human_owned_decision_adopt_suggestions: humanOwnedAdoptSuggestions.length,
+      downstream_candidates_reported_for_review: downstreamGate.summary?.downstream_candidates_reported_for_review,
+      human_owned_downstream_candidates_held: downstreamGate.summary?.human_owned_candidates_held,
+      adopted_profile_claim_timeline_candidates: downstreamGate.summary?.adopted_profile_claim_timeline_candidates,
+      provider_configured: providerEnvelope.provider_metadata?.providerConfigured,
+      external_call_attempted: providerEnvelope.provider_metadata?.externalCallAttempted,
+      credentials_touched: providerEnvelope.provider_metadata?.credentialsTouched,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    translated_memo_fixture_decision: {
+      state: "deferred",
+      owner: "human product owner for translation/source-of-truth policy; agent for future bounded fixture once policy exists",
+      next_move: "Do not add translated memo text until translation provenance and span ownership have concrete decision value.",
+      requirements_before_adding: [
+        "source-of-truth language policy",
+        "translation provenance policy",
+        "original-vs-translation source-span ownership policy",
+        "confirmation that translated memo coverage is the bottleneck"
+      ]
+    },
+    fixture_audit_checks: checks,
     failures,
     passed: failures.length === 0
   };
@@ -3651,6 +3974,8 @@ Usage:
   node tools/fff-state.mjs smoke-missing-fixture-class-probe <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-remaining-fixture-coverage-one-class <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-remaining-fixture-coverage-one-class <adapter-matrix-smoke.json> [output.json]
+  node tools/fff-state.mjs validate-translated-memo-fixture-audit <adapter-matrix-smoke.json>
+  node tools/fff-state.mjs smoke-translated-memo-fixture-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
   node tools/fff-state.mjs smoke-malformed-missing-span-guard <extraction-validator-smoke.json> [output.json]
   node tools/fff-state.mjs validate-contradictory-claim-guard <extraction-validator-smoke.json>

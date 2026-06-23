@@ -658,3 +658,25 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; provider-envelope readiness remains no-call and no-credential.
 - Next action: Choose explicit provider adapter implementation only after authorization, or choose translated memo text / very broad source-span shape only if coverage remains the bottleneck.
+
+## fff-translated-memo-fixture-audit-001
+
+- Title: Fast Fiction Factory Translated / Multilingual Memo Fixture Audit
+- Purpose: Audit the existing multilingual memo fixture coverage and classify translated memo text as a policy-dependent gap without adding another fixture class, provider/API behavior, or canon decision.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/translated-memo-fixture-audit.md`
+- Readback result: `artifacts/translated-memo-fixture-audit-result.json`
+- Preserved multilingual fixture doc/result: `docs/review/remaining-fixture-coverage-one-class.md`, `artifacts/remaining-fixture-coverage-one-class-result.json`
+- Preserved multilingual fixture memo/output: `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`, `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`
+- Downstream scope-lock result: `artifacts/downstream-adoption-gate-scope-lock-result.json`
+- Manifest: `artifacts/artifact-manifest.json`
+- Current status: `docs/review/current-status.md`
+- Validation command: `node tools/fff-state.mjs smoke-translated-memo-fixture-audit artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/translated-memo-fixture-audit-result.json`
+- Validation result: translated memo fixture audit reads the downstream scope-lock, existing multilingual fixture coverage, source-span review pack, downstream gate, contradictory guard, malformed/missing guard, and provider no-call envelope; it records 0 translated fixtures added, translated memo text still present as a gap, 4 multilingual source-span elements preserved, 0 source-span mismatches, 0 missing source refs, 0 unsafe routes, 0 non-held defaults, 0 downstream adopted candidates, no provider configured, no external call attempted, no credentials touched, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no translated fixture, provider/API behavior, downstream adoption implementation, or canon promotion is added.
+- Next action: Choose very broad source-span shape only if coverage remains the bottleneck; otherwise move to provider adapter implementation only after explicit authorization.

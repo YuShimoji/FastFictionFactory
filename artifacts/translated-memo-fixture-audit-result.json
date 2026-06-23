@@ -1,0 +1,180 @@
+{
+  "schemaVersion": "fff.translatedMemoFixtureAudit.v1",
+  "artifact_id": "fff-translated-memo-fixture-audit-001",
+  "title": "Fast Fiction Factory Translated / Multilingual Memo Fixture Audit",
+  "generatedAt": "2026-06-23T17:49:08.712Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "audit_scope": {
+    "translated_fixture_added": false,
+    "multilingual_fixture_added": false,
+    "audit_only": true,
+    "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    "source_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+    "source_pack_path": "artifacts/source-span-routing-review-pack.json",
+    "adapter_matrix_smoke_path": "artifacts/local-extraction-adapter-expansion-smoke-result.json"
+  },
+  "resume_validation_closure": {
+    "scope_lock_result_path": "artifacts/downstream-adoption-gate-scope-lock-result.json",
+    "scope_lock_passed": true,
+    "manifest_validation_command_defined": true,
+    "manifest_validation_command_includes_audit": true,
+    "full_manifest_regeneration_command_status": "not_available",
+    "prior_unknown_closed_as": "not_available_non_blocking",
+    "regeneration_command_evidence": [
+      {
+        "path": "package.json",
+        "exists": false,
+        "interpretation": "no package scripts are available when absent"
+      },
+      {
+        "path": "tools/generate-artifact-manifest.mjs",
+        "exists": false,
+        "interpretation": "candidate full manifest generator"
+      },
+      {
+        "path": "tools/generate-manifest.mjs",
+        "exists": false,
+        "interpretation": "candidate manifest generator"
+      },
+      {
+        "path": "scripts/generate-artifact-manifest.ps1",
+        "exists": false,
+        "interpretation": "candidate PowerShell manifest generator"
+      },
+      {
+        "path": "tools/generate-doc-nav.mjs",
+        "exists": true,
+        "interpretation": "docs navigation helper, not a manifest regeneration command"
+      }
+    ]
+  },
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-remaining-fixture-coverage-one-class-001",
+    "prior_review_count": 0,
+    "prior_signal_summary": "Supervisor requested exactly one remaining fixture class after provider-envelope readiness, without starting provider implementation.",
+    "axis": "translated_memo_fixture_audit",
+    "what_changed": "Existing multilingual memo fixture coverage and the translated memo gap were audited without adding another fixture class.",
+    "what_this_review_decides": "No user review is needed; this readback classifies multilingual coverage as already present and translated memo text as still policy-dependent.",
+    "not_asking": [
+      "general Review Hub review",
+      "fixed-form review",
+      "translation policy approval",
+      "provider choice",
+      "credentials",
+      "model/API call approval",
+      "database persistence",
+      "publishing or production sync",
+      "AI video generation",
+      "downstream adoption implementation",
+      "canon promotion",
+      "contradictory claim truth decision"
+    ],
+    "next_nonredundant_axis": "very broad source-span shape only if coverage remains the bottleneck; otherwise provider adapter implementation only after explicit authorization"
+  },
+  "coverage_audit": {
+    "existing_multilingual_coverage": {
+      "artifact_id": "fff-remaining-fixture-coverage-one-class-001",
+      "selected_fixture_class": "multilingual_memo_text",
+      "fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+      "output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+      "selected_fixture_elements_checked": 12,
+      "multilingual_source_span_elements": 4,
+      "source_span_mismatches": 0,
+      "missing_source_refs": 0,
+      "non_held_review_defaults": 0
+    },
+    "translated_memo_text": {
+      "fixture_present": false,
+      "fixture_matches": [],
+      "gap_present_in_source_pack": true,
+      "audit_decision": "not_added_in_this_slice",
+      "reason": "A useful translated memo fixture needs source-of-truth language, translation provenance, and original-vs-translation span ownership policy before it can add decision value."
+    },
+    "remaining_fixture_class_candidates": [
+      "translated memo text",
+      "very broad source-span shape"
+    ],
+    "source_pack_current_gap_list": [
+      "contradictory memo claims",
+      "very broad source spans",
+      "missing or malformed source span payloads",
+      "translated memo text",
+      "model/API provider envelope output"
+    ]
+  },
+  "summary": {
+    "current_fixture_count": 5,
+    "current_output_count": 5,
+    "current_matrix_element_count": 60,
+    "source_pack_rows_checked": 60,
+    "selected_multilingual_fixture_elements_checked": 12,
+    "multilingual_source_span_elements": 4,
+    "translated_fixture_count": 0,
+    "translated_gap_present": true,
+    "source_span_mismatches": 0,
+    "missing_source_refs": 0,
+    "unsafe_visual_routes": 0,
+    "non_held_review_defaults": 0,
+    "human_owned_decision_adopt_suggestions": 0,
+    "downstream_candidates_reported_for_review": 55,
+    "human_owned_downstream_candidates_held": 28,
+    "adopted_profile_claim_timeline_candidates": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "translated_memo_fixture_decision": {
+    "state": "deferred",
+    "owner": "human product owner for translation/source-of-truth policy; agent for future bounded fixture once policy exists",
+    "next_move": "Do not add translated memo text until translation provenance and span ownership have concrete decision value.",
+    "requirements_before_adding": [
+      "source-of-truth language policy",
+      "translation provenance policy",
+      "original-vs-translation source-span ownership policy",
+      "confirmation that translated memo coverage is the bottleneck"
+    ]
+  },
+  "fixture_audit_checks": {
+    "resume_scope_lock_loaded": {
+      "passed": true,
+      "detail": "scopeLock=fff-downstream-adoption-gate-scope-lock-001; candidates=55; held=28; adopted=0"
+    },
+    "previous_validation_unknown_closed": {
+      "passed": true,
+      "detail": "manifest validation defined=true; full regeneration command=not_available; candidate generators=none"
+    },
+    "existing_multilingual_coverage_audited": {
+      "passed": true,
+      "detail": "remaining=fff-remaining-fixture-coverage-one-class-001; fixtures=5; selectedElements=12; multilingualSpans=4"
+    },
+    "translated_fixture_not_duplicated": {
+      "passed": true,
+      "detail": "translated fixtures=none; gaps=contradictory memo claims, very broad source spans, missing or malformed source span payloads, translated memo text, model/API provider envelope output"
+    },
+    "source_routing_hold_preserved": {
+      "passed": true,
+      "detail": "mismatches=0; missingRefs=0; unsafeVisual=0; nonHeld=0; humanAdopt=0"
+    },
+    "downstream_and_guard_boundaries_preserved": {
+      "passed": true,
+      "detail": "downstream rows=60; downstream adopted=0; held conflicts=2; malformed accepted=0"
+    },
+    "provider_api_boundary_not_crossed": {
+      "passed": true,
+      "detail": "providerConfigured=false; externalCall=false; credentials=false"
+    },
+    "review_nonredundancy_preserved": {
+      "passed": true,
+      "detail": "reviewMemory=15; reviewInput=freeform; reviewCard=false; observation=false"
+    }
+  },
+  "failures": [],
+  "passed": true
+}
