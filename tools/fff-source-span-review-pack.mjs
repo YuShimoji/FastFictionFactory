@@ -83,7 +83,7 @@ async function main() {
   const pack = {
     artifact_id: ARTIFACT_ID,
     title: "Fast Fiction Factory Source-Span Routing Review Pack",
-    purpose: "Focused local review pack for checking source spans, source references, routing targets, held defaults, and human-owned guardrails across the three deterministic adapter fixture outputs before freeform review or any model/API behavior.",
+    purpose: "Focused local review pack for checking source spans, source references, routing targets, held defaults, and human-owned guardrails across deterministic adapter fixture outputs before freeform review or any model/API behavior.",
     generatedAt: "2026-06-20T00:00:00+09:00",
     review_status: "ready_for_local_review",
     review_input_mode: "freeform",
@@ -272,6 +272,18 @@ function summarizePack(fixtures, smoke) {
   const audits = fixtures.map((fixture) => fixture.audit);
   const allElements = fixtures.flatMap((fixture) => fixture.elements);
   const smokeAggregate = smoke.aggregate || {};
+  const fixtureIds = new Set(fixtures.map((fixture) => fixture.fixture_id));
+  const fixtureClassGaps = [
+    { label: "contradictory memo claims" },
+    { label: "very broad source spans" },
+    { label: "missing or malformed source span payloads" },
+    { label: "multilingual or translated memo text" },
+    { label: "sparse bullet-only notes", coveredBy: "sparse-bullet-notes" },
+    { label: "model/API provider envelope output" }
+  ]
+    .filter((gap) => !gap.coveredBy || !fixtureIds.has(gap.coveredBy))
+    .map((gap) => gap.label);
+
   return {
     fixture_count: fixtures.length,
     total_elements: allElements.length,
@@ -286,14 +298,7 @@ function summarizePack(fixtures, smoke) {
     human_owned_guarded_elements: allElements.filter((element) => element.human_owned_guard !== "none").length,
     visual_asset_elements: allElements.filter((element) => element.element_type === "visual_asset").length,
     review_held_elements: allElements.filter((element) => element.review_status === "hold" && element.suggested_review_status === "hold").length,
-    fixture_class_gaps: [
-      "contradictory memo claims",
-      "very broad source spans",
-      "missing or malformed source span payloads",
-      "multilingual or translated memo text",
-      "sparse bullet-only notes",
-      "model/API provider envelope output"
-    ],
+    fixture_class_gaps: fixtureClassGaps,
     smoke_crosscheck: {
       fixture_count: smokeAggregate.fixtureCount,
       output_count: smokeAggregate.outputCount,

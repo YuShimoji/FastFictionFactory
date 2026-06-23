@@ -952,7 +952,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-weak-span-repair-001</strong>. This slice repairs the six weak source-span rows with stronger same-fixture source refs while preserving <strong>fff-broad-span-split-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-ambiguous-routing-resolution-001</strong>, <strong>fff-source-span-quality-audit-001</strong>, <strong>fff-review-memory-dedup-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-missing-fixture-class-probe-001</strong>. This slice adds exactly one sparse bullet-only fixture and readback while preserving <strong>fff-weak-span-repair-001</strong>, <strong>fff-broad-span-split-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-ambiguous-routing-resolution-001</strong>, <strong>fff-source-span-quality-audit-001</strong>, <strong>fff-review-memory-dedup-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -998,7 +998,8 @@
           <div class="progress-step done"><strong>Ambiguous routing resolution</strong><span class="tag green">done</span><p class="section-note">Resolve 7 ambiguous rows into primary routes, secondary evidence roles, held defaults, and regression checks.</p></div>
           <div class="progress-step done"><strong>Routing policy regression</strong><span class="tag green">done</span><p class="section-note">Keep Visual, Claim, Timeline, Source Reference, and Human Review route boundaries from drifting.</p></div>
           <div class="progress-step done"><strong>Broad source-span split</strong><span class="tag green">done</span><p class="section-note">Resolve 2 broad rows with one narrower split and one explicit keep reason.</p></div>
-          <div class="progress-step current"><strong>Weak source-span repair</strong><span class="tag blue">current</span><p class="section-note">Repair 6 thin evidence spans with stronger same-fixture source refs and preserved locators.</p></div>
+          <div class="progress-step done"><strong>Weak source-span repair</strong><span class="tag green">done</span><p class="section-note">Repair 6 thin evidence spans with stronger same-fixture source refs and preserved locators.</p></div>
+          <div class="progress-step current"><strong>Missing fixture class probe</strong><span class="tag blue">current</span><p class="section-note">Add one sparse bullet-only fixture with held defaults, source-span readback, and routing regression coverage.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;" data-mode-panel="project">
@@ -1021,11 +1022,12 @@
               <li>Model/API boundary spec with envelope, failure modes, retry/fallback policy, validator gates, and forbidden actions before provider work.</li>
               <li>Source-span routing review pack across three deterministic fixture outputs.</li>
               <li>Review memory and dedup gate for non-redundant review asks.</li>
-              <li>Source-span quality audit classifying all 36 review-pack rows.</li>
+              <li>Source-span quality audit classifying the original 36 review-pack rows.</li>
               <li>Ambiguous routing resolution for 7 source-span rows.</li>
               <li>Routing policy regression hardening for future adapter route drift.</li>
               <li>Broad source-span split for 2 broad rows.</li>
               <li>Weak source-span repair for 6 thin evidence rows.</li>
+              <li>Missing fixture class probe for sparse bullet-only notes.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
@@ -1109,6 +1111,10 @@
                 <tr><td>Source-span pack review</td><td>docs/review/source-span-routing-review-pack.md</td></tr>
                 <tr><td>Source-span quality audit</td><td>docs/review/source-span-quality-audit.md</td></tr>
                 <tr><td>Source-span quality result</td><td>artifacts/source-span-quality-audit-result.json</td></tr>
+                <tr><td>Missing fixture class probe</td><td>docs/review/missing-fixture-class-probe.md</td></tr>
+                <tr><td>Missing fixture probe result</td><td>artifacts/missing-fixture-class-probe-result.json</td></tr>
+                <tr><td>Sparse bullet fixture</td><td>artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md</td></tr>
+                <tr><td>Sparse bullet output</td><td>artifacts/extraction-adapter-outputs/sparse-bullet-notes.json</td></tr>
                 <tr><td>Weak source-span repair</td><td>docs/review/weak-span-repair.md</td></tr>
                 <tr><td>Weak source-span repair result</td><td>artifacts/weak-span-repair-result.json</td></tr>
                 <tr><td>Broad source-span split</td><td>docs/review/broad-span-split.md</td></tr>
@@ -1133,7 +1139,8 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows active artifact id <strong>fff-weak-span-repair-001</strong>.</li>
+              <li>Confirm this hub shows active artifact id <strong>fff-missing-fixture-class-probe-001</strong>.</li>
+              <li>Use <strong>docs/review/missing-fixture-class-probe.md</strong> and <strong>artifacts/missing-fixture-class-probe-result.json</strong> for the sparse bullet-only fixture probe axis.</li>
               <li>Use <strong>docs/review/weak-span-repair.md</strong> and <strong>artifacts/weak-span-repair-result.json</strong> for the weak source-span repair axis.</li>
               <li>Use <strong>docs/review/broad-span-split.md</strong> and <strong>artifacts/broad-span-split-result.json</strong> for the preserved broad source-span split axis.</li>
               <li>Use <strong>docs/review/routing-policy-regression-hardening.md</strong> and <strong>artifacts/routing-policy-regression-hardening-result.json</strong> for the preserved routing policy regression hardening axis.</li>
@@ -1142,7 +1149,7 @@
               <li>Use <strong>docs/review/review-memory-dedup.md</strong> before asking for another review of the same target, evidence, and axis.</li>
               <li>Use <strong>docs/review/review-procedure.md</strong> as the fixed review procedure and Review Debt map.</li>
               <li>Use the <strong>Source Audit / 抽出根拠レビュー</strong> mode to review fixture summaries, representative source spans, routing targets, held defaults, and human-owned guards.</li>
-              <li>Use <strong>artifacts/source-span-routing-review-pack.json</strong> when all 36 extracted elements need full source-span/routing readback.</li>
+              <li>Use <strong>artifacts/source-span-routing-review-pack.json</strong> when all 48 current extracted elements need full source-span/routing readback.</li>
               <li>Use <strong>artifacts/local-extraction-adapter-expansion-smoke-result.json</strong> to review fixture inputs, adapter outputs, validator status, source-span audit, and guard status.</li>
               <li>Use <strong>artifacts/extraction-validator-smoke-result.json</strong> to review the preserved pass/fail fixture matrix before model/API work.</li>
               <li>Use <strong>Extraction Contract</strong> grouping and filters before wiring any generated candidate into profile, claim, or timeline review.</li>
@@ -1197,44 +1204,44 @@
 
         <div class="hub-panel" id="source-span-routing-review-pack-section" style="margin-top: 12px;" data-mode-panel="source">
           <h3>Source-Span Routing Review Pack <span class="jp-label">抽出根拠レビュー</span></h3>
-          <p class="section-note">Artifact id: <strong>fff-source-span-routing-review-pack-001</strong>. Full 36-row readback lives at <strong>artifacts/source-span-routing-review-pack.json</strong>; this panel keeps the review surface compact for freeform supervision.</p>
+          <p class="section-note">Artifact id: <strong>fff-source-span-routing-review-pack-001</strong>. Full 48-row readback lives at <strong>artifacts/source-span-routing-review-pack.json</strong>; this panel keeps the review surface compact for freeform supervision.</p>
           <div class="summary-strip" aria-label="Source-span review pack summary">
-            <div class="metric"><strong>3</strong><span>fixtures</span></div>
-            <div class="metric"><strong>36</strong><span>elements</span></div>
-            <div class="metric"><strong>27</strong><span>profiles</span></div>
-            <div class="metric"><strong>20</strong><span>claims</span></div>
-            <div class="metric"><strong>12</strong><span>timeline</span></div>
+            <div class="metric"><strong>4</strong><span>fixtures</span></div>
+            <div class="metric"><strong>48</strong><span>elements</span></div>
+            <div class="metric"><strong>36</strong><span>profiles</span></div>
+            <div class="metric"><strong>27</strong><span>claims</span></div>
+            <div class="metric"><strong>16</strong><span>timeline</span></div>
             <div class="metric"><strong>0</strong><span>span mismatch</span></div>
             <div class="metric"><strong>0</strong><span>missing refs</span></div>
-            <div class="metric"><strong>36</strong><span>held defaults</span></div>
+            <div class="metric"><strong>48</strong><span>held defaults</span></div>
           </div>
 
           <div class="hub-grid" style="margin-top: 12px;">
             <div class="hub-panel">
               <h3>Span repair and routing regression</h3>
               <ul class="hub-list">
-                <li>Active weak-span repair: <strong>fff-weak-span-repair-001</strong>.</li>
+                <li>Preserved weak-span repair: <strong>fff-weak-span-repair-001</strong>.</li>
                 <li>Weak-span readback: <strong>artifacts/weak-span-repair-result.json</strong>.</li>
                 <li>Weak-span outcome: 6 rows loaded; 6 repaired with stronger same-fixture source refs; 6 locators preserved; 0 failures.</li>
-                <li>Active broad-span split: <strong>fff-broad-span-split-001</strong>.</li>
+                <li>Preserved broad-span split: <strong>fff-broad-span-split-001</strong>.</li>
                 <li>Broad-span readback: <strong>artifacts/broad-span-split-result.json</strong>.</li>
                 <li>Broad-span outcome: 2 rows loaded; 1 split into narrower spans; 1 kept with reason; 0 failures.</li>
                 <li>Preserved hardening: <strong>fff-routing-policy-regression-hardening-001</strong>.</li>
                 <li>Regression readback: <strong>artifacts/routing-policy-regression-hardening-result.json</strong>.</li>
-                <li>Active resolution: <strong>fff-ambiguous-routing-resolution-001</strong>.</li>
+                <li>Preserved resolution: <strong>fff-ambiguous-routing-resolution-001</strong>.</li>
                 <li>Readback: <strong>artifacts/ambiguous-routing-resolution-result.json</strong>.</li>
                 <li>Resolved ambiguous rows: 7.</li>
                 <li>Primary routes: Profile 3; Visual 1; Human decision hold 3.</li>
                 <li>Claim remains secondary evidence in 5 rows; Timeline remains secondary evidence in 6 rows.</li>
                 <li>Visual asset regression: target Claim ids are empty for all visual rows.</li>
-                <li>Routing policy regression: 7 resolved rows, 36 source-pack rows, 4 adapter payloads, and 48 adapter elements checked with 0 failures.</li>
-                <li>No Review Card emitted; next debt is a missing fixture class only if route drift returns.</li>
+                <li>Routing policy regression: 7 resolved rows, 48 source-pack rows, 5 adapter payloads, and 60 adapter elements checked with 0 failures.</li>
+                <li>No Review Card emitted; sparse bullet-only fixture coverage is local readback only.</li>
               </ul>
             </div>
             <div class="hub-panel">
               <h3>Quality audit</h3>
               <ul class="hub-list">
-                <li>Active audit: <strong>fff-source-span-quality-audit-001</strong>.</li>
+                <li>Preserved audit: <strong>fff-source-span-quality-audit-001</strong>.</li>
                 <li>Readback: <strong>artifacts/source-span-quality-audit-result.json</strong>.</li>
                 <li>Useful spans: 28; weak spans: 6; broad spans: 2.</li>
                 <li>Weak-span repair readback: all 6 weak rows now point to stronger same-fixture source context.</li>
@@ -1252,7 +1259,7 @@
                 <li>Unsafe visual routing: 0.</li>
                 <li>Non-held review defaults: 0.</li>
                 <li>Human-owned decision adopt suggestions: 0.</li>
-                <li>Human-owned guarded elements: 17.</li>
+                <li>Human-owned guarded elements: 22.</li>
               </ul>
             </div>
             <div class="hub-panel">
@@ -1263,7 +1270,8 @@
                 <li>Vague extraction: qualitative review required.</li>
                 <li>Routing ambiguous: no unsafe visual route; still review target usefulness.</li>
                 <li>Default too confident: clear in automated audit.</li>
-                <li>Fixture class missing: contradictory memo, broad span, malformed span, multilingual memo, sparse notes, and model/API envelope cases.</li>
+                <li>Fixture class covered in this slice: sparse bullet-only notes.</li>
+                <li>Fixture classes still missing: contradictory memo, broad span, malformed span, multilingual memo, and model/API envelope cases.</li>
               </ul>
             </div>
             <div class="hub-panel">
@@ -1335,6 +1343,24 @@
                 </table>
               </div>
             </details>
+
+            <details class="source-span-fixture">
+              <summary>sparse-bullet-notes - Adapter Fixture: Sparse Bullet Notes</summary>
+              <p class="section-note">12 elements; 9 profile candidates; 7 claim candidates; 4 timeline candidates. Bullet-only body with 0 source-span mismatches.</p>
+              <div class="table-scroll">
+                <table class="artifact-table source-span-table">
+                  <thead><tr><th>Element</th><th>Source span</th><th>Routing</th><th>Status</th><th>Guard and notes</th></tr></thead>
+                  <tbody>
+                    <tr><td>Mira Vale<br><span class="tag green">person</span></td><td>Mira Vale repairs clocks after midnight<br><code>artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=42-81</code></td><td>Profile; Claim; Timeline</td><td>confidence 0.92<br>hold</td><td>no automated issue; person/action cue survives terse notes.</td></tr>
+                    <tr><td>brass moth key<br><span class="tag gold">object</span></td><td>Brass moth key<br><code>artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=262-276</code></td><td>Profile; Claim; Timeline; Human Review</td><td>confidence 0.89<br>hold</td><td>held human review required; function and Toma relation remain undecided.</td></tr>
+                    <tr><td>bellless tower silhouette<br><span class="tag blue">visual_asset</span></td><td>Bellless tower silhouette above North Bell Station<br><code>artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=370-420</code></td><td>Profile; Timeline; Visual</td><td>confidence 0.75<br>hold</td><td>visual review only; profile-buffered and not direct Claim evidence.</td></tr>
+                    <tr><td>moth function unanswered<br><span class="tag red">placeholder</span></td><td>Moth function unanswered<br><code>artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=424-448</code></td><td>Profile; Human Review</td><td>confidence 0.76<br>hold</td><td>held human review required; records the rule gap instead of inventing it.</td></tr>
+                    <tr><td>Council motive<br><span class="tag red">unresolved_decision</span></td><td>Council motive unresolved<br><code>artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=496-521</code></td><td>Human Review; Claim</td><td>confidence 0.87<br>hold</td><td>held human review required; freeform review remains source of truth.</td></tr>
+                    <tr><td>sparse bullet notes memo<br><span class="tag green">source_reference</span></td><td>Adapter Fixture: Sparse Bullet Notes<br><code>artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=2-38</code></td><td>Source Reference</td><td>confidence 1.00<br>hold</td><td>fixture title remains visible as a source reference.</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
           </div>
         </div>
 
@@ -1355,6 +1381,7 @@
             <span class="tag green">source-span review pack visible</span>
             <span class="tag green">source-span quality audit classified</span>
             <span class="tag green">weak source spans repaired</span>
+            <span class="tag green">sparse fixture covered</span>
             <span class="tag green">broad source spans resolved</span>
             <span class="tag green">ambiguous routing resolved</span>
             <span class="tag green">routing policy regression checked</span>
@@ -3570,7 +3597,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-weak-span-repair-001",
+        activeArtifactId: "fff-missing-fixture-class-probe-001",
         preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
         preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
         preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -3605,8 +3632,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           artifactId: "fff-source-span-routing-review-pack-001",
           packPath: "artifacts/source-span-routing-review-pack.json",
           generator: "tools/fff-source-span-review-pack.mjs",
-          fixtureCount: 3,
-          elementCount: 36,
+          fixtureCount: 4,
+          elementCount: 48,
           sourceSpanMismatchCount: 0,
           reviewInputMode: "freeform"
         },
@@ -3640,11 +3667,25 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           docPath: "docs/review/routing-policy-regression-hardening.md",
           resultPath: "artifacts/routing-policy-regression-hardening-result.json",
           resolvedRowsChecked: 7,
-          sourcePackRowsChecked: 36,
-          adapterPayloadsChecked: 4,
-          adapterElementsChecked: 48,
+          sourcePackRowsChecked: 48,
+          adapterPayloadsChecked: 5,
+          adapterElementsChecked: 60,
           failures: 0,
           reviewCardEmitted: false
+        },
+        missingFixtureClassProbe: {
+          artifactId: "fff-missing-fixture-class-probe-001",
+          docPath: "docs/review/missing-fixture-class-probe.md",
+          resultPath: "artifacts/missing-fixture-class-probe-result.json",
+          selectedFixtureClass: "sparse_bullet_only_notes",
+          fixturePath: "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          outputPath: "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json",
+          selectedFixtureElementsChecked: 12,
+          selectedFixtureBulletLines: 11,
+          sourceSpanMismatches: 0,
+          failures: 0,
+          reviewCardEmitted: false,
+          operatorObservationCardEmitted: false
         },
         weakSpanRepair: {
           artifactId: "fff-weak-span-repair-001",
@@ -3675,7 +3716,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           artifactId: "fff-review-memory-dedup-001",
           docPath: "docs/review/review-memory-dedup.md",
           smokeResult: "artifacts/review-memory-dedup-smoke-result.json",
-          nextNonredundantAxis: "one missing fixture class after a concrete coverage need",
+          nextNonredundantAxis: "another missing fixture class only after a concrete coverage need",
           repeatedReviewAllowed: false,
           reviewResetTrigger: "changed target, changed evidence, changed axis, changed decision value, or explicit user request"
         }
@@ -4150,7 +4191,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-weak-span-repair-001",
+          activeArtifactId: "fff-missing-fixture-class-probe-001",
           preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
           preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
           preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -4185,8 +4226,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             artifactId: "fff-source-span-routing-review-pack-001",
             packPath: "artifacts/source-span-routing-review-pack.json",
             generator: "tools/fff-source-span-review-pack.mjs",
-            fixtureCount: 3,
-            elementCount: 36,
+            fixtureCount: 4,
+            elementCount: 48,
             sourceSpanMismatchCount: 0,
             reviewInputMode: "freeform"
           },
@@ -4220,11 +4261,25 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             docPath: "docs/review/routing-policy-regression-hardening.md",
             resultPath: "artifacts/routing-policy-regression-hardening-result.json",
             resolvedRowsChecked: 7,
-            sourcePackRowsChecked: 36,
-            adapterPayloadsChecked: 4,
-            adapterElementsChecked: 48,
+            sourcePackRowsChecked: 48,
+            adapterPayloadsChecked: 5,
+            adapterElementsChecked: 60,
             failures: 0,
             reviewCardEmitted: false
+          },
+          missingFixtureClassProbe: {
+            artifactId: "fff-missing-fixture-class-probe-001",
+            docPath: "docs/review/missing-fixture-class-probe.md",
+            resultPath: "artifacts/missing-fixture-class-probe-result.json",
+            selectedFixtureClass: "sparse_bullet_only_notes",
+            fixturePath: "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+            outputPath: "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json",
+            selectedFixtureElementsChecked: 12,
+            selectedFixtureBulletLines: 11,
+            sourceSpanMismatches: 0,
+            failures: 0,
+            reviewCardEmitted: false,
+            operatorObservationCardEmitted: false
           },
           weakSpanRepair: {
             artifactId: "fff-weak-span-repair-001",
@@ -4255,7 +4310,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             artifactId: "fff-review-memory-dedup-001",
             docPath: "docs/review/review-memory-dedup.md",
             smokeResult: "artifacts/review-memory-dedup-smoke-result.json",
-            nextNonredundantAxis: "one missing fixture class after a concrete coverage need",
+            nextNonredundantAxis: "another missing fixture class only after a concrete coverage need",
             repeatedReviewAllowed: false,
             reviewResetTrigger: "changed target, changed evidence, changed axis, changed decision value, or explicit user request"
           }

@@ -361,6 +361,56 @@ const ADAPTER_FIXTURES = [
       timelineSpec("minutes-timeline-moth-warning", "The brass moth flickers before its truth is known.", "viewer_disclosure_order", "Before brass moth truth review", ["brass moth truth"]),
       timelineSpec("minutes-timeline-permit-offer", "Council archivists offer a permit as a pressure beat.", "viewer_disclosure_order", "Before Council motive review", ["Council motive"])
     ]
+  },
+  {
+    key: "sparse-bullet-notes",
+    sourceRefId: "src-local-adapter-raw-memo-004",
+    sourceLabel: "Sparse bullet notes memo",
+    memoLabel: "sparse bullet notes memo",
+    matchPhrases: ["Adapter Fixture: Sparse Bullet Notes", "sparse bullets only"],
+    extractionRunId: "local-extract-sparse-bullet-notes-001",
+    sourceDraftId: "draft-sparse-bullet-notes-001",
+    workId: "work-clockmaker-under-glass",
+    elements: [
+      elementSpec("sparse-x-person-mira", "Mira Vale", "person", "Mira Vale repairs clocks after midnight", ["Mira", "after-midnight repairer"], 0.92, "low", "low", ["profile", "claim", "timeline"], ["sparse-profile-mira"], ["sparse-claim-mira-after-midnight"], ["sparse-timeline-after-midnight"], [], "Sparse bullet extraction keeps a person/action cue even without paragraph context."),
+      elementSpec("sparse-x-place-north-bell", "North Bell Station", "place", "North Bell Station", ["North Bell"], 0.9, "medium", "medium", ["profile", "timeline"], ["sparse-profile-north-bell"], [], ["sparse-timeline-noon-bell"], [], "Place routing remains available from a terse bullet."),
+      elementSpec("sparse-x-organization-archivists", "Council archivists", "organization", "Council archivists label Toma's last route a clerical error", ["archivists", "council archive"], 0.86, "high", "high", ["profile", "claim", "unresolved_decision"], ["sparse-profile-archivists"], ["sparse-claim-clerical-error"], [], ["Council motive", "Toma fate"], "The adapter surfaces the council-side actor without deciding motive or Toma fate."),
+      elementSpec("sparse-x-event-rowan-waits", "Rowan waits at 9:17", "event", "At 9:17, Rowan Ise waits", ["9:17 wait", "Rowan waits"], 0.84, "medium", "medium", ["claim", "timeline"], [], ["sparse-claim-rowan-waits"], ["sparse-timeline-rowan-waits"], [], "The event cue is short but enough for held timeline review."),
+      elementSpec("sparse-x-person-rowan", "Rowan Ise", "person", "Rowan Ise waits in the glass arcade", ["Rowan", "waiting apprentice"], 0.88, "medium", "medium", ["profile", "timeline"], ["sparse-profile-rowan"], [], ["sparse-timeline-rowan-waits"], [], "A second person candidate is preserved from the same terse event bullet."),
+      elementSpec("sparse-x-object-brass-moth-key", "brass moth key", "object", "Brass moth key", ["moth key", "brass key"], 0.89, "high", "high", ["profile", "claim", "timeline", "unresolved_decision"], ["sparse-profile-brass-moth-key"], ["sparse-claim-moth-key"], ["sparse-timeline-moth-key"], ["brass moth truth", "Toma fate"], "The object can be extracted, but its function and relation to Toma stay human-owned."),
+      elementSpec("sparse-x-document-ledger-page", "ledger page", "document", "Ledger page", ["ledger", "page"], 0.8, "medium", "medium", ["profile", "claim"], ["sparse-profile-ledger-page"], ["sparse-claim-ledger-page"], [], [], "Document routing works even when evidence is only a bullet label."),
+      elementSpec("sparse-x-concept-borrowed-minutes", "borrowed minutes from abandoned lives", "concept", "borrowed minutes from abandoned lives", ["borrowed minutes", "abandoned lives"], 0.82, "high", "medium", ["profile", "claim"], ["sparse-profile-borrowed-minutes"], ["sparse-claim-borrowed-minutes"], [], ["Council motive"], "The premise concept remains suspicious accounting rather than settled world truth."),
+      elementSpec("sparse-x-visual-bellless-tower", "bellless tower silhouette", "visual_asset", "Bellless tower silhouette above North Bell Station", ["tower silhouette", "bellless tower"], 0.75, "medium", "medium", ["profile", "timeline"], ["sparse-profile-bellless-tower"], [], ["sparse-timeline-noon-bell"], [], "Visual asset routing stays profile-buffered and out of direct Claim targets."),
+      elementSpec("sparse-x-placeholder-moth-function", "moth function unanswered", "placeholder", "Moth function unanswered", ["moth rule gap", "function gap"], 0.76, "high", "high", ["profile", "unresolved_decision"], ["sparse-profile-moth-placeholder"], [], [], ["brass moth truth"], "The adapter marks the missing rule instead of inventing the brass moth function."),
+      elementSpec("sparse-x-source-bullet-notes", "sparse bullet notes memo", "source_reference", "Adapter Fixture: Sparse Bullet Notes", ["sparse notes", "bullet fixture"], 1, "low", "low", ["source_reference"], [], [], [], [], "The fixture title remains the source reference for bullet-only coverage."),
+      elementSpec("sparse-x-unresolved-council-motive", "Council motive", "unresolved_decision", "Council motive unresolved", ["motive unresolved"], 0.87, "high", "high", ["unresolved_decision", "claim"], [], ["sparse-claim-council-motive-open"], [], ["Council motive"], "Freeform human review is required before motive language can become canon.", true)
+    ],
+    profiles: [
+      profileSpec("sparse-profile-mira", "Mira Vale", "person", "extracted_candidate", [], "After-midnight repair candidate from sparse notes."),
+      profileSpec("sparse-profile-rowan", "Rowan Ise", "person", "extracted_candidate", [], "Waiting person candidate from a terse bullet."),
+      profileSpec("sparse-profile-north-bell", "North Bell Station", "place", "extracted_candidate", [], "Place candidate connected to a noon bell cue."),
+      profileSpec("sparse-profile-archivists", "Council archivists", "organization", "held_ghost", ["Council motive"], "Council-side group candidate with motive held."),
+      profileSpec("sparse-profile-brass-moth-key", "Brass moth key", "object", "held_ghost", ["brass moth truth", "Toma fate"], "Object candidate with function and route relation held."),
+      profileSpec("sparse-profile-ledger-page", "Ledger page", "document", "extracted_candidate", [], "Document candidate from a label-style bullet."),
+      profileSpec("sparse-profile-borrowed-minutes", "Borrowed minutes", "concept", "held_ghost", ["Council motive"], "Premise concept candidate with motive held."),
+      profileSpec("sparse-profile-bellless-tower", "Bellless tower silhouette", "visual_asset", "extracted_candidate", [], "Visual cue candidate, not release artwork."),
+      profileSpec("sparse-profile-moth-placeholder", "Moth function placeholder", "placeholder", "needs_human_decision", ["brass moth truth"], "Held placeholder for the moth rule.")
+    ],
+    claims: [
+      claimSpec("sparse-claim-mira-after-midnight", "Mira repairs clocks after midnight.", "viewer knowledge", "sparse-profile-mira", []),
+      claimSpec("sparse-claim-clerical-error", "Council archivists label Toma's last route a clerical error.", "character belief", "sparse-profile-archivists", ["Council motive", "Toma fate"]),
+      claimSpec("sparse-claim-rowan-waits", "Rowan Ise waits in the glass arcade at 9:17.", "viewer knowledge", "sparse-profile-rowan", []),
+      claimSpec("sparse-claim-moth-key", "A brass moth key is pinned under Toma's last route.", "unresolved candidate", "sparse-profile-brass-moth-key", ["brass moth truth", "Toma fate"]),
+      claimSpec("sparse-claim-ledger-page", "A ledger page lists borrowed minutes from abandoned lives.", "unresolved candidate", "sparse-profile-ledger-page", ["Council motive"]),
+      claimSpec("sparse-claim-borrowed-minutes", "Borrowed minutes from abandoned lives remain suspicious accounting.", "unresolved candidate", "sparse-profile-borrowed-minutes", ["Council motive"]),
+      claimSpec("sparse-claim-council-motive-open", "Council motive remains unresolved in the sparse notes.", "production note", "sparse-profile-archivists", ["Council motive"])
+    ],
+    timelines: [
+      timelineSpec("sparse-timeline-after-midnight", "Mira repairs clocks after midnight.", "story_order", "After midnight", []),
+      timelineSpec("sparse-timeline-noon-bell", "North Bell Station keeps a noon bell cue with bellless visual evidence.", "calendar_time", "Noon during sparse notes", []),
+      timelineSpec("sparse-timeline-rowan-waits", "Rowan waits in the glass arcade at 9:17.", "story_order", "At 9:17", []),
+      timelineSpec("sparse-timeline-moth-key", "The brass moth key appears before its function is known.", "viewer_disclosure_order", "Before brass moth truth review", ["brass moth truth", "Toma fate"])
+    ]
   }
 ];
 
@@ -777,12 +827,11 @@ function getGuardStatus(payload) {
 function selectAdapterFixture(rawMemo, inputPath) {
   const normalizedMemo = rawMemo.toLowerCase();
   const normalizedPath = toRepoPath(inputPath).toLowerCase();
-  return ADAPTER_FIXTURES.find((fixture) => {
-    if (normalizedPath.includes(fixture.key)) {
-      return true;
-    }
-    return fixture.matchPhrases.some((phrase) => normalizedMemo.includes(phrase.toLowerCase()));
-  }) || ADAPTER_FIXTURES[0];
+  const pathMatch = ADAPTER_FIXTURES.find((fixture) => normalizedPath.includes(fixture.key));
+  if (pathMatch) {
+    return pathMatch;
+  }
+  return ADAPTER_FIXTURES.find((fixture) => fixture.matchPhrases.some((phrase) => normalizedMemo.includes(phrase.toLowerCase()))) || ADAPTER_FIXTURES[0];
 }
 
 function sourceRefFor(fixture, inputPath) {

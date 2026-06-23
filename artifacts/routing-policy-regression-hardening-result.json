@@ -2,7 +2,7 @@
   "schemaVersion": "fff.routingPolicyRegression.v1",
   "artifact_id": "fff-routing-policy-regression-hardening-001",
   "title": "Fast Fiction Factory Routing Policy Regression Hardening",
-  "generatedAt": "2026-06-23T04:10:07.027Z",
+  "generatedAt": "2026-06-23T04:32:46.667Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "source_resolution_artifact_id": "fff-ambiguous-routing-resolution-001",
@@ -12,7 +12,8 @@
     "artifacts/local-extraction-adapter-output.json",
     "artifacts/extraction-adapter-outputs/clockmaker-sample.json",
     "artifacts/extraction-adapter-outputs/council-minutes-edge.json",
-    "artifacts/extraction-adapter-outputs/observatory-ledger-edge.json"
+    "artifacts/extraction-adapter-outputs/observatory-ledger-edge.json",
+    "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json"
   ],
   "review_memory_checked": {
     "checked": true,
@@ -33,13 +34,13 @@
   },
   "summary": {
     "resolved_rows_checked": 7,
-    "source_pack_rows_checked": 36,
-    "adapter_payloads_checked": 4,
-    "adapter_elements_checked": 48,
+    "source_pack_rows_checked": 48,
+    "adapter_payloads_checked": 5,
+    "adapter_elements_checked": 60,
     "visual_rows_checked": 1,
     "unresolved_decision_rows_checked": 3,
-    "source_reference_pack_rows_checked": 3,
-    "source_reference_adapter_rows_checked": 4,
+    "source_reference_pack_rows_checked": 4,
+    "source_reference_adapter_rows_checked": 5,
     "failures": 0
   },
   "routing_policy_checks": {

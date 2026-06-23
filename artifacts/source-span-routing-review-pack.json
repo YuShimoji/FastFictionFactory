@@ -1,7 +1,7 @@
 {
   "artifact_id": "fff-source-span-routing-review-pack-001",
   "title": "Fast Fiction Factory Source-Span Routing Review Pack",
-  "purpose": "Focused local review pack for checking source spans, source references, routing targets, held defaults, and human-owned guardrails across the three deterministic adapter fixture outputs before freeform review or any model/API behavior.",
+  "purpose": "Focused local review pack for checking source spans, source references, routing targets, held defaults, and human-owned guardrails across deterministic adapter fixture outputs before freeform review or any model/API behavior.",
   "generatedAt": "2026-06-20T00:00:00+09:00",
   "review_status": "ready_for_local_review",
   "review_input_mode": "freeform",
@@ -22,34 +22,33 @@
     "validator_fixture_dir": "artifacts/extraction-negative-fixtures"
   },
   "cross_fixture_summary": {
-    "fixture_count": 3,
-    "total_elements": 36,
-    "profile_candidates": 27,
-    "claim_candidates": 20,
-    "timeline_candidates": 12,
+    "fixture_count": 4,
+    "total_elements": 48,
+    "profile_candidates": 36,
+    "claim_candidates": 27,
+    "timeline_candidates": 16,
     "source_span_mismatches": 0,
     "missing_source_refs": 0,
     "unsafe_visual_routing": 0,
     "non_held_review_defaults": 0,
     "human_owned_decision_adopt_suggestions": 0,
-    "human_owned_guarded_elements": 17,
-    "visual_asset_elements": 3,
-    "review_held_elements": 36,
+    "human_owned_guarded_elements": 22,
+    "visual_asset_elements": 4,
+    "review_held_elements": 48,
     "fixture_class_gaps": [
       "contradictory memo claims",
       "very broad source spans",
       "missing or malformed source span payloads",
       "multilingual or translated memo text",
-      "sparse bullet-only notes",
       "model/API provider envelope output"
     ],
     "smoke_crosscheck": {
-      "fixture_count": 3,
-      "output_count": 3,
-      "element_count": 36,
-      "profile_candidate_count": 27,
-      "claim_candidate_count": 20,
-      "timeline_candidate_count": 12
+      "fixture_count": 4,
+      "output_count": 4,
+      "element_count": 48,
+      "profile_candidate_count": 36,
+      "claim_candidate_count": 27,
+      "timeline_candidate_count": 16
     }
   },
   "review_debt": [
@@ -80,7 +79,7 @@
     },
     {
       "category": "fixture_class_missing",
-      "automated_findings": 6,
+      "automated_findings": 5,
       "review_state": "intentional_next_fixture_candidates"
     }
   ],
@@ -1589,6 +1588,503 @@
             "unresolved_dependency"
           ],
           "review_notes": "Freeform human review remains required before any Toma fate route is adopted."
+        }
+      ]
+    },
+    {
+      "fixture_id": "sparse-bullet-notes",
+      "memo_title": "Adapter Fixture: Sparse Bullet Notes",
+      "source_memo_path": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+      "output_path": "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json",
+      "extraction_run_id": "local-extract-sparse-bullet-notes-001",
+      "counts": {
+        "extracted_elements": 12,
+        "profile_candidates": 9,
+        "claim_candidates": 7,
+        "timeline_candidates": 4,
+        "visual_assets": 1,
+        "human_owned_guarded_elements": 5
+      },
+      "source_refs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        },
+        {
+          "id": "src-local-adapter-deterministic-001",
+          "label": "Deterministic local extraction adapter",
+          "locator": "tools/fff-extract-local.mjs",
+          "trust": "derived_candidate"
+        },
+        {
+          "id": "src-local-adapter-freeform-review-001",
+          "label": "Freeform human review boundary",
+          "locator": "docs/review/freeform-review-intake.md",
+          "trust": "human_review"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "status": 0,
+        "stdout": "valid extraction artifacts/extraction-adapter-outputs/sparse-bullet-notes.json",
+        "stderr": "warning: extraction contract local-extract-sparse-bullet-notes-001 unknown top-level field adapterTrace will be preserved for JSON review"
+      },
+      "audit": {
+        "element_count": 12,
+        "source_span_matched_count": 12,
+        "source_span_mismatch_count": 0,
+        "source_span_mismatches": [],
+        "missing_source_ref_count": 0,
+        "missing_source_refs": [],
+        "unsafe_visual_routing_count": 0,
+        "unsafe_visual_routing": [],
+        "non_held_review_default_count": 0,
+        "non_held_review_defaults": [],
+        "human_owned_decision_adopt_count": 0,
+        "human_owned_decision_adopts": [],
+        "passed": true
+      },
+      "review_safe_defaults": {
+        "default_review_status": "hold",
+        "auto_canon_promotion": false,
+        "auto_chronology_promotion": false,
+        "freeform_review_allowed": true
+      },
+      "representative_elements": [
+        {
+          "id": "sparse-x-person-mira",
+          "element_type": "person",
+          "extracted_value": "Mira Vale",
+          "raw_source_snippet": "Mira Vale repairs clocks after midnight",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=42-81",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.92,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Sparse bullet extraction keeps a person/action cue even without paragraph context."
+        },
+        {
+          "id": "sparse-x-object-brass-moth-key",
+          "element_type": "object",
+          "extracted_value": "brass moth key",
+          "raw_source_snippet": "Brass moth key",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=262-276",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.89,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The object can be extracted, but its function and relation to Toma stay human-owned."
+        },
+        {
+          "id": "sparse-x-visual-bellless-tower",
+          "element_type": "visual_asset",
+          "extracted_value": "bellless tower silhouette",
+          "raw_source_snippet": "Bellless tower silhouette above North Bell Station",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=370-420",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.75,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual asset routing stays profile-buffered and out of direct Claim targets."
+        },
+        {
+          "id": "sparse-x-placeholder-moth-function",
+          "element_type": "placeholder",
+          "extracted_value": "moth function unanswered",
+          "raw_source_snippet": "Moth function unanswered",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=424-448",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.76,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter marks the missing rule instead of inventing the brass moth function."
+        },
+        {
+          "id": "sparse-x-unresolved-council-motive",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Council motive",
+          "raw_source_snippet": "Council motive unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=496-521",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Claim"
+          ],
+          "confidence": 0.87,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review is required before motive language can become canon."
+        },
+        {
+          "id": "sparse-x-source-bullet-notes",
+          "element_type": "source_reference",
+          "extracted_value": "sparse bullet notes memo",
+          "raw_source_snippet": "Adapter Fixture: Sparse Bullet Notes",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=2-38",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The fixture title remains the source reference for bullet-only coverage."
+        }
+      ],
+      "elements": [
+        {
+          "id": "sparse-x-person-mira",
+          "element_type": "person",
+          "extracted_value": "Mira Vale",
+          "raw_source_snippet": "Mira Vale repairs clocks after midnight",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=42-81",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.92,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Sparse bullet extraction keeps a person/action cue even without paragraph context."
+        },
+        {
+          "id": "sparse-x-place-north-bell",
+          "element_type": "place",
+          "extracted_value": "North Bell Station",
+          "raw_source_snippet": "North Bell Station",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=85-103",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Place routing remains available from a terse bullet."
+        },
+        {
+          "id": "sparse-x-organization-archivists",
+          "element_type": "organization",
+          "extracted_value": "Council archivists",
+          "raw_source_snippet": "Council archivists label Toma's last route a clerical error",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=151-210",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Human Review"
+          ],
+          "confidence": 0.86,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter surfaces the council-side actor without deciding motive or Toma fate."
+        },
+        {
+          "id": "sparse-x-event-rowan-waits",
+          "element_type": "event",
+          "extracted_value": "Rowan waits at 9:17",
+          "raw_source_snippet": "At 9:17, Rowan Ise waits",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=214-238",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.84,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The event cue is short but enough for held timeline review."
+        },
+        {
+          "id": "sparse-x-person-rowan",
+          "element_type": "person",
+          "extracted_value": "Rowan Ise",
+          "raw_source_snippet": "Rowan Ise waits in the glass arcade",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=223-258",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline"
+          ],
+          "confidence": 0.88,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "A second person candidate is preserved from the same terse event bullet."
+        },
+        {
+          "id": "sparse-x-object-brass-moth-key",
+          "element_type": "object",
+          "extracted_value": "brass moth key",
+          "raw_source_snippet": "Brass moth key",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=262-276",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.89,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The object can be extracted, but its function and relation to Toma stay human-owned."
+        },
+        {
+          "id": "sparse-x-document-ledger-page",
+          "element_type": "document",
+          "extracted_value": "ledger page",
+          "raw_source_snippet": "Ledger page",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=311-322",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.8,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Document routing works even when evidence is only a bullet label."
+        },
+        {
+          "id": "sparse-x-concept-borrowed-minutes",
+          "element_type": "concept",
+          "extracted_value": "borrowed minutes from abandoned lives",
+          "raw_source_snippet": "borrowed minutes from abandoned lives",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=329-366",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.82,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The premise concept remains suspicious accounting rather than settled world truth."
+        },
+        {
+          "id": "sparse-x-visual-bellless-tower",
+          "element_type": "visual_asset",
+          "extracted_value": "bellless tower silhouette",
+          "raw_source_snippet": "Bellless tower silhouette above North Bell Station",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=370-420",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.75,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual asset routing stays profile-buffered and out of direct Claim targets."
+        },
+        {
+          "id": "sparse-x-placeholder-moth-function",
+          "element_type": "placeholder",
+          "extracted_value": "moth function unanswered",
+          "raw_source_snippet": "Moth function unanswered",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=424-448",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.76,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The adapter marks the missing rule instead of inventing the brass moth function."
+        },
+        {
+          "id": "sparse-x-source-bullet-notes",
+          "element_type": "source_reference",
+          "extracted_value": "sparse bullet notes memo",
+          "raw_source_snippet": "Adapter Fixture: Sparse Bullet Notes",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=2-38",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The fixture title remains the source reference for bullet-only coverage."
+        },
+        {
+          "id": "sparse-x-unresolved-council-motive",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Council motive",
+          "raw_source_snippet": "Council motive unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md#char=496-521",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-004",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Claim"
+          ],
+          "confidence": 0.87,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review is required before motive language can become canon."
         }
       ]
     }

@@ -1,0 +1,143 @@
+{
+  "schemaVersion": "fff.missingFixtureClassProbe.v1",
+  "artifact_id": "fff-missing-fixture-class-probe-001",
+  "title": "Fast Fiction Factory Missing Fixture Class Probe",
+  "generatedAt": "2026-06-23T04:32:46.857Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "selected_fixture_class": "sparse_bullet_only_notes",
+  "selected_fixture_label": "sparse bullet-only notes",
+  "selected_fixture_path": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+  "selected_output_path": "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json",
+  "source_pack_path": "artifacts/source-span-routing-review-pack.json",
+  "adapter_matrix_smoke_path": "artifacts/local-extraction-adapter-expansion-smoke-result.json",
+  "routing_policy_regression_path": "artifacts/routing-policy-regression-hardening-result.json",
+  "weak_span_repair_path": "artifacts/weak-span-repair-result.json",
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-weak-span-repair-001",
+    "prior_review_count": 0,
+    "prior_signal_summary": "No user review was requested or recorded for this weak-span repair slice; the prior quality audit classified the rows but did not accept source wording through human review.",
+    "axis": "missing_fixture_class_probe",
+    "what_changed": "A single sparse bullet-only memo fixture and deterministic readback output were added to the local adapter matrix.",
+    "what_this_review_decides": "No user review is needed; this readback decides whether sparse bullet-only notes are covered without reopening weak-span, broad-span, or ambiguous-routing debt.",
+    "not_asking": [
+      "general Review Hub review",
+      "fixed-form review",
+      "repeat weak-span review",
+      "repeat broad-span review",
+      "repeat ambiguous-routing review",
+      "model/API approval",
+      "provider credentials",
+      "database or publishing contract changes",
+      "production sync",
+      "AI video generation",
+      "final canon decisions for Toma fate, brass moth truth, or Council motive"
+    ],
+    "next_nonredundant_axis": "choose another missing fixture class only after a new concrete coverage need is named"
+  },
+  "coverage_decision": {
+    "known_missing_classes_before_probe": [
+      "contradictory memo claims",
+      "very broad source spans",
+      "missing or malformed source span payloads",
+      "multilingual or translated memo text",
+      "sparse bullet-only notes",
+      "model/API provider envelope output"
+    ],
+    "selected_class_reason": "Existing artifacts named sparse bullet-only notes as missing, and the three prior memos were paragraph-style fixtures; this class can be covered locally without model/API calls, provider envelopes, multilingual policy, or canon-choice decisions.",
+    "covered_by_this_probe": [
+      "sparse bullet-only notes"
+    ],
+    "remaining_fixture_class_candidates": [
+      "contradictory memo claims",
+      "very broad source spans",
+      "missing or malformed source span payloads",
+      "multilingual or translated memo text",
+      "model/API provider envelope output"
+    ],
+    "source_pack_legacy_gap_list_still_present": [
+      "contradictory memo claims",
+      "very broad source spans",
+      "missing or malformed source span payloads",
+      "multilingual or translated memo text",
+      "model/API provider envelope output"
+    ]
+  },
+  "summary": {
+    "previous_fixture_count": 3,
+    "current_fixture_count": 4,
+    "current_output_count": 4,
+    "current_matrix_element_count": 48,
+    "source_pack_rows_checked": 48,
+    "adapter_payloads_checked": 5,
+    "adapter_elements_checked": 60,
+    "selected_fixture_elements_checked": 12,
+    "selected_fixture_bullet_lines": 11,
+    "source_span_mismatches": 0,
+    "missing_source_refs": 0,
+    "unsafe_visual_routes": 0,
+    "non_held_review_defaults": 0,
+    "human_owned_decision_adopt_suggestions": 0,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "fixture_probe_checks": {
+    "prior_cleanup_sequence_confirmed": {
+      "passed": true,
+      "detail": "weak-span repair, broad-span split, and routing regression must already be preserved"
+    },
+    "concrete_fixture_gap_named": {
+      "passed": true,
+      "detail": "selected sparse bullet-only notes class must be named by existing fixture coverage debt"
+    },
+    "exactly_one_fixture_class_added": {
+      "passed": true,
+      "detail": "this probe is bounded to sparse-bullet-notes.md"
+    },
+    "sparse_bullet_shape_confirmed": {
+      "passed": true,
+      "detail": "bullet lines=11; non-bullet body lines=0"
+    },
+    "adapter_matrix_extended": {
+      "passed": true,
+      "detail": "matrix fixtures=4; elements=48"
+    },
+    "sparse_output_readback": {
+      "passed": true,
+      "detail": "fixture=sparse-bullet-notes; elements=12; types=concept, document, event, object, organization, person, place, placeholder, source_reference, unresolved_decision, visual_asset"
+    },
+    "source_span_integrity": {
+      "passed": true,
+      "detail": "source mismatches=none; missing refs=none"
+    },
+    "review_held_defaults": {
+      "passed": true,
+      "detail": "non-held elements=none"
+    },
+    "routing_and_visual_guards": {
+      "passed": true,
+      "detail": "unsafe visual routes=none"
+    },
+    "human_owned_boundaries_preserved": {
+      "passed": true,
+      "detail": "human-owned adopt suggestions=none"
+    },
+    "source_pack_and_routing_readback_extended": {
+      "passed": true,
+      "detail": "pack rows=48; adapter payloads=5; adapter elements=60"
+    },
+    "no_model_api_behavior_added": {
+      "passed": true,
+      "detail": "model/API boundary remains preserved by structured no-call evidence"
+    },
+    "human_burden_hygiene": {
+      "passed": true,
+      "detail": "freeform review remains available, and no operator observation card or repeated general review request is emitted"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

@@ -1,0 +1,1244 @@
+{
+  "extractionRunId": "local-extract-sparse-bullet-notes-001",
+  "schemaVersion": "fff.extractionContract.v1",
+  "sourceDraftId": "draft-sparse-bullet-notes-001",
+  "sourceMemoRef": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+  "sourceRefs": [
+    {
+      "id": "src-local-adapter-raw-memo-004",
+      "label": "Sparse bullet notes memo",
+      "source_type": "memo",
+      "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+      "trust": "author_memo"
+    },
+    {
+      "id": "src-local-adapter-deterministic-001",
+      "label": "Deterministic local extraction adapter",
+      "source_type": "derived_candidate",
+      "locator": "tools/fff-extract-local.mjs",
+      "trust": "derived_candidate"
+    },
+    {
+      "id": "src-local-adapter-freeform-review-001",
+      "label": "Freeform human review boundary",
+      "source_type": "human_review",
+      "locator": "docs/review/freeform-review-intake.md",
+      "trust": "human_review"
+    }
+  ],
+  "generatedAt": "2026-06-20T00:00:00+09:00",
+  "generatorType": "local_deterministic_adapter",
+  "generatorLabel": "Zero-dependency deterministic local adapter expansion; no model/API call",
+  "extractionMode": "local_rule_based_no_model_api_fixture_matrix",
+  "confidencePolicy": {
+    "defaultConfidence": 0.72,
+    "lowConfidenceAction": "hold",
+    "highCanonRiskAction": "hold_until_human_review",
+    "freeformReviewAuthority": "freeform human review text is the source of truth"
+  },
+  "extractedElements": [
+    {
+      "id": "sparse-x-person-mira",
+      "displayText": "Mira Vale",
+      "elementType": "person",
+      "aliases": [
+        "Mira",
+        "after-midnight repairer"
+      ],
+      "sourceSpan": {
+        "text": "Mira Vale repairs clocks after midnight",
+        "start": 42,
+        "end": 81
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.92,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "low",
+      "spoilerLevel": "low",
+      "targetDestinations": [
+        "profile",
+        "claim",
+        "timeline"
+      ],
+      "targetProfileIds": [
+        "sparse-profile-mira"
+      ],
+      "targetClaimIds": [
+        "sparse-claim-mira-after-midnight"
+      ],
+      "targetTimelineEntryIds": [
+        "sparse-timeline-after-midnight"
+      ],
+      "notes": "Sparse bullet extraction keeps a person/action cue even without paragraph context."
+    },
+    {
+      "id": "sparse-x-place-north-bell",
+      "displayText": "North Bell Station",
+      "elementType": "place",
+      "aliases": [
+        "North Bell"
+      ],
+      "sourceSpan": {
+        "text": "North Bell Station",
+        "start": 85,
+        "end": 103
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.9,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "targetDestinations": [
+        "profile",
+        "timeline"
+      ],
+      "targetProfileIds": [
+        "sparse-profile-north-bell"
+      ],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [
+        "sparse-timeline-noon-bell"
+      ],
+      "notes": "Place routing remains available from a terse bullet."
+    },
+    {
+      "id": "sparse-x-organization-archivists",
+      "displayText": "Council archivists",
+      "elementType": "organization",
+      "aliases": [
+        "archivists",
+        "council archive"
+      ],
+      "sourceSpan": {
+        "text": "Council archivists label Toma's last route a clerical error",
+        "start": 151,
+        "end": 210
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.86,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [
+        "Council motive",
+        "Toma fate"
+      ],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "targetDestinations": [
+        "profile",
+        "claim",
+        "unresolved_decision"
+      ],
+      "targetProfileIds": [
+        "sparse-profile-archivists"
+      ],
+      "targetClaimIds": [
+        "sparse-claim-clerical-error"
+      ],
+      "targetTimelineEntryIds": [],
+      "notes": "The adapter surfaces the council-side actor without deciding motive or Toma fate."
+    },
+    {
+      "id": "sparse-x-event-rowan-waits",
+      "displayText": "Rowan waits at 9:17",
+      "elementType": "event",
+      "aliases": [
+        "9:17 wait",
+        "Rowan waits"
+      ],
+      "sourceSpan": {
+        "text": "At 9:17, Rowan Ise waits",
+        "start": 214,
+        "end": 238
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.84,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "targetDestinations": [
+        "claim",
+        "timeline"
+      ],
+      "targetProfileIds": [],
+      "targetClaimIds": [
+        "sparse-claim-rowan-waits"
+      ],
+      "targetTimelineEntryIds": [
+        "sparse-timeline-rowan-waits"
+      ],
+      "notes": "The event cue is short but enough for held timeline review."
+    },
+    {
+      "id": "sparse-x-person-rowan",
+      "displayText": "Rowan Ise",
+      "elementType": "person",
+      "aliases": [
+        "Rowan",
+        "waiting apprentice"
+      ],
+      "sourceSpan": {
+        "text": "Rowan Ise waits in the glass arcade",
+        "start": 223,
+        "end": 258
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.88,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "targetDestinations": [
+        "profile",
+        "timeline"
+      ],
+      "targetProfileIds": [
+        "sparse-profile-rowan"
+      ],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [
+        "sparse-timeline-rowan-waits"
+      ],
+      "notes": "A second person candidate is preserved from the same terse event bullet."
+    },
+    {
+      "id": "sparse-x-object-brass-moth-key",
+      "displayText": "brass moth key",
+      "elementType": "object",
+      "aliases": [
+        "moth key",
+        "brass key"
+      ],
+      "sourceSpan": {
+        "text": "Brass moth key",
+        "start": 262,
+        "end": 276
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.89,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [
+        "brass moth truth",
+        "Toma fate"
+      ],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "targetDestinations": [
+        "profile",
+        "claim",
+        "timeline",
+        "unresolved_decision"
+      ],
+      "targetProfileIds": [
+        "sparse-profile-brass-moth-key"
+      ],
+      "targetClaimIds": [
+        "sparse-claim-moth-key"
+      ],
+      "targetTimelineEntryIds": [
+        "sparse-timeline-moth-key"
+      ],
+      "notes": "The object can be extracted, but its function and relation to Toma stay human-owned."
+    },
+    {
+      "id": "sparse-x-document-ledger-page",
+      "displayText": "ledger page",
+      "elementType": "document",
+      "aliases": [
+        "ledger",
+        "page"
+      ],
+      "sourceSpan": {
+        "text": "Ledger page",
+        "start": 311,
+        "end": 322
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.8,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "targetDestinations": [
+        "profile",
+        "claim"
+      ],
+      "targetProfileIds": [
+        "sparse-profile-ledger-page"
+      ],
+      "targetClaimIds": [
+        "sparse-claim-ledger-page"
+      ],
+      "targetTimelineEntryIds": [],
+      "notes": "Document routing works even when evidence is only a bullet label."
+    },
+    {
+      "id": "sparse-x-concept-borrowed-minutes",
+      "displayText": "borrowed minutes from abandoned lives",
+      "elementType": "concept",
+      "aliases": [
+        "borrowed minutes",
+        "abandoned lives"
+      ],
+      "sourceSpan": {
+        "text": "borrowed minutes from abandoned lives",
+        "start": 329,
+        "end": 366
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.82,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [
+        "Council motive"
+      ],
+      "canonRisk": "high",
+      "spoilerLevel": "medium",
+      "targetDestinations": [
+        "profile",
+        "claim"
+      ],
+      "targetProfileIds": [
+        "sparse-profile-borrowed-minutes"
+      ],
+      "targetClaimIds": [
+        "sparse-claim-borrowed-minutes"
+      ],
+      "targetTimelineEntryIds": [],
+      "notes": "The premise concept remains suspicious accounting rather than settled world truth."
+    },
+    {
+      "id": "sparse-x-visual-bellless-tower",
+      "displayText": "bellless tower silhouette",
+      "elementType": "visual_asset",
+      "aliases": [
+        "tower silhouette",
+        "bellless tower"
+      ],
+      "sourceSpan": {
+        "text": "Bellless tower silhouette above North Bell Station",
+        "start": 370,
+        "end": 420
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.75,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "targetDestinations": [
+        "profile",
+        "timeline"
+      ],
+      "targetProfileIds": [
+        "sparse-profile-bellless-tower"
+      ],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [
+        "sparse-timeline-noon-bell"
+      ],
+      "notes": "Visual asset routing stays profile-buffered and out of direct Claim targets."
+    },
+    {
+      "id": "sparse-x-placeholder-moth-function",
+      "displayText": "moth function unanswered",
+      "elementType": "placeholder",
+      "aliases": [
+        "moth rule gap",
+        "function gap"
+      ],
+      "sourceSpan": {
+        "text": "Moth function unanswered",
+        "start": 424,
+        "end": 448
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 0.76,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [
+        "brass moth truth"
+      ],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "targetDestinations": [
+        "profile",
+        "unresolved_decision"
+      ],
+      "targetProfileIds": [
+        "sparse-profile-moth-placeholder"
+      ],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [],
+      "notes": "The adapter marks the missing rule instead of inventing the brass moth function."
+    },
+    {
+      "id": "sparse-x-source-bullet-notes",
+      "displayText": "sparse bullet notes memo",
+      "elementType": "source_reference",
+      "aliases": [
+        "sparse notes",
+        "bullet fixture"
+      ],
+      "sourceSpan": {
+        "text": "Adapter Fixture: Sparse Bullet Notes",
+        "start": 2,
+        "end": 38
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004"
+      ],
+      "confidence": 1,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "low",
+      "spoilerLevel": "low",
+      "targetDestinations": [
+        "source_reference"
+      ],
+      "targetProfileIds": [],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [],
+      "notes": "The fixture title remains the source reference for bullet-only coverage."
+    },
+    {
+      "id": "sparse-x-unresolved-council-motive",
+      "displayText": "Council motive",
+      "elementType": "unresolved_decision",
+      "aliases": [
+        "motive unresolved"
+      ],
+      "sourceSpan": {
+        "text": "Council motive unresolved",
+        "start": 496,
+        "end": 521
+      },
+      "sourceRefIds": [
+        "src-local-adapter-raw-memo-004",
+        "src-local-adapter-freeform-review-001"
+      ],
+      "confidence": 0.87,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [
+        "Council motive"
+      ],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "targetDestinations": [
+        "unresolved_decision",
+        "claim"
+      ],
+      "targetProfileIds": [],
+      "targetClaimIds": [
+        "sparse-claim-council-motive-open"
+      ],
+      "targetTimelineEntryIds": [],
+      "notes": "Freeform human review is required before motive language can become canon."
+    }
+  ],
+  "profileCandidates": [
+    {
+      "id": "sparse-profile-mira",
+      "displayName": "Mira Vale",
+      "aliases": [],
+      "profileType": "person",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "extracted_candidate",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [],
+      "knownBy": [
+        "sparse bullet notes memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "After-midnight repair candidate from sparse notes.",
+      "open_questions": []
+    },
+    {
+      "id": "sparse-profile-rowan",
+      "displayName": "Rowan Ise",
+      "aliases": [],
+      "profileType": "person",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "extracted_candidate",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [],
+      "knownBy": [
+        "sparse bullet notes memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "Waiting person candidate from a terse bullet.",
+      "open_questions": []
+    },
+    {
+      "id": "sparse-profile-north-bell",
+      "displayName": "North Bell Station",
+      "aliases": [],
+      "profileType": "place",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "extracted_candidate",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [],
+      "knownBy": [
+        "sparse bullet notes memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "Place candidate connected to a noon bell cue.",
+      "open_questions": []
+    },
+    {
+      "id": "sparse-profile-archivists",
+      "displayName": "Council archivists",
+      "aliases": [],
+      "profileType": "organization",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "held_ghost",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [
+        "Council motive"
+      ],
+      "knownBy": [
+        "sparse bullet notes memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "Council-side group candidate with motive held.",
+      "open_questions": [
+        "Resolve Council motive before canon adoption."
+      ]
+    },
+    {
+      "id": "sparse-profile-brass-moth-key",
+      "displayName": "Brass moth key",
+      "aliases": [],
+      "profileType": "object",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "held_ghost",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [
+        "brass moth truth",
+        "Toma fate"
+      ],
+      "knownBy": [
+        "sparse bullet notes memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "Object candidate with function and route relation held.",
+      "open_questions": [
+        "Resolve brass moth truth before canon adoption.",
+        "Resolve Toma fate before canon adoption."
+      ]
+    },
+    {
+      "id": "sparse-profile-ledger-page",
+      "displayName": "Ledger page",
+      "aliases": [],
+      "profileType": "document",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "extracted_candidate",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [],
+      "knownBy": [
+        "sparse bullet notes memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "Document candidate from a label-style bullet.",
+      "open_questions": []
+    },
+    {
+      "id": "sparse-profile-borrowed-minutes",
+      "displayName": "Borrowed minutes",
+      "aliases": [],
+      "profileType": "concept",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "held_ghost",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [
+        "Council motive"
+      ],
+      "knownBy": [
+        "sparse bullet notes memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "Premise concept candidate with motive held.",
+      "open_questions": [
+        "Resolve Council motive before canon adoption."
+      ]
+    },
+    {
+      "id": "sparse-profile-bellless-tower",
+      "displayName": "Bellless tower silhouette",
+      "aliases": [],
+      "profileType": "visual_asset",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "extracted_candidate",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [],
+      "knownBy": [
+        "sparse bullet notes memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "Visual cue candidate, not release artwork.",
+      "open_questions": []
+    },
+    {
+      "id": "sparse-profile-moth-placeholder",
+      "displayName": "Moth function placeholder",
+      "aliases": [],
+      "profileType": "placeholder",
+      "profileStatus": "local_adapter_candidate",
+      "ghostNodeStatus": "needs_human_decision",
+      "worldStatus": "review candidate",
+      "realityStatus": "pure fiction",
+      "firstAppearanceWorkId": "work-clockmaker-under-glass",
+      "linkedClaimIds": [],
+      "linkedTimelineEntryIds": [],
+      "relatedProfileIds": [],
+      "unresolvedDependencies": [
+        "brass moth truth"
+      ],
+      "knownBy": [
+        "sparse bullet notes memo"
+      ],
+      "unknownBy": [],
+      "believedBy": [],
+      "misunderstoodBy": [],
+      "ownedItems": [],
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "assetRefs": [],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; remains review-held.",
+      "summary": "Held placeholder for the moth rule.",
+      "open_questions": [
+        "Resolve brass moth truth before canon adoption."
+      ]
+    }
+  ],
+  "claimCandidates": [
+    {
+      "id": "sparse-claim-mira-after-midnight",
+      "work_id": "work-clockmaker-under-glass",
+      "claimText": "Mira repairs clocks after midnight.",
+      "claimScope": "viewer knowledge",
+      "worldTruthStatus": "planned reversal",
+      "realityStatus": "pure fiction",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "subjectRefs": [
+        "sparse-profile-mira"
+      ],
+      "speakerOrNarratorRef": "sparse bullet notes memo",
+      "viewerDisclosureStatus": "viewer-facing now",
+      "spoilerLevel": "medium",
+      "canonRisk": "medium",
+      "unresolvedDependencies": [],
+      "supportsClaimIds": [],
+      "contradictsClaimIds": [],
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; review-held by default."
+    },
+    {
+      "id": "sparse-claim-clerical-error",
+      "work_id": "work-clockmaker-under-glass",
+      "claimText": "Council archivists label Toma's last route a clerical error.",
+      "claimScope": "character belief",
+      "worldTruthStatus": "uncertain",
+      "realityStatus": "pure fiction",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "subjectRefs": [
+        "sparse-profile-archivists"
+      ],
+      "speakerOrNarratorRef": "sparse bullet notes memo",
+      "viewerDisclosureStatus": "hidden from viewer",
+      "spoilerLevel": "high",
+      "canonRisk": "high",
+      "unresolvedDependencies": [
+        "Council motive",
+        "Toma fate"
+      ],
+      "supportsClaimIds": [],
+      "contradictsClaimIds": [],
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; review-held by default."
+    },
+    {
+      "id": "sparse-claim-rowan-waits",
+      "work_id": "work-clockmaker-under-glass",
+      "claimText": "Rowan Ise waits in the glass arcade at 9:17.",
+      "claimScope": "viewer knowledge",
+      "worldTruthStatus": "planned reversal",
+      "realityStatus": "pure fiction",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "subjectRefs": [
+        "sparse-profile-rowan"
+      ],
+      "speakerOrNarratorRef": "sparse bullet notes memo",
+      "viewerDisclosureStatus": "viewer-facing now",
+      "spoilerLevel": "medium",
+      "canonRisk": "medium",
+      "unresolvedDependencies": [],
+      "supportsClaimIds": [],
+      "contradictsClaimIds": [],
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; review-held by default."
+    },
+    {
+      "id": "sparse-claim-moth-key",
+      "work_id": "work-clockmaker-under-glass",
+      "claimText": "A brass moth key is pinned under Toma's last route.",
+      "claimScope": "unresolved candidate",
+      "worldTruthStatus": "uncertain",
+      "realityStatus": "pure fiction",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "subjectRefs": [
+        "sparse-profile-brass-moth-key"
+      ],
+      "speakerOrNarratorRef": "sparse bullet notes memo",
+      "viewerDisclosureStatus": "hidden from viewer",
+      "spoilerLevel": "high",
+      "canonRisk": "high",
+      "unresolvedDependencies": [
+        "brass moth truth",
+        "Toma fate"
+      ],
+      "supportsClaimIds": [],
+      "contradictsClaimIds": [],
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; review-held by default."
+    },
+    {
+      "id": "sparse-claim-ledger-page",
+      "work_id": "work-clockmaker-under-glass",
+      "claimText": "A ledger page lists borrowed minutes from abandoned lives.",
+      "claimScope": "unresolved candidate",
+      "worldTruthStatus": "uncertain",
+      "realityStatus": "pure fiction",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "subjectRefs": [
+        "sparse-profile-ledger-page"
+      ],
+      "speakerOrNarratorRef": "sparse bullet notes memo",
+      "viewerDisclosureStatus": "hidden from viewer",
+      "spoilerLevel": "high",
+      "canonRisk": "high",
+      "unresolvedDependencies": [
+        "Council motive"
+      ],
+      "supportsClaimIds": [],
+      "contradictsClaimIds": [],
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; review-held by default."
+    },
+    {
+      "id": "sparse-claim-borrowed-minutes",
+      "work_id": "work-clockmaker-under-glass",
+      "claimText": "Borrowed minutes from abandoned lives remain suspicious accounting.",
+      "claimScope": "unresolved candidate",
+      "worldTruthStatus": "uncertain",
+      "realityStatus": "pure fiction",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "subjectRefs": [
+        "sparse-profile-borrowed-minutes"
+      ],
+      "speakerOrNarratorRef": "sparse bullet notes memo",
+      "viewerDisclosureStatus": "hidden from viewer",
+      "spoilerLevel": "high",
+      "canonRisk": "high",
+      "unresolvedDependencies": [
+        "Council motive"
+      ],
+      "supportsClaimIds": [],
+      "contradictsClaimIds": [],
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; review-held by default."
+    },
+    {
+      "id": "sparse-claim-council-motive-open",
+      "work_id": "work-clockmaker-under-glass",
+      "claimText": "Council motive remains unresolved in the sparse notes.",
+      "claimScope": "production note",
+      "worldTruthStatus": "uncertain",
+      "realityStatus": "pure fiction",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "subjectRefs": [
+        "sparse-profile-archivists"
+      ],
+      "speakerOrNarratorRef": "sparse bullet notes memo",
+      "viewerDisclosureStatus": "hidden from viewer",
+      "spoilerLevel": "high",
+      "canonRisk": "high",
+      "unresolvedDependencies": [
+        "Council motive"
+      ],
+      "supportsClaimIds": [],
+      "contradictsClaimIds": [],
+      "reviewStatus": "hold",
+      "notes": "Generated by deterministic local adapter; review-held by default."
+    }
+  ],
+  "timelineEntryCandidates": [
+    {
+      "id": "sparse-timeline-after-midnight",
+      "work_id": "work-clockmaker-under-glass",
+      "title": "Mira repairs clocks after midnight.",
+      "summary": "Generated by deterministic local adapter for review-held timeline routing.",
+      "timelineAxis": "story_order",
+      "storyOrder": "local adapter candidate",
+      "calendarTime": "After midnight",
+      "calendarPrecision": "relative_sequence",
+      "viewerDisclosureOrder": "viewer-facing candidate",
+      "viewerDisclosureStatus": "viewer-facing now",
+      "productionOrder": "Do not storyboard as final from adapter output.",
+      "historicalReferenceTime": "not set",
+      "linkedClaimIds": [],
+      "linkedProfileIds": [],
+      "linkedWorkIds": [
+        "work-clockmaker-under-glass"
+      ],
+      "unresolvedDependencies": [],
+      "spoilerLevel": "medium",
+      "canonRisk": "medium",
+      "reviewStatus": "hold",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
+    },
+    {
+      "id": "sparse-timeline-noon-bell",
+      "work_id": "work-clockmaker-under-glass",
+      "title": "North Bell Station keeps a noon bell cue with bellless visual evidence.",
+      "summary": "Generated by deterministic local adapter for review-held timeline routing.",
+      "timelineAxis": "calendar_time",
+      "storyOrder": "local adapter candidate",
+      "calendarTime": "Noon during sparse notes",
+      "calendarPrecision": "clock_time",
+      "viewerDisclosureOrder": "viewer-facing candidate",
+      "viewerDisclosureStatus": "viewer-facing now",
+      "productionOrder": "Do not storyboard as final from adapter output.",
+      "historicalReferenceTime": "not set",
+      "linkedClaimIds": [],
+      "linkedProfileIds": [],
+      "linkedWorkIds": [
+        "work-clockmaker-under-glass"
+      ],
+      "unresolvedDependencies": [],
+      "spoilerLevel": "medium",
+      "canonRisk": "medium",
+      "reviewStatus": "hold",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
+    },
+    {
+      "id": "sparse-timeline-rowan-waits",
+      "work_id": "work-clockmaker-under-glass",
+      "title": "Rowan waits in the glass arcade at 9:17.",
+      "summary": "Generated by deterministic local adapter for review-held timeline routing.",
+      "timelineAxis": "story_order",
+      "storyOrder": "local adapter candidate",
+      "calendarTime": "At 9:17",
+      "calendarPrecision": "relative_sequence",
+      "viewerDisclosureOrder": "viewer-facing candidate",
+      "viewerDisclosureStatus": "viewer-facing now",
+      "productionOrder": "Do not storyboard as final from adapter output.",
+      "historicalReferenceTime": "not set",
+      "linkedClaimIds": [],
+      "linkedProfileIds": [],
+      "linkedWorkIds": [
+        "work-clockmaker-under-glass"
+      ],
+      "unresolvedDependencies": [],
+      "spoilerLevel": "medium",
+      "canonRisk": "medium",
+      "reviewStatus": "hold",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
+    },
+    {
+      "id": "sparse-timeline-moth-key",
+      "work_id": "work-clockmaker-under-glass",
+      "title": "The brass moth key appears before its function is known.",
+      "summary": "Generated by deterministic local adapter for review-held timeline routing.",
+      "timelineAxis": "viewer_disclosure_order",
+      "storyOrder": "local adapter candidate",
+      "calendarTime": "Before brass moth truth review",
+      "calendarPrecision": "relative_sequence",
+      "viewerDisclosureOrder": "held for human review",
+      "viewerDisclosureStatus": "hidden from viewer",
+      "productionOrder": "Do not storyboard as final from adapter output.",
+      "historicalReferenceTime": "not set",
+      "linkedClaimIds": [],
+      "linkedProfileIds": [],
+      "linkedWorkIds": [
+        "work-clockmaker-under-glass"
+      ],
+      "unresolvedDependencies": [
+        "brass moth truth",
+        "Toma fate"
+      ],
+      "spoilerLevel": "high",
+      "canonRisk": "high",
+      "reviewStatus": "hold",
+      "sourceRefs": [
+        {
+          "id": "src-local-adapter-raw-memo-004",
+          "label": "Sparse bullet notes memo",
+          "source_type": "memo",
+          "locator": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+          "trust": "author_memo"
+        }
+      ],
+      "notes": "Timeline candidate remains review-held and cannot auto-promote chronology."
+    }
+  ],
+  "unresolvedDependencies": [
+    "Toma fate",
+    "brass moth truth",
+    "Council motive"
+  ],
+  "reviewSafeDefaults": {
+    "defaultReviewStatus": "hold",
+    "allowAdopt": true,
+    "allowProvisional": true,
+    "allowReject": true,
+    "autoCanonPromotion": false,
+    "autoChronologyPromotion": false,
+    "unknownSourceHandling": "preserve_unknown_fields_and_hold_candidates"
+  },
+  "decisionLogSafeMetadata": {
+    "owner": "human_author",
+    "statusVocabulary": [
+      "adopt",
+      "provisional",
+      "hold",
+      "reject"
+    ],
+    "fixedPhraseRequired": false,
+    "freeformReviewAllowed": true,
+    "reversibleActionsOnly": true
+  },
+  "warnings": [
+    "This payload was generated by a deterministic local adapter, not a model/API extractor.",
+    "Toma fate remains human-owned and unresolved.",
+    "Brass moth truth remains human-owned and unresolved.",
+    "Council motive remains human-owned and unresolved.",
+    "Candidate routing is review-held and must not auto-promote canon, chronology, visual assets, or production decisions.",
+    "Fixture matrix coverage is a regression check, not a production extraction quality claim."
+  ],
+  "unknownFieldsPolicy": "Preserve unknown adapter fields for JSON review and keep candidates held until freeform human review.",
+  "humanAuthorityBoundaries": [
+    "Freeform user review is the source of truth.",
+    "Toma fate remains human-owned.",
+    "Brass moth truth remains human-owned.",
+    "Council motive remains human-owned.",
+    "No model/API call, database persistence, production sync, publishing, upload, or AI video generation is introduced by this local adapter."
+  ],
+  "notes": "Local deterministic extraction adapter expansion connecting multiple raw memo fixtures to validator-backed Extraction Contract payloads while preserving human-owned canon boundaries.",
+  "adapterTrace": {
+    "inputPath": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+    "fixtureKey": "sparse-bullet-notes",
+    "toolPath": "tools/fff-extract-local.mjs",
+    "deterministicRules": [
+      "fixture profile selection",
+      "literal phrase lookup",
+      "static routing map",
+      "review-held defaults",
+      "source-span audit"
+    ],
+    "noModelApi": true,
+    "preservedAdapterArtifactId": "fff-local-extraction-adapter-spike-001"
+  }
+}

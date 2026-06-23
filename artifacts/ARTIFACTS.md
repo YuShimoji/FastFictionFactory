@@ -217,7 +217,7 @@
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
 - Validation command: `node tools/fff-extract-local.mjs --matrix artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json`
-- Validation result: deterministic adapter output validated as `fff.extractionContract.v1` for three fixture memos; output matrix contains 36 extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions; fixture matrix remained passing.
+- Validation result: deterministic adapter output validated as `fff.extractionContract.v1` for four fixture memos; output matrix contains 48 extracted elements, complete required element-type coverage, 36 profile candidates, 27 claim candidates, 16 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions; fixture matrix remained passing.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - State: Preserved by `fff-source-span-routing-review-pack-001`.
@@ -257,7 +257,7 @@
 ## fff-source-span-routing-review-pack-001
 
 - Title: Fast Fiction Factory Source-Span Routing Review Pack
-- Purpose: Turn the existing three adapter fixture outputs into a compact human supervision pack for source spans, source refs, routing targets, held defaults, confidence/default status, human-owned guards, risk flags, review notes, and review debt before freeform review or model/API behavior.
+- Purpose: Turn the deterministic adapter fixture outputs into a compact human supervision pack for source spans, source refs, routing targets, held defaults, confidence/default status, human-owned guards, risk flags, review notes, and review debt before freeform review or model/API behavior.
 - Repo relative path: `public/review/index.html`
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local launcher: `scripts/operator/open_review.ps1`
@@ -280,7 +280,7 @@
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
 - Validation command: `node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json`
-- Validation result: source-span review pack generated from three fixture outputs; pack records 36 extracted elements, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, 0 human-owned decision adopt suggestions, 17 human-owned guarded elements, and Review Debt categories for weak spans, over-broad spans, vague extraction, ambiguous routing, confident defaults, and missing fixture classes.
+- Validation result: source-span review pack generated from four fixture outputs; pack records 48 extracted elements, 36 profile candidates, 27 claim candidates, 16 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, 0 human-owned decision adopt suggestions, 22 human-owned guarded elements, and remaining fixture-class gaps excluding sparse bullet-only notes.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - Next action: Review the pack in the Visual Review Hub or `artifacts/source-span-routing-review-pack.json`, then decide whether to revise deterministic spans/routing or add new edge fixtures before model/API adapter work.
@@ -450,7 +450,7 @@
 - Adapter output: `artifacts/local-extraction-adapter-output.json`
 - Adapter matrix outputs: `artifacts/extraction-adapter-outputs/`
 - Validation command: `node tools/fff-state.mjs smoke-routing-policy artifacts/ambiguous-routing-resolution-result.json artifacts/routing-policy-regression-hardening-result.json`
-- Validation result: passed 2026-06-23T03:38:23+09:00; manifest validation command passed; routing policy regression smoke parsed `fff-routing-policy-regression-hardening-001`, checked 7 resolved rows, 36 source-pack rows, 4 adapter payloads, 48 adapter elements, and 0 failures; visual direct-Claim guard, human-review hold guard, Claim secondary-evidence rule, Timeline secondary-evidence rule, source_reference preservation, unsafe/unclear hold rule, and adapter drift readback passed; MkDocs strict build and `git diff --check` passed.
+- Validation result: passed 2026-06-23T03:38:23+09:00 and refreshed during `fff-missing-fixture-class-probe-001`; routing policy regression smoke parsed `fff-routing-policy-regression-hardening-001`, checked 7 resolved rows, 48 source-pack rows, 5 adapter payloads, 60 adapter elements, and 0 failures; visual direct-Claim guard, human-review hold guard, Claim secondary-evidence rule, Timeline secondary-evidence rule, source_reference preservation, unsafe/unclear hold rule, and adapter drift readback passed.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Add one missing fixture class only if route-policy hardening later exposes drift.
@@ -498,3 +498,31 @@
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Add one missing fixture class only after a concrete coverage need is named; do not reopen weak-span, broad-span, or ambiguous-routing debt unless source output changes.
+
+## fff-missing-fixture-class-probe-001
+
+- Title: Fast Fiction Factory Missing Fixture Class Probe
+- Purpose: Add exactly one concrete missing fixture class, sparse bullet-only notes, after weak-span cleanup while preserving routing, source-span, model/API, review-memory, and human-owned canon boundaries.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/missing-fixture-class-probe.md`
+- Probe result: `artifacts/missing-fixture-class-probe-result.json`
+- Fixture memo: `artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md`
+- Fixture output: `artifacts/extraction-adapter-outputs/sparse-bullet-notes.json`
+- Updated deterministic adapter: `tools/fff-extract-local.mjs`
+- Updated state smoke: `tools/fff-state.mjs`
+- Source-span review pack generator: `tools/fff-source-span-review-pack.mjs`
+- Adapter matrix smoke: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
+- Source-span review pack: `artifacts/source-span-routing-review-pack.json`
+- Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
+- Weak-span repair result: `artifacts/weak-span-repair-result.json`
+- Broad-span split result: `artifacts/broad-span-split-result.json`
+- Manifest: `artifacts/artifact-manifest.json`
+- Current status: `docs/review/current-status.md`
+- Validation command: `node tools/fff-state.mjs smoke-missing-fixture-class-probe artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/missing-fixture-class-probe-result.json`
+- Validation result: passed 2026-06-23; sparse fixture probe read 4 fixture outputs, 48 matrix elements, 48 source-pack rows, 5 adapter payloads, 60 adapter elements, 12 sparse fixture elements, 11 sparse bullet lines, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held review defaults, 0 human-owned adopt suggestions, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- Next action: Choose another remaining fixture class only after a concrete coverage need is named; do not reopen sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.

@@ -8,11 +8,13 @@ const EXTRACTION_SCHEMA_VERSION = "fff.extractionContract.v1";
 const ROUTING_POLICY_REGRESSION_SCHEMA_VERSION = "fff.routingPolicyRegression.v1";
 const BROAD_SPAN_SPLIT_SCHEMA_VERSION = "fff.broadSpanSplit.v1";
 const WEAK_SPAN_REPAIR_SCHEMA_VERSION = "fff.weakSpanRepair.v1";
+const MISSING_FIXTURE_CLASS_PROBE_SCHEMA_VERSION = "fff.missingFixtureClassProbe.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
 const DEFAULT_BROAD_SPAN_SPLIT_OUTPUT = "artifacts/broad-span-split-result.json";
 const DEFAULT_WEAK_SPAN_REPAIR_OUTPUT = "artifacts/weak-span-repair-result.json";
+const DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT = "artifacts/missing-fixture-class-probe-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -328,6 +330,25 @@ async function main() {
     }
     if (command === "smoke-weak-span-repair" || outputPath) {
       console.log(`weak-span repair passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-missing-fixture-class-probe" || command === "smoke-missing-fixture-class-probe") {
+    const smoke = await readJson(inputPath);
+    const result = await validateMissingFixtureClassProbe(smoke, inputPath);
+    const target = outputPath || DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT;
+    if (command === "smoke-missing-fixture-class-probe" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Missing fixture class probe failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-missing-fixture-class-probe" || outputPath) {
+      console.log(`missing fixture class probe passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -1242,6 +1263,269 @@ async function checkDecisionSourceText(decision) {
   };
 }
 
+async function validateMissingFixtureClassProbe(smoke, smokePath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const selectedFixture = {
+    class_id: "sparse_bullet_only_notes",
+    label: "sparse bullet-only notes",
+    fixture_key: "sparse-bullet-notes",
+    fixture_path: "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
+    output_path: "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json"
+  };
+  const knownMissingBeforeProbe = [
+    "contradictory memo claims",
+    "very broad source spans",
+    "missing or malformed source span payloads",
+    "multilingual or translated memo text",
+    "sparse bullet-only notes",
+    "model/API provider envelope output"
+  ];
+  const remainingFixtureCandidates = knownMissingBeforeProbe.filter((candidate) => candidate !== selectedFixture.label);
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const sourcePackPath = manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json";
+  const sourcePack = await readJson(sourcePackPath);
+  const routingRegression = await readJson(manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT);
+  const weakSpanRepair = await readJson(manifest.weak_span_repair_result_path || DEFAULT_WEAK_SPAN_REPAIR_OUTPUT);
+  const broadSpanSplit = await readJson(manifest.broad_span_split_result_path || DEFAULT_BROAD_SPAN_SPLIT_OUTPUT);
+  const boundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
+  const boundaryEnvelope = await readJson(manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json");
+  const rawMemo = await readFile(selectedFixture.fixture_path, "utf8");
+  const output = await readJson(selectedFixture.output_path);
+  const adapterPayloads = await readAdapterPayloads();
+  const adapterElements = adapterPayloads.flatMap((payload) => Array.isArray(payload.extractedElements) ? payload.extractedElements : []);
+  const packElements = flattenSourcePackElements(sourcePack);
+  const sparsePackFixture = Array.isArray(sourcePack.fixtures)
+    ? sourcePack.fixtures.find((fixture) => fixture.fixture_id === selectedFixture.fixture_key)
+    : null;
+  const sparseSmokeResult = Array.isArray(smoke.fixtureResults)
+    ? smoke.fixtureResults.find((result) => result.fixture === selectedFixture.fixture_key)
+    : null;
+  const sourceRefIds = new Set((output.sourceRefs || []).map((sourceRef) => sourceRef.id));
+  const sparseElements = Array.isArray(output.extractedElements) ? output.extractedElements : [];
+  const sparseElementTypes = [...new Set(sparseElements.map((element) => element.elementType))].sort();
+  const requiredElementTypeCoverage = Object.fromEntries(
+    REQUIRED_EXTRACTION_ELEMENT_TYPES.map((elementType) => [elementType, sparseElementTypes.includes(elementType)])
+  );
+  const sourceSpanMismatches = sparseElements.filter((element) => {
+    const sourceSpan = element.sourceSpan || {};
+    return typeof sourceSpan.start !== "number" ||
+      typeof sourceSpan.end !== "number" ||
+      rawMemo.slice(sourceSpan.start, sourceSpan.end) !== sourceSpan.text;
+  }).map((element) => element.id);
+  const missingSourceRefs = sparseElements.filter((element) =>
+    !Array.isArray(element.sourceRefIds) ||
+    element.sourceRefIds.length === 0 ||
+    element.sourceRefIds.some((sourceRefId) => !sourceRefIds.has(sourceRefId))
+  ).map((element) => element.id);
+  const unsafeVisualRoutes = sparseElements.filter((element) =>
+    element.elementType === "visual_asset" &&
+    Array.isArray(element.targetDestinations) &&
+    element.targetDestinations.includes("claim") &&
+    !element.targetDestinations.includes("profile")
+  ).map((element) => element.id);
+  const nonHeldDefaults = sparseElements.filter((element) =>
+    element.reviewStatus !== "hold" || element.suggestedReviewStatus !== "hold"
+  ).map((element) => element.id);
+  const humanOwnedAdoptSuggestions = sparseElements.filter((element) =>
+    touchesHumanOwnedDecision(element) && element.suggestedReviewStatus === "adopt"
+  ).map((element) => element.id);
+  const bulletLines = rawMemo.split(/\r?\n/).filter((line) => line.trim().startsWith("- "));
+  const nonBulletBodyLines = rawMemo.split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter((line) => line && !line.startsWith("# ") && !line.startsWith("- "));
+  const sourcePackLegacyGaps = Array.isArray(sourcePack.cross_fixture_summary?.fixture_class_gaps)
+    ? sourcePack.cross_fixture_summary.fixture_class_gaps
+    : [];
+  const weakMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-weak-span-repair-001");
+  const humanBoundaryText = (output.humanAuthorityBoundaries || []).join(" ").toLowerCase();
+
+  check(
+    "prior_cleanup_sequence_confirmed",
+    weakSpanRepair?.artifact_id === "fff-weak-span-repair-001" &&
+      weakSpanRepair?.passed === true &&
+      weakSpanRepair?.summary?.weak_span_rows_loaded === 6 &&
+      weakSpanRepair?.summary?.repair_with_more_precise_source_ref === 6 &&
+      broadSpanSplit?.artifact_id === "fff-broad-span-split-001" &&
+      broadSpanSplit?.passed === true &&
+      routingRegression?.artifact_id === "fff-routing-policy-regression-hardening-001" &&
+      routingRegression?.passed === true,
+    "weak-span repair, broad-span split, and routing regression must already be preserved"
+  );
+  check(
+    "concrete_fixture_gap_named",
+    knownMissingBeforeProbe.includes(selectedFixture.label) &&
+      (sourcePackLegacyGaps.includes(selectedFixture.label) || manifest.next_action?.toLowerCase().includes("fixture class")),
+    "selected sparse bullet-only notes class must be named by existing fixture coverage debt"
+  );
+  check(
+    "exactly_one_fixture_class_added",
+    selectedFixture.class_id === "sparse_bullet_only_notes" &&
+      Array.isArray(smoke.fixtureFiles) &&
+      smoke.fixtureFiles.filter((file) => file === `${selectedFixture.fixture_key}.md`).length === 1,
+    "this probe is bounded to sparse-bullet-notes.md"
+  );
+  check(
+    "sparse_bullet_shape_confirmed",
+    rawMemo.includes("Adapter Fixture: Sparse Bullet Notes") &&
+      bulletLines.length >= 8 &&
+      nonBulletBodyLines.length === 0,
+    `bullet lines=${bulletLines.length}; non-bullet body lines=${nonBulletBodyLines.length}`
+  );
+  check(
+    "adapter_matrix_extended",
+    smoke?.passed === true &&
+      smoke.aggregate?.fixtureCount === 4 &&
+      smoke.aggregate?.outputCount === 4 &&
+      smoke.aggregate?.elementCount === 48 &&
+      Boolean(sparseSmokeResult?.passed),
+    `matrix fixtures=${smoke.aggregate?.fixtureCount}; elements=${smoke.aggregate?.elementCount}`
+  );
+  check(
+    "sparse_output_readback",
+    output?.adapterTrace?.fixtureKey === selectedFixture.fixture_key &&
+      output?.schemaVersion === EXTRACTION_SCHEMA_VERSION &&
+      sparseElements.length === 12 &&
+      sparsePackFixture?.counts?.extracted_elements === 12 &&
+      Object.values(requiredElementTypeCoverage).every(Boolean),
+    `fixture=${output?.adapterTrace?.fixtureKey}; elements=${sparseElements.length}; types=${sparseElementTypes.join(", ")}`
+  );
+  check(
+    "source_span_integrity",
+    sourceSpanMismatches.length === 0 &&
+      missingSourceRefs.length === 0 &&
+      sparseSmokeResult?.sourceRoutingAudit?.sourceSpanMismatchCount === 0,
+    `source mismatches=${sourceSpanMismatches.join(", ") || "none"}; missing refs=${missingSourceRefs.join(", ") || "none"}`
+  );
+  check(
+    "review_held_defaults",
+    nonHeldDefaults.length === 0 &&
+      output.reviewSafeDefaults?.defaultReviewStatus === "hold" &&
+      output.reviewSafeDefaults?.autoCanonPromotion === false &&
+      output.reviewSafeDefaults?.autoChronologyPromotion === false,
+    `non-held elements=${nonHeldDefaults.join(", ") || "none"}`
+  );
+  check(
+    "routing_and_visual_guards",
+    unsafeVisualRoutes.length === 0 &&
+      sparseElements.filter((element) => element.elementType === "source_reference").every((element) => arrayEqualsIgnoreCase(element.targetDestinations, ["source_reference"])),
+    `unsafe visual routes=${unsafeVisualRoutes.join(", ") || "none"}`
+  );
+  check(
+    "human_owned_boundaries_preserved",
+    humanOwnedAdoptSuggestions.length === 0 &&
+      sparseElements.some((element) => element.id === "sparse-x-unresolved-council-motive" && element.sourceRefIds.includes("src-local-adapter-freeform-review-001")) &&
+      ["Toma fate", "brass moth truth", "Council motive"].every((dependency) => humanBoundaryText.includes(dependency.toLowerCase())),
+    `human-owned adopt suggestions=${humanOwnedAdoptSuggestions.join(", ") || "none"}`
+  );
+  check(
+    "source_pack_and_routing_readback_extended",
+    sourcePack?.passed === true &&
+      sourcePack.cross_fixture_summary?.fixture_count === 4 &&
+      sourcePack.cross_fixture_summary?.total_elements === 48 &&
+      packElements.length === 48 &&
+      routingRegression.summary?.source_pack_rows_checked === 48 &&
+      routingRegression.summary?.adapter_payloads_checked === adapterPayloads.length &&
+      routingRegression.summary?.adapter_elements_checked === adapterElements.length &&
+      adapterPayloads.length === 5 &&
+      adapterElements.length === 60,
+    `pack rows=${packElements.length}; adapter payloads=${adapterPayloads.length}; adapter elements=${adapterElements.length}`
+  );
+  check(
+    "no_model_api_behavior_added",
+    manifest.preserved_model_api_boundary_artifact_id === "fff-model-api-boundary-spec-001" &&
+      boundarySmoke?.passed === true &&
+      boundarySmoke?.checks?.noExternalCall === true &&
+      boundaryEnvelope?.providerBoundary?.externalCallAllowed === false,
+    "model/API boundary remains preserved by structured no-call evidence"
+  );
+  check(
+    "human_burden_hygiene",
+    weakMemory?.prior_review_count === 0 &&
+      manifest.review_input_mode === "freeform" &&
+      !String(manifest.review_prompt_hint || "").toLowerCase().includes("fixed form"),
+    "freeform review remains available, and no operator observation card or repeated general review request is emitted"
+  );
+
+  return {
+    schemaVersion: MISSING_FIXTURE_CLASS_PROBE_SCHEMA_VERSION,
+    artifact_id: "fff-missing-fixture-class-probe-001",
+    title: "Fast Fiction Factory Missing Fixture Class Probe",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    selected_fixture_class: selectedFixture.class_id,
+    selected_fixture_label: selectedFixture.label,
+    selected_fixture_path: selectedFixture.fixture_path,
+    selected_output_path: selectedFixture.output_path,
+    source_pack_path: sourcePackPath,
+    adapter_matrix_smoke_path: toRepoPath(smokePath),
+    routing_policy_regression_path: manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT,
+    weak_span_repair_path: manifest.weak_span_repair_result_path || DEFAULT_WEAK_SPAN_REPAIR_OUTPUT,
+    review_memory_checked: {
+      checked: true,
+      target: "fff-weak-span-repair-001",
+      prior_review_count: weakMemory?.prior_review_count ?? 0,
+      prior_signal_summary: weakMemory?.latest_user_signal_summary || "No user review was requested for the weak-span repair slice.",
+      axis: "missing_fixture_class_probe",
+      what_changed: "A single sparse bullet-only memo fixture and deterministic readback output were added to the local adapter matrix.",
+      what_this_review_decides: "No user review is needed; this readback decides whether sparse bullet-only notes are covered without reopening weak-span, broad-span, or ambiguous-routing debt.",
+      not_asking: [
+        "general Review Hub review",
+        "fixed-form review",
+        "repeat weak-span review",
+        "repeat broad-span review",
+        "repeat ambiguous-routing review",
+        "model/API approval",
+        "provider credentials",
+        "database or publishing contract changes",
+        "production sync",
+        "AI video generation",
+        "final canon decisions for Toma fate, brass moth truth, or Council motive"
+      ],
+      next_nonredundant_axis: "choose another missing fixture class only after a new concrete coverage need is named"
+    },
+    coverage_decision: {
+      known_missing_classes_before_probe: knownMissingBeforeProbe,
+      selected_class_reason: "Existing artifacts named sparse bullet-only notes as missing, and the three prior memos were paragraph-style fixtures; this class can be covered locally without model/API calls, provider envelopes, multilingual policy, or canon-choice decisions.",
+      covered_by_this_probe: [selectedFixture.label],
+      remaining_fixture_class_candidates: remainingFixtureCandidates,
+      source_pack_legacy_gap_list_still_present: sourcePackLegacyGaps
+    },
+    summary: {
+      previous_fixture_count: 3,
+      current_fixture_count: smoke.aggregate?.fixtureCount,
+      current_output_count: smoke.aggregate?.outputCount,
+      current_matrix_element_count: smoke.aggregate?.elementCount,
+      source_pack_rows_checked: packElements.length,
+      adapter_payloads_checked: adapterPayloads.length,
+      adapter_elements_checked: adapterElements.length,
+      selected_fixture_elements_checked: sparseElements.length,
+      selected_fixture_bullet_lines: bulletLines.length,
+      source_span_mismatches: sourceSpanMismatches.length,
+      missing_source_refs: missingSourceRefs.length,
+      unsafe_visual_routes: unsafeVisualRoutes.length,
+      non_held_review_defaults: nonHeldDefaults.length,
+      human_owned_decision_adopt_suggestions: humanOwnedAdoptSuggestions.length,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    fixture_probe_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function readAdapterPayloads() {
   const payloads = [];
   for (const filePath of ["artifacts/local-extraction-adapter-output.json"]) {
@@ -1939,6 +2223,8 @@ Usage:
   node tools/fff-state.mjs smoke-broad-span-split <source-span-quality-audit.json> [output.json]
   node tools/fff-state.mjs validate-weak-span-repair <source-span-quality-audit.json>
   node tools/fff-state.mjs smoke-weak-span-repair <source-span-quality-audit.json> [output.json]
+  node tools/fff-state.mjs validate-missing-fixture-class-probe <adapter-matrix-smoke.json>
+  node tools/fff-state.mjs smoke-missing-fixture-class-probe <adapter-matrix-smoke.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -1954,6 +2240,9 @@ Default broad-span split output:
 
 Default weak-span repair output:
   ${DEFAULT_WEAK_SPAN_REPAIR_OUTPUT}
+
+Default missing fixture class probe output:
+  ${DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT}
 `);
 }
 
