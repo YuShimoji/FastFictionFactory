@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-23T04:41:55+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`. The local branch was synced to `origin/master` before this slice began.
+Latest handoff refresh: 2026-06-23T10:00:19+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`, and local/remote `master` were clean and synced at `e3a1dd0 Resolve broad source spans`.
 
 ## Start Here
 
@@ -119,6 +119,7 @@ Additional checks already passed during the latest slice:
 - `git diff --check`
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` before the handoff refresh began.
 - `node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json`
+- Final post-push readback on 2026-06-23T10:00:19+09:00: `git status --short --branch` reported `## master...origin/master`; `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0`; HEAD and `origin/master` both pointed at `e3a1dd0 Resolve broad source spans`.
 
 ## Preserved Boundaries
 
