@@ -2,61 +2,42 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-broad-span-split-001`, served through the static local Visual Review Hub at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-contradictory-claim-guard-001`, served through the static local Visual Review Hub at `public/review/index.html`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is review-memory-aware source-span governance: story review, source audit, project cockpit, artifact governance, screenshot evidence, local access paths, non-redundant review requests, and routing policy must remain easy to distinguish before freeform review drives adapter changes or any model/API extractor exists.
+Keep the MVP reviewable without production commitments. The current lane is review-memory-aware source-span and claim governance: source evidence, routing, contradictory claim holds, review-held defaults, artifact governance, local access paths, and non-redundant review requests must remain distinct before any model/API extractor or downstream adoption path exists.
 
 ## Current Slice
 
-The active slice is complete enough for local review:
+The active slice is complete enough for local readback:
 
 - Review UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
-- Broad source-span split doc: `docs/review/broad-span-split.md`
-- Broad source-span split result: `artifacts/broad-span-split-result.json`
-- Routing policy regression doc: `docs/review/routing-policy-regression-hardening.md`
-- Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
-- Ambiguous routing resolution doc: `docs/review/ambiguous-routing-resolution.md`
-- Ambiguous routing resolution result: `artifacts/ambiguous-routing-resolution-result.json`
-- Source-span quality audit doc: `docs/review/source-span-quality-audit.md`
-- Source-span quality audit result: `artifacts/source-span-quality-audit-result.json`
-- Review memory / dedup doc: `docs/review/review-memory-dedup.md`
-- Review memory / dedup smoke: `artifacts/review-memory-dedup-smoke-result.json`
-- Review procedure: `docs/review/review-procedure.md`
-- Review procedure smoke: `artifacts/review-procedure-lock-smoke-result.json`
-- Review Hub IA smoke: `artifacts/review-hub-ia-mode-split-smoke-result.json`
-- Review Hub IA review doc: `docs/review/review-hub-ia-mode-split.md`
+- Contradictory claim guard doc: `docs/review/contradictory-claim-guard.md`
+- Contradictory claim guard result: `artifacts/contradictory-claim-guard-result.json`
+- Contradictory claim guard fixture: `artifacts/extraction-negative-fixtures/contradictory-claim-hold.json`
+- Downstream source-span adoption gate doc/result: `docs/review/downstream-source-span-adoption-gate.md`, `artifacts/downstream-source-span-adoption-gate-result.json`
+- Malformed/missing source-span guard doc: `docs/review/malformed-missing-span-guard.md`
+- Malformed/missing source-span guard result: `artifacts/malformed-missing-span-guard-result.json`
+- Malformed/missing source-span fixture: `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
+- Missing fixture probe doc/result: `docs/review/missing-fixture-class-probe.md`, `artifacts/missing-fixture-class-probe-result.json`
+- Weak-span repair doc/result: `docs/review/weak-span-repair.md`, `artifacts/weak-span-repair-result.json`
+- Broad source-span split doc/result: `docs/review/broad-span-split.md`, `artifacts/broad-span-split-result.json`
+- Routing policy regression doc/result: `docs/review/routing-policy-regression-hardening.md`, `artifacts/routing-policy-regression-hardening-result.json`
+- Ambiguous routing resolution doc/result: `docs/review/ambiguous-routing-resolution.md`, `artifacts/ambiguous-routing-resolution-result.json`
+- Source-span quality audit doc/result: `docs/review/source-span-quality-audit.md`, `artifacts/source-span-quality-audit-result.json`
 - Source-span review pack: `artifacts/source-span-routing-review-pack.json`
 - Source-span pack generator: `tools/fff-source-span-review-pack.mjs`
-- Source-span pack review doc: `docs/review/source-span-routing-review-pack.md`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
-- Model/API boundary envelope: `artifacts/model-api-boundary-envelope.example.json`
-- Model/API boundary smoke evidence: `artifacts/model-api-boundary-smoke-result.json`
+- Model/API boundary envelope/smoke: `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json`
 - State adapter: `tools/fff-state.mjs`
-- Current state: `artifacts/current-project-state.json`
-- Sample state: `artifacts/sample-project-state.json`
-- Claim Ledger smoke evidence: `artifacts/claim-ledger-smoke-result.json`
-- Timeline smoke evidence: `artifacts/timeline-smoke-result.json`
-- v1.3 compliance smoke evidence: `artifacts/v1-3-compliance-smoke-result.json`
-- Checkpoint readback evidence: `artifacts/checkpoint-readback-result.json`
-- Profile/Ghost smoke evidence: `artifacts/profile-ghost-smoke-result.json`
-- Extraction payload: `artifacts/sample-extraction-payload.json`
-- Extraction Contract smoke evidence: `artifacts/extraction-contract-smoke-result.json`
-- Extraction validator fixture directory: `artifacts/extraction-negative-fixtures/`
-- Extraction validator smoke evidence: `artifacts/extraction-validator-smoke-result.json`
-- Extraction validator review doc: `docs/review/extraction-validator-hardening-review.md`
-- Freeform review intake smoke evidence: `artifacts/freeform-review-intake-smoke-result.json`
 - Local extraction adapter: `tools/fff-extract-local.mjs`
-- Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
-- Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
-- Adapter expansion smoke evidence: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
-- Screenshot: `artifacts/fff-current-review-screenshot.png`
-- Contact sheet: `artifacts/fff-review-contact-sheet.png`
-- Mode screenshots: `artifacts/review-screens/`
-- Shell launcher: `scripts/operator/open_review.sh`
+- Adapter fixture memos/outputs: `artifacts/extraction-adapter-fixtures/`, `artifacts/extraction-adapter-outputs/`
+- Adapter expansion smoke: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
+- Validator fixtures/smoke: `artifacts/extraction-negative-fixtures/`, `artifacts/extraction-validator-smoke-result.json`
+- Current/sample state: `artifacts/current-project-state.json`, `artifacts/sample-project-state.json`
 - Local docs view: `mkdocs.yml`
 - Project overview map: `docs/project-overview.md`
 - Next-terminal handoff: `docs/review/next-terminal-handoff.md`
@@ -68,45 +49,33 @@ Last verified on 2026-06-23:
 ```powershell
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
+node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
+node .\tools\fff-state.mjs smoke-contradictory-claim-guard .\artifacts\extraction-validator-smoke-result.json .\artifacts\contradictory-claim-guard-result.json
+node .\tools\fff-state.mjs smoke-downstream-source-span-adoption-gate .\artifacts\source-span-routing-review-pack.json .\artifacts\downstream-source-span-adoption-gate-result.json
 node .\tools\fff-state.mjs validate .\artifacts\sample-project-state.json
 node .\tools\fff-state.mjs validate .\artifacts\current-project-state.json
 node .\tools\fff-state.mjs validate-extraction .\artifacts\sample-extraction-payload.json
 node .\tools\fff-state.mjs validate-extraction-fixtures .\artifacts\extraction-negative-fixtures
-node .\tools\fff-extract-local.mjs .\artifacts\sample-raw-memo.md .\artifacts\local-extraction-adapter-output.json .\artifacts\local-extraction-adapter-smoke-result.json
 node .\tools\fff-extract-local.mjs --matrix .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json
 node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
-node .\tools\fff-state.mjs smoke-broad-span-split .\artifacts\source-span-quality-audit-result.json .\artifacts\broad-span-split-result.json
 node .\tools\fff-state.mjs smoke-routing-policy .\artifacts\ambiguous-routing-resolution-result.json .\artifacts\routing-policy-regression-hardening-result.json
+node .\tools\fff-state.mjs smoke-malformed-missing-span-guard .\artifacts\extraction-validator-smoke-result.json .\artifacts\malformed-missing-span-guard-result.json
 ```
 
 Result summary:
 
-- Active manifest validation passes for `fff-broad-span-split-001`.
-- Broad source-span split parses and passes with 2 broad rows loaded, 1 row split into narrower spans, 1 row kept with explicit reason, 2 source refs preserved, and 0 failures.
-- Routing policy regression hardening parses and passes with 7 resolved rows, 36 source-pack rows, 4 adapter payloads, 48 adapter elements, and 0 failures.
-- Ambiguous routing resolution parses and passes with 7 resolved rows: 3 Profile-primary routes, 1 Visual-primary route, and 3 Human Review holds.
-- Review Dedup Gate is recorded with axis `broad_span_split`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub request.
-- All visual asset rows avoid direct Claim routing and keep `targetClaimIds: []`.
-- Source-span quality audit classifies 36 existing review-pack rows: 28 useful spans, 6 weak spans, 2 overly broad spans, 0 missing source refs, 7 ambiguous routing rows, 3 guarded visual/source-sensitive rows, and 17 human-owned boundary rows.
-- Both state JSON files validate with `schemaVersion: "fff.projectState.v1"`.
-- The sample extraction payload validates as `schemaVersion: "fff.extractionContract.v1"`.
-- The validator fixture matrix passes: 2 expected-valid fixtures, 5 expected-invalid fixtures, and built-in mutation guards.
-- Current state contains 1 Extraction Contract run, 12 extraction elements, 11 Profile/Ghost records, 9 Claim Ledger claims, and 8 Timeline View entries.
-- Local adapter expansion generated 3 fixture outputs with 36 total extracted elements, complete required element-type coverage, 27 profile candidates, 20 claim candidates, 12 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
-- Source-span review pack generated from those three outputs and records 17 human-owned guarded elements plus Review Debt categories for weak spans, over-broad spans, vague extraction, previously ambiguous routing, confident defaults, and missing fixture classes.
-- Review Hub IA mode split adds Story Review, Source Audit, Project Cockpit, and Artifacts modes with Japanese-facing display labels, non-sticky Raw Story Memo behavior, and collapsed source-span fixture details by default.
-- Review Procedure Lock adds fixed local open commands, identity/access split, screenshot/contact-sheet map, mode-specific screenshot evidence paths, optional-vs-required review boundaries, freeform review guidance, and Review Debt without asking for immediate user review.
-- Review Memory Dedup adds manifest-level review memory, Acceptance Ladder, Review Dedup Gate, and Non-Redundant Review Card rules so future review requests do not repeat the same target, evidence, and axis.
+- Active manifest validation passes for `fff-contradictory-claim-guard-001`.
+- Contradictory claim guard parses 9 validator fixtures, keeps 2 conflicting claims in held review, preserves 1 reciprocal conflict pair and source refs, reports 0 adopted/provisional conflicting claims, and reports 0 direct accepted claim-routed elements.
+- Downstream adoption gate parses 48 source-pack rows and reports 44 downstream Profile / Claim / Timeline review candidates, all 44 source-tracked, with 0 malformed/missing span candidates, 0 unsafe routing candidates, 22 human-owned candidates held, 0 non-held human-owned candidates, and 0 adopted Profile / Claim / Timeline candidates.
+- Malformed/missing source-span guard remains closed with 3 invalid elements rejected, 0 accepted routed candidates, and 9 validator fixtures in the smoke matrix.
+- Routing policy regression remains passing across 5 adapter payloads and 60 adapter elements.
+- Source-span review pack remains passing with 4 fixture outputs, 48 elements, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
 - Model/API boundary spec remains preserved as a spec-only, no-external-call boundary for future provider work.
-- Extraction Contract summary covers all required element types, 6 high-canon-risk extraction elements, 3 human-owned unresolved dependencies, 5 warnings, and candidate routing into Profile/Ghost, Claim Ledger, and Timeline View.
-- Profile/Ghost summary covers all required profile types, all required ghost node statuses, 7 high canon risk profiles, 7 dependency-bound profiles, and 11 profiles linked to both claims and timeline entries.
-- Claim summary: 5 high canon risk claims, 5 claims with unresolved dependencies, 1 unverified reality status claim, and 4 hidden or spoiler-protected claims.
-- Timeline summary reports all five timeline axes, 4 high canon risk entries, 4 dependency-bound entries, and 8 entries linked to claims.
-- The active manifest validation command, MkDocs strict build, and git diff whitespace checks passed for the latest slice.
+- Toma fate, brass moth truth, Council motive, and moth-key function remain unresolved and human-owned.
 
 ## Boundaries
 
-Do not treat local review state as final canon. Do not add model/API behavior, provider credentials, publishing, upload credentials, AI video generation, production sync, database persistence, or final decisions for Toma, the brass moth, or the Council unless explicitly requested.
+Do not treat local review state as final canon. Do not add model/API behavior, provider credentials, publishing, upload credentials, AI video generation, production sync, database persistence, downstream adoption behavior, contradictory claim truth decisions, or final decisions for Toma, the brass moth, or the Council unless explicitly requested.
 
 ## Restart Path
 
@@ -129,24 +98,13 @@ Or use the dependency-free launchers:
 Open the local Markdown docs view from the repo root:
 
 ```powershell
-python -m pip install mkdocs-material
 python -m mkdocs serve -a 127.0.0.1:8000
 ```
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-Run the state, adapter, and pack checks:
-
-```powershell
-node .\tools\fff-state.mjs summarize .\artifacts\current-project-state.json
-node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
-node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
-```
-
-First next move: apply the Review Dedup Gate before asking for review. The next non-redundant move is one bounded weak-span repair or one missing fixture class after explicit need; do not reopen broad-span debt unless source output changes.
+First next move: keep the contradictory claim guard and downstream source-span adoption gate as active safety boundaries. Move next only to provider-envelope readiness behind the no-call model/API boundary, or to one concrete remaining fixture class if a coverage need is named.
 
 ## Handoff Path
 
-For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
-
-Latest handoff refresh: 2026-06-23T10:00:19+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`, and local/remote `master` were verified clean and synced after the handoff refresh was published; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, repeated review requirement, or final canon decision existed.
+For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.

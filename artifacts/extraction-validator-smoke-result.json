@@ -1,16 +1,16 @@
 {
   "artifact_id": "fff-extraction-validator-hardening-001",
   "fixtureDirectory": "artifacts/extraction-negative-fixtures",
-  "generatedAt": "2026-06-23T05:14:04.455Z",
+  "generatedAt": "2026-06-23T07:06:04.708Z",
   "passed": true,
   "failures": [],
   "summary": {
-    "total": 8,
-    "matched": 8,
+    "total": 9,
+    "matched": 9,
     "mismatched": 0,
-    "fixtureCount": 8,
-    "expectedFixtureCount": 8,
-    "expectedValid": 2,
+    "fixtureCount": 9,
+    "expectedFixtureCount": 9,
+    "expectedValid": 3,
     "expectedInvalid": 6,
     "builtInGuardCount": 5,
     "unknownFieldsPreservationCovered": true,
@@ -56,6 +56,30 @@
         "unresolvedDependencyCount": 3,
         "highCanonRiskCount": 0,
         "warningsCount": 1
+      }
+    },
+    {
+      "fixture": "contradictory-claim-hold.json",
+      "expected": "valid",
+      "actual": "valid",
+      "passed": true,
+      "expectedErrorMatches": [],
+      "expectedWarningMatches": [],
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "extractionRunCount": 1,
+        "extractedElementCount": 2,
+        "byElementType": {
+          "concept": 1,
+          "placeholder": 1
+        },
+        "profileCandidateCount": 0,
+        "claimCandidateCount": 2,
+        "timelineCandidateCount": 0,
+        "unresolvedDependencyCount": 3,
+        "highCanonRiskCount": 2,
+        "warningsCount": 3
       }
     },
     {

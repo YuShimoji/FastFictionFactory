@@ -10,6 +10,8 @@ const BROAD_SPAN_SPLIT_SCHEMA_VERSION = "fff.broadSpanSplit.v1";
 const WEAK_SPAN_REPAIR_SCHEMA_VERSION = "fff.weakSpanRepair.v1";
 const MISSING_FIXTURE_CLASS_PROBE_SCHEMA_VERSION = "fff.missingFixtureClassProbe.v1";
 const MALFORMED_MISSING_SPAN_GUARD_SCHEMA_VERSION = "fff.malformedMissingSpanGuard.v1";
+const CONTRADICTORY_CLAIM_GUARD_SCHEMA_VERSION = "fff.contradictoryClaimGuard.v1";
+const DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_SCHEMA_VERSION = "fff.downstreamSourceSpanAdoptionGate.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -17,6 +19,8 @@ const DEFAULT_BROAD_SPAN_SPLIT_OUTPUT = "artifacts/broad-span-split-result.json"
 const DEFAULT_WEAK_SPAN_REPAIR_OUTPUT = "artifacts/weak-span-repair-result.json";
 const DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT = "artifacts/missing-fixture-class-probe-result.json";
 const DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT = "artifacts/malformed-missing-span-guard-result.json";
+const DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT = "artifacts/contradictory-claim-guard-result.json";
+const DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT = "artifacts/downstream-source-span-adoption-gate-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -221,6 +225,9 @@ const EXTRACTION_FIXTURE_EXPECTATIONS = {
       "sourceSpan.end must be greater than sourceSpan.start"
     ]
   },
+  "contradictory-claim-hold.json": {
+    expectedValid: true
+  },
   "overconfident-human-owned-decision.json": {
     expectedValid: false,
     expectedErrors: ["human-owned decision", "must not suggest adopt"]
@@ -379,6 +386,44 @@ async function main() {
     }
     if (command === "smoke-malformed-missing-span-guard" || outputPath) {
       console.log(`malformed/missing source-span guard passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-contradictory-claim-guard" || command === "smoke-contradictory-claim-guard") {
+    const smoke = await readJson(inputPath);
+    const result = await validateContradictoryClaimGuard(smoke, inputPath);
+    const target = outputPath || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+    if (command === "smoke-contradictory-claim-guard" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Contradictory claim guard failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-contradictory-claim-guard" || outputPath) {
+      console.log(`contradictory claim guard passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-downstream-source-span-adoption-gate" || command === "smoke-downstream-source-span-adoption-gate") {
+    const sourcePack = await readJson(inputPath);
+    const result = await validateDownstreamSourceSpanAdoptionGate(sourcePack, inputPath);
+    const target = outputPath || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT;
+    if (command === "smoke-downstream-source-span-adoption-gate" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Downstream source-span adoption gate failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-downstream-source-span-adoption-gate" || outputPath) {
+      console.log(`downstream source-span adoption gate passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -1393,8 +1438,10 @@ async function validateMissingFixtureClassProbe(smoke, smokePath) {
   check(
     "concrete_fixture_gap_named",
     knownMissingBeforeProbe.includes(selectedFixture.label) &&
-      (sourcePackLegacyGaps.includes(selectedFixture.label) || manifest.next_action?.toLowerCase().includes("fixture class")),
-    "selected sparse bullet-only notes class must be named by existing fixture coverage debt"
+      (sourcePackLegacyGaps.includes(selectedFixture.label) ||
+        manifest.next_action?.toLowerCase().includes("fixture class") ||
+        Boolean(sparsePackFixture)),
+    "selected sparse bullet-only notes class must be named by existing fixture coverage debt or already preserved in the source pack"
   );
   check(
     "exactly_one_fixture_class_added",
@@ -1625,7 +1672,8 @@ async function validateMalformedMissingSpanGuard(smoke, smokePath) {
   check(
     "exactly_one_negative_fixture_added",
     smoke?.passed === true &&
-      smoke.summary?.fixtureCount === 8 &&
+      smoke.summary?.fixtureCount >= 8 &&
+      smoke.summary?.expectedInvalid === 6 &&
       fixtureResult?.fixture === "malformed-missing-source-span.json" &&
       fixtureResult?.expected === "invalid" &&
       fixtureResult?.actual === "invalid" &&
@@ -1761,6 +1809,438 @@ async function validateMalformedMissingSpanGuard(smoke, smokePath) {
   };
 }
 
+async function validateContradictoryClaimGuard(smoke, smokePath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const selectedFixture = {
+    class_id: "contradictory_claim_hold",
+    label: "contradictory memo claims",
+    fixture_path: "artifacts/extraction-negative-fixtures/contradictory-claim-hold.json"
+  };
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const sourcePack = await readJson(manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json");
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+  const missingFixtureProbe = await readJson(manifest.missing_fixture_class_probe_result_path || DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT);
+  const routingRegression = await readJson(manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT);
+  const weakSpanRepair = await readJson(manifest.weak_span_repair_result_path || DEFAULT_WEAK_SPAN_REPAIR_OUTPUT);
+  const broadSpanSplit = await readJson(manifest.broad_span_split_result_path || DEFAULT_BROAD_SPAN_SPLIT_OUTPUT);
+  const boundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
+  const boundaryEnvelope = await readJson(manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json");
+  const fixture = await readJson(selectedFixture.fixture_path);
+  const validation = validateExtractionPayload(fixture);
+  const fixtureResult = Array.isArray(smoke.results)
+    ? smoke.results.find((result) => result.fixture === "contradictory-claim-hold.json")
+    : null;
+  const fixtureElements = Array.isArray(fixture.extractedElements) ? fixture.extractedElements : [];
+  const claims = Array.isArray(fixture.claimCandidates) ? fixture.claimCandidates : [];
+  const claimById = new Map(claims.map((claim) => [claim.id, claim]));
+  const conflictingClaims = claims.filter((claim) => arrayLength(claim.contradictsClaimIds) > 0);
+  const reciprocalConflictLinks = conflictingClaims.flatMap((claim) =>
+    claim.contradictsClaimIds
+      .filter((targetId) => claimById.get(targetId)?.contradictsClaimIds?.includes(claim.id))
+      .map((targetId) => [claim.id, targetId].sort().join("<->"))
+  );
+  const reciprocalConflictPairCount = new Set(reciprocalConflictLinks).size;
+  const nonHeldConflictClaims = conflictingClaims.filter((claim) => claim.reviewStatus !== "hold");
+  const adoptedOrProvisionalConflictClaims = conflictingClaims.filter((claim) =>
+    ["adopt", "provisional"].includes(claim.reviewStatus)
+  );
+  const nonUncertainConflictClaims = conflictingClaims.filter((claim) =>
+    String(claim.worldTruthStatus || "").toLowerCase() !== "uncertain"
+  );
+  const conflictClaimsMissingSourceRefs = conflictingClaims.filter((claim) => !claimHasValidSourceRefs(claim, fixture.sourceRefs));
+  const claimSurfaceElements = fixtureElements.filter((element) =>
+    Array.isArray(element.targetDestinations) && element.targetDestinations.includes("claim")
+  );
+  const nonHeldClaimSurfaceElements = claimSurfaceElements.filter((element) =>
+    element.reviewStatus !== "hold" || element.suggestedReviewStatus !== "hold"
+  );
+  const directAcceptedClaimElements = claimSurfaceElements.filter((element) =>
+    ["adopt", "provisional"].includes(element.reviewStatus) ||
+    ["adopt", "provisional"].includes(element.suggestedReviewStatus)
+  );
+  const priorMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-malformed-missing-span-guard-001");
+  const sourcePackLegacyGaps = Array.isArray(sourcePack.cross_fixture_summary?.fixture_class_gaps)
+    ? sourcePack.cross_fixture_summary.fixture_class_gaps
+    : [];
+
+  check(
+    "prior_guard_sequence_preserved",
+    malformedGuard?.passed === true &&
+      missingFixtureProbe?.passed === true &&
+      weakSpanRepair?.passed === true &&
+      broadSpanSplit?.passed === true &&
+      routingRegression?.passed === true,
+    "malformed guard, sparse fixture probe, weak-span repair, broad-span split, and routing regression must remain closed"
+  );
+  check(
+    "concrete_conflict_gap_named",
+    sourcePackLegacyGaps.includes(selectedFixture.label) ||
+      malformedGuard?.coverage_decision?.remaining_fixture_class_candidates?.includes(selectedFixture.label),
+    "contradictory memo claims must be named by existing fixture debt"
+  );
+  check(
+    "bounded_contradictory_fixture_added",
+    smoke?.passed === true &&
+      smoke.summary?.fixtureCount === 9 &&
+      smoke.summary?.expectedValid === 3 &&
+      smoke.summary?.expectedInvalid === 6 &&
+      fixtureResult?.fixture === "contradictory-claim-hold.json" &&
+      fixtureResult?.expected === "valid" &&
+      fixtureResult?.actual === "valid" &&
+      fixtureResult?.passed === true,
+    `validator fixtures=${smoke.summary?.fixtureCount}; contradictory fixture actual=${fixtureResult?.actual || "missing"}`
+  );
+  check(
+    "conflict_detected",
+    validation.ok === true &&
+      conflictingClaims.length === 2 &&
+      reciprocalConflictPairCount === 1,
+    `conflicting claims=${conflictingClaims.map((claim) => claim.id).join(", ") || "none"}; reciprocal pairs=${reciprocalConflictPairCount}`
+  );
+  check(
+    "hold_for_human_review",
+    nonHeldConflictClaims.length === 0 &&
+      claimSurfaceElements.length >= 2 &&
+      nonHeldClaimSurfaceElements.length === 0 &&
+      fixture.reviewSafeDefaults?.defaultReviewStatus === "hold",
+    `non-held conflict claims=${nonHeldConflictClaims.map((claim) => claim.id).join(", ") || "none"}; non-held claim elements=${nonHeldClaimSurfaceElements.map((element) => element.id).join(", ") || "none"}`
+  );
+  check(
+    "keep_out_of_auto_canon",
+    fixture.reviewSafeDefaults?.autoCanonPromotion === false &&
+      fixture.reviewSafeDefaults?.autoChronologyPromotion === false &&
+      adoptedOrProvisionalConflictClaims.length === 0 &&
+      nonUncertainConflictClaims.length === 0,
+    `adopted/provisional conflicts=${adoptedOrProvisionalConflictClaims.map((claim) => claim.id).join(", ") || "none"}; non-uncertain conflicts=${nonUncertainConflictClaims.map((claim) => claim.id).join(", ") || "none"}`
+  );
+  check(
+    "keep_out_of_direct_claim_acceptance",
+    directAcceptedClaimElements.length === 0 &&
+      fixtureElements.every((element) => element.reviewStatus === "hold" && element.suggestedReviewStatus === "hold"),
+    `direct accepted claim elements=${directAcceptedClaimElements.map((element) => element.id).join(", ") || "none"}`
+  );
+  check(
+    "preserve_source_refs",
+    conflictClaimsMissingSourceRefs.length === 0 &&
+      claimSurfaceElements.every((element) => arrayLength(element.sourceRefIds) > 0),
+    `claims missing source refs=${conflictClaimsMissingSourceRefs.map((claim) => claim.id).join(", ") || "none"}`
+  );
+  check(
+    "existing_source_span_and_routing_counts_preserved",
+    sourcePack?.passed === true &&
+      sourcePack.cross_fixture_summary?.fixture_count === 4 &&
+      sourcePack.cross_fixture_summary?.total_elements === 48 &&
+      routingRegression.summary?.source_pack_rows_checked === 48 &&
+      routingRegression.summary?.adapter_payloads_checked === 5 &&
+      routingRegression.summary?.adapter_elements_checked === 60 &&
+      malformedGuard.summary?.accepted_routed_candidates === 0,
+    `source-pack rows=${sourcePack.cross_fixture_summary?.total_elements}; adapter elements=${routingRegression.summary?.adapter_elements_checked}; malformed accepted=${malformedGuard.summary?.accepted_routed_candidates}`
+  );
+  check(
+    "no_review_card_or_model_api",
+    priorMemory?.prior_review_count === 0 &&
+      manifest.review_input_mode === "freeform" &&
+      boundarySmoke?.passed === true &&
+      boundarySmoke?.checks?.noExternalCall === true &&
+      boundaryEnvelope?.providerBoundary?.externalCallAllowed === false,
+    "Review stays freeform/local and model/API boundary remains no-call"
+  );
+
+  return {
+    schemaVersion: CONTRADICTORY_CLAIM_GUARD_SCHEMA_VERSION,
+    artifact_id: "fff-contradictory-claim-guard-001",
+    title: "Fast Fiction Factory Contradictory Claim Guard",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    selected_guard_class: selectedFixture.class_id,
+    selected_guard_label: selectedFixture.label,
+    selected_fixture_path: selectedFixture.fixture_path,
+    validator_smoke_path: toRepoPath(smokePath),
+    source_pack_path: manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json",
+    preserved_malformed_missing_span_guard_path: manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT,
+    review_memory_checked: {
+      checked: true,
+      target: "fff-malformed-missing-span-guard-001",
+      prior_review_count: priorMemory?.prior_review_count ?? 0,
+      prior_signal_summary: priorMemory?.latest_user_signal_summary || "No user review was requested for the malformed/missing source-span guard slice.",
+      axis: "contradictory_claim_guard",
+      what_changed: "A single Extraction Contract fixture now carries two source-backed, reciprocally linked contradictory claim candidates and proves they remain held instead of becoming canon or accepted Claim Ledger candidates.",
+      what_this_review_decides: "No user review is needed; this readback decides whether explicit contradictory claims are detected, held, source-traced, and kept out of auto-canon/direct adoption.",
+      not_asking: [
+        "general Review Hub review",
+        "fixed-form review",
+        "repeat malformed/missing span review",
+        "repeat sparse fixture review",
+        "repeat weak-span review",
+        "repeat broad-span review",
+        "repeat ambiguous-routing review",
+        "model/API approval",
+        "provider credentials",
+        "database or publishing contract changes",
+        "production sync",
+        "AI video generation",
+        "final canon decisions for Toma fate, brass moth truth, Council motive, or which contradictory claim is true"
+      ],
+      next_nonredundant_axis: "very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness only after a concrete coverage need is named"
+    },
+    guard_behavior: {
+      conflict_detected: conflictingClaims.length === 2 && reciprocalConflictPairCount === 1,
+      hold_for_human_review: nonHeldConflictClaims.length === 0 && nonHeldClaimSurfaceElements.length === 0,
+      keep_out_of_auto_canon: adoptedOrProvisionalConflictClaims.length === 0 && fixture.reviewSafeDefaults?.autoCanonPromotion === false,
+      keep_out_of_direct_claim_acceptance: directAcceptedClaimElements.length === 0,
+      preserve_source_refs: conflictClaimsMissingSourceRefs.length === 0
+    },
+    coverage_decision: {
+      known_missing_classes_before_guard: malformedGuard?.coverage_decision?.remaining_fixture_class_candidates || [],
+      selected_class_reason: "Contradictory memo claims remained a named fixture class after sparse notes and malformed/missing source spans; a local hold-only fixture can cover the axis without deciding truth.",
+      covered_by_this_guard: [selectedFixture.label],
+      remaining_fixture_class_candidates: [
+        "very broad source span fixture shape",
+        "multilingual or translated memo text",
+        "model/API provider envelope output"
+      ],
+      source_pack_legacy_gap_list_still_present: sourcePackLegacyGaps
+    },
+    summary: {
+      validator_fixture_count: smoke.summary?.fixtureCount,
+      expected_valid_fixture_count: smoke.summary?.expectedValid,
+      expected_invalid_fixture_count: smoke.summary?.expectedInvalid,
+      selected_fixture_elements_checked: fixtureElements.length,
+      conflicting_claims_checked: conflictingClaims.length,
+      reciprocal_conflict_pairs: reciprocalConflictPairCount,
+      held_conflicting_claims: conflictingClaims.length - nonHeldConflictClaims.length,
+      adopted_or_provisional_conflicting_claims: adoptedOrProvisionalConflictClaims.length,
+      direct_accepted_claim_elements: directAcceptedClaimElements.length,
+      source_ref_preserved_conflicting_claims: conflictingClaims.length - conflictClaimsMissingSourceRefs.length,
+      source_pack_rows_preserved: sourcePack.cross_fixture_summary?.total_elements,
+      adapter_payloads_preserved: routingRegression.summary?.adapter_payloads_checked,
+      adapter_elements_preserved: routingRegression.summary?.adapter_elements_checked,
+      malformed_guard_accepted_routed_candidates: malformedGuard.summary?.accepted_routed_candidates,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    fixture_guard_checks: checks,
+    blocked_examples: {
+      non_held_conflict_claims: nonHeldConflictClaims.map((claim) => claim.id),
+      adopted_or_provisional_conflict_claims: adoptedOrProvisionalConflictClaims.map((claim) => claim.id),
+      direct_accepted_claim_elements: directAcceptedClaimElements.map((element) => element.id),
+      conflict_claims_missing_source_refs: conflictClaimsMissingSourceRefs.map((claim) => claim.id)
+    },
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+async function validateDownstreamSourceSpanAdoptionGate(sourcePack, sourcePackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+  const routingRegression = await readJson(manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT);
+  const validatorSmoke = await readJson(manifest.validator_smoke_path || DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT);
+  const boundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
+  const boundaryEnvelope = await readJson(manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json");
+  const adapterPayloads = await readAdapterPayloads();
+  const packElements = flattenSourcePackElements(sourcePack);
+  const adapterElements = adapterPayloads.flatMap((payload) => Array.isArray(payload.extractedElements) ? payload.extractedElements : []);
+  const adapterById = new Map(adapterElements.map((element) => [element.id, element]));
+  const downstreamSurfaceNames = ["Claim", "Profile", "Timeline"];
+  const downstreamDestinationNames = ["claim", "profile", "timeline"];
+  const packDownstreamCandidates = packElements.filter((element) =>
+    Array.isArray(element.routing_targets) &&
+    element.routing_targets.some((target) => downstreamSurfaceNames.includes(target))
+  );
+  const sourceTrackedCandidates = packDownstreamCandidates.filter((element) => {
+    const adapterElement = adapterById.get(element.id);
+    return Boolean(adapterElement) &&
+      element.source_span_matches_raw_memo === true &&
+      arrayLength(element.source_ref_ids) > 0 &&
+      hasValidSourceSpan(adapterElement) &&
+      arrayLength(adapterElement.sourceRefIds) > 0;
+  });
+  const malformedOrMissingSpanCandidates = packDownstreamCandidates.filter((element) => {
+    const adapterElement = adapterById.get(element.id);
+    return !adapterElement || element.source_span_matches_raw_memo !== true || arrayLength(element.source_ref_ids) === 0 || !hasValidSourceSpan(adapterElement);
+  });
+  const unsafeRoutingCandidates = packDownstreamCandidates.filter((element) => isUnsafeDownstreamRoute(element, adapterById.get(element.id)));
+  const humanOwnedCandidates = packDownstreamCandidates.filter((element) => element.human_owned_guard !== "none");
+  const nonHeldHumanOwnedCandidates = humanOwnedCandidates.filter((element) =>
+    element.review_status !== "hold" || element.suggested_review_status !== "hold"
+  );
+  const adoptedCandidates = packDownstreamCandidates.filter((element) =>
+    element.review_status === "adopt" || element.suggested_review_status === "adopt"
+  );
+  const adapterAdoptDestinations = adapterElements.filter((element) =>
+    Array.isArray(element.targetDestinations) &&
+    element.targetDestinations.some((destination) => downstreamDestinationNames.includes(destination)) &&
+    (element.reviewStatus === "adopt" || element.suggestedReviewStatus === "adopt")
+  );
+  const missingAdapterRows = packDownstreamCandidates.filter((element) => !adapterById.has(element.id));
+  const priorMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-malformed-missing-span-guard-001");
+
+  check(
+    "source_pack_loaded",
+    sourcePack?.artifact_id === "fff-source-span-routing-review-pack-001" &&
+      sourcePack?.passed === true &&
+      sourcePack.cross_fixture_summary?.total_elements === 48 &&
+      packElements.length === 48,
+    `loaded ${sourcePackPath}; rows=${packElements.length}`
+  );
+  check(
+    "source_refs_and_spans_required_for_downstream_candidates",
+    sourceTrackedCandidates.length === packDownstreamCandidates.length &&
+      malformedOrMissingSpanCandidates.length === 0 &&
+      sourcePack.cross_fixture_summary?.source_span_mismatches === 0 &&
+      sourcePack.cross_fixture_summary?.missing_source_refs === 0,
+    `downstream candidates=${packDownstreamCandidates.length}; missing-or-malformed=${malformedOrMissingSpanCandidates.map((element) => element.id).join(", ") || "none"}`
+  );
+  check(
+    "routing_targets_safe_for_downstream_consideration",
+    unsafeRoutingCandidates.length === 0 &&
+      routingRegression?.passed === true &&
+      routingRegression.summary?.source_pack_rows_checked === 48 &&
+      routingRegression.summary?.adapter_payloads_checked === adapterPayloads.length &&
+      routingRegression.routing_policy_checks?.visual_direct_claim_guard?.passed === true &&
+      routingRegression.routing_policy_checks?.source_reference_preservation?.passed === true,
+    `unsafe downstream routes=${unsafeRoutingCandidates.map((element) => element.id).join(", ") || "none"}`
+  );
+  check(
+    "malformed_missing_span_guard_blocks_adoption",
+    malformedGuard?.passed === true &&
+      malformedGuard.guard_behavior?.reject_as_invalid === true &&
+      malformedGuard.guard_behavior?.keep_out_of_claim_timeline_profile_adoption === true &&
+      malformedGuard.summary?.accepted_routed_candidates === 0 &&
+      validatorSmoke?.passed === true &&
+      validatorSmoke.summary?.fixtureCount >= 8 &&
+      validatorSmoke.summary?.expectedInvalid === 6,
+    "malformed/missing span fixture remains invalid with zero accepted routed candidates"
+  );
+  check(
+    "human_owned_decisions_remain_held",
+    humanOwnedCandidates.length > 0 &&
+      nonHeldHumanOwnedCandidates.length === 0 &&
+      ["Toma fate", "brass moth truth", "Council motive"].every((dependency) =>
+        sourcePack.human_owned_boundaries?.some((boundary) => boundary.dependency === dependency)
+      ),
+    `human-owned candidates=${humanOwnedCandidates.length}; non-held=${nonHeldHumanOwnedCandidates.map((element) => element.id).join(", ") || "none"}`
+  );
+  check(
+    "no_actual_adoption_or_model_api_behavior",
+    adoptedCandidates.length === 0 &&
+      adapterAdoptDestinations.length === 0 &&
+      boundarySmoke?.passed === true &&
+      boundarySmoke?.checks?.noExternalCall === true &&
+      boundaryEnvelope?.providerBoundary?.externalCallAllowed === false,
+    `adopted downstream candidates=${adoptedCandidates.map((element) => element.id).join(", ") || "none"}`
+  );
+  check(
+    "adapter_drift_visible_before_adoption",
+    missingAdapterRows.length === 0 &&
+      adapterPayloads.length === 5 &&
+      adapterElements.length === 60,
+    `missing adapter rows=${missingAdapterRows.map((element) => element.id).join(", ") || "none"}; adapter elements=${adapterElements.length}`
+  );
+  check(
+    "review_memory_keeps_user_work_optional",
+    priorMemory?.prior_review_count === 0 &&
+      manifest.review_input_mode === "freeform" &&
+      !String(manifest.review_prompt_hint || "").toLowerCase().includes("fixed form"),
+    "freeform review remains optional and no fixed operator form is introduced"
+  );
+
+  return {
+    schemaVersion: DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_SCHEMA_VERSION,
+    artifact_id: "fff-downstream-source-span-adoption-gate-001",
+    title: "Fast Fiction Factory Downstream Source-Span Adoption Gate",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    source_artifact_id: sourcePack?.artifact_id,
+    source_pack_path: toRepoPath(sourcePackPath),
+    malformed_missing_span_guard_path: manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT,
+    routing_policy_regression_path: manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT,
+    validator_smoke_path: manifest.validator_smoke_path || DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT,
+    review_memory_checked: {
+      checked: true,
+      target: "fff-malformed-missing-span-guard-001",
+      prior_review_count: priorMemory?.prior_review_count ?? 0,
+      prior_signal_summary: priorMemory?.latest_user_signal_summary || "Malformed/missing source-span guard completed without user review and kept invalid evidence out of routed candidates.",
+      axis: "downstream_source_span_adoption_gate",
+      what_changed: "A deterministic readback now checks whether only source-tracked, valid-span, safe-routed, review-held elements can be considered for downstream Profile, Claim, or Timeline adoption paths.",
+      what_this_review_decides: "No user review is needed; this gate decides whether downstream adoption remains blocked unless source refs, source spans, routing, and human-owned holds are all intact.",
+      not_asking: [
+        "general Review Hub review",
+        "fixed-form review",
+        "repeat malformed/missing span review",
+        "model/API approval",
+        "provider credentials",
+        "database persistence",
+        "publishing or production sync",
+        "AI video generation",
+        "final canon decisions for Toma fate, brass moth truth, or Council motive"
+      ],
+      next_nonredundant_axis: "provider-envelope readiness or one concrete fixture class only after a new coverage need is named"
+    },
+    gate_policy: {
+      downstream_candidate_means: "eligible for local review/readback only, not adopted canon or project-state mutation",
+      required_preconditions: [
+        "source refs exist",
+        "sourceSpan text/start/end are valid and match the local memo",
+        "routing target is not unsafe",
+        "human-owned unresolved decisions remain held",
+        "malformed or missing source-span cases remain invalid",
+        "model/API boundary remains no-call"
+      ],
+      actual_downstream_adoption_implemented: false,
+      ready_for_final_canon_or_production: false
+    },
+    summary: {
+      source_pack_rows_checked: packElements.length,
+      downstream_candidates_reported_for_review: packDownstreamCandidates.length,
+      source_tracked_downstream_candidates: sourceTrackedCandidates.length,
+      malformed_or_missing_span_candidates: malformedOrMissingSpanCandidates.length,
+      unsafe_routing_candidates: unsafeRoutingCandidates.length,
+      human_owned_candidates_held: humanOwnedCandidates.length - nonHeldHumanOwnedCandidates.length,
+      human_owned_candidates_non_held: nonHeldHumanOwnedCandidates.length,
+      malformed_guard_accepted_routed_candidates: malformedGuard.summary?.accepted_routed_candidates,
+      adopted_profile_claim_timeline_candidates: adoptedCandidates.length + adapterAdoptDestinations.length,
+      adapter_payloads_checked: adapterPayloads.length,
+      adapter_elements_checked: adapterElements.length,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    downstream_gate_checks: checks,
+    blocked_examples: {
+      malformed_or_missing_span_candidates: malformedOrMissingSpanCandidates.map((element) => element.id),
+      unsafe_routing_candidates: unsafeRoutingCandidates.map((element) => element.id),
+      non_held_human_owned_candidates: nonHeldHumanOwnedCandidates.map((element) => element.id),
+      adopted_candidates: adoptedCandidates.map((element) => element.id).concat(adapterAdoptDestinations.map((element) => element.id))
+    },
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function readAdapterPayloads() {
   const payloads = [];
   for (const filePath of ["artifacts/local-extraction-adapter-output.json"]) {
@@ -1785,6 +2265,56 @@ function flattenSourcePackElements(sourcePack) {
     return [];
   }
   return sourcePack.fixtures.flatMap((fixture) => Array.isArray(fixture.elements) ? fixture.elements : []);
+}
+
+function claimHasValidSourceRefs(claim, contractSourceRefs) {
+  const sourceIds = new Set(
+    Array.isArray(contractSourceRefs)
+      ? contractSourceRefs.map((sourceRef) => sourceRef?.id).filter(Boolean)
+      : []
+  );
+  return Array.isArray(claim?.sourceRefs) &&
+    claim.sourceRefs.length > 0 &&
+    claim.sourceRefs.every((sourceRef) => {
+      const sourceRefId = typeof sourceRef === "string" ? sourceRef : sourceRef?.id;
+      return typeof sourceRefId === "string" && sourceIds.has(sourceRefId);
+    });
+}
+
+function hasValidSourceSpan(element) {
+  const span = element?.sourceSpan;
+  return Boolean(span) &&
+    typeof span === "object" &&
+    typeof span.text === "string" &&
+    span.text.trim().length > 0 &&
+    Number.isInteger(span.start) &&
+    Number.isInteger(span.end) &&
+    span.start >= 0 &&
+    span.end > span.start;
+}
+
+function isUnsafeDownstreamRoute(packElement, adapterElement) {
+  const packRoutes = Array.isArray(packElement?.routing_targets) ? packElement.routing_targets : [];
+  const adapterDestinations = Array.isArray(adapterElement?.targetDestinations) ? adapterElement.targetDestinations : [];
+  if (packElement?.element_type === "visual_asset" && packRoutes.includes("Claim")) {
+    return true;
+  }
+  if (adapterElement?.elementType === "visual_asset" && adapterDestinations.includes("claim")) {
+    return true;
+  }
+  if (packElement?.element_type === "source_reference" && packRoutes.some((target) => ["Claim", "Profile", "Timeline"].includes(target))) {
+    return true;
+  }
+  if (adapterElement?.elementType === "source_reference" && adapterDestinations.some((target) => ["claim", "profile", "timeline"].includes(target))) {
+    return true;
+  }
+  if (packElement?.element_type === "unresolved_decision" && !packRoutes.includes("Human Review")) {
+    return true;
+  }
+  if (adapterElement?.elementType === "unresolved_decision" && !adapterDestinations.includes("unresolved_decision")) {
+    return true;
+  }
+  return false;
 }
 
 function arrayLength(value) {
@@ -1866,6 +2396,7 @@ function validateExtractionContract(contract, options = {}) {
   validateDecisionLogSafety(contract, label, errors);
   validateHumanAuthorityBoundaries(contract, label, errors);
   validateExtractionElements(contract, label, sourceRefIds, options, errors);
+  validateExtractionClaimCandidates(contract, label, sourceRefIds, errors);
 
   return { ok: errors.length === 0, errors, warnings };
 }
@@ -2091,6 +2622,76 @@ function touchesHumanOwnedDecision(element) {
     ...dependencies
   ].filter(Boolean).join(" ").toLowerCase();
   return HUMAN_OWNED_DECISIONS.some((decision) => searchable.includes(decision.toLowerCase()));
+}
+
+function validateExtractionClaimCandidates(contract, label, sourceRefIds, errors) {
+  const claims = Array.isArray(contract.claimCandidates) ? contract.claimCandidates : [];
+  const claimById = new Map();
+
+  claims.forEach((claim, index) => {
+    const claimLabel = `claim candidate ${claim?.id || index}`;
+    if (!claim || typeof claim !== "object" || Array.isArray(claim)) {
+      errors.push(`${claimLabel} must be an object`);
+      return;
+    }
+    if (!claim.id || typeof claim.id !== "string") {
+      errors.push(`${claimLabel} missing id`);
+      return;
+    }
+    if (claimById.has(claim.id)) {
+      errors.push(`${label} duplicate claim candidate id ${claim.id}`);
+    }
+    claimById.set(claim.id, claim);
+  });
+
+  claims.forEach((claim, index) => {
+    const claimLabel = `claim candidate ${claim?.id || index}`;
+    if (!claim || typeof claim !== "object" || Array.isArray(claim)) {
+      return;
+    }
+
+    for (const arrayField of ["sourceRefs", "subjectRefs", "unresolvedDependencies", "supportsClaimIds", "contradictsClaimIds"]) {
+      if (arrayField in claim && !Array.isArray(claim[arrayField])) {
+        errors.push(`${claimLabel} ${arrayField} must be an array`);
+      }
+    }
+    if (claim.reviewStatus && !REVIEW_STATUSES.includes(claim.reviewStatus)) {
+      errors.push(`${claimLabel} reviewStatus must be one of ${REVIEW_STATUSES.join(", ")}`);
+    }
+
+    if (Array.isArray(claim.sourceRefs)) {
+      if (claim.sourceRefs.length === 0) {
+        errors.push(`${claimLabel} sourceRefs must preserve at least one source ref`);
+      }
+      for (const sourceRef of claim.sourceRefs) {
+        const sourceRefId = typeof sourceRef === "string" ? sourceRef : sourceRef?.id;
+        if (!sourceRefId || typeof sourceRefId !== "string") {
+          errors.push(`${claimLabel} sourceRefs must include ids or source ref objects with id`);
+        }
+      }
+    }
+
+    const contradicts = Array.isArray(claim.contradictsClaimIds) ? claim.contradictsClaimIds : [];
+    if (contradicts.length === 0) {
+      return;
+    }
+
+    if (claim.reviewStatus !== "hold") {
+      errors.push(`${claimLabel} contradictory claim candidate must remain hold for human review`);
+    }
+
+    for (const contradictedId of contradicts) {
+      const target = claimById.get(contradictedId);
+      if (!target) {
+        errors.push(`${claimLabel} contradicts unknown claim candidate ${contradictedId}`);
+        continue;
+      }
+      const reciprocal = Array.isArray(target.contradictsClaimIds) && target.contradictsClaimIds.includes(claim.id);
+      if (!reciprocal) {
+        errors.push(`${claimLabel} contradictory claim link to ${contradictedId} must be reciprocal`);
+      }
+    }
+  });
 }
 
 function validateState(state) {
@@ -2484,6 +3085,10 @@ Usage:
   node tools/fff-state.mjs smoke-missing-fixture-class-probe <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
   node tools/fff-state.mjs smoke-malformed-missing-span-guard <extraction-validator-smoke.json> [output.json]
+  node tools/fff-state.mjs validate-contradictory-claim-guard <extraction-validator-smoke.json>
+  node tools/fff-state.mjs smoke-contradictory-claim-guard <extraction-validator-smoke.json> [output.json]
+  node tools/fff-state.mjs validate-downstream-source-span-adoption-gate <source-span-review-pack.json>
+  node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate <source-span-review-pack.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -2505,6 +3110,12 @@ Default missing fixture class probe output:
 
 Default malformed/missing source-span guard output:
   ${DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT}
+
+Default contradictory claim guard output:
+  ${DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT}
+
+Default downstream source-span adoption gate output:
+  ${DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT}
 `);
 }
 

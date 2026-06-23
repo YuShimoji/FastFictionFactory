@@ -952,7 +952,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-malformed-missing-span-guard-001</strong>. This slice adds one malformed/missing source-span guard fixture so bad source evidence is rejected before routed adoption while preserving <strong>fff-missing-fixture-class-probe-001</strong>, <strong>fff-weak-span-repair-001</strong>, <strong>fff-broad-span-split-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-source-span-quality-audit-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-contradictory-claim-guard-001</strong>. This slice adds one contradictory-claim guard fixture so conflicting claim candidates are detected, source-backed, held for human review, and kept out of auto-canon while preserving <strong>fff-downstream-source-span-adoption-gate-001</strong>, <strong>fff-malformed-missing-span-guard-001</strong>, <strong>fff-missing-fixture-class-probe-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1000,7 +1000,9 @@
           <div class="progress-step done"><strong>Broad source-span split</strong><span class="tag green">done</span><p class="section-note">Resolve 2 broad rows with one narrower split and one explicit keep reason.</p></div>
           <div class="progress-step done"><strong>Weak source-span repair</strong><span class="tag green">done</span><p class="section-note">Repair 6 thin evidence spans with stronger same-fixture source refs and preserved locators.</p></div>
           <div class="progress-step done"><strong>Missing fixture class probe</strong><span class="tag green">done</span><p class="section-note">Add one sparse bullet-only fixture with held defaults, source-span readback, and routing regression coverage.</p></div>
-          <div class="progress-step current"><strong>Malformed span guard</strong><span class="tag blue">current</span><p class="section-note">Reject missing, malformed, or unusable source-span evidence before routed candidate adoption.</p></div>
+          <div class="progress-step done"><strong>Malformed span guard</strong><span class="tag green">done</span><p class="section-note">Reject missing, malformed, or unusable source-span evidence before routed candidate adoption.</p></div>
+          <div class="progress-step done"><strong>Downstream adoption gate</strong><span class="tag green">done</span><p class="section-note">Confirm downstream Profile, Claim, and Timeline candidates remain source-tracked, safe-routed, and held.</p></div>
+          <div class="progress-step current"><strong>Contradictory claim guard</strong><span class="tag blue">current</span><p class="section-note">Detect reciprocal claim conflicts and keep both sides held without deciding truth.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;" data-mode-panel="project">
@@ -1018,7 +1020,7 @@
               <li>Timeline View grouping by axis, status, disclosure, dependency, risk, linked claim, and calendar precision.</li>
               <li>Profile/Ghost grouping by type, ghost node status, review status, dependency, risk, claim, timeline, reality, and world status.</li>
               <li>Extraction Contract grouping by type, status, source, routing destination, dependency, canon risk, and spoiler level.</li>
-              <li>Extraction validator fixture matrix for valid minimal payload, missing source refs, overconfident human-owned decisions, invalid visual-asset routing, auto-canon leaks, missing review-safe defaults, unknown-field preservation, and built-in identity guards.</li>
+              <li>Extraction validator fixture matrix for valid minimal payload, contradictory claim holds, missing source refs, overconfident human-owned decisions, invalid visual-asset routing, auto-canon leaks, missing review-safe defaults, unknown-field preservation, and built-in identity guards.</li>
               <li>Local deterministic extraction adapter expansion from three raw memo fixtures to validated Extraction Contract payloads.</li>
               <li>Model/API boundary spec with envelope, failure modes, retry/fallback policy, validator gates, and forbidden actions before provider work.</li>
               <li>Source-span routing review pack across three deterministic fixture outputs.</li>
@@ -1030,6 +1032,8 @@
               <li>Weak source-span repair for 6 thin evidence rows.</li>
               <li>Missing fixture class probe for sparse bullet-only notes.</li>
               <li>Malformed/missing source-span guard for invalid evidence payloads.</li>
+              <li>Downstream source-span adoption gate for Profile, Claim, and Timeline readiness without actual adoption.</li>
+              <li>Contradictory claim guard for reciprocal held conflict pairs.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
@@ -1116,6 +1120,9 @@
                 <tr><td>Malformed source-span guard</td><td>docs/review/malformed-missing-span-guard.md</td></tr>
                 <tr><td>Malformed source-span guard result</td><td>artifacts/malformed-missing-span-guard-result.json</td></tr>
                 <tr><td>Malformed source-span fixture</td><td>artifacts/extraction-negative-fixtures/malformed-missing-source-span.json</td></tr>
+                <tr><td>Contradictory claim guard</td><td>docs/review/contradictory-claim-guard.md</td></tr>
+                <tr><td>Contradictory claim guard result</td><td>artifacts/contradictory-claim-guard-result.json</td></tr>
+                <tr><td>Contradictory claim fixture</td><td>artifacts/extraction-negative-fixtures/contradictory-claim-hold.json</td></tr>
                 <tr><td>Missing fixture class probe</td><td>docs/review/missing-fixture-class-probe.md</td></tr>
                 <tr><td>Missing fixture probe result</td><td>artifacts/missing-fixture-class-probe-result.json</td></tr>
                 <tr><td>Sparse bullet fixture</td><td>artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md</td></tr>
@@ -1144,7 +1151,8 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows active artifact id <strong>fff-malformed-missing-span-guard-001</strong>.</li>
+              <li>Confirm this hub shows active artifact id <strong>fff-contradictory-claim-guard-001</strong>.</li>
+              <li>Use <strong>docs/review/contradictory-claim-guard.md</strong> and <strong>artifacts/contradictory-claim-guard-result.json</strong> for the contradictory claim guard axis.</li>
               <li>Use <strong>docs/review/malformed-missing-span-guard.md</strong> and <strong>artifacts/malformed-missing-span-guard-result.json</strong> for the malformed/missing source-span guard axis.</li>
               <li>Use <strong>docs/review/missing-fixture-class-probe.md</strong> and <strong>artifacts/missing-fixture-class-probe-result.json</strong> for the sparse bullet-only fixture probe axis.</li>
               <li>Use <strong>docs/review/weak-span-repair.md</strong> and <strong>artifacts/weak-span-repair-result.json</strong> for the weak source-span repair axis.</li>
@@ -1278,7 +1286,8 @@
                 <li>Default too confident: clear in automated audit.</li>
                 <li>Fixture class covered in this slice: sparse bullet-only notes.</li>
                 <li>Fixture class covered by the active guard: malformed or missing source-span payloads.</li>
-                <li>Fixture classes still missing: contradictory memo, broad span, multilingual memo, and model/API envelope cases.</li>
+                <li>Fixture class covered by the active guard: contradictory memo claims.</li>
+                <li>Fixture classes still missing: broad span, multilingual memo, and model/API envelope cases.</li>
               </ul>
             </div>
             <div class="hub-panel">
@@ -1385,8 +1394,10 @@
             <span class="tag green">Extraction Contract visible</span>
             <span class="tag green">validator fixtures checked</span>
             <span class="tag green">malformed source spans guarded</span>
-            <span class="tag green">8 validator fixtures</span>
+            <span class="tag green">contradictory claims guarded</span>
+            <span class="tag green">9 validator fixtures</span>
             <span class="tag green">0 accepted routed candidates</span>
+            <span class="tag green">0 adopted conflict claims</span>
             <span class="tag green">local adapter smoke checked</span>
             <span class="tag green">source-span review pack visible</span>
             <span class="tag green">source-span quality audit classified</span>
@@ -3607,7 +3618,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-malformed-missing-span-guard-001",
+        activeArtifactId: "fff-contradictory-claim-guard-001",
         preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
         preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
         preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -3623,7 +3634,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           artifactId: "fff-extraction-validator-hardening-001",
           fixtureDirectory: "artifacts/extraction-negative-fixtures",
           smokeResult: "artifacts/extraction-validator-smoke-result.json",
-          fixtureCount: 8,
+          fixtureCount: 9,
+          expectedValid: 3,
           expectedInvalid: 6
         },
         extractionAdapter: {
@@ -3704,12 +3716,30 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           docPath: "docs/review/malformed-missing-span-guard.md",
           resultPath: "artifacts/malformed-missing-span-guard-result.json",
           fixturePath: "artifacts/extraction-negative-fixtures/malformed-missing-source-span.json",
-          validatorFixtureCount: 8,
+          validatorFixtureCount: 9,
           expectedInvalidFixtureCount: 6,
           selectedFixtureElementsChecked: 3,
           sourceSpanErrors: 5,
           missingSourceRefErrors: 1,
           acceptedRoutedCandidates: 0,
+          failures: 0,
+          reviewCardEmitted: false,
+          operatorObservationCardEmitted: false
+        },
+        contradictoryClaimGuard: {
+          artifactId: "fff-contradictory-claim-guard-001",
+          docPath: "docs/review/contradictory-claim-guard.md",
+          resultPath: "artifacts/contradictory-claim-guard-result.json",
+          fixturePath: "artifacts/extraction-negative-fixtures/contradictory-claim-hold.json",
+          validatorFixtureCount: 9,
+          expectedValidFixtureCount: 3,
+          expectedInvalidFixtureCount: 6,
+          conflictingClaimsChecked: 2,
+          reciprocalConflictPairs: 1,
+          heldConflictingClaims: 2,
+          adoptedOrProvisionalConflictingClaims: 0,
+          directAcceptedClaimElements: 0,
+          sourceRefPreservedConflictingClaims: 2,
           failures: 0,
           reviewCardEmitted: false,
           operatorObservationCardEmitted: false
@@ -3743,7 +3773,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           artifactId: "fff-review-memory-dedup-001",
           docPath: "docs/review/review-memory-dedup.md",
           smokeResult: "artifacts/review-memory-dedup-smoke-result.json",
-          nextNonredundantAxis: "a different remaining fixture class only after a concrete coverage need",
+          nextNonredundantAxis: "very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness only after a concrete coverage need",
           repeatedReviewAllowed: false,
           reviewResetTrigger: "changed target, changed evidence, changed axis, changed decision value, or explicit user request"
         }
@@ -4218,7 +4248,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-malformed-missing-span-guard-001",
+          activeArtifactId: "fff-contradictory-claim-guard-001",
           preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
           preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
           preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -4234,7 +4264,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             artifactId: "fff-extraction-validator-hardening-001",
             fixtureDirectory: "artifacts/extraction-negative-fixtures",
             smokeResult: "artifacts/extraction-validator-smoke-result.json",
-            fixtureCount: 8,
+            fixtureCount: 9,
+            expectedValid: 3,
             expectedInvalid: 6
           },
           extractionAdapter: {
@@ -4315,12 +4346,30 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             docPath: "docs/review/malformed-missing-span-guard.md",
             resultPath: "artifacts/malformed-missing-span-guard-result.json",
             fixturePath: "artifacts/extraction-negative-fixtures/malformed-missing-source-span.json",
-            validatorFixtureCount: 8,
+            validatorFixtureCount: 9,
             expectedInvalidFixtureCount: 6,
             selectedFixtureElementsChecked: 3,
             sourceSpanErrors: 5,
             missingSourceRefErrors: 1,
             acceptedRoutedCandidates: 0,
+            failures: 0,
+            reviewCardEmitted: false,
+            operatorObservationCardEmitted: false
+          },
+          contradictoryClaimGuard: {
+            artifactId: "fff-contradictory-claim-guard-001",
+            docPath: "docs/review/contradictory-claim-guard.md",
+            resultPath: "artifacts/contradictory-claim-guard-result.json",
+            fixturePath: "artifacts/extraction-negative-fixtures/contradictory-claim-hold.json",
+            validatorFixtureCount: 9,
+            expectedValidFixtureCount: 3,
+            expectedInvalidFixtureCount: 6,
+            conflictingClaimsChecked: 2,
+            reciprocalConflictPairs: 1,
+            heldConflictingClaims: 2,
+            adoptedOrProvisionalConflictingClaims: 0,
+            directAcceptedClaimElements: 0,
+            sourceRefPreservedConflictingClaims: 2,
             failures: 0,
             reviewCardEmitted: false,
             operatorObservationCardEmitted: false
@@ -4354,7 +4403,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             artifactId: "fff-review-memory-dedup-001",
             docPath: "docs/review/review-memory-dedup.md",
             smokeResult: "artifacts/review-memory-dedup-smoke-result.json",
-            nextNonredundantAxis: "a different remaining fixture class only after a concrete coverage need",
+            nextNonredundantAxis: "very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness only after a concrete coverage need",
             repeatedReviewAllowed: false,
             reviewResetTrigger: "changed target, changed evidence, changed axis, changed decision value, or explicit user request"
           }

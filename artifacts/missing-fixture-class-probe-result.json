@@ -2,7 +2,7 @@
   "schemaVersion": "fff.missingFixtureClassProbe.v1",
   "artifact_id": "fff-missing-fixture-class-probe-001",
   "title": "Fast Fiction Factory Missing Fixture Class Probe",
-  "generatedAt": "2026-06-23T05:14:05.534Z",
+  "generatedAt": "2026-06-23T07:06:04.650Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "selected_fixture_class": "sparse_bullet_only_notes",
@@ -91,7 +91,7 @@
     },
     "concrete_fixture_gap_named": {
       "passed": true,
-      "detail": "selected sparse bullet-only notes class must be named by existing fixture coverage debt"
+      "detail": "selected sparse bullet-only notes class must be named by existing fixture coverage debt or already preserved in the source pack"
     },
     "exactly_one_fixture_class_added": {
       "passed": true,

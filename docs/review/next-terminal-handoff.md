@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-23T10:00:19+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`; local/remote `master` were verified clean and synced after the handoff refresh was published. Run `git log -1 --oneline --decorate` after pull for the exact remote head.
+Latest handoff refresh: 2026-06-23T16:06:44+09:00. At refresh time, the active artifact is `fff-contradictory-claim-guard-001`. Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
 
 ## Start Here
 
@@ -30,18 +30,22 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/contradictory-claim-guard.md
+artifacts/contradictory-claim-guard-result.json
+artifacts/extraction-negative-fixtures/contradictory-claim-hold.json
+docs/review/downstream-source-span-adoption-gate.md
+artifacts/downstream-source-span-adoption-gate-result.json
+docs/review/malformed-missing-span-guard.md
+artifacts/malformed-missing-span-guard-result.json
+docs/review/missing-fixture-class-probe.md
+artifacts/missing-fixture-class-probe-result.json
+docs/review/weak-span-repair.md
+artifacts/weak-span-repair-result.json
 docs/review/broad-span-split.md
 artifacts/broad-span-split-result.json
 docs/review/routing-policy-regression-hardening.md
 artifacts/routing-policy-regression-hardening-result.json
-docs/review/ambiguous-routing-resolution.md
-artifacts/ambiguous-routing-resolution-result.json
-docs/review/source-span-quality-audit.md
-artifacts/source-span-quality-audit-result.json
 docs/review/review-memory-dedup.md
-docs/review/review-procedure.md
-docs/review/review-hub-ia-mode-split.md
-docs/review/source-span-routing-review-pack.md
 docs/review/model-api-boundary-spec.md
 docs/idea-ledger.md
 docs/decision-log.md
@@ -64,74 +68,63 @@ or:
 ```powershell
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
-python -m mkdocs build --strict
+uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"
 git diff --check
 ```
 
-If `python -m mkdocs build --strict` is unavailable, use a real Python/MkDocs Material runtime instead of the default WindowsApps Python stub.
+Use the `uvx` form if the default Windows Python launcher is unavailable or points at the WindowsApps stub.
 
 ## Current Project State
 
-- Active artifact: `fff-broad-span-split-001`
+- Active artifact: `fff-contradictory-claim-guard-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
-- Broad source-span split doc: `docs/review/broad-span-split.md`
-- Broad source-span split result: `artifacts/broad-span-split-result.json`
-- Routing policy regression doc: `docs/review/routing-policy-regression-hardening.md`
-- Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
-- Ambiguous routing resolution doc: `docs/review/ambiguous-routing-resolution.md`
-- Ambiguous routing resolution result: `artifacts/ambiguous-routing-resolution-result.json`
-- Source-span quality audit doc: `docs/review/source-span-quality-audit.md`
-- Source-span quality audit result: `artifacts/source-span-quality-audit-result.json`
-- Review memory / dedup doc: `docs/review/review-memory-dedup.md`
-- Review procedure: `docs/review/review-procedure.md`
+- Current status: `docs/review/current-status.md`
+- Contradictory claim guard doc/result/fixture: `docs/review/contradictory-claim-guard.md`, `artifacts/contradictory-claim-guard-result.json`, `artifacts/extraction-negative-fixtures/contradictory-claim-hold.json`
+- Downstream source-span adoption gate doc/result: `docs/review/downstream-source-span-adoption-gate.md`, `artifacts/downstream-source-span-adoption-gate-result.json`
+- Malformed/missing source-span guard doc/result/fixture: `docs/review/malformed-missing-span-guard.md`, `artifacts/malformed-missing-span-guard-result.json`, `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
+- Validator fixtures and smoke: `artifacts/extraction-negative-fixtures/`, `artifacts/extraction-validator-smoke-result.json`
 - Source-span review pack: `artifacts/source-span-routing-review-pack.json`
-- Source-span pack generator: `tools/fff-source-span-review-pack.mjs`
-- Local extraction adapter: `tools/fff-extract-local.mjs`
-- Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
-- Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
+- Local extraction adapter and outputs: `tools/fff-extract-local.mjs`, `artifacts/extraction-adapter-fixtures/`, `artifacts/extraction-adapter-outputs/`
+- State adapter: `tools/fff-state.mjs`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact resolves the two broad rows found by `fff-source-span-quality-audit-001` without changing adapter output. `local-x-visual-observatory` is split into narrower visual/profile and timeline evidence snippets, while `minutes-x-placeholder-proof-bait` is kept as one held placeholder because splitting its alternatives would imply canon choices. It keeps Review Hub as the single entry point and preserves routing policy regression, Review Memory, the source-span review pack, model/API boundary, adapter artifacts, Claim Ledger, Timeline View, Profile/Ghost Flow, local persistence, JSON import/export, freeform review intake, and human-owned canon boundaries.
+The current artifact adds a deterministic guard for contradictory claim candidates. It keeps two conflicting, source-backed claims in held review, preserves their reciprocal contradiction links and source refs, and proves there are 0 adopted/provisional conflicting claims and 0 direct accepted claim-routed elements. It does not decide which claim is true.
 
 ## What Finished
 
-- `fff-source-span-quality-audit-001` classified all 36 source-span review-pack rows.
-- The quality audit recorded 28 useful spans, 6 weak spans, 2 overly broad spans, 0 missing source refs, 7 ambiguous routing rows, 3 guarded visual/source-sensitive rows, and 17 human-owned boundary rows.
-- `fff-ambiguous-routing-resolution-001` resolved all 7 ambiguous rows.
-- Resolution counts: 3 Profile-primary rows, 1 Visual-primary row, 3 Human Review holds, 5 Claim secondary-evidence rows, and 6 Timeline secondary-evidence rows.
-- `local-x-visual-observatory` no longer routes directly to Claim Ledger and keeps `targetClaimIds: []`.
-- All visual asset rows now avoid direct Claim targets in deterministic adapter outputs.
-- `fff-routing-policy-regression-hardening-001` adds `node tools/fff-state.mjs smoke-routing-policy ...`.
-- The routing regression result checks 7 resolved rows, 36 source-pack rows, 4 adapter payloads, 48 adapter elements, 1 visual resolution row, 3 unresolved-decision rows, 3 source-reference pack rows, and 4 source-reference adapter rows with 0 failures.
-- `fff-broad-span-split-001` adds `node tools/fff-state.mjs smoke-broad-span-split ...`.
-- The broad-span split result checks 2 broad rows, splits `local-x-visual-observatory` into `its bell was removed` and `still rings at noon`, keeps `minutes-x-placeholder-proof-bait` with an explicit human-owned reason, preserves 2 source refs, and reports 0 failures.
-- Review Dedup Gate was checked with axis `broad_span_split`, prior review count `0`, no Review Card emitted, and no repeated general Review Hub review request.
-- No model/API behavior, credentials, database persistence, publishing adapter, production sync, AI video generation, or final canon decision was added.
+- `fff-contradictory-claim-guard-001` adds `node tools/fff-state.mjs smoke-contradictory-claim-guard ...`.
+- The extraction fixture matrix now has 9 fixtures: 3 expected valid and 6 expected invalid.
+- `contradictory-claim-hold.json` is expected valid and carries 2 held claim candidates with reciprocal `contradictsClaimIds`.
+- `artifacts/contradictory-claim-guard-result.json` reports 2 conflicting claims checked, 1 reciprocal conflict pair, 2 held conflicting claims, 0 adopted/provisional conflicting claims, 0 direct accepted claim elements, 2 source-ref-preserved conflicting claims, and 0 failures.
+- `fff-downstream-source-span-adoption-gate-001` is preserved as the auxiliary downstream-readiness gate: 44 downstream candidates remain source-tracked, 22 human-owned candidates remain held, and 0 Profile / Claim / Timeline candidates are adopted.
+- `fff-malformed-missing-span-guard-001` remains closed after the fixture count expanded to 9; malformed/missing span cases still produce 0 accepted routed candidates.
+- No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, downstream adoption behavior, or final canon decision was added.
 
 ## Validation Readback
 
-The active manifest validation command passed for the latest slice. It parsed the broad-span split, regression, and resolution JSON, regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, validated adapter outputs, validated current/sample state, validated the sample extraction payload, ran extraction fixture validation, checked Review Hub text, confirmed `externalCallAllowed: false`, confirmed the local visual row no longer appears as Claim-routed in the source-span pack, ran the broad-span split smoke command, and ran the reusable routing policy regression smoke command.
+The active manifest validation command passed for `fff-contradictory-claim-guard-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, malformed/missing-span, contradictory-claim, and downstream gate smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact.
 
-Additional checks already passed during the latest slice:
+Additional checks passed during this handoff refresh:
 
-- `uvx --with mkdocs-material mkdocs build --strict`
+- `node --check tools/fff-state.mjs`
+- HTML inline script syntax check for `public/review/index.html`
+- `uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"`
 - `git diff --check`
-- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` before the handoff refresh began.
-- `node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json`
-- Final post-push readback on 2026-06-23T10:00:19+09:00: `git status --short --branch` reported clean `master...origin/master`; `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0`. The active artifact implementation commit was `e3a1dd0 Resolve broad source spans`; the latest handoff refresh commit may be newer.
+- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` before staging.
 
 ## Preserved Boundaries
 
-Do not add model/API extraction behavior, provider credentials, database persistence, publishing, production sync, upload credentials, AI video generation, or final canon decisions unless the user explicitly asks for that scope.
+Do not add model/API extraction behavior, provider credentials, database persistence, publishing, production sync, upload credentials, AI video generation, actual downstream adoption, or final canon decisions unless the user explicitly asks for that scope.
 
 These remain human-owned unresolved decisions:
 
 - Toma fate
 - brass moth truth
 - Council motive
+- which contradictory claim is true
 
-The local review state is not final canon. Claims, profiles, timeline entries, extraction elements, adapter confidence, validator results, and source-span pack summaries may guide review, but durable story authority remains with the human author.
+The local review state is not final canon. Claims, profiles, timeline entries, extraction elements, adapter confidence, validator results, source-span pack summaries, and contradictory-claim links may guide review, but durable story authority remains with the human author.
 
 ## Review Intake Contract
 
@@ -139,22 +132,22 @@ When review is needed, accept natural freeform review text instead of fixed phra
 
 Before emitting a Review Card, check the review memory. Do not ask the same target/evidence/axis again unless target, axis, evidence, decision value, or an explicit user request changed.
 
-No general Review Hub review is needed for the current state. Future review should be bounded to one concrete target such as a weak span or missing fixture class; do not reopen broad-span debt unless source output changes.
+No general Review Hub review is needed for the current state. Future review should be bounded to one concrete target such as a remaining fixture class, provider-envelope readiness, or a specific source-span quality repair.
 
 ## Next Useful Entrances
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
-| Advance: one missing fixture class | Covers a memo shape not represented by the current three fixtures | Future adapter/model work gets clearer regression coverage |
-| Verify: route-policy regression smoke | Re-runs the named routing policy validator after adapter changes | Future deterministic or model-backed outputs can be rejected earlier |
-| Audit: weak source spans | Improves the remaining source-span quality debt without reopening all routing or broad-span decisions | A future review can focus on one concrete weak-span fix |
-| Explore: model/API adapter boundary | Uses the existing no-call boundary and validation contract | Provider-backed extraction can start later only after explicit authorization |
+| Advance: provider-envelope readiness | Uses the no-call boundary without requesting credentials or making external calls | A later model/API adapter can start from explicit envelope and validation expectations |
+| Verify: contradictory claim guard | Re-runs the held-conflict fixture and result after adapter edits | Future Claim Ledger acceptance paths can fail before they auto-promote conflicts |
+| Audit: remaining fixture class | Adds one missing memo shape without reopening all review debt | Adapter/model regression coverage becomes less brittle |
+| Excise: weak source-span debt | Improves a concrete source-span class while preserving the broad-span and malformed-span guards | Review can focus on source usefulness instead of source validity |
 
 ## Residual Work
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
-| Source-span quality | Make source evidence useful, not only valid | 7 ambiguous routes resolved; 2 broad spans resolved by split/keep readback; weak span debt remains | Pick one weak span and adjust only that row/class |
-| Fixture coverage | Cover unrepresented memo shapes | Current three fixtures cover object, visual, unresolved-decision routing | Add one missing fixture class at a time |
-| Validator hardening | Prevent future route drift | Named routing policy regression smoke now checks current route policy | Add one missing fixture class only if drift returns |
+| Contradictory claim handling | Prevent conflicting claims from entering canon automatically | Guarded by a valid fixture and smoke result; truth choice remains human-owned | Keep the guard required for any future Claim Ledger acceptance path |
+| Downstream adoption readiness | Ensure Profile / Claim / Timeline candidates stay source-tracked and held | Readback gate passes with 0 adopted candidates | Keep blocked until explicit adoption behavior is requested |
+| Fixture coverage | Cover unrepresented memo shapes | 9 validator fixtures and 4 adapter fixture outputs now pass | Add one missing fixture class at a time |
 | Model/API adapter | Replace deterministic extraction with provider-backed extraction | Explicitly not started | Keep blocked until user authorizes provider/credential/API scope |

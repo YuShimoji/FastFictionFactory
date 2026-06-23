@@ -75,3 +75,13 @@
 - Decision: Resolve the two broad source-span rows as readback debt before moving to weak spans or fixtures.
   - Reason: `fff-source-span-quality-audit-001` found two valid but broad spans, and the next non-redundant source-span quality move was to split, shrink, or explicitly justify them without reopening general review.
   - Effect: `fff-broad-span-split-001` records one narrower split for `local-x-visual-observatory`, one explicit keep reason for `minutes-x-placeholder-proof-bait`, `artifacts/broad-span-split-result.json`, and `node tools/fff-state.mjs smoke-broad-span-split ...` while preserving routing regression, source locators, model/API boundaries, and human-owned canon decisions.
+
+## 2026-06-23
+
+- Decision: Add a downstream source-span adoption readiness gate after malformed/missing span validation.
+  - Reason: The malformed/missing guard proved invalid source evidence is rejected, but future Profile / Claim / Timeline adoption paths also need a deterministic check that only source-tracked, valid-span, safe-routed, review-held elements can be considered.
+  - Effect: `fff-downstream-source-span-adoption-gate-001` adds `node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate ...`, records `artifacts/downstream-source-span-adoption-gate-result.json`, exposes the gate in Review Hub/docs/manifest, preserves 0 adopted downstream candidates, and keeps model/API, database, publishing, production sync, AI video, and final canon decisions out of scope.
+
+- Decision: Add a contradictory claim guard before any direct Claim Ledger acceptance path.
+  - Reason: Future extraction can surface two source-backed claims that conflict, but local automation must preserve both as review-held evidence instead of choosing which statement is true or promoting either to canon.
+  - Effect: `fff-contradictory-claim-guard-001` adds `artifacts/extraction-negative-fixtures/contradictory-claim-hold.json`, `node tools/fff-state.mjs smoke-contradictory-claim-guard ...`, `artifacts/contradictory-claim-guard-result.json`, and Review Hub/status/manifest readback showing 2 conflicting claims held, 1 reciprocal conflict pair preserved, 0 adopted/provisional conflicting claims, and 0 direct accepted claim-routed elements.

@@ -417,6 +417,108 @@ type SourceSpanQualityRow = {
 
 This audit can identify a bounded next fix. It cannot ask for repeated general review, authorize model/API work, or convert review-held candidates into canon.
 
+## Downstream Source-Span Adoption Gate
+
+`fff-downstream-source-span-adoption-gate-001` is a readiness/readback artifact. It is not project state, not an Extraction Contract payload, and not actual downstream adoption behavior. It checks whether future Profile / Claim / Timeline adoption paths remain blocked unless source refs, source spans, routing safety, and human-owned holds are intact.
+
+The gate result lives at `artifacts/downstream-source-span-adoption-gate-result.json`.
+
+```ts
+type DownstreamSourceSpanAdoptionGate = {
+  schemaVersion: "fff.downstreamSourceSpanAdoptionGate.v1";
+  artifact_id: "fff-downstream-source-span-adoption-gate-001";
+  title: string;
+  generatedAt: string;
+  review_status: "ready_for_local_readback";
+  review_input_mode: "freeform";
+  source_artifact_id: "fff-source-span-routing-review-pack-001";
+  source_pack_path: "artifacts/source-span-routing-review-pack.json";
+  malformed_missing_span_guard_path: "artifacts/malformed-missing-span-guard-result.json";
+  routing_policy_regression_path: "artifacts/routing-policy-regression-hardening-result.json";
+  validator_smoke_path: "artifacts/extraction-validator-smoke-result.json";
+  review_memory_checked: ReviewMemory & {
+    checked: true;
+    axis: "downstream_source_span_adoption_gate";
+  };
+  gate_policy: {
+    downstream_candidate_means: string;
+    required_preconditions: string[];
+    actual_downstream_adoption_implemented: false;
+    ready_for_final_canon_or_production: false;
+  };
+  summary: {
+    source_pack_rows_checked: number;
+    downstream_candidates_reported_for_review: number;
+    source_tracked_downstream_candidates: number;
+    malformed_or_missing_span_candidates: number;
+    unsafe_routing_candidates: number;
+    human_owned_candidates_held: number;
+    human_owned_candidates_non_held: number;
+    malformed_guard_accepted_routed_candidates: number;
+    adopted_profile_claim_timeline_candidates: number;
+    adapter_payloads_checked: number;
+    adapter_elements_checked: number;
+    review_card_emitted: false;
+    repeated_general_review_request_emitted: false;
+    operator_observation_card_emitted: false;
+    failures: number;
+  };
+  downstream_gate_checks: Record<string, { passed: boolean; detail: string }>;
+  blocked_examples: Record<string, string[]>;
+  failures: string[];
+  passed: true;
+};
+```
+
+This gate may report elements as eligible for downstream review/readback. It cannot mark them adopted, mutate Claim/Profile/Timeline state, approve model/API behavior, or finalize Toma fate, brass moth truth, Council motive, or any other human-owned story truth.
+
+## Contradictory Claim Guard
+
+`fff-contradictory-claim-guard-001` is a review-safety artifact for claim extraction. It is not project state and does not decide which claim is true. It proves that source-backed contradictory claims remain linked, source-referenced, and held for human review before any future direct Claim Ledger acceptance path exists.
+
+The guard result lives at `artifacts/contradictory-claim-guard-result.json`.
+
+```ts
+type ContradictoryClaimGuard = {
+  schemaVersion: "fff.contradictoryClaimGuard.v1";
+  artifact_id: "fff-contradictory-claim-guard-001";
+  title: string;
+  generatedAt: string;
+  review_status: "ready_for_local_readback";
+  review_input_mode: "freeform";
+  validator_smoke_path: "artifacts/extraction-validator-smoke-result.json";
+  fixture_path: "artifacts/extraction-negative-fixtures/contradictory-claim-hold.json";
+  review_memory_checked: ReviewMemory & {
+    checked: true;
+    axis: "contradictory_claim_guard";
+  };
+  guard_behavior: {
+    conflict_detected: true;
+    hold_for_human_review: true;
+    keep_out_of_auto_canon: true;
+    keep_out_of_direct_claim_acceptance: true;
+    preserve_source_refs: true;
+  };
+  summary: {
+    validator_fixture_count: number;
+    expected_valid_fixture_count: number;
+    expected_invalid_fixture_count: number;
+    conflicting_claims_checked: number;
+    reciprocal_conflict_pairs: number;
+    held_conflicting_claims: number;
+    adopted_or_provisional_conflicting_claims: number;
+    direct_accepted_claim_elements: number;
+    source_ref_preserved_conflicting_claims: number;
+    failures: number;
+  };
+  contradictory_claim_checks: Record<string, { passed: boolean; detail: string }>;
+  failures: string[];
+  passed: true;
+};
+```
+
+This guard may name contradictory claim candidates. It cannot choose which claim is true, mutate Claim Ledger state, mark either claim adopted or provisional, approve model/API behavior, or finalize human-owned story truth.
+
 ## Model/API Boundary Envelope
 
 `fff-model-api-boundary-spec-001` defines a spec-only wrapper for future provider-facing extraction work. The envelope is not an Extraction Contract payload and is not project state. It is a local review artifact that describes allowed inputs, provider-call status, output contract, validation gates, failure modes, retry/timeout policy, review-safe fallback, and forbidden actions.

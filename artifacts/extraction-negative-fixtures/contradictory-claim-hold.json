@@ -1,0 +1,162 @@
+{
+  "extractionRunId": "fixture-contradictory-claim-hold",
+  "schemaVersion": "fff.extractionContract.v1",
+  "sourceDraftId": "draft-fixture-contradictory-claim-001",
+  "sourceMemoRef": "rawMemo",
+  "sourceRefs": [
+    {
+      "id": "src-contradictory-claim-memo",
+      "label": "Contradictory claim fixture memo",
+      "source_type": "memo",
+      "locator": "fixture memo: contradictory council ledger note",
+      "trust": "author_memo"
+    }
+  ],
+  "generatedAt": "2026-06-23T00:00:00+09:00",
+  "generatorType": "local_contract_fixture",
+  "generatorLabel": "Contradictory claim guard fixture; no model/API call",
+  "extractionMode": "contract_only_no_model_api",
+  "confidencePolicy": {
+    "defaultConfidence": 0.75,
+    "lowConfidenceAction": "hold",
+    "highCanonRiskAction": "hold_until_human_review",
+    "freeformReviewAuthority": "human review text overrides generated suggestions"
+  },
+  "extractedElements": [
+    {
+      "id": "fixture-claim-council-sells-minutes",
+      "displayText": "Council ledger says the council sells borrowed minutes",
+      "elementType": "concept",
+      "aliases": ["council sells minutes", "borrowed minutes ledger proof"],
+      "sourceSpan": {
+        "text": "Council ledger says the council sells borrowed minutes",
+        "start": 0,
+        "end": 52
+      },
+      "sourceRefIds": ["src-contradictory-claim-memo"],
+      "confidence": 0.84,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": ["Council motive"],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "targetDestinations": ["claim", "unresolved_decision"],
+      "targetProfileIds": [],
+      "targetClaimIds": ["claim-council-sells-minutes"],
+      "targetTimelineEntryIds": [],
+      "notes": "One side of a contradictory claim pair; must remain held and source-traced without deciding truth."
+    },
+    {
+      "id": "fixture-claim-ledger-false-record",
+      "displayText": "Ledger may be a planted false record",
+      "elementType": "placeholder",
+      "aliases": ["false ledger", "planted record"],
+      "sourceSpan": {
+        "text": "same note warns the ledger may be a planted false record",
+        "start": 58,
+        "end": 116
+      },
+      "sourceRefIds": ["src-contradictory-claim-memo"],
+      "confidence": 0.82,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": ["Council motive"],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "targetDestinations": ["claim", "unresolved_decision"],
+      "targetProfileIds": [],
+      "targetClaimIds": ["claim-ledger-false-record"],
+      "targetTimelineEntryIds": [],
+      "notes": "The opposing side of the contradictory claim pair; must not be treated as proof or canon."
+    }
+  ],
+  "profileCandidates": [],
+  "claimCandidates": [
+    {
+      "id": "claim-council-sells-minutes",
+      "work_id": "work-clockmaker-under-glass",
+      "claimText": "The council ledger proves the council sells borrowed minutes from abandoned lives.",
+      "claimScope": "unresolved candidate",
+      "worldTruthStatus": "uncertain",
+      "realityStatus": "pure fiction",
+      "sourceRefs": [
+        {
+          "id": "src-contradictory-claim-memo",
+          "label": "Contradictory claim fixture memo",
+          "source_type": "memo",
+          "locator": "fixture memo: contradictory council ledger note",
+          "trust": "author_memo"
+        }
+      ],
+      "subjectRefs": ["fixture-claim-council-sells-minutes"],
+      "speakerOrNarratorRef": "contradictory claim fixture memo",
+      "viewerDisclosureStatus": "hidden from viewer",
+      "spoilerLevel": "high",
+      "canonRisk": "high",
+      "unresolvedDependencies": ["Council motive"],
+      "supportsClaimIds": [],
+      "contradictsClaimIds": ["claim-ledger-false-record"],
+      "reviewStatus": "hold",
+      "notes": "Conflict is explicit, source-backed, and held; this fixture does not decide whether the ledger is proof."
+    },
+    {
+      "id": "claim-ledger-false-record",
+      "work_id": "work-clockmaker-under-glass",
+      "claimText": "The same ledger may be a planted false record rather than proof of council guilt.",
+      "claimScope": "unresolved candidate",
+      "worldTruthStatus": "uncertain",
+      "realityStatus": "pure fiction",
+      "sourceRefs": [
+        {
+          "id": "src-contradictory-claim-memo",
+          "label": "Contradictory claim fixture memo",
+          "source_type": "memo",
+          "locator": "fixture memo: contradictory council ledger note",
+          "trust": "author_memo"
+        }
+      ],
+      "subjectRefs": ["fixture-claim-ledger-false-record"],
+      "speakerOrNarratorRef": "contradictory claim fixture memo",
+      "viewerDisclosureStatus": "hidden from viewer",
+      "spoilerLevel": "high",
+      "canonRisk": "high",
+      "unresolvedDependencies": ["Council motive"],
+      "supportsClaimIds": [],
+      "contradictsClaimIds": ["claim-council-sells-minutes"],
+      "reviewStatus": "hold",
+      "notes": "Conflict is explicit, source-backed, and held; this fixture does not decide whether the ledger is false."
+    }
+  ],
+  "timelineEntryCandidates": [],
+  "unresolvedDependencies": ["Toma fate", "brass moth truth", "Council motive"],
+  "reviewSafeDefaults": {
+    "defaultReviewStatus": "hold",
+    "allowAdopt": true,
+    "allowProvisional": true,
+    "allowReject": true,
+    "autoCanonPromotion": false,
+    "autoChronologyPromotion": false,
+    "unknownSourceHandling": "preserve_unknown_fields_and_hold_candidate"
+  },
+  "decisionLogSafeMetadata": {
+    "owner": "human_author",
+    "statusVocabulary": ["adopt", "provisional", "hold", "reject"],
+    "fixedPhraseRequired": false,
+    "freeformReviewAllowed": true,
+    "reversibleActionsOnly": true
+  },
+  "warnings": [
+    "This fixture is not a model/API extraction engine.",
+    "Contradictory claims must remain held for human review.",
+    "This fixture does not decide whether the ledger is proof, bait, or a false record."
+  ],
+  "unknownFieldsPolicy": "Preserve unknown imported top-level fields and hold unrecognized candidates for review.",
+  "humanAuthorityBoundaries": [
+    "Freeform user review is the source of truth.",
+    "Toma fate remains human-owned.",
+    "Brass moth truth remains human-owned.",
+    "Council motive remains human-owned.",
+    "Contradictory claim truth remains human-owned."
+  ],
+  "notes": "Expected valid: contradictory claim candidates are detected by reciprocal contradictsClaimIds, preserved with source refs, and kept held without auto-canon or direct adoption."
+}

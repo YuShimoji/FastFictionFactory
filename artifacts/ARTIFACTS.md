@@ -160,7 +160,7 @@
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
 - Validation command: `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json`
-- Validation result: expected-valid fixtures passed, expected-invalid fixtures failed for intended reasons, including the malformed/missing source-span guard fixture; built-in guard checks passed for missing identity fields, invalid element type, missing human authority boundaries, and missing high-risk warnings; unknown-field preservation warnings were reported. Current validator matrix contains 8 fixtures: 2 expected valid and 6 expected invalid.
+- Validation result: expected-valid fixtures passed, expected-invalid fixtures failed for intended reasons, including the malformed/missing source-span guard fixture and the contradictory-claim hold fixture; built-in guard checks passed for missing identity fields, invalid element type, missing human authority boundaries, and missing high-risk warnings; unknown-field preservation warnings were reported. Current validator matrix contains 9 fixtures: 3 expected valid and 6 expected invalid.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - Next action: Preserve this validator matrix as the gate for adapter expansion and any future model/API adapter.
@@ -548,7 +548,58 @@
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
 - Validation command: `node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json`
-- Validation result: passed 2026-06-23; malformed/missing source-span guard read 8 validator fixtures, 6 expected-invalid fixtures, 3 invalid guard elements, 5 source-span validation errors, 1 missing source-ref error, 0 accepted routed candidates, 0 non-held defaults, 48 preserved source-pack rows, 5 preserved adapter payloads, 60 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Validation result: passed 2026-06-23; malformed/missing source-span guard read 9 validator fixtures, 6 expected-invalid fixtures, 3 invalid guard elements, 5 source-span validation errors, 1 missing source-ref error, 0 accepted routed candidates, 0 non-held defaults, 48 preserved source-pack rows, 5 preserved adapter payloads, 60 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Choose a different remaining fixture class only after a concrete coverage need is named; do not reopen malformed/missing spans, sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.
+
+## fff-contradictory-claim-guard-001
+
+- Title: Fast Fiction Factory Contradictory Claim Guard
+- Purpose: Add exactly one local guard fixture for contradictory memo claims so reciprocal contradictory claim candidates are detected, source-backed, held for human review, and kept out of auto-canon or direct Claim Ledger acceptance.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/contradictory-claim-guard.md`
+- Guard result: `artifacts/contradictory-claim-guard-result.json`
+- Guard fixture: `artifacts/extraction-negative-fixtures/contradictory-claim-hold.json`
+- Validator smoke: `artifacts/extraction-validator-smoke-result.json`
+- Updated state validator: `tools/fff-state.mjs`
+- Preserved malformed/missing source-span guard result: `artifacts/malformed-missing-span-guard-result.json`
+- Preserved missing fixture probe result: `artifacts/missing-fixture-class-probe-result.json`
+- Preserved source-span review pack: `artifacts/source-span-routing-review-pack.json`
+- Preserved routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
+- Preserved weak-span repair result: `artifacts/weak-span-repair-result.json`
+- Preserved broad-span split result: `artifacts/broad-span-split-result.json`
+- Manifest: `artifacts/artifact-manifest.json`
+- Current status: `docs/review/current-status.md`
+- Validation command: `node tools/fff-state.mjs smoke-contradictory-claim-guard artifacts/extraction-validator-smoke-result.json artifacts/contradictory-claim-guard-result.json`
+- Validation result: passed 2026-06-23; contradictory claim guard read 9 validator fixtures, 3 expected-valid fixtures, 6 expected-invalid fixtures, 2 linked conflicting claims, 1 reciprocal conflict pair, 2 held conflicting claims, 0 adopted/provisional conflicting claims, 0 direct accepted claim elements, 2 source-ref-preserved conflicting claims, 48 preserved source-pack rows, 5 preserved adapter payloads, 60 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- Next action: Choose very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness only after a concrete coverage need is named; do not reopen contradictory claims, malformed/missing spans, sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.
+
+## fff-downstream-source-span-adoption-gate-001
+
+- Title: Fast Fiction Factory Downstream Source-Span Adoption Gate
+- Purpose: Add a deterministic readiness gate after malformed/missing span validation so only source-tracked, valid-span, safe-routed, review-held elements can be considered for future Profile, Claim, or Timeline adoption paths.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/downstream-source-span-adoption-gate.md`
+- Gate result: `artifacts/downstream-source-span-adoption-gate-result.json`
+- State validator: `tools/fff-state.mjs`
+- Source-span review pack: `artifacts/source-span-routing-review-pack.json`
+- Malformed/missing span guard: `artifacts/malformed-missing-span-guard-result.json`
+- Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
+- Validator smoke: `artifacts/extraction-validator-smoke-result.json`
+- Manifest: `artifacts/artifact-manifest.json`
+- Current status: `docs/review/current-status.md`
+- Validation command: `node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate artifacts/source-span-routing-review-pack.json artifacts/downstream-source-span-adoption-gate-result.json`
+- Validation result: passed 2026-06-23; downstream gate read 48 source-pack rows, reported 44 downstream Profile / Claim / Timeline review candidates, confirmed 44 source-tracked candidates, 0 malformed or missing-span candidates, 0 unsafe routing candidates, 22 held human-owned candidates, 0 non-held human-owned candidates, 0 accepted routed malformed-span candidates, 0 adopted downstream candidates, 5 adapter payloads, 60 adapter elements, and 0 failures.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active artifact.
+- Next action: Keep this gate passing before any future adoption path or provider-backed adapter; move next only to provider-envelope readiness or one concrete remaining fixture class after explicit need.

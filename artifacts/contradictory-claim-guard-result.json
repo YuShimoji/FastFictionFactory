@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "fff.contradictoryClaimGuard.v1",
+  "artifact_id": "fff-contradictory-claim-guard-001",
+  "title": "Fast Fiction Factory Contradictory Claim Guard",
+  "generatedAt": "2026-06-23T07:06:04.819Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "selected_guard_class": "contradictory_claim_hold",
+  "selected_guard_label": "contradictory memo claims",
+  "selected_fixture_path": "artifacts/extraction-negative-fixtures/contradictory-claim-hold.json",
+  "validator_smoke_path": "artifacts/extraction-validator-smoke-result.json",
+  "source_pack_path": "artifacts/source-span-routing-review-pack.json",
+  "preserved_malformed_missing_span_guard_path": "artifacts/malformed-missing-span-guard-result.json",
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-malformed-missing-span-guard-001",
+    "prior_review_count": 0,
+    "prior_signal_summary": "No user review was requested or recorded for the sparse fixture probe slice; malformed or missing source-span payloads remained a named fixture class.",
+    "axis": "contradictory_claim_guard",
+    "what_changed": "A single Extraction Contract fixture now carries two source-backed, reciprocally linked contradictory claim candidates and proves they remain held instead of becoming canon or accepted Claim Ledger candidates.",
+    "what_this_review_decides": "No user review is needed; this readback decides whether explicit contradictory claims are detected, held, source-traced, and kept out of auto-canon/direct adoption.",
+    "not_asking": [
+      "general Review Hub review",
+      "fixed-form review",
+      "repeat malformed/missing span review",
+      "repeat sparse fixture review",
+      "repeat weak-span review",
+      "repeat broad-span review",
+      "repeat ambiguous-routing review",
+      "model/API approval",
+      "provider credentials",
+      "database or publishing contract changes",
+      "production sync",
+      "AI video generation",
+      "final canon decisions for Toma fate, brass moth truth, Council motive, or which contradictory claim is true"
+    ],
+    "next_nonredundant_axis": "very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness only after a concrete coverage need is named"
+  },
+  "guard_behavior": {
+    "conflict_detected": true,
+    "hold_for_human_review": true,
+    "keep_out_of_auto_canon": true,
+    "keep_out_of_direct_claim_acceptance": true,
+    "preserve_source_refs": true
+  },
+  "coverage_decision": {
+    "known_missing_classes_before_guard": [
+      "contradictory memo claims",
+      "very broad source span fixture shape",
+      "multilingual or translated memo text",
+      "model/API provider envelope output"
+    ],
+    "selected_class_reason": "Contradictory memo claims remained a named fixture class after sparse notes and malformed/missing source spans; a local hold-only fixture can cover the axis without deciding truth.",
+    "covered_by_this_guard": [
+      "contradictory memo claims"
+    ],
+    "remaining_fixture_class_candidates": [
+      "very broad source span fixture shape",
+      "multilingual or translated memo text",
+      "model/API provider envelope output"
+    ],
+    "source_pack_legacy_gap_list_still_present": [
+      "contradictory memo claims",
+      "very broad source spans",
+      "missing or malformed source span payloads",
+      "multilingual or translated memo text",
+      "model/API provider envelope output"
+    ]
+  },
+  "summary": {
+    "validator_fixture_count": 9,
+    "expected_valid_fixture_count": 3,
+    "expected_invalid_fixture_count": 6,
+    "selected_fixture_elements_checked": 2,
+    "conflicting_claims_checked": 2,
+    "reciprocal_conflict_pairs": 1,
+    "held_conflicting_claims": 2,
+    "adopted_or_provisional_conflicting_claims": 0,
+    "direct_accepted_claim_elements": 0,
+    "source_ref_preserved_conflicting_claims": 2,
+    "source_pack_rows_preserved": 48,
+    "adapter_payloads_preserved": 5,
+    "adapter_elements_preserved": 60,
+    "malformed_guard_accepted_routed_candidates": 0,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "fixture_guard_checks": {
+    "prior_guard_sequence_preserved": {
+      "passed": true,
+      "detail": "malformed guard, sparse fixture probe, weak-span repair, broad-span split, and routing regression must remain closed"
+    },
+    "concrete_conflict_gap_named": {
+      "passed": true,
+      "detail": "contradictory memo claims must be named by existing fixture debt"
+    },
+    "bounded_contradictory_fixture_added": {
+      "passed": true,
+      "detail": "validator fixtures=9; contradictory fixture actual=valid"
+    },
+    "conflict_detected": {
+      "passed": true,
+      "detail": "conflicting claims=claim-council-sells-minutes, claim-ledger-false-record; reciprocal pairs=1"
+    },
+    "hold_for_human_review": {
+      "passed": true,
+      "detail": "non-held conflict claims=none; non-held claim elements=none"
+    },
+    "keep_out_of_auto_canon": {
+      "passed": true,
+      "detail": "adopted/provisional conflicts=none; non-uncertain conflicts=none"
+    },
+    "keep_out_of_direct_claim_acceptance": {
+      "passed": true,
+      "detail": "direct accepted claim elements=none"
+    },
+    "preserve_source_refs": {
+      "passed": true,
+      "detail": "claims missing source refs=none"
+    },
+    "existing_source_span_and_routing_counts_preserved": {
+      "passed": true,
+      "detail": "source-pack rows=48; adapter elements=60; malformed accepted=0"
+    },
+    "no_review_card_or_model_api": {
+      "passed": true,
+      "detail": "Review stays freeform/local and model/API boundary remains no-call"
+    }
+  },
+  "blocked_examples": {
+    "non_held_conflict_claims": [],
+    "adopted_or_provisional_conflict_claims": [],
+    "direct_accepted_claim_elements": [],
+    "conflict_claims_missing_source_refs": []
+  },
+  "failures": [],
+  "passed": true
+}
