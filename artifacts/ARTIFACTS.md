@@ -471,7 +471,7 @@
 - Routing policy regression artifact: `fff-routing-policy-regression-hardening-001`
 - Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
 - Validation command: `node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json`
-- Validation result: passed; broad-span split parsed `fff-source-span-quality-audit-001`, loaded 2 broad rows, split `local-x-visual-observatory` into narrower visual/profile and timeline snippets, kept `minutes-x-placeholder-proof-bait` with an explicit human-owned reason, preserved both source locators, preserved routing regression, and reported 0 failures.
+- Validation result: passed 2026-06-23T11:05:58+09:00; manifest validation command passed after remote fast-forward; broad-span split parsed `fff-source-span-quality-audit-001`, loaded 2 broad rows, split `local-x-visual-observatory` into narrower visual/profile and timeline snippets, kept `minutes-x-placeholder-proof-bait` with an explicit human-owned reason, preserved both source locators, preserved routing regression and model/API boundary evidence, adapter/source-span smoke remained passing, MkDocs strict build passed, and `git diff --check` passed.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Pick one weak span repair or one missing fixture class only after explicit need; do not reopen broad-span debt unless source output changes.
