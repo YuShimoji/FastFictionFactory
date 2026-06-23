@@ -1,0 +1,99 @@
+{
+  "schemaVersion": "fff.downstreamAdoptionGateScopeLock.v1",
+  "artifact_id": "fff-downstream-adoption-gate-scope-lock-001",
+  "title": "Fast Fiction Factory Downstream Adoption Gate Scope Lock",
+  "generatedAt": "2026-06-23T18:00:28+09:00",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "source_artifact_id": "fff-downstream-source-span-adoption-gate-001",
+  "source_gate_doc_path": "docs/review/downstream-source-span-adoption-gate.md",
+  "source_gate_result_path": "artifacts/downstream-source-span-adoption-gate-result.json",
+  "scope_lock_doc_path": "docs/review/downstream-adoption-gate-scope-lock.md",
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-downstream-source-span-adoption-gate-001",
+    "prior_review_count": 0,
+    "prior_signal_summary": "The downstream source-span adoption gate exists as an auxiliary readback and already reports 0 adopted downstream candidates.",
+    "axis": "downstream_adoption_gate_scope_lock",
+    "what_changed": "A separate scope-lock readback now records that the downstream gate is validation-only and cannot be treated as downstream adoption implementation.",
+    "what_this_review_decides": "No user review is needed; this readback decides whether the gate boundary is explicit enough to prevent scope creep.",
+    "not_asking": [
+      "general Review Hub review",
+      "fixed-form review",
+      "provider-envelope move",
+      "model/API approval",
+      "provider credentials",
+      "database persistence",
+      "publishing or production sync",
+      "AI video generation",
+      "downstream adoption implementation",
+      "canon promotion",
+      "contradictory claim truth decision"
+    ],
+    "next_nonredundant_axis": "translated memo text or very broad source-span shape if coverage remains the bottleneck; otherwise provider adapter implementation only after explicit authorization"
+  },
+  "scope_policy": {
+    "gate_is_readback_only": true,
+    "actual_downstream_adoption_implemented": false,
+    "project_state_mutation_allowed": false,
+    "profile_claim_timeline_adoption_allowed": false,
+    "canon_promotion_allowed": false,
+    "database_persistence_allowed": false,
+    "model_api_execution_allowed": false,
+    "provider_execution_allowed": false,
+    "publishing_or_production_sync_allowed": false,
+    "source_routing_hold_checks_are_pre_adoption_only": true
+  },
+  "summary": {
+    "downstream_gate_passed": true,
+    "downstream_candidates_reported_for_review": 55,
+    "source_tracked_downstream_candidates": 55,
+    "malformed_or_missing_span_candidates": 0,
+    "unsafe_routing_candidates": 0,
+    "human_owned_candidates_held": 28,
+    "human_owned_candidates_non_held": 0,
+    "adopted_profile_claim_timeline_candidates": 0,
+    "contradictory_guard_passed": true,
+    "conflicting_claims_checked": 2,
+    "held_conflicting_claims": 2,
+    "adopted_or_provisional_conflicting_claims": 0,
+    "malformed_guard_accepted_routed_candidates": 0,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "scope_lock_checks": {
+    "no_downstream_adoption_implementation": {
+      "passed": true
+    },
+    "no_profile_claim_timeline_state_mutation": {
+      "passed": true
+    },
+    "no_canon_promotion": {
+      "passed": true
+    },
+    "no_model_api_or_provider_execution": {
+      "passed": true
+    },
+    "contradictory_claims_remain_held": {
+      "passed": true
+    },
+    "pre_adoption_source_routing_hold_checks_preserved": {
+      "passed": true
+    },
+    "human_burden_hygiene_preserved": {
+      "passed": true
+    }
+  },
+  "blocked_examples": {
+    "adopted_profile_claim_timeline_candidates": [],
+    "state_mutation_examples": [],
+    "canon_promotion_examples": [],
+    "model_api_or_provider_execution_examples": [],
+    "non_held_contradictory_claims": [],
+    "non_held_human_owned_downstream_candidates": []
+  },
+  "failures": [],
+  "passed": true
+}

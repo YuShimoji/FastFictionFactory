@@ -10,9 +10,13 @@ This slice adds the next thin gate after `fff-malformed-missing-span-guard-001`.
 
 The machine-readable readback lives at `artifacts/downstream-source-span-adoption-gate-result.json`.
 
+Scope-lock readback for this boundary lives at `docs/review/downstream-adoption-gate-scope-lock.md` and `artifacts/downstream-adoption-gate-scope-lock-result.json`.
+
 ## Gate-Only Boundary
 
 `fff-downstream-source-span-adoption-gate-001` is a pre-adoption gate. It can report whether local review candidates have the source refs, valid source spans, safe routing, and held human-owned decisions a future adoption path would need. It cannot adopt those candidates, mutate Profile / Claim / Timeline state, promote canon, persist to a database, call or configure a provider, publish externally, or production-sync anything.
+
+The follow-up scope-lock artifact `fff-downstream-adoption-gate-scope-lock-001` records that distinction separately so future work does not treat this gate as downstream implementation.
 
 ## What This Gate Does
 
