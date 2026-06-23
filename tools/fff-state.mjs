@@ -7,10 +7,12 @@ const SCHEMA_VERSION = "fff.projectState.v1";
 const EXTRACTION_SCHEMA_VERSION = "fff.extractionContract.v1";
 const ROUTING_POLICY_REGRESSION_SCHEMA_VERSION = "fff.routingPolicyRegression.v1";
 const BROAD_SPAN_SPLIT_SCHEMA_VERSION = "fff.broadSpanSplit.v1";
+const WEAK_SPAN_REPAIR_SCHEMA_VERSION = "fff.weakSpanRepair.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
 const DEFAULT_BROAD_SPAN_SPLIT_OUTPUT = "artifacts/broad-span-split-result.json";
+const DEFAULT_WEAK_SPAN_REPAIR_OUTPUT = "artifacts/weak-span-repair-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -307,6 +309,25 @@ async function main() {
     }
     if (command === "smoke-broad-span-split" || outputPath) {
       console.log(`broad-span split passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-weak-span-repair" || command === "smoke-weak-span-repair") {
+    const audit = await readJson(inputPath);
+    const result = await validateWeakSpanRepair(audit, inputPath);
+    const target = outputPath || DEFAULT_WEAK_SPAN_REPAIR_OUTPUT;
+    if (command === "smoke-weak-span-repair" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Weak-span repair failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-weak-span-repair" || outputPath) {
+      console.log(`weak-span repair passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -940,6 +961,284 @@ function resolveBroadSpanRow(row) {
     ...base,
     action: "hold_for_human_review",
     reason: "Unexpected broad span id. Holding is safer than inventing a split rule."
+  };
+}
+
+async function validateWeakSpanRepair(audit, auditPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const routingRegression = await readJson(manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT);
+  const broadSpanSplit = await readJson(manifest.broad_span_split_result_path || DEFAULT_BROAD_SPAN_SPLIT_OUTPUT);
+  const boundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
+  const boundaryEnvelope = await readJson(manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json");
+  const weakRows = getWeakSpanRows(audit);
+  const decisions = weakRows.map(resolveWeakSpanRow);
+  const allowedActions = ["repair_with_more_precise_source_ref", "shrink_to_stronger_span", "keep_with_reason", "hold_for_human_review"];
+  const decisionIds = decisions.map((decision) => decision.id).sort();
+  const expectedIds = [
+    "edge-x-document-ledger-page",
+    "edge-x-object-brass-moth-key",
+    "edge-x-place-north-bell",
+    "local-x-document-ledger",
+    "local-x-place-north-bell",
+    "minutes-x-place-glass-arcade"
+  ];
+  const sourceQualityMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-source-span-quality-audit-001");
+  const broadMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-broad-span-split-001");
+  const routingMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-routing-policy-regression-hardening-001");
+  const sourceTextChecks = await Promise.all(decisions.map(checkDecisionSourceText));
+  const keyDecision = decisions.find((decision) => decision.id === "edge-x-object-brass-moth-key");
+
+  check(
+    "source_quality_audit_loaded",
+    audit?.artifact_id === "fff-source-span-quality-audit-001" && audit?.passed === true,
+    `loaded ${auditPath}`
+  );
+  check(
+    "weak_span_rows_loaded",
+    weakRows.length === 6 && expectedIds.every((id) => decisionIds.includes(id)),
+    `weak rows=${weakRows.length}; ids=${decisionIds.join(", ")}`
+  );
+  check(
+    "all_weak_spans_classified",
+    decisions.length === 6 && decisions.every((decision) => allowedActions.includes(decision.action)),
+    "each current weak span has a repair, shrink, keep, or hold decision"
+  );
+  check(
+    "repair_decisions_are_source_backed",
+    sourceTextChecks.every((result) => result.passed),
+    sourceTextChecks.map((result) => `${result.id}:${result.passed ? "source-backed" : result.detail}`).join("; ")
+  );
+  check(
+    "repaired_spans_strengthen_context",
+    decisions.filter((decision) => decision.action === "repair_with_more_precise_source_ref").length === 6 &&
+      decisions.every((decision) => decision.proposed_source_refs?.some((sourceRef) => sourceRef.source_text.length > String(decision.raw_source_snippet || "").length)),
+    "all 6 weak spans are repaired with longer source text from the same fixture"
+  );
+  check(
+    "source_refs_preserved",
+    decisions.every((decision) => typeof decision.source_span_locator === "string" && decision.source_span_locator.includes("#char=") && decision.source_ref_preserved === true),
+    "each decision preserves the original source span locator"
+  );
+  check(
+    "routing_policy_regression_preserved",
+    routingRegression?.artifact_id === "fff-routing-policy-regression-hardening-001" && routingRegression?.passed === true && routingRegression?.summary?.failures === 0,
+    "current routing policy regression result still passes"
+  );
+  check(
+    "broad_span_split_preserved",
+    broadSpanSplit?.artifact_id === "fff-broad-span-split-001" && broadSpanSplit?.passed === true && broadSpanSplit?.summary?.failures === 0,
+    "broad-span split result remains valid and is not reopened"
+  );
+  check(
+    "review_memory_checked",
+    Boolean(sourceQualityMemory) && Boolean(broadMemory) && Boolean(routingMemory),
+    "manifest review memory includes source-span quality audit, broad-span split, and routing policy regression hardening"
+  );
+  check(
+    "human_owned_key_boundary_preserved",
+    keyDecision?.review_status === "hold" &&
+      keyDecision?.human_owned_guard === "held_human_review_required" &&
+      keyDecision?.canon_boundary === "no_final_canon_decision" &&
+      keyDecision?.repair_boundary?.includes("does not decide the key function"),
+    "brass moth key row gains context without deciding brass moth truth"
+  );
+  check(
+    "no_model_api_behavior_added",
+    manifest.preserved_model_api_boundary_artifact_id === "fff-model-api-boundary-spec-001" &&
+      boundarySmoke?.passed === true &&
+      boundarySmoke?.checks?.noExternalCall === true &&
+      boundaryEnvelope?.providerBoundary?.externalCallAllowed === false,
+    "model/API boundary remains preserved by structured no-call evidence"
+  );
+
+  return {
+    schemaVersion: WEAK_SPAN_REPAIR_SCHEMA_VERSION,
+    artifact_id: "fff-weak-span-repair-001",
+    title: "Fast Fiction Factory Weak Source-Span Repair",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    source_audit_artifact_id: audit?.artifact_id,
+    source_audit_path: toRepoPath(auditPath),
+    broad_span_split_artifact_id: broadSpanSplit?.artifact_id,
+    broad_span_split_path: manifest.broad_span_split_result_path || DEFAULT_BROAD_SPAN_SPLIT_OUTPUT,
+    routing_policy_regression_artifact_id: routingRegression?.artifact_id,
+    routing_policy_regression_path: manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT,
+    review_memory_checked: {
+      checked: true,
+      target: "fff-source-span-quality-audit-001",
+      prior_review_count: sourceQualityMemory?.prior_review_count ?? 0,
+      prior_signal_summary: sourceQualityMemory?.latest_user_signal_summary || "No user review was requested for the source-span quality audit slice.",
+      axis: "weak_span_repair",
+      what_changed: "The 6 weak source-span rows now have deterministic repair decisions that point to stronger same-fixture source context while preserving original locators.",
+      what_this_review_decides: "No user review is needed; this readback decides whether current weak-span debt is repaired enough to move toward one missing fixture class later.",
+      not_asking: [
+        "general Review Hub review",
+        "repeat source-span quality review",
+        "repeat broad-span review",
+        "model/API approval",
+        "production approval",
+        "canon decisions for Toma fate, brass moth truth, or Council motive"
+      ],
+      next_nonredundant_axis: "one missing fixture class only after a concrete coverage need is named"
+    },
+    summary: {
+      weak_span_rows_loaded: weakRows.length,
+      repair_with_more_precise_source_ref: decisions.filter((decision) => decision.action === "repair_with_more_precise_source_ref").length,
+      shrink_to_stronger_span: decisions.filter((decision) => decision.action === "shrink_to_stronger_span").length,
+      keep_with_reason: decisions.filter((decision) => decision.action === "keep_with_reason").length,
+      hold_for_human_review: decisions.filter((decision) => decision.action === "hold_for_human_review").length,
+      source_refs_preserved: decisions.filter((decision) => decision.source_ref_preserved === true).length,
+      routing_policy_regression_preserved: routingRegression?.passed === true,
+      broad_span_split_preserved: broadSpanSplit?.passed === true,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      failures: failures.length
+    },
+    decisions,
+    weak_span_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+function getWeakSpanRows(audit) {
+  const rows = Array.isArray(audit?.row_classifications) ? audit.row_classifications : [];
+  const taggedRows = rows.filter((row) => arrayIncludesIgnoreCase(row.quality_tags, "weak_span"));
+  if (taggedRows.length > 0) {
+    return taggedRows;
+  }
+  return Array.isArray(audit?.categories?.weak_span) ? audit.categories.weak_span : [];
+}
+
+function resolveWeakSpanRow(row) {
+  const base = {
+    fixture_id: row.fixture_id,
+    id: row.id,
+    element_type: row.element_type,
+    extracted_value: row.extracted_value,
+    source_span_locator: row.source_span_locator,
+    raw_source_snippet: row.raw_source_snippet,
+    previous_routing_targets: row.routing_targets || [],
+    confidence: row.confidence,
+    review_status: row.review_status || "hold",
+    human_owned_guard: row.human_owned_guard || "none",
+    risk_flags: row.risk_flags || [],
+    source_ref_preserved: true,
+    canon_boundary: "no_final_canon_decision"
+  };
+
+  const repair = (sourceText, routeRole, primaryRoute, secondaryEvidence, reason, repairBoundary = "readback-only repair; adapter output is not rewritten in this slice") => ({
+    ...base,
+    action: "repair_with_more_precise_source_ref",
+    reason,
+    proposed_source_refs: [
+      {
+        source_text: sourceText,
+        route_role: routeRole,
+        recommended_primary_route: primaryRoute,
+        secondary_evidence: secondaryEvidence,
+        review_status: "hold",
+        repair_boundary: repairBoundary
+      }
+    ],
+    repair_boundary: repairBoundary
+  });
+
+  if (row.id === "local-x-place-north-bell") {
+    return repair(
+      "old observatory above North Bell Station still rings at noon",
+      "place_plus_timeline_event",
+      "Timeline context",
+      ["Profile"],
+      "The bare station name resolves, but the widened source text also carries the noon-ring event that explains why Timeline review is useful."
+    );
+  }
+
+  if (row.id === "local-x-document-ledger") {
+    return repair(
+      "council keeps a ledger of minutes in a locked cabinet",
+      "document_plus_claim_context",
+      "Claim evidence",
+      ["Profile"],
+      "The bare document title resolves, but the widened source text shows the council action and locked-cabinet context behind the Claim route."
+    );
+  }
+
+  if (row.id === "minutes-x-place-glass-arcade") {
+    return repair(
+      "At 9:17, apprentice Rowan Ise waits in the glass arcade",
+      "place_plus_waiting_event",
+      "Timeline context",
+      ["Profile"],
+      "The bare location resolves, but the widened source text includes the 9:17 waiting event that justifies Timeline review."
+    );
+  }
+
+  if (row.id === "edge-x-place-north-bell") {
+    return repair(
+      "old observatory above North Bell Station rings at noon",
+      "place_plus_noon_event",
+      "Timeline context",
+      ["Profile"],
+      "The bare station name resolves, but the widened source text connects the place to the noon-repeat event without deciding its cause."
+    );
+  }
+
+  if (row.id === "edge-x-object-brass-moth-key") {
+    return repair(
+      "Toma's last route is pinned under a brass moth key",
+      "object_plus_human_owned_route_context",
+      "Profile",
+      ["Claim", "Timeline", "Human Review"],
+      "The key phrase resolves, but the widened source text shows why the object touches Toma route evidence while still remaining held.",
+      "readback-only repair; does not decide the key function, brass moth truth, or Toma fate"
+    );
+  }
+
+  if (row.id === "edge-x-document-ledger-page") {
+    return repair(
+      "ledger page lists borrowed minutes from abandoned lives",
+      "document_plus_claim_context",
+      "Claim evidence",
+      ["Profile"],
+      "The document phrase resolves, but the widened source text carries the borrowed-minutes claim that makes Claim review useful."
+    );
+  }
+
+  return {
+    ...base,
+    action: "hold_for_human_review",
+    reason: "Unexpected weak span id. Holding is safer than inventing a repair rule."
+  };
+}
+
+async function checkDecisionSourceText(decision) {
+  const sourcePath = String(decision.source_span_locator || "").split("#")[0];
+  if (!sourcePath) {
+    return { id: decision.id, passed: false, detail: "missing source path" };
+  }
+  let rawMemo;
+  try {
+    rawMemo = await readFile(sourcePath, "utf8");
+  } catch (error) {
+    return { id: decision.id, passed: false, detail: `cannot read ${sourcePath}: ${error.message}` };
+  }
+  const refs = Array.isArray(decision.proposed_source_refs) ? decision.proposed_source_refs : [];
+  const missing = refs.filter((sourceRef) => !rawMemo.includes(sourceRef.source_text)).map((sourceRef) => sourceRef.source_text);
+  return {
+    id: decision.id,
+    passed: refs.length > 0 && missing.length === 0,
+    detail: missing.length === 0 ? "all proposed source text found" : `missing proposed text: ${missing.join(" | ")}`
   };
 }
 
@@ -1638,6 +1937,8 @@ Usage:
   node tools/fff-state.mjs smoke-routing-policy <ambiguous-routing-resolution.json> [output.json]
   node tools/fff-state.mjs validate-broad-span-split <source-span-quality-audit.json>
   node tools/fff-state.mjs smoke-broad-span-split <source-span-quality-audit.json> [output.json]
+  node tools/fff-state.mjs validate-weak-span-repair <source-span-quality-audit.json>
+  node tools/fff-state.mjs smoke-weak-span-repair <source-span-quality-audit.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -1650,6 +1951,9 @@ Default routing policy regression output:
 
 Default broad-span split output:
   ${DEFAULT_BROAD_SPAN_SPLIT_OUTPUT}
+
+Default weak-span repair output:
+  ${DEFAULT_WEAK_SPAN_REPAIR_OUTPUT}
 `);
 }
 

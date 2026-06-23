@@ -475,3 +475,26 @@
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Pick one weak span repair or one missing fixture class only after explicit need; do not reopen broad-span debt unless source output changes.
+
+## fff-weak-span-repair-001
+
+- Title: Fast Fiction Factory Weak Source-Span Repair
+- Purpose: Resolve the six weak source-span rows from `fff-source-span-quality-audit-001` by recording stronger same-fixture source refs while preserving original locators, broad-span split results, routing policy regression, review memory, model/API boundaries, and human-owned canon boundaries.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/weak-span-repair.md`
+- Repair result: `artifacts/weak-span-repair-result.json`
+- Weak-span validator: `tools/fff-state.mjs`
+- Source audit artifact: `fff-source-span-quality-audit-001`
+- Source audit result: `artifacts/source-span-quality-audit-result.json`
+- Broad-span split artifact: `fff-broad-span-split-001`
+- Broad-span split result: `artifacts/broad-span-split-result.json`
+- Routing policy regression artifact: `fff-routing-policy-regression-hardening-001`
+- Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-weak-span-repair artifacts/source-span-quality-audit-result.json artifacts/weak-span-repair-result.json`
+- Validation result: passed 2026-06-23T13:10:13+09:00; manifest validation command passed; weak-span repair smoke parsed `fff-source-span-quality-audit-001`, loaded 6 weak rows, repaired all 6 with stronger same-fixture source refs, preserved 6 original locators, preserved broad-span split and routing regression evidence, adapter/source-span smoke remained passing, MkDocs strict build passed, HTML script syntax check passed, and `git diff --check` passed.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- Next action: Add one missing fixture class only after a concrete coverage need is named; do not reopen weak-span, broad-span, or ambiguous-routing debt unless source output changes.

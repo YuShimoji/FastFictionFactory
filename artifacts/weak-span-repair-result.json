@@ -1,0 +1,310 @@
+{
+  "schemaVersion": "fff.weakSpanRepair.v1",
+  "artifact_id": "fff-weak-span-repair-001",
+  "title": "Fast Fiction Factory Weak Source-Span Repair",
+  "generatedAt": "2026-06-23T04:10:06.908Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "source_audit_artifact_id": "fff-source-span-quality-audit-001",
+  "source_audit_path": "artifacts/source-span-quality-audit-result.json",
+  "broad_span_split_artifact_id": "fff-broad-span-split-001",
+  "broad_span_split_path": "artifacts/broad-span-split-result.json",
+  "routing_policy_regression_artifact_id": "fff-routing-policy-regression-hardening-001",
+  "routing_policy_regression_path": "artifacts/routing-policy-regression-hardening-result.json",
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-source-span-quality-audit-001",
+    "prior_review_count": 0,
+    "prior_signal_summary": "No user review was requested or recorded for this quality audit slice; the prior source-span pack had automated guard pass only.",
+    "axis": "weak_span_repair",
+    "what_changed": "The 6 weak source-span rows now have deterministic repair decisions that point to stronger same-fixture source context while preserving original locators.",
+    "what_this_review_decides": "No user review is needed; this readback decides whether current weak-span debt is repaired enough to move toward one missing fixture class later.",
+    "not_asking": [
+      "general Review Hub review",
+      "repeat source-span quality review",
+      "repeat broad-span review",
+      "model/API approval",
+      "production approval",
+      "canon decisions for Toma fate, brass moth truth, or Council motive"
+    ],
+    "next_nonredundant_axis": "one missing fixture class only after a concrete coverage need is named"
+  },
+  "summary": {
+    "weak_span_rows_loaded": 6,
+    "repair_with_more_precise_source_ref": 6,
+    "shrink_to_stronger_span": 0,
+    "keep_with_reason": 0,
+    "hold_for_human_review": 0,
+    "source_refs_preserved": 6,
+    "routing_policy_regression_preserved": true,
+    "broad_span_split_preserved": true,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "failures": 0
+  },
+  "decisions": [
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-place-north-bell",
+      "element_type": "place",
+      "extracted_value": "North Bell Station",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=345-363",
+      "raw_source_snippet": "North Bell Station",
+      "previous_routing_targets": [
+        "Profile",
+        "Timeline"
+      ],
+      "confidence": 0.91,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "source_ref_preserved": true,
+      "canon_boundary": "no_final_canon_decision",
+      "action": "repair_with_more_precise_source_ref",
+      "reason": "The bare station name resolves, but the widened source text also carries the noon-ring event that explains why Timeline review is useful.",
+      "proposed_source_refs": [
+        {
+          "source_text": "old observatory above North Bell Station still rings at noon",
+          "route_role": "place_plus_timeline_event",
+          "recommended_primary_route": "Timeline context",
+          "secondary_evidence": [
+            "Profile"
+          ],
+          "review_status": "hold",
+          "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+        }
+      ],
+      "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+    },
+    {
+      "fixture_id": "clockmaker-sample",
+      "id": "local-x-document-ledger",
+      "element_type": "document",
+      "extracted_value": "ledger of minutes",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=583-600",
+      "raw_source_snippet": "ledger of minutes",
+      "previous_routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.84,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "source_ref_preserved": true,
+      "canon_boundary": "no_final_canon_decision",
+      "action": "repair_with_more_precise_source_ref",
+      "reason": "The bare document title resolves, but the widened source text shows the council action and locked-cabinet context behind the Claim route.",
+      "proposed_source_refs": [
+        {
+          "source_text": "council keeps a ledger of minutes in a locked cabinet",
+          "route_role": "document_plus_claim_context",
+          "recommended_primary_route": "Claim evidence",
+          "secondary_evidence": [
+            "Profile"
+          ],
+          "review_status": "hold",
+          "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+        }
+      ],
+      "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+    },
+    {
+      "fixture_id": "council-minutes-edge",
+      "id": "minutes-x-place-glass-arcade",
+      "element_type": "place",
+      "extracted_value": "glass arcade",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=84-96",
+      "raw_source_snippet": "glass arcade",
+      "previous_routing_targets": [
+        "Profile",
+        "Timeline"
+      ],
+      "confidence": 0.91,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "source_ref_preserved": true,
+      "canon_boundary": "no_final_canon_decision",
+      "action": "repair_with_more_precise_source_ref",
+      "reason": "The bare location resolves, but the widened source text includes the 9:17 waiting event that justifies Timeline review.",
+      "proposed_source_refs": [
+        {
+          "source_text": "At 9:17, apprentice Rowan Ise waits in the glass arcade",
+          "route_role": "place_plus_waiting_event",
+          "recommended_primary_route": "Timeline context",
+          "secondary_evidence": [
+            "Profile"
+          ],
+          "review_status": "hold",
+          "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+        }
+      ],
+      "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-place-north-bell",
+      "element_type": "place",
+      "extracted_value": "North Bell Station",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=106-124",
+      "raw_source_snippet": "North Bell Station",
+      "previous_routing_targets": [
+        "Profile",
+        "Timeline"
+      ],
+      "confidence": 0.9,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "source_ref_preserved": true,
+      "canon_boundary": "no_final_canon_decision",
+      "action": "repair_with_more_precise_source_ref",
+      "reason": "The bare station name resolves, but the widened source text connects the place to the noon-repeat event without deciding its cause.",
+      "proposed_source_refs": [
+        {
+          "source_text": "old observatory above North Bell Station rings at noon",
+          "route_role": "place_plus_noon_event",
+          "recommended_primary_route": "Timeline context",
+          "secondary_evidence": [
+            "Profile"
+          ],
+          "review_status": "hold",
+          "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+        }
+      ],
+      "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-object-brass-moth-key",
+      "element_type": "object",
+      "extracted_value": "brass moth key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=288-302",
+      "raw_source_snippet": "brass moth key",
+      "previous_routing_targets": [
+        "Profile",
+        "Claim",
+        "Timeline",
+        "Human Review"
+      ],
+      "confidence": 0.89,
+      "review_status": "hold",
+      "human_owned_guard": "held_human_review_required",
+      "risk_flags": [
+        "high_canon_risk",
+        "unresolved_dependency"
+      ],
+      "source_ref_preserved": true,
+      "canon_boundary": "no_final_canon_decision",
+      "action": "repair_with_more_precise_source_ref",
+      "reason": "The key phrase resolves, but the widened source text shows why the object touches Toma route evidence while still remaining held.",
+      "proposed_source_refs": [
+        {
+          "source_text": "Toma's last route is pinned under a brass moth key",
+          "route_role": "object_plus_human_owned_route_context",
+          "recommended_primary_route": "Profile",
+          "secondary_evidence": [
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "review_status": "hold",
+          "repair_boundary": "readback-only repair; does not decide the key function, brass moth truth, or Toma fate"
+        }
+      ],
+      "repair_boundary": "readback-only repair; does not decide the key function, brass moth truth, or Toma fate"
+    },
+    {
+      "fixture_id": "observatory-ledger-edge",
+      "id": "edge-x-document-ledger-page",
+      "element_type": "document",
+      "extracted_value": "ledger page",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/observatory-ledger-edge.md#char=461-474",
+      "raw_source_snippet": "A ledger page",
+      "previous_routing_targets": [
+        "Profile",
+        "Claim"
+      ],
+      "confidence": 0.8,
+      "review_status": "hold",
+      "human_owned_guard": "none",
+      "risk_flags": [
+        "no_automated_issue"
+      ],
+      "source_ref_preserved": true,
+      "canon_boundary": "no_final_canon_decision",
+      "action": "repair_with_more_precise_source_ref",
+      "reason": "The document phrase resolves, but the widened source text carries the borrowed-minutes claim that makes Claim review useful.",
+      "proposed_source_refs": [
+        {
+          "source_text": "ledger page lists borrowed minutes from abandoned lives",
+          "route_role": "document_plus_claim_context",
+          "recommended_primary_route": "Claim evidence",
+          "secondary_evidence": [
+            "Profile"
+          ],
+          "review_status": "hold",
+          "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+        }
+      ],
+      "repair_boundary": "readback-only repair; adapter output is not rewritten in this slice"
+    }
+  ],
+  "weak_span_checks": {
+    "source_quality_audit_loaded": {
+      "passed": true,
+      "detail": "loaded artifacts/source-span-quality-audit-result.json"
+    },
+    "weak_span_rows_loaded": {
+      "passed": true,
+      "detail": "weak rows=6; ids=edge-x-document-ledger-page, edge-x-object-brass-moth-key, edge-x-place-north-bell, local-x-document-ledger, local-x-place-north-bell, minutes-x-place-glass-arcade"
+    },
+    "all_weak_spans_classified": {
+      "passed": true,
+      "detail": "each current weak span has a repair, shrink, keep, or hold decision"
+    },
+    "repair_decisions_are_source_backed": {
+      "passed": true,
+      "detail": "local-x-place-north-bell:source-backed; local-x-document-ledger:source-backed; minutes-x-place-glass-arcade:source-backed; edge-x-place-north-bell:source-backed; edge-x-object-brass-moth-key:source-backed; edge-x-document-ledger-page:source-backed"
+    },
+    "repaired_spans_strengthen_context": {
+      "passed": true,
+      "detail": "all 6 weak spans are repaired with longer source text from the same fixture"
+    },
+    "source_refs_preserved": {
+      "passed": true,
+      "detail": "each decision preserves the original source span locator"
+    },
+    "routing_policy_regression_preserved": {
+      "passed": true,
+      "detail": "current routing policy regression result still passes"
+    },
+    "broad_span_split_preserved": {
+      "passed": true,
+      "detail": "broad-span split result remains valid and is not reopened"
+    },
+    "review_memory_checked": {
+      "passed": true,
+      "detail": "manifest review memory includes source-span quality audit, broad-span split, and routing policy regression hardening"
+    },
+    "human_owned_key_boundary_preserved": {
+      "passed": true,
+      "detail": "brass moth key row gains context without deciding brass moth truth"
+    },
+    "no_model_api_behavior_added": {
+      "passed": true,
+      "detail": "model/API boundary remains preserved by structured no-call evidence"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

@@ -952,7 +952,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-broad-span-split-001</strong>. This slice resolves the two broad source-span rows by recording one narrower split and one explicit keep reason while preserving <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-ambiguous-routing-resolution-001</strong>, <strong>fff-source-span-quality-audit-001</strong>, <strong>fff-review-memory-dedup-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-weak-span-repair-001</strong>. This slice repairs the six weak source-span rows with stronger same-fixture source refs while preserving <strong>fff-broad-span-split-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-ambiguous-routing-resolution-001</strong>, <strong>fff-source-span-quality-audit-001</strong>, <strong>fff-review-memory-dedup-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-model-api-boundary-spec-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -995,7 +995,10 @@
           <div class="progress-step done"><strong>Review procedure lock</strong><span class="tag green">done</span><p class="section-note">Fix what to open, what screenshots prove, when review is optional, and where access paths live.</p></div>
           <div class="progress-step done"><strong>Review memory dedup</strong><span class="tag green">done</span><p class="section-note">Track prior signal, accepted scope, next non-redundant axis, and when repeated review is allowed.</p></div>
           <div class="progress-step done"><strong>Source-span quality audit</strong><span class="tag green">done</span><p class="section-note">Classify useful spans, weak spans, broad spans, missing refs, ambiguous routing, guarded routes, and human-owned boundaries.</p></div>
-          <div class="progress-step current"><strong>Ambiguous routing resolution</strong><span class="tag blue">current</span><p class="section-note">Resolve 7 ambiguous rows into primary routes, secondary evidence roles, held defaults, and regression checks.</p></div>
+          <div class="progress-step done"><strong>Ambiguous routing resolution</strong><span class="tag green">done</span><p class="section-note">Resolve 7 ambiguous rows into primary routes, secondary evidence roles, held defaults, and regression checks.</p></div>
+          <div class="progress-step done"><strong>Routing policy regression</strong><span class="tag green">done</span><p class="section-note">Keep Visual, Claim, Timeline, Source Reference, and Human Review route boundaries from drifting.</p></div>
+          <div class="progress-step done"><strong>Broad source-span split</strong><span class="tag green">done</span><p class="section-note">Resolve 2 broad rows with one narrower split and one explicit keep reason.</p></div>
+          <div class="progress-step current"><strong>Weak source-span repair</strong><span class="tag blue">current</span><p class="section-note">Repair 6 thin evidence spans with stronger same-fixture source refs and preserved locators.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;" data-mode-panel="project">
@@ -1020,6 +1023,9 @@
               <li>Review memory and dedup gate for non-redundant review asks.</li>
               <li>Source-span quality audit classifying all 36 review-pack rows.</li>
               <li>Ambiguous routing resolution for 7 source-span rows.</li>
+              <li>Routing policy regression hardening for future adapter route drift.</li>
+              <li>Broad source-span split for 2 broad rows.</li>
+              <li>Weak source-span repair for 6 thin evidence rows.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
@@ -1103,6 +1109,8 @@
                 <tr><td>Source-span pack review</td><td>docs/review/source-span-routing-review-pack.md</td></tr>
                 <tr><td>Source-span quality audit</td><td>docs/review/source-span-quality-audit.md</td></tr>
                 <tr><td>Source-span quality result</td><td>artifacts/source-span-quality-audit-result.json</td></tr>
+                <tr><td>Weak source-span repair</td><td>docs/review/weak-span-repair.md</td></tr>
+                <tr><td>Weak source-span repair result</td><td>artifacts/weak-span-repair-result.json</td></tr>
                 <tr><td>Broad source-span split</td><td>docs/review/broad-span-split.md</td></tr>
                 <tr><td>Broad source-span split result</td><td>artifacts/broad-span-split-result.json</td></tr>
                 <tr><td>Ambiguous routing resolution</td><td>docs/review/ambiguous-routing-resolution.md</td></tr>
@@ -1125,8 +1133,9 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows active artifact id <strong>fff-broad-span-split-001</strong>.</li>
-              <li>Use <strong>docs/review/broad-span-split.md</strong> and <strong>artifacts/broad-span-split-result.json</strong> for the broad source-span split axis.</li>
+              <li>Confirm this hub shows active artifact id <strong>fff-weak-span-repair-001</strong>.</li>
+              <li>Use <strong>docs/review/weak-span-repair.md</strong> and <strong>artifacts/weak-span-repair-result.json</strong> for the weak source-span repair axis.</li>
+              <li>Use <strong>docs/review/broad-span-split.md</strong> and <strong>artifacts/broad-span-split-result.json</strong> for the preserved broad source-span split axis.</li>
               <li>Use <strong>docs/review/routing-policy-regression-hardening.md</strong> and <strong>artifacts/routing-policy-regression-hardening-result.json</strong> for the preserved routing policy regression hardening axis.</li>
               <li>Use <strong>docs/review/ambiguous-routing-resolution.md</strong> and <strong>artifacts/ambiguous-routing-resolution-result.json</strong> for the non-redundant ambiguous routing resolution axis.</li>
               <li>Use <strong>docs/review/source-span-quality-audit.md</strong> and <strong>artifacts/source-span-quality-audit-result.json</strong> for the non-redundant source-span quality axis.</li>
@@ -1202,8 +1211,11 @@
 
           <div class="hub-grid" style="margin-top: 12px;">
             <div class="hub-panel">
-              <h3>Routing resolution and regression</h3>
+              <h3>Span repair and routing regression</h3>
               <ul class="hub-list">
+                <li>Active weak-span repair: <strong>fff-weak-span-repair-001</strong>.</li>
+                <li>Weak-span readback: <strong>artifacts/weak-span-repair-result.json</strong>.</li>
+                <li>Weak-span outcome: 6 rows loaded; 6 repaired with stronger same-fixture source refs; 6 locators preserved; 0 failures.</li>
                 <li>Active broad-span split: <strong>fff-broad-span-split-001</strong>.</li>
                 <li>Broad-span readback: <strong>artifacts/broad-span-split-result.json</strong>.</li>
                 <li>Broad-span outcome: 2 rows loaded; 1 split into narrower spans; 1 kept with reason; 0 failures.</li>
@@ -1225,6 +1237,8 @@
                 <li>Active audit: <strong>fff-source-span-quality-audit-001</strong>.</li>
                 <li>Readback: <strong>artifacts/source-span-quality-audit-result.json</strong>.</li>
                 <li>Useful spans: 28; weak spans: 6; broad spans: 2.</li>
+                <li>Weak-span repair readback: all 6 weak rows now point to stronger same-fixture source context.</li>
+                <li>Broad-span split readback: the 2 broad rows remain resolved by split/keep decisions.</li>
                 <li>Missing source refs: 0; ambiguous routing rows: 7.</li>
                 <li>Visual/source-sensitive guarded rows: 3; human-owned preserved rows: 17.</li>
                 <li>No Review Card emitted; this is Review Debt for a future bounded span, routing, or fixture change.</li>
@@ -1244,8 +1258,8 @@
             <div class="hub-panel">
               <h3>Review Debt <span class="jp-label">要確認事項</span></h3>
               <ul class="hub-list">
-                <li>Weak span: no automated mismatch; needs human quality review.</li>
-                <li>Over-broad span: qualitative review required.</li>
+                <li>Weak span: 6 repaired by readback with stronger source context; do not reopen unless source output changes.</li>
+                <li>Over-broad span: resolved by broad-span split readback.</li>
                 <li>Vague extraction: qualitative review required.</li>
                 <li>Routing ambiguous: no unsafe visual route; still review target usefulness.</li>
                 <li>Default too confident: clear in automated audit.</li>
@@ -1340,6 +1354,7 @@
             <span class="tag green">local adapter smoke checked</span>
             <span class="tag green">source-span review pack visible</span>
             <span class="tag green">source-span quality audit classified</span>
+            <span class="tag green">weak source spans repaired</span>
             <span class="tag green">broad source spans resolved</span>
             <span class="tag green">ambiguous routing resolved</span>
             <span class="tag green">routing policy regression checked</span>
@@ -3555,7 +3570,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-broad-span-split-001",
+        activeArtifactId: "fff-weak-span-repair-001",
         preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
         preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
         preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -3631,6 +3646,19 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           failures: 0,
           reviewCardEmitted: false
         },
+        weakSpanRepair: {
+          artifactId: "fff-weak-span-repair-001",
+          docPath: "docs/review/weak-span-repair.md",
+          resultPath: "artifacts/weak-span-repair-result.json",
+          weakSpanRowsLoaded: 6,
+          repairWithMorePreciseSourceRef: 6,
+          shrinkToStrongerSpan: 0,
+          keepWithReason: 0,
+          holdForHumanReview: 0,
+          sourceRefsPreserved: 6,
+          failures: 0,
+          reviewCardEmitted: false
+        },
         broadSpanSplit: {
           artifactId: "fff-broad-span-split-001",
           docPath: "docs/review/broad-span-split.md",
@@ -3647,7 +3675,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           artifactId: "fff-review-memory-dedup-001",
           docPath: "docs/review/review-memory-dedup.md",
           smokeResult: "artifacts/review-memory-dedup-smoke-result.json",
-          nextNonredundantAxis: "source-span usefulness and routing quality",
+          nextNonredundantAxis: "one missing fixture class after a concrete coverage need",
           repeatedReviewAllowed: false,
           reviewResetTrigger: "changed target, changed evidence, changed axis, changed decision value, or explicit user request"
         }
@@ -4122,7 +4150,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-broad-span-split-001",
+          activeArtifactId: "fff-weak-span-repair-001",
           preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
           preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
           preservedArtifactId: "fff-source-span-routing-review-pack-001",
@@ -4198,6 +4226,19 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             failures: 0,
             reviewCardEmitted: false
           },
+          weakSpanRepair: {
+            artifactId: "fff-weak-span-repair-001",
+            docPath: "docs/review/weak-span-repair.md",
+            resultPath: "artifacts/weak-span-repair-result.json",
+            weakSpanRowsLoaded: 6,
+            repairWithMorePreciseSourceRef: 6,
+            shrinkToStrongerSpan: 0,
+            keepWithReason: 0,
+            holdForHumanReview: 0,
+            sourceRefsPreserved: 6,
+            failures: 0,
+            reviewCardEmitted: false
+          },
           broadSpanSplit: {
             artifactId: "fff-broad-span-split-001",
             docPath: "docs/review/broad-span-split.md",
@@ -4214,7 +4255,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             artifactId: "fff-review-memory-dedup-001",
             docPath: "docs/review/review-memory-dedup.md",
             smokeResult: "artifacts/review-memory-dedup-smoke-result.json",
-            nextNonredundantAxis: "source-span usefulness and routing quality",
+            nextNonredundantAxis: "one missing fixture class after a concrete coverage need",
             repeatedReviewAllowed: false,
             reviewResetTrigger: "changed target, changed evidence, changed axis, changed decision value, or explicit user request"
           }
