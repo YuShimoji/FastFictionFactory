@@ -2,7 +2,8 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-missing-fixture-class-probe-001`
+- Artifact id: `fff-malformed-missing-span-guard-001`
+- Preserved missing fixture probe artifact: `fff-missing-fixture-class-probe-001`
 - Preserved weak-span repair artifact: `fff-weak-span-repair-001`
 - Preserved broad-span split artifact: `fff-broad-span-split-001`
 - Preserved routing policy regression artifact: `fff-routing-policy-regression-hardening-001`
@@ -22,67 +23,62 @@
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
 - Repo-local shell launcher: `./scripts/operator/open_review.sh`
 - Manifest: `artifacts/artifact-manifest.json`
-- Missing fixture probe doc: `docs/review/missing-fixture-class-probe.md`
-- Missing fixture probe result: `artifacts/missing-fixture-class-probe-result.json`
-- New sparse fixture memo: `artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md`
-- New sparse fixture output: `artifacts/extraction-adapter-outputs/sparse-bullet-notes.json`
+- Malformed/missing source-span guard doc: `docs/review/malformed-missing-span-guard.md`
+- Malformed/missing source-span guard result: `artifacts/malformed-missing-span-guard-result.json`
+- New negative fixture: `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
+- Updated validator smoke: `artifacts/extraction-validator-smoke-result.json`
+- Missing fixture probe doc/result: `docs/review/missing-fixture-class-probe.md`, `artifacts/missing-fixture-class-probe-result.json`
+- Sparse fixture memo/output: `artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md`, `artifacts/extraction-adapter-outputs/sparse-bullet-notes.json`
 - Weak-span repair doc/result: `docs/review/weak-span-repair.md`, `artifacts/weak-span-repair-result.json`
 - Broad-span split doc/result: `docs/review/broad-span-split.md`, `artifacts/broad-span-split-result.json`
 - Routing policy regression doc/result: `docs/review/routing-policy-regression-hardening.md`, `artifacts/routing-policy-regression-hardening-result.json`
-- Ambiguous routing resolution doc/result: `docs/review/ambiguous-routing-resolution.md`, `artifacts/ambiguous-routing-resolution-result.json`
-- Source-span quality audit doc/result: `docs/review/source-span-quality-audit.md`, `artifacts/source-span-quality-audit-result.json`
 - Source-span review pack: `artifacts/source-span-routing-review-pack.json`
-- Source-span pack generator: `tools/fff-source-span-review-pack.mjs`
 - Local extraction adapter: `tools/fff-extract-local.mjs`
 - State adapter: `tools/fff-state.mjs`
 - Adapter fixture memos: `artifacts/extraction-adapter-fixtures/`
 - Adapter fixture outputs: `artifacts/extraction-adapter-outputs/`
 - Adapter expansion smoke: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
 - Model/API boundary smoke: `artifacts/model-api-boundary-smoke-result.json`
-- Validator fixtures/smoke: `artifacts/extraction-negative-fixtures/`, `artifacts/extraction-validator-smoke-result.json`
+- Validator fixtures: `artifacts/extraction-negative-fixtures/`
 - Current/sample state: `artifacts/current-project-state.json`, `artifacts/sample-project-state.json`
 - Local docs view: `mkdocs.yml`
 
 ## What Exists Now
 
-- The active Review Hub identity is now `fff-missing-fixture-class-probe-001`.
-- The cleanup sequence through `fff-weak-span-repair-001` remains closed: 6 weak rows repaired, 6 original locators preserved, and 0 failures.
-- A single missing fixture class was selected: sparse bullet-only notes. The concrete reason is that existing artifacts named sparse notes as uncovered, while the prior fixture set was paragraph-style.
-- `artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md` adds one bullet-only memo without model/API, provider envelope, multilingual policy, database work, production sync, or canon resolution.
-- `artifacts/extraction-adapter-outputs/sparse-bullet-notes.json` contains 12 held extraction elements with 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held defaults, and 0 human-owned adopt suggestions.
-- The adapter matrix now contains 4 fixture outputs and 48 extracted elements. Required element-type coverage remains complete.
-- The source-span review pack now reads 4 fixtures, 48 elements, 36 profile candidates, 27 claim candidates, 16 timeline candidates, 22 human-owned guarded elements, and 0 automated guard failures.
-- Routing regression now checks 7 resolved policy rows against 48 source-pack rows, 5 adapter payloads, and 60 adapter elements with 0 failures.
-- Review Memory / Dedup remains in place. The probe uses axis `missing_fixture_class_probe`, prior review count `0`, no Review Card, no Operator Observation Card, and no repeated general Review Hub request.
+- The active Review Hub identity is now `fff-malformed-missing-span-guard-001`.
+- The sparse bullet-only fixture probe remains closed: 4 positive fixture outputs, 48 source-pack rows, 5 adapter payloads, 60 adapter elements, and 0 failures.
+- A single remaining fixture class was selected: missing or malformed source-span payloads. The concrete reason is that existing artifacts named this as remaining debt, and it can be tested as a local negative validator fixture without model/API behavior.
+- `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json` adds one invalid contract fixture with 3 held elements: one missing sourceSpan plus missing sourceRefIds, one malformed offset, and one empty/zero-width span.
+- `tools/fff-state.mjs` now rejects extraction elements whose `sourceSpan` is missing, not an object, has non-string or empty text, has non-integer/non-negative offsets, or has `end <= start`.
+- `artifacts/extraction-validator-smoke-result.json` now covers 8 fixtures: 2 expected-valid, 6 expected-invalid, 0 mismatches, and 5 built-in guard cases.
+- `artifacts/malformed-missing-span-guard-result.json` records `reject_as_invalid`, `hold_as_unreviewable`, `mark_missing_source_ref`, and `keep_out_of_claim_timeline_profile_adoption` as passed.
+- The positive source-span pack remains unchanged at 4 fixtures and 48 rows. This guard does not add a normal adapter fixture and does not reopen sparse notes, weak-span repair, broad-span split, or routing policy regression.
+- Review Memory / Dedup remains in place. The guard uses axis `malformed_missing_span_guard`, prior review count `0`, no Review Card, no Operator Observation Card, and no repeated general Review Hub request.
 - Toma fate, brass moth truth, Council motive, and moth-key function remain unresolved human-owned decisions.
 
 ## What Was Verified
 
 - Git parity after fetch before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
-- Local working tree started clean on `master` at `ed07086 Repair weak source spans`.
+- Local working tree started clean on `master` at `b483e1c Probe sparse bullet fixture coverage`.
 - Project-local instructions and required context docs were read before changing review claims.
-- `node tools/fff-extract-local.mjs artifacts/sample-raw-memo.md artifacts/local-extraction-adapter-output.json artifacts/local-extraction-adapter-smoke-result.json` passed.
-- `node tools/fff-extract-local.mjs --matrix artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json` passed.
-- `node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json` passed.
-- `node tools/fff-state.mjs smoke-routing-policy artifacts/ambiguous-routing-resolution-result.json artifacts/routing-policy-regression-hardening-result.json` passed.
-- `node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json` passed.
-- `node tools/fff-state.mjs smoke-weak-span-repair artifacts/source-span-quality-audit-result.json artifacts/weak-span-repair-result.json` passed.
-- `node tools/fff-state.mjs smoke-missing-fixture-class-probe artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/missing-fixture-class-probe-result.json` passed.
+- `node --check tools/fff-state.mjs` passed after the validator update.
+- `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json` passed.
+- `node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json` passed.
 
 ## Probe Snapshot
 
 | Work | Purpose | Effect | Current state |
 | --- | --- | --- | --- |
-| Sparse fixture memo | Cover a named missing memo shape without asking for human review | Adds terse bullet-only source text to the deterministic matrix | `sparse-bullet-notes.md` exists with 11 bullet lines |
-| Sparse adapter output | Prove the extractor can read the new shape without source/routing drift | Adds 12 held extraction elements and complete element-type coverage | 0 span mismatches, 0 missing refs, 0 unsafe visual routes |
-| Selector update | Avoid paragraph sample fallback when fixture text reuses common phrases | Path match now wins before shared phrase match | Matrix selects `sparse-bullet-notes` correctly |
-| Source-pack readback | Keep fixture coverage evidence aligned with generated output | Source pack now reads 4 fixtures and removes sparse notes from remaining gaps | 48 source-pack rows, 0 failures |
-| Probe smoke | Record Review Memory and human-burden hygiene for this axis | Confirms no Review Card, no fixed form, and no repeated general review | `missing-fixture-class-probe-result.json` passed |
+| Source-span validator guard | Reject unusable source-span evidence before routed candidates can be accepted | Adds contract-level checks for missing object, empty text, invalid offsets, and zero/negative ranges | `tools/fff-state.mjs` rejects the new negative fixture |
+| Negative fixture | Cover one named remaining fixture class without expanding positive adapter output | Exercises missing sourceSpan, malformed start, empty text, zero-width range, and missing sourceRefIds | `malformed-missing-source-span.json` is expected-invalid |
+| Guard readback | Prove invalid evidence stays out of adoption surfaces | Records reject/hold/mark/keep-out behavior in one machine-readable result | `malformed-missing-span-guard-result.json` passed |
+| Positive pack preservation | Avoid reopening already-closed source-span work | Keeps 48 source-pack rows, 5 adapter payloads, and 60 adapter elements unchanged | Existing pack and routing counts preserved |
+| Human-burden hygiene | Avoid repeated review asks | Confirms no Review Card, no fixed form, no Operator Observation Card | Freeform review remains optional |
 
 ## What Remains Missing
 
-- Human freeform review of final source-span wording remains optional. Current weak, broad, routing, and sparse fixture readbacks are sufficient to continue reversible local work.
-- Remaining fixture classes are now contradictory memo claims, very broad source-span fixture shape, malformed or missing source span payloads, multilingual or translated memo text, and model/API provider envelope output.
+- Human freeform review of final source-span wording remains optional. Current weak, broad, routing, sparse fixture, and malformed-span guard readbacks are sufficient to continue reversible local work.
+- Remaining fixture classes are contradictory memo claims, very broad source-span fixture shape, multilingual or translated memo text, and model/API provider envelope output.
 - Actual model/API extraction adapter behind the validator boundary.
 - Provider choice, credential flow, timeout value, and retry count for a future integration.
 - Durable project database.
@@ -94,11 +90,12 @@
 
 | Target | Purpose | State | Next move |
 | --- | --- | --- | --- |
+| Malformed/missing source-span payloads | Prevent invalid source evidence from entering routed adoption surfaces | Covered by `fff-malformed-missing-span-guard-001`; 3 invalid elements rejected, 0 accepted routed candidates | Do not reopen unless the validator contract or fixture output changes |
 | Sparse bullet fixture | Cover one named missing memo shape | Covered by `fff-missing-fixture-class-probe-001`; 12 held elements, 0 failures | Do not reopen unless the fixture or selector changes |
 | Weak source spans | Make valid but thin source evidence useful | 6 weak rows repaired with stronger same-fixture source refs | Do not reopen unless adapter output or human review changes one row |
 | Broad source spans | Keep mixed evidence from hiding separate review roles | One split and one kept with reason remain preserved | Do not reopen unless source output changes |
 | Routing policy | Keep Visual, Profile/Ghost, Claim, Timeline, Source Reference, and Human Review distinct | Regression smoke passes across 5 adapter payloads and 60 adapter elements | Add one fixture class only if route drift or review evidence names a concrete missing shape |
-| Remaining fixture classes | Cover memo/output shapes not yet represented | 5 candidate classes remain after sparse notes coverage | Add one class at a time only when it has concrete decision value |
+| Remaining fixture classes | Cover memo/output shapes not yet represented | 4 candidate classes remain after malformed/missing span coverage | Add one class at a time only when it has concrete decision value |
 | Model/API adapter | Implement provider-backed extraction only behind existing gates | Not started | Keep blocked until explicit authorization and reviewed source-span gates |
 
 ## How To Open The Review UI
@@ -136,4 +133,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The next non-redundant move is not another sparse-note review; choose a different remaining fixture class only after a concrete coverage need is named, or verify the active manifest and Review Hub handoff if the next terminal needs a clean restart. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, or final canon decisions unless explicitly requested.
+Use review memory before asking for another review. The next non-redundant move is not another sparse-note or malformed-span review; choose a different remaining fixture class only after a concrete coverage need is named, or verify the active manifest and Review Hub handoff if the next terminal needs a clean restart. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, or final canon decisions unless explicitly requested.

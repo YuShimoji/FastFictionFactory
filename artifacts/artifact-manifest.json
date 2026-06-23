@@ -1,18 +1,18 @@
 {
-  "artifact_id": "fff-missing-fixture-class-probe-001",
+  "artifact_id": "fff-malformed-missing-span-guard-001",
   "preserved_source_span_artifact_id": "fff-source-span-routing-review-pack-001",
   "preserved_model_api_boundary_artifact_id": "fff-model-api-boundary-spec-001",
   "preserved_adapter_expansion_artifact_id": "fff-local-extraction-adapter-expansion-001",
   "preserved_adapter_artifact_id": "fff-local-extraction-adapter-spike-001",
   "preserved_artifact_id": "fff-extraction-validator-hardening-001",
   "preserved_contract_artifact_id": "fff-extraction-contract-001",
-  "title": "Fast Fiction Factory Missing Fixture Class Probe",
-  "purpose": "Add exactly one concrete missing fixture class, sparse bullet-only notes, after weak-span cleanup while preserving routing, source-span, model/API, review-memory, and human-owned canon boundaries.",
+  "title": "Fast Fiction Factory Malformed/Missing Source-Span Guard",
+  "purpose": "Add exactly one negative validator guard class for missing, malformed, or unusable source-span evidence so invalid payloads cannot silently become accepted Profile, Claim, or Timeline routed candidates.",
   "repo_relative_path": "public/review/index.html",
   "open_command": "Invoke-Item .\\public\\review\\index.html",
   "repo_local_launcher": "scripts/operator/open_review.ps1",
-  "review_doc_path": "docs/review/missing-fixture-class-probe.md",
-  "smoke_result_path": "artifacts/missing-fixture-class-probe-result.json",
+  "review_doc_path": "docs/review/malformed-missing-span-guard.md",
+  "smoke_result_path": "artifacts/malformed-missing-span-guard-result.json",
   "source_span_review_pack_path": "artifacts/source-span-routing-review-pack.json",
   "source_span_review_pack_tool_path": "tools/fff-source-span-review-pack.mjs",
   "source_span_review_pack_doc_path": "docs/review/source-span-routing-review-pack.md",
@@ -53,7 +53,8 @@
     "fff-ambiguous-routing-resolution-001",
     "fff-routing-policy-regression-hardening-001",
     "fff-weak-span-repair-001",
-    "fff-broad-span-split-001"
+    "fff-broad-span-split-001",
+    "fff-missing-fixture-class-probe-001"
   ],
   "generated_from": [
     "Supervisor slice: fff-review-memory-dedup-001",
@@ -90,15 +91,19 @@
     "docs/review/missing-fixture-class-probe.md",
     "artifacts/missing-fixture-class-probe-result.json",
     "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
-    "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json"
+    "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json",
+    "Supervisor slice: fff-malformed-missing-span-guard-001",
+    "docs/review/malformed-missing-span-guard.md",
+    "artifacts/malformed-missing-span-guard-result.json",
+    "artifacts/extraction-negative-fixtures/malformed-missing-source-span.json"
   ],
   "created_at": "2026-06-23T04:41:55+09:00",
-  "validation_command": "& { $files = @('public/review/index.html', 'tools/fff-state.mjs', 'tools/fff-extract-local.mjs', 'tools/fff-source-span-review-pack.mjs', 'artifacts/artifact-manifest.json', 'artifacts/ARTIFACTS.md', 'docs/review/current-status.md', 'docs/review/missing-fixture-class-probe.md', 'artifacts/missing-fixture-class-probe-result.json', 'artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md', 'artifacts/extraction-adapter-outputs/sparse-bullet-notes.json', 'artifacts/weak-span-repair-result.json', 'artifacts/broad-span-split-result.json', 'artifacts/routing-policy-regression-hardening-result.json', 'artifacts/ambiguous-routing-resolution-result.json', 'artifacts/source-span-quality-audit-result.json', 'artifacts/source-span-routing-review-pack.json', 'artifacts/local-extraction-adapter-output.json', 'artifacts/local-extraction-adapter-smoke-result.json', 'artifacts/local-extraction-adapter-expansion-smoke-result.json', 'artifacts/model-api-boundary-smoke-result.json', 'artifacts/model-api-boundary-envelope.example.json', 'artifacts/current-project-state.json', 'artifacts/sample-project-state.json', 'artifacts/sample-extraction-payload.json', 'artifacts/extraction-validator-smoke-result.json'); $missing = $files | Where-Object { -not (Test-Path $_) }; if ($missing) { throw ('Missing files: ' + ($missing -join ', ')) }; node tools/fff-extract-local.mjs artifacts/sample-raw-memo.md artifacts/local-extraction-adapter-output.json artifacts/local-extraction-adapter-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Adapter smoke failed' }; node tools/fff-extract-local.mjs --matrix artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Adapter matrix failed' }; node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json; if ($LASTEXITCODE -ne 0) { throw 'Source-span review pack failed' }; node tools/fff-state.mjs smoke-routing-policy artifacts/ambiguous-routing-resolution-result.json artifacts/routing-policy-regression-hardening-result.json; if ($LASTEXITCODE -ne 0) { throw 'Routing policy regression smoke failed' }; node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json; if ($LASTEXITCODE -ne 0) { throw 'Broad-span split smoke failed' }; node tools/fff-state.mjs smoke-weak-span-repair artifacts/source-span-quality-audit-result.json artifacts/weak-span-repair-result.json; if ($LASTEXITCODE -ne 0) { throw 'Weak-span repair smoke failed' }; node tools/fff-state.mjs smoke-missing-fixture-class-probe artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/missing-fixture-class-probe-result.json; if ($LASTEXITCODE -ne 0) { throw 'Missing fixture class probe smoke failed' }; node tools/fff-state.mjs validate artifacts/current-project-state.json; if ($LASTEXITCODE -ne 0) { throw 'Current state validation failed' }; node tools/fff-state.mjs validate artifacts/sample-project-state.json; if ($LASTEXITCODE -ne 0) { throw 'Sample state validation failed' }; node tools/fff-state.mjs validate-extraction artifacts/sample-extraction-payload.json; if ($LASTEXITCODE -ne 0) { throw 'Sample extraction validation failed' }; node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures; if ($LASTEXITCODE -ne 0) { throw 'Extraction fixture validation failed' }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($manifest.artifact_id -ne 'fff-missing-fixture-class-probe-001' -or $manifest.review_input_mode -ne 'freeform') { throw 'Manifest active probe mismatch' }; $probe = Get-Content artifacts/missing-fixture-class-probe-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($probe.artifact_id -ne 'fff-missing-fixture-class-probe-001' -or $probe.schemaVersion -ne 'fff.missingFixtureClassProbe.v1' -or -not $probe.passed) { throw 'Missing fixture probe result mismatch' }; if ($probe.summary.current_fixture_count -ne 4 -or $probe.summary.current_matrix_element_count -ne 48 -or $probe.summary.adapter_payloads_checked -ne 5 -or $probe.summary.adapter_elements_checked -ne 60 -or $probe.summary.failures -ne 0) { throw 'Missing fixture probe count mismatch' }; foreach ($prop in $probe.fixture_probe_checks.PSObject.Properties) { if ($prop.Value.passed -ne $true) { throw ('Missing fixture probe check failed: ' + $prop.Name) } }; $pack = Get-Content artifacts/source-span-routing-review-pack.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $pack.passed -or $pack.cross_fixture_summary.fixture_count -ne 4 -or $pack.cross_fixture_summary.total_elements -ne 48 -or @($pack.cross_fixture_summary.fixture_class_gaps) -contains 'sparse bullet-only notes') { throw 'Source-span pack guard mismatch' }; $regression = Get-Content artifacts/routing-policy-regression-hardening-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $regression.passed -or $regression.summary.source_pack_rows_checked -ne 48 -or $regression.summary.adapter_payloads_checked -ne 5 -or $regression.summary.adapter_elements_checked -ne 60) { throw 'Routing regression count mismatch' }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; @('fff-missing-fixture-class-probe-001', 'docs/review/missing-fixture-class-probe.md', 'artifacts/missing-fixture-class-probe-result.json', 'sparse fixture covered', '48 source-pack rows', '5 adapter payloads', '60 adapter elements') | ForEach-Object { if (-not $html.Contains($_)) { throw ('Missing required Review Hub text: ' + $_) } }; Write-Output 'Missing fixture class probe validation passed' }",
-  "validation_result": "passed 2026-06-23T13:33:09+09:00; active manifest validation command passed for fff-missing-fixture-class-probe-001; missing fixture class probe smoke parsed 4 fixture outputs, 48 matrix elements, 48 source-pack rows, 5 adapter payloads, 60 adapter elements, 12 sparse fixture elements, 11 sparse bullet lines, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held review defaults, 0 human-owned adopt suggestions, 0 Review Cards, 0 Operator Observation Cards, and 0 failures; adapter smoke, adapter matrix, source-span review pack generation, routing regression, broad-span split, weak-span repair, state/extraction validation, and extraction fixture validation passed.",
+  "validation_command": "& { $files = @('public/review/index.html', 'tools/fff-state.mjs', 'tools/fff-extract-local.mjs', 'tools/fff-source-span-review-pack.mjs', 'artifacts/artifact-manifest.json', 'artifacts/ARTIFACTS.md', 'docs/review/current-status.md', 'docs/review/malformed-missing-span-guard.md', 'artifacts/malformed-missing-span-guard-result.json', 'artifacts/extraction-negative-fixtures/malformed-missing-source-span.json', 'artifacts/extraction-validator-smoke-result.json', 'artifacts/missing-fixture-class-probe-result.json', 'artifacts/weak-span-repair-result.json', 'artifacts/broad-span-split-result.json', 'artifacts/routing-policy-regression-hardening-result.json', 'artifacts/ambiguous-routing-resolution-result.json', 'artifacts/source-span-quality-audit-result.json', 'artifacts/source-span-routing-review-pack.json', 'artifacts/local-extraction-adapter-output.json', 'artifacts/local-extraction-adapter-smoke-result.json', 'artifacts/local-extraction-adapter-expansion-smoke-result.json', 'artifacts/model-api-boundary-smoke-result.json', 'artifacts/model-api-boundary-envelope.example.json', 'artifacts/current-project-state.json', 'artifacts/sample-project-state.json', 'artifacts/sample-extraction-payload.json'); $missing = $files | Where-Object { -not (Test-Path $_) }; if ($missing) { throw ('Missing files: ' + ($missing -join ', ')) }; node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Extraction fixture smoke failed' }; node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json; if ($LASTEXITCODE -ne 0) { throw 'Malformed/missing span guard smoke failed' }; node tools/fff-extract-local.mjs artifacts/sample-raw-memo.md artifacts/local-extraction-adapter-output.json artifacts/local-extraction-adapter-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Adapter smoke failed' }; node tools/fff-extract-local.mjs --matrix artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Adapter matrix failed' }; node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json; if ($LASTEXITCODE -ne 0) { throw 'Source-span review pack failed' }; node tools/fff-state.mjs smoke-routing-policy artifacts/ambiguous-routing-resolution-result.json artifacts/routing-policy-regression-hardening-result.json; if ($LASTEXITCODE -ne 0) { throw 'Routing policy regression smoke failed' }; node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json; if ($LASTEXITCODE -ne 0) { throw 'Broad-span split smoke failed' }; node tools/fff-state.mjs smoke-weak-span-repair artifacts/source-span-quality-audit-result.json artifacts/weak-span-repair-result.json; if ($LASTEXITCODE -ne 0) { throw 'Weak-span repair smoke failed' }; node tools/fff-state.mjs smoke-missing-fixture-class-probe artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/missing-fixture-class-probe-result.json; if ($LASTEXITCODE -ne 0) { throw 'Missing fixture probe smoke failed' }; node tools/fff-state.mjs validate artifacts/current-project-state.json; if ($LASTEXITCODE -ne 0) { throw 'Current state validation failed' }; node tools/fff-state.mjs validate artifacts/sample-project-state.json; if ($LASTEXITCODE -ne 0) { throw 'Sample state validation failed' }; node tools/fff-state.mjs validate-extraction artifacts/sample-extraction-payload.json; if ($LASTEXITCODE -ne 0) { throw 'Sample extraction validation failed' }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($manifest.artifact_id -ne 'fff-malformed-missing-span-guard-001' -or $manifest.review_input_mode -ne 'freeform') { throw 'Manifest active guard mismatch' }; $guard = Get-Content artifacts/malformed-missing-span-guard-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($guard.artifact_id -ne 'fff-malformed-missing-span-guard-001' -or $guard.schemaVersion -ne 'fff.malformedMissingSpanGuard.v1' -or -not $guard.passed) { throw 'Malformed guard result mismatch' }; if ($guard.summary.validator_fixture_count -ne 8 -or $guard.summary.expected_invalid_fixture_count -ne 6 -or $guard.summary.accepted_routed_candidates -ne 0 -or $guard.summary.failures -ne 0) { throw 'Malformed guard count mismatch' }; foreach ($prop in $guard.fixture_guard_checks.PSObject.Properties) { if ($prop.Value.passed -ne $true) { throw ('Malformed guard check failed: ' + $prop.Name) } }; $validator = Get-Content artifacts/extraction-validator-smoke-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $validator.passed -or $validator.summary.fixtureCount -ne 8 -or $validator.summary.expectedInvalid -ne 6) { throw 'Validator smoke count mismatch' }; $pack = Get-Content artifacts/source-span-routing-review-pack.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $pack.passed -or $pack.cross_fixture_summary.fixture_count -ne 4 -or $pack.cross_fixture_summary.total_elements -ne 48) { throw 'Source-span pack guard mismatch' }; $regression = Get-Content artifacts/routing-policy-regression-hardening-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $regression.passed -or $regression.summary.source_pack_rows_checked -ne 48 -or $regression.summary.adapter_payloads_checked -ne 5 -or $regression.summary.adapter_elements_checked -ne 60) { throw 'Routing regression count mismatch' }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; @('fff-malformed-missing-span-guard-001', 'docs/review/malformed-missing-span-guard.md', 'artifacts/malformed-missing-span-guard-result.json', 'malformed source spans guarded', '8 validator fixtures', '0 accepted routed candidates') | ForEach-Object { if (-not $html.Contains($_)) { throw ('Missing required Review Hub text: ' + $_) } }; Write-Output 'Malformed/missing span guard validation passed' }",
+  "validation_result": "passed 2026-06-23T14:14:14+09:00; active manifest validation command passed for fff-malformed-missing-span-guard-001; malformed/missing source-span guard smoke parsed 8 validator fixtures, 6 expected-invalid fixtures, 3 invalid guard elements, 5 source-span validation errors, 1 missing source-ref error, 0 accepted routed candidates, 0 non-held defaults, 48 preserved source-pack rows, 5 preserved adapter payloads, 60 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures; adapter smoke, adapter matrix, source-span review pack generation, routing regression, broad-span split, weak-span repair, missing fixture probe, state/extraction validation passed.",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "review_prompt_hint": "No Review Card or Operator Observation Card is emitted for the sparse fixture probe; use freeform review only if a concrete row or different missing fixture class needs human judgment.",
-  "next_action": "Choose another remaining fixture class only after a concrete coverage need is named; do not reopen sparse notes, weak-span, broad-span, or routing debt unless source output changes.",
+  "review_prompt_hint": "No Review Card or Operator Observation Card is emitted for the malformed/missing span guard; use freeform review only if a concrete row or different remaining fixture class needs human judgment.",
+  "next_action": "Choose a different remaining fixture class only after a concrete coverage need is named; do not reopen malformed/missing spans, sparse notes, weak-span, broad-span, or routing debt unless source output changes.",
   "context_synced_at": "2026-06-23T00:00:00+09:00",
   "handoff_remote_head": "",
   "preserved_review_hub_ia_mode_split_artifact_id": "fff-review-hub-ia-mode-split-001",
@@ -392,6 +397,40 @@
         "one different missing fixture class is added",
         "user explicitly asks to review fixture coverage"
       ]
+    },
+    {
+      "artifact_id": "fff-malformed-missing-span-guard-001",
+      "subject": "Malformed or missing source-span guard fixture",
+      "current_scope": "A single negative Extraction Contract fixture proves missing, malformed, or unusable source-span payloads are rejected and kept out of accepted Profile, Claim, or Timeline routed candidates.",
+      "axis": "malformed_missing_span_guard",
+      "prior_review_count": 0,
+      "latest_user_signal": "none_recorded",
+      "latest_user_signal_summary": "No user review was requested or recorded for the sparse fixture probe slice; malformed or missing source-span payloads remained a named fixture class.",
+      "accepted_scope": [
+        "malformed-missing-source-span fixture exists",
+        "validator matrix reads 8 fixtures",
+        "malformed/missing source-span fixture is expected invalid",
+        "guard result records 0 accepted routed candidates",
+        "no repeated general Review Hub review was requested"
+      ],
+      "not_accepted_scope": [
+        "human acceptance of final source-span wording",
+        "human acceptance of final routing policy",
+        "other missing fixture classes",
+        "model/API implementation approval",
+        "provider credential setup",
+        "database or publishing contract changes",
+        "production release approval",
+        "final canon decisions for Toma fate, brass moth truth, Council motive, or moth-key function"
+      ],
+      "next_nonredundant_axis": "a different remaining fixture class only after a concrete coverage need is named",
+      "repeated_review_allowed": true,
+      "review_reset_trigger": [
+        "validator source-span contract changes materially",
+        "malformed guard fixture changes materially",
+        "one different missing fixture class is added",
+        "user explicitly asks to review guard behavior"
+      ]
     }
   ],
   "acceptance_ladder": [
@@ -562,5 +601,9 @@
   "missing_fixture_class_probe_fixture_path": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
   "missing_fixture_class_probe_output_path": "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json",
   "preserved_weak_span_repair_artifact_id": "fff-weak-span-repair-001",
-  "handoff_verified_at": "2026-06-23T13:33:09+09:00"
+  "handoff_verified_at": "2026-06-23T14:14:14+09:00",
+  "malformed_missing_span_guard_doc_path": "docs/review/malformed-missing-span-guard.md",
+  "malformed_missing_span_guard_result_path": "artifacts/malformed-missing-span-guard-result.json",
+  "malformed_missing_span_guard_fixture_path": "artifacts/extraction-negative-fixtures/malformed-missing-source-span.json",
+  "preserved_missing_fixture_class_probe_artifact_id": "fff-missing-fixture-class-probe-001"
 }

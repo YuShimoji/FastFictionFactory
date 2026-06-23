@@ -160,7 +160,7 @@
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
 - Validation command: `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json`
-- Validation result: expected-valid fixtures passed, expected-invalid fixtures failed for intended reasons, built-in guard checks passed for missing identity fields, invalid element type, missing human authority boundaries, and missing high-risk warnings; unknown-field preservation warnings were reported.
+- Validation result: expected-valid fixtures passed, expected-invalid fixtures failed for intended reasons, including the malformed/missing source-span guard fixture; built-in guard checks passed for missing identity fields, invalid element type, missing human authority boundaries, and missing high-risk warnings; unknown-field preservation warnings were reported. Current validator matrix contains 8 fixtures: 2 expected valid and 6 expected invalid.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - Next action: Preserve this validator matrix as the gate for adapter expansion and any future model/API adapter.
@@ -526,3 +526,29 @@
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Choose another remaining fixture class only after a concrete coverage need is named; do not reopen sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.
+
+## fff-malformed-missing-span-guard-001
+
+- Title: Fast Fiction Factory Malformed/Missing Source-Span Guard
+- Purpose: Add exactly one negative validator guard class for missing, malformed, or unusable source-span evidence so invalid payloads cannot silently become accepted Profile, Claim, or Timeline routed candidates.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/malformed-missing-span-guard.md`
+- Guard result: `artifacts/malformed-missing-span-guard-result.json`
+- Negative fixture: `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
+- Validator smoke: `artifacts/extraction-validator-smoke-result.json`
+- Updated state validator: `tools/fff-state.mjs`
+- Preserved missing fixture probe result: `artifacts/missing-fixture-class-probe-result.json`
+- Preserved source-span review pack: `artifacts/source-span-routing-review-pack.json`
+- Preserved routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
+- Preserved weak-span repair result: `artifacts/weak-span-repair-result.json`
+- Preserved broad-span split result: `artifacts/broad-span-split-result.json`
+- Manifest: `artifacts/artifact-manifest.json`
+- Current status: `docs/review/current-status.md`
+- Validation command: `node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json`
+- Validation result: passed 2026-06-23; malformed/missing source-span guard read 8 validator fixtures, 6 expected-invalid fixtures, 3 invalid guard elements, 5 source-span validation errors, 1 missing source-ref error, 0 accepted routed candidates, 0 non-held defaults, 48 preserved source-pack rows, 5 preserved adapter payloads, 60 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- Next action: Choose a different remaining fixture class only after a concrete coverage need is named; do not reopen malformed/missing spans, sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.

@@ -1,0 +1,123 @@
+{
+  "extractionRunId": "fixture-malformed-missing-source-span",
+  "schemaVersion": "fff.extractionContract.v1",
+  "sourceDraftId": "draft-fixture-001",
+  "sourceMemoRef": "rawMemo",
+  "sourceRefs": [
+    {
+      "id": "src-fixture-memo",
+      "label": "Fixture memo",
+      "source_type": "memo",
+      "locator": "fixture memo",
+      "trust": "author_memo"
+    }
+  ],
+  "generatedAt": "2026-06-23T00:00:00+09:00",
+  "generatorType": "local_contract_fixture",
+  "generatorLabel": "Invalid malformed/missing source-span fixture; no model/API call",
+  "extractionMode": "contract_only_no_model_api",
+  "confidencePolicy": {
+    "defaultConfidence": 0.75,
+    "lowConfidenceAction": "hold",
+    "highCanonRiskAction": "hold_until_human_review",
+    "freeformReviewAuthority": "human review text overrides generated suggestions"
+  },
+  "extractedElements": [
+    {
+      "id": "fixture-span-missing-source-ref",
+      "displayText": "Mira Vale",
+      "elementType": "person",
+      "aliases": ["Mira"],
+      "sourceRefIds": [],
+      "confidence": 0.88,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "targetDestinations": ["profile", "claim", "timeline"],
+      "targetProfileIds": [],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [],
+      "notes": "Invalid and unreviewable because the sourceSpan is missing and the sourceRefIds list is empty; must not enter Profile, Claim, or Timeline adoption."
+    },
+    {
+      "id": "fixture-span-malformed-offset",
+      "displayText": "North Bell Station",
+      "elementType": "place",
+      "aliases": ["North Bell"],
+      "sourceSpan": {
+        "text": "North Bell Station",
+        "start": null,
+        "end": 18
+      },
+      "sourceRefIds": ["src-fixture-memo"],
+      "confidence": 0.81,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": [],
+      "canonRisk": "medium",
+      "spoilerLevel": "medium",
+      "targetDestinations": ["profile"],
+      "targetProfileIds": [],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [],
+      "notes": "Invalid and unreviewable because sourceSpan.start is not a number; route surfaces must not accept it."
+    },
+    {
+      "id": "fixture-span-unusable-range",
+      "displayText": "Borrowed minutes",
+      "elementType": "concept",
+      "aliases": ["stolen time"],
+      "sourceSpan": {
+        "text": "",
+        "start": 42,
+        "end": 42
+      },
+      "sourceRefIds": ["src-fixture-memo"],
+      "confidence": 0.79,
+      "suggestedReviewStatus": "hold",
+      "reviewStatus": "hold",
+      "unresolvedDependencies": ["Council motive"],
+      "canonRisk": "high",
+      "spoilerLevel": "high",
+      "targetDestinations": ["claim", "timeline"],
+      "targetProfileIds": [],
+      "targetClaimIds": [],
+      "targetTimelineEntryIds": [],
+      "notes": "Invalid and unreviewable because the sourceSpan has no usable text and no positive range; must stay out of Claim and Timeline adoption."
+    }
+  ],
+  "profileCandidates": [],
+  "claimCandidates": [],
+  "timelineEntryCandidates": [],
+  "unresolvedDependencies": ["Toma fate", "brass moth truth", "Council motive"],
+  "reviewSafeDefaults": {
+    "defaultReviewStatus": "hold",
+    "allowAdopt": true,
+    "allowProvisional": true,
+    "allowReject": true,
+    "autoCanonPromotion": false,
+    "autoChronologyPromotion": false,
+    "unknownSourceHandling": "preserve_unknown_fields_and_hold_candidate"
+  },
+  "decisionLogSafeMetadata": {
+    "owner": "human_author",
+    "statusVocabulary": ["adopt", "provisional", "hold", "reject"],
+    "fixedPhraseRequired": false,
+    "freeformReviewAllowed": true,
+    "reversibleActionsOnly": true
+  },
+  "warnings": [
+    "This fixture is not a model/API extraction engine.",
+    "Malformed or missing source-span evidence must be rejected before routed candidate adoption."
+  ],
+  "unknownFieldsPolicy": "Preserve unknown imported top-level fields and hold unrecognized candidates for review.",
+  "humanAuthorityBoundaries": [
+    "Freeform user review is the source of truth.",
+    "Toma fate remains human-owned.",
+    "Brass moth truth remains human-owned.",
+    "Council motive remains human-owned."
+  ],
+  "notes": "Expected invalid: malformed, missing, or unusable source-span evidence cannot silently become accepted routed candidates."
+}

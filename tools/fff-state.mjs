@@ -9,12 +9,14 @@ const ROUTING_POLICY_REGRESSION_SCHEMA_VERSION = "fff.routingPolicyRegression.v1
 const BROAD_SPAN_SPLIT_SCHEMA_VERSION = "fff.broadSpanSplit.v1";
 const WEAK_SPAN_REPAIR_SCHEMA_VERSION = "fff.weakSpanRepair.v1";
 const MISSING_FIXTURE_CLASS_PROBE_SCHEMA_VERSION = "fff.missingFixtureClassProbe.v1";
+const MALFORMED_MISSING_SPAN_GUARD_SCHEMA_VERSION = "fff.malformedMissingSpanGuard.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
 const DEFAULT_BROAD_SPAN_SPLIT_OUTPUT = "artifacts/broad-span-split-result.json";
 const DEFAULT_WEAK_SPAN_REPAIR_OUTPUT = "artifacts/weak-span-repair-result.json";
 const DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT = "artifacts/missing-fixture-class-probe-result.json";
+const DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT = "artifacts/malformed-missing-span-guard-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -210,6 +212,15 @@ const EXTRACTION_FIXTURE_EXPECTATIONS = {
     expectedValid: false,
     expectedErrors: ["sourceRefIds must reference at least one source ref"]
   },
+  "malformed-missing-source-span.json": {
+    expectedValid: false,
+    expectedErrors: [
+      "missing sourceSpan",
+      "sourceSpan.start must be a non-negative integer",
+      "sourceSpan.text must be a non-empty string",
+      "sourceSpan.end must be greater than sourceSpan.start"
+    ]
+  },
   "overconfident-human-owned-decision.json": {
     expectedValid: false,
     expectedErrors: ["human-owned decision", "must not suggest adopt"]
@@ -349,6 +360,25 @@ async function main() {
     }
     if (command === "smoke-missing-fixture-class-probe" || outputPath) {
       console.log(`missing fixture class probe passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-malformed-missing-span-guard" || command === "smoke-malformed-missing-span-guard") {
+    const smoke = await readJson(inputPath);
+    const result = await validateMalformedMissingSpanGuard(smoke, inputPath);
+    const target = outputPath || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT;
+    if (command === "smoke-malformed-missing-span-guard" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Malformed/missing source-span guard failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-malformed-missing-span-guard" || outputPath) {
+      console.log(`malformed/missing source-span guard passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -1526,6 +1556,211 @@ async function validateMissingFixtureClassProbe(smoke, smokePath) {
   };
 }
 
+async function validateMalformedMissingSpanGuard(smoke, smokePath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const selectedFixture = {
+    class_id: "malformed_missing_source_span_payload",
+    label: "missing or malformed source span payloads",
+    fixture_path: "artifacts/extraction-negative-fixtures/malformed-missing-source-span.json"
+  };
+  const expectedErrorSnippets = EXTRACTION_FIXTURE_EXPECTATIONS["malformed-missing-source-span.json"].expectedErrors;
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const sourcePack = await readJson(manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json");
+  const missingFixtureProbe = await readJson(manifest.missing_fixture_class_probe_result_path || DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT);
+  const routingRegression = await readJson(manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT);
+  const weakSpanRepair = await readJson(manifest.weak_span_repair_result_path || DEFAULT_WEAK_SPAN_REPAIR_OUTPUT);
+  const broadSpanSplit = await readJson(manifest.broad_span_split_result_path || DEFAULT_BROAD_SPAN_SPLIT_OUTPUT);
+  const boundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
+  const boundaryEnvelope = await readJson(manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json");
+  const fixture = await readJson(selectedFixture.fixture_path);
+  const validation = validateExtractionPayload(fixture);
+  const fixtureResult = Array.isArray(smoke.results)
+    ? smoke.results.find((result) => result.fixture === "malformed-missing-source-span.json")
+    : null;
+  const fixtureElements = Array.isArray(fixture.extractedElements) ? fixture.extractedElements : [];
+  const routedSurfaces = ["profile", "claim", "timeline"];
+  const candidateSurfaceElements = fixtureElements.filter((element) =>
+    Array.isArray(element.targetDestinations) &&
+    element.targetDestinations.some((destination) => routedSurfaces.includes(destination))
+  );
+  const nonHeldElements = fixtureElements.filter((element) =>
+    element.reviewStatus !== "hold" || element.suggestedReviewStatus !== "hold"
+  );
+  const acceptedRoutedCandidates = validation.ok ? candidateSurfaceElements.map((element) => element.id) : [];
+  const sourceSpanErrors = validation.errors.filter((error) => error.includes("sourceSpan"));
+  const missingSourceRefErrors = validation.errors.filter((error) => error.includes("sourceRefIds"));
+  const expectedErrorMatches = expectedErrorSnippets.map((text) => ({
+    text,
+    matched: validation.errors.some((error) => error.includes(text)) ||
+      Boolean(fixtureResult?.expectedErrorMatches?.some((match) => match.text === text && match.matched))
+  }));
+  const priorMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-missing-fixture-class-probe-001");
+  const sourcePackLegacyGaps = Array.isArray(sourcePack.cross_fixture_summary?.fixture_class_gaps)
+    ? sourcePack.cross_fixture_summary.fixture_class_gaps
+    : [];
+
+  check(
+    "prior_fixture_probe_preserved",
+    missingFixtureProbe?.artifact_id === "fff-missing-fixture-class-probe-001" &&
+      missingFixtureProbe?.passed === true &&
+      weakSpanRepair?.passed === true &&
+      broadSpanSplit?.passed === true &&
+      routingRegression?.passed === true,
+    "sparse fixture probe, weak-span repair, broad-span split, and routing regression must remain closed"
+  );
+  check(
+    "concrete_guard_gap_named",
+    sourcePackLegacyGaps.includes(selectedFixture.label) ||
+      missingFixtureProbe?.coverage_decision?.remaining_fixture_class_candidates?.includes(selectedFixture.label),
+    "missing or malformed source span payloads must be named by existing fixture debt"
+  );
+  check(
+    "exactly_one_negative_fixture_added",
+    smoke?.passed === true &&
+      smoke.summary?.fixtureCount === 8 &&
+      fixtureResult?.fixture === "malformed-missing-source-span.json" &&
+      fixtureResult?.expected === "invalid" &&
+      fixtureResult?.actual === "invalid" &&
+      fixtureResult?.passed === true,
+    `validator fixtures=${smoke.summary?.fixtureCount}; malformed fixture actual=${fixtureResult?.actual || "missing"}`
+  );
+  check(
+    "source_span_contract_rejects_unusable_payload",
+    validation.ok === false &&
+      expectedErrorMatches.every((match) => match.matched) &&
+      sourceSpanErrors.length >= 4,
+    `source-span errors=${sourceSpanErrors.length}; expected matches=${expectedErrorMatches.filter((match) => match.matched).length}/${expectedErrorMatches.length}`
+  );
+  check(
+    "missing_source_ref_marked",
+    missingSourceRefErrors.length >= 1,
+    `missing source-ref errors=${missingSourceRefErrors.length}`
+  );
+  check(
+    "hold_as_unreviewable",
+    fixtureElements.length === 3 &&
+      nonHeldElements.length === 0 &&
+      fixture.reviewSafeDefaults?.defaultReviewStatus === "hold" &&
+      fixture.reviewSafeDefaults?.autoCanonPromotion === false &&
+      fixture.reviewSafeDefaults?.autoChronologyPromotion === false,
+    `fixture elements=${fixtureElements.length}; non-held=${nonHeldElements.join(", ") || "none"}`
+  );
+  check(
+    "keep_out_of_routed_adoption",
+    candidateSurfaceElements.length >= 2 &&
+      acceptedRoutedCandidates.length === 0 &&
+      fixtureElements.every((element) => element.targetProfileIds?.length === 0 && element.targetClaimIds?.length === 0 && element.targetTimelineEntryIds?.length === 0),
+    `candidate-surface elements=${candidateSurfaceElements.length}; accepted routed candidates=${acceptedRoutedCandidates.join(", ") || "none"}`
+  );
+  check(
+    "source_pack_counts_preserved",
+    sourcePack?.passed === true &&
+      sourcePack.cross_fixture_summary?.fixture_count === 4 &&
+      sourcePack.cross_fixture_summary?.total_elements === 48 &&
+      routingRegression.summary?.source_pack_rows_checked === 48 &&
+      routingRegression.summary?.adapter_payloads_checked === 5 &&
+      routingRegression.summary?.adapter_elements_checked === 60,
+    `source-pack fixtures=${sourcePack.cross_fixture_summary?.fixture_count}; rows=${sourcePack.cross_fixture_summary?.total_elements}`
+  );
+  check(
+    "no_review_card_or_model_api",
+    priorMemory?.prior_review_count === 0 &&
+      manifest.review_input_mode === "freeform" &&
+      boundarySmoke?.passed === true &&
+      boundarySmoke?.checks?.noExternalCall === true &&
+      boundaryEnvelope?.providerBoundary?.externalCallAllowed === false,
+    "Review stays freeform/local and model/API boundary remains no-call"
+  );
+
+  const remainingFixtureCandidates = [
+    "contradictory memo claims",
+    "very broad source span fixture shape",
+    "multilingual or translated memo text",
+    "model/API provider envelope output"
+  ];
+
+  return {
+    schemaVersion: MALFORMED_MISSING_SPAN_GUARD_SCHEMA_VERSION,
+    artifact_id: "fff-malformed-missing-span-guard-001",
+    title: "Fast Fiction Factory Malformed/Missing Source-Span Guard",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    selected_guard_class: selectedFixture.class_id,
+    selected_guard_label: selectedFixture.label,
+    selected_fixture_path: selectedFixture.fixture_path,
+    validator_smoke_path: toRepoPath(smokePath),
+    source_pack_path: manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json",
+    preserved_missing_fixture_probe_path: manifest.missing_fixture_class_probe_result_path || DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT,
+    review_memory_checked: {
+      checked: true,
+      target: "fff-missing-fixture-class-probe-001",
+      prior_review_count: priorMemory?.prior_review_count ?? 0,
+      prior_signal_summary: priorMemory?.latest_user_signal_summary || "No user review was requested for the sparse fixture probe slice.",
+      axis: "malformed_missing_span_guard",
+      what_changed: "A single negative extraction fixture now proves malformed, missing, or unusable source-span payloads are rejected by the local contract validator instead of entering routed candidates.",
+      what_this_review_decides: "No user review is needed; this readback decides whether invalid source-span evidence is blocked before Profile, Claim, or Timeline adoption surfaces.",
+      not_asking: [
+        "general Review Hub review",
+        "fixed-form review",
+        "repeat sparse fixture review",
+        "repeat weak-span review",
+        "repeat broad-span review",
+        "repeat ambiguous-routing review",
+        "model/API approval",
+        "provider credentials",
+        "database or publishing contract changes",
+        "production sync",
+        "AI video generation",
+        "final canon decisions for Toma fate, brass moth truth, or Council motive"
+      ],
+      next_nonredundant_axis: "choose a different remaining fixture class only after a new concrete coverage need is named"
+    },
+    guard_behavior: {
+      reject_as_invalid: validation.ok === false,
+      hold_as_unreviewable: nonHeldElements.length === 0,
+      mark_missing_source_ref: missingSourceRefErrors.length >= 1,
+      keep_out_of_claim_timeline_profile_adoption: acceptedRoutedCandidates.length === 0
+    },
+    coverage_decision: {
+      known_missing_classes_before_guard: missingFixtureProbe?.coverage_decision?.remaining_fixture_class_candidates || [],
+      selected_class_reason: "The prior sparse fixture probe left malformed or missing source-span payloads as a named remaining fixture class, and this can be covered locally as a negative validator fixture without model/API work or canon judgment.",
+      covered_by_this_guard: [selectedFixture.label],
+      remaining_fixture_class_candidates: remainingFixtureCandidates,
+      source_pack_legacy_gap_list_still_present: sourcePackLegacyGaps
+    },
+    summary: {
+      validator_fixture_count: smoke.summary?.fixtureCount,
+      expected_invalid_fixture_count: smoke.summary?.expectedInvalid,
+      selected_fixture_elements_checked: fixtureElements.length,
+      candidate_surface_elements_checked: candidateSurfaceElements.length,
+      source_span_errors: sourceSpanErrors.length,
+      missing_source_ref_errors: missingSourceRefErrors.length,
+      accepted_routed_candidates: acceptedRoutedCandidates.length,
+      non_held_review_defaults: nonHeldElements.length,
+      source_pack_rows_preserved: sourcePack.cross_fixture_summary?.total_elements,
+      adapter_payloads_preserved: routingRegression.summary?.adapter_payloads_checked,
+      adapter_elements_preserved: routingRegression.summary?.adapter_elements_checked,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    fixture_guard_checks: checks,
+    expected_error_matches: expectedErrorMatches,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function readAdapterPayloads() {
   const payloads = [];
   for (const filePath of ["artifacts/local-extraction-adapter-output.json"]) {
@@ -1763,6 +1998,7 @@ function validateExtractionElements(contract, label, sourceRefIds, options, erro
         errors.push(`${elementLabel} ${arrayField} must be an array`);
       }
     }
+    validateElementSourceSpan(element, elementLabel, errors);
 
     if (element.elementType) {
       elementTypes.add(element.elementType);
@@ -1817,6 +2053,27 @@ function validateExtractionElements(contract, label, sourceRefIds, options, erro
         errors.push(`${label} missing elementType ${elementType}`);
       }
     }
+  }
+}
+
+function validateElementSourceSpan(element, elementLabel, errors) {
+  const sourceSpan = element.sourceSpan;
+  if (!sourceSpan || typeof sourceSpan !== "object" || Array.isArray(sourceSpan)) {
+    errors.push(`${elementLabel} sourceSpan must be an object`);
+    return;
+  }
+
+  if (typeof sourceSpan.text !== "string" || sourceSpan.text.trim().length === 0) {
+    errors.push(`${elementLabel} sourceSpan.text must be a non-empty string`);
+  }
+  if (!Number.isInteger(sourceSpan.start) || sourceSpan.start < 0) {
+    errors.push(`${elementLabel} sourceSpan.start must be a non-negative integer`);
+  }
+  if (!Number.isInteger(sourceSpan.end) || sourceSpan.end < 0) {
+    errors.push(`${elementLabel} sourceSpan.end must be a non-negative integer`);
+  }
+  if (Number.isInteger(sourceSpan.start) && Number.isInteger(sourceSpan.end) && sourceSpan.end <= sourceSpan.start) {
+    errors.push(`${elementLabel} sourceSpan.end must be greater than sourceSpan.start`);
   }
 }
 
@@ -2225,6 +2482,8 @@ Usage:
   node tools/fff-state.mjs smoke-weak-span-repair <source-span-quality-audit.json> [output.json]
   node tools/fff-state.mjs validate-missing-fixture-class-probe <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-missing-fixture-class-probe <adapter-matrix-smoke.json> [output.json]
+  node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
+  node tools/fff-state.mjs smoke-malformed-missing-span-guard <extraction-validator-smoke.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -2243,6 +2502,9 @@ Default weak-span repair output:
 
 Default missing fixture class probe output:
   ${DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT}
+
+Default malformed/missing source-span guard output:
+  ${DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT}
 `);
 }
 
