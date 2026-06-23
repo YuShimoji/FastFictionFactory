@@ -952,7 +952,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-contradictory-claim-guard-001</strong>. This slice adds one contradictory-claim guard fixture so conflicting claim candidates are detected, source-backed, held for human review, and kept out of auto-canon while preserving <strong>fff-downstream-source-span-adoption-gate-001</strong>, <strong>fff-malformed-missing-span-guard-001</strong>, <strong>fff-missing-fixture-class-probe-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-contradictory-claim-guard-001</strong>. This slice keeps conflicting claim candidates detected, source-backed, held for human review, and out of auto-canon while preserving <strong>fff-provider-envelope-readiness-no-call-001</strong>, <strong>fff-downstream-source-span-adoption-gate-001</strong>, <strong>fff-malformed-missing-span-guard-001</strong>, <strong>fff-missing-fixture-class-probe-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1002,6 +1002,7 @@
           <div class="progress-step done"><strong>Missing fixture class probe</strong><span class="tag green">done</span><p class="section-note">Add one sparse bullet-only fixture with held defaults, source-span readback, and routing regression coverage.</p></div>
           <div class="progress-step done"><strong>Malformed span guard</strong><span class="tag green">done</span><p class="section-note">Reject missing, malformed, or unusable source-span evidence before routed candidate adoption.</p></div>
           <div class="progress-step done"><strong>Downstream adoption gate</strong><span class="tag green">done</span><p class="section-note">Confirm downstream Profile, Claim, and Timeline candidates remain source-tracked, safe-routed, and held.</p></div>
+          <div class="progress-step done"><strong>Provider envelope readiness</strong><span class="tag green">done</span><p class="section-note">provider envelope readiness no-call passed: no provider call, credential, endpoint, production sync, or final canon output.</p></div>
           <div class="progress-step current"><strong>Contradictory claim guard</strong><span class="tag blue">current</span><p class="section-note">Detect reciprocal claim conflicts and keep both sides held without deciding truth.</p></div>
         </div>
 
@@ -1033,6 +1034,7 @@
               <li>Missing fixture class probe for sparse bullet-only notes.</li>
               <li>Malformed/missing source-span guard for invalid evidence payloads.</li>
               <li>Downstream source-span adoption gate for Profile, Claim, and Timeline readiness without actual adoption.</li>
+              <li>Provider envelope readiness no-call gate for future provider output shape before any provider call, credential, endpoint, production sync, or final canon output.</li>
               <li>Contradictory claim guard for reciprocal held conflict pairs.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
@@ -1112,6 +1114,9 @@
                 <tr><td>Model/API boundary spec</td><td>docs/review/model-api-boundary-spec.md</td></tr>
                 <tr><td>Model/API boundary envelope</td><td>artifacts/model-api-boundary-envelope.example.json</td></tr>
                 <tr><td>Model/API boundary smoke</td><td>artifacts/model-api-boundary-smoke-result.json</td></tr>
+                <tr><td>Provider envelope readiness</td><td>docs/review/provider-envelope-readiness-no-call.md</td></tr>
+                <tr><td>Provider envelope no-call example</td><td>artifacts/provider-envelope-readiness-no-call.example.json</td></tr>
+                <tr><td>Provider envelope no-call result</td><td>artifacts/provider-envelope-readiness-no-call-result.json</td></tr>
                 <tr><td>Source-span review pack</td><td>artifacts/source-span-routing-review-pack.json</td></tr>
                 <tr><td>Source-span pack tool</td><td>tools/fff-source-span-review-pack.mjs</td></tr>
                 <tr><td>Source-span pack review</td><td>docs/review/source-span-routing-review-pack.md</td></tr>
@@ -1155,6 +1160,7 @@
               <li>Open <strong>public/review/index.html</strong>.</li>
               <li>Confirm this hub shows active artifact id <strong>fff-contradictory-claim-guard-001</strong>.</li>
               <li>Use <strong>docs/review/contradictory-claim-guard.md</strong> and <strong>artifacts/contradictory-claim-guard-result.json</strong> for the contradictory claim guard axis.</li>
+              <li>Use <strong>docs/review/provider-envelope-readiness-no-call.md</strong>, <strong>artifacts/provider-envelope-readiness-no-call.example.json</strong>, and <strong>artifacts/provider-envelope-readiness-no-call-result.json</strong> for the preserved provider envelope readiness no-call gate.</li>
               <li>Use <strong>docs/review/downstream-source-span-adoption-gate.md</strong> and <strong>artifacts/downstream-source-span-adoption-gate-result.json</strong> for the preserved downstream source-span adoption gate readback.</li>
               <li>Use <strong>docs/review/malformed-missing-span-guard.md</strong> and <strong>artifacts/malformed-missing-span-guard-result.json</strong> for the preserved malformed/missing source-span guard axis.</li>
               <li>Use <strong>docs/review/missing-fixture-class-probe.md</strong> and <strong>artifacts/missing-fixture-class-probe-result.json</strong> for the sparse bullet-only fixture probe axis.</li>
@@ -1474,13 +1480,13 @@
           </div>
           <div class="contract-run-card" id="extraction-run-card"></div>
           <div class="contract-run-card" aria-label="Extraction Validator Hardening evidence">
-            <div class="metric"><strong>7/7</strong><span>fixture matrix</span></div>
-            <div class="metric"><strong>2</strong><span>expected valid</span></div>
-            <div class="metric"><strong>5</strong><span>expected invalid</span></div>
+            <div class="metric"><strong>9/9</strong><span>fixture matrix</span></div>
+            <div class="metric"><strong>3</strong><span>expected valid</span></div>
+            <div class="metric"><strong>6</strong><span>expected invalid</span></div>
             <div class="metric"><strong>0</strong><span>mismatches</span></div>
             <div class="metric"><strong>local only</strong><span>validator mode</span></div>
           </div>
-          <p class="section-note">Source-span pack evidence: artifacts/source-span-routing-review-pack.json. Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while keeping future model/API output behind validation gates.</p>
+          <p class="section-note">Source-span pack evidence: artifacts/source-span-routing-review-pack.json. Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Provider envelope readiness evidence: artifacts/provider-envelope-readiness-no-call-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while keeping future model/API output behind validation gates.</p>
           <div class="extraction-toolbar" aria-label="Extraction Contract controls">
             <div class="extraction-toolbar-row">
               <label for="extraction-group-mode"><strong>Group extraction</strong></label>
@@ -3629,6 +3635,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
         preservedArtifactId: "fff-source-span-routing-review-pack-001",
         preservedAdapterExpansionArtifactId: "fff-local-extraction-adapter-expansion-001",
+        preservedProviderEnvelopeReadinessNoCallArtifactId: "fff-provider-envelope-readiness-no-call-001",
         reviewInputMode: "freeform",
         extractionContract: {
           schemaVersion: model.extraction_contract.schemaVersion,
@@ -3657,6 +3664,26 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           smokeResult: "artifacts/model-api-boundary-smoke-result.json",
           externalCallAllowed: false,
           targetSchemaVersion: "fff.extractionContract.v1"
+        },
+        providerEnvelopeReadinessNoCall: {
+          artifactId: "fff-provider-envelope-readiness-no-call-001",
+          docPath: "docs/review/provider-envelope-readiness-no-call.md",
+          envelopePath: "artifacts/provider-envelope-readiness-no-call.example.json",
+          resultPath: "artifacts/provider-envelope-readiness-no-call-result.json",
+          providerConfigured: false,
+          providerName: null,
+          modelName: null,
+          externalCallAttempted: false,
+          credentialsTouched: false,
+          candidateElementsChecked: 4,
+          sourceTrackedElements: 4,
+          nonHeldHumanOwnedElements: 0,
+          visualDirectClaimRoutes: 0,
+          adoptedOrProvisionalElements: 0,
+          adoptedOrProvisionalClaims: 0,
+          activeArtifactPreserved: "fff-contradictory-claim-guard-001",
+          reviewCardEmitted: false,
+          operatorObservationCardEmitted: false
         },
         sourceSpanReviewPack: {
           artifactId: "fff-source-span-routing-review-pack-001",
@@ -3793,7 +3820,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           artifactId: "fff-review-memory-dedup-001",
           docPath: "docs/review/review-memory-dedup.md",
           smokeResult: "artifacts/review-memory-dedup-smoke-result.json",
-          nextNonredundantAxis: "very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness only after a concrete coverage need",
+          nextNonredundantAxis: "explicit provider adapter implementation only after authorization, or very broad/multilingual fixture coverage if coverage remains the bottleneck",
           repeatedReviewAllowed: false,
           reviewResetTrigger: "changed target, changed evidence, changed axis, changed decision value, or explicit user request"
         }
@@ -4270,10 +4297,11 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           importedUnknownFields: {},
           activeArtifactId: "fff-contradictory-claim-guard-001",
           preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
-          preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
-          preservedArtifactId: "fff-source-span-routing-review-pack-001",
-          preservedAdapterExpansionArtifactId: "fff-local-extraction-adapter-expansion-001",
-          reviewInputMode: "freeform",
+        preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
+        preservedArtifactId: "fff-source-span-routing-review-pack-001",
+        preservedAdapterExpansionArtifactId: "fff-local-extraction-adapter-expansion-001",
+        preservedProviderEnvelopeReadinessNoCallArtifactId: "fff-provider-envelope-readiness-no-call-001",
+        reviewInputMode: "freeform",
           extractionContract: {
             schemaVersion: model.extraction_contract.schemaVersion,
             extractionRunId: model.extraction_contract.extractionRunId,
@@ -4301,6 +4329,26 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             smokeResult: "artifacts/model-api-boundary-smoke-result.json",
             externalCallAllowed: false,
             targetSchemaVersion: "fff.extractionContract.v1"
+          },
+          providerEnvelopeReadinessNoCall: {
+            artifactId: "fff-provider-envelope-readiness-no-call-001",
+            docPath: "docs/review/provider-envelope-readiness-no-call.md",
+            envelopePath: "artifacts/provider-envelope-readiness-no-call.example.json",
+            resultPath: "artifacts/provider-envelope-readiness-no-call-result.json",
+            providerConfigured: false,
+            providerName: null,
+            modelName: null,
+            externalCallAttempted: false,
+            credentialsTouched: false,
+            candidateElementsChecked: 4,
+            sourceTrackedElements: 4,
+            nonHeldHumanOwnedElements: 0,
+            visualDirectClaimRoutes: 0,
+            adoptedOrProvisionalElements: 0,
+            adoptedOrProvisionalClaims: 0,
+            activeArtifactPreserved: "fff-contradictory-claim-guard-001",
+            reviewCardEmitted: false,
+            operatorObservationCardEmitted: false
           },
           sourceSpanReviewPack: {
             artifactId: "fff-source-span-routing-review-pack-001",
@@ -4437,7 +4485,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             artifactId: "fff-review-memory-dedup-001",
             docPath: "docs/review/review-memory-dedup.md",
             smokeResult: "artifacts/review-memory-dedup-smoke-result.json",
-            nextNonredundantAxis: "very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness only after a concrete coverage need",
+            nextNonredundantAxis: "explicit provider adapter implementation only after authorization, or very broad/multilingual fixture coverage if coverage remains the bottleneck",
             repeatedReviewAllowed: false,
             reviewResetTrigger: "changed target, changed evidence, changed axis, changed decision value, or explicit user request"
           }

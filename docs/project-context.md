@@ -22,6 +22,7 @@ The active slice is complete enough for local readback:
 - Malformed/missing source-span guard doc: `docs/review/malformed-missing-span-guard.md`
 - Malformed/missing source-span guard result: `artifacts/malformed-missing-span-guard-result.json`
 - Malformed/missing source-span fixture: `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
+- Provider envelope readiness no-call doc/envelope/result: `docs/review/provider-envelope-readiness-no-call.md`, `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json`
 - Missing fixture probe doc/result: `docs/review/missing-fixture-class-probe.md`, `artifacts/missing-fixture-class-probe-result.json`
 - Weak-span repair doc/result: `docs/review/weak-span-repair.md`, `artifacts/weak-span-repair-result.json`
 - Broad source-span split doc/result: `docs/review/broad-span-split.md`, `artifacts/broad-span-split-result.json`
@@ -60,6 +61,7 @@ node .\tools\fff-extract-local.mjs --matrix .\artifacts\extraction-adapter-fixtu
 node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixtures .\artifacts\extraction-adapter-outputs .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\source-span-routing-review-pack.json
 node .\tools\fff-state.mjs smoke-routing-policy .\artifacts\ambiguous-routing-resolution-result.json .\artifacts\routing-policy-regression-hardening-result.json
 node .\tools\fff-state.mjs smoke-malformed-missing-span-guard .\artifacts\extraction-validator-smoke-result.json .\artifacts\malformed-missing-span-guard-result.json
+node .\tools\fff-state.mjs smoke-provider-envelope-readiness-no-call .\artifacts\provider-envelope-readiness-no-call.example.json .\artifacts\provider-envelope-readiness-no-call-result.json
 ```
 
 Result summary:
@@ -68,6 +70,7 @@ Result summary:
 - Contradictory claim guard parses 9 validator fixtures, keeps 2 conflicting claims in held review, preserves 1 reciprocal conflict pair and source refs, reports 0 adopted/provisional conflicting claims, and reports 0 direct accepted claim-routed elements.
 - Downstream adoption gate parses 48 source-pack rows and reports 44 downstream Profile / Claim / Timeline review candidates, all 44 source-tracked, with 0 malformed/missing span candidates, 0 unsafe routing candidates, 22 human-owned candidates held, 0 non-held human-owned candidates, and 0 adopted Profile / Claim / Timeline candidates.
 - Malformed/missing source-span guard remains closed with 3 invalid elements rejected, 0 accepted routed candidates, and 9 validator fixtures in the smoke matrix.
+- Provider envelope readiness no-call gate passes with 4 carried Extraction Contract elements, 4 source-tracked elements, 2 human-owned elements held, 0 visual direct Claim routes, 0 adopted/provisional elements or claims, no provider configured, no endpoint, no external call attempted, and no credentials touched.
 - Routing policy regression remains passing across 5 adapter payloads and 60 adapter elements.
 - Source-span review pack remains passing with 4 fixture outputs, 48 elements, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
 - Model/API boundary spec remains preserved as a spec-only, no-external-call boundary for future provider work.
@@ -103,7 +106,7 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: keep the contradictory claim guard and downstream source-span adoption gate as active safety boundaries. Move next only to provider-envelope readiness behind the no-call model/API boundary, or to one concrete remaining fixture class if a coverage need is named.
+First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption and provider-envelope readiness as auxiliary safety readbacks. Move next only to explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior, or to one concrete remaining fixture class if a coverage need is named.
 
 ## Handoff Path
 

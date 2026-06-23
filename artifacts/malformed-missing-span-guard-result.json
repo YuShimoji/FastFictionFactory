@@ -2,7 +2,7 @@
   "schemaVersion": "fff.malformedMissingSpanGuard.v1",
   "artifact_id": "fff-malformed-missing-span-guard-001",
   "title": "Fast Fiction Factory Malformed/Missing Source-Span Guard",
-  "generatedAt": "2026-06-23T07:13:59.993Z",
+  "generatedAt": "2026-06-23T08:31:35.206Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "selected_guard_class": "malformed_missing_source_span_payload",

@@ -578,7 +578,7 @@
 - Validation result: passed 2026-06-23; contradictory claim guard read 9 validator fixtures, 3 expected-valid fixtures, 6 expected-invalid fixtures, 2 linked conflicting claims, 1 reciprocal conflict pair, 2 held conflicting claims, 0 adopted/provisional conflicting claims, 0 direct accepted claim elements, 2 source-ref-preserved conflicting claims, 48 preserved source-pack rows, 5 preserved adapter payloads, 60 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
-- Next action: Choose very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness only after a concrete coverage need is named; do not reopen contradictory claims, malformed/missing spans, sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.
+- Next action: Preserve this as the active Review Hub identity while using provider-envelope readiness as auxiliary no-call evidence; do not reopen contradictory claims, malformed/missing spans, sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.
 
 ## fff-downstream-source-span-adoption-gate-001
 
@@ -601,5 +601,31 @@
 - Validation result: passed 2026-06-23; downstream gate read 48 source-pack rows, reported 44 downstream Profile / Claim / Timeline review candidates, confirmed 44 source-tracked candidates, 0 malformed or missing-span candidates, 0 unsafe routing candidates, 22 held human-owned candidates, 0 non-held human-owned candidates, 0 accepted routed malformed-span candidates, 0 adopted downstream candidates, 5 adapter payloads, 60 adapter elements, and 0 failures.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
-- State: Active artifact.
-- Next action: Keep this gate passing before any future adoption path or provider-backed adapter; move next only to provider-envelope readiness or one concrete remaining fixture class after explicit need.
+- State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`.
+- Next action: Keep this gate passing before any future adoption path or provider-backed adapter; use `fff-provider-envelope-readiness-no-call-001` as the no-call provider-envelope precondition before any provider implementation.
+
+## fff-provider-envelope-readiness-no-call-001
+
+- Title: Fast Fiction Factory Provider Envelope Readiness No-Call Gate
+- Purpose: Define and validate the envelope shape a future provider adapter must satisfy before any model/API provider call, credential flow, provider endpoint, database persistence, publishing adapter, production sync, AI video generation, downstream adoption implementation, or final canon decision exists.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/provider-envelope-readiness-no-call.md`
+- Envelope example: `artifacts/provider-envelope-readiness-no-call.example.json`
+- Readback result: `artifacts/provider-envelope-readiness-no-call-result.json`
+- State validator: `tools/fff-state.mjs`
+- Preserved active artifact: `fff-contradictory-claim-guard-001`
+- Preserved model/API boundary: `fff-model-api-boundary-spec-001`
+- Preserved malformed/missing source-span guard: `artifacts/malformed-missing-span-guard-result.json`
+- Preserved contradictory claim guard: `artifacts/contradictory-claim-guard-result.json`
+- Preserved downstream source-span adoption gate: `artifacts/downstream-source-span-adoption-gate-result.json`
+- Manifest: `artifacts/artifact-manifest.json`
+- Current status: `docs/review/current-status.md`
+- Validation command: `node tools/fff-state.mjs smoke-provider-envelope-readiness-no-call artifacts/provider-envelope-readiness-no-call.example.json artifacts/provider-envelope-readiness-no-call-result.json`
+- Validation result: passed 2026-06-23; provider envelope readiness parsed the no-call fixture, confirmed no provider configured, no provider/model name, no endpoint, no external call attempted, no credentials touched, 4 carried Extraction Contract elements, 4 source-tracked elements, 2 human-owned elements held, 0 non-held human-owned elements, 0 visual direct Claim routes, 0 adopted/provisional elements, 0 adopted/provisional claims, and preserved the validator, malformed/missing, contradictory, downstream, source-pack, and model/API no-call gates.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no Review Card or Operator Observation Card is emitted.
+- Next action: Choose explicit provider adapter implementation only after authorization for provider choice, credentials, and transport behavior, or choose remaining broad/multilingual fixture coverage if coverage remains the bottleneck.

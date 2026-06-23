@@ -12,6 +12,7 @@ const MISSING_FIXTURE_CLASS_PROBE_SCHEMA_VERSION = "fff.missingFixtureClassProbe
 const MALFORMED_MISSING_SPAN_GUARD_SCHEMA_VERSION = "fff.malformedMissingSpanGuard.v1";
 const CONTRADICTORY_CLAIM_GUARD_SCHEMA_VERSION = "fff.contradictoryClaimGuard.v1";
 const DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_SCHEMA_VERSION = "fff.downstreamSourceSpanAdoptionGate.v1";
+const PROVIDER_ENVELOPE_READINESS_NO_CALL_SCHEMA_VERSION = "fff.providerEnvelopeReadinessNoCall.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -21,6 +22,7 @@ const DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT = "artifacts/missing-fixture-cl
 const DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT = "artifacts/malformed-missing-span-guard-result.json";
 const DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT = "artifacts/contradictory-claim-guard-result.json";
 const DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT = "artifacts/downstream-source-span-adoption-gate-result.json";
+const DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT = "artifacts/provider-envelope-readiness-no-call-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -424,6 +426,25 @@ async function main() {
     }
     if (command === "smoke-downstream-source-span-adoption-gate" || outputPath) {
       console.log(`downstream source-span adoption gate passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-provider-envelope-readiness-no-call" || command === "smoke-provider-envelope-readiness-no-call") {
+    const envelope = await readJson(inputPath);
+    const result = await validateProviderEnvelopeReadinessNoCall(envelope, inputPath);
+    const target = outputPath || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT;
+    if (command === "smoke-provider-envelope-readiness-no-call" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Provider envelope readiness no-call gate failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-provider-envelope-readiness-no-call" || outputPath) {
+      console.log(`provider envelope readiness no-call gate passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -2241,6 +2262,244 @@ async function validateDownstreamSourceSpanAdoptionGate(sourcePack, sourcePackPa
   };
 }
 
+async function validateProviderEnvelopeReadinessNoCall(envelope, envelopePath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const validatorSmoke = await readJson(manifest.validator_smoke_path || DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT);
+  const sourcePack = await readJson(manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json");
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const downstreamGate = await readJson(manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT);
+  const boundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
+  const boundaryEnvelope = await readJson(manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json");
+
+  const provider = envelope?.providerRunMetadata || {};
+  const output = envelope?.extractionOutput || {};
+  const candidateContract = output.candidateExtractionContract;
+  const validation = validateExtractionPayload(candidateContract);
+  const elements = Array.isArray(candidateContract?.extractedElements) ? candidateContract.extractedElements : [];
+  const claims = Array.isArray(candidateContract?.claimCandidates) ? candidateContract.claimCandidates : [];
+  const sourceRefs = Array.isArray(candidateContract?.sourceRefs) ? candidateContract.sourceRefs : [];
+  const sourceRefIds = new Set(sourceRefs.map((sourceRef) => sourceRef?.id).filter(Boolean));
+  const sourceTrackedElements = elements.filter((element) =>
+    hasValidSourceSpan(element) &&
+      Array.isArray(element.sourceRefIds) &&
+      element.sourceRefIds.length > 0 &&
+      element.sourceRefIds.every((sourceRefId) => sourceRefIds.has(sourceRefId))
+  );
+  const humanOwnedElements = elements.filter((element) => touchesHumanOwnedDecision(element));
+  const nonHeldHumanOwnedElements = humanOwnedElements.filter((element) =>
+    element.reviewStatus !== "hold" || element.suggestedReviewStatus !== "hold"
+  );
+  const visualDirectClaimElements = elements.filter((element) =>
+    element.elementType === "visual_asset" &&
+      Array.isArray(element.targetDestinations) &&
+      element.targetDestinations.includes("claim") &&
+      !element.targetDestinations.includes("profile")
+  );
+  const adoptedOrProvisionalElements = elements.filter((element) =>
+    ["adopt", "provisional"].includes(element.reviewStatus) ||
+      ["adopt", "provisional"].includes(element.suggestedReviewStatus)
+  );
+  const adoptedOrProvisionalClaims = claims.filter((claim) =>
+    ["adopt", "provisional"].includes(claim.reviewStatus)
+  );
+  const conflictingClaims = claims.filter((claim) => arrayLength(claim.contradictsClaimIds) > 0);
+  const nonHeldConflictingClaims = conflictingClaims.filter((claim) => claim.reviewStatus !== "hold");
+  const secretMaterialFindings = collectCredentialMaterial(envelope);
+  const gateBindings = envelope?.gateBindings || {};
+  const humanBoundaryText = Array.isArray(candidateContract?.humanAuthorityBoundaries)
+    ? candidateContract.humanAuthorityBoundaries.join(" ").toLowerCase()
+    : "";
+
+  check(
+    "provider_envelope_identity",
+    envelope?.schemaVersion === PROVIDER_ENVELOPE_READINESS_NO_CALL_SCHEMA_VERSION &&
+      envelope?.artifact_id === "fff-provider-envelope-readiness-no-call-001" &&
+      String(envelope?.boundaryMode || "").includes("no_call"),
+    `schemaVersion=${envelope?.schemaVersion}; artifact_id=${envelope?.artifact_id}; boundaryMode=${envelope?.boundaryMode}`
+  );
+  check(
+    "no_provider_call_or_credentials",
+    provider.providerConfigured === false &&
+      provider.externalCallAttempted === false &&
+      provider.credentialsRequired === false &&
+      provider.credentialsTouched === false &&
+      provider.endpoint === null &&
+      provider.providerName === null &&
+      provider.modelName === null &&
+      Array.isArray(provider.credentialNames) &&
+      provider.credentialNames.length === 0 &&
+      secretMaterialFindings.length === 0,
+    `providerConfigured=${provider.providerConfigured}; externalCallAttempted=${provider.externalCallAttempted}; credential findings=${secretMaterialFindings.join(", ") || "none"}`
+  );
+  check(
+    "candidate_extraction_contract_validates",
+    output.targetSchemaVersion === EXTRACTION_SCHEMA_VERSION &&
+      output.outputIsProjectState === false &&
+      output.directStateMutationAllowed === false &&
+      validation.ok === true,
+    `targetSchemaVersion=${output.targetSchemaVersion}; validation errors=${validation.errors.join("; ") || "none"}`
+  );
+  check(
+    "source_refs_and_spans_present_before_downstream",
+    elements.length > 0 &&
+      sourceTrackedElements.length === elements.length &&
+      sourceRefs.length > 0,
+    `elements=${elements.length}; source-tracked=${sourceTrackedElements.length}; sourceRefs=${sourceRefs.length}`
+  );
+  check(
+    "existing_guard_chain_is_bound",
+    validatorSmoke?.passed === true &&
+      malformedGuard?.passed === true &&
+      contradictoryGuard?.passed === true &&
+      downstreamGate?.passed === true &&
+      sourcePack?.passed === true &&
+      gateBindings.malformedMissingSpanGuard?.resultPath === (manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT) &&
+      gateBindings.contradictoryClaimGuard?.resultPath === (manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT) &&
+      gateBindings.downstreamSourceSpanAdoptionGate?.resultPath === (manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT),
+    "validator, malformed/missing, contradictory, downstream, and source-pack gates must remain referenced and passing"
+  );
+  check(
+    "routing_and_contradiction_guards_not_bypassed",
+    visualDirectClaimElements.length === 0 &&
+      nonHeldConflictingClaims.length === 0 &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates === 0,
+    `visual direct Claim routes=${visualDirectClaimElements.map((element) => element.id).join(", ") || "none"}; non-held conflicts=${nonHeldConflictingClaims.map((claim) => claim.id).join(", ") || "none"}`
+  );
+  check(
+    "human_owned_decisions_remain_held",
+    ["toma fate", "brass moth truth", "council motive"].every((decision) => humanBoundaryText.includes(decision)) &&
+      nonHeldHumanOwnedElements.length === 0 &&
+      candidateContract?.reviewSafeDefaults?.defaultReviewStatus === "hold" &&
+      candidateContract?.reviewSafeDefaults?.autoCanonPromotion === false &&
+      candidateContract?.reviewSafeDefaults?.autoChronologyPromotion === false,
+    `human-owned elements=${humanOwnedElements.length}; non-held=${nonHeldHumanOwnedElements.map((element) => element.id).join(", ") || "none"}`
+  );
+  check(
+    "no_adopted_canon_or_project_state_output",
+    adoptedOrProvisionalElements.length === 0 &&
+      adoptedOrProvisionalClaims.length === 0 &&
+      output.adoptedCanonOutputCreated === false &&
+      envelope?.reviewSurface?.createsAdoptedCanon === false,
+    `adopted/provisional elements=${adoptedOrProvisionalElements.map((element) => element.id).join(", ") || "none"}; adopted/provisional claims=${adoptedOrProvisionalClaims.map((claim) => claim.id).join(", ") || "none"}`
+  );
+  check(
+    "model_api_boundary_remains_no_call",
+    boundarySmoke?.passed === true &&
+      boundarySmoke?.checks?.noExternalCall === true &&
+      boundarySmoke?.checks?.noCredentials === true &&
+      boundaryEnvelope?.providerBoundary?.externalCallAllowed === false &&
+      boundaryEnvelope?.providerBoundary?.providerConfigured === false,
+    "preserved model/API boundary must remain spec-only, no-call, and no-credential"
+  );
+  check(
+    "review_hub_gate_is_readiness_only",
+    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+      manifest.review_input_mode === "freeform" &&
+      envelope?.reviewSurface?.reviewCardRequired === false &&
+      envelope?.reviewSurface?.operatorObservationCardRequired === false,
+    "active Review Hub identity stays contradictory-claim guard and user-side work remains optional"
+  );
+
+  return {
+    schemaVersion: PROVIDER_ENVELOPE_READINESS_NO_CALL_SCHEMA_VERSION,
+    artifact_id: "fff-provider-envelope-readiness-no-call-001",
+    title: "Fast Fiction Factory Provider Envelope Readiness No-Call Gate",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    boundaryMode: envelope?.boundaryMode,
+    envelope_path: toRepoPath(envelopePath),
+    preserved_active_artifact_id: manifest.artifact_id,
+    preserved_model_api_boundary_artifact_id: manifest.preserved_model_api_boundary_artifact_id || "fff-model-api-boundary-spec-001",
+    provider_metadata: {
+      runId: provider.runId || null,
+      providerConfigured: provider.providerConfigured === true,
+      providerName: provider.providerName || null,
+      modelName: provider.modelName || null,
+      externalCallAttempted: provider.externalCallAttempted === true,
+      credentialsTouched: provider.credentialsTouched === true
+    },
+    gate_bindings: {
+      validator_smoke_path: manifest.validator_smoke_path || DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT,
+      malformed_missing_span_guard_path: manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT,
+      contradictory_claim_guard_path: manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT,
+      downstream_source_span_adoption_gate_path: manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT,
+      source_pack_path: manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json",
+      model_api_boundary_envelope_path: manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json"
+    },
+    review_memory_checked: {
+      checked: true,
+      target: "fff-contradictory-claim-guard-001",
+      prior_review_count: manifest.review_memory?.find((entry) => entry.artifact_id === "fff-contradictory-claim-guard-001")?.prior_review_count ?? 0,
+      axis: "provider_envelope_readiness_no_call",
+      what_changed: "A no-provider fixture now proves a future provider envelope can declare run metadata, carry Extraction Contract output, and bind to existing source-span, routing, contradictory-claim, downstream, and human-owned decision gates without making any provider call.",
+      what_this_review_decides: "No user review is needed; this readback decides whether a future provider adapter has a local envelope shape to satisfy before credentials or real calls exist.",
+      not_asking: [
+        "provider choice",
+        "credentials",
+        "model/API call approval",
+        "production sync",
+        "database persistence",
+        "publishing",
+        "AI video generation",
+        "final canon decisions"
+      ],
+      next_nonredundant_axis: "provider adapter implementation only after explicit authorization, or one remaining fixture class if coverage rather than provider work is chosen"
+    },
+    readiness_policy: {
+      provider_call_allowed: false,
+      credentials_allowed: false,
+      provider_endpoint_allowed: false,
+      output_is_project_state: false,
+      direct_state_mutation_allowed: false,
+      adopted_canon_output_created: false,
+      production_sync_allowed: false
+    },
+    summary: {
+      candidate_extraction_contract_valid: validation.ok,
+      candidate_elements_checked: elements.length,
+      source_tracked_elements: sourceTrackedElements.length,
+      human_owned_elements_held: humanOwnedElements.length - nonHeldHumanOwnedElements.length,
+      non_held_human_owned_elements: nonHeldHumanOwnedElements.length,
+      visual_direct_claim_routes: visualDirectClaimElements.length,
+      conflicting_claims_in_candidate: conflictingClaims.length,
+      non_held_conflicting_claims: nonHeldConflictingClaims.length,
+      adopted_or_provisional_elements: adoptedOrProvisionalElements.length,
+      adopted_or_provisional_claims: adoptedOrProvisionalClaims.length,
+      validator_fixture_count: validatorSmoke.summary?.fixtureCount,
+      malformed_guard_failures: malformedGuard.summary?.failures,
+      contradictory_guard_failures: contradictoryGuard.summary?.failures,
+      downstream_gate_failures: downstreamGate.summary?.failures,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    provider_envelope_checks: checks,
+    blocked_examples: {
+      credential_material_findings: secretMaterialFindings,
+      non_held_human_owned_elements: nonHeldHumanOwnedElements.map((element) => element.id),
+      visual_direct_claim_routes: visualDirectClaimElements.map((element) => element.id),
+      non_held_conflicting_claims: nonHeldConflictingClaims.map((claim) => claim.id),
+      adopted_or_provisional_elements: adoptedOrProvisionalElements.map((element) => element.id),
+      adopted_or_provisional_claims: adoptedOrProvisionalClaims.map((claim) => claim.id)
+    },
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function readAdapterPayloads() {
   const payloads = [];
   for (const filePath of ["artifacts/local-extraction-adapter-output.json"]) {
@@ -3089,6 +3348,8 @@ Usage:
   node tools/fff-state.mjs smoke-contradictory-claim-guard <extraction-validator-smoke.json> [output.json]
   node tools/fff-state.mjs validate-downstream-source-span-adoption-gate <source-span-review-pack.json>
   node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate <source-span-review-pack.json> [output.json]
+  node tools/fff-state.mjs validate-provider-envelope-readiness-no-call <provider-envelope.json>
+  node tools/fff-state.mjs smoke-provider-envelope-readiness-no-call <provider-envelope.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -3116,7 +3377,63 @@ Default contradictory claim guard output:
 
 Default downstream source-span adoption gate output:
   ${DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT}
+
+Default provider envelope readiness no-call output:
+  ${DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT}
 `);
+}
+
+function collectCredentialMaterial(value, trail = []) {
+  if (!value || typeof value !== "object") {
+    return [];
+  }
+
+  const findings = [];
+  const sensitiveKeys = new Set([
+    "apiKey",
+    "api_key",
+    "secret",
+    "secretName",
+    "secretNames",
+    "token",
+    "accessToken",
+    "authorization",
+    "password",
+    "credential",
+    "credentials",
+    "credentialNames",
+    "credentialValue"
+  ]);
+
+  for (const [key, child] of Object.entries(value)) {
+    const nextTrail = trail.concat(key);
+    if (sensitiveKeys.has(key) && hasCredentialLikeValue(child)) {
+      findings.push(nextTrail.join("."));
+    }
+    if (child && typeof child === "object") {
+      findings.push(...collectCredentialMaterial(child, nextTrail));
+    }
+  }
+
+  return findings;
+}
+
+function hasCredentialLikeValue(value) {
+  if (value === null || value === false) {
+    return false;
+  }
+  if (Array.isArray(value)) {
+    return value.length > 0;
+  }
+  if (typeof value === "object") {
+    return Object.keys(value).length > 0;
+  }
+  if (typeof value === "string") {
+    const normalized = value.trim().toLowerCase();
+    return normalized.length > 0 &&
+      !["none", "not_defined_in_this_slice", "not_applicable", "no_credentials"].includes(normalized);
+  }
+  return Boolean(value);
 }
 
 function printWarnings(warnings) {

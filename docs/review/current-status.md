@@ -30,6 +30,7 @@ Preserved platform boundary:
 - Review procedure: `fff-review-procedure-lock-001`
 - Review Hub IA: `fff-review-hub-ia-mode-split-001`
 - Model/API boundary: `fff-model-api-boundary-spec-001`
+- Provider envelope readiness no-call: `fff-provider-envelope-readiness-no-call-001`
 - Local adapter expansion: `fff-local-extraction-adapter-expansion-001`
 - Local adapter spike: `fff-local-extraction-adapter-spike-001`
 - Extraction validator: `fff-extraction-validator-hardening-001`
@@ -45,6 +46,8 @@ Preserved platform boundary:
 - `artifacts/contradictory-claim-guard-result.json` records `conflict_detected`, `hold_for_human_review`, `keep_out_of_auto_canon`, `keep_out_of_direct_claim_acceptance`, and `preserve_source_refs` as passed.
 - The positive source-span pack remains unchanged at 4 fixtures and 48 rows. This guard does not add a normal adapter fixture and does not reopen sparse notes, malformed spans, weak-span repair, broad-span split, or routing policy regression.
 - A pre-existing local downstream source-span adoption gate readback is present in `tools/fff-state.mjs` and `artifacts/downstream-source-span-adoption-gate-result.json`; it remains a non-active auxiliary readback and is not a model/API, DB, production, or canon-adoption implementation.
+- `fff-provider-envelope-readiness-no-call-001` is now present as a non-active auxiliary readiness gate. It defines a no-provider/no-credential envelope, carries a candidate `fff.extractionContract.v1` payload, validates that payload locally, and binds it to the malformed/missing span guard, contradictory claim guard, downstream adoption gate, source-span pack, validator matrix, and model/API no-call boundary.
+- `artifacts/provider-envelope-readiness-no-call-result.json` reports 4 carried extraction elements, 4 source-tracked elements, 2 human-owned elements held, 0 non-held human-owned elements, 0 visual direct Claim routes, 0 adopted/provisional elements, 0 adopted/provisional claims, no provider configured, no provider/model name, no endpoint, no external call attempted, and no credentials touched.
 - Review Memory / Dedup remains in place. The guard uses axis `contradictory_claim_guard`, prior review count `0`, no Review Card, no Operator Observation Card, and no repeated general Review Hub request.
 - Toma fate, brass moth truth, Council motive, and moth-key function remain unresolved and human-owned.
 
@@ -58,6 +61,7 @@ Preserved platform boundary:
 - `node tools/fff-state.mjs smoke-contradictory-claim-guard artifacts/extraction-validator-smoke-result.json artifacts/contradictory-claim-guard-result.json` passed.
 - `node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json` passed after the validator matrix grew to 9 fixtures.
 - `node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate artifacts/source-span-routing-review-pack.json artifacts/downstream-source-span-adoption-gate-result.json` passed for the preserved auxiliary readback.
+- `node tools/fff-state.mjs smoke-provider-envelope-readiness-no-call artifacts/provider-envelope-readiness-no-call.example.json artifacts/provider-envelope-readiness-no-call-result.json` passed for the preserved auxiliary provider-envelope readback.
 
 ## Guard Snapshot
 
@@ -68,12 +72,13 @@ Preserved platform boundary:
 | Auto-canon block | Prevent generated conflict from becoming canon | `autoCanonPromotion=false`; `autoChronologyPromotion=false`; `worldTruthStatus=uncertain` |
 | Direct claim acceptance block | Keep claim-routed source elements from becoming accepted output | 0 direct accepted claim elements |
 | Source preservation | Keep evidence auditable | 2 conflicting claims preserve source refs; 48 positive source-pack rows preserved |
+| Provider envelope readiness | Fix future provider output preconditions without integration | 4 provider-shaped fixture elements validate locally; no provider call, credential, endpoint, project-state mutation, or adopted canon output |
 
 ## What Remains Missing
 
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
-- Remaining fixture classes are very broad source-span fixture shape, multilingual or translated memo text, and model/API provider envelope output.
-- Actual model/API extraction adapter, provider choice, credential flow, timeout value, and retry count remain blocked until explicit authorization.
+- Remaining fixture classes are very broad source-span fixture shape and multilingual or translated memo text.
+- Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, timeout value, and retry count remain blocked until explicit authorization.
 - Durable project database, YouTube publishing, automated upload, AI video generation, complete world chronology, and final canon decisions remain out of scope.
 
 ## Review Debt
@@ -85,8 +90,9 @@ Preserved platform boundary:
 | Sparse bullet fixture | Covered by `fff-missing-fixture-class-probe-001`; 12 held elements, 0 failures | Do not reopen unless fixture or selector changes |
 | Weak and broad source spans | Weak spans repaired; broad spans split/kept with reason | Do not reopen unless source output or user review changes a row |
 | Downstream source-span adoption gate | Auxiliary readback exists locally; all current downstream candidates are source-tracked, safe-routed, and held | Do not make it active unless adoption semantics change |
-| Remaining fixture classes | 3 candidate classes remain after contradictory-claim coverage | Add one class at a time only when it has concrete decision value |
-| Model/API adapter | Not started | Keep blocked until explicit authorization and all local guards remain passing |
+| Provider envelope readiness | Auxiliary no-call readback exists; candidate envelope validates, binds existing gates, and keeps provider/call/credential fields empty | Do not treat as provider integration; use it only as the precondition for any future adapter |
+| Remaining fixture classes | 2 candidate classes remain after provider-envelope coverage | Add one class at a time only when it has concrete decision value |
+| Model/API adapter | Not started | Keep blocked until explicit authorization for provider choice, credentials, endpoint, transport behavior, and all local guards remain passing |
 
 ## How To Open The Review UI
 
@@ -123,4 +129,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The next non-redundant move is very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness behind the no-call model/API boundary, only after a concrete coverage need is named. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, or final canon decisions unless explicitly requested.
+Use review memory before asking for another review. The next non-redundant move is either explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior, or one remaining fixture class such as very broad source-span shape or multilingual memo text if coverage remains the bottleneck. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, or final canon decisions unless explicitly requested.

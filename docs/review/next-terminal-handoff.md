@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-23T16:14:15+09:00. At refresh time, the active artifact is `fff-contradictory-claim-guard-001`. Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
+Latest handoff refresh: 2026-06-23T17:20:00+09:00. At refresh time, the active artifact is still `fff-contradictory-claim-guard-001`; `fff-provider-envelope-readiness-no-call-001` is preserved auxiliary readback. Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
 
 ## Start Here
 
@@ -35,6 +35,9 @@ artifacts/contradictory-claim-guard-result.json
 artifacts/extraction-negative-fixtures/contradictory-claim-hold.json
 docs/review/downstream-source-span-adoption-gate.md
 artifacts/downstream-source-span-adoption-gate-result.json
+docs/review/provider-envelope-readiness-no-call.md
+artifacts/provider-envelope-readiness-no-call.example.json
+artifacts/provider-envelope-readiness-no-call-result.json
 docs/review/malformed-missing-span-guard.md
 artifacts/malformed-missing-span-guard-result.json
 docs/review/missing-fixture-class-probe.md
@@ -82,6 +85,7 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - Current status: `docs/review/current-status.md`
 - Contradictory claim guard doc/result/fixture: `docs/review/contradictory-claim-guard.md`, `artifacts/contradictory-claim-guard-result.json`, `artifacts/extraction-negative-fixtures/contradictory-claim-hold.json`
 - Downstream source-span adoption gate doc/result: `docs/review/downstream-source-span-adoption-gate.md`, `artifacts/downstream-source-span-adoption-gate-result.json`
+- Provider envelope readiness no-call doc/example/result: `docs/review/provider-envelope-readiness-no-call.md`, `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json`
 - Malformed/missing source-span guard doc/result/fixture: `docs/review/malformed-missing-span-guard.md`, `artifacts/malformed-missing-span-guard-result.json`, `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
 - Validator fixtures and smoke: `artifacts/extraction-negative-fixtures/`, `artifacts/extraction-validator-smoke-result.json`
 - Source-span review pack: `artifacts/source-span-routing-review-pack.json`
@@ -98,12 +102,13 @@ The current artifact adds a deterministic guard for contradictory claim candidat
 - `contradictory-claim-hold.json` is expected valid and carries 2 held claim candidates with reciprocal `contradictsClaimIds`.
 - `artifacts/contradictory-claim-guard-result.json` reports 2 conflicting claims checked, 1 reciprocal conflict pair, 2 held conflicting claims, 0 adopted/provisional conflicting claims, 0 direct accepted claim elements, 2 source-ref-preserved conflicting claims, and 0 failures.
 - `fff-downstream-source-span-adoption-gate-001` is preserved as the auxiliary downstream-readiness gate: 44 downstream candidates remain source-tracked, 22 human-owned candidates remain held, and 0 Profile / Claim / Timeline candidates are adopted.
+- `fff-provider-envelope-readiness-no-call-001` is preserved as the auxiliary provider-readiness gate: the no-call envelope carries a valid candidate Extraction Contract with 4 source-tracked elements, 2 held human-owned elements, 0 visual direct Claim routes, 0 adopted/provisional elements or claims, no provider configured, no endpoint, no external call attempted, and no credentials touched.
 - `fff-malformed-missing-span-guard-001` remains closed after the fixture count expanded to 9; malformed/missing span cases still produce 0 accepted routed candidates.
 - No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, downstream adoption behavior, or final canon decision was added.
 
 ## Validation Readback
 
-The active manifest validation command passed for `fff-contradictory-claim-guard-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, malformed/missing-span, contradictory-claim, and downstream gate smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact.
+The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, malformed/missing-span, contradictory-claim, downstream gate, and provider-envelope smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
 
 Additional checks passed during this handoff refresh:
 
@@ -132,15 +137,15 @@ When review is needed, accept natural freeform review text instead of fixed phra
 
 Before emitting a Review Card, check the review memory. Do not ask the same target/evidence/axis again unless target, axis, evidence, decision value, or an explicit user request changed.
 
-No general Review Hub review is needed for the current state. Future review should be bounded to one concrete target such as a remaining fixture class, provider-envelope readiness, or a specific source-span quality repair.
+No general Review Hub review is needed for the current state. Future review should be bounded to one concrete target such as provider adapter authorization, a remaining fixture class, or a specific source-span quality repair.
 
 ## Next Useful Entrances
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
-| Advance: provider-envelope readiness | Uses the no-call boundary without requesting credentials or making external calls | A later model/API adapter can start from explicit envelope and validation expectations |
+| Advance: provider adapter authorization | Uses the no-call envelope only after provider choice, credentials, endpoint, and transport scope are explicitly approved | A real adapter can be implemented without silently crossing the boundary |
 | Verify: contradictory claim guard | Re-runs the held-conflict fixture and result after adapter edits | Future Claim Ledger acceptance paths can fail before they auto-promote conflicts |
-| Audit: remaining fixture class | Adds one missing memo shape without reopening all review debt | Adapter/model regression coverage becomes less brittle |
+| Audit: remaining fixture class | Adds one broad-span or multilingual memo shape without reopening all review debt | Adapter/model regression coverage becomes less brittle |
 | Excise: weak source-span debt | Improves a concrete source-span class while preserving the broad-span and malformed-span guards | Review can focus on source usefulness instead of source validity |
 
 ## Residual Work
@@ -149,5 +154,6 @@ No general Review Hub review is needed for the current state. Future review shou
 | --- | --- | --- | --- |
 | Contradictory claim handling | Prevent conflicting claims from entering canon automatically | Guarded by a valid fixture and smoke result; truth choice remains human-owned | Keep the guard required for any future Claim Ledger acceptance path |
 | Downstream adoption readiness | Ensure Profile / Claim / Timeline candidates stay source-tracked and held | Readback gate passes with 0 adopted candidates | Keep blocked until explicit adoption behavior is requested |
-| Fixture coverage | Cover unrepresented memo shapes | 9 validator fixtures and 4 adapter fixture outputs now pass | Add one missing fixture class at a time |
-| Model/API adapter | Replace deterministic extraction with provider-backed extraction | Explicitly not started | Keep blocked until user authorizes provider/credential/API scope |
+| Provider envelope readiness | Fix future provider output shape before transport exists | No-call readback passes with no provider, endpoint, credential, project-state mutation, or adopted canon output | Use as a required precondition, not as provider integration |
+| Fixture coverage | Cover unrepresented memo shapes | 9 validator fixtures and 4 adapter fixture outputs now pass; broad-span shape and multilingual memo text remain candidates | Add one missing fixture class at a time |
+| Model/API adapter | Replace deterministic extraction with provider-backed extraction | Explicitly not started | Keep blocked until user authorizes provider, credential, endpoint, and API transport scope |

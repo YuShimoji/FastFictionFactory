@@ -1,0 +1,332 @@
+{
+  "schemaVersion": "fff.providerEnvelopeReadinessNoCall.v1",
+  "artifact_id": "fff-provider-envelope-readiness-no-call-001",
+  "boundaryMode": "provider_envelope_readiness_no_call_no_credential_no_provider",
+  "generatedAt": "2026-06-23T00:00:00+09:00",
+  "providerRunMetadata": {
+    "runId": "provider-envelope-readiness-fixture-no-call-001",
+    "providerConfigured": false,
+    "providerName": null,
+    "providerDisplayName": "unconfigured provider slot",
+    "modelName": null,
+    "modelDisplayName": "unconfigured model slot",
+    "providerResponseId": null,
+    "endpoint": null,
+    "externalCallAttempted": false,
+    "transportStatus": "not_started_no_call",
+    "credentialsRequired": false,
+    "credentialsTouched": false,
+    "credentialNames": [],
+    "rawProviderResponseStored": false
+  },
+  "inputBoundary": {
+    "allowedInputs": [
+      "local raw memo text",
+      "declared source refs",
+      "local run id",
+      "review-safe extraction mode",
+      "visible validator gate list"
+    ],
+    "forbiddenInputs": [
+      "credentials",
+      "hidden project state",
+      "provider endpoint",
+      "database records",
+      "publishing targets",
+      "production sync targets",
+      "release assets"
+    ],
+    "stateMutationAllowed": false,
+    "inputSource": "local fixture only"
+  },
+  "extractionOutput": {
+    "targetSchemaVersion": "fff.extractionContract.v1",
+    "outputIsProjectState": false,
+    "directStateMutationAllowed": false,
+    "adoptedCanonOutputCreated": false,
+    "candidateExtractionContract": {
+      "extractionRunId": "provider-envelope-readiness-fixture-no-call-001",
+      "schemaVersion": "fff.extractionContract.v1",
+      "sourceDraftId": "draft-provider-envelope-readiness-001",
+      "sourceMemoRef": "rawMemo",
+      "sourceRefs": [
+        {
+          "id": "src-provider-envelope-fixture-memo",
+          "label": "Provider envelope no-call fixture memo",
+          "source_type": "memo",
+          "locator": "artifacts/provider-envelope-readiness-no-call.example.json#fixture-memo",
+          "trust": "author_memo"
+        }
+      ],
+      "generatedAt": "2026-06-23T00:00:00+09:00",
+      "generatorType": "provider_envelope_fixture",
+      "generatorLabel": "No-call provider envelope readiness fixture; no model/API provider configured",
+      "extractionMode": "provider_envelope_readiness_no_call",
+      "confidencePolicy": {
+        "defaultConfidence": 0.75,
+        "lowConfidenceAction": "hold",
+        "highCanonRiskAction": "hold_until_human_review",
+        "freeformReviewAuthority": "human review text overrides generated suggestions"
+      },
+      "extractedElements": [
+        {
+          "id": "provider-envelope-source-reference",
+          "displayText": "No-call provider envelope fixture memo",
+          "elementType": "source_reference",
+          "aliases": [
+            "provider readiness fixture"
+          ],
+          "sourceSpan": {
+            "text": "Fixture memo: no provider call was made.",
+            "start": 0,
+            "end": 40
+          },
+          "sourceRefIds": [
+            "src-provider-envelope-fixture-memo"
+          ],
+          "confidence": 1,
+          "suggestedReviewStatus": "hold",
+          "reviewStatus": "hold",
+          "unresolvedDependencies": [],
+          "canonRisk": "low",
+          "spoilerLevel": "low",
+          "targetDestinations": [
+            "source_reference"
+          ],
+          "targetProfileIds": [],
+          "targetClaimIds": [],
+          "targetTimelineEntryIds": [],
+          "notes": "The future provider envelope must keep source identity explicit before any extracted candidate can be reviewed."
+        },
+        {
+          "id": "provider-envelope-council-motive-claim",
+          "displayText": "Council motive remains unresolved in provider output",
+          "elementType": "concept",
+          "aliases": [
+            "provider output Council motive hold"
+          ],
+          "sourceSpan": {
+            "text": "Council motive remains unresolved.",
+            "start": 41,
+            "end": 77
+          },
+          "sourceRefIds": [
+            "src-provider-envelope-fixture-memo"
+          ],
+          "confidence": 0.84,
+          "suggestedReviewStatus": "hold",
+          "reviewStatus": "hold",
+          "unresolvedDependencies": [
+            "Council motive"
+          ],
+          "canonRisk": "high",
+          "spoilerLevel": "high",
+          "targetDestinations": [
+            "claim",
+            "unresolved_decision"
+          ],
+          "targetProfileIds": [],
+          "targetClaimIds": [
+            "claim-provider-envelope-council-motive-held"
+          ],
+          "targetTimelineEntryIds": [],
+          "notes": "Provider-shaped output can name a claim candidate but cannot decide Council motive or bypass the Claim guard."
+        },
+        {
+          "id": "provider-envelope-visual-route",
+          "displayText": "Bellless tower silhouette",
+          "elementType": "visual_asset",
+          "aliases": [
+            "provider output visual placeholder"
+          ],
+          "sourceSpan": {
+            "text": "bellless tower silhouette stays visual.",
+            "start": 78,
+            "end": 117
+          },
+          "sourceRefIds": [
+            "src-provider-envelope-fixture-memo"
+          ],
+          "confidence": 0.73,
+          "suggestedReviewStatus": "hold",
+          "reviewStatus": "hold",
+          "unresolvedDependencies": [],
+          "canonRisk": "medium",
+          "spoilerLevel": "medium",
+          "targetDestinations": [
+            "profile",
+            "timeline"
+          ],
+          "targetProfileIds": [
+            "profile-provider-envelope-bellless-tower"
+          ],
+          "targetClaimIds": [],
+          "targetTimelineEntryIds": [
+            "timeline-provider-envelope-bellless-tower"
+          ],
+          "notes": "Visual output is buffered through Profile/Timeline review and never routed directly to Claim Ledger."
+        },
+        {
+          "id": "provider-envelope-toma-fate-hold",
+          "displayText": "Toma fate remains human-owned",
+          "elementType": "unresolved_decision",
+          "aliases": [
+            "provider output Toma fate hold"
+          ],
+          "sourceSpan": {
+            "text": "Toma fate remains human-owned.",
+            "start": 118,
+            "end": 151
+          },
+          "sourceRefIds": [
+            "src-provider-envelope-fixture-memo"
+          ],
+          "confidence": 0.82,
+          "suggestedReviewStatus": "hold",
+          "reviewStatus": "hold",
+          "unresolvedDependencies": [
+            "Toma fate"
+          ],
+          "canonRisk": "high",
+          "spoilerLevel": "high",
+          "targetDestinations": [
+            "unresolved_decision"
+          ],
+          "targetProfileIds": [],
+          "targetClaimIds": [],
+          "targetTimelineEntryIds": [],
+          "notes": "The envelope may carry a decision slot but cannot choose alive, dead, erased, transformed, or deliberately unknown."
+        }
+      ],
+      "profileCandidates": [],
+      "claimCandidates": [
+        {
+          "id": "claim-provider-envelope-council-motive-held",
+          "work_id": "work-clockmaker-under-glass",
+          "claimText": "Provider-shaped output says Council motive still needs human review.",
+          "claimScope": "unresolved candidate",
+          "worldTruthStatus": "uncertain",
+          "realityStatus": "pure fiction",
+          "sourceRefs": [
+            {
+              "id": "src-provider-envelope-fixture-memo",
+              "label": "Provider envelope no-call fixture memo",
+              "source_type": "memo",
+              "locator": "artifacts/provider-envelope-readiness-no-call.example.json#fixture-memo",
+              "trust": "author_memo"
+            }
+          ],
+          "subjectRefs": [
+            "provider-envelope-council-motive-claim"
+          ],
+          "speakerOrNarratorRef": "provider envelope no-call fixture memo",
+          "viewerDisclosureStatus": "hidden from viewer",
+          "spoilerLevel": "high",
+          "canonRisk": "high",
+          "unresolvedDependencies": [
+            "Council motive"
+          ],
+          "supportsClaimIds": [],
+          "contradictsClaimIds": [],
+          "reviewStatus": "hold",
+          "notes": "The claim remains review-held and source-backed; no truth decision or canon adoption is created."
+        }
+      ],
+      "timelineEntryCandidates": [],
+      "unresolvedDependencies": [
+        "Toma fate",
+        "brass moth truth",
+        "Council motive"
+      ],
+      "reviewSafeDefaults": {
+        "defaultReviewStatus": "hold",
+        "allowAdopt": true,
+        "allowProvisional": true,
+        "allowReject": true,
+        "autoCanonPromotion": false,
+        "autoChronologyPromotion": false,
+        "unknownSourceHandling": "preserve_unknown_fields_and_hold_candidate"
+      },
+      "decisionLogSafeMetadata": {
+        "owner": "human_author",
+        "statusVocabulary": [
+          "adopt",
+          "provisional",
+          "hold",
+          "reject"
+        ],
+        "fixedPhraseRequired": false,
+        "freeformReviewAllowed": true,
+        "reversibleActionsOnly": true
+      },
+      "warnings": [
+        "This is a no-call provider envelope fixture, not a provider adapter.",
+        "Provider-shaped candidates must remain source-backed and review-held.",
+        "Toma fate, brass moth truth, and Council motive remain human-owned."
+      ],
+      "unknownFieldsPolicy": "Preserve unknown imported top-level fields and hold unrecognized candidates for review.",
+      "humanAuthorityBoundaries": [
+        "Freeform user review is the source of truth.",
+        "Toma fate remains human-owned.",
+        "Brass moth truth remains human-owned.",
+        "Council motive remains human-owned.",
+        "Provider output cannot decide final canon, publish, sync production, or write a durable database."
+      ],
+      "notes": "Candidate contract carried by a provider envelope fixture. It validates locally and remains blocked from project-state mutation."
+    }
+  },
+  "gateBindings": {
+    "extractionValidator": {
+      "command": "node tools/fff-state.mjs validate-extraction <candidateExtractionContract>",
+      "fixtureMatrixPath": "artifacts/extraction-validator-smoke-result.json"
+    },
+    "malformedMissingSpanGuard": {
+      "artifactId": "fff-malformed-missing-span-guard-001",
+      "resultPath": "artifacts/malformed-missing-span-guard-result.json"
+    },
+    "contradictoryClaimGuard": {
+      "artifactId": "fff-contradictory-claim-guard-001",
+      "resultPath": "artifacts/contradictory-claim-guard-result.json"
+    },
+    "downstreamSourceSpanAdoptionGate": {
+      "artifactId": "fff-downstream-source-span-adoption-gate-001",
+      "resultPath": "artifacts/downstream-source-span-adoption-gate-result.json"
+    },
+    "sourceSpanReviewPack": {
+      "artifactId": "fff-source-span-routing-review-pack-001",
+      "packPath": "artifacts/source-span-routing-review-pack.json"
+    },
+    "humanOwnedDecisionHolds": [
+      "Toma fate",
+      "brass moth truth",
+      "Council motive"
+    ]
+  },
+  "reviewSurface": {
+    "reviewHubCardLabel": "Provider envelope readiness no-call",
+    "reviewCardRequired": false,
+    "operatorObservationCardRequired": false,
+    "createsAdoptedCanon": false,
+    "userSideWork": "none"
+  },
+  "forbiddenActions": [
+    "call_model_or_api_provider",
+    "configure_provider_endpoint",
+    "store_or_print_secrets",
+    "request_credentials",
+    "mutate_project_state_directly",
+    "bypass_validate_extraction",
+    "bypass_malformed_missing_span_guard",
+    "bypass_contradictory_claim_guard",
+    "bypass_downstream_source_span_adoption_gate",
+    "auto_promote_to_canon",
+    "auto_promote_to_chronology",
+    "finalize_toma_fate",
+    "finalize_brass_moth_truth",
+    "finalize_council_motive",
+    "write_durable_database",
+    "publish_or_upload",
+    "generate_ai_video",
+    "sync_production"
+  ]
+}
