@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-23T10:00:19+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`, and local/remote `master` were clean and synced at `e3a1dd0 Resolve broad source spans`.
+Latest handoff refresh: 2026-06-23T10:00:19+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`; local/remote `master` were verified clean and synced after the handoff refresh was published. Run `git log -1 --oneline --decorate` after pull for the exact remote head.
 
 ## Start Here
 
@@ -119,7 +119,7 @@ Additional checks already passed during the latest slice:
 - `git diff --check`
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` before the handoff refresh began.
 - `node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json`
-- Final post-push readback on 2026-06-23T10:00:19+09:00: `git status --short --branch` reported `## master...origin/master`; `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0`; HEAD and `origin/master` both pointed at `e3a1dd0 Resolve broad source spans`.
+- Final post-push readback on 2026-06-23T10:00:19+09:00: `git status --short --branch` reported clean `master...origin/master`; `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0`. The active artifact implementation commit was `e3a1dd0 Resolve broad source spans`; the latest handoff refresh commit may be newer.
 
 ## Preserved Boundaries
 

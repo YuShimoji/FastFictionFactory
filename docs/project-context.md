@@ -149,4 +149,4 @@ First next move: apply the Review Dedup Gate before asking for review. The next 
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. It preserves the active artifact, validation commands, human-owned boundaries, freeform review intake contract, and the next viable entrances without relying on previous chat context.
 
-Latest handoff refresh: 2026-06-23T10:00:19+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`, and local/remote `master` were clean and synced at `e3a1dd0 Resolve broad source spans`; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, repeated review requirement, or final canon decision existed.
+Latest handoff refresh: 2026-06-23T10:00:19+09:00. At refresh time, the active artifact is `fff-broad-span-split-001`, and local/remote `master` were verified clean and synced after the handoff refresh was published; no model/API call, provider credential, database persistence, publishing adapter, production sync, AI video generation, repeated review requirement, or final canon decision existed.

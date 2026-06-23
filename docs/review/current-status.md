@@ -86,7 +86,7 @@
 - The existing Review Hub IA smoke evidence was present and passing before this slice.
 - Existing screenshot and contact sheet files were present and non-empty before refresh.
 - Project-local instructions and required context docs were read before changing review claims.
-- Final post-push handoff verification on 2026-06-23T10:00:19+09:00 found local/remote `master` clean and synced at `e3a1dd0 Resolve broad source spans`; `HEAD...origin/master` reported `0 0`.
+- Final post-push handoff verification on 2026-06-23T10:00:19+09:00 found local/remote `master` clean and synced; `HEAD...origin/master` reported `0 0`. The active artifact implementation commit was `e3a1dd0 Resolve broad source spans`; the latest handoff refresh commit may be newer.
 
 Final verification for this slice is tracked by:
 

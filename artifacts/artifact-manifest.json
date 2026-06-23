@@ -94,7 +94,7 @@
   "next_action": "Pick one bounded weak-span repair or one missing fixture class only after explicit need; do not reopen broad-span debt unless source output changes.",
   "context_synced_at": "2026-06-23T10:00:19+09:00",
   "handoff_verified_at": "2026-06-23T10:00:19+09:00",
-  "handoff_remote_head": "e3a1dd0 Resolve broad source spans",
+  "handoff_remote_head": "remote head includes this handoff refresh; run git log -1 --oneline --decorate after pull",
   "preserved_review_hub_ia_mode_split_artifact_id": "fff-review-hub-ia-mode-split-001",
   "repo_local_shell_launcher": "scripts/operator/open_review.sh",
   "review_hub_ia_mode_split_doc_path": "docs/review/review-hub-ia-mode-split.md",
