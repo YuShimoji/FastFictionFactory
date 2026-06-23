@@ -51,7 +51,7 @@ Preserved platform boundary:
 ## What Was Verified
 
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
-- Local working tree started with pre-existing uncommitted downstream-gate changes on `master` at `efa4f8b Tighten malformed span guard manifest validation`; those changes were preserved while this active slice superseded the status packet.
+- Local working tree started clean on `master` at `efa4f8b Tighten malformed span guard manifest validation`; the contradictory-claim guard was already the tracked active surface, so the downstream gate is preserved as an auxiliary readback instead of rewinding active status.
 - Project-local instructions and required context docs were read before changing review claims.
 - `node --check tools/fff-state.mjs` passed.
 - `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json` passed.

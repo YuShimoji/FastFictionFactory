@@ -2,6 +2,8 @@
 
 Artifact: `fff-downstream-source-span-adoption-gate-001`
 
+Current status: preserved auxiliary readback under the active `fff-contradictory-claim-guard-001` surface. This document describes the downstream gate artifact without making it the active Review Hub identity.
+
 ## Purpose
 
 This slice adds the next thin gate after `fff-malformed-missing-span-guard-001`. The previous guard proves that missing, malformed, or unusable source-span payloads are rejected. This gate checks the next risk: whether anything shown as a future Profile / Claim / Timeline adoption candidate still carries valid source refs, valid source spans, safe routing, and held human-owned decisions.
@@ -52,7 +54,7 @@ This slice is complete when:
 
 - `node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate artifacts/source-span-routing-review-pack.json artifacts/downstream-source-span-adoption-gate-result.json` passes.
 - Active manifest validation includes the new gate.
-- Review Hub, manifest, current status, and artifact inventory point to `fff-downstream-source-span-adoption-gate-001`.
+- Review Hub, manifest, current status, and artifact inventory include `fff-downstream-source-span-adoption-gate-001` as preserved downstream-readiness evidence.
 - Existing adapter, source-span pack, routing regression, malformed-span guard, state, extraction, fixture, MkDocs, and whitespace checks remain passing.
 
 ## Boundaries
