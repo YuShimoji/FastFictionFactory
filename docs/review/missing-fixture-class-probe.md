@@ -41,8 +41,8 @@ No Review Card or Operator Observation Card is emitted. Review Debt is recorded 
 | Evidence | Count | Why it matters |
 | --- | --- | --- |
 | Fixture memos | 4 | The matrix now includes `clockmaker-sample`, `council-minutes-edge`, `observatory-ledger-edge`, and `sparse-bullet-notes`. |
-| Matrix elements | 48 | Sparse notes add 12 held elements without reducing required element-type coverage. |
-| Source-pack rows | 48 | Source-span review now reads the new fixture along with the existing three fixtures. |
+| Matrix elements | 60 | Sparse notes remain covered after the multilingual fixture expansion; required element-type coverage stays complete. |
+| Source-pack rows | 60 | Source-span review now reads sparse notes plus the multilingual fixture and prior fixtures. |
 | Adapter payloads checked by routing regression | 5 | Single sample output plus four matrix outputs are checked for routing drift. |
 | Adapter elements checked by routing regression | 60 | Existing policy checks now include the new sparse output. |
 | Sparse fixture bullet lines | 11 | The new fixture is genuinely bullet-only after its title. |

@@ -363,6 +363,55 @@ const ADAPTER_FIXTURES = [
     ]
   },
   {
+    key: "multilingual-memo-notes",
+    sourceRefId: "src-local-adapter-raw-memo-005",
+    sourceLabel: "Multilingual memo notes",
+    memoLabel: "multilingual memo notes",
+    matchPhrases: ["Adapter Fixture: Multilingual Memo Notes", "English gloss is in-line only"],
+    extractionRunId: "local-extract-multilingual-memo-notes-001",
+    sourceDraftId: "draft-multilingual-memo-notes-001",
+    workId: "work-clockmaker-under-glass",
+    elements: [
+      elementSpec("multi-x-person-mira", "Mira Vale", "person", "Mira Vale は夜明け前に時計を修理する", ["Mira", "ミラ", "before-dawn repairer"], 0.9, "low", "low", ["profile", "claim", "timeline"], ["multi-profile-mira"], ["multi-claim-mira-before-dawn"], ["multi-timeline-before-dawn"], [], "The adapter preserves a mixed Japanese/English person-action phrase without translation."),
+      elementSpec("multi-x-place-north-bell", "North Bell Station / 北鐘駅", "place", "北鐘駅の古い observatory rings at noon", ["North Bell", "北鐘駅"], 0.86, "medium", "medium", ["profile", "timeline"], ["multi-profile-north-bell"], [], ["multi-timeline-noon-ring"], [], "Place routing remains source-tracked when the place label is multilingual."),
+      elementSpec("multi-x-organization-archivists", "Council archivists", "organization", "Council archivists の記録 says Toma's route is a clerical error", ["archivists", "council record"], 0.84, "high", "high", ["profile", "claim", "unresolved_decision"], ["multi-profile-archivists"], ["multi-claim-clerical-error"], [], ["Council motive", "Toma fate"], "Council-side evidence remains a held claim, not a motive or fate decision."),
+      elementSpec("multi-x-event-noon-ring", "observatory rings at noon", "event", "observatory rings at noon even though bell is missing", ["noon ring", "bell missing"], 0.82, "medium", "medium", ["claim", "timeline"], [], ["multi-claim-noon-ring"], ["multi-timeline-noon-ring"], [], "The event phrase is extracted from an English gloss embedded in the multilingual memo."),
+      elementSpec("multi-x-object-brass-moth-key", "brass moth key / 真鍮の蛾の鍵", "object", "brass moth key is called \"真鍮の蛾の鍵\"", ["moth key", "真鍮の蛾の鍵"], 0.88, "high", "high", ["profile", "claim", "timeline", "unresolved_decision"], ["multi-profile-brass-moth-key"], ["multi-claim-moth-key-label"], ["multi-timeline-moth-key-label"], ["brass moth truth", "Toma fate"], "The object can carry a Japanese label while its function and truth stay human-owned."),
+      elementSpec("multi-x-document-ledger-page", "ledger page", "document", "A ledger page says borrowed minutes from abandoned lives", ["ledger", "page"], 0.8, "medium", "medium", ["profile", "claim"], ["multi-profile-ledger-page"], ["multi-claim-ledger-page"], [], [], "Document routing stays distinct from proving the council motive."),
+      elementSpec("multi-x-concept-borrowed-minutes", "borrowed minutes from abandoned lives", "concept", "borrowed minutes from abandoned lives are still being paid", ["borrowed minutes", "abandoned lives"], 0.81, "high", "medium", ["profile", "claim"], ["multi-profile-borrowed-minutes"], ["multi-claim-borrowed-minutes"], [], ["Council motive"], "The concept remains suspicious accounting and not a final explanation."),
+      elementSpec("multi-x-visual-bellless-tower", "bellless tower silhouette", "visual_asset", "bellless tower silhouette above North Bell Station", ["tower silhouette", "bellless tower"], 0.74, "medium", "medium", ["profile", "timeline"], ["multi-profile-bellless-tower"], [], ["multi-timeline-noon-ring"], [], "Visual routing remains profile-buffered and out of direct Claim targets."),
+      elementSpec("multi-x-placeholder-translation-boundary", "translation boundary placeholder", "placeholder", "English gloss is in-line only", ["inline gloss", "translation boundary"], 0.76, "high", "medium", ["profile", "unresolved_decision"], ["multi-profile-translation-boundary"], [], [], ["brass moth truth", "Council motive"], "The fixture proves mixed-language source text is preserved without invoking an external translation policy."),
+      elementSpec("multi-x-source-multilingual-memo", "multilingual memo notes", "source_reference", "Adapter Fixture: Multilingual Memo Notes", ["multilingual fixture", "mixed-language memo"], 1, "low", "low", ["source_reference"], [], [], [], [], "The fixture title remains the source reference for multilingual coverage."),
+      elementSpec("multi-x-unresolved-council-motive", "Council motive", "unresolved_decision", "Council motive remains unresolved", ["motive unresolved"], 0.87, "high", "high", ["unresolved_decision", "claim"], [], ["multi-claim-council-motive-open"], [], ["Council motive"], "Freeform human review is required before motive language can become canon.", true),
+      elementSpec("multi-x-unresolved-toma-fate", "Toma fate", "unresolved_decision", "Toma fate remains unresolved", ["Toma outcome"], 0.87, "high", "high", ["unresolved_decision", "timeline"], [], [], ["multi-timeline-toma-held"], ["Toma fate"], "Toma fate stays held even when the surrounding memo is multilingual.", true)
+    ],
+    profiles: [
+      profileSpec("multi-profile-mira", "Mira Vale", "person", "extracted_candidate", [], "Before-dawn repair candidate from a multilingual memo."),
+      profileSpec("multi-profile-north-bell", "North Bell Station / 北鐘駅", "place", "extracted_candidate", [], "Place candidate with a Japanese label and English gloss."),
+      profileSpec("multi-profile-archivists", "Council archivists", "organization", "held_ghost", ["Council motive"], "Council-side record candidate with motive held."),
+      profileSpec("multi-profile-brass-moth-key", "Brass moth key / 真鍮の蛾の鍵", "object", "held_ghost", ["brass moth truth", "Toma fate"], "Object candidate with multilingual label and human-owned truth held."),
+      profileSpec("multi-profile-ledger-page", "Ledger page", "document", "extracted_candidate", [], "Document candidate from a multilingual memo."),
+      profileSpec("multi-profile-borrowed-minutes", "Borrowed minutes", "concept", "held_ghost", ["Council motive"], "Premise concept candidate with motive held."),
+      profileSpec("multi-profile-bellless-tower", "Bellless tower silhouette", "visual_asset", "extracted_candidate", [], "Visual cue candidate, not release artwork."),
+      profileSpec("multi-profile-translation-boundary", "Translation boundary placeholder", "placeholder", "needs_human_decision", ["brass moth truth", "Council motive"], "Held placeholder that prevents inline glosses from becoming translation policy.")
+    ],
+    claims: [
+      claimSpec("multi-claim-mira-before-dawn", "Mira repairs clocks before dawn.", "viewer knowledge", "multi-profile-mira", []),
+      claimSpec("multi-claim-noon-ring", "The old observatory rings at noon even though the bell is missing.", "viewer knowledge", "multi-x-event-noon-ring", []),
+      claimSpec("multi-claim-clerical-error", "Council archivists record Toma's route as a clerical error.", "character belief", "multi-profile-archivists", ["Council motive", "Toma fate"]),
+      claimSpec("multi-claim-moth-key-label", "The brass moth key carries the Japanese label 真鍮の蛾の鍵.", "unresolved candidate", "multi-profile-brass-moth-key", ["brass moth truth", "Toma fate"]),
+      claimSpec("multi-claim-ledger-page", "A ledger page says borrowed minutes from abandoned lives are still being paid.", "unresolved candidate", "multi-profile-ledger-page", ["Council motive"]),
+      claimSpec("multi-claim-borrowed-minutes", "Borrowed minutes from abandoned lives remain suspicious accounting.", "unresolved candidate", "multi-profile-borrowed-minutes", ["Council motive"]),
+      claimSpec("multi-claim-council-motive-open", "Council motive remains unresolved in the multilingual memo.", "production note", "multi-profile-archivists", ["Council motive"])
+    ],
+    timelines: [
+      timelineSpec("multi-timeline-before-dawn", "Mira repairs clocks before dawn.", "story_order", "Before dawn", []),
+      timelineSpec("multi-timeline-noon-ring", "The old observatory rings at noon with the bell missing.", "calendar_time", "Noon during multilingual memo", []),
+      timelineSpec("multi-timeline-moth-key-label", "The brass moth key label appears before its truth is known.", "viewer_disclosure_order", "Before brass moth truth review", ["brass moth truth", "Toma fate"]),
+      timelineSpec("multi-timeline-toma-held", "Toma fate remains held after the route note.", "viewer_disclosure_order", "Held until Toma fate review", ["Toma fate"])
+    ]
+  },
+  {
     key: "sparse-bullet-notes",
     sourceRefId: "src-local-adapter-raw-memo-004",
     sourceLabel: "Sparse bullet notes memo",

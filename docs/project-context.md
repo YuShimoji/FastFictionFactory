@@ -23,6 +23,8 @@ The active slice is complete enough for local readback:
 - Malformed/missing source-span guard result: `artifacts/malformed-missing-span-guard-result.json`
 - Malformed/missing source-span fixture: `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
 - Provider envelope readiness no-call doc/envelope/result: `docs/review/provider-envelope-readiness-no-call.md`, `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json`
+- Remaining fixture coverage doc/result: `docs/review/remaining-fixture-coverage-one-class.md`, `artifacts/remaining-fixture-coverage-one-class-result.json`
+- Multilingual adapter fixture/output: `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`, `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`
 - Missing fixture probe doc/result: `docs/review/missing-fixture-class-probe.md`, `artifacts/missing-fixture-class-probe-result.json`
 - Weak-span repair doc/result: `docs/review/weak-span-repair.md`, `artifacts/weak-span-repair-result.json`
 - Broad source-span split doc/result: `docs/review/broad-span-split.md`, `artifacts/broad-span-split-result.json`
@@ -62,17 +64,19 @@ node .\tools\fff-source-span-review-pack.mjs .\artifacts\extraction-adapter-fixt
 node .\tools\fff-state.mjs smoke-routing-policy .\artifacts\ambiguous-routing-resolution-result.json .\artifacts\routing-policy-regression-hardening-result.json
 node .\tools\fff-state.mjs smoke-malformed-missing-span-guard .\artifacts\extraction-validator-smoke-result.json .\artifacts\malformed-missing-span-guard-result.json
 node .\tools\fff-state.mjs smoke-provider-envelope-readiness-no-call .\artifacts\provider-envelope-readiness-no-call.example.json .\artifacts\provider-envelope-readiness-no-call-result.json
+node .\tools\fff-state.mjs smoke-remaining-fixture-coverage-one-class .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\remaining-fixture-coverage-one-class-result.json
 ```
 
 Result summary:
 
 - Active manifest validation passes for `fff-contradictory-claim-guard-001`.
 - Contradictory claim guard parses 9 validator fixtures, keeps 2 conflicting claims in held review, preserves 1 reciprocal conflict pair and source refs, reports 0 adopted/provisional conflicting claims, and reports 0 direct accepted claim-routed elements.
-- Downstream adoption gate parses 48 source-pack rows and reports 44 downstream Profile / Claim / Timeline review candidates, all 44 source-tracked, with 0 malformed/missing span candidates, 0 unsafe routing candidates, 22 human-owned candidates held, 0 non-held human-owned candidates, and 0 adopted Profile / Claim / Timeline candidates.
+- Multilingual fixture coverage passes with 5 adapter fixture outputs, 60 matrix elements, 12 selected multilingual fixture elements, 4 non-ASCII source-span elements, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held review defaults, and 0 human-owned adopt suggestions.
+- Downstream adoption gate parses 60 source-pack rows and reports 55 downstream Profile / Claim / Timeline review candidates, all 55 source-tracked, with 0 malformed/missing span candidates, 0 unsafe routing candidates, 28 human-owned candidates held, 0 non-held human-owned candidates, and 0 adopted Profile / Claim / Timeline candidates.
 - Malformed/missing source-span guard remains closed with 3 invalid elements rejected, 0 accepted routed candidates, and 9 validator fixtures in the smoke matrix.
 - Provider envelope readiness no-call gate passes with 4 carried Extraction Contract elements, 4 source-tracked elements, 2 human-owned elements held, 0 visual direct Claim routes, 0 adopted/provisional elements or claims, no provider configured, no endpoint, no external call attempted, and no credentials touched.
-- Routing policy regression remains passing across 5 adapter payloads and 60 adapter elements.
-- Source-span review pack remains passing with 4 fixture outputs, 48 elements, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
+- Routing policy regression remains passing across 6 adapter payloads and 72 adapter elements.
+- Source-span review pack remains passing with 5 fixture outputs, 60 elements, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions.
 - Model/API boundary spec remains preserved as a spec-only, no-external-call boundary for future provider work.
 - Toma fate, brass moth truth, Council motive, and moth-key function remain unresolved and human-owned.
 
@@ -106,7 +110,7 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption and provider-envelope readiness as auxiliary safety readbacks. Move next only to explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior, or to one concrete remaining fixture class if a coverage need is named.
+First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, provider-envelope readiness, and multilingual fixture coverage as auxiliary safety readbacks. Move next only to explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior, or to translated memo text / very broad source-span shape if fixture coverage remains the bottleneck.
 
 ## Handoff Path
 

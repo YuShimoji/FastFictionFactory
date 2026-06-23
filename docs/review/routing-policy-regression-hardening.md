@@ -52,7 +52,7 @@ The command checks:
 
 ## Readback Counts
 
-The current result checks 7 resolved routing rows, 36 source-pack rows, 4 adapter payloads, and 48 adapter elements with 0 failures.
+The current result checks 7 resolved routing rows, 60 source-pack rows, 6 adapter payloads, and 72 adapter elements with 0 failures after multilingual fixture expansion.
 
 The active policy remains:
 

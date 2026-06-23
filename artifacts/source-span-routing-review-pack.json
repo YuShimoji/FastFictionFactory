@@ -22,33 +22,33 @@
     "validator_fixture_dir": "artifacts/extraction-negative-fixtures"
   },
   "cross_fixture_summary": {
-    "fixture_count": 4,
-    "total_elements": 48,
-    "profile_candidates": 36,
-    "claim_candidates": 27,
-    "timeline_candidates": 16,
+    "fixture_count": 5,
+    "total_elements": 60,
+    "profile_candidates": 44,
+    "claim_candidates": 34,
+    "timeline_candidates": 20,
     "source_span_mismatches": 0,
     "missing_source_refs": 0,
     "unsafe_visual_routing": 0,
     "non_held_review_defaults": 0,
     "human_owned_decision_adopt_suggestions": 0,
-    "human_owned_guarded_elements": 22,
-    "visual_asset_elements": 4,
-    "review_held_elements": 48,
+    "human_owned_guarded_elements": 28,
+    "visual_asset_elements": 5,
+    "review_held_elements": 60,
     "fixture_class_gaps": [
       "contradictory memo claims",
       "very broad source spans",
       "missing or malformed source span payloads",
-      "multilingual or translated memo text",
+      "translated memo text",
       "model/API provider envelope output"
     ],
     "smoke_crosscheck": {
-      "fixture_count": 4,
-      "output_count": 4,
-      "element_count": 48,
-      "profile_candidate_count": 36,
-      "claim_candidate_count": 27,
-      "timeline_candidate_count": 16
+      "fixture_count": 5,
+      "output_count": 5,
+      "element_count": 60,
+      "profile_candidate_count": 44,
+      "claim_candidate_count": 34,
+      "timeline_candidate_count": 20
     }
   },
   "review_debt": [
@@ -1090,6 +1090,505 @@
             "unresolved_dependency"
           ],
           "review_notes": "Freeform human review is required before motive language can become canon."
+        }
+      ]
+    },
+    {
+      "fixture_id": "multilingual-memo-notes",
+      "memo_title": "Adapter Fixture: Multilingual Memo Notes",
+      "source_memo_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+      "output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+      "extraction_run_id": "local-extract-multilingual-memo-notes-001",
+      "counts": {
+        "extracted_elements": 12,
+        "profile_candidates": 8,
+        "claim_candidates": 7,
+        "timeline_candidates": 4,
+        "visual_assets": 1,
+        "human_owned_guarded_elements": 6
+      },
+      "source_refs": [
+        {
+          "id": "src-local-adapter-raw-memo-005",
+          "label": "Multilingual memo notes",
+          "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+          "trust": "author_memo"
+        },
+        {
+          "id": "src-local-adapter-deterministic-001",
+          "label": "Deterministic local extraction adapter",
+          "locator": "tools/fff-extract-local.mjs",
+          "trust": "derived_candidate"
+        },
+        {
+          "id": "src-local-adapter-freeform-review-001",
+          "label": "Freeform human review boundary",
+          "locator": "docs/review/freeform-review-intake.md",
+          "trust": "human_review"
+        }
+      ],
+      "validation": {
+        "ok": true,
+        "status": 0,
+        "stdout": "valid extraction artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+        "stderr": "warning: extraction contract local-extract-multilingual-memo-notes-001 unknown top-level field adapterTrace will be preserved for JSON review"
+      },
+      "audit": {
+        "element_count": 12,
+        "source_span_matched_count": 12,
+        "source_span_mismatch_count": 0,
+        "source_span_mismatches": [],
+        "missing_source_ref_count": 0,
+        "missing_source_refs": [],
+        "unsafe_visual_routing_count": 0,
+        "unsafe_visual_routing": [],
+        "non_held_review_default_count": 0,
+        "non_held_review_defaults": [],
+        "human_owned_decision_adopt_count": 0,
+        "human_owned_decision_adopts": [],
+        "passed": true
+      },
+      "review_safe_defaults": {
+        "default_review_status": "hold",
+        "auto_canon_promotion": false,
+        "auto_chronology_promotion": false,
+        "freeform_review_allowed": true
+      },
+      "representative_elements": [
+        {
+          "id": "multi-x-person-mira",
+          "element_type": "person",
+          "extracted_value": "Mira Vale",
+          "raw_source_snippet": "Mira Vale は夜明け前に時計を修理する",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=44-67",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The adapter preserves a mixed Japanese/English person-action phrase without translation."
+        },
+        {
+          "id": "multi-x-object-brass-moth-key",
+          "element_type": "object",
+          "extracted_value": "brass moth key / 真鍮の蛾の鍵",
+          "raw_source_snippet": "brass moth key is called \"真鍮の蛾の鍵\"",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.88,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The object can carry a Japanese label while its function and truth stay human-owned."
+        },
+        {
+          "id": "multi-x-visual-bellless-tower",
+          "element_type": "visual_asset",
+          "extracted_value": "bellless tower silhouette",
+          "raw_source_snippet": "bellless tower silhouette above North Bell Station",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=466-516",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.74,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual routing remains profile-buffered and out of direct Claim targets."
+        },
+        {
+          "id": "multi-x-placeholder-translation-boundary",
+          "element_type": "placeholder",
+          "extracted_value": "translation boundary placeholder",
+          "raw_source_snippet": "English gloss is in-line only",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.76,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The fixture proves mixed-language source text is preserved without invoking an external translation policy."
+        },
+        {
+          "id": "multi-x-unresolved-council-motive",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Council motive",
+          "raw_source_snippet": "Council motive remains unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=246-279",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Claim"
+          ],
+          "confidence": 0.87,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review is required before motive language can become canon."
+        },
+        {
+          "id": "multi-x-source-multilingual-memo",
+          "element_type": "source_reference",
+          "extracted_value": "multilingual memo notes",
+          "raw_source_snippet": "Adapter Fixture: Multilingual Memo Notes",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=2-42",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The fixture title remains the source reference for multilingual coverage."
+        }
+      ],
+      "elements": [
+        {
+          "id": "multi-x-person-mira",
+          "element_type": "person",
+          "extracted_value": "Mira Vale",
+          "raw_source_snippet": "Mira Vale は夜明け前に時計を修理する",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=44-67",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.9,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The adapter preserves a mixed Japanese/English person-action phrase without translation."
+        },
+        {
+          "id": "multi-x-place-north-bell",
+          "element_type": "place",
+          "extracted_value": "North Bell Station / 北鐘駅",
+          "raw_source_snippet": "北鐘駅の古い observatory rings at noon",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=117-149",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline"
+          ],
+          "confidence": 0.86,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Place routing remains source-tracked when the place label is multilingual."
+        },
+        {
+          "id": "multi-x-organization-archivists",
+          "element_type": "organization",
+          "extracted_value": "Council archivists",
+          "raw_source_snippet": "Council archivists の記録 says Toma's route is a clerical error",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=180-240",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Human Review"
+          ],
+          "confidence": 0.84,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Council-side evidence remains a held claim, not a motive or fate decision."
+        },
+        {
+          "id": "multi-x-event-noon-ring",
+          "element_type": "event",
+          "extracted_value": "observatory rings at noon",
+          "raw_source_snippet": "observatory rings at noon even though bell is missing",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=124-177",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Claim",
+            "Timeline"
+          ],
+          "confidence": 0.82,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The event phrase is extracted from an English gloss embedded in the multilingual memo."
+        },
+        {
+          "id": "multi-x-object-brass-moth-key",
+          "element_type": "object",
+          "extracted_value": "brass moth key / 真鍮の蛾の鍵",
+          "raw_source_snippet": "brass moth key is called \"真鍮の蛾の鍵\"",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim",
+            "Timeline",
+            "Human Review"
+          ],
+          "confidence": 0.88,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The object can carry a Japanese label while its function and truth stay human-owned."
+        },
+        {
+          "id": "multi-x-document-ledger-page",
+          "element_type": "document",
+          "extracted_value": "ledger page",
+          "raw_source_snippet": "A ledger page says borrowed minutes from abandoned lives",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=373-429",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.8,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "Document routing stays distinct from proving the council motive."
+        },
+        {
+          "id": "multi-x-concept-borrowed-minutes",
+          "element_type": "concept",
+          "extracted_value": "borrowed minutes from abandoned lives",
+          "raw_source_snippet": "borrowed minutes from abandoned lives are still being paid",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=392-450",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Claim"
+          ],
+          "confidence": 0.81,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The concept remains suspicious accounting and not a final explanation."
+        },
+        {
+          "id": "multi-x-visual-bellless-tower",
+          "element_type": "visual_asset",
+          "extracted_value": "bellless tower silhouette",
+          "raw_source_snippet": "bellless tower silhouette above North Bell Station",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=466-516",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Timeline",
+            "Visual"
+          ],
+          "confidence": 0.74,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "visual_review_only"
+          ],
+          "review_notes": "Visual routing remains profile-buffered and out of direct Claim targets."
+        },
+        {
+          "id": "multi-x-placeholder-translation-boundary",
+          "element_type": "placeholder",
+          "extracted_value": "translation boundary placeholder",
+          "raw_source_snippet": "English gloss is in-line only",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Profile",
+            "Human Review"
+          ],
+          "confidence": 0.76,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "The fixture proves mixed-language source text is preserved without invoking an external translation policy."
+        },
+        {
+          "id": "multi-x-source-multilingual-memo",
+          "element_type": "source_reference",
+          "extracted_value": "multilingual memo notes",
+          "raw_source_snippet": "Adapter Fixture: Multilingual Memo Notes",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=2-42",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Source Reference"
+          ],
+          "confidence": 1,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "none",
+          "risk_flags": [
+            "no_automated_issue"
+          ],
+          "review_notes": "The fixture title remains the source reference for multilingual coverage."
+        },
+        {
+          "id": "multi-x-unresolved-council-motive",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Council motive",
+          "raw_source_snippet": "Council motive remains unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=246-279",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Claim"
+          ],
+          "confidence": 0.87,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Freeform human review is required before motive language can become canon."
+        },
+        {
+          "id": "multi-x-unresolved-toma-fate",
+          "element_type": "unresolved_decision",
+          "extracted_value": "Toma fate",
+          "raw_source_snippet": "Toma fate remains unresolved",
+          "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=647-675",
+          "source_ref_ids": [
+            "src-local-adapter-raw-memo-005",
+            "src-local-adapter-freeform-review-001"
+          ],
+          "source_span_matches_raw_memo": true,
+          "routing_targets": [
+            "Human Review",
+            "Timeline"
+          ],
+          "confidence": 0.87,
+          "suggested_review_status": "hold",
+          "review_status": "hold",
+          "human_owned_guard": "held_human_review_required",
+          "risk_flags": [
+            "high_canon_risk",
+            "unresolved_dependency"
+          ],
+          "review_notes": "Toma fate stays held even when the surrounding memo is multilingual."
         }
       ]
     },

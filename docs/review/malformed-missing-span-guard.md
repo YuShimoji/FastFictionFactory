@@ -53,11 +53,11 @@ No Review Card or Operator Observation Card is emitted. Review Debt is recorded 
 | Guard fixture elements | 3 | The fixture covers missing sourceSpan, malformed offset, empty text, and zero-width range in one bounded class. |
 | Source-span validator errors | 5 | The validator now catches unusable source-span evidence at contract level. |
 | Accepted routed candidates | 0 | Invalid span evidence does not enter Profile, Claim, or Timeline adoption surfaces. |
-| Source-pack rows preserved | 48 | The positive adapter matrix and source-span review pack remain unchanged. |
+| Source-pack rows preserved | 60 | The positive adapter matrix and source-span review pack remain consistent after multilingual expansion. |
 
 ## Regression Boundary
 
-`fff-missing-fixture-class-probe-001`, `fff-weak-span-repair-001`, `fff-broad-span-split-001`, and `fff-routing-policy-regression-hardening-001` remain closed. This guard does not add a normal adapter fixture, does not change the positive source-span review pack, and does not reinterpret the existing 48 routed rows.
+`fff-missing-fixture-class-probe-001`, `fff-weak-span-repair-001`, `fff-broad-span-split-001`, and `fff-routing-policy-regression-hardening-001` remain closed. This guard does not add a normal adapter fixture itself and does not reinterpret the current 60 routed rows.
 
 The malformed/missing span guard readback checks that:
 
@@ -68,7 +68,7 @@ The malformed/missing span guard readback checks that:
 - Missing source refs are still marked as invalid evidence.
 - Invalid elements remain held and unreviewable.
 - Invalid elements do not become accepted Profile, Claim, or Timeline routed candidates.
-- Source-pack and routing-regression counts remain 48 rows, 5 adapter payloads, and 60 adapter elements.
+- Source-pack and routing-regression counts remain consistent after the multilingual fixture expansion: currently 60 source-pack rows, 6 adapter payloads, and 72 adapter elements.
 - The model/API boundary still records `externalCallAllowed: false`.
 
 ## Remaining Fixture Classes

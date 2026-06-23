@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "fff.remainingFixtureCoverageOneClass.v1",
+  "artifact_id": "fff-remaining-fixture-coverage-one-class-001",
+  "title": "Fast Fiction Factory Remaining Fixture Coverage One Class",
+  "generatedAt": "2026-06-23T09:09:35.044Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "selected_fixture_class": "multilingual_memo_text",
+  "selected_fixture_label": "multilingual memo text",
+  "selected_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+  "selected_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+  "source_pack_path": "artifacts/source-span-routing-review-pack.json",
+  "adapter_matrix_smoke_path": "artifacts/local-extraction-adapter-expansion-smoke-result.json",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "preserved_provider_envelope_readiness_no_call_artifact_id": "fff-provider-envelope-readiness-no-call-001",
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-provider-envelope-readiness-no-call-001",
+    "prior_review_count": 0,
+    "axis": "remaining_fixture_coverage_one_class",
+    "what_changed": "A single multilingual memo fixture and deterministic readback output were added to the local adapter matrix.",
+    "what_this_review_decides": "No user review is needed; this readback decides whether mixed-language source memo text can be preserved with valid source spans and held routing before provider work starts.",
+    "not_asking": [
+      "translated memo policy",
+      "broad source-span rewrite",
+      "provider choice",
+      "credentials",
+      "model/API call approval",
+      "database persistence",
+      "publishing or production sync",
+      "AI video generation",
+      "final canon decisions for Toma fate, brass moth truth, or Council motive"
+    ],
+    "next_nonredundant_axis": "translated memo text or very broad source-span shape only if coverage remains the bottleneck"
+  },
+  "coverage_decision": {
+    "candidate_classes_before_slice": [
+      "multilingual memo text",
+      "translated memo text",
+      "very broad source-span shape"
+    ],
+    "selected_class_reason": "Current positive adapter fixtures were English-only while broad-span rows already have a split/keep readback and translated memo text would require a translation policy. A mixed-language author memo can be covered deterministically without provider calls, credentials, or canon decisions.",
+    "covered_by_this_slice": [
+      "multilingual memo text"
+    ],
+    "remaining_fixture_class_candidates": [
+      "translated memo text",
+      "very broad source-span shape"
+    ],
+    "source_pack_current_gap_list": [
+      "contradictory memo claims",
+      "very broad source spans",
+      "missing or malformed source span payloads",
+      "translated memo text",
+      "model/API provider envelope output"
+    ]
+  },
+  "summary": {
+    "previous_fixture_count": 4,
+    "current_fixture_count": 5,
+    "current_output_count": 5,
+    "current_matrix_element_count": 60,
+    "source_pack_rows_checked": 60,
+    "adapter_payloads_checked": 6,
+    "adapter_elements_checked": 72,
+    "selected_fixture_elements_checked": 12,
+    "multilingual_source_lines": 4,
+    "multilingual_source_span_elements": 4,
+    "source_span_mismatches": 0,
+    "missing_source_refs": 0,
+    "unsafe_visual_routes": 0,
+    "non_held_review_defaults": 0,
+    "human_owned_decision_adopt_suggestions": 0,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "fixture_coverage_checks": {
+    "active_and_preserved_identities_kept": {
+      "passed": true,
+      "detail": "active=fff-contradictory-claim-guard-001; provider-preserves=fff-contradictory-claim-guard-001"
+    },
+    "one_fixture_class_selected": {
+      "passed": true,
+      "detail": "selected=multilingual memo text; fixtureFiles=clockmaker-sample.md, council-minutes-edge.md, multilingual-memo-notes.md, observatory-ledger-edge.md, sparse-bullet-notes.md"
+    },
+    "selection_reason_matches_gap": {
+      "passed": true,
+      "detail": "current gaps=contradictory memo claims, very broad source spans, missing or malformed source span payloads, translated memo text, model/API provider envelope output"
+    },
+    "multilingual_shape_confirmed": {
+      "passed": true,
+      "detail": "non-ASCII lines=4"
+    },
+    "adapter_matrix_extended_by_one_fixture": {
+      "passed": true,
+      "detail": "matrix fixtures=5; elements=60"
+    },
+    "multilingual_output_readback": {
+      "passed": true,
+      "detail": "fixture=multilingual-memo-notes; elements=12; multilingual spans=4; types=concept, document, event, object, organization, person, place, placeholder, source_reference, unresolved_decision, visual_asset"
+    },
+    "source_span_integrity": {
+      "passed": true,
+      "detail": "source mismatches=none; missing refs=none"
+    },
+    "review_held_routing_and_human_boundaries": {
+      "passed": true,
+      "detail": "non-held=none; unsafe visual=none; human adopt=none"
+    },
+    "source_pack_and_routing_readback_extended": {
+      "passed": true,
+      "detail": "pack rows=60; adapter payloads=6; adapter elements=72"
+    },
+    "existing_guards_remain_passing": {
+      "passed": true,
+      "detail": "validator=9; downstream rows=60; adopted=0"
+    },
+    "provider_boundary_not_crossed": {
+      "passed": true,
+      "detail": "providerConfigured=false; externalCall=false; credentials=false"
+    },
+    "user_work_remains_optional": {
+      "passed": true,
+      "detail": "no Review Card, fixed form, or Operator Observation Card is introduced"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

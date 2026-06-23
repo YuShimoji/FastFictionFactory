@@ -277,7 +277,8 @@ function summarizePack(fixtures, smoke) {
     { label: "contradictory memo claims" },
     { label: "very broad source spans" },
     { label: "missing or malformed source span payloads" },
-    { label: "multilingual or translated memo text" },
+    { label: "multilingual memo text", coveredBy: "multilingual-memo-notes" },
+    { label: "translated memo text" },
     { label: "sparse bullet-only notes", coveredBy: "sparse-bullet-notes" },
     { label: "model/API provider envelope output" }
   ]

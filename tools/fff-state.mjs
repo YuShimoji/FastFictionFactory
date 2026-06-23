@@ -13,6 +13,7 @@ const MALFORMED_MISSING_SPAN_GUARD_SCHEMA_VERSION = "fff.malformedMissingSpanGua
 const CONTRADICTORY_CLAIM_GUARD_SCHEMA_VERSION = "fff.contradictoryClaimGuard.v1";
 const DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_SCHEMA_VERSION = "fff.downstreamSourceSpanAdoptionGate.v1";
 const PROVIDER_ENVELOPE_READINESS_NO_CALL_SCHEMA_VERSION = "fff.providerEnvelopeReadinessNoCall.v1";
+const REMAINING_FIXTURE_COVERAGE_SCHEMA_VERSION = "fff.remainingFixtureCoverageOneClass.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -23,6 +24,7 @@ const DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT = "artifacts/malformed-missing
 const DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT = "artifacts/contradictory-claim-guard-result.json";
 const DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT = "artifacts/downstream-source-span-adoption-gate-result.json";
 const DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT = "artifacts/provider-envelope-readiness-no-call-result.json";
+const DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT = "artifacts/remaining-fixture-coverage-one-class-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -369,6 +371,25 @@ async function main() {
     }
     if (command === "smoke-missing-fixture-class-probe" || outputPath) {
       console.log(`missing fixture class probe passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-remaining-fixture-coverage-one-class" || command === "smoke-remaining-fixture-coverage-one-class") {
+    const smoke = await readJson(inputPath);
+    const result = await validateRemainingFixtureCoverageOneClass(smoke, inputPath);
+    const target = outputPath || DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT;
+    if (command === "smoke-remaining-fixture-coverage-one-class" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Remaining fixture coverage readback failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-remaining-fixture-coverage-one-class" || outputPath) {
+      console.log(`remaining fixture coverage readback passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -1441,6 +1462,8 @@ async function validateMissingFixtureClassProbe(smoke, smokePath) {
   const sourcePackLegacyGaps = Array.isArray(sourcePack.cross_fixture_summary?.fixture_class_gaps)
     ? sourcePack.cross_fixture_summary.fixture_class_gaps
     : [];
+  const sourcePackFixtureCount = Number(sourcePack.cross_fixture_summary?.fixture_count || 0);
+  const sampleAdapterElements = Array.isArray(adapterPayloads[0]?.extractedElements) ? adapterPayloads[0].extractedElements.length : 0;
   const weakMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-weak-span-repair-001");
   const humanBoundaryText = (output.humanAuthorityBoundaries || []).join(" ").toLowerCase();
 
@@ -1481,9 +1504,9 @@ async function validateMissingFixtureClassProbe(smoke, smokePath) {
   check(
     "adapter_matrix_extended",
     smoke?.passed === true &&
-      smoke.aggregate?.fixtureCount === 4 &&
-      smoke.aggregate?.outputCount === 4 &&
-      smoke.aggregate?.elementCount === 48 &&
+      smoke.aggregate?.fixtureCount >= 4 &&
+      smoke.aggregate?.outputCount >= 4 &&
+      smoke.aggregate?.elementCount >= 48 &&
       Boolean(sparseSmokeResult?.passed),
     `matrix fixtures=${smoke.aggregate?.fixtureCount}; elements=${smoke.aggregate?.elementCount}`
   );
@@ -1527,14 +1550,14 @@ async function validateMissingFixtureClassProbe(smoke, smokePath) {
   check(
     "source_pack_and_routing_readback_extended",
     sourcePack?.passed === true &&
-      sourcePack.cross_fixture_summary?.fixture_count === 4 &&
-      sourcePack.cross_fixture_summary?.total_elements === 48 &&
-      packElements.length === 48 &&
-      routingRegression.summary?.source_pack_rows_checked === 48 &&
+      sourcePack.cross_fixture_summary?.fixture_count >= 4 &&
+      sourcePack.cross_fixture_summary?.total_elements >= 48 &&
+      packElements.length === sourcePack.cross_fixture_summary?.total_elements &&
+      routingRegression.summary?.source_pack_rows_checked === packElements.length &&
       routingRegression.summary?.adapter_payloads_checked === adapterPayloads.length &&
       routingRegression.summary?.adapter_elements_checked === adapterElements.length &&
-      adapterPayloads.length === 5 &&
-      adapterElements.length === 60,
+      adapterPayloads.length === sourcePackFixtureCount + 1 &&
+      adapterElements.length === packElements.length + sampleAdapterElements,
     `pack rows=${packElements.length}; adapter payloads=${adapterPayloads.length}; adapter elements=${adapterElements.length}`
   );
   check(
@@ -1624,6 +1647,276 @@ async function validateMissingFixtureClassProbe(smoke, smokePath) {
   };
 }
 
+async function validateRemainingFixtureCoverageOneClass(smoke, smokePath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const selectedFixture = {
+    class_id: "multilingual_memo_text",
+    label: "multilingual memo text",
+    fixture_key: "multilingual-memo-notes",
+    fixture_path: "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    output_path: "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json"
+  };
+  const candidateClassesBeforeSlice = [
+    "multilingual memo text",
+    "translated memo text",
+    "very broad source-span shape"
+  ];
+  const remainingFixtureCandidates = candidateClassesBeforeSlice.filter((candidate) => candidate !== selectedFixture.label);
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const sourcePackPath = manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json";
+  const sourcePack = await readJson(sourcePackPath);
+  const routingRegression = await readJson(manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT);
+  const broadSpanSplit = await readJson(manifest.broad_span_split_result_path || DEFAULT_BROAD_SPAN_SPLIT_OUTPUT);
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const downstreamGate = await readJson(manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT);
+  const providerEnvelope = await readJson(manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT);
+  const validatorSmoke = await readJson(manifest.validator_smoke_path || DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT);
+  const rawMemo = await readFile(selectedFixture.fixture_path, "utf8");
+  const output = await readJson(selectedFixture.output_path);
+  const adapterPayloads = await readAdapterPayloads();
+  const adapterElements = adapterPayloads.flatMap((payload) => Array.isArray(payload.extractedElements) ? payload.extractedElements : []);
+  const packElements = flattenSourcePackElements(sourcePack);
+  const packFixture = Array.isArray(sourcePack.fixtures)
+    ? sourcePack.fixtures.find((fixture) => fixture.fixture_id === selectedFixture.fixture_key)
+    : null;
+  const smokeResult = Array.isArray(smoke.fixtureResults)
+    ? smoke.fixtureResults.find((result) => result.fixture === selectedFixture.fixture_key)
+    : null;
+  const sourceRefIds = new Set((output.sourceRefs || []).map((sourceRef) => sourceRef.id));
+  const fixtureElements = Array.isArray(output.extractedElements) ? output.extractedElements : [];
+  const elementTypes = [...new Set(fixtureElements.map((element) => element.elementType))].sort();
+  const requiredElementTypeCoverage = Object.fromEntries(
+    REQUIRED_EXTRACTION_ELEMENT_TYPES.map((elementType) => [elementType, elementTypes.includes(elementType)])
+  );
+  const sourceSpanMismatches = fixtureElements.filter((element) => {
+    const sourceSpan = element.sourceSpan || {};
+    return typeof sourceSpan.start !== "number" ||
+      typeof sourceSpan.end !== "number" ||
+      rawMemo.slice(sourceSpan.start, sourceSpan.end) !== sourceSpan.text;
+  }).map((element) => element.id);
+  const missingSourceRefs = fixtureElements.filter((element) =>
+    !Array.isArray(element.sourceRefIds) ||
+    element.sourceRefIds.length === 0 ||
+    element.sourceRefIds.some((sourceRefId) => !sourceRefIds.has(sourceRefId))
+  ).map((element) => element.id);
+  const unsafeVisualRoutes = fixtureElements.filter((element) =>
+    element.elementType === "visual_asset" &&
+    Array.isArray(element.targetDestinations) &&
+    element.targetDestinations.includes("claim") &&
+    !element.targetDestinations.includes("profile")
+  ).map((element) => element.id);
+  const nonHeldDefaults = fixtureElements.filter((element) =>
+    element.reviewStatus !== "hold" || element.suggestedReviewStatus !== "hold"
+  ).map((element) => element.id);
+  const humanOwnedAdoptSuggestions = fixtureElements.filter((element) =>
+    touchesHumanOwnedDecision(element) && element.suggestedReviewStatus === "adopt"
+  ).map((element) => element.id);
+  const nonAsciiLines = rawMemo.split(/\r?\n/).filter((line) => /[^\x00-\x7F]/.test(line));
+  const nonAsciiSpanElements = fixtureElements.filter((element) => /[^\x00-\x7F]/.test(String(element.sourceSpan?.text || "")));
+  const sourcePackGaps = Array.isArray(sourcePack.cross_fixture_summary?.fixture_class_gaps)
+    ? sourcePack.cross_fixture_summary.fixture_class_gaps
+    : [];
+  const matrixFixtureCount = Number(sourcePack.cross_fixture_summary?.fixture_count || 0);
+  const expectedAdapterPayloadCount = matrixFixtureCount + 1;
+  const sampleAdapterElements = Array.isArray(adapterPayloads[0]?.extractedElements) ? adapterPayloads[0].extractedElements.length : 0;
+  const expectedAdapterElementCount = packElements.length + sampleAdapterElements;
+
+  check(
+    "active_and_preserved_identities_kept",
+    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+      contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
+      providerEnvelope?.artifact_id === "fff-provider-envelope-readiness-no-call-001" &&
+      providerEnvelope?.preserved_active_artifact_id === "fff-contradictory-claim-guard-001",
+    `active=${manifest.artifact_id}; provider-preserves=${providerEnvelope?.preserved_active_artifact_id}`
+  );
+  check(
+    "one_fixture_class_selected",
+    candidateClassesBeforeSlice.includes(selectedFixture.label) &&
+      selectedFixture.class_id === "multilingual_memo_text" &&
+      Array.isArray(smoke.fixtureFiles) &&
+      smoke.fixtureFiles.filter((file) => file === `${selectedFixture.fixture_key}.md`).length === 1 &&
+      !smoke.fixtureFiles.some((file) => file.includes("translated") || file.includes("broad")),
+    `selected=${selectedFixture.label}; fixtureFiles=${Array.isArray(smoke.fixtureFiles) ? smoke.fixtureFiles.join(", ") : "not set"}`
+  );
+  check(
+    "selection_reason_matches_gap",
+    broadSpanSplit?.passed === true &&
+      broadSpanSplit.summary?.broad_span_rows_loaded === 2 &&
+      rawMemo.includes("English gloss is in-line only") &&
+      sourcePackGaps.includes("translated memo text") &&
+      sourcePackGaps.includes("very broad source spans") &&
+      !sourcePackGaps.includes("multilingual memo text"),
+    `current gaps=${sourcePackGaps.join(", ") || "none"}`
+  );
+  check(
+    "multilingual_shape_confirmed",
+    rawMemo.includes("Adapter Fixture: Multilingual Memo Notes") &&
+      rawMemo.includes("真鍮の蛾の鍵") &&
+      rawMemo.includes("北鐘駅") &&
+      rawMemo.includes("English gloss is in-line only") &&
+      nonAsciiLines.length >= 3,
+    `non-ASCII lines=${nonAsciiLines.length}`
+  );
+  check(
+    "adapter_matrix_extended_by_one_fixture",
+    smoke?.passed === true &&
+      smoke.aggregate?.fixtureCount === 5 &&
+      smoke.aggregate?.outputCount === 5 &&
+      smoke.aggregate?.elementCount === 60 &&
+      Boolean(smokeResult?.passed),
+    `matrix fixtures=${smoke.aggregate?.fixtureCount}; elements=${smoke.aggregate?.elementCount}`
+  );
+  check(
+    "multilingual_output_readback",
+    output?.adapterTrace?.fixtureKey === selectedFixture.fixture_key &&
+      output?.schemaVersion === EXTRACTION_SCHEMA_VERSION &&
+      fixtureElements.length === 12 &&
+      packFixture?.counts?.extracted_elements === 12 &&
+      Object.values(requiredElementTypeCoverage).every(Boolean) &&
+      nonAsciiSpanElements.length >= 3,
+    `fixture=${output?.adapterTrace?.fixtureKey}; elements=${fixtureElements.length}; multilingual spans=${nonAsciiSpanElements.length}; types=${elementTypes.join(", ")}`
+  );
+  check(
+    "source_span_integrity",
+    sourceSpanMismatches.length === 0 &&
+      missingSourceRefs.length === 0 &&
+      smokeResult?.sourceRoutingAudit?.sourceSpanMismatchCount === 0 &&
+      smokeResult?.sourceRoutingAudit?.missingSourceRefCount === 0,
+    `source mismatches=${sourceSpanMismatches.join(", ") || "none"}; missing refs=${missingSourceRefs.join(", ") || "none"}`
+  );
+  check(
+    "review_held_routing_and_human_boundaries",
+    nonHeldDefaults.length === 0 &&
+      unsafeVisualRoutes.length === 0 &&
+      humanOwnedAdoptSuggestions.length === 0 &&
+      output.reviewSafeDefaults?.defaultReviewStatus === "hold" &&
+      output.reviewSafeDefaults?.autoCanonPromotion === false &&
+      output.reviewSafeDefaults?.autoChronologyPromotion === false,
+    `non-held=${nonHeldDefaults.join(", ") || "none"}; unsafe visual=${unsafeVisualRoutes.join(", ") || "none"}; human adopt=${humanOwnedAdoptSuggestions.join(", ") || "none"}`
+  );
+  check(
+    "source_pack_and_routing_readback_extended",
+    sourcePack?.passed === true &&
+      sourcePack.cross_fixture_summary?.fixture_count === 5 &&
+      sourcePack.cross_fixture_summary?.total_elements === 60 &&
+      packElements.length === 60 &&
+      routingRegression?.passed === true &&
+      routingRegression.summary?.source_pack_rows_checked === packElements.length &&
+      routingRegression.summary?.adapter_payloads_checked === adapterPayloads.length &&
+      routingRegression.summary?.adapter_elements_checked === adapterElements.length &&
+      adapterPayloads.length === expectedAdapterPayloadCount &&
+      adapterElements.length === expectedAdapterElementCount,
+    `pack rows=${packElements.length}; adapter payloads=${adapterPayloads.length}; adapter elements=${adapterElements.length}`
+  );
+  check(
+    "existing_guards_remain_passing",
+    validatorSmoke?.passed === true &&
+      validatorSmoke.summary?.fixtureCount === 9 &&
+      malformedGuard?.passed === true &&
+      malformedGuard.summary?.accepted_routed_candidates === 0 &&
+      contradictoryGuard?.passed === true &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      downstreamGate?.passed === true &&
+      downstreamGate.summary?.source_pack_rows_checked === packElements.length &&
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates === 0,
+    `validator=${validatorSmoke.summary?.fixtureCount}; downstream rows=${downstreamGate.summary?.source_pack_rows_checked}; adopted=${downstreamGate.summary?.adopted_profile_claim_timeline_candidates}`
+  );
+  check(
+    "provider_boundary_not_crossed",
+    providerEnvelope?.passed === true &&
+      providerEnvelope.provider_metadata?.providerConfigured === false &&
+      providerEnvelope.provider_metadata?.externalCallAttempted === false &&
+      providerEnvelope.provider_metadata?.credentialsTouched === false,
+    `providerConfigured=${providerEnvelope.provider_metadata?.providerConfigured}; externalCall=${providerEnvelope.provider_metadata?.externalCallAttempted}; credentials=${providerEnvelope.provider_metadata?.credentialsTouched}`
+  );
+  check(
+    "user_work_remains_optional",
+    manifest.review_input_mode === "freeform" &&
+      !String(manifest.review_prompt_hint || "").toLowerCase().includes("fixed form") &&
+      providerEnvelope.summary?.review_card_emitted === false &&
+      downstreamGate.summary?.operator_observation_card_emitted === false,
+    "no Review Card, fixed form, or Operator Observation Card is introduced"
+  );
+
+  return {
+    schemaVersion: REMAINING_FIXTURE_COVERAGE_SCHEMA_VERSION,
+    artifact_id: "fff-remaining-fixture-coverage-one-class-001",
+    title: "Fast Fiction Factory Remaining Fixture Coverage One Class",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    selected_fixture_class: selectedFixture.class_id,
+    selected_fixture_label: selectedFixture.label,
+    selected_fixture_path: selectedFixture.fixture_path,
+    selected_output_path: selectedFixture.output_path,
+    source_pack_path: sourcePackPath,
+    adapter_matrix_smoke_path: toRepoPath(smokePath),
+    preserved_active_artifact_id: manifest.artifact_id,
+    preserved_provider_envelope_readiness_no_call_artifact_id: "fff-provider-envelope-readiness-no-call-001",
+    review_memory_checked: {
+      checked: true,
+      target: "fff-provider-envelope-readiness-no-call-001",
+      prior_review_count: manifest.review_memory?.find((entry) => entry.artifact_id === "fff-provider-envelope-readiness-no-call-001")?.prior_review_count ?? 0,
+      axis: "remaining_fixture_coverage_one_class",
+      what_changed: "A single multilingual memo fixture and deterministic readback output were added to the local adapter matrix.",
+      what_this_review_decides: "No user review is needed; this readback decides whether mixed-language source memo text can be preserved with valid source spans and held routing before provider work starts.",
+      not_asking: [
+        "translated memo policy",
+        "broad source-span rewrite",
+        "provider choice",
+        "credentials",
+        "model/API call approval",
+        "database persistence",
+        "publishing or production sync",
+        "AI video generation",
+        "final canon decisions for Toma fate, brass moth truth, or Council motive"
+      ],
+      next_nonredundant_axis: "translated memo text or very broad source-span shape only if coverage remains the bottleneck"
+    },
+    coverage_decision: {
+      candidate_classes_before_slice: candidateClassesBeforeSlice,
+      selected_class_reason: "Current positive adapter fixtures were English-only while broad-span rows already have a split/keep readback and translated memo text would require a translation policy. A mixed-language author memo can be covered deterministically without provider calls, credentials, or canon decisions.",
+      covered_by_this_slice: [selectedFixture.label],
+      remaining_fixture_class_candidates: remainingFixtureCandidates,
+      source_pack_current_gap_list: sourcePackGaps
+    },
+    summary: {
+      previous_fixture_count: 4,
+      current_fixture_count: smoke.aggregate?.fixtureCount,
+      current_output_count: smoke.aggregate?.outputCount,
+      current_matrix_element_count: smoke.aggregate?.elementCount,
+      source_pack_rows_checked: packElements.length,
+      adapter_payloads_checked: adapterPayloads.length,
+      adapter_elements_checked: adapterElements.length,
+      selected_fixture_elements_checked: fixtureElements.length,
+      multilingual_source_lines: nonAsciiLines.length,
+      multilingual_source_span_elements: nonAsciiSpanElements.length,
+      source_span_mismatches: sourceSpanMismatches.length,
+      missing_source_refs: missingSourceRefs.length,
+      unsafe_visual_routes: unsafeVisualRoutes.length,
+      non_held_review_defaults: nonHeldDefaults.length,
+      human_owned_decision_adopt_suggestions: humanOwnedAdoptSuggestions.length,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    fixture_coverage_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateMalformedMissingSpanGuard(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -1674,6 +1967,10 @@ async function validateMalformedMissingSpanGuard(smoke, smokePath) {
   const sourcePackLegacyGaps = Array.isArray(sourcePack.cross_fixture_summary?.fixture_class_gaps)
     ? sourcePack.cross_fixture_summary.fixture_class_gaps
     : [];
+  const adapterPayloads = await readAdapterPayloads();
+  const adapterElements = adapterPayloads.flatMap((payload) => Array.isArray(payload.extractedElements) ? payload.extractedElements : []);
+  const sourcePackFixtureCount = Number(sourcePack.cross_fixture_summary?.fixture_count || 0);
+  const sampleAdapterElements = Array.isArray(adapterPayloads[0]?.extractedElements) ? adapterPayloads[0].extractedElements.length : 0;
 
   check(
     "prior_fixture_probe_preserved",
@@ -1732,11 +2029,13 @@ async function validateMalformedMissingSpanGuard(smoke, smokePath) {
   check(
     "source_pack_counts_preserved",
     sourcePack?.passed === true &&
-      sourcePack.cross_fixture_summary?.fixture_count === 4 &&
-      sourcePack.cross_fixture_summary?.total_elements === 48 &&
-      routingRegression.summary?.source_pack_rows_checked === 48 &&
-      routingRegression.summary?.adapter_payloads_checked === 5 &&
-      routingRegression.summary?.adapter_elements_checked === 60,
+      sourcePack.cross_fixture_summary?.fixture_count >= 4 &&
+      sourcePack.cross_fixture_summary?.total_elements >= 48 &&
+      routingRegression.summary?.source_pack_rows_checked === sourcePack.cross_fixture_summary?.total_elements &&
+      routingRegression.summary?.adapter_payloads_checked === adapterPayloads.length &&
+      routingRegression.summary?.adapter_elements_checked === adapterElements.length &&
+      adapterPayloads.length === sourcePackFixtureCount + 1 &&
+      adapterElements.length === sourcePack.cross_fixture_summary?.total_elements + sampleAdapterElements,
     `source-pack fixtures=${sourcePack.cross_fixture_summary?.fixture_count}; rows=${sourcePack.cross_fixture_summary?.total_elements}`
   );
   check(
@@ -1891,6 +2190,10 @@ async function validateContradictoryClaimGuard(smoke, smokePath) {
   const sourcePackLegacyGaps = Array.isArray(sourcePack.cross_fixture_summary?.fixture_class_gaps)
     ? sourcePack.cross_fixture_summary.fixture_class_gaps
     : [];
+  const adapterPayloads = await readAdapterPayloads();
+  const adapterElements = adapterPayloads.flatMap((payload) => Array.isArray(payload.extractedElements) ? payload.extractedElements : []);
+  const sourcePackFixtureCount = Number(sourcePack.cross_fixture_summary?.fixture_count || 0);
+  const sampleAdapterElements = Array.isArray(adapterPayloads[0]?.extractedElements) ? adapterPayloads[0].extractedElements.length : 0;
 
   check(
     "prior_guard_sequence_preserved",
@@ -1957,11 +2260,13 @@ async function validateContradictoryClaimGuard(smoke, smokePath) {
   check(
     "existing_source_span_and_routing_counts_preserved",
     sourcePack?.passed === true &&
-      sourcePack.cross_fixture_summary?.fixture_count === 4 &&
-      sourcePack.cross_fixture_summary?.total_elements === 48 &&
-      routingRegression.summary?.source_pack_rows_checked === 48 &&
-      routingRegression.summary?.adapter_payloads_checked === 5 &&
-      routingRegression.summary?.adapter_elements_checked === 60 &&
+      sourcePack.cross_fixture_summary?.fixture_count >= 4 &&
+      sourcePack.cross_fixture_summary?.total_elements >= 48 &&
+      routingRegression.summary?.source_pack_rows_checked === sourcePack.cross_fixture_summary?.total_elements &&
+      routingRegression.summary?.adapter_payloads_checked === adapterPayloads.length &&
+      routingRegression.summary?.adapter_elements_checked === adapterElements.length &&
+      adapterPayloads.length === sourcePackFixtureCount + 1 &&
+      adapterElements.length === sourcePack.cross_fixture_summary?.total_elements + sampleAdapterElements &&
       malformedGuard.summary?.accepted_routed_candidates === 0,
     `source-pack rows=${sourcePack.cross_fixture_summary?.total_elements}; adapter elements=${routingRegression.summary?.adapter_elements_checked}; malformed accepted=${malformedGuard.summary?.accepted_routed_candidates}`
   );
@@ -2116,13 +2421,15 @@ async function validateDownstreamSourceSpanAdoptionGate(sourcePack, sourcePackPa
   );
   const missingAdapterRows = packDownstreamCandidates.filter((element) => !adapterById.has(element.id));
   const priorMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-malformed-missing-span-guard-001");
+  const sourcePackFixtureCount = Number(sourcePack.cross_fixture_summary?.fixture_count || 0);
+  const sampleAdapterElements = Array.isArray(adapterPayloads[0]?.extractedElements) ? adapterPayloads[0].extractedElements.length : 0;
 
   check(
     "source_pack_loaded",
     sourcePack?.artifact_id === "fff-source-span-routing-review-pack-001" &&
       sourcePack?.passed === true &&
-      sourcePack.cross_fixture_summary?.total_elements === 48 &&
-      packElements.length === 48,
+      sourcePack.cross_fixture_summary?.total_elements >= 48 &&
+      packElements.length === sourcePack.cross_fixture_summary?.total_elements,
     `loaded ${sourcePackPath}; rows=${packElements.length}`
   );
   check(
@@ -2137,7 +2444,7 @@ async function validateDownstreamSourceSpanAdoptionGate(sourcePack, sourcePackPa
     "routing_targets_safe_for_downstream_consideration",
     unsafeRoutingCandidates.length === 0 &&
       routingRegression?.passed === true &&
-      routingRegression.summary?.source_pack_rows_checked === 48 &&
+      routingRegression.summary?.source_pack_rows_checked === packElements.length &&
       routingRegression.summary?.adapter_payloads_checked === adapterPayloads.length &&
       routingRegression.routing_policy_checks?.visual_direct_claim_guard?.passed === true &&
       routingRegression.routing_policy_checks?.source_reference_preservation?.passed === true,
@@ -2175,8 +2482,8 @@ async function validateDownstreamSourceSpanAdoptionGate(sourcePack, sourcePackPa
   check(
     "adapter_drift_visible_before_adoption",
     missingAdapterRows.length === 0 &&
-      adapterPayloads.length === 5 &&
-      adapterElements.length === 60,
+      adapterPayloads.length === sourcePackFixtureCount + 1 &&
+      adapterElements.length === packElements.length + sampleAdapterElements,
     `missing adapter rows=${missingAdapterRows.map((element) => element.id).join(", ") || "none"}; adapter elements=${adapterElements.length}`
   );
   check(
@@ -3342,6 +3649,8 @@ Usage:
   node tools/fff-state.mjs smoke-weak-span-repair <source-span-quality-audit.json> [output.json]
   node tools/fff-state.mjs validate-missing-fixture-class-probe <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-missing-fixture-class-probe <adapter-matrix-smoke.json> [output.json]
+  node tools/fff-state.mjs validate-remaining-fixture-coverage-one-class <adapter-matrix-smoke.json>
+  node tools/fff-state.mjs smoke-remaining-fixture-coverage-one-class <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
   node tools/fff-state.mjs smoke-malformed-missing-span-guard <extraction-validator-smoke.json> [output.json]
   node tools/fff-state.mjs validate-contradictory-claim-guard <extraction-validator-smoke.json>
@@ -3368,6 +3677,9 @@ Default weak-span repair output:
 
 Default missing fixture class probe output:
   ${DEFAULT_MISSING_FIXTURE_CLASS_PROBE_OUTPUT}
+
+Default remaining fixture coverage output:
+  ${DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT}
 
 Default malformed/missing source-span guard output:
   ${DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT}

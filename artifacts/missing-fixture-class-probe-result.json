@@ -2,7 +2,7 @@
   "schemaVersion": "fff.missingFixtureClassProbe.v1",
   "artifact_id": "fff-missing-fixture-class-probe-001",
   "title": "Fast Fiction Factory Missing Fixture Class Probe",
-  "generatedAt": "2026-06-23T08:31:35.077Z",
+  "generatedAt": "2026-06-23T09:08:41.861Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "selected_fixture_class": "sparse_bullet_only_notes",
@@ -60,18 +60,18 @@
       "contradictory memo claims",
       "very broad source spans",
       "missing or malformed source span payloads",
-      "multilingual or translated memo text",
+      "translated memo text",
       "model/API provider envelope output"
     ]
   },
   "summary": {
     "previous_fixture_count": 3,
-    "current_fixture_count": 4,
-    "current_output_count": 4,
-    "current_matrix_element_count": 48,
-    "source_pack_rows_checked": 48,
-    "adapter_payloads_checked": 5,
-    "adapter_elements_checked": 60,
+    "current_fixture_count": 5,
+    "current_output_count": 5,
+    "current_matrix_element_count": 60,
+    "source_pack_rows_checked": 60,
+    "adapter_payloads_checked": 6,
+    "adapter_elements_checked": 72,
     "selected_fixture_elements_checked": 12,
     "selected_fixture_bullet_lines": 11,
     "source_span_mismatches": 0,
@@ -103,7 +103,7 @@
     },
     "adapter_matrix_extended": {
       "passed": true,
-      "detail": "matrix fixtures=4; elements=48"
+      "detail": "matrix fixtures=5; elements=60"
     },
     "sparse_output_readback": {
       "passed": true,
@@ -127,7 +127,7 @@
     },
     "source_pack_and_routing_readback_extended": {
       "passed": true,
-      "detail": "pack rows=48; adapter payloads=5; adapter elements=60"
+      "detail": "pack rows=60; adapter payloads=6; adapter elements=72"
     },
     "no_model_api_behavior_added": {
       "passed": true,

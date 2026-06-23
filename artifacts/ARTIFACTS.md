@@ -217,7 +217,7 @@
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
 - Validation command: `node tools/fff-extract-local.mjs --matrix artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json`
-- Validation result: deterministic adapter output validated as `fff.extractionContract.v1` for four fixture memos; output matrix contains 48 extracted elements, complete required element-type coverage, 36 profile candidates, 27 claim candidates, 16 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions; fixture matrix remained passing.
+- Validation result: deterministic adapter output now validates as `fff.extractionContract.v1` for five fixture memos after `fff-remaining-fixture-coverage-one-class-001`; output matrix contains 60 extracted elements, complete required element-type coverage, 44 profile candidates, 34 claim candidates, 20 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual-asset routing cases, 0 non-held review defaults, and 0 human-owned decision adopt suggestions; fixture matrix remains passing.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - State: Preserved by `fff-source-span-routing-review-pack-001`.
@@ -280,7 +280,7 @@
 - Contact sheet: `artifacts/fff-review-contact-sheet.png`
 - Manifest: `artifacts/artifact-manifest.json`
 - Validation command: `node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json`
-- Validation result: source-span review pack generated from four fixture outputs; pack records 48 extracted elements, 36 profile candidates, 27 claim candidates, 16 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, 0 human-owned decision adopt suggestions, 22 human-owned guarded elements, and remaining fixture-class gaps excluding sparse bullet-only notes.
+- Validation result: source-span review pack generated from five fixture outputs after `fff-remaining-fixture-coverage-one-class-001`; pack records 60 extracted elements, 44 profile candidates, 34 claim candidates, 20 timeline candidates, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routing cases, 0 non-held review defaults, 0 human-owned decision adopt suggestions, 28 human-owned guarded elements, and remaining fixture-class gaps excluding sparse bullet-only notes and multilingual memo text.
 - Review status: `ready_for_local_review`
 - Review input mode: `freeform`
 - Next action: Review the pack in the Visual Review Hub or `artifacts/source-span-routing-review-pack.json`, then decide whether to revise deterministic spans/routing or add new edge fixtures before model/API adapter work.
@@ -450,7 +450,7 @@
 - Adapter output: `artifacts/local-extraction-adapter-output.json`
 - Adapter matrix outputs: `artifacts/extraction-adapter-outputs/`
 - Validation command: `node tools/fff-state.mjs smoke-routing-policy artifacts/ambiguous-routing-resolution-result.json artifacts/routing-policy-regression-hardening-result.json`
-- Validation result: passed 2026-06-23T03:38:23+09:00 and refreshed during `fff-missing-fixture-class-probe-001`; routing policy regression smoke parsed `fff-routing-policy-regression-hardening-001`, checked 7 resolved rows, 48 source-pack rows, 5 adapter payloads, 60 adapter elements, and 0 failures; visual direct-Claim guard, human-review hold guard, Claim secondary-evidence rule, Timeline secondary-evidence rule, source_reference preservation, unsafe/unclear hold rule, and adapter drift readback passed.
+- Validation result: passed 2026-06-23 and refreshed during `fff-remaining-fixture-coverage-one-class-001`; routing policy regression smoke parsed `fff-routing-policy-regression-hardening-001`, checked 7 resolved rows, 60 source-pack rows, 6 adapter payloads, 72 adapter elements, and 0 failures; visual direct-Claim guard, human-review hold guard, Claim secondary-evidence rule, Timeline secondary-evidence rule, source_reference preservation, unsafe/unclear hold rule, and adapter drift readback passed.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Add one missing fixture class only if route-policy hardening later exposes drift.
@@ -522,7 +522,7 @@
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
 - Validation command: `node tools/fff-state.mjs smoke-missing-fixture-class-probe artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/missing-fixture-class-probe-result.json`
-- Validation result: passed 2026-06-23; sparse fixture probe read 4 fixture outputs, 48 matrix elements, 48 source-pack rows, 5 adapter payloads, 60 adapter elements, 12 sparse fixture elements, 11 sparse bullet lines, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held review defaults, 0 human-owned adopt suggestions, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Validation result: passed 2026-06-23 and refreshed during `fff-remaining-fixture-coverage-one-class-001`; sparse fixture probe read at least 4 fixture outputs and now sees 5 fixture outputs, 60 matrix elements, 60 source-pack rows, 6 adapter payloads, 72 adapter elements, 12 sparse fixture elements, 11 sparse bullet lines, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held review defaults, 0 human-owned adopt suggestions, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Choose another remaining fixture class only after a concrete coverage need is named; do not reopen sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.
@@ -548,7 +548,7 @@
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
 - Validation command: `node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json`
-- Validation result: passed 2026-06-23; malformed/missing source-span guard read 9 validator fixtures, 6 expected-invalid fixtures, 3 invalid guard elements, 5 source-span validation errors, 1 missing source-ref error, 0 accepted routed candidates, 0 non-held defaults, 48 preserved source-pack rows, 5 preserved adapter payloads, 60 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Validation result: passed 2026-06-23 and refreshed during `fff-remaining-fixture-coverage-one-class-001`; malformed/missing source-span guard read 9 validator fixtures, 6 expected-invalid fixtures, 3 invalid guard elements, 5 source-span validation errors, 1 missing source-ref error, 0 accepted routed candidates, 0 non-held defaults, 60 preserved source-pack rows, 6 preserved adapter payloads, 72 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Choose a different remaining fixture class only after a concrete coverage need is named; do not reopen malformed/missing spans, sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.
@@ -575,7 +575,7 @@
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
 - Validation command: `node tools/fff-state.mjs smoke-contradictory-claim-guard artifacts/extraction-validator-smoke-result.json artifacts/contradictory-claim-guard-result.json`
-- Validation result: passed 2026-06-23; contradictory claim guard read 9 validator fixtures, 3 expected-valid fixtures, 6 expected-invalid fixtures, 2 linked conflicting claims, 1 reciprocal conflict pair, 2 held conflicting claims, 0 adopted/provisional conflicting claims, 0 direct accepted claim elements, 2 source-ref-preserved conflicting claims, 48 preserved source-pack rows, 5 preserved adapter payloads, 60 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Validation result: passed 2026-06-23 and refreshed during `fff-remaining-fixture-coverage-one-class-001`; contradictory claim guard read 9 validator fixtures, 3 expected-valid fixtures, 6 expected-invalid fixtures, 2 linked conflicting claims, 1 reciprocal conflict pair, 2 held conflicting claims, 0 adopted/provisional conflicting claims, 0 direct accepted claim elements, 2 source-ref-preserved conflicting claims, 60 preserved source-pack rows, 6 preserved adapter payloads, 72 preserved adapter elements, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - Next action: Preserve this as the active Review Hub identity while using provider-envelope readiness as auxiliary no-call evidence; do not reopen contradictory claims, malformed/missing spans, sparse notes, weak spans, broad spans, or ambiguous routing unless source output changes.
@@ -598,7 +598,7 @@
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
 - Validation command: `node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate artifacts/source-span-routing-review-pack.json artifacts/downstream-source-span-adoption-gate-result.json`
-- Validation result: passed 2026-06-23; downstream gate read 48 source-pack rows, reported 44 downstream Profile / Claim / Timeline review candidates, confirmed 44 source-tracked candidates, 0 malformed or missing-span candidates, 0 unsafe routing candidates, 22 held human-owned candidates, 0 non-held human-owned candidates, 0 accepted routed malformed-span candidates, 0 adopted downstream candidates, 5 adapter payloads, 60 adapter elements, and 0 failures.
+- Validation result: passed 2026-06-23 and refreshed during `fff-remaining-fixture-coverage-one-class-001`; downstream gate read 60 source-pack rows, reported 55 downstream Profile / Claim / Timeline review candidates, confirmed 55 source-tracked candidates, 0 malformed or missing-span candidates, 0 unsafe routing candidates, 28 held human-owned candidates, 0 non-held human-owned candidates, 0 accepted routed malformed-span candidates, 0 adopted downstream candidates, 6 adapter payloads, 72 adapter elements, and 0 failures.
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`.
@@ -629,3 +629,32 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no Review Card or Operator Observation Card is emitted.
 - Next action: Choose explicit provider adapter implementation only after authorization for provider choice, credentials, and transport behavior, or choose remaining broad/multilingual fixture coverage if coverage remains the bottleneck.
+
+## fff-remaining-fixture-coverage-one-class-001
+
+- Title: Fast Fiction Factory Remaining Fixture Coverage One Class
+- Purpose: Add exactly one remaining deterministic adapter fixture class, multilingual memo text, while keeping provider-envelope readiness no-call and preserving existing source-span, routing, malformed/missing-span, contradictory-claim, downstream, and human-owned decision gates.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/remaining-fixture-coverage-one-class.md`
+- Readback result: `artifacts/remaining-fixture-coverage-one-class-result.json`
+- Fixture memo: `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`
+- Fixture output: `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`
+- Updated deterministic adapter: `tools/fff-extract-local.mjs`
+- Updated state smoke: `tools/fff-state.mjs`
+- Source-span review pack generator: `tools/fff-source-span-review-pack.mjs`
+- Adapter matrix smoke: `artifacts/local-extraction-adapter-expansion-smoke-result.json`
+- Source-span review pack: `artifacts/source-span-routing-review-pack.json`
+- Routing policy regression result: `artifacts/routing-policy-regression-hardening-result.json`
+- Downstream gate result: `artifacts/downstream-source-span-adoption-gate-result.json`
+- Provider envelope readiness result: `artifacts/provider-envelope-readiness-no-call-result.json`
+- Manifest: `artifacts/artifact-manifest.json`
+- Current status: `docs/review/current-status.md`
+- Validation command: `node tools/fff-state.mjs smoke-remaining-fixture-coverage-one-class artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/remaining-fixture-coverage-one-class-result.json`
+- Validation result: passed 2026-06-23; multilingual fixture readback selected multilingual memo text over translated memo text and very broad source-span shape, raised the positive adapter matrix to 5 fixtures and 60 elements, confirmed 12 multilingual fixture elements with 4 non-ASCII source-span elements, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held defaults, 0 human-owned adopt suggestions, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; provider-envelope readiness remains no-call and no-credential.
+- Next action: Choose explicit provider adapter implementation only after authorization, or choose translated memo text / very broad source-span shape only if coverage remains the bottleneck.

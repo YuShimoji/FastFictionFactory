@@ -2,7 +2,7 @@
   "schemaVersion": "fff.downstreamSourceSpanAdoptionGate.v1",
   "artifact_id": "fff-downstream-source-span-adoption-gate-001",
   "title": "Fast Fiction Factory Downstream Source-Span Adoption Gate",
-  "generatedAt": "2026-06-23T08:31:35.332Z",
+  "generatedAt": "2026-06-23T09:08:42.187Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "source_artifact_id": "fff-source-span-routing-review-pack-001",
@@ -45,17 +45,17 @@
     "ready_for_final_canon_or_production": false
   },
   "summary": {
-    "source_pack_rows_checked": 48,
-    "downstream_candidates_reported_for_review": 44,
-    "source_tracked_downstream_candidates": 44,
+    "source_pack_rows_checked": 60,
+    "downstream_candidates_reported_for_review": 55,
+    "source_tracked_downstream_candidates": 55,
     "malformed_or_missing_span_candidates": 0,
     "unsafe_routing_candidates": 0,
-    "human_owned_candidates_held": 22,
+    "human_owned_candidates_held": 28,
     "human_owned_candidates_non_held": 0,
     "malformed_guard_accepted_routed_candidates": 0,
     "adopted_profile_claim_timeline_candidates": 0,
-    "adapter_payloads_checked": 5,
-    "adapter_elements_checked": 60,
+    "adapter_payloads_checked": 6,
+    "adapter_elements_checked": 72,
     "review_card_emitted": false,
     "repeated_general_review_request_emitted": false,
     "operator_observation_card_emitted": false,
@@ -64,11 +64,11 @@
   "downstream_gate_checks": {
     "source_pack_loaded": {
       "passed": true,
-      "detail": "loaded artifacts/source-span-routing-review-pack.json; rows=48"
+      "detail": "loaded artifacts/source-span-routing-review-pack.json; rows=60"
     },
     "source_refs_and_spans_required_for_downstream_candidates": {
       "passed": true,
-      "detail": "downstream candidates=44; missing-or-malformed=none"
+      "detail": "downstream candidates=55; missing-or-malformed=none"
     },
     "routing_targets_safe_for_downstream_consideration": {
       "passed": true,
@@ -80,7 +80,7 @@
     },
     "human_owned_decisions_remain_held": {
       "passed": true,
-      "detail": "human-owned candidates=22; non-held=none"
+      "detail": "human-owned candidates=28; non-held=none"
     },
     "no_actual_adoption_or_model_api_behavior": {
       "passed": true,
@@ -88,7 +88,7 @@
     },
     "adapter_drift_visible_before_adoption": {
       "passed": true,
-      "detail": "missing adapter rows=none; adapter elements=60"
+      "detail": "missing adapter rows=none; adapter elements=72"
     },
     "review_memory_keeps_user_work_optional": {
       "passed": true,

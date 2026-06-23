@@ -10,14 +10,18 @@ This slice adds the next thin gate after `fff-malformed-missing-span-guard-001`.
 
 The machine-readable readback lives at `artifacts/downstream-source-span-adoption-gate-result.json`.
 
+## Gate-Only Boundary
+
+`fff-downstream-source-span-adoption-gate-001` is a pre-adoption gate. It can report whether local review candidates have the source refs, valid source spans, safe routing, and held human-owned decisions a future adoption path would need. It cannot adopt those candidates, mutate Profile / Claim / Timeline state, promote canon, persist to a database, call or configure a provider, publish externally, or production-sync anything.
+
 ## What This Gate Does
 
 | Check | Local meaning | Current result |
 | --- | --- | --- |
-| Source refs and spans required | Downstream Profile / Claim / Timeline candidates must be traceable to local memo text. | 44 downstream candidates reported for review; 44 source-tracked; 0 malformed or missing-span candidates. |
+| Source refs and spans required | Downstream Profile / Claim / Timeline candidates must be traceable to local memo text. | 55 downstream candidates reported for review; 55 source-tracked; 0 malformed or missing-span candidates. |
 | Routing must stay safe | Visual, Source Reference, Human Review, Profile, Claim, and Timeline routes must not drift into unsafe direct adoption. | 0 unsafe routing candidates. |
 | Malformed guard remains closed | Invalid source-span fixtures must stay rejected and outside routed adoption. | 0 accepted routed candidates from malformed/missing source-span cases. |
-| Human-owned truth remains held | Toma fate, brass moth truth, Council motive, and similar unresolved decisions cannot become final canon. | 22 human-owned candidates remain held; 0 non-held human-owned candidates. |
+| Human-owned truth remains held | Toma fate, brass moth truth, Council motive, and similar unresolved decisions cannot become final canon. | 28 human-owned candidates remain held; 0 non-held human-owned candidates. |
 | Adoption stays unimplemented | This is a readiness/readback gate, not product adoption behavior. | 0 adopted Profile / Claim / Timeline candidates; no model/API call. |
 
 ## Review Memory Readback

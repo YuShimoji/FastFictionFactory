@@ -21,7 +21,7 @@ The Review Dedup Gate was checked before this slice:
 | What changed | One Extraction Contract fixture now carries two source-backed, reciprocally linked contradictory claim candidates. |
 | What this review decides | No user review is needed; this readback decides whether explicit contradictory claims are detected, held, source-traced, and kept out of auto-canon or direct adoption. |
 | Not asking | No general Review Hub review, no fixed-form review, no repeated malformed/sparse/weak/broad/routing review, no model/API approval, no credentials, no database or publishing change, no production sync, no AI video, no final canon decision, and no decision about which contradictory claim is true. |
-| Next non-redundant axis | Very broad source-span fixture shape, multilingual memo text, or provider-envelope readiness only after a concrete coverage need is named. |
+| Next non-redundant axis | Translated memo text, very broad source-span fixture shape, or provider adapter authorization only after a concrete coverage need or provider scope is named. |
 
 No Review Card or Operator Observation Card is emitted. Review Debt is recorded because the work can continue locally without user input.
 
@@ -54,11 +54,11 @@ No Review Card or Operator Observation Card is emitted. Review Debt is recorded 
 | Conflicting claims | 2 | The guard covers one reciprocal contradiction pair without generalizing into a contradiction-resolution system. |
 | Reciprocal conflict pairs | 1 | The two claims point to each other through `contradictsClaimIds`. |
 | Adopted/provisional conflicting claims | 0 | Neither side of the contradiction becomes canon or an accepted claim candidate. |
-| Source-pack rows preserved | 48 | Positive adapter/source-span coverage remains unchanged. |
+| Source-pack rows preserved | 60 | Positive adapter/source-span coverage remains consistent after multilingual expansion. |
 
 ## Regression Boundary
 
-`fff-malformed-missing-span-guard-001`, `fff-missing-fixture-class-probe-001`, `fff-weak-span-repair-001`, `fff-broad-span-split-001`, and `fff-routing-policy-regression-hardening-001` remain closed. This guard does not add a normal adapter fixture, does not change the positive source-span review pack, and does not reinterpret the existing 48 routed rows.
+`fff-malformed-missing-span-guard-001`, `fff-missing-fixture-class-probe-001`, `fff-weak-span-repair-001`, `fff-broad-span-split-001`, and `fff-routing-policy-regression-hardening-001` remain closed. This guard does not add a normal adapter fixture itself and does not reinterpret the current 60 routed rows.
 
 The contradictory claim guard readback checks that:
 
@@ -69,7 +69,7 @@ The contradictory claim guard readback checks that:
 - Contradictory claims remain `hold` with `worldTruthStatus=uncertain`.
 - Auto-canon and auto-chronology promotion remain disabled.
 - Claim-routed source elements remain held and source-traced.
-- Source-pack and routing-regression counts remain 48 rows, 5 adapter payloads, and 60 adapter elements.
+- Source-pack and routing-regression counts remain consistent after the multilingual fixture expansion: currently 60 source-pack rows, 6 adapter payloads, and 72 adapter elements.
 - The model/API boundary still records `externalCallAllowed: false`.
 
 ## Remaining Fixture Classes

@@ -56,7 +56,8 @@
     "fff-weak-span-repair-001",
     "fff-broad-span-split-001",
     "fff-missing-fixture-class-probe-001",
-    "fff-provider-envelope-readiness-no-call-001"
+    "fff-provider-envelope-readiness-no-call-001",
+    "fff-remaining-fixture-coverage-one-class-001"
   ],
   "generated_from": [
     "Supervisor slice: fff-review-memory-dedup-001",
@@ -108,15 +109,20 @@
     "Supervisor slice: fff-provider-envelope-readiness-no-call-001",
     "docs/review/provider-envelope-readiness-no-call.md",
     "artifacts/provider-envelope-readiness-no-call.example.json",
-    "artifacts/provider-envelope-readiness-no-call-result.json"
+    "artifacts/provider-envelope-readiness-no-call-result.json",
+    "Supervisor slice: fff-remaining-fixture-coverage-one-class-001",
+    "docs/review/remaining-fixture-coverage-one-class.md",
+    "artifacts/remaining-fixture-coverage-one-class-result.json",
+    "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json"
   ],
   "created_at": "2026-06-23T14:06:00+09:00",
-  "validation_command": "& { $files = @('public/review/index.html', 'tools/fff-state.mjs', 'tools/fff-extract-local.mjs', 'tools/fff-source-span-review-pack.mjs', 'artifacts/artifact-manifest.json', 'artifacts/ARTIFACTS.md', 'docs/review/current-status.md', 'docs/review/contradictory-claim-guard.md', 'artifacts/contradictory-claim-guard-result.json', 'artifacts/extraction-negative-fixtures/contradictory-claim-hold.json', 'docs/review/downstream-source-span-adoption-gate.md', 'artifacts/downstream-source-span-adoption-gate-result.json', 'docs/review/malformed-missing-span-guard.md', 'artifacts/malformed-missing-span-guard-result.json', 'artifacts/extraction-negative-fixtures/malformed-missing-source-span.json', 'docs/review/missing-fixture-class-probe.md', 'artifacts/missing-fixture-class-probe-result.json', 'artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md', 'artifacts/extraction-adapter-outputs/sparse-bullet-notes.json', 'artifacts/weak-span-repair-result.json', 'artifacts/broad-span-split-result.json', 'artifacts/routing-policy-regression-hardening-result.json', 'artifacts/ambiguous-routing-resolution-result.json', 'artifacts/source-span-quality-audit-result.json', 'artifacts/source-span-routing-review-pack.json', 'artifacts/local-extraction-adapter-output.json', 'artifacts/local-extraction-adapter-smoke-result.json', 'artifacts/local-extraction-adapter-expansion-smoke-result.json', 'artifacts/model-api-boundary-smoke-result.json', 'artifacts/model-api-boundary-envelope.example.json', 'docs/review/provider-envelope-readiness-no-call.md', 'artifacts/provider-envelope-readiness-no-call.example.json', 'artifacts/provider-envelope-readiness-no-call-result.json', 'artifacts/current-project-state.json', 'artifacts/sample-project-state.json', 'artifacts/sample-extraction-payload.json', 'artifacts/extraction-validator-smoke-result.json'); $missing = $files | Where-Object { -not (Test-Path $_) }; if ($missing) { throw ('Missing files: ' + ($missing -join ', ')) }; node --check tools/fff-state.mjs; if ($LASTEXITCODE -ne 0) { throw 'State tool syntax failed' }; node --check tools/fff-extract-local.mjs; if ($LASTEXITCODE -ne 0) { throw 'Adapter tool syntax failed' }; node --check tools/fff-source-span-review-pack.mjs; if ($LASTEXITCODE -ne 0) { throw 'Source-span pack tool syntax failed' }; node tools/fff-extract-local.mjs artifacts/sample-raw-memo.md artifacts/local-extraction-adapter-output.json artifacts/local-extraction-adapter-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Adapter smoke failed' }; node tools/fff-extract-local.mjs --matrix artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Adapter matrix failed' }; node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json; if ($LASTEXITCODE -ne 0) { throw 'Source-span review pack failed' }; node tools/fff-state.mjs smoke-routing-policy artifacts/ambiguous-routing-resolution-result.json artifacts/routing-policy-regression-hardening-result.json; if ($LASTEXITCODE -ne 0) { throw 'Routing policy regression smoke failed' }; node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json; if ($LASTEXITCODE -ne 0) { throw 'Broad-span split smoke failed' }; node tools/fff-state.mjs smoke-weak-span-repair artifacts/source-span-quality-audit-result.json artifacts/weak-span-repair-result.json; if ($LASTEXITCODE -ne 0) { throw 'Weak-span repair failed' }; node tools/fff-state.mjs smoke-missing-fixture-class-probe artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/missing-fixture-class-probe-result.json; if ($LASTEXITCODE -ne 0) { throw 'Missing fixture class probe failed' }; node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Extraction fixture smoke failed' }; node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json; if ($LASTEXITCODE -ne 0) { throw 'Malformed/missing source-span guard failed' }; node tools/fff-state.mjs smoke-contradictory-claim-guard artifacts/extraction-validator-smoke-result.json artifacts/contradictory-claim-guard-result.json; if ($LASTEXITCODE -ne 0) { throw 'Contradictory claim guard failed' }; node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate artifacts/source-span-routing-review-pack.json artifacts/downstream-source-span-adoption-gate-result.json; if ($LASTEXITCODE -ne 0) { throw 'Downstream source-span adoption gate failed' }; node tools/fff-state.mjs smoke-provider-envelope-readiness-no-call artifacts/provider-envelope-readiness-no-call.example.json artifacts/provider-envelope-readiness-no-call-result.json; if ($LASTEXITCODE -ne 0) { throw 'Provider envelope readiness no-call gate failed' }; node tools/fff-state.mjs validate artifacts/current-project-state.json; if ($LASTEXITCODE -ne 0) { throw 'Current state validation failed' }; node tools/fff-state.mjs validate artifacts/sample-project-state.json; if ($LASTEXITCODE -ne 0) { throw 'Sample state validation failed' }; node tools/fff-state.mjs validate-extraction artifacts/sample-extraction-payload.json; if ($LASTEXITCODE -ne 0) { throw 'Sample extraction validation failed' }; node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures; if ($LASTEXITCODE -ne 0) { throw 'Extraction fixture validation failed' }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($manifest.artifact_id -ne 'fff-contradictory-claim-guard-001' -or $manifest.review_input_mode -ne 'freeform') { throw 'Manifest active guard mismatch' }; $guard = Get-Content artifacts/contradictory-claim-guard-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($guard.artifact_id -ne 'fff-contradictory-claim-guard-001' -or $guard.schemaVersion -ne 'fff.contradictoryClaimGuard.v1' -or -not $guard.passed) { throw 'Contradictory guard result mismatch' }; if ($guard.summary.validator_fixture_count -ne 9 -or $guard.summary.expected_valid_fixture_count -ne 3 -or $guard.summary.expected_invalid_fixture_count -ne 6 -or $guard.summary.conflicting_claims_checked -ne 2 -or $guard.summary.reciprocal_conflict_pairs -ne 1 -or $guard.summary.adopted_or_provisional_conflicting_claims -ne 0 -or $guard.summary.direct_accepted_claim_elements -ne 0 -or $guard.summary.failures -ne 0) { throw 'Contradictory guard count mismatch' }; foreach ($prop in $guard.fixture_guard_checks.PSObject.Properties) { if ($prop.Value.passed -ne $true) { throw ('Contradictory guard check failed: ' + $prop.Name) } }; if (-not $guard.guard_behavior.conflict_detected -or -not $guard.guard_behavior.hold_for_human_review -or -not $guard.guard_behavior.keep_out_of_auto_canon -or -not $guard.guard_behavior.keep_out_of_direct_claim_acceptance -or -not $guard.guard_behavior.preserve_source_refs) { throw 'Contradictory guard behavior mismatch' }; $adoption = Get-Content artifacts/downstream-source-span-adoption-gate-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($adoption.artifact_id -ne 'fff-downstream-source-span-adoption-gate-001' -or $adoption.schemaVersion -ne 'fff.downstreamSourceSpanAdoptionGate.v1' -or -not $adoption.passed) { throw 'Downstream adoption gate mismatch' }; if ($adoption.summary.source_pack_rows_checked -ne 48 -or $adoption.summary.downstream_candidates_reported_for_review -ne 44 -or $adoption.summary.source_tracked_downstream_candidates -ne 44 -or $adoption.summary.malformed_or_missing_span_candidates -ne 0 -or $adoption.summary.unsafe_routing_candidates -ne 0 -or $adoption.summary.human_owned_candidates_non_held -ne 0 -or $adoption.summary.adopted_profile_claim_timeline_candidates -ne 0 -or $adoption.summary.failures -ne 0) { throw 'Downstream adoption gate count mismatch' }; foreach ($prop in $adoption.downstream_gate_checks.PSObject.Properties) { if ($prop.Value.passed -ne $true) { throw ('Downstream adoption gate check failed: ' + $prop.Name) } }; $providerEnvelope = Get-Content artifacts/provider-envelope-readiness-no-call-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($providerEnvelope.artifact_id -ne 'fff-provider-envelope-readiness-no-call-001' -or $providerEnvelope.schemaVersion -ne 'fff.providerEnvelopeReadinessNoCall.v1' -or -not $providerEnvelope.passed) { throw 'Provider envelope readiness mismatch' }; if ($providerEnvelope.preserved_active_artifact_id -ne 'fff-contradictory-claim-guard-001' -or $providerEnvelope.provider_metadata.providerConfigured -ne $false -or $providerEnvelope.provider_metadata.externalCallAttempted -ne $false -or $providerEnvelope.provider_metadata.credentialsTouched -ne $false) { throw 'Provider envelope no-call boundary mismatch' }; if ($providerEnvelope.summary.candidate_extraction_contract_valid -ne $true -or $providerEnvelope.summary.candidate_elements_checked -ne 4 -or $providerEnvelope.summary.source_tracked_elements -ne 4 -or $providerEnvelope.summary.non_held_human_owned_elements -ne 0 -or $providerEnvelope.summary.visual_direct_claim_routes -ne 0 -or $providerEnvelope.summary.adopted_or_provisional_elements -ne 0 -or $providerEnvelope.summary.adopted_or_provisional_claims -ne 0 -or $providerEnvelope.summary.failures -ne 0) { throw 'Provider envelope readiness count mismatch' }; foreach ($prop in $providerEnvelope.provider_envelope_checks.PSObject.Properties) { if ($prop.Value.passed -ne $true) { throw ('Provider envelope check failed: ' + $prop.Name) } }; $malformed = Get-Content artifacts/malformed-missing-span-guard-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $malformed.passed -or $malformed.summary.expected_invalid_fixture_count -ne 6 -or $malformed.summary.accepted_routed_candidates -ne 0) { throw 'Malformed guard preservation mismatch' }; $validator = Get-Content artifacts/extraction-validator-smoke-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $validator.passed -or $validator.summary.fixtureCount -ne 9 -or $validator.summary.expectedValid -ne 3 -or $validator.summary.expectedInvalid -ne 6) { throw 'Validator fixture count mismatch' }; $pack = Get-Content artifacts/source-span-routing-review-pack.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $pack.passed -or $pack.cross_fixture_summary.fixture_count -ne 4 -or $pack.cross_fixture_summary.total_elements -ne 48) { throw 'Source-span pack guard mismatch' }; $regression = Get-Content artifacts/routing-policy-regression-hardening-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $regression.passed -or $regression.summary.source_pack_rows_checked -ne 48 -or $regression.summary.adapter_payloads_checked -ne 5 -or $regression.summary.adapter_elements_checked -ne 60) { throw 'Routing regression count mismatch' }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; @('fff-contradictory-claim-guard-001', 'docs/review/contradictory-claim-guard.md', 'artifacts/contradictory-claim-guard-result.json', 'docs/review/downstream-source-span-adoption-gate.md', 'artifacts/downstream-source-span-adoption-gate-result.json', 'contradictory claims guarded', 'downstream adoption gate passed', '0 adopted downstream candidates', 'fff-provider-envelope-readiness-no-call-001', 'docs/review/provider-envelope-readiness-no-call.md', 'artifacts/provider-envelope-readiness-no-call.example.json', 'artifacts/provider-envelope-readiness-no-call-result.json', 'provider envelope readiness no-call passed') | ForEach-Object { if (-not $html.Contains($_)) { throw ('Missing required Review Hub text: ' + $_) } }; Write-Output 'Contradictory claim guard and provider envelope readiness validation passed' }",
-  "validation_result": "passed 2026-06-23T17:31:35+09:00; active manifest validation command passed for fff-contradictory-claim-guard-001 while preserving fff-provider-envelope-readiness-no-call-001 as auxiliary no-call readback; provider envelope smoke confirmed no provider configured, no provider/model name, no endpoint, no external call attempted, no credentials touched, 4 carried Extraction Contract elements, 4 source-tracked elements, 2 held human-owned elements, 0 non-held human-owned elements, 0 visual direct Claim routes, 0 adopted/provisional elements, 0 adopted/provisional claims, and 0 failures; adapter smoke, adapter matrix, source-span review pack generation, routing regression, broad-span split, weak-span repair, missing fixture probe, malformed/missing span guard, contradictory claim guard, downstream auxiliary gate, state/extraction validation, and extraction fixture validation passed.",
+  "validation_command": "& { $files = @('public/review/index.html', 'tools/fff-state.mjs', 'tools/fff-extract-local.mjs', 'tools/fff-source-span-review-pack.mjs', 'artifacts/artifact-manifest.json', 'artifacts/ARTIFACTS.md', 'docs/project-context.md', 'docs/decision-log.md', 'docs/idea-ledger.md', 'docs/review/current-status.md', 'docs/review/next-terminal-handoff.md', 'docs/review/contradictory-claim-guard.md', 'artifacts/contradictory-claim-guard-result.json', 'artifacts/extraction-negative-fixtures/contradictory-claim-hold.json', 'docs/review/downstream-source-span-adoption-gate.md', 'artifacts/downstream-source-span-adoption-gate-result.json', 'docs/review/malformed-missing-span-guard.md', 'artifacts/malformed-missing-span-guard-result.json', 'artifacts/extraction-negative-fixtures/malformed-missing-source-span.json', 'docs/review/missing-fixture-class-probe.md', 'artifacts/missing-fixture-class-probe-result.json', 'artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md', 'artifacts/extraction-adapter-outputs/sparse-bullet-notes.json', 'docs/review/remaining-fixture-coverage-one-class.md', 'artifacts/remaining-fixture-coverage-one-class-result.json', 'artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md', 'artifacts/extraction-adapter-outputs/multilingual-memo-notes.json', 'artifacts/weak-span-repair-result.json', 'artifacts/broad-span-split-result.json', 'artifacts/routing-policy-regression-hardening-result.json', 'artifacts/ambiguous-routing-resolution-result.json', 'artifacts/source-span-quality-audit-result.json', 'artifacts/source-span-routing-review-pack.json', 'artifacts/local-extraction-adapter-output.json', 'artifacts/local-extraction-adapter-smoke-result.json', 'artifacts/local-extraction-adapter-expansion-smoke-result.json', 'artifacts/model-api-boundary-smoke-result.json', 'artifacts/model-api-boundary-envelope.example.json', 'docs/review/provider-envelope-readiness-no-call.md', 'artifacts/provider-envelope-readiness-no-call.example.json', 'artifacts/provider-envelope-readiness-no-call-result.json', 'artifacts/current-project-state.json', 'artifacts/sample-project-state.json', 'artifacts/sample-extraction-payload.json', 'artifacts/extraction-validator-smoke-result.json'); $missing = $files | Where-Object { -not (Test-Path $_) }; if ($missing) { throw ('Missing files: ' + ($missing -join ', ')) }; node --check tools/fff-state.mjs; if ($LASTEXITCODE -ne 0) { throw 'State tool syntax failed' }; node --check tools/fff-extract-local.mjs; if ($LASTEXITCODE -ne 0) { throw 'Adapter tool syntax failed' }; node --check tools/fff-source-span-review-pack.mjs; if ($LASTEXITCODE -ne 0) { throw 'Source-span pack tool syntax failed' }; node tools/fff-extract-local.mjs artifacts/sample-raw-memo.md artifacts/local-extraction-adapter-output.json artifacts/local-extraction-adapter-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Adapter smoke failed' }; node tools/fff-extract-local.mjs --matrix artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Adapter matrix failed' }; node tools/fff-source-span-review-pack.mjs artifacts/extraction-adapter-fixtures artifacts/extraction-adapter-outputs artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/source-span-routing-review-pack.json; if ($LASTEXITCODE -ne 0) { throw 'Source-span review pack failed' }; node tools/fff-state.mjs smoke-routing-policy artifacts/ambiguous-routing-resolution-result.json artifacts/routing-policy-regression-hardening-result.json; if ($LASTEXITCODE -ne 0) { throw 'Routing policy regression smoke failed' }; node tools/fff-state.mjs smoke-broad-span-split artifacts/source-span-quality-audit-result.json artifacts/broad-span-split-result.json; if ($LASTEXITCODE -ne 0) { throw 'Broad-span split smoke failed' }; node tools/fff-state.mjs smoke-weak-span-repair artifacts/source-span-quality-audit-result.json artifacts/weak-span-repair-result.json; if ($LASTEXITCODE -ne 0) { throw 'Weak-span repair failed' }; node tools/fff-state.mjs smoke-missing-fixture-class-probe artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/missing-fixture-class-probe-result.json; if ($LASTEXITCODE -ne 0) { throw 'Missing fixture class probe failed' }; node tools/fff-state.mjs smoke-remaining-fixture-coverage-one-class artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/remaining-fixture-coverage-one-class-result.json; if ($LASTEXITCODE -ne 0) { throw 'Remaining fixture coverage failed' }; node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json; if ($LASTEXITCODE -ne 0) { throw 'Extraction fixture smoke failed' }; node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json; if ($LASTEXITCODE -ne 0) { throw 'Malformed/missing source-span guard failed' }; node tools/fff-state.mjs smoke-contradictory-claim-guard artifacts/extraction-validator-smoke-result.json artifacts/contradictory-claim-guard-result.json; if ($LASTEXITCODE -ne 0) { throw 'Contradictory claim guard failed' }; node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate artifacts/source-span-routing-review-pack.json artifacts/downstream-source-span-adoption-gate-result.json; if ($LASTEXITCODE -ne 0) { throw 'Downstream source-span adoption gate failed' }; node tools/fff-state.mjs smoke-provider-envelope-readiness-no-call artifacts/provider-envelope-readiness-no-call.example.json artifacts/provider-envelope-readiness-no-call-result.json; if ($LASTEXITCODE -ne 0) { throw 'Provider envelope readiness no-call gate failed' }; node tools/fff-state.mjs validate artifacts/current-project-state.json; if ($LASTEXITCODE -ne 0) { throw 'Current state validation failed' }; node tools/fff-state.mjs validate artifacts/sample-project-state.json; if ($LASTEXITCODE -ne 0) { throw 'Sample state validation failed' }; node tools/fff-state.mjs validate-extraction artifacts/sample-extraction-payload.json; if ($LASTEXITCODE -ne 0) { throw 'Sample extraction validation failed' }; node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures; if ($LASTEXITCODE -ne 0) { throw 'Extraction fixture validation failed' }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($manifest.artifact_id -ne 'fff-contradictory-claim-guard-001' -or $manifest.review_input_mode -ne 'freeform') { throw 'Manifest active guard mismatch' }; $guard = Get-Content artifacts/contradictory-claim-guard-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($guard.artifact_id -ne 'fff-contradictory-claim-guard-001' -or $guard.schemaVersion -ne 'fff.contradictoryClaimGuard.v1' -or -not $guard.passed) { throw 'Contradictory guard result mismatch' }; if ($guard.summary.validator_fixture_count -ne 9 -or $guard.summary.expected_valid_fixture_count -ne 3 -or $guard.summary.expected_invalid_fixture_count -ne 6 -or $guard.summary.conflicting_claims_checked -ne 2 -or $guard.summary.reciprocal_conflict_pairs -ne 1 -or $guard.summary.adopted_or_provisional_conflicting_claims -ne 0 -or $guard.summary.direct_accepted_claim_elements -ne 0 -or $guard.summary.failures -ne 0) { throw 'Contradictory guard count mismatch' }; foreach ($prop in $guard.fixture_guard_checks.PSObject.Properties) { if ($prop.Value.passed -ne $true) { throw ('Contradictory guard check failed: ' + $prop.Name) } }; $adoption = Get-Content artifacts/downstream-source-span-adoption-gate-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($adoption.artifact_id -ne 'fff-downstream-source-span-adoption-gate-001' -or $adoption.schemaVersion -ne 'fff.downstreamSourceSpanAdoptionGate.v1' -or -not $adoption.passed) { throw 'Downstream adoption gate mismatch' }; if ($adoption.summary.source_pack_rows_checked -ne 60 -or $adoption.summary.downstream_candidates_reported_for_review -ne 55 -or $adoption.summary.source_tracked_downstream_candidates -ne 55 -or $adoption.summary.malformed_or_missing_span_candidates -ne 0 -or $adoption.summary.unsafe_routing_candidates -ne 0 -or $adoption.summary.human_owned_candidates_non_held -ne 0 -or $adoption.summary.adopted_profile_claim_timeline_candidates -ne 0 -or $adoption.summary.adapter_payloads_checked -ne 6 -or $adoption.summary.adapter_elements_checked -ne 72 -or $adoption.summary.failures -ne 0) { throw 'Downstream adoption gate count mismatch' }; foreach ($prop in $adoption.downstream_gate_checks.PSObject.Properties) { if ($prop.Value.passed -ne $true) { throw ('Downstream adoption gate check failed: ' + $prop.Name) } }; $providerEnvelope = Get-Content artifacts/provider-envelope-readiness-no-call-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($providerEnvelope.artifact_id -ne 'fff-provider-envelope-readiness-no-call-001' -or $providerEnvelope.schemaVersion -ne 'fff.providerEnvelopeReadinessNoCall.v1' -or -not $providerEnvelope.passed) { throw 'Provider envelope readiness mismatch' }; if ($providerEnvelope.preserved_active_artifact_id -ne 'fff-contradictory-claim-guard-001' -or $providerEnvelope.provider_metadata.providerConfigured -ne $false -or $providerEnvelope.provider_metadata.externalCallAttempted -ne $false -or $providerEnvelope.provider_metadata.credentialsTouched -ne $false) { throw 'Provider envelope no-call boundary mismatch' }; if ($providerEnvelope.summary.candidate_extraction_contract_valid -ne $true -or $providerEnvelope.summary.candidate_elements_checked -ne 4 -or $providerEnvelope.summary.source_tracked_elements -ne 4 -or $providerEnvelope.summary.non_held_human_owned_elements -ne 0 -or $providerEnvelope.summary.visual_direct_claim_routes -ne 0 -or $providerEnvelope.summary.adopted_or_provisional_elements -ne 0 -or $providerEnvelope.summary.adopted_or_provisional_claims -ne 0 -or $providerEnvelope.summary.failures -ne 0) { throw 'Provider envelope readiness count mismatch' }; foreach ($prop in $providerEnvelope.provider_envelope_checks.PSObject.Properties) { if ($prop.Value.passed -ne $true) { throw ('Provider envelope check failed: ' + $prop.Name) } }; $remaining = Get-Content artifacts/remaining-fixture-coverage-one-class-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($remaining.artifact_id -ne 'fff-remaining-fixture-coverage-one-class-001' -or $remaining.schemaVersion -ne 'fff.remainingFixtureCoverageOneClass.v1' -or -not $remaining.passed) { throw 'Remaining fixture readback mismatch' }; if ($remaining.selected_fixture_class -ne 'multilingual_memo_text' -or $remaining.summary.current_fixture_count -ne 5 -or $remaining.summary.current_matrix_element_count -ne 60 -or $remaining.summary.source_pack_rows_checked -ne 60 -or $remaining.summary.selected_fixture_elements_checked -ne 12 -or $remaining.summary.multilingual_source_span_elements -ne 4 -or $remaining.summary.source_span_mismatches -ne 0 -or $remaining.summary.missing_source_refs -ne 0 -or $remaining.summary.unsafe_visual_routes -ne 0 -or $remaining.summary.non_held_review_defaults -ne 0 -or $remaining.summary.human_owned_decision_adopt_suggestions -ne 0 -or $remaining.summary.failures -ne 0) { throw 'Remaining fixture count mismatch' }; foreach ($prop in $remaining.fixture_coverage_checks.PSObject.Properties) { if ($prop.Value.passed -ne $true) { throw ('Remaining fixture check failed: ' + $prop.Name) } }; $malformed = Get-Content artifacts/malformed-missing-span-guard-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $malformed.passed -or $malformed.summary.expected_invalid_fixture_count -ne 6 -or $malformed.summary.accepted_routed_candidates -ne 0 -or $malformed.summary.source_pack_rows_preserved -ne 60) { throw 'Malformed guard preservation mismatch' }; $validator = Get-Content artifacts/extraction-validator-smoke-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $validator.passed -or $validator.summary.fixtureCount -ne 9 -or $validator.summary.expectedValid -ne 3 -or $validator.summary.expectedInvalid -ne 6) { throw 'Validator fixture count mismatch' }; $pack = Get-Content artifacts/source-span-routing-review-pack.json -Raw -Encoding UTF8 | ConvertFrom-Json; $gaps = @($pack.cross_fixture_summary.fixture_class_gaps); if (-not $pack.passed -or $pack.cross_fixture_summary.fixture_count -ne 5 -or $pack.cross_fixture_summary.total_elements -ne 60 -or $pack.cross_fixture_summary.source_span_mismatches -ne 0 -or $pack.cross_fixture_summary.missing_source_refs -ne 0 -or $pack.cross_fixture_summary.unsafe_visual_routing -ne 0 -or $pack.cross_fixture_summary.non_held_review_defaults -ne 0 -or $pack.cross_fixture_summary.human_owned_decision_adopt_suggestions -ne 0 -or -not ($gaps -contains 'translated memo text') -or ($gaps -contains 'multilingual memo text')) { throw 'Source-span pack guard mismatch' }; $regression = Get-Content artifacts/routing-policy-regression-hardening-result.json -Raw -Encoding UTF8 | ConvertFrom-Json; if (-not $regression.passed -or $regression.summary.source_pack_rows_checked -ne 60 -or $regression.summary.adapter_payloads_checked -ne 6 -or $regression.summary.adapter_elements_checked -ne 72) { throw 'Routing regression count mismatch' }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; @('fff-contradictory-claim-guard-001', 'docs/review/contradictory-claim-guard.md', 'artifacts/contradictory-claim-guard-result.json', 'docs/review/downstream-source-span-adoption-gate.md', 'artifacts/downstream-source-span-adoption-gate-result.json', 'contradictory claims guarded', 'downstream adoption gate passed', '0 adopted downstream candidates', 'fff-provider-envelope-readiness-no-call-001', 'docs/review/provider-envelope-readiness-no-call.md', 'artifacts/provider-envelope-readiness-no-call.example.json', 'artifacts/provider-envelope-readiness-no-call-result.json', 'provider envelope readiness no-call passed') | ForEach-Object { if (-not $html.Contains($_)) { throw ('Missing required Review Hub text: ' + $_) } }; Write-Output 'Contradictory claim guard, provider envelope readiness, and multilingual fixture coverage validation passed' }",
+  "validation_result": "passed 2026-06-23T18:08:42+09:00; manifest validation command passed with fff-remaining-fixture-coverage-one-class-001 as multilingual fixture readback, active fff-contradictory-claim-guard-001 preserved, provider envelope readiness kept as no-call auxiliary evidence, downstream source-span adoption gate preserved, and no provider/API/credential/public/production boundary crossed.",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "review_prompt_hint": "No Review Card or Operator Observation Card is emitted for the provider-envelope readiness gate; use freeform review only if provider choice, credentials, adapter transport, or story-truth decisions are explicitly requested.",
-  "next_action": "Keep fff-contradictory-claim-guard-001 as the active Review Hub identity and preserve the provider-envelope readiness gate as no-call auxiliary evidence; next choose explicit provider adapter implementation only after authorization, or choose very broad/multilingual fixture coverage if coverage remains the bottleneck.",
+  "review_prompt_hint": "No Review Card or Operator Observation Card is emitted for the multilingual fixture readback; use freeform review only if translated memo policy, broad source-span shape, provider choice, credentials, adapter transport, or story-truth decisions are explicitly requested.",
+  "next_action": "Keep fff-contradictory-claim-guard-001 as the active Review Hub identity and preserve provider-envelope readiness plus multilingual fixture coverage as auxiliary no-call/local readbacks; next choose explicit provider adapter implementation only after authorization, or translated memo text / very broad source-span shape if coverage remains the bottleneck.",
   "context_synced_at": "2026-06-23T00:00:00+09:00",
   "handoff_remote_head": "",
   "preserved_review_hub_ia_mode_split_artifact_id": "fff-review-hub-ia-mode-split-001",
@@ -380,7 +386,7 @@
     {
       "artifact_id": "fff-missing-fixture-class-probe-001",
       "subject": "Sparse bullet-only missing fixture class probe",
-      "current_scope": "A single sparse bullet-only memo fixture and deterministic readback output are added to the local adapter matrix; the source-span pack and routing regression now include 4 fixture outputs.",
+      "current_scope": "A single sparse bullet-only memo fixture and deterministic readback output are preserved in the local adapter matrix; the source-span pack and routing regression now include 5 fixture outputs after multilingual coverage.",
       "axis": "missing_fixture_class_probe",
       "prior_review_count": 0,
       "latest_user_signal": "none_recorded",
@@ -388,8 +394,8 @@
       "accepted_scope": [
         "sparse-bullet-notes fixture exists",
         "sparse-bullet-notes output validates as fff.extractionContract.v1",
-        "source-span pack reads 4 fixtures and 48 elements",
-        "routing regression reads 5 adapter payloads and 60 adapter elements",
+        "source-span pack reads 5 fixtures and 60 elements after multilingual coverage",
+        "routing regression reads 6 adapter payloads and 72 adapter elements after multilingual coverage",
         "no repeated general Review Hub review was requested"
       ],
       "not_accepted_scope": [
@@ -515,6 +521,41 @@
         "future provider output attempts adoption or final canon"
       ],
       "next_nonredundant_axis": "explicit provider adapter implementation only after authorization, or one remaining fixture class if coverage remains the bottleneck"
+    },
+    {
+      "artifact_id": "fff-remaining-fixture-coverage-one-class-001",
+      "target": "fff-provider-envelope-readiness-no-call-001",
+      "current_scope": "A single multilingual memo text fixture proves mixed-language source spans can pass the deterministic adapter matrix, source-span pack, downstream gate, and existing no-call/local guard chain while remaining held.",
+      "axis": "remaining_fixture_coverage_one_class",
+      "prior_review_count": 0,
+      "latest_user_signal_summary": "Supervisor requested exactly one remaining fixture class after provider-envelope readiness, without starting provider implementation.",
+      "accepted_scope": [
+        "multilingual memo fixture exists",
+        "adapter matrix reads 5 fixture outputs and 60 elements",
+        "selected fixture has 12 held elements and 4 non-ASCII source-span elements",
+        "source spans, source refs, routing, review-held defaults, and human-owned boundaries remain passing",
+        "no provider/API/credential/endpoint boundary was crossed"
+      ],
+      "not_accepted_scope": [
+        "translated memo text policy",
+        "very broad source-span fixture shape",
+        "provider choice",
+        "provider endpoint",
+        "credentials or credential storage",
+        "model/API call behavior",
+        "database persistence",
+        "publishing or production sync",
+        "AI video generation",
+        "final canon decisions for Toma fate, brass moth truth, Council motive, moth-key function, or contradictory claim truth"
+      ],
+      "next_nonredundant_axis": "translated memo text or very broad source-span shape only if coverage remains the bottleneck; otherwise provider adapter implementation only after explicit authorization",
+      "repeated_review_allowed": true,
+      "review_reset_trigger": [
+        "multilingual fixture source changes materially",
+        "adapter output changes multilingual fixture routing or spans",
+        "language or translation policy is introduced",
+        "user explicitly asks to review multilingual fixture coverage"
+      ]
     }
   ],
   "acceptance_ladder": [
@@ -611,9 +652,9 @@
     "review_card_emitted": false,
     "repeated_general_review_request_emitted": false,
     "resolved_rows_checked": 7,
-    "source_pack_rows_checked": 48,
-    "adapter_payloads_checked": 5,
-    "adapter_elements_checked": 60,
+    "source_pack_rows_checked": 60,
+    "adapter_payloads_checked": 6,
+    "adapter_elements_checked": 72,
     "failures": 0,
     "checks": [
       "visual_direct_claim_guard",
@@ -685,7 +726,7 @@
   "missing_fixture_class_probe_fixture_path": "artifacts/extraction-adapter-fixtures/sparse-bullet-notes.md",
   "missing_fixture_class_probe_output_path": "artifacts/extraction-adapter-outputs/sparse-bullet-notes.json",
   "preserved_weak_span_repair_artifact_id": "fff-weak-span-repair-001",
-  "handoff_verified_at": "2026-06-23T16:14:15+09:00",
+  "handoff_verified_at": "2026-06-23T17:58:57+09:00",
   "malformed_missing_span_guard_doc_path": "docs/review/malformed-missing-span-guard.md",
   "malformed_missing_span_guard_result_path": "artifacts/malformed-missing-span-guard-result.json",
   "malformed_missing_span_guard_fixture_path": "artifacts/extraction-negative-fixtures/malformed-missing-source-span.json",
@@ -712,7 +753,10 @@
       "hold_as_unreviewable",
       "mark_missing_source_ref",
       "keep_out_of_claim_timeline_profile_adoption"
-    ]
+    ],
+    "source_pack_rows_preserved": 60,
+    "adapter_payloads_preserved": 6,
+    "adapter_elements_preserved": 72
   },
   "contradictory_claim_guard_doc_path": "docs/review/contradictory-claim-guard.md",
   "contradictory_claim_guard_result_path": "artifacts/contradictory-claim-guard-result.json",
@@ -745,7 +789,10 @@
       "keep_out_of_auto_canon",
       "keep_out_of_direct_claim_acceptance",
       "preserve_source_refs"
-    ]
+    ],
+    "source_pack_rows_preserved": 60,
+    "adapter_payloads_preserved": 6,
+    "adapter_elements_preserved": 72
   },
   "downstream_source_span_adoption_gate_doc_path": "docs/review/downstream-source-span-adoption-gate.md",
   "downstream_source_span_adoption_gate_result_path": "artifacts/downstream-source-span-adoption-gate-result.json",
@@ -759,16 +806,18 @@
     "prior_review_count": 0,
     "review_card_emitted": false,
     "repeated_general_review_request_emitted": false,
-    "source_pack_rows_checked": 48,
-    "downstream_candidates_reported_for_review": 44,
-    "source_tracked_downstream_candidates": 44,
+    "source_pack_rows_checked": 60,
+    "downstream_candidates_reported_for_review": 55,
+    "source_tracked_downstream_candidates": 55,
     "malformed_or_missing_span_candidates": 0,
     "unsafe_routing_candidates": 0,
-    "human_owned_candidates_held": 22,
+    "human_owned_candidates_held": 28,
     "human_owned_candidates_non_held": 0,
     "adopted_profile_claim_timeline_candidates": 0,
     "actual_downstream_adoption_implemented": false,
-    "failures": 0
+    "failures": 0,
+    "adapter_payloads_checked": 6,
+    "adapter_elements_checked": 72
   },
   "provider_envelope_readiness_no_call_doc_path": "docs/review/provider-envelope-readiness-no-call.md",
   "provider_envelope_readiness_no_call_envelope_path": "artifacts/provider-envelope-readiness-no-call.example.json",
@@ -797,5 +846,42 @@
     "existing_guard_chain_bound": true,
     "active_artifact_preserved": "fff-contradictory-claim-guard-001",
     "failures": 0
+  },
+  "remaining_fixture_coverage_one_class_doc_path": "docs/review/remaining-fixture-coverage-one-class.md",
+  "remaining_fixture_coverage_one_class_result_path": "artifacts/remaining-fixture-coverage-one-class-result.json",
+  "remaining_fixture_coverage_one_class_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+  "remaining_fixture_coverage_one_class_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+  "preserved_remaining_fixture_coverage_one_class_artifact_id": "fff-remaining-fixture-coverage-one-class-001",
+  "remaining_fixture_coverage_one_class": {
+    "artifact_id": "fff-remaining-fixture-coverage-one-class-001",
+    "result_path": "artifacts/remaining-fixture-coverage-one-class-result.json",
+    "doc_path": "docs/review/remaining-fixture-coverage-one-class.md",
+    "fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    "output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+    "axis": "remaining_fixture_coverage_one_class",
+    "selected_fixture_class": "multilingual_memo_text",
+    "selected_fixture_label": "multilingual memo text",
+    "prior_review_count": 0,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "provider_envelope_readiness_no_call_preserved": true,
+    "previous_fixture_count": 4,
+    "current_fixture_count": 5,
+    "current_matrix_element_count": 60,
+    "source_pack_rows_checked": 60,
+    "adapter_payloads_checked": 6,
+    "adapter_elements_checked": 72,
+    "selected_fixture_elements_checked": 12,
+    "multilingual_source_span_elements": 4,
+    "source_span_mismatches": 0,
+    "missing_source_refs": 0,
+    "unsafe_visual_routes": 0,
+    "non_held_review_defaults": 0,
+    "human_owned_decision_adopt_suggestions": 0,
+    "failures": 0,
+    "remaining_fixture_class_candidates": [
+      "translated memo text",
+      "very broad source-span shape"
+    ]
   }
 }

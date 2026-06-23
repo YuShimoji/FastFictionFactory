@@ -70,6 +70,7 @@ nav:
       - Extraction Contract Review: review/extraction-contract-review.md
       - Model API Boundary Spec: review/model-api-boundary-spec.md
       - Provider Envelope Readiness No-Call: review/provider-envelope-readiness-no-call.md
+      - Remaining Fixture Coverage: review/remaining-fixture-coverage-one-class.md
       - Local Extraction Adapter Expansion Review: review/local-extraction-adapter-expansion-review.md
       - Review Memory Dedup: review/review-memory-dedup.md
       - Review Procedure Lock: review/review-procedure.md
