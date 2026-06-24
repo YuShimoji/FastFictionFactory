@@ -15,6 +15,7 @@ const DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_SCHEMA_VERSION = "fff.downstreamSourc
 const PROVIDER_ENVELOPE_READINESS_NO_CALL_SCHEMA_VERSION = "fff.providerEnvelopeReadinessNoCall.v1";
 const REMAINING_FIXTURE_COVERAGE_SCHEMA_VERSION = "fff.remainingFixtureCoverageOneClass.v1";
 const TRANSLATED_MEMO_FIXTURE_AUDIT_SCHEMA_VERSION = "fff.translatedMemoFixtureAudit.v1";
+const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -27,6 +28,7 @@ const DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT = "artifacts/downstrea
 const DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT = "artifacts/provider-envelope-readiness-no-call-result.json";
 const DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT = "artifacts/remaining-fixture-coverage-one-class-result.json";
 const DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT = "artifacts/translated-memo-fixture-audit-result.json";
+const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -411,6 +413,25 @@ async function main() {
     }
     if (command === "smoke-translated-memo-fixture-audit" || outputPath) {
       console.log(`translated memo fixture audit passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-very-broad-source-span-shape-audit" || command === "smoke-very-broad-source-span-shape-audit") {
+    const smoke = await readJson(inputPath);
+    const result = await validateVeryBroadSourceSpanShapeAudit(smoke, inputPath);
+    const target = outputPath || DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT;
+    if (command === "smoke-very-broad-source-span-shape-audit" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Very broad source-span shape audit failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-very-broad-source-span-shape-audit" || outputPath) {
+      console.log(`very broad source-span shape audit passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -2240,6 +2261,239 @@ async function validateTranslatedMemoFixtureAudit(smoke, smokePath) {
   };
 }
 
+async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const sourcePackPath = manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json";
+  const sourceQualityPath = manifest.source_span_quality_audit_result_path || "artifacts/source-span-quality-audit-result.json";
+  const broadSpanPath = manifest.broad_span_split_result_path || DEFAULT_BROAD_SPAN_SPLIT_OUTPUT;
+  const translatedAuditPath = manifest.translated_memo_fixture_audit_result_path || DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT;
+  const sourcePack = await readJson(sourcePackPath);
+  const sourceQuality = await readJson(sourceQualityPath);
+  const broadSpanSplit = await readJson(broadSpanPath);
+  const translatedAudit = await readJson(translatedAuditPath);
+  const routingRegression = await readJson(manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT);
+  const downstreamGate = await readJson(manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT);
+  const providerEnvelope = await readJson(manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT);
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+  const remaining = await readJson(manifest.remaining_fixture_coverage_one_class_result_path || DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT);
+  const broadRows = getBroadSpanRows(sourceQuality);
+  const packElements = flattenSourcePackElements(sourcePack);
+  const adapterPayloads = await readAdapterPayloads();
+  const adapterElements = adapterPayloads.flatMap((payload) => Array.isArray(payload.extractedElements) ? payload.extractedElements : []);
+  const sourcePackGaps = Array.isArray(sourcePack.cross_fixture_summary?.fixture_class_gaps)
+    ? sourcePack.cross_fixture_summary.fixture_class_gaps
+    : [];
+  const fixtureFiles = Array.isArray(smoke.fixtureFiles) ? smoke.fixtureFiles : [];
+  const sourcePackFixtureIds = Array.isArray(sourcePack.fixtures)
+    ? sourcePack.fixtures.map((fixture) => fixture.fixture_id).filter(Boolean)
+    : [];
+  const broadFixtureMatches = [...new Set([
+    ...fixtureFiles.filter((file) => /broad|very[-_ ]?broad|span[-_ ]?shape/i.test(file)),
+    ...sourcePackFixtureIds.filter((fixtureId) => /broad|very[-_ ]?broad|span[-_ ]?shape/i.test(fixtureId))
+  ])];
+  const broadDecisionIds = Array.isArray(broadSpanSplit.decisions)
+    ? broadSpanSplit.decisions.map((decision) => decision.id)
+    : [];
+  const sourceQualityMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-source-span-quality-audit-001");
+  const broadMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-broad-span-split-001");
+  const translatedMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-translated-memo-fixture-audit-001");
+
+  check(
+    "prior_audits_loaded",
+    sourceQuality?.artifact_id === "fff-source-span-quality-audit-001" &&
+      broadSpanSplit?.artifact_id === "fff-broad-span-split-001" &&
+      translatedAudit?.artifact_id === "fff-translated-memo-fixture-audit-001" &&
+      sourceQuality?.passed === true &&
+      broadSpanSplit?.passed === true &&
+      translatedAudit?.passed === true,
+    `sourceQuality=${sourceQuality?.artifact_id}; broadSplit=${broadSpanSplit?.artifact_id}; translated=${translatedAudit?.artifact_id}`
+  );
+  check(
+    "existing_broad_rows_resolved",
+    broadRows.length === 2 &&
+      broadSpanSplit.summary?.broad_span_rows_loaded === 2 &&
+      broadSpanSplit.summary?.split_into_narrower_spans === 1 &&
+      broadSpanSplit.summary?.keep_with_reason === 1 &&
+      broadSpanSplit.summary?.failures === 0 &&
+      broadDecisionIds.includes("local-x-visual-observatory") &&
+      broadDecisionIds.includes("minutes-x-placeholder-proof-bait"),
+    `broadRows=${broadRows.length}; split=${broadSpanSplit.summary?.split_into_narrower_spans}; keep=${broadSpanSplit.summary?.keep_with_reason}; ids=${broadDecisionIds.join(", ") || "none"}`
+  );
+  check(
+    "very_broad_fixture_not_added",
+    broadFixtureMatches.length === 0 &&
+      sourcePackGaps.includes("very broad source spans") &&
+      translatedAudit.summary?.source_pack_rows_checked === sourcePack.cross_fixture_summary?.total_elements,
+    `broad fixtures=${broadFixtureMatches.join(", ") || "none"}; gaps=${sourcePackGaps.join(", ") || "none"}`
+  );
+  check(
+    "current_coverage_not_blocked",
+    sourcePack?.passed === true &&
+      sourcePack.cross_fixture_summary?.fixture_count === 5 &&
+      sourcePack.cross_fixture_summary?.total_elements === 60 &&
+      sourcePack.cross_fixture_summary?.source_span_mismatches === 0 &&
+      sourcePack.cross_fixture_summary?.missing_source_refs === 0 &&
+      sourcePack.cross_fixture_summary?.unsafe_visual_routing === 0 &&
+      sourcePack.cross_fixture_summary?.non_held_review_defaults === 0 &&
+      sourcePack.cross_fixture_summary?.human_owned_decision_adopt_suggestions === 0 &&
+      smoke?.passed === true &&
+      smoke.aggregate?.fixtureCount === 5 &&
+      smoke.aggregate?.elementCount === 60,
+    `pack fixtures=${sourcePack.cross_fixture_summary?.fixture_count}; rows=${sourcePack.cross_fixture_summary?.total_elements}; smoke fixtures=${smoke.aggregate?.fixtureCount}; smoke elements=${smoke.aggregate?.elementCount}`
+  );
+  check(
+    "downstream_and_routing_preserved",
+    routingRegression?.passed === true &&
+      routingRegression.summary?.source_pack_rows_checked === packElements.length &&
+      routingRegression.summary?.adapter_payloads_checked === adapterPayloads.length &&
+      routingRegression.summary?.adapter_elements_checked === adapterElements.length &&
+      downstreamGate?.passed === true &&
+      downstreamGate.summary?.source_pack_rows_checked === packElements.length &&
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates === 0 &&
+      downstreamGate.summary?.human_owned_candidates_non_held === 0,
+    `pack rows=${packElements.length}; routing payloads=${routingRegression.summary?.adapter_payloads_checked}; downstream adopted=${downstreamGate.summary?.adopted_profile_claim_timeline_candidates}`
+  );
+  check(
+    "guard_chain_preserved",
+    remaining?.passed === true &&
+      remaining.selected_fixture_class === "multilingual_memo_text" &&
+      malformedGuard?.passed === true &&
+      malformedGuard.summary?.accepted_routed_candidates === 0 &&
+      contradictoryGuard?.passed === true &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      contradictoryGuard.summary?.direct_accepted_claim_elements === 0,
+    `remaining=${remaining?.selected_fixture_class}; malformed accepted=${malformedGuard.summary?.accepted_routed_candidates}; contradictory adopted=${contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims}`
+  );
+  check(
+    "provider_api_boundary_not_crossed",
+    providerEnvelope?.passed === true &&
+      providerEnvelope.provider_metadata?.providerConfigured === false &&
+      providerEnvelope.provider_metadata?.externalCallAttempted === false &&
+      providerEnvelope.provider_metadata?.credentialsTouched === false,
+    `providerConfigured=${providerEnvelope.provider_metadata?.providerConfigured}; externalCall=${providerEnvelope.provider_metadata?.externalCallAttempted}; credentials=${providerEnvelope.provider_metadata?.credentialsTouched}`
+  );
+  check(
+    "review_nonredundancy_preserved",
+    manifest.review_input_mode === "freeform" &&
+      sourceQualityMemory?.prior_review_count === 0 &&
+      broadMemory?.prior_review_count === 0 &&
+      translatedMemory?.prior_review_count === 0 &&
+      translatedAudit.summary?.review_card_emitted === false &&
+      translatedAudit.summary?.operator_observation_card_emitted === false,
+    `reviewInput=${manifest.review_input_mode}; broadPrior=${broadMemory?.prior_review_count}; translatedPrior=${translatedMemory?.prior_review_count}`
+  );
+
+  return {
+    schemaVersion: VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION,
+    artifact_id: "fff-very-broad-source-span-shape-audit-001",
+    title: "Fast Fiction Factory Very Broad Source-Span Shape Audit",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    audit_scope: {
+      fixture_added: false,
+      audit_only: true,
+      source_span_quality_audit_path: sourceQualityPath,
+      broad_span_split_path: broadSpanPath,
+      source_pack_path: sourcePackPath,
+      adapter_matrix_smoke_path: toRepoPath(smokePath)
+    },
+    review_memory_checked: {
+      checked: true,
+      target: "fff-translated-memo-fixture-audit-001",
+      prior_review_count: translatedMemory?.prior_review_count ?? 0,
+      prior_signal_summary: translatedMemory?.latest_user_signal_summary || "No user review was requested for the translated/multilingual fixture audit.",
+      axis: "very_broad_source_span_shape_audit",
+      what_changed: "The remaining very broad source-span shape candidate was audited after the translated memo audit without adding another fixture class.",
+      what_this_review_decides: "No user review is needed; this readback decides that the current broad-span evidence is already closed by split/keep decisions and that a new broad fixture should wait for a concrete source-output gap.",
+      not_asking: [
+        "general Review Hub review",
+        "fixed-form review",
+        "repeat broad-span split review",
+        "new broad source-span fixture approval",
+        "provider choice",
+        "credentials",
+        "model/API call approval",
+        "database persistence",
+        "publishing or production sync",
+        "AI video generation",
+        "downstream adoption implementation",
+        "canon promotion",
+        "contradictory claim truth decision"
+      ],
+      next_nonredundant_axis: "provider adapter implementation only after explicit authorization, or a new broad/translated fixture only after concrete policy or source-output evidence changes"
+    },
+    coverage_audit: {
+      very_broad_source_span_shape: {
+        fixture_present: broadFixtureMatches.length > 0,
+        fixture_matches: broadFixtureMatches,
+        gap_present_in_source_pack: sourcePackGaps.includes("very broad source spans"),
+        audit_decision: "not_added_in_this_slice",
+        reason: "The current broad rows are already resolved by fff-broad-span-split-001, and the current source-pack/readback chain has zero source-span mismatches, missing refs, unsafe routes, non-held defaults, or downstream adopted candidates."
+      },
+      existing_broad_span_decisions: Array.isArray(broadSpanSplit.decisions)
+        ? broadSpanSplit.decisions.map((decision) => ({
+            id: decision.id,
+            action: decision.action,
+            source_span_locator: decision.source_span_locator,
+            source_ref_preserved: decision.source_ref_preserved
+          }))
+        : [],
+      source_pack_current_gap_list: sourcePackGaps
+    },
+    summary: {
+      current_fixture_count: smoke.aggregate?.fixtureCount,
+      current_output_count: smoke.aggregate?.outputCount,
+      current_matrix_element_count: smoke.aggregate?.elementCount,
+      source_pack_rows_checked: sourcePack.cross_fixture_summary?.total_elements,
+      broad_span_rows_loaded: broadRows.length,
+      broad_span_rows_resolved: broadSpanSplit.summary?.broad_span_rows_loaded,
+      split_into_narrower_spans: broadSpanSplit.summary?.split_into_narrower_spans,
+      keep_with_reason: broadSpanSplit.summary?.keep_with_reason,
+      very_broad_fixture_count: broadFixtureMatches.length,
+      source_span_mismatches: sourcePack.cross_fixture_summary?.source_span_mismatches,
+      missing_source_refs: sourcePack.cross_fixture_summary?.missing_source_refs,
+      unsafe_visual_routes: sourcePack.cross_fixture_summary?.unsafe_visual_routing,
+      non_held_review_defaults: sourcePack.cross_fixture_summary?.non_held_review_defaults,
+      human_owned_decision_adopt_suggestions: sourcePack.cross_fixture_summary?.human_owned_decision_adopt_suggestions,
+      downstream_candidates_reported_for_review: downstreamGate.summary?.downstream_candidates_reported_for_review,
+      human_owned_downstream_candidates_held: downstreamGate.summary?.human_owned_candidates_held,
+      adopted_profile_claim_timeline_candidates: downstreamGate.summary?.adopted_profile_claim_timeline_candidates,
+      provider_configured: providerEnvelope.provider_metadata?.providerConfigured,
+      external_call_attempted: providerEnvelope.provider_metadata?.externalCallAttempted,
+      credentials_touched: providerEnvelope.provider_metadata?.credentialsTouched,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    very_broad_fixture_decision: {
+      state: "deferred_not_required",
+      owner: "agent for future bounded fixture when source-output evidence changes; human reviewer only if broad span wording needs creative judgment",
+      next_move: "Do not add a broad source-span fixture until current adapter output changes, a new memo shape creates unresolved broad spans, or coverage is explicitly the bottleneck.",
+      requirements_before_adding: [
+        "a source-pack row or fixture output with unresolved broad source-span behavior",
+        "evidence that existing split/keep readback no longer covers the shape",
+        "confirmation that broad fixture coverage, not provider authorization or translation policy, is the bottleneck"
+      ]
+    },
+    fixture_audit_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateMalformedMissingSpanGuard(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -3976,6 +4230,8 @@ Usage:
   node tools/fff-state.mjs smoke-remaining-fixture-coverage-one-class <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-translated-memo-fixture-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-translated-memo-fixture-audit <adapter-matrix-smoke.json> [output.json]
+  node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
+  node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
   node tools/fff-state.mjs smoke-malformed-missing-span-guard <extraction-validator-smoke.json> [output.json]
   node tools/fff-state.mjs validate-contradictory-claim-guard <extraction-validator-smoke.json>
@@ -4005,6 +4261,12 @@ Default missing fixture class probe output:
 
 Default remaining fixture coverage output:
   ${DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT}
+
+Default translated memo fixture audit output:
+  ${DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT}
+
+Default very broad source-span shape audit output:
+  ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}
 
 Default malformed/missing source-span guard output:
   ${DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT}

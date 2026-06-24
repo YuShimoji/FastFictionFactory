@@ -61,7 +61,7 @@ The pack separates automated guard failures from human review debt:
 | Default too confident | 0 non-held defaults and 0 human-owned adopt suggestions | Do the held defaults still match the risk level? |
 | Fixture class missing | 6 intentional gaps | Add only the fixture classes that real review feedback needs. |
 
-Fixture classes still visible as future candidates after the multilingual expansion: very broad source spans, translated memo text, and model/API provider envelope output. Contradictory claims, malformed/missing source-span payloads, sparse bullet-only notes, and multilingual memo text now have separate local readbacks.
+Fixture classes still visible as future candidates after the multilingual expansion: translated memo text and model/API provider envelope output. Very broad source spans remain listed in the source-pack gap list, but `fff-very-broad-source-span-shape-audit-001` defers a new fixture because the current broad rows are already resolved. Contradictory claims, malformed/missing source-span payloads, sparse bullet-only notes, and multilingual memo text now have separate local readbacks.
 
 ## Command
 

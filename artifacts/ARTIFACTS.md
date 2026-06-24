@@ -679,4 +679,27 @@
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no translated fixture, provider/API behavior, downstream adoption implementation, or canon promotion is added.
-- Next action: Choose very broad source-span shape only if coverage remains the bottleneck; otherwise move to provider adapter implementation only after explicit authorization.
+- Next action: Use `fff-very-broad-source-span-shape-audit-001` for the broad-shape readback; otherwise move to provider adapter implementation only after explicit authorization.
+
+## fff-very-broad-source-span-shape-audit-001
+
+- Title: Fast Fiction Factory Very Broad Source-Span Shape Audit
+- Purpose: Audit the remaining very broad source-span shape fixture candidate without adding another fixture class, because current broad rows are already resolved by `fff-broad-span-split-001`.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/very-broad-source-span-shape-audit.md`
+- Readback result: `artifacts/very-broad-source-span-shape-audit-result.json`
+- Preserved translated memo audit: `artifacts/translated-memo-fixture-audit-result.json`
+- Preserved broad-span split: `artifacts/broad-span-split-result.json`
+- Preserved source-span quality audit: `artifacts/source-span-quality-audit-result.json`
+- State validator: `tools/fff-state.mjs`
+- Manifest: `artifacts/artifact-manifest.json`
+- Current status: `docs/review/current-status.md`
+- Validation command: `node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/very-broad-source-span-shape-audit-result.json`
+- Validation result: very broad source-span shape audit reads the translated memo audit, source-span quality audit, broad-span split, source-span pack, routing regression, downstream gate, contradictory guard, malformed/missing guard, remaining fixture coverage, and provider no-call envelope; it records 0 broad fixtures added, 2 current broad rows resolved by split/keep, 0 source-span mismatches, 0 missing source refs, 0 unsafe routes, 0 non-held defaults, 0 downstream adopted candidates, no provider configured, no external call, no credentials touched, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no broad fixture, translated fixture, provider/API behavior, downstream adoption implementation, or canon promotion is added.
+- Next action: Move to provider adapter implementation only after explicit authorization, or add a translated/broad fixture only after policy or source-output evidence creates concrete decision value.

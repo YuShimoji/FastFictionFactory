@@ -18,6 +18,7 @@ Preserved source-span and fixture chain:
 - Malformed/missing source-span guard: `fff-malformed-missing-span-guard-001`
 - Multilingual fixture coverage: `fff-remaining-fixture-coverage-one-class-001`
 - Translated/multilingual fixture audit: `fff-translated-memo-fixture-audit-001`
+- Very broad source-span shape audit: `fff-very-broad-source-span-shape-audit-001`
 - Sparse fixture probe: `fff-missing-fixture-class-probe-001`
 - Weak-span repair: `fff-weak-span-repair-001`
 - Broad-span split: `fff-broad-span-split-001`
@@ -49,6 +50,7 @@ Preserved platform boundary:
 - `fff-remaining-fixture-coverage-one-class-001` adds one normal adapter fixture, `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`, plus generated output at `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`.
 - The positive source-span pack now reads 5 fixtures and 60 rows. The multilingual readback confirms 12 selected fixture elements, 4 non-ASCII source-span elements, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held defaults, and 0 human-owned adopt suggestions.
 - `fff-translated-memo-fixture-audit-001` audits the translated / multilingual fixture axis without adding another fixture class. It confirms the multilingual fixture already covers mixed-language memo text, keeps translated memo text as a policy-dependent source-pack gap, and classifies the prior full-manifest-regeneration unknown as `not_available` because the repo defines manifest validation but no full manifest regeneration command.
+- `fff-very-broad-source-span-shape-audit-001` audits the broad-shape fixture axis without adding another fixture class. It confirms the current two broad rows are already resolved by `fff-broad-span-split-001`, keeps broad fixture work deferred until source output changes or coverage becomes the concrete bottleneck, and preserves 0 source-span mismatches, 0 missing refs, 0 unsafe routes, 0 non-held defaults, 0 downstream adopted candidates, no provider, no external call, and no credentials.
 - A pre-existing local downstream source-span adoption gate readback is present in `tools/fff-state.mjs` and `artifacts/downstream-source-span-adoption-gate-result.json`; it remains a non-active auxiliary readback and is not a model/API, DB, production, or canon-adoption implementation.
 - `fff-provider-envelope-readiness-no-call-001` is now present as a non-active auxiliary readiness gate. It defines a no-provider/no-credential envelope, carries a candidate `fff.extractionContract.v1` payload, validates that payload locally, and binds it to the malformed/missing span guard, contradictory claim guard, downstream adoption gate, source-span pack, validator matrix, and model/API no-call boundary.
 - `artifacts/provider-envelope-readiness-no-call-result.json` reports 4 carried extraction elements, 4 source-tracked elements, 2 human-owned elements held, 0 non-held human-owned elements, 0 visual direct Claim routes, 0 adopted/provisional elements, 0 adopted/provisional claims, no provider configured, no provider/model name, no endpoint, no external call attempted, and no credentials touched.
@@ -58,7 +60,7 @@ Preserved platform boundary:
 ## What Was Verified
 
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
-- Local working tree started clean on `master` at `f057565 Lock downstream adoption gate scope`; the contradictory-claim guard was already the tracked active surface, so the downstream gate, downstream scope-lock, provider-envelope readiness, and multilingual fixture coverage remain preserved auxiliary readbacks instead of active-status rewinds.
+- Local working tree started clean on `master` at `d4f3b1f Refresh translated audit handoff context`; the contradictory-claim guard was already the tracked active surface, so the downstream gate, downstream scope-lock, provider-envelope readiness, multilingual fixture coverage, and translated audit remain preserved auxiliary readbacks instead of active-status rewinds.
 - Project-local instructions and required context docs were read before changing review claims.
 - `node --check tools/fff-state.mjs` passed.
 - `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json` passed.
@@ -68,6 +70,7 @@ Preserved platform boundary:
 - `node tools/fff-state.mjs smoke-provider-envelope-readiness-no-call artifacts/provider-envelope-readiness-no-call.example.json artifacts/provider-envelope-readiness-no-call-result.json` passed for the preserved auxiliary provider-envelope readback.
 - `node tools/fff-state.mjs smoke-remaining-fixture-coverage-one-class artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/remaining-fixture-coverage-one-class-result.json` passed for the multilingual fixture readback.
 - `node tools/fff-state.mjs smoke-translated-memo-fixture-audit artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/translated-memo-fixture-audit-result.json` passed for the translated / multilingual fixture audit.
+- `node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/very-broad-source-span-shape-audit-result.json` passed for the broad-shape audit.
 
 ## Guard Snapshot
 
@@ -81,11 +84,12 @@ Preserved platform boundary:
 | Provider envelope readiness | Fix future provider output preconditions without integration | 4 provider-shaped fixture elements validate locally; no provider call, credential, endpoint, project-state mutation, or adopted canon output |
 | Multilingual fixture coverage | Prove mixed-language memo spans remain local and held | 5 adapter fixtures; 60 matrix rows; 12 multilingual elements; 4 non-ASCII source-span elements; 0 mismatches |
 | Translated/multilingual audit | Close the resume validation unknown and avoid duplicate fixture work | Full manifest regeneration command classified as `not_available`; translated fixture count 0; translated gap remains policy-dependent |
+| Very broad source-span shape audit | Decide whether the remaining broad-shape fixture candidate is needed now | Broad fixture count 0; 2 current broad rows resolved by split/keep; source-pack and downstream readbacks remain clean |
 
 ## What Remains Missing
 
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
-- Remaining fixture classes are translated memo text and very broad source-span fixture shape. Translated memo text has been audited but not implemented because it needs source-of-truth language, translation provenance, and span ownership policy before adding decision value.
+- Remaining fixture classes are translated memo text and very broad source-span fixture shape. Translated memo text has been audited but not implemented because it needs source-of-truth language, translation provenance, and span ownership policy before adding decision value; very broad source-span shape has been audited but not implemented because current broad rows are already resolved and no concrete source-output gap requires another fixture.
 - Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, timeout value, and retry count remain blocked until explicit authorization.
 - Durable project database, YouTube publishing, automated upload, AI video generation, complete world chronology, and final canon decisions remain out of scope.
 
@@ -98,10 +102,11 @@ Preserved platform boundary:
 | Sparse bullet fixture | Covered by `fff-missing-fixture-class-probe-001`; 12 held elements, 0 failures | Do not reopen unless fixture or selector changes |
 | Multilingual memo fixture | Covered by `fff-remaining-fixture-coverage-one-class-001`; 12 held elements, 4 non-ASCII source-span elements, 0 failures | Do not reopen unless fixture wording, selector, or language-boundary policy changes |
 | Translated memo fixture audit | Covered by `fff-translated-memo-fixture-audit-001`; existing multilingual coverage audited, translated fixture count 0, translated memo text remains a policy-dependent gap | Do not add a translated fixture until translation provenance and source-span ownership policy have concrete decision value |
+| Very broad source-span shape audit | Covered by `fff-very-broad-source-span-shape-audit-001`; current broad rows stay resolved by split/keep, broad fixture count 0 | Do not add a broad fixture until adapter/source output changes or broad shape is proven to be the bottleneck |
 | Weak and broad source spans | Weak spans repaired; broad spans split/kept with reason | Do not reopen unless source output or user review changes a row |
 | Downstream source-span adoption gate | Auxiliary readback exists locally; 55 current downstream candidates are source-tracked, safe-routed, and held where human-owned | Do not make it active unless adoption semantics change |
 | Provider envelope readiness | Auxiliary no-call readback exists; candidate envelope validates, binds existing gates, and keeps provider/call/credential fields empty | Do not treat as provider integration; use it only as the precondition for any future adapter |
-| Remaining fixture classes | Translated memo text and very broad source-span fixture shape remain after multilingual coverage; translated memo text is now audited as policy-dependent | Add one class at a time only when it has concrete decision value |
+| Remaining fixture classes | Translated memo text remains policy-dependent; very broad source-span shape is audited and deferred until source output changes | Add one class at a time only when it has concrete decision value |
 | Model/API adapter | Not started | Keep blocked until explicit authorization for provider choice, credentials, endpoint, transport behavior, and all local guards remain passing |
 
 ## How To Open The Review UI
@@ -139,4 +144,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The next non-redundant move is either explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior, or very broad source-span shape if fixture coverage remains the bottleneck. Do not add translated memo text until translation provenance and source-span ownership policy have concrete decision value. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, or final canon decisions unless explicitly requested.
+Use review memory before asking for another review. The next non-redundant move is explicit provider adapter implementation only after authorization for provider choice, credentials, endpoint, and transport behavior. Do not add translated memo text until translation provenance and source-span ownership policy have concrete decision value. Do not add a broad source-span fixture until source output changes or broad shape is proven to be the coverage bottleneck. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, or final canon decisions unless explicitly requested.

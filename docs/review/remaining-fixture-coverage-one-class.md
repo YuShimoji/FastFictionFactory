@@ -16,7 +16,7 @@ The machine-readable readback lives at `artifacts/remaining-fixture-coverage-one
 | --- | --- | --- |
 | Multilingual memo text | Chosen because the positive adapter fixture matrix was English-only, while mixed-language source spans can be tested locally without translation policy or provider behavior. | Covered by `multilingual-memo-notes.md` and the readback result. |
 | Translated memo text | Not chosen because a useful translated fixture needs a policy for source-of-truth language, translation provenance, and whether the translation or original memo owns the span. | Remains a future candidate. |
-| Very broad source-span shape | Not chosen because the current broad rows already have `fff-broad-span-split-001` split/keep readback; a new broad fixture should wait for a separate concrete gap. | Remains a future candidate. |
+| Very broad source-span shape | Not chosen because the current broad rows already have `fff-broad-span-split-001` split/keep readback; `fff-very-broad-source-span-shape-audit-001` later confirmed no new broad fixture is needed without changed source output. | Deferred until a separate concrete gap appears. |
 
 ## Readback Counts
 
@@ -38,7 +38,7 @@ The downstream auxiliary gate now reads 60 source-pack rows, reports 55 downstre
 
 This slice preserves `fff-contradictory-claim-guard-001`, `fff-provider-envelope-readiness-no-call-001`, `fff-downstream-source-span-adoption-gate-001`, `fff-malformed-missing-span-guard-001`, `fff-missing-fixture-class-probe-001`, `fff-weak-span-repair-001`, `fff-broad-span-split-001`, `fff-routing-policy-regression-hardening-001`, `fff-source-span-routing-review-pack-001`, `fff-model-api-boundary-spec-001`, local extraction adapter artifacts, Extraction Contract, Claim Ledger, Timeline View, Profile/Ghost Flow, freeform review intake, and human-owned canon boundaries.
 
-No model/API call, provider choice, credential, endpoint, database persistence, publishing, production sync, AI video generation, translated-memo policy, broad fixture campaign, actual downstream adoption, or final canon decision is added by this slice.
+No model/API call, provider choice, credential, endpoint, database persistence, publishing, production sync, AI video generation, translated-memo policy, broad fixture campaign, actual downstream adoption, or final canon decision is added by this slice. Later broad-shape audit also preserves this boundary.
 
 ## Validation Contract
 

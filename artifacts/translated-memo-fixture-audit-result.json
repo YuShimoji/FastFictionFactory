@@ -2,7 +2,7 @@
   "schemaVersion": "fff.translatedMemoFixtureAudit.v1",
   "artifact_id": "fff-translated-memo-fixture-audit-001",
   "title": "Fast Fiction Factory Translated / Multilingual Memo Fixture Audit",
-  "generatedAt": "2026-06-24T01:58:26.479Z",
+  "generatedAt": "2026-06-24T02:23:13.768Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
@@ -172,7 +172,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=15; reviewInput=freeform; reviewCard=false; observation=false"
+      "detail": "reviewMemory=16; reviewInput=freeform; reviewCard=false; observation=false"
     }
   },
   "failures": [],

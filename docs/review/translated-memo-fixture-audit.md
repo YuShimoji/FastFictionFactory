@@ -37,7 +37,7 @@ This slice therefore audits the existing multilingual fixture and records transl
 - What changed: Existing multilingual memo fixture coverage and the translated memo gap were audited without adding another fixture class.
 - What this review decides: No user review is needed; multilingual coverage is already present and translated memo text is still policy-dependent.
 - Not asking: no general Review Hub review, fixed-form review, translation policy approval, provider choice, credentials, model/API call approval, DB persistence, publishing, production sync, AI video generation, downstream adoption implementation, canon promotion, or contradictory-claim truth decision.
-- Next non-redundant axis: very broad source-span shape only if coverage remains the bottleneck; otherwise provider adapter implementation only after explicit authorization.
+- Next non-redundant axis: provider adapter implementation only after explicit authorization, or a translated/broad fixture only after concrete policy or source-output evidence changes.
 
 No Review Card or Operator Observation Card is emitted. User-side work remains none.
 

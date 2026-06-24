@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "fff.veryBroadSourceSpanShapeAudit.v1",
+  "artifact_id": "fff-very-broad-source-span-shape-audit-001",
+  "title": "Fast Fiction Factory Very Broad Source-Span Shape Audit",
+  "generatedAt": "2026-06-24T02:23:13.836Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "audit_scope": {
+    "fixture_added": false,
+    "audit_only": true,
+    "source_span_quality_audit_path": "artifacts/source-span-quality-audit-result.json",
+    "broad_span_split_path": "artifacts/broad-span-split-result.json",
+    "source_pack_path": "artifacts/source-span-routing-review-pack.json",
+    "adapter_matrix_smoke_path": "artifacts/local-extraction-adapter-expansion-smoke-result.json"
+  },
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-translated-memo-fixture-audit-001",
+    "prior_review_count": 0,
+    "prior_signal_summary": "Supervisor requested a translated/multilingual fixture audit after closing the downstream scope-lock validation unknown.",
+    "axis": "very_broad_source_span_shape_audit",
+    "what_changed": "The remaining very broad source-span shape candidate was audited after the translated memo audit without adding another fixture class.",
+    "what_this_review_decides": "No user review is needed; this readback decides that the current broad-span evidence is already closed by split/keep decisions and that a new broad fixture should wait for a concrete source-output gap.",
+    "not_asking": [
+      "general Review Hub review",
+      "fixed-form review",
+      "repeat broad-span split review",
+      "new broad source-span fixture approval",
+      "provider choice",
+      "credentials",
+      "model/API call approval",
+      "database persistence",
+      "publishing or production sync",
+      "AI video generation",
+      "downstream adoption implementation",
+      "canon promotion",
+      "contradictory claim truth decision"
+    ],
+    "next_nonredundant_axis": "provider adapter implementation only after explicit authorization, or a new broad/translated fixture only after concrete policy or source-output evidence changes"
+  },
+  "coverage_audit": {
+    "very_broad_source_span_shape": {
+      "fixture_present": false,
+      "fixture_matches": [],
+      "gap_present_in_source_pack": true,
+      "audit_decision": "not_added_in_this_slice",
+      "reason": "The current broad rows are already resolved by fff-broad-span-split-001, and the current source-pack/readback chain has zero source-span mismatches, missing refs, unsafe routes, non-held defaults, or downstream adopted candidates."
+    },
+    "existing_broad_span_decisions": [
+      {
+        "id": "local-x-visual-observatory",
+        "action": "split_into_narrower_spans",
+        "source_span_locator": "artifacts/extraction-adapter-fixtures/clockmaker-sample.md#char=364-416",
+        "source_ref_preserved": true
+      },
+      {
+        "id": "minutes-x-placeholder-proof-bait",
+        "action": "keep_with_reason",
+        "source_span_locator": "artifacts/extraction-adapter-fixtures/council-minutes-edge.md#char=408-466",
+        "source_ref_preserved": true
+      }
+    ],
+    "source_pack_current_gap_list": [
+      "contradictory memo claims",
+      "very broad source spans",
+      "missing or malformed source span payloads",
+      "translated memo text",
+      "model/API provider envelope output"
+    ]
+  },
+  "summary": {
+    "current_fixture_count": 5,
+    "current_output_count": 5,
+    "current_matrix_element_count": 60,
+    "source_pack_rows_checked": 60,
+    "broad_span_rows_loaded": 2,
+    "broad_span_rows_resolved": 2,
+    "split_into_narrower_spans": 1,
+    "keep_with_reason": 1,
+    "very_broad_fixture_count": 0,
+    "source_span_mismatches": 0,
+    "missing_source_refs": 0,
+    "unsafe_visual_routes": 0,
+    "non_held_review_defaults": 0,
+    "human_owned_decision_adopt_suggestions": 0,
+    "downstream_candidates_reported_for_review": 55,
+    "human_owned_downstream_candidates_held": 28,
+    "adopted_profile_claim_timeline_candidates": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "very_broad_fixture_decision": {
+    "state": "deferred_not_required",
+    "owner": "agent for future bounded fixture when source-output evidence changes; human reviewer only if broad span wording needs creative judgment",
+    "next_move": "Do not add a broad source-span fixture until current adapter output changes, a new memo shape creates unresolved broad spans, or coverage is explicitly the bottleneck.",
+    "requirements_before_adding": [
+      "a source-pack row or fixture output with unresolved broad source-span behavior",
+      "evidence that existing split/keep readback no longer covers the shape",
+      "confirmation that broad fixture coverage, not provider authorization or translation policy, is the bottleneck"
+    ]
+  },
+  "fixture_audit_checks": {
+    "prior_audits_loaded": {
+      "passed": true,
+      "detail": "sourceQuality=fff-source-span-quality-audit-001; broadSplit=fff-broad-span-split-001; translated=fff-translated-memo-fixture-audit-001"
+    },
+    "existing_broad_rows_resolved": {
+      "passed": true,
+      "detail": "broadRows=2; split=1; keep=1; ids=local-x-visual-observatory, minutes-x-placeholder-proof-bait"
+    },
+    "very_broad_fixture_not_added": {
+      "passed": true,
+      "detail": "broad fixtures=none; gaps=contradictory memo claims, very broad source spans, missing or malformed source span payloads, translated memo text, model/API provider envelope output"
+    },
+    "current_coverage_not_blocked": {
+      "passed": true,
+      "detail": "pack fixtures=5; rows=60; smoke fixtures=5; smoke elements=60"
+    },
+    "downstream_and_routing_preserved": {
+      "passed": true,
+      "detail": "pack rows=60; routing payloads=6; downstream adopted=0"
+    },
+    "guard_chain_preserved": {
+      "passed": true,
+      "detail": "remaining=multilingual_memo_text; malformed accepted=0; contradictory adopted=0"
+    },
+    "provider_api_boundary_not_crossed": {
+      "passed": true,
+      "detail": "providerConfigured=false; externalCall=false; credentials=false"
+    },
+    "review_nonredundancy_preserved": {
+      "passed": true,
+      "detail": "reviewInput=freeform; broadPrior=0; translatedPrior=0"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

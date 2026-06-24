@@ -72,6 +72,7 @@ nav:
       - Provider Envelope Readiness No-Call: review/provider-envelope-readiness-no-call.md
       - Remaining Fixture Coverage: review/remaining-fixture-coverage-one-class.md
       - Translated Memo Fixture Audit: review/translated-memo-fixture-audit.md
+      - Very Broad Source-Span Shape Audit: review/very-broad-source-span-shape-audit.md
       - Local Extraction Adapter Expansion Review: review/local-extraction-adapter-expansion-review.md
       - Review Memory Dedup: review/review-memory-dedup.md
       - Review Procedure Lock: review/review-procedure.md

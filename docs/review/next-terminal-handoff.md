@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-24T10:58:30+09:00. At refresh time, the active artifact is still `fff-contradictory-claim-guard-001`; `fff-provider-envelope-readiness-no-call-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-downstream-adoption-gate-scope-lock-001`, and `fff-translated-memo-fixture-audit-001` are preserved auxiliary readbacks. Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
+Latest handoff refresh: 2026-06-24T11:23:14+09:00. At refresh time, the active artifact is still `fff-contradictory-claim-guard-001`; `fff-provider-envelope-readiness-no-call-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-downstream-adoption-gate-scope-lock-001`, `fff-translated-memo-fixture-audit-001`, and `fff-very-broad-source-span-shape-audit-001` are preserved auxiliary readbacks. Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
 
 ## Start Here
 
@@ -44,6 +44,8 @@ artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md
 artifacts/extraction-adapter-outputs/multilingual-memo-notes.json
 docs/review/translated-memo-fixture-audit.md
 artifacts/translated-memo-fixture-audit-result.json
+docs/review/very-broad-source-span-shape-audit.md
+artifacts/very-broad-source-span-shape-audit-result.json
 docs/review/malformed-missing-span-guard.md
 artifacts/malformed-missing-span-guard-result.json
 docs/review/missing-fixture-class-probe.md
@@ -94,6 +96,7 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - Provider envelope readiness no-call doc/example/result: `docs/review/provider-envelope-readiness-no-call.md`, `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json`
 - Remaining fixture coverage doc/result/fixture/output: `docs/review/remaining-fixture-coverage-one-class.md`, `artifacts/remaining-fixture-coverage-one-class-result.json`, `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`, `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`
 - Translated/multilingual fixture audit doc/result: `docs/review/translated-memo-fixture-audit.md`, `artifacts/translated-memo-fixture-audit-result.json`
+- Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
 - Malformed/missing source-span guard doc/result/fixture: `docs/review/malformed-missing-span-guard.md`, `artifacts/malformed-missing-span-guard-result.json`, `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
 - Validator fixtures and smoke: `artifacts/extraction-negative-fixtures/`, `artifacts/extraction-validator-smoke-result.json`
 - Source-span review pack: `artifacts/source-span-routing-review-pack.json`
@@ -114,11 +117,12 @@ The current artifact adds a deterministic guard for contradictory claim candidat
 - `fff-provider-envelope-readiness-no-call-001` is preserved as the auxiliary provider-readiness gate: the no-call envelope carries a valid candidate Extraction Contract with 4 source-tracked elements, 2 held human-owned elements, 0 visual direct Claim routes, 0 adopted/provisional elements or claims, no provider configured, no endpoint, no external call attempted, and no credentials touched.
 - `fff-malformed-missing-span-guard-001` remains closed after the fixture count expanded to 9; malformed/missing span cases still produce 0 accepted routed candidates.
 - `fff-translated-memo-fixture-audit-001` audits existing multilingual fixture coverage without adding a translated fixture. It closes the previous full-manifest-regeneration unknown as `not_available` because no repo command is defined, records translated memo text as a policy-dependent gap, and preserves 0 source-span mismatches, 0 missing source refs, 0 unsafe routes, 0 downstream adopted candidates, no provider configured, no external call, and no credentials touched.
+- `fff-very-broad-source-span-shape-audit-001` audits the broad fixture candidate without adding another fixture. It confirms the current 2 broad rows are already resolved by the broad-span split/keep readback, leaves broad fixture work deferred until source output changes or coverage is the bottleneck, and preserves 0 source-span mismatches, 0 missing refs, 0 unsafe routes, 0 non-held defaults, 0 downstream adopted candidates, no provider configured, no external call, and no credentials touched.
 - No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, downstream adoption behavior, or final canon decision was added.
 
 ## Validation Readback
 
-The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`, `fff-remaining-fixture-coverage-one-class-001`, and `fff-translated-memo-fixture-audit-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, multilingual-fixture, translated/multilingual audit, malformed/missing-span, contradictory-claim, downstream gate, and provider-envelope smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
+The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-translated-memo-fixture-audit-001`, and `fff-very-broad-source-span-shape-audit-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, multilingual-fixture, translated/multilingual audit, very-broad-shape audit, malformed/missing-span, contradictory-claim, downstream gate, and provider-envelope smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
 
 Additional checks passed during this handoff refresh:
 
@@ -155,7 +159,7 @@ No general Review Hub review is needed for the current state. Future review shou
 | --- | --- | --- |
 | Advance: provider adapter authorization | Uses the no-call envelope only after provider choice, credentials, endpoint, and transport scope are explicitly approved | A real adapter can be implemented without silently crossing the boundary |
 | Verify: contradictory claim guard | Re-runs the held-conflict fixture and result after adapter edits | Future Claim Ledger acceptance paths can fail before they auto-promote conflicts |
-| Audit: remaining fixture class | Adds very broad source-span shape only if coverage remains the bottleneck; translated memo text now requires translation provenance and source-span ownership policy first | Adapter/model regression coverage becomes less brittle |
+| Audit: remaining fixture class | Adds translated or very broad fixture coverage only after policy or source-output evidence creates a concrete gap | Adapter/model regression coverage becomes less brittle without duplicate fixtures |
 | Excise: weak source-span debt | Improves a concrete source-span class while preserving the broad-span and malformed-span guards | Review can focus on source usefulness instead of source validity |
 
 ## Residual Work
@@ -165,5 +169,5 @@ No general Review Hub review is needed for the current state. Future review shou
 | Contradictory claim handling | Prevent conflicting claims from entering canon automatically | Guarded by a valid fixture and smoke result; truth choice remains human-owned | Keep the guard required for any future Claim Ledger acceptance path |
 | Downstream adoption readiness | Ensure Profile / Claim / Timeline candidates stay source-tracked and held | Readback gate passes with 0 adopted candidates | Keep blocked until explicit adoption behavior is requested |
 | Provider envelope readiness | Fix future provider output shape before transport exists | No-call readback passes with no provider, endpoint, credential, project-state mutation, or adopted canon output | Use as a required precondition, not as provider integration |
-| Fixture coverage | Cover unrepresented memo shapes | 9 validator fixtures and 5 adapter fixture outputs now pass; multilingual memo text is covered; translated memo text is audited but policy-dependent; very broad source-span shape remains a candidate | Add one missing fixture class at a time only when it has concrete decision value |
+| Fixture coverage | Cover unrepresented memo shapes | 9 validator fixtures and 5 adapter fixture outputs now pass; multilingual memo text is covered; translated memo text is audited but policy-dependent; very broad source-span shape is audited and deferred because current broad rows are already resolved | Add one missing fixture class at a time only when it has concrete decision value |
 | Model/API adapter | Replace deterministic extraction with provider-backed extraction | Explicitly not started | Keep blocked until user authorizes provider, credential, endpoint, and API transport scope |
