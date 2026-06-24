@@ -630,6 +630,32 @@
 - State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no Review Card or Operator Observation Card is emitted.
 - Next action: Choose explicit provider adapter implementation only after authorization for provider choice, credentials, and transport behavior, or choose remaining broad/multilingual fixture coverage if coverage remains the bottleneck.
 
+## fff-provider-adapter-authorization-readiness-001
+
+- Title: Fast Fiction Factory Provider Adapter Authorization Readiness
+- Purpose: Record the authorization boundary before any real provider adapter work starts, separating local no-call readiness from provider choice, credentials, endpoint, transport, external call permission, persistence/publication, and production behavior.
+- Repo relative path: `public/review/index.html`
+- Open command: `Invoke-Item .\public\review\index.html`
+- Repo-local PowerShell launcher: `scripts/operator/open_review.ps1`
+- Repo-local shell launcher: `scripts/operator/open_review.sh`
+- Review doc: `docs/review/provider-adapter-authorization-readiness.md`
+- Readback result: `artifacts/provider-adapter-authorization-readiness-result.json`
+- Preserved provider envelope readiness: `artifacts/provider-envelope-readiness-no-call-result.json`
+- Preserved model/API boundary: `artifacts/model-api-boundary-smoke-result.json`
+- Preserved downstream scope lock: `artifacts/downstream-adoption-gate-scope-lock-result.json`
+- Preserved contradictory claim guard: `artifacts/contradictory-claim-guard-result.json`
+- Preserved malformed/missing source-span guard: `artifacts/malformed-missing-span-guard-result.json`
+- Preserved routing regression: `artifacts/routing-policy-regression-hardening-result.json`
+- Manifest: `artifacts/artifact-manifest.json`
+- Current status: `docs/review/current-status.md`
+- Validation command: `node tools/fff-state.mjs smoke-provider-adapter-authorization-readiness artifacts/provider-envelope-readiness-no-call-result.json artifacts/provider-adapter-authorization-readiness-result.json`
+- Validation result: provider adapter authorization readiness records 6 unauthorized items, 7 allowed no-call states, 6 future authorization triggers, 3 Decision Packet options, provider configured=false, external call=false, credentials touched=false, downstream adopted=0, held conflicting claims=2, malformed accepted=0, 0 Review Cards, 0 Operator Observation Cards, and 0 failures.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- Render gate: `L0 No Render`
+- State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no provider adapter, provider authorization implementation, credentials, endpoint, transport, model/API call, DB persistence, publishing, production sync, downstream adoption, or canon promotion is added.
+- Next action: Real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy.
+
 ## fff-remaining-fixture-coverage-one-class-001
 
 - Title: Fast Fiction Factory Remaining Fixture Coverage One Class

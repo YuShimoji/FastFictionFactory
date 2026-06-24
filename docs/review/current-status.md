@@ -34,6 +34,7 @@ Preserved platform boundary:
 - Review Hub IA: `fff-review-hub-ia-mode-split-001`
 - Model/API boundary: `fff-model-api-boundary-spec-001`
 - Provider envelope readiness no-call: `fff-provider-envelope-readiness-no-call-001`
+- Provider adapter authorization readiness: `fff-provider-adapter-authorization-readiness-001`
 - Local adapter expansion: `fff-local-extraction-adapter-expansion-001`
 - Local adapter spike: `fff-local-extraction-adapter-spike-001`
 - Extraction validator: `fff-extraction-validator-hardening-001`
@@ -54,13 +55,14 @@ Preserved platform boundary:
 - A pre-existing local downstream source-span adoption gate readback is present in `tools/fff-state.mjs` and `artifacts/downstream-source-span-adoption-gate-result.json`; it remains a non-active auxiliary readback and is not a model/API, DB, production, or canon-adoption implementation.
 - `fff-provider-envelope-readiness-no-call-001` is now present as a non-active auxiliary readiness gate. It defines a no-provider/no-credential envelope, carries a candidate `fff.extractionContract.v1` payload, validates that payload locally, and binds it to the malformed/missing span guard, contradictory claim guard, downstream adoption gate, source-span pack, validator matrix, and model/API no-call boundary.
 - `artifacts/provider-envelope-readiness-no-call-result.json` reports 4 carried extraction elements, 4 source-tracked elements, 2 human-owned elements held, 0 non-held human-owned elements, 0 visual direct Claim routes, 0 adopted/provisional elements, 0 adopted/provisional claims, no provider configured, no provider/model name, no endpoint, no external call attempted, and no credentials touched.
+- `fff-provider-adapter-authorization-readiness-001` is now present as a non-active auxiliary authorization boundary. It lists 6 unauthorized items before real provider work: provider choice, credentials/secrets, endpoint, transport, external call permission, and persistence/publication; it also records 7 allowed no-call states and 3 Decision Packet options without asking for a fixed form.
 - Review Memory / Dedup remains in place. The guard uses axis `contradictory_claim_guard`, prior review count `0`, no Review Card, no Operator Observation Card, and no repeated general Review Hub request.
 - Toma fate, brass moth truth, Council motive, and moth-key function remain unresolved and human-owned.
 
 ## What Was Verified
 
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
-- Local working tree started clean on `master` at `d4f3b1f Refresh translated audit handoff context`; the contradictory-claim guard was already the tracked active surface, so the downstream gate, downstream scope-lock, provider-envelope readiness, multilingual fixture coverage, and translated audit remain preserved auxiliary readbacks instead of active-status rewinds.
+- This provider authorization readiness slice started clean on `master` at `6695ced Audit very broad source-span shape`; the contradictory-claim guard was already the tracked active surface, so the downstream gate, downstream scope-lock, provider-envelope readiness, provider authorization readiness, multilingual fixture coverage, translated audit, and very broad audit remain preserved auxiliary readbacks instead of active-status rewinds.
 - Project-local instructions and required context docs were read before changing review claims.
 - `node --check tools/fff-state.mjs` passed.
 - `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json` passed.
@@ -68,6 +70,7 @@ Preserved platform boundary:
 - `node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json` passed after the validator matrix grew to 9 fixtures.
 - `node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate artifacts/source-span-routing-review-pack.json artifacts/downstream-source-span-adoption-gate-result.json` passed for the preserved auxiliary readback.
 - `node tools/fff-state.mjs smoke-provider-envelope-readiness-no-call artifacts/provider-envelope-readiness-no-call.example.json artifacts/provider-envelope-readiness-no-call-result.json` passed for the preserved auxiliary provider-envelope readback.
+- `node tools/fff-state.mjs smoke-provider-adapter-authorization-readiness artifacts/provider-envelope-readiness-no-call-result.json artifacts/provider-adapter-authorization-readiness-result.json` passed for the provider authorization boundary readback.
 - `node tools/fff-state.mjs smoke-remaining-fixture-coverage-one-class artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/remaining-fixture-coverage-one-class-result.json` passed for the multilingual fixture readback.
 - `node tools/fff-state.mjs smoke-translated-memo-fixture-audit artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/translated-memo-fixture-audit-result.json` passed for the translated / multilingual fixture audit.
 - `node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit artifacts/local-extraction-adapter-expansion-smoke-result.json artifacts/very-broad-source-span-shape-audit-result.json` passed for the broad-shape audit.
@@ -82,6 +85,7 @@ Preserved platform boundary:
 | Direct claim acceptance block | Keep claim-routed source elements from becoming accepted output | 0 direct accepted claim elements |
 | Source preservation | Keep evidence auditable | 2 conflicting claims preserve source refs; 60 positive source-pack rows preserved |
 | Provider envelope readiness | Fix future provider output preconditions without integration | 4 provider-shaped fixture elements validate locally; no provider call, credential, endpoint, project-state mutation, or adopted canon output |
+| Provider authorization readiness | Separate no-call readiness from real provider execution | 6 unauthorized items listed; 7 allowed no-call states; 3 Decision Packet options; provider configured=false; external call=false; credentials=false |
 | Multilingual fixture coverage | Prove mixed-language memo spans remain local and held | 5 adapter fixtures; 60 matrix rows; 12 multilingual elements; 4 non-ASCII source-span elements; 0 mismatches |
 | Translated/multilingual audit | Close the resume validation unknown and avoid duplicate fixture work | Full manifest regeneration command classified as `not_available`; translated fixture count 0; translated gap remains policy-dependent |
 | Very broad source-span shape audit | Decide whether the remaining broad-shape fixture candidate is needed now | Broad fixture count 0; 2 current broad rows resolved by split/keep; source-pack and downstream readbacks remain clean |
@@ -90,7 +94,7 @@ Preserved platform boundary:
 
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
 - Remaining fixture classes are translated memo text and very broad source-span fixture shape. Translated memo text has been audited but not implemented because it needs source-of-truth language, translation provenance, and span ownership policy before adding decision value; very broad source-span shape has been audited but not implemented because current broad rows are already resolved and no concrete source-output gap requires another fixture.
-- Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, timeout value, and retry count remain blocked until explicit authorization.
+- Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, transport behavior, external call permission, timeout value, and retry count remain blocked until explicit authorization.
 - Durable project database, YouTube publishing, automated upload, AI video generation, complete world chronology, and final canon decisions remain out of scope.
 
 ## Review Debt
@@ -106,6 +110,7 @@ Preserved platform boundary:
 | Weak and broad source spans | Weak spans repaired; broad spans split/kept with reason | Do not reopen unless source output or user review changes a row |
 | Downstream source-span adoption gate | Auxiliary readback exists locally; 55 current downstream candidates are source-tracked, safe-routed, and held where human-owned | Do not make it active unless adoption semantics change |
 | Provider envelope readiness | Auxiliary no-call readback exists; candidate envelope validates, binds existing gates, and keeps provider/call/credential fields empty | Do not treat as provider integration; use it only as the precondition for any future adapter |
+| Provider adapter authorization readiness | Covered by `fff-provider-adapter-authorization-readiness-001`; authorization boundary is repo-visible, but real provider work remains blocked | Use the Decision Packet only when the next request explicitly authorizes provider choice, credentials, endpoint, transport, and external call permission |
 | Remaining fixture classes | Translated memo text remains policy-dependent; very broad source-span shape is audited and deferred until source output changes | Add one class at a time only when it has concrete decision value |
 | Model/API adapter | Not started | Keep blocked until explicit authorization for provider choice, credentials, endpoint, transport behavior, and all local guards remain passing |
 
@@ -144,4 +149,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The next non-redundant move is explicit provider adapter implementation only after authorization for provider choice, credentials, endpoint, and transport behavior. Do not add translated memo text until translation provenance and source-span ownership policy have concrete decision value. Do not add a broad source-span fixture until source output changes or broad shape is proven to be the coverage bottleneck. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, or final canon decisions unless explicitly requested.
+Use review memory before asking for another review. The provider authorization boundary is now documented, so the next non-redundant move is real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy. Do not add translated memo text until translation provenance and source-span ownership policy have concrete decision value. Do not add a broad source-span fixture until source output changes or broad shape is proven to be the coverage bottleneck. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, or final canon decisions unless explicitly requested.

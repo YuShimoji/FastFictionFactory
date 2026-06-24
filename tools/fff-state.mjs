@@ -13,6 +13,7 @@ const MALFORMED_MISSING_SPAN_GUARD_SCHEMA_VERSION = "fff.malformedMissingSpanGua
 const CONTRADICTORY_CLAIM_GUARD_SCHEMA_VERSION = "fff.contradictoryClaimGuard.v1";
 const DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_SCHEMA_VERSION = "fff.downstreamSourceSpanAdoptionGate.v1";
 const PROVIDER_ENVELOPE_READINESS_NO_CALL_SCHEMA_VERSION = "fff.providerEnvelopeReadinessNoCall.v1";
+const PROVIDER_ADAPTER_AUTHORIZATION_READINESS_SCHEMA_VERSION = "fff.providerAdapterAuthorizationReadiness.v1";
 const REMAINING_FIXTURE_COVERAGE_SCHEMA_VERSION = "fff.remainingFixtureCoverageOneClass.v1";
 const TRANSLATED_MEMO_FIXTURE_AUDIT_SCHEMA_VERSION = "fff.translatedMemoFixtureAudit.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
@@ -26,6 +27,7 @@ const DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT = "artifacts/malformed-missing
 const DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT = "artifacts/contradictory-claim-guard-result.json";
 const DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT = "artifacts/downstream-source-span-adoption-gate-result.json";
 const DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT = "artifacts/provider-envelope-readiness-no-call-result.json";
+const DEFAULT_PROVIDER_ADAPTER_AUTHORIZATION_READINESS_OUTPUT = "artifacts/provider-adapter-authorization-readiness-result.json";
 const DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT = "artifacts/remaining-fixture-coverage-one-class-result.json";
 const DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT = "artifacts/translated-memo-fixture-audit-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
@@ -508,6 +510,25 @@ async function main() {
     }
     if (command === "smoke-provider-envelope-readiness-no-call" || outputPath) {
       console.log(`provider envelope readiness no-call gate passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-provider-adapter-authorization-readiness" || command === "smoke-provider-adapter-authorization-readiness") {
+    const providerEnvelopeReadback = await readJson(inputPath);
+    const result = await validateProviderAdapterAuthorizationReadiness(providerEnvelopeReadback, inputPath);
+    const target = outputPath || DEFAULT_PROVIDER_ADAPTER_AUTHORIZATION_READINESS_OUTPUT;
+    if (command === "smoke-provider-adapter-authorization-readiness" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Provider adapter authorization readiness failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-provider-adapter-authorization-readiness" || outputPath) {
+      console.log(`provider adapter authorization readiness passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -3384,6 +3405,257 @@ async function validateProviderEnvelopeReadinessNoCall(envelope, envelopePath) {
   };
 }
 
+async function validateProviderAdapterAuthorizationReadiness(providerEnvelopeReadback, providerEnvelopeReadbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const providerEnvelopePath = manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT;
+  const modelBoundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
+  const downstreamScopeLock = await readJson(manifest.downstream_adoption_gate_scope_lock_result_path || "artifacts/downstream-adoption-gate-scope-lock-result.json");
+  const downstreamGate = await readJson(manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT);
+  const translatedAudit = await readJson(manifest.translated_memo_fixture_audit_result_path || DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT);
+  const veryBroadAudit = await readJson(manifest.very_broad_source_span_shape_audit_result_path || DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT);
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+  const routingRegression = await readJson(manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT);
+  const sourcePack = await readJson(manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json");
+  const providerMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-provider-envelope-readiness-no-call-001");
+  const broadMemory = manifest.review_memory?.find((entry) => entry.artifact_id === "fff-very-broad-source-span-shape-audit-001");
+  const credentialFindings = collectCredentialMaterial({
+    manifest,
+    providerEnvelopeReadback,
+    modelBoundarySmoke
+  });
+  const unauthorizedItems = [
+    "provider_choice",
+    "credentials_or_secrets",
+    "endpoint",
+    "transport",
+    "external_call_permission",
+    "persistence_or_publication"
+  ];
+  const futureAuthorizationTriggers = [
+    "choose provider and model",
+    "authorize credential storage and secret handling",
+    "approve endpoint and transport behavior",
+    "approve external call permission",
+    "approve timeout/retry policy for real transport",
+    "keep all local validation gates passing before importing provider output"
+  ];
+  const allowedNoCallState = [
+    "local deterministic adapter and fixture matrix",
+    "existing no-call provider envelope readback",
+    "mock/sample provider-shaped payloads stored as local artifacts only",
+    "Extraction Contract validation",
+    "source/routing/hold gates",
+    "downstream readback with 0 adopted candidates",
+    "contradictory and malformed source-span guards"
+  ];
+
+  check(
+    "current_state_verified",
+    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+      veryBroadAudit?.artifact_id === "fff-very-broad-source-span-shape-audit-001" &&
+      translatedAudit?.artifact_id === "fff-translated-memo-fixture-audit-001" &&
+      veryBroadAudit?.passed === true &&
+      translatedAudit?.passed === true,
+    `active=${manifest.artifact_id}; broad=${veryBroadAudit?.artifact_id}/${veryBroadAudit?.passed}; translated=${translatedAudit?.artifact_id}/${translatedAudit?.passed}`
+  );
+  check(
+    "provider_api_absence_verified",
+    providerEnvelopeReadback?.artifact_id === "fff-provider-envelope-readiness-no-call-001" &&
+      providerEnvelopeReadback?.passed === true &&
+      providerEnvelopeReadback.provider_metadata?.providerConfigured === false &&
+      providerEnvelopeReadback.provider_metadata?.externalCallAttempted === false &&
+      providerEnvelopeReadback.provider_metadata?.credentialsTouched === false &&
+      modelBoundarySmoke?.passed === true &&
+      modelBoundarySmoke?.checks?.noExternalCall === true &&
+      modelBoundarySmoke?.checks?.noCredentials === true &&
+      credentialFindings.length === 0,
+    `providerConfigured=${providerEnvelopeReadback.provider_metadata?.providerConfigured}; externalCall=${providerEnvelopeReadback.provider_metadata?.externalCallAttempted}; credentials=${providerEnvelopeReadback.provider_metadata?.credentialsTouched}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+  check(
+    "unauthorized_items_listed",
+    unauthorizedItems.length === 6 &&
+      unauthorizedItems.includes("provider_choice") &&
+      unauthorizedItems.includes("credentials_or_secrets") &&
+      unauthorizedItems.includes("endpoint") &&
+      unauthorizedItems.includes("transport") &&
+      unauthorizedItems.includes("external_call_permission") &&
+      unauthorizedItems.includes("persistence_or_publication"),
+    `unauthorized=${unauthorizedItems.join(", ")}`
+  );
+  check(
+    "allowed_no_call_state_listed",
+    allowedNoCallState.length >= 7 &&
+      allowedNoCallState.some((item) => item.includes("no-call provider envelope")) &&
+      allowedNoCallState.some((item) => item.includes("Extraction Contract")) &&
+      allowedNoCallState.some((item) => item.includes("0 adopted")),
+    `allowed=${allowedNoCallState.join("; ")}`
+  );
+  check(
+    "future_authorization_triggers_listed",
+    futureAuthorizationTriggers.length >= 6 &&
+      futureAuthorizationTriggers.some((item) => item.includes("provider")) &&
+      futureAuthorizationTriggers.some((item) => item.includes("credential")) &&
+      futureAuthorizationTriggers.some((item) => item.includes("external call")),
+    `triggers=${futureAuthorizationTriggers.join("; ")}`
+  );
+  check(
+    "guard_chain_preserved",
+    downstreamScopeLock?.passed === true &&
+      downstreamScopeLock.scope_policy?.actual_downstream_adoption_implemented === false &&
+      downstreamGate?.passed === true &&
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates === 0 &&
+      contradictoryGuard?.passed === true &&
+      contradictoryGuard.summary?.held_conflicting_claims === 2 &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      malformedGuard?.passed === true &&
+      malformedGuard.summary?.accepted_routed_candidates === 0 &&
+      routingRegression?.passed === true &&
+      sourcePack?.passed === true,
+    `downstreamAdopted=${downstreamGate.summary?.adopted_profile_claim_timeline_candidates}; heldConflicts=${contradictoryGuard.summary?.held_conflicting_claims}; malformedAccepted=${malformedGuard.summary?.accepted_routed_candidates}; routing=${routingRegression?.passed}; pack=${sourcePack?.passed}`
+  );
+  check(
+    "decision_packet_produced",
+    manifest.review_input_mode === "freeform" &&
+      providerEnvelopeReadback.summary?.review_card_emitted === false &&
+      veryBroadAudit.summary?.review_card_emitted === false,
+    `reviewInput=${manifest.review_input_mode}; providerReviewCard=${providerEnvelopeReadback.summary?.review_card_emitted}; broadReviewCard=${veryBroadAudit.summary?.review_card_emitted}`
+  );
+
+  return {
+    schemaVersion: PROVIDER_ADAPTER_AUTHORIZATION_READINESS_SCHEMA_VERSION,
+    artifact_id: "fff-provider-adapter-authorization-readiness-001",
+    title: "Fast Fiction Factory Provider Adapter Authorization Readiness",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    render_gate: "L0 No Render",
+    readiness_scope: {
+      provider_adapter_implemented: false,
+      provider_authorization_implemented: false,
+      provider_call_allowed: false,
+      credentials_allowed: false,
+      endpoint_allowed: false,
+      transport_allowed: false,
+      database_persistence_allowed: false,
+      publishing_or_production_sync_allowed: false,
+      downstream_adoption_allowed: false,
+      canon_promotion_allowed: false
+    },
+    input_readbacks: {
+      provider_envelope_readiness_no_call_result_path: toRepoPath(providerEnvelopeReadbackPath || providerEnvelopePath),
+      model_api_boundary_smoke_path: manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json",
+      downstream_scope_lock_result_path: manifest.downstream_adoption_gate_scope_lock_result_path || "artifacts/downstream-adoption-gate-scope-lock-result.json",
+      downstream_gate_result_path: manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT,
+      translated_memo_fixture_audit_result_path: manifest.translated_memo_fixture_audit_result_path || DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT,
+      very_broad_source_span_shape_audit_result_path: manifest.very_broad_source_span_shape_audit_result_path || DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT,
+      contradictory_claim_guard_result_path: manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT,
+      malformed_missing_span_guard_result_path: manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT,
+      routing_policy_regression_result_path: manifest.routing_policy_regression_result_path || DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT,
+      source_span_review_pack_path: manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json"
+    },
+    review_memory_checked: {
+      checked: true,
+      target: "fff-provider-envelope-readiness-no-call-001",
+      prior_review_count: providerMemory?.prior_review_count ?? 0,
+      prior_signal_summary: providerMemory?.latest_user_signal_summary || "No user review was requested for the provider envelope no-call readiness gate.",
+      axis: "provider_adapter_authorization_readiness",
+      what_changed: "A separate authorization readiness readback now states which provider/API actions remain unauthorized before any real adapter work can begin.",
+      what_this_review_decides: "No user decision is required now; this readback separates local no-call readiness from future real provider execution authorization.",
+      not_asking: [
+        "provider choice",
+        "credential or secret value",
+        "endpoint setup",
+        "transport implementation",
+        "external call approval",
+        "database persistence",
+        "publishing or production sync",
+        "AI video generation",
+        "downstream adoption implementation",
+        "canon promotion",
+        "contradictory claim truth decision"
+      ],
+      next_nonredundant_axis: "real provider adapter implementation only after explicit provider, credential, endpoint, transport, and external-call authorization"
+    },
+    authorization_state: {
+      unauthorized_items: unauthorizedItems,
+      allowed_current_state: allowedNoCallState,
+      future_authorization_triggers: futureAuthorizationTriggers,
+      credential_material_findings: credentialFindings
+    },
+    decision_packet: {
+      recommended_option: "stay_local_deterministic_until_explicit_provider_authorization",
+      options: [
+        {
+          id: "stay_local_deterministic_only",
+          status: "available_now",
+          effect: "Keep using deterministic fixtures and validation gates with no provider/API work.",
+          requires: []
+        },
+        {
+          id: "no_call_mock_provider_envelope_next",
+          status: "already_available_as_auxiliary_readback",
+          effect: "Use local provider-shaped artifacts only to test envelope and validation behavior.",
+          requires: [
+            "no credentials",
+            "no endpoint",
+            "no external call"
+          ]
+        },
+        {
+          id: "real_provider_adapter_later",
+          status: "blocked_until_explicit_authorization",
+          effect: "A real adapter can be implemented only after provider, credentials, endpoint, transport, and call permission are approved.",
+          requires: futureAuthorizationTriggers
+        }
+      ],
+      response_style_for_future_decision: "freeform",
+      template_required: false,
+      schema_owner: "Agent"
+    },
+    readiness_separation: {
+      slice_completion: "complete_when_this_result_passes",
+      provider_readiness: "authorization_boundary_ready_but_real_provider_work_blocked",
+      production_readiness: "low_not_accepted",
+      canon_readiness: "not_accepted_for_human_owned_truth_decisions"
+    },
+    summary: {
+      current_state_verified: checks.current_state_verified?.passed === true,
+      provider_api_absence_verified: checks.provider_api_absence_verified?.passed === true,
+      unauthorized_items_count: unauthorizedItems.length,
+      allowed_no_call_state_count: allowedNoCallState.length,
+      future_authorization_trigger_count: futureAuthorizationTriggers.length,
+      decision_packet_options: 3,
+      downstream_candidates_reported_for_review: downstreamGate.summary?.downstream_candidates_reported_for_review,
+      adopted_profile_claim_timeline_candidates: downstreamGate.summary?.adopted_profile_claim_timeline_candidates,
+      held_conflicting_claims: contradictoryGuard.summary?.held_conflicting_claims,
+      provider_configured: providerEnvelopeReadback.provider_metadata?.providerConfigured,
+      external_call_attempted: providerEnvelopeReadback.provider_metadata?.externalCallAttempted,
+      credentials_touched: providerEnvelopeReadback.provider_metadata?.credentialsTouched,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    authorization_readiness_checks: checks,
+    preserved_review_memory_context: {
+      provider_envelope_prior_review_count: providerMemory?.prior_review_count ?? 0,
+      very_broad_prior_review_count: broadMemory?.prior_review_count ?? 0
+    },
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function readAdapterPayloads() {
   const payloads = [];
   for (const filePath of ["artifacts/local-extraction-adapter-output.json"]) {
@@ -4240,6 +4512,8 @@ Usage:
   node tools/fff-state.mjs smoke-downstream-source-span-adoption-gate <source-span-review-pack.json> [output.json]
   node tools/fff-state.mjs validate-provider-envelope-readiness-no-call <provider-envelope.json>
   node tools/fff-state.mjs smoke-provider-envelope-readiness-no-call <provider-envelope.json> [output.json]
+  node tools/fff-state.mjs validate-provider-adapter-authorization-readiness <provider-envelope-readback.json>
+  node tools/fff-state.mjs smoke-provider-adapter-authorization-readiness <provider-envelope-readback.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -4279,6 +4553,9 @@ Default downstream source-span adoption gate output:
 
 Default provider envelope readiness no-call output:
   ${DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT}
+
+Default provider adapter authorization readiness output:
+  ${DEFAULT_PROVIDER_ADAPTER_AUTHORIZATION_READINESS_OUTPUT}
 `);
 }
 
