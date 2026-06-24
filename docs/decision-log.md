@@ -93,3 +93,9 @@
 - Decision: Add one remaining positive adapter fixture class for multilingual memo text before provider implementation.
   - Reason: The adapter matrix was English-only, while multilingual memo text can be source-span tested locally without choosing a translation policy, provider, endpoint, credentials, or story truth.
   - Effect: `fff-remaining-fixture-coverage-one-class-001` adds `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`, `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`, `docs/review/remaining-fixture-coverage-one-class.md`, `artifacts/remaining-fixture-coverage-one-class-result.json`, and `node tools/fff-state.mjs smoke-remaining-fixture-coverage-one-class ...`; the adapter matrix now covers 5 fixture outputs and 60 elements while provider-envelope readiness remains no-call.
+
+## 2026-06-24
+
+- Decision: Preserve translated memo fixture work as an audit instead of adding a fixture.
+  - Reason: Multilingual memo text is already covered locally, but translated memo text needs source-of-truth language, translation provenance, and original-versus-translation source-span ownership policy before a fixture would be meaningful.
+  - Effect: `fff-translated-memo-fixture-audit-001` adds `docs/review/translated-memo-fixture-audit.md`, `artifacts/translated-memo-fixture-audit-result.json`, and `node tools/fff-state.mjs smoke-translated-memo-fixture-audit ...`; it records the post-scope-lock manifest validation closure and preserves no translated fixture, translation API, translation policy, provider/model/API behavior, credentials, downstream adoption behavior, or canon promotion.
