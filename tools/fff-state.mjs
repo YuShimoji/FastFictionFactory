@@ -23,6 +23,7 @@ const HELD_CLAIM_ADOPTION_PREFLIGHT_SCHEMA_VERSION = "fff.heldClaimAdoptionPrefl
 const DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_SCHEMA_VERSION = "fff.downstreamAdoptionSemanticsDesign.v1";
 const ADOPTION_CANDIDATE_LEDGER_DRY_RUN_SCHEMA_VERSION = "fff.adoptionCandidateLedgerDryRun.v1";
 const SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_SCHEMA_VERSION = "fff.sandboxAdoptionMutationOneClaim.v1";
+const SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_SCHEMA_VERSION = "fff.sandboxAdoptionRollbackRehearsal.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -44,6 +45,7 @@ const DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT = "artifacts/held-claim-adopt
 const DEFAULT_DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_OUTPUT = "artifacts/downstream-adoption-semantics-design-result.json";
 const DEFAULT_ADOPTION_CANDIDATE_LEDGER_DRY_RUN_OUTPUT = "artifacts/adoption-candidate-ledger-dry-run-result.json";
 const DEFAULT_SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT = "artifacts/sandbox-adoption-mutation-one-claim-result.json";
+const DEFAULT_SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_OUTPUT = "artifacts/sandbox-adoption-rollback-rehearsal-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -562,6 +564,25 @@ async function main() {
     }
     if (command === "smoke-sandbox-adoption-mutation-one-claim" || outputPath) {
       console.log(`sandbox adoption mutation one-claim passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-sandbox-adoption-rollback-rehearsal" || command === "smoke-sandbox-adoption-rollback-rehearsal") {
+    const sandbox = await readJson(inputPath);
+    const result = await validateSandboxAdoptionRollbackRehearsal(sandbox, inputPath);
+    const target = outputPath || DEFAULT_SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_OUTPUT;
+    if (command === "smoke-sandbox-adoption-rollback-rehearsal" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Sandbox adoption rollback rehearsal failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-sandbox-adoption-rollback-rehearsal" || outputPath) {
+      console.log(`sandbox adoption rollback rehearsal passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -4485,6 +4506,241 @@ async function validateSandboxAdoptionMutationOneClaim(ledger, ledgerPath) {
   };
 }
 
+async function validateSandboxAdoptionRollbackRehearsal(sandbox, sandboxPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const manifestValidationCommand = String(manifest.validation_command || "");
+  const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
+  const sandboxRows = Array.isArray(sandbox.sandbox_adoption_fixture_rows) ? sandbox.sandbox_adoption_fixture_rows : [];
+  const target = sandboxRows.find((row) => row.target_claim_id === "multi-claim-moth-key-label");
+  const rollbackToken = "rollback-sandbox-adoption-moth-key-label-to-adoption-candidate-dry-run";
+  const rollbackScope = "sandbox fixture row only";
+  const rollbackTransition = "sandbox_adopted_fixture -> adoption_candidate_dry_run";
+  const rollbackToStatus = "adoption_candidate_dry_run";
+  const evidenceRequirements = Array.isArray(target?.evidence_required_before_future_production_adoption)
+    ? target.evidence_required_before_future_production_adoption
+    : [];
+  const productionBoundaryOpen =
+    sandbox.summary?.production_adopted_claims !== 0 ||
+    sandbox.summary?.canonized_claims !== 0 ||
+    sandbox.summary?.profile_production_mutation_count !== 0 ||
+    sandbox.summary?.claim_production_mutation_count !== 0 ||
+    sandbox.summary?.timeline_production_mutation_count !== 0 ||
+    sandbox.summary?.story_seed_production_mutation_count !== 0 ||
+    sandbox.summary?.affected_production_objects !== 0;
+  const providerBoundaryOpen =
+    sandbox.summary?.provider_configured === true ||
+    sandbox.summary?.external_call_attempted === true ||
+    sandbox.summary?.credentials_touched === true ||
+    sandbox.summary?.publishing_opened === true ||
+    sandbox.summary?.production_generation_opened === true;
+  const rehearsalRows =
+    target &&
+    target.rollback_descriptor?.rollback_token === rollbackToken &&
+    target.rollback_descriptor?.rollback_scope === rollbackScope
+      ? [
+          {
+            rollback_rehearsal_row_id: "sandbox-adoption-rollback-rehearsal-row-moth-key-label",
+            target_claim_id: target.target_claim_id,
+            source_span_id: target.source_span_id,
+            source_span_locator: target.source_span_locator,
+            translated_fixture_row_id: target.translated_fixture_row_id,
+            prior_sandbox_fixture_status: target.sandbox_adopted_fixture_status,
+            rollback_token: target.rollback_descriptor.rollback_token,
+            rollback_scope: target.rollback_descriptor.rollback_scope,
+            rollback_transition: rollbackTransition,
+            post_rollback_rehearsal_status: rollbackToStatus,
+            rollback_rehearsal_success: true,
+            production_rollback_performed: false,
+            production_adoption_status: false,
+            canon_status: false,
+            profile_production_mutation_count: 0,
+            claim_production_mutation_count: 0,
+            timeline_production_mutation_count: 0,
+            story_seed_production_mutation_count: 0,
+            affected_production_objects: [],
+            provider_configured: false,
+            external_call_attempted: false,
+            credentials_touched: false,
+            publishing_opened: false,
+            production_generation_opened: false,
+            evidence_required_before_future_production_adoption: evidenceRequirements,
+            rehearsal_note: "No production rollback performed; sandbox fixture rollback rehearsed only."
+          }
+        ]
+      : [];
+
+  check(
+    "sandbox_adoption_loaded_and_passed",
+    sandbox.artifact_id === "fff-sandbox-adoption-mutation-one-claim-001" &&
+      sandbox.schemaVersion === SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_SCHEMA_VERSION &&
+      sandbox.passed === true,
+    `sandbox=${sandbox.artifact_id}/${sandbox.passed}; schema=${sandbox.schemaVersion}`
+  );
+  check(
+    "expected_sandbox_target_and_token_verified",
+    sandboxRows.length === 1 &&
+      Boolean(target) &&
+      target.target_claim_id === "multi-claim-moth-key-label" &&
+      target.source_span_id === "multi-x-object-brass-moth-key" &&
+      target.prior_ledger_status === "adoption_candidate_dry_run" &&
+      target.sandbox_adopted_fixture_status === "sandbox_adopted_fixture" &&
+      target.rollback_descriptor?.rollback_token === rollbackToken &&
+      target.rollback_descriptor?.rollback_scope === rollbackScope &&
+      target.rollback_descriptor?.rollback_to_status === rollbackToStatus &&
+      target.production_adoption_status === false &&
+      target.canon_status === false,
+    `rows=${sandboxRows.length}; target=${target?.target_claim_id || "missing"}; token=${target?.rollback_descriptor?.rollback_token || "missing"}`
+  );
+  check(
+    "rollback_rehearsal_row_created",
+    rehearsalRows.length === 1 &&
+      rehearsalRows[0].prior_sandbox_fixture_status === "sandbox_adopted_fixture" &&
+      rehearsalRows[0].rollback_transition === rollbackTransition &&
+      rehearsalRows[0].post_rollback_rehearsal_status === rollbackToStatus &&
+      rehearsalRows[0].rollback_token === rollbackToken &&
+      rehearsalRows[0].rollback_rehearsal_success === true &&
+      rehearsalRows[0].production_rollback_performed === false,
+    `rows=${rehearsalRows.length}; transition=${rehearsalRows[0]?.rollback_transition || "none"}; post=${rehearsalRows[0]?.post_rollback_rehearsal_status || "none"}`
+  );
+  check(
+    "production_mutation_boundary_closed",
+    productionBoundaryOpen === false &&
+      sandboxRows.every((row) =>
+        row.production_adoption_status === false &&
+        row.profile_production_mutation_count === 0 &&
+        row.claim_production_mutation_count === 0 &&
+        row.timeline_production_mutation_count === 0 &&
+        row.story_seed_production_mutation_count === 0 &&
+        Array.isArray(row.affected_production_objects) &&
+        row.affected_production_objects.length === 0
+      ) &&
+      rehearsalRows.every((row) =>
+        row.production_adoption_status === false &&
+        row.profile_production_mutation_count === 0 &&
+        row.claim_production_mutation_count === 0 &&
+        row.timeline_production_mutation_count === 0 &&
+        row.story_seed_production_mutation_count === 0 &&
+        Array.isArray(row.affected_production_objects) &&
+        row.affected_production_objects.length === 0
+      ),
+    `productionOpen=${productionBoundaryOpen}; affected=${target?.affected_production_objects?.length ?? "missing"}`
+  );
+  check(
+    "canon_and_provider_boundaries_closed",
+    providerBoundaryOpen === false &&
+      sandboxRows.every((row) =>
+        row.canon_status === false &&
+        row.provider_configured === false &&
+        row.external_call_attempted === false &&
+        row.credentials_touched === false &&
+        row.publishing_opened === false &&
+        row.production_generation_opened === false
+      ) &&
+      rehearsalRows.every((row) =>
+        row.canon_status === false &&
+        row.provider_configured === false &&
+        row.external_call_attempted === false &&
+        row.credentials_touched === false &&
+        row.publishing_opened === false &&
+        row.production_generation_opened === false
+      ),
+    `providerOpen=${providerBoundaryOpen}; canon=${target?.canon_status ?? "missing"}`
+  );
+  check(
+    "future_production_evidence_requirements_preserved",
+    evidenceRequirements.length >= 4 &&
+      rehearsalRows.length === 1 &&
+      rehearsalRows[0].evidence_required_before_future_production_adoption.length === evidenceRequirements.length,
+    `evidence=${evidenceRequirements.length}; rehearsalRows=${rehearsalRows.length}`
+  );
+  check(
+    "manifest_and_review_memory_registered",
+    manifestValidationCommand.includes("smoke-sandbox-adoption-rollback-rehearsal") &&
+      manifest.preserves?.includes("fff-sandbox-adoption-rollback-rehearsal-001") &&
+      reviewMemory.some((entry) => entry.artifact_id === "fff-sandbox-adoption-rollback-rehearsal-001"),
+    `includesSmoke=${manifestValidationCommand.includes("smoke-sandbox-adoption-rollback-rehearsal")}; preserves=${manifest.preserves?.includes("fff-sandbox-adoption-rollback-rehearsal-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-sandbox-adoption-rollback-rehearsal-001")}`
+  );
+
+  return {
+    schemaVersion: SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_SCHEMA_VERSION,
+    artifact_id: "fff-sandbox-adoption-rollback-rehearsal-001",
+    title: "Fast Fiction Factory Sandbox Adoption Rollback Rehearsal",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    input_readbacks: {
+      sandbox_adoption_mutation_one_claim_result_path: toRepoPath(sandboxPath),
+      adoption_candidate_ledger_dry_run_result_path: sandbox.input_readbacks?.adoption_candidate_ledger_dry_run_result_path || DEFAULT_ADOPTION_CANDIDATE_LEDGER_DRY_RUN_OUTPUT,
+      downstream_adoption_semantics_design_result_path: sandbox.input_readbacks?.downstream_adoption_semantics_design_result_path || DEFAULT_DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_OUTPUT,
+      held_claim_adoption_preflight_result_path: sandbox.input_readbacks?.held_claim_adoption_preflight_result_path || DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT
+    },
+    authorized_rollback_rehearsal_boundary: {
+      target_claim_id: "multi-claim-moth-key-label",
+      rollback_scope: rollbackScope,
+      expected_rollback_token: rollbackToken,
+      expected_transition: rollbackTransition,
+      production_adoption_allowed: false,
+      canon_allowed: false,
+      provider_api_credential_allowed: false,
+      publishing_or_production_generation_allowed: false,
+      affected_production_objects: []
+    },
+    sandbox_rollback_rehearsal_rows: rehearsalRows,
+    rollback_rehearsal_summary: {
+      target_claim_id: target?.target_claim_id || "missing",
+      source_span_id: target?.source_span_id || "missing",
+      prior_sandbox_fixture_status: target?.sandbox_adopted_fixture_status || "missing",
+      rollback_token: target?.rollback_descriptor?.rollback_token || "missing",
+      rollback_scope: target?.rollback_descriptor?.rollback_scope || "missing",
+      rollback_transition: rollbackTransition,
+      post_rollback_rehearsal_status: rollbackToStatus,
+      production_rollback_performed: false,
+      rehearsal_result: rehearsalRows.length === 1 ? "success" : "failed"
+    },
+    summary: {
+      sandbox_adopted_rows_inspected: sandboxRows.length,
+      rollback_rehearsals_recorded: rehearsalRows.length,
+      successful_rollback_rehearsal_rows: rehearsalRows.filter((row) => row.rollback_rehearsal_success === true).length,
+      production_adopted_claims: 0,
+      canonized_claims: 0,
+      profile_production_mutation_count: 0,
+      claim_production_mutation_count: 0,
+      timeline_production_mutation_count: 0,
+      story_seed_production_mutation_count: 0,
+      affected_production_objects: 0,
+      provider_configured: false,
+      external_call_attempted: false,
+      credentials_touched: false,
+      publishing_opened: false,
+      production_generation_opened: false,
+      failures: failures.length
+    },
+    what_this_rehearsal_proves: [
+      "The authorized sandbox-adopted fixture row can be read back with the expected rollback token.",
+      "The rehearsed rollback target is adoption_candidate_dry_run, scoped to the sandbox fixture row only.",
+      "Production Profile, Claim, Timeline, Story Seed, provider, credential, canon, publishing, and production routes remain closed."
+    ],
+    what_this_rehearsal_does_not_prove: [
+      "It does not perform a production rollback.",
+      "It does not adopt or canonize the claim.",
+      "It does not write Profile, Claim, Timeline, Story Seed, database, provider output, credentials, publishing, or production surfaces."
+    ],
+    rehearsal_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -6719,6 +6975,8 @@ Usage:
   node tools/fff-state.mjs smoke-adoption-candidate-ledger-dry-run <downstream-adoption-semantics-design-result.json> [output.json]
   node tools/fff-state.mjs validate-sandbox-adoption-mutation-one-claim <adoption-candidate-ledger-dry-run-result.json>
   node tools/fff-state.mjs smoke-sandbox-adoption-mutation-one-claim <adoption-candidate-ledger-dry-run-result.json> [output.json]
+  node tools/fff-state.mjs validate-sandbox-adoption-rollback-rehearsal <sandbox-adoption-mutation-one-claim-result.json>
+  node tools/fff-state.mjs smoke-sandbox-adoption-rollback-rehearsal <sandbox-adoption-mutation-one-claim-result.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
@@ -6776,6 +7034,9 @@ Default adoption candidate ledger dry-run output:
 
 Default sandbox adoption mutation one-claim output:
   ${DEFAULT_SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT}
+
+Default sandbox adoption rollback rehearsal output:
+  ${DEFAULT_SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_OUTPUT}
 
 Default very broad source-span shape audit output:
   ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}

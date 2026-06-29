@@ -2,7 +2,7 @@
   "schemaVersion": "fff.translationPolicySourceOfTruthBoundary.v1",
   "artifact_id": "fff-translation-policy-source-of-truth-boundary-001",
   "title": "Fast Fiction Factory Translation Policy Source-of-Truth Boundary",
-  "generatedAt": "2026-06-29T16:58:10.687Z",
+  "generatedAt": "2026-06-29T17:18:40.531Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
@@ -225,7 +225,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=24; policyMemory=true; provenanceMemory=true; reviewInput=freeform"
+      "detail": "reviewMemory=25; policyMemory=true; provenanceMemory=true; reviewInput=freeform"
     }
   },
   "failures": [],

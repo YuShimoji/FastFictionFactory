@@ -2,7 +2,7 @@
   "schemaVersion": "fff.downstreamSourceSpanAdoptionGate.v1",
   "artifact_id": "fff-downstream-source-span-adoption-gate-001",
   "title": "Fast Fiction Factory Downstream Source-Span Adoption Gate",
-  "generatedAt": "2026-06-29T16:58:12.191Z",
+  "generatedAt": "2026-06-29T17:18:41.678Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "source_artifact_id": "fff-source-span-routing-review-pack-001",

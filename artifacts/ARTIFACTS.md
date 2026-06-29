@@ -97,6 +97,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary sandbox fixture mutation under `fff-contradictory-claim-guard-001`; 1 sandbox row moves from `adoption_candidate_dry_run` to `sandbox_adopted_fixture`, rollback token is recorded, and production adopted claims, canonized claims, Profile / Claim / Timeline / Story Seed production mutations, provider/API calls, credentials, publishing, and production generation remain zero or false.
 
+## fff-sandbox-adoption-rollback-rehearsal-001
+
+- Title: Fast Fiction Factory Sandbox Adoption Rollback Rehearsal
+- Purpose: Rehearse rollback of the previously sandbox-adopted fixture row for exactly `multi-claim-moth-key-label` without production rollback, production adoption, canonization, provider/API work, publishing, or production generation.
+- Repo relative path: `docs/review/sandbox-adoption-rollback-rehearsal.md`
+- Readback result: `artifacts/sandbox-adoption-rollback-rehearsal-result.json`
+- Input readback: `artifacts/sandbox-adoption-mutation-one-claim-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-sandbox-adoption-rollback-rehearsal artifacts/sandbox-adoption-mutation-one-claim-result.json artifacts/sandbox-adoption-rollback-rehearsal-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary sandbox rollback rehearsal under `fff-contradictory-claim-guard-001`; 1 sandbox-adopted row is inspected, the expected rollback token is verified, 1 rehearsal row records `sandbox_adopted_fixture -> adoption_candidate_dry_run`, and production adopted claims, canonized claims, Profile / Claim / Timeline / Story Seed production mutations, provider/API calls, credentials, publishing, and production generation remain zero or false.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

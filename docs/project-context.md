@@ -34,6 +34,7 @@ The active slice is complete enough for local readback:
 - Downstream adoption semantics design doc/result: `docs/review/downstream-adoption-semantics-design.md`, `artifacts/downstream-adoption-semantics-design-result.json`
 - Adoption candidate ledger dry-run doc/result: `docs/review/adoption-candidate-ledger-dry-run.md`, `artifacts/adoption-candidate-ledger-dry-run-result.json`
 - Sandbox adoption mutation one-claim doc/result: `docs/review/sandbox-adoption-mutation-one-claim.md`, `artifacts/sandbox-adoption-mutation-one-claim-result.json`
+- Sandbox adoption rollback rehearsal doc/result: `docs/review/sandbox-adoption-rollback-rehearsal.md`, `artifacts/sandbox-adoption-rollback-rehearsal-result.json`
 - Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
 - Missing fixture probe doc/result: `docs/review/missing-fixture-class-probe.md`, `artifacts/missing-fixture-class-probe-result.json`
 - Weak-span repair doc/result: `docs/review/weak-span-repair.md`, `artifacts/weak-span-repair-result.json`
@@ -71,7 +72,7 @@ Route hygiene checkpoint, 2026-06-29 JST:
 - The active Fast Fiction Factory artifact remains
   `fff-contradictory-claim-guard-001`.
 
-Last verified on 2026-06-29:
+Last verified on 2026-06-30:
 
 ```powershell
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
@@ -97,6 +98,7 @@ node .\tools\fff-state.mjs smoke-held-claim-adoption-preflight .\artifacts\trans
 node .\tools\fff-state.mjs smoke-downstream-adoption-semantics-design .\artifacts\held-claim-adoption-preflight-result.json .\artifacts\downstream-adoption-semantics-design-result.json
 node .\tools\fff-state.mjs smoke-adoption-candidate-ledger-dry-run .\artifacts\downstream-adoption-semantics-design-result.json .\artifacts\adoption-candidate-ledger-dry-run-result.json
 node .\tools\fff-state.mjs smoke-sandbox-adoption-mutation-one-claim .\artifacts\adoption-candidate-ledger-dry-run-result.json .\artifacts\sandbox-adoption-mutation-one-claim-result.json
+node .\tools\fff-state.mjs smoke-sandbox-adoption-rollback-rehearsal .\artifacts\sandbox-adoption-mutation-one-claim-result.json .\artifacts\sandbox-adoption-rollback-rehearsal-result.json
 node .\tools\fff-state.mjs smoke-very-broad-source-span-shape-audit .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\very-broad-source-span-shape-audit-result.json
 ```
 
@@ -114,6 +116,7 @@ Result summary:
 - Downstream adoption semantics design passes as design-only context: 1 preflight candidate receives explicit status semantics, `human_accepted_downstream_adoption` is defined but unreachable now, 10 rollback conditions are documented, 4 mutation targets are blocked, and Profile / Claim / Timeline / Story Seed mutations remain 0.
 - Adoption candidate ledger dry-run passes as non-mutating context: 1 source-backed held candidate is recorded as `adoption_candidate_dry_run`, with source span, held claim, prior status, rollback/rejection vocabulary, future-only downstream targets, 0 adopted claims, 0 canonized claims, 0 Profile / Claim / Timeline / Story Seed mutations, and no provider/API call or credential.
 - Sandbox adoption mutation one-claim passes as fixture-only context: 1 authorized sandbox row records `multi-claim-moth-key-label` moving to `sandbox_adopted_fixture`, rollback token is present, production adopted claims remain 0, canonized claims remain 0, Profile / Claim / Timeline / Story Seed production mutations remain 0, and provider/API/credential/publishing/production generation remain closed.
+- Sandbox adoption rollback rehearsal passes as fixture-only rollback context: 1 sandbox-adopted row for `multi-claim-moth-key-label` is inspected, the expected rollback token is verified, 1 rehearsal row records `sandbox_adopted_fixture -> adoption_candidate_dry_run`, production rollback performed remains false, production adopted claims remain 0, canonized claims remain 0, Profile / Claim / Timeline / Story Seed production mutations remain 0, and provider/API/credential/publishing/production generation remain closed.
 - Very broad source-span shape audit passes as audit-only context: the 2 current broad rows remain resolved by `fff-broad-span-split-001`, 0 broad fixture files are added, and the source-pack / downstream / provider no-call chain remains clean.
 - Downstream adoption gate parses 60 source-pack rows and reports 55 downstream Profile / Claim / Timeline review candidates, all 55 source-tracked, with 0 malformed/missing span candidates, 0 unsafe routing candidates, 28 human-owned candidates held, 0 non-held human-owned candidates, and 0 adopted Profile / Claim / Timeline candidates.
 - Malformed/missing source-span guard remains closed with 3 invalid elements rejected, 0 accepted routed candidates, and 9 validator fixtures in the smoke matrix.
@@ -153,7 +156,7 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to production downstream adoption implementation after a separate explicit production mutation authorization and target rollback ownership, explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior, broader translated memo coverage if it adds meaningful rows beyond the two-row minimum, or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
+First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to production downstream adoption implementation after a separate explicit production mutation authorization and target rollback ownership, explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior, broader translated memo coverage if it adds meaningful rows beyond the two-row minimum, or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
 
 ## Handoff Path
 

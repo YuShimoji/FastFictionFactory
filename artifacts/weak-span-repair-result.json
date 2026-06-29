@@ -2,7 +2,7 @@
   "schemaVersion": "fff.weakSpanRepair.v1",
   "artifact_id": "fff-weak-span-repair-001",
   "title": "Fast Fiction Factory Weak Source-Span Repair",
-  "generatedAt": "2026-06-29T16:58:10.183Z",
+  "generatedAt": "2026-06-29T17:18:39.664Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "source_audit_artifact_id": "fff-source-span-quality-audit-001",

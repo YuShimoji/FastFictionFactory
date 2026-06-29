@@ -1,0 +1,133 @@
+{
+  "schemaVersion": "fff.sandboxAdoptionRollbackRehearsal.v1",
+  "artifact_id": "fff-sandbox-adoption-rollback-rehearsal-001",
+  "title": "Fast Fiction Factory Sandbox Adoption Rollback Rehearsal",
+  "generatedAt": "2026-06-29T17:18:41.171Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_readbacks": {
+    "sandbox_adoption_mutation_one_claim_result_path": "artifacts/sandbox-adoption-mutation-one-claim-result.json",
+    "adoption_candidate_ledger_dry_run_result_path": "artifacts/adoption-candidate-ledger-dry-run-result.json",
+    "downstream_adoption_semantics_design_result_path": "artifacts/downstream-adoption-semantics-design-result.json",
+    "held_claim_adoption_preflight_result_path": "artifacts/held-claim-adoption-preflight-result.json"
+  },
+  "authorized_rollback_rehearsal_boundary": {
+    "target_claim_id": "multi-claim-moth-key-label",
+    "rollback_scope": "sandbox fixture row only",
+    "expected_rollback_token": "rollback-sandbox-adoption-moth-key-label-to-adoption-candidate-dry-run",
+    "expected_transition": "sandbox_adopted_fixture -> adoption_candidate_dry_run",
+    "production_adoption_allowed": false,
+    "canon_allowed": false,
+    "provider_api_credential_allowed": false,
+    "publishing_or_production_generation_allowed": false,
+    "affected_production_objects": []
+  },
+  "sandbox_rollback_rehearsal_rows": [
+    {
+      "rollback_rehearsal_row_id": "sandbox-adoption-rollback-rehearsal-row-moth-key-label",
+      "target_claim_id": "multi-claim-moth-key-label",
+      "source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "translated_fixture_row_id": "translated-min-row-moth-key-label",
+      "prior_sandbox_fixture_status": "sandbox_adopted_fixture",
+      "rollback_token": "rollback-sandbox-adoption-moth-key-label-to-adoption-candidate-dry-run",
+      "rollback_scope": "sandbox fixture row only",
+      "rollback_transition": "sandbox_adopted_fixture -> adoption_candidate_dry_run",
+      "post_rollback_rehearsal_status": "adoption_candidate_dry_run",
+      "rollback_rehearsal_success": true,
+      "production_rollback_performed": false,
+      "production_adoption_status": false,
+      "canon_status": false,
+      "profile_production_mutation_count": 0,
+      "claim_production_mutation_count": 0,
+      "timeline_production_mutation_count": 0,
+      "story_seed_production_mutation_count": 0,
+      "affected_production_objects": [],
+      "provider_configured": false,
+      "external_call_attempted": false,
+      "credentials_touched": false,
+      "publishing_opened": false,
+      "production_generation_opened": false,
+      "evidence_required_before_future_production_adoption": [
+        "explicit human approval for this candidate",
+        "target class selection among Profile, Claim, Timeline, or a deliberately deferred Story Seed path",
+        "source refs and original source-span readback",
+        "contradiction, malformed-span, downstream-gate, and provider-boundary checks passing",
+        "rollback condition and owner recorded before mutation"
+      ],
+      "rehearsal_note": "No production rollback performed; sandbox fixture rollback rehearsed only."
+    }
+  ],
+  "rollback_rehearsal_summary": {
+    "target_claim_id": "multi-claim-moth-key-label",
+    "source_span_id": "multi-x-object-brass-moth-key",
+    "prior_sandbox_fixture_status": "sandbox_adopted_fixture",
+    "rollback_token": "rollback-sandbox-adoption-moth-key-label-to-adoption-candidate-dry-run",
+    "rollback_scope": "sandbox fixture row only",
+    "rollback_transition": "sandbox_adopted_fixture -> adoption_candidate_dry_run",
+    "post_rollback_rehearsal_status": "adoption_candidate_dry_run",
+    "production_rollback_performed": false,
+    "rehearsal_result": "success"
+  },
+  "summary": {
+    "sandbox_adopted_rows_inspected": 1,
+    "rollback_rehearsals_recorded": 1,
+    "successful_rollback_rehearsal_rows": 1,
+    "production_adopted_claims": 0,
+    "canonized_claims": 0,
+    "profile_production_mutation_count": 0,
+    "claim_production_mutation_count": 0,
+    "timeline_production_mutation_count": 0,
+    "story_seed_production_mutation_count": 0,
+    "affected_production_objects": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "publishing_opened": false,
+    "production_generation_opened": false,
+    "failures": 0
+  },
+  "what_this_rehearsal_proves": [
+    "The authorized sandbox-adopted fixture row can be read back with the expected rollback token.",
+    "The rehearsed rollback target is adoption_candidate_dry_run, scoped to the sandbox fixture row only.",
+    "Production Profile, Claim, Timeline, Story Seed, provider, credential, canon, publishing, and production routes remain closed."
+  ],
+  "what_this_rehearsal_does_not_prove": [
+    "It does not perform a production rollback.",
+    "It does not adopt or canonize the claim.",
+    "It does not write Profile, Claim, Timeline, Story Seed, database, provider output, credentials, publishing, or production surfaces."
+  ],
+  "rehearsal_checks": {
+    "sandbox_adoption_loaded_and_passed": {
+      "passed": true,
+      "detail": "sandbox=fff-sandbox-adoption-mutation-one-claim-001/true; schema=fff.sandboxAdoptionMutationOneClaim.v1"
+    },
+    "expected_sandbox_target_and_token_verified": {
+      "passed": true,
+      "detail": "rows=1; target=multi-claim-moth-key-label; token=rollback-sandbox-adoption-moth-key-label-to-adoption-candidate-dry-run"
+    },
+    "rollback_rehearsal_row_created": {
+      "passed": true,
+      "detail": "rows=1; transition=sandbox_adopted_fixture -> adoption_candidate_dry_run; post=adoption_candidate_dry_run"
+    },
+    "production_mutation_boundary_closed": {
+      "passed": true,
+      "detail": "productionOpen=false; affected=0"
+    },
+    "canon_and_provider_boundaries_closed": {
+      "passed": true,
+      "detail": "providerOpen=false; canon=false"
+    },
+    "future_production_evidence_requirements_preserved": {
+      "passed": true,
+      "detail": "evidence=5; rehearsalRows=1"
+    },
+    "manifest_and_review_memory_registered": {
+      "passed": true,
+      "detail": "includesSmoke=true; preserves=true; memory=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}
