@@ -2,7 +2,7 @@
   "schemaVersion": "fff.translatedMemoFixtureAudit.v1",
   "artifact_id": "fff-translated-memo-fixture-audit-001",
   "title": "Fast Fiction Factory Translated / Multilingual Memo Fixture Audit",
-  "generatedAt": "2026-06-29T03:08:51.297Z",
+  "generatedAt": "2026-06-29T03:51:45.515Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
@@ -72,7 +72,7 @@
       "canon promotion",
       "contradictory claim truth decision"
     ],
-    "next_nonredundant_axis": "very broad source-span shape only if coverage remains the bottleneck; otherwise provider adapter implementation only after explicit authorization"
+    "next_nonredundant_axis": "translated memo fixture that follows the source-of-truth boundary, or provider adapter implementation only after explicit authorization"
   },
   "coverage_audit": {
     "existing_multilingual_coverage": {
@@ -91,7 +91,7 @@
       "fixture_matches": [],
       "gap_present_in_source_pack": true,
       "audit_decision": "not_added_in_this_slice",
-      "reason": "A useful translated memo fixture needs source-of-truth language, translation provenance, and original-vs-translation span ownership policy before it can add decision value."
+      "reason": "A useful translated memo fixture must preserve original source spans and declare derivative translation provenance before it can add decision value."
     },
     "remaining_fixture_class_candidates": [
       "translated memo text",
@@ -131,9 +131,9 @@
     "failures": 0
   },
   "translated_memo_fixture_decision": {
-    "state": "deferred",
+    "state": "policy_boundary_ready_fixture_not_added",
     "owner": "human product owner for translation/source-of-truth policy; agent for future bounded fixture once policy exists",
-    "next_move": "Do not add translated memo text until translation provenance and span ownership have concrete decision value.",
+    "next_move": "A translated memo fixture can be a separate narrow slice if it preserves original spans, declares translation provenance, and keeps provider/API work closed.",
     "requirements_before_adding": [
       "source-of-truth language policy",
       "translation provenance policy",
@@ -172,7 +172,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=18; reviewInput=freeform; reviewCard=false; observation=false"
+      "detail": "reviewMemory=19; reviewInput=freeform; reviewCard=false; observation=false"
     }
   },
   "failures": [],

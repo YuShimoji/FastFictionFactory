@@ -28,6 +28,7 @@ The active slice is complete enough for local readback:
 - Downstream scope lock doc/result: `docs/review/downstream-adoption-gate-scope-lock.md`, `artifacts/downstream-adoption-gate-scope-lock-result.json`
 - Translated memo fixture audit doc/result: `docs/review/translated-memo-fixture-audit.md`, `artifacts/translated-memo-fixture-audit-result.json`
 - Translation provenance/source-span readback doc/result: `docs/review/translation-provenance-source-span-readback.md`, `artifacts/translation-provenance-source-span-readback-result.json`
+- Translation policy source-of-truth boundary doc/result: `docs/review/translation-policy-source-of-truth-boundary.md`, `artifacts/translation-policy-source-of-truth-boundary-result.json`
 - Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
 - Missing fixture probe doc/result: `docs/review/missing-fixture-class-probe.md`, `artifacts/missing-fixture-class-probe-result.json`
 - Weak-span repair doc/result: `docs/review/weak-span-repair.md`, `artifacts/weak-span-repair-result.json`
@@ -65,7 +66,7 @@ Route hygiene checkpoint, 2026-06-29 JST:
 - The active Fast Fiction Factory artifact remains
   `fff-contradictory-claim-guard-001`.
 
-Last verified on 2026-06-24:
+Last verified on 2026-06-29:
 
 ```powershell
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
@@ -85,6 +86,7 @@ node .\tools\fff-state.mjs smoke-provider-envelope-readiness-no-call .\artifacts
 node .\tools\fff-state.mjs smoke-remaining-fixture-coverage-one-class .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\remaining-fixture-coverage-one-class-result.json
 node .\tools\fff-state.mjs smoke-translated-memo-fixture-audit .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\translated-memo-fixture-audit-result.json
 node .\tools\fff-state.mjs smoke-translation-provenance-source-span-readback .\artifacts\extraction-adapter-outputs\multilingual-memo-notes.json .\artifacts\translation-provenance-source-span-readback-result.json
+node .\tools\fff-state.mjs smoke-translation-policy-source-of-truth-boundary .\artifacts\translation-provenance-source-span-readback-result.json .\artifacts\translation-policy-source-of-truth-boundary-result.json
 node .\tools\fff-state.mjs smoke-very-broad-source-span-shape-audit .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\very-broad-source-span-shape-audit-result.json
 ```
 
@@ -96,6 +98,7 @@ Result summary:
 - Multilingual fixture coverage passes with 5 adapter fixture outputs, 60 matrix elements, 12 selected multilingual fixture elements, 4 non-ASCII source-span elements, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held review defaults, and 0 human-owned adopt suggestions.
 - Translated memo fixture audit passes as audit-only context: existing multilingual coverage is preserved, translated memo text remains blocked on source-of-truth language, translation provenance, and source-span ownership policy, and no translated fixture, translation API, translation policy, provider behavior, downstream adoption, or canon promotion is added.
 - Translation provenance/source-span readback passes as readback-only context: 3 selected multilingual source-span to derived-claim relations and 1 inline-gloss boundary row are recorded, all 4 source spans match the raw memo and source-pack rows, all 3 derived claims remain held and source-backed, translated fixture count remains 0, and no provider/API call, credential, downstream adoption, or canon promotion is added.
+- Translation policy source-of-truth boundary passes as boundary-only context: original multilingual author memo text is the source-of-truth language surface, original sourceSpan locators own evidence, future translated spans must be derivative/provenance-bound, inline gloss cannot create an unowned claim, all 3 derived claims remain held, and no translated fixture, provider/API call, credential, downstream adoption, or canon promotion is added.
 - Very broad source-span shape audit passes as audit-only context: the 2 current broad rows remain resolved by `fff-broad-span-split-001`, 0 broad fixture files are added, and the source-pack / downstream / provider no-call chain remains clean.
 - Downstream adoption gate parses 60 source-pack rows and reports 55 downstream Profile / Claim / Timeline review candidates, all 55 source-tracked, with 0 malformed/missing span candidates, 0 unsafe routing candidates, 28 human-owned candidates held, 0 non-held human-owned candidates, and 0 adopted Profile / Claim / Timeline candidates.
 - Malformed/missing source-span guard remains closed with 3 invalid elements rejected, 0 accepted routed candidates, and 9 validator fixtures in the smoke matrix.
@@ -135,7 +138,7 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior; source-of-truth language and original-vs-translation span ownership policy before any translated memo fixture; or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
+First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to a translated memo fixture that follows the new source-of-truth and derivative-span policy; explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior; or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
 
 ## Handoff Path
 

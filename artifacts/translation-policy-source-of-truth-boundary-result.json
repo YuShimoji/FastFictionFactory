@@ -1,0 +1,233 @@
+{
+  "schemaVersion": "fff.translationPolicySourceOfTruthBoundary.v1",
+  "artifact_id": "fff-translation-policy-source-of-truth-boundary-001",
+  "title": "Fast Fiction Factory Translation Policy Source-of-Truth Boundary",
+  "generatedAt": "2026-06-29T03:51:45.618Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_readbacks": {
+    "provenance_readback_path": "artifacts/translation-provenance-source-span-readback-result.json",
+    "source_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+    "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    "translated_memo_fixture_audit_result_path": "artifacts/translated-memo-fixture-audit-result.json",
+    "provider_envelope_readiness_no_call_result_path": "artifacts/provider-envelope-readiness-no-call-result.json",
+    "provider_adapter_authorization_readiness_result_path": "artifacts/provider-adapter-authorization-readiness-result.json",
+    "contradictory_claim_guard_result_path": "artifacts/contradictory-claim-guard-result.json",
+    "downstream_source_span_adoption_gate_result_path": "artifacts/downstream-source-span-adoption-gate-result.json"
+  },
+  "source_of_truth_language": {
+    "value": "original_author_memo_multilingual_text",
+    "rule": "The original author memo text, including mixed-language phrases exactly as written, owns source-span authority.",
+    "current_source_ref_id": "src-local-adapter-raw-memo-005",
+    "current_source_ref_trust": "author_memo",
+    "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    "source_spans_checked": 4,
+    "source_span_mismatches": 0
+  },
+  "original_span_ownership": {
+    "owner": "original_author_memo",
+    "rule": "Original sourceSpan char offsets remain the evidence owner for extracted elements and generated claims.",
+    "checked_source_pack_rows": 3,
+    "source_pack_missing_ids": [],
+    "locator_policy": "artifact path plus char start/end points at the original memo, not at translated prose."
+  },
+  "translation_span_ownership": {
+    "owner": "declared_derivative_translation_only",
+    "rule": "A translated span may be added only as derivative evidence with explicit provenance back to original memo spans; it cannot replace the original source span.",
+    "current_translated_fixture_added": false,
+    "current_external_translation_rows": 0,
+    "required_before_future_translated_span": [
+      "translator or generator provenance",
+      "source original span locator",
+      "translated span locator or text owner",
+      "no provider/API use unless explicitly authorized"
+    ]
+  },
+  "inline_gloss_boundary": {
+    "owner": "author_memo_inline_text",
+    "rule": "Inline gloss may be cited only when the gloss text already exists in the author memo; it is not an external translation and cannot create an unowned claim.",
+    "boundary_source_item_id": "multi-x-placeholder-translation-boundary",
+    "boundary_span_text": "English gloss is in-line only",
+    "target_claim_ids": [],
+    "review_status": "hold",
+    "creates_unowned_claim": false
+  },
+  "derived_claim_promotion_rule": {
+    "rule": "Translation or gloss-derived claims start held and source-backed; auto-adopt, provisional promotion, and canon promotion are blocked until human review.",
+    "derived_claims_checked": 3,
+    "held_derived_claims": 3,
+    "claim_promotion_leaks": [],
+    "downstream_adopted_candidates": 0
+  },
+  "contradiction_guard_expectation": {
+    "rule": "If translation/gloss evidence conflicts with another claim, both sides must stay source-backed, reciprocal where applicable, uncertain, and held for human review.",
+    "guard_artifact_id": "fff-contradictory-claim-guard-001",
+    "held_conflicting_claims": 2,
+    "adopted_or_provisional_conflicting_claims": 0,
+    "direct_accepted_claim_elements": 0
+  },
+  "translated_fixture_allowed_when": {
+    "current_repo_action": "not_added_in_this_slice",
+    "allowed_for_next_slice_if": [
+      "original author memo text remains the source-of-truth span owner",
+      "translated text declares translator/provenance and links back to original source spans",
+      "inline gloss remains author memo text only when it already appears in the original memo",
+      "translated or gloss-derived claim candidates start held and cannot auto-promote to canon",
+      "contradictory or high-risk derived claims stay source-backed, uncertain, and human-owned",
+      "the translated fixture is added only when it reduces a concrete coverage bottleneck"
+    ],
+    "translated_fixture_gap_present": true,
+    "coverage_bottleneck_must_be_named": true
+  },
+  "provider_adapter_blocked_until": {
+    "blocked": true,
+    "requirements": [
+      "provider choice",
+      "credential and secret handling",
+      "endpoint",
+      "transport behavior",
+      "external call permission",
+      "timeout and retry policy",
+      "all local validation gates still passing before provider output is imported"
+    ],
+    "current_provider_configured": false,
+    "current_external_call_attempted": false,
+    "current_credentials_touched": false,
+    "authorization_readiness_artifact_id": "fff-provider-adapter-authorization-readiness-001"
+  },
+  "policy_application_rows": [
+    {
+      "source_item_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "source_span_owner": "original_author_memo",
+      "source_of_truth_language": "original_author_memo_multilingual_text",
+      "translation_or_normalization_mode": "inline_multilingual_label_preserved",
+      "external_translation_used": false,
+      "derived_claim_id": "multi-claim-moth-key-label",
+      "derived_claim_review_status": "hold",
+      "promotion_allowed_without_human_review": false
+    },
+    {
+      "source_item_id": "multi-x-organization-archivists",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=180-240",
+      "source_span_owner": "original_author_memo",
+      "source_of_truth_language": "original_author_memo_multilingual_text",
+      "translation_or_normalization_mode": "mixed_language_record_phrase_preserved",
+      "external_translation_used": false,
+      "derived_claim_id": "multi-claim-clerical-error",
+      "derived_claim_review_status": "hold",
+      "promotion_allowed_without_human_review": false
+    },
+    {
+      "source_item_id": "multi-x-event-noon-ring",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=124-177",
+      "source_span_owner": "original_author_memo",
+      "source_of_truth_language": "original_author_memo_multilingual_text",
+      "translation_or_normalization_mode": "inline_english_gloss_used_as_author_memo_text",
+      "external_translation_used": false,
+      "derived_claim_id": "multi-claim-noon-ring",
+      "derived_claim_review_status": "hold",
+      "promotion_allowed_without_human_review": false
+    }
+  ],
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-translation-provenance-source-span-readback-001",
+    "prior_review_count": 0,
+    "axis": "translation_policy_source_of_truth_boundary",
+    "what_changed": "The repo now records how original author memo text, derivative translation text, inline gloss text, and held derived claims are owned before translated fixture or provider work.",
+    "what_this_review_decides": "No user review is requested; this is a local deterministic boundary for future translated fixture work.",
+    "not_asking": [
+      "translation quality approval",
+      "provider choice",
+      "credentials",
+      "model/API call approval",
+      "translated fixture creation",
+      "downstream adoption implementation",
+      "canon promotion",
+      "contradictory claim truth decision"
+    ],
+    "next_nonredundant_axis": "a translated memo fixture that follows this policy, or real provider adapter implementation only after explicit authorization"
+  },
+  "summary": {
+    "policy_rules_recorded": 8,
+    "source_claim_rows_checked": 3,
+    "inline_gloss_boundary_rows_checked": 1,
+    "original_source_spans_checked": 4,
+    "original_source_span_mismatches": 0,
+    "source_pack_missing_ids": 0,
+    "translated_fixture_added": false,
+    "external_translation_rows": 0,
+    "derived_claims_checked": 3,
+    "held_derived_claims": 3,
+    "claim_promotion_leaks": 0,
+    "contradiction_guard_preserved": true,
+    "downstream_adopted_candidates": 0,
+    "provider_adapter_blocked": true,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "what_this_policy_proves": [
+    "The current multilingual memo uses original author memo text as source-of-truth evidence for source spans.",
+    "Inline gloss is bounded as author memo text, not as an external translation or automatic claim source.",
+    "Derived claims from multilingual or gloss-like evidence remain held, source-backed, and blocked from automatic canon promotion.",
+    "A future translated fixture now has concrete ownership requirements before it can be useful."
+  ],
+  "what_this_policy_does_not_prove": [
+    "It does not create a translated fixture.",
+    "It does not verify translation quality or choose a translation provider.",
+    "It does not call an API, configure credentials, implement provider transport, or import provider output.",
+    "It does not adopt downstream candidates or decide Toma fate, brass moth truth, Council motive, or contradictory claim truth."
+  ],
+  "next_boundary_use": {
+    "translated_fixture": "Allowed only as a separate narrow slice that preserves original source spans and declares translation provenance.",
+    "provider_adapter": "Still blocked until provider authorization requirements are explicit and local gates pass.",
+    "claim_ledger": "Do not accept translated or gloss-derived claims without human review and contradiction checks."
+  },
+  "boundary_checks": {
+    "active_artifact_and_provenance_readback_loaded": {
+      "passed": true,
+      "detail": "active=fff-contradictory-claim-guard-001; provenance=fff-translation-provenance-source-span-readback-001/true"
+    },
+    "manifest_validation_includes_policy_boundary": {
+      "passed": true,
+      "detail": "includes smoke=true"
+    },
+    "source_of_truth_is_original_author_memo": {
+      "passed": true,
+      "detail": "run=local-extract-multilingual-memo-notes-001; trust=author_memo; spans=4; mismatches=0; sourcePackMissing=none"
+    },
+    "translation_span_requires_derivative_provenance": {
+      "passed": true,
+      "detail": "externalRows=none; translatedFixtureAdded=false; gap=true"
+    },
+    "inline_gloss_cannot_create_unowned_claim": {
+      "passed": true,
+      "detail": "boundary=multi-x-placeholder-translation-boundary; claims=0; status=hold"
+    },
+    "derived_claim_promotion_blocked": {
+      "passed": true,
+      "detail": "derived=3; held=3; leaks=none; downstream=0"
+    },
+    "contradiction_guard_expectation_preserved": {
+      "passed": true,
+      "detail": "heldConflicts=2; conflictLeaks=0; directAccepted=0; downstream=0; malformed=0"
+    },
+    "provider_adapter_blocked_until_authorized": {
+      "passed": true,
+      "detail": "provider=false; externalCall=false; credentials=false; unauthorized=6"
+    },
+    "review_nonredundancy_preserved": {
+      "passed": true,
+      "detail": "reviewMemory=19; policyMemory=true; provenanceMemory=true; reviewInput=freeform"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

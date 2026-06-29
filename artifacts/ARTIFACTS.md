@@ -22,6 +22,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no translated fixture or provider/API boundary is added.
 
+## fff-translation-policy-source-of-truth-boundary-001
+
+- Title: Fast Fiction Factory Translation Policy Source-of-Truth Boundary
+- Purpose: Define source-of-truth language, original span ownership, derivative translation ownership, inline gloss boundary, claim promotion rule, contradiction expectation, translated fixture allowance, and provider-adapter block before translated fixture or provider work.
+- Repo relative path: `docs/review/translation-policy-source-of-truth-boundary.md`
+- Readback result: `artifacts/translation-policy-source-of-truth-boundary-result.json`
+- Input readback: `artifacts/translation-provenance-source-span-readback-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-translation-policy-source-of-truth-boundary artifacts/translation-provenance-source-span-readback-result.json artifacts/translation-policy-source-of-truth-boundary-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary boundary under `fff-contradictory-claim-guard-001`; no translated fixture, provider/API call, credential, downstream adoption, or canon promotion is added.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

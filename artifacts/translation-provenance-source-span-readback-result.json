@@ -2,7 +2,7 @@
   "schemaVersion": "fff.translationProvenanceSourceSpanReadback.v1",
   "artifact_id": "fff-translation-provenance-source-span-readback-001",
   "title": "Fast Fiction Factory Translation Provenance Source-Span Readback",
-  "generatedAt": "2026-06-29T03:08:51.348Z",
+  "generatedAt": "2026-06-29T03:51:45.566Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
@@ -33,7 +33,7 @@
       "canon promotion",
       "contradictory claim truth decision"
     ],
-    "next_nonredundant_axis": "translated memo fixture only after source-of-truth language and span ownership policy have concrete decision value, or provider adapter implementation only after explicit authorization"
+    "next_nonredundant_axis": "translated memo fixture that follows the source-of-truth boundary, or provider adapter implementation only after explicit authorization"
   },
   "translation_boundary_source_item": {
     "id": "multi-x-placeholder-translation-boundary",
@@ -306,9 +306,9 @@
     "It does not adopt Profile, Claim, or Timeline candidates or decide Toma fate, brass moth truth, Council motive, or contradictory claim truth."
   ],
   "translation_policy_state": {
-    "state": "readback_available_policy_not_finalized",
+    "state": "policy_boundary_registered_fixture_not_added",
     "owner": "human product owner for translation/source-of-truth policy; agent for future bounded fixture after policy exists",
-    "next_move": "Use this readback before adding translated memo fixtures; keep provider/API work blocked until explicitly authorized.",
+    "next_move": "Use the source-of-truth boundary plus this readback before adding translated memo fixtures; keep provider/API work blocked until explicitly authorized.",
     "requirements_before_translated_fixture": [
       "source-of-truth language policy",
       "translation provenance policy",
@@ -359,7 +359,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=18; reviewInput=freeform"
+      "detail": "reviewMemory=19; reviewInput=freeform"
     }
   },
   "failures": [],

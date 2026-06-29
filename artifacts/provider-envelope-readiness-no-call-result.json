@@ -2,7 +2,7 @@
   "schemaVersion": "fff.providerEnvelopeReadinessNoCall.v1",
   "artifact_id": "fff-provider-envelope-readiness-no-call-001",
   "title": "Fast Fiction Factory Provider Envelope Readiness No-Call Gate",
-  "generatedAt": "2026-06-29T03:08:51.711Z",
+  "generatedAt": "2026-06-29T03:51:46.000Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "boundaryMode": "provider_envelope_readiness_no_call_no_credential_no_provider",
