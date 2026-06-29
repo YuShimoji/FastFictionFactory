@@ -2,7 +2,7 @@
   "schemaVersion": "fff.heldClaimAdoptionPreflight.v1",
   "artifact_id": "fff-held-claim-adoption-preflight-001",
   "title": "Fast Fiction Factory Held Claim Adoption Preflight",
-  "generatedAt": "2026-06-29T09:56:53.825Z",
+  "generatedAt": "2026-06-29T13:53:14.818Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
@@ -34,7 +34,7 @@
   "adoption_preflight_rows": [
     {
       "source_span_id": "multi-x-object-brass-moth-key",
-      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
       "translated_fixture_row_id": "translated-min-row-moth-key-label",
       "held_claim_id": "multi-claim-moth-key-label",
       "claim_text": "The brass moth key carries the Japanese label 真鍮の蛾の鍵.",

@@ -20,6 +20,7 @@ const TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_SCHEMA_VERSION = "fff.translat
 const TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_SCHEMA_VERSION = "fff.translationPolicySourceOfTruthBoundary.v1";
 const TRANSLATED_MEMO_FIXTURE_MINIMUM_SCHEMA_VERSION = "fff.translatedMemoFixtureMinimum.v1";
 const HELD_CLAIM_ADOPTION_PREFLIGHT_SCHEMA_VERSION = "fff.heldClaimAdoptionPreflight.v1";
+const DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_SCHEMA_VERSION = "fff.downstreamAdoptionSemanticsDesign.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -38,6 +39,7 @@ const DEFAULT_TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_OUTPUT = "artifacts/tr
 const DEFAULT_TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_OUTPUT = "artifacts/translation-policy-source-of-truth-boundary-result.json";
 const DEFAULT_TRANSLATED_MEMO_FIXTURE_MINIMUM_OUTPUT = "artifacts/translated-memo-fixture-minimum-result.json";
 const DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT = "artifacts/held-claim-adoption-preflight-result.json";
+const DEFAULT_DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_OUTPUT = "artifacts/downstream-adoption-semantics-design-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -499,6 +501,25 @@ async function main() {
     }
     if (command === "smoke-held-claim-adoption-preflight" || outputPath) {
       console.log(`held claim adoption preflight passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-downstream-adoption-semantics-design" || command === "smoke-downstream-adoption-semantics-design") {
+    const preflight = await readJson(inputPath);
+    const result = await validateDownstreamAdoptionSemanticsDesign(preflight, inputPath);
+    const target = outputPath || DEFAULT_DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_OUTPUT;
+    if (command === "smoke-downstream-adoption-semantics-design" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Downstream adoption semantics design failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-downstream-adoption-semantics-design" || outputPath) {
+      console.log(`downstream adoption semantics design passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -3684,6 +3705,303 @@ async function validateHeldClaimAdoptionPreflight(translatedMinimum, translatedM
   };
 }
 
+async function validateDownstreamAdoptionSemanticsDesign(preflight, preflightPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const manifestValidationCommand = String(manifest.validation_command || "");
+  const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
+  const preflightRows = Array.isArray(preflight.adoption_preflight_rows) ? preflight.adoption_preflight_rows : [];
+  const candidate = preflightRows.find((row) => row.held_claim_id === "multi-claim-moth-key-label");
+  const targetIds = candidate?.downstream_target_ids || {};
+  const targetClasses = Array.isArray(candidate?.downstream_target_class) ? candidate.downstream_target_class : [];
+  const providerBoundaryOpen =
+    preflight.summary?.provider_configured === true ||
+    preflight.summary?.external_call_attempted === true ||
+    preflight.summary?.credentials_touched === true;
+  const mutationForbiddenTargets = [
+    {
+      target: "Profile",
+      target_ids_read_only: Array.isArray(targetIds.profile) ? targetIds.profile : [],
+      current_slice_mutation_allowed: false,
+      future_write_precondition: "explicit human adoption approval plus target-class mapping and rollback reason"
+    },
+    {
+      target: "Claim",
+      target_ids_read_only: Array.isArray(targetIds.claim) ? targetIds.claim : [],
+      current_slice_mutation_allowed: false,
+      future_write_precondition: "explicit human adoption approval plus source refs, conflict check, and canon-risk acknowledgement"
+    },
+    {
+      target: "Timeline",
+      target_ids_read_only: Array.isArray(targetIds.timeline) ? targetIds.timeline : [],
+      current_slice_mutation_allowed: false,
+      future_write_precondition: "explicit human adoption approval plus unresolved-dependency and ordering review"
+    },
+    {
+      target: "Story Seed",
+      target_ids_read_only: [],
+      current_slice_mutation_allowed: false,
+      future_write_precondition: "explicit user request for story-seed mutation after adoption semantics are accepted"
+    }
+  ];
+  const statusModel = [
+    {
+      status: "hold",
+      owner: "source review state",
+      current_slice_meaning: "the claim remains reversible, human-owned, and not accepted",
+      current_candidate_state: candidate?.claim_status_before_preflight === "hold"
+    },
+    {
+      status: "adoption_candidate",
+      owner: "readback semantics",
+      current_slice_meaning: "non-mutating label for a source-backed held claim that passed preflight",
+      current_candidate_state: candidate?.adoption_eligibility === "eligible_for_preflight_only"
+    },
+    {
+      status: "ready_for_human_adoption_review",
+      owner: "future review queue",
+      current_slice_meaning: "defined future queue state; not emitted or persisted now",
+      current_candidate_state: false
+    },
+    {
+      status: "human_accepted_downstream_adoption",
+      owner: "human author",
+      current_slice_meaning: "defined accepted status for future authorized adoption; unreachable in this slice",
+      current_candidate_state: false
+    },
+    {
+      status: "rejected_for_adoption",
+      owner: "human author or validation gate",
+      current_slice_meaning: "future terminal non-adoption state; not emitted now",
+      current_candidate_state: false
+    },
+    {
+      status: "rolled_back_to_hold",
+      owner: "rollback gate",
+      current_slice_meaning: "future recovery state when adoption preconditions regress; not emitted now",
+      current_candidate_state: false
+    }
+  ];
+  const statusTransitions = [
+    {
+      from: "hold",
+      to: "adoption_candidate",
+      current_slice_allowed: true,
+      mutation_effect: "none",
+      rule: "allowed only as a readback-only semantic overlay when the preflight row is source-backed, held, leak-free, and provider-free"
+    },
+    {
+      from: "adoption_candidate",
+      to: "ready_for_human_adoption_review",
+      current_slice_allowed: false,
+      mutation_effect: "none now; future queue record only after explicit user request",
+      rule: "requires user authorization to create a review queue surface"
+    },
+    {
+      from: "ready_for_human_adoption_review",
+      to: "human_accepted_downstream_adoption",
+      current_slice_allowed: false,
+      mutation_effect: "future Profile / Claim / Timeline write only after human acceptance",
+      rule: "requires explicit human acceptance, target-class selection, unresolved-dependency review, and rollback plan"
+    },
+    {
+      from: "adoption_candidate",
+      to: "rejected_for_adoption",
+      current_slice_allowed: false,
+      mutation_effect: "none now",
+      rule: "future human rejection or failed gate can close the candidate without mutation"
+    },
+    {
+      from: "human_accepted_downstream_adoption",
+      to: "rolled_back_to_hold",
+      current_slice_allowed: false,
+      mutation_effect: "future reversal of accepted downstream writes",
+      rule: "rollback requires identifying written targets and preserving original source evidence"
+    }
+  ];
+  const rollbackConditions = [
+    "sourceSpan text or locator no longer matches the original author memo",
+    "claim sourceRefs stop proving author_memo trust",
+    "claim reviewStatus changes away from hold before human acceptance",
+    "translation/gloss leakage count becomes non-zero",
+    "contradictory claim guard reports adopted/provisional conflict leakage",
+    "downstream source-span adoption gate reports adopted Profile / Claim / Timeline candidates before authorization",
+    "Profile, Claim, Timeline, or Story Seed mutation is detected in a design-only slice",
+    "provider configuration, external API call, endpoint, credential, or secret usage is detected",
+    "human-owned unresolved dependencies are resolved by automation instead of the author",
+    "future accepted-status record lacks target ids, source refs, rollback reason, or reviewer authority"
+  ];
+  const acceptedStatus = {
+    status: "human_accepted_downstream_adoption",
+    current_slice_reachable: false,
+    current_slice_effect: "defined only; no adoption record is emitted",
+    future_required_inputs: [
+      "explicit human approval for this candidate",
+      "target class selection among Profile, Claim, Timeline, or a deliberately deferred Story Seed path",
+      "source refs and original source-span readback",
+      "contradiction, malformed-span, downstream-gate, and provider-boundary checks passing",
+      "rollback condition and owner recorded before mutation"
+    ]
+  };
+  const candidateHolding = {
+    held_claim_id: candidate?.held_claim_id || null,
+    source_span_id: candidate?.source_span_id || null,
+    translated_fixture_row_id: candidate?.translated_fixture_row_id || null,
+    source_backed_status: candidate?.source_backed_status === true,
+    hold_required_now: true,
+    adoption_decision_now: "not_adopted",
+    canon_status_now: false,
+    human_owner: "author",
+    unresolved_dependencies: candidate?.unresolved_dependencies || [],
+    target_classes_read_only: targetClasses,
+    target_ids_read_only: targetIds
+  };
+
+  check(
+    "preflight_loaded_and_passed",
+    preflight.artifact_id === "fff-held-claim-adoption-preflight-001" &&
+      preflight.schemaVersion === HELD_CLAIM_ADOPTION_PREFLIGHT_SCHEMA_VERSION &&
+      preflight.passed === true,
+    `preflight=${preflight.artifact_id}/${preflight.passed}; schema=${preflight.schemaVersion}`
+  );
+  check(
+    "candidate_identified_and_held",
+    Boolean(candidate) &&
+      candidate.claim_status_before_preflight === "hold" &&
+      candidate.source_backed_status === true &&
+      candidate.adoption_eligibility === "eligible_for_preflight_only" &&
+      candidate.adoption_decision === "not_adopted" &&
+      candidate.canon_status === false,
+    `candidate=${candidate?.held_claim_id || "missing"}; status=${candidate?.claim_status_before_preflight}; eligibility=${candidate?.adoption_eligibility}; adopted=${candidate?.adoption_decision}; canon=${candidate?.canon_status}`
+  );
+  check(
+    "status_transition_semantics_defined_without_adoption",
+    statusModel.some((entry) => entry.status === "human_accepted_downstream_adoption") &&
+      acceptedStatus.current_slice_reachable === false &&
+      statusTransitions.filter((entry) => entry.current_slice_allowed).length === 1 &&
+      statusTransitions.find((entry) => entry.current_slice_allowed)?.mutation_effect === "none",
+    `statuses=${statusModel.length}; allowedNow=${statusTransitions.filter((entry) => entry.current_slice_allowed).length}; acceptedReachable=${acceptedStatus.current_slice_reachable}`
+  );
+  check(
+    "rollback_conditions_defined",
+    rollbackConditions.length >= 8 &&
+      rollbackConditions.some((condition) => condition.includes("sourceSpan")) &&
+      rollbackConditions.some((condition) => condition.includes("provider")) &&
+      rollbackConditions.some((condition) => condition.includes("Profile, Claim, Timeline, or Story Seed mutation")),
+    `rollbackConditions=${rollbackConditions.length}`
+  );
+  check(
+    "mutation_boundaries_closed",
+    mutationForbiddenTargets.length === 4 &&
+      mutationForbiddenTargets.every((target) => target.current_slice_mutation_allowed === false) &&
+      preflight.summary?.actually_adopted_claims === 0 &&
+      preflight.summary?.canonized_claims === 0 &&
+      preflight.summary?.downstream_adopted_candidates === 0,
+    `targets=${mutationForbiddenTargets.length}; adopted=${preflight.summary?.actually_adopted_claims}; canon=${preflight.summary?.canonized_claims}; downstream=${preflight.summary?.downstream_adopted_candidates}`
+  );
+  check(
+    "provider_and_review_boundaries_closed",
+    providerBoundaryOpen === false &&
+      preflight.summary?.review_card_emitted === false &&
+      preflight.summary?.repeated_general_review_request_emitted === false &&
+      preflight.summary?.operator_observation_card_emitted === false,
+    `providerOpen=${providerBoundaryOpen}; reviewCard=${preflight.summary?.review_card_emitted}; repeated=${preflight.summary?.repeated_general_review_request_emitted}; operator=${preflight.summary?.operator_observation_card_emitted}`
+  );
+  check(
+    "target_classes_are_read_only_candidates",
+    ["profile", "claim", "timeline"].every((targetClass) => targetClasses.includes(targetClass)) &&
+      Array.isArray(targetIds.claim) &&
+      targetIds.claim.includes("multi-claim-moth-key-label"),
+    `classes=${targetClasses.join(", ") || "none"}; claimTargets=${Array.isArray(targetIds.claim) ? targetIds.claim.join(", ") : "none"}`
+  );
+  check(
+    "manifest_and_review_memory_registered",
+    manifestValidationCommand.includes("smoke-downstream-adoption-semantics-design") &&
+      manifest.preserves?.includes("fff-downstream-adoption-semantics-design-001") &&
+      reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-adoption-semantics-design-001"),
+    `includesSmoke=${manifestValidationCommand.includes("smoke-downstream-adoption-semantics-design")}; preserves=${manifest.preserves?.includes("fff-downstream-adoption-semantics-design-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-adoption-semantics-design-001")}`
+  );
+
+  return {
+    schemaVersion: DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_SCHEMA_VERSION,
+    artifact_id: "fff-downstream-adoption-semantics-design-001",
+    title: "Fast Fiction Factory Downstream Adoption Semantics Design",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    input_readbacks: {
+      held_claim_adoption_preflight_result_path: toRepoPath(preflightPath),
+      translated_memo_fixture_minimum_result_path: preflight.input_readbacks?.translated_memo_fixture_minimum_result_path || DEFAULT_TRANSLATED_MEMO_FIXTURE_MINIMUM_OUTPUT,
+      source_output_path: preflight.input_readbacks?.source_output_path || "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+      source_fixture_path: preflight.input_readbacks?.source_fixture_path || "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+      contradictory_claim_guard_result_path: preflight.input_readbacks?.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT,
+      downstream_source_span_adoption_gate_result_path: preflight.input_readbacks?.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT,
+      provider_envelope_readiness_no_call_result_path: preflight.input_readbacks?.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT
+    },
+    design_scope: {
+      actual_downstream_adoption_implemented: false,
+      accepted_status_defined_only: true,
+      accepted_status_reachable_now: false,
+      profile_claim_timeline_story_seed_mutation_allowed: false,
+      provider_or_external_call_allowed: false,
+      canon_promotion_allowed: false
+    },
+    accepted_status: acceptedStatus,
+    status_model: statusModel,
+    status_transitions: statusTransitions,
+    rollback_conditions: rollbackConditions,
+    mutation_forbidden_boundaries: mutationForbiddenTargets,
+    candidate_holding: candidateHolding,
+    summary: {
+      preflight_candidates_inspected: preflightRows.length,
+      candidate_semantics_defined: candidate ? 1 : 0,
+      accepted_status_defined: 1,
+      accepted_status_reachable_now: acceptedStatus.current_slice_reachable ? 1 : 0,
+      status_transitions_defined: statusTransitions.length,
+      current_slice_readback_only_transitions: statusTransitions.filter((entry) => entry.current_slice_allowed).length,
+      rollback_conditions_defined: rollbackConditions.length,
+      mutation_targets_blocked: mutationForbiddenTargets.filter((target) => !target.current_slice_mutation_allowed).length,
+      actual_profile_mutations: 0,
+      actual_claim_mutations: 0,
+      actual_timeline_mutations: 0,
+      story_seed_mutations: 0,
+      actually_adopted_claims: preflight.summary?.actually_adopted_claims,
+      canonized_claims: preflight.summary?.canonized_claims,
+      downstream_adopted_candidates: preflight.summary?.downstream_adopted_candidates,
+      translation_gloss_leak_count: preflight.summary?.translation_gloss_leak_count,
+      provider_configured: preflight.summary?.provider_configured,
+      external_call_attempted: preflight.summary?.external_call_attempted,
+      credentials_touched: preflight.summary?.credentials_touched,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    what_this_design_proves: [
+      "The held preflight claim has explicit downstream adoption semantics without adopting it.",
+      "Accepted status, rollback conditions, and mutation boundaries are named before any Profile / Claim / Timeline / Story Seed write exists.",
+      "The only current-slice transition is a readback-only hold-to-adoption-candidate semantic overlay."
+    ],
+    what_this_design_does_not_prove: [
+      "It does not accept, adopt, or canonize the held claim.",
+      "It does not mutate Profile, Claim, Timeline, Story Seed, project state, provider output, credentials, or production surfaces.",
+      "It does not resolve Toma fate, brass moth truth, Council motive, moth-key function, or contradictory claim truth."
+    ],
+    semantics_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -5912,6 +6230,8 @@ Usage:
   node tools/fff-state.mjs smoke-translated-memo-fixture-minimum <translated-memo-fixture.json> [output.json]
   node tools/fff-state.mjs validate-held-claim-adoption-preflight <translated-memo-fixture-minimum-result.json>
   node tools/fff-state.mjs smoke-held-claim-adoption-preflight <translated-memo-fixture-minimum-result.json> [output.json]
+  node tools/fff-state.mjs validate-downstream-adoption-semantics-design <held-claim-adoption-preflight-result.json>
+  node tools/fff-state.mjs smoke-downstream-adoption-semantics-design <held-claim-adoption-preflight-result.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
@@ -5960,6 +6280,9 @@ Default translated memo fixture minimum output:
 
 Default held claim adoption preflight output:
   ${DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT}
+
+Default downstream adoption semantics design output:
+  ${DEFAULT_DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_OUTPUT}
 
 Default very broad source-span shape audit output:
   ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}

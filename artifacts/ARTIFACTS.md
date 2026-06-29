@@ -61,6 +61,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary preflight under `fff-contradictory-claim-guard-001`; 1 held claim inspected, 1 source-backed claim, 1 preflight-only eligible candidate, 0 adopted claims, 0 canonized claims, 0 translation/gloss leaks, and no provider/API call, credential, downstream adoption, or canon promotion.
 
+## fff-downstream-adoption-semantics-design-001
+
+- Title: Fast Fiction Factory Downstream Adoption Semantics Design
+- Purpose: Define status transitions, accepted-status meaning, rollback conditions, mutation-forbidden boundaries, and candidate holding rules for the held preflight claim without implementing adoption.
+- Repo relative path: `docs/review/downstream-adoption-semantics-design.md`
+- Readback result: `artifacts/downstream-adoption-semantics-design-result.json`
+- Input readback: `artifacts/held-claim-adoption-preflight-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-downstream-adoption-semantics-design artifacts/held-claim-adoption-preflight-result.json artifacts/downstream-adoption-semantics-design-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary design under `fff-contradictory-claim-guard-001`; 1 preflight candidate has design-only semantics, accepted status is defined but unreachable now, 10 rollback conditions are documented, 4 mutation targets are blocked, and no Profile / Claim / Timeline / Story Seed mutation, provider/API call, credential, adoption, or canon promotion is added.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

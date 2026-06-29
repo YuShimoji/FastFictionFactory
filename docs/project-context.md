@@ -31,6 +31,7 @@ The active slice is complete enough for local readback:
 - Translation policy source-of-truth boundary doc/result: `docs/review/translation-policy-source-of-truth-boundary.md`, `artifacts/translation-policy-source-of-truth-boundary-result.json`
 - Minimal translated memo fixture doc/fixture/result: `docs/review/translated-memo-fixture-minimum.md`, `artifacts/translated-memo-fixture-minimum.json`, `artifacts/translated-memo-fixture-minimum-result.json`
 - Held claim adoption preflight doc/result: `docs/review/held-claim-adoption-preflight.md`, `artifacts/held-claim-adoption-preflight-result.json`
+- Downstream adoption semantics design doc/result: `docs/review/downstream-adoption-semantics-design.md`, `artifacts/downstream-adoption-semantics-design-result.json`
 - Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
 - Missing fixture probe doc/result: `docs/review/missing-fixture-class-probe.md`, `artifacts/missing-fixture-class-probe-result.json`
 - Weak-span repair doc/result: `docs/review/weak-span-repair.md`, `artifacts/weak-span-repair-result.json`
@@ -91,6 +92,7 @@ node .\tools\fff-state.mjs smoke-translation-provenance-source-span-readback .\a
 node .\tools\fff-state.mjs smoke-translation-policy-source-of-truth-boundary .\artifacts\translation-provenance-source-span-readback-result.json .\artifacts\translation-policy-source-of-truth-boundary-result.json
 node .\tools\fff-state.mjs smoke-translated-memo-fixture-minimum .\artifacts\translated-memo-fixture-minimum.json .\artifacts\translated-memo-fixture-minimum-result.json
 node .\tools\fff-state.mjs smoke-held-claim-adoption-preflight .\artifacts\translated-memo-fixture-minimum-result.json .\artifacts\held-claim-adoption-preflight-result.json
+node .\tools\fff-state.mjs smoke-downstream-adoption-semantics-design .\artifacts\held-claim-adoption-preflight-result.json .\artifacts\downstream-adoption-semantics-design-result.json
 node .\tools\fff-state.mjs smoke-very-broad-source-span-shape-audit .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\very-broad-source-span-shape-audit-result.json
 ```
 
@@ -105,6 +107,7 @@ Result summary:
 - Translation policy source-of-truth boundary passes as boundary-only context: original multilingual author memo text is the source-of-truth language surface, original sourceSpan locators own evidence, future translated spans must be derivative/provenance-bound, inline gloss cannot create an unowned claim, all 3 derived claims remain held, and the policy itself adds no translated fixture, provider/API call, credential, downstream adoption, or canon promotion.
 - Minimal translated memo fixture passes as fixture context: 2 translated rows preserve original multilingual sourceSpan locators, 2 original spans match, 0 original span mismatches, 0 translation-to-claim leaks, 1 linked claim remains held, 0 auto-promotions, 0 inline gloss claim leaks, and no provider/API call, credential, downstream adoption, or canon promotion is added.
 - Held claim adoption preflight passes as pre-adoption context: 1 held linked claim from the translated fixture is source-backed and eligible for preflight-only downstream candidacy, while 0 claims are actually adopted, 0 claims are canonized, translation/gloss leak count remains 0, and provider/API/credential/downstream adoption boundaries remain closed.
+- Downstream adoption semantics design passes as design-only context: 1 preflight candidate receives explicit status semantics, `human_accepted_downstream_adoption` is defined but unreachable now, 10 rollback conditions are documented, 4 mutation targets are blocked, and Profile / Claim / Timeline / Story Seed mutations remain 0.
 - Very broad source-span shape audit passes as audit-only context: the 2 current broad rows remain resolved by `fff-broad-span-split-001`, 0 broad fixture files are added, and the source-pack / downstream / provider no-call chain remains clean.
 - Downstream adoption gate parses 60 source-pack rows and reports 55 downstream Profile / Claim / Timeline review candidates, all 55 source-tracked, with 0 malformed/missing span candidates, 0 unsafe routing candidates, 28 human-owned candidates held, 0 non-held human-owned candidates, and 0 adopted Profile / Claim / Timeline candidates.
 - Malformed/missing source-span guard remains closed with 3 invalid elements rejected, 0 accepted routed candidates, and 9 validator fixtures in the smoke matrix.
@@ -144,7 +147,7 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to downstream adoption design after explicit semantics are requested; explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior; broader translated memo coverage if it adds meaningful rows beyond the two-row minimum; or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
+First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to actual downstream adoption implementation after explicit mutation authorization, explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior, broader translated memo coverage if it adds meaningful rows beyond the two-row minimum, or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
 
 ## Handoff Path
 

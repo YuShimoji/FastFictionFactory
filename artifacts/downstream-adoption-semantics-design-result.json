@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "fff.downstreamAdoptionSemanticsDesign.v1",
+  "artifact_id": "fff-downstream-adoption-semantics-design-001",
+  "title": "Fast Fiction Factory Downstream Adoption Semantics Design",
+  "generatedAt": "2026-06-29T13:53:14.964Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_readbacks": {
+    "held_claim_adoption_preflight_result_path": "artifacts/held-claim-adoption-preflight-result.json",
+    "translated_memo_fixture_minimum_result_path": "artifacts/translated-memo-fixture-minimum-result.json",
+    "source_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+    "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    "contradictory_claim_guard_result_path": "artifacts/contradictory-claim-guard-result.json",
+    "downstream_source_span_adoption_gate_result_path": "artifacts/downstream-source-span-adoption-gate-result.json",
+    "provider_envelope_readiness_no_call_result_path": "artifacts/provider-envelope-readiness-no-call-result.json"
+  },
+  "design_scope": {
+    "actual_downstream_adoption_implemented": false,
+    "accepted_status_defined_only": true,
+    "accepted_status_reachable_now": false,
+    "profile_claim_timeline_story_seed_mutation_allowed": false,
+    "provider_or_external_call_allowed": false,
+    "canon_promotion_allowed": false
+  },
+  "accepted_status": {
+    "status": "human_accepted_downstream_adoption",
+    "current_slice_reachable": false,
+    "current_slice_effect": "defined only; no adoption record is emitted",
+    "future_required_inputs": [
+      "explicit human approval for this candidate",
+      "target class selection among Profile, Claim, Timeline, or a deliberately deferred Story Seed path",
+      "source refs and original source-span readback",
+      "contradiction, malformed-span, downstream-gate, and provider-boundary checks passing",
+      "rollback condition and owner recorded before mutation"
+    ]
+  },
+  "status_model": [
+    {
+      "status": "hold",
+      "owner": "source review state",
+      "current_slice_meaning": "the claim remains reversible, human-owned, and not accepted",
+      "current_candidate_state": true
+    },
+    {
+      "status": "adoption_candidate",
+      "owner": "readback semantics",
+      "current_slice_meaning": "non-mutating label for a source-backed held claim that passed preflight",
+      "current_candidate_state": true
+    },
+    {
+      "status": "ready_for_human_adoption_review",
+      "owner": "future review queue",
+      "current_slice_meaning": "defined future queue state; not emitted or persisted now",
+      "current_candidate_state": false
+    },
+    {
+      "status": "human_accepted_downstream_adoption",
+      "owner": "human author",
+      "current_slice_meaning": "defined accepted status for future authorized adoption; unreachable in this slice",
+      "current_candidate_state": false
+    },
+    {
+      "status": "rejected_for_adoption",
+      "owner": "human author or validation gate",
+      "current_slice_meaning": "future terminal non-adoption state; not emitted now",
+      "current_candidate_state": false
+    },
+    {
+      "status": "rolled_back_to_hold",
+      "owner": "rollback gate",
+      "current_slice_meaning": "future recovery state when adoption preconditions regress; not emitted now",
+      "current_candidate_state": false
+    }
+  ],
+  "status_transitions": [
+    {
+      "from": "hold",
+      "to": "adoption_candidate",
+      "current_slice_allowed": true,
+      "mutation_effect": "none",
+      "rule": "allowed only as a readback-only semantic overlay when the preflight row is source-backed, held, leak-free, and provider-free"
+    },
+    {
+      "from": "adoption_candidate",
+      "to": "ready_for_human_adoption_review",
+      "current_slice_allowed": false,
+      "mutation_effect": "none now; future queue record only after explicit user request",
+      "rule": "requires user authorization to create a review queue surface"
+    },
+    {
+      "from": "ready_for_human_adoption_review",
+      "to": "human_accepted_downstream_adoption",
+      "current_slice_allowed": false,
+      "mutation_effect": "future Profile / Claim / Timeline write only after human acceptance",
+      "rule": "requires explicit human acceptance, target-class selection, unresolved-dependency review, and rollback plan"
+    },
+    {
+      "from": "adoption_candidate",
+      "to": "rejected_for_adoption",
+      "current_slice_allowed": false,
+      "mutation_effect": "none now",
+      "rule": "future human rejection or failed gate can close the candidate without mutation"
+    },
+    {
+      "from": "human_accepted_downstream_adoption",
+      "to": "rolled_back_to_hold",
+      "current_slice_allowed": false,
+      "mutation_effect": "future reversal of accepted downstream writes",
+      "rule": "rollback requires identifying written targets and preserving original source evidence"
+    }
+  ],
+  "rollback_conditions": [
+    "sourceSpan text or locator no longer matches the original author memo",
+    "claim sourceRefs stop proving author_memo trust",
+    "claim reviewStatus changes away from hold before human acceptance",
+    "translation/gloss leakage count becomes non-zero",
+    "contradictory claim guard reports adopted/provisional conflict leakage",
+    "downstream source-span adoption gate reports adopted Profile / Claim / Timeline candidates before authorization",
+    "Profile, Claim, Timeline, or Story Seed mutation is detected in a design-only slice",
+    "provider configuration, external API call, endpoint, credential, or secret usage is detected",
+    "human-owned unresolved dependencies are resolved by automation instead of the author",
+    "future accepted-status record lacks target ids, source refs, rollback reason, or reviewer authority"
+  ],
+  "mutation_forbidden_boundaries": [
+    {
+      "target": "Profile",
+      "target_ids_read_only": [
+        "multi-profile-brass-moth-key"
+      ],
+      "current_slice_mutation_allowed": false,
+      "future_write_precondition": "explicit human adoption approval plus target-class mapping and rollback reason"
+    },
+    {
+      "target": "Claim",
+      "target_ids_read_only": [
+        "multi-claim-moth-key-label"
+      ],
+      "current_slice_mutation_allowed": false,
+      "future_write_precondition": "explicit human adoption approval plus source refs, conflict check, and canon-risk acknowledgement"
+    },
+    {
+      "target": "Timeline",
+      "target_ids_read_only": [
+        "multi-timeline-moth-key-label"
+      ],
+      "current_slice_mutation_allowed": false,
+      "future_write_precondition": "explicit human adoption approval plus unresolved-dependency and ordering review"
+    },
+    {
+      "target": "Story Seed",
+      "target_ids_read_only": [],
+      "current_slice_mutation_allowed": false,
+      "future_write_precondition": "explicit user request for story-seed mutation after adoption semantics are accepted"
+    }
+  ],
+  "candidate_holding": {
+    "held_claim_id": "multi-claim-moth-key-label",
+    "source_span_id": "multi-x-object-brass-moth-key",
+    "translated_fixture_row_id": "translated-min-row-moth-key-label",
+    "source_backed_status": true,
+    "hold_required_now": true,
+    "adoption_decision_now": "not_adopted",
+    "canon_status_now": false,
+    "human_owner": "author",
+    "unresolved_dependencies": [
+      "brass moth truth",
+      "Toma fate"
+    ],
+    "target_classes_read_only": [
+      "profile",
+      "claim",
+      "timeline"
+    ],
+    "target_ids_read_only": {
+      "profile": [
+        "multi-profile-brass-moth-key"
+      ],
+      "claim": [
+        "multi-claim-moth-key-label"
+      ],
+      "timeline": [
+        "multi-timeline-moth-key-label"
+      ]
+    }
+  },
+  "summary": {
+    "preflight_candidates_inspected": 1,
+    "candidate_semantics_defined": 1,
+    "accepted_status_defined": 1,
+    "accepted_status_reachable_now": 0,
+    "status_transitions_defined": 5,
+    "current_slice_readback_only_transitions": 1,
+    "rollback_conditions_defined": 10,
+    "mutation_targets_blocked": 4,
+    "actual_profile_mutations": 0,
+    "actual_claim_mutations": 0,
+    "actual_timeline_mutations": 0,
+    "story_seed_mutations": 0,
+    "actually_adopted_claims": 0,
+    "canonized_claims": 0,
+    "downstream_adopted_candidates": 0,
+    "translation_gloss_leak_count": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "what_this_design_proves": [
+    "The held preflight claim has explicit downstream adoption semantics without adopting it.",
+    "Accepted status, rollback conditions, and mutation boundaries are named before any Profile / Claim / Timeline / Story Seed write exists.",
+    "The only current-slice transition is a readback-only hold-to-adoption-candidate semantic overlay."
+  ],
+  "what_this_design_does_not_prove": [
+    "It does not accept, adopt, or canonize the held claim.",
+    "It does not mutate Profile, Claim, Timeline, Story Seed, project state, provider output, credentials, or production surfaces.",
+    "It does not resolve Toma fate, brass moth truth, Council motive, moth-key function, or contradictory claim truth."
+  ],
+  "semantics_checks": {
+    "preflight_loaded_and_passed": {
+      "passed": true,
+      "detail": "preflight=fff-held-claim-adoption-preflight-001/true; schema=fff.heldClaimAdoptionPreflight.v1"
+    },
+    "candidate_identified_and_held": {
+      "passed": true,
+      "detail": "candidate=multi-claim-moth-key-label; status=hold; eligibility=eligible_for_preflight_only; adopted=not_adopted; canon=false"
+    },
+    "status_transition_semantics_defined_without_adoption": {
+      "passed": true,
+      "detail": "statuses=6; allowedNow=1; acceptedReachable=false"
+    },
+    "rollback_conditions_defined": {
+      "passed": true,
+      "detail": "rollbackConditions=10"
+    },
+    "mutation_boundaries_closed": {
+      "passed": true,
+      "detail": "targets=4; adopted=0; canon=0; downstream=0"
+    },
+    "provider_and_review_boundaries_closed": {
+      "passed": true,
+      "detail": "providerOpen=false; reviewCard=false; repeated=false; operator=false"
+    },
+    "target_classes_are_read_only_candidates": {
+      "passed": true,
+      "detail": "classes=profile, claim, timeline; claimTargets=multi-claim-moth-key-label"
+    },
+    "manifest_and_review_memory_registered": {
+      "passed": true,
+      "detail": "includesSmoke=true; preserves=true; memory=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}
