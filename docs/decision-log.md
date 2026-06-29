@@ -109,3 +109,7 @@
 - Decision: Record route-lock cleanup after ClipPipeGen prompt residue appeared in the Fast Fiction Factory workspace.
   - Reason: Four untracked `docs/style_intent/subtitle-owner-*` files contained `clippipegen` / `clip-ed10` identifiers and did not belong to the active Fast Fiction Factory route.
   - Effect: `fff-route-lock-clean-state-readback-001` records that the untracked residue files and empty `docs/style_intent/` directory were deleted, tracked/workspace contamination searches returned no hits for ClipPipeGen / ED-10 terms, and the active artifact remains `fff-contradictory-claim-guard-001`.
+
+- Decision: Add translation provenance/source-span readback before translated fixture work.
+  - Reason: The translated memo audit identified a real policy gap, but adding a translated fixture before source-of-truth language and original-vs-translation span ownership policy would create unclear authority. A smaller readback can prove the current multilingual source spans already trace to held derived claims.
+  - Effect: `fff-translation-provenance-source-span-readback-001` records 3 source-span to derived-claim relations and 1 inline-gloss boundary row, keeps all derived claims held and source-backed, keeps translated fixture count at 0, and preserves no provider/API call, credential, downstream adoption, or canon promotion.

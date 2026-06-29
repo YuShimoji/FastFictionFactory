@@ -9,7 +9,8 @@ records that ClipPipeGen prompt residue was removed from this repo, and
 `fff-provider-adapter-authorization-readiness-001`,
 `fff-remaining-fixture-coverage-one-class-001`,
 `fff-downstream-adoption-gate-scope-lock-001`,
-`fff-translated-memo-fixture-audit-001`, and
+`fff-translated-memo-fixture-audit-001`,
+`fff-translation-provenance-source-span-readback-001`, and
 `fff-very-broad-source-span-shape-audit-001` are preserved auxiliary readbacks.
 Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
 
@@ -56,6 +57,8 @@ artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md
 artifacts/extraction-adapter-outputs/multilingual-memo-notes.json
 docs/review/translated-memo-fixture-audit.md
 artifacts/translated-memo-fixture-audit-result.json
+docs/review/translation-provenance-source-span-readback.md
+artifacts/translation-provenance-source-span-readback-result.json
 docs/review/very-broad-source-span-shape-audit.md
 artifacts/very-broad-source-span-shape-audit-result.json
 docs/review/malformed-missing-span-guard.md
@@ -110,6 +113,7 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - Route-lock cleanup readback: `docs/review/route-lock-clean-state-readback.md`
 - Remaining fixture coverage doc/result/fixture/output: `docs/review/remaining-fixture-coverage-one-class.md`, `artifacts/remaining-fixture-coverage-one-class-result.json`, `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`, `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`
 - Translated/multilingual fixture audit doc/result: `docs/review/translated-memo-fixture-audit.md`, `artifacts/translated-memo-fixture-audit-result.json`
+- Translation provenance/source-span readback doc/result: `docs/review/translation-provenance-source-span-readback.md`, `artifacts/translation-provenance-source-span-readback-result.json`
 - Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
 - Malformed/missing source-span guard doc/result/fixture: `docs/review/malformed-missing-span-guard.md`, `artifacts/malformed-missing-span-guard-result.json`, `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
 - Validator fixtures and smoke: `artifacts/extraction-negative-fixtures/`, `artifacts/extraction-validator-smoke-result.json`
@@ -138,12 +142,13 @@ The current artifact adds a deterministic guard for contradictory claim candidat
   route-lock evidence and cockpit summaries.
 - `fff-malformed-missing-span-guard-001` remains closed after the fixture count expanded to 9; malformed/missing span cases still produce 0 accepted routed candidates.
 - `fff-translated-memo-fixture-audit-001` audits existing multilingual fixture coverage without adding a translated fixture. It closes the previous full-manifest-regeneration unknown as `not_available` because no repo command is defined, records translated memo text as a policy-dependent gap, and preserves 0 source-span mismatches, 0 missing source refs, 0 unsafe routes, 0 downstream adopted candidates, no provider configured, no external call, and no credentials touched.
+- `fff-translation-provenance-source-span-readback-001` records 3 selected multilingual source-span to held derived-claim relations plus 1 inline-gloss boundary row. All 4 checked source spans match the raw memo and source-pack rows, all 3 derived claims remain held and source-backed, translated fixture count remains 0, provider configured=false, external call=false, credentials=false, downstream adopted candidates=0, adopted/provisional conflicting claims=0, and direct accepted claim elements=0.
 - `fff-very-broad-source-span-shape-audit-001` audits the broad fixture candidate without adding another fixture. It confirms the current 2 broad rows are already resolved by the broad-span split/keep readback, leaves broad fixture work deferred until source output changes or coverage is the bottleneck, and preserves 0 source-span mismatches, 0 missing refs, 0 unsafe routes, 0 non-held defaults, 0 downstream adopted candidates, no provider configured, no external call, and no credentials touched.
 - No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, downstream adoption behavior, or final canon decision was added.
 
 ## Validation Readback
 
-The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`, `fff-provider-adapter-authorization-readiness-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-translated-memo-fixture-audit-001`, and `fff-very-broad-source-span-shape-audit-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, multilingual-fixture, translated/multilingual audit, very-broad-shape audit, malformed/missing-span, contradictory-claim, downstream gate, provider-envelope, and provider-authorization smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
+The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`, `fff-provider-adapter-authorization-readiness-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-translated-memo-fixture-audit-001`, `fff-translation-provenance-source-span-readback-001`, and `fff-very-broad-source-span-shape-audit-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, multilingual-fixture, translated/multilingual audit, translation provenance/source-span readback, very-broad-shape audit, malformed/missing-span, contradictory-claim, downstream gate, provider-envelope, and provider-authorization smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
 
 Additional checks passed during this handoff refresh:
 
@@ -151,6 +156,7 @@ Additional checks passed during this handoff refresh:
 - `node --check tools/fff-extract-local.mjs`
 - `node --check tools/fff-source-span-review-pack.mjs`
 - `node tools/fff-state.mjs smoke-provider-adapter-authorization-readiness artifacts/provider-envelope-readiness-no-call-result.json artifacts/provider-adapter-authorization-readiness-result.json`
+- `node tools/fff-state.mjs smoke-translation-provenance-source-span-readback artifacts/extraction-adapter-outputs/multilingual-memo-notes.json artifacts/translation-provenance-source-span-readback-result.json`
 - HTML inline script syntax check for `public/review/index.html`
 - `uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"`
 - `git diff --check`
@@ -186,6 +192,7 @@ No general Review Hub review is needed for the current state. Future review shou
 | --- | --- | --- |
 | Advance: provider adapter authorization | Uses the authorization readiness Decision Packet only after provider choice, credentials, endpoint, transport scope, external call permission, timeout, and retry policy are explicitly approved | A real adapter can be implemented without silently crossing the boundary |
 | Verify: contradictory claim guard | Re-runs the held-conflict fixture and result after adapter edits | Future Claim Ledger acceptance paths can fail before they auto-promote conflicts |
+| Audit: translation provenance policy | Uses the source-span/claim readback before adding translated memo text | A translated fixture can be scoped around source-of-truth language and span ownership instead of guessing |
 | Audit: remaining fixture class | Adds translated or very broad fixture coverage only after policy or source-output evidence creates a concrete gap | Adapter/model regression coverage becomes less brittle without duplicate fixtures |
 | Excise: weak source-span debt | Improves a concrete source-span class while preserving the broad-span and malformed-span guards | Review can focus on source usefulness instead of source validity |
 
@@ -197,5 +204,5 @@ No general Review Hub review is needed for the current state. Future review shou
 | Downstream adoption readiness | Ensure Profile / Claim / Timeline candidates stay source-tracked and held | Readback gate passes with 0 adopted candidates | Keep blocked until explicit adoption behavior is requested |
 | Provider envelope and authorization readiness | Fix future provider output shape and approval boundary before transport exists | No-call readback passes, and authorization readiness lists 6 blocked items plus 3 options; no provider, endpoint, credential, project-state mutation, or adopted canon output exists | Use as required preconditions, not as provider integration |
 | Route lock / project hygiene | Keep Fast Fiction Factory separate from ClipPipeGen prompt residue | `fff-route-lock-clean-state-readback-001` records cleanup of untracked ClipPipeGen files and no tracked contamination | Start new terminals from this handoff and keep future `clip-ed10` / `ED-10` work out of this repo |
-| Fixture coverage | Cover unrepresented memo shapes | 9 validator fixtures and 5 adapter fixture outputs now pass; multilingual memo text is covered; translated memo text is audited but policy-dependent; very broad source-span shape is audited and deferred because current broad rows are already resolved | Add one missing fixture class at a time only when it has concrete decision value |
+| Fixture coverage | Cover unrepresented memo shapes | 9 validator fixtures and 5 adapter fixture outputs now pass; multilingual memo text is covered; translated memo text is audited and has source-span/claim provenance readback, but policy remains unresolved; very broad source-span shape is audited and deferred because current broad rows are already resolved | Add one missing fixture class at a time only when it has concrete decision value |
 | Model/API adapter | Replace deterministic extraction with provider-backed extraction | Explicitly not started | Keep blocked until user authorizes provider, credential, endpoint, API transport scope, external call permission, timeout, and retry policy |

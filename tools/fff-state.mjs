@@ -16,6 +16,7 @@ const PROVIDER_ENVELOPE_READINESS_NO_CALL_SCHEMA_VERSION = "fff.providerEnvelope
 const PROVIDER_ADAPTER_AUTHORIZATION_READINESS_SCHEMA_VERSION = "fff.providerAdapterAuthorizationReadiness.v1";
 const REMAINING_FIXTURE_COVERAGE_SCHEMA_VERSION = "fff.remainingFixtureCoverageOneClass.v1";
 const TRANSLATED_MEMO_FIXTURE_AUDIT_SCHEMA_VERSION = "fff.translatedMemoFixtureAudit.v1";
+const TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_SCHEMA_VERSION = "fff.translationProvenanceSourceSpanReadback.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -30,6 +31,7 @@ const DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT = "artifacts/provider-e
 const DEFAULT_PROVIDER_ADAPTER_AUTHORIZATION_READINESS_OUTPUT = "artifacts/provider-adapter-authorization-readiness-result.json";
 const DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT = "artifacts/remaining-fixture-coverage-one-class-result.json";
 const DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT = "artifacts/translated-memo-fixture-audit-result.json";
+const DEFAULT_TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_OUTPUT = "artifacts/translation-provenance-source-span-readback-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -415,6 +417,25 @@ async function main() {
     }
     if (command === "smoke-translated-memo-fixture-audit" || outputPath) {
       console.log(`translated memo fixture audit passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-translation-provenance-source-span-readback" || command === "smoke-translation-provenance-source-span-readback") {
+    const payload = await readJson(inputPath);
+    const result = await validateTranslationProvenanceSourceSpanReadback(payload, inputPath);
+    const target = outputPath || DEFAULT_TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_OUTPUT;
+    if (command === "smoke-translation-provenance-source-span-readback" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Translation provenance source-span readback failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-translation-provenance-source-span-readback" || outputPath) {
+      console.log(`translation provenance source-span readback passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -2277,6 +2298,401 @@ async function validateTranslatedMemoFixtureAudit(smoke, smokePath) {
       ]
     },
     fixture_audit_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+async function validateTranslationProvenanceSourceSpanReadback(payload, payloadPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const fixturePath = payload.sourceMemoRef || "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md";
+  const rawMemo = await readFile(fixturePath, "utf8");
+  const sourcePackPath = manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json";
+  const sourcePack = await readJson(sourcePackPath);
+  const remainingPath = manifest.remaining_fixture_coverage_one_class_result_path || DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT;
+  const remaining = await readJson(remainingPath);
+  const translatedAuditPath = manifest.translated_memo_fixture_audit_result_path || DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT;
+  const translatedAudit = await readJson(translatedAuditPath);
+  const downstreamPath = manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT;
+  const downstreamGate = await readJson(downstreamPath);
+  const providerPath = manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT;
+  const providerEnvelope = await readJson(providerPath);
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+  const sourceRefs = Array.isArray(payload.sourceRefs) ? payload.sourceRefs : [];
+  const sourceRefIds = new Set(sourceRefs.map((sourceRef) => sourceRef.id).filter(Boolean));
+  const elements = Array.isArray(payload.extractedElements) ? payload.extractedElements : [];
+  const claims = Array.isArray(payload.claimCandidates) ? payload.claimCandidates : [];
+  const fixture = Array.isArray(sourcePack.fixtures)
+    ? sourcePack.fixtures.find((entry) => entry.fixture_id === "multilingual-memo-notes")
+    : null;
+  const sourcePackRows = Array.isArray(fixture?.elements) ? fixture.elements : [];
+  const sourcePackById = new Map(sourcePackRows.map((row) => [row.id, row]));
+  const manifestValidationCommand = String(manifest.validation_command || "");
+
+  const rowSpecs = [
+    {
+      elementId: "multi-x-object-brass-moth-key",
+      claimId: "multi-claim-moth-key-label",
+      translationMode: "inline_multilingual_label_preserved",
+      normalizationStep: "The local adapter preserves the source label and normalizes it into an object candidate plus a held label claim; it does not decide the moth key function or truth.",
+      relation: "source_span_to_label_claim"
+    },
+    {
+      elementId: "multi-x-organization-archivists",
+      claimId: "multi-claim-clerical-error",
+      translationMode: "mixed_language_record_phrase_preserved",
+      normalizationStep: "The local adapter keeps the mixed-language council record as source evidence and derives a held character-belief claim without deciding Council motive or Toma fate.",
+      relation: "source_span_to_character_belief_claim"
+    },
+    {
+      elementId: "multi-x-event-noon-ring",
+      claimId: "multi-claim-noon-ring",
+      translationMode: "inline_english_gloss_used_as_author_memo_text",
+      normalizationStep: "The local adapter reads the inline English phrase already present in the author memo and derives a held event claim; it does not call a translation provider.",
+      relation: "source_span_to_event_claim"
+    }
+  ];
+
+  const boundaryElement = elements.find((element) => element.id === "multi-x-placeholder-translation-boundary");
+  const boundaryPackRow = boundaryElement ? sourcePackById.get(boundaryElement.id) : null;
+  const rows = rowSpecs.map((spec) => {
+    const element = elements.find((candidate) => candidate.id === spec.elementId);
+    const claim = claims.find((candidate) => candidate.id === spec.claimId);
+    const sourceSpan = element?.sourceSpan || {};
+    const sourcePackRow = sourcePackById.get(spec.elementId);
+    const claimSourceRefIds = Array.isArray(claim?.sourceRefs)
+      ? claim.sourceRefs.map((sourceRef) => sourceRef.id).filter(Boolean)
+      : [];
+    return {
+      spec,
+      element,
+      claim,
+      sourcePackRow,
+      sourceSpan,
+      sourceSpanMatchesRaw: Boolean(element) &&
+        typeof sourceSpan.start === "number" &&
+        typeof sourceSpan.end === "number" &&
+        rawMemo.slice(sourceSpan.start, sourceSpan.end) === sourceSpan.text,
+      claimSourceRefIds
+    };
+  });
+
+  const boundarySourceSpan = boundaryElement?.sourceSpan || {};
+  const boundarySpanMatchesRaw = Boolean(boundaryElement) &&
+    typeof boundarySourceSpan.start === "number" &&
+    typeof boundarySourceSpan.end === "number" &&
+    rawMemo.slice(boundarySourceSpan.start, boundarySourceSpan.end) === boundarySourceSpan.text;
+  const allSourceElements = [
+    ...rows.map((row) => row.element).filter(Boolean),
+    boundaryElement
+  ].filter(Boolean);
+  const sourceSpanMismatches = allSourceElements.filter((element) => {
+    const sourceSpan = element.sourceSpan || {};
+    return typeof sourceSpan.start !== "number" ||
+      typeof sourceSpan.end !== "number" ||
+      rawMemo.slice(sourceSpan.start, sourceSpan.end) !== sourceSpan.text;
+  }).map((element) => element.id);
+  const missingElementSourceRefs = allSourceElements.filter((element) =>
+    !Array.isArray(element.sourceRefIds) ||
+    element.sourceRefIds.length === 0 ||
+    element.sourceRefIds.some((sourceRefId) => !sourceRefIds.has(sourceRefId))
+  ).map((element) => element.id);
+  const missingClaimSourceRefs = rows.filter((row) =>
+    !row.claim ||
+    row.claimSourceRefIds.length === 0 ||
+    row.claimSourceRefIds.some((sourceRefId) => !sourceRefIds.has(sourceRefId))
+  ).map((row) => row.spec.claimId);
+  const targetClaimLinkMismatches = rows.filter((row) =>
+    !row.element ||
+    !row.claim ||
+    !Array.isArray(row.element.targetClaimIds) ||
+    !row.element.targetClaimIds.includes(row.claim.id)
+  ).map((row) => `${row.spec.elementId}->${row.spec.claimId}`);
+  const sourcePackMismatches = rows.filter((row) =>
+    !row.sourcePackRow ||
+    row.sourcePackRow.source_span_matches_raw_memo !== true ||
+    row.sourcePackRow.source_span_locator !== `${toRepoPath(fixturePath)}#char=${row.sourceSpan.start}-${row.sourceSpan.end}`
+  ).map((row) => row.spec.elementId);
+  const claimAdoptionLeaks = rows.filter((row) =>
+    row.claim && ["adopt", "provisional"].includes(row.claim.reviewStatus)
+  ).map((row) => row.claim.id);
+  const elementAdoptionLeaks = allSourceElements.filter((element) =>
+    ["adopt", "provisional"].includes(element.reviewStatus) ||
+    ["adopt", "provisional"].includes(element.suggestedReviewStatus)
+  ).map((element) => element.id);
+  const translatedFixtureAdded = translatedAudit.audit_scope?.translated_fixture_added === true ||
+    translatedAudit.coverage_audit?.translated_memo_text?.fixture_present === true ||
+    translatedAudit.summary?.translated_fixture_count > 0;
+  const externalTranslationOrProviderUsed =
+    payload.generatorType !== "local_deterministic_adapter" ||
+    payload.adapterTrace?.noModelApi !== true ||
+    providerEnvelope.provider_metadata?.providerConfigured !== false ||
+    providerEnvelope.provider_metadata?.externalCallAttempted !== false ||
+    providerEnvelope.provider_metadata?.credentialsTouched !== false;
+
+  check(
+    "active_artifact_and_prior_audits_loaded",
+    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+      remaining?.artifact_id === "fff-remaining-fixture-coverage-one-class-001" &&
+      translatedAudit?.artifact_id === "fff-translated-memo-fixture-audit-001" &&
+      remaining?.passed === true &&
+      translatedAudit?.passed === true,
+    `active=${manifest.artifact_id}; remaining=${remaining?.artifact_id}; translated=${translatedAudit?.artifact_id}`
+  );
+  check(
+    "manifest_validation_includes_readback",
+    manifestValidationCommand.includes("smoke-translation-provenance-source-span-readback"),
+    `includes smoke=${manifestValidationCommand.includes("smoke-translation-provenance-source-span-readback")}`
+  );
+  check(
+    "multilingual_payload_and_source_pack_loaded",
+    payload.schemaVersion === EXTRACTION_SCHEMA_VERSION &&
+      payload.extractionRunId === "local-extract-multilingual-memo-notes-001" &&
+      fixture?.fixture_id === "multilingual-memo-notes" &&
+      sourcePack?.passed === true &&
+      sourcePackRows.length === 12,
+    `run=${payload.extractionRunId}; fixture=${fixture?.fixture_id}; rows=${sourcePackRows.length}`
+  );
+  check(
+    "source_spans_match_raw_memo",
+    sourceSpanMismatches.length === 0 &&
+      rows.every((row) => row.sourceSpanMatchesRaw) &&
+      boundarySpanMatchesRaw === true,
+    `mismatches=${sourceSpanMismatches.join(", ") || "none"}; boundary=${boundarySpanMatchesRaw}`
+  );
+  check(
+    "source_pack_rows_match_selected_elements",
+    sourcePackMismatches.length === 0 &&
+      boundaryPackRow?.source_span_matches_raw_memo === true,
+    `sourcePackMismatches=${sourcePackMismatches.join(", ") || "none"}; boundaryPack=${boundaryPackRow?.source_span_matches_raw_memo}`
+  );
+  check(
+    "claim_links_and_source_refs_preserved",
+    targetClaimLinkMismatches.length === 0 &&
+      missingElementSourceRefs.length === 0 &&
+      missingClaimSourceRefs.length === 0,
+    `claimLinks=${targetClaimLinkMismatches.join(", ") || "none"}; missingElementRefs=${missingElementSourceRefs.join(", ") || "none"}; missingClaimRefs=${missingClaimSourceRefs.join(", ") || "none"}`
+  );
+  check(
+    "translation_boundary_prevents_unowned_claim",
+    boundaryElement?.reviewStatus === "hold" &&
+      boundaryElement?.suggestedReviewStatus === "hold" &&
+      Array.isArray(boundaryElement.targetClaimIds) &&
+      boundaryElement.targetClaimIds.length === 0 &&
+      Array.isArray(boundaryElement.targetDestinations) &&
+      boundaryElement.targetDestinations.includes("unresolved_decision"),
+    `boundary=${boundaryElement?.id}; claims=${boundaryElement?.targetClaimIds?.length}; destinations=${boundaryElement?.targetDestinations?.join(", ") || "none"}`
+  );
+  check(
+    "derived_claims_remain_held_and_uncertain_where_needed",
+    claimAdoptionLeaks.length === 0 &&
+      elementAdoptionLeaks.length === 0 &&
+      rows.every((row) => row.claim?.reviewStatus === "hold") &&
+      rows.filter((row) => row.claim?.canonRisk === "high").every((row) => row.claim?.worldTruthStatus === "uncertain"),
+    `claimAdoptionLeaks=${claimAdoptionLeaks.join(", ") || "none"}; elementAdoptionLeaks=${elementAdoptionLeaks.join(", ") || "none"}`
+  );
+  check(
+    "contradiction_and_downstream_guards_preserved",
+    contradictoryGuard?.passed === true &&
+      contradictoryGuard.summary?.held_conflicting_claims === 2 &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      contradictoryGuard.summary?.direct_accepted_claim_elements === 0 &&
+      downstreamGate?.passed === true &&
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates === 0 &&
+      malformedGuard?.passed === true &&
+      malformedGuard.summary?.accepted_routed_candidates === 0,
+    `heldConflicts=${contradictoryGuard.summary?.held_conflicting_claims}; directAccepted=${contradictoryGuard.summary?.direct_accepted_claim_elements}; downstreamAdopted=${downstreamGate.summary?.adopted_profile_claim_timeline_candidates}; malformedAccepted=${malformedGuard.summary?.accepted_routed_candidates}`
+  );
+  check(
+    "no_translation_provider_or_fixture_added",
+    translatedFixtureAdded === false &&
+      translatedAudit.summary?.translated_gap_present === true &&
+      externalTranslationOrProviderUsed === false,
+    `translatedFixtureAdded=${translatedFixtureAdded}; translatedGap=${translatedAudit.summary?.translated_gap_present}; providerConfigured=${providerEnvelope.provider_metadata?.providerConfigured}; externalCall=${providerEnvelope.provider_metadata?.externalCallAttempted}; credentials=${providerEnvelope.provider_metadata?.credentialsTouched}`
+  );
+  check(
+    "review_nonredundancy_preserved",
+    manifest.review_memory?.some((entry) => entry.artifact_id === "fff-translation-provenance-source-span-readback-001") &&
+      manifest.review_input_mode === "freeform",
+    `reviewMemory=${Array.isArray(manifest.review_memory) ? manifest.review_memory.length : 0}; reviewInput=${manifest.review_input_mode}`
+  );
+
+  const readbackRows = rows.map((row) => ({
+    source_item: {
+      id: row.element?.id,
+      element_type: row.element?.elementType,
+      display_text: row.element?.displayText,
+      source_ref_ids: row.element?.sourceRefIds || [],
+      source_memo_path: toRepoPath(fixturePath),
+      source_ref_trust: sourceRefs
+        .filter((sourceRef) => (row.element?.sourceRefIds || []).includes(sourceRef.id))
+        .map((sourceRef) => ({ id: sourceRef.id, trust: sourceRef.trust }))
+    },
+    source_span: {
+      text: row.sourceSpan.text,
+      start: row.sourceSpan.start,
+      end: row.sourceSpan.end,
+      locator: `${toRepoPath(fixturePath)}#char=${row.sourceSpan.start}-${row.sourceSpan.end}`,
+      matches_raw_memo: row.sourceSpanMatchesRaw,
+      source_pack_row_matches: row.sourcePackRow?.source_span_matches_raw_memo === true
+    },
+    translation_or_normalization_step: {
+      mode: row.spec.translationMode,
+      external_translation_used: false,
+      source_of_truth: "author_memo",
+      adapter_step: row.spec.normalizationStep,
+      relation: row.spec.relation
+    },
+    generated_or_derived_claim: {
+      id: row.claim?.id,
+      claim_text: row.claim?.claimText,
+      claim_scope: row.claim?.claimScope,
+      world_truth_status: row.claim?.worldTruthStatus,
+      review_status: row.claim?.reviewStatus,
+      canon_risk: row.claim?.canonRisk,
+      unresolved_dependencies: row.claim?.unresolvedDependencies || []
+    },
+    claim_provenance: {
+      source_ref_ids: row.claimSourceRefIds,
+      source_refs_found: row.claimSourceRefIds.every((sourceRefId) => sourceRefIds.has(sourceRefId)),
+      generator_type: payload.generatorType,
+      generator_label: payload.generatorLabel,
+      adapter_trace_tool_path: payload.adapterTrace?.toolPath,
+      no_model_api: payload.adapterTrace?.noModelApi === true,
+      provider_configured: providerEnvelope.provider_metadata?.providerConfigured === true,
+      external_call_attempted: providerEnvelope.provider_metadata?.externalCallAttempted === true,
+      credentials_touched: providerEnvelope.provider_metadata?.credentialsTouched === true
+    },
+    contradiction_guard_status: {
+      active_guard_artifact_id: contradictoryGuard.artifact_id,
+      guard_passed: contradictoryGuard.passed === true,
+      conflicting_claims_held: contradictoryGuard.summary?.held_conflicting_claims,
+      adopted_or_provisional_conflicting_claims: contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims,
+      direct_accepted_claim_elements: contradictoryGuard.summary?.direct_accepted_claim_elements,
+      selected_claim_contradicts_claim_ids: row.claim?.contradictsClaimIds || []
+    },
+    confidence_uncertainty: {
+      element_confidence: row.element?.confidence,
+      element_review_status: row.element?.reviewStatus,
+      suggested_review_status: row.element?.suggestedReviewStatus,
+      claim_world_truth_status: row.claim?.worldTruthStatus,
+      claim_canon_risk: row.claim?.canonRisk,
+      high_risk_claim_remains_uncertain: row.claim?.canonRisk === "high" ? row.claim?.worldTruthStatus === "uncertain" : null
+    }
+  }));
+
+  return {
+    schemaVersion: TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_SCHEMA_VERSION,
+    artifact_id: "fff-translation-provenance-source-span-readback-001",
+    title: "Fast Fiction Factory Translation Provenance Source-Span Readback",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    input_payload_path: toRepoPath(payloadPath),
+    source_scope: {
+      source_fixture_path: toRepoPath(fixturePath),
+      source_output_path: toRepoPath(payloadPath),
+      source_pack_path: sourcePackPath,
+      translated_audit_path: translatedAuditPath,
+      provider_envelope_readback_path: providerPath
+    },
+    review_memory_checked: {
+      checked: true,
+      target: "fff-translated-memo-fixture-audit-001",
+      prior_review_count: manifest.review_memory?.find((entry) => entry.artifact_id === "fff-translated-memo-fixture-audit-001")?.prior_review_count ?? 0,
+      axis: "translation_provenance_source_span_readback",
+      what_changed: "A deterministic readback now links selected multilingual source spans to held derived claims and records that no translation provider, translated fixture, or canon decision was added.",
+      what_this_review_decides: "No user review is needed; this proves the repo can inspect source-span/claim provenance before any translated fixture or provider adapter work.",
+      not_asking: [
+        "translation policy approval",
+        "provider choice",
+        "credentials",
+        "model/API call approval",
+        "database persistence",
+        "publishing or production sync",
+        "AI video generation",
+        "downstream adoption implementation",
+        "canon promotion",
+        "contradictory claim truth decision"
+      ],
+      next_nonredundant_axis: "translated memo fixture only after source-of-truth language and span ownership policy have concrete decision value, or provider adapter implementation only after explicit authorization"
+    },
+    translation_boundary_source_item: boundaryElement ? {
+      id: boundaryElement.id,
+      element_type: boundaryElement.elementType,
+      display_text: boundaryElement.displayText,
+      source_span: {
+        text: boundarySourceSpan.text,
+        start: boundarySourceSpan.start,
+        end: boundarySourceSpan.end,
+        locator: `${toRepoPath(fixturePath)}#char=${boundarySourceSpan.start}-${boundarySourceSpan.end}`,
+        matches_raw_memo: boundarySpanMatchesRaw,
+        source_pack_row_matches: boundaryPackRow?.source_span_matches_raw_memo === true
+      },
+      target_claim_ids: boundaryElement.targetClaimIds || [],
+      review_status: boundaryElement.reviewStatus,
+      boundary_meaning: "Inline gloss is preserved as author memo text; it is not treated as an external translation or owned translation policy."
+    } : null,
+    source_span_claim_readback: readbackRows,
+    summary: {
+      source_claim_rows_checked: readbackRows.length,
+      translation_boundary_rows_checked: boundaryElement ? 1 : 0,
+      source_spans_checked: allSourceElements.length,
+      source_span_mismatches: sourceSpanMismatches.length,
+      missing_element_source_refs: missingElementSourceRefs.length,
+      missing_claim_source_refs: missingClaimSourceRefs.length,
+      target_claim_link_mismatches: targetClaimLinkMismatches.length,
+      derived_claims_checked: rows.filter((row) => row.claim).length,
+      held_derived_claims: rows.filter((row) => row.claim?.reviewStatus === "hold").length,
+      high_risk_uncertain_claims: rows.filter((row) => row.claim?.canonRisk === "high" && row.claim?.worldTruthStatus === "uncertain").length,
+      translated_fixture_added: translatedFixtureAdded,
+      translated_gap_present: translatedAudit.summary?.translated_gap_present === true,
+      provider_configured: providerEnvelope.provider_metadata?.providerConfigured,
+      external_call_attempted: providerEnvelope.provider_metadata?.externalCallAttempted,
+      credentials_touched: providerEnvelope.provider_metadata?.credentialsTouched,
+      downstream_adopted_candidates: downstreamGate.summary?.adopted_profile_claim_timeline_candidates,
+      adopted_or_provisional_conflicting_claims: contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims,
+      direct_accepted_claim_elements: contradictoryGuard.summary?.direct_accepted_claim_elements,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    what_this_proves: [
+      "Selected multilingual source spans can be traced from the raw author memo into held generated claim candidates.",
+      "Inline gloss and multilingual labels are preserved as memo evidence without an external translation call.",
+      "Derived claim provenance keeps source refs, generator identity, review-held status, and contradiction/downstream guard boundaries visible.",
+      "The translated memo fixture gap remains explicit instead of being hidden by multilingual fixture coverage."
+    ],
+    what_this_does_not_prove: [
+      "It does not approve a translated memo fixture.",
+      "It does not choose source-of-truth language or original-vs-translation span ownership policy.",
+      "It does not configure or call a provider, touch credentials, or implement a model/API adapter.",
+      "It does not adopt Profile, Claim, or Timeline candidates or decide Toma fate, brass moth truth, Council motive, or contradictory claim truth."
+    ],
+    translation_policy_state: {
+      state: "readback_available_policy_not_finalized",
+      owner: "human product owner for translation/source-of-truth policy; agent for future bounded fixture after policy exists",
+      next_move: "Use this readback before adding translated memo fixtures; keep provider/API work blocked until explicitly authorized.",
+      requirements_before_translated_fixture: [
+        "source-of-truth language policy",
+        "translation provenance policy",
+        "original-vs-translation source-span ownership policy",
+        "confirmation that translated memo coverage is the current bottleneck"
+      ]
+    },
+    readback_checks: checks,
     failures,
     passed: failures.length === 0
   };
@@ -4502,6 +4918,8 @@ Usage:
   node tools/fff-state.mjs smoke-remaining-fixture-coverage-one-class <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-translated-memo-fixture-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-translated-memo-fixture-audit <adapter-matrix-smoke.json> [output.json]
+  node tools/fff-state.mjs validate-translation-provenance-source-span-readback <adapter-output.json>
+  node tools/fff-state.mjs smoke-translation-provenance-source-span-readback <adapter-output.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
@@ -4538,6 +4956,9 @@ Default remaining fixture coverage output:
 
 Default translated memo fixture audit output:
   ${DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT}
+
+Default translation provenance source-span readback output:
+  ${DEFAULT_TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_OUTPUT}
 
 Default very broad source-span shape audit output:
   ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}

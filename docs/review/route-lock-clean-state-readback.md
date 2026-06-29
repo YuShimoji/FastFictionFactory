@@ -30,7 +30,7 @@ tracked by Git and did not match the active Fast Fiction Factory artifact line.
 
 ## Current Route Lock
 
-- Repo root: `C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory`
+- Repo root: Fast Fiction Factory repository root; local checkout path may vary.
 - Branch: `master`
 - Active artifact: `fff-contradictory-claim-guard-001`
 - Route-lock readback: `fff-route-lock-clean-state-readback-001`

@@ -9,6 +9,19 @@
 - Next-terminal handoff: `docs/review/next-terminal-handoff.md`
 - Review status: `route_clean`
 
+## fff-translation-provenance-source-span-readback-001
+
+- Title: Fast Fiction Factory Translation Provenance Source-Span Readback
+- Purpose: Record selected multilingual source-span to held derived-claim provenance before any translated fixture, translation policy, provider/API behavior, downstream adoption, or canon decision exists.
+- Repo relative path: `docs/review/translation-provenance-source-span-readback.md`
+- Readback result: `artifacts/translation-provenance-source-span-readback-result.json`
+- Source fixture: `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`
+- Source output: `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`
+- Validation command: `node tools/fff-state.mjs smoke-translation-provenance-source-span-readback artifacts/extraction-adapter-outputs/multilingual-memo-notes.json artifacts/translation-provenance-source-span-readback-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no translated fixture or provider/API boundary is added.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

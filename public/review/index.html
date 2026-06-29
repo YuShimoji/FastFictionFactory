@@ -952,7 +952,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-contradictory-claim-guard-001</strong>. This slice keeps conflicting claim candidates detected, source-backed, held for human review, and out of auto-canon while preserving <strong>fff-provider-envelope-readiness-no-call-001</strong>, <strong>fff-downstream-source-span-adoption-gate-001</strong>, <strong>fff-malformed-missing-span-guard-001</strong>, <strong>fff-missing-fixture-class-probe-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-contradictory-claim-guard-001</strong>. This slice keeps conflicting claim candidates detected, source-backed, held for human review, and out of auto-canon while preserving <strong>fff-provider-envelope-readiness-no-call-001</strong>, <strong>fff-downstream-source-span-adoption-gate-001</strong>, <strong>fff-malformed-missing-span-guard-001</strong>, <strong>fff-missing-fixture-class-probe-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-translation-provenance-source-span-readback-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1003,6 +1003,7 @@
           <div class="progress-step done"><strong>Malformed span guard</strong><span class="tag green">done</span><p class="section-note">Reject missing, malformed, or unusable source-span evidence before routed candidate adoption.</p></div>
           <div class="progress-step done"><strong>Downstream adoption gate</strong><span class="tag green">done</span><p class="section-note">Confirm downstream Profile, Claim, and Timeline candidates remain source-tracked, safe-routed, and held.</p></div>
           <div class="progress-step done"><strong>Provider envelope readiness</strong><span class="tag green">done</span><p class="section-note">provider envelope readiness no-call passed: no provider call, credential, endpoint, production sync, or final canon output.</p></div>
+          <div class="progress-step done"><strong>Translation provenance readback</strong><span class="tag green">done</span><p class="section-note">Trace selected multilingual source spans into held derived claims without translation API or provider work.</p></div>
           <div class="progress-step current"><strong>Contradictory claim guard</strong><span class="tag blue">current</span><p class="section-note">Detect reciprocal claim conflicts and keep both sides held without deciding truth.</p></div>
         </div>
 
@@ -1122,6 +1123,8 @@
                 <tr><td>Source-span pack review</td><td>docs/review/source-span-routing-review-pack.md</td></tr>
                 <tr><td>Source-span quality audit</td><td>docs/review/source-span-quality-audit.md</td></tr>
                 <tr><td>Source-span quality result</td><td>artifacts/source-span-quality-audit-result.json</td></tr>
+                <tr><td>Translation provenance readback</td><td>docs/review/translation-provenance-source-span-readback.md</td></tr>
+                <tr><td>Translation provenance result</td><td>artifacts/translation-provenance-source-span-readback-result.json</td></tr>
                 <tr><td>Downstream source-span adoption gate</td><td>docs/review/downstream-source-span-adoption-gate.md</td></tr>
                 <tr><td>Downstream source-span adoption result</td><td>artifacts/downstream-source-span-adoption-gate-result.json</td></tr>
                 <tr><td>Malformed source-span guard</td><td>docs/review/malformed-missing-span-guard.md</td></tr>
@@ -1169,10 +1172,11 @@
               <li>Use <strong>docs/review/routing-policy-regression-hardening.md</strong> and <strong>artifacts/routing-policy-regression-hardening-result.json</strong> for the preserved routing policy regression hardening axis.</li>
               <li>Use <strong>docs/review/ambiguous-routing-resolution.md</strong> and <strong>artifacts/ambiguous-routing-resolution-result.json</strong> for the non-redundant ambiguous routing resolution axis.</li>
               <li>Use <strong>docs/review/source-span-quality-audit.md</strong> and <strong>artifacts/source-span-quality-audit-result.json</strong> for the non-redundant source-span quality axis.</li>
+              <li>Use <strong>docs/review/translation-provenance-source-span-readback.md</strong> and <strong>artifacts/translation-provenance-source-span-readback-result.json</strong> for selected multilingual source-span to held derived-claim provenance.</li>
               <li>Use <strong>docs/review/review-memory-dedup.md</strong> before asking for another review of the same target, evidence, and axis.</li>
               <li>Use <strong>docs/review/review-procedure.md</strong> as the fixed review procedure and Review Debt map.</li>
               <li>Use the <strong>Source Audit / 抽出根拠レビュー</strong> mode to review fixture summaries, representative source spans, routing targets, held defaults, and human-owned guards.</li>
-              <li>Use <strong>artifacts/source-span-routing-review-pack.json</strong> when all 48 current extracted elements need full source-span/routing readback.</li>
+              <li>Use <strong>artifacts/source-span-routing-review-pack.json</strong> when all 60 current extracted elements need full source-span/routing readback.</li>
               <li>Use <strong>artifacts/local-extraction-adapter-expansion-smoke-result.json</strong> to review fixture inputs, adapter outputs, validator status, source-span audit, and guard status.</li>
               <li>Use <strong>artifacts/extraction-validator-smoke-result.json</strong> to review the preserved pass/fail fixture matrix before model/API work.</li>
               <li>Use <strong>Extraction Contract</strong> grouping and filters before wiring any generated candidate into profile, claim, or timeline review.</li>
@@ -1227,16 +1231,16 @@
 
         <div class="hub-panel" id="source-span-routing-review-pack-section" style="margin-top: 12px;" data-mode-panel="source">
           <h3>Source-Span Routing Review Pack <span class="jp-label">抽出根拠レビュー</span></h3>
-          <p class="section-note">Artifact id: <strong>fff-source-span-routing-review-pack-001</strong>. Full 48-row readback lives at <strong>artifacts/source-span-routing-review-pack.json</strong>; this panel keeps the review surface compact for freeform supervision.</p>
+          <p class="section-note">Artifact id: <strong>fff-source-span-routing-review-pack-001</strong>. Full 60-row readback lives at <strong>artifacts/source-span-routing-review-pack.json</strong>; this panel keeps the review surface compact for freeform supervision.</p>
           <div class="summary-strip" aria-label="Source-span review pack summary">
-            <div class="metric"><strong>4</strong><span>fixtures</span></div>
-            <div class="metric"><strong>48</strong><span>elements</span></div>
-            <div class="metric"><strong>36</strong><span>profiles</span></div>
-            <div class="metric"><strong>27</strong><span>claims</span></div>
-            <div class="metric"><strong>16</strong><span>timeline</span></div>
+            <div class="metric"><strong>5</strong><span>fixtures</span></div>
+            <div class="metric"><strong>60</strong><span>elements</span></div>
+            <div class="metric"><strong>44</strong><span>profiles</span></div>
+            <div class="metric"><strong>34</strong><span>claims</span></div>
+            <div class="metric"><strong>20</strong><span>timeline</span></div>
             <div class="metric"><strong>0</strong><span>span mismatch</span></div>
             <div class="metric"><strong>0</strong><span>missing refs</span></div>
-            <div class="metric"><strong>48</strong><span>held defaults</span></div>
+            <div class="metric"><strong>60</strong><span>held defaults</span></div>
           </div>
 
           <div class="hub-grid" style="margin-top: 12px;">
@@ -1257,7 +1261,7 @@
                 <li>Primary routes: Profile 3; Visual 1; Human decision hold 3.</li>
                 <li>Claim remains secondary evidence in 5 rows; Timeline remains secondary evidence in 6 rows.</li>
                 <li>Visual asset regression: target Claim ids are empty for all visual rows.</li>
-                <li>Routing policy regression: 7 resolved rows, 48 source-pack rows, 5 adapter payloads, and 60 adapter elements checked with 0 failures.</li>
+                <li>Routing policy regression: 7 resolved rows, 60 source-pack rows, 6 adapter payloads, and 72 adapter elements checked with 0 failures.</li>
                 <li>No Review Card emitted; sparse bullet-only fixture coverage is local readback only.</li>
               </ul>
             </div>
@@ -1282,7 +1286,7 @@
                 <li>Unsafe visual routing: 0.</li>
                 <li>Non-held review defaults: 0.</li>
                 <li>Human-owned decision adopt suggestions: 0.</li>
-                <li>Human-owned guarded elements: 22.</li>
+                <li>Human-owned guarded elements: 28.</li>
               </ul>
             </div>
             <div class="hub-panel">
@@ -1293,11 +1297,12 @@
                 <li>Vague extraction: qualitative review required.</li>
                 <li>Routing ambiguous: no unsafe visual route; still review target usefulness.</li>
                 <li>Default too confident: clear in automated audit.</li>
-                <li>Downstream adoption gate: 44 source-tracked Profile / Claim / Timeline review candidates, 0 unsafe routes, and 0 adopted downstream candidates.</li>
+                <li>Downstream adoption gate: 55 source-tracked Profile / Claim / Timeline review candidates, 0 unsafe routes, and 0 adopted downstream candidates.</li>
                 <li>Fixture class covered in this slice: sparse bullet-only notes.</li>
                 <li>Fixture class covered by the active guard: malformed or missing source-span payloads.</li>
                 <li>Fixture class covered by the active guard: contradictory memo claims.</li>
-                <li>Fixture classes still missing: broad span, multilingual memo, and model/API envelope cases.</li>
+                <li>Fixture class covered by auxiliary readback: multilingual memo text and translation provenance/source-span relation.</li>
+                <li>Fixture classes still missing or deferred: translated memo text, very broad source-span shape, and model/API envelope output.</li>
               </ul>
             </div>
             <div class="hub-panel">
@@ -1413,6 +1418,7 @@
             <span class="tag green">local adapter smoke checked</span>
             <span class="tag green">source-span review pack visible</span>
             <span class="tag green">source-span quality audit classified</span>
+            <span class="tag green">translation provenance readback</span>
             <span class="tag green">weak source spans repaired</span>
             <span class="tag green">sparse fixture covered</span>
             <span class="tag green">broad source spans resolved</span>
@@ -1486,7 +1492,7 @@
             <div class="metric"><strong>0</strong><span>mismatches</span></div>
             <div class="metric"><strong>local only</strong><span>validator mode</span></div>
           </div>
-          <p class="section-note">Source-span pack evidence: artifacts/source-span-routing-review-pack.json. Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Provider envelope readiness evidence: artifacts/provider-envelope-readiness-no-call-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while keeping future model/API output behind validation gates.</p>
+          <p class="section-note">Source-span pack evidence: artifacts/source-span-routing-review-pack.json. Translation provenance evidence: artifacts/translation-provenance-source-span-readback-result.json. Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Provider envelope readiness evidence: artifacts/provider-envelope-readiness-no-call-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while keeping future model/API output behind validation gates.</p>
           <div class="extraction-toolbar" aria-label="Extraction Contract controls">
             <div class="extraction-toolbar-row">
               <label for="extraction-group-mode"><strong>Group extraction</strong></label>
@@ -3689,8 +3695,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           artifactId: "fff-source-span-routing-review-pack-001",
           packPath: "artifacts/source-span-routing-review-pack.json",
           generator: "tools/fff-source-span-review-pack.mjs",
-          fixtureCount: 4,
-          elementCount: 48,
+          fixtureCount: 5,
+          elementCount: 60,
           sourceSpanMismatchCount: 0,
           reviewInputMode: "freeform"
         },
@@ -3710,12 +3716,12 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           artifactId: "fff-downstream-source-span-adoption-gate-001",
           docPath: "docs/review/downstream-source-span-adoption-gate.md",
           resultPath: "artifacts/downstream-source-span-adoption-gate-result.json",
-          sourcePackRowsChecked: 48,
-          downstreamCandidatesReportedForReview: 44,
-          sourceTrackedDownstreamCandidates: 44,
+          sourcePackRowsChecked: 60,
+          downstreamCandidatesReportedForReview: 55,
+          sourceTrackedDownstreamCandidates: 55,
           malformedOrMissingSpanCandidates: 0,
           unsafeRoutingCandidates: 0,
-          humanOwnedCandidatesHeld: 22,
+          humanOwnedCandidatesHeld: 28,
           adoptedProfileClaimTimelineCandidates: 0,
           actualDownstreamAdoptionImplemented: false,
           reviewCardEmitted: false
@@ -3738,9 +3744,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           docPath: "docs/review/routing-policy-regression-hardening.md",
           resultPath: "artifacts/routing-policy-regression-hardening-result.json",
           resolvedRowsChecked: 7,
-          sourcePackRowsChecked: 48,
-          adapterPayloadsChecked: 5,
-          adapterElementsChecked: 60,
+          sourcePackRowsChecked: 60,
+          adapterPayloadsChecked: 6,
+          adapterElementsChecked: 72,
           failures: 0,
           reviewCardEmitted: false
         },
@@ -4354,8 +4360,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             artifactId: "fff-source-span-routing-review-pack-001",
             packPath: "artifacts/source-span-routing-review-pack.json",
             generator: "tools/fff-source-span-review-pack.mjs",
-            fixtureCount: 4,
-            elementCount: 48,
+            fixtureCount: 5,
+            elementCount: 60,
             sourceSpanMismatchCount: 0,
             reviewInputMode: "freeform"
           },
@@ -4375,12 +4381,12 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             artifactId: "fff-downstream-source-span-adoption-gate-001",
             docPath: "docs/review/downstream-source-span-adoption-gate.md",
             resultPath: "artifacts/downstream-source-span-adoption-gate-result.json",
-            sourcePackRowsChecked: 48,
-            downstreamCandidatesReportedForReview: 44,
-            sourceTrackedDownstreamCandidates: 44,
+            sourcePackRowsChecked: 60,
+            downstreamCandidatesReportedForReview: 55,
+            sourceTrackedDownstreamCandidates: 55,
             malformedOrMissingSpanCandidates: 0,
             unsafeRoutingCandidates: 0,
-            humanOwnedCandidatesHeld: 22,
+            humanOwnedCandidatesHeld: 28,
             adoptedProfileClaimTimelineCandidates: 0,
             actualDownstreamAdoptionImplemented: false,
             reviewCardEmitted: false
@@ -4403,9 +4409,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             docPath: "docs/review/routing-policy-regression-hardening.md",
             resultPath: "artifacts/routing-policy-regression-hardening-result.json",
             resolvedRowsChecked: 7,
-            sourcePackRowsChecked: 48,
-            adapterPayloadsChecked: 5,
-            adapterElementsChecked: 60,
+            sourcePackRowsChecked: 60,
+            adapterPayloadsChecked: 6,
+            adapterElementsChecked: 72,
             failures: 0,
             reviewCardEmitted: false
           },

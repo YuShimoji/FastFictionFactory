@@ -1,0 +1,367 @@
+{
+  "schemaVersion": "fff.translationProvenanceSourceSpanReadback.v1",
+  "artifact_id": "fff-translation-provenance-source-span-readback-001",
+  "title": "Fast Fiction Factory Translation Provenance Source-Span Readback",
+  "generatedAt": "2026-06-29T03:08:51.348Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_payload_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+  "source_scope": {
+    "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    "source_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+    "source_pack_path": "artifacts/source-span-routing-review-pack.json",
+    "translated_audit_path": "artifacts/translated-memo-fixture-audit-result.json",
+    "provider_envelope_readback_path": "artifacts/provider-envelope-readiness-no-call-result.json"
+  },
+  "review_memory_checked": {
+    "checked": true,
+    "target": "fff-translated-memo-fixture-audit-001",
+    "prior_review_count": 0,
+    "axis": "translation_provenance_source_span_readback",
+    "what_changed": "A deterministic readback now links selected multilingual source spans to held derived claims and records that no translation provider, translated fixture, or canon decision was added.",
+    "what_this_review_decides": "No user review is needed; this proves the repo can inspect source-span/claim provenance before any translated fixture or provider adapter work.",
+    "not_asking": [
+      "translation policy approval",
+      "provider choice",
+      "credentials",
+      "model/API call approval",
+      "database persistence",
+      "publishing or production sync",
+      "AI video generation",
+      "downstream adoption implementation",
+      "canon promotion",
+      "contradictory claim truth decision"
+    ],
+    "next_nonredundant_axis": "translated memo fixture only after source-of-truth language and span ownership policy have concrete decision value, or provider adapter implementation only after explicit authorization"
+  },
+  "translation_boundary_source_item": {
+    "id": "multi-x-placeholder-translation-boundary",
+    "element_type": "placeholder",
+    "display_text": "translation boundary placeholder",
+    "source_span": {
+      "text": "English gloss is in-line only",
+      "start": 537,
+      "end": 566,
+      "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+      "matches_raw_memo": true,
+      "source_pack_row_matches": true
+    },
+    "target_claim_ids": [],
+    "review_status": "hold",
+    "boundary_meaning": "Inline gloss is preserved as author memo text; it is not treated as an external translation or owned translation policy."
+  },
+  "source_span_claim_readback": [
+    {
+      "source_item": {
+        "id": "multi-x-object-brass-moth-key",
+        "element_type": "object",
+        "display_text": "brass moth key / 真鍮の蛾の鍵",
+        "source_ref_ids": [
+          "src-local-adapter-raw-memo-005"
+        ],
+        "source_memo_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+        "source_ref_trust": [
+          {
+            "id": "src-local-adapter-raw-memo-005",
+            "trust": "author_memo"
+          }
+        ]
+      },
+      "source_span": {
+        "text": "brass moth key is called \"真鍮の蛾の鍵\"",
+        "start": 286,
+        "end": 319,
+        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+        "matches_raw_memo": true,
+        "source_pack_row_matches": true
+      },
+      "translation_or_normalization_step": {
+        "mode": "inline_multilingual_label_preserved",
+        "external_translation_used": false,
+        "source_of_truth": "author_memo",
+        "adapter_step": "The local adapter preserves the source label and normalizes it into an object candidate plus a held label claim; it does not decide the moth key function or truth.",
+        "relation": "source_span_to_label_claim"
+      },
+      "generated_or_derived_claim": {
+        "id": "multi-claim-moth-key-label",
+        "claim_text": "The brass moth key carries the Japanese label 真鍮の蛾の鍵.",
+        "claim_scope": "unresolved candidate",
+        "world_truth_status": "uncertain",
+        "review_status": "hold",
+        "canon_risk": "high",
+        "unresolved_dependencies": [
+          "brass moth truth",
+          "Toma fate"
+        ]
+      },
+      "claim_provenance": {
+        "source_ref_ids": [
+          "src-local-adapter-raw-memo-005"
+        ],
+        "source_refs_found": true,
+        "generator_type": "local_deterministic_adapter",
+        "generator_label": "Zero-dependency deterministic local adapter expansion; no model/API call",
+        "adapter_trace_tool_path": "tools/fff-extract-local.mjs",
+        "no_model_api": true,
+        "provider_configured": false,
+        "external_call_attempted": false,
+        "credentials_touched": false
+      },
+      "contradiction_guard_status": {
+        "active_guard_artifact_id": "fff-contradictory-claim-guard-001",
+        "guard_passed": true,
+        "conflicting_claims_held": 2,
+        "adopted_or_provisional_conflicting_claims": 0,
+        "direct_accepted_claim_elements": 0,
+        "selected_claim_contradicts_claim_ids": []
+      },
+      "confidence_uncertainty": {
+        "element_confidence": 0.88,
+        "element_review_status": "hold",
+        "suggested_review_status": "hold",
+        "claim_world_truth_status": "uncertain",
+        "claim_canon_risk": "high",
+        "high_risk_claim_remains_uncertain": true
+      }
+    },
+    {
+      "source_item": {
+        "id": "multi-x-organization-archivists",
+        "element_type": "organization",
+        "display_text": "Council archivists",
+        "source_ref_ids": [
+          "src-local-adapter-raw-memo-005"
+        ],
+        "source_memo_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+        "source_ref_trust": [
+          {
+            "id": "src-local-adapter-raw-memo-005",
+            "trust": "author_memo"
+          }
+        ]
+      },
+      "source_span": {
+        "text": "Council archivists の記録 says Toma's route is a clerical error",
+        "start": 180,
+        "end": 240,
+        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=180-240",
+        "matches_raw_memo": true,
+        "source_pack_row_matches": true
+      },
+      "translation_or_normalization_step": {
+        "mode": "mixed_language_record_phrase_preserved",
+        "external_translation_used": false,
+        "source_of_truth": "author_memo",
+        "adapter_step": "The local adapter keeps the mixed-language council record as source evidence and derives a held character-belief claim without deciding Council motive or Toma fate.",
+        "relation": "source_span_to_character_belief_claim"
+      },
+      "generated_or_derived_claim": {
+        "id": "multi-claim-clerical-error",
+        "claim_text": "Council archivists record Toma's route as a clerical error.",
+        "claim_scope": "character belief",
+        "world_truth_status": "uncertain",
+        "review_status": "hold",
+        "canon_risk": "high",
+        "unresolved_dependencies": [
+          "Council motive",
+          "Toma fate"
+        ]
+      },
+      "claim_provenance": {
+        "source_ref_ids": [
+          "src-local-adapter-raw-memo-005"
+        ],
+        "source_refs_found": true,
+        "generator_type": "local_deterministic_adapter",
+        "generator_label": "Zero-dependency deterministic local adapter expansion; no model/API call",
+        "adapter_trace_tool_path": "tools/fff-extract-local.mjs",
+        "no_model_api": true,
+        "provider_configured": false,
+        "external_call_attempted": false,
+        "credentials_touched": false
+      },
+      "contradiction_guard_status": {
+        "active_guard_artifact_id": "fff-contradictory-claim-guard-001",
+        "guard_passed": true,
+        "conflicting_claims_held": 2,
+        "adopted_or_provisional_conflicting_claims": 0,
+        "direct_accepted_claim_elements": 0,
+        "selected_claim_contradicts_claim_ids": []
+      },
+      "confidence_uncertainty": {
+        "element_confidence": 0.84,
+        "element_review_status": "hold",
+        "suggested_review_status": "hold",
+        "claim_world_truth_status": "uncertain",
+        "claim_canon_risk": "high",
+        "high_risk_claim_remains_uncertain": true
+      }
+    },
+    {
+      "source_item": {
+        "id": "multi-x-event-noon-ring",
+        "element_type": "event",
+        "display_text": "observatory rings at noon",
+        "source_ref_ids": [
+          "src-local-adapter-raw-memo-005"
+        ],
+        "source_memo_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+        "source_ref_trust": [
+          {
+            "id": "src-local-adapter-raw-memo-005",
+            "trust": "author_memo"
+          }
+        ]
+      },
+      "source_span": {
+        "text": "observatory rings at noon even though bell is missing",
+        "start": 124,
+        "end": 177,
+        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=124-177",
+        "matches_raw_memo": true,
+        "source_pack_row_matches": true
+      },
+      "translation_or_normalization_step": {
+        "mode": "inline_english_gloss_used_as_author_memo_text",
+        "external_translation_used": false,
+        "source_of_truth": "author_memo",
+        "adapter_step": "The local adapter reads the inline English phrase already present in the author memo and derives a held event claim; it does not call a translation provider.",
+        "relation": "source_span_to_event_claim"
+      },
+      "generated_or_derived_claim": {
+        "id": "multi-claim-noon-ring",
+        "claim_text": "The old observatory rings at noon even though the bell is missing.",
+        "claim_scope": "viewer knowledge",
+        "world_truth_status": "planned reversal",
+        "review_status": "hold",
+        "canon_risk": "medium",
+        "unresolved_dependencies": []
+      },
+      "claim_provenance": {
+        "source_ref_ids": [
+          "src-local-adapter-raw-memo-005"
+        ],
+        "source_refs_found": true,
+        "generator_type": "local_deterministic_adapter",
+        "generator_label": "Zero-dependency deterministic local adapter expansion; no model/API call",
+        "adapter_trace_tool_path": "tools/fff-extract-local.mjs",
+        "no_model_api": true,
+        "provider_configured": false,
+        "external_call_attempted": false,
+        "credentials_touched": false
+      },
+      "contradiction_guard_status": {
+        "active_guard_artifact_id": "fff-contradictory-claim-guard-001",
+        "guard_passed": true,
+        "conflicting_claims_held": 2,
+        "adopted_or_provisional_conflicting_claims": 0,
+        "direct_accepted_claim_elements": 0,
+        "selected_claim_contradicts_claim_ids": []
+      },
+      "confidence_uncertainty": {
+        "element_confidence": 0.82,
+        "element_review_status": "hold",
+        "suggested_review_status": "hold",
+        "claim_world_truth_status": "planned reversal",
+        "claim_canon_risk": "medium",
+        "high_risk_claim_remains_uncertain": null
+      }
+    }
+  ],
+  "summary": {
+    "source_claim_rows_checked": 3,
+    "translation_boundary_rows_checked": 1,
+    "source_spans_checked": 4,
+    "source_span_mismatches": 0,
+    "missing_element_source_refs": 0,
+    "missing_claim_source_refs": 0,
+    "target_claim_link_mismatches": 0,
+    "derived_claims_checked": 3,
+    "held_derived_claims": 3,
+    "high_risk_uncertain_claims": 2,
+    "translated_fixture_added": false,
+    "translated_gap_present": true,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "downstream_adopted_candidates": 0,
+    "adopted_or_provisional_conflicting_claims": 0,
+    "direct_accepted_claim_elements": 0,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "what_this_proves": [
+    "Selected multilingual source spans can be traced from the raw author memo into held generated claim candidates.",
+    "Inline gloss and multilingual labels are preserved as memo evidence without an external translation call.",
+    "Derived claim provenance keeps source refs, generator identity, review-held status, and contradiction/downstream guard boundaries visible.",
+    "The translated memo fixture gap remains explicit instead of being hidden by multilingual fixture coverage."
+  ],
+  "what_this_does_not_prove": [
+    "It does not approve a translated memo fixture.",
+    "It does not choose source-of-truth language or original-vs-translation span ownership policy.",
+    "It does not configure or call a provider, touch credentials, or implement a model/API adapter.",
+    "It does not adopt Profile, Claim, or Timeline candidates or decide Toma fate, brass moth truth, Council motive, or contradictory claim truth."
+  ],
+  "translation_policy_state": {
+    "state": "readback_available_policy_not_finalized",
+    "owner": "human product owner for translation/source-of-truth policy; agent for future bounded fixture after policy exists",
+    "next_move": "Use this readback before adding translated memo fixtures; keep provider/API work blocked until explicitly authorized.",
+    "requirements_before_translated_fixture": [
+      "source-of-truth language policy",
+      "translation provenance policy",
+      "original-vs-translation source-span ownership policy",
+      "confirmation that translated memo coverage is the current bottleneck"
+    ]
+  },
+  "readback_checks": {
+    "active_artifact_and_prior_audits_loaded": {
+      "passed": true,
+      "detail": "active=fff-contradictory-claim-guard-001; remaining=fff-remaining-fixture-coverage-one-class-001; translated=fff-translated-memo-fixture-audit-001"
+    },
+    "manifest_validation_includes_readback": {
+      "passed": true,
+      "detail": "includes smoke=true"
+    },
+    "multilingual_payload_and_source_pack_loaded": {
+      "passed": true,
+      "detail": "run=local-extract-multilingual-memo-notes-001; fixture=multilingual-memo-notes; rows=12"
+    },
+    "source_spans_match_raw_memo": {
+      "passed": true,
+      "detail": "mismatches=none; boundary=true"
+    },
+    "source_pack_rows_match_selected_elements": {
+      "passed": true,
+      "detail": "sourcePackMismatches=none; boundaryPack=true"
+    },
+    "claim_links_and_source_refs_preserved": {
+      "passed": true,
+      "detail": "claimLinks=none; missingElementRefs=none; missingClaimRefs=none"
+    },
+    "translation_boundary_prevents_unowned_claim": {
+      "passed": true,
+      "detail": "boundary=multi-x-placeholder-translation-boundary; claims=0; destinations=profile, unresolved_decision"
+    },
+    "derived_claims_remain_held_and_uncertain_where_needed": {
+      "passed": true,
+      "detail": "claimAdoptionLeaks=none; elementAdoptionLeaks=none"
+    },
+    "contradiction_and_downstream_guards_preserved": {
+      "passed": true,
+      "detail": "heldConflicts=2; directAccepted=0; downstreamAdopted=0; malformedAccepted=0"
+    },
+    "no_translation_provider_or_fixture_added": {
+      "passed": true,
+      "detail": "translatedFixtureAdded=false; translatedGap=true; providerConfigured=false; externalCall=false; credentials=false"
+    },
+    "review_nonredundancy_preserved": {
+      "passed": true,
+      "detail": "reviewMemory=18; reviewInput=freeform"
+    }
+  },
+  "failures": [],
+  "passed": true
+}
