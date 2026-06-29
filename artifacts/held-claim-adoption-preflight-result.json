@@ -1,0 +1,165 @@
+{
+  "schemaVersion": "fff.heldClaimAdoptionPreflight.v1",
+  "artifact_id": "fff-held-claim-adoption-preflight-001",
+  "title": "Fast Fiction Factory Held Claim Adoption Preflight",
+  "generatedAt": "2026-06-29T09:45:38.339Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_readbacks": {
+    "translated_memo_fixture_minimum_result_path": "artifacts/translated-memo-fixture-minimum-result.json",
+    "source_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+    "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    "source_span_review_pack_path": "artifacts/source-span-routing-review-pack.json",
+    "translation_policy_source_of_truth_boundary_result_path": "artifacts/translation-policy-source-of-truth-boundary-result.json",
+    "contradictory_claim_guard_result_path": "artifacts/contradictory-claim-guard-result.json",
+    "downstream_source_span_adoption_gate_result_path": "artifacts/downstream-source-span-adoption-gate-result.json",
+    "provider_envelope_readiness_no_call_result_path": "artifacts/provider-envelope-readiness-no-call-result.json"
+  },
+  "preflight_policy": {
+    "adoption_candidate_means": "eligible for future local review handoff only, not accepted output",
+    "adoption_decision": "not_adopted",
+    "canon_status": false,
+    "actual_downstream_adoption_implemented": false,
+    "provider_or_external_call_allowed": false,
+    "required_conditions": [
+      "claim remains hold",
+      "claim is source-backed by author memo source refs",
+      "original source span matches the raw memo",
+      "translation/gloss leakage is zero",
+      "contradiction and downstream guards report zero promotion",
+      "provider/API/credential boundary remains closed"
+    ]
+  },
+  "adoption_preflight_rows": [
+    {
+      "source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "translated_fixture_row_id": "translated-min-row-moth-key-label",
+      "held_claim_id": "multi-claim-moth-key-label",
+      "claim_text": "The brass moth key carries the Japanese label 真鍮の蛾の鍵.",
+      "claim_status_before_preflight": "hold",
+      "world_truth_status_before_preflight": "uncertain",
+      "claim_scope_before_preflight": "unresolved candidate",
+      "contradiction_guard_status": "preserved_no_conflict_leaks",
+      "source_backed_status": true,
+      "translation_leakage_status": "no_leak",
+      "adoption_eligibility": "eligible_for_preflight_only",
+      "adoption_decision": "not_adopted",
+      "canon_status": false,
+      "downstream_target_class": [
+        "profile",
+        "claim",
+        "timeline"
+      ],
+      "downstream_target_ids": {
+        "profile": [
+          "multi-profile-brass-moth-key"
+        ],
+        "claim": [
+          "multi-claim-moth-key-label"
+        ],
+        "timeline": [
+          "multi-timeline-moth-key-label"
+        ]
+      },
+      "downstream_candidate_status": {
+        "profiles": [
+          {
+            "id": "multi-profile-brass-moth-key",
+            "reviewStatus": "hold"
+          }
+        ],
+        "timelines": [
+          {
+            "id": "multi-timeline-moth-key-label",
+            "reviewStatus": "hold"
+          }
+        ]
+      },
+      "unresolved_dependencies": [
+        "brass moth truth",
+        "Toma fate"
+      ],
+      "canon_risk": "high",
+      "preflight_proves": [
+        "source-backed held claim can be named as a downstream adoption candidate",
+        "translation fixture did not create or promote the claim",
+        "downstream target classes are visible before any adoption behavior"
+      ],
+      "preflight_does_not_prove": [
+        "human canon acceptance",
+        "Profile / Claim / Timeline state mutation",
+        "production readiness"
+      ]
+    }
+  ],
+  "provider_external_credential_status": {
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false
+  },
+  "summary": {
+    "held_claims_inspected": 1,
+    "source_backed_claims": 1,
+    "eligible_adoption_candidates": 1,
+    "actually_adopted_claims": 0,
+    "canonized_claims": 0,
+    "translation_gloss_leak_count": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "downstream_adopted_candidates": 0,
+    "contradiction_guard_conflict_leaks": 0,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "what_this_preflight_proves": [
+    "The translated fixture's held linked claim can be recognized as a source-backed downstream candidate.",
+    "Eligibility is only a preflight state; no Profile, Claim, Timeline, or story canon adoption occurs.",
+    "Translation/gloss material remains non-promotional and provider-free before any adoption path is designed."
+  ],
+  "what_this_preflight_does_not_prove": [
+    "It does not adopt the held claim.",
+    "It does not canonize the brass moth key label or its function.",
+    "It does not mutate Profile, Claim, Timeline, project state, provider output, credentials, or production surfaces."
+  ],
+  "preflight_checks": {
+    "active_artifact_and_translated_fixture_loaded": {
+      "passed": true,
+      "detail": "active=fff-contradictory-claim-guard-001; translated=fff-translated-memo-fixture-minimum-001/true"
+    },
+    "held_linked_claim_identified": {
+      "passed": true,
+      "detail": "held rows=translated-min-row-moth-key-label:multi-claim-moth-key-label"
+    },
+    "source_backed_claims_ready_for_preflight": {
+      "passed": true,
+      "detail": "preflightRows=1; sourceBacked=1"
+    },
+    "eligible_candidates_not_adopted": {
+      "passed": true,
+      "detail": "eligible=1; adopted=0; canonized=0"
+    },
+    "translation_and_gloss_leaks_remain_blocked": {
+      "passed": true,
+      "detail": "rowLeaks=none; fixtureLeaks=0; auto=0; gloss=0"
+    },
+    "claim_promotion_and_canon_boundary_closed": {
+      "passed": true,
+      "detail": "downstream=0; conflictLeaks=0; directAccepted=0"
+    },
+    "provider_external_credential_boundary_closed": {
+      "passed": true,
+      "detail": "provider=false; externalCall=false; credentials=false"
+    },
+    "manifest_and_review_memory_registered": {
+      "passed": true,
+      "detail": "includesSmoke=true; preserves=true; memory=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

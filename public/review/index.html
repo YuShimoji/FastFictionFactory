@@ -952,7 +952,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-contradictory-claim-guard-001</strong>. This slice keeps conflicting claim candidates detected, source-backed, held for human review, and out of auto-canon while preserving <strong>fff-provider-envelope-readiness-no-call-001</strong>, <strong>fff-downstream-source-span-adoption-gate-001</strong>, <strong>fff-malformed-missing-span-guard-001</strong>, <strong>fff-missing-fixture-class-probe-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-translation-provenance-source-span-readback-001</strong>, <strong>fff-translation-policy-source-of-truth-boundary-001</strong>, <strong>fff-translated-memo-fixture-minimum-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-contradictory-claim-guard-001</strong>. This slice keeps conflicting claim candidates detected, source-backed, held for human review, and out of auto-canon while preserving <strong>fff-provider-envelope-readiness-no-call-001</strong>, <strong>fff-downstream-source-span-adoption-gate-001</strong>, <strong>fff-malformed-missing-span-guard-001</strong>, <strong>fff-missing-fixture-class-probe-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-translation-provenance-source-span-readback-001</strong>, <strong>fff-translation-policy-source-of-truth-boundary-001</strong>, <strong>fff-translated-memo-fixture-minimum-001</strong>, <strong>fff-held-claim-adoption-preflight-001</strong>, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1006,6 +1006,7 @@
           <div class="progress-step done"><strong>Translation provenance readback</strong><span class="tag green">done</span><p class="section-note">Trace selected multilingual source spans into held derived claims without translation API or provider work.</p></div>
           <div class="progress-step done"><strong>Translation policy boundary</strong><span class="tag green">done</span><p class="section-note">translation policy source-of-truth boundary passed: original memo spans own evidence, translated spans are derivative-only, and inline gloss cannot create unowned claims.</p></div>
           <div class="progress-step done"><strong>Minimal translated memo fixture</strong><span class="tag green">done</span><p class="section-note">minimal translated memo fixture passed: 2 derivative rows preserve original source spans, keep 1 linked claim held, and create 0 inline-gloss claims.</p></div>
+          <div class="progress-step done"><strong>Held claim adoption preflight</strong><span class="tag green">done</span><p class="section-note">held claim adoption preflight passed: 1 source-backed held claim is preflight-eligible; 0 claims are adopted or canonized.</p></div>
           <div class="progress-step current"><strong>Contradictory claim guard</strong><span class="tag blue">current</span><p class="section-note">Detect reciprocal claim conflicts and keep both sides held without deciding truth.</p></div>
         </div>
 
@@ -1040,6 +1041,7 @@
               <li>Provider envelope readiness no-call gate for future provider output shape before any provider call, credential, endpoint, production sync, or final canon output.</li>
               <li>Translation policy source-of-truth boundary for original memo span ownership, derivative translated spans, inline gloss limits, and held claim promotion.</li>
               <li>Minimal translated memo fixture for 2 derivative translation rows, original span preservation, 1 held linked claim, and 0 inline gloss claim leaks.</li>
+              <li>Held claim adoption preflight for 1 source-backed held claim, 1 preflight-only adoption candidate, and 0 adopted or canonized claims.</li>
               <li>Contradictory claim guard for reciprocal held conflict pairs.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
@@ -1134,6 +1136,8 @@
                 <tr><td>Minimal translated memo fixture</td><td>docs/review/translated-memo-fixture-minimum.md</td></tr>
                 <tr><td>Minimal translated memo fixture JSON</td><td>artifacts/translated-memo-fixture-minimum.json</td></tr>
                 <tr><td>Minimal translated memo fixture result</td><td>artifacts/translated-memo-fixture-minimum-result.json</td></tr>
+                <tr><td>Held claim adoption preflight</td><td>docs/review/held-claim-adoption-preflight.md</td></tr>
+                <tr><td>Held claim adoption preflight result</td><td>artifacts/held-claim-adoption-preflight-result.json</td></tr>
                 <tr><td>Downstream source-span adoption gate</td><td>docs/review/downstream-source-span-adoption-gate.md</td></tr>
                 <tr><td>Downstream source-span adoption result</td><td>artifacts/downstream-source-span-adoption-gate-result.json</td></tr>
                 <tr><td>Malformed source-span guard</td><td>docs/review/malformed-missing-span-guard.md</td></tr>
@@ -1184,6 +1188,7 @@
               <li>Use <strong>docs/review/translation-provenance-source-span-readback.md</strong> and <strong>artifacts/translation-provenance-source-span-readback-result.json</strong> for selected multilingual source-span to held derived-claim provenance.</li>
               <li>Use <strong>docs/review/translation-policy-source-of-truth-boundary.md</strong> and <strong>artifacts/translation-policy-source-of-truth-boundary-result.json</strong> before adding translated memo fixture work.</li>
               <li>Use <strong>docs/review/translated-memo-fixture-minimum.md</strong>, <strong>artifacts/translated-memo-fixture-minimum.json</strong>, and <strong>artifacts/translated-memo-fixture-minimum-result.json</strong> as the minimum translated memo fixture regression target.</li>
+              <li>Use <strong>docs/review/held-claim-adoption-preflight.md</strong> and <strong>artifacts/held-claim-adoption-preflight-result.json</strong> before designing any held-claim adoption behavior.</li>
               <li>Use <strong>docs/review/review-memory-dedup.md</strong> before asking for another review of the same target, evidence, and axis.</li>
               <li>Use <strong>docs/review/review-procedure.md</strong> as the fixed review procedure and Review Debt map.</li>
               <li>Use the <strong>Source Audit / 抽出根拠レビュー</strong> mode to review fixture summaries, representative source spans, routing targets, held defaults, and human-owned guards.</li>
@@ -1504,7 +1509,7 @@
             <div class="metric"><strong>0</strong><span>mismatches</span></div>
             <div class="metric"><strong>local only</strong><span>validator mode</span></div>
           </div>
-          <p class="section-note">Source-span pack evidence: artifacts/source-span-routing-review-pack.json. Translation provenance evidence: artifacts/translation-provenance-source-span-readback-result.json. Translation policy evidence: artifacts/translation-policy-source-of-truth-boundary-result.json. Minimal translated memo fixture evidence: artifacts/translated-memo-fixture-minimum-result.json. Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Provider envelope readiness evidence: artifacts/provider-envelope-readiness-no-call-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while keeping future model/API output behind validation gates.</p>
+          <p class="section-note">Source-span pack evidence: artifacts/source-span-routing-review-pack.json. Translation provenance evidence: artifacts/translation-provenance-source-span-readback-result.json. Translation policy evidence: artifacts/translation-policy-source-of-truth-boundary-result.json. Minimal translated memo fixture evidence: artifacts/translated-memo-fixture-minimum-result.json. Held claim adoption preflight evidence: artifacts/held-claim-adoption-preflight-result.json. Local adapter evidence: artifacts/local-extraction-adapter-expansion-smoke-result.json. Validator evidence: artifacts/extraction-validator-smoke-result.json. Provider envelope readiness evidence: artifacts/provider-envelope-readiness-no-call-result.json. Adapter fixtures: artifacts/extraction-adapter-fixtures/. Validator fixtures: artifacts/extraction-negative-fixtures/. This preserves fff-local-extraction-adapter-expansion-001, fff-local-extraction-adapter-spike-001, fff-extraction-validator-hardening-001, and fff-extraction-contract-001 while keeping future model/API output behind validation gates.</p>
           <div class="extraction-toolbar" aria-label="Extraction Contract controls">
             <div class="extraction-toolbar-row">
               <label for="extraction-group-mode"><strong>Group extraction</strong></label>

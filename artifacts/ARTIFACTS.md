@@ -48,6 +48,19 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary fixture under `fff-contradictory-claim-guard-001`; 2 translated rows, 0 original span mismatches, 0 translation-to-claim leaks, 1 held linked claim, 0 auto-promotions, 0 inline gloss claim leaks, and no provider/API call, credential, downstream adoption, or canon promotion.
 
+## fff-held-claim-adoption-preflight-001
+
+- Title: Fast Fiction Factory Held Claim Adoption Preflight
+- Purpose: Inspect the held linked claim from the minimal translated memo fixture as a source-backed preflight candidate before any downstream Profile / Claim / Timeline adoption behavior, canon promotion, provider/API call, credential, or production route exists.
+- Repo relative path: `docs/review/held-claim-adoption-preflight.md`
+- Readback result: `artifacts/held-claim-adoption-preflight-result.json`
+- Input readback: `artifacts/translated-memo-fixture-minimum-result.json`
+- Source output: `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`
+- Validation command: `node tools/fff-state.mjs smoke-held-claim-adoption-preflight artifacts/translated-memo-fixture-minimum-result.json artifacts/held-claim-adoption-preflight-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary preflight under `fff-contradictory-claim-guard-001`; 1 held claim inspected, 1 source-backed claim, 1 preflight-only eligible candidate, 0 adopted claims, 0 canonized claims, 0 translation/gloss leaks, and no provider/API call, credential, downstream adoption, or canon promotion.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

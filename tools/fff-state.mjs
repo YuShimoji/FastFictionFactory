@@ -19,6 +19,7 @@ const TRANSLATED_MEMO_FIXTURE_AUDIT_SCHEMA_VERSION = "fff.translatedMemoFixtureA
 const TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_SCHEMA_VERSION = "fff.translationProvenanceSourceSpanReadback.v1";
 const TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_SCHEMA_VERSION = "fff.translationPolicySourceOfTruthBoundary.v1";
 const TRANSLATED_MEMO_FIXTURE_MINIMUM_SCHEMA_VERSION = "fff.translatedMemoFixtureMinimum.v1";
+const HELD_CLAIM_ADOPTION_PREFLIGHT_SCHEMA_VERSION = "fff.heldClaimAdoptionPreflight.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -36,6 +37,7 @@ const DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT = "artifacts/translated-memo-
 const DEFAULT_TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_OUTPUT = "artifacts/translation-provenance-source-span-readback-result.json";
 const DEFAULT_TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_OUTPUT = "artifacts/translation-policy-source-of-truth-boundary-result.json";
 const DEFAULT_TRANSLATED_MEMO_FIXTURE_MINIMUM_OUTPUT = "artifacts/translated-memo-fixture-minimum-result.json";
+const DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT = "artifacts/held-claim-adoption-preflight-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -478,6 +480,25 @@ async function main() {
     }
     if (command === "smoke-translated-memo-fixture-minimum" || outputPath) {
       console.log(`translated memo fixture minimum passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-held-claim-adoption-preflight" || command === "smoke-held-claim-adoption-preflight") {
+    const readback = await readJson(inputPath);
+    const result = await validateHeldClaimAdoptionPreflight(readback, inputPath);
+    const target = outputPath || DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT;
+    if (command === "smoke-held-claim-adoption-preflight" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Held claim adoption preflight failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-held-claim-adoption-preflight" || outputPath) {
+      console.log(`held claim adoption preflight passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -3386,6 +3407,283 @@ async function validateTranslatedMemoFixtureMinimum(fixture, fixturePath) {
   };
 }
 
+async function validateHeldClaimAdoptionPreflight(translatedMinimum, translatedMinimumPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const manifestValidationCommand = String(manifest.validation_command || "");
+  const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
+  const sourceOutputPath =
+    translatedMinimum.input_readbacks?.source_output_path ||
+    "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json";
+  const payload = await readJson(sourceOutputPath);
+  const sourceFixturePath =
+    translatedMinimum.input_readbacks?.source_fixture_path ||
+    payload.sourceMemoRef ||
+    "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md";
+  const rawMemo = await readFile(sourceFixturePath, "utf8");
+  const sourcePack = await readJson(manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json");
+  const translationPolicy = await readJson(manifest.translation_policy_source_of_truth_boundary_result_path || DEFAULT_TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_OUTPUT);
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const downstreamGate = await readJson(manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT);
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+  const providerEnvelope = await readJson(manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT);
+  const providerAuthorization = await readJson(manifest.provider_adapter_authorization_readiness_result_path || DEFAULT_PROVIDER_ADAPTER_AUTHORIZATION_READINESS_OUTPUT);
+  const rows = Array.isArray(translatedMinimum.translated_fixture_rows) ? translatedMinimum.translated_fixture_rows : [];
+  const linkedHeldRows = rows.filter((row) => row.target_claim_id && row.target_claim_held === true);
+  const elements = Array.isArray(payload.extractedElements) ? payload.extractedElements : [];
+  const claims = Array.isArray(payload.claimCandidates) ? payload.claimCandidates : [];
+  const profiles = Array.isArray(payload.profileCandidates) ? payload.profileCandidates : [];
+  const timelines = Array.isArray(payload.timelineEntryCandidates) ? payload.timelineEntryCandidates : [];
+  const packRows = flattenSourcePackElements(sourcePack);
+  const providerBoundaryOpen =
+    providerEnvelope.provider_metadata?.providerConfigured === true ||
+    providerEnvelope.provider_metadata?.externalCallAttempted === true ||
+    providerEnvelope.provider_metadata?.credentialsTouched === true ||
+    providerAuthorization.summary?.provider_configured === true ||
+    providerAuthorization.summary?.external_call_attempted === true ||
+    providerAuthorization.summary?.credentials_touched === true;
+
+  const preflightRows = linkedHeldRows.map((row) => {
+    const element = elements.find((candidate) => candidate.id === row.original_source_span_id);
+    const claim = claims.find((candidate) => candidate.id === row.target_claim_id);
+    const packRow = packRows.find((candidate) => candidate.id === row.original_source_span_id);
+    const profileCandidates = (element?.targetProfileIds || []).map((id) => profiles.find((profile) => profile.id === id)).filter(Boolean);
+    const timelineCandidates = (element?.targetTimelineEntryIds || []).map((id) => timelines.find((timeline) => timeline.id === id)).filter(Boolean);
+    const sourceSpan = element?.sourceSpan || {};
+    const rawSlice =
+      typeof sourceSpan.start === "number" && typeof sourceSpan.end === "number"
+        ? rawMemo.slice(sourceSpan.start, sourceSpan.end)
+        : null;
+    const sourceBacked =
+      Boolean(claim) &&
+      Array.isArray(claim.sourceRefs) &&
+      claim.sourceRefs.some((sourceRef) => sourceRef.trust === "author_memo") &&
+      Array.isArray(element?.sourceRefIds) &&
+      element.sourceRefIds.length > 0 &&
+      row.source_span_matches_raw_memo === true &&
+      rawSlice === sourceSpan.text &&
+      packRow?.source_span_matches_raw_memo === true;
+    const translationLeakage =
+      row.translation_to_claim_leak === true ||
+      row.auto_promotion_detected === true ||
+      row.inline_gloss_claim_leak === true ||
+      translatedMinimum.summary?.translation_to_claim_leakage_count > 0 ||
+      translatedMinimum.summary?.auto_promotion_count > 0 ||
+      translatedMinimum.summary?.inline_gloss_claim_leakage_count > 0;
+    const claimActuallyAdopted = ["adopt", "provisional"].includes(claim?.reviewStatus);
+    const downstreamAdopted =
+      profileCandidates.some((profile) => ["adopt", "provisional"].includes(profile.reviewStatus)) ||
+      timelineCandidates.some((timeline) => ["adopt", "provisional"].includes(timeline.reviewStatus)) ||
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates > 0;
+    const canonized =
+      claimActuallyAdopted ||
+      downstreamAdopted ||
+      claim?.worldTruthStatus !== "uncertain" ||
+      claim?.claimScope !== "unresolved candidate";
+    const contradictionGuardStatus =
+      contradictoryGuard?.passed === true &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      contradictoryGuard.summary?.direct_accepted_claim_elements === 0
+        ? "preserved_no_conflict_leaks"
+        : "failed_or_open";
+    const downstreamTargets = Array.isArray(element?.targetDestinations)
+      ? element.targetDestinations.filter((destination) => ["profile", "claim", "timeline"].includes(destination))
+      : [];
+    const eligible =
+      sourceBacked &&
+      claim?.reviewStatus === "hold" &&
+      translationLeakage === false &&
+      contradictionGuardStatus === "preserved_no_conflict_leaks" &&
+      downstreamGate?.passed === true &&
+      malformedGuard?.passed === true &&
+      providerBoundaryOpen === false;
+
+    return {
+      source_span_id: row.original_source_span_id,
+      source_span_locator: row.source_span_locator,
+      translated_fixture_row_id: row.row_id,
+      held_claim_id: row.target_claim_id,
+      claim_text: claim?.claimText || null,
+      claim_status_before_preflight: claim?.reviewStatus || null,
+      world_truth_status_before_preflight: claim?.worldTruthStatus || null,
+      claim_scope_before_preflight: claim?.claimScope || null,
+      contradiction_guard_status: contradictionGuardStatus,
+      source_backed_status: sourceBacked,
+      translation_leakage_status: translationLeakage ? "leak_detected" : "no_leak",
+      adoption_eligibility: eligible ? "eligible_for_preflight_only" : "not_eligible",
+      adoption_decision: "not_adopted",
+      canon_status: false,
+      downstream_target_class: downstreamTargets,
+      downstream_target_ids: {
+        profile: element?.targetProfileIds || [],
+        claim: element?.targetClaimIds || [],
+        timeline: element?.targetTimelineEntryIds || []
+      },
+      downstream_candidate_status: {
+        profiles: profileCandidates.map((profile) => ({ id: profile.id, reviewStatus: profile.reviewStatus })),
+        timelines: timelineCandidates.map((timeline) => ({ id: timeline.id, reviewStatus: timeline.reviewStatus }))
+      },
+      unresolved_dependencies: claim?.unresolvedDependencies || [],
+      canon_risk: claim?.canonRisk || null,
+      preflight_proves: [
+        "source-backed held claim can be named as a downstream adoption candidate",
+        "translation fixture did not create or promote the claim",
+        "downstream target classes are visible before any adoption behavior"
+      ],
+      preflight_does_not_prove: [
+        "human canon acceptance",
+        "Profile / Claim / Timeline state mutation",
+        "production readiness"
+      ]
+    };
+  });
+
+  const sourceBackedRows = preflightRows.filter((row) => row.source_backed_status === true);
+  const eligibleRows = preflightRows.filter((row) => row.adoption_eligibility === "eligible_for_preflight_only");
+  const actuallyAdoptedRows = preflightRows.filter((row) => row.adoption_decision !== "not_adopted");
+  const canonizedRows = preflightRows.filter((row) => row.canon_status === true);
+  const translationLeakRows = preflightRows.filter((row) => row.translation_leakage_status !== "no_leak");
+
+  check(
+    "active_artifact_and_translated_fixture_loaded",
+    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+      translatedMinimum.artifact_id === "fff-translated-memo-fixture-minimum-001" &&
+      translatedMinimum.schemaVersion === TRANSLATED_MEMO_FIXTURE_MINIMUM_SCHEMA_VERSION &&
+      translatedMinimum.passed === true,
+    `active=${manifest.artifact_id}; translated=${translatedMinimum.artifact_id}/${translatedMinimum.passed}`
+  );
+  check(
+    "held_linked_claim_identified",
+    linkedHeldRows.length >= 1 &&
+      preflightRows.some((row) => row.held_claim_id === "multi-claim-moth-key-label" && row.claim_status_before_preflight === "hold"),
+    `held rows=${linkedHeldRows.map((row) => `${row.row_id}:${row.target_claim_id}`).join(", ") || "none"}`
+  );
+  check(
+    "source_backed_claims_ready_for_preflight",
+    preflightRows.length > 0 &&
+      sourceBackedRows.length === preflightRows.length,
+    `preflightRows=${preflightRows.length}; sourceBacked=${sourceBackedRows.length}`
+  );
+  check(
+    "eligible_candidates_not_adopted",
+    eligibleRows.length === preflightRows.length &&
+      eligibleRows.length >= 1 &&
+      actuallyAdoptedRows.length === 0 &&
+      canonizedRows.length === 0,
+    `eligible=${eligibleRows.length}; adopted=${actuallyAdoptedRows.length}; canonized=${canonizedRows.length}`
+  );
+  check(
+    "translation_and_gloss_leaks_remain_blocked",
+    translationLeakRows.length === 0 &&
+      translatedMinimum.summary?.translation_to_claim_leakage_count === 0 &&
+      translatedMinimum.summary?.auto_promotion_count === 0 &&
+      translatedMinimum.summary?.inline_gloss_claim_leakage_count === 0 &&
+      translationPolicy.summary?.claim_promotion_leaks === 0,
+    `rowLeaks=${translationLeakRows.map((row) => row.held_claim_id).join(", ") || "none"}; fixtureLeaks=${translatedMinimum.summary?.translation_to_claim_leakage_count}; auto=${translatedMinimum.summary?.auto_promotion_count}; gloss=${translatedMinimum.summary?.inline_gloss_claim_leakage_count}`
+  );
+  check(
+    "claim_promotion_and_canon_boundary_closed",
+    preflightRows.every((row) => row.claim_status_before_preflight === "hold") &&
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates === 0 &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      contradictoryGuard.summary?.direct_accepted_claim_elements === 0,
+    `downstream=${downstreamGate.summary?.adopted_profile_claim_timeline_candidates}; conflictLeaks=${contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims}; directAccepted=${contradictoryGuard.summary?.direct_accepted_claim_elements}`
+  );
+  check(
+    "provider_external_credential_boundary_closed",
+    providerBoundaryOpen === false &&
+      providerEnvelope?.passed === true &&
+      providerAuthorization?.passed === true,
+    `provider=${providerEnvelope.provider_metadata?.providerConfigured}; externalCall=${providerEnvelope.provider_metadata?.externalCallAttempted}; credentials=${providerEnvelope.provider_metadata?.credentialsTouched}`
+  );
+  check(
+    "manifest_and_review_memory_registered",
+    manifestValidationCommand.includes("smoke-held-claim-adoption-preflight") &&
+      manifest.preserves?.includes("fff-held-claim-adoption-preflight-001") &&
+      reviewMemory.some((entry) => entry.artifact_id === "fff-held-claim-adoption-preflight-001"),
+    `includesSmoke=${manifestValidationCommand.includes("smoke-held-claim-adoption-preflight")}; preserves=${manifest.preserves?.includes("fff-held-claim-adoption-preflight-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-held-claim-adoption-preflight-001")}`
+  );
+
+  return {
+    schemaVersion: HELD_CLAIM_ADOPTION_PREFLIGHT_SCHEMA_VERSION,
+    artifact_id: "fff-held-claim-adoption-preflight-001",
+    title: "Fast Fiction Factory Held Claim Adoption Preflight",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    input_readbacks: {
+      translated_memo_fixture_minimum_result_path: toRepoPath(translatedMinimumPath),
+      source_output_path: toRepoPath(sourceOutputPath),
+      source_fixture_path: toRepoPath(sourceFixturePath),
+      source_span_review_pack_path: manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json",
+      translation_policy_source_of_truth_boundary_result_path: manifest.translation_policy_source_of_truth_boundary_result_path || DEFAULT_TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_OUTPUT,
+      contradictory_claim_guard_result_path: manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT,
+      downstream_source_span_adoption_gate_result_path: manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT,
+      provider_envelope_readiness_no_call_result_path: manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT
+    },
+    preflight_policy: {
+      adoption_candidate_means: "eligible for future local review handoff only, not accepted output",
+      adoption_decision: "not_adopted",
+      canon_status: false,
+      actual_downstream_adoption_implemented: false,
+      provider_or_external_call_allowed: false,
+      required_conditions: [
+        "claim remains hold",
+        "claim is source-backed by author memo source refs",
+        "original source span matches the raw memo",
+        "translation/gloss leakage is zero",
+        "contradiction and downstream guards report zero promotion",
+        "provider/API/credential boundary remains closed"
+      ]
+    },
+    adoption_preflight_rows: preflightRows,
+    provider_external_credential_status: {
+      provider_configured: providerEnvelope.provider_metadata?.providerConfigured,
+      external_call_attempted: providerEnvelope.provider_metadata?.externalCallAttempted,
+      credentials_touched: providerEnvelope.provider_metadata?.credentialsTouched
+    },
+    summary: {
+      held_claims_inspected: preflightRows.length,
+      source_backed_claims: sourceBackedRows.length,
+      eligible_adoption_candidates: eligibleRows.length,
+      actually_adopted_claims: actuallyAdoptedRows.length,
+      canonized_claims: canonizedRows.length,
+      translation_gloss_leak_count: translationLeakRows.length,
+      provider_configured: providerEnvelope.provider_metadata?.providerConfigured,
+      external_call_attempted: providerEnvelope.provider_metadata?.externalCallAttempted,
+      credentials_touched: providerEnvelope.provider_metadata?.credentialsTouched,
+      downstream_adopted_candidates: downstreamGate.summary?.adopted_profile_claim_timeline_candidates,
+      contradiction_guard_conflict_leaks: contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    what_this_preflight_proves: [
+      "The translated fixture's held linked claim can be recognized as a source-backed downstream candidate.",
+      "Eligibility is only a preflight state; no Profile, Claim, Timeline, or story canon adoption occurs.",
+      "Translation/gloss material remains non-promotional and provider-free before any adoption path is designed."
+    ],
+    what_this_preflight_does_not_prove: [
+      "It does not adopt the held claim.",
+      "It does not canonize the brass moth key label or its function.",
+      "It does not mutate Profile, Claim, Timeline, project state, provider output, credentials, or production surfaces."
+    ],
+    preflight_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -5612,6 +5910,8 @@ Usage:
   node tools/fff-state.mjs smoke-translation-policy-source-of-truth-boundary <translation-provenance-readback.json> [output.json]
   node tools/fff-state.mjs validate-translated-memo-fixture-minimum <translated-memo-fixture.json>
   node tools/fff-state.mjs smoke-translated-memo-fixture-minimum <translated-memo-fixture.json> [output.json]
+  node tools/fff-state.mjs validate-held-claim-adoption-preflight <translated-memo-fixture-minimum-result.json>
+  node tools/fff-state.mjs smoke-held-claim-adoption-preflight <translated-memo-fixture-minimum-result.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
@@ -5657,6 +5957,9 @@ Default translation policy source-of-truth boundary output:
 
 Default translated memo fixture minimum output:
   ${DEFAULT_TRANSLATED_MEMO_FIXTURE_MINIMUM_OUTPUT}
+
+Default held claim adoption preflight output:
+  ${DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT}
 
 Default very broad source-span shape audit output:
   ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}

@@ -2,7 +2,7 @@
   "schemaVersion": "fff.providerAdapterAuthorizationReadiness.v1",
   "artifact_id": "fff-provider-adapter-authorization-readiness-001",
   "title": "Fast Fiction Factory Provider Adapter Authorization Readiness",
-  "generatedAt": "2026-06-29T09:20:18.702Z",
+  "generatedAt": "2026-06-29T09:45:38.782Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "render_gate": "L0 No Render",
