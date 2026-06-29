@@ -1,0 +1,174 @@
+{
+  "schemaVersion": "fff.translatedMemoFixtureMinimum.v1",
+  "artifact_id": "fff-translated-memo-fixture-minimum-001",
+  "title": "Fast Fiction Factory Minimal Translated Memo Fixture",
+  "generatedAt": "2026-06-29T09:20:18.264Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "fixture_path": "artifacts/translated-memo-fixture-minimum.json",
+  "input_readbacks": {
+    "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+    "source_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+    "translation_policy_source_of_truth_boundary_result_path": "artifacts/translation-policy-source-of-truth-boundary-result.json",
+    "provider_envelope_readiness_no_call_result_path": "artifacts/provider-envelope-readiness-no-call-result.json",
+    "provider_adapter_authorization_readiness_result_path": "artifacts/provider-adapter-authorization-readiness-result.json",
+    "contradictory_claim_guard_result_path": "artifacts/contradictory-claim-guard-result.json",
+    "downstream_source_span_adoption_gate_result_path": "artifacts/downstream-source-span-adoption-gate-result.json",
+    "malformed_missing_span_guard_result_path": "artifacts/malformed-missing-span-guard-result.json"
+  },
+  "source_of_truth_language": {
+    "value": "original_author_memo_multilingual_text",
+    "owner": "original_author_memo",
+    "source_ref_id": "src-local-adapter-raw-memo-005",
+    "policy_artifact_id": "fff-translation-policy-source-of-truth-boundary-001",
+    "translated_rows_do_not_replace_original_spans": true
+  },
+  "fixture_policy": {
+    "translation_owner": "declared_derivative_translation_only",
+    "translation_can_produce_claims": false,
+    "allowed_claim_condition": "source-backed and explicitly held only",
+    "inline_gloss_handling": "author memo inline text only; no external translation authority",
+    "derived_claim_promotion_status": "blocked",
+    "contradiction_guard_expectation": "translated or gloss-derived conflicts remain source-backed, uncertain, and held"
+  },
+  "translated_fixture_rows": [
+    {
+      "row_id": "translated-min-row-moth-key-label",
+      "original_source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "declared_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "original_source_text": "brass moth key is called \"真鍮の蛾の鍵\"",
+      "raw_memo_text": "brass moth key is called \"真鍮の蛾の鍵\"",
+      "translated_text": "The brass moth key is called \"the brass moth key\".",
+      "source_span_matches_raw_memo": true,
+      "translation_owner": "declared_derivative_translation_only",
+      "derivative_translation_provenance_bound": true,
+      "translation_can_produce_claims": false,
+      "translation_to_claim_leak": false,
+      "auto_promotion_detected": false,
+      "target_claim_id": "multi-claim-moth-key-label",
+      "target_claim_linked_from_element": true,
+      "target_claim_review_status": "hold",
+      "target_claim_held": true,
+      "target_destinations": [
+        "profile",
+        "claim",
+        "timeline",
+        "unresolved_decision"
+      ],
+      "inline_gloss_handling": "not_inline_gloss_row",
+      "inline_gloss_claim_leak": false,
+      "provider_clean": true,
+      "row_provider": null,
+      "row_external_call_used": false,
+      "row_credential_used": false
+    },
+    {
+      "row_id": "translated-min-row-inline-gloss-boundary",
+      "original_source_span_id": "multi-x-placeholder-translation-boundary",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+      "declared_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+      "original_source_text": "English gloss is in-line only",
+      "raw_memo_text": "English gloss is in-line only",
+      "translated_text": "The English gloss is inline only.",
+      "source_span_matches_raw_memo": true,
+      "translation_owner": "declared_derivative_translation_only",
+      "derivative_translation_provenance_bound": true,
+      "translation_can_produce_claims": false,
+      "translation_to_claim_leak": false,
+      "auto_promotion_detected": false,
+      "target_claim_id": null,
+      "target_claim_linked_from_element": true,
+      "target_claim_review_status": null,
+      "target_claim_held": null,
+      "target_destinations": [
+        "profile",
+        "unresolved_decision"
+      ],
+      "inline_gloss_handling": "author_memo_inline_text_only",
+      "inline_gloss_claim_leak": false,
+      "provider_clean": true,
+      "row_provider": null,
+      "row_external_call_used": false,
+      "row_credential_used": false
+    }
+  ],
+  "provider_external_credential_status": {
+    "translation_provider_used": false,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "provider_authorization_blocked": true
+  },
+  "summary": {
+    "translated_fixture_rows_checked": 2,
+    "original_span_matches": 2,
+    "original_span_mismatches": 0,
+    "translation_to_claim_leakage_count": 0,
+    "held_claim_count": 1,
+    "auto_promotion_count": 0,
+    "inline_gloss_claim_leakage_count": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "downstream_adopted_candidates": 0,
+    "contradictory_guard_conflict_leaks": 0,
+    "review_card_emitted": false,
+    "repeated_general_review_request_emitted": false,
+    "operator_observation_card_emitted": false,
+    "failures": 0
+  },
+  "what_this_fixture_proves": [
+    "A translated memo fixture can exist as a small derivative layer without replacing original multilingual source spans.",
+    "A translated row linked to an existing held claim does not promote that claim.",
+    "An inline gloss boundary row remains claimless and cannot create unowned authority.",
+    "Provider, external-call, credential, downstream adoption, and canon boundaries remain closed."
+  ],
+  "what_this_fixture_does_not_prove": [
+    "It does not verify translation quality.",
+    "It does not choose or configure a translation provider.",
+    "It does not import provider output or touch credentials.",
+    "It does not adopt downstream candidates or decide Toma fate, brass moth truth, Council motive, or contradictory claim truth."
+  ],
+  "minimum_fixture_checks": {
+    "fixture_identity_and_minimum_scope": {
+      "passed": true,
+      "detail": "schema=fff.translatedMemoFixtureMinimum.v1; artifact=fff-translated-memo-fixture-minimum-001; rows=2; missing=none"
+    },
+    "policy_boundary_precondition_loaded": {
+      "passed": true,
+      "detail": "policy=fff-translation-policy-source-of-truth-boundary-001/true; sourceTruth=original_author_memo_multilingual_text; leaks=0; providerBlocked=true"
+    },
+    "original_source_spans_match_raw_memo": {
+      "passed": true,
+      "detail": "run=local-extract-multilingual-memo-notes-001; trust=author_memo; mismatches=none"
+    },
+    "translation_rows_are_derivative_and_provenance_bound": {
+      "passed": true,
+      "detail": "rows=2; derivative=2; providerDirty=none"
+    },
+    "translation_to_claim_leakage_blocked": {
+      "passed": true,
+      "detail": "leaks=none; unlinked=none; held=1; inlineLeaks=0"
+    },
+    "auto_promotion_blocked": {
+      "passed": true,
+      "detail": "autoPromotion=none; downstream=0; conflictLeaks=0"
+    },
+    "provider_external_credential_boundary_closed": {
+      "passed": true,
+      "detail": "providerConfigured=false; externalCall=false; credentials=false; authorization=true"
+    },
+    "contradiction_and_malformed_guards_preserved": {
+      "passed": true,
+      "detail": "heldConflicts=2; directAccepted=0; malformedAccepted=0"
+    },
+    "manifest_and_review_memory_registered": {
+      "passed": true,
+      "detail": "includesSmoke=true; preserves=true; memory=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

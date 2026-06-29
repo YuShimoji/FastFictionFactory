@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "fff.translatedMemoFixtureMinimum.v1",
+  "artifact_id": "fff-translated-memo-fixture-minimum-001",
+  "title": "Fast Fiction Factory Minimal Translated Memo Fixture",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
+  "source_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
+  "source_policy_result_path": "artifacts/translation-policy-source-of-truth-boundary-result.json",
+  "translation_provider_used": false,
+  "external_call_attempted": false,
+  "credentials_touched": false,
+  "rows": [
+    {
+      "row_id": "translated-min-row-moth-key-label",
+      "original_source_span_id": "multi-x-object-brass-moth-key",
+      "original_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "original_source_text": "brass moth key is called \"\u771f\u936e\u306e\u86fe\u306e\u9375\"",
+      "translated_text": "The brass moth key is called \"the brass moth key\".",
+      "translation_owner": "declared_derivative_translation_only",
+      "translation_provenance": {
+        "method": "local_fixture_manual_gloss",
+        "provider": null,
+        "external_call_used": false,
+        "credential_used": false,
+        "links_to_original_source_span": true
+      },
+      "source_of_truth_language": "original_author_memo_multilingual_text",
+      "translation_can_produce_claims": false,
+      "allowed_claim_condition": "source-backed and explicitly held only",
+      "target_claim_id": "multi-claim-moth-key-label",
+      "derived_claim_promotion_status": "blocked_hold_only",
+      "expected_claim_review_status": "hold",
+      "inline_gloss_handling": "not_inline_gloss_row",
+      "contradiction_guard_expectation": "remain source-backed, uncertain, and held if a translated claim conflicts"
+    },
+    {
+      "row_id": "translated-min-row-inline-gloss-boundary",
+      "original_source_span_id": "multi-x-placeholder-translation-boundary",
+      "original_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+      "original_source_text": "English gloss is in-line only",
+      "translated_text": "The English gloss is inline only.",
+      "translation_owner": "declared_derivative_translation_only",
+      "translation_provenance": {
+        "method": "local_fixture_boundary_restatement",
+        "provider": null,
+        "external_call_used": false,
+        "credential_used": false,
+        "links_to_original_source_span": true
+      },
+      "source_of_truth_language": "original_author_memo_multilingual_text",
+      "translation_can_produce_claims": false,
+      "allowed_claim_condition": "none for inline gloss boundary row",
+      "target_claim_id": null,
+      "derived_claim_promotion_status": "blocked_no_claim",
+      "expected_claim_review_status": null,
+      "inline_gloss_handling": "author_memo_inline_text_only",
+      "contradiction_guard_expectation": "inline gloss cannot create a new unowned claim"
+    }
+  ]
+}

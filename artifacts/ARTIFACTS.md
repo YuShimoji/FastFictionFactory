@@ -34,6 +34,20 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary boundary under `fff-contradictory-claim-guard-001`; no translated fixture, provider/API call, credential, downstream adoption, or canon promotion is added.
 
+## fff-translated-memo-fixture-minimum-001
+
+- Title: Fast Fiction Factory Minimal Translated Memo Fixture
+- Purpose: Add the smallest translated memo fixture that follows the source-of-truth boundary: original multilingual memo spans remain evidence owners, translated rows are derivative/provenance-bound, one linked derived claim stays held, and the inline gloss row creates no claim.
+- Repo relative path: `docs/review/translated-memo-fixture-minimum.md`
+- Fixture: `artifacts/translated-memo-fixture-minimum.json`
+- Readback result: `artifacts/translated-memo-fixture-minimum-result.json`
+- Source fixture: `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`
+- Source output: `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`
+- Validation command: `node tools/fff-state.mjs smoke-translated-memo-fixture-minimum artifacts/translated-memo-fixture-minimum.json artifacts/translated-memo-fixture-minimum-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary fixture under `fff-contradictory-claim-guard-001`; 2 translated rows, 0 original span mismatches, 0 translation-to-claim leaks, 1 held linked claim, 0 auto-promotions, 0 inline gloss claim leaks, and no provider/API call, credential, downstream adoption, or canon promotion.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

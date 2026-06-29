@@ -18,6 +18,7 @@ const REMAINING_FIXTURE_COVERAGE_SCHEMA_VERSION = "fff.remainingFixtureCoverageO
 const TRANSLATED_MEMO_FIXTURE_AUDIT_SCHEMA_VERSION = "fff.translatedMemoFixtureAudit.v1";
 const TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_SCHEMA_VERSION = "fff.translationProvenanceSourceSpanReadback.v1";
 const TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_SCHEMA_VERSION = "fff.translationPolicySourceOfTruthBoundary.v1";
+const TRANSLATED_MEMO_FIXTURE_MINIMUM_SCHEMA_VERSION = "fff.translatedMemoFixtureMinimum.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -34,6 +35,7 @@ const DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT = "artifacts/remaining-fixture-c
 const DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT = "artifacts/translated-memo-fixture-audit-result.json";
 const DEFAULT_TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_OUTPUT = "artifacts/translation-provenance-source-span-readback-result.json";
 const DEFAULT_TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_OUTPUT = "artifacts/translation-policy-source-of-truth-boundary-result.json";
+const DEFAULT_TRANSLATED_MEMO_FIXTURE_MINIMUM_OUTPUT = "artifacts/translated-memo-fixture-minimum-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -457,6 +459,25 @@ async function main() {
     }
     if (command === "smoke-translation-policy-source-of-truth-boundary" || outputPath) {
       console.log(`translation policy source-of-truth boundary passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-translated-memo-fixture-minimum" || command === "smoke-translated-memo-fixture-minimum") {
+    const fixture = await readJson(inputPath);
+    const result = await validateTranslatedMemoFixtureMinimum(fixture, inputPath);
+    const target = outputPath || DEFAULT_TRANSLATED_MEMO_FIXTURE_MINIMUM_OUTPUT;
+    if (command === "smoke-translated-memo-fixture-minimum" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Translated memo fixture minimum failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-translated-memo-fixture-minimum" || outputPath) {
+      console.log(`translated memo fixture minimum passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -3078,6 +3099,293 @@ async function validateTranslationPolicySourceOfTruthBoundary(provenanceReadback
   };
 }
 
+async function validateTranslatedMemoFixtureMinimum(fixture, fixturePath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const manifestValidationCommand = String(manifest.validation_command || "");
+  const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
+  const policyPath =
+    fixture.source_policy_result_path ||
+    manifest.translation_policy_source_of_truth_boundary_result_path ||
+    DEFAULT_TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_OUTPUT;
+  const sourceOutputPath =
+    fixture.source_output_path ||
+    manifest.translation_provenance_source_span_readback?.source_output_path ||
+    "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json";
+  const payload = await readJson(sourceOutputPath);
+  const sourceFixturePath =
+    fixture.source_fixture_path ||
+    payload.sourceMemoRef ||
+    "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md";
+  const rawMemo = await readFile(sourceFixturePath, "utf8");
+  const translationPolicy = await readJson(policyPath);
+  const providerEnvelopePath =
+    manifest.provider_envelope_readiness_no_call_result_path ||
+    DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT;
+  const providerAuthorizationPath =
+    manifest.provider_adapter_authorization_readiness_result_path ||
+    DEFAULT_PROVIDER_ADAPTER_AUTHORIZATION_READINESS_OUTPUT;
+  const providerEnvelope = await readJson(providerEnvelopePath);
+  const providerAuthorization = await readJson(providerAuthorizationPath);
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const downstreamGate = await readJson(manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT);
+  const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
+
+  const rows = Array.isArray(fixture.rows) ? fixture.rows : [];
+  const elements = Array.isArray(payload.extractedElements) ? payload.extractedElements : [];
+  const claims = Array.isArray(payload.claimCandidates) ? payload.claimCandidates : [];
+  const sourceRefs = Array.isArray(payload.sourceRefs) ? payload.sourceRefs : [];
+  const rawMemoSourceRef = sourceRefs.find((sourceRef) => sourceRef.trust === "author_memo");
+  const expectedSourceIds = ["multi-x-object-brass-moth-key", "multi-x-placeholder-translation-boundary"];
+  const providerBoundaryOpen =
+    fixture.translation_provider_used !== false ||
+    fixture.external_call_attempted !== false ||
+    fixture.credentials_touched !== false ||
+    providerEnvelope.provider_metadata?.providerConfigured === true ||
+    providerEnvelope.provider_metadata?.externalCallAttempted === true ||
+    providerEnvelope.provider_metadata?.credentialsTouched === true ||
+    providerAuthorization.summary?.provider_configured === true ||
+    providerAuthorization.summary?.external_call_attempted === true ||
+    providerAuthorization.summary?.credentials_touched === true;
+
+  const rowReadbacks = rows.map((row) => {
+    const element = elements.find((candidate) => candidate.id === row.original_source_span_id);
+    const sourceSpan = element?.sourceSpan || {};
+    const sourceLocator =
+      typeof sourceSpan.start === "number" && typeof sourceSpan.end === "number"
+        ? `${toRepoPath(sourceFixturePath)}#char=${sourceSpan.start}-${sourceSpan.end}`
+        : null;
+    const rawSlice =
+      typeof sourceSpan.start === "number" && typeof sourceSpan.end === "number"
+        ? rawMemo.slice(sourceSpan.start, sourceSpan.end)
+        : null;
+    const targetClaimId = row.target_claim_id || null;
+    const claim = targetClaimId ? claims.find((candidate) => candidate.id === targetClaimId) : null;
+    const claimLinkedFromElement = targetClaimId
+      ? Array.isArray(element?.targetClaimIds) && element.targetClaimIds.includes(targetClaimId)
+      : true;
+    const targetDestinations = Array.isArray(element?.targetDestinations) ? element.targetDestinations : [];
+    const rowProviderClean =
+      row.translation_provenance?.provider === null &&
+      row.translation_provenance?.external_call_used === false &&
+      row.translation_provenance?.credential_used === false;
+    const derivativeOwned =
+      row.translation_owner === "declared_derivative_translation_only" &&
+      row.translation_provenance?.links_to_original_source_span === true &&
+      row.source_of_truth_language === "original_author_memo_multilingual_text";
+    const spanMatches =
+      Boolean(element) &&
+      rawSlice === sourceSpan.text &&
+      row.original_source_text === sourceSpan.text &&
+      row.original_source_span_locator === sourceLocator;
+    const translationLeaksToClaim =
+      row.translation_can_produce_claims !== false ||
+      !String(row.derived_claim_promotion_status || "").startsWith("blocked") ||
+      ["adopt", "provisional"].includes(row.expected_claim_review_status) ||
+      ["adopt", "provisional"].includes(claim?.reviewStatus);
+    const autoPromoted =
+      !String(row.derived_claim_promotion_status || "").startsWith("blocked") ||
+      ["adopt", "provisional"].includes(row.expected_claim_review_status) ||
+      ["adopt", "provisional"].includes(claim?.reviewStatus);
+    const inlineGlossClaimLeak =
+      row.inline_gloss_handling === "author_memo_inline_text_only" &&
+      (targetClaimId !== null || (Array.isArray(element?.targetClaimIds) && element.targetClaimIds.length > 0));
+
+    return {
+      row_id: row.row_id,
+      original_source_span_id: row.original_source_span_id,
+      source_span_locator: sourceLocator,
+      declared_source_span_locator: row.original_source_span_locator,
+      original_source_text: row.original_source_text,
+      raw_memo_text: sourceSpan.text,
+      translated_text: row.translated_text,
+      source_span_matches_raw_memo: spanMatches,
+      translation_owner: row.translation_owner,
+      derivative_translation_provenance_bound: derivativeOwned,
+      translation_can_produce_claims: row.translation_can_produce_claims,
+      translation_to_claim_leak: translationLeaksToClaim,
+      auto_promotion_detected: autoPromoted,
+      target_claim_id: targetClaimId,
+      target_claim_linked_from_element: claimLinkedFromElement,
+      target_claim_review_status: claim?.reviewStatus || null,
+      target_claim_held: targetClaimId ? claim?.reviewStatus === "hold" : null,
+      target_destinations: targetDestinations,
+      inline_gloss_handling: row.inline_gloss_handling,
+      inline_gloss_claim_leak: inlineGlossClaimLeak,
+      provider_clean: rowProviderClean,
+      row_provider: row.translation_provenance?.provider ?? null,
+      row_external_call_used: row.translation_provenance?.external_call_used,
+      row_credential_used: row.translation_provenance?.credential_used
+    };
+  });
+
+  const originalSpanMismatches = rowReadbacks.filter((row) => !row.source_span_matches_raw_memo);
+  const missingExpectedSourceIds = expectedSourceIds.filter((id) => !rowReadbacks.some((row) => row.original_source_span_id === id));
+  const translationToClaimLeaks = rowReadbacks.filter((row) => row.translation_to_claim_leak);
+  const heldClaimRows = rowReadbacks.filter((row) => row.target_claim_id && row.target_claim_held === true);
+  const autoPromotionRows = rowReadbacks.filter((row) => row.auto_promotion_detected);
+  const inlineGlossClaimLeaks = rowReadbacks.filter((row) => row.inline_gloss_claim_leak);
+  const providerDirtyRows = rowReadbacks.filter((row) => !row.provider_clean);
+  const unlinkedTargetClaims = rowReadbacks.filter((row) => row.target_claim_id && !row.target_claim_linked_from_element);
+
+  check(
+    "fixture_identity_and_minimum_scope",
+    fixture.schemaVersion === TRANSLATED_MEMO_FIXTURE_MINIMUM_SCHEMA_VERSION &&
+      fixture.artifact_id === "fff-translated-memo-fixture-minimum-001" &&
+      rows.length === 2 &&
+      missingExpectedSourceIds.length === 0,
+    `schema=${fixture.schemaVersion}; artifact=${fixture.artifact_id}; rows=${rows.length}; missing=${missingExpectedSourceIds.join(", ") || "none"}`
+  );
+  check(
+    "policy_boundary_precondition_loaded",
+    translationPolicy.artifact_id === "fff-translation-policy-source-of-truth-boundary-001" &&
+      translationPolicy.schemaVersion === TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_SCHEMA_VERSION &&
+      translationPolicy.passed === true &&
+      translationPolicy.source_of_truth_language?.value === "original_author_memo_multilingual_text" &&
+      translationPolicy.summary?.claim_promotion_leaks === 0 &&
+      translationPolicy.summary?.provider_adapter_blocked === true,
+    `policy=${translationPolicy.artifact_id}/${translationPolicy.passed}; sourceTruth=${translationPolicy.source_of_truth_language?.value}; leaks=${translationPolicy.summary?.claim_promotion_leaks}; providerBlocked=${translationPolicy.summary?.provider_adapter_blocked}`
+  );
+  check(
+    "original_source_spans_match_raw_memo",
+    payload.schemaVersion === EXTRACTION_SCHEMA_VERSION &&
+      rawMemoSourceRef?.trust === "author_memo" &&
+      originalSpanMismatches.length === 0,
+    `run=${payload.extractionRunId}; trust=${rawMemoSourceRef?.trust}; mismatches=${originalSpanMismatches.map((row) => row.row_id).join(", ") || "none"}`
+  );
+  check(
+    "translation_rows_are_derivative_and_provenance_bound",
+    rowReadbacks.length === 2 &&
+      rowReadbacks.every((row) => row.derivative_translation_provenance_bound === true) &&
+      rowReadbacks.every((row) => typeof row.translated_text === "string" && row.translated_text.length > 0) &&
+      providerDirtyRows.length === 0,
+    `rows=${rowReadbacks.length}; derivative=${rowReadbacks.filter((row) => row.derivative_translation_provenance_bound).length}; providerDirty=${providerDirtyRows.map((row) => row.row_id).join(", ") || "none"}`
+  );
+  check(
+    "translation_to_claim_leakage_blocked",
+    translationToClaimLeaks.length === 0 &&
+      unlinkedTargetClaims.length === 0 &&
+      heldClaimRows.length === 1 &&
+      inlineGlossClaimLeaks.length === 0,
+    `leaks=${translationToClaimLeaks.map((row) => row.row_id).join(", ") || "none"}; unlinked=${unlinkedTargetClaims.map((row) => row.row_id).join(", ") || "none"}; held=${heldClaimRows.length}; inlineLeaks=${inlineGlossClaimLeaks.length}`
+  );
+  check(
+    "auto_promotion_blocked",
+    autoPromotionRows.length === 0 &&
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates === 0 &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0,
+    `autoPromotion=${autoPromotionRows.map((row) => row.row_id).join(", ") || "none"}; downstream=${downstreamGate.summary?.adopted_profile_claim_timeline_candidates}; conflictLeaks=${contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims}`
+  );
+  check(
+    "provider_external_credential_boundary_closed",
+    providerBoundaryOpen === false &&
+      providerEnvelope?.passed === true &&
+      providerAuthorization?.passed === true,
+    `providerConfigured=${providerEnvelope.provider_metadata?.providerConfigured}; externalCall=${providerEnvelope.provider_metadata?.externalCallAttempted}; credentials=${providerEnvelope.provider_metadata?.credentialsTouched}; authorization=${providerAuthorization?.passed}`
+  );
+  check(
+    "contradiction_and_malformed_guards_preserved",
+    contradictoryGuard?.passed === true &&
+      contradictoryGuard.summary?.held_conflicting_claims === 2 &&
+      contradictoryGuard.summary?.direct_accepted_claim_elements === 0 &&
+      malformedGuard?.passed === true &&
+      malformedGuard.summary?.accepted_routed_candidates === 0,
+    `heldConflicts=${contradictoryGuard.summary?.held_conflicting_claims}; directAccepted=${contradictoryGuard.summary?.direct_accepted_claim_elements}; malformedAccepted=${malformedGuard.summary?.accepted_routed_candidates}`
+  );
+  check(
+    "manifest_and_review_memory_registered",
+    manifestValidationCommand.includes("smoke-translated-memo-fixture-minimum") &&
+      manifest.preserves?.includes("fff-translated-memo-fixture-minimum-001") &&
+      reviewMemory.some((entry) => entry.artifact_id === "fff-translated-memo-fixture-minimum-001"),
+    `includesSmoke=${manifestValidationCommand.includes("smoke-translated-memo-fixture-minimum")}; preserves=${manifest.preserves?.includes("fff-translated-memo-fixture-minimum-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-translated-memo-fixture-minimum-001")}`
+  );
+
+  return {
+    schemaVersion: TRANSLATED_MEMO_FIXTURE_MINIMUM_SCHEMA_VERSION,
+    artifact_id: "fff-translated-memo-fixture-minimum-001",
+    title: "Fast Fiction Factory Minimal Translated Memo Fixture",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    fixture_path: toRepoPath(fixturePath),
+    input_readbacks: {
+      source_fixture_path: toRepoPath(sourceFixturePath),
+      source_output_path: toRepoPath(sourceOutputPath),
+      translation_policy_source_of_truth_boundary_result_path: toRepoPath(policyPath),
+      provider_envelope_readiness_no_call_result_path: toRepoPath(providerEnvelopePath),
+      provider_adapter_authorization_readiness_result_path: toRepoPath(providerAuthorizationPath),
+      contradictory_claim_guard_result_path: manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT,
+      downstream_source_span_adoption_gate_result_path: manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT,
+      malformed_missing_span_guard_result_path: manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT
+    },
+    source_of_truth_language: {
+      value: "original_author_memo_multilingual_text",
+      owner: "original_author_memo",
+      source_ref_id: rawMemoSourceRef?.id,
+      policy_artifact_id: translationPolicy.artifact_id,
+      translated_rows_do_not_replace_original_spans: true
+    },
+    fixture_policy: {
+      translation_owner: "declared_derivative_translation_only",
+      translation_can_produce_claims: false,
+      allowed_claim_condition: "source-backed and explicitly held only",
+      inline_gloss_handling: "author memo inline text only; no external translation authority",
+      derived_claim_promotion_status: "blocked",
+      contradiction_guard_expectation: "translated or gloss-derived conflicts remain source-backed, uncertain, and held"
+    },
+    translated_fixture_rows: rowReadbacks,
+    provider_external_credential_status: {
+      translation_provider_used: fixture.translation_provider_used,
+      provider_configured: providerEnvelope.provider_metadata?.providerConfigured,
+      external_call_attempted: providerEnvelope.provider_metadata?.externalCallAttempted,
+      credentials_touched: providerEnvelope.provider_metadata?.credentialsTouched,
+      provider_authorization_blocked: providerBoundaryOpen === false
+    },
+    summary: {
+      translated_fixture_rows_checked: rows.length,
+      original_span_matches: rowReadbacks.filter((row) => row.source_span_matches_raw_memo).length,
+      original_span_mismatches: originalSpanMismatches.length,
+      translation_to_claim_leakage_count: translationToClaimLeaks.length,
+      held_claim_count: heldClaimRows.length,
+      auto_promotion_count: autoPromotionRows.length,
+      inline_gloss_claim_leakage_count: inlineGlossClaimLeaks.length,
+      provider_configured: providerEnvelope.provider_metadata?.providerConfigured,
+      external_call_attempted: providerEnvelope.provider_metadata?.externalCallAttempted,
+      credentials_touched: providerEnvelope.provider_metadata?.credentialsTouched,
+      downstream_adopted_candidates: downstreamGate.summary?.adopted_profile_claim_timeline_candidates,
+      contradictory_guard_conflict_leaks: contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims,
+      review_card_emitted: false,
+      repeated_general_review_request_emitted: false,
+      operator_observation_card_emitted: false,
+      failures: failures.length
+    },
+    what_this_fixture_proves: [
+      "A translated memo fixture can exist as a small derivative layer without replacing original multilingual source spans.",
+      "A translated row linked to an existing held claim does not promote that claim.",
+      "An inline gloss boundary row remains claimless and cannot create unowned authority.",
+      "Provider, external-call, credential, downstream adoption, and canon boundaries remain closed."
+    ],
+    what_this_fixture_does_not_prove: [
+      "It does not verify translation quality.",
+      "It does not choose or configure a translation provider.",
+      "It does not import provider output or touch credentials.",
+      "It does not adopt downstream candidates or decide Toma fate, brass moth truth, Council motive, or contradictory claim truth."
+    ],
+    minimum_fixture_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -5302,6 +5610,8 @@ Usage:
   node tools/fff-state.mjs smoke-translation-provenance-source-span-readback <adapter-output.json> [output.json]
   node tools/fff-state.mjs validate-translation-policy-source-of-truth-boundary <translation-provenance-readback.json>
   node tools/fff-state.mjs smoke-translation-policy-source-of-truth-boundary <translation-provenance-readback.json> [output.json]
+  node tools/fff-state.mjs validate-translated-memo-fixture-minimum <translated-memo-fixture.json>
+  node tools/fff-state.mjs smoke-translated-memo-fixture-minimum <translated-memo-fixture.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
@@ -5344,6 +5654,9 @@ Default translation provenance source-span readback output:
 
 Default translation policy source-of-truth boundary output:
   ${DEFAULT_TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_OUTPUT}
+
+Default translated memo fixture minimum output:
+  ${DEFAULT_TRANSLATED_MEMO_FIXTURE_MINIMUM_OUTPUT}
 
 Default very broad source-span shape audit output:
   ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}
