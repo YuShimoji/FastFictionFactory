@@ -103,3 +103,9 @@
 - Decision: Preserve very broad source-span shape work as an audit instead of adding a fixture.
   - Reason: The current two broad source-span rows are already resolved by `fff-broad-span-split-001`, and the source-pack/downstream/provider no-call chain has no source mismatch, missing source ref, unsafe route, non-held default, downstream adopted candidate, provider call, or credential use that a new fixture would clarify.
   - Effect: `fff-very-broad-source-span-shape-audit-001` adds `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`, and `node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit ...`; it keeps broad fixture work deferred until source output changes or coverage becomes the concrete bottleneck.
+
+## 2026-06-29
+
+- Decision: Record route-lock cleanup after ClipPipeGen prompt residue appeared in the Fast Fiction Factory workspace.
+  - Reason: Four untracked `docs/style_intent/subtitle-owner-*` files contained `clippipegen` / `clip-ed10` identifiers and did not belong to the active Fast Fiction Factory route.
+  - Effect: `fff-route-lock-clean-state-readback-001` records that the untracked residue files and empty `docs/style_intent/` directory were deleted, tracked/workspace contamination searches returned no hits for ClipPipeGen / ED-10 terms, and the active artifact remains `fff-contradictory-claim-guard-001`.

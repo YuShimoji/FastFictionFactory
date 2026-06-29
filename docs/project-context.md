@@ -46,9 +46,23 @@ The active slice is complete enough for local readback:
 - Current/sample state: `artifacts/current-project-state.json`, `artifacts/sample-project-state.json`
 - Local docs view: `mkdocs.yml`
 - Project overview map: `docs/project-overview.md`
+- Route-lock cleanup readback: `docs/review/route-lock-clean-state-readback.md`
 - Next-terminal handoff: `docs/review/next-terminal-handoff.md`
 
 ## Verification Snapshot
+
+Route hygiene checkpoint, 2026-06-29 JST:
+
+- `fff-route-lock-clean-state-readback-001` records that four untracked
+  ClipPipeGen-derived residue files under `docs/style_intent/` were deleted
+  from this repo.
+- Tracked and workspace searches for the foreign-route terms returned no hits
+  after cleanup and before this readback was added. Future hits should be
+  confined to `fff-route-lock-clean-state-readback-001` evidence and its
+  cockpit summaries.
+- `docs/style_intent/` was removed because it was empty and residue-only.
+- The active Fast Fiction Factory artifact remains
+  `fff-contradictory-claim-guard-001`.
 
 Last verified on 2026-06-24:
 

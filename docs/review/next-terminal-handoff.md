@@ -2,7 +2,16 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-24T17:10:00+09:00. At refresh time, the active artifact is still `fff-contradictory-claim-guard-001`; `fff-provider-envelope-readiness-no-call-001`, `fff-provider-adapter-authorization-readiness-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-downstream-adoption-gate-scope-lock-001`, `fff-translated-memo-fixture-audit-001`, and `fff-very-broad-source-span-shape-audit-001` are preserved auxiliary readbacks. Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
+Latest handoff refresh: 2026-06-29 JST. At refresh time, the active artifact is
+still `fff-contradictory-claim-guard-001`; `fff-route-lock-clean-state-readback-001`
+records that ClipPipeGen prompt residue was removed from this repo, and
+`fff-provider-envelope-readiness-no-call-001`,
+`fff-provider-adapter-authorization-readiness-001`,
+`fff-remaining-fixture-coverage-one-class-001`,
+`fff-downstream-adoption-gate-scope-lock-001`,
+`fff-translated-memo-fixture-audit-001`, and
+`fff-very-broad-source-span-shape-audit-001` are preserved auxiliary readbacks.
+Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
 
 ## Start Here
 
@@ -30,6 +39,7 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/route-lock-clean-state-readback.md
 docs/review/contradictory-claim-guard.md
 artifacts/contradictory-claim-guard-result.json
 artifacts/extraction-negative-fixtures/contradictory-claim-hold.json
@@ -97,6 +107,7 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - Downstream source-span adoption gate doc/result: `docs/review/downstream-source-span-adoption-gate.md`, `artifacts/downstream-source-span-adoption-gate-result.json`
 - Provider envelope readiness no-call doc/example/result: `docs/review/provider-envelope-readiness-no-call.md`, `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json`
 - Provider adapter authorization readiness doc/result: `docs/review/provider-adapter-authorization-readiness.md`, `artifacts/provider-adapter-authorization-readiness-result.json`
+- Route-lock cleanup readback: `docs/review/route-lock-clean-state-readback.md`
 - Remaining fixture coverage doc/result/fixture/output: `docs/review/remaining-fixture-coverage-one-class.md`, `artifacts/remaining-fixture-coverage-one-class-result.json`, `artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md`, `artifacts/extraction-adapter-outputs/multilingual-memo-notes.json`
 - Translated/multilingual fixture audit doc/result: `docs/review/translated-memo-fixture-audit.md`, `artifacts/translated-memo-fixture-audit-result.json`
 - Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
@@ -119,6 +130,12 @@ The current artifact adds a deterministic guard for contradictory claim candidat
 - `fff-downstream-source-span-adoption-gate-001` is preserved as the auxiliary downstream-readiness gate: 55 downstream candidates remain source-tracked, 28 human-owned candidates remain held, and 0 Profile / Claim / Timeline candidates are adopted.
 - `fff-provider-envelope-readiness-no-call-001` is preserved as the auxiliary provider-readiness gate: the no-call envelope carries a valid candidate Extraction Contract with 4 source-tracked elements, 2 held human-owned elements, 0 visual direct Claim routes, 0 adopted/provisional elements or claims, no provider configured, no endpoint, no external call attempted, and no credentials touched.
 - `fff-provider-adapter-authorization-readiness-001` is preserved as the auxiliary authorization gate: it records that provider choice, credentials/secrets, endpoint, transport, external call permission, and persistence/publication remain unauthorized, while local no-call envelopes and validation gates are allowed.
+- `fff-route-lock-clean-state-readback-001` records that four untracked
+  ClipPipeGen-derived files under `docs/style_intent/` were deleted from this
+  repo, `docs/style_intent/` was removed after it became empty, and tracked plus
+  workspace searches returned no foreign-route hits after cleanup and before
+  the route-lock evidence was added. Future hits should be confined to the
+  route-lock evidence and cockpit summaries.
 - `fff-malformed-missing-span-guard-001` remains closed after the fixture count expanded to 9; malformed/missing span cases still produce 0 accepted routed candidates.
 - `fff-translated-memo-fixture-audit-001` audits existing multilingual fixture coverage without adding a translated fixture. It closes the previous full-manifest-regeneration unknown as `not_available` because no repo command is defined, records translated memo text as a policy-dependent gap, and preserves 0 source-span mismatches, 0 missing source refs, 0 unsafe routes, 0 downstream adopted candidates, no provider configured, no external call, and no credentials touched.
 - `fff-very-broad-source-span-shape-audit-001` audits the broad fixture candidate without adding another fixture. It confirms the current 2 broad rows are already resolved by the broad-span split/keep readback, leaves broad fixture work deferred until source output changes or coverage is the bottleneck, and preserves 0 source-span mismatches, 0 missing refs, 0 unsafe routes, 0 non-held defaults, 0 downstream adopted candidates, no provider configured, no external call, and no credentials touched.
@@ -131,11 +148,16 @@ The active manifest validation command passed for `fff-contradictory-claim-guard
 Additional checks passed during this handoff refresh:
 
 - `node --check tools/fff-state.mjs`
+- `node --check tools/fff-extract-local.mjs`
+- `node --check tools/fff-source-span-review-pack.mjs`
 - `node tools/fff-state.mjs smoke-provider-adapter-authorization-readiness artifacts/provider-envelope-readiness-no-call-result.json artifacts/provider-adapter-authorization-readiness-result.json`
 - HTML inline script syntax check for `public/review/index.html`
 - `uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"`
 - `git diff --check`
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` before staging.
+- `git grep` and `rg` route-contamination searches returned no hits after
+  cleanup and before the route-lock evidence was added. After this handoff,
+  expected hits are limited to the route-lock evidence and summaries.
 
 ## Preserved Boundaries
 
@@ -174,5 +196,6 @@ No general Review Hub review is needed for the current state. Future review shou
 | Contradictory claim handling | Prevent conflicting claims from entering canon automatically | Guarded by a valid fixture and smoke result; truth choice remains human-owned | Keep the guard required for any future Claim Ledger acceptance path |
 | Downstream adoption readiness | Ensure Profile / Claim / Timeline candidates stay source-tracked and held | Readback gate passes with 0 adopted candidates | Keep blocked until explicit adoption behavior is requested |
 | Provider envelope and authorization readiness | Fix future provider output shape and approval boundary before transport exists | No-call readback passes, and authorization readiness lists 6 blocked items plus 3 options; no provider, endpoint, credential, project-state mutation, or adopted canon output exists | Use as required preconditions, not as provider integration |
+| Route lock / project hygiene | Keep Fast Fiction Factory separate from ClipPipeGen prompt residue | `fff-route-lock-clean-state-readback-001` records cleanup of untracked ClipPipeGen files and no tracked contamination | Start new terminals from this handoff and keep future `clip-ed10` / `ED-10` work out of this repo |
 | Fixture coverage | Cover unrepresented memo shapes | 9 validator fixtures and 5 adapter fixture outputs now pass; multilingual memo text is covered; translated memo text is audited but policy-dependent; very broad source-span shape is audited and deferred because current broad rows are already resolved | Add one missing fixture class at a time only when it has concrete decision value |
 | Model/API adapter | Replace deterministic extraction with provider-backed extraction | Explicitly not started | Keep blocked until user authorizes provider, credential, endpoint, API transport scope, external call permission, timeout, and retry policy |

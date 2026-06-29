@@ -32,6 +32,7 @@ Preserved platform boundary:
 - Review memory / dedup: `fff-review-memory-dedup-001`
 - Review procedure: `fff-review-procedure-lock-001`
 - Review Hub IA: `fff-review-hub-ia-mode-split-001`
+- Route-lock cleanup: `fff-route-lock-clean-state-readback-001`
 - Model/API boundary: `fff-model-api-boundary-spec-001`
 - Provider envelope readiness no-call: `fff-provider-envelope-readiness-no-call-001`
 - Provider adapter authorization readiness: `fff-provider-adapter-authorization-readiness-001`
@@ -56,12 +57,22 @@ Preserved platform boundary:
 - `fff-provider-envelope-readiness-no-call-001` is now present as a non-active auxiliary readiness gate. It defines a no-provider/no-credential envelope, carries a candidate `fff.extractionContract.v1` payload, validates that payload locally, and binds it to the malformed/missing span guard, contradictory claim guard, downstream adoption gate, source-span pack, validator matrix, and model/API no-call boundary.
 - `artifacts/provider-envelope-readiness-no-call-result.json` reports 4 carried extraction elements, 4 source-tracked elements, 2 human-owned elements held, 0 non-held human-owned elements, 0 visual direct Claim routes, 0 adopted/provisional elements, 0 adopted/provisional claims, no provider configured, no provider/model name, no endpoint, no external call attempted, and no credentials touched.
 - `fff-provider-adapter-authorization-readiness-001` is now present as a non-active auxiliary authorization boundary. It lists 6 unauthorized items before real provider work: provider choice, credentials/secrets, endpoint, transport, external call permission, and persistence/publication; it also records 7 allowed no-call states and 3 Decision Packet options without asking for a fixed form.
+- `fff-route-lock-clean-state-readback-001` records the 2026-06-29 cleanup of
+  four untracked ClipPipeGen-derived files from `docs/style_intent/`. The
+  cleanup found no tracked Fast Fiction Factory contamination before the
+  route-lock evidence was recorded; future term hits should be confined to that
+  evidence and cockpit summaries.
 - Review Memory / Dedup remains in place. The guard uses axis `contradictory_claim_guard`, prior review count `0`, no Review Card, no Operator Observation Card, and no repeated general Review Hub request.
 - Toma fate, brass moth truth, Council motive, and moth-key function remain unresolved and human-owned.
 
 ## What Was Verified
 
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
+- Route hygiene before this handoff: `git rev-list --left-right --count
+  "HEAD...origin/master"` reported `0 0`; the workspace was clean after the
+  four untracked ClipPipeGen residue files were deleted; tracked contamination
+  grep returned no hits before `fff-route-lock-clean-state-readback-001` was
+  added as the durable evidence record.
 - This provider authorization readiness slice started clean on `master` at `6695ced Audit very broad source-span shape`; the contradictory-claim guard was already the tracked active surface, so the downstream gate, downstream scope-lock, provider-envelope readiness, provider authorization readiness, multilingual fixture coverage, translated audit, and very broad audit remain preserved auxiliary readbacks instead of active-status rewinds.
 - Project-local instructions and required context docs were read before changing review claims.
 - `node --check tools/fff-state.mjs` passed.

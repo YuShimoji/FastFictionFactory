@@ -1,5 +1,14 @@
 # Artifacts
 
+## fff-route-lock-clean-state-readback-001
+
+- Title: Fast Fiction Factory Route Lock Clean State Readback
+- Purpose: Record the 2026-06-29 cleanup that removed untracked ClipPipeGen-derived prompt residue from this repo and verified no tracked Fast Fiction Factory contamination.
+- Repo relative path: `docs/review/route-lock-clean-state-readback.md`
+- Current status: `docs/review/current-status.md`
+- Next-terminal handoff: `docs/review/next-terminal-handoff.md`
+- Review status: `route_clean`
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench
