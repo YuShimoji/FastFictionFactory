@@ -85,6 +85,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary dry-run under `fff-contradictory-claim-guard-001`; 1 source-backed held candidate is recorded as `adoption_candidate_dry_run`, with 0 adopted claims, 0 canonized claims, 0 Profile / Claim / Timeline / Story Seed mutations, and no provider/API call, credential, publishing, or production generation.
 
+## fff-sandbox-adoption-mutation-one-claim-001
+
+- Title: Fast Fiction Factory Sandbox Adoption Mutation One Claim
+- Purpose: Record the user-authorized sandbox / fixture adoption of exactly `multi-claim-moth-key-label` without production adoption, canonization, provider/API work, publishing, or production generation.
+- Repo relative path: `docs/review/sandbox-adoption-mutation-one-claim.md`
+- Readback result: `artifacts/sandbox-adoption-mutation-one-claim-result.json`
+- Input readback: `artifacts/adoption-candidate-ledger-dry-run-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-sandbox-adoption-mutation-one-claim artifacts/adoption-candidate-ledger-dry-run-result.json artifacts/sandbox-adoption-mutation-one-claim-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary sandbox fixture mutation under `fff-contradictory-claim-guard-001`; 1 sandbox row moves from `adoption_candidate_dry_run` to `sandbox_adopted_fixture`, rollback token is recorded, and production adopted claims, canonized claims, Profile / Claim / Timeline / Story Seed production mutations, provider/API calls, credentials, publishing, and production generation remain zero or false.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench
