@@ -109,6 +109,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary sandbox rollback rehearsal under `fff-contradictory-claim-guard-001`; 1 sandbox-adopted row is inspected, the expected rollback token is verified, 1 rehearsal row records `sandbox_adopted_fixture -> adoption_candidate_dry_run`, and production adopted claims, canonized claims, Profile / Claim / Timeline / Story Seed production mutations, provider/API calls, credentials, publishing, and production generation remain zero or false.
 
+## fff-production-adoption-authorization-packet-001
+
+- Title: Fast Fiction Factory Production Adoption Authorization Packet
+- Purpose: Prepare a freeform authorization packet for possible future production adoption of exactly `multi-claim-moth-key-label` without approving or performing production adoption, production rollback, canonization, provider/API work, publishing, or production generation.
+- Repo relative path: `docs/review/production-adoption-authorization-packet.md`
+- Readback result: `artifacts/production-adoption-authorization-packet-result.json`
+- Input readback: `artifacts/sandbox-adoption-rollback-rehearsal-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-production-adoption-authorization-packet artifacts/sandbox-adoption-rollback-rehearsal-result.json artifacts/production-adoption-authorization-packet-result.json`
+- Review status: `ready_for_user_authorization`
+- Review input mode: `freeform`
+- State: Preserved auxiliary authorization packet under `fff-contradictory-claim-guard-001`; 1 rollback-rehearsed candidate is presented, Profile / Claim Ledger / Timeline / Story Seed target classes are proposed, Claim Ledger is recommended as the first target, user authorization remains required, production mutations remain 0, canonized claims remain 0, and provider/API calls, credentials, publishing, and production generation remain false.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

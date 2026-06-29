@@ -24,6 +24,7 @@ const DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_SCHEMA_VERSION = "fff.downstreamAdopt
 const ADOPTION_CANDIDATE_LEDGER_DRY_RUN_SCHEMA_VERSION = "fff.adoptionCandidateLedgerDryRun.v1";
 const SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_SCHEMA_VERSION = "fff.sandboxAdoptionMutationOneClaim.v1";
 const SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_SCHEMA_VERSION = "fff.sandboxAdoptionRollbackRehearsal.v1";
+const PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_SCHEMA_VERSION = "fff.productionAdoptionAuthorizationPacket.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -46,6 +47,7 @@ const DEFAULT_DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_OUTPUT = "artifacts/downstrea
 const DEFAULT_ADOPTION_CANDIDATE_LEDGER_DRY_RUN_OUTPUT = "artifacts/adoption-candidate-ledger-dry-run-result.json";
 const DEFAULT_SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT = "artifacts/sandbox-adoption-mutation-one-claim-result.json";
 const DEFAULT_SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_OUTPUT = "artifacts/sandbox-adoption-rollback-rehearsal-result.json";
+const DEFAULT_PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_OUTPUT = "artifacts/production-adoption-authorization-packet-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -583,6 +585,25 @@ async function main() {
     }
     if (command === "smoke-sandbox-adoption-rollback-rehearsal" || outputPath) {
       console.log(`sandbox adoption rollback rehearsal passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-production-adoption-authorization-packet" || command === "smoke-production-adoption-authorization-packet") {
+    const rollback = await readJson(inputPath);
+    const result = await validateProductionAdoptionAuthorizationPacket(rollback, inputPath);
+    const target = outputPath || DEFAULT_PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_OUTPUT;
+    if (command === "smoke-production-adoption-authorization-packet" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Production adoption authorization packet failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-production-adoption-authorization-packet" || outputPath) {
+      console.log(`production adoption authorization packet passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -4741,6 +4762,285 @@ async function validateSandboxAdoptionRollbackRehearsal(sandbox, sandboxPath) {
   };
 }
 
+async function validateProductionAdoptionAuthorizationPacket(rollback, rollbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const manifestValidationCommand = String(manifest.validation_command || "");
+  const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
+  const sandboxPath = rollback.input_readbacks?.sandbox_adoption_mutation_one_claim_result_path || DEFAULT_SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT;
+  const ledgerPath = rollback.input_readbacks?.adoption_candidate_ledger_dry_run_result_path || DEFAULT_ADOPTION_CANDIDATE_LEDGER_DRY_RUN_OUTPUT;
+  const semanticsPath = rollback.input_readbacks?.downstream_adoption_semantics_design_result_path || DEFAULT_DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_OUTPUT;
+  const sandbox = await readJson(sandboxPath);
+  const ledger = await readJson(ledgerPath);
+  const semantics = await readJson(semanticsPath);
+  const rollbackRows = Array.isArray(rollback.sandbox_rollback_rehearsal_rows) ? rollback.sandbox_rollback_rehearsal_rows : [];
+  const target = rollbackRows.find((row) => row.target_claim_id === "multi-claim-moth-key-label");
+  const sandboxRows = Array.isArray(sandbox.sandbox_adoption_fixture_rows) ? sandbox.sandbox_adoption_fixture_rows : [];
+  const sandboxTarget = sandboxRows.find((row) => row.target_claim_id === "multi-claim-moth-key-label");
+  const ledgerRows = Array.isArray(ledger.adoption_candidate_ledger_rows) ? ledger.adoption_candidate_ledger_rows : [];
+  const ledgerTarget = ledgerRows.find((row) => row.held_claim_id === "multi-claim-moth-key-label");
+  const rollbackToken = "rollback-sandbox-adoption-moth-key-label-to-adoption-candidate-dry-run";
+  const proposedTargets = [
+    {
+      target_class: "Profile",
+      target_ids: ledgerTarget?.downstream_target_ids_future_only?.profile || semantics.candidate_holding?.target_ids_read_only?.profile || ["multi-profile-brass-moth-key"],
+      recommended_first_target: false,
+      mutation_behavior: "Future-only update or create a Profile object entry that links the brass moth key label to the original source span without canonizing unresolved truth.",
+      rollback_owner: "author approves rollback; implementer removes the profile mutation and preserves the source evidence trail",
+      production_rollback_descriptor_needed: "rollback-production-adoption-moth-key-label-profile-to-held",
+      approval_requirement: "explicit user approval for Profile mutation plus unresolved brass moth truth review"
+    },
+    {
+      target_class: "Claim Ledger",
+      target_ids: ledgerTarget?.downstream_target_ids_future_only?.claim || semantics.candidate_holding?.target_ids_read_only?.claim || ["multi-claim-moth-key-label"],
+      recommended_first_target: true,
+      mutation_behavior: "Future-only accept the source-backed claim into the production Claim Ledger while keeping canon approval separate and preserving source refs.",
+      rollback_owner: "author approves rollback; implementer returns the claim to held/adoption-candidate state with audit trail",
+      production_rollback_descriptor_needed: "rollback-production-adoption-moth-key-label-claim-ledger-to-held",
+      approval_requirement: "explicit user approval for Claim Ledger mutation and canon-risk acknowledgement"
+    },
+    {
+      target_class: "Timeline",
+      target_ids: ledgerTarget?.downstream_target_ids_future_only?.timeline || semantics.candidate_holding?.target_ids_read_only?.timeline || ["multi-timeline-moth-key-label"],
+      recommended_first_target: false,
+      mutation_behavior: "Future-only add or update a Timeline entry if the user confirms a sequence/order implication for the moth key label.",
+      rollback_owner: "author approves rollback; implementer removes the timeline mutation and keeps source references readable",
+      production_rollback_descriptor_needed: "rollback-production-adoption-moth-key-label-timeline-to-held",
+      approval_requirement: "explicit user approval for Timeline mutation plus ordering/dependency review"
+    },
+    {
+      target_class: "Story Seed",
+      target_ids: [],
+      recommended_first_target: false,
+      mutation_behavior: "Deferred future-only story-seed mutation; no current story-seed target is selected by the existing readbacks.",
+      rollback_owner: "author approves rollback; implementer removes the story-seed mutation and leaves Claim Ledger evidence intact",
+      production_rollback_descriptor_needed: "rollback-production-adoption-moth-key-label-story-seed-to-held",
+      approval_requirement: "explicit user request naming a Story Seed mutation target"
+    }
+  ];
+  const evidenceRequired = [
+    ...(Array.isArray(target?.evidence_required_before_future_production_adoption)
+      ? target.evidence_required_before_future_production_adoption
+      : []),
+    "production target class selected by user",
+    "mutation behavior accepted by user",
+    "production rollback owner confirmed by user",
+    "production rollback descriptor accepted before mutation"
+  ];
+  const userAuthorizationMissing = [
+    "production_adoption_approval",
+    "selected_production_target_class",
+    "mutation_behavior_acceptance",
+    "production_rollback_owner",
+    "production_rollback_descriptor",
+    "canon_decision",
+    "unresolved_dependency_review_for_brass_moth_truth_and_toma_fate",
+    "provider_api_credential_publishing_scope_confirmation"
+  ];
+  const explicitNonApproval = {
+    production_adoption_approved: false,
+    canon_approved: false,
+    provider_approved: false,
+    publishing_approved: false,
+    external_api_approved: false
+  };
+  const productionBoundaryOpen =
+    rollback.summary?.production_adopted_claims !== 0 ||
+    rollback.summary?.canonized_claims !== 0 ||
+    rollback.summary?.profile_production_mutation_count !== 0 ||
+    rollback.summary?.claim_production_mutation_count !== 0 ||
+    rollback.summary?.timeline_production_mutation_count !== 0 ||
+    rollback.summary?.story_seed_production_mutation_count !== 0 ||
+    rollback.summary?.affected_production_objects !== 0 ||
+    sandbox.summary?.production_adopted_claims !== 0 ||
+    sandbox.summary?.canonized_claims !== 0 ||
+    ledger.summary?.actually_adopted_claims !== 0 ||
+    ledger.summary?.canonized_claims !== 0 ||
+    semantics.summary?.actually_adopted_claims !== 0 ||
+    semantics.summary?.canonized_claims !== 0;
+  const providerBoundaryOpen =
+    rollback.summary?.provider_configured === true ||
+    rollback.summary?.external_call_attempted === true ||
+    rollback.summary?.credentials_touched === true ||
+    rollback.summary?.publishing_opened === true ||
+    rollback.summary?.production_generation_opened === true ||
+    sandbox.summary?.provider_configured === true ||
+    sandbox.summary?.external_call_attempted === true ||
+    sandbox.summary?.credentials_touched === true ||
+    sandbox.summary?.publishing_opened === true ||
+    sandbox.summary?.production_generation_opened === true ||
+    ledger.summary?.provider_configured === true ||
+    ledger.summary?.external_call_attempted === true ||
+    ledger.summary?.credentials_touched === true ||
+    semantics.summary?.provider_configured === true ||
+    semantics.summary?.external_call_attempted === true ||
+    semantics.summary?.credentials_touched === true;
+
+  check(
+    "rollback_rehearsal_loaded_and_passed",
+    rollback.artifact_id === "fff-sandbox-adoption-rollback-rehearsal-001" &&
+      rollback.schemaVersion === SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_SCHEMA_VERSION &&
+      rollback.passed === true,
+    `rollback=${rollback.artifact_id}/${rollback.passed}; schema=${rollback.schemaVersion}`
+  );
+  check(
+    "expected_target_source_and_status_verified",
+    Boolean(target) &&
+      target.target_claim_id === "multi-claim-moth-key-label" &&
+      target.source_span_id === "multi-x-object-brass-moth-key" &&
+      target.post_rollback_rehearsal_status === "adoption_candidate_dry_run" &&
+      target.rollback_token === rollbackToken &&
+      target.rollback_rehearsal_success === true &&
+      target.production_adoption_status === false &&
+      target.canon_status === false,
+    `target=${target?.target_claim_id || "missing"}; status=${target?.post_rollback_rehearsal_status || "missing"}; token=${target?.rollback_token || "missing"}`
+  );
+  check(
+    "prior_sandbox_and_ledger_evidence_loaded",
+    sandbox.artifact_id === "fff-sandbox-adoption-mutation-one-claim-001" &&
+      ledger.artifact_id === "fff-adoption-candidate-ledger-dry-run-001" &&
+      semantics.artifact_id === "fff-downstream-adoption-semantics-design-001" &&
+      Boolean(sandboxTarget) &&
+      Boolean(ledgerTarget) &&
+      sandboxTarget.rollback_descriptor?.rollback_token === rollbackToken &&
+      ledgerTarget.ledger_status === "adoption_candidate_dry_run" &&
+      semantics.accepted_status?.current_slice_reachable === false,
+    `sandbox=${sandbox.artifact_id}; ledger=${ledger.artifact_id}; semantics=${semantics.artifact_id}; ledgerStatus=${ledgerTarget?.ledger_status || "missing"}`
+  );
+  check(
+    "proposed_targets_and_recommended_first_class_recorded",
+    proposedTargets.length === 4 &&
+      proposedTargets.some((targetClass) => targetClass.target_class === "Profile") &&
+      proposedTargets.some((targetClass) => targetClass.target_class === "Claim Ledger" && targetClass.recommended_first_target === true) &&
+      proposedTargets.some((targetClass) => targetClass.target_class === "Timeline") &&
+      proposedTargets.some((targetClass) => targetClass.target_class === "Story Seed"),
+    `targets=${proposedTargets.map((targetClass) => targetClass.target_class).join(", ")}; recommended=${proposedTargets.find((targetClass) => targetClass.recommended_first_target)?.target_class || "missing"}`
+  );
+  check(
+    "authorization_fields_missing_and_user_required",
+    userAuthorizationMissing.length >= 6 &&
+      Object.values(explicitNonApproval).every((value) => value === false),
+    `missing=${userAuthorizationMissing.length}; approvals=${JSON.stringify(explicitNonApproval)}`
+  );
+  check(
+    "mutation_canon_provider_boundaries_closed",
+    productionBoundaryOpen === false &&
+      providerBoundaryOpen === false &&
+      proposedTargets.every((targetClass) => typeof targetClass.production_rollback_descriptor_needed === "string") &&
+      explicitNonApproval.production_adoption_approved === false &&
+      explicitNonApproval.canon_approved === false,
+    `productionOpen=${productionBoundaryOpen}; providerOpen=${providerBoundaryOpen}; productionApproval=${explicitNonApproval.production_adoption_approved}`
+  );
+  check(
+    "production_rollback_descriptor_required_not_executed",
+    target?.production_rollback_performed === false &&
+      proposedTargets.every((targetClass) => targetClass.production_rollback_descriptor_needed.startsWith("rollback-production-adoption-")) &&
+      rollback.rollback_rehearsal_summary?.production_rollback_performed === false,
+    `productionRollback=${target?.production_rollback_performed ?? "missing"}; descriptors=${proposedTargets.length}`
+  );
+  check(
+    "manifest_and_review_memory_registered",
+    manifestValidationCommand.includes("smoke-production-adoption-authorization-packet") &&
+      manifest.preserves?.includes("fff-production-adoption-authorization-packet-001") &&
+      reviewMemory.some((entry) => entry.artifact_id === "fff-production-adoption-authorization-packet-001"),
+    `includesSmoke=${manifestValidationCommand.includes("smoke-production-adoption-authorization-packet")}; preserves=${manifest.preserves?.includes("fff-production-adoption-authorization-packet-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-production-adoption-authorization-packet-001")}`
+  );
+
+  return {
+    schemaVersion: PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_SCHEMA_VERSION,
+    artifact_id: "fff-production-adoption-authorization-packet-001",
+    title: "Fast Fiction Factory Production Adoption Authorization Packet",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_user_authorization",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    input_readbacks: {
+      sandbox_adoption_rollback_rehearsal_result_path: toRepoPath(rollbackPath),
+      sandbox_adoption_mutation_one_claim_result_path: toRepoPath(sandboxPath),
+      adoption_candidate_ledger_dry_run_result_path: toRepoPath(ledgerPath),
+      downstream_adoption_semantics_design_result_path: toRepoPath(semanticsPath)
+    },
+    authorization_packet_scope: {
+      packet_only: true,
+      production_adoption_performed: false,
+      production_rollback_performed: false,
+      canonization_performed: false,
+      profile_claim_timeline_story_seed_mutation_performed: false,
+      provider_or_external_call_performed: false,
+      publishing_or_production_generation_performed: false
+    },
+    target_readback: {
+      target_claim_id: target?.target_claim_id || "missing",
+      source_span_id: target?.source_span_id || "missing",
+      source_span_locator: target?.source_span_locator || "missing",
+      current_candidate_status_after_rollback_rehearsal: target?.post_rollback_rehearsal_status || "missing",
+      source_backed_status: Boolean(ledgerTarget?.source_span_id && ledgerTarget?.source_span_locator),
+      rollback_rehearsed: target?.rollback_rehearsal_success === true,
+      non_canon: target?.canon_status === false,
+      non_production: target?.production_adoption_status === false
+    },
+    sandbox_adoption_evidence: {
+      artifact_id: sandbox.artifact_id,
+      sandbox_fixture_row_id: sandboxTarget?.sandbox_fixture_row_id || "missing",
+      transition: sandboxTarget?.sandbox_transition || "missing",
+      rollback_token: sandboxTarget?.rollback_descriptor?.rollback_token || "missing",
+      production_adoption_status: sandboxTarget?.production_adoption_status ?? "missing",
+      canon_status: sandboxTarget?.canon_status ?? "missing"
+    },
+    rollback_rehearsal_evidence: {
+      artifact_id: rollback.artifact_id,
+      rollback_rehearsal_row_id: target?.rollback_rehearsal_row_id || "missing",
+      rollback_token: target?.rollback_token || "missing",
+      rollback_transition: target?.rollback_transition || "missing",
+      post_rollback_rehearsal_status: target?.post_rollback_rehearsal_status || "missing",
+      production_rollback_performed: false
+    },
+    proposed_production_target_classes: proposedTargets,
+    recommended_first_production_target_class: "Claim Ledger",
+    recommendation_reason: "Claim Ledger is the narrowest first production target because the source-backed object label is already represented as a held claim; Profile, Timeline, and Story Seed writes can remain downstream of explicit approval.",
+    evidence_required_before_production_mutation: [...new Set(evidenceRequired)],
+    user_authorization_fields_still_missing: userAuthorizationMissing,
+    explicit_non_approval_fields: explicitNonApproval,
+    summary: {
+      candidates_inspected: rollbackRows.length,
+      rollback_rehearsed_candidates: rollbackRows.filter((row) => row.rollback_rehearsal_success === true).length,
+      production_target_classes_proposed: proposedTargets.length,
+      recommended_first_target_classes: proposedTargets.filter((targetClass) => targetClass.recommended_first_target === true).length,
+      production_mutations_performed: 0,
+      canonized_claims: 0,
+      provider_configured: false,
+      external_call_attempted: false,
+      credentials_touched: false,
+      publishing_opened: false,
+      production_generation_opened: false,
+      user_authorization_required: true,
+      user_authorization_fields_missing: userAuthorizationMissing.length,
+      failures: failures.length
+    },
+    what_this_packet_proves: [
+      "The rollback-rehearsed sandbox candidate can be presented as a production adoption authorization packet.",
+      "Potential production target classes, mutation behavior, rollback owner, rollback descriptors, and missing approvals are explicit.",
+      "No production mutation, production rollback, canonization, provider, credential, publishing, or production generation route is opened."
+    ],
+    what_this_packet_does_not_prove: [
+      "It does not approve production adoption.",
+      "It does not canonize the claim or resolve brass moth truth, Toma fate, Council motive, moth-key function, or contradictory claim truth.",
+      "It does not write Profile, Claim Ledger, Timeline, Story Seed, database, provider output, credentials, publishing, or production surfaces."
+    ],
+    authorization_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -6977,6 +7277,8 @@ Usage:
   node tools/fff-state.mjs smoke-sandbox-adoption-mutation-one-claim <adoption-candidate-ledger-dry-run-result.json> [output.json]
   node tools/fff-state.mjs validate-sandbox-adoption-rollback-rehearsal <sandbox-adoption-mutation-one-claim-result.json>
   node tools/fff-state.mjs smoke-sandbox-adoption-rollback-rehearsal <sandbox-adoption-mutation-one-claim-result.json> [output.json]
+  node tools/fff-state.mjs validate-production-adoption-authorization-packet <sandbox-adoption-rollback-rehearsal-result.json>
+  node tools/fff-state.mjs smoke-production-adoption-authorization-packet <sandbox-adoption-rollback-rehearsal-result.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
@@ -7037,6 +7339,9 @@ Default sandbox adoption mutation one-claim output:
 
 Default sandbox adoption rollback rehearsal output:
   ${DEFAULT_SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_OUTPUT}
+
+Default production adoption authorization packet output:
+  ${DEFAULT_PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_OUTPUT}
 
 Default very broad source-span shape audit output:
   ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}

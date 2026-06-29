@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "fff.productionAdoptionAuthorizationPacket.v1",
+  "artifact_id": "fff-production-adoption-authorization-packet-001",
+  "title": "Fast Fiction Factory Production Adoption Authorization Packet",
+  "generatedAt": "2026-06-29T17:39:14.687Z",
+  "review_status": "ready_for_user_authorization",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_readbacks": {
+    "sandbox_adoption_rollback_rehearsal_result_path": "artifacts/sandbox-adoption-rollback-rehearsal-result.json",
+    "sandbox_adoption_mutation_one_claim_result_path": "artifacts/sandbox-adoption-mutation-one-claim-result.json",
+    "adoption_candidate_ledger_dry_run_result_path": "artifacts/adoption-candidate-ledger-dry-run-result.json",
+    "downstream_adoption_semantics_design_result_path": "artifacts/downstream-adoption-semantics-design-result.json"
+  },
+  "authorization_packet_scope": {
+    "packet_only": true,
+    "production_adoption_performed": false,
+    "production_rollback_performed": false,
+    "canonization_performed": false,
+    "profile_claim_timeline_story_seed_mutation_performed": false,
+    "provider_or_external_call_performed": false,
+    "publishing_or_production_generation_performed": false
+  },
+  "target_readback": {
+    "target_claim_id": "multi-claim-moth-key-label",
+    "source_span_id": "multi-x-object-brass-moth-key",
+    "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+    "current_candidate_status_after_rollback_rehearsal": "adoption_candidate_dry_run",
+    "source_backed_status": true,
+    "rollback_rehearsed": true,
+    "non_canon": true,
+    "non_production": true
+  },
+  "sandbox_adoption_evidence": {
+    "artifact_id": "fff-sandbox-adoption-mutation-one-claim-001",
+    "sandbox_fixture_row_id": "sandbox-adoption-fixture-row-moth-key-label",
+    "transition": "adoption_candidate_dry_run -> sandbox_adopted_fixture",
+    "rollback_token": "rollback-sandbox-adoption-moth-key-label-to-adoption-candidate-dry-run",
+    "production_adoption_status": false,
+    "canon_status": false
+  },
+  "rollback_rehearsal_evidence": {
+    "artifact_id": "fff-sandbox-adoption-rollback-rehearsal-001",
+    "rollback_rehearsal_row_id": "sandbox-adoption-rollback-rehearsal-row-moth-key-label",
+    "rollback_token": "rollback-sandbox-adoption-moth-key-label-to-adoption-candidate-dry-run",
+    "rollback_transition": "sandbox_adopted_fixture -> adoption_candidate_dry_run",
+    "post_rollback_rehearsal_status": "adoption_candidate_dry_run",
+    "production_rollback_performed": false
+  },
+  "proposed_production_target_classes": [
+    {
+      "target_class": "Profile",
+      "target_ids": [
+        "multi-profile-brass-moth-key"
+      ],
+      "recommended_first_target": false,
+      "mutation_behavior": "Future-only update or create a Profile object entry that links the brass moth key label to the original source span without canonizing unresolved truth.",
+      "rollback_owner": "author approves rollback; implementer removes the profile mutation and preserves the source evidence trail",
+      "production_rollback_descriptor_needed": "rollback-production-adoption-moth-key-label-profile-to-held",
+      "approval_requirement": "explicit user approval for Profile mutation plus unresolved brass moth truth review"
+    },
+    {
+      "target_class": "Claim Ledger",
+      "target_ids": [
+        "multi-claim-moth-key-label"
+      ],
+      "recommended_first_target": true,
+      "mutation_behavior": "Future-only accept the source-backed claim into the production Claim Ledger while keeping canon approval separate and preserving source refs.",
+      "rollback_owner": "author approves rollback; implementer returns the claim to held/adoption-candidate state with audit trail",
+      "production_rollback_descriptor_needed": "rollback-production-adoption-moth-key-label-claim-ledger-to-held",
+      "approval_requirement": "explicit user approval for Claim Ledger mutation and canon-risk acknowledgement"
+    },
+    {
+      "target_class": "Timeline",
+      "target_ids": [
+        "multi-timeline-moth-key-label"
+      ],
+      "recommended_first_target": false,
+      "mutation_behavior": "Future-only add or update a Timeline entry if the user confirms a sequence/order implication for the moth key label.",
+      "rollback_owner": "author approves rollback; implementer removes the timeline mutation and keeps source references readable",
+      "production_rollback_descriptor_needed": "rollback-production-adoption-moth-key-label-timeline-to-held",
+      "approval_requirement": "explicit user approval for Timeline mutation plus ordering/dependency review"
+    },
+    {
+      "target_class": "Story Seed",
+      "target_ids": [],
+      "recommended_first_target": false,
+      "mutation_behavior": "Deferred future-only story-seed mutation; no current story-seed target is selected by the existing readbacks.",
+      "rollback_owner": "author approves rollback; implementer removes the story-seed mutation and leaves Claim Ledger evidence intact",
+      "production_rollback_descriptor_needed": "rollback-production-adoption-moth-key-label-story-seed-to-held",
+      "approval_requirement": "explicit user request naming a Story Seed mutation target"
+    }
+  ],
+  "recommended_first_production_target_class": "Claim Ledger",
+  "recommendation_reason": "Claim Ledger is the narrowest first production target because the source-backed object label is already represented as a held claim; Profile, Timeline, and Story Seed writes can remain downstream of explicit approval.",
+  "evidence_required_before_production_mutation": [
+    "explicit human approval for this candidate",
+    "target class selection among Profile, Claim, Timeline, or a deliberately deferred Story Seed path",
+    "source refs and original source-span readback",
+    "contradiction, malformed-span, downstream-gate, and provider-boundary checks passing",
+    "rollback condition and owner recorded before mutation",
+    "production target class selected by user",
+    "mutation behavior accepted by user",
+    "production rollback owner confirmed by user",
+    "production rollback descriptor accepted before mutation"
+  ],
+  "user_authorization_fields_still_missing": [
+    "production_adoption_approval",
+    "selected_production_target_class",
+    "mutation_behavior_acceptance",
+    "production_rollback_owner",
+    "production_rollback_descriptor",
+    "canon_decision",
+    "unresolved_dependency_review_for_brass_moth_truth_and_toma_fate",
+    "provider_api_credential_publishing_scope_confirmation"
+  ],
+  "explicit_non_approval_fields": {
+    "production_adoption_approved": false,
+    "canon_approved": false,
+    "provider_approved": false,
+    "publishing_approved": false,
+    "external_api_approved": false
+  },
+  "summary": {
+    "candidates_inspected": 1,
+    "rollback_rehearsed_candidates": 1,
+    "production_target_classes_proposed": 4,
+    "recommended_first_target_classes": 1,
+    "production_mutations_performed": 0,
+    "canonized_claims": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "publishing_opened": false,
+    "production_generation_opened": false,
+    "user_authorization_required": true,
+    "user_authorization_fields_missing": 8,
+    "failures": 0
+  },
+  "what_this_packet_proves": [
+    "The rollback-rehearsed sandbox candidate can be presented as a production adoption authorization packet.",
+    "Potential production target classes, mutation behavior, rollback owner, rollback descriptors, and missing approvals are explicit.",
+    "No production mutation, production rollback, canonization, provider, credential, publishing, or production generation route is opened."
+  ],
+  "what_this_packet_does_not_prove": [
+    "It does not approve production adoption.",
+    "It does not canonize the claim or resolve brass moth truth, Toma fate, Council motive, moth-key function, or contradictory claim truth.",
+    "It does not write Profile, Claim Ledger, Timeline, Story Seed, database, provider output, credentials, publishing, or production surfaces."
+  ],
+  "authorization_checks": {
+    "rollback_rehearsal_loaded_and_passed": {
+      "passed": true,
+      "detail": "rollback=fff-sandbox-adoption-rollback-rehearsal-001/true; schema=fff.sandboxAdoptionRollbackRehearsal.v1"
+    },
+    "expected_target_source_and_status_verified": {
+      "passed": true,
+      "detail": "target=multi-claim-moth-key-label; status=adoption_candidate_dry_run; token=rollback-sandbox-adoption-moth-key-label-to-adoption-candidate-dry-run"
+    },
+    "prior_sandbox_and_ledger_evidence_loaded": {
+      "passed": true,
+      "detail": "sandbox=fff-sandbox-adoption-mutation-one-claim-001; ledger=fff-adoption-candidate-ledger-dry-run-001; semantics=fff-downstream-adoption-semantics-design-001; ledgerStatus=adoption_candidate_dry_run"
+    },
+    "proposed_targets_and_recommended_first_class_recorded": {
+      "passed": true,
+      "detail": "targets=Profile, Claim Ledger, Timeline, Story Seed; recommended=Claim Ledger"
+    },
+    "authorization_fields_missing_and_user_required": {
+      "passed": true,
+      "detail": "missing=8; approvals={\"production_adoption_approved\":false,\"canon_approved\":false,\"provider_approved\":false,\"publishing_approved\":false,\"external_api_approved\":false}"
+    },
+    "mutation_canon_provider_boundaries_closed": {
+      "passed": true,
+      "detail": "productionOpen=false; providerOpen=false; productionApproval=false"
+    },
+    "production_rollback_descriptor_required_not_executed": {
+      "passed": true,
+      "detail": "productionRollback=false; descriptors=4"
+    },
+    "manifest_and_review_memory_registered": {
+      "passed": true,
+      "detail": "includesSmoke=true; preserves=true; memory=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

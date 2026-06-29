@@ -1,7 +1,7 @@
 {
   "artifact_id": "fff-extraction-validator-hardening-001",
   "fixtureDirectory": "artifacts/extraction-negative-fixtures",
-  "generatedAt": "2026-06-29T17:18:41.348Z",
+  "generatedAt": "2026-06-29T17:39:14.926Z",
   "passed": true,
   "failures": [],
   "summary": {

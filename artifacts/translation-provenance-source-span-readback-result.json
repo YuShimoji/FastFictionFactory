@@ -2,7 +2,7 @@
   "schemaVersion": "fff.translationProvenanceSourceSpanReadback.v1",
   "artifact_id": "fff-translation-provenance-source-span-readback-001",
   "title": "Fast Fiction Factory Translation Provenance Source-Span Readback",
-  "generatedAt": "2026-06-29T17:18:40.391Z",
+  "generatedAt": "2026-06-29T17:39:13.645Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
@@ -359,7 +359,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=25; reviewInput=freeform"
+      "detail": "reviewMemory=26; reviewInput=freeform"
     }
   },
   "failures": [],
