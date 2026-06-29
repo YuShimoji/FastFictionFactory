@@ -2,7 +2,7 @@
   "schemaVersion": "fff.heldClaimAdoptionPreflight.v1",
   "artifact_id": "fff-held-claim-adoption-preflight-001",
   "title": "Fast Fiction Factory Held Claim Adoption Preflight",
-  "generatedAt": "2026-06-29T09:45:38.339Z",
+  "generatedAt": "2026-06-29T09:56:53.825Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",

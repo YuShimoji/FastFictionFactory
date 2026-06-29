@@ -2,7 +2,7 @@
   "schemaVersion": "fff.missingFixtureClassProbe.v1",
   "artifact_id": "fff-missing-fixture-class-probe-001",
   "title": "Fast Fiction Factory Missing Fixture Class Probe",
-  "generatedAt": "2026-06-29T09:45:37.979Z",
+  "generatedAt": "2026-06-29T09:56:53.465Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "selected_fixture_class": "sparse_bullet_only_notes",
