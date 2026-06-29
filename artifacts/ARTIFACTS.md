@@ -73,6 +73,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary design under `fff-contradictory-claim-guard-001`; 1 preflight candidate has design-only semantics, accepted status is defined but unreachable now, 10 rollback conditions are documented, 4 mutation targets are blocked, and no Profile / Claim / Timeline / Story Seed mutation, provider/API call, credential, adoption, or canon promotion is added.
 
+## fff-adoption-candidate-ledger-dry-run-001
+
+- Title: Fast Fiction Factory Adoption Candidate Ledger Dry-Run
+- Purpose: Record the held preflight claim as a non-mutating adoption-candidate ledger dry-run row before any real downstream adoption, canonization, or Profile / Claim / Timeline / Story Seed mutation exists.
+- Repo relative path: `docs/review/adoption-candidate-ledger-dry-run.md`
+- Readback result: `artifacts/adoption-candidate-ledger-dry-run-result.json`
+- Input readback: `artifacts/downstream-adoption-semantics-design-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-adoption-candidate-ledger-dry-run artifacts/downstream-adoption-semantics-design-result.json artifacts/adoption-candidate-ledger-dry-run-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary dry-run under `fff-contradictory-claim-guard-001`; 1 source-backed held candidate is recorded as `adoption_candidate_dry_run`, with 0 adopted claims, 0 canonized claims, 0 Profile / Claim / Timeline / Story Seed mutations, and no provider/API call, credential, publishing, or production generation.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

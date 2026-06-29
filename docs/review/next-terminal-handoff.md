@@ -2,7 +2,7 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-06-29 JST. At refresh time, the active artifact is
+Latest handoff refresh: 2026-06-30 JST. At refresh time, the active artifact is
 still `fff-contradictory-claim-guard-001`; `fff-route-lock-clean-state-readback-001`
 records that ClipPipeGen prompt residue was removed from this repo, and
 `fff-provider-envelope-readiness-no-call-001`,
@@ -14,7 +14,8 @@ records that ClipPipeGen prompt residue was removed from this repo, and
 `fff-translation-policy-source-of-truth-boundary-001`,
 `fff-translated-memo-fixture-minimum-001`,
 `fff-held-claim-adoption-preflight-001`,
-`fff-downstream-adoption-semantics-design-001`, and
+`fff-downstream-adoption-semantics-design-001`,
+`fff-adoption-candidate-ledger-dry-run-001`, and
 `fff-very-broad-source-span-shape-audit-001` are preserved auxiliary readbacks.
 Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
 
@@ -72,6 +73,8 @@ docs/review/held-claim-adoption-preflight.md
 artifacts/held-claim-adoption-preflight-result.json
 docs/review/downstream-adoption-semantics-design.md
 artifacts/downstream-adoption-semantics-design-result.json
+docs/review/adoption-candidate-ledger-dry-run.md
+artifacts/adoption-candidate-ledger-dry-run-result.json
 docs/review/very-broad-source-span-shape-audit.md
 artifacts/very-broad-source-span-shape-audit-result.json
 docs/review/malformed-missing-span-guard.md
@@ -131,6 +134,7 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - Minimal translated memo fixture doc/fixture/result: `docs/review/translated-memo-fixture-minimum.md`, `artifacts/translated-memo-fixture-minimum.json`, `artifacts/translated-memo-fixture-minimum-result.json`
 - Held claim adoption preflight doc/result: `docs/review/held-claim-adoption-preflight.md`, `artifacts/held-claim-adoption-preflight-result.json`
 - Downstream adoption semantics design doc/result: `docs/review/downstream-adoption-semantics-design.md`, `artifacts/downstream-adoption-semantics-design-result.json`
+- Adoption candidate ledger dry-run doc/result: `docs/review/adoption-candidate-ledger-dry-run.md`, `artifacts/adoption-candidate-ledger-dry-run-result.json`
 - Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
 - Malformed/missing source-span guard doc/result/fixture: `docs/review/malformed-missing-span-guard.md`, `artifacts/malformed-missing-span-guard-result.json`, `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
 - Validator fixtures and smoke: `artifacts/extraction-negative-fixtures/`, `artifacts/extraction-validator-smoke-result.json`
@@ -164,12 +168,13 @@ The current artifact adds a deterministic guard for contradictory claim candidat
 - `fff-translated-memo-fixture-minimum-001` records the first translated memo fixture after that policy boundary. It checks 2 translated rows, 2 original span matches, 0 original span mismatches, 0 translation-to-claim leaks, 1 held linked claim, 0 auto-promotions, 0 inline gloss claim leaks, provider configured=false, external call=false, credentials=false, and downstream adopted candidates=0.
 - `fff-held-claim-adoption-preflight-001` inspects `multi-claim-moth-key-label` from the translated fixture as a preflight-only downstream candidate. It records 1 held claim inspected, 1 source-backed claim, 1 eligible preflight candidate, 0 adopted claims, 0 canonized claims, 0 translation/gloss leaks, provider configured=false, external call=false, credentials=false, and downstream adopted candidates=0.
 - `fff-downstream-adoption-semantics-design-001` defines the design-only adoption contract for `multi-claim-moth-key-label`. It records 1 preflight candidate, `hold -> adoption_candidate` as the only current readback-only transition, future `human_accepted_downstream_adoption` as unreachable now, 10 rollback conditions, 4 blocked mutation targets, 0 adopted claims, 0 canonized claims, provider configured=false, external call=false, credentials=false, and downstream adopted candidates=0.
+- `fff-adoption-candidate-ledger-dry-run-001` records `multi-claim-moth-key-label` as a non-mutating `adoption_candidate_dry_run` row. It carries source span `multi-x-object-brass-moth-key`, prior claim status `hold`, rollback/rejection vocabulary, future-only Profile / Claim / Timeline targets, 0 adopted claims, 0 canonized claims, 0 Profile / Claim / Timeline / Story Seed mutations, provider configured=false, external call=false, credentials=false, publishing=false, and production generation=false.
 - `fff-very-broad-source-span-shape-audit-001` audits the broad fixture candidate without adding another fixture. It confirms the current 2 broad rows are already resolved by the broad-span split/keep readback, leaves broad fixture work deferred until source output changes or coverage is the bottleneck, and preserves 0 source-span mismatches, 0 missing refs, 0 unsafe routes, 0 non-held defaults, 0 downstream adopted candidates, no provider configured, no external call, and no credentials touched.
-- No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, actual downstream adoption behavior, or final canon decision was added.
+- No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, actual downstream adoption behavior, adoption ledger mutation source, or final canon decision was added.
 
 ## Validation Readback
 
-The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`, `fff-provider-adapter-authorization-readiness-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-translated-memo-fixture-audit-001`, `fff-translation-provenance-source-span-readback-001`, `fff-translation-policy-source-of-truth-boundary-001`, `fff-translated-memo-fixture-minimum-001`, `fff-held-claim-adoption-preflight-001`, `fff-downstream-adoption-semantics-design-001`, and `fff-very-broad-source-span-shape-audit-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, multilingual-fixture, translated/multilingual audit, translation provenance/source-span readback, translation policy boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, very-broad-shape audit, malformed/missing-span, contradictory-claim, downstream gate, provider-envelope, and provider-authorization smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
+The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`, `fff-provider-adapter-authorization-readiness-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-translated-memo-fixture-audit-001`, `fff-translation-provenance-source-span-readback-001`, `fff-translation-policy-source-of-truth-boundary-001`, `fff-translated-memo-fixture-minimum-001`, `fff-held-claim-adoption-preflight-001`, `fff-downstream-adoption-semantics-design-001`, `fff-adoption-candidate-ledger-dry-run-001`, and `fff-very-broad-source-span-shape-audit-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, multilingual-fixture, translated/multilingual audit, translation provenance/source-span readback, translation policy boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, very-broad-shape audit, malformed/missing-span, contradictory-claim, downstream gate, provider-envelope, and provider-authorization smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
 
 Additional checks passed during this handoff refresh:
 
@@ -182,6 +187,7 @@ Additional checks passed during this handoff refresh:
 - `node tools/fff-state.mjs smoke-translated-memo-fixture-minimum artifacts/translated-memo-fixture-minimum.json artifacts/translated-memo-fixture-minimum-result.json`
 - `node tools/fff-state.mjs smoke-held-claim-adoption-preflight artifacts/translated-memo-fixture-minimum-result.json artifacts/held-claim-adoption-preflight-result.json`
 - `node tools/fff-state.mjs smoke-downstream-adoption-semantics-design artifacts/held-claim-adoption-preflight-result.json artifacts/downstream-adoption-semantics-design-result.json`
+- `node tools/fff-state.mjs smoke-adoption-candidate-ledger-dry-run artifacts/downstream-adoption-semantics-design-result.json artifacts/adoption-candidate-ledger-dry-run-result.json`
 - HTML inline script syntax check for `public/review/index.html`
 - `uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"`
 - `git diff --check`

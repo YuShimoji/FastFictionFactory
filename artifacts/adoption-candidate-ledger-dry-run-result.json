@@ -1,0 +1,149 @@
+{
+  "schemaVersion": "fff.adoptionCandidateLedgerDryRun.v1",
+  "artifact_id": "fff-adoption-candidate-ledger-dry-run-001",
+  "title": "Fast Fiction Factory Adoption Candidate Ledger Dry-Run",
+  "generatedAt": "2026-06-29T15:39:04.399Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_readbacks": {
+    "downstream_adoption_semantics_design_result_path": "artifacts/downstream-adoption-semantics-design-result.json",
+    "held_claim_adoption_preflight_result_path": "artifacts/held-claim-adoption-preflight-result.json",
+    "translated_memo_fixture_minimum_result_path": "artifacts/translated-memo-fixture-minimum-result.json"
+  },
+  "dry_run_scope": {
+    "actual_downstream_adoption_implemented": false,
+    "ledger_is_mutation_source": false,
+    "profile_claim_timeline_story_seed_mutation_allowed": false,
+    "provider_or_external_call_allowed": false,
+    "canon_promotion_allowed": false,
+    "publishing_or_production_generation_allowed": false
+  },
+  "ledger_policy": {
+    "ledger_status": "adoption_candidate_dry_run",
+    "semantic_transition_source": "fff-downstream-adoption-semantics-design-001",
+    "accepted_status_remains_unreachable_now": true,
+    "current_slice_transition_effect": "none",
+    "rejection_and_rollback_vocabularies": [
+      "rejected_for_adoption",
+      "rolled_back_to_hold"
+    ]
+  },
+  "adoption_candidate_ledger_rows": [
+    {
+      "ledger_row_id": "adoption-candidate-ledger-dry-run-row-moth-key-label",
+      "source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "held_claim_id": "multi-claim-moth-key-label",
+      "translated_fixture_row_id": "translated-min-row-moth-key-label",
+      "prior_claim_status": "hold",
+      "semantic_transition_attempted": "hold -> adoption_candidate",
+      "semantic_transition_allowed_as_readback_only": true,
+      "ledger_status": "adoption_candidate_dry_run",
+      "actual_adoption_status": false,
+      "canon_status": false,
+      "profile_mutation_count": 0,
+      "claim_mutation_count": 0,
+      "timeline_mutation_count": 0,
+      "story_seed_mutation_count": 0,
+      "rollback_vocabulary_available": true,
+      "rejection_vocabulary_available": true,
+      "rollback_status_available": true,
+      "evidence_requirements_before_real_adoption": [
+        "explicit human approval for this candidate",
+        "target class selection among Profile, Claim, Timeline, or a deliberately deferred Story Seed path",
+        "source refs and original source-span readback",
+        "contradiction, malformed-span, downstream-gate, and provider-boundary checks passing",
+        "rollback condition and owner recorded before mutation"
+      ],
+      "downstream_target_classes_future_only": [
+        "profile",
+        "claim",
+        "timeline"
+      ],
+      "downstream_target_ids_future_only": {
+        "profile": [
+          "multi-profile-brass-moth-key"
+        ],
+        "claim": [
+          "multi-claim-moth-key-label"
+        ],
+        "timeline": [
+          "multi-timeline-moth-key-label"
+        ]
+      },
+      "unresolved_dependencies": [
+        "brass moth truth",
+        "Toma fate"
+      ],
+      "human_owner": "author"
+    }
+  ],
+  "summary": {
+    "candidates_inspected": 1,
+    "ledger_dry_run_rows": 1,
+    "eligible_semantic_candidates": 1,
+    "actually_adopted_claims": 0,
+    "canonized_claims": 0,
+    "profile_mutation_count": 0,
+    "claim_mutation_count": 0,
+    "timeline_mutation_count": 0,
+    "story_seed_mutation_count": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "publishing_opened": false,
+    "production_generation_opened": false,
+    "failures": 0
+  },
+  "what_this_dry_run_proves": [
+    "The source-backed held claim can be recorded as an adoption-candidate ledger dry-run row.",
+    "The row carries source span, held claim, prior status, attempted semantic transition, rollback vocabulary, and future-only downstream targets.",
+    "Profile, Claim, Timeline, Story Seed, provider, credential, canon, publishing, and production mutation counts remain zero."
+  ],
+  "what_this_dry_run_does_not_prove": [
+    "It does not adopt, accept, canonize, or publish the held claim.",
+    "It does not write Profile, Claim, Timeline, Story Seed, project state, provider output, credentials, or production surfaces.",
+    "It does not resolve unresolved author-owned truth such as brass moth truth or Toma fate."
+  ],
+  "ledger_checks": {
+    "semantics_loaded_and_passed": {
+      "passed": true,
+      "detail": "semantics=fff-downstream-adoption-semantics-design-001/true; schema=fff.downstreamAdoptionSemanticsDesign.v1"
+    },
+    "preflight_candidate_matched": {
+      "passed": true,
+      "detail": "preflight=fff-held-claim-adoption-preflight-001; candidate=multi-claim-moth-key-label; source=multi-x-object-brass-moth-key"
+    },
+    "ledger_row_created_as_dry_run": {
+      "passed": true,
+      "detail": "rows=1; status=adoption_candidate_dry_run; transition=hold -> adoption_candidate"
+    },
+    "mutation_boundaries_zero": {
+      "passed": true,
+      "detail": "ledgerRows=1; profile=0; claim=0; timeline=0; storySeed=0"
+    },
+    "claim_promotion_and_canon_boundary_closed": {
+      "passed": true,
+      "detail": "semanticsAdopted=0; semanticsCanon=0; preflightAdopted=0; preflightCanon=0"
+    },
+    "rollback_rejection_and_evidence_vocabulary_available": {
+      "passed": true,
+      "detail": "rollback=10; evidence=5; statuses=hold, adoption_candidate, ready_for_human_adoption_review, human_accepted_downstream_adoption, rejected_for_adoption, rolled_back_to_hold"
+    },
+    "downstream_targets_future_only": {
+      "passed": true,
+      "detail": "classes=profile, claim, timeline; claimTargets=multi-claim-moth-key-label"
+    },
+    "provider_boundary_closed": {
+      "passed": true,
+      "detail": "providerOpen=false; provider=false; external=false; credentials=false"
+    },
+    "manifest_and_review_memory_registered": {
+      "passed": true,
+      "detail": "includesSmoke=true; preserves=true; memory=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

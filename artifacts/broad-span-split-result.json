@@ -2,7 +2,7 @@
   "schemaVersion": "fff.broadSpanSplit.v1",
   "artifact_id": "fff-broad-span-split-001",
   "title": "Fast Fiction Factory Broad Source-Span Split",
-  "generatedAt": "2026-06-29T13:53:11.344Z",
+  "generatedAt": "2026-06-29T15:39:02.917Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "source_audit_artifact_id": "fff-source-span-quality-audit-001",

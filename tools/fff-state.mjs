@@ -21,6 +21,7 @@ const TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_SCHEMA_VERSION = "fff.translat
 const TRANSLATED_MEMO_FIXTURE_MINIMUM_SCHEMA_VERSION = "fff.translatedMemoFixtureMinimum.v1";
 const HELD_CLAIM_ADOPTION_PREFLIGHT_SCHEMA_VERSION = "fff.heldClaimAdoptionPreflight.v1";
 const DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_SCHEMA_VERSION = "fff.downstreamAdoptionSemanticsDesign.v1";
+const ADOPTION_CANDIDATE_LEDGER_DRY_RUN_SCHEMA_VERSION = "fff.adoptionCandidateLedgerDryRun.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -40,6 +41,7 @@ const DEFAULT_TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_OUTPUT = "artifacts/tr
 const DEFAULT_TRANSLATED_MEMO_FIXTURE_MINIMUM_OUTPUT = "artifacts/translated-memo-fixture-minimum-result.json";
 const DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT = "artifacts/held-claim-adoption-preflight-result.json";
 const DEFAULT_DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_OUTPUT = "artifacts/downstream-adoption-semantics-design-result.json";
+const DEFAULT_ADOPTION_CANDIDATE_LEDGER_DRY_RUN_OUTPUT = "artifacts/adoption-candidate-ledger-dry-run-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -520,6 +522,25 @@ async function main() {
     }
     if (command === "smoke-downstream-adoption-semantics-design" || outputPath) {
       console.log(`downstream adoption semantics design passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-adoption-candidate-ledger-dry-run" || command === "smoke-adoption-candidate-ledger-dry-run") {
+    const semantics = await readJson(inputPath);
+    const result = await validateAdoptionCandidateLedgerDryRun(semantics, inputPath);
+    const target = outputPath || DEFAULT_ADOPTION_CANDIDATE_LEDGER_DRY_RUN_OUTPUT;
+    if (command === "smoke-adoption-candidate-ledger-dry-run" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Adoption candidate ledger dry-run failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-adoption-candidate-ledger-dry-run" || outputPath) {
+      console.log(`adoption candidate ledger dry-run passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -4002,6 +4023,214 @@ async function validateDownstreamAdoptionSemanticsDesign(preflight, preflightPat
   };
 }
 
+async function validateAdoptionCandidateLedgerDryRun(semantics, semanticsPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const manifestValidationCommand = String(manifest.validation_command || "");
+  const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
+  const preflightPath = semantics.input_readbacks?.held_claim_adoption_preflight_result_path || DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT;
+  const preflight = await readJson(preflightPath);
+  const preflightRows = Array.isArray(preflight.adoption_preflight_rows) ? preflight.adoption_preflight_rows : [];
+  const candidate = semantics.candidate_holding || {};
+  const preflightRow = preflightRows.find((row) => row.held_claim_id === candidate.held_claim_id);
+  const targetClasses = Array.isArray(candidate.target_classes_read_only) ? candidate.target_classes_read_only : [];
+  const targetIds = candidate.target_ids_read_only || {};
+  const allowedTransition = Array.isArray(semantics.status_transitions)
+    ? semantics.status_transitions.find((entry) => entry.from === "hold" && entry.to === "adoption_candidate")
+    : null;
+  const rollbackConditions = Array.isArray(semantics.rollback_conditions) ? semantics.rollback_conditions : [];
+  const statusModel = Array.isArray(semantics.status_model) ? semantics.status_model : [];
+  const evidenceRequirements = Array.isArray(semantics.accepted_status?.future_required_inputs)
+    ? semantics.accepted_status.future_required_inputs
+    : [];
+  const providerBoundaryOpen =
+    semantics.summary?.provider_configured === true ||
+    semantics.summary?.external_call_attempted === true ||
+    semantics.summary?.credentials_touched === true ||
+    preflight.summary?.provider_configured === true ||
+    preflight.summary?.external_call_attempted === true ||
+    preflight.summary?.credentials_touched === true;
+
+  const ledgerRows = preflightRow
+    ? [
+        {
+          ledger_row_id: "adoption-candidate-ledger-dry-run-row-moth-key-label",
+          source_span_id: candidate.source_span_id,
+          source_span_locator: preflightRow.source_span_locator,
+          held_claim_id: candidate.held_claim_id,
+          translated_fixture_row_id: candidate.translated_fixture_row_id,
+          prior_claim_status: preflightRow.claim_status_before_preflight,
+          semantic_transition_attempted: "hold -> adoption_candidate",
+          semantic_transition_allowed_as_readback_only: allowedTransition?.current_slice_allowed === true,
+          ledger_status: "adoption_candidate_dry_run",
+          actual_adoption_status: false,
+          canon_status: false,
+          profile_mutation_count: 0,
+          claim_mutation_count: 0,
+          timeline_mutation_count: 0,
+          story_seed_mutation_count: 0,
+          rollback_vocabulary_available: rollbackConditions.length > 0,
+          rejection_vocabulary_available: statusModel.some((entry) => entry.status === "rejected_for_adoption"),
+          rollback_status_available: statusModel.some((entry) => entry.status === "rolled_back_to_hold"),
+          evidence_requirements_before_real_adoption: evidenceRequirements,
+          downstream_target_classes_future_only: targetClasses,
+          downstream_target_ids_future_only: targetIds,
+          unresolved_dependencies: candidate.unresolved_dependencies || [],
+          human_owner: candidate.human_owner || "author"
+        }
+      ]
+    : [];
+
+  check(
+    "semantics_loaded_and_passed",
+    semantics.artifact_id === "fff-downstream-adoption-semantics-design-001" &&
+      semantics.schemaVersion === DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_SCHEMA_VERSION &&
+      semantics.passed === true,
+    `semantics=${semantics.artifact_id}/${semantics.passed}; schema=${semantics.schemaVersion}`
+  );
+  check(
+    "preflight_candidate_matched",
+    Boolean(preflightRow) &&
+      preflight.artifact_id === "fff-held-claim-adoption-preflight-001" &&
+      preflightRow.held_claim_id === "multi-claim-moth-key-label" &&
+      preflightRow.source_span_id === candidate.source_span_id &&
+      preflightRow.claim_status_before_preflight === "hold" &&
+      preflightRow.source_backed_status === true &&
+      preflightRow.adoption_eligibility === "eligible_for_preflight_only",
+    `preflight=${preflight.artifact_id}; candidate=${preflightRow?.held_claim_id || "missing"}; source=${preflightRow?.source_span_id || "missing"}`
+  );
+  check(
+    "ledger_row_created_as_dry_run",
+    ledgerRows.length === 1 &&
+      ledgerRows[0].ledger_status === "adoption_candidate_dry_run" &&
+      ledgerRows[0].semantic_transition_attempted === "hold -> adoption_candidate" &&
+      ledgerRows[0].semantic_transition_allowed_as_readback_only === true,
+    `rows=${ledgerRows.length}; status=${ledgerRows[0]?.ledger_status || "none"}; transition=${ledgerRows[0]?.semantic_transition_attempted || "none"}`
+  );
+  check(
+    "mutation_boundaries_zero",
+    ledgerRows.every((row) =>
+      row.profile_mutation_count === 0 &&
+      row.claim_mutation_count === 0 &&
+      row.timeline_mutation_count === 0 &&
+      row.story_seed_mutation_count === 0
+    ) &&
+      semantics.summary?.actual_profile_mutations === 0 &&
+      semantics.summary?.actual_claim_mutations === 0 &&
+      semantics.summary?.actual_timeline_mutations === 0 &&
+      semantics.summary?.story_seed_mutations === 0,
+    `ledgerRows=${ledgerRows.length}; profile=${semantics.summary?.actual_profile_mutations}; claim=${semantics.summary?.actual_claim_mutations}; timeline=${semantics.summary?.actual_timeline_mutations}; storySeed=${semantics.summary?.story_seed_mutations}`
+  );
+  check(
+    "claim_promotion_and_canon_boundary_closed",
+    ledgerRows.every((row) => row.actual_adoption_status === false && row.canon_status === false) &&
+      semantics.summary?.actually_adopted_claims === 0 &&
+      semantics.summary?.canonized_claims === 0 &&
+      preflight.summary?.actually_adopted_claims === 0 &&
+      preflight.summary?.canonized_claims === 0,
+    `semanticsAdopted=${semantics.summary?.actually_adopted_claims}; semanticsCanon=${semantics.summary?.canonized_claims}; preflightAdopted=${preflight.summary?.actually_adopted_claims}; preflightCanon=${preflight.summary?.canonized_claims}`
+  );
+  check(
+    "rollback_rejection_and_evidence_vocabulary_available",
+    rollbackConditions.length >= 8 &&
+      evidenceRequirements.length >= 4 &&
+      ledgerRows.every((row) => row.rollback_vocabulary_available && row.rejection_vocabulary_available && row.rollback_status_available),
+    `rollback=${rollbackConditions.length}; evidence=${evidenceRequirements.length}; statuses=${statusModel.map((entry) => entry.status).join(", ") || "none"}`
+  );
+  check(
+    "downstream_targets_future_only",
+    ["profile", "claim", "timeline"].every((targetClass) => targetClasses.includes(targetClass)) &&
+      ledgerRows.every((row) => Array.isArray(row.downstream_target_ids_future_only.claim) && row.downstream_target_ids_future_only.claim.includes("multi-claim-moth-key-label")),
+    `classes=${targetClasses.join(", ") || "none"}; claimTargets=${Array.isArray(targetIds.claim) ? targetIds.claim.join(", ") : "none"}`
+  );
+  check(
+    "provider_boundary_closed",
+    providerBoundaryOpen === false &&
+      semantics.summary?.provider_configured === false &&
+      semantics.summary?.external_call_attempted === false &&
+      semantics.summary?.credentials_touched === false,
+    `providerOpen=${providerBoundaryOpen}; provider=${semantics.summary?.provider_configured}; external=${semantics.summary?.external_call_attempted}; credentials=${semantics.summary?.credentials_touched}`
+  );
+  check(
+    "manifest_and_review_memory_registered",
+    manifestValidationCommand.includes("smoke-adoption-candidate-ledger-dry-run") &&
+      manifest.preserves?.includes("fff-adoption-candidate-ledger-dry-run-001") &&
+      reviewMemory.some((entry) => entry.artifact_id === "fff-adoption-candidate-ledger-dry-run-001"),
+    `includesSmoke=${manifestValidationCommand.includes("smoke-adoption-candidate-ledger-dry-run")}; preserves=${manifest.preserves?.includes("fff-adoption-candidate-ledger-dry-run-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-adoption-candidate-ledger-dry-run-001")}`
+  );
+
+  return {
+    schemaVersion: ADOPTION_CANDIDATE_LEDGER_DRY_RUN_SCHEMA_VERSION,
+    artifact_id: "fff-adoption-candidate-ledger-dry-run-001",
+    title: "Fast Fiction Factory Adoption Candidate Ledger Dry-Run",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    input_readbacks: {
+      downstream_adoption_semantics_design_result_path: toRepoPath(semanticsPath),
+      held_claim_adoption_preflight_result_path: toRepoPath(preflightPath),
+      translated_memo_fixture_minimum_result_path: semantics.input_readbacks?.translated_memo_fixture_minimum_result_path || DEFAULT_TRANSLATED_MEMO_FIXTURE_MINIMUM_OUTPUT
+    },
+    dry_run_scope: {
+      actual_downstream_adoption_implemented: false,
+      ledger_is_mutation_source: false,
+      profile_claim_timeline_story_seed_mutation_allowed: false,
+      provider_or_external_call_allowed: false,
+      canon_promotion_allowed: false,
+      publishing_or_production_generation_allowed: false
+    },
+    ledger_policy: {
+      ledger_status: "adoption_candidate_dry_run",
+      semantic_transition_source: "fff-downstream-adoption-semantics-design-001",
+      accepted_status_remains_unreachable_now: semantics.accepted_status?.current_slice_reachable === false,
+      current_slice_transition_effect: allowedTransition?.mutation_effect || "none",
+      rejection_and_rollback_vocabularies: statusModel
+        .filter((entry) => ["rejected_for_adoption", "rolled_back_to_hold"].includes(entry.status))
+        .map((entry) => entry.status)
+    },
+    adoption_candidate_ledger_rows: ledgerRows,
+    summary: {
+      candidates_inspected: preflightRows.length,
+      ledger_dry_run_rows: ledgerRows.length,
+      eligible_semantic_candidates: ledgerRows.length,
+      actually_adopted_claims: 0,
+      canonized_claims: 0,
+      profile_mutation_count: 0,
+      claim_mutation_count: 0,
+      timeline_mutation_count: 0,
+      story_seed_mutation_count: 0,
+      provider_configured: false,
+      external_call_attempted: false,
+      credentials_touched: false,
+      publishing_opened: false,
+      production_generation_opened: false,
+      failures: failures.length
+    },
+    what_this_dry_run_proves: [
+      "The source-backed held claim can be recorded as an adoption-candidate ledger dry-run row.",
+      "The row carries source span, held claim, prior status, attempted semantic transition, rollback vocabulary, and future-only downstream targets.",
+      "Profile, Claim, Timeline, Story Seed, provider, credential, canon, publishing, and production mutation counts remain zero."
+    ],
+    what_this_dry_run_does_not_prove: [
+      "It does not adopt, accept, canonize, or publish the held claim.",
+      "It does not write Profile, Claim, Timeline, Story Seed, project state, provider output, credentials, or production surfaces.",
+      "It does not resolve unresolved author-owned truth such as brass moth truth or Toma fate."
+    ],
+    ledger_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -6232,6 +6461,8 @@ Usage:
   node tools/fff-state.mjs smoke-held-claim-adoption-preflight <translated-memo-fixture-minimum-result.json> [output.json]
   node tools/fff-state.mjs validate-downstream-adoption-semantics-design <held-claim-adoption-preflight-result.json>
   node tools/fff-state.mjs smoke-downstream-adoption-semantics-design <held-claim-adoption-preflight-result.json> [output.json]
+  node tools/fff-state.mjs validate-adoption-candidate-ledger-dry-run <downstream-adoption-semantics-design-result.json>
+  node tools/fff-state.mjs smoke-adoption-candidate-ledger-dry-run <downstream-adoption-semantics-design-result.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
@@ -6283,6 +6514,9 @@ Default held claim adoption preflight output:
 
 Default downstream adoption semantics design output:
   ${DEFAULT_DOWNSTREAM_ADOPTION_SEMANTICS_DESIGN_OUTPUT}
+
+Default adoption candidate ledger dry-run output:
+  ${DEFAULT_ADOPTION_CANDIDATE_LEDGER_DRY_RUN_OUTPUT}
 
 Default very broad source-span shape audit output:
   ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}

@@ -2,7 +2,7 @@
   "schemaVersion": "fff.routingPolicyRegression.v1",
   "artifact_id": "fff-routing-policy-regression-hardening-001",
   "title": "Fast Fiction Factory Routing Policy Regression Hardening",
-  "generatedAt": "2026-06-29T13:53:10.969Z",
+  "generatedAt": "2026-06-29T15:39:02.811Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "source_resolution_artifact_id": "fff-ambiguous-routing-resolution-001",
