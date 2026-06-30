@@ -86,6 +86,7 @@ Preserved platform boundary:
 ## What Was Verified
 
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
+- Remote-sync handoff refresh on 2026-06-30 JST started from `ea08c669745a9516685841d36c05c0fd5de1e939` (`ea08c66 Add production adoption authorization packet`) after `git fetch --prune origin`, `git pull --ff-only origin master`, and `git rev-list --left-right --count "HEAD...origin/master"` reported already up to date and `0 0`; the pushed docs-only handoff commit is the next `git log -1 --oneline --decorate` value after pulling.
 - Route hygiene before this handoff: `git rev-list --left-right --count
   "HEAD...origin/master"` reported `0 0`; the workspace was clean after the
   four untracked ClipPipeGen residue files were deleted; tracked contamination
