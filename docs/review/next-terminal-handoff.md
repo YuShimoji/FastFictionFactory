@@ -3,11 +3,11 @@
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
 Latest handoff refresh: 2026-06-30 JST. This refresh started from synced head
-`ea08c669745a9516685841d36c05c0fd5de1e939` (`ea08c66 Add production adoption
-authorization packet`): `git fetch --prune origin`, `git pull --ff-only origin
-master`, and `git rev-list --left-right --count "HEAD...origin/master"` reported
-already up to date and `0 0` before this docs-only handoff refresh. At refresh
-time, the active artifact is still `fff-contradictory-claim-guard-001`;
+`149ba56` (`149ba56 Add production Claim Ledger rollback rehearsal`):
+`git fetch origin`, `git status --short --branch --untracked-files=all`, and
+`git rev-list --left-right --count HEAD...origin/master` reported a clean
+`master` with `0 0` before this docs-only handoff refresh. At refresh time, the
+active artifact is still `fff-contradictory-claim-guard-001`;
 `fff-route-lock-clean-state-readback-001` records that ClipPipeGen prompt residue
 was removed from this repo, and
 `fff-provider-envelope-readiness-no-call-001`,
@@ -45,7 +45,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected after this handoff is published: `master` is clean and synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this docs-only refresh was `ea08c66`.
+Expected after this handoff is published: `master` is clean and synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this docs-only refresh was `149ba56`.
 
 3. Read these files in this order:
 
@@ -208,9 +208,9 @@ The active manifest validation command passed for `fff-contradictory-claim-guard
 
 Additional checks passed during this handoff refresh:
 
-- `git fetch --prune origin`
-- `git pull --ff-only origin master`
-- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on synced baseline `ea08c66`.
+- `git fetch origin`
+- `git status --short --branch --untracked-files=all`
+- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on synced baseline `149ba56`.
 - `node --check tools/fff-state.mjs`
 - `node --check tools/fff-extract-local.mjs`
 - `node --check tools/fff-source-span-review-pack.mjs`

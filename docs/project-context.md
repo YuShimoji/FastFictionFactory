@@ -171,4 +171,4 @@ First next move: keep the contradictory claim guard as the active Review Hub ide
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-Latest remote-sync handoff refresh started from synced head `ea08c669745a9516685841d36c05c0fd5de1e939` (`ea08c66 Add production adoption authorization packet`) on 2026-06-30 JST with `HEAD...origin/master` reporting `0 0`; the docs-only handoff commit published after this line is discoverable with `git log -1 --oneline --decorate`.
+Latest remote-sync handoff refresh started from synced head `149ba56` (`149ba56 Add production Claim Ledger rollback rehearsal`) on 2026-06-30 JST with `HEAD...origin/master` reporting `0 0`; the docs-only handoff commit published after this line is discoverable with `git log -1 --oneline --decorate`.
