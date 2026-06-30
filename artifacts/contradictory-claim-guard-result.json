@@ -2,7 +2,7 @@
   "schemaVersion": "fff.contradictoryClaimGuard.v1",
   "artifact_id": "fff-contradictory-claim-guard-001",
   "title": "Fast Fiction Factory Contradictory Claim Guard",
-  "generatedAt": "2026-06-30T04:56:56.533Z",
+  "generatedAt": "2026-06-30T07:27:03.245Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "selected_guard_class": "contradictory_claim_hold",

@@ -26,6 +26,7 @@ const SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_SCHEMA_VERSION = "fff.sandboxAdoptionM
 const SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_SCHEMA_VERSION = "fff.sandboxAdoptionRollbackRehearsal.v1";
 const PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_SCHEMA_VERSION = "fff.productionAdoptionAuthorizationPacket.v1";
 const PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_SCHEMA_VERSION = "fff.productionClaimLedgerAdoptionOneClaim.v1";
+const PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_SCHEMA_VERSION = "fff.productionClaimLedgerRollbackRehearsal.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -50,6 +51,7 @@ const DEFAULT_SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT = "artifacts/sandbox-ad
 const DEFAULT_SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_OUTPUT = "artifacts/sandbox-adoption-rollback-rehearsal-result.json";
 const DEFAULT_PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_OUTPUT = "artifacts/production-adoption-authorization-packet-result.json";
 const DEFAULT_PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_OUTPUT = "artifacts/production-claim-ledger-adoption-one-claim-result.json";
+const DEFAULT_PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_OUTPUT = "artifacts/production-claim-ledger-rollback-rehearsal-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -625,6 +627,25 @@ async function main() {
     }
     if (command === "smoke-production-claim-ledger-adoption-one-claim" || outputPath) {
       console.log(`production Claim Ledger adoption one-claim passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-production-claim-ledger-rollback-rehearsal" || command === "smoke-production-claim-ledger-rollback-rehearsal") {
+    const adoptionReadback = await readJson(inputPath);
+    const result = await validateProductionClaimLedgerRollbackRehearsal(adoptionReadback, inputPath);
+    const target = outputPath || DEFAULT_PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_OUTPUT;
+    if (command === "smoke-production-claim-ledger-rollback-rehearsal" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Production Claim Ledger rollback rehearsal failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-production-claim-ledger-rollback-rehearsal" || outputPath) {
+      console.log(`production Claim Ledger rollback rehearsal passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -5399,6 +5420,246 @@ async function validateProductionClaimLedgerAdoptionOneClaim(authorizationPacket
   };
 }
 
+async function validateProductionClaimLedgerRollbackRehearsal(adoptionReadback, adoptionReadbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const manifestValidationCommand = String(manifest.validation_command || "");
+  const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
+  const adoptionRows = Array.isArray(adoptionReadback.production_claim_ledger_adoption_rows)
+    ? adoptionReadback.production_claim_ledger_adoption_rows
+    : [];
+  const targetRows = adoptionRows.filter((row) => row.target_claim_id === "multi-claim-moth-key-label");
+  const targetRow = targetRows[0];
+  const rollbackDescriptor = targetRow?.rollback_descriptor || adoptionReadback.rollback_readback || {};
+  const expectedRollbackToken = "rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run";
+  const evidenceRequiredBeforeRealRollback = [
+    "explicit user authorization naming actual production Claim Ledger rollback",
+    "confirm target claim id multi-claim-moth-key-label and source span id multi-x-object-brass-moth-key",
+    "confirm the production Claim Ledger row is the only rollback target",
+    "record rollback owner, rollback descriptor, and post-rollback readback before mutation",
+    "preserve the production adoption audit trail and source evidence",
+    "keep Profile / Timeline / Story Seed production mutation counts at zero",
+    "keep canon status false unless a separate explicit canon decision exists",
+    "keep provider/API/credential/publishing/production generation routes closed",
+    "rerun manifest validation after any real rollback"
+  ];
+  const rehearsalRows = targetRow
+    ? [
+        {
+          production_claim_ledger_rollback_rehearsal_row_id: "production-claim-ledger-rollback-rehearsal-row-moth-key-label",
+          target_claim_id: targetRow.target_claim_id,
+          source_span_id: targetRow.source_span_id,
+          source_span_locator: targetRow.source_span_locator,
+          production_claim_ledger_adoption_row_id: targetRow.production_claim_ledger_adoption_row_id,
+          current_production_claim_ledger_status: targetRow.after_claim_ledger_status,
+          current_production_claim_ledger_adopted: targetRow.production_claim_ledger_adopted,
+          rollback_token: rollbackDescriptor.rollback_token,
+          rollback_scope: rollbackDescriptor.rollback_scope,
+          rollback_to_status: rollbackDescriptor.rollback_to_status,
+          rehearsal_operation: "readback_only_non_destructive",
+          rehearsal_transition: "production_claim_ledger_adopted -> adoption_candidate_dry_run",
+          production_claim_ledger_row_retained: true,
+          actual_rollback_performed: false,
+          production_claim_ledger_row_removed: false,
+          post_rehearsal_claim_ledger_status: "production_claim_ledger_adopted",
+          post_rehearsal_production_claim_ledger_adopted: true,
+          canon_status: false,
+          profile_mutation_count: 0,
+          timeline_mutation_count: 0,
+          story_seed_mutation_count: 0,
+          provider_configured: false,
+          external_call_attempted: false,
+          credentials_touched: false,
+          publishing_opened: false,
+          production_generation_opened: false,
+          evidence_required_before_real_rollback: evidenceRequiredBeforeRealRollback
+        }
+      ]
+    : [];
+  const rehearsalRow = rehearsalRows[0];
+  const inputBoundaryOpen =
+    adoptionReadback.summary?.profile_mutation_count !== 0 ||
+    adoptionReadback.summary?.timeline_mutation_count !== 0 ||
+    adoptionReadback.summary?.story_seed_mutation_count !== 0 ||
+    adoptionReadback.summary?.canonized_claims !== 0 ||
+    adoptionReadback.summary?.provider_configured !== false ||
+    adoptionReadback.summary?.external_call_attempted !== false ||
+    adoptionReadback.summary?.credentials_touched !== false ||
+    adoptionReadback.summary?.publishing_opened !== false ||
+    adoptionReadback.summary?.production_generation_opened !== false;
+
+  check(
+    "input_adoption_readback_loaded_and_passed",
+    adoptionReadback.artifact_id === "fff-production-claim-ledger-adoption-one-claim-001" &&
+      adoptionReadback.schemaVersion === PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_SCHEMA_VERSION &&
+      adoptionReadback.passed === true,
+    `input=${adoptionReadback.artifact_id}/${adoptionReadback.passed}; schema=${adoptionReadback.schemaVersion}`
+  );
+  check(
+    "expected_claim_ledger_row_present",
+    targetRows.length === 1 &&
+      targetRow?.production_target_class === "Claim Ledger" &&
+      targetRow?.after_claim_ledger_status === "production_claim_ledger_adopted" &&
+      targetRow?.production_claim_ledger_adopted === true,
+    `rows=${targetRows.length}; class=${targetRow?.production_target_class || "missing"}; status=${targetRow?.after_claim_ledger_status || "missing"}; adopted=${targetRow?.production_claim_ledger_adopted ?? "missing"}`
+  );
+  check(
+    "rollback_descriptor_available",
+    rollbackDescriptor.rollback_token === expectedRollbackToken &&
+      rollbackDescriptor.rollback_scope === "Claim Ledger production adoption row only" &&
+      rollbackDescriptor.rollback_to_status === "adoption_candidate_dry_run" &&
+      Array.isArray(rollbackDescriptor.rollback_requires) &&
+      rollbackDescriptor.rollback_requires.length >= 4,
+    `token=${rollbackDescriptor.rollback_token || "missing"}; scope=${rollbackDescriptor.rollback_scope || "missing"}; to=${rollbackDescriptor.rollback_to_status || "missing"}`
+  );
+  check(
+    "rehearsal_is_non_destructive",
+    rehearsalRows.length === 1 &&
+      rehearsalRow?.rehearsal_operation === "readback_only_non_destructive" &&
+      rehearsalRow?.actual_rollback_performed === false &&
+      rehearsalRow?.production_claim_ledger_row_removed === false &&
+      rehearsalRow?.production_claim_ledger_row_retained === true,
+    `rows=${rehearsalRows.length}; actualRollback=${rehearsalRow?.actual_rollback_performed ?? "missing"}; removed=${rehearsalRow?.production_claim_ledger_row_removed ?? "missing"}; retained=${rehearsalRow?.production_claim_ledger_row_retained ?? "missing"}`
+  );
+  check(
+    "claim_ledger_row_retained_after_rehearsal",
+    rehearsalRow?.post_rehearsal_claim_ledger_status === "production_claim_ledger_adopted" &&
+      rehearsalRow?.post_rehearsal_production_claim_ledger_adopted === true,
+    `postStatus=${rehearsalRow?.post_rehearsal_claim_ledger_status || "missing"}; postAdopted=${rehearsalRow?.post_rehearsal_production_claim_ledger_adopted ?? "missing"}`
+  );
+  check(
+    "profile_timeline_story_seed_boundaries_zero",
+    rehearsalRows.every((row) =>
+      row.profile_mutation_count === 0 &&
+      row.timeline_mutation_count === 0 &&
+      row.story_seed_mutation_count === 0
+    ) &&
+      inputBoundaryOpen === false,
+    `profile=${rehearsalRow?.profile_mutation_count ?? "missing"}; timeline=${rehearsalRow?.timeline_mutation_count ?? "missing"}; storySeed=${rehearsalRow?.story_seed_mutation_count ?? "missing"}; inputBoundaryOpen=${inputBoundaryOpen}`
+  );
+  check(
+    "canon_and_provider_boundaries_closed",
+    rehearsalRows.every((row) =>
+      row.canon_status === false &&
+      row.provider_configured === false &&
+      row.external_call_attempted === false &&
+      row.credentials_touched === false &&
+      row.publishing_opened === false &&
+      row.production_generation_opened === false
+    ),
+    `canon=${rehearsalRow?.canon_status ?? "missing"}; provider=${rehearsalRow?.provider_configured ?? "missing"}; external=${rehearsalRow?.external_call_attempted ?? "missing"}; credentials=${rehearsalRow?.credentials_touched ?? "missing"}`
+  );
+  check(
+    "future_real_rollback_evidence_recorded",
+    evidenceRequiredBeforeRealRollback.length >= 8 &&
+      rehearsalRow?.evidence_required_before_real_rollback.length === evidenceRequiredBeforeRealRollback.length,
+    `requirements=${rehearsalRow?.evidence_required_before_real_rollback?.length ?? "missing"}`
+  );
+  check(
+    "manifest_and_review_memory_registered",
+    manifestValidationCommand.includes("smoke-production-claim-ledger-rollback-rehearsal") &&
+      manifest.preserves?.includes("fff-production-claim-ledger-rollback-rehearsal-001") &&
+      reviewMemory.some((entry) => entry.artifact_id === "fff-production-claim-ledger-rollback-rehearsal-001"),
+    `includesSmoke=${manifestValidationCommand.includes("smoke-production-claim-ledger-rollback-rehearsal")}; preserves=${manifest.preserves?.includes("fff-production-claim-ledger-rollback-rehearsal-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-production-claim-ledger-rollback-rehearsal-001")}`
+  );
+
+  return {
+    schemaVersion: PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_SCHEMA_VERSION,
+    artifact_id: "fff-production-claim-ledger-rollback-rehearsal-001",
+    title: "Fast Fiction Factory Production Claim Ledger Rollback Rehearsal",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    input_readbacks: {
+      production_claim_ledger_adoption_one_claim_result_path: toRepoPath(adoptionReadbackPath)
+    },
+    rehearsal_scope: {
+      target_claim_id: "multi-claim-moth-key-label",
+      source_span_id: targetRow?.source_span_id || "missing",
+      production_target_class: "Claim Ledger",
+      operation_class: "non_destructive_rollback_rehearsal_readback",
+      expected_current_status: "production_claim_ledger_adopted",
+      expected_rollback_token: expectedRollbackToken,
+      expected_rollback_target_status: "adoption_candidate_dry_run",
+      actual_rollback_authorized: false,
+      actual_rollback_performed: false,
+      production_claim_ledger_row_removal_authorized: false,
+      additional_claims_allowed: false
+    },
+    before_after_readback: {
+      before_rehearsal: {
+        target_claim_id: "multi-claim-moth-key-label",
+        source_span_id: targetRow?.source_span_id || "missing",
+        source_span_locator: targetRow?.source_span_locator || "missing",
+        claim_ledger_status: targetRow?.after_claim_ledger_status || "missing",
+        production_claim_ledger_adopted: targetRow?.production_claim_ledger_adopted === true,
+        canon_status: false,
+        profile_mutation_count: 0,
+        timeline_mutation_count: 0,
+        story_seed_mutation_count: 0
+      },
+      after_rehearsal: {
+        target_claim_id: "multi-claim-moth-key-label",
+        source_span_id: targetRow?.source_span_id || "missing",
+        source_span_locator: targetRow?.source_span_locator || "missing",
+        claim_ledger_status: "production_claim_ledger_adopted",
+        production_claim_ledger_adopted: true,
+        production_claim_ledger_row_retained: true,
+        actual_rollback_performed: false,
+        canon_status: false,
+        profile_mutation_count: 0,
+        timeline_mutation_count: 0,
+        story_seed_mutation_count: 0
+      }
+    },
+    rollback_descriptor_readback: rollbackDescriptor,
+    production_claim_ledger_rollback_rehearsal_rows: rehearsalRows,
+    evidence_required_before_real_rollback: evidenceRequiredBeforeRealRollback,
+    summary: {
+      claim_ledger_adopted_rows_inspected: targetRows.length,
+      rollback_descriptors_inspected: rollbackDescriptor.rollback_token === expectedRollbackToken ? 1 : 0,
+      rollback_rehearsals_recorded: rehearsalRows.length,
+      actual_rollback_operations: 0,
+      production_claim_ledger_rows_removed: 0,
+      production_claim_ledger_rows_retained: rehearsalRows.filter((row) => row.production_claim_ledger_row_retained === true).length,
+      profile_mutation_count: 0,
+      timeline_mutation_count: 0,
+      story_seed_mutation_count: 0,
+      canonized_claims: 0,
+      provider_configured: false,
+      external_call_attempted: false,
+      credentials_touched: false,
+      publishing_opened: false,
+      production_generation_opened: false,
+      failures: failures.length
+    },
+    what_this_rehearsal_proves: [
+      "The existing production Claim Ledger adoption row can be inspected with its rollback descriptor intact.",
+      "The rehearsal records rollback target status adoption_candidate_dry_run without performing rollback.",
+      "The production Claim Ledger row remains present and adopted after the readback-only rehearsal.",
+      "Profile, Timeline, Story Seed, canon, provider, credential, publishing, and production generation boundaries remain closed."
+    ],
+    what_this_rehearsal_does_not_do: [
+      "It does not remove or mutate the production Claim Ledger adoption row.",
+      "It does not canonize the claim or resolve brass moth truth, Toma fate, Council motive, moth-key function, or contradictory claim truth.",
+      "It does not mutate Profile, Timeline, Story Seed, database, provider output, credentials, publishing, or public production surfaces.",
+      "It does not authorize rollback of any additional claim."
+    ],
+    rollback_rehearsal_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -7639,6 +7900,8 @@ Usage:
   node tools/fff-state.mjs smoke-production-adoption-authorization-packet <sandbox-adoption-rollback-rehearsal-result.json> [output.json]
   node tools/fff-state.mjs validate-production-claim-ledger-adoption-one-claim <production-adoption-authorization-packet-result.json>
   node tools/fff-state.mjs smoke-production-claim-ledger-adoption-one-claim <production-adoption-authorization-packet-result.json> [output.json]
+  node tools/fff-state.mjs validate-production-claim-ledger-rollback-rehearsal <production-claim-ledger-adoption-one-claim-result.json>
+  node tools/fff-state.mjs smoke-production-claim-ledger-rollback-rehearsal <production-claim-ledger-adoption-one-claim-result.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
@@ -7705,6 +7968,9 @@ Default production adoption authorization packet output:
 
 Default production Claim Ledger adoption one-claim output:
   ${DEFAULT_PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_OUTPUT}
+
+Default production Claim Ledger rollback rehearsal output:
+  ${DEFAULT_PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_OUTPUT}
 
 Default very broad source-span shape audit output:
   ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}

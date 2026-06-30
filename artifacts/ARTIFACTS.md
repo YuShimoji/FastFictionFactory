@@ -133,6 +133,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary Claim Ledger adoption readback under `fff-contradictory-claim-guard-001`; 1 Claim Ledger production adoption row is recorded, `multi-claim-moth-key-label` moves from `adoption_candidate_dry_run` to `production_claim_ledger_adopted`, rollback descriptor is recorded, Profile / Timeline / Story Seed mutations remain 0, canonized claims remain 0, and provider/API calls, credentials, publishing, and production generation remain false.
 
+## fff-production-claim-ledger-rollback-rehearsal-001
+
+- Title: Fast Fiction Factory Production Claim Ledger Rollback Rehearsal
+- Purpose: Rehearse the rollback descriptor for the existing production Claim Ledger adoption row for exactly `multi-claim-moth-key-label` without performing rollback or removing the row.
+- Repo relative path: `docs/review/production-claim-ledger-rollback-rehearsal.md`
+- Readback result: `artifacts/production-claim-ledger-rollback-rehearsal-result.json`
+- Input readback: `artifacts/production-claim-ledger-adoption-one-claim-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-production-claim-ledger-rollback-rehearsal artifacts/production-claim-ledger-adoption-one-claim-result.json artifacts/production-claim-ledger-rollback-rehearsal-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary rollback rehearsal under `fff-contradictory-claim-guard-001`; 1 production Claim Ledger adoption row is inspected, the expected rollback descriptor is verified, 1 non-destructive rehearsal row is recorded, actual rollback operations remain 0, the production Claim Ledger row remains retained, Profile / Timeline / Story Seed mutations remain 0, canonized claims remain 0, and provider/API calls, credentials, publishing, and production generation remain false.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

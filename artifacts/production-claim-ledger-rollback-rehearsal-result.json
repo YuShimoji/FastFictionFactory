@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "fff.productionClaimLedgerRollbackRehearsal.v1",
+  "artifact_id": "fff-production-claim-ledger-rollback-rehearsal-001",
+  "title": "Fast Fiction Factory Production Claim Ledger Rollback Rehearsal",
+  "generatedAt": "2026-06-30T07:27:02.982Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_readbacks": {
+    "production_claim_ledger_adoption_one_claim_result_path": "artifacts/production-claim-ledger-adoption-one-claim-result.json"
+  },
+  "rehearsal_scope": {
+    "target_claim_id": "multi-claim-moth-key-label",
+    "source_span_id": "multi-x-object-brass-moth-key",
+    "production_target_class": "Claim Ledger",
+    "operation_class": "non_destructive_rollback_rehearsal_readback",
+    "expected_current_status": "production_claim_ledger_adopted",
+    "expected_rollback_token": "rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run",
+    "expected_rollback_target_status": "adoption_candidate_dry_run",
+    "actual_rollback_authorized": false,
+    "actual_rollback_performed": false,
+    "production_claim_ledger_row_removal_authorized": false,
+    "additional_claims_allowed": false
+  },
+  "before_after_readback": {
+    "before_rehearsal": {
+      "target_claim_id": "multi-claim-moth-key-label",
+      "source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "claim_ledger_status": "production_claim_ledger_adopted",
+      "production_claim_ledger_adopted": true,
+      "canon_status": false,
+      "profile_mutation_count": 0,
+      "timeline_mutation_count": 0,
+      "story_seed_mutation_count": 0
+    },
+    "after_rehearsal": {
+      "target_claim_id": "multi-claim-moth-key-label",
+      "source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "claim_ledger_status": "production_claim_ledger_adopted",
+      "production_claim_ledger_adopted": true,
+      "production_claim_ledger_row_retained": true,
+      "actual_rollback_performed": false,
+      "canon_status": false,
+      "profile_mutation_count": 0,
+      "timeline_mutation_count": 0,
+      "story_seed_mutation_count": 0
+    }
+  },
+  "rollback_descriptor_readback": {
+    "rollback_token": "rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run",
+    "rollback_scope": "Claim Ledger production adoption row only",
+    "rollback_to_status": "adoption_candidate_dry_run",
+    "rollback_owner": "author approves rollback; implementer returns the Claim Ledger adoption row to adoption_candidate_dry_run while preserving source evidence",
+    "rollback_requires": [
+      "remove or mark inactive the production Claim Ledger adoption row",
+      "preserve source span id multi-x-object-brass-moth-key",
+      "preserve held claim id multi-claim-moth-key-label in audit history",
+      "keep Profile / Timeline / Story Seed production mutation counts at zero",
+      "keep canon status false unless a separate explicit canon decision exists"
+    ]
+  },
+  "production_claim_ledger_rollback_rehearsal_rows": [
+    {
+      "production_claim_ledger_rollback_rehearsal_row_id": "production-claim-ledger-rollback-rehearsal-row-moth-key-label",
+      "target_claim_id": "multi-claim-moth-key-label",
+      "source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "production_claim_ledger_adoption_row_id": "production-claim-ledger-adoption-row-moth-key-label",
+      "current_production_claim_ledger_status": "production_claim_ledger_adopted",
+      "current_production_claim_ledger_adopted": true,
+      "rollback_token": "rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run",
+      "rollback_scope": "Claim Ledger production adoption row only",
+      "rollback_to_status": "adoption_candidate_dry_run",
+      "rehearsal_operation": "readback_only_non_destructive",
+      "rehearsal_transition": "production_claim_ledger_adopted -> adoption_candidate_dry_run",
+      "production_claim_ledger_row_retained": true,
+      "actual_rollback_performed": false,
+      "production_claim_ledger_row_removed": false,
+      "post_rehearsal_claim_ledger_status": "production_claim_ledger_adopted",
+      "post_rehearsal_production_claim_ledger_adopted": true,
+      "canon_status": false,
+      "profile_mutation_count": 0,
+      "timeline_mutation_count": 0,
+      "story_seed_mutation_count": 0,
+      "provider_configured": false,
+      "external_call_attempted": false,
+      "credentials_touched": false,
+      "publishing_opened": false,
+      "production_generation_opened": false,
+      "evidence_required_before_real_rollback": [
+        "explicit user authorization naming actual production Claim Ledger rollback",
+        "confirm target claim id multi-claim-moth-key-label and source span id multi-x-object-brass-moth-key",
+        "confirm the production Claim Ledger row is the only rollback target",
+        "record rollback owner, rollback descriptor, and post-rollback readback before mutation",
+        "preserve the production adoption audit trail and source evidence",
+        "keep Profile / Timeline / Story Seed production mutation counts at zero",
+        "keep canon status false unless a separate explicit canon decision exists",
+        "keep provider/API/credential/publishing/production generation routes closed",
+        "rerun manifest validation after any real rollback"
+      ]
+    }
+  ],
+  "evidence_required_before_real_rollback": [
+    "explicit user authorization naming actual production Claim Ledger rollback",
+    "confirm target claim id multi-claim-moth-key-label and source span id multi-x-object-brass-moth-key",
+    "confirm the production Claim Ledger row is the only rollback target",
+    "record rollback owner, rollback descriptor, and post-rollback readback before mutation",
+    "preserve the production adoption audit trail and source evidence",
+    "keep Profile / Timeline / Story Seed production mutation counts at zero",
+    "keep canon status false unless a separate explicit canon decision exists",
+    "keep provider/API/credential/publishing/production generation routes closed",
+    "rerun manifest validation after any real rollback"
+  ],
+  "summary": {
+    "claim_ledger_adopted_rows_inspected": 1,
+    "rollback_descriptors_inspected": 1,
+    "rollback_rehearsals_recorded": 1,
+    "actual_rollback_operations": 0,
+    "production_claim_ledger_rows_removed": 0,
+    "production_claim_ledger_rows_retained": 1,
+    "profile_mutation_count": 0,
+    "timeline_mutation_count": 0,
+    "story_seed_mutation_count": 0,
+    "canonized_claims": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "publishing_opened": false,
+    "production_generation_opened": false,
+    "failures": 0
+  },
+  "what_this_rehearsal_proves": [
+    "The existing production Claim Ledger adoption row can be inspected with its rollback descriptor intact.",
+    "The rehearsal records rollback target status adoption_candidate_dry_run without performing rollback.",
+    "The production Claim Ledger row remains present and adopted after the readback-only rehearsal.",
+    "Profile, Timeline, Story Seed, canon, provider, credential, publishing, and production generation boundaries remain closed."
+  ],
+  "what_this_rehearsal_does_not_do": [
+    "It does not remove or mutate the production Claim Ledger adoption row.",
+    "It does not canonize the claim or resolve brass moth truth, Toma fate, Council motive, moth-key function, or contradictory claim truth.",
+    "It does not mutate Profile, Timeline, Story Seed, database, provider output, credentials, publishing, or public production surfaces.",
+    "It does not authorize rollback of any additional claim."
+  ],
+  "rollback_rehearsal_checks": {
+    "input_adoption_readback_loaded_and_passed": {
+      "passed": true,
+      "detail": "input=fff-production-claim-ledger-adoption-one-claim-001/true; schema=fff.productionClaimLedgerAdoptionOneClaim.v1"
+    },
+    "expected_claim_ledger_row_present": {
+      "passed": true,
+      "detail": "rows=1; class=Claim Ledger; status=production_claim_ledger_adopted; adopted=true"
+    },
+    "rollback_descriptor_available": {
+      "passed": true,
+      "detail": "token=rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run; scope=Claim Ledger production adoption row only; to=adoption_candidate_dry_run"
+    },
+    "rehearsal_is_non_destructive": {
+      "passed": true,
+      "detail": "rows=1; actualRollback=false; removed=false; retained=true"
+    },
+    "claim_ledger_row_retained_after_rehearsal": {
+      "passed": true,
+      "detail": "postStatus=production_claim_ledger_adopted; postAdopted=true"
+    },
+    "profile_timeline_story_seed_boundaries_zero": {
+      "passed": true,
+      "detail": "profile=0; timeline=0; storySeed=0; inputBoundaryOpen=false"
+    },
+    "canon_and_provider_boundaries_closed": {
+      "passed": true,
+      "detail": "canon=false; provider=false; external=false; credentials=false"
+    },
+    "future_real_rollback_evidence_recorded": {
+      "passed": true,
+      "detail": "requirements=9"
+    },
+    "manifest_and_review_memory_registered": {
+      "passed": true,
+      "detail": "includesSmoke=true; preserves=true; memory=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

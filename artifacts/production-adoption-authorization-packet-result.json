@@ -2,7 +2,7 @@
   "schemaVersion": "fff.productionAdoptionAuthorizationPacket.v1",
   "artifact_id": "fff-production-adoption-authorization-packet-001",
   "title": "Fast Fiction Factory Production Adoption Authorization Packet",
-  "generatedAt": "2026-06-30T04:56:56.214Z",
+  "generatedAt": "2026-06-30T07:27:02.872Z",
   "review_status": "ready_for_user_authorization",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
