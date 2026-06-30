@@ -2,7 +2,7 @@
   "schemaVersion": "fff.productionAdoptionAuthorizationPacket.v1",
   "artifact_id": "fff-production-adoption-authorization-packet-001",
   "title": "Fast Fiction Factory Production Adoption Authorization Packet",
-  "generatedAt": "2026-06-30T00:55:13.823Z",
+  "generatedAt": "2026-06-30T04:56:56.214Z",
   "review_status": "ready_for_user_authorization",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
@@ -24,7 +24,7 @@
   "target_readback": {
     "target_claim_id": "multi-claim-moth-key-label",
     "source_span_id": "multi-x-object-brass-moth-key",
-    "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+    "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
     "current_candidate_status_after_rollback_rehearsal": "adoption_candidate_dry_run",
     "source_backed_status": true,
     "rollback_rehearsed": true,

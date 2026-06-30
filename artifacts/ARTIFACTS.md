@@ -121,6 +121,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary authorization packet under `fff-contradictory-claim-guard-001`; 1 rollback-rehearsed candidate is presented, Profile / Claim Ledger / Timeline / Story Seed target classes are proposed, Claim Ledger is recommended as the first target, user authorization remains required, production mutations remain 0, canonized claims remain 0, and provider/API calls, credentials, publishing, and production generation remain false.
 
+## fff-production-claim-ledger-adoption-one-claim-001
+
+- Title: Fast Fiction Factory Production Claim Ledger Adoption One Claim
+- Purpose: Record the user-authorized production adoption of exactly `multi-claim-moth-key-label` into the Claim Ledger while keeping canon, Profile, Timeline, Story Seed, provider/API, credential, publishing, and production generation boundaries closed.
+- Repo relative path: `docs/review/production-claim-ledger-adoption-one-claim.md`
+- Readback result: `artifacts/production-claim-ledger-adoption-one-claim-result.json`
+- Input readback: `artifacts/production-adoption-authorization-packet-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-production-claim-ledger-adoption-one-claim artifacts/production-adoption-authorization-packet-result.json artifacts/production-claim-ledger-adoption-one-claim-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary Claim Ledger adoption readback under `fff-contradictory-claim-guard-001`; 1 Claim Ledger production adoption row is recorded, `multi-claim-moth-key-label` moves from `adoption_candidate_dry_run` to `production_claim_ledger_adopted`, rollback descriptor is recorded, Profile / Timeline / Story Seed mutations remain 0, canonized claims remain 0, and provider/API calls, credentials, publishing, and production generation remain false.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench

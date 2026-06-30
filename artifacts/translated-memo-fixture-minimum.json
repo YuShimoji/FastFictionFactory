@@ -14,7 +14,7 @@
     {
       "row_id": "translated-min-row-moth-key-label",
       "original_source_span_id": "multi-x-object-brass-moth-key",
-      "original_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "original_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
       "original_source_text": "brass moth key is called \"\u771f\u936e\u306e\u86fe\u306e\u9375\"",
       "translated_text": "The brass moth key is called \"the brass moth key\".",
       "translation_owner": "declared_derivative_translation_only",
@@ -37,7 +37,7 @@
     {
       "row_id": "translated-min-row-inline-gloss-boundary",
       "original_source_span_id": "multi-x-placeholder-translation-boundary",
-      "original_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=551-580",
+      "original_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
       "original_source_text": "English gloss is in-line only",
       "translated_text": "The English gloss is inline only.",
       "translation_owner": "declared_derivative_translation_only",

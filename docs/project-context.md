@@ -36,6 +36,7 @@ The active slice is complete enough for local readback:
 - Sandbox adoption mutation one-claim doc/result: `docs/review/sandbox-adoption-mutation-one-claim.md`, `artifacts/sandbox-adoption-mutation-one-claim-result.json`
 - Sandbox adoption rollback rehearsal doc/result: `docs/review/sandbox-adoption-rollback-rehearsal.md`, `artifacts/sandbox-adoption-rollback-rehearsal-result.json`
 - Production adoption authorization packet doc/result: `docs/review/production-adoption-authorization-packet.md`, `artifacts/production-adoption-authorization-packet-result.json`
+- Production Claim Ledger adoption one-claim doc/result: `docs/review/production-claim-ledger-adoption-one-claim.md`, `artifacts/production-claim-ledger-adoption-one-claim-result.json`
 - Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
 - Missing fixture probe doc/result: `docs/review/missing-fixture-class-probe.md`, `artifacts/missing-fixture-class-probe-result.json`
 - Weak-span repair doc/result: `docs/review/weak-span-repair.md`, `artifacts/weak-span-repair-result.json`
@@ -101,6 +102,7 @@ node .\tools\fff-state.mjs smoke-adoption-candidate-ledger-dry-run .\artifacts\d
 node .\tools\fff-state.mjs smoke-sandbox-adoption-mutation-one-claim .\artifacts\adoption-candidate-ledger-dry-run-result.json .\artifacts\sandbox-adoption-mutation-one-claim-result.json
 node .\tools\fff-state.mjs smoke-sandbox-adoption-rollback-rehearsal .\artifacts\sandbox-adoption-mutation-one-claim-result.json .\artifacts\sandbox-adoption-rollback-rehearsal-result.json
 node .\tools\fff-state.mjs smoke-production-adoption-authorization-packet .\artifacts\sandbox-adoption-rollback-rehearsal-result.json .\artifacts\production-adoption-authorization-packet-result.json
+node .\tools\fff-state.mjs smoke-production-claim-ledger-adoption-one-claim .\artifacts\production-adoption-authorization-packet-result.json .\artifacts\production-claim-ledger-adoption-one-claim-result.json
 node .\tools\fff-state.mjs smoke-very-broad-source-span-shape-audit .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\very-broad-source-span-shape-audit-result.json
 ```
 
@@ -120,6 +122,7 @@ Result summary:
 - Sandbox adoption mutation one-claim passes as fixture-only context: 1 authorized sandbox row records `multi-claim-moth-key-label` moving to `sandbox_adopted_fixture`, rollback token is present, production adopted claims remain 0, canonized claims remain 0, Profile / Claim / Timeline / Story Seed production mutations remain 0, and provider/API/credential/publishing/production generation remain closed.
 - Sandbox adoption rollback rehearsal passes as fixture-only rollback context: 1 sandbox-adopted row for `multi-claim-moth-key-label` is inspected, the expected rollback token is verified, 1 rehearsal row records `sandbox_adopted_fixture -> adoption_candidate_dry_run`, production rollback performed remains false, production adopted claims remain 0, canonized claims remain 0, Profile / Claim / Timeline / Story Seed production mutations remain 0, and provider/API/credential/publishing/production generation remain closed.
 - Production adoption authorization packet passes as packet-only context: 1 rollback-rehearsed candidate is presented for future freeform approval, 4 target classes are proposed, Claim Ledger is recommended first, user authorization remains required, production mutations performed remain 0, canonized claims remain 0, and provider/API/credential/publishing/production generation remain closed.
+- Production Claim Ledger adoption one-claim passes as the authorized narrow production adoption context: 1 Claim Ledger row records `multi-claim-moth-key-label` moving from `adoption_candidate_dry_run` to `production_claim_ledger_adopted`, rollback descriptor is present, Profile / Timeline / Story Seed mutation counts remain 0, canonized claims remain 0, and provider/API/credential/publishing/production generation remain closed.
 - Very broad source-span shape audit passes as audit-only context: the 2 current broad rows remain resolved by `fff-broad-span-split-001`, 0 broad fixture files are added, and the source-pack / downstream / provider no-call chain remains clean.
 - Downstream adoption gate parses 60 source-pack rows and reports 55 downstream Profile / Claim / Timeline review candidates, all 55 source-tracked, with 0 malformed/missing span candidates, 0 unsafe routing candidates, 28 human-owned candidates held, 0 non-held human-owned candidates, and 0 adopted Profile / Claim / Timeline candidates.
 - Malformed/missing source-span guard remains closed with 3 invalid elements rejected, 0 accepted routed candidates, and 9 validator fixtures in the smoke matrix.
@@ -131,7 +134,7 @@ Result summary:
 
 ## Boundaries
 
-Do not treat local review state as final canon. Do not add model/API behavior, provider credentials, publishing, upload credentials, AI video generation, production sync, database persistence, downstream adoption behavior, contradictory claim truth decisions, or final decisions for Toma, the brass moth, or the Council unless explicitly requested.
+Do not treat local review state as final canon. Do not add model/API behavior, provider credentials, publishing, upload credentials, AI video generation, production sync, database persistence, Profile / Timeline / Story Seed adoption behavior, additional Claim Ledger adoption, contradictory claim truth decisions, or final decisions for Toma, the brass moth, or the Council unless explicitly requested. The only current production adoption readback is the single Claim Ledger row for `multi-claim-moth-key-label`.
 
 ## Restart Path
 
@@ -159,7 +162,7 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to production downstream adoption implementation after explicit freeform authorization for target class, mutation behavior, rollback owner, and rollback descriptor; explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior; broader translated memo coverage if it adds meaningful rows beyond the two-row minimum; or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
+First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to Profile / Timeline / Story Seed / canon adoption after separate explicit authorization for target class, mutation behavior, rollback owner, rollback descriptor, and unresolved dependency handling; explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior; broader translated memo coverage if it adds meaningful rows beyond the two-row minimum; or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
 
 ## Handoff Path
 
