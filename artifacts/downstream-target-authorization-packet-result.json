@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "fff.downstreamTargetAuthorizationPacket.v1",
+  "artifact_id": "fff-downstream-target-authorization-packet-001",
+  "title": "Fast Fiction Factory Downstream Target Authorization Packet",
+  "generatedAt": "2026-07-01T13:53:20.434Z",
+  "review_status": "ready_for_user_authorization",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_readbacks": {
+    "production_claim_ledger_rollback_rehearsal_result_path": "artifacts/production-claim-ledger-rollback-rehearsal-result.json",
+    "production_claim_ledger_adoption_one_claim_result_path": "artifacts/production-claim-ledger-adoption-one-claim-result.json",
+    "production_adoption_authorization_packet_result_path": "artifacts/production-adoption-authorization-packet-result.json"
+  },
+  "target_readback": {
+    "target_claim_id": "multi-claim-moth-key-label",
+    "source_span_id": "multi-x-object-brass-moth-key",
+    "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+    "current_status": "production_claim_ledger_adopted",
+    "current_production_claim_ledger_adopted": true,
+    "rollback_descriptor_status": "verified",
+    "rollback_token": "rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run",
+    "rollback_to_status": "adoption_candidate_dry_run",
+    "claim_ledger_row_retained": true,
+    "actual_rollback_performed": false,
+    "canon_status": false,
+    "profile_mutation_count": 0,
+    "timeline_mutation_count": 0,
+    "story_seed_mutation_count": 0
+  },
+  "recommended_next_downstream_target_class": "Profile",
+  "candidate_downstream_target_classes": [
+    {
+      "target_class": "Profile",
+      "target_ids": [
+        "multi-profile-brass-moth-key"
+      ],
+      "recommended_next_target": true,
+      "approval_status": "not_approved",
+      "mutation_performed": false,
+      "mutation_behavior": "Future-only update or create a Profile object entry linking the brass moth key label to the original source span without canonizing unresolved truth.",
+      "rollback_owner": "author approves rollback; implementer removes the Profile mutation and preserves the Claim Ledger/source evidence trail",
+      "rollback_descriptor_needed": "rollback-downstream-target-moth-key-label-profile-to-claim-ledger-only",
+      "evidence_required_before_mutation": [
+        "explicit user approval naming Profile as the next target class",
+        "confirm source span id multi-x-object-brass-moth-key remains attached",
+        "confirm Profile target id multi-profile-brass-moth-key or replacement id",
+        "confirm unresolved brass moth truth and Toma fate remain non-canon",
+        "record before/after Profile readback and rollback descriptor before mutation"
+      ],
+      "unapproved_gates": [
+        "profile_mutation_approved=false",
+        "profile target class not freeform-authorized",
+        "rollback owner not freeform-authorized for a real Profile mutation"
+      ]
+    },
+    {
+      "target_class": "Timeline",
+      "target_ids": [
+        "multi-timeline-moth-key-label"
+      ],
+      "recommended_next_target": false,
+      "approval_status": "not_approved",
+      "mutation_performed": false,
+      "mutation_behavior": "Future-only add or update a Timeline entry only if the user confirms sequence/order implications for the moth key label.",
+      "rollback_owner": "author approves rollback; implementer removes the Timeline mutation and keeps source references readable",
+      "rollback_descriptor_needed": "rollback-downstream-target-moth-key-label-timeline-to-claim-ledger-only",
+      "evidence_required_before_mutation": [
+        "explicit user approval naming Timeline as the next target class",
+        "confirm story order, calendar order, or disclosure order implication",
+        "confirm no unresolved dependency is silently canonized",
+        "record before/after Timeline readback and rollback descriptor before mutation"
+      ],
+      "unapproved_gates": [
+        "timeline_mutation_approved=false",
+        "timeline ordering implication not freeform-authorized",
+        "rollback owner not freeform-authorized for a real Timeline mutation"
+      ]
+    },
+    {
+      "target_class": "Story Seed",
+      "target_ids": [],
+      "recommended_next_target": false,
+      "approval_status": "not_approved",
+      "mutation_performed": false,
+      "mutation_behavior": "Deferred future-only story-seed mutation; no current Story Seed target is selected by the retained Claim Ledger readback.",
+      "rollback_owner": "author approves rollback; implementer removes the Story Seed mutation while preserving the Claim Ledger row and source evidence",
+      "rollback_descriptor_needed": "rollback-downstream-target-moth-key-label-story-seed-to-claim-ledger-only",
+      "evidence_required_before_mutation": [
+        "explicit user approval naming Story Seed as the next target class",
+        "explicit story-seed target id or new target creation rule",
+        "confirm generation scope and human-owned unresolved dependencies",
+        "record before/after Story Seed readback and rollback descriptor before mutation"
+      ],
+      "unapproved_gates": [
+        "story_seed_mutation_approved=false",
+        "story seed target id not selected",
+        "story generation scope not freeform-authorized"
+      ]
+    },
+    {
+      "target_class": "Canon decision",
+      "target_ids": [
+        "canon-decision-moth-key-label"
+      ],
+      "recommended_next_target": false,
+      "approval_status": "not_approved",
+      "mutation_performed": false,
+      "mutation_behavior": "No automatic mutation; future-only human canon decision may mark canon=true/false with rationale after unresolved dependencies are handled.",
+      "rollback_owner": "author owns canon decision reversal; implementer records canon readback reversal only after explicit freeform authorization",
+      "rollback_descriptor_needed": "rollback-downstream-target-moth-key-label-canon-decision-to-non-canon",
+      "evidence_required_before_mutation": [
+        "explicit user canon decision before canon=true",
+        "confirm brass moth truth, Toma fate, Council motive, and moth-key function handling",
+        "confirm source span and Claim Ledger evidence remain readable",
+        "record before/after canon readback and rollback descriptor before mutation"
+      ],
+      "unapproved_gates": [
+        "canon_decision_approved=false",
+        "canon_approved=false",
+        "unresolved story truth remains human-owned"
+      ]
+    }
+  ],
+  "explicit_non_approval_fields": {
+    "profile_mutation_approved": false,
+    "timeline_mutation_approved": false,
+    "story_seed_mutation_approved": false,
+    "canon_decision_approved": false,
+    "canon_approved": false,
+    "provider_approved": false,
+    "publishing_approved": false,
+    "external_api_approved": false,
+    "production_generation_approved": false
+  },
+  "user_authorization_required": true,
+  "user_authorization_missing": [
+    "explicit user approval naming one downstream target class",
+    "explicit mutation behavior approval for the selected target class",
+    "explicit rollback owner approval for the selected target class",
+    "explicit rollback descriptor approval for the selected target class",
+    "explicit before/after readback requirement for any real mutation",
+    "explicit unresolved dependency handling for brass moth truth and Toma fate",
+    "explicit confirmation that canon remains false unless Canon decision is selected",
+    "explicit confirmation that provider/API/credential/publishing routes stay closed",
+    "explicit confirmation that no additional claim is included"
+  ],
+  "summary": {
+    "candidates_inspected": 1,
+    "claim_ledger_adopted_rows_inspected": 1,
+    "rollback_descriptors_verified": 1,
+    "production_claim_ledger_rows_retained": 1,
+    "downstream_target_classes_proposed": 4,
+    "recommended_next_target_classes": 1,
+    "downstream_mutations_performed": 0,
+    "profile_mutation_count": 0,
+    "timeline_mutation_count": 0,
+    "story_seed_mutation_count": 0,
+    "canonized_claims": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "publishing_opened": false,
+    "production_generation_opened": false,
+    "user_authorization_required": true,
+    "user_authorization_fields_missing": 9,
+    "failures": 0
+  },
+  "what_this_packet_proves": [
+    "The retained production Claim Ledger row for multi-claim-moth-key-label can be used as the input to a downstream target authorization choice.",
+    "Profile, Timeline, Story Seed, and Canon decision target classes are listed with mutation behavior, rollback owner, rollback descriptor, evidence, and unapproved gates.",
+    "Profile is the single recommended next target class because it is narrower than Timeline, Story Seed, or Canon decision work.",
+    "No Profile, Timeline, Story Seed, canon, provider, credential, publishing, production generation, or actual rollback route is opened."
+  ],
+  "what_this_packet_does_not_prove": [
+    "It does not approve any downstream mutation.",
+    "It does not mutate Profile, Timeline, Story Seed, Canon decision, database, provider output, credentials, publishing, or public production surfaces.",
+    "It does not canonize the claim or resolve brass moth truth, Toma fate, Council motive, moth-key function, or contradictory claim truth.",
+    "It does not authorize rollback or removal of the production Claim Ledger row."
+  ],
+  "downstream_target_authorization_checks": {
+    "input_rollback_rehearsal_loaded_and_passed": {
+      "passed": true,
+      "detail": "input=fff-production-claim-ledger-rollback-rehearsal-001/true; schema=fff.productionClaimLedgerRollbackRehearsal.v1"
+    },
+    "target_claim_ledger_status_retained": {
+      "passed": true,
+      "detail": "target=multi-claim-moth-key-label; status=production_claim_ledger_adopted; retained=true; rollback=false"
+    },
+    "rollback_descriptor_verified": {
+      "passed": true,
+      "detail": "token=rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run; scope=Claim Ledger production adoption row only; to=adoption_candidate_dry_run"
+    },
+    "adoption_readback_loaded_and_consistent": {
+      "passed": true,
+      "detail": "adoption=fff-production-claim-ledger-adoption-one-claim-001/true; row=multi-claim-moth-key-label; status=production_claim_ledger_adopted"
+    },
+    "downstream_target_classes_recorded": {
+      "passed": true,
+      "detail": "classes=Profile, Timeline, Story Seed, Canon decision"
+    },
+    "profile_recommended_as_next_minimal_target": {
+      "passed": true,
+      "detail": "recommended=Profile"
+    },
+    "non_approval_flags_remain_false": {
+      "passed": true,
+      "detail": "nonApprovalFields=profile_mutation_approved=false; timeline_mutation_approved=false; story_seed_mutation_approved=false; canon_decision_approved=false; canon_approved=false; provider_approved=false; publishing_approved=false; external_api_approved=false; production_generation_approved=false"
+    },
+    "no_downstream_mutation_canon_or_provider_opened": {
+      "passed": true,
+      "detail": "inputBoundaryOpen=false; profile=0; timeline=0; storySeed=0; canon=false"
+    },
+    "user_authorization_still_required": {
+      "passed": true,
+      "detail": "missingFields=9; targetClassGateCounts=Profile:3, Timeline:3, Story Seed:3, Canon decision:3"
+    },
+    "manifest_and_review_memory_registered": {
+      "passed": true,
+      "detail": "includesSmoke=true; preserves=true; memory=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

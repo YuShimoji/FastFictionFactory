@@ -2,7 +2,7 @@
   "schemaVersion": "fff.translationProvenanceSourceSpanReadback.v1",
   "artifact_id": "fff-translation-provenance-source-span-readback-001",
   "title": "Fast Fiction Factory Translation Provenance Source-Span Readback",
-  "generatedAt": "2026-06-30T07:27:02.434Z",
+  "generatedAt": "2026-07-01T13:53:19.277Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
@@ -41,9 +41,9 @@
     "display_text": "translation boundary placeholder",
     "source_span": {
       "text": "English gloss is in-line only",
-      "start": 537,
-      "end": 566,
-      "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+      "start": 551,
+      "end": 580,
+      "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=551-580",
       "matches_raw_memo": true,
       "source_pack_row_matches": true
     },
@@ -70,9 +70,9 @@
       },
       "source_span": {
         "text": "brass moth key is called \"真鍮の蛾の鍵\"",
-        "start": 286,
-        "end": 319,
-        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+        "start": 294,
+        "end": 327,
+        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
         "matches_raw_memo": true,
         "source_pack_row_matches": true
       },
@@ -143,9 +143,9 @@
       },
       "source_span": {
         "text": "Council archivists の記録 says Toma's route is a clerical error",
-        "start": 180,
-        "end": 240,
-        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=180-240",
+        "start": 186,
+        "end": 246,
+        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=186-246",
         "matches_raw_memo": true,
         "source_pack_row_matches": true
       },
@@ -216,9 +216,9 @@
       },
       "source_span": {
         "text": "observatory rings at noon even though bell is missing",
-        "start": 124,
-        "end": 177,
-        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=124-177",
+        "start": 128,
+        "end": 181,
+        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=128-181",
         "matches_raw_memo": true,
         "source_pack_row_matches": true
       },
@@ -359,7 +359,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=28; reviewInput=freeform"
+      "detail": "reviewMemory=29; reviewInput=freeform"
     }
   },
   "failures": [],

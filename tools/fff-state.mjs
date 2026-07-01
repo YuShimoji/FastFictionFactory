@@ -27,6 +27,7 @@ const SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_SCHEMA_VERSION = "fff.sandboxAdoptionR
 const PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_SCHEMA_VERSION = "fff.productionAdoptionAuthorizationPacket.v1";
 const PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_SCHEMA_VERSION = "fff.productionClaimLedgerAdoptionOneClaim.v1";
 const PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_SCHEMA_VERSION = "fff.productionClaimLedgerRollbackRehearsal.v1";
+const DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_SCHEMA_VERSION = "fff.downstreamTargetAuthorizationPacket.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -52,6 +53,7 @@ const DEFAULT_SANDBOX_ADOPTION_ROLLBACK_REHEARSAL_OUTPUT = "artifacts/sandbox-ad
 const DEFAULT_PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_OUTPUT = "artifacts/production-adoption-authorization-packet-result.json";
 const DEFAULT_PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_OUTPUT = "artifacts/production-claim-ledger-adoption-one-claim-result.json";
 const DEFAULT_PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_OUTPUT = "artifacts/production-claim-ledger-rollback-rehearsal-result.json";
+const DEFAULT_DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_OUTPUT = "artifacts/downstream-target-authorization-packet-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -646,6 +648,25 @@ async function main() {
     }
     if (command === "smoke-production-claim-ledger-rollback-rehearsal" || outputPath) {
       console.log(`production Claim Ledger rollback rehearsal passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-downstream-target-authorization-packet" || command === "smoke-downstream-target-authorization-packet") {
+    const rollbackRehearsal = await readJson(inputPath);
+    const result = await validateDownstreamTargetAuthorizationPacket(rollbackRehearsal, inputPath);
+    const target = outputPath || DEFAULT_DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_OUTPUT;
+    if (command === "smoke-downstream-target-authorization-packet" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Downstream target authorization packet failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-downstream-target-authorization-packet" || outputPath) {
+      console.log(`downstream target authorization packet passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -5660,6 +5681,339 @@ async function validateProductionClaimLedgerRollbackRehearsal(adoptionReadback, 
   };
 }
 
+async function validateDownstreamTargetAuthorizationPacket(rollbackRehearsal, rollbackRehearsalPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const manifestValidationCommand = String(manifest.validation_command || "");
+  const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
+  const adoptionPath =
+    rollbackRehearsal.input_readbacks?.production_claim_ledger_adoption_one_claim_result_path ||
+    DEFAULT_PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_OUTPUT;
+  const adoptionReadback = await readJson(adoptionPath);
+  const productionAuthorizationPath =
+    adoptionReadback.input_readbacks?.production_adoption_authorization_packet_result_path ||
+    DEFAULT_PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_OUTPUT;
+  const productionAuthorization = await readJson(productionAuthorizationPath);
+  const targetClaimId = "multi-claim-moth-key-label";
+  const targetSourceSpanId = "multi-x-object-brass-moth-key";
+  const expectedRollbackToken = "rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run";
+  const rollbackRows = Array.isArray(rollbackRehearsal.production_claim_ledger_rollback_rehearsal_rows)
+    ? rollbackRehearsal.production_claim_ledger_rollback_rehearsal_rows
+    : [];
+  const rollbackRow = rollbackRows.find((row) => row.target_claim_id === targetClaimId);
+  const adoptionRows = Array.isArray(adoptionReadback.production_claim_ledger_adoption_rows)
+    ? adoptionReadback.production_claim_ledger_adoption_rows
+    : [];
+  const adoptionRow = adoptionRows.find((row) => row.target_claim_id === targetClaimId);
+  const rollbackDescriptor = rollbackRehearsal.rollback_descriptor_readback || adoptionRow?.rollback_descriptor || {};
+  const sourceSpanLocator =
+    rollbackRow?.source_span_locator ||
+    adoptionRow?.source_span_locator ||
+    productionAuthorization.target_readback?.source_span_locator ||
+    "missing";
+  const targetClasses = [
+    {
+      target_class: "Profile",
+      target_ids: ["multi-profile-brass-moth-key"],
+      recommended_next_target: true,
+      approval_status: "not_approved",
+      mutation_performed: false,
+      mutation_behavior: "Future-only update or create a Profile object entry linking the brass moth key label to the original source span without canonizing unresolved truth.",
+      rollback_owner: "author approves rollback; implementer removes the Profile mutation and preserves the Claim Ledger/source evidence trail",
+      rollback_descriptor_needed: "rollback-downstream-target-moth-key-label-profile-to-claim-ledger-only",
+      evidence_required_before_mutation: [
+        "explicit user approval naming Profile as the next target class",
+        "confirm source span id multi-x-object-brass-moth-key remains attached",
+        "confirm Profile target id multi-profile-brass-moth-key or replacement id",
+        "confirm unresolved brass moth truth and Toma fate remain non-canon",
+        "record before/after Profile readback and rollback descriptor before mutation"
+      ],
+      unapproved_gates: [
+        "profile_mutation_approved=false",
+        "profile target class not freeform-authorized",
+        "rollback owner not freeform-authorized for a real Profile mutation"
+      ]
+    },
+    {
+      target_class: "Timeline",
+      target_ids: ["multi-timeline-moth-key-label"],
+      recommended_next_target: false,
+      approval_status: "not_approved",
+      mutation_performed: false,
+      mutation_behavior: "Future-only add or update a Timeline entry only if the user confirms sequence/order implications for the moth key label.",
+      rollback_owner: "author approves rollback; implementer removes the Timeline mutation and keeps source references readable",
+      rollback_descriptor_needed: "rollback-downstream-target-moth-key-label-timeline-to-claim-ledger-only",
+      evidence_required_before_mutation: [
+        "explicit user approval naming Timeline as the next target class",
+        "confirm story order, calendar order, or disclosure order implication",
+        "confirm no unresolved dependency is silently canonized",
+        "record before/after Timeline readback and rollback descriptor before mutation"
+      ],
+      unapproved_gates: [
+        "timeline_mutation_approved=false",
+        "timeline ordering implication not freeform-authorized",
+        "rollback owner not freeform-authorized for a real Timeline mutation"
+      ]
+    },
+    {
+      target_class: "Story Seed",
+      target_ids: [],
+      recommended_next_target: false,
+      approval_status: "not_approved",
+      mutation_performed: false,
+      mutation_behavior: "Deferred future-only story-seed mutation; no current Story Seed target is selected by the retained Claim Ledger readback.",
+      rollback_owner: "author approves rollback; implementer removes the Story Seed mutation while preserving the Claim Ledger row and source evidence",
+      rollback_descriptor_needed: "rollback-downstream-target-moth-key-label-story-seed-to-claim-ledger-only",
+      evidence_required_before_mutation: [
+        "explicit user approval naming Story Seed as the next target class",
+        "explicit story-seed target id or new target creation rule",
+        "confirm generation scope and human-owned unresolved dependencies",
+        "record before/after Story Seed readback and rollback descriptor before mutation"
+      ],
+      unapproved_gates: [
+        "story_seed_mutation_approved=false",
+        "story seed target id not selected",
+        "story generation scope not freeform-authorized"
+      ]
+    },
+    {
+      target_class: "Canon decision",
+      target_ids: ["canon-decision-moth-key-label"],
+      recommended_next_target: false,
+      approval_status: "not_approved",
+      mutation_performed: false,
+      mutation_behavior: "No automatic mutation; future-only human canon decision may mark canon=true/false with rationale after unresolved dependencies are handled.",
+      rollback_owner: "author owns canon decision reversal; implementer records canon readback reversal only after explicit freeform authorization",
+      rollback_descriptor_needed: "rollback-downstream-target-moth-key-label-canon-decision-to-non-canon",
+      evidence_required_before_mutation: [
+        "explicit user canon decision before canon=true",
+        "confirm brass moth truth, Toma fate, Council motive, and moth-key function handling",
+        "confirm source span and Claim Ledger evidence remain readable",
+        "record before/after canon readback and rollback descriptor before mutation"
+      ],
+      unapproved_gates: [
+        "canon_decision_approved=false",
+        "canon_approved=false",
+        "unresolved story truth remains human-owned"
+      ]
+    }
+  ];
+  const explicitNonApprovalFields = {
+    profile_mutation_approved: false,
+    timeline_mutation_approved: false,
+    story_seed_mutation_approved: false,
+    canon_decision_approved: false,
+    canon_approved: false,
+    provider_approved: false,
+    publishing_approved: false,
+    external_api_approved: false,
+    production_generation_approved: false
+  };
+  const userAuthorizationMissing = [
+    "explicit user approval naming one downstream target class",
+    "explicit mutation behavior approval for the selected target class",
+    "explicit rollback owner approval for the selected target class",
+    "explicit rollback descriptor approval for the selected target class",
+    "explicit before/after readback requirement for any real mutation",
+    "explicit unresolved dependency handling for brass moth truth and Toma fate",
+    "explicit confirmation that canon remains false unless Canon decision is selected",
+    "explicit confirmation that provider/API/credential/publishing routes stay closed",
+    "explicit confirmation that no additional claim is included"
+  ];
+  const recommendedTargets = targetClasses.filter((targetClass) => targetClass.recommended_next_target === true);
+  const expectedTargetClassNames = ["Profile", "Timeline", "Story Seed", "Canon decision"];
+  const targetReadback = {
+    target_claim_id: targetClaimId,
+    source_span_id: rollbackRow?.source_span_id || adoptionRow?.source_span_id || "missing",
+    source_span_locator: sourceSpanLocator,
+    current_status: rollbackRow?.post_rehearsal_claim_ledger_status || adoptionRow?.after_claim_ledger_status || "missing",
+    current_production_claim_ledger_adopted: rollbackRow?.post_rehearsal_production_claim_ledger_adopted === true,
+    rollback_descriptor_status: rollbackDescriptor.rollback_token === expectedRollbackToken ? "verified" : "missing_or_mismatched",
+    rollback_token: rollbackDescriptor.rollback_token || "missing",
+    rollback_to_status: rollbackDescriptor.rollback_to_status || "missing",
+    claim_ledger_row_retained: rollbackRow?.production_claim_ledger_row_retained === true,
+    actual_rollback_performed: rollbackRow?.actual_rollback_performed === true,
+    canon_status: false,
+    profile_mutation_count: 0,
+    timeline_mutation_count: 0,
+    story_seed_mutation_count: 0
+  };
+  const inputBoundaryOpen =
+    rollbackRehearsal.summary?.actual_rollback_operations !== 0 ||
+    rollbackRehearsal.summary?.production_claim_ledger_rows_removed !== 0 ||
+    rollbackRehearsal.summary?.profile_mutation_count !== 0 ||
+    rollbackRehearsal.summary?.timeline_mutation_count !== 0 ||
+    rollbackRehearsal.summary?.story_seed_mutation_count !== 0 ||
+    rollbackRehearsal.summary?.canonized_claims !== 0 ||
+    rollbackRehearsal.summary?.provider_configured !== false ||
+    rollbackRehearsal.summary?.external_call_attempted !== false ||
+    rollbackRehearsal.summary?.credentials_touched !== false ||
+    rollbackRehearsal.summary?.publishing_opened !== false ||
+    rollbackRehearsal.summary?.production_generation_opened !== false ||
+    adoptionReadback.summary?.non_claim_ledger_production_mutations_performed !== 0 ||
+    adoptionReadback.summary?.profile_mutation_count !== 0 ||
+    adoptionReadback.summary?.timeline_mutation_count !== 0 ||
+    adoptionReadback.summary?.story_seed_mutation_count !== 0 ||
+    adoptionReadback.summary?.canonized_claims !== 0 ||
+    adoptionReadback.summary?.provider_configured !== false ||
+    adoptionReadback.summary?.external_call_attempted !== false ||
+    adoptionReadback.summary?.credentials_touched !== false ||
+    adoptionReadback.summary?.publishing_opened !== false ||
+    adoptionReadback.summary?.production_generation_opened !== false ||
+    productionAuthorization.summary?.production_mutations_performed !== 0 ||
+    productionAuthorization.summary?.canonized_claims !== 0 ||
+    productionAuthorization.summary?.provider_configured !== false ||
+    productionAuthorization.summary?.external_call_attempted !== false ||
+    productionAuthorization.summary?.credentials_touched !== false ||
+    productionAuthorization.summary?.publishing_opened !== false ||
+    productionAuthorization.summary?.production_generation_opened !== false;
+
+  check(
+    "input_rollback_rehearsal_loaded_and_passed",
+    rollbackRehearsal.artifact_id === "fff-production-claim-ledger-rollback-rehearsal-001" &&
+      rollbackRehearsal.schemaVersion === PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_SCHEMA_VERSION &&
+      rollbackRehearsal.passed === true,
+    `input=${rollbackRehearsal.artifact_id}/${rollbackRehearsal.passed}; schema=${rollbackRehearsal.schemaVersion}`
+  );
+  check(
+    "target_claim_ledger_status_retained",
+    targetReadback.target_claim_id === targetClaimId &&
+      targetReadback.source_span_id === targetSourceSpanId &&
+      targetReadback.current_status === "production_claim_ledger_adopted" &&
+      targetReadback.current_production_claim_ledger_adopted === true &&
+      targetReadback.claim_ledger_row_retained === true &&
+      targetReadback.actual_rollback_performed === false,
+    `target=${targetReadback.target_claim_id}; status=${targetReadback.current_status}; retained=${targetReadback.claim_ledger_row_retained}; rollback=${targetReadback.actual_rollback_performed}`
+  );
+  check(
+    "rollback_descriptor_verified",
+    rollbackDescriptor.rollback_token === expectedRollbackToken &&
+      rollbackDescriptor.rollback_scope === "Claim Ledger production adoption row only" &&
+      rollbackDescriptor.rollback_to_status === "adoption_candidate_dry_run" &&
+      Array.isArray(rollbackDescriptor.rollback_requires) &&
+      rollbackDescriptor.rollback_requires.length >= 4,
+    `token=${rollbackDescriptor.rollback_token || "missing"}; scope=${rollbackDescriptor.rollback_scope || "missing"}; to=${rollbackDescriptor.rollback_to_status || "missing"}`
+  );
+  check(
+    "adoption_readback_loaded_and_consistent",
+    adoptionReadback.artifact_id === "fff-production-claim-ledger-adoption-one-claim-001" &&
+      adoptionReadback.schemaVersion === PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_SCHEMA_VERSION &&
+      adoptionReadback.passed === true &&
+      adoptionRow?.target_claim_id === targetClaimId &&
+      adoptionRow?.after_claim_ledger_status === "production_claim_ledger_adopted" &&
+      adoptionRow?.production_claim_ledger_adopted === true,
+    `adoption=${adoptionReadback.artifact_id}/${adoptionReadback.passed}; row=${adoptionRow?.target_claim_id || "missing"}; status=${adoptionRow?.after_claim_ledger_status || "missing"}`
+  );
+  check(
+    "downstream_target_classes_recorded",
+    targetClasses.length === 4 &&
+      expectedTargetClassNames.every((name) => targetClasses.some((targetClass) => targetClass.target_class === name)),
+    `classes=${targetClasses.map((targetClass) => targetClass.target_class).join(", ")}`
+  );
+  check(
+    "profile_recommended_as_next_minimal_target",
+    recommendedTargets.length === 1 &&
+      recommendedTargets[0]?.target_class === "Profile" &&
+      recommendedTargets[0]?.target_ids.includes("multi-profile-brass-moth-key"),
+    `recommended=${recommendedTargets.map((targetClass) => targetClass.target_class).join(", ") || "none"}`
+  );
+  check(
+    "non_approval_flags_remain_false",
+    Object.values(explicitNonApprovalFields).every((value) => value === false) &&
+      targetClasses.every((targetClass) => targetClass.approval_status === "not_approved" && targetClass.mutation_performed === false),
+    `nonApprovalFields=${Object.entries(explicitNonApprovalFields).map(([key, value]) => `${key}=${value}`).join("; ")}`
+  );
+  check(
+    "no_downstream_mutation_canon_or_provider_opened",
+    inputBoundaryOpen === false &&
+      targetClasses.every((targetClass) => targetClass.mutation_performed === false) &&
+      targetReadback.profile_mutation_count === 0 &&
+      targetReadback.timeline_mutation_count === 0 &&
+      targetReadback.story_seed_mutation_count === 0 &&
+      targetReadback.canon_status === false,
+    `inputBoundaryOpen=${inputBoundaryOpen}; profile=${targetReadback.profile_mutation_count}; timeline=${targetReadback.timeline_mutation_count}; storySeed=${targetReadback.story_seed_mutation_count}; canon=${targetReadback.canon_status}`
+  );
+  check(
+    "user_authorization_still_required",
+    userAuthorizationMissing.length >= 8 &&
+      targetClasses.every((targetClass) => targetClass.unapproved_gates.length >= 3) &&
+      targetClasses.every((targetClass) => targetClass.rollback_descriptor_needed.startsWith("rollback-downstream-target-")),
+    `missingFields=${userAuthorizationMissing.length}; targetClassGateCounts=${targetClasses.map((targetClass) => `${targetClass.target_class}:${targetClass.unapproved_gates.length}`).join(", ")}`
+  );
+  check(
+    "manifest_and_review_memory_registered",
+    manifestValidationCommand.includes("smoke-downstream-target-authorization-packet") &&
+      manifest.preserves?.includes("fff-downstream-target-authorization-packet-001") &&
+      reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-target-authorization-packet-001"),
+    `includesSmoke=${manifestValidationCommand.includes("smoke-downstream-target-authorization-packet")}; preserves=${manifest.preserves?.includes("fff-downstream-target-authorization-packet-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-target-authorization-packet-001")}`
+  );
+
+  return {
+    schemaVersion: DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_SCHEMA_VERSION,
+    artifact_id: "fff-downstream-target-authorization-packet-001",
+    title: "Fast Fiction Factory Downstream Target Authorization Packet",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_user_authorization",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    input_readbacks: {
+      production_claim_ledger_rollback_rehearsal_result_path: toRepoPath(rollbackRehearsalPath),
+      production_claim_ledger_adoption_one_claim_result_path: adoptionPath,
+      production_adoption_authorization_packet_result_path: productionAuthorizationPath
+    },
+    target_readback: targetReadback,
+    recommended_next_downstream_target_class: "Profile",
+    candidate_downstream_target_classes: targetClasses,
+    explicit_non_approval_fields: explicitNonApprovalFields,
+    user_authorization_required: true,
+    user_authorization_missing: userAuthorizationMissing,
+    summary: {
+      candidates_inspected: 1,
+      claim_ledger_adopted_rows_inspected: adoptionRow ? 1 : 0,
+      rollback_descriptors_verified: rollbackDescriptor.rollback_token === expectedRollbackToken ? 1 : 0,
+      production_claim_ledger_rows_retained: targetReadback.claim_ledger_row_retained ? 1 : 0,
+      downstream_target_classes_proposed: targetClasses.length,
+      recommended_next_target_classes: recommendedTargets.length,
+      downstream_mutations_performed: 0,
+      profile_mutation_count: 0,
+      timeline_mutation_count: 0,
+      story_seed_mutation_count: 0,
+      canonized_claims: 0,
+      provider_configured: false,
+      external_call_attempted: false,
+      credentials_touched: false,
+      publishing_opened: false,
+      production_generation_opened: false,
+      user_authorization_required: true,
+      user_authorization_fields_missing: userAuthorizationMissing.length,
+      failures: failures.length
+    },
+    what_this_packet_proves: [
+      "The retained production Claim Ledger row for multi-claim-moth-key-label can be used as the input to a downstream target authorization choice.",
+      "Profile, Timeline, Story Seed, and Canon decision target classes are listed with mutation behavior, rollback owner, rollback descriptor, evidence, and unapproved gates.",
+      "Profile is the single recommended next target class because it is narrower than Timeline, Story Seed, or Canon decision work.",
+      "No Profile, Timeline, Story Seed, canon, provider, credential, publishing, production generation, or actual rollback route is opened."
+    ],
+    what_this_packet_does_not_prove: [
+      "It does not approve any downstream mutation.",
+      "It does not mutate Profile, Timeline, Story Seed, Canon decision, database, provider output, credentials, publishing, or public production surfaces.",
+      "It does not canonize the claim or resolve brass moth truth, Toma fate, Council motive, moth-key function, or contradictory claim truth.",
+      "It does not authorize rollback or removal of the production Claim Ledger row."
+    ],
+    downstream_target_authorization_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -7902,6 +8256,8 @@ Usage:
   node tools/fff-state.mjs smoke-production-claim-ledger-adoption-one-claim <production-adoption-authorization-packet-result.json> [output.json]
   node tools/fff-state.mjs validate-production-claim-ledger-rollback-rehearsal <production-claim-ledger-adoption-one-claim-result.json>
   node tools/fff-state.mjs smoke-production-claim-ledger-rollback-rehearsal <production-claim-ledger-adoption-one-claim-result.json> [output.json]
+  node tools/fff-state.mjs validate-downstream-target-authorization-packet <production-claim-ledger-rollback-rehearsal-result.json>
+  node tools/fff-state.mjs smoke-downstream-target-authorization-packet <production-claim-ledger-rollback-rehearsal-result.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>
@@ -7971,6 +8327,9 @@ Default production Claim Ledger adoption one-claim output:
 
 Default production Claim Ledger rollback rehearsal output:
   ${DEFAULT_PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_OUTPUT}
+
+Default downstream target authorization packet output:
+  ${DEFAULT_DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_OUTPUT}
 
 Default very broad source-span shape audit output:
   ${DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT}

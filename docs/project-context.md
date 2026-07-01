@@ -38,6 +38,7 @@ The active slice is complete enough for local readback:
 - Production adoption authorization packet doc/result: `docs/review/production-adoption-authorization-packet.md`, `artifacts/production-adoption-authorization-packet-result.json`
 - Production Claim Ledger adoption one-claim doc/result: `docs/review/production-claim-ledger-adoption-one-claim.md`, `artifacts/production-claim-ledger-adoption-one-claim-result.json`
 - Production Claim Ledger rollback rehearsal doc/result: `docs/review/production-claim-ledger-rollback-rehearsal.md`, `artifacts/production-claim-ledger-rollback-rehearsal-result.json`
+- Downstream target authorization packet doc/result: `docs/review/downstream-target-authorization-packet.md`, `artifacts/downstream-target-authorization-packet-result.json`
 - Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
 - Missing fixture probe doc/result: `docs/review/missing-fixture-class-probe.md`, `artifacts/missing-fixture-class-probe-result.json`
 - Weak-span repair doc/result: `docs/review/weak-span-repair.md`, `artifacts/weak-span-repair-result.json`
@@ -75,7 +76,7 @@ Route hygiene checkpoint, 2026-06-29 JST:
 - The active Fast Fiction Factory artifact remains
   `fff-contradictory-claim-guard-001`.
 
-Last verified on 2026-06-30:
+Last verified on 2026-07-01:
 
 ```powershell
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
@@ -105,6 +106,7 @@ node .\tools\fff-state.mjs smoke-sandbox-adoption-rollback-rehearsal .\artifacts
 node .\tools\fff-state.mjs smoke-production-adoption-authorization-packet .\artifacts\sandbox-adoption-rollback-rehearsal-result.json .\artifacts\production-adoption-authorization-packet-result.json
 node .\tools\fff-state.mjs smoke-production-claim-ledger-adoption-one-claim .\artifacts\production-adoption-authorization-packet-result.json .\artifacts\production-claim-ledger-adoption-one-claim-result.json
 node .\tools\fff-state.mjs smoke-production-claim-ledger-rollback-rehearsal .\artifacts\production-claim-ledger-adoption-one-claim-result.json .\artifacts\production-claim-ledger-rollback-rehearsal-result.json
+node .\tools\fff-state.mjs smoke-downstream-target-authorization-packet .\artifacts\production-claim-ledger-rollback-rehearsal-result.json .\artifacts\downstream-target-authorization-packet-result.json
 node .\tools\fff-state.mjs smoke-very-broad-source-span-shape-audit .\artifacts\local-extraction-adapter-expansion-smoke-result.json .\artifacts\very-broad-source-span-shape-audit-result.json
 ```
 
@@ -126,6 +128,7 @@ Result summary:
 - Production adoption authorization packet passes as packet-only context: 1 rollback-rehearsed candidate is presented for future freeform approval, 4 target classes are proposed, Claim Ledger is recommended first, user authorization remains required, production mutations performed remain 0, canonized claims remain 0, and provider/API/credential/publishing/production generation remain closed.
 - Production Claim Ledger adoption one-claim passes as the authorized narrow production adoption context: 1 Claim Ledger row records `multi-claim-moth-key-label` moving from `adoption_candidate_dry_run` to `production_claim_ledger_adopted`, rollback descriptor is present, Profile / Timeline / Story Seed mutation counts remain 0, canonized claims remain 0, and provider/API/credential/publishing/production generation remain closed.
 - Production Claim Ledger rollback rehearsal passes as readback-only context: 1 existing production Claim Ledger row is inspected, the rollback descriptor is verified, 1 non-destructive rehearsal row is recorded, actual rollback operations remain 0, the Claim Ledger row remains retained, Profile / Timeline / Story Seed mutation counts remain 0, canonized claims remain 0, and provider/API/credential/publishing/production generation remain closed.
+- Downstream target authorization packet passes as packet-only context: the retained production Claim Ledger row for `multi-claim-moth-key-label` is used to propose Profile, Timeline, Story Seed, and Canon decision target classes; Profile is the only recommended next target, user authorization remains required, downstream mutations performed remain 0, Profile / Timeline / Story Seed mutation counts remain 0, canonized claims remain 0, and provider/API/credential/publishing/production generation remain closed.
 - Very broad source-span shape audit passes as audit-only context: the 2 current broad rows remain resolved by `fff-broad-span-split-001`, 0 broad fixture files are added, and the source-pack / downstream / provider no-call chain remains clean.
 - Downstream adoption gate parses 60 source-pack rows and reports 55 downstream Profile / Claim / Timeline review candidates, all 55 source-tracked, with 0 malformed/missing span candidates, 0 unsafe routing candidates, 28 human-owned candidates held, 0 non-held human-owned candidates, and 0 adopted Profile / Claim / Timeline candidates.
 - Malformed/missing source-span guard remains closed with 3 invalid elements rejected, 0 accepted routed candidates, and 9 validator fixtures in the smoke matrix.
@@ -137,7 +140,7 @@ Result summary:
 
 ## Boundaries
 
-Do not treat local review state as final canon. Do not add model/API behavior, provider credentials, publishing, upload credentials, AI video generation, production sync, database persistence, Profile / Timeline / Story Seed adoption behavior, additional Claim Ledger adoption, actual production rollback, contradictory claim truth decisions, or final decisions for Toma, the brass moth, or the Council unless explicitly requested. The only current production adoption readback is the single Claim Ledger row for `multi-claim-moth-key-label`; the only current rollback work is a non-destructive rehearsal that leaves that row retained.
+Do not treat local review state as final canon. Do not add model/API behavior, provider credentials, publishing, upload credentials, AI video generation, production sync, database persistence, Profile / Timeline / Story Seed adoption behavior, additional Claim Ledger adoption, Canon decision mutation, actual production rollback, contradictory claim truth decisions, or final decisions for Toma, the brass moth, or the Council unless explicitly requested. The only current production adoption readback is the single Claim Ledger row for `multi-claim-moth-key-label`; the only current rollback work is a non-destructive rehearsal that leaves that row retained; the downstream target authorization packet is a choice surface only and does not approve Profile, Timeline, Story Seed, or Canon decision work.
 
 ## Restart Path
 
@@ -165,10 +168,10 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to actual production rollback after separate explicit authorization for rollback target and mutation behavior; Profile / Timeline / Story Seed / canon adoption after separate explicit authorization for target class, mutation behavior, rollback owner, rollback descriptor, and unresolved dependency handling; explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior; broader translated memo coverage if it adds meaningful rows beyond the two-row minimum; or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
+First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to Profile as the recommended downstream target after separate explicit authorization for target class, mutation behavior, rollback owner, rollback descriptor, and unresolved dependency handling; Timeline / Story Seed / Canon decision only after equivalent explicit authorization; actual production rollback only after separate explicit authorization for rollback target and mutation behavior; explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior; broader translated memo coverage if it adds meaningful rows beyond the two-row minimum; or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-Latest remote-sync handoff refresh started from synced head `149ba56` (`149ba56 Add production Claim Ledger rollback rehearsal`) on 2026-06-30 JST with `HEAD...origin/master` reporting `0 0`; the docs-only handoff commit published after this line is discoverable with `git log -1 --oneline --decorate`.
+Latest implementation refresh started from synced head `44bf5b5` (`44bf5b5 Refresh handoff after rollback rehearsal`) on 2026-07-01 JST with `HEAD...origin/master` reporting `0 0`; the pushed implementation commit after this line is discoverable with `git log -1 --oneline --decorate` after pulling.

@@ -145,6 +145,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary rollback rehearsal under `fff-contradictory-claim-guard-001`; 1 production Claim Ledger adoption row is inspected, the expected rollback descriptor is verified, 1 non-destructive rehearsal row is recorded, actual rollback operations remain 0, the production Claim Ledger row remains retained, Profile / Timeline / Story Seed mutations remain 0, canonized claims remain 0, and provider/API calls, credentials, publishing, and production generation remain false.
 
+## fff-downstream-target-authorization-packet-001
+
+- Title: Fast Fiction Factory Downstream Target Authorization Packet
+- Purpose: Prepare the next downstream target-class authorization choice after production Claim Ledger adoption and rollback rehearsal for exactly `multi-claim-moth-key-label`, without mutating Profile, Timeline, Story Seed, Canon decision, provider, credential, publishing, or production generation surfaces.
+- Repo relative path: `docs/review/downstream-target-authorization-packet.md`
+- Readback result: `artifacts/downstream-target-authorization-packet-result.json`
+- Input readback: `artifacts/production-claim-ledger-rollback-rehearsal-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-downstream-target-authorization-packet artifacts/production-claim-ledger-rollback-rehearsal-result.json artifacts/downstream-target-authorization-packet-result.json`
+- Review status: `ready_for_user_authorization`
+- Review input mode: `freeform`
+- State: Preserved auxiliary downstream target authorization packet under `fff-contradictory-claim-guard-001`; 1 retained production Claim Ledger row is inspected, 4 downstream target classes are proposed, Profile is the only recommended next target, user authorization remains required, downstream mutations remain 0, Profile / Timeline / Story Seed mutation counts remain 0, canonized claims remain 0, and provider/API calls, credentials, publishing, and production generation remain false.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench
