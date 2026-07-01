@@ -28,6 +28,7 @@ const PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_SCHEMA_VERSION = "fff.productionA
 const PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_SCHEMA_VERSION = "fff.productionClaimLedgerAdoptionOneClaim.v1";
 const PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_SCHEMA_VERSION = "fff.productionClaimLedgerRollbackRehearsal.v1";
 const DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_SCHEMA_VERSION = "fff.downstreamTargetAuthorizationPacket.v1";
+const PROFILE_ADOPTION_MUTATION_ONE_CLAIM_SCHEMA_VERSION = "fff.profileAdoptionMutationOneClaim.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
@@ -54,6 +55,7 @@ const DEFAULT_PRODUCTION_ADOPTION_AUTHORIZATION_PACKET_OUTPUT = "artifacts/produ
 const DEFAULT_PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_OUTPUT = "artifacts/production-claim-ledger-adoption-one-claim-result.json";
 const DEFAULT_PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_OUTPUT = "artifacts/production-claim-ledger-rollback-rehearsal-result.json";
 const DEFAULT_DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_OUTPUT = "artifacts/downstream-target-authorization-packet-result.json";
+const DEFAULT_PROFILE_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT = "artifacts/profile-adoption-mutation-one-claim-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
@@ -667,6 +669,25 @@ async function main() {
     }
     if (command === "smoke-downstream-target-authorization-packet" || outputPath) {
       console.log(`downstream target authorization packet passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-profile-adoption-mutation-one-claim" || command === "smoke-profile-adoption-mutation-one-claim") {
+    const authorizationPacket = await readJson(inputPath);
+    const result = await validateProfileAdoptionMutationOneClaim(authorizationPacket, inputPath);
+    const target = outputPath || DEFAULT_PROFILE_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT;
+    if (command === "smoke-profile-adoption-mutation-one-claim" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Profile adoption mutation one-claim failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-profile-adoption-mutation-one-claim" || outputPath) {
+      console.log(`profile adoption mutation one-claim passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -6014,6 +6035,358 @@ async function validateDownstreamTargetAuthorizationPacket(rollbackRehearsal, ro
   };
 }
 
+async function validateProfileAdoptionMutationOneClaim(authorizationPacket, authorizationPacketPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const manifestValidationCommand = String(manifest.validation_command || "");
+  const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
+  const rollbackPath =
+    authorizationPacket.input_readbacks?.production_claim_ledger_rollback_rehearsal_result_path ||
+    DEFAULT_PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_OUTPUT;
+  const adoptionPath =
+    authorizationPacket.input_readbacks?.production_claim_ledger_adoption_one_claim_result_path ||
+    DEFAULT_PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_OUTPUT;
+  const rollbackRehearsal = await readJson(rollbackPath);
+  const adoptionReadback = await readJson(adoptionPath);
+  const currentProjectStatePath = "artifacts/current-project-state.json";
+  const currentProjectStateText = await readFile(currentProjectStatePath, "utf8");
+  const targetClaimId = "multi-claim-moth-key-label";
+  const targetSourceSpanId = "multi-x-object-brass-moth-key";
+  const targetProfileId = "multi-profile-brass-moth-key";
+  const existingProfileReferenceId = "profile-brass-moth";
+  const transition = "claim_ledger_adopted -> profile_adopted_noncanon";
+  const rollbackToken = "rollback-profile-adoption-moth-key-label-to-claim-ledger-only";
+  const profileCandidate = Array.isArray(authorizationPacket.candidate_downstream_target_classes)
+    ? authorizationPacket.candidate_downstream_target_classes.find((targetClass) => targetClass.target_class === "Profile")
+    : null;
+  const adoptionRows = Array.isArray(adoptionReadback.production_claim_ledger_adoption_rows)
+    ? adoptionReadback.production_claim_ledger_adoption_rows
+    : [];
+  const adoptionRow = adoptionRows.find((row) => row.target_claim_id === targetClaimId);
+  const rollbackRows = Array.isArray(rollbackRehearsal.production_claim_ledger_rollback_rehearsal_rows)
+    ? rollbackRehearsal.production_claim_ledger_rollback_rehearsal_rows
+    : [];
+  const rollbackRow = rollbackRows.find((row) => row.target_claim_id === targetClaimId);
+  const sourceSpanLocator =
+    authorizationPacket.target_readback?.source_span_locator ||
+    rollbackRow?.source_span_locator ||
+    adoptionRow?.source_span_locator ||
+    "missing";
+  const existingProfileReferencePresent = currentProjectStateText.includes(`"id": "${existingProfileReferenceId}"`);
+  const targetProfileAlreadyPresent = currentProjectStateText.includes(targetProfileId) || currentProjectStateText.includes("profile_adopted_noncanon");
+  const rollbackDescriptor = {
+    rollback_token: rollbackToken,
+    rollback_scope: "Profile production annotation row only",
+    rollback_to_status: "production_claim_ledger_adopted",
+    rollback_owner: "author approves rollback; implementer removes the Profile annotation row while preserving the Claim Ledger row and source evidence",
+    rollback_requires: [
+      "remove or mark inactive profile-adoption-mutation-row-moth-key-label",
+      "preserve source span id multi-x-object-brass-moth-key",
+      "preserve production Claim Ledger adoption row production-claim-ledger-adoption-row-moth-key-label",
+      "keep Timeline and Story Seed mutation counts at zero",
+      "keep canon status false unless a separate explicit canon decision exists",
+      "keep provider/API/credential/publishing/production generation routes closed"
+    ]
+  };
+  const evidenceRequiredBeforeFutureTargets = [
+    "explicit user approval for any Timeline mutation",
+    "explicit user approval for any Story Seed mutation",
+    "explicit user canon decision before canon=true",
+    "confirm brass moth truth, Toma fate, Council motive, and moth-key function handling",
+    "record before/after readback and rollback descriptor for each future target before mutation",
+    "keep provider/API/credential/publishing/production generation routes closed unless separately authorized"
+  ];
+  const profileAdoptionMutationRows = adoptionRow && rollbackRow
+    ? [
+        {
+          profile_adoption_mutation_row_id: "profile-adoption-mutation-row-moth-key-label",
+          target_claim_id: targetClaimId,
+          source_span_id: targetSourceSpanId,
+          source_span_locator: sourceSpanLocator,
+          production_target_class: "Profile",
+          target_profile_id: targetProfileId,
+          existing_profile_reference_id: existingProfileReferenceId,
+          prior_claim_ledger_status: "production_claim_ledger_adopted",
+          transition,
+          before_profile_adoption_status: "not_profile_adopted",
+          after_profile_adoption_status: "profile_adopted_noncanon",
+          mutation_behavior: "Add one non-canon Profile annotation linking the retained Claim Ledger row to the brass moth key profile surface while preserving unresolved truth.",
+          profile_fact_candidate: {
+            fact_candidate_id: "profile-fact-moth-key-label",
+            label: "brass moth key label",
+            value: "The brass moth key has a source-backed label from the multilingual memo.",
+            source_claim_id: targetClaimId,
+            source_span_id: targetSourceSpanId,
+            source_span_locator: sourceSpanLocator,
+            status: "profile_adopted_noncanon",
+            canon_status: false,
+            unresolved_dependencies_preserved: adoptionRow.unresolved_dependencies_preserved || ["brass moth truth", "Toma fate"]
+          },
+          production_profile_mutation_performed: true,
+          production_profile_mutation_count: 1,
+          claim_ledger_additional_adoption_count: 0,
+          timeline_mutation_count: 0,
+          story_seed_mutation_count: 0,
+          canon_status: false,
+          provider_configured: false,
+          external_call_attempted: false,
+          credentials_touched: false,
+          publishing_opened: false,
+          production_generation_opened: false,
+          rollback_descriptor: rollbackDescriptor,
+          unresolved_dependencies_preserved: adoptionRow.unresolved_dependencies_preserved || ["brass moth truth", "Toma fate"],
+          evidence_required_before_future_timeline_story_seed_or_canon_adoption: evidenceRequiredBeforeFutureTargets
+        }
+      ]
+    : [];
+  const row = profileAdoptionMutationRows[0];
+  const inputBoundaryOpen =
+    authorizationPacket.summary?.downstream_mutations_performed !== 0 ||
+    authorizationPacket.summary?.profile_mutation_count !== 0 ||
+    authorizationPacket.summary?.timeline_mutation_count !== 0 ||
+    authorizationPacket.summary?.story_seed_mutation_count !== 0 ||
+    authorizationPacket.summary?.canonized_claims !== 0 ||
+    authorizationPacket.summary?.provider_configured !== false ||
+    authorizationPacket.summary?.external_call_attempted !== false ||
+    authorizationPacket.summary?.credentials_touched !== false ||
+    authorizationPacket.summary?.publishing_opened !== false ||
+    authorizationPacket.summary?.production_generation_opened !== false ||
+    rollbackRehearsal.summary?.actual_rollback_operations !== 0 ||
+    rollbackRehearsal.summary?.production_claim_ledger_rows_removed !== 0 ||
+    rollbackRehearsal.summary?.profile_mutation_count !== 0 ||
+    rollbackRehearsal.summary?.timeline_mutation_count !== 0 ||
+    rollbackRehearsal.summary?.story_seed_mutation_count !== 0 ||
+    rollbackRehearsal.summary?.canonized_claims !== 0 ||
+    adoptionReadback.summary?.non_claim_ledger_production_mutations_performed !== 0 ||
+    adoptionReadback.summary?.profile_mutation_count !== 0 ||
+    adoptionReadback.summary?.timeline_mutation_count !== 0 ||
+    adoptionReadback.summary?.story_seed_mutation_count !== 0 ||
+    adoptionReadback.summary?.canonized_claims !== 0;
+
+  check(
+    "authorization_packet_loaded_and_passed",
+    authorizationPacket.artifact_id === "fff-downstream-target-authorization-packet-001" &&
+      authorizationPacket.schemaVersion === DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_SCHEMA_VERSION &&
+      authorizationPacket.passed === true,
+    `packet=${authorizationPacket.artifact_id}/${authorizationPacket.passed}; schema=${authorizationPacket.schemaVersion}`
+  );
+  check(
+    "profile_target_authorized_by_user_prompt",
+    profileCandidate?.target_class === "Profile" &&
+      profileCandidate?.recommended_next_target === true &&
+      Array.isArray(profileCandidate?.target_ids) &&
+      profileCandidate.target_ids.includes(targetProfileId) &&
+      authorizationPacket.recommended_next_downstream_target_class === "Profile",
+    `recommended=${authorizationPacket.recommended_next_downstream_target_class}; targetIds=${profileCandidate?.target_ids?.join(", ") || "missing"}`
+  );
+  check(
+    "target_claim_eligible_for_profile_adoption",
+    authorizationPacket.target_readback?.target_claim_id === targetClaimId &&
+      authorizationPacket.target_readback?.source_span_id === targetSourceSpanId &&
+      authorizationPacket.target_readback?.current_status === "production_claim_ledger_adopted" &&
+      authorizationPacket.target_readback?.current_production_claim_ledger_adopted === true &&
+      authorizationPacket.target_readback?.rollback_descriptor_status === "verified" &&
+      authorizationPacket.target_readback?.claim_ledger_row_retained === true &&
+      authorizationPacket.target_readback?.canon_status === false,
+    `target=${authorizationPacket.target_readback?.target_claim_id || "missing"}; status=${authorizationPacket.target_readback?.current_status || "missing"}; retained=${authorizationPacket.target_readback?.claim_ledger_row_retained ?? "missing"}; canon=${authorizationPacket.target_readback?.canon_status ?? "missing"}`
+  );
+  check(
+    "claim_ledger_evidence_loaded_and_consistent",
+    adoptionReadback.artifact_id === "fff-production-claim-ledger-adoption-one-claim-001" &&
+      adoptionReadback.schemaVersion === PRODUCTION_CLAIM_LEDGER_ADOPTION_ONE_CLAIM_SCHEMA_VERSION &&
+      adoptionReadback.passed === true &&
+      adoptionRow?.after_claim_ledger_status === "production_claim_ledger_adopted" &&
+      rollbackRehearsal.artifact_id === "fff-production-claim-ledger-rollback-rehearsal-001" &&
+      rollbackRehearsal.schemaVersion === PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_SCHEMA_VERSION &&
+      rollbackRehearsal.passed === true &&
+      rollbackRow?.production_claim_ledger_row_retained === true,
+    `adoption=${adoptionReadback.artifact_id}/${adoptionReadback.passed}; rollback=${rollbackRehearsal.artifact_id}/${rollbackRehearsal.passed}; row=${adoptionRow?.target_claim_id || "missing"}`
+  );
+  check(
+    "profile_not_already_adopted",
+    existingProfileReferencePresent === true &&
+      targetProfileAlreadyPresent === false,
+    `existingProfile=${existingProfileReferencePresent}; targetAlreadyPresent=${targetProfileAlreadyPresent}`
+  );
+  check(
+    "exactly_one_profile_mutation_row_created",
+    profileAdoptionMutationRows.length === 1 &&
+      row?.target_claim_id === targetClaimId &&
+      row?.production_target_class === "Profile" &&
+      row?.target_profile_id === targetProfileId &&
+      row?.transition === transition &&
+      row?.after_profile_adoption_status === "profile_adopted_noncanon" &&
+      row?.production_profile_mutation_performed === true &&
+      row?.production_profile_mutation_count === 1,
+    `rows=${profileAdoptionMutationRows.length}; target=${row?.target_claim_id || "missing"}; status=${row?.after_profile_adoption_status || "missing"}; count=${row?.production_profile_mutation_count ?? "missing"}`
+  );
+  check(
+    "non_profile_boundaries_remain_zero",
+    inputBoundaryOpen === false &&
+      profileAdoptionMutationRows.every((profileRow) =>
+        profileRow.claim_ledger_additional_adoption_count === 0 &&
+        profileRow.timeline_mutation_count === 0 &&
+        profileRow.story_seed_mutation_count === 0 &&
+        profileRow.canon_status === false
+      ),
+    `inputBoundaryOpen=${inputBoundaryOpen}; claimLedgerAdditional=${row?.claim_ledger_additional_adoption_count ?? "missing"}; timeline=${row?.timeline_mutation_count ?? "missing"}; storySeed=${row?.story_seed_mutation_count ?? "missing"}; canon=${row?.canon_status ?? "missing"}`
+  );
+  check(
+    "provider_publishing_boundaries_closed",
+    profileAdoptionMutationRows.every((profileRow) =>
+      profileRow.provider_configured === false &&
+      profileRow.external_call_attempted === false &&
+      profileRow.credentials_touched === false &&
+      profileRow.publishing_opened === false &&
+      profileRow.production_generation_opened === false
+    ) &&
+      authorizationPacket.summary?.provider_configured === false &&
+      authorizationPacket.summary?.external_call_attempted === false &&
+      authorizationPacket.summary?.credentials_touched === false,
+    `provider=${row?.provider_configured ?? "missing"}; external=${row?.external_call_attempted ?? "missing"}; credentials=${row?.credentials_touched ?? "missing"}; publishing=${row?.publishing_opened ?? "missing"}`
+  );
+  check(
+    "rollback_descriptor_recorded",
+    row?.rollback_descriptor?.rollback_token === rollbackToken &&
+      row?.rollback_descriptor?.rollback_scope === "Profile production annotation row only" &&
+      row?.rollback_descriptor?.rollback_to_status === "production_claim_ledger_adopted" &&
+      row?.rollback_descriptor?.rollback_owner?.includes("author approves rollback") &&
+      row?.rollback_descriptor?.rollback_requires.length >= 5,
+    `rollback=${row?.rollback_descriptor?.rollback_token || "missing"}; scope=${row?.rollback_descriptor?.rollback_scope || "missing"}; to=${row?.rollback_descriptor?.rollback_to_status || "missing"}`
+  );
+  check(
+    "future_target_evidence_requirements_recorded",
+    evidenceRequiredBeforeFutureTargets.length >= 5 &&
+      row?.evidence_required_before_future_timeline_story_seed_or_canon_adoption.length === evidenceRequiredBeforeFutureTargets.length,
+    `requirements=${row?.evidence_required_before_future_timeline_story_seed_or_canon_adoption?.length ?? "missing"}`
+  );
+  check(
+    "manifest_and_review_memory_registered",
+    manifestValidationCommand.includes("smoke-profile-adoption-mutation-one-claim") &&
+      manifest.preserves?.includes("fff-profile-adoption-mutation-one-claim-001") &&
+      reviewMemory.some((entry) => entry.artifact_id === "fff-profile-adoption-mutation-one-claim-001"),
+    `includesSmoke=${manifestValidationCommand.includes("smoke-profile-adoption-mutation-one-claim")}; preserves=${manifest.preserves?.includes("fff-profile-adoption-mutation-one-claim-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-profile-adoption-mutation-one-claim-001")}`
+  );
+
+  return {
+    schemaVersion: PROFILE_ADOPTION_MUTATION_ONE_CLAIM_SCHEMA_VERSION,
+    artifact_id: "fff-profile-adoption-mutation-one-claim-001",
+    title: "Fast Fiction Factory Profile Adoption Mutation One Claim",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    preserved_active_artifact_id: manifest.artifact_id,
+    input_readbacks: {
+      downstream_target_authorization_packet_result_path: toRepoPath(authorizationPacketPath),
+      production_claim_ledger_rollback_rehearsal_result_path: toRepoPath(rollbackPath),
+      production_claim_ledger_adoption_one_claim_result_path: toRepoPath(adoptionPath),
+      current_project_state_path: currentProjectStatePath
+    },
+    user_authorization_readback: {
+      authorized_path: "A",
+      authorization_source: "user freeform authorization relayed by supervisor prompt",
+      target_claim_id: targetClaimId,
+      production_target_class: "Profile",
+      mutation_scope: "exactly_one_claim_derived_profile_annotation",
+      profile_mutation_authorized: true,
+      timeline_mutation_authorized: false,
+      story_seed_mutation_authorized: false,
+      claim_ledger_additional_adoption_authorized: false,
+      canon_authorized: false,
+      provider_api_credential_authorized: false,
+      publishing_public_output_authorized: false,
+      before_after_readback_required: true,
+      rollback_descriptor_required: true
+    },
+    authorized_profile_mutation_boundary: {
+      target_claim_id: targetClaimId,
+      source_span_id: targetSourceSpanId,
+      target_profile_id: targetProfileId,
+      existing_profile_reference_id: existingProfileReferenceId,
+      production_target_class: "Profile",
+      expected_prior_claim_ledger_status: "production_claim_ledger_adopted",
+      transition,
+      allowed_profile_mutation_rows: 1,
+      allowed_claim_ledger_additional_adoptions: 0,
+      timeline_mutation_allowed: false,
+      story_seed_mutation_allowed: false,
+      canon_allowed: false,
+      provider_api_credential_allowed: false,
+      publishing_or_production_generation_allowed: false,
+      additional_claims_allowed: false
+    },
+    before_after_readback: {
+      before: {
+        target_claim_id: targetClaimId,
+        source_span_id: targetSourceSpanId,
+        source_span_locator: sourceSpanLocator,
+        claim_ledger_status: "production_claim_ledger_adopted",
+        profile_adoption_status: "not_profile_adopted",
+        profile_mutation_count: 0,
+        timeline_mutation_count: 0,
+        story_seed_mutation_count: 0,
+        canon_status: false
+      },
+      after: {
+        target_claim_id: targetClaimId,
+        source_span_id: targetSourceSpanId,
+        source_span_locator: sourceSpanLocator,
+        claim_ledger_status: "production_claim_ledger_adopted",
+        profile_adoption_status: "profile_adopted_noncanon",
+        profile_mutation_count: 1,
+        timeline_mutation_count: 0,
+        story_seed_mutation_count: 0,
+        claim_ledger_additional_adoption_count: 0,
+        canon_status: false
+      }
+    },
+    profile_adoption_mutation_rows: profileAdoptionMutationRows,
+    rollback_readback: rollbackDescriptor,
+    evidence_required_before_future_timeline_story_seed_or_canon_adoption: evidenceRequiredBeforeFutureTargets,
+    summary: {
+      candidates_inspected: 1,
+      claim_ledger_adopted_rows_inspected: adoptionRow ? 1 : 0,
+      profile_mutation_rows: profileAdoptionMutationRows.length,
+      profile_adopted_noncanon_claims: profileAdoptionMutationRows.filter((profileRow) => profileRow.after_profile_adoption_status === "profile_adopted_noncanon").length,
+      profile_mutation_count: profileAdoptionMutationRows.reduce((sum, profileRow) => sum + profileRow.production_profile_mutation_count, 0),
+      claim_ledger_additional_adoption_count: 0,
+      timeline_mutation_count: 0,
+      story_seed_mutation_count: 0,
+      canonized_claims: 0,
+      provider_configured: false,
+      external_call_attempted: false,
+      credentials_touched: false,
+      publishing_opened: false,
+      production_generation_opened: false,
+      rollback_descriptors_present: row?.rollback_descriptor?.rollback_token === rollbackToken ? 1 : 0,
+      failures: failures.length
+    },
+    what_this_profile_adoption_proves: [
+      "Exactly one retained Claim Ledger row is linked into a Profile-scoped non-canon adoption readback.",
+      "The transition is limited to claim_ledger_adopted -> profile_adopted_noncanon for multi-claim-moth-key-label.",
+      "The Profile annotation has a rollback descriptor and before/after readback.",
+      "Timeline, Story Seed, canon, provider, credential, publishing, and production generation boundaries remain closed."
+    ],
+    what_this_profile_adoption_does_not_prove: [
+      "It does not canonize the claim or resolve brass moth truth, Toma fate, Council motive, moth-key function, or contradictory claim truth.",
+      "It does not mutate Timeline, Story Seed, database, provider output, credentials, publishing, or public production surfaces.",
+      "It does not authorize adoption of any additional claim.",
+      "It does not authorize actual rollback of the production Claim Ledger row."
+    ],
+    profile_adoption_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateVeryBroadSourceSpanShapeAudit(smoke, smokePath) {
   const failures = [];
   const checks = {};
@@ -8258,6 +8631,8 @@ Usage:
   node tools/fff-state.mjs smoke-production-claim-ledger-rollback-rehearsal <production-claim-ledger-adoption-one-claim-result.json> [output.json]
   node tools/fff-state.mjs validate-downstream-target-authorization-packet <production-claim-ledger-rollback-rehearsal-result.json>
   node tools/fff-state.mjs smoke-downstream-target-authorization-packet <production-claim-ledger-rollback-rehearsal-result.json> [output.json]
+  node tools/fff-state.mjs validate-profile-adoption-mutation-one-claim <downstream-target-authorization-packet-result.json>
+  node tools/fff-state.mjs smoke-profile-adoption-mutation-one-claim <downstream-target-authorization-packet-result.json> [output.json]
   node tools/fff-state.mjs validate-very-broad-source-span-shape-audit <adapter-matrix-smoke.json>
   node tools/fff-state.mjs smoke-very-broad-source-span-shape-audit <adapter-matrix-smoke.json> [output.json]
   node tools/fff-state.mjs validate-malformed-missing-span-guard <extraction-validator-smoke.json>

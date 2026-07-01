@@ -2,7 +2,7 @@
   "schemaVersion": "fff.downstreamTargetAuthorizationPacket.v1",
   "artifact_id": "fff-downstream-target-authorization-packet-001",
   "title": "Fast Fiction Factory Downstream Target Authorization Packet",
-  "generatedAt": "2026-07-01T13:53:20.434Z",
+  "generatedAt": "2026-07-01T14:18:21.365Z",
   "review_status": "ready_for_user_authorization",
   "review_input_mode": "freeform",
   "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",

@@ -3,7 +3,7 @@
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
 Latest handoff refresh: 2026-07-01 JST. This refresh started from synced head
-`44bf5b5` (`44bf5b5 Refresh handoff after rollback rehearsal`):
+`5598c39` (`5598c39 Add downstream target authorization packet`):
 `git fetch origin`, `git status --short --branch --untracked-files=all`, and
 `git rev-list --left-right --count HEAD...origin/master` reported a clean
 `master` with `0 0` before this implementation refresh. At refresh time, the
@@ -26,7 +26,8 @@ was removed from this repo, and
 `fff-production-adoption-authorization-packet-001`,
 `fff-production-claim-ledger-adoption-one-claim-001`,
 `fff-production-claim-ledger-rollback-rehearsal-001`,
-`fff-downstream-target-authorization-packet-001`, and
+`fff-downstream-target-authorization-packet-001`,
+`fff-profile-adoption-mutation-one-claim-001`, and
 `fff-very-broad-source-span-shape-audit-001` are preserved auxiliary readbacks.
 Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
 
@@ -46,7 +47,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected after this handoff is published: `master` is clean and synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this implementation refresh was `44bf5b5`.
+Expected after this handoff is published: `master` is clean and synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this implementation refresh was `5598c39`.
 
 3. Read these files in this order:
 
@@ -98,6 +99,8 @@ docs/review/production-claim-ledger-rollback-rehearsal.md
 artifacts/production-claim-ledger-rollback-rehearsal-result.json
 docs/review/downstream-target-authorization-packet.md
 artifacts/downstream-target-authorization-packet-result.json
+docs/review/profile-adoption-mutation-one-claim.md
+artifacts/profile-adoption-mutation-one-claim-result.json
 docs/review/very-broad-source-span-shape-audit.md
 artifacts/very-broad-source-span-shape-audit-result.json
 docs/review/malformed-missing-span-guard.md
@@ -164,6 +167,7 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - Production Claim Ledger adoption one-claim doc/result: `docs/review/production-claim-ledger-adoption-one-claim.md`, `artifacts/production-claim-ledger-adoption-one-claim-result.json`
 - Production Claim Ledger rollback rehearsal doc/result: `docs/review/production-claim-ledger-rollback-rehearsal.md`, `artifacts/production-claim-ledger-rollback-rehearsal-result.json`
 - Downstream target authorization packet doc/result: `docs/review/downstream-target-authorization-packet.md`, `artifacts/downstream-target-authorization-packet-result.json`
+- Profile adoption mutation one-claim doc/result: `docs/review/profile-adoption-mutation-one-claim.md`, `artifacts/profile-adoption-mutation-one-claim-result.json`
 - Very broad source-span shape audit doc/result: `docs/review/very-broad-source-span-shape-audit.md`, `artifacts/very-broad-source-span-shape-audit-result.json`
 - Malformed/missing source-span guard doc/result/fixture: `docs/review/malformed-missing-span-guard.md`, `artifacts/malformed-missing-span-guard-result.json`, `artifacts/extraction-negative-fixtures/malformed-missing-source-span.json`
 - Validator fixtures and smoke: `artifacts/extraction-negative-fixtures/`, `artifacts/extraction-validator-smoke-result.json`
@@ -204,18 +208,19 @@ The current artifact adds a deterministic guard for contradictory claim candidat
 - `fff-production-claim-ledger-adoption-one-claim-001` records the user-authorized production Claim Ledger adoption for exactly `multi-claim-moth-key-label`. It inspects 1 rollback-rehearsed candidate, records 1 Claim Ledger adoption row, moves `adoption_candidate_dry_run -> production_claim_ledger_adopted`, records rollback token `rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run`, keeps Profile / Timeline / Story Seed mutation counts=0, canonized claims=0, provider configured=false, external call=false, credentials=false, publishing=false, and production generation=false.
 - `fff-production-claim-ledger-rollback-rehearsal-001` records a readback-only rollback rehearsal for that existing production Claim Ledger row. It inspects 1 adopted Claim Ledger row, verifies rollback token `rollback-production-claim-ledger-adoption-moth-key-label-to-adoption-candidate-dry-run`, records rollback target status `adoption_candidate_dry_run`, keeps actual rollback operations=0, production Claim Ledger rows removed=0, production Claim Ledger rows retained=1, Profile / Timeline / Story Seed mutation counts=0, canonized claims=0, provider configured=false, external call=false, credentials=false, publishing=false, and production generation=false.
 - `fff-downstream-target-authorization-packet-001` prepares the next downstream target authorization packet for that retained production Claim Ledger row. It confirms target status `production_claim_ledger_adopted`, rollback descriptor status `verified`, production Claim Ledger row retained=true, proposes Profile / Timeline / Story Seed / Canon decision target classes, recommends Profile as the only next target, keeps user authorization required=true, keeps downstream mutations=0, Profile / Timeline / Story Seed mutation counts=0, canonized claims=0, provider configured=false, external call=false, credentials=false, publishing=false, and production generation=false.
+- `fff-profile-adoption-mutation-one-claim-001` records the user-authorized Profile-only production mutation for exactly that retained Claim Ledger row. It adds 1 non-canon Profile annotation row for `multi-profile-brass-moth-key`, records `claim_ledger_adopted -> profile_adopted_noncanon`, records rollback token `rollback-profile-adoption-moth-key-label-to-claim-ledger-only`, keeps Claim Ledger additional adoption count=0, Timeline / Story Seed mutation counts=0, canonized claims=0, provider configured=false, external call=false, credentials=false, publishing=false, and production generation=false.
 - `fff-very-broad-source-span-shape-audit-001` audits the broad fixture candidate without adding another fixture. It confirms the current 2 broad rows are already resolved by the broad-span split/keep readback, leaves broad fixture work deferred until source output changes or coverage is the bottleneck, and preserves 0 source-span mismatches, 0 missing refs, 0 unsafe routes, 0 non-held defaults, 0 downstream adopted candidates, no provider configured, no external call, and no credentials touched.
-- No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, production downstream mutation, provider route, production rollback, or final canon decision was added. The only adoption mutation is the sandbox fixture row recorded by `fff-sandbox-adoption-mutation-one-claim-001`; the production Claim Ledger row is the only production adoption readback; the downstream target authorization packet is approval preparation only.
+- No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, Timeline mutation, Story Seed mutation, provider route, production rollback, additional-claim adoption, or final canon decision was added. The production adoption readbacks now consist of one Claim Ledger row and one Profile-only non-canon annotation for `multi-claim-moth-key-label`.
 
 ## Validation Readback
 
-The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`, `fff-provider-adapter-authorization-readiness-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-translated-memo-fixture-audit-001`, `fff-translation-provenance-source-span-readback-001`, `fff-translation-policy-source-of-truth-boundary-001`, `fff-translated-memo-fixture-minimum-001`, `fff-held-claim-adoption-preflight-001`, `fff-downstream-adoption-semantics-design-001`, `fff-adoption-candidate-ledger-dry-run-001`, `fff-sandbox-adoption-mutation-one-claim-001`, `fff-sandbox-adoption-rollback-rehearsal-001`, `fff-production-adoption-authorization-packet-001`, `fff-production-claim-ledger-adoption-one-claim-001`, `fff-production-claim-ledger-rollback-rehearsal-001`, `fff-downstream-target-authorization-packet-001`, and `fff-very-broad-source-span-shape-audit-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, multilingual-fixture, translated/multilingual audit, translation provenance/source-span readback, translation policy boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, very-broad-shape audit, malformed/missing-span, contradictory-claim, downstream gate, provider-envelope, and provider-authorization smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
+The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`, `fff-provider-adapter-authorization-readiness-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-translated-memo-fixture-audit-001`, `fff-translation-provenance-source-span-readback-001`, `fff-translation-policy-source-of-truth-boundary-001`, `fff-translated-memo-fixture-minimum-001`, `fff-held-claim-adoption-preflight-001`, `fff-downstream-adoption-semantics-design-001`, `fff-adoption-candidate-ledger-dry-run-001`, `fff-sandbox-adoption-mutation-one-claim-001`, `fff-sandbox-adoption-rollback-rehearsal-001`, `fff-production-adoption-authorization-packet-001`, `fff-production-claim-ledger-adoption-one-claim-001`, `fff-production-claim-ledger-rollback-rehearsal-001`, `fff-downstream-target-authorization-packet-001`, `fff-profile-adoption-mutation-one-claim-001`, and `fff-very-broad-source-span-shape-audit-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, multilingual-fixture, translated/multilingual audit, translation provenance/source-span readback, translation policy boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, Profile adoption mutation one-claim, very-broad-shape audit, malformed/missing-span, contradictory-claim, downstream gate, provider-envelope, and provider-authorization smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
 
 Additional checks passed during this handoff refresh:
 
 - `git fetch origin`
 - `git status --short --branch --untracked-files=all`
-- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on synced baseline `44bf5b5`.
+- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on synced baseline `5598c39`.
 - `node --check tools/fff-state.mjs`
 - `node --check tools/fff-extract-local.mjs`
 - `node --check tools/fff-source-span-review-pack.mjs`
@@ -232,6 +237,7 @@ Additional checks passed during this handoff refresh:
 - `node tools/fff-state.mjs smoke-production-claim-ledger-adoption-one-claim artifacts/production-adoption-authorization-packet-result.json artifacts/production-claim-ledger-adoption-one-claim-result.json`
 - `node tools/fff-state.mjs smoke-production-claim-ledger-rollback-rehearsal artifacts/production-claim-ledger-adoption-one-claim-result.json artifacts/production-claim-ledger-rollback-rehearsal-result.json`
 - `node tools/fff-state.mjs smoke-downstream-target-authorization-packet artifacts/production-claim-ledger-rollback-rehearsal-result.json artifacts/downstream-target-authorization-packet-result.json`
+- `node tools/fff-state.mjs smoke-profile-adoption-mutation-one-claim artifacts/downstream-target-authorization-packet-result.json artifacts/profile-adoption-mutation-one-claim-result.json`
 - HTML inline script syntax check for `public/review/index.html`
 - `uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"`
 - `git diff --check`
@@ -242,7 +248,7 @@ Additional checks passed during this handoff refresh:
 
 ## Preserved Boundaries
 
-Do not add model/API extraction behavior, provider credentials, database persistence, publishing, production sync, upload credentials, AI video generation, additional downstream mutation, actual production rollback, or final canon decisions unless the user explicitly asks for that scope. The only current production adoption is the Claim Ledger row for `multi-claim-moth-key-label`; the rollback rehearsal is non-destructive and leaves that row retained; the downstream target authorization packet is a user-choice surface only.
+Do not add model/API extraction behavior, provider credentials, database persistence, publishing, production sync, upload credentials, AI video generation, Timeline mutation, Story Seed mutation, additional Claim Ledger adoption, actual production rollback, or final canon decisions unless the user explicitly asks for that scope. The current production adoption readbacks for `multi-claim-moth-key-label` are the Claim Ledger row and one Profile-only non-canon annotation; the Claim Ledger rollback rehearsal is non-destructive and leaves that row retained.
 
 These remain human-owned unresolved decisions:
 
@@ -267,7 +273,7 @@ No general Review Hub review is needed for the current state. Future review shou
 | --- | --- | --- |
 | Advance: provider adapter authorization | Uses the authorization readiness Decision Packet only after provider choice, credentials, endpoint, transport scope, external call permission, timeout, and retry policy are explicitly approved | A real adapter can be implemented without silently crossing the boundary |
 | Verify: contradictory claim guard | Re-runs the held-conflict fixture and result after adapter edits | Future Claim Ledger acceptance paths can fail before they auto-promote conflicts |
-| Advance: post-Claim-Ledger adoption target | Uses the downstream target authorization packet while keeping Profile / Timeline / Story Seed / Canon decision closed | A future implementation can target Profile first, or Timeline / Story Seed / Canon decision later, only after separate explicit authorization |
+| Advance: post-Profile adoption target | Uses the completed Profile adoption readback while keeping Timeline / Story Seed / Canon decision closed | A future implementation can target Timeline, Story Seed, Canon decision, or actual rollback only after separate explicit authorization |
 | Verify: production Claim Ledger rollback rehearsal | Re-runs the retained-row rollback descriptor readback without mutation | A later actual rollback decision can start from known rollback evidence without implying row removal |
 | Verify: sandbox rollback rehearsal | Re-runs the sandbox rollback token and transition readback before production adoption work | Future adoption work can start from a known reversible fixture row without implying production rollback |
 | Verify: Claim Ledger adoption readback | Re-runs the one-claim production Claim Ledger row, before/after state, and rollback descriptor | Future work can distinguish the completed Claim Ledger adoption from still-blocked canon or non-Claim-Ledger targets |
@@ -281,7 +287,7 @@ No general Review Hub review is needed for the current state. Future review shou
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
 | Contradictory claim handling | Prevent conflicting claims from entering canon automatically | Guarded by a valid fixture and smoke result; truth choice remains human-owned | Keep the guard required for any future Claim Ledger acceptance path |
-| Downstream adoption readiness | Ensure Profile / Claim / Timeline / Story Seed / Canon decision choices stay source-tracked and unauthorized until selected | Readback gate passes with 0 adopted Profile / Timeline candidates; held claim preflight, semantics design, ledger dry-run, sandbox rollback, production authorization, Claim Ledger adoption, Claim Ledger rollback rehearsal, and downstream target authorization now prove exactly 1 retained Claim Ledger production adoption row with rollback descriptor, Profile recommended as the next target class, and 0 actual rollback/canon/Profile/Timeline/Story Seed/provider effects | Keep further adoption, actual rollback, canon, provider/API, and additional-claim work blocked until explicitly requested |
+| Downstream adoption readiness | Ensure Claim Ledger / Profile / Timeline / Story Seed / Canon decision choices stay source-tracked and unauthorized until selected | Readback gate passes with 0 adopted Profile / Timeline candidates; held claim preflight, semantics design, ledger dry-run, sandbox rollback, production authorization, Claim Ledger adoption, Claim Ledger rollback rehearsal, downstream target authorization, and Profile adoption now prove exactly 1 retained Claim Ledger production adoption row plus 1 Profile-only non-canon annotation with rollback descriptors and 0 actual rollback/canon/Timeline/Story Seed/provider effects | Keep further adoption, actual rollback, canon, provider/API, and additional-claim work blocked until explicitly requested |
 | Provider envelope and authorization readiness | Fix future provider output shape and approval boundary before transport exists | No-call readback passes, and authorization readiness lists 6 blocked items plus 3 options; no provider, endpoint, credential, project-state mutation, or adopted canon output exists | Use as required preconditions, not as provider integration |
 | Route lock / project hygiene | Keep Fast Fiction Factory separate from ClipPipeGen prompt residue | `fff-route-lock-clean-state-readback-001` records cleanup of untracked ClipPipeGen files and no tracked contamination | Start new terminals from this handoff and keep future `clip-ed10` / `ED-10` work out of this repo |
 | Fixture coverage | Cover unrepresented memo shapes | 9 validator fixtures and 5 adapter fixture outputs now pass; multilingual memo text is covered; translated memo text now has a two-row minimum fixture plus provenance, source-of-truth policy, and held-claim preflight; very broad source-span shape is audited and deferred because current broad rows are already resolved | Add more translated rows or another fixture class only when it has concrete decision value and preserves the relevant boundary |

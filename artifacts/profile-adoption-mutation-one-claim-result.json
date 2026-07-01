@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "fff.profileAdoptionMutationOneClaim.v1",
+  "artifact_id": "fff-profile-adoption-mutation-one-claim-001",
+  "title": "Fast Fiction Factory Profile Adoption Mutation One Claim",
+  "generatedAt": "2026-07-01T14:18:21.464Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "input_readbacks": {
+    "downstream_target_authorization_packet_result_path": "artifacts/downstream-target-authorization-packet-result.json",
+    "production_claim_ledger_rollback_rehearsal_result_path": "artifacts/production-claim-ledger-rollback-rehearsal-result.json",
+    "production_claim_ledger_adoption_one_claim_result_path": "artifacts/production-claim-ledger-adoption-one-claim-result.json",
+    "current_project_state_path": "artifacts/current-project-state.json"
+  },
+  "user_authorization_readback": {
+    "authorized_path": "A",
+    "authorization_source": "user freeform authorization relayed by supervisor prompt",
+    "target_claim_id": "multi-claim-moth-key-label",
+    "production_target_class": "Profile",
+    "mutation_scope": "exactly_one_claim_derived_profile_annotation",
+    "profile_mutation_authorized": true,
+    "timeline_mutation_authorized": false,
+    "story_seed_mutation_authorized": false,
+    "claim_ledger_additional_adoption_authorized": false,
+    "canon_authorized": false,
+    "provider_api_credential_authorized": false,
+    "publishing_public_output_authorized": false,
+    "before_after_readback_required": true,
+    "rollback_descriptor_required": true
+  },
+  "authorized_profile_mutation_boundary": {
+    "target_claim_id": "multi-claim-moth-key-label",
+    "source_span_id": "multi-x-object-brass-moth-key",
+    "target_profile_id": "multi-profile-brass-moth-key",
+    "existing_profile_reference_id": "profile-brass-moth",
+    "production_target_class": "Profile",
+    "expected_prior_claim_ledger_status": "production_claim_ledger_adopted",
+    "transition": "claim_ledger_adopted -> profile_adopted_noncanon",
+    "allowed_profile_mutation_rows": 1,
+    "allowed_claim_ledger_additional_adoptions": 0,
+    "timeline_mutation_allowed": false,
+    "story_seed_mutation_allowed": false,
+    "canon_allowed": false,
+    "provider_api_credential_allowed": false,
+    "publishing_or_production_generation_allowed": false,
+    "additional_claims_allowed": false
+  },
+  "before_after_readback": {
+    "before": {
+      "target_claim_id": "multi-claim-moth-key-label",
+      "source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "claim_ledger_status": "production_claim_ledger_adopted",
+      "profile_adoption_status": "not_profile_adopted",
+      "profile_mutation_count": 0,
+      "timeline_mutation_count": 0,
+      "story_seed_mutation_count": 0,
+      "canon_status": false
+    },
+    "after": {
+      "target_claim_id": "multi-claim-moth-key-label",
+      "source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "claim_ledger_status": "production_claim_ledger_adopted",
+      "profile_adoption_status": "profile_adopted_noncanon",
+      "profile_mutation_count": 1,
+      "timeline_mutation_count": 0,
+      "story_seed_mutation_count": 0,
+      "claim_ledger_additional_adoption_count": 0,
+      "canon_status": false
+    }
+  },
+  "profile_adoption_mutation_rows": [
+    {
+      "profile_adoption_mutation_row_id": "profile-adoption-mutation-row-moth-key-label",
+      "target_claim_id": "multi-claim-moth-key-label",
+      "source_span_id": "multi-x-object-brass-moth-key",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "production_target_class": "Profile",
+      "target_profile_id": "multi-profile-brass-moth-key",
+      "existing_profile_reference_id": "profile-brass-moth",
+      "prior_claim_ledger_status": "production_claim_ledger_adopted",
+      "transition": "claim_ledger_adopted -> profile_adopted_noncanon",
+      "before_profile_adoption_status": "not_profile_adopted",
+      "after_profile_adoption_status": "profile_adopted_noncanon",
+      "mutation_behavior": "Add one non-canon Profile annotation linking the retained Claim Ledger row to the brass moth key profile surface while preserving unresolved truth.",
+      "profile_fact_candidate": {
+        "fact_candidate_id": "profile-fact-moth-key-label",
+        "label": "brass moth key label",
+        "value": "The brass moth key has a source-backed label from the multilingual memo.",
+        "source_claim_id": "multi-claim-moth-key-label",
+        "source_span_id": "multi-x-object-brass-moth-key",
+        "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+        "status": "profile_adopted_noncanon",
+        "canon_status": false,
+        "unresolved_dependencies_preserved": [
+          "brass moth truth",
+          "Toma fate"
+        ]
+      },
+      "production_profile_mutation_performed": true,
+      "production_profile_mutation_count": 1,
+      "claim_ledger_additional_adoption_count": 0,
+      "timeline_mutation_count": 0,
+      "story_seed_mutation_count": 0,
+      "canon_status": false,
+      "provider_configured": false,
+      "external_call_attempted": false,
+      "credentials_touched": false,
+      "publishing_opened": false,
+      "production_generation_opened": false,
+      "rollback_descriptor": {
+        "rollback_token": "rollback-profile-adoption-moth-key-label-to-claim-ledger-only",
+        "rollback_scope": "Profile production annotation row only",
+        "rollback_to_status": "production_claim_ledger_adopted",
+        "rollback_owner": "author approves rollback; implementer removes the Profile annotation row while preserving the Claim Ledger row and source evidence",
+        "rollback_requires": [
+          "remove or mark inactive profile-adoption-mutation-row-moth-key-label",
+          "preserve source span id multi-x-object-brass-moth-key",
+          "preserve production Claim Ledger adoption row production-claim-ledger-adoption-row-moth-key-label",
+          "keep Timeline and Story Seed mutation counts at zero",
+          "keep canon status false unless a separate explicit canon decision exists",
+          "keep provider/API/credential/publishing/production generation routes closed"
+        ]
+      },
+      "unresolved_dependencies_preserved": [
+        "brass moth truth",
+        "Toma fate"
+      ],
+      "evidence_required_before_future_timeline_story_seed_or_canon_adoption": [
+        "explicit user approval for any Timeline mutation",
+        "explicit user approval for any Story Seed mutation",
+        "explicit user canon decision before canon=true",
+        "confirm brass moth truth, Toma fate, Council motive, and moth-key function handling",
+        "record before/after readback and rollback descriptor for each future target before mutation",
+        "keep provider/API/credential/publishing/production generation routes closed unless separately authorized"
+      ]
+    }
+  ],
+  "rollback_readback": {
+    "rollback_token": "rollback-profile-adoption-moth-key-label-to-claim-ledger-only",
+    "rollback_scope": "Profile production annotation row only",
+    "rollback_to_status": "production_claim_ledger_adopted",
+    "rollback_owner": "author approves rollback; implementer removes the Profile annotation row while preserving the Claim Ledger row and source evidence",
+    "rollback_requires": [
+      "remove or mark inactive profile-adoption-mutation-row-moth-key-label",
+      "preserve source span id multi-x-object-brass-moth-key",
+      "preserve production Claim Ledger adoption row production-claim-ledger-adoption-row-moth-key-label",
+      "keep Timeline and Story Seed mutation counts at zero",
+      "keep canon status false unless a separate explicit canon decision exists",
+      "keep provider/API/credential/publishing/production generation routes closed"
+    ]
+  },
+  "evidence_required_before_future_timeline_story_seed_or_canon_adoption": [
+    "explicit user approval for any Timeline mutation",
+    "explicit user approval for any Story Seed mutation",
+    "explicit user canon decision before canon=true",
+    "confirm brass moth truth, Toma fate, Council motive, and moth-key function handling",
+    "record before/after readback and rollback descriptor for each future target before mutation",
+    "keep provider/API/credential/publishing/production generation routes closed unless separately authorized"
+  ],
+  "summary": {
+    "candidates_inspected": 1,
+    "claim_ledger_adopted_rows_inspected": 1,
+    "profile_mutation_rows": 1,
+    "profile_adopted_noncanon_claims": 1,
+    "profile_mutation_count": 1,
+    "claim_ledger_additional_adoption_count": 0,
+    "timeline_mutation_count": 0,
+    "story_seed_mutation_count": 0,
+    "canonized_claims": 0,
+    "provider_configured": false,
+    "external_call_attempted": false,
+    "credentials_touched": false,
+    "publishing_opened": false,
+    "production_generation_opened": false,
+    "rollback_descriptors_present": 1,
+    "failures": 0
+  },
+  "what_this_profile_adoption_proves": [
+    "Exactly one retained Claim Ledger row is linked into a Profile-scoped non-canon adoption readback.",
+    "The transition is limited to claim_ledger_adopted -> profile_adopted_noncanon for multi-claim-moth-key-label.",
+    "The Profile annotation has a rollback descriptor and before/after readback.",
+    "Timeline, Story Seed, canon, provider, credential, publishing, and production generation boundaries remain closed."
+  ],
+  "what_this_profile_adoption_does_not_prove": [
+    "It does not canonize the claim or resolve brass moth truth, Toma fate, Council motive, moth-key function, or contradictory claim truth.",
+    "It does not mutate Timeline, Story Seed, database, provider output, credentials, publishing, or public production surfaces.",
+    "It does not authorize adoption of any additional claim.",
+    "It does not authorize actual rollback of the production Claim Ledger row."
+  ],
+  "profile_adoption_checks": {
+    "authorization_packet_loaded_and_passed": {
+      "passed": true,
+      "detail": "packet=fff-downstream-target-authorization-packet-001/true; schema=fff.downstreamTargetAuthorizationPacket.v1"
+    },
+    "profile_target_authorized_by_user_prompt": {
+      "passed": true,
+      "detail": "recommended=Profile; targetIds=multi-profile-brass-moth-key"
+    },
+    "target_claim_eligible_for_profile_adoption": {
+      "passed": true,
+      "detail": "target=multi-claim-moth-key-label; status=production_claim_ledger_adopted; retained=true; canon=false"
+    },
+    "claim_ledger_evidence_loaded_and_consistent": {
+      "passed": true,
+      "detail": "adoption=fff-production-claim-ledger-adoption-one-claim-001/true; rollback=fff-production-claim-ledger-rollback-rehearsal-001/true; row=multi-claim-moth-key-label"
+    },
+    "profile_not_already_adopted": {
+      "passed": true,
+      "detail": "existingProfile=true; targetAlreadyPresent=false"
+    },
+    "exactly_one_profile_mutation_row_created": {
+      "passed": true,
+      "detail": "rows=1; target=multi-claim-moth-key-label; status=profile_adopted_noncanon; count=1"
+    },
+    "non_profile_boundaries_remain_zero": {
+      "passed": true,
+      "detail": "inputBoundaryOpen=false; claimLedgerAdditional=0; timeline=0; storySeed=0; canon=false"
+    },
+    "provider_publishing_boundaries_closed": {
+      "passed": true,
+      "detail": "provider=false; external=false; credentials=false; publishing=false"
+    },
+    "rollback_descriptor_recorded": {
+      "passed": true,
+      "detail": "rollback=rollback-profile-adoption-moth-key-label-to-claim-ledger-only; scope=Profile production annotation row only; to=production_claim_ledger_adopted"
+    },
+    "future_target_evidence_requirements_recorded": {
+      "passed": true,
+      "detail": "requirements=6"
+    },
+    "manifest_and_review_memory_registered": {
+      "passed": true,
+      "detail": "includesSmoke=true; preserves=true; memory=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

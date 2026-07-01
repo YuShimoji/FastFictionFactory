@@ -157,6 +157,18 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary downstream target authorization packet under `fff-contradictory-claim-guard-001`; 1 retained production Claim Ledger row is inspected, 4 downstream target classes are proposed, Profile is the only recommended next target, user authorization remains required, downstream mutations remain 0, Profile / Timeline / Story Seed mutation counts remain 0, canonized claims remain 0, and provider/API calls, credentials, publishing, and production generation remain false.
 
+## fff-profile-adoption-mutation-one-claim-001
+
+- Title: Fast Fiction Factory Profile Adoption Mutation One Claim
+- Purpose: Record the user-authorized Profile-only production mutation for exactly `multi-claim-moth-key-label` as one non-canon Profile annotation while preserving the retained Claim Ledger row and all non-Profile boundaries.
+- Repo relative path: `docs/review/profile-adoption-mutation-one-claim.md`
+- Readback result: `artifacts/profile-adoption-mutation-one-claim-result.json`
+- Input readback: `artifacts/downstream-target-authorization-packet-result.json`
+- Validation command: `node tools/fff-state.mjs smoke-profile-adoption-mutation-one-claim artifacts/downstream-target-authorization-packet-result.json artifacts/profile-adoption-mutation-one-claim-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Preserved auxiliary Profile adoption readback under `fff-contradictory-claim-guard-001`; 1 Profile mutation row records `claim_ledger_adopted -> profile_adopted_noncanon`, rollback descriptor is recorded, Claim Ledger additional adoption count remains 0, Timeline / Story Seed mutation counts remain 0, canonized claims remain 0, and provider/API calls, credentials, publishing, and production generation remain false.
+
 ## fff-mvp-skeleton-001
 
 - Title: Fast Fiction Factory MVP Skeleton Review Workbench
