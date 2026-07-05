@@ -2,7 +2,7 @@
 
 ## Purpose
 
-`fff-draft-review-pack-stabilization-001` records that the Designer Candidate Dashboard and One-story Draft Review Pack are present, locally reviewable, and reproducible before any draft-to-video planning bridge, provider/API work, publishing, AI video generation, or final canon decision.
+`fff-draft-review-pack-stabilization-001` records that the Designer Candidate Dashboard and One-story Draft Review Pack are present, locally reviewable, and reproducible as source surfaces for later draft-to-video planning, while provider/API work, publishing, AI video generation, and final canon decisions remain outside that stabilization slice.
 
 This is a stabilization checkpoint, not a new creative feature.
 

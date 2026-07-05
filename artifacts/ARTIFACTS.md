@@ -1,5 +1,22 @@
 # Artifacts
 
+## fff-draft-to-video-planning-bridge-001
+
+- Title: Fast Fiction Factory Draft-to-Video Planning Bridge
+- Purpose: Add a local pre-production bridge from Review Brief to a selected video-planning hypothesis without adding provider/API calls, credentials, publishing, AI video generation, production render, rights-clearance claims, or final-canon behavior.
+- Repo relative path: `public/review/index.html`
+- Primary mode route: `public/review/index.html?mode=bridge`
+- Required prelude route: `public/review/index.html?mode=brief`
+- Preserved mode routes: `public/review/index.html?mode=draft`, `public/review/index.html?mode=designer`
+- Review doc: `docs/review/draft-to-video-planning-bridge.md`
+- Readback result: `artifacts/draft-to-video-planning-bridge-result.json`
+- Source artifacts: `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-draft-review-pack-stabilization-001`, `fff-contradictory-claim-guard-001`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-draft-to-video-planning-bridge artifacts/draft-to-video-planning-bridge-result.json artifacts/draft-to-video-planning-bridge-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active planning checkpoint; selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore` are preserved, the Review Brief route contract is visible, Evidence Vault tabs are optional, narration is outline-only, rights/assets remain uncleared, and all production/provider/publishing/canon boundaries remain closed.
+
 ## fff-review-brief-dark-mode-ux-001
 
 - Title: Fast Fiction Factory Review Brief and Dark Mode UX
@@ -14,7 +31,7 @@
 - Validation command: `node tools/fff-state.mjs smoke-review-brief-dark-mode-ux artifacts/review-brief-dark-mode-ux-result.json artifacts/review-brief-dark-mode-ux-result.json`
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
-- State: Active UX checkpoint; no-query access defaults to Review Brief, selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore` are visible, advanced source/project/artifact panels remain available but demoted, Light / Dark / Auto theme controls are present, and the prior Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
+- State: Preserved operator prelude; no-query access defaults to Review Brief, selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore` are visible, the route contract points to `public/review/index.html?mode=bridge`, advanced source/project/artifact panels remain available as Evidence Vault shelves, Light / Dark / Auto theme controls are present, and the prior Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
 
 ## fff-draft-review-pack-stabilization-001
 

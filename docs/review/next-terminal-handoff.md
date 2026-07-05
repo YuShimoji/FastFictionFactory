@@ -3,12 +3,13 @@
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
 Latest handoff refresh: 2026-07-06 JST. This refresh started from synced head
-`57de71a` (`57de71a Add draft review pack stabilization evidence`):
+`d34a1e1` (`d34a1e1 Add review brief and dark mode UX`):
 `git fetch origin`, `git status --short --branch --untracked-files=all`, and
 `git rev-list --left-right --count "HEAD...origin/master"` reported tracked
 `master` parity with `0 0` before this implementation refresh. At refresh time,
-the active review-entry checkpoint is `fff-review-brief-dark-mode-ux-001`;
-it preserves `fff-one-story-draft-review-pack-001`,
+the active review checkpoint is `fff-draft-to-video-planning-bridge-001`;
+it preserves `fff-review-brief-dark-mode-ux-001`,
+`fff-one-story-draft-review-pack-001`,
 `fff-designer-candidate-dashboard-001`, and
 `fff-draft-review-pack-stabilization-001`;
 `fff-route-lock-clean-state-readback-001` records that ClipPipeGen prompt residue
@@ -50,7 +51,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this implementation refresh was `57de71a`. A local `.serena/project.yml` transport-residue modification may remain unstaged and should not be treated as product work.
+Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this implementation refresh was `d34a1e1`. A local `.serena/project.yml` transport-residue modification may remain unstaged and should not be treated as product work.
 
 3. Read these files in this order:
 
@@ -62,6 +63,8 @@ docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
 docs/review/review-brief-dark-mode-ux.md
 artifacts/review-brief-dark-mode-ux-result.json
+docs/review/draft-to-video-planning-bridge.md
+artifacts/draft-to-video-planning-bridge-result.json
 docs/review/one-story-draft-review-pack.md
 artifacts/one-story-draft-review-pack-result.json
 docs/review/designer-candidate-dashboard.md
@@ -142,8 +145,9 @@ or:
 ./scripts/operator/open_review.sh
 ```
 
-No-query access now defaults to Review Brief. The explicit primary route is
-`public/review/index.html?mode=brief`; the preserved detail routes are
+No-query access now defaults to Review Brief. The Operator Track routes are
+`public/review/index.html?mode=brief` and then
+`public/review/index.html?mode=bridge`; the preserved detail routes are
 `public/review/index.html?mode=draft` and
 `public/review/index.html?mode=designer`.
 
@@ -160,10 +164,15 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 
 ## Current Project State
 
-- Active artifact: `fff-contradictory-claim-guard-001`
+- Active artifact: `fff-draft-to-video-planning-bridge-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Draft-to-Video Planning Bridge doc/result: `docs/review/draft-to-video-planning-bridge.md`, `artifacts/draft-to-video-planning-bridge-result.json`
+- Review Brief Dark Mode UX doc/result: `docs/review/review-brief-dark-mode-ux.md`, `artifacts/review-brief-dark-mode-ux-result.json`
+- One-story Draft Review Pack doc/result: `docs/review/one-story-draft-review-pack.md`, `artifacts/one-story-draft-review-pack-result.json`
+- Designer Candidate Dashboard doc/result: `docs/review/designer-candidate-dashboard.md`, `artifacts/designer-candidate-dashboard-result.json`
+- Draft Review Pack Stabilization doc/result: `docs/review/draft-review-pack-stabilization.md`, `artifacts/draft-review-pack-stabilization-result.json`
 - Contradictory claim guard doc/result/fixture: `docs/review/contradictory-claim-guard.md`, `artifacts/contradictory-claim-guard-result.json`, `artifacts/extraction-negative-fixtures/contradictory-claim-hold.json`
 - Downstream source-span adoption gate doc/result: `docs/review/downstream-source-span-adoption-gate.md`, `artifacts/downstream-source-span-adoption-gate-result.json`
 - Provider envelope readiness no-call doc/example/result: `docs/review/provider-envelope-readiness-no-call.md`, `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json`
@@ -192,9 +201,15 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - State adapter: `tools/fff-state.mjs`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact adds a deterministic guard for contradictory claim candidates. It keeps two conflicting, source-backed claims in held review, preserves their reciprocal contradiction links and source refs, and proves there are 0 adopted/provisional conflicting claims and 0 direct accepted claim-routed elements. It does not decide which claim is true.
+The current artifact adds a local Draft-to-Video Planning Bridge for the selected 3-minute mystery-lore route. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, exposes a non-final narration outline plus production planning cues, adds the Review Brief route contract, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, and final canon decisions closed.
 
 ## What Finished
+
+- `fff-draft-to-video-planning-bridge-001` adds `public/review/index.html?mode=bridge`, `docs/review/draft-to-video-planning-bridge.md`, `artifacts/draft-to-video-planning-bridge-result.json`, and `node tools/fff-state.mjs smoke-draft-to-video-planning-bridge ...`.
+- The Review Brief now states the route contract: Operator Track is Review Brief + Draft-to-Video Bridge, Evidence Vault is optional Source Audit / Project Cockpit / Artifacts, and Not Active covers provider/API, AI video, render, upload, final canon, and rights clearance.
+- The bridge preserves selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore`, includes 5 narration outline beats, 5 subtitle/text cues, 5 shot/visual cues, 1 thumbnail brief, 1 sound/mood cue, 5 rights/asset risks, 4 held truths, and 4 reviewer decisions.
+- Dark contrast was tightened for selected candidate/channel cards, review brief cards, pills, badges, tags, links, muted text, and focus-visible states.
+- Provider/API, credential, publishing, AI video generation, production render, rights-clearance, and final canon boundaries remain closed.
 
 - `fff-contradictory-claim-guard-001` adds `node tools/fff-state.mjs smoke-contradictory-claim-guard ...`.
 - The extraction fixture matrix now has 9 fixtures: 3 expected valid and 6 expected invalid.

@@ -2,9 +2,10 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-review-brief-dark-mode-ux-001`
+- Artifact id: `fff-draft-to-video-planning-bridge-001`
 - Review UI: `public/review/index.html`
 - Review Brief mode: `public/review/index.html?mode=brief`
+- Draft-to-Video Bridge mode: `public/review/index.html?mode=bridge`
 - Draft Review Pack mode: `public/review/index.html?mode=draft`
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
 - Open command: `Invoke-Item .\public\review\index.html`
@@ -14,6 +15,9 @@
 - Review Brief Dark Mode UX doc: `docs/review/review-brief-dark-mode-ux.md`
 - Review Brief Dark Mode UX result: `artifacts/review-brief-dark-mode-ux-result.json`
 - Review Brief Dark Mode UX smoke command: `node tools/fff-state.mjs smoke-review-brief-dark-mode-ux artifacts/review-brief-dark-mode-ux-result.json artifacts/review-brief-dark-mode-ux-result.json`
+- Draft-to-Video Planning Bridge doc: `docs/review/draft-to-video-planning-bridge.md`
+- Draft-to-Video Planning Bridge result: `artifacts/draft-to-video-planning-bridge-result.json`
+- Draft-to-Video Planning Bridge smoke command: `node tools/fff-state.mjs smoke-draft-to-video-planning-bridge artifacts/draft-to-video-planning-bridge-result.json artifacts/draft-to-video-planning-bridge-result.json`
 - Stabilization checkpoint: `fff-draft-review-pack-stabilization-001`
 - Stabilization doc: `docs/review/draft-review-pack-stabilization.md`
 - Stabilization result: `artifacts/draft-review-pack-stabilization-result.json`
@@ -72,12 +76,15 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active Review Hub entry checkpoint is `fff-review-brief-dark-mode-ux-001`; it preserves `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, and `fff-draft-review-pack-stabilization-001` instead of replacing their readbacks.
+- The active Review Hub checkpoint is `fff-draft-to-video-planning-bridge-001`; it preserves `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-draft-review-pack-stabilization-001`, and `fff-contradictory-claim-guard-001` instead of replacing their readbacks.
 - `public/review/index.html` now defaults to `Review Brief` mode for no-query access and keeps `public/review/index.html?mode=brief` as the primary review entry.
-- The Review Brief exposes the selected candidate id `designer-content-moth-investigation-3m`, selected channel route `designer-channel-mystery-lore`, Japanese-first review labels, and 3 immediate reviewer decisions before detailed source/project/artifact panels.
-- `Source Audit`, `Project Cockpit`, and `Artifacts` remain available as advanced tabs instead of first-impression panels.
-- The Review Hub now supports Light / Dark / Auto theme controls, local theme preference storage, `color-scheme: light dark`, dark-mode CSS variables, and reduced hardcoded light surfaces.
-- `artifacts/review-brief-dark-mode-ux-result.json` records review_brief_visible=true, selected_candidate_id_visible=true, selected_channel_route_visible=true, japanese_summary_present=true, no_query_default_mode=`brief`, dark_mode_toggle_present=true, color_scheme_supports_light_dark=true, hardcoded_light_surfaces_reduced=true, designer_dashboard_preserved=true, draft_review_pack_preserved=true, stabilization_checkpoint_preserved=true, local-only=true, and draft_to_video_planning_bridge=false.
+- The Review Brief now contains a route contract near the top: Operator Track means `Review Brief` + `Draft-to-Video Bridge` are required reading; Evidence Vault means `Source Audit` / `Project Cockpit` / `Artifacts` are optional evidence shelves; Not Active means provider/API setup, AI video generation, production render, YouTube upload, final canon, and rights-clearance claims are not active.
+- The Review Hub now includes `public/review/index.html?mode=bridge` as a local Draft-to-Video Planning Bridge for selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore`.
+- The bridge exposes a Japanese-first route summary, a non-final narration outline, subtitle/on-screen text cues, shot/visual cues, a thumbnail brief, sound/music/mood cue, rights/asset risks, held truths, production non-goals, and reviewer decisions.
+- `Source Audit`, `Project Cockpit`, and `Artifacts` remain available as optional evidence shelves instead of first-impression panels.
+- The Review Hub now supports Light / Dark / Auto theme controls, local theme preference storage, `color-scheme: light dark`, dark-mode CSS variables, reduced hardcoded light surfaces, and a contrast hotfix for selected candidate/channel cards, review brief cards, pills, badges, tags, links, muted text, and focus-visible states.
+- `artifacts/draft-to-video-planning-bridge-result.json` records bridge_visible=true, operator_track_visible=true, evidence_vault_demoted=true, dark_contrast_hotfix_applied=true, narration_outline_count=5, subtitle_cue_count=5, visual_cue_count=5, thumbnail_brief_count=1, sound_mood_cue_count=1, rights_risk_count=5, held_truth_count=4, reviewer_decision_count=4, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, production_render=false, final_canon_decision=false, rights_cleared_claim=false, and passed=true.
+- `artifacts/review-brief-dark-mode-ux-result.json` records review_brief_visible=true, selected_candidate_id_visible=true, selected_channel_route_visible=true, japanese_summary_present=true, no_query_default_mode=`brief`, dark_mode_toggle_present=true, color_scheme_supports_light_dark=true, hardcoded_light_surfaces_reduced=true, designer_dashboard_preserved=true, draft_review_pack_preserved=true, stabilization_checkpoint_preserved=true, local-only=true, and draft_to_video_planning_bridge=true.
 - `docs/review/review-brief-dark-mode-ux.md` records purpose, access, UX changes, preserved work, validation commands, review debt, and next move.
 - `tools/fff-state.mjs` includes `smoke-review-brief-dark-mode-ux` for local readback validation.
 - `fff-draft-review-pack-stabilization-001` remains the prior access/readback and git-durability checkpoint for the Designer Dashboard and Draft Review Pack.
@@ -146,9 +153,10 @@ Preserved platform boundary:
 - `artifacts/draft-review-pack-stabilization-result.json` passed with access_state=`verified_present`, static_mode_check_passed=true, designer_result_exists=true, draft_result_exists=true, designer_smoke_passed=true, draft_smoke_passed=true, and contradictory_claim_guard_preserved=true.
 - `node --check tools/fff-state.mjs` passed.
 - `node tools/fff-state.mjs smoke-review-brief-dark-mode-ux artifacts/review-brief-dark-mode-ux-result.json artifacts/review-brief-dark-mode-ux-result.json` passed for the Review Brief / dark mode UX readback.
+- `node tools/fff-state.mjs smoke-draft-to-video-planning-bridge artifacts/draft-to-video-planning-bridge-result.json artifacts/draft-to-video-planning-bridge-result.json` passed for the Draft-to-Video Planning Bridge readback.
 - `node tools/fff-state.mjs smoke-one-story-draft-review-pack artifacts/one-story-draft-review-pack-result.json artifacts/one-story-draft-review-pack-result.json` passed for the preserved Draft Review Pack readback.
 - `node tools/fff-state.mjs smoke-designer-candidate-dashboard artifacts/designer-candidate-dashboard-result.json artifacts/designer-candidate-dashboard-result.json` passed for the preserved Designer Candidate Dashboard readback.
-- Static Review Hub check passed: embedded script compiled with `new Function(...)`, and the HTML contains the Draft Review Pack mode tab/root/renderer, Designer Dashboard mode tab/root, both mode route strings, both root IDs, and the active/preserved artifact ids.
+- Static Review Hub check passed: embedded script compiled with `new Function(...)`, and the HTML contains the Review Brief, Draft-to-Video Bridge, Draft Review Pack, and Designer Dashboard mode routes/roots, selected candidate/channel ids, route contract markers, contrast markers, production non-goal markers, and active/preserved artifact ids.
 - Browser screenshot capture was attempted with the available in-app browser tooling, but `file://` navigation was blocked by browser URL policy; no screenshot file was produced, and the stabilization result records static access/readback evidence instead.
 - `git diff --check` passed. `python -m mkdocs build --strict` could not run in this environment because WindowsApps `python` resolved to a stub, but `uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"` passed.
 - `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json` passed.
@@ -213,8 +221,9 @@ Preserved platform boundary:
 
 | Target | Current state | Next move |
 | --- | --- | --- |
+| Draft-to-Video Planning Bridge | Covered by `fff-draft-to-video-planning-bridge-001`; `public/review/index.html?mode=bridge` contains the selected 3-minute mystery-lore route, non-final narration outline, text cues, shot cues, thumbnail brief, sound/mood cue, rights/asset risks, held truths, production non-goals, and reviewer decisions | Human reviewer should accept, revise, or reject the production hypothesis before any prose-finalization, asset generation, provider/API, AI video, render, upload, rights, or final-canon work |
 | Draft Review Pack Stabilization | Covered by `fff-draft-review-pack-stabilization-001`; static route/mode/result/doc/guard readback passes for Designer Dashboard and Draft Review Pack; access state is `verified_present`; browser file URL screenshot was blocked by URL policy | Use this as the durability checkpoint; next human work is freeform review of the Draft Review Pack route, not another stabilization pass |
-| One-story Draft Review Pack | Covered by `fff-one-story-draft-review-pack-001`; provisional default candidate `designer-content-moth-investigation-3m`, 5 draft beats, non-final opening/narration sample, 4 visual cues, 4 text cues, 3 held human-owned questions, and 4 risk cards are visible in `public/review/index.html?mode=draft` | Use this as the current active review surface; next move is reviewer confirmation or revision of candidate/channel/held-truth route before any draft-to-video planning bridge |
+| One-story Draft Review Pack | Covered by `fff-one-story-draft-review-pack-001`; provisional default candidate `designer-content-moth-investigation-3m`, 5 draft beats, non-final opening/narration sample, 4 visual cues, 4 text cues, 3 held human-owned questions, and 4 risk cards are visible in `public/review/index.html?mode=draft` | Keep as the source draft pack for the Bridge; reopen only if the selected candidate, channel route, or held-truth policy changes |
 | Designer Candidate Dashboard | Covered by `fff-designer-candidate-dashboard-001`; 3 content candidates, 3 channel strategy proposals, 5 draft spine beats, 4 review risks, and 3 held human-owned decisions are visible in `public/review/index.html?mode=designer` | Keep as preserved source dashboard for the Draft Review Pack; reopen only if the selected candidate or channel route changes |
 | Contradictory memo claims | Covered by `fff-contradictory-claim-guard-001`; 2 linked claims held, 0 adopted/provisional conflict claims | Do not reopen unless fixture wording, claim-link rules, or adapter output changes |
 | Malformed/missing source-span payloads | Covered by `fff-malformed-missing-span-guard-001`; invalid source evidence rejected, 0 accepted routed candidates | Keep closed unless invalid fixture behavior changes |
@@ -263,6 +272,8 @@ Or use the repo-local launchers:
 Mode-specific local paths:
 
 ```text
+public/review/index.html?mode=brief
+public/review/index.html?mode=bridge
 public/review/index.html?mode=story
 public/review/index.html?mode=draft
 public/review/index.html?mode=designer
@@ -279,4 +290,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The One-story Draft Review Pack is now stabilized as the active local review surface and exposes one provisional story/video candidate end-to-end without external calls or final canon decisions. The next non-redundant move is reviewer confirmation or revision of the candidate, channel route, and held-truth handling before any draft-to-video planning bridge. Timeline / Story Seed / Canon decision still requires equivalent explicit authorization; actual production rollback only if explicitly requested for `multi-claim-moth-key-label`; real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, additional adoption writes, production rollback, or final canon decisions unless explicitly requested.
+Use review memory before asking for another review. The Draft-to-Video Planning Bridge is now the active local review surface for the selected 3-minute mystery-lore route and exposes a production hypothesis without external calls, provider setup, AI video generation, production render, upload, rights-clearance claims, or final canon decisions. The next non-redundant move is human review of `public/review/index.html?mode=bridge`: accept, revise, or reject the route summary, narration outline, text cues, visual cues, thumbnail brief, sound/mood cue, rights risks, and held truths. Timeline / Story Seed / Canon decision still requires equivalent explicit authorization; actual production rollback only if explicitly requested for `multi-claim-moth-key-label`; real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, additional adoption writes, production rollback, or final canon decisions unless explicitly requested.

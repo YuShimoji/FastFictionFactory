@@ -2,11 +2,11 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current review entry UX checkpoint is `fff-review-brief-dark-mode-ux-001`, served through the static local Visual Review Hub at `public/review/index.html`. It preserves the One-story Draft Review Pack `fff-one-story-draft-review-pack-001`, Designer Candidate Dashboard `fff-designer-candidate-dashboard-001`, and stabilization checkpoint `fff-draft-review-pack-stabilization-001`.
+Fast Fiction Factory is a local-first fiction production workbench. The current review checkpoint is `fff-draft-to-video-planning-bridge-001`, served through the static local Visual Review Hub at `public/review/index.html`. It preserves the Review Brief / dark-mode UX checkpoint `fff-review-brief-dark-mode-ux-001`, One-story Draft Review Pack `fff-one-story-draft-review-pack-001`, Designer Candidate Dashboard `fff-designer-candidate-dashboard-001`, stabilization checkpoint `fff-draft-review-pack-stabilization-001`, and contradictory-claim guard `fff-contradictory-claim-guard-001`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is Review Brief compression/discoverability and dark-mode compatibility for the local One-story Draft Review Pack and preserved Designer Dashboard: source evidence, routing, contradictory claim holds, review-held defaults, artifact governance, local access paths, and non-redundant review requests must remain distinct before any model/API extractor, draft-to-video bridge, production render, public upload, or final canon path exists.
+Keep the MVP reviewable without production commitments. The current lane is a Draft-to-Video Planning Bridge for the selected 3-minute mystery-lore route: source evidence, routing, contradictory claim holds, review-held defaults, artifact governance, local access paths, rights-risk posture, and production non-goals must remain distinct before any model/API extractor, provider/API setup, AI video generation, production render, public upload, rights-clearance claim, or final canon path exists.
 
 ## Current Slice
 
@@ -14,10 +14,12 @@ The active slice is complete enough for local readback:
 
 - Review UI: `public/review/index.html`
 - Review Brief mode: `public/review/index.html?mode=brief`
+- Draft-to-Video Bridge mode: `public/review/index.html?mode=bridge`
 - Draft Review Pack mode: `public/review/index.html?mode=draft`
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Draft-to-Video Planning Bridge doc/result: `docs/review/draft-to-video-planning-bridge.md`, `artifacts/draft-to-video-planning-bridge-result.json`
 - Review Brief Dark Mode UX doc/result: `docs/review/review-brief-dark-mode-ux.md`, `artifacts/review-brief-dark-mode-ux-result.json`
 - Stabilization doc/result: `docs/review/draft-review-pack-stabilization.md`, `artifacts/draft-review-pack-stabilization-result.json`
 - Draft Review Pack doc/result: `docs/review/one-story-draft-review-pack.md`, `artifacts/one-story-draft-review-pack-result.json`
@@ -82,18 +84,22 @@ Route hygiene checkpoint, 2026-06-29 JST:
   cockpit summaries.
 - `docs/style_intent/` was removed because it was empty and residue-only.
 - The active Fast Fiction Factory review surface is now
-  `fff-review-brief-dark-mode-ux-001`; it records the first-screen review entry,
-  selected candidate/channel discoverability, Japanese review labels, and
-  dark-mode compatibility while preserving `fff-one-story-draft-review-pack-001`,
+  `fff-draft-to-video-planning-bridge-001`; it records the Japanese-first
+  operator route contract, local Draft-to-Video Bridge, selected candidate/channel
+  preservation, dark-mode contrast hotfix, and production non-goals while
+  preserving `fff-review-brief-dark-mode-ux-001`,
+  `fff-one-story-draft-review-pack-001`,
   `fff-draft-review-pack-stabilization-001`,
   `fff-designer-candidate-dashboard-001`, and
   `fff-contradictory-claim-guard-001` as readbacks.
 
-Last verified on 2026-07-01:
+Last verified on 2026-07-06:
 
 ```powershell
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
+node .\tools\fff-state.mjs smoke-review-brief-dark-mode-ux .\artifacts\review-brief-dark-mode-ux-result.json .\artifacts\review-brief-dark-mode-ux-result.json
+node .\tools\fff-state.mjs smoke-draft-to-video-planning-bridge .\artifacts\draft-to-video-planning-bridge-result.json .\artifacts\draft-to-video-planning-bridge-result.json
 node .\tools\fff-state.mjs smoke-extraction-fixtures .\artifacts\extraction-negative-fixtures .\artifacts\extraction-validator-smoke-result.json
 node .\tools\fff-state.mjs smoke-contradictory-claim-guard .\artifacts\extraction-validator-smoke-result.json .\artifacts\contradictory-claim-guard-result.json
 node .\tools\fff-state.mjs smoke-downstream-source-span-adoption-gate .\artifacts\source-span-routing-review-pack.json .\artifacts\downstream-source-span-adoption-gate-result.json
@@ -127,7 +133,8 @@ node .\tools\fff-state.mjs smoke-very-broad-source-span-shape-audit .\artifacts\
 Result summary:
 
 - Stabilization readback passes for `fff-draft-review-pack-stabilization-001`: Designer Dashboard and Draft Review Pack routes are statically verified, both result artifacts and docs exist, the contradictory claim guard is preserved, access state is `verified_present`, and browser file URL capture is recorded as blocked by browser URL policy with static readback used as fallback.
-- Review Brief / dark mode UX readback passes for `fff-review-brief-dark-mode-ux-001`: no-query access defaults to `brief`, selected candidate `designer-content-moth-investigation-3m` and channel route `designer-channel-mystery-lore` are visible, Japanese review labels are present, Source Audit / Project Cockpit / Artifacts are demoted into advanced tabs, Light / Dark / Auto controls are present, hardcoded light surfaces are reduced, and Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
+- Review Brief / dark mode UX readback passes for `fff-review-brief-dark-mode-ux-001`: no-query access defaults to `brief`, selected candidate `designer-content-moth-investigation-3m` and channel route `designer-channel-mystery-lore` are visible, Japanese review labels are present, Source Audit / Project Cockpit / Artifacts are demoted into Evidence Vault style tabs, Light / Dark / Auto controls are present, hardcoded light surfaces are reduced, and Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
+- Draft-to-Video Planning Bridge readback passes for `fff-draft-to-video-planning-bridge-001`: `public/review/index.html?mode=bridge` is reachable from the Review Brief, selected candidate `designer-content-moth-investigation-3m` and channel route `designer-channel-mystery-lore` are preserved, Operator Track / Evidence Vault / Not Active are visible, narration outline count is 5, subtitle cue count is 5, visual cue count is 5, rights risk count is 5, held truth count is 4, reviewer decision count is 4, and provider/API, AI video, render, upload, final canon, and rights-clearance boundaries remain closed.
 - Preserved Draft Review Pack manifest validation passes for `fff-one-story-draft-review-pack-001`.
 - One-story Draft Review Pack readback passes with provisional_default selection `designer-content-moth-investigation-3m`, 3 source dashboard content candidates, 3 channel strategy proposals, 5 draft beats, non-final sample opening present, 4 visual cues, 4 subtitle/on-screen text cues, 3 unresolved human-owned questions, 4 risk cards, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, and final_canon_decision=false.
 - Designer Dashboard readback passes with 3 content candidate cards, 3 channel strategy proposals, 5 draft spine beats, 4 unresolved risks, 3 human-owned decisions held, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, and final_canon_decision=false.
@@ -188,7 +195,7 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: use the stabilized Draft Review Pack as the active Review Hub identity while preserving Designer Dashboard, contradictory claim guard, downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, Profile adoption mutation one-claim, and very broad source-span shape audit as auxiliary safety readbacks. The next non-redundant slice is a draft-to-video planning bridge only after review chooses or revises the provisional draft route; move to Timeline / Story Seed / Canon decision only after equivalent explicit authorization, actual production rollback only after separate explicit authorization, and explicit provider adapter implementation only after authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy.
+First next move: use the Draft-to-Video Planning Bridge as the active Review Hub identity while preserving Review Brief, Draft Review Pack, Designer Dashboard, contradictory claim guard, downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, Profile adoption mutation one-claim, and very broad source-span shape audit as auxiliary safety readbacks. The next non-redundant slice is human review or narrow revision of the bridge package; move to Timeline / Story Seed / Canon decision only after equivalent explicit authorization, actual production rollback only after separate explicit authorization, and explicit provider adapter implementation only after authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy.
 
 ## Handoff Path
 

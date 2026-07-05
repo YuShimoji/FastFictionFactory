@@ -33,6 +33,7 @@ const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSp
 const DESIGNER_CANDIDATE_DASHBOARD_SCHEMA_VERSION = "fff.designerCandidateDashboard.v1";
 const ONE_STORY_DRAFT_REVIEW_PACK_SCHEMA_VERSION = "fff.oneStoryDraftReviewPack.v1";
 const REVIEW_BRIEF_DARK_MODE_UX_SCHEMA_VERSION = "fff.reviewBriefDarkModeUx.v1";
+const DRAFT_TO_VIDEO_PLANNING_BRIDGE_SCHEMA_VERSION = "fff.draftToVideoPlanningBridge.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -63,6 +64,7 @@ const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-
 const DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT = "artifacts/designer-candidate-dashboard-result.json";
 const DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT = "artifacts/one-story-draft-review-pack-result.json";
 const DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT = "artifacts/review-brief-dark-mode-ux-result.json";
+const DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT = "artifacts/draft-to-video-planning-bridge-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -865,6 +867,25 @@ async function main() {
     }
     if (command === "smoke-review-brief-dark-mode-ux" || outputPath) {
       console.log(`review brief dark mode UX passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-draft-to-video-planning-bridge" || command === "smoke-draft-to-video-planning-bridge") {
+    const bridge = await readJson(inputPath);
+    const result = await validateDraftToVideoPlanningBridge(bridge, inputPath);
+    const target = outputPath || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+    if (command === "smoke-draft-to-video-planning-bridge" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Draft-to-video planning bridge failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-draft-to-video-planning-bridge" || outputPath) {
+      console.log(`draft-to-video planning bridge passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -8051,6 +8072,9 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
   const advancedTabCount = (html.match(/mode-tab is-advanced/g) || []).length;
   const themeOptionCount = (html.match(/data-theme-target=/g) || []).length;
   const briefCardCount = (html.match(/class="brief-card/g) || []).length;
+  const bridgeModeVisible = html.includes('data-mode-panel="bridge"') &&
+    html.includes('data-mode-target="bridge"') &&
+    html.includes("public/review/index.html?mode=bridge");
   const hardcodedLightSurfaceHits = (html.match(/#ffffff|#fffefb|#fffdf8|#fbfcfd|#f7f9fa|#eef5fa|#eef3fa|#f0f6fa|#fff9e8|#fff7df/gi) || []).length;
   const reviewUiSummary = readback?.review_ui_summary || {};
   const themeCompatibility = readback?.theme_compatibility || {};
@@ -8105,9 +8129,16 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
     "brief_is_default",
     (noQueryDefaultMode === undefined || noQueryDefaultMode === "brief") &&
       html.includes('data-review-mode="brief"') &&
-      html.includes('const REVIEW_MODES = ["brief", "story", "designer", "draft", "source", "project", "artifacts"]') &&
+      html.includes('const REVIEW_MODES = ["brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"]') &&
       html.includes('|| "brief"'),
     `default=${noQueryDefaultMode}`
+  );
+  check(
+    "draft_to_video_bridge_linked",
+    bridgeModeVisible &&
+      html.includes("Draft-to-Video Bridge") &&
+      html.includes("fff-draft-to-video-planning-bridge-001"),
+    `bridgeModeVisible=${bridgeModeVisible}`
   );
   check(
     "advanced_sections_demoted",
@@ -8194,6 +8225,7 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
       reviewer_decisions: readback.counts?.reviewer_decisions || 3,
       theme_options: themeOptionCount,
       advanced_tabs_demoted: advancedTabCount,
+      draft_to_video_bridge_modes: bridgeModeVisible ? 1 : 0,
       hardcoded_light_surface_hits: hardcodedLightSurfaceHits
     },
     review_ui_summary: {
@@ -8224,7 +8256,7 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
     public_upload: false,
     ai_video_generation: false,
     final_canon_decision: false,
-    draft_to_video_planning_bridge: false,
+    draft_to_video_planning_bridge: checks.draft_to_video_bridge_linked?.passed === true,
     browser_render_attempt: readback.browser_render_attempt || "not_attempted_static_readback_only",
     visual_evidence_path: readback.visual_evidence_path || null,
     summary: {
@@ -8246,13 +8278,331 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
       public_upload: false,
       ai_video_generation: false,
       final_canon_decision: false,
+      draft_to_video_bridge_linked: checks.draft_to_video_bridge_linked?.passed === true,
       failures: failures.length
     },
     validation_notes: [
       "Review Brief is a local first-screen compression and discoverability layer only.",
       "Dark mode support is implemented through review UI theme variables and localStorage preference.",
       "Designer Dashboard, One-story Draft Review Pack, and Stabilization readbacks remain preserved.",
-      "No draft-to-video bridge, provider/API setup, public upload, publishing, or final canon decision is added."
+      "Draft-to-Video Bridge is linked as a separate local pre-production planning mode only.",
+      "No provider/API setup, AI video generation, production render, public upload, publishing, or final canon decision is added."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+async function validateDraftToVideoPlanningBridge(bridge, bridgePath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const reviewBriefPath = manifest.review_brief_dark_mode_ux_result_path || manifest.smoke_result_path || DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT;
+  const draftPackPath = manifest.one_story_draft_review_pack_result_path || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT;
+  const designerDashboardPath = manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT;
+  const stabilizationPath = manifest.stabilization_result_path || "artifacts/draft-review-pack-stabilization-result.json";
+  const contradictoryGuardPath = manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const reviewBrief = await readJson(reviewBriefPath);
+  const draftPack = await readJson(draftPackPath);
+  const designerDashboard = await readJson(designerDashboardPath);
+  const stabilization = await readJson(stabilizationPath);
+  const contradictoryGuard = await readJson(contradictoryGuardPath);
+  const html = await readFile("public/review/index.html", "utf8");
+  const credentialFindings = collectCredentialMaterial(bridge);
+
+  const selectedCandidateId = bridge?.selected_candidate_id || draftPack.selected_candidate_id;
+  const selectedChannelId = bridge?.selected_channel_route_id || draftPack.channel_strategy_route?.id;
+  const packageSummary = bridge?.package_summary || {};
+  const boundaries = bridge?.boundaries || {};
+  const preservedReadbacks = bridge?.preserved_readbacks || {};
+  const counts = bridge?.counts || {};
+  const countFrom = (listName, countName) => {
+    const list = packageSummary[listName] || bridge?.[listName];
+    if (Array.isArray(list)) {
+      return list.length;
+    }
+    return Number(bridge?.[countName] ?? counts[countName] ?? 0);
+  };
+
+  const narrationOutlineCount = countFrom("narration_outline", "narration_outline_count");
+  const subtitleCueCount = countFrom("subtitle_on_screen_text_cues", "subtitle_cue_count");
+  const visualCueCount = countFrom("shot_visual_cues", "visual_cue_count");
+  const thumbnailBriefCount = countFrom("thumbnail_brief", "thumbnail_brief_count");
+  const soundMoodCueCount = countFrom("sound_music_mood_cues", "sound_mood_cue_count");
+  const rightsRiskCount = countFrom("rights_asset_risks", "rights_risk_count");
+  const heldTruthCount = countFrom("held_truths", "held_truth_count");
+  const reviewerDecisionCount = countFrom("reviewer_decisions", "reviewer_decision_count");
+  const bridgeCardCount = (html.match(/class="bridge-card/g) || []).length;
+  const routeContractCards = (html.match(/class="route-contract-card/g) || []).length;
+  const noGoalMarkers = [
+    "no provider/API call",
+    "no AI video generation",
+    "no production render",
+    "no YouTube upload",
+    "no final canon decision",
+    "no rights clearance claim"
+  ];
+  const contrastMarkers = [
+    "--pill-ink",
+    "--tag-ink",
+    "--muted-strong",
+    "--route-contract-bg",
+    "--link",
+    "--focus-ring",
+    ".id-pill",
+    ".tag",
+    "a:focus-visible"
+  ];
+
+  check(
+    "identity",
+    bridge?.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+      bridge?.schemaVersion === DRAFT_TO_VIDEO_PLANNING_BRIDGE_SCHEMA_VERSION &&
+      bridge?.review_ui === "public/review/index.html" &&
+      bridge?.access_route === "public/review/index.html?mode=bridge",
+    `artifact=${bridge?.artifact_id}; schema=${bridge?.schemaVersion}; ui=${bridge?.review_ui}; route=${bridge?.access_route}`
+  );
+  check(
+    "source_review_brief_preserved",
+    reviewBrief?.artifact_id === "fff-review-brief-dark-mode-ux-001" &&
+      reviewBrief?.passed === true &&
+      bridge?.source_review_brief_artifact_id === "fff-review-brief-dark-mode-ux-001",
+    `reviewBrief=${reviewBrief?.artifact_id}/${reviewBrief?.passed}; source=${bridge?.source_review_brief_artifact_id}`
+  );
+  check(
+    "bridge_visible",
+    bridge?.bridge_visible === true &&
+      html.includes('id="draft-to-video-bridge-root"') &&
+      html.includes('data-mode-panel="bridge"') &&
+      html.includes('data-mode-target="bridge"') &&
+      html.includes("public/review/index.html?mode=bridge") &&
+      html.includes('const REVIEW_MODES = ["brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"]'),
+    `bridgeVisible=${bridge?.bridge_visible}; cards=${bridgeCardCount}`
+  );
+  check(
+    "route_contract_visible",
+    bridge?.operator_track_visible === true &&
+      bridge?.evidence_vault_demoted === true &&
+      routeContractCards >= 3 &&
+      html.includes("Operator Track") &&
+      html.includes("Evidence Vault") &&
+      html.includes("Not Active") &&
+      html.includes("Review Brief + Draft-to-Video Bridge"),
+    `operator=${bridge?.operator_track_visible}; evidence=${bridge?.evidence_vault_demoted}; cards=${routeContractCards}`
+  );
+  check(
+    "dark_contrast_hotfix",
+    bridge?.dark_contrast_hotfix_applied === true &&
+      contrastMarkers.every((marker) => html.includes(marker)) &&
+      html.includes(':root[data-theme="dark"]') &&
+      html.includes(':root[data-theme="auto"]') &&
+      html.includes('data-theme-target="light"') &&
+      html.includes('data-theme-target="dark"') &&
+      html.includes('data-theme-target="auto"'),
+    `hotfix=${bridge?.dark_contrast_hotfix_applied}; markers=${contrastMarkers.filter((marker) => html.includes(marker)).length}/${contrastMarkers.length}`
+  );
+  check(
+    "candidate_channel_preserved",
+    selectedCandidateId === "designer-content-moth-investigation-3m" &&
+      selectedChannelId === "designer-channel-mystery-lore" &&
+      html.includes("designer-content-moth-investigation-3m") &&
+      html.includes("designer-channel-mystery-lore"),
+    `candidate=${selectedCandidateId}; channel=${selectedChannelId}`
+  );
+  check(
+    "bridge_package_counts",
+    narrationOutlineCount >= 5 &&
+      subtitleCueCount >= 5 &&
+      visualCueCount >= 5 &&
+      thumbnailBriefCount >= 1 &&
+      soundMoodCueCount >= 1 &&
+      rightsRiskCount >= 5 &&
+      heldTruthCount >= 4 &&
+      reviewerDecisionCount >= 4 &&
+      bridgeCardCount >= 9,
+    `narration=${narrationOutlineCount}; subtitle=${subtitleCueCount}; visual=${visualCueCount}; thumbnail=${thumbnailBriefCount}; sound=${soundMoodCueCount}; rights=${rightsRiskCount}; held=${heldTruthCount}; decisions=${reviewerDecisionCount}; cards=${bridgeCardCount}`
+  );
+  check(
+    "boundary_gates_closed",
+    (bridge?.local_only ?? boundaries.local_only) === true &&
+      (bridge?.external_call ?? boundaries.external_call) === false &&
+      (bridge?.provider_configured ?? boundaries.provider_configured) === false &&
+      (bridge?.credentials_touched ?? boundaries.credentials_touched) === false &&
+      (bridge?.public_upload ?? boundaries.public_upload) === false &&
+      (bridge?.ai_video_generation ?? boundaries.ai_video_generation) === false &&
+      (bridge?.production_render ?? boundaries.production_render) === false &&
+      (bridge?.final_canon_decision ?? boundaries.final_canon_decision) === false &&
+      (bridge?.rights_cleared_claim ?? boundaries.rights_cleared_claim) === false &&
+      credentialFindings.length === 0 &&
+      noGoalMarkers.every((marker) => html.includes(marker)),
+    `local=${bridge?.local_only ?? boundaries.local_only}; external=${bridge?.external_call ?? boundaries.external_call}; provider=${bridge?.provider_configured ?? boundaries.provider_configured}; credentials=${bridge?.credentials_touched ?? boundaries.credentials_touched}; upload=${bridge?.public_upload ?? boundaries.public_upload}; video=${bridge?.ai_video_generation ?? boundaries.ai_video_generation}; render=${bridge?.production_render ?? boundaries.production_render}; canon=${bridge?.final_canon_decision ?? boundaries.final_canon_decision}; rights=${bridge?.rights_cleared_claim ?? boundaries.rights_cleared_claim}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+  check(
+    "preserved_readbacks",
+    draftPack?.artifact_id === "fff-one-story-draft-review-pack-001" &&
+      draftPack?.passed === true &&
+      designerDashboard?.artifact_id === "fff-designer-candidate-dashboard-001" &&
+      designerDashboard?.passed === true &&
+      stabilization?.artifact_id === "fff-draft-review-pack-stabilization-001" &&
+      stabilization?.passed === true &&
+      contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
+      contradictoryGuard?.passed === true,
+    `draft=${draftPack?.artifact_id}/${draftPack?.passed}; designer=${designerDashboard?.artifact_id}/${designerDashboard?.passed}; stabilization=${stabilization?.artifact_id}/${stabilization?.passed}; contradictory=${contradictoryGuard?.artifact_id}/${contradictoryGuard?.passed}`
+  );
+  check(
+    "html_bridge_copy_present",
+    html.includes("narration outline") ||
+      (html.includes("ナレーション") &&
+        html.includes("字幕") &&
+        html.includes("ショット") &&
+        html.includes("サムネイル") &&
+        html.includes("Production Non-goals")),
+    "bridge copy should expose narration, subtitle, visual, thumbnail, and production non-goal sections"
+  );
+
+  return {
+    schemaVersion: DRAFT_TO_VIDEO_PLANNING_BRIDGE_SCHEMA_VERSION,
+    artifact_id: "fff-draft-to-video-planning-bridge-001",
+    title: "Fast Fiction Factory Draft-to-Video Planning Bridge",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    review_ui: "public/review/index.html",
+    access_route: "public/review/index.html?mode=bridge",
+    input_result_path: toRepoPath(bridgePath),
+    source_review_brief_artifact_id: "fff-review-brief-dark-mode-ux-001",
+    source_result_paths: {
+      review_brief_dark_mode_ux: reviewBriefPath,
+      one_story_draft_review_pack: draftPackPath,
+      designer_candidate_dashboard: designerDashboardPath,
+      draft_review_pack_stabilization: stabilizationPath,
+      contradictory_claim_guard: contradictoryGuardPath
+    },
+    source_artifacts: [
+      reviewBrief?.artifact_id,
+      draftPack?.artifact_id,
+      designerDashboard?.artifact_id,
+      stabilization?.artifact_id,
+      contradictoryGuard?.artifact_id
+    ].filter(Boolean),
+    selected_candidate_id: selectedCandidateId,
+    selected_channel_route_id: selectedChannelId,
+    route_summary_japanese: bridge?.route_summary_japanese || bridge?.route_summary || "Review Brief and Draft-to-Video Bridge define a local pre-production plan for the selected 3-minute mystery-lore route.",
+    operator_track_visible: checks.route_contract_visible?.passed === true,
+    evidence_vault_demoted: bridge?.evidence_vault_demoted === true,
+    dark_contrast_hotfix_applied: checks.dark_contrast_hotfix?.passed === true,
+    bridge_visible: checks.bridge_visible?.passed === true,
+    counts: {
+      narration_outline_count: narrationOutlineCount,
+      subtitle_cue_count: subtitleCueCount,
+      visual_cue_count: visualCueCount,
+      thumbnail_brief_count: thumbnailBriefCount,
+      sound_mood_cue_count: soundMoodCueCount,
+      rights_risk_count: rightsRiskCount,
+      held_truth_count: heldTruthCount,
+      reviewer_decision_count: reviewerDecisionCount,
+      bridge_cards: bridgeCardCount,
+      route_contract_cards: routeContractCards
+    },
+    narration_outline_count: narrationOutlineCount,
+    subtitle_cue_count: subtitleCueCount,
+    visual_cue_count: visualCueCount,
+    thumbnail_brief_count: thumbnailBriefCount,
+    sound_mood_cue_count: soundMoodCueCount,
+    rights_risk_count: rightsRiskCount,
+    held_truth_count: heldTruthCount,
+    reviewer_decision_count: reviewerDecisionCount,
+    route_contract: {
+      operator_track_required: [
+        "public/review/index.html?mode=brief",
+        "public/review/index.html?mode=bridge"
+      ],
+      evidence_vault_optional: [
+        "public/review/index.html?mode=source",
+        "public/review/index.html?mode=project",
+        "public/review/index.html?mode=artifacts"
+      ],
+      not_active: noGoalMarkers
+    },
+    package_summary: {
+      route_summary: packageSummary.route_summary || bridge?.route_summary || bridge?.route_summary_japanese || null,
+      narration_outline: packageSummary.narration_outline || bridge?.narration_outline || [],
+      subtitle_on_screen_text_cues: packageSummary.subtitle_on_screen_text_cues || bridge?.subtitle_on_screen_text_cues || [],
+      shot_visual_cues: packageSummary.shot_visual_cues || bridge?.shot_visual_cues || [],
+      thumbnail_brief: packageSummary.thumbnail_brief || bridge?.thumbnail_brief || [],
+      sound_music_mood_cues: packageSummary.sound_music_mood_cues || bridge?.sound_music_mood_cues || [],
+      rights_asset_risks: packageSummary.rights_asset_risks || bridge?.rights_asset_risks || [],
+      held_truths: packageSummary.held_truths || bridge?.held_truths || [],
+      production_non_goals: packageSummary.production_non_goals || bridge?.production_non_goals || noGoalMarkers,
+      reviewer_decisions: packageSummary.reviewer_decisions || bridge?.reviewer_decisions || []
+    },
+    preserved_readbacks: {
+      review_brief_dark_mode_ux: preservedReadbacks.review_brief_dark_mode_ux || reviewBrief?.artifact_id,
+      one_story_draft_review_pack: preservedReadbacks.one_story_draft_review_pack || draftPack?.artifact_id,
+      designer_candidate_dashboard: preservedReadbacks.designer_candidate_dashboard || designerDashboard?.artifact_id,
+      draft_review_pack_stabilization: preservedReadbacks.draft_review_pack_stabilization || stabilization?.artifact_id,
+      contradictory_claim_guard: preservedReadbacks.contradictory_claim_guard || contradictoryGuard?.artifact_id
+    },
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      credential_material_findings: credentialFindings
+    },
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    summary: {
+      review_brief_preserved: checks.source_review_brief_preserved?.passed === true,
+      bridge_visible: checks.bridge_visible?.passed === true,
+      route_contract_visible: checks.route_contract_visible?.passed === true,
+      dark_contrast_hotfix_applied: checks.dark_contrast_hotfix?.passed === true,
+      selected_candidate_id: selectedCandidateId,
+      selected_channel_route_id: selectedChannelId,
+      narration_outline_count: narrationOutlineCount,
+      subtitle_cue_count: subtitleCueCount,
+      visual_cue_count: visualCueCount,
+      thumbnail_brief_count: thumbnailBriefCount,
+      sound_mood_cue_count: soundMoodCueCount,
+      rights_risk_count: rightsRiskCount,
+      held_truth_count: heldTruthCount,
+      reviewer_decision_count: reviewerDecisionCount,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "Draft-to-Video Bridge is a local pre-production planning bridge only.",
+      "Narration is an outline and is not final narration.",
+      "Thumbnail, sound, visual, and text cues are briefs only; no asset has been rights-cleared.",
+      "Provider/API setup, AI video generation, production render, YouTube upload, final canon, and rights clearance remain out of scope."
     ],
     checks,
     failures,
@@ -9326,6 +9676,8 @@ Usage:
   node tools/fff-state.mjs smoke-one-story-draft-review-pack <one-story-draft-review-pack-result.json> [output.json]
   node tools/fff-state.mjs validate-review-brief-dark-mode-ux <review-brief-dark-mode-ux-result.json>
   node tools/fff-state.mjs smoke-review-brief-dark-mode-ux <review-brief-dark-mode-ux-result.json> [output.json]
+  node tools/fff-state.mjs validate-draft-to-video-planning-bridge <draft-to-video-planning-bridge-result.json>
+  node tools/fff-state.mjs smoke-draft-to-video-planning-bridge <draft-to-video-planning-bridge-result.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -9344,6 +9696,9 @@ Default one-story draft review pack output:
 
 Default review brief dark mode UX output:
   ${DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT}
+
+Default draft-to-video planning bridge output:
+  ${DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT}
 
 Default weak-span repair output:
   ${DEFAULT_WEAK_SPAN_REPAIR_OUTPUT}

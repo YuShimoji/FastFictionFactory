@@ -23,6 +23,14 @@
       --warning-bg: #fff7df;
       --danger-bg: #fbe9e7;
       --tag-bg: #f8faf9;
+      --tag-ink: #46545f;
+      --pill-bg: #eef5fa;
+      --pill-ink: #123950;
+      --pill-border: rgba(34, 92, 130, 0.38);
+      --route-contract-bg: #eef5fa;
+      --route-contract-border: rgba(34, 92, 130, 0.35);
+      --link: #1f5f88;
+      --muted-strong: #3f4b55;
       --blue: #225c82;
       --green: #2f6f4f;
       --gold: #8a6914;
@@ -49,6 +57,14 @@
       --warning-bg: #3a2f13;
       --danger-bg: #3c1f1d;
       --tag-bg: #202b35;
+      --tag-ink: #d3dde7;
+      --pill-bg: #223a4f;
+      --pill-ink: #d8efff;
+      --pill-border: rgba(120, 188, 231, 0.58);
+      --route-contract-bg: #122436;
+      --route-contract-border: rgba(120, 188, 231, 0.46);
+      --link: #9ed8ff;
+      --muted-strong: #c6d2dd;
       --blue: #78bce7;
       --green: #83d29c;
       --gold: #e2c46a;
@@ -76,6 +92,14 @@
         --warning-bg: #3a2f13;
         --danger-bg: #3c1f1d;
         --tag-bg: #202b35;
+        --tag-ink: #d3dde7;
+        --pill-bg: #223a4f;
+        --pill-ink: #d8efff;
+        --pill-border: rgba(120, 188, 231, 0.58);
+        --route-contract-bg: #122436;
+        --route-contract-border: rgba(120, 188, 231, 0.46);
+        --link: #9ed8ff;
+        --muted-strong: #c6d2dd;
         --blue: #78bce7;
         --green: #83d29c;
         --gold: #e2c46a;
@@ -125,8 +149,13 @@
       cursor: pointer;
     }
 
+    a {
+      color: var(--link);
+    }
+
     button:hover,
-    button:focus-visible {
+    button:focus-visible,
+    a:focus-visible {
       border-color: var(--blue);
       outline: 2px solid var(--focus-ring);
       outline-offset: 1px;
@@ -305,7 +334,7 @@
 
     .mode-tabs {
       display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
+      grid-template-columns: repeat(8, minmax(0, 1fr));
       gap: 8px;
     }
 
@@ -341,7 +370,7 @@
 
     .mode-summary-grid {
       display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
+      grid-template-columns: repeat(8, minmax(0, 1fr));
       gap: 8px;
     }
 
@@ -383,6 +412,12 @@
       margin-bottom: 0;
     }
 
+    .brief-card .section-note,
+    .bridge-card .section-note,
+    .route-contract .section-note {
+      color: var(--muted-strong);
+    }
+
     .brief-actions {
       display: flex;
       flex-wrap: wrap;
@@ -399,12 +434,14 @@
       display: inline-block;
       max-width: 100%;
       margin: 4px 0 8px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--pill-border);
       border-radius: 999px;
       padding: 3px 8px;
-      background: var(--code-bg);
+      background: var(--pill-bg);
+      color: var(--pill-ink);
       font-family: Consolas, "Courier New", monospace;
       font-size: 12px;
+      font-weight: 700;
       overflow-wrap: anywhere;
     }
 
@@ -423,6 +460,82 @@
       padding: 10px 12px;
       background: var(--surface-muted);
       color: var(--muted);
+      font-size: 13px;
+    }
+
+    .route-contract {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .route-contract-card {
+      min-width: 0;
+      border: 1px solid var(--route-contract-border);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--route-contract-bg);
+    }
+
+    .route-contract-card h3 {
+      margin-bottom: 6px;
+    }
+
+    .route-contract-card ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted-strong);
+      font-size: 13px;
+    }
+
+    .bridge-panel {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .bridge-hero {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+    }
+
+    .bridge-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .bridge-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper-soft);
+    }
+
+    .bridge-card.warning {
+      border-left: 4px solid var(--gold);
+      background: var(--warning-bg);
+    }
+
+    .bridge-card.danger {
+      border-left: 4px solid var(--red);
+      background: var(--danger-bg);
+    }
+
+    .bridge-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .bridge-list {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted-strong);
       font-size: 13px;
     }
 
@@ -451,6 +564,7 @@
     }
 
     body[data-review-mode="brief"] [data-mode-panel="brief"],
+    body[data-review-mode="bridge"] [data-mode-panel="bridge"],
     body[data-review-mode="story"] [data-mode-panel="story"],
     body[data-review-mode="designer"] [data-mode-panel="designer"],
     body[data-review-mode="draft"] [data-mode-panel="draft"],
@@ -926,8 +1040,9 @@
       border-radius: 999px;
       padding: 3px 8px;
       background: var(--tag-bg);
-      color: var(--muted);
+      color: var(--tag-ink);
       font-size: 12px;
+      font-weight: 600;
     }
 
     .tag.blue {
@@ -1171,6 +1286,8 @@
       .mode-tabs,
       .mode-summary-grid,
       .brief-grid,
+      .route-contract,
+      .bridge-grid,
       .progress-map,
       .designer-dashboard-grid,
       .draft-review-grid,
@@ -1220,7 +1337,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビュー目的を選ぶ</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-one-story-draft-review-pack-001</strong>. まずReview Briefで候補・チャンネル路線・未決定事項だけを確認します。詳細証跡は保持していますが、初回表示では主役にしません。</p>
+            <p class="lede">Active artifact id: <strong>fff-draft-to-video-planning-bridge-001</strong>. まずReview Briefで読む範囲を確認し、次にDraft-to-Video Bridgeで制作仮説だけを確認します。詳細証跡はEvidence Vaultとして保持します。</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1232,6 +1349,7 @@
         <nav class="mode-switcher" aria-label="Review mode navigation">
           <div class="mode-tabs">
             <button class="mode-tab" type="button" data-mode-target="brief" aria-pressed="true"><strong>Review Brief</strong><span>まずここを見る</span></button>
+            <button class="mode-tab" type="button" data-mode-target="bridge" aria-pressed="false"><strong>Draft-to-Video Bridge</strong><span>今回の制作仮説</span></button>
             <button class="mode-tab" type="button" data-mode-target="story" aria-pressed="false"><strong>Story Review</strong><span>ストーリーレビュー</span></button>
             <button class="mode-tab" type="button" data-mode-target="designer" aria-pressed="false"><strong>Designer Dashboard</strong><span>Content strategy</span></button>
             <button class="mode-tab" type="button" data-mode-target="draft" aria-pressed="false"><strong>Draft Review Pack</strong><span>One story draft</span></button>
@@ -1241,6 +1359,7 @@
           </div>
           <div class="mode-summary-grid">
             <div class="mode-summary"><strong>Review Brief</strong><span class="jp-label">最初の判断だけを確認</span></div>
+            <div class="mode-summary"><strong>Draft-to-Video Bridge</strong><span class="jp-label">制作前の仮説確認</span></div>
             <div class="mode-summary"><strong>Story Review</strong><span class="jp-label">本文・候補・未決定を確認</span></div>
             <div class="mode-summary"><strong>Designer Dashboard</strong><span class="jp-label">候補とチャンネル案</span></div>
             <div class="mode-summary"><strong>Draft Review Pack</strong><span class="jp-label">暫定ドラフト案</span></div>
@@ -1257,10 +1376,32 @@
             <h2 id="review-brief-title">今回レビューするのは「候補とチャンネルをこのまま進めるか」です</h2>
             <p class="lede">長い履歴や抽出証跡は詳細タブに残しています。最初は下の3つだけ確認してください。まだ承認ではなく、候補・路線・未決定事項をどう扱うかを決めるための画面です。</p>
             <div class="brief-actions">
-              <button class="brief-action primary" type="button" data-mode-target="draft" aria-pressed="false">Draft Review Packへ</button>
+              <button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Draft-to-Video Bridgeへ</button>
+              <button class="brief-action" type="button" data-mode-target="draft" aria-pressed="false">Draft Review Packへ</button>
               <button class="brief-action" type="button" data-mode-target="designer" aria-pressed="false">Designer Dashboardへ</button>
               <button class="brief-action" type="button" data-mode-target="story" aria-pressed="false">Story Reviewへ</button>
             </div>
+          </div>
+
+          <div class="route-contract" aria-label="Review Route Contract">
+            <article class="route-contract-card">
+              <p class="hub-eyebrow">Operator Track / 今回読む場所</p>
+              <h3>Review Brief + Draft-to-Video Bridgeだけでよい</h3>
+              <p class="section-note">今回の判断は、候補・チャンネル路線・制作仮説をこのまま次に進めるかです。詳細な証跡棚を全部読む必要はありません。</p>
+            </article>
+            <article class="route-contract-card">
+              <p class="hub-eyebrow">Evidence Vault / 任意の証跡棚</p>
+              <h3>Source Audit / Project Cockpit / Artifacts</h3>
+              <p class="section-note">監査や差分確認が必要な時だけ開きます。候補判断の主画面ではなく、保持された根拠棚です。</p>
+            </article>
+            <article class="route-contract-card">
+              <p class="hub-eyebrow">Not Active / 今回しないこと</p>
+              <h3>生成・公開・確定はまだしない</h3>
+              <ul>
+                <li>Provider/API・AI video・render・YouTube uploadなし</li>
+                <li>final canon・rights clearance claimなし</li>
+              </ul>
+            </article>
           </div>
 
           <div class="brief-grid">
@@ -1306,6 +1447,122 @@
             <p class="section-note">If this message remains visible, check the local browser console before treating the draft pack as review-ready.</p>
           </div>
         </div>
+
+        <section class="bridge-panel" id="draft-to-video-bridge-root" data-mode-panel="bridge" aria-labelledby="draft-to-video-bridge-title">
+          <div class="bridge-hero">
+            <p class="hub-eyebrow">Operator Track / Draft-to-Video Planning Bridge</p>
+            <h2 id="draft-to-video-bridge-title">今回の制作仮説: まだ動画生成せず、制作前に読む設計図</h2>
+            <p class="lede">Review Briefで進めると確認された候補を、動画前の確認パッケージにしました。これは最終脚本・絵コンテ・サムネ・動画ではありません。</p>
+            <div class="tag-row">
+              <span class="tag blue">public/review/index.html?mode=bridge</span>
+              <span class="tag gold">pre-production only</span>
+              <span class="tag red">no AI video generation</span>
+              <span class="tag red">no render</span>
+              <span class="tag red">no upload</span>
+            </div>
+          </div>
+
+          <div class="bridge-grid">
+            <article class="bridge-card">
+              <h3>選択ルート要約</h3>
+              <span class="id-pill">designer-content-moth-investigation-3m</span>
+              <span class="id-pill">designer-channel-mystery-lore</span>
+              <p class="section-note">MiraがTomaのメモとbrass mothを手がかりに、Council ledgerへ向かう3分ミステリー・ロア路線。家族の謎、物の手がかり、調査の流れは使うが、Toma fate / brass moth truth / Council motiveは決めない。</p>
+            </article>
+
+            <article class="bridge-card">
+              <h3>ナレーション構成案</h3>
+              <ol class="bridge-list">
+                <li>ベルのない塔が鳴る、という不可能な入口。</li>
+                <li>Miraの手元、Tomaのメモ、brass mothを短く提示。</li>
+                <li>Council ledgerが「失われた時間」を買う疑いへつなぐ。</li>
+                <li>Toma / moth / Councilは未決定として明示する。</li>
+                <li>最後は「次に判断する問い」で閉じる。</li>
+              </ol>
+            </article>
+
+            <article class="bridge-card">
+              <h3>字幕・画面テキスト案</h3>
+              <ol class="bridge-list">
+                <li>At noon, the missing bell rang.</li>
+                <li>Toma left only a note and a brass moth.</li>
+                <li>Some names were paid for in minutes.</li>
+                <li>These answers stay held for author review.</li>
+                <li>Ending candidate, not final canon.</li>
+              </ol>
+            </article>
+
+            <article class="bridge-card">
+              <h3>画面構成 / ショット案</h3>
+              <ol class="bridge-list">
+                <li>North Bell Station外観、空の鐘枠、昼の光。</li>
+                <li>作業机、Tomaのメモ、brass mothの寄り。</li>
+                <li>ledger page、名前、時間の数字を短い挿入で見せる。</li>
+                <li>Toma / moth / Councilを未決定カードとして止める。</li>
+                <li>ledgerを閉じる手元と、もう一度だけ鳴る鐘。</li>
+              </ol>
+            </article>
+
+            <article class="bridge-card">
+              <h3>サムネイル案</h3>
+              <p><strong>構図:</strong> 暗い作業机、中央にbrass moth、奥にぼんやりしたledger、片側に空の鐘枠。</p>
+              <p class="section-note">テキストは短く「THE BELL THAT WAS REMOVED」程度。画像素材は未選定で、権利クリア済みとは扱わない。</p>
+            </article>
+
+            <article class="bridge-card">
+              <h3>音・ムード案</h3>
+              <p class="section-note">小さな機械音、遠い鐘、紙をめくる音、低いドローン。音素材は未選定なので、ここでは方向性だけを記録する。</p>
+              <div class="tag-row">
+                <span class="tag gold">quiet mystery</span>
+                <span class="tag gold">clockwork texture</span>
+                <span class="tag gold">no licensed audio selected</span>
+              </div>
+            </article>
+
+            <article class="bridge-card warning">
+              <h3>権利・素材リスク</h3>
+              <ol class="bridge-list">
+                <li>画像・動画素材はまだ選んでいない。</li>
+                <li>サムネ構図は案であり、完成画像ではない。</li>
+                <li>音素材は方向性のみで、権利確認なし。</li>
+                <li>字幕スタイルと可読性は未検証。</li>
+                <li>公開前には別のrights reviewが必要。</li>
+              </ol>
+            </article>
+
+            <article class="bridge-card warning">
+              <h3>未決定のまま保持する真実</h3>
+              <ol class="bridge-list">
+                <li>Toma fate</li>
+                <li>brass moth truth / function</li>
+                <li>Council motive</li>
+                <li>ending route / final canon</li>
+              </ol>
+            </article>
+
+            <article class="bridge-card danger">
+              <h3>Production Non-goals</h3>
+              <ol class="bridge-list">
+                <li>no provider/API call</li>
+                <li>no AI video generation</li>
+                <li>no production render</li>
+                <li>no YouTube upload or public publishing</li>
+                <li>no final canon decision</li>
+                <li>no rights clearance claim</li>
+              </ol>
+            </article>
+
+            <article class="bridge-card">
+              <h3>次に判断してほしいこと</h3>
+              <ol class="bridge-list">
+                <li>この候補を動画前提の制作仮説として続けるか。</li>
+                <li>ミステリー・ロア路線を維持するか。</li>
+                <li>未決定真実をこのまま伏せてよいか。</li>
+                <li>次回、字幕読みやすさ・ショット順・サムネ方向のどれを先に詰めるか。</li>
+              </ol>
+            </article>
+          </div>
+        </section>
 
         <div class="progress-map" aria-label="Progress map" data-mode-panel="project">
           <div class="progress-step done"><strong>MVP skeleton</strong><span class="tag green">done</span><p class="section-note">Memo intake, generated candidates, task cards, outlines, QA.</p></div>
@@ -2277,7 +2534,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const modeButtons = Array.from(document.querySelectorAll("[data-mode-target]"));
     const themeButtons = Array.from(document.querySelectorAll("[data-theme-target]"));
     const THEME_STORAGE_KEY = "fff-review-theme";
-    const REVIEW_MODES = ["brief", "story", "designer", "draft", "source", "project", "artifacts"];
+    const REVIEW_MODES = ["brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"];
     const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "brief";
 
     memoInput.value = state.memo || sampleMemo;

@@ -2,18 +2,27 @@
 
 ## Residual Work
 
+### Draft-to-Video Planning Bridge
+
+- Purpose: Let the reviewer inspect the selected 3-minute mystery-lore route as a production hypothesis before any video generation, provider/API work, upload, rights claim, or final canon decision.
+- Effect: Adds `public/review/index.html?mode=bridge` with route summary, non-final narration outline, subtitle/on-screen text cues, shot/visual cues, thumbnail brief, sound/music/mood cue, rights/asset risks, held truths, production non-goals, and reviewer decisions.
+- Requirements: Preserve selected candidate `designer-content-moth-investigation-3m`, selected channel `designer-channel-mystery-lore`, Review Brief route contract, Designer Dashboard, One-story Draft Review Pack, stabilization readback, and contradictory claim guard; keep provider/API calls, credentials, publishing, AI video generation, production render, final canon, and rights-clearance claims closed.
+- State: Implemented in `fff-draft-to-video-planning-bridge-001`.
+- Owner: Product implementer for UI/readback; human reviewer for route, narration shape, visual direction, rights posture, and held-truth decisions.
+- Next move: Review `public/review/index.html?mode=bridge` and accept, revise, or reject the production hypothesis before any narrower package refinement or production work.
+
 ### Review Brief Dark Mode UX
 
-- Purpose: Make the local review entry shorter, more discoverable, Japanese-first, and usable in dark mode before any draft-to-video planning bridge.
+- Purpose: Make the local review entry shorter, more discoverable, Japanese-first, and usable in dark mode before and during bridge review.
 - Effect: Adds a default Review Brief mode, visible selected candidate/channel route, immediate reviewer decisions, advanced demotion for source/project/artifact panels, and Light / Dark / Auto theme compatibility.
-- Requirements: Preserve Designer Dashboard, One-story Draft Review Pack, and Draft Review Pack Stabilization readbacks; keep work local-only; do not add provider/API calls, credentials, publishing, AI video generation, draft-to-video bridge behavior, production render, or final canon decisions.
+- Requirements: Preserve Designer Dashboard, One-story Draft Review Pack, Draft Review Pack Stabilization, and the Draft-to-Video Planning Bridge readback; keep work local-only; do not add provider/API calls, credentials, publishing, AI video generation, production render, rights-clearance claims, or final canon decisions.
 - State: Implemented in `fff-review-brief-dark-mode-ux-001`.
 - Owner: Product implementer for UI/readback; human reviewer for candidate, channel, and held-truth decisions.
-- Next move: Use `public/review/index.html?mode=brief` to confirm or revise the provisional candidate/channel route and unresolved-truth policy before any later draft-to-video planning slice.
+- Next move: Use `public/review/index.html?mode=brief` as the operator prelude and route contract before reading `public/review/index.html?mode=bridge`.
 
 ### Draft Review Pack Stabilization
 
-- Purpose: Make the Designer Dashboard and One-story Draft Review Pack durable, reviewable, and reproducible before any draft-to-video planning bridge.
+- Purpose: Make the Designer Dashboard and One-story Draft Review Pack durable, reviewable, and reproducible as source surfaces for later draft-to-video planning.
 - Effect: Adds a static access/readback artifact that verifies both mode routes, result artifacts, review docs, renderer markers, and contradictory-claim guard preservation.
 - Requirements: Keep the work local-only; do not add provider/API calls, credentials, publishing, AI video generation, production render, draft-to-video bridge behavior, or final canon decisions; keep `.serena/project.yml` out of product staging.
 - State: Implemented in `fff-draft-review-pack-stabilization-001`.
@@ -27,7 +36,7 @@
 - Requirements: Keep the surface local-only; keep selection marked `provisional_default`; preserve human-owned unknowns; avoid provider/API calls, credentials, publishing, AI video generation, production render, and final canon claims.
 - State: Implemented in `fff-one-story-draft-review-pack-001`.
 - Owner: Product implementer for UI/readback; human reviewer for candidate, channel, and held-truth decisions.
-- Next move: Use `public/review/index.html?mode=draft` and `docs/review/one-story-draft-review-pack.md` to confirm or revise the provisional draft route before any draft-to-video planning bridge.
+- Next move: Keep `public/review/index.html?mode=draft` and `docs/review/one-story-draft-review-pack.md` as the source draft pack for the active bridge; reopen only if the selected route changes.
 
 ### Designer Candidate Dashboard
 
@@ -97,6 +106,6 @@
 - Purpose: Eventually package reviewed fiction outputs for YouTube or AI-video workflows.
 - Effect: Connects reviewed outlines to production surfaces.
 - Requirements: Requires final rights review, credential isolation, production approval gates, and explicit human release decisions.
-- State: Out of scope for the current MVP.
+- State: Draft-to-Video Planning Bridge implemented in `fff-draft-to-video-planning-bridge-001`; actual publishing, upload, AI video generation, production render, rights clearance, and final canon remain out of scope for the current MVP.
 - Owner: Human product owner plus production implementer.
 - Next move: Do not start until review workflow and source/canon gates are accepted.
