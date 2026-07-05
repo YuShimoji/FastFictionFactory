@@ -2,21 +2,23 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current review surface is `fff-one-story-draft-review-pack-001`, served through the static local Visual Review Hub at `public/review/index.html`. The current stabilization checkpoint is `fff-draft-review-pack-stabilization-001`.
+Fast Fiction Factory is a local-first fiction production workbench. The current review entry UX checkpoint is `fff-review-brief-dark-mode-ux-001`, served through the static local Visual Review Hub at `public/review/index.html`. It preserves the One-story Draft Review Pack `fff-one-story-draft-review-pack-001`, Designer Candidate Dashboard `fff-designer-candidate-dashboard-001`, and stabilization checkpoint `fff-draft-review-pack-stabilization-001`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is stabilization for the local One-story Draft Review Pack and preserved Designer Dashboard: source evidence, routing, contradictory claim holds, review-held defaults, artifact governance, local access paths, and non-redundant review requests must remain distinct before any model/API extractor, draft-to-video bridge, production render, public upload, or final canon path exists.
+Keep the MVP reviewable without production commitments. The current lane is Review Brief compression/discoverability and dark-mode compatibility for the local One-story Draft Review Pack and preserved Designer Dashboard: source evidence, routing, contradictory claim holds, review-held defaults, artifact governance, local access paths, and non-redundant review requests must remain distinct before any model/API extractor, draft-to-video bridge, production render, public upload, or final canon path exists.
 
 ## Current Slice
 
 The active slice is complete enough for local readback:
 
 - Review UI: `public/review/index.html`
+- Review Brief mode: `public/review/index.html?mode=brief`
 - Draft Review Pack mode: `public/review/index.html?mode=draft`
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Review Brief Dark Mode UX doc/result: `docs/review/review-brief-dark-mode-ux.md`, `artifacts/review-brief-dark-mode-ux-result.json`
 - Stabilization doc/result: `docs/review/draft-review-pack-stabilization.md`, `artifacts/draft-review-pack-stabilization-result.json`
 - Draft Review Pack doc/result: `docs/review/one-story-draft-review-pack.md`, `artifacts/one-story-draft-review-pack-result.json`
 - Designer Dashboard doc/result: `docs/review/designer-candidate-dashboard.md`, `artifacts/designer-candidate-dashboard-result.json`
@@ -80,9 +82,12 @@ Route hygiene checkpoint, 2026-06-29 JST:
   cockpit summaries.
 - `docs/style_intent/` was removed because it was empty and residue-only.
 - The active Fast Fiction Factory review surface is now
-  `fff-one-story-draft-review-pack-001`; `fff-draft-review-pack-stabilization-001`
-  records the access/readback checkpoint; `fff-designer-candidate-dashboard-001`
-  and `fff-contradictory-claim-guard-001` remain preserved as auxiliary readbacks.
+  `fff-review-brief-dark-mode-ux-001`; it records the first-screen review entry,
+  selected candidate/channel discoverability, Japanese review labels, and
+  dark-mode compatibility while preserving `fff-one-story-draft-review-pack-001`,
+  `fff-draft-review-pack-stabilization-001`,
+  `fff-designer-candidate-dashboard-001`, and
+  `fff-contradictory-claim-guard-001` as readbacks.
 
 Last verified on 2026-07-01:
 
@@ -122,7 +127,8 @@ node .\tools\fff-state.mjs smoke-very-broad-source-span-shape-audit .\artifacts\
 Result summary:
 
 - Stabilization readback passes for `fff-draft-review-pack-stabilization-001`: Designer Dashboard and Draft Review Pack routes are statically verified, both result artifacts and docs exist, the contradictory claim guard is preserved, access state is `verified_present`, and browser file URL capture is recorded as blocked by browser URL policy with static readback used as fallback.
-- Active manifest validation passes for `fff-one-story-draft-review-pack-001`.
+- Review Brief / dark mode UX readback passes for `fff-review-brief-dark-mode-ux-001`: no-query access defaults to `brief`, selected candidate `designer-content-moth-investigation-3m` and channel route `designer-channel-mystery-lore` are visible, Japanese review labels are present, Source Audit / Project Cockpit / Artifacts are demoted into advanced tabs, Light / Dark / Auto controls are present, hardcoded light surfaces are reduced, and Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
+- Preserved Draft Review Pack manifest validation passes for `fff-one-story-draft-review-pack-001`.
 - One-story Draft Review Pack readback passes with provisional_default selection `designer-content-moth-investigation-3m`, 3 source dashboard content candidates, 3 channel strategy proposals, 5 draft beats, non-final sample opening present, 4 visual cues, 4 subtitle/on-screen text cues, 3 unresolved human-owned questions, 4 risk cards, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, and final_canon_decision=false.
 - Designer Dashboard readback passes with 3 content candidate cards, 3 channel strategy proposals, 5 draft spine beats, 4 unresolved risks, 3 human-owned decisions held, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, and final_canon_decision=false.
 - `fff-contradictory-claim-guard-001` remains preserved as an auxiliary guard.

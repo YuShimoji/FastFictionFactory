@@ -32,6 +32,7 @@ const PROFILE_ADOPTION_MUTATION_ONE_CLAIM_SCHEMA_VERSION = "fff.profileAdoptionM
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
 const DESIGNER_CANDIDATE_DASHBOARD_SCHEMA_VERSION = "fff.designerCandidateDashboard.v1";
 const ONE_STORY_DRAFT_REVIEW_PACK_SCHEMA_VERSION = "fff.oneStoryDraftReviewPack.v1";
+const REVIEW_BRIEF_DARK_MODE_UX_SCHEMA_VERSION = "fff.reviewBriefDarkModeUx.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -61,6 +62,7 @@ const DEFAULT_PROFILE_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT = "artifacts/profile-ad
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
 const DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT = "artifacts/designer-candidate-dashboard-result.json";
 const DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT = "artifacts/one-story-draft-review-pack-result.json";
+const DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT = "artifacts/review-brief-dark-mode-ux-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -844,6 +846,25 @@ async function main() {
     }
     if (command === "smoke-one-story-draft-review-pack" || outputPath) {
       console.log(`one-story draft review pack passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-review-brief-dark-mode-ux" || command === "smoke-review-brief-dark-mode-ux") {
+    const readback = await readJson(inputPath);
+    const result = await validateReviewBriefDarkModeUx(readback, inputPath);
+    const target = outputPath || DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT;
+    if (command === "smoke-review-brief-dark-mode-ux" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Review brief dark mode UX failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-review-brief-dark-mode-ux" || outputPath) {
+      console.log(`review brief dark mode UX passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -8009,6 +8030,236 @@ async function validateOneStoryDraftReviewPack(pack, packPath) {
   };
 }
 
+async function validateReviewBriefDarkModeUx(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const designerDashboard = await readJson(manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT);
+  const draftPack = await readJson(manifest.one_story_draft_review_pack_result_path || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT);
+  const stabilization = await readJson(manifest.stabilization_result_path || "artifacts/draft-review-pack-stabilization-result.json");
+  const html = await readFile("public/review/index.html", "utf8");
+  const credentialFindings = collectCredentialMaterial(readback);
+  const selectedCandidateId = readback?.selected_candidate_id || draftPack.selected_candidate_id;
+  const selectedChannelId = readback?.selected_channel_route_id || draftPack.channel_strategy_route?.id;
+  const advancedTabCount = (html.match(/mode-tab is-advanced/g) || []).length;
+  const themeOptionCount = (html.match(/data-theme-target=/g) || []).length;
+  const briefCardCount = (html.match(/class="brief-card/g) || []).length;
+  const hardcodedLightSurfaceHits = (html.match(/#ffffff|#fffefb|#fffdf8|#fbfcfd|#f7f9fa|#eef5fa|#eef3fa|#f0f6fa|#fff9e8|#fff7df/gi) || []).length;
+  const reviewUiSummary = readback?.review_ui_summary || {};
+  const themeCompatibility = readback?.theme_compatibility || {};
+  const reviewBriefFlag = readback?.review_brief_visible ?? reviewUiSummary.review_brief_visible ?? readback?.summary?.review_brief_visible;
+  const selectedCandidateFlag = readback?.selected_candidate_id_visible ?? reviewUiSummary.selected_candidate_id_visible ?? readback?.summary?.selected_candidate_id_visible;
+  const selectedChannelFlag = readback?.selected_channel_route_visible ?? reviewUiSummary.selected_channel_route_visible ?? readback?.summary?.selected_channel_route_visible;
+  const japaneseSummaryFlag = readback?.japanese_summary_present ?? reviewUiSummary.japanese_summary_present ?? readback?.summary?.japanese_summary_present;
+  const noQueryDefaultMode = readback?.no_query_default_mode ?? readback?.review_ui_summary?.no_query_default_mode ?? readback?.summary?.no_query_default_mode;
+  const advancedFlag = readback?.advanced_sections_collapsed_or_demoted ?? reviewUiSummary.advanced_sections_collapsed_or_demoted;
+  const darkModeFlag = readback?.dark_mode_toggle_present ?? themeCompatibility.dark_mode_toggle_present ?? readback?.summary?.dark_mode_toggle_present;
+  const colorSchemeFlag = readback?.color_scheme_supports_light_dark ?? themeCompatibility.color_scheme_supports_light_dark ?? readback?.summary?.color_scheme_supports_light_dark;
+  const hardcodedLightFlag = readback?.hardcoded_light_surfaces_reduced ?? themeCompatibility.hardcoded_light_surfaces_reduced ?? readback?.summary?.hardcoded_light_surfaces_reduced;
+
+  check(
+    "identity",
+    readback?.artifact_id === "fff-review-brief-dark-mode-ux-001" &&
+      readback?.schemaVersion === REVIEW_BRIEF_DARK_MODE_UX_SCHEMA_VERSION &&
+      readback?.review_ui === "public/review/index.html",
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; ui=${readback?.review_ui}`
+  );
+  check(
+    "review_brief_visible",
+    reviewBriefFlag !== false &&
+      html.includes('id="review-brief-root"') &&
+      html.includes('data-mode-panel="brief"') &&
+      briefCardCount >= 3,
+    `readback=${reviewBriefFlag}; cards=${briefCardCount}`
+  );
+  check(
+    "selected_candidate_visible",
+    selectedCandidateFlag !== false &&
+      selectedCandidateId === "designer-content-moth-investigation-3m" &&
+      html.includes("designer-content-moth-investigation-3m"),
+    `readback=${selectedCandidateFlag}; selected=${selectedCandidateId}`
+  );
+  check(
+    "selected_channel_visible",
+    selectedChannelFlag !== false &&
+      selectedChannelId === "designer-channel-mystery-lore" &&
+      html.includes("designer-channel-mystery-lore"),
+    `readback=${selectedChannelFlag}; selected=${selectedChannelId}`
+  );
+  check(
+    "japanese_summary_visible",
+    japaneseSummaryFlag !== false &&
+      html.includes("\u307e\u305a\u3053\u3053\u3092\u898b\u308b") &&
+      html.includes("3\u5206: Mira") &&
+      html.includes("\u30df\u30b9\u30c6\u30ea\u30fc"),
+    `readback=${japaneseSummaryFlag}`
+  );
+  check(
+    "brief_is_default",
+    (noQueryDefaultMode === undefined || noQueryDefaultMode === "brief") &&
+      html.includes('data-review-mode="brief"') &&
+      html.includes('const REVIEW_MODES = ["brief", "story", "designer", "draft", "source", "project", "artifacts"]') &&
+      html.includes('|| "brief"'),
+    `default=${noQueryDefaultMode}`
+  );
+  check(
+    "advanced_sections_demoted",
+    advancedFlag !== false &&
+      advancedTabCount >= 3 &&
+      html.includes("mode-tab is-advanced"),
+    `readback=${advancedFlag}; advancedTabs=${advancedTabCount}`
+  );
+  check(
+    "theme_toggle_present",
+    darkModeFlag !== false &&
+      themeOptionCount >= 3 &&
+      html.includes('data-theme-target="light"') &&
+      html.includes('data-theme-target="dark"') &&
+      html.includes('data-theme-target="auto"') &&
+      html.includes("THEME_STORAGE_KEY"),
+    `readback=${darkModeFlag}; themeOptions=${themeOptionCount}`
+  );
+  check(
+    "color_scheme_support",
+    colorSchemeFlag !== false &&
+      html.includes("color-scheme: light dark") &&
+      html.includes(':root[data-theme="dark"]') &&
+      html.includes("prefers-color-scheme"),
+    `readback=${colorSchemeFlag}`
+  );
+  check(
+    "hardcoded_light_surfaces_reduced",
+    hardcodedLightFlag !== false &&
+      html.includes("--paper-warm") &&
+      html.includes("--surface-muted") &&
+      hardcodedLightSurfaceHits <= 30,
+    `readback=${hardcodedLightFlag}; lightSurfaceHits=${hardcodedLightSurfaceHits}`
+  );
+  check(
+    "source_artifacts_preserved",
+    designerDashboard?.artifact_id === "fff-designer-candidate-dashboard-001" &&
+      designerDashboard?.passed === true &&
+      draftPack?.artifact_id === "fff-one-story-draft-review-pack-001" &&
+      draftPack?.passed === true &&
+      stabilization?.artifact_id === "fff-draft-review-pack-stabilization-001" &&
+      stabilization?.passed === true,
+    `designer=${designerDashboard?.artifact_id}/${designerDashboard?.passed}; draft=${draftPack?.artifact_id}/${draftPack?.passed}; stabilization=${stabilization?.artifact_id}/${stabilization?.passed}`
+  );
+  check(
+    "local_only_boundaries",
+    readback?.local_only === true &&
+      readback?.external_call === false &&
+      readback?.provider_configured === false &&
+      readback?.credentials_touched === false &&
+      readback?.public_upload === false &&
+      readback?.ai_video_generation === false &&
+      readback?.final_canon_decision === false &&
+      credentialFindings.length === 0,
+    `local=${readback?.local_only}; external=${readback?.external_call}; provider=${readback?.provider_configured}; credentials=${readback?.credentials_touched}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+
+  return {
+    schemaVersion: REVIEW_BRIEF_DARK_MODE_UX_SCHEMA_VERSION,
+    artifact_id: "fff-review-brief-dark-mode-ux-001",
+    title: "Fast Fiction Factory Review Brief and Dark Mode UX",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    review_ui: readback.review_ui || "public/review/index.html",
+    access_route: readback.access_route || "public/review/index.html?mode=brief",
+    input_result_path: toRepoPath(readbackPath),
+    source_result_paths: {
+      designer_candidate_dashboard: manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT,
+      one_story_draft_review_pack: manifest.one_story_draft_review_pack_result_path || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT,
+      draft_review_pack_stabilization: manifest.stabilization_result_path || "artifacts/draft-review-pack-stabilization-result.json"
+    },
+    source_artifacts: [
+      designerDashboard?.artifact_id,
+      draftPack?.artifact_id,
+      stabilization?.artifact_id
+    ].filter(Boolean),
+    selected_candidate_id: selectedCandidateId,
+    selected_candidate_label_japanese: readback.selected_candidate_label_japanese || "3\u5206: Mira\u3068brass moth\u306e\u624b\u304c\u304b\u308a\u8abf\u67fb",
+    selected_channel_route_id: selectedChannelId,
+    selected_channel_label_japanese: readback.selected_channel_label_japanese || "\u30df\u30b9\u30c6\u30ea\u30fc\u30fb\u30ed\u30a2\u9023\u8f09\u8def\u7dda",
+    counts: {
+      review_brief_cards: briefCardCount,
+      reviewer_decisions: readback.counts?.reviewer_decisions || 3,
+      theme_options: themeOptionCount,
+      advanced_tabs_demoted: advancedTabCount,
+      hardcoded_light_surface_hits: hardcodedLightSurfaceHits
+    },
+    review_ui_summary: {
+      review_brief_visible: checks.review_brief_visible?.passed === true,
+      selected_candidate_id_visible: checks.selected_candidate_visible?.passed === true,
+      selected_channel_route_visible: checks.selected_channel_visible?.passed === true,
+      japanese_summary_present: checks.japanese_summary_visible?.passed === true,
+      no_query_default_mode: checks.brief_is_default?.passed === true ? "brief" : readback.no_query_default_mode,
+      advanced_sections_collapsed_or_demoted: checks.advanced_sections_demoted?.passed === true
+    },
+    theme_compatibility: {
+      dark_mode_toggle_present: checks.theme_toggle_present?.passed === true,
+      color_scheme_supports_light_dark: checks.color_scheme_support?.passed === true,
+      hardcoded_light_surfaces_reduced: checks.hardcoded_light_surfaces_reduced?.passed === true
+    },
+    preserved_readbacks: {
+      designer_candidate_dashboard: designerDashboard?.artifact_id,
+      one_story_draft_review_pack: draftPack?.artifact_id,
+      draft_review_pack_stabilization: stabilization?.artifact_id
+    },
+    designer_dashboard_preserved: designerDashboard?.passed === true,
+    draft_review_pack_preserved: draftPack?.passed === true,
+    stabilization_checkpoint_preserved: stabilization?.passed === true,
+    local_only: readback.local_only === true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    final_canon_decision: false,
+    draft_to_video_planning_bridge: false,
+    browser_render_attempt: readback.browser_render_attempt || "not_attempted_static_readback_only",
+    visual_evidence_path: readback.visual_evidence_path || null,
+    summary: {
+      review_brief_visible: checks.review_brief_visible?.passed === true,
+      selected_candidate_id_visible: checks.selected_candidate_visible?.passed === true,
+      selected_channel_route_visible: checks.selected_channel_visible?.passed === true,
+      japanese_summary_present: checks.japanese_summary_visible?.passed === true,
+      no_query_default_mode: checks.brief_is_default?.passed === true ? "brief" : readback.no_query_default_mode,
+      dark_mode_toggle_present: checks.theme_toggle_present?.passed === true,
+      color_scheme_supports_light_dark: checks.color_scheme_support?.passed === true,
+      hardcoded_light_surfaces_reduced: checks.hardcoded_light_surfaces_reduced?.passed === true,
+      designer_dashboard_preserved: designerDashboard?.passed === true,
+      draft_review_pack_preserved: draftPack?.passed === true,
+      stabilization_checkpoint_preserved: stabilization?.passed === true,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      final_canon_decision: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "Review Brief is a local first-screen compression and discoverability layer only.",
+      "Dark mode support is implemented through review UI theme variables and localStorage preference.",
+      "Designer Dashboard, One-story Draft Review Pack, and Stabilization readbacks remain preserved.",
+      "No draft-to-video bridge, provider/API setup, public upload, publishing, or final canon decision is added."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateDesignerCandidateDashboard(dashboard, dashboardPath) {
   const failures = [];
   const checks = {};
@@ -9073,6 +9324,8 @@ Usage:
   node tools/fff-state.mjs smoke-designer-candidate-dashboard <designer-dashboard-result.json> [output.json]
   node tools/fff-state.mjs validate-one-story-draft-review-pack <one-story-draft-review-pack-result.json>
   node tools/fff-state.mjs smoke-one-story-draft-review-pack <one-story-draft-review-pack-result.json> [output.json]
+  node tools/fff-state.mjs validate-review-brief-dark-mode-ux <review-brief-dark-mode-ux-result.json>
+  node tools/fff-state.mjs smoke-review-brief-dark-mode-ux <review-brief-dark-mode-ux-result.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -9088,6 +9341,9 @@ Default broad-span split output:
 
 Default one-story draft review pack output:
   ${DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT}
+
+Default review brief dark mode UX output:
+  ${DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT}
 
 Default weak-span repair output:
   ${DEFAULT_WEAK_SPAN_REPAIR_OUTPUT}

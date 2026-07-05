@@ -2,14 +2,18 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-one-story-draft-review-pack-001`
+- Artifact id: `fff-review-brief-dark-mode-ux-001`
 - Review UI: `public/review/index.html`
+- Review Brief mode: `public/review/index.html?mode=brief`
 - Draft Review Pack mode: `public/review/index.html?mode=draft`
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
 - Repo-local shell launcher: `./scripts/operator/open_review.sh`
 - Manifest: `artifacts/artifact-manifest.json`
+- Review Brief Dark Mode UX doc: `docs/review/review-brief-dark-mode-ux.md`
+- Review Brief Dark Mode UX result: `artifacts/review-brief-dark-mode-ux-result.json`
+- Review Brief Dark Mode UX smoke command: `node tools/fff-state.mjs smoke-review-brief-dark-mode-ux artifacts/review-brief-dark-mode-ux-result.json artifacts/review-brief-dark-mode-ux-result.json`
 - Stabilization checkpoint: `fff-draft-review-pack-stabilization-001`
 - Stabilization doc: `docs/review/draft-review-pack-stabilization.md`
 - Stabilization result: `artifacts/draft-review-pack-stabilization-result.json`
@@ -68,7 +72,15 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active Review Hub identity remains `fff-one-story-draft-review-pack-001`; `fff-draft-review-pack-stabilization-001` is the current access/readback and git-durability checkpoint.
+- The active Review Hub entry checkpoint is `fff-review-brief-dark-mode-ux-001`; it preserves `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, and `fff-draft-review-pack-stabilization-001` instead of replacing their readbacks.
+- `public/review/index.html` now defaults to `Review Brief` mode for no-query access and keeps `public/review/index.html?mode=brief` as the primary review entry.
+- The Review Brief exposes the selected candidate id `designer-content-moth-investigation-3m`, selected channel route `designer-channel-mystery-lore`, Japanese-first review labels, and 3 immediate reviewer decisions before detailed source/project/artifact panels.
+- `Source Audit`, `Project Cockpit`, and `Artifacts` remain available as advanced tabs instead of first-impression panels.
+- The Review Hub now supports Light / Dark / Auto theme controls, local theme preference storage, `color-scheme: light dark`, dark-mode CSS variables, and reduced hardcoded light surfaces.
+- `artifacts/review-brief-dark-mode-ux-result.json` records review_brief_visible=true, selected_candidate_id_visible=true, selected_channel_route_visible=true, japanese_summary_present=true, no_query_default_mode=`brief`, dark_mode_toggle_present=true, color_scheme_supports_light_dark=true, hardcoded_light_surfaces_reduced=true, designer_dashboard_preserved=true, draft_review_pack_preserved=true, stabilization_checkpoint_preserved=true, local-only=true, and draft_to_video_planning_bridge=false.
+- `docs/review/review-brief-dark-mode-ux.md` records purpose, access, UX changes, preserved work, validation commands, review debt, and next move.
+- `tools/fff-state.mjs` includes `smoke-review-brief-dark-mode-ux` for local readback validation.
+- `fff-draft-review-pack-stabilization-001` remains the prior access/readback and git-durability checkpoint for the Designer Dashboard and Draft Review Pack.
 - `artifacts/draft-review-pack-stabilization-result.json` records verified-present access for `public/review/index.html?mode=designer` and `public/review/index.html?mode=draft`, confirms both result artifacts and review docs exist, confirms static Review Hub markers and renderers, and records the in-app browser `file://` capture attempt as blocked by browser URL policy with static readback as fallback.
 - `public/review/index.html` has a `Draft Review Pack` mode for `public/review/index.html?mode=draft`.
 - The draft pack selects `designer-content-moth-investigation-3m` as a `provisional_default`, exposes source memo/story cue, logline, premise, channel route, 5 draft beats, non-final opening/narration sample, 4 visual cues, 4 subtitle/on-screen text cues, 3 unresolved human-owned questions, 4 risk cards, and 3 recommended reviewer decisions.
@@ -133,11 +145,12 @@ Preserved platform boundary:
 - Project-local instructions and required context docs were read before changing review claims.
 - `artifacts/draft-review-pack-stabilization-result.json` passed with access_state=`verified_present`, static_mode_check_passed=true, designer_result_exists=true, draft_result_exists=true, designer_smoke_passed=true, draft_smoke_passed=true, and contradictory_claim_guard_preserved=true.
 - `node --check tools/fff-state.mjs` passed.
-- `node tools/fff-state.mjs smoke-one-story-draft-review-pack artifacts/one-story-draft-review-pack-result.json artifacts/one-story-draft-review-pack-result.json` passed for the active Draft Review Pack readback.
+- `node tools/fff-state.mjs smoke-review-brief-dark-mode-ux artifacts/review-brief-dark-mode-ux-result.json artifacts/review-brief-dark-mode-ux-result.json` passed for the Review Brief / dark mode UX readback.
+- `node tools/fff-state.mjs smoke-one-story-draft-review-pack artifacts/one-story-draft-review-pack-result.json artifacts/one-story-draft-review-pack-result.json` passed for the preserved Draft Review Pack readback.
 - `node tools/fff-state.mjs smoke-designer-candidate-dashboard artifacts/designer-candidate-dashboard-result.json artifacts/designer-candidate-dashboard-result.json` passed for the preserved Designer Candidate Dashboard readback.
 - Static Review Hub check passed: embedded script compiled with `new Function(...)`, and the HTML contains the Draft Review Pack mode tab/root/renderer, Designer Dashboard mode tab/root, both mode route strings, both root IDs, and the active/preserved artifact ids.
 - Browser screenshot capture was attempted with the available in-app browser tooling, but `file://` navigation was blocked by browser URL policy; no screenshot file was produced, and the stabilization result records static access/readback evidence instead.
-- `git diff --check` passed. `python -m mkdocs build --strict` could not run in this environment because WindowsApps `python` resolved to a stub and the bundled Python has no `mkdocs` module installed.
+- `git diff --check` passed. `python -m mkdocs build --strict` could not run in this environment because WindowsApps `python` resolved to a stub, but `uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"` passed.
 - `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json` passed.
 - `node tools/fff-state.mjs smoke-contradictory-claim-guard artifacts/extraction-validator-smoke-result.json artifacts/contradictory-claim-guard-result.json` passed.
 - `node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json` passed after the validator matrix grew to 9 fixtures.

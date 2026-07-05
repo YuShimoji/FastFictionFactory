@@ -29,6 +29,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Local extraction adapter expansion | Ready for local review | [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Model/API boundary spec | Ready for local review | [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md) | `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json` |
 | Provider envelope readiness no-call | Ready for local readback | [`review/provider-envelope-readiness-no-call.md`](review/provider-envelope-readiness-no-call.md) | `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json` |
+| Review Brief Dark Mode UX | Ready for local readback | [`review/review-brief-dark-mode-ux.md`](review/review-brief-dark-mode-ux.md) | `artifacts/review-brief-dark-mode-ux-result.json`, `public/review/index.html?mode=brief` |
 | Draft Review Pack Stabilization | Ready for local readback | [`review/draft-review-pack-stabilization.md`](review/draft-review-pack-stabilization.md) | `artifacts/draft-review-pack-stabilization-result.json`, `public/review/index.html?mode=draft`, `public/review/index.html?mode=designer` |
 | One-story Draft Review Pack | Ready for local readback | [`review/one-story-draft-review-pack.md`](review/one-story-draft-review-pack.md) | `artifacts/one-story-draft-review-pack-result.json`, `public/review/index.html?mode=draft` |
 | Designer Candidate Dashboard | Ready for local readback | [`review/designer-candidate-dashboard.md`](review/designer-candidate-dashboard.md) | `artifacts/designer-candidate-dashboard-result.json`, `public/review/index.html?mode=designer` |
@@ -85,6 +86,12 @@ The active UI remains:
 
 ```powershell
 Invoke-Item .\public\review\index.html
+```
+
+No-query access now defaults to Review Brief. Mode-specific Review Brief route:
+
+```text
+public/review/index.html?mode=brief
 ```
 
 Mode-specific Designer Dashboard route:

@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Review Brief Dark Mode UX
+
+- Purpose: Make the local review entry shorter, more discoverable, Japanese-first, and usable in dark mode before any draft-to-video planning bridge.
+- Effect: Adds a default Review Brief mode, visible selected candidate/channel route, immediate reviewer decisions, advanced demotion for source/project/artifact panels, and Light / Dark / Auto theme compatibility.
+- Requirements: Preserve Designer Dashboard, One-story Draft Review Pack, and Draft Review Pack Stabilization readbacks; keep work local-only; do not add provider/API calls, credentials, publishing, AI video generation, draft-to-video bridge behavior, production render, or final canon decisions.
+- State: Implemented in `fff-review-brief-dark-mode-ux-001`.
+- Owner: Product implementer for UI/readback; human reviewer for candidate, channel, and held-truth decisions.
+- Next move: Use `public/review/index.html?mode=brief` to confirm or revise the provisional candidate/channel route and unresolved-truth policy before any later draft-to-video planning slice.
+
 ### Draft Review Pack Stabilization
 
 - Purpose: Make the Designer Dashboard and One-story Draft Review Pack durable, reviewable, and reproducible before any draft-to-video planning bridge.

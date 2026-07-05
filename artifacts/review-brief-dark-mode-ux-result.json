@@ -1,0 +1,142 @@
+{
+  "schemaVersion": "fff.reviewBriefDarkModeUx.v1",
+  "artifact_id": "fff-review-brief-dark-mode-ux-001",
+  "title": "Fast Fiction Factory Review Brief and Dark Mode UX",
+  "generatedAt": "2026-07-05T19:51:21.363Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=brief",
+  "input_result_path": "./artifacts/review-brief-dark-mode-ux-result.json",
+  "source_result_paths": {
+    "designer_candidate_dashboard": "artifacts/designer-candidate-dashboard-result.json",
+    "one_story_draft_review_pack": "artifacts/one-story-draft-review-pack-result.json",
+    "draft_review_pack_stabilization": "artifacts/draft-review-pack-stabilization-result.json"
+  },
+  "source_artifacts": [
+    "fff-designer-candidate-dashboard-001",
+    "fff-one-story-draft-review-pack-001",
+    "fff-draft-review-pack-stabilization-001"
+  ],
+  "selected_candidate_id": "designer-content-moth-investigation-3m",
+  "selected_candidate_label_japanese": "3分: Miraとbrass mothの手がかり調査",
+  "selected_channel_route_id": "designer-channel-mystery-lore",
+  "selected_channel_label_japanese": "ミステリー・ロア連載路線",
+  "counts": {
+    "review_brief_cards": 3,
+    "reviewer_decisions": 3,
+    "theme_options": 3,
+    "advanced_tabs_demoted": 3,
+    "hardcoded_light_surface_hits": 9
+  },
+  "review_ui_summary": {
+    "review_brief_visible": true,
+    "selected_candidate_id_visible": true,
+    "selected_channel_route_visible": true,
+    "japanese_summary_present": true,
+    "no_query_default_mode": "brief",
+    "advanced_sections_collapsed_or_demoted": true
+  },
+  "theme_compatibility": {
+    "dark_mode_toggle_present": true,
+    "color_scheme_supports_light_dark": true,
+    "hardcoded_light_surfaces_reduced": true
+  },
+  "preserved_readbacks": {
+    "designer_candidate_dashboard": "fff-designer-candidate-dashboard-001",
+    "one_story_draft_review_pack": "fff-one-story-draft-review-pack-001",
+    "draft_review_pack_stabilization": "fff-draft-review-pack-stabilization-001"
+  },
+  "designer_dashboard_preserved": true,
+  "draft_review_pack_preserved": true,
+  "stabilization_checkpoint_preserved": true,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "final_canon_decision": false,
+  "draft_to_video_planning_bridge": false,
+  "browser_render_attempt": "not_attempted_static_readback_only",
+  "visual_evidence_path": null,
+  "summary": {
+    "review_brief_visible": true,
+    "selected_candidate_id_visible": true,
+    "selected_channel_route_visible": true,
+    "japanese_summary_present": true,
+    "no_query_default_mode": "brief",
+    "dark_mode_toggle_present": true,
+    "color_scheme_supports_light_dark": true,
+    "hardcoded_light_surfaces_reduced": true,
+    "designer_dashboard_preserved": true,
+    "draft_review_pack_preserved": true,
+    "stabilization_checkpoint_preserved": true,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "final_canon_decision": false,
+    "failures": 0
+  },
+  "validation_notes": [
+    "Review Brief is a local first-screen compression and discoverability layer only.",
+    "Dark mode support is implemented through review UI theme variables and localStorage preference.",
+    "Designer Dashboard, One-story Draft Review Pack, and Stabilization readbacks remain preserved.",
+    "No draft-to-video bridge, provider/API setup, public upload, publishing, or final canon decision is added."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-review-brief-dark-mode-ux-001; schema=fff.reviewBriefDarkModeUx.v1; ui=public/review/index.html"
+    },
+    "review_brief_visible": {
+      "passed": true,
+      "detail": "readback=true; cards=3"
+    },
+    "selected_candidate_visible": {
+      "passed": true,
+      "detail": "readback=true; selected=designer-content-moth-investigation-3m"
+    },
+    "selected_channel_visible": {
+      "passed": true,
+      "detail": "readback=true; selected=designer-channel-mystery-lore"
+    },
+    "japanese_summary_visible": {
+      "passed": true,
+      "detail": "readback=true"
+    },
+    "brief_is_default": {
+      "passed": true,
+      "detail": "default=brief"
+    },
+    "advanced_sections_demoted": {
+      "passed": true,
+      "detail": "readback=true; advancedTabs=3"
+    },
+    "theme_toggle_present": {
+      "passed": true,
+      "detail": "readback=true; themeOptions=3"
+    },
+    "color_scheme_support": {
+      "passed": true,
+      "detail": "readback=true"
+    },
+    "hardcoded_light_surfaces_reduced": {
+      "passed": true,
+      "detail": "readback=true; lightSurfaceHits=9"
+    },
+    "source_artifacts_preserved": {
+      "passed": true,
+      "detail": "designer=fff-designer-candidate-dashboard-001/true; draft=fff-one-story-draft-review-pack-001/true; stabilization=fff-draft-review-pack-stabilization-001/true"
+    },
+    "local_only_boundaries": {
+      "passed": true,
+      "detail": "local=true; external=false; provider=false; credentials=false; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

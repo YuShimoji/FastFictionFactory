@@ -1,5 +1,21 @@
 # Artifacts
 
+## fff-review-brief-dark-mode-ux-001
+
+- Title: Fast Fiction Factory Review Brief and Dark Mode UX
+- Purpose: Compress the first local review screen, make the selected candidate/channel route easier to find, add Japanese-first review labels, and add light/dark/auto theme compatibility without adding draft-to-video, provider/API, publishing, video generation, or final-canon behavior.
+- Repo relative path: `public/review/index.html`
+- Primary mode route: `public/review/index.html?mode=brief`
+- Preserved mode routes: `public/review/index.html?mode=draft`, `public/review/index.html?mode=designer`
+- Review doc: `docs/review/review-brief-dark-mode-ux.md`
+- Readback result: `artifacts/review-brief-dark-mode-ux-result.json`
+- Source artifacts: `fff-designer-candidate-dashboard-001`, `fff-one-story-draft-review-pack-001`, `fff-draft-review-pack-stabilization-001`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-review-brief-dark-mode-ux artifacts/review-brief-dark-mode-ux-result.json artifacts/review-brief-dark-mode-ux-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active UX checkpoint; no-query access defaults to Review Brief, selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore` are visible, advanced source/project/artifact panels remain available but demoted, Light / Dark / Auto theme controls are present, and the prior Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
+
 ## fff-draft-review-pack-stabilization-001
 
 - Title: Fast Fiction Factory Draft Review Pack Stabilization

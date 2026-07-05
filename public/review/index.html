@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="auto">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,18 +7,84 @@
   <title>Fast Fiction Factory - MVP Review Workbench</title>
   <style>
     :root {
-      color-scheme: light;
+      color-scheme: light dark;
       --ink: #172026;
       --muted: #5c6770;
       --line: #d9dee2;
       --surface: #f6f7f4;
       --paper: #ffffff;
+      --paper-warm: #fffdf8;
+      --paper-soft: #fffefb;
+      --surface-muted: #fbfcfd;
+      --code-bg: #f7f9fa;
+      --active-bg: #eef5fa;
+      --info-bg: #f0f6fa;
+      --success-bg: #e7f4ec;
+      --warning-bg: #fff7df;
+      --danger-bg: #fbe9e7;
+      --tag-bg: #f8faf9;
       --blue: #225c82;
       --green: #2f6f4f;
       --gold: #8a6914;
       --red: #9f3c35;
       --violet: #6957a8;
+      --primary-ink: #ffffff;
+      --focus-ring: rgba(34, 92, 130, 0.18);
       --shadow: 0 12px 30px rgba(20, 28, 34, 0.08);
+    }
+
+    :root[data-theme="dark"] {
+      --ink: #e9eef3;
+      --muted: #aeb9c4;
+      --line: #344351;
+      --surface: #10161c;
+      --paper: #17212b;
+      --paper-warm: #1d2630;
+      --paper-soft: #202a34;
+      --surface-muted: #151f28;
+      --code-bg: #0d141b;
+      --active-bg: #173149;
+      --info-bg: #14283a;
+      --success-bg: #123226;
+      --warning-bg: #3a2f13;
+      --danger-bg: #3c1f1d;
+      --tag-bg: #202b35;
+      --blue: #78bce7;
+      --green: #83d29c;
+      --gold: #e2c46a;
+      --red: #ee8d85;
+      --violet: #b9a7ff;
+      --primary-ink: #071119;
+      --focus-ring: rgba(120, 188, 231, 0.34);
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root[data-theme="auto"] {
+        --ink: #e9eef3;
+        --muted: #aeb9c4;
+        --line: #344351;
+        --surface: #10161c;
+        --paper: #17212b;
+        --paper-warm: #1d2630;
+        --paper-soft: #202a34;
+        --surface-muted: #151f28;
+        --code-bg: #0d141b;
+        --active-bg: #173149;
+        --info-bg: #14283a;
+        --success-bg: #123226;
+        --warning-bg: #3a2f13;
+        --danger-bg: #3c1f1d;
+        --tag-bg: #202b35;
+        --blue: #78bce7;
+        --green: #83d29c;
+        --gold: #e2c46a;
+        --red: #ee8d85;
+        --violet: #b9a7ff;
+        --primary-ink: #071119;
+        --focus-ring: rgba(120, 188, 231, 0.34);
+        --shadow: 0 14px 34px rgba(0, 0, 0, 0.35);
+      }
     }
 
     * {
@@ -62,7 +128,7 @@
     button:hover,
     button:focus-visible {
       border-color: var(--blue);
-      outline: 2px solid rgba(34, 92, 130, 0.18);
+      outline: 2px solid var(--focus-ring);
       outline-offset: 1px;
     }
 
@@ -123,11 +189,41 @@
       min-width: 420px;
     }
 
+    .topbar-actions {
+      display: grid;
+      gap: 10px;
+      justify-items: end;
+    }
+
+    .theme-toggle {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      justify-content: flex-end;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .theme-button {
+      min-height: 30px;
+      padding: 4px 9px;
+      background: var(--surface-muted);
+      font-size: 12px;
+    }
+
+    .theme-button[aria-pressed="true"] {
+      border-color: var(--blue);
+      background: var(--active-bg);
+      color: var(--blue);
+      font-weight: 700;
+    }
+
     .metric {
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 8px 10px;
-      background: #fbfcfd;
+      background: var(--surface-muted);
     }
 
     .metric strong {
@@ -143,7 +239,7 @@
 
     .review-hub {
       border-bottom: 1px solid var(--line);
-      background: #fffdf8;
+      background: var(--paper-warm);
     }
 
     .hub-inner {
@@ -209,7 +305,7 @@
 
     .mode-tabs {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(7, minmax(0, 1fr));
       gap: 8px;
     }
 
@@ -217,7 +313,7 @@
       min-height: 54px;
       padding: 8px 10px;
       text-align: left;
-      background: #fbfcfd;
+      background: var(--surface-muted);
     }
 
     .mode-tab strong,
@@ -233,22 +329,108 @@
 
     .mode-tab[aria-pressed="true"] {
       border-color: var(--blue);
-      background: #eef5fa;
+      background: var(--active-bg);
       color: var(--blue);
       font-weight: 700;
     }
 
+    .mode-tab.is-advanced {
+      border-style: dashed;
+      opacity: 0.86;
+    }
+
     .mode-summary-grid {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
+      grid-template-columns: repeat(7, minmax(0, 1fr));
       gap: 8px;
+    }
+
+    .review-brief {
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .brief-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .brief-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+    }
+
+    .brief-card.primary {
+      border-left: 4px solid var(--blue);
+      background: var(--paper-soft);
+    }
+
+    .brief-card.warning {
+      border-left: 4px solid var(--gold);
+    }
+
+    .brief-card h3 {
+      margin-bottom: 6px;
+    }
+
+    .brief-card p:last-child,
+    .brief-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .brief-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .brief-action {
+      min-height: 34px;
+      padding-inline: 10px;
+    }
+
+    .id-pill {
+      display: inline-block;
+      max-width: 100%;
+      margin: 4px 0 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: var(--code-bg);
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .decision-mini-list {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .advanced-note {
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: var(--surface-muted);
+      color: var(--muted);
+      font-size: 13px;
     }
 
     .mode-summary {
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 10px;
-      background: #fffefb;
+      background: var(--paper-soft);
       font-size: 13px;
     }
 
@@ -268,6 +450,7 @@
       display: none !important;
     }
 
+    body[data-review-mode="brief"] [data-mode-panel="brief"],
     body[data-review-mode="story"] [data-mode-panel="story"],
     body[data-review-mode="designer"] [data-mode-panel="designer"],
     body[data-review-mode="draft"] [data-mode-panel="draft"],
@@ -311,7 +494,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 12px;
-      background: #ffffff;
+      background: var(--paper);
     }
 
     .source-span-fixture summary {
@@ -397,7 +580,7 @@
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 8px;
-      background: #f7f9fa;
+      background: var(--code-bg);
       color: var(--ink);
       font-family: Consolas, "Courier New", monospace;
       font-size: 12px;
@@ -415,7 +598,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 10px;
-      background: #fbfcfd;
+      background: var(--surface-muted);
     }
 
     .progress-step strong {
@@ -429,12 +612,12 @@
 
     .progress-step.current {
       border-color: rgba(34, 92, 130, 0.45);
-      background: #f0f6fa;
+      background: var(--info-bg);
     }
 
     .progress-step.next {
       border-color: rgba(138, 105, 20, 0.45);
-      background: #fff9e8;
+      background: var(--warning-bg);
     }
 
     .workspace {
@@ -464,7 +647,7 @@
       border-radius: 6px;
       padding: 12px;
       color: var(--ink);
-      background: #fffefb;
+      background: var(--paper-soft);
     }
 
     .toolbar {
@@ -476,7 +659,7 @@
 
     .primary {
       background: var(--blue);
-      color: #fff;
+      color: var(--primary-ink);
       border-color: var(--blue);
       padding-inline: 14px;
       font-weight: 700;
@@ -487,7 +670,7 @@
     }
 
     .secondary {
-      background: #f7f9fa;
+      background: var(--code-bg);
       border-color: var(--line);
     }
 
@@ -530,7 +713,7 @@
 
     .filter-button[data-active="true"] {
       border-color: var(--blue);
-      background: #eef5fa;
+      background: var(--active-bg);
       color: var(--blue);
       font-weight: 700;
     }
@@ -541,7 +724,7 @@
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 7px 10px;
-      background: #fffefb;
+      background: var(--paper-soft);
       color: var(--ink);
     }
 
@@ -560,7 +743,7 @@
       border: 1px solid var(--line);
       border-radius: 8px;
       padding: 12px;
-      background: #fffefb;
+      background: var(--paper-soft);
     }
 
     .claim-toolbar-row,
@@ -629,7 +812,7 @@
       border-left: 4px solid var(--blue);
       border-radius: 8px;
       padding: 12px;
-      background: #fbfcfd;
+      background: var(--surface-muted);
     }
 
     .claim-ledger-item[data-canon-risk="high"],
@@ -670,7 +853,7 @@
 
     .contract-run-card .metric {
       min-width: 0;
-      background: #fffefb;
+      background: var(--paper-soft);
     }
 
     .claim-ledger-item[data-claim-hidden="true"] {
@@ -742,7 +925,7 @@
       border: 1px solid var(--line);
       border-radius: 999px;
       padding: 3px 8px;
-      background: #f8faf9;
+      background: var(--tag-bg);
       color: var(--muted);
       font-size: 12px;
     }
@@ -798,28 +981,28 @@
     }
 
     .status-button[data-active="true"][data-status="adopt"] {
-      background: #e7f4ec;
+      background: var(--success-bg);
       border-color: var(--green);
       color: var(--green);
       font-weight: 700;
     }
 
     .status-button[data-active="true"][data-status="provisional"] {
-      background: #eef3fa;
+      background: var(--active-bg);
       border-color: var(--blue);
       color: var(--blue);
       font-weight: 700;
     }
 
     .status-button[data-active="true"][data-status="hold"] {
-      background: #fff7df;
+      background: var(--warning-bg);
       border-color: var(--gold);
       color: var(--gold);
       font-weight: 700;
     }
 
     .status-button[data-active="true"][data-status="reject"] {
-      background: #fbe9e7;
+      background: var(--danger-bg);
       border-color: var(--red);
       color: var(--red);
       font-weight: 700;
@@ -884,7 +1067,7 @@
       padding: 10px;
       border: 1px solid var(--line);
       border-radius: 6px;
-      background: #fbfcfd;
+      background: var(--surface-muted);
       color: var(--muted);
       font-size: 12px;
     }
@@ -907,14 +1090,14 @@
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 10px;
-      background: #fbfcfd;
+      background: var(--surface-muted);
       color: var(--ink);
       font-family: Consolas, "Courier New", monospace;
       font-size: 12px;
     }
 
     .json-box[readonly] {
-      background: #f7f9fa;
+      background: var(--code-bg);
       color: var(--muted);
     }
 
@@ -924,7 +1107,7 @@
       border: 1px solid var(--line);
       border-radius: 6px;
       padding: 8px 10px;
-      background: #fbfcfd;
+      background: var(--surface-muted);
       color: var(--muted);
       font-size: 12px;
     }
@@ -932,13 +1115,13 @@
     .state-message.success {
       border-color: rgba(47, 111, 79, 0.45);
       color: var(--green);
-      background: #eef8f2;
+      background: var(--success-bg);
     }
 
     .state-message.error {
       border-color: rgba(159, 60, 53, 0.45);
       color: var(--red);
-      background: #fff0ef;
+      background: var(--danger-bg);
     }
 
     .file-input {
@@ -964,6 +1147,10 @@
         grid-template-columns: 1fr;
       }
 
+      .topbar-actions {
+        justify-items: stretch;
+      }
+
       .summary-strip {
         min-width: 0;
       }
@@ -983,6 +1170,7 @@
       .hub-grid,
       .mode-tabs,
       .mode-summary-grid,
+      .brief-grid,
       .progress-map,
       .designer-dashboard-grid,
       .draft-review-grid,
@@ -1001,7 +1189,7 @@
     }
   </style>
 </head>
-<body data-review-mode="story">
+<body data-review-mode="brief">
   <div class="app-shell">
     <header class="topbar">
       <div class="topbar-inner">
@@ -1009,11 +1197,19 @@
           <h1>Fast Fiction Factory</h1>
           <p class="lede">Local-first MVP skeleton for turning a raw fiction memo into reviewable structured candidates. Nothing publishes externally and no candidate becomes canon until the human author marks it adopted.</p>
         </div>
-        <div class="summary-strip" aria-label="Review decision summary">
-          <div class="metric"><strong id="count-adopt">0</strong><span>adopt</span></div>
-          <div class="metric"><strong id="count-provisional">0</strong><span>provisional</span></div>
-          <div class="metric"><strong id="count-hold">0</strong><span>hold</span></div>
-          <div class="metric"><strong id="count-reject">0</strong><span>reject</span></div>
+        <div class="topbar-actions">
+          <div class="summary-strip" aria-label="Review decision summary">
+            <div class="metric"><strong id="count-adopt">0</strong><span>adopt</span></div>
+            <div class="metric"><strong id="count-provisional">0</strong><span>provisional</span></div>
+            <div class="metric"><strong id="count-hold">0</strong><span>hold</span></div>
+            <div class="metric"><strong id="count-reject">0</strong><span>reject</span></div>
+          </div>
+          <div class="theme-toggle" role="group" aria-label="Theme">
+            <span>Theme</span>
+            <button class="theme-button" type="button" data-theme-target="light" aria-pressed="false">Light</button>
+            <button class="theme-button" type="button" data-theme-target="dark" aria-pressed="false">Dark</button>
+            <button class="theme-button" type="button" data-theme-target="auto" aria-pressed="true">Auto</button>
+          </div>
         </div>
       </div>
     </header>
@@ -1023,8 +1219,8 @@
         <div class="hub-header">
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
-            <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-one-story-draft-review-pack-001</strong>. This slice adds a local One-story Draft Review Pack for one provisional story/video candidate while preserving <strong>fff-designer-candidate-dashboard-001</strong>, <strong>fff-contradictory-claim-guard-001</strong>, <strong>fff-provider-envelope-readiness-no-call-001</strong>, <strong>fff-downstream-source-span-adoption-gate-001</strong>, source-span guardrails, human-owned canon boundaries, and freeform review.</p>
+            <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビュー目的を選ぶ</span></h2>
+            <p class="lede">Active artifact id: <strong>fff-one-story-draft-review-pack-001</strong>. まずReview Briefで候補・チャンネル路線・未決定事項だけを確認します。詳細証跡は保持していますが、初回表示では主役にしません。</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1035,23 +1231,67 @@
 
         <nav class="mode-switcher" aria-label="Review mode navigation">
           <div class="mode-tabs">
-            <button class="mode-tab" type="button" data-mode-target="story" aria-pressed="true"><strong>Story Review</strong><span>ストーリーレビュー</span></button>
+            <button class="mode-tab" type="button" data-mode-target="brief" aria-pressed="true"><strong>Review Brief</strong><span>まずここを見る</span></button>
+            <button class="mode-tab" type="button" data-mode-target="story" aria-pressed="false"><strong>Story Review</strong><span>ストーリーレビュー</span></button>
             <button class="mode-tab" type="button" data-mode-target="designer" aria-pressed="false"><strong>Designer Dashboard</strong><span>Content strategy</span></button>
             <button class="mode-tab" type="button" data-mode-target="draft" aria-pressed="false"><strong>Draft Review Pack</strong><span>One story draft</span></button>
-            <button class="mode-tab" type="button" data-mode-target="source" aria-pressed="false"><strong>Source Audit</strong><span>抽出根拠レビュー</span></button>
-            <button class="mode-tab" type="button" data-mode-target="project" aria-pressed="false"><strong>Project Cockpit</strong><span>プロジェクト状態</span></button>
-            <button class="mode-tab" type="button" data-mode-target="artifacts" aria-pressed="false"><strong>Artifacts</strong><span>成果物・検証</span></button>
+            <button class="mode-tab is-advanced" type="button" data-mode-target="source" aria-pressed="false"><strong>Source Audit</strong><span>詳細: 抽出根拠</span></button>
+            <button class="mode-tab is-advanced" type="button" data-mode-target="project" aria-pressed="false"><strong>Project Cockpit</strong><span>詳細: 状態履歴</span></button>
+            <button class="mode-tab is-advanced" type="button" data-mode-target="artifacts" aria-pressed="false"><strong>Artifacts</strong><span>詳細: 検証</span></button>
           </div>
           <div class="mode-summary-grid">
+            <div class="mode-summary"><strong>Review Brief</strong><span class="jp-label">最初の判断だけを確認</span></div>
             <div class="mode-summary"><strong>Story Review</strong><span class="jp-label">本文・候補・未決定を確認</span></div>
-            <div class="mode-summary"><strong>Designer Dashboard</strong><span class="jp-label">content, draft, and channel review</span></div>
-            <div class="mode-summary"><strong>Draft Review Pack</strong><span class="jp-label">one provisional story packet</span></div>
-            <div class="mode-summary"><strong>Source Audit</strong><span class="jp-label">source span と routing を確認</span></div>
-            <div class="mode-summary"><strong>Project Cockpit</strong><span class="jp-label">進行状況と境界を確認</span></div>
-            <div class="mode-summary"><strong>Artifacts</strong><span class="jp-label">ファイル・検証・再現手順</span></div>
+            <div class="mode-summary"><strong>Designer Dashboard</strong><span class="jp-label">候補とチャンネル案</span></div>
+            <div class="mode-summary"><strong>Draft Review Pack</strong><span class="jp-label">暫定ドラフト案</span></div>
+            <div class="mode-summary"><strong>Source Audit</strong><span class="jp-label">詳細証跡</span></div>
+            <div class="mode-summary"><strong>Project Cockpit</strong><span class="jp-label">履歴と境界</span></div>
+            <div class="mode-summary"><strong>Artifacts</strong><span class="jp-label">ファイルと検証</span></div>
           </div>
           <p class="section-note">Stable IDs, JSON keys, artifact IDs, and file paths remain English. Japanese labels are display-only review aids.</p>
         </nav>
+
+        <section class="review-brief" id="review-brief-root" data-mode-panel="brief" aria-labelledby="review-brief-title">
+          <div class="hub-panel">
+            <p class="hub-eyebrow">Review Brief / まずここを見る</p>
+            <h2 id="review-brief-title">今回レビューするのは「候補とチャンネルをこのまま進めるか」です</h2>
+            <p class="lede">長い履歴や抽出証跡は詳細タブに残しています。最初は下の3つだけ確認してください。まだ承認ではなく、候補・路線・未決定事項をどう扱うかを決めるための画面です。</p>
+            <div class="brief-actions">
+              <button class="brief-action primary" type="button" data-mode-target="draft" aria-pressed="false">Draft Review Packへ</button>
+              <button class="brief-action" type="button" data-mode-target="designer" aria-pressed="false">Designer Dashboardへ</button>
+              <button class="brief-action" type="button" data-mode-target="story" aria-pressed="false">Story Reviewへ</button>
+            </div>
+          </div>
+
+          <div class="brief-grid">
+            <article class="brief-card primary">
+              <h3>選択中の候補</h3>
+              <span class="id-pill">designer-content-moth-investigation-3m</span>
+              <p><strong>3分: Miraとbrass mothの手がかり調査</strong></p>
+              <p class="section-note">MiraがTomaのメモとbrass mothを手がかりに、Council ledgerへ向かう3分向けの暫定ルートです。家族の謎、物の手がかり、調査の流れをつなげやすいので仮で選ばれています。</p>
+            </article>
+
+            <article class="brief-card primary">
+              <h3>選択中のチャンネル路線</h3>
+              <span class="id-pill">designer-channel-mystery-lore</span>
+              <p><strong>ミステリー・ロア連載路線</strong></p>
+              <p class="section-note">手がかり、隠れた制度、世界のルールを追う視聴者向けの路線です。まだ承認ではありません。Council motiveやToma fateが未決定なので、説明しすぎる危険も残っています。</p>
+            </article>
+
+            <article class="brief-card warning">
+              <h3>決めてほしいこと</h3>
+              <ol class="decision-mini-list">
+                <li>この候補を維持するか、別候補に替えるか。</li>
+                <li>このチャンネル路線を維持するか、別路線へ切り替えるか。</li>
+                <li>Toma fate / brass moth truth / Council motive を初回ドラフトでは未決定のままにするか。</li>
+              </ol>
+            </article>
+          </div>
+
+          <div class="advanced-note">
+            詳細証跡は削除していません。Source Audit / Project Cockpit / Artifacts は「詳細」タブとして残し、初回表示では主役にしない構成にしています。
+          </div>
+        </section>
 
         <div class="designer-dashboard" id="designer-dashboard-root" data-mode-panel="designer" aria-label="Designer Candidate Dashboard">
           <div class="hub-panel">
@@ -2035,10 +2275,14 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const extractionContractSummary = document.querySelector("#extraction-contract-summary");
     const extractionRunCard = document.querySelector("#extraction-run-card");
     const modeButtons = Array.from(document.querySelectorAll("[data-mode-target]"));
-    const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "story";
+    const themeButtons = Array.from(document.querySelectorAll("[data-theme-target]"));
+    const THEME_STORAGE_KEY = "fff-review-theme";
+    const REVIEW_MODES = ["brief", "story", "designer", "draft", "source", "project", "artifacts"];
+    const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "brief";
 
     memoInput.value = state.memo || sampleMemo;
     jsonExportOutput.value = state.exportPreview || "";
+    setTheme(loadThemePreference());
     setReviewMode(initialReviewMode);
     renderAll();
     showFileSupportMessage();
@@ -2049,12 +2293,39 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       });
     });
 
+    themeButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        setTheme(button.getAttribute("data-theme-target") || "auto");
+      });
+    });
+
     function setReviewMode(mode) {
-      const nextMode = ["story", "designer", "draft", "source", "project", "artifacts"].includes(mode) ? mode : "story";
+      const nextMode = REVIEW_MODES.includes(mode) ? mode : "brief";
       document.body.setAttribute("data-review-mode", nextMode);
       modeButtons.forEach((button) => {
         button.setAttribute("aria-pressed", button.getAttribute("data-mode-target") === nextMode ? "true" : "false");
       });
+    }
+
+    function loadThemePreference() {
+      try {
+        return localStorage.getItem(THEME_STORAGE_KEY) || "auto";
+      } catch (error) {
+        return "auto";
+      }
+    }
+
+    function setTheme(theme) {
+      const nextTheme = ["light", "dark", "auto"].includes(theme) ? theme : "auto";
+      document.documentElement.setAttribute("data-theme", nextTheme);
+      themeButtons.forEach((button) => {
+        button.setAttribute("aria-pressed", button.getAttribute("data-theme-target") === nextTheme ? "true" : "false");
+      });
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+      } catch (error) {
+        // Theme preference is optional; the UI remains usable without persistence.
+      }
     }
 
     document.querySelector("#generate-button").addEventListener("click", () => {

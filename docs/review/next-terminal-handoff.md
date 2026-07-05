@@ -2,12 +2,15 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-01 JST. This refresh started from synced head
-`5598c39` (`5598c39 Add downstream target authorization packet`):
+Latest handoff refresh: 2026-07-06 JST. This refresh started from synced head
+`57de71a` (`57de71a Add draft review pack stabilization evidence`):
 `git fetch origin`, `git status --short --branch --untracked-files=all`, and
-`git rev-list --left-right --count HEAD...origin/master` reported a clean
-`master` with `0 0` before this implementation refresh. At refresh time, the
-active artifact is still `fff-contradictory-claim-guard-001`;
+`git rev-list --left-right --count "HEAD...origin/master"` reported tracked
+`master` parity with `0 0` before this implementation refresh. At refresh time,
+the active review-entry checkpoint is `fff-review-brief-dark-mode-ux-001`;
+it preserves `fff-one-story-draft-review-pack-001`,
+`fff-designer-candidate-dashboard-001`, and
+`fff-draft-review-pack-stabilization-001`;
 `fff-route-lock-clean-state-readback-001` records that ClipPipeGen prompt residue
 was removed from this repo, and
 `fff-provider-envelope-readiness-no-call-001`,
@@ -47,7 +50,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected after this handoff is published: `master` is clean and synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this implementation refresh was `5598c39`.
+Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this implementation refresh was `57de71a`. A local `.serena/project.yml` transport-residue modification may remain unstaged and should not be treated as product work.
 
 3. Read these files in this order:
 
@@ -57,6 +60,14 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/review-brief-dark-mode-ux.md
+artifacts/review-brief-dark-mode-ux-result.json
+docs/review/one-story-draft-review-pack.md
+artifacts/one-story-draft-review-pack-result.json
+docs/review/designer-candidate-dashboard.md
+artifacts/designer-candidate-dashboard-result.json
+docs/review/draft-review-pack-stabilization.md
+artifacts/draft-review-pack-stabilization-result.json
 docs/review/route-lock-clean-state-readback.md
 docs/review/contradictory-claim-guard.md
 artifacts/contradictory-claim-guard-result.json
@@ -130,6 +141,11 @@ or:
 ```sh
 ./scripts/operator/open_review.sh
 ```
+
+No-query access now defaults to Review Brief. The explicit primary route is
+`public/review/index.html?mode=brief`; the preserved detail routes are
+`public/review/index.html?mode=draft` and
+`public/review/index.html?mode=designer`.
 
 5. Re-run local checks before changing behavior:
 
