@@ -64,6 +64,9 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Draft Review Pack Stabilization: review/draft-review-pack-stabilization.md
+      - One-story Draft Review Pack: review/one-story-draft-review-pack.md
+      - Designer Candidate Dashboard: review/designer-candidate-dashboard.md
       - Claim Ledger Review: review/claim-ledger-review.md
       - File Persistence Review: review/file-persistence-review.md
       - First MVP Review: review/first-mvp-review.md

@@ -1,5 +1,48 @@
 # Artifacts
 
+## fff-draft-review-pack-stabilization-001
+
+- Title: Fast Fiction Factory Draft Review Pack Stabilization
+- Purpose: Stabilize the already-implemented Designer Dashboard and One-story Draft Review Pack with durable static access/readback evidence and git-ready product state, without adding provider/API/video/publishing/final-canon behavior.
+- Repo relative path: `public/review/index.html`
+- Mode routes: `public/review/index.html?mode=designer`, `public/review/index.html?mode=draft`
+- Review doc: `docs/review/draft-review-pack-stabilization.md`
+- Readback result: `artifacts/draft-review-pack-stabilization-result.json`
+- Source artifacts: `fff-designer-candidate-dashboard-001`, `fff-one-story-draft-review-pack-001`
+- Access state: `verified_present`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Stabilization checkpoint only; preserves Designer Dashboard, Draft Review Pack, and `fff-contradictory-claim-guard-001`; browser file URL capture was blocked by browser URL policy, so static access/readback evidence is the durable visual/access proof.
+
+## fff-one-story-draft-review-pack-001
+
+- Title: Fast Fiction Factory One-story Draft Review Pack
+- Purpose: Add a local one-story draft review surface for one provisional story/video candidate, including source cue, logline, channel route, draft beats, non-final opening/narration, visual cues, subtitle/on-screen text cues, human-owned questions, risk cards, and reviewer decisions without external calls, provider setup, public upload, AI video generation, production render, or final canon decisions.
+- Repo relative path: `public/review/index.html`
+- Mode route: `public/review/index.html?mode=draft`
+- Source dashboard: `fff-designer-candidate-dashboard-001`
+- Review doc: `docs/review/one-story-draft-review-pack.md`
+- Readback result: `artifacts/one-story-draft-review-pack-result.json`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-one-story-draft-review-pack artifacts/one-story-draft-review-pack-result.json artifacts/one-story-draft-review-pack-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active review surface; selection is `provisional_default`, preserves `fff-designer-candidate-dashboard-001` and `fff-contradictory-claim-guard-001`, no provider/API/credential/publishing/production/canon boundary is opened.
+
+## fff-designer-candidate-dashboard-001
+
+- Title: Fast Fiction Factory Designer Candidate Dashboard
+- Purpose: Add a local Designer Dashboard for one-story content candidates, channel strategy proposals, draft spine beats, and review risks without external calls, provider setup, public upload, AI video generation, production render, or final canon decisions.
+- Repo relative path: `public/review/index.html`
+- Mode route: `public/review/index.html?mode=designer`
+- Review doc: `docs/review/designer-candidate-dashboard.md`
+- Readback result: `artifacts/designer-candidate-dashboard-result.json`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-designer-candidate-dashboard artifacts/designer-candidate-dashboard-result.json artifacts/designer-candidate-dashboard-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active review surface; preserves `fff-contradictory-claim-guard-001`, no provider/API/credential/publishing/production/canon boundary is opened.
+
 ## fff-route-lock-clean-state-readback-001
 
 - Title: Fast Fiction Factory Route Lock Clean State Readback

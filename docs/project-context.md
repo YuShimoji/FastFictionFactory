@@ -2,19 +2,24 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current artifact is `fff-contradictory-claim-guard-001`, served through the static local Visual Review Hub at `public/review/index.html`.
+Fast Fiction Factory is a local-first fiction production workbench. The current review surface is `fff-one-story-draft-review-pack-001`, served through the static local Visual Review Hub at `public/review/index.html`. The current stabilization checkpoint is `fff-draft-review-pack-stabilization-001`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is review-memory-aware source-span and claim governance: source evidence, routing, contradictory claim holds, review-held defaults, artifact governance, local access paths, and non-redundant review requests must remain distinct before any model/API extractor or downstream adoption path exists.
+Keep the MVP reviewable without production commitments. The current lane is stabilization for the local One-story Draft Review Pack and preserved Designer Dashboard: source evidence, routing, contradictory claim holds, review-held defaults, artifact governance, local access paths, and non-redundant review requests must remain distinct before any model/API extractor, draft-to-video bridge, production render, public upload, or final canon path exists.
 
 ## Current Slice
 
 The active slice is complete enough for local readback:
 
 - Review UI: `public/review/index.html`
+- Draft Review Pack mode: `public/review/index.html?mode=draft`
+- Designer Dashboard mode: `public/review/index.html?mode=designer`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Stabilization doc/result: `docs/review/draft-review-pack-stabilization.md`, `artifacts/draft-review-pack-stabilization-result.json`
+- Draft Review Pack doc/result: `docs/review/one-story-draft-review-pack.md`, `artifacts/one-story-draft-review-pack-result.json`
+- Designer Dashboard doc/result: `docs/review/designer-candidate-dashboard.md`, `artifacts/designer-candidate-dashboard-result.json`
 - Contradictory claim guard doc: `docs/review/contradictory-claim-guard.md`
 - Contradictory claim guard result: `artifacts/contradictory-claim-guard-result.json`
 - Contradictory claim guard fixture: `artifacts/extraction-negative-fixtures/contradictory-claim-hold.json`
@@ -74,8 +79,10 @@ Route hygiene checkpoint, 2026-06-29 JST:
   confined to `fff-route-lock-clean-state-readback-001` evidence and its
   cockpit summaries.
 - `docs/style_intent/` was removed because it was empty and residue-only.
-- The active Fast Fiction Factory artifact remains
-  `fff-contradictory-claim-guard-001`.
+- The active Fast Fiction Factory review surface is now
+  `fff-one-story-draft-review-pack-001`; `fff-draft-review-pack-stabilization-001`
+  records the access/readback checkpoint; `fff-designer-candidate-dashboard-001`
+  and `fff-contradictory-claim-guard-001` remain preserved as auxiliary readbacks.
 
 Last verified on 2026-07-01:
 
@@ -114,7 +121,11 @@ node .\tools\fff-state.mjs smoke-very-broad-source-span-shape-audit .\artifacts\
 
 Result summary:
 
-- Active manifest validation passes for `fff-contradictory-claim-guard-001`.
+- Stabilization readback passes for `fff-draft-review-pack-stabilization-001`: Designer Dashboard and Draft Review Pack routes are statically verified, both result artifacts and docs exist, the contradictory claim guard is preserved, access state is `verified_present`, and browser file URL capture is recorded as blocked by browser URL policy with static readback used as fallback.
+- Active manifest validation passes for `fff-one-story-draft-review-pack-001`.
+- One-story Draft Review Pack readback passes with provisional_default selection `designer-content-moth-investigation-3m`, 3 source dashboard content candidates, 3 channel strategy proposals, 5 draft beats, non-final sample opening present, 4 visual cues, 4 subtitle/on-screen text cues, 3 unresolved human-owned questions, 4 risk cards, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, and final_canon_decision=false.
+- Designer Dashboard readback passes with 3 content candidate cards, 3 channel strategy proposals, 5 draft spine beats, 4 unresolved risks, 3 human-owned decisions held, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, and final_canon_decision=false.
+- `fff-contradictory-claim-guard-001` remains preserved as an auxiliary guard.
 - The manifest validation command was rerun after `fff-downstream-adoption-gate-scope-lock-001`, closing the prior missing full-regeneration readback; dedicated translated memo and very broad source-span shape audit smokes now run from `tools/fff-state.mjs`.
 - Contradictory claim guard parses 9 validator fixtures, keeps 2 conflicting claims in held review, preserves 1 reciprocal conflict pair and source refs, reports 0 adopted/provisional conflicting claims, and reports 0 direct accepted claim-routed elements.
 - Multilingual fixture coverage passes with 5 adapter fixture outputs, 60 matrix elements, 12 selected multilingual fixture elements, 4 non-ASCII source-span elements, 0 source-span mismatches, 0 missing source refs, 0 unsafe visual routes, 0 non-held review defaults, and 0 human-owned adopt suggestions.
@@ -171,7 +182,7 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: keep the contradictory claim guard as the active Review Hub identity while preserving downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, Profile adoption mutation one-claim, and very broad source-span shape audit as auxiliary safety readbacks. Move next only to Timeline / Story Seed / Canon decision after equivalent explicit authorization; actual production rollback only after separate explicit authorization for rollback target and mutation behavior; explicit provider adapter implementation after authorization for provider choice, credentials, endpoint, and transport behavior; broader translated memo coverage if it adds meaningful rows beyond the two-row minimum; or broad fixture work only after new source-output evidence makes broad shape the bottleneck.
+First next move: use the stabilized Draft Review Pack as the active Review Hub identity while preserving Designer Dashboard, contradictory claim guard, downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, Profile adoption mutation one-claim, and very broad source-span shape audit as auxiliary safety readbacks. The next non-redundant slice is a draft-to-video planning bridge only after review chooses or revises the provisional draft route; move to Timeline / Story Seed / Canon decision only after equivalent explicit authorization, actual production rollback only after separate explicit authorization, and explicit provider adapter implementation only after authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy.
 
 ## Handoff Path
 

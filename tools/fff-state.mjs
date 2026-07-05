@@ -30,6 +30,8 @@ const PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_SCHEMA_VERSION = "fff.productio
 const DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_SCHEMA_VERSION = "fff.downstreamTargetAuthorizationPacket.v1";
 const PROFILE_ADOPTION_MUTATION_ONE_CLAIM_SCHEMA_VERSION = "fff.profileAdoptionMutationOneClaim.v1";
 const VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_SCHEMA_VERSION = "fff.veryBroadSourceSpanShapeAudit.v1";
+const DESIGNER_CANDIDATE_DASHBOARD_SCHEMA_VERSION = "fff.designerCandidateDashboard.v1";
+const ONE_STORY_DRAFT_REVIEW_PACK_SCHEMA_VERSION = "fff.oneStoryDraftReviewPack.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -57,6 +59,8 @@ const DEFAULT_PRODUCTION_CLAIM_LEDGER_ROLLBACK_REHEARSAL_OUTPUT = "artifacts/pro
 const DEFAULT_DOWNSTREAM_TARGET_AUTHORIZATION_PACKET_OUTPUT = "artifacts/downstream-target-authorization-packet-result.json";
 const DEFAULT_PROFILE_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT = "artifacts/profile-adoption-mutation-one-claim-result.json";
 const DEFAULT_VERY_BROAD_SOURCE_SPAN_SHAPE_AUDIT_OUTPUT = "artifacts/very-broad-source-span-shape-audit-result.json";
+const DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT = "artifacts/designer-candidate-dashboard-result.json";
+const DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT = "artifacts/one-story-draft-review-pack-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -802,6 +806,44 @@ async function main() {
     }
     if (command === "smoke-provider-adapter-authorization-readiness" || outputPath) {
       console.log(`provider adapter authorization readiness passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-designer-candidate-dashboard" || command === "smoke-designer-candidate-dashboard") {
+    const dashboard = await readJson(inputPath);
+    const result = await validateDesignerCandidateDashboard(dashboard, inputPath);
+    const target = outputPath || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT;
+    if (command === "smoke-designer-candidate-dashboard" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Designer candidate dashboard failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-designer-candidate-dashboard" || outputPath) {
+      console.log(`designer candidate dashboard passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-one-story-draft-review-pack" || command === "smoke-one-story-draft-review-pack") {
+    const draftPack = await readJson(inputPath);
+    const result = await validateOneStoryDraftReviewPack(draftPack, inputPath);
+    const target = outputPath || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT;
+    if (command === "smoke-one-story-draft-review-pack" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`One-story draft review pack failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-one-story-draft-review-pack" || outputPath) {
+      console.log(`one-story draft review pack passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -7761,6 +7803,388 @@ async function validateProviderAdapterAuthorizationReadiness(providerEnvelopeRea
   };
 }
 
+async function validateOneStoryDraftReviewPack(pack, packPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const designerDashboard = await readJson(manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT);
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const providerEnvelope = await readJson(manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT);
+  const credentialFindings = collectCredentialMaterial(pack);
+  const dashboardCandidateIds = new Set((designerDashboard.content_candidates || []).map((candidate) => candidate.id));
+  const dashboardChannelIds = new Set((designerDashboard.channel_strategy_proposals || []).map((proposal) => proposal.id));
+  const draftBeats = Array.isArray(pack.draft_spine?.beats) ? pack.draft_spine.beats : [];
+  const visualCues = Array.isArray(pack.visual_cues) ? pack.visual_cues : [];
+  const subtitleOrTextCues = Array.isArray(pack.subtitle_or_text_cues) ? pack.subtitle_or_text_cues : [];
+  const unresolvedQuestions = Array.isArray(pack.unresolved_human_owned_questions) ? pack.unresolved_human_owned_questions : [];
+  const riskCards = Array.isArray(pack.risk_cards) ? pack.risk_cards : [];
+  const reviewerDecisions = Array.isArray(pack.recommended_reviewer_decisions) ? pack.recommended_reviewer_decisions : [];
+
+  check(
+    "identity",
+    pack?.artifact_id === "fff-one-story-draft-review-pack-001" &&
+      pack?.schemaVersion === ONE_STORY_DRAFT_REVIEW_PACK_SCHEMA_VERSION &&
+      pack?.review_ui === "public/review/index.html",
+    `artifact=${pack?.artifact_id}; schema=${pack?.schemaVersion}; ui=${pack?.review_ui}`
+  );
+  check(
+    "source_dashboard_preserved",
+    pack?.source_dashboard_artifact_id === "fff-designer-candidate-dashboard-001" &&
+      designerDashboard?.artifact_id === "fff-designer-candidate-dashboard-001" &&
+      designerDashboard?.passed === true,
+    `source=${pack?.source_dashboard_artifact_id}; dashboard=${designerDashboard?.artifact_id}/${designerDashboard?.passed}`
+  );
+  check(
+    "provisional_candidate_selected",
+    pack?.selection_status === "provisional_default" &&
+      typeof pack?.selected_candidate_id === "string" &&
+      dashboardCandidateIds.has(pack.selected_candidate_id) &&
+      typeof pack?.selected_reason === "string" &&
+      pack.selected_reason.length > 20,
+    `status=${pack?.selection_status}; selected=${pack?.selected_candidate_id}; known=${dashboardCandidateIds.has(pack?.selected_candidate_id)}`
+  );
+  check(
+    "channel_route_selected",
+    pack?.channel_strategy_route?.id &&
+      dashboardChannelIds.has(pack.channel_strategy_route.id) &&
+      pack.channel_strategy_route.archetype &&
+      pack.channel_strategy_route.audience &&
+      pack.channel_strategy_route.fit,
+    `channel=${pack?.channel_strategy_route?.id}; known=${dashboardChannelIds.has(pack?.channel_strategy_route?.id)}`
+  );
+  check(
+    "draft_content_visible",
+    pack?.source_memo_cue &&
+      pack?.logline &&
+      pack?.premise &&
+      pack?.sample_opening_present === true &&
+      pack?.draft_spine?.sample_opening_status === "non_final_non_canon_review_excerpt" &&
+      pack?.draft_spine?.status === "reviewable_not_final_prose",
+    `sourceCue=${Boolean(pack?.source_memo_cue)}; logline=${Boolean(pack?.logline)}; sample=${pack?.sample_opening_present}; status=${pack?.draft_spine?.status}`
+  );
+  check(
+    "review_surface_counts",
+    pack?.content_candidate_count >= 3 &&
+      pack?.channel_strategy_count >= 3 &&
+      draftBeats.length >= 5 &&
+      visualCues.length >= 3 &&
+      subtitleOrTextCues.length >= 3 &&
+      unresolvedQuestions.length >= 3 &&
+      riskCards.length >= 4 &&
+      reviewerDecisions.length >= 3,
+    `content=${pack?.content_candidate_count}; channels=${pack?.channel_strategy_count}; beats=${draftBeats.length}; visual=${visualCues.length}; text=${subtitleOrTextCues.length}; questions=${unresolvedQuestions.length}; risks=${riskCards.length}; decisions=${reviewerDecisions.length}`
+  );
+  check(
+    "reported_counts_match",
+    pack?.content_candidate_count === designerDashboard.counts?.content_candidates &&
+      pack?.channel_strategy_count === designerDashboard.counts?.channel_strategy_proposals &&
+      pack?.draft_beat_count === draftBeats.length &&
+      pack?.visual_cue_count === visualCues.length &&
+      pack?.subtitle_or_text_cue_count === subtitleOrTextCues.length &&
+      pack?.unresolved_human_owned_questions_count === unresolvedQuestions.length &&
+      pack?.risk_card_count === riskCards.length,
+    `reported=${JSON.stringify({
+      content: pack?.content_candidate_count,
+      channels: pack?.channel_strategy_count,
+      beats: pack?.draft_beat_count,
+      visual: pack?.visual_cue_count,
+      text: pack?.subtitle_or_text_cue_count,
+      questions: pack?.unresolved_human_owned_questions_count,
+      risks: pack?.risk_card_count
+    })}`
+  );
+  check(
+    "review_hold_and_unknowns",
+    draftBeats.every((beat) => beat.review_status === "hold") &&
+      unresolvedQuestions.every((question) => String(question.owner || "").includes("human")) &&
+      riskCards.some((risk) => String(risk.finding || "").toLowerCase().includes("rights")) &&
+      riskCards.some((risk) => String(risk.finding || "").toLowerCase().includes("no render")),
+    `beatHolds=${draftBeats.filter((beat) => beat.review_status === "hold").length}; questions=${unresolvedQuestions.length}; risks=${riskCards.length}`
+  );
+  check(
+    "local_only_boundaries",
+    pack?.local_only === true &&
+      pack?.external_call === false &&
+      pack?.provider_configured === false &&
+      pack?.credentials_touched === false &&
+      pack?.public_upload === false &&
+      pack?.ai_video_generation === false &&
+      pack?.final_canon_decision === false &&
+      credentialFindings.length === 0,
+    `local=${pack?.local_only}; external=${pack?.external_call}; provider=${pack?.provider_configured}; credentials=${pack?.credentials_touched}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+  check(
+    "guard_chain_preserved",
+    contradictoryGuard?.passed === true &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      providerEnvelope?.passed === true &&
+      providerEnvelope.provider_metadata?.externalCallAttempted === false,
+    `conflictAdopted=${contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims}; external=${providerEnvelope.provider_metadata?.externalCallAttempted}`
+  );
+
+  return {
+    schemaVersion: ONE_STORY_DRAFT_REVIEW_PACK_SCHEMA_VERSION,
+    artifact_id: "fff-one-story-draft-review-pack-001",
+    title: "Fast Fiction Factory One-story Draft Review Pack",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    review_ui: pack.review_ui || "public/review/index.html",
+    access_route: pack.access_route || "public/review/index.html?mode=draft",
+    input_result_path: toRepoPath(packPath),
+    source_dashboard_artifact_id: pack.source_dashboard_artifact_id || "fff-designer-candidate-dashboard-001",
+    selected_candidate_id: pack.selected_candidate_id,
+    selected_candidate_title: pack.selected_candidate_title,
+    selection_status: pack.selection_status || "provisional_default",
+    selected_reason: pack.selected_reason,
+    source_memo_cue: pack.source_memo_cue,
+    source_cue: pack.source_cue,
+    logline: pack.logline,
+    premise: pack.premise,
+    channel_strategy_route: pack.channel_strategy_route || {},
+    draft_spine: pack.draft_spine || {},
+    visual_cues: visualCues,
+    subtitle_or_text_cues: subtitleOrTextCues,
+    unresolved_human_owned_questions: unresolvedQuestions,
+    risk_cards: riskCards,
+    recommended_reviewer_decisions: reviewerDecisions,
+    content_candidate_count: designerDashboard.counts?.content_candidates || pack.content_candidate_count || 0,
+    channel_strategy_count: designerDashboard.counts?.channel_strategy_proposals || pack.channel_strategy_count || 0,
+    draft_beat_count: draftBeats.length,
+    sample_opening_present: Boolean(pack.sample_opening_present),
+    visual_cue_count: visualCues.length,
+    subtitle_or_text_cue_count: subtitleOrTextCues.length,
+    unresolved_human_owned_questions_count: unresolvedQuestions.length,
+    risk_card_count: riskCards.length,
+    local_only: pack.local_only === true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    final_canon_decision: false,
+    preserved_readbacks: {
+      designer_candidate_dashboard: designerDashboard?.artifact_id,
+      contradictory_claim_guard: contradictoryGuard?.artifact_id,
+      provider_envelope_readiness_no_call: providerEnvelope?.artifact_id
+    },
+    summary: {
+      draft_review_pack_visible: checks.identity?.passed === true,
+      source_dashboard_preserved: checks.source_dashboard_preserved?.passed === true,
+      selected_candidate_id: pack.selected_candidate_id,
+      selection_status: pack.selection_status || "provisional_default",
+      content_candidate_count: designerDashboard.counts?.content_candidates || pack.content_candidate_count || 0,
+      channel_strategy_count: designerDashboard.counts?.channel_strategy_proposals || pack.channel_strategy_count || 0,
+      draft_beat_count: draftBeats.length,
+      sample_opening_present: Boolean(pack.sample_opening_present),
+      visual_cue_count: visualCues.length,
+      subtitle_or_text_cue_count: subtitleOrTextCues.length,
+      unresolved_human_owned_questions_count: unresolvedQuestions.length,
+      risk_card_count: riskCards.length,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      final_canon_decision: false,
+      guard_chain_preserved: checks.guard_chain_preserved?.passed === true,
+      failures: failures.length
+    },
+    validation_notes: [
+      "One-story Draft Review Pack is local review material only.",
+      "The selected candidate is provisional_default because no human candidate choice was supplied.",
+      "Sample opening and narration excerpt are non-final and non-canon."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+async function validateDesignerCandidateDashboard(dashboard, dashboardPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
+  const downstreamGate = await readJson(manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT);
+  const providerEnvelope = await readJson(manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT);
+  const sourcePack = await readJson(manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json");
+  const credentialFindings = collectCredentialMaterial(dashboard);
+  const contentCandidates = Array.isArray(dashboard.content_candidates) ? dashboard.content_candidates : [];
+  const channelStrategyProposals = Array.isArray(dashboard.channel_strategy_proposals) ? dashboard.channel_strategy_proposals : [];
+  const draftSpineBeats = Array.isArray(dashboard.draft_spine?.beats) ? dashboard.draft_spine.beats : [];
+  const reviewRisks = Array.isArray(dashboard.review_risks) ? dashboard.review_risks : [];
+  const heldDecisions = Array.isArray(dashboard.human_owned_decisions_held) ? dashboard.human_owned_decisions_held : [];
+  const counts = dashboard.counts || {};
+
+  check(
+    "identity",
+    dashboard?.artifact_id === "fff-designer-candidate-dashboard-001" &&
+      dashboard?.schemaVersion === DESIGNER_CANDIDATE_DASHBOARD_SCHEMA_VERSION &&
+      dashboard?.review_ui === "public/review/index.html",
+    `artifact=${dashboard?.artifact_id}; schema=${dashboard?.schemaVersion}; ui=${dashboard?.review_ui}`
+  );
+  check(
+    "local_only_boundaries",
+    dashboard?.local_only === true &&
+      dashboard?.external_call === false &&
+      dashboard?.provider_configured === false &&
+      dashboard?.credentials_touched === false &&
+      dashboard?.public_upload === false &&
+      dashboard?.ai_video_generation === false &&
+      dashboard?.final_canon_decision === false &&
+      credentialFindings.length === 0,
+    `local=${dashboard?.local_only}; external=${dashboard?.external_call}; provider=${dashboard?.provider_configured}; credentials=${dashboard?.credentials_touched}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+  check(
+    "review_surface_counts",
+    contentCandidates.length >= 3 &&
+      channelStrategyProposals.length >= 3 &&
+      draftSpineBeats.length >= 5 &&
+      reviewRisks.length >= 4 &&
+      heldDecisions.length >= 3,
+    `content=${contentCandidates.length}; channels=${channelStrategyProposals.length}; beats=${draftSpineBeats.length}; risks=${reviewRisks.length}; held=${heldDecisions.length}`
+  );
+  check(
+    "reported_counts_match",
+    counts.content_candidates === contentCandidates.length &&
+      counts.channel_strategy_proposals === channelStrategyProposals.length &&
+      counts.draft_spine_beats === draftSpineBeats.length &&
+      counts.unresolved_risks === reviewRisks.length &&
+      counts.human_owned_decisions_held === heldDecisions.length,
+    `counts=${JSON.stringify(counts)}`
+  );
+  check(
+    "required_card_fields_visible",
+    contentCandidates.every((candidate) =>
+      candidate.title_or_hook &&
+      candidate.format_fit &&
+      candidate.premise_audience_promise &&
+      candidate.draft_readiness &&
+      candidate.visual_or_thumbnail_direction &&
+      candidate.subtitle_or_narration_promise &&
+      Array.isArray(candidate.unresolved_risks) &&
+      candidate.recommended_next_review_decision
+    ) &&
+      channelStrategyProposals.every((proposal) =>
+        proposal.channel_archetype &&
+        proposal.target_audience &&
+        Array.isArray(proposal.content_pillars) &&
+        proposal.series_angle &&
+        proposal.cadence_hypothesis &&
+        proposal.material_fit &&
+        Array.isArray(proposal.risk_flags) &&
+        proposal.review_debt
+      ),
+    `contentFields=${contentCandidates.length}; channelFields=${channelStrategyProposals.length}`
+  );
+  check(
+    "draft_is_not_final_prose",
+    dashboard.draft_spine?.status === "reviewable_not_final_prose" &&
+      dashboard.final_canon_decision === false &&
+      draftSpineBeats.every((beat) => beat.review_status === "hold"),
+    `draftStatus=${dashboard.draft_spine?.status}; finalCanon=${dashboard.final_canon_decision}`
+  );
+  check(
+    "absence_and_unknowns_visible",
+    dashboard.absence_policy?.unknown_fields_visible === true &&
+      dashboard.absence_policy?.missing_data_label &&
+      reviewRisks.some((risk) => String(risk.finding || "").toLowerCase().includes("no render")) &&
+      reviewRisks.some((risk) => String(risk.finding || "").toLowerCase().includes("rights")),
+    `unknowns=${dashboard.absence_policy?.unknown_fields_visible}; label=${dashboard.absence_policy?.missing_data_label}`
+  );
+  check(
+    "guard_chain_preserved",
+    contradictoryGuard?.passed === true &&
+      contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims === 0 &&
+      downstreamGate?.passed === true &&
+      downstreamGate.summary?.adopted_profile_claim_timeline_candidates === 0 &&
+      providerEnvelope?.passed === true &&
+      providerEnvelope.provider_metadata?.externalCallAttempted === false &&
+      sourcePack?.passed === true,
+    `conflictAdopted=${contradictoryGuard.summary?.adopted_or_provisional_conflicting_claims}; downstreamAdopted=${downstreamGate.summary?.adopted_profile_claim_timeline_candidates}; external=${providerEnvelope.provider_metadata?.externalCallAttempted}; pack=${sourcePack?.passed}`
+  );
+
+  return {
+    schemaVersion: DESIGNER_CANDIDATE_DASHBOARD_SCHEMA_VERSION,
+    artifact_id: "fff-designer-candidate-dashboard-001",
+    title: "Fast Fiction Factory Designer Candidate Dashboard",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    review_ui: dashboard.review_ui || "public/review/index.html",
+    access_route: dashboard.access_route || "public/review/index.html?mode=designer",
+    input_result_path: toRepoPath(dashboardPath),
+    local_only: dashboard.local_only === true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    final_canon_decision: false,
+    content_candidates: contentCandidates,
+    channel_strategy_proposals: channelStrategyProposals,
+    draft_spine: dashboard.draft_spine || {},
+    review_risks: reviewRisks,
+    human_owned_decisions_held: heldDecisions,
+    absence_policy: dashboard.absence_policy || {},
+    counts: {
+      content_candidates: contentCandidates.length,
+      channel_strategy_proposals: channelStrategyProposals.length,
+      draft_spine_beats: draftSpineBeats.length,
+      unresolved_risks: reviewRisks.length,
+      human_owned_decisions_held: heldDecisions.length
+    },
+    preserved_readbacks: {
+      contradictory_claim_guard: contradictoryGuard?.artifact_id,
+      downstream_source_span_adoption_gate: downstreamGate?.artifact_id,
+      provider_envelope_readiness_no_call: providerEnvelope?.artifact_id,
+      source_span_review_pack: sourcePack?.artifact_id
+    },
+    summary: {
+      designer_dashboard_visible: checks.identity?.passed === true,
+      content_candidate_cards: contentCandidates.length,
+      channel_strategy_cards: channelStrategyProposals.length,
+      draft_spine_beats: draftSpineBeats.length,
+      unresolved_risks: reviewRisks.length,
+      human_owned_decisions_held: heldDecisions.length,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      final_canon_decision: false,
+      guard_chain_preserved: checks.guard_chain_preserved?.passed === true,
+      failures: failures.length
+    },
+    validation_notes: [
+      "Designer Dashboard is a local planning and readback surface only.",
+      "Content cards, channel proposals, and draft beats remain review-held.",
+      "Unknown or human-owned story truth remains visible instead of being invented.",
+      "No provider, credential, public upload, AI video generation, production render, or final canon decision is added."
+    ],
+    dashboard_checks: checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function readAdapterPayloads() {
   const payloads = [];
   for (const filePath of ["artifacts/local-extraction-adapter-output.json"]) {
@@ -8645,6 +9069,10 @@ Usage:
   node tools/fff-state.mjs smoke-provider-envelope-readiness-no-call <provider-envelope.json> [output.json]
   node tools/fff-state.mjs validate-provider-adapter-authorization-readiness <provider-envelope-readback.json>
   node tools/fff-state.mjs smoke-provider-adapter-authorization-readiness <provider-envelope-readback.json> [output.json]
+  node tools/fff-state.mjs validate-designer-candidate-dashboard <designer-dashboard-result.json>
+  node tools/fff-state.mjs smoke-designer-candidate-dashboard <designer-dashboard-result.json> [output.json]
+  node tools/fff-state.mjs validate-one-story-draft-review-pack <one-story-draft-review-pack-result.json>
+  node tools/fff-state.mjs smoke-one-story-draft-review-pack <one-story-draft-review-pack-result.json> [output.json]
 
 Default normalize output:
   ${DEFAULT_OUTPUT}
@@ -8657,6 +9085,9 @@ Default routing policy regression output:
 
 Default broad-span split output:
   ${DEFAULT_BROAD_SPAN_SPLIT_OUTPUT}
+
+Default one-story draft review pack output:
+  ${DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT}
 
 Default weak-span repair output:
   ${DEFAULT_WEAK_SPAN_REPAIR_OUTPUT}
@@ -8723,6 +9154,9 @@ Default provider envelope readiness no-call output:
 
 Default provider adapter authorization readiness output:
   ${DEFAULT_PROVIDER_ADAPTER_AUTHORIZATION_READINESS_OUTPUT}
+
+Default designer candidate dashboard output:
+  ${DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT}
 `);
 }
 

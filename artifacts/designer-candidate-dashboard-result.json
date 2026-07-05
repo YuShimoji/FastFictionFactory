@@ -1,0 +1,284 @@
+{
+  "schemaVersion": "fff.designerCandidateDashboard.v1",
+  "artifact_id": "fff-designer-candidate-dashboard-001",
+  "title": "Fast Fiction Factory Designer Candidate Dashboard",
+  "generatedAt": "2026-07-05T18:33:46.805Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=designer",
+  "input_result_path": "./artifacts/designer-candidate-dashboard-result.json",
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "final_canon_decision": false,
+  "content_candidates": [
+    {
+      "id": "designer-content-bell-hook-1m",
+      "title_or_hook": "Bellless noon hook",
+      "format_fit": "1-minute",
+      "premise_audience_promise": "A clockmaker hears a removed bell ring and finds a clue to stolen lives.",
+      "draft_readiness": "draft spine only",
+      "visual_or_thumbnail_direction": "Empty bell tower, brass moth detail, stark noon shadow.",
+      "subtitle_or_narration_promise": "Short mystery lines that keep the impossible image clear.",
+      "unresolved_risks": [
+        "bell paradox explanation",
+        "brass moth truth",
+        "asset rights unknown"
+      ],
+      "recommended_next_review_decision": "Approve or revise the bell paradox as the first visible hook.",
+      "review_status": "hold"
+    },
+    {
+      "id": "designer-content-moth-investigation-3m",
+      "title_or_hook": "Mira and the brass moth clue trail",
+      "format_fit": "3-minute",
+      "premise_audience_promise": "A personal mystery follows Toma's note into the council ledger.",
+      "draft_readiness": "beat sequence candidate",
+      "visual_or_thumbnail_direction": "Workshop closeups, note fragment, moth prop, ledger page, station exterior.",
+      "subtitle_or_narration_promise": "Narration can promise family stakes without revealing Toma's fate.",
+      "unresolved_risks": [
+        "Toma fate",
+        "moth first-use rule",
+        "council motive"
+      ],
+      "recommended_next_review_decision": "Choose the first-use behavior for the moth or keep this candidate held.",
+      "review_status": "hold"
+    },
+    {
+      "id": "designer-content-erased-hour-10m",
+      "title_or_hook": "The city that sells abandoned minutes",
+      "format_fit": "10-minute",
+      "premise_audience_promise": "A lyrical dark-fantasy explainer frames the moral cost of stolen time.",
+      "draft_readiness": "outline-ready, prose not final",
+      "visual_or_thumbnail_direction": "Ledger of names beside a clock missing one hour.",
+      "subtitle_or_narration_promise": "Can explain the premise while marking ending and motive as provisional.",
+      "unresolved_risks": [
+        "Council motive",
+        "ending adoption",
+        "rights for any historical-looking imagery"
+      ],
+      "recommended_next_review_decision": "Review whether the premise can be explained before the council route is chosen.",
+      "review_status": "hold"
+    }
+  ],
+  "channel_strategy_proposals": [
+    {
+      "id": "designer-channel-literary-microfiction",
+      "channel_archetype": "literary micro-fiction shorts",
+      "target_audience": "viewers who like atmospheric speculative hooks and compact emotional turns",
+      "content_pillars": [
+        "impossible image",
+        "personal mystery",
+        "human-owned ending question"
+      ],
+      "series_angle": "Each short opens with one impossible civic object and one private cost.",
+      "cadence_hypothesis": "2 to 3 short concepts per week after the review workflow stabilizes.",
+      "material_fit": "The current story already has a repeatable hook, object clue, and unresolved ending pressure.",
+      "risk_flags": [
+        "needs title/hook review",
+        "no release assets",
+        "final canon not approved"
+      ],
+      "review_debt": "Decide whether the channel leans poetic, mystery-forward, or production-design-forward.",
+      "review_status": "hold"
+    },
+    {
+      "id": "designer-channel-mystery-lore",
+      "channel_archetype": "mystery lore serial",
+      "target_audience": "viewers who follow clues, institutions, and hidden-world rules across episodes",
+      "content_pillars": [
+        "Toma note",
+        "council ledger",
+        "brass moth clue",
+        "station bell paradox"
+      ],
+      "series_angle": "A case-file sequence where each recovered minute exposes a different erased life.",
+      "cadence_hypothesis": "weekly short plus occasional 3-minute recap after canon routes are chosen",
+      "material_fit": "The source material has unresolved motives and repeatable evidence objects.",
+      "risk_flags": [
+        "motive route unresolved",
+        "Toma reveal unresolved",
+        "could overexplain magic too early"
+      ],
+      "review_debt": "Needs a spoiler policy before longer recap formats.",
+      "review_status": "hold"
+    },
+    {
+      "id": "designer-channel-visual-story-lab",
+      "channel_archetype": "visual story design lab",
+      "target_audience": "writers and designers reviewing story-to-video packaging choices",
+      "content_pillars": [
+        "source span",
+        "draft readiness",
+        "thumbnail direction",
+        "rights boundary"
+      ],
+      "series_angle": "Show how a raw fiction memo becomes reviewable video candidates without publishing.",
+      "cadence_hypothesis": "one dashboard review episode per completed local story slice",
+      "material_fit": "The project already exposes source, claim, profile, timeline, and risk surfaces.",
+      "risk_flags": [
+        "not audience-facing fiction yet",
+        "requires clear non-production labeling"
+      ],
+      "review_debt": "Needs a repeatable review card once a second story exists.",
+      "review_status": "hold"
+    }
+  ],
+  "draft_spine": {
+    "status": "reviewable_not_final_prose",
+    "sample_opening_status": "style sample only; not final prose",
+    "beats": [
+      {
+        "id": "designer-draft-beat-1",
+        "label": "Hook",
+        "beat": "At noon, the observatory rings although the bell is gone.",
+        "purpose": "Shows the impossible image before any explanation.",
+        "review_status": "hold"
+      },
+      {
+        "id": "designer-draft-beat-2",
+        "label": "Inciting clue",
+        "beat": "Mira finds Toma's note and the brass moth in the workshop drawer.",
+        "purpose": "Connects family stakes to the stolen-minutes premise.",
+        "review_status": "hold"
+      },
+      {
+        "id": "designer-draft-beat-3",
+        "label": "Investigation",
+        "beat": "The ledger points toward lives removed from public memory.",
+        "purpose": "Lets the premise become inspectable through an object, not exposition.",
+        "review_status": "hold"
+      },
+      {
+        "id": "designer-draft-beat-4",
+        "label": "Motive pressure",
+        "beat": "The council route stays open: villainous, desperate, divided, misled, or false-record.",
+        "purpose": "Prevents the dashboard from deciding story truth.",
+        "review_status": "hold"
+      },
+      {
+        "id": "designer-draft-beat-5",
+        "label": "Ending candidate",
+        "beat": "Mira may return one lost hour to each erased person.",
+        "purpose": "Surfaces the emotional endpoint while keeping final canon held.",
+        "review_status": "hold"
+      }
+    ]
+  },
+  "review_risks": [
+    {
+      "id": "designer-risk-canon",
+      "area": "Canon/source",
+      "severity": "high",
+      "finding": "Toma fate, brass moth truth, and Council motive remain unresolved.",
+      "next_move": "Keep content candidates held until the author chooses provisional routes."
+    },
+    {
+      "id": "designer-risk-rights",
+      "area": "Rights/assets",
+      "severity": "medium",
+      "finding": "Thumbnail and visual directions are text-only placeholders with unknown rights.",
+      "next_move": "Do not source release assets or imply rights clearance in this slice."
+    },
+    {
+      "id": "designer-risk-production",
+      "area": "Production",
+      "severity": "medium",
+      "finding": "No render, upload, provider call, or video generation exists.",
+      "next_move": "Treat dashboard output as local planning readback only."
+    },
+    {
+      "id": "designer-risk-draft",
+      "area": "Draft readiness",
+      "severity": "medium",
+      "finding": "Draft spine is reviewable but not final prose.",
+      "next_move": "Use it to decide structure before writing a full draft."
+    }
+  ],
+  "human_owned_decisions_held": [
+    "Toma fate",
+    "brass moth truth",
+    "Council motive"
+  ],
+  "absence_policy": {
+    "unknown_fields_visible": true,
+    "missing_data_label": "not available / needs human review",
+    "do_not_invent_story_truth": true
+  },
+  "counts": {
+    "content_candidates": 3,
+    "channel_strategy_proposals": 3,
+    "draft_spine_beats": 5,
+    "unresolved_risks": 4,
+    "human_owned_decisions_held": 3
+  },
+  "preserved_readbacks": {
+    "contradictory_claim_guard": "fff-contradictory-claim-guard-001",
+    "downstream_source_span_adoption_gate": "fff-downstream-source-span-adoption-gate-001",
+    "provider_envelope_readiness_no_call": "fff-provider-envelope-readiness-no-call-001",
+    "source_span_review_pack": "fff-source-span-routing-review-pack-001"
+  },
+  "summary": {
+    "designer_dashboard_visible": true,
+    "content_candidate_cards": 3,
+    "channel_strategy_cards": 3,
+    "draft_spine_beats": 5,
+    "unresolved_risks": 4,
+    "human_owned_decisions_held": 3,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "final_canon_decision": false,
+    "guard_chain_preserved": true,
+    "failures": 0
+  },
+  "validation_notes": [
+    "Designer Dashboard is a local planning and readback surface only.",
+    "Content cards, channel proposals, and draft beats remain review-held.",
+    "Unknown or human-owned story truth remains visible instead of being invented.",
+    "No provider, credential, public upload, AI video generation, production render, or final canon decision is added."
+  ],
+  "dashboard_checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-designer-candidate-dashboard-001; schema=fff.designerCandidateDashboard.v1; ui=public/review/index.html"
+    },
+    "local_only_boundaries": {
+      "passed": true,
+      "detail": "local=true; external=false; provider=false; credentials=false; findings=none"
+    },
+    "review_surface_counts": {
+      "passed": true,
+      "detail": "content=3; channels=3; beats=5; risks=4; held=3"
+    },
+    "reported_counts_match": {
+      "passed": true,
+      "detail": "counts={\"content_candidates\":3,\"channel_strategy_proposals\":3,\"draft_spine_beats\":5,\"unresolved_risks\":4,\"human_owned_decisions_held\":3}"
+    },
+    "required_card_fields_visible": {
+      "passed": true,
+      "detail": "contentFields=3; channelFields=3"
+    },
+    "draft_is_not_final_prose": {
+      "passed": true,
+      "detail": "draftStatus=reviewable_not_final_prose; finalCanon=false"
+    },
+    "absence_and_unknowns_visible": {
+      "passed": true,
+      "detail": "unknowns=true; label=not available / needs human review"
+    },
+    "guard_chain_preserved": {
+      "passed": true,
+      "detail": "conflictAdopted=0; downstreamAdopted=0; external=false; pack=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

@@ -1,0 +1,100 @@
+{
+  "artifact_id": "fff-draft-review-pack-stabilization-001",
+  "title": "Fast Fiction Factory Draft Review Pack Stabilization",
+  "generated_at": "2026-07-06T03:26:58+09:00",
+  "source_artifacts": [
+    "fff-designer-candidate-dashboard-001",
+    "fff-one-story-draft-review-pack-001"
+  ],
+  "preserved_guard_artifact_id": "fff-contradictory-claim-guard-001",
+  "review_routes": [
+    "public/review/index.html?mode=designer",
+    "public/review/index.html?mode=draft"
+  ],
+  "review_ui": "public/review/index.html",
+  "review_doc_path": "docs/review/draft-review-pack-stabilization.md",
+  "designer_result_path": "artifacts/designer-candidate-dashboard-result.json",
+  "draft_result_path": "artifacts/one-story-draft-review-pack-result.json",
+  "designer_result_exists": true,
+  "draft_result_exists": true,
+  "designer_doc_exists": true,
+  "draft_doc_exists": true,
+  "designer_smoke_passed": true,
+  "draft_smoke_passed": true,
+  "contradictory_claim_guard_preserved": true,
+  "static_mode_check_passed": true,
+  "visual_evidence_path": null,
+  "browser_render_attempt": {
+    "attempted": true,
+    "target": "file:///.../public/review/index.html?mode=designer|draft",
+    "result": "blocked_by_browser_url_policy",
+    "fallback": "static_access_readback"
+  },
+  "access_state": "verified_present",
+  "committed": true,
+  "pushed": true,
+  "transport_residue": {
+    ".serena/project.yml": "modified_unstaged_transport_residue_not_product"
+  },
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "final_canon_decision": false,
+  "static_access_readback": {
+    "checks": {
+      "script_compiles": true,
+      "designer_mode_button": true,
+      "draft_mode_button": true,
+      "designer_root": true,
+      "draft_root": true,
+      "designer_renderer": true,
+      "draft_renderer": true,
+      "designer_route_text": true,
+      "draft_route_text": true,
+      "active_draft_artifact_text": true,
+      "preserved_designer_artifact_text": true,
+      "designer_result_exists": true,
+      "draft_result_exists": true,
+      "designer_doc_exists": true,
+      "draft_doc_exists": true,
+      "designer_passed": true,
+      "draft_passed": true,
+      "guard_preserved": true
+    },
+    "designer_counts": {
+      "content_candidates": 3,
+      "channel_strategy_proposals": 3,
+      "draft_spine_beats": 5,
+      "unresolved_risks": 4,
+      "human_owned_decisions_held": 3
+    },
+    "draft_counts": {
+      "content_candidates": 3,
+      "channel_strategy_proposals": 3,
+      "draft_beats": 5,
+      "sample_opening_present": true,
+      "visual_cues": 4,
+      "subtitle_or_text_cues": 4,
+      "unresolved_human_owned_questions": 3,
+      "risk_cards": 4
+    },
+    "designer_access_route": "public/review/index.html?mode=designer",
+    "draft_access_route": "public/review/index.html?mode=draft",
+    "draft_selection_status": "provisional_default",
+    "draft_selected_candidate_id": "designer-content-moth-investigation-3m"
+  },
+  "validation_commands": [
+    "node --check .\\tools\\fff-state.mjs",
+    "node .\\tools\\fff-state.mjs smoke-one-story-draft-review-pack .\\artifacts\\one-story-draft-review-pack-result.json .\\artifacts\\one-story-draft-review-pack-result.json",
+    "node .\\tools\\fff-state.mjs smoke-designer-candidate-dashboard .\\artifacts\\designer-candidate-dashboard-result.json .\\artifacts\\designer-candidate-dashboard-result.json",
+    "node .\\tools\\fff-state.mjs validate-contradictory-claim-guard .\\artifacts\\extraction-validator-smoke-result.json",
+    "node -e \"const fs=require('fs'); const h=fs.readFileSync('public/review/index.html','utf8'); const m=h.match(/<script>([\\s\\S]*)<\\/script>/); if(!m) throw new Error('missing script'); new Function(m[1]); const q=String.fromCharCode(34); const checks=['data-mode-target='+q+'designer'+q,'data-mode-target='+q+'draft'+q,'id='+q+'designer-dashboard-root'+q,'id='+q+'one-story-draft-pack-root'+q,'function renderDesignerDashboard','function renderOneStoryDraftPack','public/review/index.html?mode=designer','public/review/index.html?mode=draft','fff-one-story-draft-review-pack-001','fff-designer-candidate-dashboard-001']; for (const s of checks) if (!h.includes(s)) throw new Error('missing '+s); const designer=JSON.parse(fs.readFileSync('artifacts/designer-candidate-dashboard-result.json','utf8')); const draft=JSON.parse(fs.readFileSync('artifacts/one-story-draft-review-pack-result.json','utf8')); if(!designer.passed||!draft.passed) throw new Error('readback not passing'); console.log('static Review Hub designer/draft checks passed');\"",
+    "git diff --check",
+    "python -m mkdocs build --strict"
+  ],
+  "failures": [],
+  "passed": true
+}

@@ -1,0 +1,303 @@
+{
+  "schemaVersion": "fff.oneStoryDraftReviewPack.v1",
+  "artifact_id": "fff-one-story-draft-review-pack-001",
+  "title": "Fast Fiction Factory One-story Draft Review Pack",
+  "generatedAt": "2026-07-05T18:33:46.839Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=draft",
+  "input_result_path": "./artifacts/one-story-draft-review-pack-result.json",
+  "source_dashboard_artifact_id": "fff-designer-candidate-dashboard-001",
+  "selected_candidate_id": "designer-content-moth-investigation-3m",
+  "selected_candidate_title": "Mira and the brass moth clue trail",
+  "selection_status": "provisional_default",
+  "selected_reason": "Selected as the strongest end-to-end provisional route because it connects hook, personal stakes, object clue, investigation, visual packaging, and unresolved human-owned questions without requiring final canon.",
+  "source_memo_cue": "Mira Vale repairs clocks in North Bell Station after midnight. Her brother Toma left only a note, a brass moth in the workshop drawer, and a warning that the council has been buying abandoned minutes from people's lives.",
+  "source_cue": "Raw story memo and local deterministic Designer Dashboard candidates only.",
+  "logline": "A clockmaker follows her missing brother's brass moth clue into a city ledger that sells abandoned minutes.",
+  "premise": "A personal mystery follows Toma's note into the council ledger without deciding Toma fate, moth function, or Council motive.",
+  "channel_strategy_route": {
+    "id": "designer-channel-mystery-lore",
+    "archetype": "mystery lore serial",
+    "audience": "viewers who follow clues, institutions, and hidden-world rules across episodes",
+    "fit": "The source material has unresolved motives and repeatable evidence objects."
+  },
+  "draft_spine": {
+    "status": "reviewable_not_final_prose",
+    "sample_opening_status": "non_final_non_canon_review_excerpt",
+    "sample_opening": "At noon, the old observatory rang again. Mira Vale looked up from the station clock and counted the sound of a bell that had not existed since the winter curfew.",
+    "narration_draft_excerpt": "This is not the story's final truth. It is a review pass: a missing bell, a missing brother, and a brass moth that may be a key, a spy, or only the shape grief chose.",
+    "beats": [
+      {
+        "id": "draft-pack-beat-1",
+        "label": "Cold open",
+        "beat": "The bellless observatory rings at noon, making the missing bell the first impossible image.",
+        "visual_cue": "Show North Bell Station and the silent tower before explaining rules.",
+        "subtitle_cue": "At noon, the bell that no longer existed rang once.",
+        "review_status": "hold"
+      },
+      {
+        "id": "draft-pack-beat-2",
+        "label": "Personal clue",
+        "beat": "Mira finds Toma's note and the brass moth in the workshop drawer.",
+        "visual_cue": "Cut to hands, note, brass moth, and a station-clock face stuck near 9:17.",
+        "subtitle_cue": "Toma left only a note and a brass moth.",
+        "review_status": "hold"
+      },
+      {
+        "id": "draft-pack-beat-3",
+        "label": "Investigation path",
+        "beat": "The council ledger connects abandoned minutes to erased people.",
+        "visual_cue": "Use ledger-page inserts and names fading from civic records.",
+        "subtitle_cue": "Some names were paid for in minutes.",
+        "review_status": "hold"
+      },
+      {
+        "id": "draft-pack-beat-4",
+        "label": "Human-owned fork",
+        "beat": "The draft keeps Toma fate, moth function, and Council motive unresolved instead of choosing truth.",
+        "visual_cue": "Hold on three labeled cards: Toma, moth, Council.",
+        "subtitle_cue": "These answers stay held for author review.",
+        "review_status": "hold"
+      },
+      {
+        "id": "draft-pack-beat-5",
+        "label": "Reviewable ending pressure",
+        "beat": "Mira may return one lost hour to each erased person, but the ending is not canon.",
+        "visual_cue": "End on the ledger closing, then a final impossible bell note.",
+        "subtitle_cue": "Ending candidate, not final canon.",
+        "review_status": "hold"
+      }
+    ]
+  },
+  "visual_cues": [
+    {
+      "id": "draft-visual-bell-tower",
+      "title": "Bellless tower silhouette",
+      "cue": "Opening image; empty bell frame, noon light, no release asset selected.",
+      "status": "rights_unknown",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-visual-brass-moth",
+      "title": "Brass moth closeup",
+      "cue": "Object clue; macro shot direction only, function unresolved.",
+      "status": "canon_sensitive",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-visual-ledger",
+      "title": "Council ledger page",
+      "cue": "Investigation bridge; names and minutes shown as graphic placeholders.",
+      "status": "rights_unknown",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-visual-held-questions",
+      "title": "Held truth cards",
+      "cue": "Operator-facing reminder that Toma, moth, and Council answers are not decided.",
+      "status": "review_marker",
+      "review_status": "hold"
+    }
+  ],
+  "subtitle_or_text_cues": [
+    {
+      "id": "draft-text-bell",
+      "title": "At noon, the missing bell rang.",
+      "cue": "Short hook subtitle; keeps paradox clear.",
+      "status": "ready_for_wrap_check",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-text-toma",
+      "title": "Toma left only a note.",
+      "cue": "Narration cue; avoids deciding Toma fate.",
+      "status": "needs_human_review",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-text-council",
+      "title": "The ledger named lives no one remembered.",
+      "cue": "Premise cue; avoids final Council motive.",
+      "status": "needs_human_review",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-text-ending",
+      "title": "Ending candidate, not canon.",
+      "cue": "On-screen label for review safety.",
+      "status": "review_marker",
+      "review_status": "hold"
+    }
+  ],
+  "unresolved_human_owned_questions": [
+    {
+      "id": "draft-question-toma-fate",
+      "question": "Toma fate",
+      "owner": "human_author",
+      "status": "needs human review",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-question-brass-moth-function",
+      "question": "Brass moth function",
+      "owner": "human_author",
+      "status": "needs human review",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-question-council-motive",
+      "question": "Council motive",
+      "owner": "human_author",
+      "status": "needs human review",
+      "review_status": "hold"
+    }
+  ],
+  "risk_cards": [
+    {
+      "id": "draft-risk-canon",
+      "area": "Canon/source",
+      "severity": "high",
+      "finding": "The pack uses unresolved story truths as visible review questions, not final answers.",
+      "next_move": "Choose provisional routes before any final prose or canon adoption.",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-risk-rights",
+      "area": "Rights/assets",
+      "severity": "medium",
+      "finding": "All visual and thumbnail cues are text-only placeholders with unknown rights.",
+      "next_move": "Do not source or imply release assets in this slice.",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-risk-production",
+      "area": "Production",
+      "severity": "medium",
+      "finding": "No render, upload, provider call, public action, or AI video generation exists.",
+      "next_move": "Treat this as local review planning only.",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-risk-draft",
+      "area": "Draft readiness",
+      "severity": "medium",
+      "finding": "Sample narration is non-final and non-canon.",
+      "next_move": "Review beats and cues before expanding prose.",
+      "review_status": "hold"
+    }
+  ],
+  "recommended_reviewer_decisions": [
+    {
+      "id": "draft-decision-candidate",
+      "title": "Confirm or replace provisional default candidate",
+      "decision_prompt": "Approve designer-content-moth-investigation-3m as the first draft route or choose another Designer Dashboard candidate.",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-decision-channel",
+      "title": "Confirm channel route",
+      "decision_prompt": "Use mystery-lore serial now, or switch to literary micro-fiction / visual story lab.",
+      "review_status": "hold"
+    },
+    {
+      "id": "draft-decision-held-truths",
+      "title": "Keep or narrow held truth questions",
+      "decision_prompt": "Choose which of Toma fate, moth function, and Council motive can remain unknown in the first draft.",
+      "review_status": "hold"
+    }
+  ],
+  "content_candidate_count": 3,
+  "channel_strategy_count": 3,
+  "draft_beat_count": 5,
+  "sample_opening_present": true,
+  "visual_cue_count": 4,
+  "subtitle_or_text_cue_count": 4,
+  "unresolved_human_owned_questions_count": 3,
+  "risk_card_count": 4,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "final_canon_decision": false,
+  "preserved_readbacks": {
+    "designer_candidate_dashboard": "fff-designer-candidate-dashboard-001",
+    "contradictory_claim_guard": "fff-contradictory-claim-guard-001",
+    "provider_envelope_readiness_no_call": "fff-provider-envelope-readiness-no-call-001"
+  },
+  "summary": {
+    "draft_review_pack_visible": true,
+    "source_dashboard_preserved": true,
+    "selected_candidate_id": "designer-content-moth-investigation-3m",
+    "selection_status": "provisional_default",
+    "content_candidate_count": 3,
+    "channel_strategy_count": 3,
+    "draft_beat_count": 5,
+    "sample_opening_present": true,
+    "visual_cue_count": 4,
+    "subtitle_or_text_cue_count": 4,
+    "unresolved_human_owned_questions_count": 3,
+    "risk_card_count": 4,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "final_canon_decision": false,
+    "guard_chain_preserved": true,
+    "failures": 0
+  },
+  "validation_notes": [
+    "One-story Draft Review Pack is local review material only.",
+    "The selected candidate is provisional_default because no human candidate choice was supplied.",
+    "Sample opening and narration excerpt are non-final and non-canon."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-one-story-draft-review-pack-001; schema=fff.oneStoryDraftReviewPack.v1; ui=public/review/index.html"
+    },
+    "source_dashboard_preserved": {
+      "passed": true,
+      "detail": "source=fff-designer-candidate-dashboard-001; dashboard=fff-designer-candidate-dashboard-001/true"
+    },
+    "provisional_candidate_selected": {
+      "passed": true,
+      "detail": "status=provisional_default; selected=designer-content-moth-investigation-3m; known=true"
+    },
+    "channel_route_selected": {
+      "passed": true,
+      "detail": "channel=designer-channel-mystery-lore; known=true"
+    },
+    "draft_content_visible": {
+      "passed": true,
+      "detail": "sourceCue=true; logline=true; sample=true; status=reviewable_not_final_prose"
+    },
+    "review_surface_counts": {
+      "passed": true,
+      "detail": "content=3; channels=3; beats=5; visual=4; text=4; questions=3; risks=4; decisions=3"
+    },
+    "reported_counts_match": {
+      "passed": true,
+      "detail": "reported={\"content\":3,\"channels\":3,\"beats\":5,\"visual\":4,\"text\":4,\"questions\":3,\"risks\":4}"
+    },
+    "review_hold_and_unknowns": {
+      "passed": true,
+      "detail": "beatHolds=5; questions=3; risks=4"
+    },
+    "local_only_boundaries": {
+      "passed": true,
+      "detail": "local=true; external=false; provider=false; credentials=false; findings=none"
+    },
+    "guard_chain_preserved": {
+      "passed": true,
+      "detail": "conflictAdopted=0; external=false"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

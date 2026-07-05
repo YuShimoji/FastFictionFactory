@@ -2,12 +2,24 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-contradictory-claim-guard-001`
+- Artifact id: `fff-one-story-draft-review-pack-001`
 - Review UI: `public/review/index.html`
+- Draft Review Pack mode: `public/review/index.html?mode=draft`
+- Designer Dashboard mode: `public/review/index.html?mode=designer`
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
 - Repo-local shell launcher: `./scripts/operator/open_review.sh`
 - Manifest: `artifacts/artifact-manifest.json`
+- Stabilization checkpoint: `fff-draft-review-pack-stabilization-001`
+- Stabilization doc: `docs/review/draft-review-pack-stabilization.md`
+- Stabilization result: `artifacts/draft-review-pack-stabilization-result.json`
+- Stabilization access state: `verified_present`
+- Draft Review Pack doc: `docs/review/one-story-draft-review-pack.md`
+- Draft Review Pack result: `artifacts/one-story-draft-review-pack-result.json`
+- Draft Review Pack smoke command: `node tools/fff-state.mjs smoke-one-story-draft-review-pack artifacts/one-story-draft-review-pack-result.json artifacts/one-story-draft-review-pack-result.json`
+- Designer Dashboard doc: `docs/review/designer-candidate-dashboard.md`
+- Designer Dashboard result: `artifacts/designer-candidate-dashboard-result.json`
+- Designer Dashboard smoke command: `node tools/fff-state.mjs smoke-designer-candidate-dashboard artifacts/designer-candidate-dashboard-result.json artifacts/designer-candidate-dashboard-result.json`
 - Guard doc: `docs/review/contradictory-claim-guard.md`
 - Guard result: `artifacts/contradictory-claim-guard-result.json`
 - Guard fixture: `artifacts/extraction-negative-fixtures/contradictory-claim-hold.json`
@@ -56,7 +68,20 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active Review Hub identity is now `fff-contradictory-claim-guard-001`.
+- The active Review Hub identity remains `fff-one-story-draft-review-pack-001`; `fff-draft-review-pack-stabilization-001` is the current access/readback and git-durability checkpoint.
+- `artifacts/draft-review-pack-stabilization-result.json` records verified-present access for `public/review/index.html?mode=designer` and `public/review/index.html?mode=draft`, confirms both result artifacts and review docs exist, confirms static Review Hub markers and renderers, and records the in-app browser `file://` capture attempt as blocked by browser URL policy with static readback as fallback.
+- `public/review/index.html` has a `Draft Review Pack` mode for `public/review/index.html?mode=draft`.
+- The draft pack selects `designer-content-moth-investigation-3m` as a `provisional_default`, exposes source memo/story cue, logline, premise, channel route, 5 draft beats, non-final opening/narration sample, 4 visual cues, 4 subtitle/on-screen text cues, 3 unresolved human-owned questions, 4 risk cards, and 3 recommended reviewer decisions.
+- `artifacts/one-story-draft-review-pack-result.json` records local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, final_canon_decision=false, source_dashboard_preserved=true, and matching draft pack counts.
+- `docs/review/one-story-draft-review-pack.md` records purpose, access, review targets, preserved boundaries, validation commands, known limitations, and next recommended slice.
+- `tools/fff-state.mjs` includes `smoke-one-story-draft-review-pack` for local readback validation.
+- `public/review/index.html` has a `Designer Dashboard` mode for `public/review/index.html?mode=designer`.
+- The dashboard exposes one-story runway context, 3 content candidate cards, 3 channel strategy proposal cards, 5 draft spine beats, 4 review risk cards, and 3 held human-owned decisions.
+- `artifacts/designer-candidate-dashboard-result.json` records local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, final_canon_decision=false, and matching dashboard counts.
+- `docs/review/designer-candidate-dashboard.md` records purpose, access, review targets, preserved boundaries, validation commands, known limitations, and next recommended slice.
+- `tools/fff-state.mjs` includes `smoke-designer-candidate-dashboard` for local readback validation.
+- `fff-contradictory-claim-guard-001` remains preserved as an auxiliary guard under the dashboard slice.
+- The preserved contradictory-claim guard identity remains `fff-contradictory-claim-guard-001`.
 - `artifacts/extraction-negative-fixtures/contradictory-claim-hold.json` adds one bounded contradictory-claim fixture with 2 claim-routed elements and 2 claim candidates.
 - The two claim candidates are linked with reciprocal `contradictsClaimIds`, both keep `worldTruthStatus=uncertain`, both remain `hold`, and both preserve source refs.
 - `tools/fff-state.mjs` now validates contradictory claim candidates so a claim with `contradictsClaimIds` must remain held, source-backed, high-risk, uncertain, and reciprocally linked.
@@ -106,7 +131,13 @@ Preserved platform boundary:
 - This downstream target authorization packet slice started on synced `master` after `fff-production-claim-ledger-rollback-rehearsal-001`; the new readback prepares the next target-class choice only and performs no Profile / Timeline / Story Seed / Canon decision / provider / credential / publishing mutation.
 - This Profile adoption mutation one-claim slice started on synced `master` after the user authorized recommended path A from the downstream target authorization packet for exactly `multi-claim-moth-key-label` and Profile only; the new readback records 1 non-canon Profile annotation while keeping Claim Ledger additional adoption, Timeline, Story Seed, canon, provider/API, credential, publishing, production generation, actual rollback, and additional-claim work outside the scope.
 - Project-local instructions and required context docs were read before changing review claims.
+- `artifacts/draft-review-pack-stabilization-result.json` passed with access_state=`verified_present`, static_mode_check_passed=true, designer_result_exists=true, draft_result_exists=true, designer_smoke_passed=true, draft_smoke_passed=true, and contradictory_claim_guard_preserved=true.
 - `node --check tools/fff-state.mjs` passed.
+- `node tools/fff-state.mjs smoke-one-story-draft-review-pack artifacts/one-story-draft-review-pack-result.json artifacts/one-story-draft-review-pack-result.json` passed for the active Draft Review Pack readback.
+- `node tools/fff-state.mjs smoke-designer-candidate-dashboard artifacts/designer-candidate-dashboard-result.json artifacts/designer-candidate-dashboard-result.json` passed for the preserved Designer Candidate Dashboard readback.
+- Static Review Hub check passed: embedded script compiled with `new Function(...)`, and the HTML contains the Draft Review Pack mode tab/root/renderer, Designer Dashboard mode tab/root, both mode route strings, both root IDs, and the active/preserved artifact ids.
+- Browser screenshot capture was attempted with the available in-app browser tooling, but `file://` navigation was blocked by browser URL policy; no screenshot file was produced, and the stabilization result records static access/readback evidence instead.
+- `git diff --check` passed. `python -m mkdocs build --strict` could not run in this environment because WindowsApps `python` resolved to a stub and the bundled Python has no `mkdocs` module installed.
 - `node tools/fff-state.mjs smoke-extraction-fixtures artifacts/extraction-negative-fixtures artifacts/extraction-validator-smoke-result.json` passed.
 - `node tools/fff-state.mjs smoke-contradictory-claim-guard artifacts/extraction-validator-smoke-result.json artifacts/contradictory-claim-guard-result.json` passed.
 - `node tools/fff-state.mjs smoke-malformed-missing-span-guard artifacts/extraction-validator-smoke-result.json artifacts/malformed-missing-span-guard-result.json` passed after the validator matrix grew to 9 fixtures.
@@ -169,6 +200,9 @@ Preserved platform boundary:
 
 | Target | Current state | Next move |
 | --- | --- | --- |
+| Draft Review Pack Stabilization | Covered by `fff-draft-review-pack-stabilization-001`; static route/mode/result/doc/guard readback passes for Designer Dashboard and Draft Review Pack; access state is `verified_present`; browser file URL screenshot was blocked by URL policy | Use this as the durability checkpoint; next human work is freeform review of the Draft Review Pack route, not another stabilization pass |
+| One-story Draft Review Pack | Covered by `fff-one-story-draft-review-pack-001`; provisional default candidate `designer-content-moth-investigation-3m`, 5 draft beats, non-final opening/narration sample, 4 visual cues, 4 text cues, 3 held human-owned questions, and 4 risk cards are visible in `public/review/index.html?mode=draft` | Use this as the current active review surface; next move is reviewer confirmation or revision of candidate/channel/held-truth route before any draft-to-video planning bridge |
+| Designer Candidate Dashboard | Covered by `fff-designer-candidate-dashboard-001`; 3 content candidates, 3 channel strategy proposals, 5 draft spine beats, 4 review risks, and 3 held human-owned decisions are visible in `public/review/index.html?mode=designer` | Keep as preserved source dashboard for the Draft Review Pack; reopen only if the selected candidate or channel route changes |
 | Contradictory memo claims | Covered by `fff-contradictory-claim-guard-001`; 2 linked claims held, 0 adopted/provisional conflict claims | Do not reopen unless fixture wording, claim-link rules, or adapter output changes |
 | Malformed/missing source-span payloads | Covered by `fff-malformed-missing-span-guard-001`; invalid source evidence rejected, 0 accepted routed candidates | Keep closed unless invalid fixture behavior changes |
 | Sparse bullet fixture | Covered by `fff-missing-fixture-class-probe-001`; 12 held elements, 0 failures | Do not reopen unless fixture or selector changes |
@@ -217,6 +251,8 @@ Mode-specific local paths:
 
 ```text
 public/review/index.html?mode=story
+public/review/index.html?mode=draft
+public/review/index.html?mode=designer
 public/review/index.html?mode=source
 public/review/index.html?mode=project
 public/review/index.html?mode=artifacts
@@ -230,4 +266,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The provider authorization boundary is documented, the translation source-of-truth boundary exists, the minimal translated memo fixture passes, held claim adoption preflight proves one source-backed held claim can be named as a candidate, downstream adoption semantics design defines the future status/rollback/mutation contract, sandbox rollback rehearsal proves the fixture-only rollback token is readable, the production adoption authorization packet names the approval fields, the Claim Ledger one-claim adoption records the authorized production row, the Claim Ledger rollback rehearsal proves that row's rollback descriptor is readable without mutation, the downstream target authorization packet prepared Profile as the recommended target, and the Profile adoption mutation one-claim readback records the authorized non-canon Profile annotation. The next non-redundant move is Timeline / Story Seed / Canon decision only after equivalent explicit authorization; actual production rollback only if explicitly requested for `multi-claim-moth-key-label`; real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy; broader translated memo coverage only if it adds meaningful rows beyond the minimum; or broad source-span fixture work only after source output changes or broad shape is proven to be the coverage bottleneck. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, additional adoption writes, production rollback, or final canon decisions unless explicitly requested.
+Use review memory before asking for another review. The One-story Draft Review Pack is now stabilized as the active local review surface and exposes one provisional story/video candidate end-to-end without external calls or final canon decisions. The next non-redundant move is reviewer confirmation or revision of the candidate, channel route, and held-truth handling before any draft-to-video planning bridge. Timeline / Story Seed / Canon decision still requires equivalent explicit authorization; actual production rollback only if explicitly requested for `multi-claim-moth-key-label`; real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, additional adoption writes, production rollback, or final canon decisions unless explicitly requested.

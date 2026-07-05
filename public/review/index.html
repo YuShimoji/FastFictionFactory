@@ -170,7 +170,7 @@
 
     .hub-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(5, minmax(0, 1fr));
       gap: 12px;
     }
 
@@ -209,7 +209,7 @@
 
     .mode-tabs {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 8px;
     }
 
@@ -240,7 +240,7 @@
 
     .mode-summary-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(6, minmax(0, 1fr));
       gap: 8px;
     }
 
@@ -269,6 +269,8 @@
     }
 
     body[data-review-mode="story"] [data-mode-panel="story"],
+    body[data-review-mode="designer"] [data-mode-panel="designer"],
+    body[data-review-mode="draft"] [data-mode-panel="draft"],
     body[data-review-mode="source"] [data-mode-panel="source"],
     body[data-review-mode="project"] [data-mode-panel="project"],
     body[data-review-mode="artifacts"] [data-mode-panel="artifacts"] {
@@ -320,6 +322,73 @@
     .source-span-table {
       min-width: 980px;
       margin-top: 10px;
+    }
+
+    .designer-dashboard {
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .draft-review-pack {
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .designer-dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .draft-review-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .designer-card,
+    .draft-beat-card,
+    .risk-card,
+    .draft-review-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper);
+    }
+
+    .designer-card[data-canon-risk="high"],
+    .draft-beat-card[data-canon-risk="high"],
+    .risk-card[data-canon-risk="high"],
+    .draft-review-card[data-canon-risk="high"] {
+      border-left-color: var(--red);
+    }
+
+    .designer-card[data-canon-risk="medium"],
+    .draft-beat-card[data-canon-risk="medium"],
+    .risk-card[data-canon-risk="medium"],
+    .draft-review-card[data-canon-risk="medium"] {
+      border-left-color: var(--gold);
+    }
+
+    .designer-card[data-canon-risk="low"],
+    .draft-beat-card[data-canon-risk="low"],
+    .risk-card[data-canon-risk="low"],
+    .draft-review-card[data-canon-risk="low"] {
+      border-left-color: var(--green);
+    }
+
+    .draft-spine-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .draft-cue-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
     }
 
     .code-line {
@@ -915,6 +984,9 @@
       .mode-tabs,
       .mode-summary-grid,
       .progress-map,
+      .designer-dashboard-grid,
+      .draft-review-grid,
+      .draft-cue-list,
       .contract-run-card,
       .category-grid,
       .candidate-grid,
@@ -952,7 +1024,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビューモード切り替え</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-contradictory-claim-guard-001</strong>. This slice keeps conflicting claim candidates detected, source-backed, held for human review, and out of auto-canon while preserving <strong>fff-provider-envelope-readiness-no-call-001</strong>, <strong>fff-downstream-source-span-adoption-gate-001</strong>, <strong>fff-malformed-missing-span-guard-001</strong>, <strong>fff-missing-fixture-class-probe-001</strong>, <strong>fff-routing-policy-regression-hardening-001</strong>, <strong>fff-source-span-routing-review-pack-001</strong>, <strong>fff-translation-provenance-source-span-readback-001</strong>, <strong>fff-translation-policy-source-of-truth-boundary-001</strong>, <strong>fff-translated-memo-fixture-minimum-001</strong>, <strong>fff-held-claim-adoption-preflight-001</strong>, <strong>fff-downstream-adoption-semantics-design-001</strong>, <strong>fff-adoption-candidate-ledger-dry-run-001</strong>, <strong>fff-sandbox-adoption-mutation-one-claim-001</strong>, <strong>fff-sandbox-adoption-rollback-rehearsal-001</strong>, <strong>fff-production-adoption-authorization-packet-001</strong>, <strong>fff-production-claim-ledger-adoption-one-claim-001</strong>, <strong>fff-production-claim-ledger-rollback-rehearsal-001</strong>, <strong>fff-downstream-target-authorization-packet-001</strong>, human-owned canon boundaries, and freeform review.</p>
+            <p class="lede">Active artifact id: <strong>fff-one-story-draft-review-pack-001</strong>. This slice adds a local One-story Draft Review Pack for one provisional story/video candidate while preserving <strong>fff-designer-candidate-dashboard-001</strong>, <strong>fff-contradictory-claim-guard-001</strong>, <strong>fff-provider-envelope-readiness-no-call-001</strong>, <strong>fff-downstream-source-span-adoption-gate-001</strong>, source-span guardrails, human-owned canon boundaries, and freeform review.</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -964,18 +1036,36 @@
         <nav class="mode-switcher" aria-label="Review mode navigation">
           <div class="mode-tabs">
             <button class="mode-tab" type="button" data-mode-target="story" aria-pressed="true"><strong>Story Review</strong><span>ストーリーレビュー</span></button>
+            <button class="mode-tab" type="button" data-mode-target="designer" aria-pressed="false"><strong>Designer Dashboard</strong><span>Content strategy</span></button>
+            <button class="mode-tab" type="button" data-mode-target="draft" aria-pressed="false"><strong>Draft Review Pack</strong><span>One story draft</span></button>
             <button class="mode-tab" type="button" data-mode-target="source" aria-pressed="false"><strong>Source Audit</strong><span>抽出根拠レビュー</span></button>
             <button class="mode-tab" type="button" data-mode-target="project" aria-pressed="false"><strong>Project Cockpit</strong><span>プロジェクト状態</span></button>
             <button class="mode-tab" type="button" data-mode-target="artifacts" aria-pressed="false"><strong>Artifacts</strong><span>成果物・検証</span></button>
           </div>
           <div class="mode-summary-grid">
             <div class="mode-summary"><strong>Story Review</strong><span class="jp-label">本文・候補・未決定を確認</span></div>
+            <div class="mode-summary"><strong>Designer Dashboard</strong><span class="jp-label">content, draft, and channel review</span></div>
+            <div class="mode-summary"><strong>Draft Review Pack</strong><span class="jp-label">one provisional story packet</span></div>
             <div class="mode-summary"><strong>Source Audit</strong><span class="jp-label">source span と routing を確認</span></div>
             <div class="mode-summary"><strong>Project Cockpit</strong><span class="jp-label">進行状況と境界を確認</span></div>
             <div class="mode-summary"><strong>Artifacts</strong><span class="jp-label">ファイル・検証・再現手順</span></div>
           </div>
           <p class="section-note">Stable IDs, JSON keys, artifact IDs, and file paths remain English. Japanese labels are display-only review aids.</p>
         </nav>
+
+        <div class="designer-dashboard" id="designer-dashboard-root" data-mode-panel="designer" aria-label="Designer Candidate Dashboard">
+          <div class="hub-panel">
+            <h3>Designer Dashboard loading</h3>
+            <p class="section-note">If this message remains visible, check the local browser console before treating the dashboard as review-ready.</p>
+          </div>
+        </div>
+
+        <div class="draft-review-pack" id="one-story-draft-pack-root" data-mode-panel="draft" aria-label="One-story Draft Review Pack">
+          <div class="hub-panel">
+            <h3>Draft Review Pack loading</h3>
+            <p class="section-note">If this message remains visible, check the local browser console before treating the draft pack as review-ready.</p>
+          </div>
+        </div>
 
         <div class="progress-map" aria-label="Progress map" data-mode-panel="project">
           <div class="progress-step done"><strong>MVP skeleton</strong><span class="tag green">done</span><p class="section-note">Memo intake, generated candidates, task cards, outlines, QA.</p></div>
@@ -1016,7 +1106,9 @@
           <div class="progress-step done"><strong>Claim Ledger rollback rehearsal</strong><span class="tag green">done</span><p class="section-note">production Claim Ledger rollback rehearsal passed: 1 retained Claim Ledger row, 1 rollback descriptor, 0 actual rollback operations, and 0 canon/Profile/Timeline/Story Seed/provider effects.</p></div>
           <div class="progress-step done"><strong>Downstream target authorization</strong><span class="tag green">done</span><p class="section-note">downstream target authorization packet passed: Profile, Timeline, Story Seed, and Canon decision are listed; Profile is recommended; downstream mutations remain 0.</p></div>
           <div class="progress-step done"><strong>Profile adoption mutation</strong><span class="tag green">done</span><p class="section-note">profile adoption mutation one-claim passed: fff-profile-adoption-mutation-one-claim-001 records 1 non-canon Profile annotation for multi-claim-moth-key-label; Timeline, Story Seed, canon, provider, publishing, and production generation remain closed.</p></div>
-          <div class="progress-step current"><strong>Contradictory claim guard</strong><span class="tag blue">current</span><p class="section-note">Detect reciprocal claim conflicts and keep both sides held without deciding truth.</p></div>
+          <div class="progress-step done"><strong>Contradictory claim guard</strong><span class="tag green">preserved</span><p class="section-note">Detect reciprocal claim conflicts and keep both sides held without deciding truth.</p></div>
+          <div class="progress-step done"><strong>Designer Dashboard</strong><span class="tag green">done</span><p class="section-note">Expose one-story content candidates, channel proposals, draft spine beats, and review risks without external calls.</p></div>
+          <div class="progress-step current"><strong>One-story Draft Review Pack</strong><span class="tag blue">current</span><p class="section-note">Make one provisional candidate readable end-to-end as beats, sample narration, visual cues, text cues, risks, and review decisions.</p></div>
         </div>
 
         <div class="hub-grid" style="margin-top: 12px;" data-mode-panel="project">
@@ -1061,6 +1153,8 @@
               <li>Downstream target authorization packet for 1 retained Claim Ledger row, Profile / Timeline / Story Seed / Canon decision choices, Profile recommended, and zero downstream mutation/canon/provider/publishing effects.</li>
               <li>Profile adoption mutation one-claim for 1 non-canon Profile annotation, rollback descriptor, and zero Claim Ledger additional/Timeline/Story Seed/canon/provider/publishing effects.</li>
               <li>Contradictory claim guard for reciprocal held conflict pairs.</li>
+              <li>Designer Dashboard for one-story content candidates, channel strategy proposals, draft spine beats, and review risks.</li>
+              <li>One-story Draft Review Pack for one provisional candidate, non-final sample narration, visual/text cues, risk cards, and reviewer decisions.</li>
               <li>v1.3 artifact and prompt-change compliance review.</li>
             </ul>
           </div>
@@ -1111,6 +1205,12 @@
               <thead><tr><th>Purpose</th><th>Path</th></tr></thead>
               <tbody>
                 <tr><td>Review UI</td><td>public/review/index.html</td></tr>
+                <tr><td>Draft Review Pack mode</td><td>public/review/index.html?mode=draft</td></tr>
+                <tr><td>Draft Review Pack review doc</td><td>docs/review/one-story-draft-review-pack.md</td></tr>
+                <tr><td>Draft Review Pack result</td><td>artifacts/one-story-draft-review-pack-result.json</td></tr>
+                <tr><td>Designer Dashboard mode</td><td>public/review/index.html?mode=designer</td></tr>
+                <tr><td>Designer Dashboard review doc</td><td>docs/review/designer-candidate-dashboard.md</td></tr>
+                <tr><td>Designer Dashboard result</td><td>artifacts/designer-candidate-dashboard-result.json</td></tr>
                 <tr><td>Active manifest</td><td>artifacts/artifact-manifest.json</td></tr>
                 <tr><td>Artifact index</td><td>artifacts/ARTIFACTS.md</td></tr>
                 <tr><td>Sample JSON state</td><td>artifacts/sample-project-state.json</td></tr>
@@ -1210,7 +1310,11 @@
             <h3>How to review this locally</h3>
             <ul class="hub-list">
               <li>Open <strong>public/review/index.html</strong>.</li>
-              <li>Confirm this hub shows active artifact id <strong>fff-contradictory-claim-guard-001</strong>.</li>
+              <li>Confirm this hub shows active artifact id <strong>fff-one-story-draft-review-pack-001</strong> and preserves <strong>fff-designer-candidate-dashboard-001</strong> plus <strong>fff-contradictory-claim-guard-001</strong> as auxiliary readbacks.</li>
+              <li>Use <strong>Draft Review Pack</strong> mode or <strong>public/review/index.html?mode=draft</strong> to review the provisional selected story candidate end-to-end.</li>
+              <li>Use <strong>docs/review/one-story-draft-review-pack.md</strong> and <strong>artifacts/one-story-draft-review-pack-result.json</strong> for the Draft Review Pack evidence readback.</li>
+              <li>Use <strong>Designer Dashboard</strong> mode or <strong>public/review/index.html?mode=designer</strong> to review content candidates, channel strategy proposals, draft spine beats, and dashboard risk debt.</li>
+              <li>Use <strong>docs/review/designer-candidate-dashboard.md</strong> and <strong>artifacts/designer-candidate-dashboard-result.json</strong> for the Designer Dashboard evidence readback.</li>
               <li>Use <strong>docs/review/contradictory-claim-guard.md</strong> and <strong>artifacts/contradictory-claim-guard-result.json</strong> for the contradictory claim guard axis.</li>
               <li>Use <strong>docs/review/provider-envelope-readiness-no-call.md</strong>, <strong>artifacts/provider-envelope-readiness-no-call.example.json</strong>, and <strong>artifacts/provider-envelope-readiness-no-call-result.json</strong> for the preserved provider envelope readiness no-call gate.</li>
               <li>Use <strong>docs/review/downstream-source-span-adoption-gate.md</strong> and <strong>artifacts/downstream-source-span-adoption-gate-result.json</strong> for the preserved downstream source-span adoption gate readback.</li>
@@ -1474,6 +1578,12 @@
             <span class="tag green">0 adopted downstream candidates</span>
             <span class="tag green">local adapter smoke checked</span>
             <span class="tag green">source-span review pack visible</span>
+            <span class="tag green">designer dashboard visible</span>
+            <span class="tag green">content and channel cards visible</span>
+            <span class="tag green">draft spine visible</span>
+            <span class="tag green">one-story draft pack visible</span>
+            <span class="tag green">provisional selection visible</span>
+            <span class="tag green">visual and subtitle cues visible</span>
             <span class="tag green">source-span quality audit classified</span>
             <span class="tag green">translation provenance readback</span>
             <span class="tag green">translation policy boundary</span>
@@ -1900,7 +2010,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       unresolved: document.querySelector("#unresolved-root"),
       outlines: document.querySelector("#outlines-root"),
       qa: document.querySelector("#qa-root"),
-      decisions: document.querySelector("#decision-log")
+      decisions: document.querySelector("#decision-log"),
+      designerDashboard: document.querySelector("#designer-dashboard-root"),
+      oneStoryDraftPack: document.querySelector("#one-story-draft-pack-root")
     };
     const jsonExportOutput = document.querySelector("#json-export-output");
     const jsonImportInput = document.querySelector("#json-import-input");
@@ -1938,7 +2050,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     });
 
     function setReviewMode(mode) {
-      const nextMode = ["story", "source", "project", "artifacts"].includes(mode) ? mode : "story";
+      const nextMode = ["story", "designer", "draft", "source", "project", "artifacts"].includes(mode) ? mode : "story";
       document.body.setAttribute("data-review-mode", nextMode);
       modeButtons.forEach((button) => {
         button.setAttribute("aria-pressed", button.getAttribute("data-mode-target") === nextMode ? "true" : "false");
@@ -2191,6 +2303,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     function renderAll() {
       currentModel = applyImportedModelOverrides(buildWorkbenchModel(memoInput.value || sampleMemo));
       renderExtractionContract(currentModel.extraction_contract);
+      renderDesignerDashboard(currentModel.designer_dashboard);
+      renderOneStoryDraftPack(currentModel.one_story_draft_pack);
       renderElements(currentModel.extracted_elements);
       renderProfileGhostView(currentModel.profile_candidates);
       renderCards(roots.profiles, currentModel.profile_candidates, renderProfileCard);
@@ -2404,6 +2518,26 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         gate("qa-youtube", "YouTube adapter risk", "pass", "No YouTube publishing, upload, credentials, or adapter calls exist in this artifact.", "Keep publishing adapters out of this MVP.")
       ];
 
+      const designerDashboard = buildDesignerDashboard({
+        title,
+        rawMemo: normalized,
+        extracted,
+        profiles,
+        claims,
+        timeline,
+        tasks,
+        unresolvedDecisions: buildDefaultUnresolvedCreativeDecisions(),
+        outlines,
+        qa
+      });
+      const oneStoryDraftPack = buildOneStoryDraftPack({
+        title,
+        rawMemo: normalized,
+        designerDashboard,
+        unresolvedDecisions: buildDefaultUnresolvedCreativeDecisions(),
+        qa
+      });
+
       return {
         project: {
           id: "project-fast-fiction-factory",
@@ -2423,8 +2557,370 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         task_cards: tasks,
         unresolved_creative_decisions: buildDefaultUnresolvedCreativeDecisions(),
         output_packages: outlines,
-        quality_gate_results: qa
+        quality_gate_results: qa,
+        designer_dashboard: designerDashboard,
+        one_story_draft_pack: oneStoryDraftPack
       };
+    }
+
+    function buildDesignerDashboard({ title, rawMemo, extracted, profiles, claims, timeline, tasks, unresolvedDecisions, outlines, qa }) {
+      const selectedGroups = extracted
+        .filter((groupItem) => ["people", "objects", "concepts", "undecided items", "foreshadowing candidates"].includes(groupItem.category))
+        .map((groupItem) => ({
+          category: groupItem.category,
+          items: groupItem.items.map((item) => item.title)
+        }));
+      const unresolvedTitles = unresolvedDecisions.map((decision) => decision.title);
+      const readinessWarnings = qa.filter((gateItem) => gateItem.status !== "pass").map((gateItem) => gateItem.gate);
+
+      return {
+        artifactId: "fff-designer-candidate-dashboard-001",
+        title: "Designer Candidate Dashboard",
+        localOnly: true,
+        externalCall: false,
+        providerConfigured: false,
+        credentialsTouched: false,
+        publicUpload: false,
+        aiVideoGeneration: false,
+        finalCanonDecision: false,
+        storyRunway: {
+          workTitle: title,
+          rawMemoCue: rawMemo.split("\n\n").slice(0, 2).join("\n\n"),
+          sourceCue: "Raw story memo and local deterministic candidates only.",
+          selectedCandidateGroups: selectedGroups,
+          unresolvedHumanQuestions: unresolvedTitles,
+          sourceCanonRightsProductionRisks: [
+            "Raw memo is author-owned review material, not final published copy.",
+            "Toma fate, brass moth truth, and Council motive remain held.",
+            "Visual directions are text-only placeholders with unknown rights.",
+            "No production render, upload, external provider, or final canon decision is active."
+          ]
+        },
+        contentCandidates: [
+          designerContentCandidate({
+            id: "designer-content-bell-hook-1m",
+            title: "Bellless noon hook",
+            formatFit: "1-minute",
+            premiseAudiencePromise: "A clockmaker hears a removed bell ring and finds a clue to stolen lives.",
+            draftReadiness: "draft spine only",
+            visualDirection: "Cold open on North Bell Station and the empty observatory frame.",
+            thumbnailDirection: "Empty bell tower, brass moth detail, stark noon shadow.",
+            subtitleNarrationPromise: "Short mystery lines that keep the impossible image clear.",
+            unresolvedRisks: ["bell paradox explanation", "brass moth truth", "asset rights unknown"],
+            recommendedNextReviewDecision: "Approve or revise the bell paradox as the first visible hook.",
+            linkedOutlines: ["outline-1m"],
+            canonRisk: "medium"
+          }),
+          designerContentCandidate({
+            id: "designer-content-moth-investigation-3m",
+            title: "Mira and the brass moth clue trail",
+            formatFit: "3-minute",
+            premiseAudiencePromise: "A personal mystery follows Toma's note into the council ledger.",
+            draftReadiness: "beat sequence candidate",
+            visualDirection: "Workshop closeups, note fragment, moth prop, ledger page, station exterior.",
+            thumbnailDirection: "Mira silhouette, glowing brass moth, torn note with 9:17.",
+            subtitleNarrationPromise: "Narration can promise family stakes without revealing Toma's fate.",
+            unresolvedRisks: ["Toma fate", "moth first-use rule", "council motive"],
+            recommendedNextReviewDecision: "Choose the first-use behavior for the moth or keep this candidate held.",
+            linkedOutlines: ["outline-3m"],
+            canonRisk: "high"
+          }),
+          designerContentCandidate({
+            id: "designer-content-erased-hour-10m",
+            title: "The city that sells abandoned minutes",
+            formatFit: "10-minute",
+            premiseAudiencePromise: "A lyrical dark-fantasy explainer frames the moral cost of stolen time.",
+            draftReadiness: "outline-ready, prose not final",
+            visualDirection: "Ledger graphics, canal market crowd, station clocks, council chamber silhouettes.",
+            thumbnailDirection: "Ledger of names beside a clock missing one hour.",
+            subtitleNarrationPromise: "Can explain the premise while marking ending and motive as provisional.",
+            unresolvedRisks: ["Council motive", "ending adoption", "rights for any historical-looking imagery"],
+            recommendedNextReviewDecision: "Review whether the premise can be explained before the council route is chosen.",
+            linkedOutlines: ["outline-10m", "outline-series"],
+            canonRisk: "high"
+          })
+        ],
+        channelStrategyProposals: [
+          designerChannelProposal({
+            id: "designer-channel-literary-microfiction",
+            channelArchetype: "literary micro-fiction shorts",
+            targetAudience: "viewers who like atmospheric speculative hooks and compact emotional turns",
+            contentPillars: ["impossible image", "personal mystery", "human-owned ending question"],
+            seriesAngle: "Each short opens with one impossible civic object and one private cost.",
+            cadenceHypothesis: "2 to 3 short concepts per week after the review workflow stabilizes.",
+            materialFit: "The current story already has a repeatable hook, object clue, and unresolved ending pressure.",
+            riskFlags: ["needs title/hook review", "no release assets", "final canon not approved"],
+            reviewDebt: "Decide whether the channel leans poetic, mystery-forward, or production-design-forward.",
+            recommendedNextReviewDecision: "Use for hook and draft-spine review before any production package.",
+            canonRisk: "medium"
+          }),
+          designerChannelProposal({
+            id: "designer-channel-mystery-lore",
+            channelArchetype: "mystery lore serial",
+            targetAudience: "viewers who follow clues, institutions, and hidden-world rules across episodes",
+            contentPillars: ["Toma note", "council ledger", "brass moth clue", "station bell paradox"],
+            seriesAngle: "A case-file sequence where each recovered minute exposes a different erased life.",
+            cadenceHypothesis: "weekly short plus occasional 3-minute recap after canon routes are chosen",
+            materialFit: "The source material has unresolved motives and repeatable evidence objects.",
+            riskFlags: ["motive route unresolved", "Toma reveal unresolved", "could overexplain magic too early"],
+            reviewDebt: "Needs a spoiler policy before longer recap formats.",
+            recommendedNextReviewDecision: "Hold until Council motive and Toma fate have provisional routes.",
+            canonRisk: "high"
+          }),
+          designerChannelProposal({
+            id: "designer-channel-visual-story-lab",
+            channelArchetype: "visual story design lab",
+            targetAudience: "writers and designers reviewing story-to-video packaging choices",
+            contentPillars: ["source span", "draft readiness", "thumbnail direction", "rights boundary"],
+            seriesAngle: "Show how a raw fiction memo becomes reviewable video candidates without publishing.",
+            cadenceHypothesis: "one dashboard review episode per completed local story slice",
+            materialFit: "The project already exposes source, claim, profile, timeline, and risk surfaces.",
+            riskFlags: ["not audience-facing fiction yet", "requires clear non-production labeling"],
+            reviewDebt: "Needs a repeatable review card once a second story exists.",
+            recommendedNextReviewDecision: "Use now for internal designer review friction reduction.",
+            canonRisk: "low"
+          })
+        ],
+        draftSpine: {
+          status: "reviewable draft spine, not final prose",
+          beats: [
+            draftBeat("designer-draft-beat-1", "Hook", "At noon, the observatory rings although the bell is gone.", "Shows the impossible image before any explanation.", ["claim-bell-rings"], "medium"),
+            draftBeat("designer-draft-beat-2", "Inciting clue", "Mira finds Toma's note and the brass moth in the workshop drawer.", "Connects family stakes to the stolen-minutes premise.", ["claim-toma-left-note"], "high"),
+            draftBeat("designer-draft-beat-3", "Investigation", "The ledger points toward lives removed from public memory.", "Lets the premise become inspectable through an object, not exposition.", ["claim-city-sells-time"], "high"),
+            draftBeat("designer-draft-beat-4", "Motive pressure", "The council route stays open: villainous, desperate, divided, misled, or false-record.", "Prevents the dashboard from deciding story truth.", ["claim-council-desperate"], "high"),
+            draftBeat("designer-draft-beat-5", "Ending candidate", "Mira may return one lost hour to each erased person.", "Surfaces the emotional endpoint while keeping final canon held.", ["claim-ending-restores-hour"], "high")
+          ],
+          sampleOpeningCandidate: "At noon, the old observatory rang again. Mira Vale looked up from the cracked station clock and counted the sound of a bell that had not existed since the winter curfew.",
+          sampleOpeningStatus: "style sample only; not final prose"
+        },
+        reviewRisks: [
+          reviewRisk("designer-risk-canon", "Canon/source", "high", "Toma fate, brass moth truth, and Council motive remain unresolved.", "Keep content candidates held until the author chooses provisional routes."),
+          reviewRisk("designer-risk-rights", "Rights/assets", "medium", "Thumbnail and visual directions are text-only placeholders.", "Do not source release assets or imply rights clearance in this slice."),
+          reviewRisk("designer-risk-production", "Production", "medium", "No render, upload, provider call, or video generation exists.", "Treat dashboard output as local planning readback only."),
+          reviewRisk("designer-risk-draft", "Draft readiness", "medium", "Draft spine is reviewable but not final prose.", "Use it to decide structure before writing a full draft.")
+        ],
+        readinessSummary: {
+          contentCandidateCount: 3,
+          channelStrategyProposalCount: 3,
+          draftSpineBeatCount: 5,
+          unresolvedRiskCount: 4,
+          humanOwnedDecisionHeldCount: unresolvedTitles.length,
+          qaWarnings: readinessWarnings,
+          recommendedNextSlice: "One-story Draft Review Pack after the dashboard is reviewed.",
+          accessRoute: "public/review/index.html?mode=designer"
+        }
+      };
+    }
+
+    function designerContentCandidate(config) {
+      return {
+        ...config,
+        type: "DesignerContentCandidate",
+        reviewStatus: "hold",
+        review_status: "hold"
+      };
+    }
+
+    function designerChannelProposal(config) {
+      return {
+        ...config,
+        title: config.title || config.channelArchetype,
+        type: "ChannelStrategyProposal",
+        reviewStatus: "hold",
+        review_status: "hold"
+      };
+    }
+
+    function draftBeat(id, label, beat, purpose, linkedClaimIds, canonRisk) {
+      return {
+        id,
+        type: "DraftSpineBeat",
+        title: label,
+        label,
+        beat,
+        purpose,
+        linkedClaimIds,
+        canonRisk,
+        reviewStatus: "hold",
+        review_status: "hold"
+      };
+    }
+
+    function reviewRisk(id, area, severity, finding, nextMove) {
+      return {
+        id,
+        type: "DesignerReviewRisk",
+        title: area,
+        area,
+        severity,
+        finding,
+        nextMove,
+        canonRisk: severity === "high" ? "high" : "medium",
+        reviewStatus: "hold",
+        review_status: "hold"
+      };
+    }
+
+    function buildOneStoryDraftPack({ title, rawMemo, designerDashboard, unresolvedDecisions, qa }) {
+      const contentCandidates = designerDashboard.contentCandidates || [];
+      const channelStrategies = designerDashboard.channelStrategyProposals || [];
+      const selectedCandidate = contentCandidates.find((candidate) => candidate.id === "designer-content-moth-investigation-3m") || contentCandidates[0] || {};
+      const selectedChannel = channelStrategies.find((proposal) => proposal.id === "designer-channel-mystery-lore") || channelStrategies[0] || {};
+      const unresolvedQuestions = (designerDashboard.storyRunway?.unresolvedHumanQuestions || unresolvedDecisions.map((decision) => decision.title)).map((question) => ({
+        id: `draft-question-${slugifyLabel(question)}`,
+        type: "DraftHumanOwnedQuestion",
+        title: question,
+        question,
+        owner: "human_author",
+        status: "needs human review",
+        reviewStatus: "hold",
+        review_status: "hold"
+      }));
+      const qaWarnings = qa.filter((gateItem) => gateItem.status !== "pass").map((gateItem) => gateItem.gate);
+
+      const draftBeats = [
+        oneStoryDraftBeat("draft-pack-beat-1", "Cold open", "The bellless observatory rings at noon, making the missing bell the first impossible image.", "Show North Bell Station and the silent tower before explaining rules.", "At noon, the bell that no longer existed rang once.", "medium"),
+        oneStoryDraftBeat("draft-pack-beat-2", "Personal clue", "Mira finds Toma's note and the brass moth in the workshop drawer.", "Cut to hands, note, brass moth, and a station-clock face stuck near 9:17.", "Toma left only a note and a brass moth.", "high"),
+        oneStoryDraftBeat("draft-pack-beat-3", "Investigation path", "The council ledger connects abandoned minutes to erased people.", "Use ledger-page inserts and names fading from civic records.", "Some names were paid for in minutes.", "high"),
+        oneStoryDraftBeat("draft-pack-beat-4", "Human-owned fork", "The draft keeps Toma fate, moth function, and Council motive unresolved instead of choosing truth.", "Hold on three labeled cards: Toma, moth, Council.", "These answers stay held for author review.", "high"),
+        oneStoryDraftBeat("draft-pack-beat-5", "Reviewable ending pressure", "Mira may return one lost hour to each erased person, but the ending is not canon.", "End on the ledger closing, then a final impossible bell note.", "Ending candidate, not final canon.", "high")
+      ];
+      const visualCues = [
+        draftCue("draft-visual-bell-tower", "Bellless tower silhouette", "Opening image; empty bell frame, noon light, no release asset selected.", "rights_unknown"),
+        draftCue("draft-visual-brass-moth", "Brass moth closeup", "Object clue; macro shot direction only, function unresolved.", "canon_sensitive"),
+        draftCue("draft-visual-ledger", "Council ledger page", "Investigation bridge; names and minutes shown as graphic placeholders.", "rights_unknown"),
+        draftCue("draft-visual-held-questions", "Held truth cards", "Operator-facing reminder that Toma, moth, and Council answers are not decided.", "review_marker")
+      ];
+      const subtitleCues = [
+        draftCue("draft-text-bell", "At noon, the missing bell rang.", "Short hook subtitle; keeps paradox clear.", "ready_for_wrap_check"),
+        draftCue("draft-text-toma", "Toma left only a note.", "Narration cue; avoids deciding Toma fate.", "needs_human_review"),
+        draftCue("draft-text-council", "The ledger named lives no one remembered.", "Premise cue; avoids final Council motive.", "needs_human_review"),
+        draftCue("draft-text-ending", "Ending candidate, not canon.", "On-screen label for review safety.", "review_marker")
+      ];
+      const riskCards = [
+        draftPackRisk("draft-risk-canon", "Canon/source", "high", "The pack uses unresolved story truths as visible review questions, not final answers.", "Choose provisional routes before any final prose or canon adoption."),
+        draftPackRisk("draft-risk-rights", "Rights/assets", "medium", "All visual and thumbnail cues are text-only placeholders with unknown rights.", "Do not source or imply release assets in this slice."),
+        draftPackRisk("draft-risk-production", "Production", "medium", "No render, upload, provider call, public action, or AI video generation exists.", "Treat this as local review planning only."),
+        draftPackRisk("draft-risk-draft", "Draft readiness", "medium", "Sample narration is non-final and non-canon.", "Review beats and cues before expanding prose.")
+      ];
+      const reviewDecisions = [
+        draftReviewDecision("draft-decision-candidate", "Confirm or replace provisional default candidate", "Approve `designer-content-moth-investigation-3m` as the first draft route or choose another Designer Dashboard candidate."),
+        draftReviewDecision("draft-decision-channel", "Confirm channel route", "Use mystery-lore serial now, or switch to literary micro-fiction / visual story lab."),
+        draftReviewDecision("draft-decision-held-truths", "Keep or narrow held truth questions", "Choose which of Toma fate, moth function, and Council motive can remain unknown in the first draft.")
+      ];
+
+      return {
+        artifactId: "fff-one-story-draft-review-pack-001",
+        title: "One-story Draft Review Pack",
+        sourceDashboardArtifactId: designerDashboard.artifactId || "fff-designer-candidate-dashboard-001",
+        reviewUi: "public/review/index.html",
+        accessRoute: "public/review/index.html?mode=draft",
+        localOnly: true,
+        externalCall: false,
+        providerConfigured: false,
+        credentialsTouched: false,
+        publicUpload: false,
+        aiVideoGeneration: false,
+        finalCanonDecision: false,
+        selectionStatus: "provisional_default",
+        selectedCandidateId: selectedCandidate.id || "designer-content-moth-investigation-3m",
+        selectedCandidateTitle: selectedCandidate.title || "Mira and the brass moth clue trail",
+        selectedReason: "Selected as the strongest end-to-end provisional route because it connects hook, personal stakes, object clue, investigation, visual packaging, and unresolved human-owned questions without requiring final canon.",
+        sourceMemoCue: designerDashboard.storyRunway?.rawMemoCue || rawMemo.split("\n\n").slice(0, 2).join("\n\n"),
+        sourceCue: designerDashboard.storyRunway?.sourceCue || "Raw story memo and local deterministic candidates only.",
+        logline: "A clockmaker follows her missing brother's brass moth clue into a city ledger that sells abandoned minutes.",
+        premise: selectedCandidate.premiseAudiencePromise || "A personal mystery follows Toma's note into the council ledger.",
+        channelStrategyRoute: {
+          id: selectedChannel.id || "designer-channel-mystery-lore",
+          archetype: selectedChannel.channelArchetype || "mystery lore serial",
+          audience: selectedChannel.targetAudience || "viewers who follow clues and hidden-world rules",
+          fit: selectedChannel.materialFit || "The source material has unresolved motives and repeatable evidence objects."
+        },
+        draftStatus: "reviewable_not_final_prose",
+        sampleOpeningStatus: "non_final_non_canon_review_excerpt",
+        sampleOpening: "At noon, the old observatory rang again. Mira Vale looked up from the station clock and counted the sound of a bell that had not existed since the winter curfew.",
+        narrationDraftExcerpt: "This is not the story's final truth. It is a review pass: a missing bell, a missing brother, and a brass moth that may be a key, a spy, or only the shape grief chose.",
+        draftBeats,
+        visualCues,
+        subtitleOrTextCues: subtitleCues,
+        unresolvedHumanOwnedQuestions: unresolvedQuestions,
+        riskCards,
+        recommendedReviewerDecisions: reviewDecisions,
+        readinessSummary: {
+          contentCandidateCount: contentCandidates.length,
+          channelStrategyCount: channelStrategies.length,
+          draftBeatCount: draftBeats.length,
+          visualCueCount: visualCues.length,
+          subtitleOrTextCueCount: subtitleCues.length,
+          unresolvedHumanOwnedQuestionsCount: unresolvedQuestions.length,
+          riskCardCount: riskCards.length,
+          reviewDecisionCount: reviewDecisions.length,
+          qaWarnings,
+          accessRoute: "public/review/index.html?mode=draft"
+        }
+      };
+    }
+
+    function oneStoryDraftBeat(id, label, beat, visualCue, subtitleCue, canonRisk) {
+      return {
+        id,
+        type: "OneStoryDraftBeat",
+        title: label,
+        label,
+        beat,
+        visualCue,
+        subtitleCue,
+        canonRisk,
+        reviewStatus: "hold",
+        review_status: "hold"
+      };
+    }
+
+    function draftCue(id, title, cue, status) {
+      return {
+        id,
+        type: "DraftReviewCue",
+        title,
+        cue,
+        status,
+        canonRisk: status === "canon_sensitive" ? "high" : "medium",
+        reviewStatus: "hold",
+        review_status: "hold"
+      };
+    }
+
+    function draftPackRisk(id, area, severity, finding, nextMove) {
+      return {
+        id,
+        type: "DraftReviewRisk",
+        title: area,
+        area,
+        severity,
+        finding,
+        nextMove,
+        canonRisk: severity === "high" ? "high" : "medium",
+        reviewStatus: "hold",
+        review_status: "hold"
+      };
+    }
+
+    function draftReviewDecision(id, title, decisionPrompt) {
+      return {
+        id,
+        type: "DraftReviewDecision",
+        title,
+        decisionPrompt,
+        canonRisk: "medium",
+        reviewStatus: "hold",
+        review_status: "hold"
+      };
+    }
+
+    function slugifyLabel(value) {
+      return String(value || "unknown")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "") || "unknown";
     }
 
     function buildDefaultUnresolvedCreativeDecisions() {
@@ -3495,7 +3991,59 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         task_cards: Array.isArray(imported.taskCards) ? imported.taskCards : model.task_cards,
         unresolved_creative_decisions: Array.isArray(imported.unresolvedCreativeDecisions) ? imported.unresolvedCreativeDecisions : model.unresolved_creative_decisions,
         output_packages: Array.isArray(imported.generatedOutlines) ? imported.generatedOutlines : model.output_packages,
-        quality_gate_results: Array.isArray(imported.qaGateResults) ? imported.qaGateResults : model.quality_gate_results
+        quality_gate_results: Array.isArray(imported.qaGateResults) ? imported.qaGateResults : model.quality_gate_results,
+        designer_dashboard: normalizeDesignerDashboard(imported.designerDashboard, model.designer_dashboard),
+        one_story_draft_pack: normalizeOneStoryDraftPack(imported.oneStoryDraftPack, model.one_story_draft_pack)
+      };
+    }
+
+    function normalizeDesignerDashboard(importedDashboard, fallbackDashboard) {
+      if (!importedDashboard || typeof importedDashboard !== "object" || Array.isArray(importedDashboard)) {
+        return fallbackDashboard;
+      }
+      return {
+        ...fallbackDashboard,
+        ...importedDashboard,
+        storyRunway: {
+          ...(fallbackDashboard?.storyRunway || {}),
+          ...(importedDashboard.storyRunway && typeof importedDashboard.storyRunway === "object" ? importedDashboard.storyRunway : {})
+        },
+        contentCandidates: Array.isArray(importedDashboard.contentCandidates) ? importedDashboard.contentCandidates.map(designerContentCandidate) : fallbackDashboard.contentCandidates,
+        channelStrategyProposals: Array.isArray(importedDashboard.channelStrategyProposals) ? importedDashboard.channelStrategyProposals.map(designerChannelProposal) : fallbackDashboard.channelStrategyProposals,
+        draftSpine: {
+          ...(fallbackDashboard?.draftSpine || {}),
+          ...(importedDashboard.draftSpine && typeof importedDashboard.draftSpine === "object" ? importedDashboard.draftSpine : {}),
+          beats: Array.isArray(importedDashboard.draftSpine?.beats) ? importedDashboard.draftSpine.beats : fallbackDashboard.draftSpine?.beats || []
+        },
+        reviewRisks: Array.isArray(importedDashboard.reviewRisks) ? importedDashboard.reviewRisks.map((risk) => ({ ...risk, type: "DesignerReviewRisk", title: risk.title || risk.area || "Review risk", reviewStatus: risk.reviewStatus || "hold", review_status: risk.review_status || risk.reviewStatus || "hold" })) : fallbackDashboard.reviewRisks,
+        readinessSummary: {
+          ...(fallbackDashboard?.readinessSummary || {}),
+          ...(importedDashboard.readinessSummary && typeof importedDashboard.readinessSummary === "object" ? importedDashboard.readinessSummary : {})
+        }
+      };
+    }
+
+    function normalizeOneStoryDraftPack(importedPack, fallbackPack) {
+      if (!importedPack || typeof importedPack !== "object" || Array.isArray(importedPack)) {
+        return fallbackPack;
+      }
+      return {
+        ...fallbackPack,
+        ...importedPack,
+        channelStrategyRoute: {
+          ...(fallbackPack?.channelStrategyRoute || {}),
+          ...(importedPack.channelStrategyRoute && typeof importedPack.channelStrategyRoute === "object" ? importedPack.channelStrategyRoute : {})
+        },
+        draftBeats: Array.isArray(importedPack.draftBeats) ? importedPack.draftBeats.map((beat) => ({ ...beat, type: beat.type || "OneStoryDraftBeat", title: beat.title || beat.label || beat.id, reviewStatus: beat.reviewStatus || "hold", review_status: beat.review_status || beat.reviewStatus || "hold" })) : fallbackPack.draftBeats,
+        visualCues: Array.isArray(importedPack.visualCues) ? importedPack.visualCues.map((cue) => ({ ...cue, type: cue.type || "DraftReviewCue", title: cue.title || cue.id, reviewStatus: cue.reviewStatus || "hold", review_status: cue.review_status || cue.reviewStatus || "hold" })) : fallbackPack.visualCues,
+        subtitleOrTextCues: Array.isArray(importedPack.subtitleOrTextCues) ? importedPack.subtitleOrTextCues.map((cue) => ({ ...cue, type: cue.type || "DraftReviewCue", title: cue.title || cue.id, reviewStatus: cue.reviewStatus || "hold", review_status: cue.review_status || cue.reviewStatus || "hold" })) : fallbackPack.subtitleOrTextCues,
+        unresolvedHumanOwnedQuestions: Array.isArray(importedPack.unresolvedHumanOwnedQuestions) ? importedPack.unresolvedHumanOwnedQuestions.map((question) => ({ ...question, type: question.type || "DraftHumanOwnedQuestion", title: question.title || question.question || question.id, reviewStatus: question.reviewStatus || "hold", review_status: question.review_status || question.reviewStatus || "hold" })) : fallbackPack.unresolvedHumanOwnedQuestions,
+        riskCards: Array.isArray(importedPack.riskCards) ? importedPack.riskCards.map((risk) => ({ ...risk, type: risk.type || "DraftReviewRisk", title: risk.title || risk.area || risk.id, reviewStatus: risk.reviewStatus || "hold", review_status: risk.review_status || risk.reviewStatus || "hold" })) : fallbackPack.riskCards,
+        recommendedReviewerDecisions: Array.isArray(importedPack.recommendedReviewerDecisions) ? importedPack.recommendedReviewerDecisions.map((decision) => ({ ...decision, type: decision.type || "DraftReviewDecision", title: decision.title || decision.id, reviewStatus: decision.reviewStatus || "hold", review_status: decision.review_status || decision.reviewStatus || "hold" })) : fallbackPack.recommendedReviewerDecisions,
+        readinessSummary: {
+          ...(fallbackPack?.readinessSummary || {}),
+          ...(importedPack.readinessSummary && typeof importedPack.readinessSummary === "object" ? importedPack.readinessSummary : {})
+        }
       };
     }
 
@@ -3694,12 +4242,44 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           "No model/API extraction behavior is active."
         ],
         importedUnknownFields: state.importedProjectState?.metadata?.importedUnknownFields || {},
-        activeArtifactId: "fff-contradictory-claim-guard-001",
+        activeArtifactId: "fff-one-story-draft-review-pack-001",
+        preservedDesignerCandidateDashboardArtifactId: "fff-designer-candidate-dashboard-001",
+        preservedContradictoryClaimGuardArtifactId: "fff-contradictory-claim-guard-001",
         preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
         preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
         preservedArtifactId: "fff-source-span-routing-review-pack-001",
         preservedAdapterExpansionArtifactId: "fff-local-extraction-adapter-expansion-001",
         preservedProviderEnvelopeReadinessNoCallArtifactId: "fff-provider-envelope-readiness-no-call-001",
+        designerCandidateDashboard: {
+          artifactId: "fff-designer-candidate-dashboard-001",
+          reviewUi: "public/review/index.html",
+          accessRoute: "public/review/index.html?mode=designer",
+          resultPath: "artifacts/designer-candidate-dashboard-result.json",
+          docPath: "docs/review/designer-candidate-dashboard.md",
+          localOnly: true,
+          externalCall: false,
+          providerConfigured: false,
+          credentialsTouched: false,
+          publicUpload: false,
+          aiVideoGeneration: false,
+          finalCanonDecision: false
+        },
+        oneStoryDraftReviewPack: {
+          artifactId: "fff-one-story-draft-review-pack-001",
+          sourceDashboardArtifactId: "fff-designer-candidate-dashboard-001",
+          reviewUi: "public/review/index.html",
+          accessRoute: "public/review/index.html?mode=draft",
+          resultPath: "artifacts/one-story-draft-review-pack-result.json",
+          docPath: "docs/review/one-story-draft-review-pack.md",
+          selectionStatus: "provisional_default",
+          localOnly: true,
+          externalCall: false,
+          providerConfigured: false,
+          credentialsTouched: false,
+          publicUpload: false,
+          aiVideoGeneration: false,
+          finalCanonDecision: false
+        },
         reviewInputMode: "freeform",
         extractionContract: {
           schemaVersion: model.extraction_contract.schemaVersion,
@@ -3909,6 +4489,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         taskCards: model.task_cards,
         qaGateResults: model.quality_gate_results,
         generatedOutlines: model.output_packages,
+        designerDashboard: model.designer_dashboard,
+        oneStoryDraftPack: model.one_story_draft_pack,
         decisionLog: normalizeDecisionLog(state.log),
         metadata
       };
@@ -4063,6 +4645,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         "taskCards",
         "qaGateResults",
         "generatedOutlines",
+        "designerDashboard",
+        "oneStoryDraftPack",
         "decisionLog",
         "metadata"
       ]);
@@ -4107,6 +4691,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         taskCards: Array.isArray(envelope.taskCards) ? envelope.taskCards : baseModel.task_cards,
         qaGateResults: Array.isArray(envelope.qaGateResults) ? envelope.qaGateResults : baseModel.quality_gate_results,
         generatedOutlines: Array.isArray(envelope.generatedOutlines) ? envelope.generatedOutlines : baseModel.output_packages,
+        designerDashboard: normalizeDesignerDashboard(envelope.designerDashboard, baseModel.designer_dashboard),
+        oneStoryDraftPack: normalizeOneStoryDraftPack(envelope.oneStoryDraftPack, baseModel.one_story_draft_pack),
         decisionLog: normalizeDecisionLog(envelope.decisionLog),
         metadata
       };
@@ -4349,6 +4935,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         taskCards: model.task_cards,
         qaGateResults: model.quality_gate_results,
         generatedOutlines: model.output_packages,
+        designerDashboard: model.designer_dashboard,
+        oneStoryDraftPack: model.one_story_draft_pack,
         decisionLog: normalizeDecisionLog(state.log),
         metadata: {
           viewerFacingInformation: "Raw memo, visible candidates, QA gate labels, and outline titles are review-facing information.",
@@ -4359,12 +4947,44 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             "No model/API extraction behavior is active."
           ],
           importedUnknownFields: {},
-          activeArtifactId: "fff-contradictory-claim-guard-001",
+          activeArtifactId: "fff-one-story-draft-review-pack-001",
+          preservedDesignerCandidateDashboardArtifactId: "fff-designer-candidate-dashboard-001",
+          preservedContradictoryClaimGuardArtifactId: "fff-contradictory-claim-guard-001",
           preservedReviewProcedureLockArtifactId: "fff-review-procedure-lock-001",
         preservedReviewHubIaArtifactId: "fff-review-hub-ia-mode-split-001",
         preservedArtifactId: "fff-source-span-routing-review-pack-001",
         preservedAdapterExpansionArtifactId: "fff-local-extraction-adapter-expansion-001",
         preservedProviderEnvelopeReadinessNoCallArtifactId: "fff-provider-envelope-readiness-no-call-001",
+        designerCandidateDashboard: {
+          artifactId: "fff-designer-candidate-dashboard-001",
+          reviewUi: "public/review/index.html",
+          accessRoute: "public/review/index.html?mode=designer",
+          resultPath: "artifacts/designer-candidate-dashboard-result.json",
+          docPath: "docs/review/designer-candidate-dashboard.md",
+          localOnly: true,
+          externalCall: false,
+          providerConfigured: false,
+          credentialsTouched: false,
+          publicUpload: false,
+          aiVideoGeneration: false,
+          finalCanonDecision: false
+        },
+        oneStoryDraftReviewPack: {
+          artifactId: "fff-one-story-draft-review-pack-001",
+          sourceDashboardArtifactId: "fff-designer-candidate-dashboard-001",
+          reviewUi: "public/review/index.html",
+          accessRoute: "public/review/index.html?mode=draft",
+          resultPath: "artifacts/one-story-draft-review-pack-result.json",
+          docPath: "docs/review/one-story-draft-review-pack.md",
+          selectionStatus: "provisional_default",
+          localOnly: true,
+          externalCall: false,
+          providerConfigured: false,
+          credentialsTouched: false,
+          publicUpload: false,
+          aiVideoGeneration: false,
+          finalCanonDecision: false
+        },
         reviewInputMode: "freeform",
           extractionContract: {
             schemaVersion: model.extraction_contract.schemaVersion,
@@ -4728,6 +5348,306 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     function gate(id, gateName, status, finding, nextMove) {
       return { id, gate: gateName, status, finding, next_move: nextMove };
+    }
+
+    function renderDesignerDashboard(dashboard) {
+      if (!roots.designerDashboard || !dashboard) {
+        return;
+      }
+
+      const runway = dashboard.storyRunway || {};
+      const readiness = dashboard.readinessSummary || {};
+      roots.designerDashboard.innerHTML = `
+        <div class="hub-panel">
+          <div class="section-head">
+            <div>
+              <h3>${escapeHtml(dashboard.title || "Designer Candidate Dashboard")}</h3>
+              <p class="section-note">Artifact id: <strong>${escapeHtml(dashboard.artifactId)}</strong>. Local-only planning surface; no external call, provider configuration, public upload, AI video generation, or final canon decision.</p>
+            </div>
+            <p class="section-note"><a href="#designer-dashboard-root">public/review/index.html?mode=designer</a></p>
+          </div>
+          <div class="summary-strip" aria-label="Designer dashboard summary">
+            <div class="metric"><strong>${escapeHtml(readiness.contentCandidateCount || 0)}</strong><span>content cards</span></div>
+            <div class="metric"><strong>${escapeHtml(readiness.channelStrategyProposalCount || 0)}</strong><span>channel cards</span></div>
+            <div class="metric"><strong>${escapeHtml(readiness.draftSpineBeatCount || 0)}</strong><span>draft beats</span></div>
+            <div class="metric"><strong>${escapeHtml(readiness.humanOwnedDecisionHeldCount || 0)}</strong><span>held decisions</span></div>
+          </div>
+        </div>
+
+        <div class="designer-dashboard-grid">
+          <div class="hub-panel">
+            <h3>One-story runway</h3>
+            ${field("Work", runway.workTitle || "unknown")}
+            ${field("Source cue", runway.sourceCue || "not available")}
+            ${field("Raw memo cue", runway.rawMemoCue || "not available")}
+            ${field("Selected groups", (runway.selectedCandidateGroups || []).map((groupItem) => `${groupItem.category}: ${formatList(groupItem.items, "none")}`).join("; ") || "not available")}
+          </div>
+          <div class="hub-panel">
+            <h3>Human-owned questions</h3>
+            <ul class="hub-list">${renderListItems(runway.unresolvedHumanQuestions || ["needs human review"])}</ul>
+          </div>
+          <div class="hub-panel">
+            <h3>Boundary snapshot</h3>
+            <ul class="hub-list">${renderListItems(runway.sourceCanonRightsProductionRisks || ["not available"])}</ul>
+          </div>
+        </div>
+
+        <div class="hub-panel">
+          <h3>Content candidate cards</h3>
+          <div class="designer-dashboard-grid">${(dashboard.contentCandidates || []).map(renderDesignerContentCandidate).join("")}</div>
+        </div>
+
+        <div class="hub-panel">
+          <h3>Channel strategy proposals</h3>
+          <div class="designer-dashboard-grid">${(dashboard.channelStrategyProposals || []).map(renderChannelStrategyProposal).join("")}</div>
+        </div>
+
+        <div class="hub-panel">
+          <h3>Draft candidate spine</h3>
+          ${field("Status", dashboard.draftSpine?.status || "reviewable but not final prose")}
+          ${field("Sample opening status", dashboard.draftSpine?.sampleOpeningStatus || "not available")}
+          ${field("Sample opening candidate", dashboard.draftSpine?.sampleOpeningCandidate || "not available")}
+          <div class="draft-spine-list" style="margin-top: 12px;">${(dashboard.draftSpine?.beats || []).map(renderDraftBeat).join("")}</div>
+        </div>
+
+        <div class="hub-panel">
+          <h3>Risks and review debt</h3>
+          <div class="designer-dashboard-grid">${(dashboard.reviewRisks || []).map(renderDesignerRisk).join("")}</div>
+        </div>
+
+        <div class="hub-panel">
+          <h3>Readiness and next slice</h3>
+          ${field("QA warnings", formatList(readiness.qaWarnings, "none"))}
+          ${field("Recommended next slice", readiness.recommendedNextSlice || "not available")}
+          ${field("Access route", readiness.accessRoute || "public/review/index.html?mode=designer")}
+        </div>
+      `;
+    }
+
+    function renderDesignerContentCandidate(candidate) {
+      return `
+        <article class="designer-card" data-canon-risk="${escapeHtml(candidate.canonRisk || "medium")}" ${reviewItemAttributes(candidate, "designer-content-candidate")}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(candidate.title)}</h3>
+            <span class="tag blue">${escapeHtml(candidate.formatFit)}</span>
+          </div>
+          ${field("Premise / audience promise", candidate.premiseAudiencePromise)}
+          ${field("Draft readiness", candidate.draftReadiness)}
+          ${field("Visual direction", candidate.visualDirection)}
+          ${field("Thumbnail direction", candidate.thumbnailDirection)}
+          ${field("Subtitle / narration promise", candidate.subtitleNarrationPromise)}
+          ${field("Unresolved risks", formatList(candidate.unresolvedRisks, "needs human review"))}
+          ${field("Recommended next review decision", candidate.recommendedNextReviewDecision)}
+          <div class="tag-row">${(candidate.linkedOutlines || []).map((id) => `<span class="tag">${escapeHtml(id)}</span>`).join("")}</div>
+          ${reviewControls(candidate)}
+        </article>
+      `;
+    }
+
+    function renderChannelStrategyProposal(proposal) {
+      return `
+        <article class="designer-card" data-canon-risk="${escapeHtml(proposal.canonRisk || "medium")}" ${reviewItemAttributes(proposal, "channel-strategy-proposal")}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(proposal.channelArchetype)}</h3>
+            <span class="tag violet">channel strategy</span>
+          </div>
+          ${field("Target audience", proposal.targetAudience)}
+          ${field("Content pillars", formatList(proposal.contentPillars, "not available"))}
+          ${field("Series angle", proposal.seriesAngle)}
+          ${field("Cadence hypothesis", proposal.cadenceHypothesis)}
+          ${field("Material fit", proposal.materialFit)}
+          ${field("Risk flags", formatList(proposal.riskFlags, "needs human review"))}
+          ${field("Review debt", proposal.reviewDebt)}
+          ${field("Recommended next review decision", proposal.recommendedNextReviewDecision)}
+          ${reviewControls(proposal)}
+        </article>
+      `;
+    }
+
+    function renderDraftBeat(beat) {
+      return `
+        <article class="draft-beat-card" data-canon-risk="${escapeHtml(beat.canonRisk || "medium")}" ${reviewItemAttributes(beat, "draft-spine-beat")}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(beat.label)}</h3>
+            <span class="tag gold">not final prose</span>
+          </div>
+          ${field("Beat", beat.beat)}
+          ${field("Purpose", beat.purpose)}
+          ${field("Linked claims", formatList(beat.linkedClaimIds, "none"))}
+          ${reviewControls(beat)}
+        </article>
+      `;
+    }
+
+    function renderDesignerRisk(risk) {
+      return `
+        <article class="risk-card" data-canon-risk="${escapeHtml(risk.canonRisk || "medium")}" ${reviewItemAttributes(risk, "designer-review-risk")}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(risk.area)}</h3>
+            <span class="tag ${risk.severity === "high" ? "red" : "gold"}">${escapeHtml(risk.severity)}</span>
+          </div>
+          ${field("Finding", risk.finding)}
+          ${field("Next move", risk.nextMove)}
+          ${reviewControls(risk)}
+        </article>
+      `;
+    }
+
+    function renderOneStoryDraftPack(pack) {
+      if (!roots.oneStoryDraftPack || !pack) {
+        return;
+      }
+
+      const readiness = pack.readinessSummary || {};
+      roots.oneStoryDraftPack.innerHTML = `
+        <div class="hub-panel">
+          <div class="section-head">
+            <div>
+              <h3>${escapeHtml(pack.title || "One-story Draft Review Pack")}</h3>
+              <p class="section-note">Artifact id: <strong>${escapeHtml(pack.artifactId)}</strong>. Selection status: <strong>${escapeHtml(pack.selectionStatus || "needs_human_selection")}</strong>. Draft review only; non-final, non-canon, local-only.</p>
+            </div>
+            <p class="section-note"><a href="#one-story-draft-pack-root">public/review/index.html?mode=draft</a></p>
+          </div>
+          <div class="summary-strip" aria-label="One-story draft pack summary">
+            <div class="metric"><strong>${escapeHtml(readiness.draftBeatCount || 0)}</strong><span>draft beats</span></div>
+            <div class="metric"><strong>${escapeHtml(readiness.visualCueCount || 0)}</strong><span>visual cues</span></div>
+            <div class="metric"><strong>${escapeHtml(readiness.subtitleOrTextCueCount || 0)}</strong><span>text cues</span></div>
+            <div class="metric"><strong>${escapeHtml(readiness.unresolvedHumanOwnedQuestionsCount || 0)}</strong><span>held questions</span></div>
+          </div>
+        </div>
+
+        <div class="draft-review-grid">
+          <div class="hub-panel">
+            <h3>Selected provisional candidate</h3>
+            ${field("Selected candidate", `${pack.selectedCandidateTitle || "unknown"} (${pack.selectedCandidateId || "unknown"})`)}
+            ${field("Why selected", pack.selectedReason || "needs human selection")}
+            ${field("Source cue", pack.sourceCue || "not available")}
+            ${field("Source memo / story cue", pack.sourceMemoCue || "not available")}
+            ${field("Logline", pack.logline || "not available")}
+            ${field("Premise", pack.premise || "not available")}
+          </div>
+          <div class="hub-panel">
+            <h3>Channel route and boundaries</h3>
+            ${field("Channel archetype", pack.channelStrategyRoute?.archetype || "not available")}
+            ${field("Audience", pack.channelStrategyRoute?.audience || "not available")}
+            ${field("Material fit", pack.channelStrategyRoute?.fit || "not available")}
+            ${field("Draft status", pack.draftStatus || "reviewable_not_final_prose")}
+            ${field("Sample status", pack.sampleOpeningStatus || "non_final_non_canon_review_excerpt")}
+            ${field("Access route", readiness.accessRoute || "public/review/index.html?mode=draft")}
+          </div>
+        </div>
+
+        <div class="hub-panel">
+          <h3>Non-final opening and narration sample</h3>
+          ${field("Sample opening", pack.sampleOpening || "not available")}
+          ${field("Narration draft excerpt", pack.narrationDraftExcerpt || "not available")}
+        </div>
+
+        <div class="hub-panel">
+          <h3>Draft beat sequence</h3>
+          <div class="draft-spine-list">${(pack.draftBeats || []).map(renderOneStoryDraftBeat).join("")}</div>
+        </div>
+
+        <div class="draft-review-grid">
+          <div class="hub-panel">
+            <h3>Visual direction cues</h3>
+            <div class="draft-cue-list">${(pack.visualCues || []).map(renderDraftCue).join("")}</div>
+          </div>
+          <div class="hub-panel">
+            <h3>Subtitle / on-screen text cues</h3>
+            <div class="draft-cue-list">${(pack.subtitleOrTextCues || []).map(renderDraftCue).join("")}</div>
+          </div>
+        </div>
+
+        <div class="draft-review-grid">
+          <div class="hub-panel">
+            <h3>Human-owned story questions</h3>
+            <div class="draft-spine-list">${(pack.unresolvedHumanOwnedQuestions || []).map(renderHumanOwnedQuestion).join("")}</div>
+          </div>
+          <div class="hub-panel">
+            <h3>Recommended reviewer decisions</h3>
+            <div class="draft-spine-list">${(pack.recommendedReviewerDecisions || []).map(renderDraftReviewDecision).join("")}</div>
+          </div>
+        </div>
+
+        <div class="hub-panel">
+          <h3>Source / canon / rights / production risks</h3>
+          <div class="designer-dashboard-grid">${(pack.riskCards || []).map(renderDraftPackRisk).join("")}</div>
+        </div>
+      `;
+    }
+
+    function renderOneStoryDraftBeat(beat) {
+      return `
+        <article class="draft-beat-card" data-canon-risk="${escapeHtml(beat.canonRisk || "medium")}" ${reviewItemAttributes(beat, "one-story-draft-beat")}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(beat.label || beat.title)}</h3>
+            <span class="tag gold">not final prose</span>
+          </div>
+          ${field("Beat", beat.beat)}
+          ${field("Visual cue", beat.visualCue)}
+          ${field("Subtitle / on-screen cue", beat.subtitleCue)}
+          ${reviewControls(beat)}
+        </article>
+      `;
+    }
+
+    function renderDraftCue(cue) {
+      return `
+        <article class="draft-review-card" data-canon-risk="${escapeHtml(cue.canonRisk || "medium")}" ${reviewItemAttributes(cue, "draft-review-cue")}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(cue.title)}</h3>
+            <span class="tag">${escapeHtml(cue.status || "review")}</span>
+          </div>
+          ${field("Cue", cue.cue)}
+          ${reviewControls(cue)}
+        </article>
+      `;
+    }
+
+    function renderHumanOwnedQuestion(question) {
+      return `
+        <article class="draft-review-card" data-canon-risk="high" ${reviewItemAttributes(question, "draft-human-owned-question")}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(question.title || question.question)}</h3>
+            <span class="tag red">human-owned</span>
+          </div>
+          ${field("Question", question.question)}
+          ${field("State", question.status || "needs human review")}
+          ${reviewControls(question)}
+        </article>
+      `;
+    }
+
+    function renderDraftReviewDecision(decision) {
+      return `
+        <article class="draft-review-card" data-canon-risk="${escapeHtml(decision.canonRisk || "medium")}" ${reviewItemAttributes(decision, "draft-review-decision")}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(decision.title)}</h3>
+            <span class="tag blue">review next</span>
+          </div>
+          ${field("Decision prompt", decision.decisionPrompt)}
+          ${reviewControls(decision)}
+        </article>
+      `;
+    }
+
+    function renderDraftPackRisk(risk) {
+      return `
+        <article class="risk-card" data-canon-risk="${escapeHtml(risk.canonRisk || "medium")}" ${reviewItemAttributes(risk, "draft-review-risk")}>
+          <div class="candidate-title">
+            <h3>${escapeHtml(risk.area)}</h3>
+            <span class="tag ${risk.severity === "high" ? "red" : "gold"}">${escapeHtml(risk.severity)}</span>
+          </div>
+          ${field("Finding", risk.finding)}
+          ${field("Next move", risk.nextMove)}
+          ${reviewControls(risk)}
+        </article>
+      `;
+    }
+
+    function renderListItems(items) {
+      return items.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
     }
 
     function renderExtractionContract(contract) {
@@ -5659,8 +6579,20 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     function collectReviewableItems(model) {
       const extracted = model.extracted_elements.flatMap((groupItem) => groupItem.items);
       const extractionContractItems = model.extraction_contract?.extractedElements || [];
+      const designerDashboard = model.designer_dashboard || {};
+      const oneStoryDraftPack = model.one_story_draft_pack || {};
       return [
         ...extractionContractItems,
+        ...(designerDashboard.contentCandidates || []),
+        ...(designerDashboard.channelStrategyProposals || []),
+        ...(designerDashboard.draftSpine?.beats || []),
+        ...(designerDashboard.reviewRisks || []),
+        ...(oneStoryDraftPack.draftBeats || []),
+        ...(oneStoryDraftPack.visualCues || []),
+        ...(oneStoryDraftPack.subtitleOrTextCues || []),
+        ...(oneStoryDraftPack.unresolvedHumanOwnedQuestions || []),
+        ...(oneStoryDraftPack.riskCards || []),
+        ...(oneStoryDraftPack.recommendedReviewerDecisions || []),
         ...extracted,
         ...model.profile_candidates,
         ...model.claim_candidates,

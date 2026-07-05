@@ -2,6 +2,33 @@
 
 ## Residual Work
 
+### Draft Review Pack Stabilization
+
+- Purpose: Make the Designer Dashboard and One-story Draft Review Pack durable, reviewable, and reproducible before any draft-to-video planning bridge.
+- Effect: Adds a static access/readback artifact that verifies both mode routes, result artifacts, review docs, renderer markers, and contradictory-claim guard preservation.
+- Requirements: Keep the work local-only; do not add provider/API calls, credentials, publishing, AI video generation, production render, draft-to-video bridge behavior, or final canon decisions; keep `.serena/project.yml` out of product staging.
+- State: Implemented in `fff-draft-review-pack-stabilization-001`.
+- Owner: Product implementer for evidence/git durability; human reviewer for draft route and held-truth decisions.
+- Next move: Use `public/review/index.html?mode=draft` for freeform review, with `public/review/index.html?mode=designer` preserved as source context.
+
+### One-story Draft Review Pack
+
+- Purpose: Let a reviewer inspect one provisional story/video candidate end-to-end before any provider, video, publishing, or final canon work.
+- Effect: Converts the Designer Dashboard into a concrete draft review packet with beats, non-final sample narration, visual cues, text cues, unresolved questions, risk cards, and reviewer decisions.
+- Requirements: Keep the surface local-only; keep selection marked `provisional_default`; preserve human-owned unknowns; avoid provider/API calls, credentials, publishing, AI video generation, production render, and final canon claims.
+- State: Implemented in `fff-one-story-draft-review-pack-001`.
+- Owner: Product implementer for UI/readback; human reviewer for candidate, channel, and held-truth decisions.
+- Next move: Use `public/review/index.html?mode=draft` and `docs/review/one-story-draft-review-pack.md` to confirm or revise the provisional draft route before any draft-to-video planning bridge.
+
+### Designer Candidate Dashboard
+
+- Purpose: Let a reviewer inspect one story end-to-end as content candidates, draft spine, channel strategy proposals, and review risks.
+- Effect: Reduces designer review friction before a one-story draft pack or production-planning slice.
+- Requirements: Keep the surface local-only; preserve unknowns and human-owned decisions; avoid provider/API calls, credentials, publishing, AI video generation, production render, and final canon claims.
+- State: Implemented in `fff-designer-candidate-dashboard-001`.
+- Owner: Product implementer for UI/readback; human reviewer for story, channel, and canon decisions.
+- Next move: Keep `public/review/index.html?mode=designer` and `docs/review/designer-candidate-dashboard.md` as the preserved source dashboard for the active Draft Review Pack; reopen only if the provisional candidate or channel route changes.
+
 ### Timeline View
 
 - Purpose: Separate story order, calendar time, historical references, and production order.
