@@ -575,8 +575,288 @@
       margin-top: 2px;
     }
 
+    .layout-lab-link-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .layout-lab-link-row .section-note {
+      margin: 0;
+    }
+
     .card-wall-suppressed {
       opacity: 0.9;
+    }
+
+    .layout-lab-panel {
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .layout-lab-header,
+    .layout-lab-recommendation,
+    .layout-lab-scoreboard,
+    .layout-lab-references {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .layout-lab-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(240px, 0.8fr);
+      gap: 14px;
+      align-items: start;
+    }
+
+    .lab-status-row,
+    .lab-micro-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    .lab-pill {
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 3px 8px;
+      background: var(--pill-bg);
+      color: var(--pill-ink);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .lab-pill.locked {
+      border-color: rgba(159, 60, 53, 0.42);
+      color: var(--red);
+    }
+
+    .wireframe-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .wireframe-alt {
+      display: grid;
+      gap: 10px;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper-soft);
+    }
+
+    .wireframe-alt[data-layout-recommendation="recommended"] {
+      border-color: var(--blue);
+      background: var(--active-bg);
+    }
+
+    .wireframe-title {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .wireframe-title h3 {
+      margin: 0;
+    }
+
+    .wireframe-canvas {
+      display: grid;
+      gap: 8px;
+      min-height: 220px;
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--surface-muted);
+    }
+
+    .wf-block,
+    .wf-row,
+    .wf-lane,
+    .wf-drawer {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px;
+      background: var(--paper);
+      color: var(--muted-strong);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .wf-block.weak {
+      border-style: dashed;
+      color: var(--muted);
+    }
+
+    .wf-block.active {
+      border-color: var(--blue);
+      background: var(--active-bg);
+      color: var(--blue);
+    }
+
+    .wf-line {
+      display: block;
+      width: 100%;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--line);
+    }
+
+    .wf-line.short {
+      width: 58%;
+    }
+
+    .wf-line.medium {
+      width: 76%;
+    }
+
+    .card-baseline-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      align-content: start;
+    }
+
+    .briefing-inbox-list {
+      display: grid;
+      gap: 7px;
+      align-content: start;
+    }
+
+    .briefing-inbox-list .wf-row {
+      display: grid;
+      grid-template-columns: 72px minmax(0, 1fr) 68px;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .decision-shell-wireframe {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr) 180px;
+      gap: 8px;
+      align-items: stretch;
+    }
+
+    .wf-rail,
+    .wf-main,
+    .wf-dock {
+      display: grid;
+      gap: 7px;
+      min-width: 0;
+      align-content: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: var(--paper);
+    }
+
+    .wf-main {
+      border-color: var(--blue);
+    }
+
+    .wf-drawer-row {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+      grid-column: 1 / -1;
+    }
+
+    .model-choice-slot {
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--route-contract-border);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--route-contract-bg);
+    }
+
+    .model-choice-list,
+    .model-step-list,
+    .model-pin-list,
+    .model-lock-list {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .model-choice-list li,
+    .model-step-list li,
+    .model-pin-list li,
+    .model-lock-list li {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 8px;
+      background: var(--paper);
+      color: var(--muted-strong);
+      font-size: 12px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .model-choice-list li {
+      border-color: var(--blue);
+      color: var(--blue);
+    }
+
+    .storyboard-flow {
+      grid-template-columns: 96px minmax(0, 1fr);
+      align-content: start;
+    }
+
+    .storyboard-flow .wf-lane {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .layout-score-matrix {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .layout-score-matrix th,
+    .layout-score-matrix td {
+      border-bottom: 1px solid var(--line);
+      padding: 7px 6px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .layout-score-matrix th {
+      color: var(--muted);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .layout-score-matrix td.score {
+      color: var(--blue);
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .layout-lab-recommendation {
+      border-left: 4px solid var(--blue);
+    }
+
+    .layout-lab-references {
+      color: var(--muted-strong);
+      font-size: 13px;
     }
 
     .home-hero {
@@ -1386,6 +1666,7 @@
 
     body[data-review-mode="home"] [data-mode-panel="home"],
     body[data-review-mode="brief"] [data-mode-panel="brief"],
+    body[data-review-mode="layout-lab"] [data-mode-panel="layout-lab"],
     body[data-review-mode="bridge"] [data-mode-panel="bridge"],
     body[data-review-mode="story"] [data-mode-panel="story"],
     body[data-review-mode="designer"] [data-mode-panel="designer"],
@@ -2109,6 +2390,9 @@
       .mode-tabs,
       .mode-summary-grid,
       .console-shell,
+      .layout-lab-header,
+      .wireframe-grid,
+      .decision-shell-wireframe,
       .home-hero,
       .latest-overview-grid,
       .guided-flow-top,
@@ -2137,6 +2421,16 @@
 
       .step-rail {
         grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .card-baseline-grid,
+      .wf-drawer-row,
+      .storyboard-flow .wf-lane {
+        grid-template-columns: 1fr;
+      }
+
+      .briefing-inbox-list .wf-row {
+        grid-template-columns: 1fr;
       }
 
       .review-controls {
@@ -2176,7 +2470,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Guided Review Flow / Review Brief <span class="jp-label">レビュー進行</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-guided-review-flow-workspace-001</strong>. デフォルトの Review Brief をカード壁ではなく順番レビューの操作面として使い、Bridge へ進む前に次の判断、ピン、業務連絡、重要フォルダ、発想棚を一画面で確認します。</p>
+            <p class="lede">Active artifact id: <strong>fff-layout-research-decision-shell-001</strong>. デフォルトの Review Brief と Bridge は保持したまま、研究用の <strong>public/review/index.html?mode=layout-lab</strong> で次の情報配置を比較します。</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -2271,6 +2565,10 @@
           <details class="notes-shelf" data-notes-shelf="true" data-notes-shelf-default="collapsed">
             <summary>メモ棚を開く</summary>
             <p>Guided Flow、Latest Overview、Home Cockpit の長い説明はこの下に保存します。</p>
+            <div class="layout-lab-link-row">
+              <button class="brief-action" type="button" data-mode-target="layout-lab" data-layout-lab-link="true" aria-pressed="false">Layout Labを見る</button>
+              <p class="section-note">研究用のみ。brief / bridge の標準導線は置き換えません。</p>
+            </div>
           </details>
 
           <section class="guided-flow card-wall-suppressed" data-guided-flow="guided-review-flow-workspace" data-card-wall-suppressed="true" aria-labelledby="guided-flow-title">
@@ -2664,6 +2962,231 @@
               <article class="locked-lane" data-locked-lane="final-canon"><h4>final canon</h4><p class="section-note">locked 0 / 5. Toma fate / brass moth truth / Council motive remain held.</p></article>
               <article class="locked-lane" data-locked-lane="rights-clearance"><h4>rights clearance</h4><p class="section-note">locked 0 / 5. No rights clearance claim, no licensed image/audio asset selected.</p></article>
             </div>
+          </section>
+        </section>
+
+        <section class="layout-lab-panel" id="layout-research-lab-root" data-mode-panel="layout-lab" data-layout-lab="decision-shell-research" data-layout-lab-access="public/review/index.html?mode=layout-lab" aria-labelledby="layout-lab-title">
+          <header class="layout-lab-header">
+            <div>
+              <p class="hub-eyebrow">Layout Research Lab / 情報配置研究</p>
+              <h2 id="layout-lab-title">次の標準UI候補をワイヤーフレームで比較する</h2>
+              <p class="lede">低テキスト化は効きましたが、カード形式の限界、情報の並列感、固定選択肢の問題が残っています。この Lab は現行 `brief` / `bridge` を置き換えず、次に適用する layout shell を選ぶための local-only prototype です。</p>
+              <div class="lab-status-row" aria-label="Layout lab status">
+                <span class="lab-pill">prototype-only</span>
+                <span class="lab-pill">heuristic / hypothesis</span>
+                <span class="lab-pill">default routes preserved</span>
+                <span class="lab-pill locked">provider/API closed</span>
+                <span class="lab-pill locked">AI video closed</span>
+                <span class="lab-pill locked">final canon closed</span>
+              </div>
+            </div>
+            <aside class="advanced-note">
+              <strong>Access route</strong>
+              <p>Direct: <code>public/review/index.html?mode=layout-lab</code></p>
+              <p>Do not use this as a production review surface yet. The next slice should apply the winning shell to <code>brief</code>, then optionally to <code>bridge</code>.</p>
+            </aside>
+          </header>
+
+          <section class="wireframe-grid" aria-label="Low fidelity layout alternatives">
+            <article class="wireframe-alt" data-wireframe-alternative="card-first-current-baseline" data-prototype-visible="card-first-baseline">
+              <div class="wireframe-title">
+                <h3>A. Card-first / current baseline</h3>
+                <span class="lab-pill">not recommended default</span>
+              </div>
+              <div class="wireframe-canvas card-baseline-grid" aria-label="Card-first wireframe">
+                <div class="wf-block active">Latest Overview<span class="wf-line medium"></span></div>
+                <div class="wf-block">Bridge action<span class="wf-line short"></span></div>
+                <div class="wf-block">Guided Flow<span class="wf-line"></span></div>
+                <div class="wf-block">Pinned Tray<span class="wf-line medium"></span></div>
+                <div class="wf-block">Folders<span class="wf-line short"></span></div>
+                <div class="wf-block weak">Evidence Vault<span class="wf-line"></span></div>
+                <div class="wf-block weak">Operations<span class="wf-line short"></span></div>
+                <div class="wf-block weak">Inspiration<span class="wf-line"></span></div>
+                <div class="wf-block weak">Locked lanes<span class="wf-line medium"></span></div>
+              </div>
+              <p class="section-note">Good for preserving many topics, weak for ranking, comparison, temporary pins, and dynamic choice routing. It keeps every box visually similar.</p>
+            </article>
+
+            <article class="wireframe-alt" data-wireframe-alternative="briefing-inbox" data-briefing-inbox-prototype="true">
+              <div class="wireframe-title">
+                <h3>B. Briefing Inbox</h3>
+                <span class="lab-pill">good for latest-first</span>
+              </div>
+              <div class="wireframe-canvas briefing-inbox-list" aria-label="Briefing inbox wireframe">
+                <div class="wf-row"><span>Now</span><span>Route question and next Bridge action</span><span>open</span></div>
+                <div class="wf-row"><span>Pin</span><span>Candidate and channel route stay visible</span><span>fixed</span></div>
+                <div class="wf-row"><span>Notice</span><span>Provider/API, render, upload, rights clearance locked</span><span>closed</span></div>
+                <div class="wf-row"><span>Folder</span><span>Workbench / Evidence / Inspiration grouped as rows</span><span>optional</span></div>
+                <div class="wf-row"><span>Next</span><span>Choose weak area after Bridge read</span><span>review</span></div>
+              </div>
+              <p class="section-note">Strong for latest information grasp and operations notifications, but it can still become a feed if decision order and active choice remain outside the row model.</p>
+            </article>
+
+            <article class="wireframe-alt" data-wireframe-alternative="split-pane-decision-shell" data-decision-shell-prototype="true" data-layout-recommendation="recommended">
+              <div class="wireframe-title">
+                <h3>C. Split-pane Decision Shell</h3>
+                <span class="lab-pill">recommended</span>
+              </div>
+              <div class="wireframe-canvas decision-shell-wireframe" data-decision-flow-model-root="true" aria-label="Decision Shell wireframe">
+                <nav class="wf-rail" aria-label="Decision shell step rail">
+                  <strong>Step rail</strong>
+                  <ul class="model-step-list" data-model-step-list>
+                    <li>model loading</li>
+                  </ul>
+                </nav>
+                <main class="wf-main" aria-label="Active decision panel">
+                  <strong>Active decision</strong>
+                  <div class="model-choice-slot" data-decision-flow-model-rendered="true" data-choice-slot="model-driven" data-model-choice-count="0">
+                    <span class="wf-line medium"></span>
+                    <p class="section-note" data-model-current-question>model question</p>
+                    <p class="section-note">candidate: <strong data-model-candidate-route>model candidate</strong></p>
+                    <p class="section-note">channel: <strong data-model-channel-route>model channel</strong></p>
+                    <ul class="model-choice-list" data-model-choice-list>
+                      <li>model choices</li>
+                    </ul>
+                  </div>
+                </main>
+                <aside class="wf-dock" aria-label="Context dock">
+                  <strong>Context dock</strong>
+                  <span class="lab-pill">Pins</span>
+                  <ul class="model-pin-list" data-model-pin-list>
+                    <li>model pins</li>
+                  </ul>
+                  <span class="lab-pill locked">Locks</span>
+                  <ul class="model-lock-list" data-model-lock-list>
+                    <li>model locks</li>
+                  </ul>
+                </aside>
+                <div class="wf-drawer-row" aria-label="Bottom drawers">
+                  <div class="wf-drawer" data-decision-shell-drawer="evidence">Evidence drawer</div>
+                  <div class="wf-drawer" data-decision-shell-drawer="notes">Notes drawer</div>
+                  <div class="wf-drawer" data-decision-shell-drawer="inspiration">Inspiration drawer</div>
+                </div>
+              </div>
+              <p class="section-note">Best fit now: left rail gives order, center carries one active decision, right dock keeps pins/notices/locks visible, bottom drawers keep Evidence Vault and idea material optional.</p>
+            </article>
+
+            <article class="wireframe-alt" data-wireframe-alternative="storyboard-flow" data-storyboard-flow-prototype="true">
+              <div class="wireframe-title">
+                <h3>D. Storyboard Flow</h3>
+                <span class="lab-pill">bridge supplement</span>
+              </div>
+              <div class="wireframe-canvas storyboard-flow" aria-label="Storyboard flow wireframe">
+                <div class="wf-block active">Decision</div>
+                <div class="wf-lane">
+                  <div class="wf-block">Route</div>
+                  <div class="wf-block">Narration</div>
+                  <div class="wf-block">Subtitle</div>
+                  <div class="wf-block">Shot</div>
+                </div>
+                <div class="wf-block">Review</div>
+                <div class="wf-lane">
+                  <div class="wf-block weak">Thumbnail</div>
+                  <div class="wf-block weak">Held truth</div>
+                  <div class="wf-block weak">Rights</div>
+                  <div class="wf-block weak">Next slice</div>
+                </div>
+              </div>
+              <p class="section-note">Useful inside Bridge once the route is accepted. As the first shell it may over-index on production order before the user has made the route decision.</p>
+            </article>
+          </section>
+
+          <section class="layout-lab-scoreboard" aria-labelledby="layout-score-title">
+            <div class="cockpit-section-header">
+              <div>
+                <p class="hub-eyebrow">Layout score matrix / 仮説評価</p>
+                <h3 id="layout-score-title">Heuristic, not final user research</h3>
+              </div>
+              <span class="lab-pill">heuristic / hypothesis</span>
+            </div>
+            <div class="table-scroll">
+              <table class="layout-score-matrix" data-layout-score-matrix="heuristic">
+                <thead>
+                  <tr>
+                    <th>Family</th>
+                    <th>Latest grasp</th>
+                    <th>Folders / pins / notices</th>
+                    <th>Decision order</th>
+                    <th>Dynamic choices</th>
+                    <th>Text density</th>
+                    <th>Evidence Vault</th>
+                    <th>FFF now</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-layout-family="card-grid-dashboard-cards">
+                    <td>Card grid / dashboard cards</td>
+                    <td class="score">2</td>
+                    <td class="score">2</td>
+                    <td class="score">1</td>
+                    <td class="score">1</td>
+                    <td class="score">1</td>
+                    <td class="score">3</td>
+                    <td>Preserve as detail shelves, not default.</td>
+                  </tr>
+                  <tr data-layout-family="stepper-wizard">
+                    <td>Stepper / wizard</td>
+                    <td class="score">2</td>
+                    <td class="score">1</td>
+                    <td class="score">3</td>
+                    <td class="score">2</td>
+                    <td class="score">3</td>
+                    <td class="score">1</td>
+                    <td>Good sequence, weak for back-and-forth review.</td>
+                  </tr>
+                  <tr data-layout-family="inbox-briefing-feed">
+                    <td>Inbox / briefing feed</td>
+                    <td class="score">3</td>
+                    <td class="score">3</td>
+                    <td class="score">2</td>
+                    <td class="score">2</td>
+                    <td class="score">2</td>
+                    <td class="score">2</td>
+                    <td>Useful briefing mode, not enough active decision structure.</td>
+                  </tr>
+                  <tr data-layout-family="split-pane-decision-shell">
+                    <td>Split-pane Decision Shell</td>
+                    <td class="score">3</td>
+                    <td class="score">3</td>
+                    <td class="score">3</td>
+                    <td class="score">3</td>
+                    <td class="score">3</td>
+                    <td class="score">3</td>
+                    <td>Recommended default for next FFF brief route.</td>
+                  </tr>
+                  <tr data-layout-family="storyboard-timeline-flow">
+                    <td>Storyboard timeline / flow lane</td>
+                    <td class="score">2</td>
+                    <td class="score">1</td>
+                    <td class="score">3</td>
+                    <td class="score">2</td>
+                    <td class="score">2</td>
+                    <td class="score">1</td>
+                    <td>Better as Bridge subview after route acceptance.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="layout-lab-recommendation" data-layout-recommendation="split-pane-decision-shell" data-card-first-rejected-as-default="true" aria-labelledby="layout-recommendation-title">
+            <p class="hub-eyebrow">Recommendation / 推奨</p>
+            <h3 id="layout-recommendation-title">Use a split-pane Decision Shell next</h3>
+            <p class="lede">Recommendation confidence: medium-high. The immediate next slice should apply the shell to <code>public/review/index.html?mode=brief</code>, keeping Bridge as the next action. If that wins, mirror the shell at the top of <code>mode=bridge</code> for narration, subtitle rhythm, shot order, thumbnail direction, and held-truth policy.</p>
+            <div class="lab-micro-row">
+              <span class="lab-pill">left step rail</span>
+              <span class="lab-pill">center active decision panel</span>
+              <span class="lab-pill">right context dock</span>
+              <span class="lab-pill">bottom drawers</span>
+              <span class="lab-pill">data-driven choice slot</span>
+            </div>
+            <p class="section-note">Why card-first failed: it groups details but makes Latest Overview, pins, notices, folders, choices, and locks look equally valuable. The shell separates active choice from preserved context and keeps Evidence Vault compatible as a drawer rather than a competing panel.</p>
+          </section>
+
+          <section class="layout-lab-references" aria-labelledby="layout-reference-title">
+            <h3 id="layout-reference-title">Research sources used for this heuristic</h3>
+            <p>NN/g progressive disclosure, cards, wizards, and information scent; GOV.UK step-by-step navigation. This lab uses those as design heuristics only, not as user-tested proof for FFF.</p>
+            <p>Closed gates remain visible: provider/API, credentials, upload, AI video, production render, rights clearance, database persistence, and final canon are all outside this prototype.</p>
           </section>
         </section>
 
@@ -3921,6 +4444,49 @@ The story should feel intimate and strange, but not explain the magic too early.
 
 Possible ending: Mira refuses to restore the city's stolen time and instead gives one lost hour back to every person who was erased from the records.`;
 
+    const decisionFlowModel = {
+      artifactId: "fff-layout-research-decision-shell-001",
+      currentQuestion: "この3分ミステリー・ロア路線を次のレビューへ進める？",
+      candidateRoute: "designer-content-moth-investigation-3m",
+      channelRoute: "designer-channel-mystery-lore",
+      nextAction: {
+        label: "Decision Shellをbriefへ適用する",
+        route: "public/review/index.html?mode=brief"
+      },
+      choices: [
+        { choiceId: "route-advance", label: "進める", targetStep: "route", disposition: "continue" },
+        { choiceId: "route-revise-narration", label: "語り口を直す", targetStep: "narration", disposition: "revise" },
+        { choiceId: "route-revise-subtitle", label: "字幕リズムを直す", targetStep: "subtitle", disposition: "revise" },
+        { choiceId: "route-revise-visual-order", label: "画面順を直す", targetStep: "visual-order", disposition: "revise" },
+        { choiceId: "route-revise-thumbnail", label: "サムネ方向を直す", targetStep: "thumbnail", disposition: "revise" },
+        { choiceId: "route-hold-truth", label: "保留真実を直す", targetStep: "held-truth", disposition: "hold" }
+      ],
+      steps: [
+        { stepId: "route", label: "路線", state: "current" },
+        { stepId: "narration", label: "語り", state: "next" },
+        { stepId: "subtitle", label: "字幕", state: "later" },
+        { stepId: "visual-order", label: "画面", state: "later" },
+        { stepId: "thumbnail", label: "サムネ", state: "later" },
+        { stepId: "held-truth", label: "保留真実", state: "locked-review" }
+      ],
+      pins: [
+        "candidate: designer-content-moth-investigation-3m",
+        "channel: designer-channel-mystery-lore",
+        "active review: low-text console feedback",
+        "next candidate slice: apply Decision Shell to brief"
+      ],
+      locks: [
+        "provider/API closed",
+        "credentials closed",
+        "upload closed",
+        "AI video closed",
+        "production render closed",
+        "rights clearance closed",
+        "database persistence closed",
+        "final canon closed"
+      ]
+    };
+
     let currentModel = null;
     let state = loadState();
     let activeStatusFilter = "all";
@@ -3980,7 +4546,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const modeButtons = Array.from(document.querySelectorAll("[data-mode-target]"));
     const themeButtons = Array.from(document.querySelectorAll("[data-theme-target]"));
     const THEME_STORAGE_KEY = "fff-review-theme";
-    const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"];
+    const REVIEW_MODES = ["home", "brief", "layout-lab", "bridge", "story", "designer", "draft", "source", "project", "artifacts"];
     const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "brief";
 
     memoInput.value = state.memo || sampleMemo;
@@ -4281,6 +4847,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     function renderAll() {
       currentModel = applyImportedModelOverrides(buildWorkbenchModel(memoInput.value || sampleMemo));
+      renderDecisionFlowModel();
       renderExtractionContract(currentModel.extraction_contract);
       renderDesignerDashboard(currentModel.designer_dashboard);
       renderOneStoryDraftPack(currentModel.one_story_draft_pack);
@@ -4298,6 +4865,51 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       renderDecisionLog();
       updateCounts();
       applyReviewFilters();
+    }
+
+    function renderDecisionFlowModel() {
+      const modelRoots = Array.from(document.querySelectorAll("[data-decision-flow-model-root]"));
+      modelRoots.forEach((root) => {
+        const questionNode = root.querySelector("[data-model-current-question]");
+        const candidateNode = root.querySelector("[data-model-candidate-route]");
+        const channelNode = root.querySelector("[data-model-channel-route]");
+        const choiceSlot = root.querySelector("[data-choice-slot='model-driven']");
+        const choiceList = root.querySelector("[data-model-choice-list]");
+        const stepList = root.querySelector("[data-model-step-list]");
+        const pinList = root.querySelector("[data-model-pin-list]");
+        const lockList = root.querySelector("[data-model-lock-list]");
+
+        if (questionNode) {
+          questionNode.textContent = decisionFlowModel.currentQuestion;
+        }
+        if (candidateNode) {
+          candidateNode.textContent = decisionFlowModel.candidateRoute;
+        }
+        if (channelNode) {
+          channelNode.textContent = decisionFlowModel.channelRoute;
+        }
+        if (choiceSlot) {
+          choiceSlot.setAttribute("data-model-choice-count", String(decisionFlowModel.choices.length));
+          choiceSlot.setAttribute("data-model-next-action", decisionFlowModel.nextAction.label);
+          choiceSlot.setAttribute("data-model-next-route", decisionFlowModel.nextAction.route);
+        }
+        if (choiceList) {
+          choiceList.innerHTML = decisionFlowModel.choices
+            .map((choice) => `<li data-model-choice-id="${escapeHtml(choice.choiceId)}">${escapeHtml(choice.label)} <span class="section-note">${escapeHtml(choice.targetStep)}</span></li>`)
+            .join("");
+        }
+        if (stepList) {
+          stepList.innerHTML = decisionFlowModel.steps
+            .map((step) => `<li data-model-step-id="${escapeHtml(step.stepId)}">${escapeHtml(step.label)} <span class="section-note">${escapeHtml(step.state)}</span></li>`)
+            .join("");
+        }
+        if (pinList) {
+          pinList.innerHTML = decisionFlowModel.pins.map((pin) => `<li>${escapeHtml(pin)}</li>`).join("");
+        }
+        if (lockList) {
+          lockList.innerHTML = decisionFlowModel.locks.map((lock) => `<li>${escapeHtml(lock)}</li>`).join("");
+        }
+      });
     }
 
     function createEmptyState() {

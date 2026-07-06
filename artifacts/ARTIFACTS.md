@@ -1,5 +1,23 @@
 # Artifacts
 
+## fff-layout-research-decision-shell-001
+
+- Title: Fast Fiction Factory Layout Research Decision Shell
+- Purpose: Compare layout families and add a local Layout Research Lab before applying another UI refinement to `brief`.
+- Repo relative path: `public/review/index.html`
+- Direct research route: `public/review/index.html?mode=layout-lab`
+- Preserved default route: `public/review/index.html?mode=brief`
+- Preserved Bridge route: `public/review/index.html?mode=bridge`
+- Review doc: `docs/review/layout-research-decision-shell.md`
+- Readback result: `artifacts/layout-research-decision-shell-result.json`
+- Source artifact: `fff-low-text-decision-console-001`
+- Preserved artifacts: `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-contradictory-claim-guard-001`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-layout-research-decision-shell artifacts/layout-research-decision-shell-result.json artifacts/layout-research-decision-shell-result.json`
+- Review status: `ready_for_local_wireframe_review`
+- Review input mode: `freeform`
+- State: Active local layout research checkpoint. The Lab shows Card-first/current baseline, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow wireframes, recommends the split-pane Decision Shell, includes a heuristic score matrix, and renders the Decision Shell choice slot from `decisionFlowModel`. Provider/API, credentials, upload, AI video generation, production render, final canon, database persistence, and rights-clearance claims remain closed.
+
 ## fff-low-text-decision-console-001
 
 - Title: Fast Fiction Factory Low-text Decision Console

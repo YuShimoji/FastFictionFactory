@@ -29,6 +29,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Local extraction adapter expansion | Ready for local review | [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Model/API boundary spec | Ready for local review | [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md) | `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json` |
 | Provider envelope readiness no-call | Ready for local readback | [`review/provider-envelope-readiness-no-call.md`](review/provider-envelope-readiness-no-call.md) | `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json` |
+| Layout Research Decision Shell | Ready for local wireframe review | [`review/layout-research-decision-shell.md`](review/layout-research-decision-shell.md) | `artifacts/layout-research-decision-shell-result.json`, `public/review/index.html?mode=layout-lab` |
 | Low-text Decision Console | Ready for local readback | [`review/low-text-decision-console.md`](review/low-text-decision-console.md) | `artifacts/low-text-decision-console-result.json`, `public/review/index.html?mode=brief`, `public/review/index.html?mode=bridge` |
 | Guided Review Flow Workspace | Ready for local readback | [`review/guided-review-flow-workspace.md`](review/guided-review-flow-workspace.md) | `artifacts/guided-review-flow-workspace-result.json`, `public/review/index.html?mode=brief`, `public/review/index.html?mode=bridge` |
 | Bridge Refinement Overview Ribbon | Ready for local readback | [`review/bridge-refinement-overview-ribbon.md`](review/bridge-refinement-overview-ribbon.md) | `artifacts/bridge-refinement-overview-ribbon-result.json`, `public/review/index.html?mode=brief`, `public/review/index.html?mode=bridge` |
@@ -81,7 +82,7 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Low-text route console + Bridge review, or narrow script/subtitle/shot refinement | The reviewer answers one route question, opens Bridge, then accepts, revises, or rejects the Bridge package; if accepted, one non-final refinement slice can narrow narration, subtitle rhythm, screen beats, and thumbnail comparison. | The repo can improve the production hypothesis without drifting into provider/API, video generation, rights, upload, or final canon. |
+| Next 1 turn | Layout Lab review, then Decision Shell application if accepted | The reviewer compares Card-first, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow, then accepts or rejects applying the Decision Shell to `brief`. | The repo can improve the operator review shell without drifting into script/subtitle asset generation, provider/API, video generation, rights, upload, database, or final canon. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
@@ -95,6 +96,12 @@ Invoke-Item .\public\review\index.html
 ```
 
 No-query access now defaults to Low-text Decision Console / Review Brief. The first read is the route question at the top of `brief`, followed by Bridge. Guided Flow, Latest Overview, and Home Cockpit shelves remain preserved below as supporting material. Mode-specific Decision Console route:
+
+Current layout research route:
+
+```text
+public/review/index.html?mode=layout-lab
+```
 
 ```text
 public/review/index.html?mode=brief
@@ -155,4 +162,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The next recommended implementation slice should first apply the Review Dedup Gate from `fff-review-memory-dedup-001`. After `fff-low-text-decision-console-001`, the next non-redundant axis is human review of the low-text route console and Bridge package, a narrower script/subtitle/shot/thumbnail refinement if the route is accepted, or explicit provider adapter implementation only after authorization.
+The next recommended implementation slice is `fff-apply-decision-shell-review-route-001` only if the human reviewer accepts the Layout Lab recommendation. Script/subtitle/shot/thumbnail refinement should wait until the review shell decision is settled, and explicit provider adapter implementation remains blocked until separate authorization.

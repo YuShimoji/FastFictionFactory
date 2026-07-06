@@ -2,12 +2,16 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-07 JST for `fff-low-text-decision-console-001`.
+Latest handoff refresh: 2026-07-07 JST for `fff-layout-research-decision-shell-001`.
 This restart/readback refresh started from synced `master`; before product
 edits, `git status --short --branch --untracked-files=all` showed tracked
 `master` parity with `origin/master` plus local `.serena/project.yml` transport
 residue. At refresh time, the active review checkpoint is
-`fff-low-text-decision-console-001`; it preserves
+`fff-layout-research-decision-shell-001`; it adds
+`public/review/index.html?mode=layout-lab` as a direct-access local wireframe
+research surface and preserves `public/review/index.html?mode=brief` and
+`public/review/index.html?mode=bridge` as the operator review routes. It also
+preserves `fff-low-text-decision-console-001`,
 `fff-guided-review-flow-workspace-001`,
 `fff-bridge-refinement-overview-ribbon-001`,
 `fff-home-cockpit-metric-linking-001`,
@@ -44,11 +48,12 @@ that contains this handoff note.
 ## Latest Remote Publish Snapshot
 
 - Branch: `master`
-- Active artifact: `fff-low-text-decision-console-001`
+- Active artifact: `fff-layout-research-decision-shell-001`
 - Remote parity before this handoff-only note: `HEAD...origin/master = 0 0`
 - Worktree state before this slice: product tree synced; `.serena/project.yml` remained local transport residue
-- User-side review route: `public/review/index.html?mode=brief`, then `public/review/index.html?mode=bridge`
-- Review decision needed next: answer the low-text route question, then freeform accept / revise / reject for narration, subtitle rhythm, visual ordering, thumbnail direction, and held-truth policy
+- User-side review route now: `public/review/index.html?mode=layout-lab`
+- Preserved operator review route: `public/review/index.html?mode=brief`, then `public/review/index.html?mode=bridge`
+- Review decision needed next: compare the Layout Lab alternatives A-D, then accept or reject applying the split-pane Decision Shell to `brief`
 - Locked lanes: provider/API, credentials, AI video generation, production render, upload, rights-clearance claim, database persistence, and final canon
 
 ## Start Here
@@ -77,6 +82,8 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/layout-research-decision-shell.md
+artifacts/layout-research-decision-shell-result.json
 docs/review/low-text-decision-console.md
 artifacts/low-text-decision-console-result.json
 docs/review/guided-review-flow-workspace.md
@@ -171,7 +178,8 @@ or:
 ./scripts/operator/open_review.sh
 ```
 
-No-query access now defaults to Low-text Decision Console / Review Brief. The current read route is
+No-query access still defaults to Low-text Decision Console / Review Brief. The current research route is
+`public/review/index.html?mode=layout-lab`; the preserved operator route is
 `public/review/index.html?mode=brief`, then
 `public/review/index.html?mode=bridge`; the preserved compatibility and detail routes
 are `public/review/index.html?mode=home`,
@@ -293,7 +301,7 @@ The current artifact adds a Guided Review Flow before the Latest Overview Report
 
 ## Validation Readback
 
-The active Low-text Decision Console smoke validates `fff-low-text-decision-console-001` while preserving the Guided Review Flow, Latest Overview Report, Home Cockpit, Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the route console.
+The active Layout Research Decision Shell smoke validates `fff-layout-research-decision-shell-001` while preserving the Low-text Decision Console, Guided Review Flow, Latest Overview Report, Home Cockpit, Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the layout lab.
 
 Additional checks passed during this handoff refresh:
 
@@ -303,6 +311,7 @@ Additional checks passed during this handoff refresh:
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on the synced baseline before this slice.
 - `git status --short --branch --untracked-files=all` showed only the local `.serena/project.yml` transport-residue modification before this restart/readback update; it remained unstaged and was excluded from the handoff commit.
 - `node --check tools/fff-state.mjs`
+- `node tools/fff-state.mjs smoke-layout-research-decision-shell artifacts/layout-research-decision-shell-result.json artifacts/layout-research-decision-shell-result.json`
 - `node tools/fff-state.mjs smoke-low-text-decision-console artifacts/low-text-decision-console-result.json artifacts/low-text-decision-console-result.json`
 - `node tools/fff-state.mjs smoke-guided-review-flow-workspace artifacts/guided-review-flow-workspace-result.json artifacts/guided-review-flow-workspace-result.json`
 - `node tools/fff-state.mjs smoke-bridge-refinement-overview-ribbon artifacts/bridge-refinement-overview-ribbon-result.json artifacts/bridge-refinement-overview-ribbon-result.json`

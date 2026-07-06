@@ -2,17 +2,21 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-low-text-decision-console-001`
+- Artifact id: `fff-layout-research-decision-shell-001`
 - Review UI: `public/review/index.html`
-- Low-text Decision Console / Review Brief mode: `public/review/index.html?mode=brief`
+- Layout Research Lab mode: `public/review/index.html?mode=layout-lab`
+- Low-text Decision Console / Review Brief mode preserved: `public/review/index.html?mode=brief`
 - Review Home compatibility alias: `public/review/index.html?mode=home`
-- Draft-to-Video Bridge mode: `public/review/index.html?mode=bridge`
+- Draft-to-Video Bridge mode preserved: `public/review/index.html?mode=bridge`
 - Draft Review Pack mode: `public/review/index.html?mode=draft`
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
 - Repo-local shell launcher: `./scripts/operator/open_review.sh`
 - Manifest: `artifacts/artifact-manifest.json`
+- Layout Research Decision Shell doc: `docs/review/layout-research-decision-shell.md`
+- Layout Research Decision Shell result: `artifacts/layout-research-decision-shell-result.json`
+- Layout Research Decision Shell smoke command: `node tools/fff-state.mjs smoke-layout-research-decision-shell artifacts/layout-research-decision-shell-result.json artifacts/layout-research-decision-shell-result.json`
 - Low-text Decision Console doc: `docs/review/low-text-decision-console.md`
 - Low-text Decision Console result: `artifacts/low-text-decision-console-result.json`
 - Low-text Decision Console smoke command: `node tools/fff-state.mjs smoke-low-text-decision-console artifacts/low-text-decision-console-result.json artifacts/low-text-decision-console-result.json`
@@ -92,7 +96,13 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active Review Hub checkpoint is `fff-low-text-decision-console-001`; it preserves `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, `fff-review-home-map-meters-001`, `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-draft-review-pack-stabilization-001`, and `fff-contradictory-claim-guard-001` instead of replacing their readbacks.
+- The active checkpoint is `fff-layout-research-decision-shell-001`. It adds a direct-access local research surface at `public/review/index.html?mode=layout-lab` without replacing the default `brief` or `bridge` review routes.
+- The Layout Lab compares four low-fidelity wireframe alternatives: Card-first / current baseline, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow. The score matrix covers five layout families including the optional storyboard/timeline family.
+- The recommended layout is the split-pane Decision Shell: left step rail, center active decision panel, right context dock for pins/notices/locks, and bottom drawers for Evidence Vault, notes, and inspiration.
+- `decisionFlowModel` is present in `public/review/index.html` and renders the Lab Decision Shell choice list, step list, pins, and locks from local data. This proves future route choices can be data-driven without adding an API, provider, model call, database, or generated asset.
+- `artifacts/layout-research-decision-shell-result.json` records layout_families_compared_count=5, wireframe_alternative_count=4, recommended_layout=`split-pane Decision Shell`, data_driven_choice_model_present=true, decision_flow_model_choice_count=6, layout_score_matrix_present=true, evidence_vault_compatibility_addressed=true, dark_mode_preserved=true, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, production_render=false, final_canon_decision=false, database_persistence=false, rights_cleared_claim=false, and passed=true.
+- The next proposed implementation slice is `fff-apply-decision-shell-review-route-001`, which should apply the winning shell to `public/review/index.html?mode=brief` only after human review of the Layout Lab.
+- The preserved Review Hub checkpoint `fff-low-text-decision-console-001` remains the default `brief` surface; it preserves `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, `fff-review-home-map-meters-001`, `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-draft-review-pack-stabilization-001`, and `fff-contradictory-claim-guard-001` instead of replacing their readbacks.
 - `public/review/index.html?mode=brief` now starts with a Low-text Decision Console before the Guided Review Flow, Latest Overview Report, and legacy card-grid cockpit shelves. It has one active question, five short answer buttons, one primary `Bridgeで確認` action, a compact context dock, a six-step rail, a closed detail drawer, and a closed notes shelf.
 - `public/review/index.html?mode=bridge` now starts with a Bridge Decision Console before the guided sequence and detailed Bridge cards, so the same route / narration / subtitle / visual / thumbnail / held-truth judgment stays visible.
 - `artifacts/low-text-decision-console-result.json` records decision_console_visible=true, decision_console_first=true, active_question_text=`この路線で進める？`, choice_button_count=5, primary_action_count=1, context_chip_count=6, step_count=6, current_step_count=1, bridge_console_visible=true, card_wall_suppressed=true, text_budget_passed=true, selected_candidate_id=`designer-content-moth-investigation-3m`, selected_channel_route=`designer-channel-mystery-lore`, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, production_render=false, final_canon_decision=false, rights_cleared_claim=false, database_persistence=false, and passed=true.
@@ -166,6 +176,7 @@ Preserved platform boundary:
 ## What Was Verified
 
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
+- `node tools/fff-state.mjs smoke-layout-research-decision-shell artifacts/layout-research-decision-shell-result.json artifacts/layout-research-decision-shell-result.json` passed for the active Layout Research Decision Shell readback.
 - Guided Review Flow Workspace slice on 2026-07-06 JST started from `master` parity with `origin/master` after fetch/pull checks; local `.serena/project.yml` remained transport residue and was intentionally excluded from product staging. The slice adds `fff-guided-review-flow-workspace-001` as the active artifact and preserves the overview ribbon, Home Cockpit, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks.
 - Remote-sync handoff refresh on 2026-06-30 JST started from `ea08c669745a9516685841d36c05c0fd5de1e939` (`ea08c66 Add production adoption authorization packet`) after `git fetch --prune origin`, `git pull --ff-only origin master`, and `git rev-list --left-right --count "HEAD...origin/master"` reported already up to date and `0 0`; the pushed docs-only handoff commit is the next `git log -1 --oneline --decorate` value after pulling.
 - Route hygiene before this handoff: `git rev-list --left-right --count
@@ -179,7 +190,7 @@ Preserved platform boundary:
 - This downstream target authorization packet slice started on synced `master` after `fff-production-claim-ledger-rollback-rehearsal-001`; the new readback prepares the next target-class choice only and performs no Profile / Timeline / Story Seed / Canon decision / provider / credential / publishing mutation.
 - This Profile adoption mutation one-claim slice started on synced `master` after the user authorized recommended path A from the downstream target authorization packet for exactly `multi-claim-moth-key-label` and Profile only; the new readback records 1 non-canon Profile annotation while keeping Claim Ledger additional adoption, Timeline, Story Seed, canon, provider/API, credential, publishing, production generation, actual rollback, and additional-claim work outside the scope.
 - Project-local instructions and required context docs were read before changing review claims.
-- `node tools/fff-state.mjs smoke-low-text-decision-console artifacts/low-text-decision-console-result.json artifacts/low-text-decision-console-result.json` passed for the active Low-text Decision Console readback.
+- `node tools/fff-state.mjs smoke-low-text-decision-console artifacts/low-text-decision-console-result.json artifacts/low-text-decision-console-result.json` passed for the preserved Low-text Decision Console readback.
 - `node tools/fff-state.mjs smoke-guided-review-flow-workspace artifacts/guided-review-flow-workspace-result.json artifacts/guided-review-flow-workspace-result.json` passed for the preserved Guided Review Flow Workspace readback.
 - `artifacts/draft-review-pack-stabilization-result.json` passed with access_state=`verified_present`, static_mode_check_passed=true, designer_result_exists=true, draft_result_exists=true, designer_smoke_passed=true, draft_smoke_passed=true, and contradictory_claim_guard_preserved=true.
 - `node --check tools/fff-state.mjs` passed.
@@ -244,7 +255,7 @@ Preserved platform boundary:
 ## What Remains Missing
 
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
-- Human freeform review of the Low-text Decision Console and Draft-to-Video Bridge remains the immediate next user-side work: accept, revise, or reject the route, narration, subtitle rhythm, visual order, thumbnail direction, and held-truth policy.
+- Human freeform review of the Layout Research Lab is the immediate next user-side work: compare alternatives A-D and accept, revise, or reject applying the split-pane Decision Shell to `brief`. Low-text Console and Draft-to-Video Bridge remain preserved operator routes after that decision.
 - Remaining workflow expansion is now post-Profile: Timeline / Story Seed / Canon decision authorization, actual rollback, broader translated memo coverage, or very broad source-span fixture shape. The held claim preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, Claim Ledger one-claim production adoption, Claim Ledger rollback rehearsal, downstream target authorization packet, and Profile adoption mutation one-claim define candidate status, accepted-status meaning, rollback, mutation boundaries, a non-mutating ledger row, one fixture-only sandbox adoption row, one sandbox-only rollback rehearsal row, one production authorization packet, one Claim Ledger production adoption row, one non-destructive rollback rehearsal, one Profile-first downstream target choice surface, and one Profile-only non-canon annotation. Timeline, Story Seed, canon, provider/API/credential, publishing, additional-claim adoption, and actual production rollback remain unimplemented without separate authorization. The translated memo axis has a two-row minimum fixture, so only add more translated rows if they reduce a concrete coverage gap beyond `multi-x-object-brass-moth-key` and `multi-x-placeholder-translation-boundary`. Very broad source-span shape has been audited but not implemented because current broad rows are already resolved and no concrete source-output gap requires another fixture.
 - Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, transport behavior, external call permission, timeout value, and retry count remain blocked until explicit authorization.
 - Durable project database, YouTube publishing, automated upload, AI video generation, complete world chronology, and final canon decisions remain out of scope.
@@ -253,7 +264,8 @@ Preserved platform boundary:
 
 | Target | Current state | Next move |
 | --- | --- | --- |
-| Low-text Decision Console | Covered by `fff-low-text-decision-console-001`; `public/review/index.html?mode=brief` starts with one question, five choices, one Bridge action, context chips, a six-step rail, closed detail drawer, and closed notes shelf before the guided flow and card shelves | Human reviewer should answer the route question, open Bridge, and respond freeform on the area that needs refinement |
+| Layout Research Decision Shell | Covered by `fff-layout-research-decision-shell-001`; `public/review/index.html?mode=layout-lab` compares four wireframes, recommends split-pane Decision Shell, shows a heuristic score matrix, and renders choices from `decisionFlowModel` | Human reviewer should compare alternatives A-D, then accept or reject applying Decision Shell to `brief` |
+| Low-text Decision Console | Preserved by `fff-low-text-decision-console-001`; `public/review/index.html?mode=brief` starts with one question, five choices, one Bridge action, context chips, a six-step rail, closed detail drawer, and closed notes shelf before the guided flow and card shelves | Keep as the default route until the Decision Shell is accepted and applied |
 | Guided Review Flow Workspace | Preserved by `fff-guided-review-flow-workspace-001`; its guided sequence, one primary Bridge action, Decision Queue, Pinned Tray, Operations Notice, Important Folders, and Inspiration Workspace now sit below the low-text console | Treat as stored supporting structure, not the first stop |
 | Bridge Refinement Overview Ribbon | Covered by `fff-bridge-refinement-overview-ribbon-001`; the 5-item Latest Overview Report, folded legacy Brief, and non-final Bridge refinement cues remain preserved under the low-text console | Use it as context after the route decision, not as the first stop |
 | Home Cockpit Metric Linking | Covered by `fff-home-cockpit-metric-linking-001`; `public/review/index.html?mode=brief` is the no-query default and `?mode=home` aliases to it. It shows Operator Track, Workbench, Evidence Vault, Locked Lanes, and nine actionable readiness meters | Human reviewer should use Home Cockpit first, then Bridge, and only open Source Audit / Project Cockpit / Artifacts if auditing evidence or boundaries |

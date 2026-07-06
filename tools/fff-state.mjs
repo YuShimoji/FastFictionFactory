@@ -39,6 +39,7 @@ const HOME_COCKPIT_METRIC_LINKING_SCHEMA_VERSION = "fff.homeCockpitMetricLinking
 const BRIDGE_REFINEMENT_OVERVIEW_RIBBON_SCHEMA_VERSION = "fff.bridgeRefinementOverviewRibbon.v1";
 const GUIDED_REVIEW_FLOW_WORKSPACE_SCHEMA_VERSION = "fff.guidedReviewFlowWorkspace.v1";
 const LOW_TEXT_DECISION_CONSOLE_SCHEMA_VERSION = "fff.lowTextDecisionConsole.v1";
+const LAYOUT_RESEARCH_DECISION_SHELL_SCHEMA_VERSION = "fff.layoutResearchDecisionShell.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -75,6 +76,7 @@ const DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT = "artifacts/home-cockpit-metri
 const DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT = "artifacts/bridge-refinement-overview-ribbon-result.json";
 const DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT = "artifacts/guided-review-flow-workspace-result.json";
 const DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT = "artifacts/low-text-decision-console-result.json";
+const DEFAULT_LAYOUT_RESEARCH_DECISION_SHELL_OUTPUT = "artifacts/layout-research-decision-shell-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -934,6 +936,25 @@ async function main() {
     }
     if (command === "smoke-low-text-decision-console" || outputPath) {
       console.log(`low-text decision console passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-layout-research-decision-shell" || command === "smoke-layout-research-decision-shell") {
+    const readback = await readJson(inputPath);
+    const result = await validateLayoutResearchDecisionShell(readback, inputPath);
+    const target = outputPath || DEFAULT_LAYOUT_RESEARCH_DECISION_SHELL_OUTPUT;
+    if (command === "smoke-layout-research-decision-shell" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Layout research decision shell failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-layout-research-decision-shell" || outputPath) {
+      console.log(`layout research decision shell passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -8198,7 +8219,10 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
   const briefDefaultModeVisible = html.includes('data-review-mode="brief"') &&
     html.includes('data-mode-panel="brief"') &&
     html.includes('data-home-cockpit="home-cockpit-metric-linking"') &&
-    html.includes('const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"]') &&
+    html.includes("const REVIEW_MODES") &&
+      html.includes('"layout-lab"') &&
+      html.includes('"brief"') &&
+      html.includes('"bridge"') &&
     html.includes('|| "brief"') &&
     html.includes('allowedMode === "home"');
 
@@ -8498,7 +8522,10 @@ async function validateDraftToVideoPlanningBridge(bridge, bridgePath) {
       html.includes('data-mode-panel="bridge"') &&
       html.includes('data-mode-target="bridge"') &&
       html.includes("public/review/index.html?mode=bridge") &&
-      html.includes('const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"]'),
+      html.includes("const REVIEW_MODES") &&
+        html.includes('"layout-lab"') &&
+        html.includes('"brief"') &&
+        html.includes('"bridge"'),
     `bridgeVisible=${bridge?.bridge_visible}; cards=${bridgeCardCount}`
   );
   check(
@@ -9364,6 +9391,321 @@ async function validateLowTextDecisionConsole(readback, readbackPath) {
   };
 }
 
+async function validateLayoutResearchDecisionShell(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const lowTextPath = manifest.low_text_decision_console_result_path || DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT;
+  const guidedPath = manifest.guided_review_flow_workspace_result_path || DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT;
+  const overviewPath = manifest.bridge_refinement_overview_ribbon_result_path || DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT;
+  const homeCockpitPath = manifest.home_cockpit_metric_linking_result_path || DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT;
+  const bridgePath = manifest.draft_to_video_planning_bridge_result_path || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+  const reviewBriefPath = manifest.review_brief_dark_mode_ux_result_path || DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT;
+  const draftPackPath = manifest.one_story_draft_review_pack_result_path || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT;
+  const designerDashboardPath = manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT;
+  const contradictoryGuardPath = manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const lowText = await readJson(lowTextPath);
+  const guided = await readJson(guidedPath);
+  const overview = await readJson(overviewPath);
+  const homeCockpit = await readJson(homeCockpitPath);
+  const bridge = await readJson(bridgePath);
+  const reviewBrief = await readJson(reviewBriefPath);
+  const draftPack = await readJson(draftPackPath);
+  const designerDashboard = await readJson(designerDashboardPath);
+  const contradictoryGuard = await readJson(contradictoryGuardPath);
+  const html = await readFile("public/review/index.html", "utf8");
+  const doc = await readFile("docs/review/layout-research-decision-shell.md", "utf8");
+  const credentialFindings = collectCredentialMaterial(readback);
+
+  const labIndex = html.indexOf('data-layout-lab="decision-shell-research"');
+  const briefPanelIndex = html.indexOf('data-mode-panel="brief"');
+  const bridgePanelIndex = html.indexOf('data-mode-panel="bridge"');
+  const layoutModeRulePresent = html.includes('body[data-review-mode="layout-lab"] [data-mode-panel="layout-lab"]');
+  const reviewModesIncludeLab = html.includes('"layout-lab"');
+  const directLinkPresent = html.includes('data-layout-lab-link="true"') && html.includes('data-mode-target="layout-lab"');
+  const primaryTabLabPresent = /<button[^>]*class="[^"]*\bmode-tab\b[^"]*"[^>]*data-mode-target="layout-lab"/i.test(html);
+  const wireframeAlternativeCount = (html.match(/data-wireframe-alternative=/g) || []).length;
+  const decisionFlowModelBlock = extractConstObjectBlock(html, "decisionFlowModel");
+  const decisionFlowModelChoiceCount = (decisionFlowModelBlock.match(/\bchoiceId\s*:/g) || []).length;
+  const decisionFlowModelStepCount = (decisionFlowModelBlock.match(/\bstepId\s*:/g) || []).length;
+  const scoreMatrixRows = (html.match(/data-layout-family=/g) || []).length;
+  const familyNames = [
+    "Card grid / dashboard cards",
+    "Stepper / wizard",
+    "Inbox / briefing feed",
+    "Split-pane Decision Shell",
+    "Storyboard timeline / flow lane"
+  ];
+  const layoutFamiliesComparedCount = familyNames.filter((name) => doc.includes(name)).length;
+  const recommendedLayout = "split-pane Decision Shell";
+  const lockedMarkers = [
+    "provider/API",
+    "credentials",
+    "upload",
+    "AI video",
+    "production render",
+    "rights clearance",
+    "database persistence",
+    "final canon"
+  ];
+  const dataDrivenChoiceModelPresent = html.includes("const decisionFlowModel") &&
+    html.includes('data-choice-slot="model-driven"') &&
+    decisionFlowModelChoiceCount >= 3;
+  const darkModePreserved = html.includes(':root[data-theme="dark"]') &&
+    html.includes(':root[data-theme="auto"]') &&
+    html.includes('data-theme-target="light"') &&
+    html.includes('data-theme-target="dark"') &&
+    html.includes('data-theme-target="auto"') &&
+    html.includes("THEME_STORAGE_KEY");
+
+  check(
+    "identity",
+    readback?.artifact_id === "fff-layout-research-decision-shell-001" &&
+      readback?.schemaVersion === LAYOUT_RESEARCH_DECISION_SHELL_SCHEMA_VERSION &&
+      readback?.review_ui === "public/review/index.html" &&
+      readback?.research_doc === "docs/review/layout-research-decision-shell.md" &&
+      readback?.access_route === "public/review/index.html?mode=layout-lab" &&
+      readback?.source_low_text_console_artifact_id === "fff-low-text-decision-console-001",
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; ui=${readback?.review_ui}; doc=${readback?.research_doc}; access=${readback?.access_route}; source=${readback?.source_low_text_console_artifact_id}`
+  );
+  check(
+    "source_readbacks_preserved",
+    lowText?.artifact_id === "fff-low-text-decision-console-001" &&
+      lowText?.passed === true &&
+      guided?.artifact_id === "fff-guided-review-flow-workspace-001" &&
+      guided?.passed === true &&
+      overview?.artifact_id === "fff-bridge-refinement-overview-ribbon-001" &&
+      overview?.passed === true &&
+      homeCockpit?.artifact_id === "fff-home-cockpit-metric-linking-001" &&
+      homeCockpit?.passed === true &&
+      bridge?.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+      bridge?.passed === true &&
+      reviewBrief?.artifact_id === "fff-review-brief-dark-mode-ux-001" &&
+      reviewBrief?.passed === true &&
+      draftPack?.artifact_id === "fff-one-story-draft-review-pack-001" &&
+      draftPack?.passed === true &&
+      designerDashboard?.artifact_id === "fff-designer-candidate-dashboard-001" &&
+      designerDashboard?.passed === true &&
+      contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
+      contradictoryGuard?.passed === true,
+    `low=${lowText?.artifact_id}/${lowText?.passed}; guided=${guided?.artifact_id}/${guided?.passed}; overview=${overview?.artifact_id}/${overview?.passed}; home=${homeCockpit?.artifact_id}/${homeCockpit?.passed}; bridge=${bridge?.artifact_id}/${bridge?.passed}; brief=${reviewBrief?.artifact_id}/${reviewBrief?.passed}; draft=${draftPack?.artifact_id}/${draftPack?.passed}; designer=${designerDashboard?.artifact_id}/${designerDashboard?.passed}; contradictory=${contradictoryGuard?.artifact_id}/${contradictoryGuard?.passed}`
+  );
+  check(
+    "layout_lab_route_visible_and_isolated",
+    labIndex >= 0 &&
+      layoutModeRulePresent &&
+      reviewModesIncludeLab &&
+      directLinkPresent &&
+      !primaryTabLabPresent &&
+      briefPanelIndex >= 0 &&
+      bridgePanelIndex >= 0,
+    `lab=${labIndex}; modeRule=${layoutModeRulePresent}; reviewModes=${reviewModesIncludeLab}; directLink=${directLinkPresent}; primaryTabLab=${primaryTabLabPresent}; brief=${briefPanelIndex}; bridge=${bridgePanelIndex}`
+  );
+  check(
+    "wireframe_alternatives_visible",
+    wireframeAlternativeCount >= 3 &&
+      html.includes('data-wireframe-alternative="card-first-current-baseline"') &&
+      html.includes('data-briefing-inbox-prototype="true"') &&
+      html.includes('data-decision-shell-prototype="true"') &&
+      html.includes('data-storyboard-flow-prototype="true"'),
+    `wireframes=${wireframeAlternativeCount}; card=${html.includes('data-wireframe-alternative="card-first-current-baseline"')}; inbox=${html.includes('data-briefing-inbox-prototype="true"')}; shell=${html.includes('data-decision-shell-prototype="true"')}; storyboard=${html.includes('data-storyboard-flow-prototype="true"')}`
+  );
+  check(
+    "decision_shell_structure",
+    html.includes("Step rail") &&
+      html.includes("Active decision") &&
+      html.includes("Context dock") &&
+      html.includes('data-decision-shell-drawer="evidence"') &&
+      html.includes('data-decision-shell-drawer="notes"') &&
+      html.includes('data-decision-shell-drawer="inspiration"'),
+    "Decision Shell should expose left rail, center active panel, right dock, and Evidence/Notes/Inspiration drawers"
+  );
+  check(
+    "data_driven_choice_model",
+    dataDrivenChoiceModelPresent &&
+      decisionFlowModelStepCount >= 6 &&
+      html.includes("renderDecisionFlowModel") &&
+      html.includes("data-model-choice-count") &&
+      html.includes("data-model-choice-id"),
+    `choices=${decisionFlowModelChoiceCount}; steps=${decisionFlowModelStepCount}; renderer=${html.includes("renderDecisionFlowModel")}`
+  );
+  check(
+    "layout_score_matrix",
+    html.includes('data-layout-score-matrix="heuristic"') &&
+      scoreMatrixRows >= 4 &&
+      doc.includes("heuristic / hypothesis") &&
+      doc.includes("Layout Score Matrix"),
+    `matrix=${html.includes('data-layout-score-matrix="heuristic"')}; rows=${scoreMatrixRows}; docHeuristic=${doc.includes("heuristic / hypothesis")}`
+  );
+  check(
+    "research_doc_comparison_complete",
+    layoutFamiliesComparedCount >= 4 &&
+      doc.includes("Latest information grasp") &&
+      doc.includes("Important foldering") &&
+      doc.includes("Temporary pinning") &&
+      doc.includes("Operations notifications") &&
+      doc.includes("Inspiration workspace") &&
+      doc.includes("Decision-order guidance") &&
+      doc.includes("Dynamic choice extensibility") &&
+      doc.includes("Text-density control") &&
+      doc.includes("Evidence Vault compatibility") &&
+      doc.includes("Suitability for FFF now"),
+    `families=${layoutFamiliesComparedCount}; requiredAxes=${["Latest information grasp","Important foldering","Temporary pinning","Operations notifications","Inspiration workspace","Decision-order guidance","Dynamic choice extensibility","Text-density control","Evidence Vault compatibility","Suitability for FFF now"].filter((axis) => doc.includes(axis)).length}/10`
+  );
+  check(
+    "recommendation_and_card_rejection",
+    html.includes('data-layout-recommendation="split-pane-decision-shell"') &&
+      html.includes('data-card-first-rejected-as-default="true"') &&
+      doc.includes("Recommended Layout: Split-pane Decision Shell") &&
+      doc.includes("Why Card-first Is Not The Default") &&
+      doc.includes("future choices can be data-driven"),
+    "recommended layout and card-first rejection should be explicit in HTML and doc"
+  );
+  check(
+    "evidence_vault_text_density_future_slice",
+    doc.includes("Evidence Vault") &&
+      doc.includes("Text-density guideline") &&
+      doc.includes("fff-apply-decision-shell-review-route-001") &&
+      html.includes("Evidence drawer") &&
+      html.includes("data-driven choice slot"),
+    "doc and prototype should address Evidence Vault, text density, and future apply slice"
+  );
+  check(
+    "dark_mode_preserved",
+    darkModePreserved,
+    "theme variables and toggles should remain present"
+  );
+  check(
+    "candidate_channel_preserved",
+    html.includes("designer-content-moth-investigation-3m") &&
+      html.includes("designer-channel-mystery-lore") &&
+      decisionFlowModelBlock.includes("designer-content-moth-investigation-3m") &&
+      decisionFlowModelBlock.includes("designer-channel-mystery-lore"),
+    "selected candidate and channel IDs should remain visible in HTML and decisionFlowModel"
+  );
+  check(
+    "boundary_gates_closed",
+    readback?.local_only === true &&
+      readback?.external_call === false &&
+      readback?.provider_configured === false &&
+      readback?.credentials_touched === false &&
+      readback?.public_upload === false &&
+      readback?.ai_video_generation === false &&
+      readback?.production_render === false &&
+      readback?.final_canon_decision === false &&
+      readback?.database_persistence === false &&
+      readback?.rights_cleared_claim === false &&
+      lockedMarkers.every((marker) => html.includes(marker) || doc.includes(marker)) &&
+      credentialFindings.length === 0,
+    `local=${readback?.local_only}; external=${readback?.external_call}; provider=${readback?.provider_configured}; credentials=${readback?.credentials_touched}; upload=${readback?.public_upload}; video=${readback?.ai_video_generation}; render=${readback?.production_render}; canon=${readback?.final_canon_decision}; database=${readback?.database_persistence}; rights=${readback?.rights_cleared_claim}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+
+  return {
+    schemaVersion: LAYOUT_RESEARCH_DECISION_SHELL_SCHEMA_VERSION,
+    artifact_id: "fff-layout-research-decision-shell-001",
+    title: "Fast Fiction Factory Layout Research Decision Shell",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_wireframe_review",
+    review_input_mode: "freeform",
+    review_ui: "public/review/index.html",
+    research_doc: "docs/review/layout-research-decision-shell.md",
+    access_route: "public/review/index.html?mode=layout-lab",
+    primary_routes_preserved: ["public/review/index.html?mode=brief", "public/review/index.html?mode=bridge"],
+    input_result_path: toRepoPath(readbackPath),
+    source_low_text_console_artifact_id: "fff-low-text-decision-console-001",
+    source_result_paths: {
+      low_text_decision_console: lowTextPath,
+      guided_review_flow_workspace: guidedPath,
+      bridge_refinement_overview_ribbon: overviewPath,
+      home_cockpit_metric_linking: homeCockpitPath,
+      draft_to_video_planning_bridge: bridgePath,
+      review_brief_dark_mode_ux: reviewBriefPath,
+      one_story_draft_review_pack: draftPackPath,
+      designer_candidate_dashboard: designerDashboardPath,
+      contradictory_claim_guard: contradictoryGuardPath
+    },
+    layout_families_compared_count: layoutFamiliesComparedCount,
+    wireframe_alternative_count: wireframeAlternativeCount,
+    recommended_layout: recommendedLayout,
+    recommendation_confidence: "medium-high",
+    card_first_rejected_as_default: checks.recommendation_and_card_rejection?.passed === true,
+    decision_shell_prototype_visible: html.includes('data-decision-shell-prototype="true"'),
+    briefing_inbox_prototype_visible: html.includes('data-briefing-inbox-prototype="true"'),
+    storyboard_flow_prototype_visible: html.includes('data-storyboard-flow-prototype="true"'),
+    data_driven_choice_model_present: dataDrivenChoiceModelPresent,
+    decision_flow_model_choice_count: decisionFlowModelChoiceCount,
+    layout_score_matrix_present: checks.layout_score_matrix?.passed === true,
+    layout_scores_marked_heuristic: html.includes('data-layout-score-matrix="heuristic"') && doc.includes("heuristic / hypothesis"),
+    text_density_guideline_present: doc.includes("Text-density guideline"),
+    evidence_vault_compatibility_addressed: doc.includes("Evidence Vault") && html.includes("Evidence drawer"),
+    future_apply_slice_defined: doc.includes("fff-apply-decision-shell-review-route-001"),
+    dark_mode_preserved: darkModePreserved,
+    selected_candidate_id: "designer-content-moth-investigation-3m",
+    selected_channel_route_id: "designer-channel-mystery-lore",
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      database_persistence: false,
+      rights_cleared_claim: false,
+      credential_material_findings: credentialFindings
+    },
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    final_canon_decision: false,
+    database_persistence: false,
+    rights_cleared_claim: false,
+    summary: {
+      layout_lab_visible: checks.layout_lab_route_visible_and_isolated?.passed === true,
+      primary_routes_preserved: briefPanelIndex >= 0 && bridgePanelIndex >= 0,
+      wireframe_alternative_count: wireframeAlternativeCount,
+      layout_families_compared_count: layoutFamiliesComparedCount,
+      recommended_layout: recommendedLayout,
+      data_driven_choice_model_present: dataDrivenChoiceModelPresent,
+      decision_flow_model_choice_count: decisionFlowModelChoiceCount,
+      layout_score_matrix_present: checks.layout_score_matrix?.passed === true,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      database_persistence: false,
+      rights_cleared_claim: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "The layout lab is a direct-access local prototype route and does not replace brief or bridge.",
+      "Card-first, briefing inbox, split-pane Decision Shell, and storyboard flow alternatives are visible as low-fidelity wireframes.",
+      "Split-pane Decision Shell is recommended because it separates decision order, active choice, context pins, locks, and optional drawers.",
+      "The Decision Shell prototype renders its choice slot from decisionFlowModel, proving future choice options can be data-driven.",
+      "No provider/API, credential, upload, AI video, render, rights, database, or final-canon gate is opened."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateGuidedReviewFlowWorkspace(readback, readbackPath) {
   const failures = [];
   const checks = {};
@@ -9785,7 +10127,10 @@ async function validateHomeCockpitMetricLinking(readback, readbackPath) {
       html.includes('id="review-home-root"') &&
       html.includes('data-mode-panel="brief"') &&
       html.includes('data-review-mode="brief"') &&
-      html.includes('const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"]') &&
+      html.includes("const REVIEW_MODES") &&
+      html.includes('"layout-lab"') &&
+      html.includes('"brief"') &&
+      html.includes('"bridge"') &&
       html.includes('|| "brief"') &&
       html.includes('allowedMode === "home"') &&
       html.includes("public/review/index.html?mode=home"),
@@ -10080,7 +10425,10 @@ async function validateReviewHomeMapMeters(readback, readbackPath) {
       html.includes('data-home-map="review-home-map-meters"') &&
       html.includes('data-home-cockpit="home-cockpit-metric-linking"') &&
       html.includes('data-review-mode="brief"') &&
-      html.includes('const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"]') &&
+      html.includes("const REVIEW_MODES") &&
+      html.includes('"layout-lab"') &&
+      html.includes('"brief"') &&
+      html.includes('"bridge"') &&
       html.includes('|| "brief"') &&
       html.includes('allowedMode === "home"'),
     `home=${readback?.home_map_visible}; default=${readback?.default_mode}`
@@ -10588,6 +10936,19 @@ function extractFirstHtmlBlockByMarker(html, tagName, marker) {
     return html.slice(start);
   }
   return html.slice(start, end + endMarker.length);
+}
+
+function extractConstObjectBlock(text, constName) {
+  const start = text.indexOf(`const ${constName} =`);
+  if (start < 0) {
+    return "";
+  }
+  const endMarker = "\n    };";
+  const end = text.indexOf(endMarker, start);
+  if (end < 0) {
+    return text.slice(start);
+  }
+  return text.slice(start, end + endMarker.length);
 }
 
 function removeDetailsBlocks(html) {
@@ -11413,6 +11774,8 @@ Usage:
   node tools/fff-state.mjs smoke-bridge-refinement-overview-ribbon <bridge-refinement-overview-ribbon-result.json> [output.json]
   node tools/fff-state.mjs validate-low-text-decision-console <low-text-decision-console-result.json>
   node tools/fff-state.mjs smoke-low-text-decision-console <low-text-decision-console-result.json> [output.json]
+  node tools/fff-state.mjs validate-layout-research-decision-shell <layout-research-decision-shell-result.json>
+  node tools/fff-state.mjs smoke-layout-research-decision-shell <layout-research-decision-shell-result.json> [output.json]
   node tools/fff-state.mjs validate-guided-review-flow-workspace <guided-review-flow-workspace-result.json>
   node tools/fff-state.mjs smoke-guided-review-flow-workspace <guided-review-flow-workspace-result.json> [output.json]
   node tools/fff-state.mjs validate-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json>
@@ -11449,6 +11812,9 @@ Default guided review flow workspace output:
 
 Default low-text decision console output:
   ${DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT}
+
+Default layout research decision shell output:
+  ${DEFAULT_LAYOUT_RESEARCH_DECISION_SHELL_OUTPUT}
 
 Default home cockpit metric linking output:
   ${DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT}

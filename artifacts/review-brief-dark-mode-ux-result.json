@@ -2,7 +2,7 @@
   "schemaVersion": "fff.reviewBriefDarkModeUx.v1",
   "artifact_id": "fff-review-brief-dark-mode-ux-001",
   "title": "Fast Fiction Factory Review Brief and Dark Mode UX",
-  "generatedAt": "2026-07-06T16:11:24.007Z",
+  "generatedAt": "2026-07-06T17:36:38.362Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",

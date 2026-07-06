@@ -2,17 +2,18 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current review checkpoint is `fff-low-text-decision-console-001`, served through the static local Visual Review Hub at `public/review/index.html`. It keeps `public/review/index.html?mode=brief` as the no-query Low-text Decision Console / Review Brief entry route, keeps `public/review/index.html?mode=home` as a compatibility alias, places one route question, five short choice buttons, one `Bridgeで確認` action, context chips, a six-step rail, and closed detail/notes shelves before the Guided Review Flow, Latest Overview Report, and Home Cockpit card shelves, adds a matching Bridge Decision Console to `public/review/index.html?mode=bridge`, and preserves Guided Review Flow Workspace `fff-guided-review-flow-workspace-001`, Bridge Refinement Overview Ribbon `fff-bridge-refinement-overview-ribbon-001`, Home Cockpit Metric Linking `fff-home-cockpit-metric-linking-001`, Review Home Map `fff-review-home-map-meters-001`, Draft-to-Video Planning Bridge `fff-draft-to-video-planning-bridge-001`, Review Brief / dark-mode UX checkpoint `fff-review-brief-dark-mode-ux-001`, One-story Draft Review Pack `fff-one-story-draft-review-pack-001`, Designer Candidate Dashboard `fff-designer-candidate-dashboard-001`, stabilization checkpoint `fff-draft-review-pack-stabilization-001`, and contradictory-claim guard `fff-contradictory-claim-guard-001`.
+Fast Fiction Factory is a local-first fiction production workbench. The current review checkpoint is `fff-layout-research-decision-shell-001`, served through the static local Visual Review Hub at `public/review/index.html`. It adds the direct-access research route `public/review/index.html?mode=layout-lab` to compare layout families before changing the default review surface. The preserved default route remains `public/review/index.html?mode=brief`, the preserved Bridge route remains `public/review/index.html?mode=bridge`, and `public/review/index.html?mode=home` remains a compatibility alias. The checkpoint recommends a split-pane Decision Shell while preserving Low-text Decision Console `fff-low-text-decision-console-001`, Guided Review Flow Workspace `fff-guided-review-flow-workspace-001`, Bridge Refinement Overview Ribbon `fff-bridge-refinement-overview-ribbon-001`, Home Cockpit Metric Linking `fff-home-cockpit-metric-linking-001`, Review Home Map `fff-review-home-map-meters-001`, Draft-to-Video Planning Bridge `fff-draft-to-video-planning-bridge-001`, Review Brief / dark-mode UX checkpoint `fff-review-brief-dark-mode-ux-001`, One-story Draft Review Pack `fff-one-story-draft-review-pack-001`, Designer Candidate Dashboard `fff-designer-candidate-dashboard-001`, stabilization checkpoint `fff-draft-review-pack-stabilization-001`, and contradictory-claim guard `fff-contradictory-claim-guard-001`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is Low-text Decision Console followed by the Draft-to-Video Bridge for the selected 3-minute mystery-lore route: route decision, workbench fallback, evidence audit shelves, inspiration prompts, locked production lanes, rights-risk posture, and production non-goals must remain distinct before any model/API extractor, provider/API setup, AI video generation, production render, public upload, rights-clearance claim, database persistence, or final canon path exists.
+Keep the MVP reviewable without production commitments. The current lane is layout research for a better decision shell before continuing production-package refinement. `layout-lab` is research-only; `brief` and `bridge` remain the preserved operator routes. Route decision, workbench fallback, evidence audit shelves, inspiration prompts, locked production lanes, rights-risk posture, and production non-goals must remain distinct before any model/API extractor, provider/API setup, AI video generation, production render, public upload, rights-clearance claim, database persistence, or final canon path exists.
 
 ## Current Slice
 
 The active slice is complete enough for local readback:
 
 - Review UI: `public/review/index.html`
+- Layout Research Lab mode: `public/review/index.html?mode=layout-lab`
 - Guided Review Flow / Review Brief mode: `public/review/index.html?mode=brief`
 - Review Home compatibility alias: `public/review/index.html?mode=home`
 - Draft-to-Video Bridge mode: `public/review/index.html?mode=bridge`
@@ -20,6 +21,7 @@ The active slice is complete enough for local readback:
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Layout Research Decision Shell doc/result: `docs/review/layout-research-decision-shell.md`, `artifacts/layout-research-decision-shell-result.json`
 - Low-text Decision Console doc/result: `docs/review/low-text-decision-console.md`, `artifacts/low-text-decision-console-result.json`
 - Guided Review Flow Workspace doc/result: `docs/review/guided-review-flow-workspace.md`, `artifacts/guided-review-flow-workspace-result.json`
 - Bridge Refinement Overview Ribbon doc/result: `docs/review/bridge-refinement-overview-ribbon.md`, `artifacts/bridge-refinement-overview-ribbon-result.json`
@@ -90,10 +92,12 @@ Route hygiene checkpoint, 2026-06-29 JST:
   cockpit summaries.
 - `docs/style_intent/` was removed because it was empty and residue-only.
 - The active Fast Fiction Factory review surface is now
-  `fff-low-text-decision-console-001`; it records a low-text route console as
-  the no-query `brief` entry, five short choices, one primary Bridge action,
-  a context dock, a six-step rail, closed detail/notes shelves, Bridge Decision
-  Console, and closed production gates while preserving
+  `fff-layout-research-decision-shell-001`; it records a direct-access
+  `layout-lab` route, four low-fidelity wireframe alternatives, a heuristic
+  layout score matrix, a split-pane Decision Shell recommendation, and a local
+  `decisionFlowModel` while preserving the no-query `brief` entry, Bridge
+  Decision Console, and closed production gates through
+  `fff-low-text-decision-console-001`,
   `fff-guided-review-flow-workspace-001`,
   `fff-bridge-refinement-overview-ribbon-001`,
   `fff-home-cockpit-metric-linking-001`,
@@ -110,6 +114,7 @@ Last verified on 2026-07-07:
 ```powershell
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
+node .\tools\fff-state.mjs smoke-layout-research-decision-shell .\artifacts\layout-research-decision-shell-result.json .\artifacts\layout-research-decision-shell-result.json
 node .\tools\fff-state.mjs smoke-low-text-decision-console .\artifacts\low-text-decision-console-result.json .\artifacts\low-text-decision-console-result.json
 node .\tools\fff-state.mjs smoke-guided-review-flow-workspace .\artifacts\guided-review-flow-workspace-result.json .\artifacts\guided-review-flow-workspace-result.json
 node .\tools\fff-state.mjs smoke-review-brief-dark-mode-ux .\artifacts\review-brief-dark-mode-ux-result.json .\artifacts\review-brief-dark-mode-ux-result.json
@@ -214,10 +219,10 @@ python -m mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: use the Low-text Decision Console at `public/review/index.html?mode=brief`, then the Draft-to-Video Bridge at `public/review/index.html?mode=bridge`, while preserving the Guided Review Flow, Latest Overview Report, Review Brief, Home Cockpit Metric Linking, Review Home Map, Draft Review Pack, Designer Dashboard, contradictory claim guard, downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, Profile adoption mutation one-claim, and very broad source-span shape audit as auxiliary safety readbacks. The next non-redundant slice is human review of the low-text route console plus Bridge or a narrow script/subtitle/shot/thumbnail refinement; move to Timeline / Story Seed / Canon decision only after equivalent explicit authorization, actual production rollback only after separate explicit authorization, and explicit provider adapter implementation only after authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy.
+First next move: use `public/review/index.html?mode=layout-lab` to compare the Card-first, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow alternatives. If the human reviewer accepts the recommendation, the next non-redundant slice is `fff-apply-decision-shell-review-route-001`, applying the Decision Shell to `public/review/index.html?mode=brief` while preserving the Low-text Decision Console, Draft-to-Video Bridge, Guided Review Flow, Latest Overview Report, Review Brief, Home Cockpit Metric Linking, Review Home Map, Draft Review Pack, Designer Dashboard, contradictory claim guard, downstream source-span adoption, downstream scope lock, provider-envelope readiness, multilingual fixture coverage, translated memo audit, translation provenance/source-span readback, translation policy source-of-truth boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, Profile adoption mutation one-claim, and very broad source-span shape audit as auxiliary safety readbacks. Script/subtitle/shot/thumbnail refinement, Timeline / Story Seed / Canon decision, actual production rollback, and provider adapter implementation remain blocked until separate explicit authorization and the relevant local gates still pass.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-Latest Low-text Decision Console refresh started from synced `master` on 2026-07-07 JST with `HEAD...origin/master` clean before edits except local `.serena/project.yml` transport residue. After pulling, `git log -1 --oneline --decorate` shows the exact current remote head.
+Latest Layout Research Decision Shell refresh started from synced `master` on 2026-07-07 JST with `HEAD...origin/master` clean before edits except local `.serena/project.yml` transport residue. After pulling, `git log -1 --oneline --decorate` shows the exact current remote head.

@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Layout Research Decision Shell
+
+- Purpose: Resolve the remaining first-screen limitation where the low-text console is clearer but still feels constrained by card-format layout, equal-weight information, and hardcoded choices.
+- Effect: Adds `public/review/index.html?mode=layout-lab` with low-fidelity Card-first, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow wireframes; adds a five-family heuristic score matrix; recommends the split-pane Decision Shell; and renders a local `decisionFlowModel` choice slot.
+- Requirements: Preserve `public/review/index.html?mode=brief`, `public/review/index.html?mode=bridge`, `fff-low-text-decision-console-001`, `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, selected candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, Evidence Vault optionality, dark mode, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
+- State: Implemented in `fff-layout-research-decision-shell-001`.
+- Owner: Product implementer for UI/readback; human reviewer for whether the split-pane Decision Shell should be applied to the default `brief` route.
+- Next move: Review `public/review/index.html?mode=layout-lab`, compare alternatives A-D, then approve or reject `fff-apply-decision-shell-review-route-001` before any script, subtitle, thumbnail, provider/API, video, rights, upload, database, or final-canon work.
+
 ### Low-text Decision Console
 
 - Purpose: Fix the first-screen review failure where the guided flow still read like mass notes or lecture notes.
