@@ -2,10 +2,10 @@
   "schemaVersion": "fff.translationPolicySourceOfTruthBoundary.v1",
   "artifact_id": "fff-translation-policy-source-of-truth-boundary-001",
   "title": "Fast Fiction Factory Translation Policy Source-of-Truth Boundary",
-  "generatedAt": "2026-07-01T14:18:20.374Z",
+  "generatedAt": "2026-07-06T01:13:00.113Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
   "input_readbacks": {
     "provenance_readback_path": "artifacts/translation-provenance-source-span-readback-result.json",
     "source_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
@@ -193,7 +193,7 @@
   "boundary_checks": {
     "active_artifact_and_provenance_readback_loaded": {
       "passed": true,
-      "detail": "active=fff-contradictory-claim-guard-001; provenance=fff-translation-provenance-source-span-readback-001/true"
+      "detail": "current-active=fff-draft-to-video-planning-bridge-001; provenance=fff-translation-provenance-source-span-readback-001/true"
     },
     "manifest_validation_includes_policy_boundary": {
       "passed": true,
@@ -225,7 +225,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=30; policyMemory=true; provenanceMemory=true; reviewInput=freeform"
+      "detail": "reviewMemory=34; policyMemory=true; provenanceMemory=true; reviewInput=freeform"
     }
   },
   "failures": [],

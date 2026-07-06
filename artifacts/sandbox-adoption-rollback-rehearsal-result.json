@@ -2,10 +2,10 @@
   "schemaVersion": "fff.sandboxAdoptionRollbackRehearsal.v1",
   "artifact_id": "fff-sandbox-adoption-rollback-rehearsal-001",
   "title": "Fast Fiction Factory Sandbox Adoption Rollback Rehearsal",
-  "generatedAt": "2026-07-01T14:18:20.963Z",
+  "generatedAt": "2026-07-06T01:13:00.553Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
   "input_readbacks": {
     "sandbox_adoption_mutation_one_claim_result_path": "artifacts/sandbox-adoption-mutation-one-claim-result.json",
     "adoption_candidate_ledger_dry_run_result_path": "artifacts/adoption-candidate-ledger-dry-run-result.json",

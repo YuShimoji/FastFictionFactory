@@ -2,10 +2,10 @@
   "schemaVersion": "fff.profileAdoptionMutationOneClaim.v1",
   "artifact_id": "fff-profile-adoption-mutation-one-claim-001",
   "title": "Fast Fiction Factory Profile Adoption Mutation One Claim",
-  "generatedAt": "2026-07-01T14:18:21.464Z",
+  "generatedAt": "2026-07-06T01:13:00.898Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
   "input_readbacks": {
     "downstream_target_authorization_packet_result_path": "artifacts/downstream-target-authorization-packet-result.json",
     "production_claim_ledger_rollback_rehearsal_result_path": "artifacts/production-claim-ledger-rollback-rehearsal-result.json",

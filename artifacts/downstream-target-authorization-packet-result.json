@@ -2,10 +2,10 @@
   "schemaVersion": "fff.downstreamTargetAuthorizationPacket.v1",
   "artifact_id": "fff-downstream-target-authorization-packet-001",
   "title": "Fast Fiction Factory Downstream Target Authorization Packet",
-  "generatedAt": "2026-07-01T14:18:21.365Z",
+  "generatedAt": "2026-07-06T01:13:00.834Z",
   "review_status": "ready_for_user_authorization",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
   "input_readbacks": {
     "production_claim_ledger_rollback_rehearsal_result_path": "artifacts/production-claim-ledger-rollback-rehearsal-result.json",
     "production_claim_ledger_adoption_one_claim_result_path": "artifacts/production-claim-ledger-adoption-one-claim-result.json",

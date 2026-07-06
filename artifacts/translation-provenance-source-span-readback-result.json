@@ -2,10 +2,10 @@
   "schemaVersion": "fff.translationProvenanceSourceSpanReadback.v1",
   "artifact_id": "fff-translation-provenance-source-span-readback-001",
   "title": "Fast Fiction Factory Translation Provenance Source-Span Readback",
-  "generatedAt": "2026-07-01T14:18:20.267Z",
+  "generatedAt": "2026-07-06T01:13:00.043Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
   "input_payload_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
   "source_scope": {
     "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
@@ -319,7 +319,7 @@
   "readback_checks": {
     "active_artifact_and_prior_audits_loaded": {
       "passed": true,
-      "detail": "active=fff-contradictory-claim-guard-001; remaining=fff-remaining-fixture-coverage-one-class-001; translated=fff-translated-memo-fixture-audit-001"
+      "detail": "current-active=fff-draft-to-video-planning-bridge-001; remaining=fff-remaining-fixture-coverage-one-class-001; translated=fff-translated-memo-fixture-audit-001"
     },
     "manifest_validation_includes_readback": {
       "passed": true,
@@ -359,7 +359,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=30; reviewInput=freeform"
+      "detail": "reviewMemory=34; reviewInput=freeform"
     }
   },
   "failures": [],

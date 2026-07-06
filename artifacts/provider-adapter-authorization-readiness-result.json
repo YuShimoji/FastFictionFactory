@@ -2,7 +2,7 @@
   "schemaVersion": "fff.providerAdapterAuthorizationReadiness.v1",
   "artifact_id": "fff-provider-adapter-authorization-readiness-001",
   "title": "Fast Fiction Factory Provider Adapter Authorization Readiness",
-  "generatedAt": "2026-07-01T14:18:22.366Z",
+  "generatedAt": "2026-07-06T01:13:01.445Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "render_gate": "L0 No Render",
@@ -145,7 +145,7 @@
   "authorization_readiness_checks": {
     "current_state_verified": {
       "passed": true,
-      "detail": "active=fff-contradictory-claim-guard-001; broad=fff-very-broad-source-span-shape-audit-001/true; translated=fff-translated-memo-fixture-audit-001/true"
+      "detail": "current-active=fff-draft-to-video-planning-bridge-001; broad=fff-very-broad-source-span-shape-audit-001/true; translated=fff-translated-memo-fixture-audit-001/true"
     },
     "provider_api_absence_verified": {
       "passed": true,

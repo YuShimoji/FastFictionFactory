@@ -2,12 +2,12 @@
   "schemaVersion": "fff.providerEnvelopeReadinessNoCall.v1",
   "artifact_id": "fff-provider-envelope-readiness-no-call-001",
   "title": "Fast Fiction Factory Provider Envelope Readiness No-Call Gate",
-  "generatedAt": "2026-07-01T14:18:22.291Z",
+  "generatedAt": "2026-07-06T01:13:01.372Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "boundaryMode": "provider_envelope_readiness_no_call_no_credential_no_provider",
   "envelope_path": "artifacts/provider-envelope-readiness-no-call.example.json",
-  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
   "preserved_model_api_boundary_artifact_id": "fff-model-api-boundary-spec-001",
   "provider_metadata": {
     "runId": "provider-envelope-readiness-fixture-no-call-001",
@@ -112,7 +112,7 @@
     },
     "review_hub_gate_is_readiness_only": {
       "passed": true,
-      "detail": "active Review Hub identity stays contradictory-claim guard and user-side work remains optional"
+      "detail": "active Review Hub identity stays Draft-to-Video Bridge and user-side provider work remains optional"
     }
   },
   "blocked_examples": {

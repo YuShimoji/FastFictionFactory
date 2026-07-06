@@ -2,10 +2,10 @@
   "schemaVersion": "fff.productionClaimLedgerRollbackRehearsal.v1",
   "artifact_id": "fff-production-claim-ledger-rollback-rehearsal-001",
   "title": "Fast Fiction Factory Production Claim Ledger Rollback Rehearsal",
-  "generatedAt": "2026-07-01T14:18:21.263Z",
+  "generatedAt": "2026-07-06T01:13:00.764Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
   "input_readbacks": {
     "production_claim_ledger_adoption_one_claim_result_path": "artifacts/production-claim-ledger-adoption-one-claim-result.json"
   },

@@ -2153,11 +2153,14 @@ async function validateRemainingFixtureCoverageOneClass(smoke, smokePath) {
 
   check(
     "active_and_preserved_identities_kept",
-    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
       contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
       providerEnvelope?.artifact_id === "fff-provider-envelope-readiness-no-call-001" &&
-      providerEnvelope?.preserved_active_artifact_id === "fff-contradictory-claim-guard-001",
-    `active=${manifest.artifact_id}; provider-preserves=${providerEnvelope?.preserved_active_artifact_id}`
+      [
+        "fff-contradictory-claim-guard-001",
+        "fff-draft-to-video-planning-bridge-001"
+      ].includes(providerEnvelope?.preserved_active_artifact_id),
+    `current-active=${manifest.artifact_id}; guard=${contradictoryGuard?.artifact_id}; provider-preserves=${providerEnvelope?.preserved_active_artifact_id}`
   );
   check(
     "one_fixture_class_selected",
@@ -2792,12 +2795,12 @@ async function validateTranslationProvenanceSourceSpanReadback(payload, payloadP
 
   check(
     "active_artifact_and_prior_audits_loaded",
-    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
       remaining?.artifact_id === "fff-remaining-fixture-coverage-one-class-001" &&
       translatedAudit?.artifact_id === "fff-translated-memo-fixture-audit-001" &&
       remaining?.passed === true &&
       translatedAudit?.passed === true,
-    `active=${manifest.artifact_id}; remaining=${remaining?.artifact_id}; translated=${translatedAudit?.artifact_id}`
+    `current-active=${manifest.artifact_id}; remaining=${remaining?.artifact_id}; translated=${translatedAudit?.artifact_id}`
   );
   check(
     "manifest_validation_includes_readback",
@@ -3158,11 +3161,11 @@ async function validateTranslationPolicySourceOfTruthBoundary(provenanceReadback
 
   check(
     "active_artifact_and_provenance_readback_loaded",
-    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
       provenanceReadback.artifact_id === "fff-translation-provenance-source-span-readback-001" &&
       provenanceReadback.schemaVersion === TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_SCHEMA_VERSION &&
       provenanceReadback.passed === true,
-    `active=${manifest.artifact_id}; provenance=${provenanceReadback.artifact_id}/${provenanceReadback.passed}`
+    `current-active=${manifest.artifact_id}; provenance=${provenanceReadback.artifact_id}/${provenanceReadback.passed}`
   );
   check(
     "manifest_validation_includes_policy_boundary",
@@ -3827,11 +3830,11 @@ async function validateHeldClaimAdoptionPreflight(translatedMinimum, translatedM
 
   check(
     "active_artifact_and_translated_fixture_loaded",
-    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
       translatedMinimum.artifact_id === "fff-translated-memo-fixture-minimum-001" &&
       translatedMinimum.schemaVersion === TRANSLATED_MEMO_FIXTURE_MINIMUM_SCHEMA_VERSION &&
       translatedMinimum.passed === true,
-    `active=${manifest.artifact_id}; translated=${translatedMinimum.artifact_id}/${translatedMinimum.passed}`
+    `current-active=${manifest.artifact_id}; translated=${translatedMinimum.artifact_id}/${translatedMinimum.passed}`
   );
   check(
     "held_linked_claim_identified",
@@ -7498,11 +7501,11 @@ async function validateProviderEnvelopeReadinessNoCall(envelope, envelopePath) {
   );
   check(
     "review_hub_gate_is_readiness_only",
-    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
       manifest.review_input_mode === "freeform" &&
       envelope?.reviewSurface?.reviewCardRequired === false &&
       envelope?.reviewSurface?.operatorObservationCardRequired === false,
-    "active Review Hub identity stays contradictory-claim guard and user-side work remains optional"
+    "active Review Hub identity stays Draft-to-Video Bridge and user-side provider work remains optional"
   );
 
   return {
@@ -7650,12 +7653,12 @@ async function validateProviderAdapterAuthorizationReadiness(providerEnvelopeRea
 
   check(
     "current_state_verified",
-    manifest.artifact_id === "fff-contradictory-claim-guard-001" &&
+    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
       veryBroadAudit?.artifact_id === "fff-very-broad-source-span-shape-audit-001" &&
       translatedAudit?.artifact_id === "fff-translated-memo-fixture-audit-001" &&
       veryBroadAudit?.passed === true &&
       translatedAudit?.passed === true,
-    `active=${manifest.artifact_id}; broad=${veryBroadAudit?.artifact_id}/${veryBroadAudit?.passed}; translated=${translatedAudit?.artifact_id}/${translatedAudit?.passed}`
+    `current-active=${manifest.artifact_id}; broad=${veryBroadAudit?.artifact_id}/${veryBroadAudit?.passed}; translated=${translatedAudit?.artifact_id}/${translatedAudit?.passed}`
   );
   check(
     "provider_api_absence_verified",

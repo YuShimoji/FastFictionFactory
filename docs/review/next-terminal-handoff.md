@@ -2,12 +2,13 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-06 JST. This refresh started from synced head
-`d34a1e1` (`d34a1e1 Add review brief and dark mode UX`):
-`git fetch origin`, `git status --short --branch --untracked-files=all`, and
+Latest handoff refresh: 2026-07-06 10:05 JST. This restart/readback refresh
+started from synced head `ffc3c5c` (`ffc3c5c Add draft-to-video planning
+bridge`): `git fetch --prune origin`, `git pull --ff-only origin master`,
+`git status --short --branch --untracked-files=all`, and
 `git rev-list --left-right --count "HEAD...origin/master"` reported tracked
-`master` parity with `0 0` before this implementation refresh. At refresh time,
-the active review checkpoint is `fff-draft-to-video-planning-bridge-001`;
+`master` parity with `0 0`. At refresh time, the active review checkpoint is
+`fff-draft-to-video-planning-bridge-001`;
 it preserves `fff-review-brief-dark-mode-ux-001`,
 `fff-one-story-draft-review-pack-001`,
 `fff-designer-candidate-dashboard-001`, and
@@ -51,7 +52,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this implementation refresh was `d34a1e1`. A local `.serena/project.yml` transport-residue modification may remain unstaged and should not be treated as product work.
+Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this restart/readback refresh was `ffc3c5c`. A local `.serena/project.yml` transport-residue modification may remain unstaged and should not be treated as product work.
 
 3. Read these files in this order:
 
@@ -249,9 +250,11 @@ The active manifest validation command passed for `fff-contradictory-claim-guard
 
 Additional checks passed during this handoff refresh:
 
-- `git fetch origin`
+- `git fetch --prune origin`
+- `git pull --ff-only origin master`
 - `git status --short --branch --untracked-files=all`
-- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on synced baseline `5598c39`.
+- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on synced baseline `ffc3c5c`.
+- `git status --short --branch --untracked-files=all` showed only the local `.serena/project.yml` transport-residue modification before this restart/readback update; it remained unstaged and was excluded from the handoff commit.
 - `node --check tools/fff-state.mjs`
 - `node --check tools/fff-extract-local.mjs`
 - `node --check tools/fff-source-span-review-pack.mjs`

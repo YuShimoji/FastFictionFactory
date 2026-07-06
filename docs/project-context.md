@@ -201,4 +201,4 @@ First next move: use the Draft-to-Video Planning Bridge as the active Review Hub
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-Latest implementation refresh started from synced head `5598c39` (`5598c39 Add downstream target authorization packet`) on 2026-07-01 JST with `HEAD...origin/master` reporting `0 0`; the pushed implementation commit after this line is discoverable with `git log -1 --oneline --decorate` after pulling.
+Latest restart/readback refresh started from synced head `ffc3c5c` (`ffc3c5c Add draft-to-video planning bridge`) on 2026-07-06 10:05 JST with `HEAD...origin/master` reporting `0 0`; the pushed handoff commit after this line is discoverable with `git log -1 --oneline --decorate` after pulling. A local `.serena/project.yml` transport-residue modification may remain unstaged and is not product context.

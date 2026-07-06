@@ -2,10 +2,10 @@
   "schemaVersion": "fff.adoptionCandidateLedgerDryRun.v1",
   "artifact_id": "fff-adoption-candidate-ledger-dry-run-001",
   "title": "Fast Fiction Factory Adoption Candidate Ledger Dry-Run",
-  "generatedAt": "2026-07-01T14:18:20.782Z",
+  "generatedAt": "2026-07-06T01:13:00.395Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-contradictory-claim-guard-001",
+  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
   "input_readbacks": {
     "downstream_adoption_semantics_design_result_path": "artifacts/downstream-adoption-semantics-design-result.json",
     "held_claim_adoption_preflight_result_path": "artifacts/held-claim-adoption-preflight-result.json",

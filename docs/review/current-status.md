@@ -138,6 +138,7 @@ Preserved platform boundary:
 ## What Was Verified
 
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
+- Restart/readback refresh on 2026-07-06 10:05 JST started from `ffc3c5c` (`ffc3c5c Add draft-to-video planning bridge`) after `git fetch --prune origin`, `git pull --ff-only origin master`, and `git rev-list --left-right --count "HEAD...origin/master"` reported already up to date and `0 0`; only local `.serena/project.yml` transport residue was present and it was intentionally left unstaged. The refresh also re-ran the manifest validation command, updated generated result readbacks, kept the active artifact at `fff-draft-to-video-planning-bridge-001`, and made preserved auxiliary artifact ids visible in the Review Hub.
 - Remote-sync handoff refresh on 2026-06-30 JST started from `ea08c669745a9516685841d36c05c0fd5de1e939` (`ea08c66 Add production adoption authorization packet`) after `git fetch --prune origin`, `git pull --ff-only origin master`, and `git rev-list --left-right --count "HEAD...origin/master"` reported already up to date and `0 0`; the pushed docs-only handoff commit is the next `git log -1 --oneline --decorate` value after pulling.
 - Route hygiene before this handoff: `git rev-list --left-right --count
   "HEAD...origin/master"` reported `0 0`; the workspace was clean after the
