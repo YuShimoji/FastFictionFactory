@@ -2,14 +2,13 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-06 10:05 JST. This restart/readback refresh
-started from synced head `ffc3c5c` (`ffc3c5c Add draft-to-video planning
-bridge`): `git fetch --prune origin`, `git pull --ff-only origin master`,
-`git status --short --branch --untracked-files=all`, and
-`git rev-list --left-right --count "HEAD...origin/master"` reported tracked
-`master` parity with `0 0`. At refresh time, the active review checkpoint is
-`fff-draft-to-video-planning-bridge-001`;
-it preserves `fff-review-brief-dark-mode-ux-001`,
+Latest handoff refresh: 2026-07-06 JST for `fff-review-home-map-meters-001`.
+This restart/readback refresh started from synced `master`; before product
+edits, `git status --short --branch --untracked-files=all` showed tracked
+`master` parity with `origin/master`. At refresh time, the active review
+checkpoint is `fff-review-home-map-meters-001`;
+it preserves `fff-draft-to-video-planning-bridge-001`,
+`fff-review-brief-dark-mode-ux-001`,
 `fff-one-story-draft-review-pack-001`,
 `fff-designer-candidate-dashboard-001`, and
 `fff-draft-review-pack-stabilization-001`;
@@ -62,6 +61,8 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/review-home-map-meters.md
+artifacts/review-home-map-meters-result.json
 docs/review/review-brief-dark-mode-ux.md
 artifacts/review-brief-dark-mode-ux-result.json
 docs/review/draft-to-video-planning-bridge.md
@@ -146,10 +147,11 @@ or:
 ./scripts/operator/open_review.sh
 ```
 
-No-query access now defaults to Review Brief. The Operator Track routes are
-`public/review/index.html?mode=brief` and then
-`public/review/index.html?mode=bridge`; the preserved detail routes are
-`public/review/index.html?mode=draft` and
+No-query access now defaults to Review Home. The current read route is
+`public/review/index.html?mode=home`, then
+`public/review/index.html?mode=bridge`; the preserved prelude and detail routes
+are `public/review/index.html?mode=brief`,
+`public/review/index.html?mode=draft`, and
 `public/review/index.html?mode=designer`.
 
 5. Re-run local checks before changing behavior:
@@ -165,10 +167,11 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 
 ## Current Project State
 
-- Active artifact: `fff-draft-to-video-planning-bridge-001`
+- Active artifact: `fff-review-home-map-meters-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Review Home Map Meters doc/result: `docs/review/review-home-map-meters.md`, `artifacts/review-home-map-meters-result.json`
 - Draft-to-Video Planning Bridge doc/result: `docs/review/draft-to-video-planning-bridge.md`, `artifacts/draft-to-video-planning-bridge-result.json`
 - Review Brief Dark Mode UX doc/result: `docs/review/review-brief-dark-mode-ux.md`, `artifacts/review-brief-dark-mode-ux-result.json`
 - One-story Draft Review Pack doc/result: `docs/review/one-story-draft-review-pack.md`, `artifacts/one-story-draft-review-pack-result.json`
@@ -202,12 +205,17 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - State adapter: `tools/fff-state.mjs`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact adds a local Draft-to-Video Planning Bridge for the selected 3-minute mystery-lore route. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, exposes a non-final narration outline plus production planning cues, adds the Review Brief route contract, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, and final canon decisions closed.
+The current artifact adds a Review Home Map before the local Draft-to-Video Planning Bridge. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, exposes seven shelf cards and seven meters for route clarity, story shelves, Evidence Vault shelves, readback inventory, and locked production gates, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, and final canon decisions closed.
 
 ## What Finished
 
+- `fff-review-home-map-meters-001` adds `public/review/index.html?mode=home`, `docs/review/review-home-map-meters.md`, `artifacts/review-home-map-meters-result.json`, and `node tools/fff-state.mjs smoke-review-home-map-meters ...`.
+- No-query access now lands on Review Home; Review Brief remains available at `public/review/index.html?mode=brief`, and Bridge remains the primary production-hypothesis surface at `public/review/index.html?mode=bridge`.
+- The Home Map adds grouped Primary / Story / Evidence navigation, a three-step "what to read now" path, seven shelf cards, seven meters, measured-vs-hypothesis semantics, one-click Bridge access, and Evidence Vault open triggers.
+- Provider/API, credential, publishing, AI video generation, production render, rights-clearance, and final canon boundaries remain closed.
+
 - `fff-draft-to-video-planning-bridge-001` adds `public/review/index.html?mode=bridge`, `docs/review/draft-to-video-planning-bridge.md`, `artifacts/draft-to-video-planning-bridge-result.json`, and `node tools/fff-state.mjs smoke-draft-to-video-planning-bridge ...`.
-- The Review Brief now states the route contract: Operator Track is Review Brief + Draft-to-Video Bridge, Evidence Vault is optional Source Audit / Project Cockpit / Artifacts, and Not Active covers provider/API, AI video, render, upload, final canon, and rights clearance.
+- The preserved Review Brief states the route contract; Review Home now explains when to open Brief, Bridge, story shelves, and Evidence Vault shelves.
 - The bridge preserves selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore`, includes 5 narration outline beats, 5 subtitle/text cues, 5 shot/visual cues, 1 thumbnail brief, 1 sound/mood cue, 5 rights/asset risks, 4 held truths, and 4 reviewer decisions.
 - Dark contrast was tightened for selected candidate/channel cards, review brief cards, pills, badges, tags, links, muted text, and focus-visible states.
 - Provider/API, credential, publishing, AI video generation, production render, rights-clearance, and final canon boundaries remain closed.
@@ -246,7 +254,7 @@ The current artifact adds a local Draft-to-Video Planning Bridge for the selecte
 
 ## Validation Readback
 
-The active manifest validation command passed for `fff-contradictory-claim-guard-001` while also refreshing `fff-provider-envelope-readiness-no-call-001`, `fff-provider-adapter-authorization-readiness-001`, `fff-remaining-fixture-coverage-one-class-001`, `fff-translated-memo-fixture-audit-001`, `fff-translation-provenance-source-span-readback-001`, `fff-translation-policy-source-of-truth-boundary-001`, `fff-translated-memo-fixture-minimum-001`, `fff-held-claim-adoption-preflight-001`, `fff-downstream-adoption-semantics-design-001`, `fff-adoption-candidate-ledger-dry-run-001`, `fff-sandbox-adoption-mutation-one-claim-001`, `fff-sandbox-adoption-rollback-rehearsal-001`, `fff-production-adoption-authorization-packet-001`, `fff-production-claim-ledger-adoption-one-claim-001`, `fff-production-claim-ledger-rollback-rehearsal-001`, `fff-downstream-target-authorization-packet-001`, `fff-profile-adoption-mutation-one-claim-001`, and `fff-very-broad-source-span-shape-audit-001`. It regenerated adapter smoke/matrix outputs, regenerated the source-span review pack, re-ran routing, broad-span, weak-span, missing-fixture, multilingual-fixture, translated/multilingual audit, translation provenance/source-span readback, translation policy boundary, minimal translated memo fixture, held claim adoption preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, production Claim Ledger adoption one-claim, production Claim Ledger rollback rehearsal, downstream target authorization packet, Profile adoption mutation one-claim, very-broad-shape audit, malformed/missing-span, contradictory-claim, downstream gate, provider-envelope, and provider-authorization smokes, validated current/sample project state, validated the sample extraction payload, and checked the Review Hub text for the active artifact plus provider readiness evidence.
+The active Home Map smoke validates `fff-review-home-map-meters-001` while preserving the bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior active manifest validation command remains the broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks; run it when touching those underlying contracts, not merely to review the Home Map.
 
 Additional checks passed during this handoff refresh:
 
@@ -305,6 +313,8 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
+| Verify: Home then Bridge review | Starts from the Review Home Map, then checks the Draft-to-Video Bridge only if the map makes the shelves understandable | Human reviewer can accept, revise, or reject the production hypothesis without reopening Source Audit / Project Cockpit / Artifacts by default |
+| Advance: bridge refinement | Uses an accepted Home Map and Bridge route to detail narration rhythm, subtitles, screen beats, and thumbnail candidates | One video package can become clearer while provider/API, video generation, upload, rights clearance, and final canon remain locked |
 | Advance: provider adapter authorization | Uses the authorization readiness Decision Packet only after provider choice, credentials, endpoint, transport scope, external call permission, timeout, and retry policy are explicitly approved | A real adapter can be implemented without silently crossing the boundary |
 | Verify: contradictory claim guard | Re-runs the held-conflict fixture and result after adapter edits | Future Claim Ledger acceptance paths can fail before they auto-promote conflicts |
 | Advance: post-Profile adoption target | Uses the completed Profile adoption readback while keeping Timeline / Story Seed / Canon decision closed | A future implementation can target Timeline, Story Seed, Canon decision, or actual rollback only after separate explicit authorization |
@@ -320,6 +330,7 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
+| Review Home Map Meters | Make folded shelves legible before Bridge review | `fff-review-home-map-meters-001` is active; no-query access opens Home with seven shelf cards and seven meters | Human reviewer should open Home, then Bridge, and only open Evidence Vault shelves when auditing |
 | Contradictory claim handling | Prevent conflicting claims from entering canon automatically | Guarded by a valid fixture and smoke result; truth choice remains human-owned | Keep the guard required for any future Claim Ledger acceptance path |
 | Downstream adoption readiness | Ensure Claim Ledger / Profile / Timeline / Story Seed / Canon decision choices stay source-tracked and unauthorized until selected | Readback gate passes with 0 adopted Profile / Timeline candidates; held claim preflight, semantics design, ledger dry-run, sandbox rollback, production authorization, Claim Ledger adoption, Claim Ledger rollback rehearsal, downstream target authorization, and Profile adoption now prove exactly 1 retained Claim Ledger production adoption row plus 1 Profile-only non-canon annotation with rollback descriptors and 0 actual rollback/canon/Timeline/Story Seed/provider effects | Keep further adoption, actual rollback, canon, provider/API, and additional-claim work blocked until explicitly requested |
 | Provider envelope and authorization readiness | Fix future provider output shape and approval boundary before transport exists | No-call readback passes, and authorization readiness lists 6 blocked items plus 3 options; no provider, endpoint, credential, project-state mutation, or adopted canon output exists | Use as required preconditions, not as provider integration |

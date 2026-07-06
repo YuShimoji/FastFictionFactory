@@ -2,12 +2,12 @@
   "schemaVersion": "fff.reviewBriefDarkModeUx.v1",
   "artifact_id": "fff-review-brief-dark-mode-ux-001",
   "title": "Fast Fiction Factory Review Brief and Dark Mode UX",
-  "generatedAt": "2026-07-06T01:12:58.090Z",
+  "generatedAt": "2026-07-06T06:47:07.679Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",
   "access_route": "public/review/index.html?mode=brief",
-  "input_result_path": "artifacts/review-brief-dark-mode-ux-result.json",
+  "input_result_path": "./artifacts/review-brief-dark-mode-ux-result.json",
   "source_result_paths": {
     "designer_candidate_dashboard": "artifacts/designer-candidate-dashboard-result.json",
     "one_story_draft_review_pack": "artifacts/one-story-draft-review-pack-result.json",
@@ -35,7 +35,7 @@
     "selected_candidate_id_visible": true,
     "selected_channel_route_visible": true,
     "japanese_summary_present": true,
-    "no_query_default_mode": "brief",
+    "no_query_default_mode": "home",
     "advanced_sections_collapsed_or_demoted": true
   },
   "theme_compatibility": {
@@ -66,7 +66,7 @@
     "selected_candidate_id_visible": true,
     "selected_channel_route_visible": true,
     "japanese_summary_present": true,
-    "no_query_default_mode": "brief",
+    "no_query_default_mode": "home",
     "dark_mode_toggle_present": true,
     "color_scheme_supports_light_dark": true,
     "hardcoded_light_surfaces_reduced": true,
@@ -84,7 +84,7 @@
     "failures": 0
   },
   "validation_notes": [
-    "Review Brief is a local first-screen compression and discoverability layer only.",
+    "Review Home is now the no-query default; Review Brief remains a preserved prelude route.",
     "Dark mode support is implemented through review UI theme variables and localStorage preference.",
     "Designer Dashboard, One-story Draft Review Pack, and Stabilization readbacks remain preserved.",
     "Draft-to-Video Bridge is linked as a separate local pre-production planning mode only.",
@@ -113,7 +113,7 @@
     },
     "brief_is_default": {
       "passed": true,
-      "detail": "default=brief"
+      "detail": "default=home; briefRoutePreserved=true"
     },
     "draft_to_video_bridge_linked": {
       "passed": true,

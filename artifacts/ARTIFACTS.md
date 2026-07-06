@@ -1,5 +1,23 @@
 # Artifacts
 
+## fff-review-home-map-meters-001
+
+- Title: Fast Fiction Factory Review Home Map and Meters
+- Purpose: Replace the folded-closet first impression with a Review Home Map that links each major shelf to purpose, status, meter, open trigger, and next action while preserving the Bridge and all production boundaries.
+- Repo relative path: `public/review/index.html`
+- Default mode route: `public/review/index.html?mode=home`
+- Preserved prelude route: `public/review/index.html?mode=brief`
+- Primary review route: `public/review/index.html?mode=bridge`
+- Evidence Vault routes: `public/review/index.html?mode=source`, `public/review/index.html?mode=project`, `public/review/index.html?mode=artifacts`
+- Review doc: `docs/review/review-home-map-meters.md`
+- Readback result: `artifacts/review-home-map-meters-result.json`
+- Source artifacts: `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-draft-review-pack-stabilization-001`, `fff-contradictory-claim-guard-001`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-review-home-map-meters artifacts/review-home-map-meters-result.json artifacts/review-home-map-meters-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active local review checkpoint; no-query access now lands on Review Home, seven shelf cards and seven meters summarize the review route, story shelves, Evidence Vault, and locked production gates. Provider/API, credentials, AI video generation, render, upload, final canon, and rights-clearance claims remain closed.
+
 ## fff-draft-to-video-planning-bridge-001
 
 - Title: Fast Fiction Factory Draft-to-Video Planning Bridge
@@ -31,7 +49,7 @@
 - Validation command: `node tools/fff-state.mjs smoke-review-brief-dark-mode-ux artifacts/review-brief-dark-mode-ux-result.json artifacts/review-brief-dark-mode-ux-result.json`
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
-- State: Preserved operator prelude; no-query access defaults to Review Brief, selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore` are visible, the route contract points to `public/review/index.html?mode=bridge`, advanced source/project/artifact panels remain available as Evidence Vault shelves, Light / Dark / Auto theme controls are present, and the prior Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
+- State: Preserved operator prelude; no-query access now defaults to Review Home while `public/review/index.html?mode=brief` remains available. Selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore` are visible, the route contract points to `public/review/index.html?mode=bridge`, advanced source/project/artifact panels remain available as Evidence Vault shelves, Light / Dark / Auto theme controls are present, and the prior Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
 
 ## fff-draft-review-pack-stabilization-001
 

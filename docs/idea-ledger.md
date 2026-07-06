@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Review Home Map Meters
+
+- Purpose: Make the first review screen explain the folded shelves instead of hiding them behind tabs.
+- Effect: Adds `public/review/index.html?mode=home` with a three-step read path, grouped Primary / Story / Evidence navigation, seven shelf cards, seven status meters, open triggers, do-not-open conditions, and one-click Bridge access.
+- Requirements: Preserve Draft-to-Video Bridge, Review Brief, Designer Dashboard, One-story Draft Review Pack, Stabilization, and Contradictory Claim Guard readbacks; keep provider/API calls, credentials, publishing, AI video generation, production render, final canon, and rights-clearance claims closed.
+- State: Implemented in `fff-review-home-map-meters-001`.
+- Owner: Product implementer for UI/readback; human reviewer for whether the map fixes the closet-like organization problem.
+- Next move: Use `public/review/index.html?mode=home` first, then `public/review/index.html?mode=bridge`; revise the map only if the reviewer still cannot tell what to read, skip, or audit.
+
 ### Draft-to-Video Planning Bridge
 
 - Purpose: Let the reviewer inspect the selected 3-minute mystery-lore route as a production hypothesis before any video generation, provider/API work, upload, rights claim, or final canon decision.
@@ -18,7 +27,7 @@
 - Requirements: Preserve Designer Dashboard, One-story Draft Review Pack, Draft Review Pack Stabilization, and the Draft-to-Video Planning Bridge readback; keep work local-only; do not add provider/API calls, credentials, publishing, AI video generation, production render, rights-clearance claims, or final canon decisions.
 - State: Implemented in `fff-review-brief-dark-mode-ux-001`.
 - Owner: Product implementer for UI/readback; human reviewer for candidate, channel, and held-truth decisions.
-- Next move: Use `public/review/index.html?mode=brief` as the operator prelude and route contract before reading `public/review/index.html?mode=bridge`.
+- Next move: Keep `public/review/index.html?mode=brief` as the preserved prelude route; the current first screen is `public/review/index.html?mode=home`.
 
 ### Draft Review Pack Stabilization
 
@@ -106,6 +115,6 @@
 - Purpose: Eventually package reviewed fiction outputs for YouTube or AI-video workflows.
 - Effect: Connects reviewed outlines to production surfaces.
 - Requirements: Requires final rights review, credential isolation, production approval gates, and explicit human release decisions.
-- State: Draft-to-Video Planning Bridge implemented in `fff-draft-to-video-planning-bridge-001`; actual publishing, upload, AI video generation, production render, rights clearance, and final canon remain out of scope for the current MVP.
+- State: Review Home Map implemented in `fff-review-home-map-meters-001` and Draft-to-Video Planning Bridge implemented in `fff-draft-to-video-planning-bridge-001`; actual publishing, upload, AI video generation, production render, rights clearance, and final canon remain out of scope for the current MVP.
 - Owner: Human product owner plus production implementer.
 - Next move: Do not start until review workflow and source/canon gates are accepted.

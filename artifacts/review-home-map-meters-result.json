@@ -1,0 +1,215 @@
+{
+  "schemaVersion": "fff.reviewHomeMapMeters.v1",
+  "artifact_id": "fff-review-home-map-meters-001",
+  "title": "Fast Fiction Factory Review Home Map and Meters",
+  "generatedAt": "2026-07-06T06:47:07.685Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=home",
+  "input_result_path": "./artifacts/review-home-map-meters-result.json",
+  "default_mode": "home",
+  "home_map_visible": true,
+  "shelf_card_count": 7,
+  "meter_count": 7,
+  "measured_meter_count": 6,
+  "hypothesis_meter_count": 1,
+  "primary_operator_routes": [
+    "public/review/index.html?mode=home",
+    "public/review/index.html?mode=bridge",
+    "public/review/index.html?mode=brief"
+  ],
+  "evidence_vault_routes": [
+    "public/review/index.html?mode=source",
+    "public/review/index.html?mode=project",
+    "public/review/index.html?mode=artifacts"
+  ],
+  "locked_gate_count": 6,
+  "bridge_link_visible": true,
+  "evidence_open_triggers_visible": true,
+  "dark_mode_preserved": true,
+  "source_artifacts_preserved": true,
+  "source_artifacts": [
+    "fff-draft-to-video-planning-bridge-001",
+    "fff-review-brief-dark-mode-ux-001",
+    "fff-one-story-draft-review-pack-001",
+    "fff-designer-candidate-dashboard-001",
+    "fff-draft-review-pack-stabilization-001",
+    "fff-contradictory-claim-guard-001"
+  ],
+  "shelf_cards": [
+    {
+      "label": "Review Home / Brief",
+      "route": "public/review/index.html?mode=home / public/review/index.html?mode=brief",
+      "purpose": "Show the current read path, shelf map, and user-side next action before opening detailed evidence.",
+      "status": "review_route",
+      "meter": "Review Route Clarity 4/5",
+      "meter_mode": "hypothesis",
+      "open_when": "The user is starting review or has lost orientation.",
+      "do_not_open_when": "The user is already ready to judge the bridge package.",
+      "next_action": "Open Draft-to-Video Bridge."
+    },
+    {
+      "label": "Draft-to-Video Bridge",
+      "route": "public/review/index.html?mode=bridge",
+      "purpose": "Review the selected 3-minute mystery-lore production hypothesis before generation.",
+      "status": "review_ready",
+      "meter": "Bridge Package 8/10",
+      "meter_mode": "measured",
+      "open_when": "The user needs to accept, revise, or reject route, narration, text, visuals, thumbnail, risks, or held truths.",
+      "do_not_open_when": "The user only needs source-span or artifact audit.",
+      "next_action": "Return freeform review on the bridge."
+    },
+    {
+      "label": "Draft Review Pack",
+      "route": "public/review/index.html?mode=draft",
+      "purpose": "Inspect the one-story draft materials that feed the bridge.",
+      "status": "source_shelf",
+      "meter": "Draft Detail 7/10",
+      "meter_mode": "measured",
+      "open_when": "The bridge feels wrong and the user wants the underlying beats, text cues, visuals, or risk cards.",
+      "do_not_open_when": "The bridge is enough to judge the production hypothesis.",
+      "next_action": "Name the bridge refinement needed."
+    },
+    {
+      "label": "Designer Dashboard",
+      "route": "public/review/index.html?mode=designer",
+      "purpose": "Explain why this candidate and channel route were selected.",
+      "status": "source_shelf",
+      "meter": "Candidate Coverage 7/10",
+      "meter_mode": "measured",
+      "open_when": "The user wants to replace the candidate or channel route.",
+      "do_not_open_when": "The selected route is acceptable for bridge review.",
+      "next_action": "Record a replacement reason or keep the selected route."
+    },
+    {
+      "label": "Source Audit",
+      "route": "public/review/index.html?mode=source",
+      "purpose": "Audit extraction evidence and source-span validity.",
+      "status": "evidence_vault",
+      "meter": "Source Evidence Health 9/10",
+      "meter_mode": "measured",
+      "open_when": "The user needs to inspect source refs, source spans, routing, or extraction safety.",
+      "do_not_open_when": "The user is judging creative direction only.",
+      "next_action": "Flag only the suspicious span or route."
+    },
+    {
+      "label": "Project Cockpit",
+      "route": "public/review/index.html?mode=project",
+      "purpose": "Inspect history, boundaries, and locked gates.",
+      "status": "evidence_vault",
+      "meter": "Risk & Gate State 0/6 open",
+      "meter_mode": "measured",
+      "open_when": "The user needs to verify what is authorized, blocked, or still human-owned.",
+      "do_not_open_when": "The user is only reviewing bridge quality.",
+      "next_action": "Return to development if a boundary appears open."
+    },
+    {
+      "label": "Artifacts",
+      "route": "public/review/index.html?mode=artifacts",
+      "purpose": "Inspect files, docs, JSON readbacks, and validation logs.",
+      "status": "evidence_vault",
+      "meter": "Readback Inventory 8/10",
+      "meter_mode": "measured",
+      "open_when": "The user needs file or validation proof.",
+      "do_not_open_when": "The user is doing normal freeform bridge review.",
+      "next_action": "Name the missing artifact or failing validation only."
+    }
+  ],
+  "meter_semantics": {
+    "measured": "Use only local counts, static readback flags, preserved result JSON, and locked gate counts.",
+    "hypothesis": "Use only UX clarity or user-burden judgments; never imply production readiness."
+  },
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "final_canon_decision": false,
+  "rights_cleared_claim": false,
+  "summary": {
+    "default_mode": "home",
+    "home_map_visible": true,
+    "shelf_card_count": 7,
+    "meter_count": 7,
+    "measured_meter_count": 6,
+    "hypothesis_meter_count": 1,
+    "primary_operator_route_count": 3,
+    "evidence_vault_route_count": 3,
+    "locked_gate_count": 6,
+    "bridge_link_visible": true,
+    "evidence_open_triggers_visible": true,
+    "dark_mode_preserved": true,
+    "source_artifacts_preserved": true,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "failures": 0
+  },
+  "validation_notes": [
+    "Review Home is the no-query default and maps folded shelves back to purpose, meter, trigger, and action.",
+    "Evidence Vault shelves are summarized, not removed.",
+    "Measured meters are backed by local counts and readbacks; hypothesis meters are only UX clarity signals.",
+    "No provider/API, AI video, render, upload, final canon, or rights clearance boundary is opened."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-review-home-map-meters-001; schema=fff.reviewHomeMapMeters.v1; route=public/review/index.html?mode=home; default=home"
+    },
+    "home_map_visible": {
+      "passed": true,
+      "detail": "home=true; default=home"
+    },
+    "shelf_cards_and_meters": {
+      "passed": true,
+      "detail": "shelves=7; meters=7; measured=6; hypothesis=1"
+    },
+    "what_to_read_now_pathway": {
+      "passed": true,
+      "detail": "primaryRoutes=public/review/index.html?mode=home, public/review/index.html?mode=bridge, public/review/index.html?mode=brief"
+    },
+    "home_to_shelf_links": {
+      "passed": true,
+      "detail": "bridgeLink=true"
+    },
+    "evidence_vault_mapping": {
+      "passed": true,
+      "detail": "evidenceRoutes=public/review/index.html?mode=source, public/review/index.html?mode=project, public/review/index.html?mode=artifacts; triggers=true"
+    },
+    "dark_mode_preserved": {
+      "passed": true,
+      "detail": "darkMode=true"
+    },
+    "source_artifacts_preserved": {
+      "passed": true,
+      "detail": "bridge=fff-draft-to-video-planning-bridge-001/true; brief=fff-review-brief-dark-mode-ux-001/true; draft=fff-one-story-draft-review-pack-001/true; designer=fff-designer-candidate-dashboard-001/true; stabilization=fff-draft-review-pack-stabilization-001/true; contradictory=fff-contradictory-claim-guard-001/true"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "local=true; locked=6; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

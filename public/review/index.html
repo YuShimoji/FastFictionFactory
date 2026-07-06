@@ -29,6 +29,10 @@
       --pill-border: rgba(34, 92, 130, 0.38);
       --route-contract-bg: #eef5fa;
       --route-contract-border: rgba(34, 92, 130, 0.35);
+      --meter-track: #e5ebef;
+      --meter-fill: #225c82;
+      --meter-warning: #8a6914;
+      --meter-locked: #9f3c35;
       --link: #1f5f88;
       --muted-strong: #3f4b55;
       --blue: #225c82;
@@ -63,6 +67,10 @@
       --pill-border: rgba(120, 188, 231, 0.58);
       --route-contract-bg: #122436;
       --route-contract-border: rgba(120, 188, 231, 0.46);
+      --meter-track: #253442;
+      --meter-fill: #78bce7;
+      --meter-warning: #e2c46a;
+      --meter-locked: #ee8d85;
       --link: #9ed8ff;
       --muted-strong: #c6d2dd;
       --blue: #78bce7;
@@ -98,6 +106,10 @@
         --pill-border: rgba(120, 188, 231, 0.58);
         --route-contract-bg: #122436;
         --route-contract-border: rgba(120, 188, 231, 0.46);
+        --meter-track: #253442;
+        --meter-fill: #78bce7;
+        --meter-warning: #e2c46a;
+        --meter-locked: #ee8d85;
         --link: #9ed8ff;
         --muted-strong: #c6d2dd;
         --blue: #78bce7;
@@ -338,6 +350,35 @@
       gap: 8px;
     }
 
+    .mode-tab-stack {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 0.8fr;
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .mode-tab-group {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px;
+      background: var(--paper);
+    }
+
+    .mode-group-label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .mode-tab-group .mode-tabs {
+      grid-template-columns: repeat(auto-fit, minmax(116px, 1fr));
+    }
+
     .mode-tab {
       min-height: 54px;
       padding: 8px 10px;
@@ -366,6 +407,201 @@
     .mode-tab.is-advanced {
       border-style: dashed;
       opacity: 0.86;
+    }
+
+    .review-home {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .home-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.8fr);
+      gap: 12px;
+      align-items: stretch;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .read-now-steps {
+      display: grid;
+      gap: 8px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .read-now-steps li {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 8px;
+      align-items: start;
+      color: var(--muted-strong);
+    }
+
+    .step-index {
+      display: inline-flex;
+      width: 24px;
+      height: 24px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      color: var(--pill-ink);
+      font-weight: 800;
+      font-size: 12px;
+      border: 1px solid var(--pill-border);
+    }
+
+    .home-meter-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .home-meter-chip {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--paper-soft);
+    }
+
+    .home-meter-chip strong,
+    .home-meter-chip span {
+      display: block;
+    }
+
+    .home-meter-chip span {
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .home-map-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .shelf-card {
+      min-width: 0;
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+    }
+
+    .shelf-card.primary {
+      border-left: 4px solid var(--blue);
+      background: var(--paper-soft);
+    }
+
+    .shelf-card.evidence {
+      border-left: 4px solid var(--violet);
+    }
+
+    .shelf-card.locked {
+      border-left: 4px solid var(--red);
+      background: var(--danger-bg);
+    }
+
+    .shelf-topline {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .shelf-topline h3 {
+      margin: 0;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--pill-border);
+      background: var(--pill-bg);
+      color: var(--pill-ink);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .meter-block {
+      display: grid;
+      gap: 5px;
+    }
+
+    .meter-label {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--muted-strong);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .meter-bar {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: var(--meter-track);
+    }
+
+    .meter-fill {
+      display: block;
+      height: 100%;
+      width: var(--meter-value, 50%);
+      border-radius: inherit;
+      background: var(--meter-fill);
+    }
+
+    .meter-fill.warning {
+      background: var(--meter-warning);
+    }
+
+    .meter-fill.locked {
+      background: var(--meter-locked);
+    }
+
+    .meter-meta {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .shelf-facts {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 6px 10px;
+      margin: 0;
+      color: var(--muted-strong);
+      font-size: 13px;
+    }
+
+    .shelf-facts dt {
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .shelf-facts dd {
+      margin: 0;
+    }
+
+    .shelf-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
     }
 
     .mode-summary-grid {
@@ -563,6 +799,7 @@
       display: none !important;
     }
 
+    body[data-review-mode="home"] [data-mode-panel="home"],
     body[data-review-mode="brief"] [data-mode-panel="brief"],
     body[data-review-mode="bridge"] [data-mode-panel="bridge"],
     body[data-review-mode="story"] [data-mode-panel="story"],
@@ -1283,8 +1520,12 @@
 
       .summary-strip,
       .hub-grid,
+      .mode-tab-stack,
       .mode-tabs,
       .mode-summary-grid,
+      .home-hero,
+      .home-meter-strip,
+      .home-map-grid,
       .brief-grid,
       .route-contract,
       .bridge-grid,
@@ -1306,7 +1547,7 @@
     }
   </style>
 </head>
-<body data-review-mode="brief">
+<body data-review-mode="home">
   <div class="app-shell">
     <header class="topbar">
       <div class="topbar-inner">
@@ -1336,8 +1577,8 @@
         <div class="hub-header">
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
-            <h2 id="visual-review-title">Review Mode Cockpit <span class="jp-label">レビュー目的を選ぶ</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-draft-to-video-planning-bridge-001</strong>. まずReview Briefで読む範囲を確認し、次にDraft-to-Video Bridgeで制作仮説だけを確認します。詳細証跡はEvidence Vaultとして保持します。</p>
+            <h2 id="visual-review-title">Review Home Map <span class="jp-label">レビュー棚の地図</span></h2>
+            <p class="lede">Active artifact id: <strong>fff-review-home-map-meters-001</strong>. まずReview Homeで読む順番と棚の状態を確認し、次にDraft-to-Video Bridgeで制作仮説だけを判断します。Source Audit / Project Cockpit / Artifacts はEvidence Vaultとして必要時だけ開きます。</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1347,17 +1588,34 @@
         </div>
 
         <nav class="mode-switcher" aria-label="Review mode navigation">
-          <div class="mode-tabs">
-            <button class="mode-tab" type="button" data-mode-target="brief" aria-pressed="true"><strong>Review Brief</strong><span>まずここを見る</span></button>
-            <button class="mode-tab" type="button" data-mode-target="bridge" aria-pressed="false"><strong>Draft-to-Video Bridge</strong><span>今回の制作仮説</span></button>
-            <button class="mode-tab" type="button" data-mode-target="story" aria-pressed="false"><strong>Story Review</strong><span>ストーリーレビュー</span></button>
-            <button class="mode-tab" type="button" data-mode-target="designer" aria-pressed="false"><strong>Designer Dashboard</strong><span>Content strategy</span></button>
-            <button class="mode-tab" type="button" data-mode-target="draft" aria-pressed="false"><strong>Draft Review Pack</strong><span>One story draft</span></button>
-            <button class="mode-tab is-advanced" type="button" data-mode-target="source" aria-pressed="false"><strong>Source Audit</strong><span>詳細: 抽出根拠</span></button>
-            <button class="mode-tab is-advanced" type="button" data-mode-target="project" aria-pressed="false"><strong>Project Cockpit</strong><span>詳細: 状態履歴</span></button>
-            <button class="mode-tab is-advanced" type="button" data-mode-target="artifacts" aria-pressed="false"><strong>Artifacts</strong><span>詳細: 検証</span></button>
+          <div class="mode-tab-stack">
+            <div class="mode-tab-group primary">
+              <span class="mode-group-label">Primary operator route</span>
+              <div class="mode-tabs">
+                <button class="mode-tab" type="button" data-mode-target="home" aria-pressed="true"><strong>Review Home</strong><span>地図とメーター</span></button>
+                <button class="mode-tab" type="button" data-mode-target="bridge" aria-pressed="false"><strong>Draft-to-Video Bridge</strong><span>今回の制作仮説</span></button>
+                <button class="mode-tab" type="button" data-mode-target="brief" aria-pressed="false"><strong>Review Brief</strong><span>入口の要約</span></button>
+              </div>
+            </div>
+            <div class="mode-tab-group">
+              <span class="mode-group-label">Story shelves</span>
+              <div class="mode-tabs">
+                <button class="mode-tab" type="button" data-mode-target="draft" aria-pressed="false"><strong>Draft Review Pack</strong><span>One story draft</span></button>
+                <button class="mode-tab" type="button" data-mode-target="designer" aria-pressed="false"><strong>Designer Dashboard</strong><span>Content strategy</span></button>
+                <button class="mode-tab" type="button" data-mode-target="story" aria-pressed="false"><strong>Story Review</strong><span>本文と候補</span></button>
+              </div>
+            </div>
+            <div class="mode-tab-group">
+              <span class="mode-group-label">Evidence only</span>
+              <div class="mode-tabs">
+                <button class="mode-tab is-advanced" type="button" data-mode-target="source" aria-pressed="false"><strong>Source Audit</strong><span>抽出根拠</span></button>
+                <button class="mode-tab is-advanced" type="button" data-mode-target="project" aria-pressed="false"><strong>Project Cockpit</strong><span>状態履歴</span></button>
+                <button class="mode-tab is-advanced" type="button" data-mode-target="artifacts" aria-pressed="false"><strong>Artifacts</strong><span>検証ログ</span></button>
+              </div>
+            </div>
           </div>
           <div class="mode-summary-grid">
+            <div class="mode-summary"><strong>Review Home</strong><span class="jp-label">どこを見るかを確認</span></div>
             <div class="mode-summary"><strong>Review Brief</strong><span class="jp-label">最初の判断だけを確認</span></div>
             <div class="mode-summary"><strong>Draft-to-Video Bridge</strong><span class="jp-label">制作前の仮説確認</span></div>
             <div class="mode-summary"><strong>Story Review</strong><span class="jp-label">本文・候補・未決定を確認</span></div>
@@ -1369,6 +1627,197 @@
           </div>
           <p class="section-note">Stable IDs, JSON keys, artifact IDs, and file paths remain English. Japanese labels are display-only review aids.</p>
         </nav>
+
+        <section class="review-home" id="review-home-root" data-mode-panel="home" data-home-map="review-home-map-meters" aria-labelledby="review-home-title">
+          <div class="home-hero">
+            <div>
+              <p class="hub-eyebrow">Review Home / レビュー棚の地図</p>
+              <h2 id="review-home-title">いま読む場所、開かなくてよい棚、次の判断を一画面で見る</h2>
+              <p class="lede">折りたたまれた情報をただ隠すのではなく、各棚を目的・状態・メーター・開く条件・次の動きに戻しました。今回の主線はHomeからBridgeへ進み、Evidence Vaultは監査が必要な時だけ開きます。</p>
+              <ol class="read-now-steps" aria-label="What to read now pathway">
+                <li><span class="step-index">1</span><span><strong>Review Home</strong>で棚の地図とメーターを確認する。</span></li>
+                <li><span class="step-index">2</span><span><strong>Draft-to-Video Bridge</strong>で3分ミステリー・ロア路線の制作仮説を見る。</span></li>
+                <li><span class="step-index">3</span><span>route / narration / subtitle / visual / thumbnail / held truths について自由記述で返す。</span></li>
+              </ol>
+              <div class="brief-actions">
+                <button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Bridgeを見る</button>
+                <button class="brief-action" type="button" data-mode-target="brief" aria-pressed="false">Briefを開く</button>
+                <button class="brief-action" type="button" data-mode-target="source" aria-pressed="false">証跡棚を開く</button>
+              </div>
+            </div>
+            <div class="home-meter-strip" aria-label="Review home status meters">
+              <div class="home-meter-chip">
+                <strong>2 screens</strong>
+                <span>読む主線: Home + Bridge</span>
+              </div>
+              <div class="home-meter-chip">
+                <strong>0 / 6 open</strong>
+                <span>Production Gates locked</span>
+              </div>
+              <div class="home-meter-chip">
+                <strong>7 shelves</strong>
+                <span>目的と開く条件を表示</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="home-map-grid" aria-label="Home Map shelf meters">
+            <article class="shelf-card primary" data-shelf-card="review-home-brief">
+              <div class="shelf-topline">
+                <h3>Review Home / Brief</h3>
+                <span class="status-pill">review route</span>
+              </div>
+              <div class="meter-block">
+                <div class="meter-label"><span>Review Route Clarity</span><span>4 / 5</span></div>
+                <div class="meter-bar" aria-label="Review route clarity meter"><span class="meter-fill" style="--meter-value: 80%"></span></div>
+                <div class="meter-meta">meter_mode: hypothesis. User burden is improved, but human readback still decides if it feels organized.</div>
+              </div>
+              <dl class="shelf-facts">
+                <dt>route</dt><dd>public/review/index.html?mode=home / public/review/index.html?mode=brief</dd>
+                <dt>purpose</dt><dd>読む順番、棚の意味、開かなくてよい場所を先に見る。</dd>
+                <dt>open_when</dt><dd>最初に迷った時、または全体の現在地を確認したい時。</dd>
+                <dt>do_not_open_when</dt><dd>制作仮説だけを判断する準備ができている時はBridgeへ進む。</dd>
+                <dt>next_action</dt><dd>Bridgeの制作仮説を読む。</dd>
+              </dl>
+              <div class="shelf-actions">
+                <button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Bridgeを見る</button>
+                <button class="brief-action" type="button" data-mode-target="brief" aria-pressed="false">Briefを開く</button>
+              </div>
+            </article>
+
+            <article class="shelf-card primary" data-shelf-card="draft-to-video-bridge">
+              <div class="shelf-topline">
+                <h3>Draft-to-Video Bridge</h3>
+                <span class="status-pill">review-ready</span>
+              </div>
+              <div class="meter-block">
+                <div class="meter-label"><span>Bridge Package</span><span>8 / 10</span></div>
+                <div class="meter-bar" aria-label="Bridge package meter"><span class="meter-fill" style="--meter-value: 80%"></span></div>
+                <div class="meter-meta">meter_mode: measured. 10 bridge cards, 5 narration cues, 5 subtitle cues, 5 visual cues, 5 rights risks.</div>
+              </div>
+              <dl class="shelf-facts">
+                <dt>route</dt><dd>public/review/index.html?mode=bridge</dd>
+                <dt>purpose</dt><dd>3分ミステリー・ロア路線を動画生成前の制作仮説として判断する。</dd>
+                <dt>open_when</dt><dd>この路線で進めるか、サムネ・字幕・画面構成を見たい時。</dd>
+                <dt>do_not_open_when</dt><dd>source-spanや履歴の監査だけが目的の時。</dd>
+                <dt>next_action</dt><dd>accept / revise / reject を自由記述で返す。</dd>
+              </dl>
+              <div class="shelf-actions">
+                <button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Bridgeを見る</button>
+              </div>
+            </article>
+
+            <article class="shelf-card" data-shelf-card="draft-review-pack">
+              <div class="shelf-topline">
+                <h3>Draft Review Pack</h3>
+                <span class="status-pill">source shelf</span>
+              </div>
+              <div class="meter-block">
+                <div class="meter-label"><span>Draft Detail</span><span>7 / 10</span></div>
+                <div class="meter-bar" aria-label="Draft review pack meter"><span class="meter-fill" style="--meter-value: 70%"></span></div>
+                <div class="meter-meta">meter_mode: measured. 5 draft beats, 4 visual cues, 4 subtitle/text cues, 4 risk cards.</div>
+              </div>
+              <dl class="shelf-facts">
+                <dt>route</dt><dd>public/review/index.html?mode=draft</dd>
+                <dt>purpose</dt><dd>Bridgeの背後にある1本分の暫定ドラフト材料を確認する。</dd>
+                <dt>open_when</dt><dd>Bridgeの骨格に違和感があり、元のbeatやtext cueへ戻りたい時。</dd>
+                <dt>do_not_open_when</dt><dd>Bridgeだけで制作仮説を判断できる時。</dd>
+                <dt>next_action</dt><dd>Bridgeの修正点を具体化する。</dd>
+              </dl>
+              <div class="shelf-actions">
+                <button class="brief-action" type="button" data-mode-target="draft" aria-pressed="false">候補棚を開く</button>
+              </div>
+            </article>
+
+            <article class="shelf-card" data-shelf-card="designer-dashboard">
+              <div class="shelf-topline">
+                <h3>Designer Dashboard</h3>
+                <span class="status-pill">source shelf</span>
+              </div>
+              <div class="meter-block">
+                <div class="meter-label"><span>Candidate Coverage</span><span>7 / 10</span></div>
+                <div class="meter-bar" aria-label="Designer dashboard meter"><span class="meter-fill" style="--meter-value: 70%"></span></div>
+                <div class="meter-meta">meter_mode: measured. 3 content candidates, 3 channel proposals, 5 draft spine beats, 3 held decisions.</div>
+              </div>
+              <dl class="shelf-facts">
+                <dt>route</dt><dd>public/review/index.html?mode=designer</dd>
+                <dt>purpose</dt><dd>なぜこの候補とチャンネルが選ばれたかを見る材料棚。</dd>
+                <dt>open_when</dt><dd>候補そのものを差し替えたい時、または別チャンネル路線を見たい時。</dd>
+                <dt>do_not_open_when</dt><dd>選択済み候補でBridgeを判断するだけなら開かない。</dd>
+                <dt>next_action</dt><dd>候補またはチャンネルを替える理由を記録する。</dd>
+              </dl>
+              <div class="shelf-actions">
+                <button class="brief-action" type="button" data-mode-target="designer" aria-pressed="false">Dashboardを開く</button>
+              </div>
+            </article>
+
+            <article class="shelf-card evidence" data-shelf-card="source-audit">
+              <div class="shelf-topline">
+                <h3>Source Audit</h3>
+                <span class="status-pill">Evidence Vault</span>
+              </div>
+              <div class="meter-block">
+                <div class="meter-label"><span>Source Evidence Health</span><span>9 / 10</span></div>
+                <div class="meter-bar" aria-label="Source audit meter"><span class="meter-fill" style="--meter-value: 90%"></span></div>
+                <div class="meter-meta">meter_mode: measured. 60 source-pack rows, 0 mismatches, 0 missing refs, 0 unsafe visual routes.</div>
+              </div>
+              <dl class="shelf-facts">
+                <dt>route</dt><dd>public/review/index.html?mode=source</dd>
+                <dt>purpose</dt><dd>抽出根拠とsource-span検証。通常は読まなくてよい。</dd>
+                <dt>open_when</dt><dd>Bridgeの根拠、引用位置、抽出の安全性を監査したい時。</dd>
+                <dt>do_not_open_when</dt><dd>制作仮説の方向性だけを判断する時。</dd>
+                <dt>next_action</dt><dd>怪しいspanやroutingだけを指摘する。</dd>
+              </dl>
+              <div class="shelf-actions">
+                <button class="brief-action" type="button" data-mode-target="source" aria-pressed="false">証跡棚を開く</button>
+              </div>
+            </article>
+
+            <article class="shelf-card evidence" data-shelf-card="project-cockpit">
+              <div class="shelf-topline">
+                <h3>Project Cockpit</h3>
+                <span class="status-pill">Evidence Vault</span>
+              </div>
+              <div class="meter-block">
+                <div class="meter-label"><span>Risk & Gate State</span><span>0 / 6 open</span></div>
+                <div class="meter-bar" aria-label="Project cockpit gate meter"><span class="meter-fill locked" style="--meter-value: 0%"></span></div>
+                <div class="meter-meta">meter_mode: measured. provider/API, AI video, render, upload, final canon, rights clearance remain locked.</div>
+              </div>
+              <dl class="shelf-facts">
+                <dt>route</dt><dd>public/review/index.html?mode=project</dd>
+                <dt>purpose</dt><dd>履歴・境界・進行状況。迷った時だけ開く。</dd>
+                <dt>open_when</dt><dd>今どこまで許可済みか、何が未承認かを確認したい時。</dd>
+                <dt>do_not_open_when</dt><dd>Bridgeの読み心地だけを判断する時。</dd>
+                <dt>next_action</dt><dd>境界違反があればBridgeではなく開発側に戻す。</dd>
+              </dl>
+              <div class="shelf-actions">
+                <button class="brief-action" type="button" data-mode-target="project" aria-pressed="false">Cockpitを開く</button>
+              </div>
+            </article>
+
+            <article class="shelf-card evidence" data-shelf-card="artifacts">
+              <div class="shelf-topline">
+                <h3>Artifacts</h3>
+                <span class="status-pill">Evidence Vault</span>
+              </div>
+              <div class="meter-block">
+                <div class="meter-label"><span>Readback Inventory</span><span>8 / 10</span></div>
+                <div class="meter-bar" aria-label="Artifacts inventory meter"><span class="meter-fill" style="--meter-value: 80%"></span></div>
+                <div class="meter-meta">meter_mode: measured. Review docs, JSON readbacks, manifest, and validation logs are preserved.</div>
+              </div>
+              <dl class="shelf-facts">
+                <dt>route</dt><dd>public/review/index.html?mode=artifacts</dd>
+                <dt>purpose</dt><dd>ファイル・検証ログ。監査時だけ開く。</dd>
+                <dt>open_when</dt><dd>実装証跡、結果JSON、docsの所在を確認したい時。</dd>
+                <dt>do_not_open_when</dt><dd>ユーザー側の制作仮説レビューだけを進める時。</dd>
+                <dt>next_action</dt><dd>不足ファイルや検証ログだけを指摘する。</dd>
+              </dl>
+              <div class="shelf-actions">
+                <button class="brief-action" type="button" data-mode-target="artifacts" aria-pressed="false">検証ログを開く</button>
+              </div>
+            </article>
+          </div>
+        </section>
 
         <section class="review-brief" id="review-brief-root" data-mode-panel="brief" aria-labelledby="review-brief-title">
           <div class="hub-panel">
@@ -1455,6 +1904,7 @@
             <p class="lede">Review Briefで進めると確認された候補を、動画前の確認パッケージにしました。これは最終脚本・絵コンテ・サムネ・動画ではありません。</p>
             <div class="tag-row">
               <span class="tag blue">public/review/index.html?mode=bridge</span>
+              <span class="tag blue">fff-draft-to-video-planning-bridge-001</span>
               <span class="tag gold">pre-production only</span>
               <span class="tag red">no AI video generation</span>
               <span class="tag red">no render</span>
@@ -2534,8 +2984,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const modeButtons = Array.from(document.querySelectorAll("[data-mode-target]"));
     const themeButtons = Array.from(document.querySelectorAll("[data-theme-target]"));
     const THEME_STORAGE_KEY = "fff-review-theme";
-    const REVIEW_MODES = ["brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"];
-    const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "brief";
+    const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"];
+    const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "home";
 
     memoInput.value = state.memo || sampleMemo;
     jsonExportOutput.value = state.exportPreview || "";
@@ -2557,7 +3007,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     });
 
     function setReviewMode(mode) {
-      const nextMode = REVIEW_MODES.includes(mode) ? mode : "brief";
+      const nextMode = REVIEW_MODES.includes(mode) ? mode : "home";
       document.body.setAttribute("data-review-mode", nextMode);
       modeButtons.forEach((button) => {
         button.setAttribute("aria-pressed", button.getAttribute("data-mode-target") === nextMode ? "true" : "false");
