@@ -1,0 +1,162 @@
+{
+  "schemaVersion": "fff.guidedReviewFlowWorkspace.v1",
+  "artifact_id": "fff-guided-review-flow-workspace-001",
+  "title": "Fast Fiction Factory Guided Review Flow Workspace",
+  "generatedAt": "2026-07-06T14:24:28.027Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=brief",
+  "bridge_route": "public/review/index.html?mode=bridge",
+  "input_result_path": "artifacts/guided-review-flow-workspace-result.json",
+  "source_overview_artifact_id": "fff-bridge-refinement-overview-ribbon-001",
+  "source_result_paths": {
+    "bridge_refinement_overview_ribbon": "artifacts/bridge-refinement-overview-ribbon-result.json",
+    "home_cockpit_metric_linking": "artifacts/home-cockpit-metric-linking-result.json",
+    "draft_to_video_planning_bridge": "artifacts/draft-to-video-planning-bridge-result.json",
+    "review_brief_dark_mode_ux": "artifacts/review-brief-dark-mode-ux-result.json",
+    "one_story_draft_review_pack": "artifacts/one-story-draft-review-pack-result.json",
+    "designer_candidate_dashboard": "artifacts/designer-candidate-dashboard-result.json",
+    "contradictory_claim_guard": "artifacts/contradictory-claim-guard-result.json"
+  },
+  "guided_flow_visible": true,
+  "primary_action_count": 1,
+  "decision_queue_visible": true,
+  "decision_queue_step_count": 6,
+  "current_step_count": 1,
+  "pinned_tray_visible": true,
+  "pinned_item_count": 7,
+  "operations_notice_visible": true,
+  "important_folder_count": 5,
+  "evidence_folder_optional": true,
+  "inspiration_workspace_visible": true,
+  "inspiration_prompt_count": 15,
+  "bridge_guided_flow_visible": true,
+  "bridge_guided_step_count": 6,
+  "card_grid_demoted": true,
+  "latest_overview_preserved": true,
+  "dark_mode_preserved": true,
+  "selected_candidate_id": "designer-content-moth-investigation-3m",
+  "selected_channel_route_id": "designer-channel-mystery-lore",
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "final_canon_decision": false,
+    "database_persistence": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "final_canon_decision": false,
+  "database_persistence": false,
+  "rights_cleared_claim": false,
+  "summary": {
+    "guided_flow_visible": true,
+    "primary_action_count": 1,
+    "decision_queue_step_count": 6,
+    "current_step_count": 1,
+    "pinned_item_count": 7,
+    "important_folder_count": 5,
+    "inspiration_prompt_count": 15,
+    "bridge_guided_step_count": 6,
+    "card_grid_demoted": true,
+    "evidence_folder_optional": true,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "final_canon_decision": false,
+    "database_persistence": false,
+    "rights_cleared_claim": false,
+    "failures": 0
+  },
+  "validation_notes": [
+    "The first visible brief section is a guided review flow, not a card grid.",
+    "The top guided flow exposes exactly one primary action and exactly one current decision step.",
+    "Pinned items, operations notices, important folders, and inspiration prompts separate state, actions, evidence, and creative thinking.",
+    "Bridge mode adds an ordered guided sequence before detailed bridge cards.",
+    "Evidence Vault remains optional, and provider/API, video, render, upload, database, rights, and final-canon lanes remain closed."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-guided-review-flow-workspace-001; schema=fff.guidedReviewFlowWorkspace.v1; ui=public/review/index.html; access=public/review/index.html?mode=brief; bridge=public/review/index.html?mode=bridge"
+    },
+    "source_readbacks_preserved": {
+      "passed": true,
+      "detail": "overview=fff-bridge-refinement-overview-ribbon-001/true; home=fff-home-cockpit-metric-linking-001/true; bridge=fff-draft-to-video-planning-bridge-001/true; brief=fff-review-brief-dark-mode-ux-001/true; draft=fff-one-story-draft-review-pack-001/true; designer=fff-designer-candidate-dashboard-001/true; contradictory=fff-contradictory-claim-guard-001/true"
+    },
+    "guided_flow_visible_first": {
+      "passed": true,
+      "detail": "guided=49506; latest=63058; firstCard=67546"
+    },
+    "primary_action_exactly_one": {
+      "passed": true,
+      "detail": "primaryActionCount=1"
+    },
+    "decision_queue_ordered": {
+      "passed": true,
+      "detail": "steps=6; current=1; required=6/6"
+    },
+    "pinned_tray_visible": {
+      "passed": true,
+      "detail": "pins=7; required=7/7"
+    },
+    "operations_notice_visible": {
+      "passed": true,
+      "detail": "operations notice should separate latest state from evidence"
+    },
+    "important_folders_visible": {
+      "passed": true,
+      "detail": "folders=5; required=5/5"
+    },
+    "evidence_folder_optional": {
+      "passed": true,
+      "detail": "Evidence folder should remain optional and audit-only"
+    },
+    "inspiration_workspace_visible": {
+      "passed": true,
+      "detail": "prompts=15"
+    },
+    "bridge_guided_flow_visible": {
+      "passed": true,
+      "detail": "bridgeSteps=6"
+    },
+    "card_grid_demoted": {
+      "passed": true,
+      "detail": "demoted=6; guided=49506; firstCard=67546"
+    },
+    "latest_overview_preserved": {
+      "passed": true,
+      "detail": "overview=fff-bridge-refinement-overview-ribbon-001/true"
+    },
+    "dark_mode_preserved": {
+      "passed": true,
+      "detail": "theme variables and toggles should remain present"
+    },
+    "candidate_channel_preserved": {
+      "passed": true,
+      "detail": "candidate=designer-content-moth-investigation-3m; channel=designer-channel-mystery-lore"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "local=true; external=false; provider=false; credentials=false; upload=false; video=false; render=false; canon=false; database=false; rights=false; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

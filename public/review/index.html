@@ -438,6 +438,233 @@
       box-shadow: var(--shadow);
     }
 
+    .guided-flow {
+      display: grid;
+      gap: 14px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--green);
+      border-radius: 8px;
+      padding: 16px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .guided-flow-top {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .status-brief {
+      display: grid;
+      gap: 6px;
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted-strong);
+      font-size: 13px;
+    }
+
+    .primary-review-action {
+      display: grid;
+      gap: 10px;
+      align-content: center;
+      border: 1px solid var(--route-contract-border);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--route-contract-bg);
+    }
+
+    .primary-review-action .primary {
+      width: 100%;
+      min-height: 46px;
+      border-color: var(--blue);
+      background: var(--blue);
+      color: var(--primary-ink);
+      font-weight: 800;
+    }
+
+    .current-step-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      color: var(--muted-strong);
+      font-size: 13px;
+    }
+
+    .decision-queue {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: decision-step;
+    }
+
+    .decision-step {
+      counter-increment: decision-step;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: start;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--surface-muted);
+    }
+
+    .decision-step::before {
+      content: counter(decision-step);
+      display: inline-flex;
+      width: 28px;
+      height: 28px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      border: 1px solid var(--pill-border);
+      background: var(--pill-bg);
+      color: var(--pill-ink);
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .decision-step[data-decision-step-state="current"] {
+      border-left: 4px solid var(--blue);
+      background: var(--active-bg);
+    }
+
+    .decision-step[data-decision-step-state="locked"],
+    .decision-step[data-decision-step-state="evidence-only"] {
+      opacity: 0.92;
+    }
+
+    .decision-step-body {
+      display: grid;
+      gap: 4px;
+    }
+
+    .decision-step-body strong {
+      font-size: 14px;
+    }
+
+    .decision-step-body span {
+      color: var(--muted-strong);
+      font-size: 13px;
+    }
+
+    .decision-link {
+      align-self: center;
+      min-height: 32px;
+      padding: 4px 9px;
+      white-space: nowrap;
+    }
+
+    .pinned-tray,
+    .operations-notice,
+    .important-folders,
+    .inspiration-workspace,
+    .bridge-guided-flow {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper-soft);
+    }
+
+    .pin-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pin-item {
+      display: inline-flex;
+      max-width: 100%;
+      gap: 6px;
+      align-items: center;
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 5px 9px;
+      background: var(--pill-bg);
+      color: var(--pill-ink);
+      font-size: 12px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .operations-notice ul,
+    .inspiration-prompt-list {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted-strong);
+      font-size: 13px;
+    }
+
+    .folder-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .folder-row {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.7fr) minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: start;
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+    }
+
+    .folder-row:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .folder-row strong {
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .folder-meta {
+      display: grid;
+      gap: 3px;
+      color: var(--muted-strong);
+      font-size: 13px;
+    }
+
+    .inspiration-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .inspiration-column {
+      min-width: 0;
+      border-top: 2px solid var(--line);
+      padding-top: 8px;
+    }
+
+    .inspiration-column h4 {
+      margin: 0 0 6px;
+      font-size: 13px;
+    }
+
+    .legacy-cockpit-detail {
+      border-top: 1px dashed var(--line);
+      padding-top: 12px;
+    }
+
+    .legacy-cockpit-detail[data-card-grid-demoted="true"] {
+      opacity: 0.94;
+    }
+
     .latest-overview-header,
     .bridge-overview-reference {
       display: flex;
@@ -1719,6 +1946,9 @@
       .mode-summary-grid,
       .home-hero,
       .latest-overview-grid,
+      .guided-flow-top,
+      .folder-row,
+      .inspiration-grid,
       .home-meter-strip,
       .home-map-grid,
       .cockpit-card-grid,
@@ -1776,8 +2006,8 @@
         <div class="hub-header">
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
-            <h2 id="visual-review-title">Home Cockpit / Review Brief <span class="jp-label">今見る場所</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-home-cockpit-metric-linking-001</strong>. デフォルトの Review Brief を Home Cockpit として使い、Bridge へ進む前に Operator Track、Workbench、Evidence Vault、Locked Lanes と読み取りメーターを一画面で確認します。</p>
+            <h2 id="visual-review-title">Guided Review Flow / Review Brief <span class="jp-label">レビュー進行</span></h2>
+            <p class="lede">Active artifact id: <strong>fff-guided-review-flow-workspace-001</strong>. デフォルトの Review Brief をカード壁ではなく順番レビューの操作面として使い、Bridge へ進む前に次の判断、ピン、業務連絡、重要フォルダ、発想棚を一画面で確認します。</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1825,7 +2055,165 @@
           <p class="section-note">Stable IDs, JSON keys, artifact IDs, and file paths remain English. Japanese labels are display-only review aids. <strong>public/review/index.html?mode=home</strong> is kept as an alias to the same Home Cockpit for compatibility.</p>
         </nav>
 
-        <section class="review-home" id="review-home-root" data-mode-panel="brief" data-home-map="review-home-map-meters" data-home-cockpit="home-cockpit-metric-linking" aria-labelledby="home-cockpit-title">
+        <section class="review-home" id="review-home-root" data-mode-panel="brief" data-home-map="review-home-map-meters" data-home-cockpit="home-cockpit-metric-linking" aria-labelledby="guided-flow-title">
+          <section class="guided-flow" data-guided-flow="guided-review-flow-workspace" aria-labelledby="guided-flow-title">
+            <div class="guided-flow-top">
+              <div>
+                <p class="hub-eyebrow">Guided Review Flow / レビュー進行</p>
+                <h2 id="guided-flow-title">次に見る順番をUI側で提案する</h2>
+                <p class="lede">今回の標準動線は決まっています。まずrouteを確認し、Bridge内でナレーション、字幕リズム、画面順、サムネ方向、保留真実の順に見ます。Source Audit / Project Cockpit / Artifacts は監査時だけ開く Evidence Vault です。</p>
+                <ul class="status-brief" aria-label="Status Brief">
+                  <li><strong>latest:</strong> f5ae10b handoff is current; product baseline is a332884 overview/bridge refinement.</li>
+                  <li><strong>now:</strong> public/review/index.html?mode=brief から public/review/index.html?mode=bridge へ進む。</li>
+                  <li><strong>closed:</strong> provider/API, AI video, render, upload, final canon, rights clearance remain locked.</li>
+                </ul>
+              </div>
+              <div class="primary-review-action" aria-label="Primary guided action">
+                <div class="current-step-line"><span class="status-pill">current</span><strong>1. Route confirmation</strong></div>
+                <p class="section-note">最初の回答は「この3分ミステリー・ロア路線でBridgeレビューを続けるか」です。</p>
+                <button class="brief-action primary" type="button" data-mode-target="bridge" data-guided-primary-action="true" aria-pressed="false">Bridgeの順番レビューを開始</button>
+              </div>
+            </div>
+
+            <section aria-labelledby="decision-queue-title">
+              <div class="cockpit-section-header">
+                <div>
+                  <p class="hub-eyebrow">Decision Queue / 判断キュー</p>
+                  <h3 id="decision-queue-title">上から順に答える</h3>
+                </div>
+                <span class="status-pill">one current step</span>
+              </div>
+              <ol class="decision-queue" data-decision-queue="true">
+                <li class="decision-step" data-decision-step="route-confirmation" data-decision-step-state="current">
+                  <div class="decision-step-body">
+                    <strong>Route confirmation / 路線確認</strong>
+                    <span>why: 候補とチャンネルがずれると後続の字幕・画面・サムネ判断が全部変わる。</span>
+                    <span>answer: このまま進める / 別路線に戻す / 保留する。</span>
+                  </div>
+                  <button class="decision-link" type="button" data-mode-target="bridge" data-bridge-anchor="bridge-route-summary" aria-pressed="false">Bridge</button>
+                </li>
+                <li class="decision-step" data-decision-step="narration-direction" data-decision-step-state="next">
+                  <div class="decision-step-body">
+                    <strong>Narration direction / ナレーション方向</strong>
+                    <span>why: 語り口が決まると、3分動画の圧と間が決まる。</span>
+                    <span>answer: 説明寄り / 余白寄り / もっと文学寄り。</span>
+                  </div>
+                  <button class="decision-link" type="button" data-mode-target="bridge" data-bridge-anchor="bridge-narration" aria-pressed="false">Bridge</button>
+                </li>
+                <li class="decision-step" data-decision-step="subtitle-rhythm" data-decision-step-state="later">
+                  <div class="decision-step-body">
+                    <strong>Subtitle rhythm / 字幕リズム</strong>
+                    <span>why: 読む速度と謎の出し方が変わる。</span>
+                    <span>answer: 短く切る / 溜める / 次sliceで行分割を詰める。</span>
+                  </div>
+                  <button class="decision-link" type="button" data-mode-target="bridge" data-bridge-anchor="bridge-subtitle" aria-pressed="false">Bridge</button>
+                </li>
+                <li class="decision-step" data-decision-step="visual-order" data-decision-step-state="later">
+                  <div class="decision-step-body">
+                    <strong>Visual order / 画面順</strong>
+                    <span>why: 手がかりの順番が変わると視聴者の理解順も変わる。</span>
+                    <span>answer: 現行順でよい / mothを早める / ledgerを強める。</span>
+                  </div>
+                  <button class="decision-link" type="button" data-mode-target="bridge" data-bridge-anchor="bridge-visual-order" aria-pressed="false">Bridge</button>
+                </li>
+                <li class="decision-step" data-decision-step="thumbnail-direction" data-decision-step-state="later">
+                  <div class="decision-step-body">
+                    <strong>Thumbnail direction / サムネ方向</strong>
+                    <span>why: 入口がobject hookかparadox hookかで見え方が変わる。</span>
+                    <span>answer: brass moth / bellless tower / ledger names のどれを優先するか。</span>
+                  </div>
+                  <button class="decision-link" type="button" data-mode-target="bridge" data-bridge-anchor="bridge-thumbnail" aria-pressed="false">Bridge</button>
+                </li>
+                <li class="decision-step" data-decision-step="held-truth-policy" data-decision-step-state="later">
+                  <div class="decision-step-body">
+                    <strong>Held-truth policy / 保留真実方針</strong>
+                    <span>why: Toma fate, brass moth truth, Council motiveを決めるとcanon領域へ近づく。</span>
+                    <span>answer: 今回も保留 / 1つだけ狭める / まだ触らない。</span>
+                  </div>
+                  <button class="decision-link" type="button" data-mode-target="bridge" data-bridge-anchor="bridge-held-truths" aria-pressed="false">Bridge</button>
+                </li>
+              </ol>
+            </section>
+
+            <section class="pinned-tray" data-pinned-tray="true" aria-labelledby="pinned-tray-title">
+              <div class="cockpit-section-header">
+                <div><p class="hub-eyebrow">Pinned Tray / 一時ピン</p><h3 id="pinned-tray-title">判断中に埋もれさせない項目</h3></div>
+                <span class="status-pill">static pins</span>
+              </div>
+              <ul class="pin-list">
+                <li class="pin-item" data-pinned-item="selected-candidate" data-pin-static="true">candidate: designer-content-moth-investigation-3m</li>
+                <li class="pin-item" data-pinned-item="selected-channel-route" data-pin-static="true">channel: designer-channel-mystery-lore</li>
+                <li class="pin-item" data-pinned-item="active-artifact" data-pin-static="true">active: fff-guided-review-flow-workspace-001</li>
+                <li class="pin-item" data-pinned-item="source-overview-artifact" data-pin-static="true">preserves: fff-bridge-refinement-overview-ribbon-001</li>
+                <li class="pin-item" data-pinned-item="held-truth-toma-fate" data-pin-static="true">Toma fate held</li>
+                <li class="pin-item" data-pinned-item="held-truth-brass-moth" data-pin-static="true">brass moth truth held</li>
+                <li class="pin-item" data-pinned-item="held-truth-council-motive" data-pin-static="true">Council motive held</li>
+              </ul>
+            </section>
+
+            <section class="operations-notice" data-operations-notice="true" aria-labelledby="operations-notice-title">
+              <div class="cockpit-section-header">
+                <div><p class="hub-eyebrow">Operations Notice / 業務連絡</p><h3 id="operations-notice-title">通知は証跡と分ける</h3></div>
+                <span class="status-pill">3-5 lines</span>
+              </div>
+              <ul>
+                <li>latest handoff: f5ae10b Refresh terminal handoff snapshot; product baseline: a332884 Add bridge refinement overview ribbon.</li>
+                <li>current route: brief opens this guided workspace; Bridge is the ordered review target.</li>
+                <li>passed readbacks: overview ribbon, home cockpit, bridge, draft, designer, contradictory claim guard.</li>
+                <li>locked: provider/API, credentials, AI video, render, upload, database persistence, final canon, rights clearance.</li>
+              </ul>
+            </section>
+
+            <section class="important-folders" data-important-folders="true" aria-labelledby="important-folders-title">
+              <div class="cockpit-section-header">
+                <div><p class="hub-eyebrow">Important Folders / 重要フォルダ</p><h3 id="important-folders-title">棚は目的別に開く</h3></div>
+                <span class="status-pill">foldered</span>
+              </div>
+              <div class="folder-list">
+                <div class="folder-row" data-folder-role="current-work">
+                  <div><strong>Current Work</strong><span class="status-pill">open now</span></div>
+                  <div class="folder-meta"><span>purpose: Overview + Bridgeで現在地と次判断を見る。</span><span>open_when: 今回のレビューを始める時。</span><span>do_not_open_when: source監査だけをする時。</span><span>next_action: Bridgeの順番レビューを開始。</span></div>
+                  <button class="decision-link" type="button" data-mode-target="bridge" aria-pressed="false">Bridge</button>
+                </div>
+                <div class="folder-row" data-folder-role="materials">
+                  <div><strong>Materials</strong><span class="status-pill">fallback</span></div>
+                  <div class="folder-meta"><span>purpose: Draft / Designer / StoryでBridgeの背後の材料を見る。</span><span>open_when: routeや素材前提に違和感がある時。</span><span>do_not_open_when: Bridgeだけで判断できる時。</span><span>next_action: 該当するcueや候補だけ戻す。</span></div>
+                  <button class="decision-link" type="button" data-mode-target="draft" aria-pressed="false">Draft</button>
+                </div>
+                <div class="folder-row" data-folder-role="evidence">
+                  <div><strong>Evidence</strong><span class="status-pill">audit only</span></div>
+                  <div class="folder-meta"><span>purpose: Source Audit / Project Cockpit / Artifactsで根拠と境界を確認する。</span><span>open_when: 証跡、権利、境界、readbackに疑問がある時。</span><span>do_not_open_when: 通常の制作仮説レビュー中。</span><span>next_action: 怪しい証跡だけ指摘する。</span></div>
+                  <button class="decision-link" type="button" data-mode-target="source" aria-pressed="false">Source</button>
+                </div>
+                <div class="folder-row" data-folder-role="inspiration">
+                  <div><strong>Inspiration</strong><span class="status-pill">thinking aid</span></div>
+                  <div class="folder-meta"><span>purpose: motif / hook / tone bankで発想を増幅する。</span><span>open_when: Bridgeの方向をより魅力的にしたい時。</span><span>do_not_open_when: evidence確認をしたい時。</span><span>next_action: 気になる語感や問いだけ拾う。</span></div>
+                  <button class="decision-link" type="button" data-mode-target="brief" aria-pressed="false">Stay</button>
+                </div>
+                <div class="folder-row" data-folder-role="locked">
+                  <div><strong>Locked</strong><span class="status-pill">closed</span></div>
+                  <div class="folder-meta"><span>purpose: provider/API / AI video / render / upload / database persistence / canon / rightsを閉じたまま見える化する。</span><span>open_when: 境界違反が心配な時。</span><span>do_not_open_when: 実装許可として扱う時。</span><span>next_action: 開けない。明示承認が必要。</span></div>
+                  <button class="decision-link" type="button" data-mode-target="project" aria-pressed="false">Locked</button>
+                </div>
+              </div>
+            </section>
+
+            <section class="inspiration-workspace" data-inspiration-workspace="true" aria-labelledby="inspiration-workspace-title">
+              <div class="cockpit-section-header">
+                <div><p class="hub-eyebrow">Inspiration Workspace / インスピレーション棚</p><h3 id="inspiration-workspace-title">証跡ではなく、考えるための棚</h3></div>
+                <span class="status-pill">pre-production</span>
+              </div>
+              <div class="inspiration-grid">
+                <div class="inspiration-column"><h4>motif words</h4><ul class="inspiration-prompt-list"><li data-inspiration-prompt="motif-bell">missing bell</li><li data-inspiration-prompt="motif-moth">brass moth</li><li data-inspiration-prompt="motif-ledger">erased names</li></ul></div>
+                <div class="inspiration-column"><h4>tone references</h4><ul class="inspiration-prompt-list"><li data-inspiration-prompt="tone-quiet">quiet investigative mystery</li><li data-inspiration-prompt="tone-archival">archival unease</li><li data-inspiration-prompt="tone-clockwork">clockwork pressure</li></ul></div>
+                <div class="inspiration-column"><h4>hook phrases</h4><ul class="inspiration-prompt-list"><li data-inspiration-prompt="hook-bell">The bell was removed. It still rang.</li><li data-inspiration-prompt="hook-minutes">Some names were paid for in minutes.</li><li data-inspiration-prompt="hook-moth">Toma left a brass moth, not an answer.</li></ul></div>
+                <div class="inspiration-column"><h4>question prompts</h4><ul class="inspiration-prompt-list"><li data-inspiration-prompt="question-time">What is worth restoring first: time or names?</li><li data-inspiration-prompt="question-object">Is the moth a key, a warning, or bait?</li><li data-inspiration-prompt="question-council">Was the Council hiding guilt or panic?</li></ul></div>
+                <div class="inspiration-column"><h4>thumbnail emotion</h4><ul class="inspiration-prompt-list"><li data-inspiration-prompt="thumbnail-curiosity">object curiosity</li><li data-inspiration-prompt="thumbnail-unease">quiet unease</li><li data-inspiration-prompt="thumbnail-choice">impossible choice</li></ul></div>
+              </div>
+              <p class="section-note">この棚はfinal script、final thumbnail、generated image、final assetを作りません。Bridge判断のための発想補助だけです。</p>
+            </section>
+          </section>
+
           <section class="latest-overview-ribbon" data-latest-overview="bridge-refinement-overview-ribbon" aria-labelledby="latest-overview-title">
             <div class="latest-overview-header">
               <div>
@@ -1890,7 +2278,7 @@
             </div>
           </div>
 
-          <section class="cockpit-section" data-card-group="operator-track" aria-labelledby="operator-track-title">
+          <section class="cockpit-section legacy-cockpit-detail" data-card-grid-demoted="true" data-card-group="operator-track" aria-labelledby="operator-track-title">
             <div class="cockpit-section-header">
               <div>
                 <p class="hub-eyebrow">Operator Track / 今読む導線</p>
@@ -1935,7 +2323,7 @@
             </div>
           </section>
 
-          <section class="cockpit-section" data-card-group="readiness-meters" aria-labelledby="readiness-meter-title">
+          <section class="cockpit-section legacy-cockpit-detail" data-card-grid-demoted="true" data-card-group="readiness-meters" aria-labelledby="readiness-meter-title">
             <div class="cockpit-section-header">
               <div>
                 <p class="hub-eyebrow">Actionable Readiness Meters / 判断メーター</p>
@@ -2001,7 +2389,7 @@
             </div>
           </section>
 
-          <section class="cockpit-section" data-card-group="workbench" aria-labelledby="workbench-title">
+          <section class="cockpit-section legacy-cockpit-detail" data-card-grid-demoted="true" data-card-group="workbench" aria-labelledby="workbench-title">
             <div class="cockpit-section-header"><div><p class="hub-eyebrow">Workbench / 材料棚</p><h3 id="workbench-title">違和感がある時だけ戻る場所</h3></div><span class="status-pill">optional</span></div>
             <div class="cockpit-card-grid">
               <article class="shelf-card" data-home-cockpit-card="workbench" data-shelf-card="draft-review-pack">
@@ -2025,7 +2413,7 @@
             </div>
           </section>
 
-          <section class="cockpit-section" data-card-group="evidence-vault" aria-labelledby="evidence-vault-title">
+          <section class="cockpit-section legacy-cockpit-detail" data-card-grid-demoted="true" data-card-group="evidence-vault" aria-labelledby="evidence-vault-title">
             <div class="cockpit-section-header"><div><p class="hub-eyebrow">Evidence Vault / 証跡棚</p><h3 id="evidence-vault-title">監査が必要な時だけ開く</h3></div><span class="status-pill">audit only</span></div>
             <div class="cockpit-card-grid">
               <article class="shelf-card evidence" data-home-cockpit-card="evidence" data-shelf-card="source-audit">
@@ -2049,7 +2437,7 @@
             </div>
           </section>
 
-          <section class="cockpit-section" data-card-group="locked-lanes" aria-labelledby="locked-lanes-title">
+          <section class="cockpit-section legacy-cockpit-detail" data-card-grid-demoted="true" data-card-group="locked-lanes" aria-labelledby="locked-lanes-title">
             <div class="cockpit-section-header"><div><p class="hub-eyebrow">Locked Lanes / まだ開かない作業</p><h3 id="locked-lanes-title">生成・公開・確定は 0 / 5 のまま保持</h3></div><span class="status-pill">closed</span></div>
             <div class="locked-lane-grid">
               <article class="locked-lane" data-locked-lane="provider-api"><h4>provider/API</h4><p class="section-note">locked 0 / 5. Provider choice, endpoint, credentials, timeout, retry policy are not configured.</p></article>
@@ -2159,6 +2547,40 @@
               <span class="tag red">no upload</span>
             </div>
           </div>
+
+          <section class="bridge-guided-flow" data-bridge-guided-flow="true" aria-labelledby="bridge-guided-flow-title">
+            <div class="bridge-refinement-header">
+              <p class="hub-eyebrow">Bridge Guided Flow / Bridge順番レビュー</p>
+              <h3 id="bridge-guided-flow-title">詳細カードへ入る前に、判断順を固定する</h3>
+              <p class="section-note">このBridgeでは、route確認から始めて、ナレーション、字幕、画面順、サムネ、保留真実、rights boundaryの順に読みます。詳細カードはこの順番を補足する下位材料です。</p>
+            </div>
+            <ol class="decision-queue" data-bridge-decision-queue="true">
+              <li class="decision-step" data-bridge-decision-step="route-confirmation" data-bridge-step-state="current">
+                <div class="decision-step-body"><strong>1. Route confirmation</strong><span>見る場所: 選択ルート要約。答えること: この候補とチャンネルのまま進めるか。</span></div>
+                <span class="status-pill">current</span>
+              </li>
+              <li class="decision-step" data-bridge-decision-step="narration-direction" data-bridge-step-state="next">
+                <div class="decision-step-body"><strong>2. Narration direction</strong><span>見る場所: ナレーション候補。答えること: 説明量と余白のバランス。</span></div>
+                <span class="status-pill">next</span>
+              </li>
+              <li class="decision-step" data-bridge-decision-step="subtitle-rhythm" data-bridge-step-state="later">
+                <div class="decision-step-body"><strong>3. Subtitle rhythm</strong><span>見る場所: 字幕リズム候補。答えること: 短く切るか、溜めるか。</span></div>
+                <span class="status-pill">later</span>
+              </li>
+              <li class="decision-step" data-bridge-decision-step="visual-order" data-bridge-step-state="later">
+                <div class="decision-step-body"><strong>4. Visual order</strong><span>見る場所: 画面・ショット順候補。答えること: object / ledger / silhouette の順番。</span></div>
+                <span class="status-pill">later</span>
+              </li>
+              <li class="decision-step" data-bridge-decision-step="thumbnail-direction" data-bridge-step-state="later">
+                <div class="decision-step-body"><strong>5. Thumbnail direction</strong><span>見る場所: サムネ方向の比較。答えること: moth / bell / ledger のどれを入口にするか。</span></div>
+                <span class="status-pill">later</span>
+              </li>
+              <li class="decision-step" data-bridge-decision-step="held-truth-policy" data-bridge-step-state="later">
+                <div class="decision-step-body"><strong>6. Held truths + rights boundary</strong><span>見る場所: Held-truth方針と権利・素材境界。答えること: 今回も保留し、生成・rights作業を閉じるか。</span></div>
+                <span class="status-pill">later</span>
+              </li>
+            </ol>
+          </section>
 
           <section class="bridge-overview-reference" data-bridge-overview-reference="true" aria-label="Current overview reference">
             <div>

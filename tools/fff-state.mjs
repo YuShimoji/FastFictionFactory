@@ -37,6 +37,7 @@ const DRAFT_TO_VIDEO_PLANNING_BRIDGE_SCHEMA_VERSION = "fff.draftToVideoPlanningB
 const REVIEW_HOME_MAP_METERS_SCHEMA_VERSION = "fff.reviewHomeMapMeters.v1";
 const HOME_COCKPIT_METRIC_LINKING_SCHEMA_VERSION = "fff.homeCockpitMetricLinking.v1";
 const BRIDGE_REFINEMENT_OVERVIEW_RIBBON_SCHEMA_VERSION = "fff.bridgeRefinementOverviewRibbon.v1";
+const GUIDED_REVIEW_FLOW_WORKSPACE_SCHEMA_VERSION = "fff.guidedReviewFlowWorkspace.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -71,6 +72,7 @@ const DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT = "artifacts/draft-to-video-
 const DEFAULT_REVIEW_HOME_MAP_METERS_OUTPUT = "artifacts/review-home-map-meters-result.json";
 const DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT = "artifacts/home-cockpit-metric-linking-result.json";
 const DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT = "artifacts/bridge-refinement-overview-ribbon-result.json";
+const DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT = "artifacts/guided-review-flow-workspace-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -911,6 +913,25 @@ async function main() {
     }
     if (command === "smoke-bridge-refinement-overview-ribbon" || outputPath) {
       console.log(`bridge refinement overview ribbon passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-guided-review-flow-workspace" || command === "smoke-guided-review-flow-workspace") {
+    const readback = await readJson(inputPath);
+    const result = await validateGuidedReviewFlowWorkspace(readback, inputPath);
+    const target = outputPath || DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT;
+    if (command === "smoke-guided-review-flow-workspace" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Guided review flow workspace failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-guided-review-flow-workspace" || outputPath) {
+      console.log(`guided review flow workspace passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -8958,6 +8979,348 @@ async function validateBridgeRefinementOverviewRibbon(readback, readbackPath) {
   return result;
 }
 
+async function validateGuidedReviewFlowWorkspace(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const overviewPath = manifest.bridge_refinement_overview_ribbon_result_path || DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT;
+  const homeCockpitPath = manifest.home_cockpit_metric_linking_result_path || DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT;
+  const bridgePath = manifest.draft_to_video_planning_bridge_result_path || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+  const reviewBriefPath = manifest.review_brief_dark_mode_ux_result_path || DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT;
+  const draftPackPath = manifest.one_story_draft_review_pack_result_path || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT;
+  const designerDashboardPath = manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT;
+  const contradictoryGuardPath = manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const overview = await readJson(overviewPath);
+  const homeCockpit = await readJson(homeCockpitPath);
+  const bridge = await readJson(bridgePath);
+  const reviewBrief = await readJson(reviewBriefPath);
+  const draftPack = await readJson(draftPackPath);
+  const designerDashboard = await readJson(designerDashboardPath);
+  const contradictoryGuard = await readJson(contradictoryGuardPath);
+  const html = await readFile("public/review/index.html", "utf8");
+  const credentialFindings = collectCredentialMaterial(readback);
+
+  const guidedFlowIndex = html.indexOf('data-guided-flow="guided-review-flow-workspace"');
+  const latestOverviewIndex = html.indexOf('data-latest-overview="bridge-refinement-overview-ribbon"');
+  const firstCardIndex = html.indexOf('data-home-cockpit-card=');
+  const primaryActionCount = (html.match(/data-guided-primary-action="true"/g) || []).length;
+  const decisionQueueStepCount = (html.match(/<li[^>]+data-decision-step=/g) || []).length;
+  const currentStepCount = (html.match(/<li[^>]+data-decision-step-state="current"/g) || []).length;
+  const pinnedItemCount = (html.match(/data-pinned-item=/g) || []).length;
+  const importantFolderCount = (html.match(/data-folder-role=/g) || []).length;
+  const inspirationPromptCount = (html.match(/data-inspiration-prompt=/g) || []).length;
+  const bridgeGuidedStepCount = (html.match(/data-bridge-decision-step=/g) || []).length;
+  const demotedCardGridCount = (html.match(/data-card-grid-demoted="true"/g) || []).length;
+  const requiredDecisionSteps = [
+    "route-confirmation",
+    "narration-direction",
+    "subtitle-rhythm",
+    "visual-order",
+    "thumbnail-direction",
+    "held-truth-policy"
+  ];
+  const requiredFolderRoles = [
+    "current-work",
+    "materials",
+    "evidence",
+    "inspiration",
+    "locked"
+  ];
+  const requiredPinnedItems = [
+    "selected-candidate",
+    "selected-channel-route",
+    "active-artifact",
+    "source-overview-artifact",
+    "held-truth-toma-fate",
+    "held-truth-brass-moth",
+    "held-truth-council-motive"
+  ];
+  const lockedMarkers = [
+    "provider/API",
+    "AI video",
+    "render",
+    "upload",
+    "final canon",
+    "database persistence",
+    "rights clearance"
+  ];
+  const selectedCandidateId = readback?.selected_candidate_id || draftPack?.selected_candidate_id || bridge?.selected_candidate_id;
+  const selectedChannelRouteId = readback?.selected_channel_route_id || bridge?.selected_channel_route_id || draftPack?.channel_strategy_route?.id;
+
+  check(
+    "identity",
+    readback?.artifact_id === "fff-guided-review-flow-workspace-001" &&
+      readback?.schemaVersion === GUIDED_REVIEW_FLOW_WORKSPACE_SCHEMA_VERSION &&
+      readback?.review_ui === "public/review/index.html" &&
+      readback?.access_route === "public/review/index.html?mode=brief" &&
+      readback?.bridge_route === "public/review/index.html?mode=bridge",
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; ui=${readback?.review_ui}; access=${readback?.access_route}; bridge=${readback?.bridge_route}`
+  );
+  check(
+    "source_readbacks_preserved",
+    overview?.artifact_id === "fff-bridge-refinement-overview-ribbon-001" &&
+      overview?.passed === true &&
+      homeCockpit?.artifact_id === "fff-home-cockpit-metric-linking-001" &&
+      homeCockpit?.passed === true &&
+      bridge?.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+      bridge?.passed === true &&
+      reviewBrief?.artifact_id === "fff-review-brief-dark-mode-ux-001" &&
+      reviewBrief?.passed === true &&
+      draftPack?.artifact_id === "fff-one-story-draft-review-pack-001" &&
+      draftPack?.passed === true &&
+      designerDashboard?.artifact_id === "fff-designer-candidate-dashboard-001" &&
+      designerDashboard?.passed === true &&
+      contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
+      contradictoryGuard?.passed === true,
+    `overview=${overview?.artifact_id}/${overview?.passed}; home=${homeCockpit?.artifact_id}/${homeCockpit?.passed}; bridge=${bridge?.artifact_id}/${bridge?.passed}; brief=${reviewBrief?.artifact_id}/${reviewBrief?.passed}; draft=${draftPack?.artifact_id}/${draftPack?.passed}; designer=${designerDashboard?.artifact_id}/${designerDashboard?.passed}; contradictory=${contradictoryGuard?.artifact_id}/${contradictoryGuard?.passed}`
+  );
+  check(
+    "guided_flow_visible_first",
+    guidedFlowIndex >= 0 &&
+      latestOverviewIndex >= 0 &&
+      firstCardIndex >= 0 &&
+      guidedFlowIndex < latestOverviewIndex &&
+      guidedFlowIndex < firstCardIndex &&
+      html.includes("Guided Review Flow / レビュー進行") &&
+      html.includes("Bridgeの順番レビューを開始"),
+    `guided=${guidedFlowIndex}; latest=${latestOverviewIndex}; firstCard=${firstCardIndex}`
+  );
+  check(
+    "primary_action_exactly_one",
+    primaryActionCount === 1,
+    `primaryActionCount=${primaryActionCount}`
+  );
+  check(
+    "decision_queue_ordered",
+    html.includes('data-decision-queue="true"') &&
+      decisionQueueStepCount >= 6 &&
+      requiredDecisionSteps.every((step) => html.includes(`data-decision-step="${step}"`)) &&
+      currentStepCount === 1 &&
+      html.includes('data-decision-step-state="next"') &&
+      html.includes('data-decision-step-state="later"'),
+    `steps=${decisionQueueStepCount}; current=${currentStepCount}; required=${requiredDecisionSteps.filter((step) => html.includes(`data-decision-step="${step}"`)).length}/${requiredDecisionSteps.length}`
+  );
+  check(
+    "pinned_tray_visible",
+    html.includes('data-pinned-tray="true"') &&
+      pinnedItemCount >= 7 &&
+      requiredPinnedItems.every((item) => html.includes(`data-pinned-item="${item}"`)) &&
+      html.includes("designer-content-moth-investigation-3m") &&
+      html.includes("designer-channel-mystery-lore") &&
+      html.includes("Toma fate held") &&
+      html.includes("brass moth truth held") &&
+      html.includes("Council motive held"),
+    `pins=${pinnedItemCount}; required=${requiredPinnedItems.filter((item) => html.includes(`data-pinned-item="${item}"`)).length}/${requiredPinnedItems.length}`
+  );
+  check(
+    "operations_notice_visible",
+    html.includes('data-operations-notice="true"') &&
+      html.includes("f5ae10b Refresh terminal handoff snapshot") &&
+      html.includes("a332884 Add bridge refinement overview ribbon") &&
+      html.includes("passed readbacks") &&
+      lockedMarkers.every((marker) => html.includes(marker)),
+    "operations notice should separate latest state from evidence"
+  );
+  check(
+    "important_folders_visible",
+    html.includes('data-important-folders="true"') &&
+      importantFolderCount === 5 &&
+      requiredFolderRoles.every((role) => html.includes(`data-folder-role="${role}"`)) &&
+      html.includes("open_when") &&
+      html.includes("do_not_open_when") &&
+      html.includes("next_action") &&
+      html.includes("audit only"),
+    `folders=${importantFolderCount}; required=${requiredFolderRoles.filter((role) => html.includes(`data-folder-role="${role}"`)).length}/${requiredFolderRoles.length}`
+  );
+  check(
+    "evidence_folder_optional",
+    html.includes('data-folder-role="evidence"') &&
+      html.includes("Evidence Vault") &&
+      html.includes("Source Audit / Project Cockpit / Artifacts") &&
+      html.includes("通常の制作仮説レビュー中") &&
+      html.includes("監査時だけ"),
+    "Evidence folder should remain optional and audit-only"
+  );
+  check(
+    "inspiration_workspace_visible",
+    html.includes('data-inspiration-workspace="true"') &&
+      inspirationPromptCount >= 12 &&
+      html.includes("motif words") &&
+      html.includes("tone references") &&
+      html.includes("hook phrases") &&
+      html.includes("question prompts") &&
+      html.includes("thumbnail emotion") &&
+      html.includes("final script") &&
+      html.includes("generated image"),
+    `prompts=${inspirationPromptCount}`
+  );
+  check(
+    "bridge_guided_flow_visible",
+    html.includes('data-bridge-guided-flow="true"') &&
+      html.includes('data-bridge-decision-queue="true"') &&
+      bridgeGuidedStepCount >= 6 &&
+      html.includes("Bridge順番レビュー") &&
+      html.includes("Held truths + rights boundary"),
+    `bridgeSteps=${bridgeGuidedStepCount}`
+  );
+  check(
+    "card_grid_demoted",
+    demotedCardGridCount >= 4 &&
+      html.includes('data-card-grid-demoted="true"') &&
+      guidedFlowIndex < firstCardIndex,
+    `demoted=${demotedCardGridCount}; guided=${guidedFlowIndex}; firstCard=${firstCardIndex}`
+  );
+  check(
+    "latest_overview_preserved",
+    html.includes('data-latest-overview="bridge-refinement-overview-ribbon"') &&
+      html.includes("Latest Overview Report") &&
+      html.includes('data-overview-bridge-link="true"') &&
+      overview?.latest_overview_visible === true,
+    `overview=${overview?.artifact_id}/${overview?.latest_overview_visible}`
+  );
+  check(
+    "dark_mode_preserved",
+    html.includes(':root[data-theme="dark"]') &&
+      html.includes(':root[data-theme="auto"]') &&
+      html.includes('data-theme-target="light"') &&
+      html.includes('data-theme-target="dark"') &&
+      html.includes('data-theme-target="auto"') &&
+      html.includes("THEME_STORAGE_KEY") &&
+      html.includes("--paper-soft") &&
+      html.includes("--surface-muted"),
+    "theme variables and toggles should remain present"
+  );
+  check(
+    "candidate_channel_preserved",
+    selectedCandidateId === "designer-content-moth-investigation-3m" &&
+      selectedChannelRouteId === "designer-channel-mystery-lore" &&
+      html.includes("designer-content-moth-investigation-3m") &&
+      html.includes("designer-channel-mystery-lore"),
+    `candidate=${selectedCandidateId}; channel=${selectedChannelRouteId}`
+  );
+  check(
+    "boundary_gates_closed",
+    readback?.local_only === true &&
+      readback?.external_call === false &&
+      readback?.provider_configured === false &&
+      readback?.credentials_touched === false &&
+      readback?.public_upload === false &&
+      readback?.ai_video_generation === false &&
+      readback?.production_render === false &&
+      readback?.final_canon_decision === false &&
+      readback?.database_persistence === false &&
+      readback?.rights_cleared_claim === false &&
+      lockedMarkers.every((marker) => html.includes(marker)) &&
+      credentialFindings.length === 0,
+    `local=${readback?.local_only}; external=${readback?.external_call}; provider=${readback?.provider_configured}; credentials=${readback?.credentials_touched}; upload=${readback?.public_upload}; video=${readback?.ai_video_generation}; render=${readback?.production_render}; canon=${readback?.final_canon_decision}; database=${readback?.database_persistence}; rights=${readback?.rights_cleared_claim}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+
+  return {
+    schemaVersion: GUIDED_REVIEW_FLOW_WORKSPACE_SCHEMA_VERSION,
+    artifact_id: "fff-guided-review-flow-workspace-001",
+    title: "Fast Fiction Factory Guided Review Flow Workspace",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    review_ui: "public/review/index.html",
+    access_route: "public/review/index.html?mode=brief",
+    bridge_route: "public/review/index.html?mode=bridge",
+    input_result_path: toRepoPath(readbackPath),
+    source_overview_artifact_id: "fff-bridge-refinement-overview-ribbon-001",
+    source_result_paths: {
+      bridge_refinement_overview_ribbon: overviewPath,
+      home_cockpit_metric_linking: homeCockpitPath,
+      draft_to_video_planning_bridge: bridgePath,
+      review_brief_dark_mode_ux: reviewBriefPath,
+      one_story_draft_review_pack: draftPackPath,
+      designer_candidate_dashboard: designerDashboardPath,
+      contradictory_claim_guard: contradictoryGuardPath
+    },
+    guided_flow_visible: checks.guided_flow_visible_first?.passed === true,
+    primary_action_count: primaryActionCount,
+    decision_queue_visible: checks.decision_queue_ordered?.passed === true,
+    decision_queue_step_count: decisionQueueStepCount,
+    current_step_count: currentStepCount,
+    pinned_tray_visible: checks.pinned_tray_visible?.passed === true,
+    pinned_item_count: pinnedItemCount,
+    operations_notice_visible: checks.operations_notice_visible?.passed === true,
+    important_folder_count: importantFolderCount,
+    evidence_folder_optional: checks.evidence_folder_optional?.passed === true,
+    inspiration_workspace_visible: checks.inspiration_workspace_visible?.passed === true,
+    inspiration_prompt_count: inspirationPromptCount,
+    bridge_guided_flow_visible: checks.bridge_guided_flow_visible?.passed === true,
+    bridge_guided_step_count: bridgeGuidedStepCount,
+    card_grid_demoted: checks.card_grid_demoted?.passed === true,
+    latest_overview_preserved: checks.latest_overview_preserved?.passed === true,
+    dark_mode_preserved: checks.dark_mode_preserved?.passed === true,
+    selected_candidate_id: selectedCandidateId,
+    selected_channel_route_id: selectedChannelRouteId,
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      database_persistence: false,
+      rights_cleared_claim: false,
+      credential_material_findings: credentialFindings
+    },
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    final_canon_decision: false,
+    database_persistence: false,
+    rights_cleared_claim: false,
+    summary: {
+      guided_flow_visible: checks.guided_flow_visible_first?.passed === true,
+      primary_action_count: primaryActionCount,
+      decision_queue_step_count: decisionQueueStepCount,
+      current_step_count: currentStepCount,
+      pinned_item_count: pinnedItemCount,
+      important_folder_count: importantFolderCount,
+      inspiration_prompt_count: inspirationPromptCount,
+      bridge_guided_step_count: bridgeGuidedStepCount,
+      card_grid_demoted: checks.card_grid_demoted?.passed === true,
+      evidence_folder_optional: checks.evidence_folder_optional?.passed === true,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      database_persistence: false,
+      rights_cleared_claim: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "The first visible brief section is a guided review flow, not a card grid.",
+      "The top guided flow exposes exactly one primary action and exactly one current decision step.",
+      "Pinned items, operations notices, important folders, and inspiration prompts separate state, actions, evidence, and creative thinking.",
+      "Bridge mode adds an ordered guided sequence before detailed bridge cards.",
+      "Evidence Vault remains optional, and provider/API, video, render, upload, database, rights, and final-canon lanes remain closed."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateHomeCockpitMetricLinking(readback, readbackPath) {
   const failures = [];
   const checks = {};
@@ -10597,6 +10960,8 @@ Usage:
   node tools/fff-state.mjs smoke-draft-to-video-planning-bridge <draft-to-video-planning-bridge-result.json> [output.json]
   node tools/fff-state.mjs validate-bridge-refinement-overview-ribbon <bridge-refinement-overview-ribbon-result.json>
   node tools/fff-state.mjs smoke-bridge-refinement-overview-ribbon <bridge-refinement-overview-ribbon-result.json> [output.json]
+  node tools/fff-state.mjs validate-guided-review-flow-workspace <guided-review-flow-workspace-result.json>
+  node tools/fff-state.mjs smoke-guided-review-flow-workspace <guided-review-flow-workspace-result.json> [output.json]
   node tools/fff-state.mjs validate-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json>
   node tools/fff-state.mjs smoke-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json> [output.json]
   node tools/fff-state.mjs validate-review-home-map-meters <review-home-map-meters-result.json>
@@ -10625,6 +10990,9 @@ Default draft-to-video planning bridge output:
 
 Default bridge refinement overview ribbon output:
   ${DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT}
+
+Default guided review flow workspace output:
+  ${DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT}
 
 Default home cockpit metric linking output:
   ${DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT}

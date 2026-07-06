@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Guided Review Flow Workspace
+
+- Purpose: Make the active `brief` route guide the user through one review path before showing comprehensive Home Cockpit shelves.
+- Effect: Adds Guided Review Flow, a six-step Decision Queue, one primary Bridge action, Pinned Tray, Operations Notice, Important Folders, and an Inspiration Workspace to `public/review/index.html?mode=brief`; adds a matching Bridge Guided Flow to `public/review/index.html?mode=bridge`; demotes legacy card grids without deleting their evidence markers.
+- Requirements: Preserve `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, Evidence Vault optionality, dark mode, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
+- State: Implemented in `fff-guided-review-flow-workspace-001`.
+- Owner: Product implementer for UI/readback; human reviewer for whether the guided order makes the next decision obvious.
+- Next move: Review `public/review/index.html?mode=brief`, use the one Bridge action, then review `public/review/index.html?mode=bridge` against route confirmation, narration direction, subtitle rhythm, visual order, thumbnail direction, and held-truth policy.
+
 ### Bridge Refinement Overview Ribbon
 
 - Purpose: Give the reviewer a latest overview before comprehensive lists, then make the Draft-to-Video Bridge detailed enough to judge without starting production.
