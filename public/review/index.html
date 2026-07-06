@@ -427,6 +427,58 @@
       box-shadow: var(--shadow);
     }
 
+    .latest-overview-ribbon {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper-soft);
+      box-shadow: var(--shadow);
+    }
+
+    .latest-overview-header,
+    .bridge-overview-reference {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .latest-overview-header h3,
+    .bridge-overview-reference h3 {
+      margin: 0;
+    }
+
+    .latest-overview-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .overview-item {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px;
+      background: var(--paper);
+    }
+
+    .overview-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    .overview-item span {
+      color: var(--muted-strong);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     .read-now-steps {
       display: grid;
       gap: 8px;
@@ -768,6 +820,29 @@
       font-size: 13px;
     }
 
+    .legacy-brief-demoted {
+      opacity: 0.95;
+    }
+
+    .brief-legacy-fold {
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 10px 12px;
+      background: var(--surface-muted);
+    }
+
+    .brief-legacy-fold > summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .brief-legacy-fold > summary .section-note {
+      display: block;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
     .route-contract {
       display: grid;
       grid-template-columns: 1.1fr 1fr 1fr;
@@ -805,6 +880,56 @@
       border-radius: 8px;
       padding: 14px;
       background: var(--paper);
+    }
+
+    .bridge-overview-reference {
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper-soft);
+    }
+
+    .bridge-refinement {
+      display: grid;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+    }
+
+    .bridge-refinement-header {
+      display: grid;
+      gap: 4px;
+    }
+
+    .refinement-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .refinement-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper-soft);
+    }
+
+    .refinement-card.warning {
+      border-left: 4px solid var(--gold);
+      background: var(--warning-bg);
+    }
+
+    .refinement-card.danger {
+      border-left: 4px solid var(--red);
+      background: var(--danger-bg);
+    }
+
+    .refinement-card h3 {
+      margin-bottom: 8px;
     }
 
     .bridge-grid {
@@ -1593,6 +1718,7 @@
       .mode-tabs,
       .mode-summary-grid,
       .home-hero,
+      .latest-overview-grid,
       .home-meter-strip,
       .home-map-grid,
       .cockpit-card-grid,
@@ -1601,6 +1727,7 @@
       .brief-grid,
       .route-contract,
       .bridge-grid,
+      .refinement-grid,
       .progress-map,
       .designer-dashboard-grid,
       .draft-review-grid,
@@ -1699,6 +1826,38 @@
         </nav>
 
         <section class="review-home" id="review-home-root" data-mode-panel="brief" data-home-map="review-home-map-meters" data-home-cockpit="home-cockpit-metric-linking" aria-labelledby="home-cockpit-title">
+          <section class="latest-overview-ribbon" data-latest-overview="bridge-refinement-overview-ribbon" aria-labelledby="latest-overview-title">
+            <div class="latest-overview-header">
+              <div>
+                <p class="hub-eyebrow">Latest Overview Report / 最新概況報告</p>
+                <h3 id="latest-overview-title">まずここで現在地だけ確認する</h3>
+              </div>
+              <button class="brief-action primary" type="button" data-mode-target="bridge" data-overview-bridge-link="true" aria-pressed="false">Bridgeを見る</button>
+            </div>
+            <div class="latest-overview-grid" aria-label="Latest overview report items">
+              <article class="overview-item" data-overview-item="latest-state">
+                <strong>最新状態</strong>
+                <span>Home CockpitとDraft-to-Video Bridgeが現在の操作面です。</span>
+              </article>
+              <article class="overview-item" data-overview-item="latest-change">
+                <strong>直近の変更</strong>
+                <span>棚とメーターを整理済み。今回はBridge判断用の要約を追加します。</span>
+              </article>
+              <article class="overview-item" data-overview-item="read-now">
+                <strong>今読む場所</strong>
+                <span>この概況、次にDraft-to-Video Bridgeだけを読めば十分です。</span>
+              </article>
+              <article class="overview-item" data-overview-item="next-decision">
+                <strong>次に判断すること</strong>
+                <span>route / narration / subtitle / visual / thumbnail / held truthsをaccept / revise / rejectします。</span>
+              </article>
+              <article class="overview-item" data-overview-item="locked-lanes">
+                <strong>まだ開かない作業</strong>
+                <span>provider/API、AI video、render、upload、final canon、rights clearanceは閉じたままです。</span>
+              </article>
+            </div>
+          </section>
+
           <div class="home-hero">
             <div>
               <p class="hub-eyebrow">Home Cockpit / Review Home alias</p>
@@ -1903,7 +2062,11 @@
           </section>
         </section>
 
-        <section class="review-brief" id="review-brief-root" data-mode-panel="brief" aria-labelledby="review-brief-title">
+        <section class="review-brief legacy-brief-demoted" id="review-brief-root" data-mode-panel="brief" data-brief-demoted="true" aria-labelledby="review-brief-title">
+          <details class="brief-legacy-fold" data-brief-legacy-fold="true">
+            <summary>保存されたReview Brief詳細メモ
+              <span class="section-note">今の入口は上のLatest Overview Reportです。候補ID、チャンネルID、確認プロンプトを保持するため、この旧Briefは必要な時だけ開く棚にしました。</span>
+            </summary>
           <div class="hub-panel">
             <p class="hub-eyebrow">Review Brief / まずここを見る</p>
             <h2 id="review-brief-title">今回レビューするのは「候補とチャンネルをこのまま進めるか」です</h2>
@@ -1965,6 +2128,7 @@
           <div class="advanced-note">
             詳細証跡は削除していません。Source Audit / Project Cockpit / Artifacts は「詳細」タブとして残し、初回表示では主役にしない構成にしています。
           </div>
+          </details>
         </section>
 
         <div class="designer-dashboard" id="designer-dashboard-root" data-mode-panel="designer" aria-label="Designer Candidate Dashboard">
@@ -1995,6 +2159,84 @@
               <span class="tag red">no upload</span>
             </div>
           </div>
+
+          <section class="bridge-overview-reference" data-bridge-overview-reference="true" aria-label="Current overview reference">
+            <div>
+              <p class="hub-eyebrow">Current Overview / 最新概況へ戻れる参照</p>
+              <h3>判断に迷ったら、Home Cockpit先頭のLatest Overview Reportへ戻る</h3>
+              <p class="section-note">Bridgeは制作仮説の中身を見る場所です。Source Audit / Project Cockpit / ArtifactsはEvidence Vaultのままで、通常レビューでは開かなくて大丈夫です。</p>
+            </div>
+            <button class="brief-action" type="button" data-mode-target="brief" aria-pressed="false">Overviewへ戻る</button>
+          </section>
+
+          <section class="bridge-refinement" data-bridge-refinement="overview-ribbon-bridge-refinement" aria-labelledby="bridge-refinement-title">
+            <div class="bridge-refinement-header">
+              <p class="hub-eyebrow">Bridge Refinement / 次の制作確認</p>
+              <h3 id="bridge-refinement-title">生成前に見る、非最終のナレーション・字幕・画面・サムネ判断材料</h3>
+              <p class="section-note">ここはfinal scriptではなく、制作前レビューの候補メモです。採用してもprovider/API、AI video、render、upload、rights clearance、final canonは開きません。</p>
+            </div>
+            <div class="refinement-grid">
+              <article class="refinement-card">
+                <h3>ナレーション候補</h3>
+                <ol class="bridge-list">
+                  <li data-narration-refinement="cold-open">00:00-00:20: 鐘が無いのに鳴る、という矛盾だけを置く。pause long、説明しすぎない。</li>
+                  <li data-narration-refinement="mira-finds-moth">00:20-00:50: Miraの手元、Tomaのメモ、brass mothを順に出す。object hookを強める。</li>
+                  <li data-narration-refinement="ledger-pressure">00:50-01:45: Council ledgerと失われた分をつなぐ。documentary寄り、断定は避ける。</li>
+                  <li data-narration-refinement="withheld-truth">01:45-02:35: Toma fate / brass moth truth / Council motiveは見せかけの答えで止める。</li>
+                  <li data-narration-refinement="review-close">02:35-03:00: 最後は「時間を戻すか、名前を戻すか」の問いで閉じる。not final narration。</li>
+                </ol>
+              </article>
+
+              <article class="refinement-card">
+                <h3>字幕リズム候補</h3>
+                <ol class="bridge-list">
+                  <li data-subtitle-rhythm="short-hook">short: The bell was gone.</li>
+                  <li data-subtitle-rhythm="hold-paradox">hold: But every noon, it rang.</li>
+                  <li data-subtitle-rhythm="object-reveal">reveal: Toma left a brass moth.</li>
+                  <li data-subtitle-rhythm="warning-ledger">warning: Some names were paid for in minutes.</li>
+                  <li data-subtitle-rhythm="hold-truths">hold: Toma / moth / Council remain unresolved.</li>
+                  <li data-subtitle-rhythm="closing-question">closing: Restore time, or restore names?</li>
+                </ol>
+              </article>
+
+              <article class="refinement-card">
+                <h3>画面・ショット順候補</h3>
+                <ol class="bridge-list">
+                  <li data-visual-ordering="station-wide">1. North Bell Station exterior、空の鐘枠。asset placeholder / rights_unknown。</li>
+                  <li data-visual-ordering="mira-hands">2. Miraの手元、Toma memo、brass moth macro。asset direction only。</li>
+                  <li data-visual-ordering="ledger-page">3. Council ledgerの名前と分数。text graphic placeholder。</li>
+                  <li data-visual-ordering="council-silhouette">4. Councilは輪郭だけ。動機の断定につながる顔出しは避ける。</li>
+                  <li data-visual-ordering="truth-hold">5. Toma fate / moth function / motiveを未決定カードとして挟む。</li>
+                  <li data-visual-ordering="final-frame">6. 止まりかけの時計と閉じるledger。no final ending claim。</li>
+                </ol>
+              </article>
+
+              <article class="refinement-card warning">
+                <h3>サムネ方向の比較</h3>
+                <ol class="bridge-list">
+                  <li data-thumbnail-direction="brass-moth-object-hook"><strong>brass moth object hook:</strong> 中央に真鍮の蛾、背景に失われた鐘。最も物語固有。</li>
+                  <li data-thumbnail-direction="bellless-tower-paradox"><strong>bellless tower paradox:</strong> 空の鐘楼と「鳴った」矛盾を強調。ミステリー入口が強い。</li>
+                  <li data-thumbnail-direction="ledger-erased-names"><strong>ledger / erased names:</strong> ledgerと消された名前。文学寄り、クリック即効性は比較が必要。</li>
+                </ol>
+                <p class="section-note">すべてnot final thumbnail。no generated image、no final thumbnail、no rights clearance claim。</p>
+              </article>
+
+              <article class="refinement-card warning" data-held-truth-policy="true">
+                <h3>Held-truth方針</h3>
+                <p class="section-note">Toma fate / brass moth truth / Council motiveは、レビューで明示されるまで未決定として保持します。brass moth truth/functionも説明しすぎず、mystery-lore routeの保留圧として扱います。</p>
+                <div class="tag-row">
+                  <span class="tag gold">Toma fate held</span>
+                  <span class="tag gold">brass moth truth held</span>
+                  <span class="tag gold">Council motive held</span>
+                </div>
+              </article>
+
+              <article class="refinement-card danger" data-rights-boundary-note="true">
+                <h3>権利・素材境界</h3>
+                <p class="section-note">Visualはshot/asset directionのみです。no generated image、no final script、no final asset、no final video、no production render。画像、音、フォント、テクスチャはまだ選定・権利確認していません。</p>
+              </article>
+            </div>
+          </section>
 
           <div class="bridge-grid">
             <article class="bridge-card">

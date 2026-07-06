@@ -29,6 +29,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Local extraction adapter expansion | Ready for local review | [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Model/API boundary spec | Ready for local review | [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md) | `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json` |
 | Provider envelope readiness no-call | Ready for local readback | [`review/provider-envelope-readiness-no-call.md`](review/provider-envelope-readiness-no-call.md) | `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json` |
+| Bridge Refinement Overview Ribbon | Ready for local readback | [`review/bridge-refinement-overview-ribbon.md`](review/bridge-refinement-overview-ribbon.md) | `artifacts/bridge-refinement-overview-ribbon-result.json`, `public/review/index.html?mode=brief`, `public/review/index.html?mode=bridge` |
 | Home Cockpit Metric Linking | Ready for local readback | [`review/home-cockpit-metric-linking.md`](review/home-cockpit-metric-linking.md) | `artifacts/home-cockpit-metric-linking-result.json`, `public/review/index.html?mode=brief` |
 | Review Home Map Meters | Ready for local readback | [`review/review-home-map-meters.md`](review/review-home-map-meters.md) | `artifacts/review-home-map-meters-result.json`, `public/review/index.html?mode=home` |
 | Draft-to-Video Planning Bridge | Ready for local readback | [`review/draft-to-video-planning-bridge.md`](review/draft-to-video-planning-bridge.md) | `artifacts/draft-to-video-planning-bridge-result.json`, `public/review/index.html?mode=bridge` |
@@ -78,7 +79,7 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Provider adapter authorization or remaining fixture coverage | Either the user explicitly authorizes provider choice/credentials/endpoint/transport work, or one remaining fixture class is chosen. | The repo avoids drifting from readiness into integration without a clear gate. |
+| Next 1 turn | Human overview + Bridge review, or narrow script/subtitle/shot refinement | The reviewer accepts, revises, or rejects the latest overview and Bridge package; if accepted, one non-final refinement slice can narrow narration, subtitle rhythm, screen beats, and thumbnail comparison. | The repo can improve the production hypothesis without drifting into provider/API, video generation, rights, upload, or final canon. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
@@ -91,7 +92,7 @@ The active UI remains:
 Invoke-Item .\public\review\index.html
 ```
 
-No-query access now defaults to Home Cockpit / Review Brief. Mode-specific Home Cockpit route:
+No-query access now defaults to Home Cockpit / Review Brief. The first read is the compact Latest Overview Report at the top of that route, followed by the Draft-to-Video Bridge. Mode-specific Home Cockpit route:
 
 ```text
 public/review/index.html?mode=brief
@@ -152,4 +153,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The next recommended implementation slice should first apply the Review Dedup Gate from `fff-review-memory-dedup-001`. After `fff-home-cockpit-metric-linking-001`, the next non-redundant axis is human review of the Home Cockpit and Bridge package, a narrow bridge refinement if the route is accepted, or explicit provider adapter implementation only after authorization.
+The next recommended implementation slice should first apply the Review Dedup Gate from `fff-review-memory-dedup-001`. After `fff-bridge-refinement-overview-ribbon-001`, the next non-redundant axis is human review of the Latest Overview Report and Bridge package, a narrower script/subtitle/shot/thumbnail refinement if the route is accepted, or explicit provider adapter implementation only after authorization.

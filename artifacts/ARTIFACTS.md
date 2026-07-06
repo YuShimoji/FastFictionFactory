@@ -1,5 +1,22 @@
 # Artifacts
 
+## fff-bridge-refinement-overview-ribbon-001
+
+- Title: Fast Fiction Factory Bridge Refinement Overview Ribbon
+- Purpose: Add a compact Latest Overview Report to the Home Cockpit, demote duplicate legacy Review Brief material, and refine the Draft-to-Video Bridge for the next human pre-production review.
+- Repo relative path: `public/review/index.html`
+- Primary default route: `public/review/index.html?mode=brief`
+- Compatibility alias route: `public/review/index.html?mode=home`
+- Primary Bridge route: `public/review/index.html?mode=bridge`
+- Review doc: `docs/review/bridge-refinement-overview-ribbon.md`
+- Readback result: `artifacts/bridge-refinement-overview-ribbon-result.json`
+- Source artifacts: `fff-home-cockpit-metric-linking-001`, `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-contradictory-claim-guard-001`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-bridge-refinement-overview-ribbon artifacts/bridge-refinement-overview-ribbon-result.json artifacts/bridge-refinement-overview-ribbon-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active local review checkpoint; the first screen now has a 5-item latest overview, one Bridge action, a folded legacy Review Brief shelf, and Bridge refinement cues for narration, subtitle rhythm, visual order, thumbnail alternatives, held truths, and rights/asset boundaries. Provider/API, credentials, AI video generation, render, upload, final canon, and rights-clearance claims remain closed.
+
 ## fff-home-cockpit-metric-linking-001
 
 - Title: Fast Fiction Factory Home Cockpit Metric Linking

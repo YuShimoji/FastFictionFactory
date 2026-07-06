@@ -2,12 +2,13 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-06 JST for `fff-home-cockpit-metric-linking-001`.
+Latest handoff refresh: 2026-07-06 JST for `fff-bridge-refinement-overview-ribbon-001`.
 This restart/readback refresh started from synced `master`; before product
 edits, `git status --short --branch --untracked-files=all` showed tracked
 `master` parity with `origin/master`. At refresh time, the active review
-checkpoint is `fff-home-cockpit-metric-linking-001`;
-it preserves `fff-review-home-map-meters-001`,
+checkpoint is `fff-bridge-refinement-overview-ribbon-001`;
+it preserves `fff-home-cockpit-metric-linking-001`,
+`fff-review-home-map-meters-001`,
 `fff-draft-to-video-planning-bridge-001`,
 `fff-review-brief-dark-mode-ux-001`,
 `fff-one-story-draft-review-pack-001`,
@@ -52,7 +53,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this Home Cockpit refresh was `6c9c748`. Local transport-residue files outside this product scope should not be treated as product work.
+Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this overview ribbon refresh was the synced remote head reported by `git log -1 --oneline --decorate` before edits. Local transport-residue files outside this product scope should not be treated as product work.
 
 3. Read these files in this order:
 
@@ -62,6 +63,8 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/bridge-refinement-overview-ribbon.md
+artifacts/bridge-refinement-overview-ribbon-result.json
 docs/review/home-cockpit-metric-linking.md
 artifacts/home-cockpit-metric-linking-result.json
 docs/review/review-home-map-meters.md
@@ -170,10 +173,11 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 
 ## Current Project State
 
-- Active artifact: `fff-home-cockpit-metric-linking-001`
+- Active artifact: `fff-bridge-refinement-overview-ribbon-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Bridge Refinement Overview Ribbon doc/result: `docs/review/bridge-refinement-overview-ribbon.md`, `artifacts/bridge-refinement-overview-ribbon-result.json`
 - Home Cockpit Metric Linking doc/result: `docs/review/home-cockpit-metric-linking.md`, `artifacts/home-cockpit-metric-linking-result.json`
 - Review Home Map Meters doc/result: `docs/review/review-home-map-meters.md`, `artifacts/review-home-map-meters-result.json`
 - Draft-to-Video Planning Bridge doc/result: `docs/review/draft-to-video-planning-bridge.md`, `artifacts/draft-to-video-planning-bridge-result.json`
@@ -209,9 +213,15 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - State adapter: `tools/fff-state.mjs`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact promotes the default Review Brief route into a Home Cockpit before the local Draft-to-Video Planning Bridge. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, exposes Operator Track / Workbench / Evidence Vault / Locked Lanes, links nine readiness meters to concrete actions, keeps `mode=home` as an alias, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, and final canon decisions closed.
+The current artifact adds a Latest Overview Report before the Home Cockpit detail shelves and refines the local Draft-to-Video Planning Bridge. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, exposes latest state / latest change / read-now path / next decision / locked lanes, folds the legacy Brief into a preserved detail shelf, keeps `mode=home` as an alias, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, and final canon decisions closed.
 
 ## What Finished
+
+- `fff-bridge-refinement-overview-ribbon-001` adds `public/review/index.html?mode=brief` latest overview behavior, `docs/review/bridge-refinement-overview-ribbon.md`, `artifacts/bridge-refinement-overview-ribbon-result.json`, and `node tools/fff-state.mjs smoke-bridge-refinement-overview-ribbon ...`.
+- Home Cockpit now starts with a compact Latest Overview Report: latest state, latest change, read now, next decision, and locked lanes. The overview links directly to `public/review/index.html?mode=bridge`.
+- The legacy Review Brief remains in the DOM as a folded detail shelf, preserving selected candidate `designer-content-moth-investigation-3m`, selected channel route `designer-channel-mystery-lore`, route contract copy, and review prompts without competing as a second first-read introduction.
+- Draft-to-Video Bridge now includes non-final refinement cues: 5 narration candidates, 6 subtitle rhythm cues, 6 visual/shot ordering cues, 3 thumbnail directions, held-truth policy, and rights/asset boundary note.
+- Source Audit / Project Cockpit / Artifacts remain optional Evidence Vault shelves, and provider/API, credential, publishing, AI video generation, production render, rights-clearance, and final canon boundaries remain closed.
 
 - `fff-home-cockpit-metric-linking-001` adds `public/review/index.html?mode=brief`, keeps `public/review/index.html?mode=home` as an alias, adds `docs/review/home-cockpit-metric-linking.md`, `artifacts/home-cockpit-metric-linking-result.json`, and `node tools/fff-state.mjs smoke-home-cockpit-metric-linking ...`.
 - No-query access now lands on Home Cockpit / Review Brief, and Bridge remains the primary production-hypothesis surface at `public/review/index.html?mode=bridge`.
@@ -259,7 +269,7 @@ The current artifact promotes the default Review Brief route into a Home Cockpit
 
 ## Validation Readback
 
-The active Home Cockpit smoke validates `fff-home-cockpit-metric-linking-001` while preserving the Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the Home Cockpit.
+The active Bridge Refinement Overview Ribbon smoke validates `fff-bridge-refinement-overview-ribbon-001` while preserving the Home Cockpit, Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the overview ribbon.
 
 Additional checks passed during this handoff refresh:
 
@@ -269,6 +279,13 @@ Additional checks passed during this handoff refresh:
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on synced baseline `6c9c748`.
 - `git status --short --branch --untracked-files=all` showed only the local `.serena/project.yml` transport-residue modification before this restart/readback update; it remained unstaged and was excluded from the handoff commit.
 - `node --check tools/fff-state.mjs`
+- `node tools/fff-state.mjs smoke-bridge-refinement-overview-ribbon artifacts/bridge-refinement-overview-ribbon-result.json artifacts/bridge-refinement-overview-ribbon-result.json`
+- `node tools/fff-state.mjs smoke-home-cockpit-metric-linking artifacts/home-cockpit-metric-linking-result.json artifacts/home-cockpit-metric-linking-result.json`
+- `node tools/fff-state.mjs smoke-draft-to-video-planning-bridge artifacts/draft-to-video-planning-bridge-result.json artifacts/draft-to-video-planning-bridge-result.json`
+- `node tools/fff-state.mjs smoke-review-brief-dark-mode-ux artifacts/review-brief-dark-mode-ux-result.json artifacts/review-brief-dark-mode-ux-result.json`
+- `node tools/fff-state.mjs smoke-one-story-draft-review-pack artifacts/one-story-draft-review-pack-result.json artifacts/one-story-draft-review-pack-result.json`
+- `node tools/fff-state.mjs smoke-designer-candidate-dashboard artifacts/designer-candidate-dashboard-result.json artifacts/designer-candidate-dashboard-result.json`
+- `node tools/fff-state.mjs smoke-contradictory-claim-guard artifacts/extraction-validator-smoke-result.json artifacts/contradictory-claim-guard-result.json`
 - `node --check tools/fff-extract-local.mjs`
 - `node --check tools/fff-source-span-review-pack.mjs`
 - `node tools/fff-state.mjs smoke-provider-adapter-authorization-readiness artifacts/provider-envelope-readiness-no-call-result.json artifacts/provider-adapter-authorization-readiness-result.json`
@@ -318,8 +335,8 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
-| Verify: Home Cockpit then Bridge review | Starts from Home Cockpit, then checks the Draft-to-Video Bridge only if the cockpit makes the shelves understandable | Human reviewer can accept, revise, or reject the production hypothesis without reopening Source Audit / Project Cockpit / Artifacts by default |
-| Advance: bridge refinement | Uses an accepted Home Cockpit and Bridge route to detail narration rhythm, subtitles, screen beats, and thumbnail candidates | One video package can become clearer while provider/API, video generation, upload, rights clearance, and final canon remain locked |
+| Verify: Latest Overview then Bridge review | Starts from the 5-item Latest Overview Report, then checks the Draft-to-Video Bridge refinement | Human reviewer can accept, revise, or reject the route, narration, subtitle rhythm, visual order, thumbnail direction, and held-truth policy without reopening Source Audit / Project Cockpit / Artifacts by default |
+| Advance: script/subtitle/shot refinement | Uses an accepted overview and Bridge route to narrow one narration path, subtitle rhythm, screen beats, and thumbnail comparison | One video package can become clearer while provider/API, video generation, upload, rights clearance, and final canon remain locked |
 | Advance: provider adapter authorization | Uses the authorization readiness Decision Packet only after provider choice, credentials, endpoint, transport scope, external call permission, timeout, and retry policy are explicitly approved | A real adapter can be implemented without silently crossing the boundary |
 | Verify: contradictory claim guard | Re-runs the held-conflict fixture and result after adapter edits | Future Claim Ledger acceptance paths can fail before they auto-promote conflicts |
 | Advance: post-Profile adoption target | Uses the completed Profile adoption readback while keeping Timeline / Story Seed / Canon decision closed | A future implementation can target Timeline, Story Seed, Canon decision, or actual rollback only after separate explicit authorization |
@@ -335,6 +352,7 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
+| Bridge Refinement Overview Ribbon | Put latest status before comprehensive shelves and make Bridge judgement-ready | `fff-bridge-refinement-overview-ribbon-001` is active; no-query access opens Home Cockpit with a Latest Overview Report, folded legacy Brief, Bridge refinement cues, and closed production lanes | Human reviewer should open overview, then Bridge, and respond freeform with accept / revise / reject |
 | Home Cockpit Metric Linking | Make folded shelves legible before Bridge review | `fff-home-cockpit-metric-linking-001` is active; no-query access opens Home Cockpit with Operator Track, Workbench, Evidence Vault, Locked Lanes, and nine readiness meters | Human reviewer should open Home Cockpit, then Bridge, and only open Evidence Vault shelves when auditing |
 | Review Home Map Meters | Preserve prior shelf-map readback | `fff-review-home-map-meters-001` remains available through the `mode=home` alias and its result JSON | Use only for regression comparison if the Home Cockpit wording drifts |
 | Contradictory claim handling | Prevent conflicting claims from entering canon automatically | Guarded by a valid fixture and smoke result; truth choice remains human-owned | Keep the guard required for any future Claim Ledger acceptance path |

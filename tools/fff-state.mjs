@@ -36,6 +36,7 @@ const REVIEW_BRIEF_DARK_MODE_UX_SCHEMA_VERSION = "fff.reviewBriefDarkModeUx.v1";
 const DRAFT_TO_VIDEO_PLANNING_BRIDGE_SCHEMA_VERSION = "fff.draftToVideoPlanningBridge.v1";
 const REVIEW_HOME_MAP_METERS_SCHEMA_VERSION = "fff.reviewHomeMapMeters.v1";
 const HOME_COCKPIT_METRIC_LINKING_SCHEMA_VERSION = "fff.homeCockpitMetricLinking.v1";
+const BRIDGE_REFINEMENT_OVERVIEW_RIBBON_SCHEMA_VERSION = "fff.bridgeRefinementOverviewRibbon.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -69,6 +70,7 @@ const DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT = "artifacts/review-brief-dark-mo
 const DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT = "artifacts/draft-to-video-planning-bridge-result.json";
 const DEFAULT_REVIEW_HOME_MAP_METERS_OUTPUT = "artifacts/review-home-map-meters-result.json";
 const DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT = "artifacts/home-cockpit-metric-linking-result.json";
+const DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT = "artifacts/bridge-refinement-overview-ribbon-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -890,6 +892,25 @@ async function main() {
     }
     if (command === "smoke-draft-to-video-planning-bridge" || outputPath) {
       console.log(`draft-to-video planning bridge passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-bridge-refinement-overview-ribbon" || command === "smoke-bridge-refinement-overview-ribbon") {
+    const readback = await readJson(inputPath);
+    const result = await validateBridgeRefinementOverviewRibbon(readback, inputPath);
+    const target = outputPath || DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT;
+    if (command === "smoke-bridge-refinement-overview-ribbon" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Bridge refinement overview ribbon failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-bridge-refinement-overview-ribbon" || outputPath) {
+      console.log(`bridge refinement overview ribbon passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -8661,6 +8682,282 @@ async function validateDraftToVideoPlanningBridge(bridge, bridgePath) {
   };
 }
 
+async function validateBridgeRefinementOverviewRibbon(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const homeCockpitPath = manifest.home_cockpit_metric_linking_result_path || DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT;
+  const bridgePath = manifest.draft_to_video_planning_bridge_result_path || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+  const reviewBriefPath = manifest.review_brief_dark_mode_ux_result_path || DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT;
+  const draftPackPath = manifest.one_story_draft_review_pack_result_path || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT;
+  const designerDashboardPath = manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT;
+  const contradictoryGuardPath = manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const homeCockpit = await readJson(homeCockpitPath);
+  const bridge = await readJson(bridgePath);
+  const reviewBrief = await readJson(reviewBriefPath);
+  const draftPack = await readJson(draftPackPath);
+  const designerDashboard = await readJson(designerDashboardPath);
+  const contradictoryGuard = await readJson(contradictoryGuardPath);
+  const html = await readFile("public/review/index.html", "utf8");
+  const credentialFindings = collectCredentialMaterial(readback);
+
+  const latestOverviewItemCount = (html.match(/data-overview-item=/g) || []).length;
+  const narrationRefinementCount = (html.match(/data-narration-refinement=/g) || []).length;
+  const subtitleRhythmCount = (html.match(/data-subtitle-rhythm=/g) || []).length;
+  const visualOrderingCount = (html.match(/data-visual-ordering=/g) || []).length;
+  const thumbnailDirectionCount = (html.match(/data-thumbnail-direction=/g) || []).length;
+  const selectedCandidateId = readback?.selected_candidate_id || bridge?.selected_candidate_id || draftPack?.selected_candidate_id;
+  const selectedChannelRouteId = readback?.selected_channel_route_id || bridge?.selected_channel_route_id || draftPack?.channel_strategy_route?.id;
+  const overviewMarkers = [
+    'data-overview-item="latest-state"',
+    'data-overview-item="latest-change"',
+    'data-overview-item="read-now"',
+    'data-overview-item="next-decision"',
+    'data-overview-item="locked-lanes"'
+  ];
+  const lockedMarkers = [
+    "provider/API",
+    "AI video",
+    "render",
+    "upload",
+    "final canon",
+    "rights clearance"
+  ];
+
+  check(
+    "identity",
+    readback?.artifact_id === "fff-bridge-refinement-overview-ribbon-001" &&
+      readback?.schemaVersion === BRIDGE_REFINEMENT_OVERVIEW_RIBBON_SCHEMA_VERSION &&
+      readback?.review_ui === "public/review/index.html" &&
+      readback?.access_route === "public/review/index.html?mode=brief" &&
+      readback?.bridge_route === "public/review/index.html?mode=bridge",
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; ui=${readback?.review_ui}; access=${readback?.access_route}; bridge=${readback?.bridge_route}`
+  );
+  check(
+    "source_readbacks_preserved",
+    homeCockpit?.artifact_id === "fff-home-cockpit-metric-linking-001" &&
+      homeCockpit?.passed === true &&
+      bridge?.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+      bridge?.passed === true &&
+      reviewBrief?.artifact_id === "fff-review-brief-dark-mode-ux-001" &&
+      reviewBrief?.passed === true &&
+      draftPack?.artifact_id === "fff-one-story-draft-review-pack-001" &&
+      draftPack?.passed === true &&
+      designerDashboard?.artifact_id === "fff-designer-candidate-dashboard-001" &&
+      designerDashboard?.passed === true &&
+      contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
+      contradictoryGuard?.passed === true,
+    `home=${homeCockpit?.artifact_id}/${homeCockpit?.passed}; bridge=${bridge?.artifact_id}/${bridge?.passed}; brief=${reviewBrief?.artifact_id}/${reviewBrief?.passed}; draft=${draftPack?.artifact_id}/${draftPack?.passed}; designer=${designerDashboard?.artifact_id}/${designerDashboard?.passed}; contradictory=${contradictoryGuard?.artifact_id}/${contradictoryGuard?.passed}`
+  );
+  check(
+    "latest_overview_visible",
+    html.includes('data-latest-overview="bridge-refinement-overview-ribbon"') &&
+      html.includes("Latest Overview Report") &&
+      latestOverviewItemCount >= 4 &&
+      latestOverviewItemCount <= 6 &&
+      overviewMarkers.every((marker) => html.includes(marker)),
+    `items=${latestOverviewItemCount}; markers=${overviewMarkers.filter((marker) => html.includes(marker)).length}/${overviewMarkers.length}`
+  );
+  check(
+    "overview_bridge_link_visible",
+    html.includes('data-overview-bridge-link="true"') &&
+      html.includes('data-mode-target="bridge"') &&
+      html.includes("public/review/index.html?mode=bridge"),
+    "overview ribbon should provide one obvious Bridge action"
+  );
+  check(
+    "duplicated_brief_demoted_or_merged",
+    (html.includes('data-brief-demoted="true"') || html.includes('data-brief-legacy-fold="true"')) &&
+      html.includes("designer-content-moth-investigation-3m") &&
+      html.includes("designer-channel-mystery-lore") &&
+      html.includes('id="review-brief-root"'),
+    "legacy Review Brief should be bounded while preserving candidate/channel IDs"
+  );
+  check(
+    "bridge_overview_reference_visible",
+    html.includes('data-bridge-overview-reference="true"') &&
+      html.includes('data-mode-target="brief"') &&
+      html.includes("Current Overview"),
+    "Bridge should carry a small back-to-overview reference"
+  );
+  check(
+    "bridge_refinement_visible",
+    html.includes('data-bridge-refinement="overview-ribbon-bridge-refinement"') &&
+      narrationRefinementCount >= 3 &&
+      narrationRefinementCount <= 5 &&
+      subtitleRhythmCount >= 5 &&
+      subtitleRhythmCount <= 8 &&
+      visualOrderingCount >= 5 &&
+      visualOrderingCount <= 7 &&
+      thumbnailDirectionCount === 3,
+    `narration=${narrationRefinementCount}; subtitle=${subtitleRhythmCount}; visual=${visualOrderingCount}; thumbnail=${thumbnailDirectionCount}`
+  );
+  check(
+    "held_truth_policy_visible",
+    html.includes('data-held-truth-policy="true"') &&
+      html.includes("Toma fate") &&
+      html.includes("brass moth truth") &&
+      html.includes("Council motive") &&
+      html.includes("brass moth truth/function"),
+    "held truths should remain visible and unresolved"
+  );
+  check(
+    "rights_asset_boundary_visible",
+    html.includes('data-rights-boundary-note="true"') &&
+      html.includes("no generated image") &&
+      html.includes("no final script") &&
+      html.includes("no final video") &&
+      html.includes("no production render") &&
+      html.includes("no rights clearance claim"),
+    "rights and asset boundary should stay non-final"
+  );
+  check(
+    "evidence_vault_optional_preserved",
+    html.includes('data-card-group="evidence-vault"') &&
+      html.includes("Evidence Vault") &&
+      html.includes("Source Audit") &&
+      html.includes("Project Cockpit") &&
+      html.includes("Artifacts") &&
+      html.includes("audit only"),
+    "Evidence Vault should remain optional audit surface"
+  );
+  check(
+    "dark_mode_preserved",
+    html.includes(':root[data-theme="dark"]') &&
+      html.includes(':root[data-theme="auto"]') &&
+      html.includes('data-theme-target="light"') &&
+      html.includes('data-theme-target="dark"') &&
+      html.includes('data-theme-target="auto"') &&
+      html.includes("THEME_STORAGE_KEY") &&
+      html.includes("--paper-soft") &&
+      html.includes("--surface-muted"),
+    "theme controls and variables should remain present"
+  );
+  check(
+    "candidate_channel_preserved",
+    selectedCandidateId === "designer-content-moth-investigation-3m" &&
+      selectedChannelRouteId === "designer-channel-mystery-lore" &&
+      html.includes("designer-content-moth-investigation-3m") &&
+      html.includes("designer-channel-mystery-lore"),
+    `candidate=${selectedCandidateId}; channel=${selectedChannelRouteId}`
+  );
+  check(
+    "boundary_gates_closed",
+    readback?.local_only === true &&
+      readback?.external_call === false &&
+      readback?.provider_configured === false &&
+      readback?.credentials_touched === false &&
+      readback?.public_upload === false &&
+      readback?.ai_video_generation === false &&
+      readback?.production_render === false &&
+      readback?.final_canon_decision === false &&
+      readback?.rights_cleared_claim === false &&
+      lockedMarkers.every((marker) => html.includes(marker)) &&
+      credentialFindings.length === 0,
+    `local=${readback?.local_only}; external=${readback?.external_call}; provider=${readback?.provider_configured}; credentials=${readback?.credentials_touched}; upload=${readback?.public_upload}; video=${readback?.ai_video_generation}; render=${readback?.production_render}; canon=${readback?.final_canon_decision}; rights=${readback?.rights_cleared_claim}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+
+  const result = {
+    schemaVersion: BRIDGE_REFINEMENT_OVERVIEW_RIBBON_SCHEMA_VERSION,
+    artifact_id: "fff-bridge-refinement-overview-ribbon-001",
+    title: "Fast Fiction Factory Bridge Refinement Overview Ribbon",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    review_ui: "public/review/index.html",
+    access_route: "public/review/index.html?mode=brief",
+    bridge_route: "public/review/index.html?mode=bridge",
+    input_result_path: toRepoPath(readbackPath),
+    source_home_cockpit_artifact_id: "fff-home-cockpit-metric-linking-001",
+    source_bridge_artifact_id: "fff-draft-to-video-planning-bridge-001",
+    source_result_paths: {
+      home_cockpit_metric_linking: homeCockpitPath,
+      draft_to_video_planning_bridge: bridgePath,
+      review_brief_dark_mode_ux: reviewBriefPath,
+      one_story_draft_review_pack: draftPackPath,
+      designer_candidate_dashboard: designerDashboardPath,
+      contradictory_claim_guard: contradictoryGuardPath
+    },
+    latest_overview_visible: checks.latest_overview_visible?.passed === true,
+    latest_overview_item_count: latestOverviewItemCount,
+    overview_bridge_link_visible: checks.overview_bridge_link_visible?.passed === true,
+    duplicated_brief_demoted_or_merged: checks.duplicated_brief_demoted_or_merged?.passed === true,
+    bridge_overview_reference_visible: checks.bridge_overview_reference_visible?.passed === true,
+    bridge_refinement_visible: checks.bridge_refinement_visible?.passed === true,
+    narration_refinement_count: narrationRefinementCount,
+    subtitle_rhythm_count: subtitleRhythmCount,
+    visual_ordering_count: visualOrderingCount,
+    thumbnail_direction_count: thumbnailDirectionCount,
+    held_truth_policy_visible: checks.held_truth_policy_visible?.passed === true,
+    rights_asset_boundary_visible: checks.rights_asset_boundary_visible?.passed === true,
+    evidence_vault_optional_preserved: checks.evidence_vault_optional_preserved?.passed === true,
+    dark_mode_preserved: checks.dark_mode_preserved?.passed === true,
+    selected_candidate_id: selectedCandidateId,
+    selected_channel_route_id: selectedChannelRouteId,
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      credential_material_findings: credentialFindings
+    },
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    summary: {
+      latest_overview_item_count: latestOverviewItemCount,
+      overview_bridge_link_visible: checks.overview_bridge_link_visible?.passed === true,
+      duplicated_brief_demoted_or_merged: checks.duplicated_brief_demoted_or_merged?.passed === true,
+      bridge_refinement_visible: checks.bridge_refinement_visible?.passed === true,
+      narration_refinement_count: narrationRefinementCount,
+      subtitle_rhythm_count: subtitleRhythmCount,
+      visual_ordering_count: visualOrderingCount,
+      thumbnail_direction_count: thumbnailDirectionCount,
+      evidence_vault_optional_preserved: checks.evidence_vault_optional_preserved?.passed === true,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "Latest Overview Report is compact and does not replace the artifact manifest.",
+      "Legacy Review Brief content is demoted but still preserves candidate/channel IDs and prompts.",
+      "Bridge refinement remains pre-production only: candidate narration, rhythm, shot order, thumbnail direction, held-truth policy, and rights boundary.",
+      "Evidence Vault shelves remain optional unless auditing.",
+      "No provider/API, credential, AI video, render, upload, final-canon, or rights-clearance gate is opened."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+
+  return result;
+}
+
 async function validateHomeCockpitMetricLinking(readback, readbackPath) {
   const failures = [];
   const checks = {};
@@ -10298,6 +10595,8 @@ Usage:
   node tools/fff-state.mjs smoke-review-brief-dark-mode-ux <review-brief-dark-mode-ux-result.json> [output.json]
   node tools/fff-state.mjs validate-draft-to-video-planning-bridge <draft-to-video-planning-bridge-result.json>
   node tools/fff-state.mjs smoke-draft-to-video-planning-bridge <draft-to-video-planning-bridge-result.json> [output.json]
+  node tools/fff-state.mjs validate-bridge-refinement-overview-ribbon <bridge-refinement-overview-ribbon-result.json>
+  node tools/fff-state.mjs smoke-bridge-refinement-overview-ribbon <bridge-refinement-overview-ribbon-result.json> [output.json]
   node tools/fff-state.mjs validate-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json>
   node tools/fff-state.mjs smoke-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json> [output.json]
   node tools/fff-state.mjs validate-review-home-map-meters <review-home-map-meters-result.json>
@@ -10323,6 +10622,9 @@ Default review brief dark mode UX output:
 
 Default draft-to-video planning bridge output:
   ${DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT}
+
+Default bridge refinement overview ribbon output:
+  ${DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT}
 
 Default home cockpit metric linking output:
   ${DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT}

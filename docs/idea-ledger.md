@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Bridge Refinement Overview Ribbon
+
+- Purpose: Give the reviewer a latest overview before comprehensive lists, then make the Draft-to-Video Bridge detailed enough to judge without starting production.
+- Effect: Adds a 5-item Latest Overview Report to `public/review/index.html?mode=brief`, folds the older Review Brief into a preserved detail shelf, adds Bridge back-to-overview reference, and adds non-final narration, subtitle rhythm, visual ordering, thumbnail, held-truth, and rights/asset cues to `public/review/index.html?mode=bridge`.
+- Requirements: Preserve `fff-home-cockpit-metric-linking-001`, `fff-draft-to-video-planning-bridge-001`, candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, Evidence Vault optionality, dark mode, and all provider/API/video/render/upload/final-canon/rights boundaries.
+- State: Implemented in `fff-bridge-refinement-overview-ribbon-001`.
+- Owner: Product implementer for UI/readback; human reviewer for whether the latest overview and Bridge refinement are enough to accept, revise, or reject the production hypothesis.
+- Next move: Review `public/review/index.html?mode=brief`, then `public/review/index.html?mode=bridge`; if accepted, move to a narrow script/subtitle/shot/thumbnail refinement slice without opening provider/API or generation.
+
 ### Home Cockpit Metric Linking
 
 - Purpose: Make the default Review Brief behave as a Home Cockpit so the reviewer can see the current route, action meters, optional shelves, and locked lanes before opening Bridge.
