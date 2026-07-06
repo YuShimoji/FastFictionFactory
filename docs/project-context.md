@@ -209,4 +209,4 @@ First next move: use the Latest Overview Report at `public/review/index.html?mod
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-Latest Bridge Refinement Overview Ribbon refresh started from synced `master` on 2026-07-06 JST with `HEAD...origin/master` clean before edits. The pushed commit after this line is discoverable with `git log -1 --oneline --decorate` after pulling.
+Latest Bridge Refinement Overview Ribbon refresh started from synced `master` on 2026-07-06 JST with `HEAD...origin/master` clean before edits. The pushed product baseline is `a332884 Add bridge refinement overview ribbon`; after pulling, `git log -1 --oneline --decorate` shows the exact current remote head, including any handoff-only refresh commit.

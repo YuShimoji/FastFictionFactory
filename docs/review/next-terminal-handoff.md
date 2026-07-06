@@ -35,7 +35,21 @@ was removed from this repo, and
 `fff-downstream-target-authorization-packet-001`,
 `fff-profile-adoption-mutation-one-claim-001`, and
 `fff-very-broad-source-span-shape-audit-001` are preserved auxiliary readbacks.
-Run `git log -1 --oneline --decorate` after pulling for the exact remote head.
+The pushed product baseline before this handoff-only refresh is
+`a332884 Add bridge refinement overview ribbon`; after pulling, run
+`git log -1 --oneline --decorate` for the exact remote head that contains this
+handoff note.
+
+## Latest Remote Publish Snapshot
+
+- Branch: `master`
+- Product baseline commit: `a332884 Add bridge refinement overview ribbon`
+- Active artifact: `fff-bridge-refinement-overview-ribbon-001`
+- Remote parity before this handoff-only note: `HEAD...origin/master = 0 0`
+- Worktree state before this handoff-only note: clean
+- User-side review route: `public/review/index.html?mode=brief`, then `public/review/index.html?mode=bridge`
+- Review decision needed next: freeform accept / revise / reject for route, narration, subtitle rhythm, visual ordering, thumbnail direction, and held-truth policy
+- Locked lanes: provider/API, credentials, AI video generation, production render, upload, rights-clearance claim, and final canon
 
 ## Start Here
 
@@ -53,7 +67,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this overview ribbon refresh was the synced remote head reported by `git log -1 --oneline --decorate` before edits. Local transport-residue files outside this product scope should not be treated as product work.
+Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the product baseline for the overview ribbon implementation is `a332884 Add bridge refinement overview ribbon`. Local transport-residue files outside this product scope should not be treated as product work.
 
 3. Read these files in this order:
 
