@@ -2,14 +2,23 @@
 
 ## Residual Work
 
+### Home Cockpit Metric Linking
+
+- Purpose: Make the default Review Brief behave as a Home Cockpit so the reviewer can see the current route, action meters, optional shelves, and locked lanes before opening Bridge.
+- Effect: Sets `public/review/index.html?mode=brief` as the no-query Home Cockpit, keeps `public/review/index.html?mode=home` as an alias, adds Operator Track / Workbench / Evidence Vault / Locked Lanes, and links nine readiness meters to concrete next actions.
+- Requirements: Preserve Review Home Map, Draft-to-Video Bridge, Review Brief Dark Mode UX, Designer Dashboard, One-story Draft Review Pack, Stabilization, and Contradictory Claim Guard readbacks; keep provider/API calls, credentials, publishing, AI video generation, production render, final canon, and rights-clearance claims closed.
+- State: Implemented in `fff-home-cockpit-metric-linking-001`.
+- Owner: Product implementer for UI/readback; human reviewer for whether the cockpit makes the Bridge package judgeable without opening evidence shelves.
+- Next move: Use `public/review/index.html?mode=brief` first, then `public/review/index.html?mode=bridge`; revise only the meter/action wording if the reviewer still cannot tell what to read, skip, or audit.
+
 ### Review Home Map Meters
 
 - Purpose: Make the first review screen explain the folded shelves instead of hiding them behind tabs.
 - Effect: Adds `public/review/index.html?mode=home` with a three-step read path, grouped Primary / Story / Evidence navigation, seven shelf cards, seven status meters, open triggers, do-not-open conditions, and one-click Bridge access.
 - Requirements: Preserve Draft-to-Video Bridge, Review Brief, Designer Dashboard, One-story Draft Review Pack, Stabilization, and Contradictory Claim Guard readbacks; keep provider/API calls, credentials, publishing, AI video generation, production render, final canon, and rights-clearance claims closed.
-- State: Implemented in `fff-review-home-map-meters-001`.
+- State: Implemented in `fff-review-home-map-meters-001`; preserved under the Home Cockpit surface.
 - Owner: Product implementer for UI/readback; human reviewer for whether the map fixes the closet-like organization problem.
-- Next move: Use `public/review/index.html?mode=home` first, then `public/review/index.html?mode=bridge`; revise the map only if the reviewer still cannot tell what to read, skip, or audit.
+- Next move: Treat as historical shelf-map readback unless `fff-home-cockpit-metric-linking-001` needs a regression comparison.
 
 ### Draft-to-Video Planning Bridge
 
@@ -27,7 +36,7 @@
 - Requirements: Preserve Designer Dashboard, One-story Draft Review Pack, Draft Review Pack Stabilization, and the Draft-to-Video Planning Bridge readback; keep work local-only; do not add provider/API calls, credentials, publishing, AI video generation, production render, rights-clearance claims, or final canon decisions.
 - State: Implemented in `fff-review-brief-dark-mode-ux-001`.
 - Owner: Product implementer for UI/readback; human reviewer for candidate, channel, and held-truth decisions.
-- Next move: Keep `public/review/index.html?mode=brief` as the preserved prelude route; the current first screen is `public/review/index.html?mode=home`.
+- Next move: Keep `public/review/index.html?mode=brief` as the Home Cockpit route; `public/review/index.html?mode=home` is now a compatibility alias.
 
 ### Draft Review Pack Stabilization
 

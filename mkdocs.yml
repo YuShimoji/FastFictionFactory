@@ -64,6 +64,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Home Cockpit Metric Linking: review/home-cockpit-metric-linking.md
       - Review Home Map Meters: review/review-home-map-meters.md
       - Review Brief Dark Mode UX: review/review-brief-dark-mode-ux.md
       - Draft-to-Video Planning Bridge: review/draft-to-video-planning-bridge.md

@@ -35,6 +35,7 @@ const ONE_STORY_DRAFT_REVIEW_PACK_SCHEMA_VERSION = "fff.oneStoryDraftReviewPack.
 const REVIEW_BRIEF_DARK_MODE_UX_SCHEMA_VERSION = "fff.reviewBriefDarkModeUx.v1";
 const DRAFT_TO_VIDEO_PLANNING_BRIDGE_SCHEMA_VERSION = "fff.draftToVideoPlanningBridge.v1";
 const REVIEW_HOME_MAP_METERS_SCHEMA_VERSION = "fff.reviewHomeMapMeters.v1";
+const HOME_COCKPIT_METRIC_LINKING_SCHEMA_VERSION = "fff.homeCockpitMetricLinking.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -67,6 +68,7 @@ const DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT = "artifacts/one-story-draft-re
 const DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT = "artifacts/review-brief-dark-mode-ux-result.json";
 const DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT = "artifacts/draft-to-video-planning-bridge-result.json";
 const DEFAULT_REVIEW_HOME_MAP_METERS_OUTPUT = "artifacts/review-home-map-meters-result.json";
+const DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT = "artifacts/home-cockpit-metric-linking-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -888,6 +890,25 @@ async function main() {
     }
     if (command === "smoke-draft-to-video-planning-bridge" || outputPath) {
       console.log(`draft-to-video planning bridge passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-home-cockpit-metric-linking" || command === "smoke-home-cockpit-metric-linking") {
+    const readback = await readJson(inputPath);
+    const result = await validateHomeCockpitMetricLinking(readback, inputPath);
+    const target = outputPath || DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT;
+    if (command === "smoke-home-cockpit-metric-linking" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Home cockpit metric linking failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-home-cockpit-metric-linking" || outputPath) {
+      console.log(`home cockpit metric linking passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -8111,10 +8132,12 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
   const darkModeFlag = readback?.dark_mode_toggle_present ?? themeCompatibility.dark_mode_toggle_present ?? readback?.summary?.dark_mode_toggle_present;
   const colorSchemeFlag = readback?.color_scheme_supports_light_dark ?? themeCompatibility.color_scheme_supports_light_dark ?? readback?.summary?.color_scheme_supports_light_dark;
   const hardcodedLightFlag = readback?.hardcoded_light_surfaces_reduced ?? themeCompatibility.hardcoded_light_surfaces_reduced ?? readback?.summary?.hardcoded_light_surfaces_reduced;
-  const homeDefaultModeVisible = html.includes('data-review-mode="home"') &&
-    html.includes('data-mode-panel="home"') &&
+  const briefDefaultModeVisible = html.includes('data-review-mode="brief"') &&
+    html.includes('data-mode-panel="brief"') &&
+    html.includes('data-home-cockpit="home-cockpit-metric-linking"') &&
     html.includes('const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"]') &&
-    html.includes('|| "home"');
+    html.includes('|| "brief"') &&
+    html.includes('allowedMode === "home"');
 
   check(
     "identity",
@@ -8155,11 +8178,11 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
   );
   check(
     "brief_is_default",
-    homeDefaultModeVisible &&
+    briefDefaultModeVisible &&
       html.includes('data-mode-panel="brief"') &&
       html.includes('data-mode-target="brief"') &&
       html.includes("public/review/index.html?mode=brief"),
-    `default=${noQueryDefaultMode || "home"}; briefRoutePreserved=true`
+    `default=${noQueryDefaultMode || "brief"}; briefRoutePreserved=true; homeAlias=true`
   );
   check(
     "draft_to_video_bridge_linked",
@@ -8261,7 +8284,7 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
       selected_candidate_id_visible: checks.selected_candidate_visible?.passed === true,
       selected_channel_route_visible: checks.selected_channel_visible?.passed === true,
       japanese_summary_present: checks.japanese_summary_visible?.passed === true,
-      no_query_default_mode: checks.brief_is_default?.passed === true ? "home" : readback.no_query_default_mode,
+      no_query_default_mode: checks.brief_is_default?.passed === true ? "brief" : readback.no_query_default_mode,
       advanced_sections_collapsed_or_demoted: checks.advanced_sections_demoted?.passed === true
     },
     theme_compatibility: {
@@ -8292,7 +8315,7 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
       selected_candidate_id_visible: checks.selected_candidate_visible?.passed === true,
       selected_channel_route_visible: checks.selected_channel_visible?.passed === true,
       japanese_summary_present: checks.japanese_summary_visible?.passed === true,
-      no_query_default_mode: checks.brief_is_default?.passed === true ? "home" : readback.no_query_default_mode,
+      no_query_default_mode: checks.brief_is_default?.passed === true ? "brief" : readback.no_query_default_mode,
       dark_mode_toggle_present: checks.theme_toggle_present?.passed === true,
       color_scheme_supports_light_dark: checks.color_scheme_support?.passed === true,
       hardcoded_light_surfaces_reduced: checks.hardcoded_light_surfaces_reduced?.passed === true,
@@ -8310,7 +8333,7 @@ async function validateReviewBriefDarkModeUx(readback, readbackPath) {
       failures: failures.length
     },
     validation_notes: [
-      "Review Home is now the no-query default; Review Brief remains a preserved prelude route.",
+      "Review Brief is now the Home Cockpit no-query default; mode=home remains a compatibility alias.",
       "Dark mode support is implemented through review UI theme variables and localStorage preference.",
       "Designer Dashboard, One-story Draft Review Pack, and Stabilization readbacks remain preserved.",
       "Draft-to-Video Bridge is linked as a separate local pre-production planning mode only.",
@@ -8638,6 +8661,303 @@ async function validateDraftToVideoPlanningBridge(bridge, bridgePath) {
   };
 }
 
+async function validateHomeCockpitMetricLinking(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const bridgePath = manifest.draft_to_video_planning_bridge_result_path || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+  const reviewBriefPath = manifest.review_brief_dark_mode_ux_result_path || DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT;
+  const draftPackPath = manifest.one_story_draft_review_pack_result_path || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT;
+  const designerDashboardPath = manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT;
+  const stabilizationPath = manifest.stabilization_result_path || "artifacts/draft-review-pack-stabilization-result.json";
+  const contradictoryGuardPath = manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const bridge = await readJson(bridgePath);
+  const reviewBrief = await readJson(reviewBriefPath);
+  const draftPack = await readJson(draftPackPath);
+  const designerDashboard = await readJson(designerDashboardPath);
+  const stabilization = await readJson(stabilizationPath);
+  const contradictoryGuard = await readJson(contradictoryGuardPath);
+  const html = await readFile("public/review/index.html", "utf8");
+  const credentialFindings = collectCredentialMaterial(readback);
+
+  const operatorTrackCards = (html.match(/data-home-cockpit-card="operator"/g) || []).length;
+  const workbenchCards = (html.match(/data-home-cockpit-card="workbench"/g) || []).length;
+  const evidenceVaultCards = (html.match(/data-home-cockpit-card="evidence"/g) || []).length;
+  const lockedLaneCards = (html.match(/data-locked-lane=/g) || []).length;
+  const readinessMeterCount = (html.match(/data-readiness-meter=/g) || []).length;
+  const meterActionCount = (html.match(/data-meter-action-target=/g) || []).length;
+  const shelfCardCount = (html.match(/data-shelf-card=/g) || []).length;
+  const meterCount = (html.match(/class="meter-bar/g) || []).length;
+  const measuredMeterCount = (html.match(/meter_mode: measured/g) || []).length;
+  const hypothesisMeterCount = (html.match(/meter_mode: hypothesis/g) || []).length;
+  const requiredMeterLabels = [
+    "選択ルート",
+    "ナレーション構成",
+    "字幕・画面テキスト",
+    "画面構成",
+    "サムネ案",
+    "権利・素材",
+    "未決定の真相",
+    "証跡の健全性",
+    "公開・生成 Lane"
+  ];
+  const requiredEvidenceLabels = [
+    "Evidence Vault",
+    "Source Audit",
+    "Project Cockpit",
+    "Artifacts",
+    "open_when",
+    "do_not_open_when",
+    "next_action"
+  ];
+  const lockedMarkers = [
+    "provider/API",
+    "AI video",
+    "render",
+    "upload",
+    "final canon",
+    "rights clearance"
+  ];
+
+  check(
+    "identity",
+    readback?.artifact_id === "fff-home-cockpit-metric-linking-001" &&
+      readback?.schemaVersion === HOME_COCKPIT_METRIC_LINKING_SCHEMA_VERSION &&
+      readback?.review_ui === "public/review/index.html" &&
+      readback?.access_route === "public/review/index.html?mode=brief",
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; ui=${readback?.review_ui}; route=${readback?.access_route}`
+  );
+  check(
+    "home_cockpit_visible",
+    html.includes('data-home-cockpit="home-cockpit-metric-linking"') &&
+      html.includes('id="review-home-root"') &&
+      html.includes('data-mode-panel="brief"') &&
+      html.includes('data-review-mode="brief"') &&
+      html.includes('const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"]') &&
+      html.includes('|| "brief"') &&
+      html.includes('allowedMode === "home"') &&
+      html.includes("public/review/index.html?mode=home"),
+    `default=${readback?.default_mode || readback?.default_review_mode}; alias=${readback?.optional_alias_route}`
+  );
+  check(
+    "semantic_card_groups",
+    operatorTrackCards >= 2 &&
+      workbenchCards >= 3 &&
+      evidenceVaultCards >= 3 &&
+      lockedLaneCards >= 6 &&
+      shelfCardCount === 7,
+    `operator=${operatorTrackCards}; workbench=${workbenchCards}; evidence=${evidenceVaultCards}; locked=${lockedLaneCards}; shelves=${shelfCardCount}`
+  );
+  check(
+    "readiness_meters_actionable",
+    readinessMeterCount >= 9 &&
+      meterActionCount >= readinessMeterCount &&
+      meterCount >= 17 &&
+      measuredMeterCount >= 12 &&
+      hypothesisMeterCount >= 2 &&
+      measuredMeterCount + hypothesisMeterCount === meterCount,
+    `readiness=${readinessMeterCount}; actions=${meterActionCount}; meters=${meterCount}; measured=${measuredMeterCount}; hypothesis=${hypothesisMeterCount}`
+  );
+  check(
+    "meter_labels_japanese",
+    requiredMeterLabels.every((label) => html.includes(label)) &&
+      html.includes("次の動き") &&
+      html.includes("Bridgeを見る"),
+    `labels=${requiredMeterLabels.filter((label) => html.includes(label)).length}/${requiredMeterLabels.length}`
+  );
+  check(
+    "evidence_vault_semantically_linked",
+    requiredEvidenceLabels.every((label) => html.includes(label)) &&
+      html.includes("public/review/index.html?mode=source") &&
+      html.includes("public/review/index.html?mode=project") &&
+      html.includes("public/review/index.html?mode=artifacts"),
+    `evidenceLabels=${requiredEvidenceLabels.filter((label) => html.includes(label)).length}/${requiredEvidenceLabels.length}`
+  );
+  check(
+    "default_mode_preserved_or_updated",
+    html.includes('data-mode-target="brief"') &&
+      html.includes("Home Cockpit / Review Brief") &&
+      html.includes("What to read now pathway") &&
+      html.includes("route / narration / subtitle / visual / thumbnail / held truths"),
+    "brief default should be the Home Cockpit command surface"
+  );
+  check(
+    "bridge_route_preserved",
+    html.includes('id="draft-to-video-bridge-root"') &&
+      html.includes('data-mode-panel="bridge"') &&
+      html.includes('data-mode-target="bridge"') &&
+      html.includes("public/review/index.html?mode=bridge") &&
+      bridge?.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+      bridge?.passed === true,
+    `bridge=${bridge?.artifact_id}/${bridge?.passed}`
+  );
+  check(
+    "dark_mode_preserved",
+    html.includes("--meter-track") &&
+      html.includes("--meter-fill") &&
+      html.includes(':root[data-theme="dark"]') &&
+      html.includes(':root[data-theme="auto"]') &&
+      html.includes('data-theme-target="light"') &&
+      html.includes('data-theme-target="dark"') &&
+      html.includes('data-theme-target="auto"') &&
+      html.includes("THEME_STORAGE_KEY"),
+    "theme variables and toggles should remain present"
+  );
+  check(
+    "source_readbacks_preserved",
+    reviewBrief?.artifact_id === "fff-review-brief-dark-mode-ux-001" &&
+      reviewBrief?.passed === true &&
+      draftPack?.artifact_id === "fff-one-story-draft-review-pack-001" &&
+      draftPack?.passed === true &&
+      designerDashboard?.artifact_id === "fff-designer-candidate-dashboard-001" &&
+      designerDashboard?.passed === true &&
+      stabilization?.artifact_id === "fff-draft-review-pack-stabilization-001" &&
+      stabilization?.passed === true &&
+      contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
+      contradictoryGuard?.passed === true,
+    `brief=${reviewBrief?.artifact_id}/${reviewBrief?.passed}; draft=${draftPack?.artifact_id}/${draftPack?.passed}; designer=${designerDashboard?.artifact_id}/${designerDashboard?.passed}; stabilization=${stabilization?.artifact_id}/${stabilization?.passed}; contradictory=${contradictoryGuard?.artifact_id}/${contradictoryGuard?.passed}`
+  );
+  check(
+    "boundary_gates_closed",
+    readback?.local_only === true &&
+      readback?.external_call === false &&
+      readback?.provider_configured === false &&
+      readback?.credentials_touched === false &&
+      readback?.public_upload === false &&
+      readback?.ai_video_generation === false &&
+      readback?.production_render === false &&
+      readback?.final_canon_decision === false &&
+      readback?.rights_cleared_claim === false &&
+      lockedMarkers.every((marker) => html.includes(marker)) &&
+      credentialFindings.length === 0,
+    `local=${readback?.local_only}; external=${readback?.external_call}; provider=${readback?.provider_configured}; credentials=${readback?.credentials_touched}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+
+  return {
+    schemaVersion: HOME_COCKPIT_METRIC_LINKING_SCHEMA_VERSION,
+    artifact_id: "fff-home-cockpit-metric-linking-001",
+    title: "Fast Fiction Factory Home Cockpit Metric Linking",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    review_ui: "public/review/index.html",
+    access_route: "public/review/index.html?mode=brief",
+    optional_alias_route: "public/review/index.html?mode=home",
+    input_result_path: toRepoPath(readbackPath),
+    source_bridge_artifact_id: "fff-draft-to-video-planning-bridge-001",
+    source_review_brief_artifact_id: "fff-review-brief-dark-mode-ux-001",
+    source_result_paths: {
+      draft_to_video_planning_bridge: bridgePath,
+      review_brief_dark_mode_ux: reviewBriefPath,
+      one_story_draft_review_pack: draftPackPath,
+      designer_candidate_dashboard: designerDashboardPath,
+      draft_review_pack_stabilization: stabilizationPath,
+      contradictory_claim_guard: contradictoryGuardPath
+    },
+    home_cockpit_visible: checks.home_cockpit_visible?.passed === true,
+    operator_track_cards: operatorTrackCards,
+    workbench_cards: workbenchCards,
+    evidence_vault_cards: evidenceVaultCards,
+    locked_lane_cards: lockedLaneCards,
+    shelf_card_count: shelfCardCount,
+    readiness_meter_count: readinessMeterCount,
+    meter_action_count: meterActionCount,
+    meters_actionable: checks.readiness_meters_actionable?.passed === true,
+    meter_labels_japanese: checks.meter_labels_japanese?.passed === true,
+    evidence_vault_semantically_linked: checks.evidence_vault_semantically_linked?.passed === true,
+    default_mode_preserved_or_updated: checks.default_mode_preserved_or_updated?.passed === true,
+    default_mode: "brief",
+    bridge_route_preserved: checks.bridge_route_preserved?.passed === true,
+    dark_mode_preserved: checks.dark_mode_preserved?.passed === true,
+    source_readbacks_preserved: checks.source_readbacks_preserved?.passed === true,
+    primary_operator_routes: [
+      "public/review/index.html?mode=brief",
+      "public/review/index.html?mode=bridge",
+      "public/review/index.html?mode=home"
+    ],
+    evidence_vault_routes: [
+      "public/review/index.html?mode=source",
+      "public/review/index.html?mode=project",
+      "public/review/index.html?mode=artifacts"
+    ],
+    workbench_routes: [
+      "public/review/index.html?mode=draft",
+      "public/review/index.html?mode=designer",
+      "public/review/index.html?mode=story"
+    ],
+    locked_lanes: [
+      "provider/API",
+      "AI video",
+      "render",
+      "upload",
+      "final canon",
+      "rights clearance"
+    ],
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      credential_material_findings: credentialFindings
+    },
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    summary: {
+      home_cockpit_visible: checks.home_cockpit_visible?.passed === true,
+      operator_track_cards: operatorTrackCards,
+      workbench_cards: workbenchCards,
+      evidence_vault_cards: evidenceVaultCards,
+      locked_lane_cards: lockedLaneCards,
+      readiness_meter_count: readinessMeterCount,
+      meter_action_count: meterActionCount,
+      default_mode: "brief",
+      optional_alias_route: "public/review/index.html?mode=home",
+      bridge_route_preserved: checks.bridge_route_preserved?.passed === true,
+      dark_mode_preserved: checks.dark_mode_preserved?.passed === true,
+      source_readbacks_preserved: checks.source_readbacks_preserved?.passed === true,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "Review Brief is now the Home Cockpit default command surface.",
+      "mode=home is retained as a compatibility alias to the same Home Cockpit.",
+      "Readiness meters link to Bridge, Workbench, Evidence Vault, or Locked Lane follow-up actions.",
+      "Operator Track, Workbench, Evidence Vault, and Locked Lanes are semantically separated.",
+      "Provider/API setup, AI video generation, production render, upload, final canon, and rights clearance remain out of scope."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateReviewHomeMapMeters(readback, readbackPath) {
   const failures = [];
   const checks = {};
@@ -8704,18 +9024,20 @@ async function validateReviewHomeMapMeters(readback, readbackPath) {
       readback?.schemaVersion === REVIEW_HOME_MAP_METERS_SCHEMA_VERSION &&
       readback?.review_ui === "public/review/index.html" &&
       readback?.access_route === "public/review/index.html?mode=home" &&
-      readback?.default_mode === "home",
+      ["home", "brief"].includes(readback?.default_mode),
     `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; route=${readback?.access_route}; default=${readback?.default_mode}`
   );
   check(
     "home_map_visible",
     readback?.home_map_visible === true &&
       html.includes('id="review-home-root"') &&
-      html.includes('data-mode-panel="home"') &&
+      html.includes('data-mode-panel="brief"') &&
       html.includes('data-home-map="review-home-map-meters"') &&
-      html.includes('data-review-mode="home"') &&
+      html.includes('data-home-cockpit="home-cockpit-metric-linking"') &&
+      html.includes('data-review-mode="brief"') &&
       html.includes('const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"]') &&
-      html.includes('|| "home"'),
+      html.includes('|| "brief"') &&
+      html.includes('allowedMode === "home"'),
     `home=${readback?.home_map_visible}; default=${readback?.default_mode}`
   );
   check(
@@ -8735,7 +9057,8 @@ async function validateReviewHomeMapMeters(readback, readbackPath) {
       html.includes("Review Home") &&
       html.includes("Draft-to-Video Bridge") &&
       html.includes("route / narration / subtitle / visual / thumbnail / held truths") &&
-      primaryRoutes.includes("public/review/index.html?mode=home") &&
+      (primaryRoutes.includes("public/review/index.html?mode=home") || html.includes("public/review/index.html?mode=home")) &&
+      (primaryRoutes.includes("public/review/index.html?mode=brief") || html.includes("public/review/index.html?mode=brief")) &&
       primaryRoutes.includes("public/review/index.html?mode=bridge"),
     `primaryRoutes=${primaryRoutes.join(", ")}`
   );
@@ -8815,16 +9138,16 @@ async function validateReviewHomeMapMeters(readback, readbackPath) {
     review_ui: "public/review/index.html",
     access_route: "public/review/index.html?mode=home",
     input_result_path: toRepoPath(readbackPath),
-    default_mode: "home",
+    default_mode: "brief",
     home_map_visible: checks.home_map_visible?.passed === true,
     shelf_card_count: shelfCardCount,
     meter_count: meterCount,
     measured_meter_count: measuredMeterCount,
     hypothesis_meter_count: hypothesisMeterCount,
-    primary_operator_routes: primaryRoutes.length ? primaryRoutes : [
-      "public/review/index.html?mode=home",
+    primary_operator_routes: [
+      "public/review/index.html?mode=brief",
       "public/review/index.html?mode=bridge",
-      "public/review/index.html?mode=brief"
+      "public/review/index.html?mode=home"
     ],
     evidence_vault_routes: evidenceRoutes.length ? evidenceRoutes : [
       "public/review/index.html?mode=source",
@@ -8871,13 +9194,13 @@ async function validateReviewHomeMapMeters(readback, readbackPath) {
     final_canon_decision: false,
     rights_cleared_claim: false,
     summary: {
-      default_mode: "home",
+      default_mode: "brief",
       home_map_visible: checks.home_map_visible?.passed === true,
       shelf_card_count: shelfCardCount,
       meter_count: meterCount,
       measured_meter_count: measuredMeterCount,
       hypothesis_meter_count: hypothesisMeterCount,
-      primary_operator_route_count: primaryRoutes.length || 3,
+      primary_operator_route_count: 3,
       evidence_vault_route_count: evidenceRoutes.length || 3,
       locked_gate_count: lockedGateCount || 6,
       bridge_link_visible: checks.home_to_shelf_links?.passed === true,
@@ -8896,7 +9219,7 @@ async function validateReviewHomeMapMeters(readback, readbackPath) {
       failures: failures.length
     },
     validation_notes: [
-      "Review Home is the no-query default and maps folded shelves back to purpose, meter, trigger, and action.",
+      "Review Home Map is preserved through the Home Cockpit command surface; mode=home is a compatibility alias to brief.",
       "Evidence Vault shelves are summarized, not removed.",
       "Measured meters are backed by local counts and readbacks; hypothesis meters are only UX clarity signals.",
       "No provider/API, AI video, render, upload, final canon, or rights clearance boundary is opened."
@@ -9975,6 +10298,8 @@ Usage:
   node tools/fff-state.mjs smoke-review-brief-dark-mode-ux <review-brief-dark-mode-ux-result.json> [output.json]
   node tools/fff-state.mjs validate-draft-to-video-planning-bridge <draft-to-video-planning-bridge-result.json>
   node tools/fff-state.mjs smoke-draft-to-video-planning-bridge <draft-to-video-planning-bridge-result.json> [output.json]
+  node tools/fff-state.mjs validate-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json>
+  node tools/fff-state.mjs smoke-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json> [output.json]
   node tools/fff-state.mjs validate-review-home-map-meters <review-home-map-meters-result.json>
   node tools/fff-state.mjs smoke-review-home-map-meters <review-home-map-meters-result.json> [output.json]
 
@@ -9998,6 +10323,9 @@ Default review brief dark mode UX output:
 
 Default draft-to-video planning bridge output:
   ${DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT}
+
+Default home cockpit metric linking output:
+  ${DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT}
 
 Default review home map meters output:
   ${DEFAULT_REVIEW_HOME_MAP_METERS_OUTPUT}

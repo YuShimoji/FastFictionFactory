@@ -1,0 +1,161 @@
+{
+  "schemaVersion": "fff.homeCockpitMetricLinking.v1",
+  "artifact_id": "fff-home-cockpit-metric-linking-001",
+  "title": "Fast Fiction Factory Home Cockpit Metric Linking",
+  "generatedAt": "2026-07-06T08:06:27.827Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=brief",
+  "optional_alias_route": "public/review/index.html?mode=home",
+  "input_result_path": "artifacts/home-cockpit-metric-linking-result.json",
+  "source_bridge_artifact_id": "fff-draft-to-video-planning-bridge-001",
+  "source_review_brief_artifact_id": "fff-review-brief-dark-mode-ux-001",
+  "source_result_paths": {
+    "draft_to_video_planning_bridge": "artifacts/draft-to-video-planning-bridge-result.json",
+    "review_brief_dark_mode_ux": "artifacts/review-brief-dark-mode-ux-result.json",
+    "one_story_draft_review_pack": "artifacts/one-story-draft-review-pack-result.json",
+    "designer_candidate_dashboard": "artifacts/designer-candidate-dashboard-result.json",
+    "draft_review_pack_stabilization": "artifacts/draft-review-pack-stabilization-result.json",
+    "contradictory_claim_guard": "artifacts/contradictory-claim-guard-result.json"
+  },
+  "home_cockpit_visible": true,
+  "operator_track_cards": 2,
+  "workbench_cards": 3,
+  "evidence_vault_cards": 3,
+  "locked_lane_cards": 6,
+  "shelf_card_count": 7,
+  "readiness_meter_count": 9,
+  "meter_action_count": 9,
+  "meters_actionable": true,
+  "meter_labels_japanese": true,
+  "evidence_vault_semantically_linked": true,
+  "default_mode_preserved_or_updated": true,
+  "default_mode": "brief",
+  "bridge_route_preserved": true,
+  "dark_mode_preserved": true,
+  "source_readbacks_preserved": true,
+  "primary_operator_routes": [
+    "public/review/index.html?mode=brief",
+    "public/review/index.html?mode=bridge",
+    "public/review/index.html?mode=home"
+  ],
+  "evidence_vault_routes": [
+    "public/review/index.html?mode=source",
+    "public/review/index.html?mode=project",
+    "public/review/index.html?mode=artifacts"
+  ],
+  "workbench_routes": [
+    "public/review/index.html?mode=draft",
+    "public/review/index.html?mode=designer",
+    "public/review/index.html?mode=story"
+  ],
+  "locked_lanes": [
+    "provider/API",
+    "AI video",
+    "render",
+    "upload",
+    "final canon",
+    "rights clearance"
+  ],
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "final_canon_decision": false,
+  "rights_cleared_claim": false,
+  "summary": {
+    "home_cockpit_visible": true,
+    "operator_track_cards": 2,
+    "workbench_cards": 3,
+    "evidence_vault_cards": 3,
+    "locked_lane_cards": 6,
+    "readiness_meter_count": 9,
+    "meter_action_count": 9,
+    "default_mode": "brief",
+    "optional_alias_route": "public/review/index.html?mode=home",
+    "bridge_route_preserved": true,
+    "dark_mode_preserved": true,
+    "source_readbacks_preserved": true,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "failures": 0
+  },
+  "validation_notes": [
+    "Review Brief is now the Home Cockpit default command surface.",
+    "mode=home is retained as a compatibility alias to the same Home Cockpit.",
+    "Readiness meters link to Bridge, Workbench, Evidence Vault, or Locked Lane follow-up actions.",
+    "Operator Track, Workbench, Evidence Vault, and Locked Lanes are semantically separated.",
+    "Provider/API setup, AI video generation, production render, upload, final canon, and rights clearance remain out of scope."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-home-cockpit-metric-linking-001; schema=fff.homeCockpitMetricLinking.v1; ui=public/review/index.html; route=public/review/index.html?mode=brief"
+    },
+    "home_cockpit_visible": {
+      "passed": true,
+      "detail": "default=brief; alias=public/review/index.html?mode=home"
+    },
+    "semantic_card_groups": {
+      "passed": true,
+      "detail": "operator=2; workbench=3; evidence=3; locked=6; shelves=7"
+    },
+    "readiness_meters_actionable": {
+      "passed": true,
+      "detail": "readiness=9; actions=9; meters=17; measured=15; hypothesis=2"
+    },
+    "meter_labels_japanese": {
+      "passed": true,
+      "detail": "labels=9/9"
+    },
+    "evidence_vault_semantically_linked": {
+      "passed": true,
+      "detail": "evidenceLabels=7/7"
+    },
+    "default_mode_preserved_or_updated": {
+      "passed": true,
+      "detail": "brief default should be the Home Cockpit command surface"
+    },
+    "bridge_route_preserved": {
+      "passed": true,
+      "detail": "bridge=fff-draft-to-video-planning-bridge-001/true"
+    },
+    "dark_mode_preserved": {
+      "passed": true,
+      "detail": "theme variables and toggles should remain present"
+    },
+    "source_readbacks_preserved": {
+      "passed": true,
+      "detail": "brief=fff-review-brief-dark-mode-ux-001/true; draft=fff-one-story-draft-review-pack-001/true; designer=fff-designer-candidate-dashboard-001/true; stabilization=fff-draft-review-pack-stabilization-001/true; contradictory=fff-contradictory-claim-guard-001/true"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "local=true; external=false; provider=false; credentials=false; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

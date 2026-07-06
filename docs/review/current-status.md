@@ -2,10 +2,10 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-review-home-map-meters-001`
+- Artifact id: `fff-home-cockpit-metric-linking-001`
 - Review UI: `public/review/index.html`
-- Review Home mode: `public/review/index.html?mode=home`
-- Review Brief mode: `public/review/index.html?mode=brief`
+- Home Cockpit / Review Brief mode: `public/review/index.html?mode=brief`
+- Review Home compatibility alias: `public/review/index.html?mode=home`
 - Draft-to-Video Bridge mode: `public/review/index.html?mode=bridge`
 - Draft Review Pack mode: `public/review/index.html?mode=draft`
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
@@ -13,6 +13,9 @@
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
 - Repo-local shell launcher: `./scripts/operator/open_review.sh`
 - Manifest: `artifacts/artifact-manifest.json`
+- Home Cockpit Metric Linking doc: `docs/review/home-cockpit-metric-linking.md`
+- Home Cockpit Metric Linking result: `artifacts/home-cockpit-metric-linking-result.json`
+- Home Cockpit Metric Linking smoke command: `node tools/fff-state.mjs smoke-home-cockpit-metric-linking artifacts/home-cockpit-metric-linking-result.json artifacts/home-cockpit-metric-linking-result.json`
 - Review Home Map Meters doc: `docs/review/review-home-map-meters.md`
 - Review Home Map Meters result: `artifacts/review-home-map-meters-result.json`
 - Review Home Map Meters smoke command: `node tools/fff-state.mjs smoke-review-home-map-meters artifacts/review-home-map-meters-result.json artifacts/review-home-map-meters-result.json`
@@ -80,18 +83,17 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active Review Hub checkpoint is `fff-review-home-map-meters-001`; it preserves `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-draft-review-pack-stabilization-001`, and `fff-contradictory-claim-guard-001` instead of replacing their readbacks.
-- `public/review/index.html` now defaults to `Review Home` mode for no-query access and keeps `public/review/index.html?mode=brief` as a preserved prelude route.
-- The Review Home Map contains seven shelf cards with route, purpose, status, meter, meter mode, open trigger, do-not-open condition, and next action for Review Home / Brief, Draft-to-Video Bridge, Draft Review Pack, Designer Dashboard, Source Audit, Project Cockpit, and Artifacts.
-- The Review Home Map contains the current read path: Step 1 Review Home, Step 2 Draft-to-Video Bridge, Step 3 freeform response on route / narration / subtitle / visual / thumbnail / held truths.
-- `artifacts/review-home-map-meters-result.json` records default_mode=`home`, home_map_visible=true, shelf_card_count=7, meter_count=7, measured_meter_count=6, hypothesis_meter_count=1, primary_operator_routes=3, evidence_vault_routes=3, locked_gate_count=6, bridge_link_visible=true, evidence_open_triggers_visible=true, dark_mode_preserved=true, source_artifacts_preserved=true, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, production_render=false, final_canon_decision=false, rights_cleared_claim=false, and passed=true.
-- The preserved Review Brief still contains a route contract near the top: Operator Track means `Review Home` + `Draft-to-Video Bridge` are required reading; Evidence Vault means `Source Audit` / `Project Cockpit` / `Artifacts` are optional evidence shelves; Not Active means provider/API setup, AI video generation, production render, YouTube upload, final canon, and rights-clearance claims are not active.
+- The active Review Hub checkpoint is `fff-home-cockpit-metric-linking-001`; it preserves `fff-review-home-map-meters-001`, `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-draft-review-pack-stabilization-001`, and `fff-contradictory-claim-guard-001` instead of replacing their readbacks.
+- `public/review/index.html` and `public/review/index.html?mode=brief` now default to the Home Cockpit command surface. `public/review/index.html?mode=home` remains a compatibility alias to the same screen.
+- The Home Cockpit groups the review surface into Operator Track, Workbench, Evidence Vault, and Locked Lanes. Operator Track means `Home Cockpit / Review Brief` + `Draft-to-Video Bridge` are the required reading; Evidence Vault means `Source Audit` / `Project Cockpit` / `Artifacts` are optional audit shelves; Locked Lanes means provider/API setup, AI video generation, production render, YouTube upload, final canon, and rights-clearance claims are not active.
+- The Home Cockpit contains nine actionable readiness meters: selected route, narration outline, subtitle/on-screen text, shot/visual cue, thumbnail brief, rights/assets, held truths, evidence health, and publication/generation lane. Each meter links to Bridge, Workbench, Evidence Vault, or Locked Lane follow-up.
+- `artifacts/home-cockpit-metric-linking-result.json` records default_mode=`brief`, optional_alias_route=`public/review/index.html?mode=home`, operator_track_cards=2, workbench_cards=3, evidence_vault_cards=3, locked_lane_cards=6, readiness_meter_count=9, meters_actionable=true, evidence_vault_semantically_linked=true, bridge_route_preserved=true, dark_mode_preserved=true, source_readbacks_preserved=true, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, production_render=false, final_canon_decision=false, rights_cleared_claim=false, and passed=true.
 - The Review Hub now includes `public/review/index.html?mode=bridge` as a local Draft-to-Video Planning Bridge for selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore`.
 - The bridge exposes a Japanese-first route summary, a non-final narration outline, subtitle/on-screen text cues, shot/visual cues, a thumbnail brief, sound/music/mood cue, rights/asset risks, held truths, production non-goals, and reviewer decisions.
 - `Source Audit`, `Project Cockpit`, and `Artifacts` remain available as optional evidence shelves instead of first-impression panels.
 - The Review Hub now supports Light / Dark / Auto theme controls, local theme preference storage, `color-scheme: light dark`, dark-mode CSS variables, reduced hardcoded light surfaces, and a contrast hotfix for selected candidate/channel cards, review brief cards, pills, badges, tags, links, muted text, and focus-visible states.
 - `artifacts/draft-to-video-planning-bridge-result.json` records bridge_visible=true, operator_track_visible=true, evidence_vault_demoted=true, dark_contrast_hotfix_applied=true, narration_outline_count=5, subtitle_cue_count=5, visual_cue_count=5, thumbnail_brief_count=1, sound_mood_cue_count=1, rights_risk_count=5, held_truth_count=4, reviewer_decision_count=4, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, production_render=false, final_canon_decision=false, rights_cleared_claim=false, and passed=true.
-- `artifacts/review-brief-dark-mode-ux-result.json` records review_brief_visible=true, selected_candidate_id_visible=true, selected_channel_route_visible=true, japanese_summary_present=true, no_query_default_mode=`home`, dark_mode_toggle_present=true, color_scheme_supports_light_dark=true, hardcoded_light_surfaces_reduced=true, designer_dashboard_preserved=true, draft_review_pack_preserved=true, stabilization_checkpoint_preserved=true, local-only=true, and draft_to_video_planning_bridge=true.
+- `artifacts/review-brief-dark-mode-ux-result.json` records review_brief_visible=true, selected_candidate_id_visible=true, selected_channel_route_visible=true, japanese_summary_present=true, no_query_default_mode=`brief`, dark_mode_toggle_present=true, color_scheme_supports_light_dark=true, hardcoded_light_surfaces_reduced=true, designer_dashboard_preserved=true, draft_review_pack_preserved=true, stabilization_checkpoint_preserved=true, local-only=true, and draft_to_video_planning_bridge=true.
 - `docs/review/review-brief-dark-mode-ux.md` records purpose, access, UX changes, preserved work, validation commands, review debt, and next move.
 - `tools/fff-state.mjs` includes `smoke-review-brief-dark-mode-ux` for local readback validation.
 - `fff-draft-review-pack-stabilization-001` remains the prior access/readback and git-durability checkpoint for the Designer Dashboard and Draft Review Pack.
@@ -229,7 +231,8 @@ Preserved platform boundary:
 
 | Target | Current state | Next move |
 | --- | --- | --- |
-| Review Home Map Meters | Covered by `fff-review-home-map-meters-001`; `public/review/index.html?mode=home` is the no-query default and shows seven shelf cards, seven meters, Primary / Story / Evidence navigation grouping, Bridge one-click access, and Evidence Vault open triggers | Human reviewer should use Home first, then Bridge, and only open Source Audit / Project Cockpit / Artifacts if auditing evidence or boundaries |
+| Home Cockpit Metric Linking | Covered by `fff-home-cockpit-metric-linking-001`; `public/review/index.html?mode=brief` is the no-query default and `?mode=home` aliases to it. It shows Operator Track, Workbench, Evidence Vault, Locked Lanes, and nine actionable readiness meters | Human reviewer should use Home Cockpit first, then Bridge, and only open Source Audit / Project Cockpit / Artifacts if auditing evidence or boundaries |
+| Review Home Map Meters | Preserved by `fff-review-home-map-meters-001`; its seven shelf cards and shelf-meter semantics are now folded into the Home Cockpit command surface | Treat as historical shelf-map readback, not the active first stop |
 | Draft-to-Video Planning Bridge | Covered by `fff-draft-to-video-planning-bridge-001`; `public/review/index.html?mode=bridge` contains the selected 3-minute mystery-lore route, non-final narration outline, text cues, shot cues, thumbnail brief, sound/mood cue, rights/asset risks, held truths, production non-goals, and reviewer decisions | Human reviewer should accept, revise, or reject the production hypothesis before any prose-finalization, asset generation, provider/API, AI video, render, upload, rights, or final-canon work |
 | Draft Review Pack Stabilization | Covered by `fff-draft-review-pack-stabilization-001`; static route/mode/result/doc/guard readback passes for Designer Dashboard and Draft Review Pack; access state is `verified_present`; browser file URL screenshot was blocked by URL policy | Use this as the durability checkpoint; next human work is freeform review of the Draft Review Pack route, not another stabilization pass |
 | One-story Draft Review Pack | Covered by `fff-one-story-draft-review-pack-001`; provisional default candidate `designer-content-moth-investigation-3m`, 5 draft beats, non-final opening/narration sample, 4 visual cues, 4 text cues, 3 held human-owned questions, and 4 risk cards are visible in `public/review/index.html?mode=draft` | Keep as the source draft pack for the Bridge; reopen only if the selected candidate, channel route, or held-truth policy changes |
@@ -281,8 +284,8 @@ Or use the repo-local launchers:
 Mode-specific local paths:
 
 ```text
-public/review/index.html?mode=home
 public/review/index.html?mode=brief
+public/review/index.html?mode=home
 public/review/index.html?mode=bridge
 public/review/index.html?mode=story
 public/review/index.html?mode=draft
@@ -300,4 +303,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The Review Home Map is now the active local entry surface; it exists to make the folded shelves readable before the reviewer opens the Draft-to-Video Bridge. The next non-redundant move is human review of `public/review/index.html?mode=home`, then `public/review/index.html?mode=bridge`: confirm whether the route map is understandable, then accept, revise, or reject the route summary, narration outline, text cues, visual cues, thumbnail brief, sound/mood cue, rights risks, and held truths. Timeline / Story Seed / Canon decision still requires equivalent explicit authorization; actual production rollback only if explicitly requested for `multi-claim-moth-key-label`; real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, additional adoption writes, production rollback, or final canon decisions unless explicitly requested.
+Use review memory before asking for another review. The Home Cockpit is now the active local entry surface; it exists to make the folded shelves readable before the reviewer opens the Draft-to-Video Bridge. The next non-redundant move is human review of `public/review/index.html?mode=brief`, then `public/review/index.html?mode=bridge`: confirm whether the command surface is understandable, then accept, revise, or reject the route summary, narration outline, text cues, visual cues, thumbnail brief, sound/mood cue, rights risks, and held truths. Timeline / Story Seed / Canon decision still requires equivalent explicit authorization; actual production rollback only if explicitly requested for `multi-claim-moth-key-label`; real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, additional adoption writes, production rollback, or final canon decisions unless explicitly requested.

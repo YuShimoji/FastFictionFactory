@@ -604,6 +604,75 @@
       gap: 8px;
     }
 
+    .cockpit-section {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .cockpit-section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: end;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 8px;
+    }
+
+    .cockpit-section-header h3 {
+      margin: 0;
+    }
+
+    .cockpit-card-grid,
+    .readiness-meter-grid,
+    .locked-lane-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .cockpit-card-grid.two-up {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .readiness-meter-card {
+      min-width: 0;
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+    }
+
+    .readiness-meter-card.warning {
+      border-left: 4px solid var(--gold);
+      background: var(--warning-bg);
+    }
+
+    .readiness-meter-card.locked,
+    .locked-lane {
+      border-left: 4px solid var(--red);
+      background: var(--danger-bg);
+    }
+
+    .meter-action {
+      justify-self: start;
+    }
+
+    .locked-lane {
+      min-width: 0;
+      display: grid;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+    }
+
+    .locked-lane h4 {
+      margin: 0;
+    }
+
     .mode-summary-grid {
       display: grid;
       grid-template-columns: repeat(8, minmax(0, 1fr));
@@ -1526,6 +1595,9 @@
       .home-hero,
       .home-meter-strip,
       .home-map-grid,
+      .cockpit-card-grid,
+      .readiness-meter-grid,
+      .locked-lane-grid,
       .brief-grid,
       .route-contract,
       .bridge-grid,
@@ -1547,7 +1619,7 @@
     }
   </style>
 </head>
-<body data-review-mode="home">
+<body data-review-mode="brief">
   <div class="app-shell">
     <header class="topbar">
       <div class="topbar-inner">
@@ -1577,8 +1649,8 @@
         <div class="hub-header">
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
-            <h2 id="visual-review-title">Review Home Map <span class="jp-label">レビュー棚の地図</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-review-home-map-meters-001</strong>. まずReview Homeで読む順番と棚の状態を確認し、次にDraft-to-Video Bridgeで制作仮説だけを判断します。Source Audit / Project Cockpit / Artifacts はEvidence Vaultとして必要時だけ開きます。</p>
+            <h2 id="visual-review-title">Home Cockpit / Review Brief <span class="jp-label">今見る場所</span></h2>
+            <p class="lede">Active artifact id: <strong>fff-home-cockpit-metric-linking-001</strong>. デフォルトの Review Brief を Home Cockpit として使い、Bridge へ進む前に Operator Track、Workbench、Evidence Vault、Locked Lanes と読み取りメーターを一画面で確認します。</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -1590,15 +1662,14 @@
         <nav class="mode-switcher" aria-label="Review mode navigation">
           <div class="mode-tab-stack">
             <div class="mode-tab-group primary">
-              <span class="mode-group-label">Primary operator route</span>
+              <span class="mode-group-label">Now / 今見る</span>
               <div class="mode-tabs">
-                <button class="mode-tab" type="button" data-mode-target="home" aria-pressed="true"><strong>Review Home</strong><span>地図とメーター</span></button>
-                <button class="mode-tab" type="button" data-mode-target="bridge" aria-pressed="false"><strong>Draft-to-Video Bridge</strong><span>今回の制作仮説</span></button>
-                <button class="mode-tab" type="button" data-mode-target="brief" aria-pressed="false"><strong>Review Brief</strong><span>入口の要約</span></button>
+                <button class="mode-tab" type="button" data-mode-target="brief" aria-pressed="true"><strong>Home Cockpit / Review Brief</strong><span>現在地と次の判断</span></button>
+                <button class="mode-tab" type="button" data-mode-target="bridge" aria-pressed="false"><strong>Draft-to-Video Bridge</strong><span>制作仮説を見る</span></button>
               </div>
             </div>
             <div class="mode-tab-group">
-              <span class="mode-group-label">Story shelves</span>
+              <span class="mode-group-label">Workbench / 材料棚</span>
               <div class="mode-tabs">
                 <button class="mode-tab" type="button" data-mode-target="draft" aria-pressed="false"><strong>Draft Review Pack</strong><span>One story draft</span></button>
                 <button class="mode-tab" type="button" data-mode-target="designer" aria-pressed="false"><strong>Designer Dashboard</strong><span>Content strategy</span></button>
@@ -1606,217 +1677,230 @@
               </div>
             </div>
             <div class="mode-tab-group">
-              <span class="mode-group-label">Evidence only</span>
+              <span class="mode-group-label">Evidence Vault / 証跡棚</span>
               <div class="mode-tabs">
                 <button class="mode-tab is-advanced" type="button" data-mode-target="source" aria-pressed="false"><strong>Source Audit</strong><span>抽出根拠</span></button>
-                <button class="mode-tab is-advanced" type="button" data-mode-target="project" aria-pressed="false"><strong>Project Cockpit</strong><span>状態履歴</span></button>
+                <button class="mode-tab is-advanced" type="button" data-mode-target="project" aria-pressed="false"><strong>Project Cockpit</strong><span>状態と境界</span></button>
                 <button class="mode-tab is-advanced" type="button" data-mode-target="artifacts" aria-pressed="false"><strong>Artifacts</strong><span>検証ログ</span></button>
               </div>
             </div>
           </div>
           <div class="mode-summary-grid">
-            <div class="mode-summary"><strong>Review Home</strong><span class="jp-label">どこを見るかを確認</span></div>
-            <div class="mode-summary"><strong>Review Brief</strong><span class="jp-label">最初の判断だけを確認</span></div>
-            <div class="mode-summary"><strong>Draft-to-Video Bridge</strong><span class="jp-label">制作前の仮説確認</span></div>
-            <div class="mode-summary"><strong>Story Review</strong><span class="jp-label">本文・候補・未決定を確認</span></div>
+            <div class="mode-summary"><strong>Home Cockpit / Review Brief</strong><span class="jp-label">入口と判断メーター</span></div>
+            <div class="mode-summary"><strong>Draft-to-Video Bridge</strong><span class="jp-label">制作仮説</span></div>
+            <div class="mode-summary"><strong>Story Review</strong><span class="jp-label">本文と候補</span></div>
             <div class="mode-summary"><strong>Designer Dashboard</strong><span class="jp-label">候補とチャンネル案</span></div>
             <div class="mode-summary"><strong>Draft Review Pack</strong><span class="jp-label">暫定ドラフト案</span></div>
             <div class="mode-summary"><strong>Source Audit</strong><span class="jp-label">詳細証跡</span></div>
             <div class="mode-summary"><strong>Project Cockpit</strong><span class="jp-label">履歴と境界</span></div>
             <div class="mode-summary"><strong>Artifacts</strong><span class="jp-label">ファイルと検証</span></div>
           </div>
-          <p class="section-note">Stable IDs, JSON keys, artifact IDs, and file paths remain English. Japanese labels are display-only review aids.</p>
+          <p class="section-note">Stable IDs, JSON keys, artifact IDs, and file paths remain English. Japanese labels are display-only review aids. <strong>public/review/index.html?mode=home</strong> is kept as an alias to the same Home Cockpit for compatibility.</p>
         </nav>
 
-        <section class="review-home" id="review-home-root" data-mode-panel="home" data-home-map="review-home-map-meters" aria-labelledby="review-home-title">
+        <section class="review-home" id="review-home-root" data-mode-panel="brief" data-home-map="review-home-map-meters" data-home-cockpit="home-cockpit-metric-linking" aria-labelledby="home-cockpit-title">
           <div class="home-hero">
             <div>
-              <p class="hub-eyebrow">Review Home / レビュー棚の地図</p>
-              <h2 id="review-home-title">いま読む場所、開かなくてよい棚、次の判断を一画面で見る</h2>
-              <p class="lede">折りたたまれた情報をただ隠すのではなく、各棚を目的・状態・メーター・開く条件・次の動きに戻しました。今回の主線はHomeからBridgeへ進み、Evidence Vaultは監査が必要な時だけ開きます。</p>
+              <p class="hub-eyebrow">Home Cockpit / Review Home alias</p>
+              <h2 id="home-cockpit-title">今読む場所を制御盤にする</h2>
+              <p class="lede">Review Brief はこの Home Cockpit として開きます。Bridge を読む前に、Workbench や Evidence Vault を開く必要があるか、まだ閉じている Lane は何かを一画面で切り分けます。</p>
               <ol class="read-now-steps" aria-label="What to read now pathway">
-                <li><span class="step-index">1</span><span><strong>Review Home</strong>で棚の地図とメーターを確認する。</span></li>
-                <li><span class="step-index">2</span><span><strong>Draft-to-Video Bridge</strong>で3分ミステリー・ロア路線の制作仮説を見る。</span></li>
-                <li><span class="step-index">3</span><span>route / narration / subtitle / visual / thumbnail / held truths について自由記述で返す。</span></li>
+                <li><span class="step-index">1</span><span><strong>Home Cockpit / Review Brief</strong> で Operator Track と判断メーターを確認する。</span></li>
+                <li><span class="step-index">2</span><span><strong>Draft-to-Video Bridge</strong> で 3 分ミステリー・ロア路線の制作仮説を見る。</span></li>
+                <li><span class="step-index">3</span><span>route / narration / subtitle / visual / thumbnail / held truths について accept / revise / reject を自由記述で返す。</span></li>
               </ol>
               <div class="brief-actions">
                 <button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Bridgeを見る</button>
-                <button class="brief-action" type="button" data-mode-target="brief" aria-pressed="false">Briefを開く</button>
-                <button class="brief-action" type="button" data-mode-target="source" aria-pressed="false">証跡棚を開く</button>
+                <button class="brief-action" type="button" data-mode-target="draft" aria-pressed="false">Workbenchを見る</button>
+                <button class="brief-action" type="button" data-mode-target="source" aria-pressed="false">Evidence Vaultを見る</button>
               </div>
             </div>
-            <div class="home-meter-strip" aria-label="Review home status meters">
+            <div class="home-meter-strip" aria-label="Home cockpit status summary">
               <div class="home-meter-chip">
-                <strong>2 screens</strong>
-                <span>読む主線: Home + Bridge</span>
+                <strong>brief default</strong>
+                <span>public/review/index.html と ?mode=brief</span>
+              </div>
+              <div class="home-meter-chip">
+                <strong>home alias</strong>
+                <span>public/review/index.html?mode=home も同じ画面</span>
               </div>
               <div class="home-meter-chip">
                 <strong>0 / 6 open</strong>
-                <span>Production Gates locked</span>
-              </div>
-              <div class="home-meter-chip">
-                <strong>7 shelves</strong>
-                <span>目的と開く条件を表示</span>
+                <span>provider/API, AI video, render, upload, final canon, rights clearance</span>
               </div>
             </div>
           </div>
 
-          <div class="home-map-grid" aria-label="Home Map shelf meters">
-            <article class="shelf-card primary" data-shelf-card="review-home-brief">
-              <div class="shelf-topline">
-                <h3>Review Home / Brief</h3>
-                <span class="status-pill">review route</span>
+          <section class="cockpit-section" data-card-group="operator-track" aria-labelledby="operator-track-title">
+            <div class="cockpit-section-header">
+              <div>
+                <p class="hub-eyebrow">Operator Track / 今読む導線</p>
+                <h3 id="operator-track-title">判断に必要な画面</h3>
               </div>
-              <div class="meter-block">
-                <div class="meter-label"><span>Review Route Clarity</span><span>4 / 5</span></div>
-                <div class="meter-bar" aria-label="Review route clarity meter"><span class="meter-fill" style="--meter-value: 80%"></span></div>
-                <div class="meter-meta">meter_mode: hypothesis. User burden is improved, but human readback still decides if it feels organized.</div>
-              </div>
-              <dl class="shelf-facts">
-                <dt>route</dt><dd>public/review/index.html?mode=home / public/review/index.html?mode=brief</dd>
-                <dt>purpose</dt><dd>読む順番、棚の意味、開かなくてよい場所を先に見る。</dd>
-                <dt>open_when</dt><dd>最初に迷った時、または全体の現在地を確認したい時。</dd>
-                <dt>do_not_open_when</dt><dd>制作仮説だけを判断する準備ができている時はBridgeへ進む。</dd>
-                <dt>next_action</dt><dd>Bridgeの制作仮説を読む。</dd>
-              </dl>
-              <div class="shelf-actions">
-                <button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Bridgeを見る</button>
-                <button class="brief-action" type="button" data-mode-target="brief" aria-pressed="false">Briefを開く</button>
-              </div>
-            </article>
+              <span class="status-pill">read first</span>
+            </div>
+            <div class="cockpit-card-grid two-up">
+              <article class="shelf-card primary" data-home-cockpit-card="operator" data-shelf-card="review-home-brief">
+                <div class="shelf-topline"><h3>Home Cockpit / Review Brief</h3><span class="status-pill">default</span></div>
+                <div class="meter-block">
+                  <div class="meter-label"><span>Review Route Clarity</span><span>4 / 5</span></div>
+                  <div class="meter-bar" aria-label="Review route clarity meter"><span class="meter-fill" style="--meter-value: 80%"></span></div>
+                  <div class="meter-meta">meter_mode: hypothesis. 導線は整理済みだが、体感の読みやすさは人間レビューで確定する。</div>
+                </div>
+                <dl class="shelf-facts">
+                  <dt>route</dt><dd>public/review/index.html?mode=brief / public/review/index.html?mode=home</dd>
+                  <dt>purpose</dt><dd>読む棚、メーター、開く条件、次の判断を先に見る。</dd>
+                  <dt>open_when</dt><dd>最初に開く。迷った時もここへ戻る。</dd>
+                  <dt>do_not_open_when</dt><dd>制作仮説そのものを判断中なら Bridge へ進む。</dd>
+                  <dt>next_action</dt><dd>Bridge を読んで accept / revise / reject を決める。</dd>
+                </dl>
+                <div class="shelf-actions"><button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Bridgeを見る</button></div>
+              </article>
 
-            <article class="shelf-card primary" data-shelf-card="draft-to-video-bridge">
-              <div class="shelf-topline">
-                <h3>Draft-to-Video Bridge</h3>
-                <span class="status-pill">review-ready</span>
-              </div>
-              <div class="meter-block">
-                <div class="meter-label"><span>Bridge Package</span><span>8 / 10</span></div>
-                <div class="meter-bar" aria-label="Bridge package meter"><span class="meter-fill" style="--meter-value: 80%"></span></div>
-                <div class="meter-meta">meter_mode: measured. 10 bridge cards, 5 narration cues, 5 subtitle cues, 5 visual cues, 5 rights risks.</div>
-              </div>
-              <dl class="shelf-facts">
-                <dt>route</dt><dd>public/review/index.html?mode=bridge</dd>
-                <dt>purpose</dt><dd>3分ミステリー・ロア路線を動画生成前の制作仮説として判断する。</dd>
-                <dt>open_when</dt><dd>この路線で進めるか、サムネ・字幕・画面構成を見たい時。</dd>
-                <dt>do_not_open_when</dt><dd>source-spanや履歴の監査だけが目的の時。</dd>
-                <dt>next_action</dt><dd>accept / revise / reject を自由記述で返す。</dd>
-              </dl>
-              <div class="shelf-actions">
-                <button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Bridgeを見る</button>
-              </div>
-            </article>
+              <article class="shelf-card primary" data-home-cockpit-card="operator" data-shelf-card="draft-to-video-bridge">
+                <div class="shelf-topline"><h3>Draft-to-Video Bridge</h3><span class="status-pill">review-ready</span></div>
+                <div class="meter-block">
+                  <div class="meter-label"><span>Bridge Package</span><span>8 / 10</span></div>
+                  <div class="meter-bar" aria-label="Bridge package meter"><span class="meter-fill" style="--meter-value: 80%"></span></div>
+                  <div class="meter-meta">meter_mode: measured. 10 bridge cards, 5 narration cues, 5 subtitle cues, 5 visual cues, 5 rights risks.</div>
+                </div>
+                <dl class="shelf-facts">
+                  <dt>route</dt><dd>public/review/index.html?mode=bridge</dd>
+                  <dt>purpose</dt><dd>3 分ミステリー・ロア路線を動画生成前の制作仮説として読む。</dd>
+                  <dt>open_when</dt><dd>この路線で進めるか、ナレーション・字幕・画面・サムネの骨格を判断したい時。</dd>
+                  <dt>do_not_open_when</dt><dd>source-span や検証履歴だけを監査したい時。</dd>
+                  <dt>next_action</dt><dd>accept / revise / reject を自由記述で返す。</dd>
+                </dl>
+                <div class="shelf-actions"><button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Bridgeを見る</button></div>
+              </article>
+            </div>
+          </section>
 
-            <article class="shelf-card" data-shelf-card="draft-review-pack">
-              <div class="shelf-topline">
-                <h3>Draft Review Pack</h3>
-                <span class="status-pill">source shelf</span>
+          <section class="cockpit-section" data-card-group="readiness-meters" aria-labelledby="readiness-meter-title">
+            <div class="cockpit-section-header">
+              <div>
+                <p class="hub-eyebrow">Actionable Readiness Meters / 判断メーター</p>
+                <h3 id="readiness-meter-title">0/5 で制作前の詰まりを分ける</h3>
               </div>
-              <div class="meter-block">
-                <div class="meter-label"><span>Draft Detail</span><span>7 / 10</span></div>
-                <div class="meter-bar" aria-label="Draft review pack meter"><span class="meter-fill" style="--meter-value: 70%"></span></div>
-                <div class="meter-meta">meter_mode: measured. 5 draft beats, 4 visual cues, 4 subtitle/text cues, 4 risk cards.</div>
-              </div>
-              <dl class="shelf-facts">
-                <dt>route</dt><dd>public/review/index.html?mode=draft</dd>
-                <dt>purpose</dt><dd>Bridgeの背後にある1本分の暫定ドラフト材料を確認する。</dd>
-                <dt>open_when</dt><dd>Bridgeの骨格に違和感があり、元のbeatやtext cueへ戻りたい時。</dd>
-                <dt>do_not_open_when</dt><dd>Bridgeだけで制作仮説を判断できる時。</dd>
-                <dt>next_action</dt><dd>Bridgeの修正点を具体化する。</dd>
-              </dl>
-              <div class="shelf-actions">
-                <button class="brief-action" type="button" data-mode-target="draft" aria-pressed="false">候補棚を開く</button>
-              </div>
-            </article>
+              <span class="status-pill">review-readiness</span>
+            </div>
+            <div class="readiness-meter-grid">
+              <article class="readiness-meter-card" data-readiness-meter="selected-route">
+                <div class="shelf-topline"><h3>選択ルート</h3><span class="status-pill">4 / 5</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Route</span><span>4 / 5</span></div><div class="meter-bar"><span class="meter-fill" style="--meter-value: 80%"></span></div><div class="meter-meta">meter_mode: measured. candidate と channel は選択済み。</div></div>
+                <p class="section-note">次の動き: Bridge でこの路線のまま進めてよいかを見る。</p>
+                <button class="brief-action meter-action" type="button" data-mode-target="bridge" data-meter-action-target="bridge" aria-pressed="false">Bridgeを見る</button>
+              </article>
+              <article class="readiness-meter-card" data-readiness-meter="narration-outline">
+                <div class="shelf-topline"><h3>ナレーション構成</h3><span class="status-pill">4 / 5</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Narration</span><span>4 / 5</span></div><div class="meter-bar"><span class="meter-fill" style="--meter-value: 80%"></span></div><div class="meter-meta">meter_mode: measured. 5 cue outline が Bridge にある。</div></div>
+                <p class="section-note">次の動き: 骨格として読めるか、語り口をもっと文学寄りにするか決める。</p>
+                <button class="brief-action meter-action" type="button" data-mode-target="bridge" data-meter-action-target="bridge" aria-pressed="false">構成を見る</button>
+              </article>
+              <article class="readiness-meter-card" data-readiness-meter="subtitle-text">
+                <div class="shelf-topline"><h3>字幕・画面テキスト</h3><span class="status-pill">3 / 5</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Subtitle</span><span>3 / 5</span></div><div class="meter-bar"><span class="meter-fill warning" style="--meter-value: 60%"></span></div><div class="meter-meta">meter_mode: measured. cue はあるが、リズム詳細は未確定。</div></div>
+                <p class="section-note">次の動き: Bridge refinement で字幕リズムを詰めるか選ぶ。</p>
+                <button class="brief-action meter-action" type="button" data-mode-target="bridge" data-meter-action-target="bridge" aria-pressed="false">字幕を見る</button>
+              </article>
+              <article class="readiness-meter-card" data-readiness-meter="shot-visual-cue">
+                <div class="shelf-topline"><h3>画面構成</h3><span class="status-pill">3 / 5</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Visual</span><span>3 / 5</span></div><div class="meter-bar"><span class="meter-fill warning" style="--meter-value: 60%"></span></div><div class="meter-meta">meter_mode: measured. shot cue はあるが、素材選定は未開始。</div></div>
+                <p class="section-note">次の動き: 画面割りを小さく詳細化するか、まだ方向性だけで止める。</p>
+                <button class="brief-action meter-action" type="button" data-mode-target="bridge" data-meter-action-target="bridge" aria-pressed="false">画面案を見る</button>
+              </article>
+              <article class="readiness-meter-card warning" data-readiness-meter="thumbnail-brief">
+                <div class="shelf-topline"><h3>サムネ案</h3><span class="status-pill">2 / 5</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Thumbnail</span><span>2 / 5</span></div><div class="meter-bar"><span class="meter-fill warning" style="--meter-value: 40%"></span></div><div class="meter-meta">meter_mode: hypothesis. 方向性はあるが、比較案はまだ弱い。</div></div>
+                <p class="section-note">次の動き: サムネ候補比較を次 slice にするか判断する。</p>
+                <button class="brief-action meter-action" type="button" data-mode-target="bridge" data-meter-action-target="bridge" aria-pressed="false">サムネを見る</button>
+              </article>
+              <article class="readiness-meter-card warning" data-readiness-meter="rights-asset">
+                <div class="shelf-topline"><h3>権利・素材</h3><span class="status-pill">1 / 5</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Rights</span><span>1 / 5</span></div><div class="meter-bar"><span class="meter-fill warning" style="--meter-value: 20%"></span></div><div class="meter-meta">meter_mode: measured. rights clearance claim は 0。素材は未選定。</div></div>
+                <p class="section-note">次の動き: 今は監査だけ。権利確認や素材生成はまだ開かない。</p>
+                <button class="brief-action meter-action" type="button" data-mode-target="source" data-meter-action-target="source" aria-pressed="false">証跡を見る</button>
+              </article>
+              <article class="readiness-meter-card warning" data-readiness-meter="held-truth-canon">
+                <div class="shelf-topline"><h3>未決定の真相</h3><span class="status-pill">1 / 5</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Held truths</span><span>1 / 5</span></div><div class="meter-bar"><span class="meter-fill warning" style="--meter-value: 20%"></span></div><div class="meter-meta">meter_mode: measured. Toma fate / brass moth truth / Council motive は保持。</div></div>
+                <p class="section-note">次の動き: 未決定のまま保持する方針でよいかだけ判断する。</p>
+                <button class="brief-action meter-action" type="button" data-mode-target="bridge" data-meter-action-target="bridge" aria-pressed="false">保留点を見る</button>
+              </article>
+              <article class="readiness-meter-card" data-readiness-meter="evidence-health">
+                <div class="shelf-topline"><h3>証跡の健全性</h3><span class="status-pill">4 / 5</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Evidence</span><span>4 / 5</span></div><div class="meter-bar"><span class="meter-fill" style="--meter-value: 80%"></span></div><div class="meter-meta">meter_mode: measured. Source Audit / Project Cockpit / Artifacts は保持。</div></div>
+                <p class="section-note">次の動き: 違和感がある時だけ Evidence Vault を開く。</p>
+                <button class="brief-action meter-action" type="button" data-mode-target="source" data-meter-action-target="source" aria-pressed="false">Evidence Vaultを見る</button>
+              </article>
+              <article class="readiness-meter-card locked" data-readiness-meter="publication-generation">
+                <div class="shelf-topline"><h3>公開・生成 Lane</h3><span class="status-pill">0 / 5</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Production</span><span>0 / 5</span></div><div class="meter-bar"><span class="meter-fill locked" style="--meter-value: 0%"></span></div><div class="meter-meta">meter_mode: measured. provider/API, AI video, render, upload, final canon, rights clearance は closed。</div></div>
+                <p class="section-note">次の動き: 触らない。人間の Bridge 判断が先。</p>
+                <button class="brief-action meter-action" type="button" data-mode-target="project" data-meter-action-target="project" aria-pressed="false">Locked Lanesを見る</button>
+              </article>
+            </div>
+          </section>
 
-            <article class="shelf-card" data-shelf-card="designer-dashboard">
-              <div class="shelf-topline">
-                <h3>Designer Dashboard</h3>
-                <span class="status-pill">source shelf</span>
-              </div>
-              <div class="meter-block">
-                <div class="meter-label"><span>Candidate Coverage</span><span>7 / 10</span></div>
-                <div class="meter-bar" aria-label="Designer dashboard meter"><span class="meter-fill" style="--meter-value: 70%"></span></div>
-                <div class="meter-meta">meter_mode: measured. 3 content candidates, 3 channel proposals, 5 draft spine beats, 3 held decisions.</div>
-              </div>
-              <dl class="shelf-facts">
-                <dt>route</dt><dd>public/review/index.html?mode=designer</dd>
-                <dt>purpose</dt><dd>なぜこの候補とチャンネルが選ばれたかを見る材料棚。</dd>
-                <dt>open_when</dt><dd>候補そのものを差し替えたい時、または別チャンネル路線を見たい時。</dd>
-                <dt>do_not_open_when</dt><dd>選択済み候補でBridgeを判断するだけなら開かない。</dd>
-                <dt>next_action</dt><dd>候補またはチャンネルを替える理由を記録する。</dd>
-              </dl>
-              <div class="shelf-actions">
-                <button class="brief-action" type="button" data-mode-target="designer" aria-pressed="false">Dashboardを開く</button>
-              </div>
-            </article>
+          <section class="cockpit-section" data-card-group="workbench" aria-labelledby="workbench-title">
+            <div class="cockpit-section-header"><div><p class="hub-eyebrow">Workbench / 材料棚</p><h3 id="workbench-title">違和感がある時だけ戻る場所</h3></div><span class="status-pill">optional</span></div>
+            <div class="cockpit-card-grid">
+              <article class="shelf-card" data-home-cockpit-card="workbench" data-shelf-card="draft-review-pack">
+                <div class="shelf-topline"><h3>Draft Review Pack</h3><span class="status-pill">source shelf</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Draft Detail</span><span>7 / 10</span></div><div class="meter-bar"><span class="meter-fill" style="--meter-value: 70%"></span></div><div class="meter-meta">meter_mode: measured. 5 draft beats, 4 visual cues, 4 subtitle/text cues, 4 risk cards.</div></div>
+                <dl class="shelf-facts"><dt>route</dt><dd>public/review/index.html?mode=draft</dd><dt>purpose</dt><dd>Bridge の背後にある 1 本分の暫定ドラフト材料を見る。</dd><dt>open_when</dt><dd>Bridge の骨格に違和感があり、beat や text cue へ戻りたい時。</dd><dt>do_not_open_when</dt><dd>Bridge だけで制作仮説を判断できる時。</dd><dt>next_action</dt><dd>修正したい cue を具体化する。</dd></dl>
+                <div class="shelf-actions"><button class="brief-action" type="button" data-mode-target="draft" aria-pressed="false">Draftを見る</button></div>
+              </article>
+              <article class="shelf-card" data-home-cockpit-card="workbench" data-shelf-card="designer-dashboard">
+                <div class="shelf-topline"><h3>Designer Dashboard</h3><span class="status-pill">source shelf</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Candidate Coverage</span><span>7 / 10</span></div><div class="meter-bar"><span class="meter-fill" style="--meter-value: 70%"></span></div><div class="meter-meta">meter_mode: measured. 3 content candidates, 3 channel proposals, 5 draft spine beats, 3 held decisions.</div></div>
+                <dl class="shelf-facts"><dt>route</dt><dd>public/review/index.html?mode=designer</dd><dt>purpose</dt><dd>なぜこの候補とチャンネルが選ばれたかを見る。</dd><dt>open_when</dt><dd>別候補や別チャンネルに戻したい時。</dd><dt>do_not_open_when</dt><dd>選択済み候補で Bridge を判断するだけなら開かない。</dd><dt>next_action</dt><dd>候補を変える理由を記録する。</dd></dl>
+                <div class="shelf-actions"><button class="brief-action" type="button" data-mode-target="designer" aria-pressed="false">Dashboardを見る</button></div>
+              </article>
+              <article class="shelf-card" data-home-cockpit-card="workbench">
+                <div class="shelf-topline"><h3>Story Review</h3><span class="status-pill">background</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Story Material</span><span>6 / 10</span></div><div class="meter-bar"><span class="meter-fill" style="--meter-value: 60%"></span></div><div class="meter-meta">meter_mode: measured. Candidate review and unresolved decisions remain available.</div></div>
+                <dl class="shelf-facts"><dt>route</dt><dd>public/review/index.html?mode=story</dd><dt>purpose</dt><dd>本文候補、未決定事項、レビュー状態の背景を見る。</dd><dt>open_when</dt><dd>Bridge の前提そのものを疑う時。</dd><dt>do_not_open_when</dt><dd>制作前の指示だけを判断する時。</dd><dt>next_action</dt><dd>候補の status や未決定事項を確認する。</dd></dl>
+                <div class="shelf-actions"><button class="brief-action" type="button" data-mode-target="story" aria-pressed="false">Storyを見る</button></div>
+              </article>
+            </div>
+          </section>
 
-            <article class="shelf-card evidence" data-shelf-card="source-audit">
-              <div class="shelf-topline">
-                <h3>Source Audit</h3>
-                <span class="status-pill">Evidence Vault</span>
-              </div>
-              <div class="meter-block">
-                <div class="meter-label"><span>Source Evidence Health</span><span>9 / 10</span></div>
-                <div class="meter-bar" aria-label="Source audit meter"><span class="meter-fill" style="--meter-value: 90%"></span></div>
-                <div class="meter-meta">meter_mode: measured. 60 source-pack rows, 0 mismatches, 0 missing refs, 0 unsafe visual routes.</div>
-              </div>
-              <dl class="shelf-facts">
-                <dt>route</dt><dd>public/review/index.html?mode=source</dd>
-                <dt>purpose</dt><dd>抽出根拠とsource-span検証。通常は読まなくてよい。</dd>
-                <dt>open_when</dt><dd>Bridgeの根拠、引用位置、抽出の安全性を監査したい時。</dd>
-                <dt>do_not_open_when</dt><dd>制作仮説の方向性だけを判断する時。</dd>
-                <dt>next_action</dt><dd>怪しいspanやroutingだけを指摘する。</dd>
-              </dl>
-              <div class="shelf-actions">
-                <button class="brief-action" type="button" data-mode-target="source" aria-pressed="false">証跡棚を開く</button>
-              </div>
-            </article>
+          <section class="cockpit-section" data-card-group="evidence-vault" aria-labelledby="evidence-vault-title">
+            <div class="cockpit-section-header"><div><p class="hub-eyebrow">Evidence Vault / 証跡棚</p><h3 id="evidence-vault-title">監査が必要な時だけ開く</h3></div><span class="status-pill">audit only</span></div>
+            <div class="cockpit-card-grid">
+              <article class="shelf-card evidence" data-home-cockpit-card="evidence" data-shelf-card="source-audit">
+                <div class="shelf-topline"><h3>Source Audit</h3><span class="status-pill">Evidence Vault</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Source Evidence Health</span><span>9 / 10</span></div><div class="meter-bar"><span class="meter-fill" style="--meter-value: 90%"></span></div><div class="meter-meta">meter_mode: measured. 60 source-pack rows, 0 mismatches, 0 missing refs, 0 unsafe visual routes.</div></div>
+                <dl class="shelf-facts"><dt>route</dt><dd>public/review/index.html?mode=source</dd><dt>purpose</dt><dd>抽出根拠と source-span 検証。通常は読まなくてよい。</dd><dt>open_when</dt><dd>Bridge の根拠、引用位置、抽出の安全性を監査したい時。</dd><dt>do_not_open_when</dt><dd>制作仮説の方向性だけを判断する時。</dd><dt>next_action</dt><dd>怪しい span や routing を指摘する。</dd></dl>
+                <div class="shelf-actions"><button class="brief-action" type="button" data-mode-target="source" aria-pressed="false">Source Auditを見る</button></div>
+              </article>
+              <article class="shelf-card evidence" data-home-cockpit-card="evidence" data-shelf-card="project-cockpit">
+                <div class="shelf-topline"><h3>Project Cockpit</h3><span class="status-pill">Evidence Vault</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Risk & Gate State</span><span>0 / 6 open</span></div><div class="meter-bar"><span class="meter-fill locked" style="--meter-value: 0%"></span></div><div class="meter-meta">meter_mode: measured. provider/API, AI video, render, upload, final canon, rights clearance remain locked.</div></div>
+                <dl class="shelf-facts"><dt>route</dt><dd>public/review/index.html?mode=project</dd><dt>purpose</dt><dd>履歴、境界、進行状態を見る。</dd><dt>open_when</dt><dd>何が許可済みで何が未承認かを確認したい時。</dd><dt>do_not_open_when</dt><dd>Bridge の読み心地だけを判断する時。</dd><dt>next_action</dt><dd>境界違反があれば開発側へ戻す。</dd></dl>
+                <div class="shelf-actions"><button class="brief-action" type="button" data-mode-target="project" aria-pressed="false">Cockpitを見る</button></div>
+              </article>
+              <article class="shelf-card evidence" data-home-cockpit-card="evidence" data-shelf-card="artifacts">
+                <div class="shelf-topline"><h3>Artifacts</h3><span class="status-pill">Evidence Vault</span></div>
+                <div class="meter-block"><div class="meter-label"><span>Readback Inventory</span><span>8 / 10</span></div><div class="meter-bar"><span class="meter-fill" style="--meter-value: 80%"></span></div><div class="meter-meta">meter_mode: measured. Review docs, JSON readbacks, manifest, and validation logs are preserved.</div></div>
+                <dl class="shelf-facts"><dt>route</dt><dd>public/review/index.html?mode=artifacts</dd><dt>purpose</dt><dd>ファイル、検証ログ、readback result の所在を見る。</dd><dt>open_when</dt><dd>実装証跡や JSON 結果の所在を確認したい時。</dd><dt>do_not_open_when</dt><dd>ユーザー側の制作仮説レビューだけを進める時。</dd><dt>next_action</dt><dd>不足ファイルや検証ログだけを指摘する。</dd></dl>
+                <div class="shelf-actions"><button class="brief-action" type="button" data-mode-target="artifacts" aria-pressed="false">Artifactsを見る</button></div>
+              </article>
+            </div>
+          </section>
 
-            <article class="shelf-card evidence" data-shelf-card="project-cockpit">
-              <div class="shelf-topline">
-                <h3>Project Cockpit</h3>
-                <span class="status-pill">Evidence Vault</span>
-              </div>
-              <div class="meter-block">
-                <div class="meter-label"><span>Risk & Gate State</span><span>0 / 6 open</span></div>
-                <div class="meter-bar" aria-label="Project cockpit gate meter"><span class="meter-fill locked" style="--meter-value: 0%"></span></div>
-                <div class="meter-meta">meter_mode: measured. provider/API, AI video, render, upload, final canon, rights clearance remain locked.</div>
-              </div>
-              <dl class="shelf-facts">
-                <dt>route</dt><dd>public/review/index.html?mode=project</dd>
-                <dt>purpose</dt><dd>履歴・境界・進行状況。迷った時だけ開く。</dd>
-                <dt>open_when</dt><dd>今どこまで許可済みか、何が未承認かを確認したい時。</dd>
-                <dt>do_not_open_when</dt><dd>Bridgeの読み心地だけを判断する時。</dd>
-                <dt>next_action</dt><dd>境界違反があればBridgeではなく開発側に戻す。</dd>
-              </dl>
-              <div class="shelf-actions">
-                <button class="brief-action" type="button" data-mode-target="project" aria-pressed="false">Cockpitを開く</button>
-              </div>
-            </article>
-
-            <article class="shelf-card evidence" data-shelf-card="artifacts">
-              <div class="shelf-topline">
-                <h3>Artifacts</h3>
-                <span class="status-pill">Evidence Vault</span>
-              </div>
-              <div class="meter-block">
-                <div class="meter-label"><span>Readback Inventory</span><span>8 / 10</span></div>
-                <div class="meter-bar" aria-label="Artifacts inventory meter"><span class="meter-fill" style="--meter-value: 80%"></span></div>
-                <div class="meter-meta">meter_mode: measured. Review docs, JSON readbacks, manifest, and validation logs are preserved.</div>
-              </div>
-              <dl class="shelf-facts">
-                <dt>route</dt><dd>public/review/index.html?mode=artifacts</dd>
-                <dt>purpose</dt><dd>ファイル・検証ログ。監査時だけ開く。</dd>
-                <dt>open_when</dt><dd>実装証跡、結果JSON、docsの所在を確認したい時。</dd>
-                <dt>do_not_open_when</dt><dd>ユーザー側の制作仮説レビューだけを進める時。</dd>
-                <dt>next_action</dt><dd>不足ファイルや検証ログだけを指摘する。</dd>
-              </dl>
-              <div class="shelf-actions">
-                <button class="brief-action" type="button" data-mode-target="artifacts" aria-pressed="false">検証ログを開く</button>
-              </div>
-            </article>
-          </div>
+          <section class="cockpit-section" data-card-group="locked-lanes" aria-labelledby="locked-lanes-title">
+            <div class="cockpit-section-header"><div><p class="hub-eyebrow">Locked Lanes / まだ開かない作業</p><h3 id="locked-lanes-title">生成・公開・確定は 0 / 5 のまま保持</h3></div><span class="status-pill">closed</span></div>
+            <div class="locked-lane-grid">
+              <article class="locked-lane" data-locked-lane="provider-api"><h4>provider/API</h4><p class="section-note">locked 0 / 5. Provider choice, endpoint, credentials, timeout, retry policy are not configured.</p></article>
+              <article class="locked-lane" data-locked-lane="ai-video-generation"><h4>AI video</h4><p class="section-note">locked 0 / 5. No AI video generation, no model video call, no production asset output.</p></article>
+              <article class="locked-lane" data-locked-lane="youtube-upload"><h4>upload</h4><p class="section-note">locked 0 / 5. No YouTube upload, public publishing, or release adapter.</p></article>
+              <article class="locked-lane" data-locked-lane="production-render"><h4>render</h4><p class="section-note">locked 0 / 5. No production render, export queue, or production sync.</p></article>
+              <article class="locked-lane" data-locked-lane="final-canon"><h4>final canon</h4><p class="section-note">locked 0 / 5. Toma fate / brass moth truth / Council motive remain held.</p></article>
+              <article class="locked-lane" data-locked-lane="rights-clearance"><h4>rights clearance</h4><p class="section-note">locked 0 / 5. No rights clearance claim, no licensed image/audio asset selected.</p></article>
+            </div>
+          </section>
         </section>
 
         <section class="review-brief" id="review-brief-root" data-mode-panel="brief" aria-labelledby="review-brief-title">
@@ -2985,7 +3069,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const themeButtons = Array.from(document.querySelectorAll("[data-theme-target]"));
     const THEME_STORAGE_KEY = "fff-review-theme";
     const REVIEW_MODES = ["home", "brief", "bridge", "story", "designer", "draft", "source", "project", "artifacts"];
-    const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "home";
+    const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "brief";
 
     memoInput.value = state.memo || sampleMemo;
     jsonExportOutput.value = state.exportPreview || "";
@@ -3006,8 +3090,13 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       });
     });
 
+    function normalizeReviewMode(mode) {
+      const allowedMode = REVIEW_MODES.includes(mode) ? mode : "brief";
+      return allowedMode === "home" ? "brief" : allowedMode;
+    }
+
     function setReviewMode(mode) {
-      const nextMode = REVIEW_MODES.includes(mode) ? mode : "home";
+      const nextMode = normalizeReviewMode(mode);
       document.body.setAttribute("data-review-mode", nextMode);
       modeButtons.forEach((button) => {
         button.setAttribute("aria-pressed", button.getAttribute("data-mode-target") === nextMode ? "true" : "false");

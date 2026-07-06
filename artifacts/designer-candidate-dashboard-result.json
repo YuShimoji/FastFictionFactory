@@ -2,7 +2,7 @@
   "schemaVersion": "fff.designerCandidateDashboard.v1",
   "artifact_id": "fff-designer-candidate-dashboard-001",
   "title": "Fast Fiction Factory Designer Candidate Dashboard",
-  "generatedAt": "2026-07-06T01:12:58.294Z",
+  "generatedAt": "2026-07-06T08:06:28.126Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",

@@ -1,5 +1,24 @@
 # Artifacts
 
+## fff-home-cockpit-metric-linking-001
+
+- Title: Fast Fiction Factory Home Cockpit Metric Linking
+- Purpose: Promote the default Review Brief route into a Home Cockpit that links Operator Track, Workbench, Evidence Vault, Locked Lanes, and actionable readiness meters before human Bridge review.
+- Repo relative path: `public/review/index.html`
+- Primary default route: `public/review/index.html?mode=brief`
+- Compatibility alias route: `public/review/index.html?mode=home`
+- Primary review route: `public/review/index.html?mode=bridge`
+- Workbench routes: `public/review/index.html?mode=draft`, `public/review/index.html?mode=designer`, `public/review/index.html?mode=story`
+- Evidence Vault routes: `public/review/index.html?mode=source`, `public/review/index.html?mode=project`, `public/review/index.html?mode=artifacts`
+- Review doc: `docs/review/home-cockpit-metric-linking.md`
+- Readback result: `artifacts/home-cockpit-metric-linking-result.json`
+- Source artifacts: `fff-review-home-map-meters-001`, `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-draft-review-pack-stabilization-001`, `fff-contradictory-claim-guard-001`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-home-cockpit-metric-linking artifacts/home-cockpit-metric-linking-result.json artifacts/home-cockpit-metric-linking-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active local review checkpoint; no-query access now lands on the Home Cockpit through `brief`, `home` remains an alias, nine readiness meters link to concrete actions, and provider/API, credentials, AI video generation, render, upload, final canon, and rights-clearance claims remain closed.
+
 ## fff-review-home-map-meters-001
 
 - Title: Fast Fiction Factory Review Home Map and Meters
@@ -16,7 +35,7 @@
 - Validation command: `node tools/fff-state.mjs smoke-review-home-map-meters artifacts/review-home-map-meters-result.json artifacts/review-home-map-meters-result.json`
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
-- State: Active local review checkpoint; no-query access now lands on Review Home, seven shelf cards and seven meters summarize the review route, story shelves, Evidence Vault, and locked production gates. Provider/API, credentials, AI video generation, render, upload, final canon, and rights-clearance claims remain closed.
+- State: Preserved shelf-map checkpoint; `mode=home` now aliases to the active Home Cockpit, while the seven shelf cards and meter semantics remain regression evidence. Provider/API, credentials, AI video generation, render, upload, final canon, and rights-clearance claims remain closed.
 
 ## fff-draft-to-video-planning-bridge-001
 
@@ -49,7 +68,7 @@
 - Validation command: `node tools/fff-state.mjs smoke-review-brief-dark-mode-ux artifacts/review-brief-dark-mode-ux-result.json artifacts/review-brief-dark-mode-ux-result.json`
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
-- State: Preserved operator prelude; no-query access now defaults to Review Home while `public/review/index.html?mode=brief` remains available. Selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore` are visible, the route contract points to `public/review/index.html?mode=bridge`, advanced source/project/artifact panels remain available as Evidence Vault shelves, Light / Dark / Auto theme controls are present, and the prior Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
+- State: Preserved operator prelude now folded into the active Home Cockpit; no-query access defaults to `public/review/index.html?mode=brief`, while `public/review/index.html?mode=home` remains an alias. Selected candidate `designer-content-moth-investigation-3m` and selected channel `designer-channel-mystery-lore` are visible, the route contract points to `public/review/index.html?mode=bridge`, advanced source/project/artifact panels remain available as Evidence Vault shelves, Light / Dark / Auto theme controls are present, and the prior Designer Dashboard / Draft Review Pack / Stabilization readbacks remain preserved.
 
 ## fff-draft-review-pack-stabilization-001
 

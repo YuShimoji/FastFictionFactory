@@ -2,12 +2,13 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-06 JST for `fff-review-home-map-meters-001`.
+Latest handoff refresh: 2026-07-06 JST for `fff-home-cockpit-metric-linking-001`.
 This restart/readback refresh started from synced `master`; before product
 edits, `git status --short --branch --untracked-files=all` showed tracked
 `master` parity with `origin/master`. At refresh time, the active review
-checkpoint is `fff-review-home-map-meters-001`;
-it preserves `fff-draft-to-video-planning-bridge-001`,
+checkpoint is `fff-home-cockpit-metric-linking-001`;
+it preserves `fff-review-home-map-meters-001`,
+`fff-draft-to-video-planning-bridge-001`,
 `fff-review-brief-dark-mode-ux-001`,
 `fff-one-story-draft-review-pack-001`,
 `fff-designer-candidate-dashboard-001`, and
@@ -51,7 +52,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this restart/readback refresh was `ffc3c5c`. A local `.serena/project.yml` transport-residue modification may remain unstaged and should not be treated as product work.
+Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed handoff commit is whatever `git log -1 --oneline --decorate` reports after pulling; the functional baseline before this Home Cockpit refresh was `6c9c748`. Local transport-residue files outside this product scope should not be treated as product work.
 
 3. Read these files in this order:
 
@@ -61,6 +62,8 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/home-cockpit-metric-linking.md
+artifacts/home-cockpit-metric-linking-result.json
 docs/review/review-home-map-meters.md
 artifacts/review-home-map-meters-result.json
 docs/review/review-brief-dark-mode-ux.md
@@ -147,10 +150,10 @@ or:
 ./scripts/operator/open_review.sh
 ```
 
-No-query access now defaults to Review Home. The current read route is
-`public/review/index.html?mode=home`, then
-`public/review/index.html?mode=bridge`; the preserved prelude and detail routes
-are `public/review/index.html?mode=brief`,
+No-query access now defaults to Home Cockpit / Review Brief. The current read route is
+`public/review/index.html?mode=brief`, then
+`public/review/index.html?mode=bridge`; the preserved compatibility and detail routes
+are `public/review/index.html?mode=home`,
 `public/review/index.html?mode=draft`, and
 `public/review/index.html?mode=designer`.
 
@@ -167,10 +170,11 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 
 ## Current Project State
 
-- Active artifact: `fff-review-home-map-meters-001`
+- Active artifact: `fff-home-cockpit-metric-linking-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Home Cockpit Metric Linking doc/result: `docs/review/home-cockpit-metric-linking.md`, `artifacts/home-cockpit-metric-linking-result.json`
 - Review Home Map Meters doc/result: `docs/review/review-home-map-meters.md`, `artifacts/review-home-map-meters-result.json`
 - Draft-to-Video Planning Bridge doc/result: `docs/review/draft-to-video-planning-bridge.md`, `artifacts/draft-to-video-planning-bridge-result.json`
 - Review Brief Dark Mode UX doc/result: `docs/review/review-brief-dark-mode-ux.md`, `artifacts/review-brief-dark-mode-ux-result.json`
@@ -205,13 +209,14 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - State adapter: `tools/fff-state.mjs`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact adds a Review Home Map before the local Draft-to-Video Planning Bridge. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, exposes seven shelf cards and seven meters for route clarity, story shelves, Evidence Vault shelves, readback inventory, and locked production gates, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, and final canon decisions closed.
+The current artifact promotes the default Review Brief route into a Home Cockpit before the local Draft-to-Video Planning Bridge. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, exposes Operator Track / Workbench / Evidence Vault / Locked Lanes, links nine readiness meters to concrete actions, keeps `mode=home` as an alias, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, and final canon decisions closed.
 
 ## What Finished
 
-- `fff-review-home-map-meters-001` adds `public/review/index.html?mode=home`, `docs/review/review-home-map-meters.md`, `artifacts/review-home-map-meters-result.json`, and `node tools/fff-state.mjs smoke-review-home-map-meters ...`.
-- No-query access now lands on Review Home; Review Brief remains available at `public/review/index.html?mode=brief`, and Bridge remains the primary production-hypothesis surface at `public/review/index.html?mode=bridge`.
-- The Home Map adds grouped Primary / Story / Evidence navigation, a three-step "what to read now" path, seven shelf cards, seven meters, measured-vs-hypothesis semantics, one-click Bridge access, and Evidence Vault open triggers.
+- `fff-home-cockpit-metric-linking-001` adds `public/review/index.html?mode=brief`, keeps `public/review/index.html?mode=home` as an alias, adds `docs/review/home-cockpit-metric-linking.md`, `artifacts/home-cockpit-metric-linking-result.json`, and `node tools/fff-state.mjs smoke-home-cockpit-metric-linking ...`.
+- No-query access now lands on Home Cockpit / Review Brief, and Bridge remains the primary production-hypothesis surface at `public/review/index.html?mode=bridge`.
+- The Home Cockpit adds Operator Track / Workbench / Evidence Vault / Locked Lanes grouping, a three-step "what to read now" path, nine readiness meters, shelf cards, measured-vs-hypothesis semantics, Bridge access, and Evidence Vault open triggers.
+- `fff-review-home-map-meters-001` remains preserved as the prior shelf-map readback and compatibility baseline.
 - Provider/API, credential, publishing, AI video generation, production render, rights-clearance, and final canon boundaries remain closed.
 
 - `fff-draft-to-video-planning-bridge-001` adds `public/review/index.html?mode=bridge`, `docs/review/draft-to-video-planning-bridge.md`, `artifacts/draft-to-video-planning-bridge-result.json`, and `node tools/fff-state.mjs smoke-draft-to-video-planning-bridge ...`.
@@ -254,14 +259,14 @@ The current artifact adds a Review Home Map before the local Draft-to-Video Plan
 
 ## Validation Readback
 
-The active Home Map smoke validates `fff-review-home-map-meters-001` while preserving the bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior active manifest validation command remains the broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks; run it when touching those underlying contracts, not merely to review the Home Map.
+The active Home Cockpit smoke validates `fff-home-cockpit-metric-linking-001` while preserving the Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the Home Cockpit.
 
 Additional checks passed during this handoff refresh:
 
 - `git fetch --prune origin`
 - `git pull --ff-only origin master`
 - `git status --short --branch --untracked-files=all`
-- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on synced baseline `ffc3c5c`.
+- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on synced baseline `6c9c748`.
 - `git status --short --branch --untracked-files=all` showed only the local `.serena/project.yml` transport-residue modification before this restart/readback update; it remained unstaged and was excluded from the handoff commit.
 - `node --check tools/fff-state.mjs`
 - `node --check tools/fff-extract-local.mjs`
@@ -313,8 +318,8 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
-| Verify: Home then Bridge review | Starts from the Review Home Map, then checks the Draft-to-Video Bridge only if the map makes the shelves understandable | Human reviewer can accept, revise, or reject the production hypothesis without reopening Source Audit / Project Cockpit / Artifacts by default |
-| Advance: bridge refinement | Uses an accepted Home Map and Bridge route to detail narration rhythm, subtitles, screen beats, and thumbnail candidates | One video package can become clearer while provider/API, video generation, upload, rights clearance, and final canon remain locked |
+| Verify: Home Cockpit then Bridge review | Starts from Home Cockpit, then checks the Draft-to-Video Bridge only if the cockpit makes the shelves understandable | Human reviewer can accept, revise, or reject the production hypothesis without reopening Source Audit / Project Cockpit / Artifacts by default |
+| Advance: bridge refinement | Uses an accepted Home Cockpit and Bridge route to detail narration rhythm, subtitles, screen beats, and thumbnail candidates | One video package can become clearer while provider/API, video generation, upload, rights clearance, and final canon remain locked |
 | Advance: provider adapter authorization | Uses the authorization readiness Decision Packet only after provider choice, credentials, endpoint, transport scope, external call permission, timeout, and retry policy are explicitly approved | A real adapter can be implemented without silently crossing the boundary |
 | Verify: contradictory claim guard | Re-runs the held-conflict fixture and result after adapter edits | Future Claim Ledger acceptance paths can fail before they auto-promote conflicts |
 | Advance: post-Profile adoption target | Uses the completed Profile adoption readback while keeping Timeline / Story Seed / Canon decision closed | A future implementation can target Timeline, Story Seed, Canon decision, or actual rollback only after separate explicit authorization |
@@ -330,7 +335,8 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
-| Review Home Map Meters | Make folded shelves legible before Bridge review | `fff-review-home-map-meters-001` is active; no-query access opens Home with seven shelf cards and seven meters | Human reviewer should open Home, then Bridge, and only open Evidence Vault shelves when auditing |
+| Home Cockpit Metric Linking | Make folded shelves legible before Bridge review | `fff-home-cockpit-metric-linking-001` is active; no-query access opens Home Cockpit with Operator Track, Workbench, Evidence Vault, Locked Lanes, and nine readiness meters | Human reviewer should open Home Cockpit, then Bridge, and only open Evidence Vault shelves when auditing |
+| Review Home Map Meters | Preserve prior shelf-map readback | `fff-review-home-map-meters-001` remains available through the `mode=home` alias and its result JSON | Use only for regression comparison if the Home Cockpit wording drifts |
 | Contradictory claim handling | Prevent conflicting claims from entering canon automatically | Guarded by a valid fixture and smoke result; truth choice remains human-owned | Keep the guard required for any future Claim Ledger acceptance path |
 | Downstream adoption readiness | Ensure Claim Ledger / Profile / Timeline / Story Seed / Canon decision choices stay source-tracked and unauthorized until selected | Readback gate passes with 0 adopted Profile / Timeline candidates; held claim preflight, semantics design, ledger dry-run, sandbox rollback, production authorization, Claim Ledger adoption, Claim Ledger rollback rehearsal, downstream target authorization, and Profile adoption now prove exactly 1 retained Claim Ledger production adoption row plus 1 Profile-only non-canon annotation with rollback descriptors and 0 actual rollback/canon/Timeline/Story Seed/provider effects | Keep further adoption, actual rollback, canon, provider/API, and additional-claim work blocked until explicitly requested |
 | Provider envelope and authorization readiness | Fix future provider output shape and approval boundary before transport exists | No-call readback passes, and authorization readiness lists 6 blocked items plus 3 options; no provider, endpoint, credential, project-state mutation, or adopted canon output exists | Use as required preconditions, not as provider integration |

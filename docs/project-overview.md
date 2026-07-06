@@ -29,6 +29,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Local extraction adapter expansion | Ready for local review | [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Model/API boundary spec | Ready for local review | [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md) | `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json` |
 | Provider envelope readiness no-call | Ready for local readback | [`review/provider-envelope-readiness-no-call.md`](review/provider-envelope-readiness-no-call.md) | `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json` |
+| Home Cockpit Metric Linking | Ready for local readback | [`review/home-cockpit-metric-linking.md`](review/home-cockpit-metric-linking.md) | `artifacts/home-cockpit-metric-linking-result.json`, `public/review/index.html?mode=brief` |
 | Review Home Map Meters | Ready for local readback | [`review/review-home-map-meters.md`](review/review-home-map-meters.md) | `artifacts/review-home-map-meters-result.json`, `public/review/index.html?mode=home` |
 | Draft-to-Video Planning Bridge | Ready for local readback | [`review/draft-to-video-planning-bridge.md`](review/draft-to-video-planning-bridge.md) | `artifacts/draft-to-video-planning-bridge-result.json`, `public/review/index.html?mode=bridge` |
 | Review Brief Dark Mode UX | Ready for local readback | [`review/review-brief-dark-mode-ux.md`](review/review-brief-dark-mode-ux.md) | `artifacts/review-brief-dark-mode-ux-result.json`, `public/review/index.html?mode=brief` |
@@ -90,16 +91,16 @@ The active UI remains:
 Invoke-Item .\public\review\index.html
 ```
 
-No-query access now defaults to Review Home. Mode-specific Review Home route:
-
-```text
-public/review/index.html?mode=home
-```
-
-Mode-specific Review Brief route:
+No-query access now defaults to Home Cockpit / Review Brief. Mode-specific Home Cockpit route:
 
 ```text
 public/review/index.html?mode=brief
+```
+
+Compatibility alias for the preserved Review Home route:
+
+```text
+public/review/index.html?mode=home
 ```
 
 Mode-specific Draft-to-Video Bridge route:
@@ -151,4 +152,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The next recommended implementation slice should first apply the Review Dedup Gate from `fff-review-memory-dedup-001`. After `fff-review-home-map-meters-001`, the next non-redundant axis is human review of the Home Map and Bridge package, a narrow bridge refinement if the route is accepted, or explicit provider adapter implementation only after authorization.
+The next recommended implementation slice should first apply the Review Dedup Gate from `fff-review-memory-dedup-001`. After `fff-home-cockpit-metric-linking-001`, the next non-redundant axis is human review of the Home Cockpit and Bridge package, a narrow bridge refinement if the route is accepted, or explicit provider adapter implementation only after authorization.

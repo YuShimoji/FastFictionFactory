@@ -2,22 +2,22 @@
   "schemaVersion": "fff.reviewHomeMapMeters.v1",
   "artifact_id": "fff-review-home-map-meters-001",
   "title": "Fast Fiction Factory Review Home Map and Meters",
-  "generatedAt": "2026-07-06T06:47:07.685Z",
+  "generatedAt": "2026-07-06T08:06:27.948Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",
   "access_route": "public/review/index.html?mode=home",
-  "input_result_path": "./artifacts/review-home-map-meters-result.json",
-  "default_mode": "home",
+  "input_result_path": "artifacts/review-home-map-meters-result.json",
+  "default_mode": "brief",
   "home_map_visible": true,
   "shelf_card_count": 7,
-  "meter_count": 7,
-  "measured_meter_count": 6,
-  "hypothesis_meter_count": 1,
+  "meter_count": 17,
+  "measured_meter_count": 15,
+  "hypothesis_meter_count": 2,
   "primary_operator_routes": [
-    "public/review/index.html?mode=home",
+    "public/review/index.html?mode=brief",
     "public/review/index.html?mode=bridge",
-    "public/review/index.html?mode=brief"
+    "public/review/index.html?mode=home"
   ],
   "evidence_vault_routes": [
     "public/review/index.html?mode=source",
@@ -142,12 +142,12 @@
   "final_canon_decision": false,
   "rights_cleared_claim": false,
   "summary": {
-    "default_mode": "home",
+    "default_mode": "brief",
     "home_map_visible": true,
     "shelf_card_count": 7,
-    "meter_count": 7,
-    "measured_meter_count": 6,
-    "hypothesis_meter_count": 1,
+    "meter_count": 17,
+    "measured_meter_count": 15,
+    "hypothesis_meter_count": 2,
     "primary_operator_route_count": 3,
     "evidence_vault_route_count": 3,
     "locked_gate_count": 6,
@@ -167,7 +167,7 @@
     "failures": 0
   },
   "validation_notes": [
-    "Review Home is the no-query default and maps folded shelves back to purpose, meter, trigger, and action.",
+    "Review Home Map is preserved through the Home Cockpit command surface; mode=home is a compatibility alias to brief.",
     "Evidence Vault shelves are summarized, not removed.",
     "Measured meters are backed by local counts and readbacks; hypothesis meters are only UX clarity signals.",
     "No provider/API, AI video, render, upload, final canon, or rights clearance boundary is opened."
@@ -175,19 +175,19 @@
   "checks": {
     "identity": {
       "passed": true,
-      "detail": "artifact=fff-review-home-map-meters-001; schema=fff.reviewHomeMapMeters.v1; route=public/review/index.html?mode=home; default=home"
+      "detail": "artifact=fff-review-home-map-meters-001; schema=fff.reviewHomeMapMeters.v1; route=public/review/index.html?mode=home; default=brief"
     },
     "home_map_visible": {
       "passed": true,
-      "detail": "home=true; default=home"
+      "detail": "home=true; default=brief"
     },
     "shelf_cards_and_meters": {
       "passed": true,
-      "detail": "shelves=7; meters=7; measured=6; hypothesis=1"
+      "detail": "shelves=7; meters=17; measured=15; hypothesis=2"
     },
     "what_to_read_now_pathway": {
       "passed": true,
-      "detail": "primaryRoutes=public/review/index.html?mode=home, public/review/index.html?mode=bridge, public/review/index.html?mode=brief"
+      "detail": "primaryRoutes=public/review/index.html?mode=brief, public/review/index.html?mode=bridge, public/review/index.html?mode=home"
     },
     "home_to_shelf_links": {
       "passed": true,
