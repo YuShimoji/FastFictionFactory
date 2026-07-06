@@ -415,6 +415,170 @@
       margin-top: 12px;
     }
 
+    .decision-console,
+    .bridge-decision-console {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--blue);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .console-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .console-main {
+      display: grid;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .console-question {
+      margin: 0;
+      font-size: 22px;
+      line-height: 1.2;
+    }
+
+    .console-helper {
+      margin: 0;
+      color: var(--muted-strong);
+      font-size: 13px;
+    }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .choice-button {
+      min-height: 34px;
+      padding: 6px 10px;
+      background: var(--surface-muted);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .choice-button[data-choice-button="advance"] {
+      border-color: var(--blue);
+      background: var(--active-bg);
+      color: var(--blue);
+    }
+
+    .context-dock {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-content: start;
+      min-width: 0;
+    }
+
+    .console-chip {
+      display: inline-flex;
+      max-width: 100%;
+      min-height: 28px;
+      align-items: center;
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: var(--pill-bg);
+      color: var(--pill-ink);
+      font-size: 12px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .console-chip.locked {
+      border-color: rgba(159, 60, 53, 0.45);
+      background: var(--danger-bg);
+      color: var(--red);
+    }
+
+    .step-rail {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .rail-step {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 5px 6px;
+      background: var(--surface-muted);
+      color: var(--muted-strong);
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .rail-step.current {
+      border-color: var(--blue);
+      background: var(--active-bg);
+      color: var(--blue);
+    }
+
+    .console-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      grid-column: 1 / -1;
+    }
+
+    .console-action-row .primary {
+      min-height: 40px;
+      border-color: var(--blue);
+      background: var(--blue);
+      color: var(--primary-ink);
+      font-weight: 800;
+    }
+
+    .console-lock {
+      color: var(--muted-strong);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .detail-drawer,
+    .notes-shelf {
+      border: 1px dashed var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      background: var(--surface-muted);
+      color: var(--muted-strong);
+    }
+
+    .detail-drawer summary,
+    .notes-shelf summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .detail-drawer p,
+    .notes-shelf p {
+      margin: 8px 0 0;
+      font-size: 13px;
+    }
+
+    .notes-shelf {
+      margin-top: 2px;
+    }
+
+    .card-wall-suppressed {
+      opacity: 0.9;
+    }
+
     .home-hero {
       display: grid;
       grid-template-columns: minmax(0, 1.4fr) minmax(260px, 0.8fr);
@@ -1944,6 +2108,7 @@
       .mode-tab-stack,
       .mode-tabs,
       .mode-summary-grid,
+      .console-shell,
       .home-hero,
       .latest-overview-grid,
       .guided-flow-top,
@@ -1968,6 +2133,10 @@
       .decision-list,
       .qa-list {
         grid-template-columns: 1fr;
+      }
+
+      .step-rail {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
       .review-controls {
@@ -2055,13 +2224,61 @@
           <p class="section-note">Stable IDs, JSON keys, artifact IDs, and file paths remain English. Japanese labels are display-only review aids. <strong>public/review/index.html?mode=home</strong> is kept as an alias to the same Home Cockpit for compatibility.</p>
         </nav>
 
-        <section class="review-home" id="review-home-root" data-mode-panel="brief" data-home-map="review-home-map-meters" data-home-cockpit="home-cockpit-metric-linking" aria-labelledby="guided-flow-title">
-          <section class="guided-flow" data-guided-flow="guided-review-flow-workspace" aria-labelledby="guided-flow-title">
+        <section class="review-home" id="review-home-root" data-mode-panel="brief" data-home-map="review-home-map-meters" data-home-cockpit="home-cockpit-metric-linking" aria-labelledby="decision-console-title">
+          <section class="decision-console" data-decision-console="low-text-decision-console" aria-labelledby="decision-console-title">
+            <div class="console-shell">
+              <div class="console-main">
+                <p class="hub-eyebrow">Low-text Decision Console</p>
+                <h2 class="console-question" id="decision-console-title" data-active-question="true">この路線で進める？</h2>
+                <div class="step-rail" data-step-rail="true" aria-label="Decision steps">
+                  <span class="rail-step current" data-console-step="route" data-console-step-state="current">▶ 路線</span>
+                  <span class="rail-step" data-console-step="narration" data-console-step-state="later">◇ 語り</span>
+                  <span class="rail-step" data-console-step="subtitle" data-console-step-state="later">◇ 字幕</span>
+                  <span class="rail-step" data-console-step="visual" data-console-step-state="later">◇ 画面</span>
+                  <span class="rail-step" data-console-step="thumbnail" data-console-step-state="later">◇ サムネ</span>
+                  <span class="rail-step" data-console-step="held-truth" data-console-step-state="later">🔒 保留真実</span>
+                </div>
+                <div class="choice-row" data-choice-row="true" aria-label="Decision choices">
+                  <button class="choice-button" type="button" data-choice-button="advance">進める</button>
+                  <button class="choice-button" type="button" data-choice-button="narration">語り口を直す</button>
+                  <button class="choice-button" type="button" data-choice-button="subtitle">字幕を直す</button>
+                  <button class="choice-button" type="button" data-choice-button="thumbnail">サムネを直す</button>
+                  <button class="choice-button" type="button" data-choice-button="held-truth">保留真実を直す</button>
+                </div>
+                <p class="console-helper">長いメモは閉じ、Bridgeで要点だけ確認します。</p>
+              </div>
+              <aside class="context-dock" data-context-dock="true" aria-label="Current review context">
+                <span class="console-chip" data-context-chip="candidate">candidate: designer-content-moth-investigation-3m</span>
+                <span class="console-chip" data-context-chip="channel">channel: designer-channel-mystery-lore</span>
+                <span class="console-chip" data-context-chip="phase">pre-production</span>
+                <span class="console-chip locked" data-context-chip="no-generation">生成なし</span>
+                <span class="console-chip locked" data-context-chip="no-publish">公開なし</span>
+                <span class="console-chip locked" data-context-chip="no-canon">canon未確定</span>
+              </aside>
+              <div class="console-action-row">
+                <button class="brief-action primary" type="button" data-mode-target="bridge" data-console-primary-action="true" aria-pressed="false">Bridgeで確認</button>
+                <span class="console-lock" data-console-lock="ready">✅ ready</span>
+                <span class="console-lock" data-console-lock="current">▶ current</span>
+                <span class="console-lock" data-console-lock="locked">🔒 locked</span>
+              </div>
+            </div>
+            <details class="detail-drawer" data-detail-drawer="true">
+              <summary>詳細メモを開く</summary>
+              <p>候補、チャンネル、Bridge refinement、Evidence Vault の根拠は下位メモに保持します。ここでは route 判断だけを先に置きます。</p>
+            </details>
+          </section>
+
+          <details class="notes-shelf" data-notes-shelf="true" data-notes-shelf-default="collapsed">
+            <summary>メモ棚を開く</summary>
+            <p>Guided Flow、Latest Overview、Home Cockpit の長い説明はこの下に保存します。</p>
+          </details>
+
+          <section class="guided-flow card-wall-suppressed" data-guided-flow="guided-review-flow-workspace" data-card-wall-suppressed="true" aria-labelledby="guided-flow-title">
             <div class="guided-flow-top">
               <div>
                 <p class="hub-eyebrow">Guided Review Flow / レビュー進行</p>
                 <h2 id="guided-flow-title">次に見る順番をUI側で提案する</h2>
-                <p class="lede">今回の標準動線は決まっています。まずrouteを確認し、Bridge内でナレーション、字幕リズム、画面順、サムネ方向、保留真実の順に見ます。Source Audit / Project Cockpit / Artifacts は監査時だけ開く Evidence Vault です。</p>
+                <p class="lede">標準動線は決まっています。まずrouteを確認し、Bridge内でナレーション、字幕リズム、画面順、サムネ方向、保留真実の順に見ます。Source Audit / Project Cockpit / Artifacts は監査時だけ開く Evidence Vault です。</p>
                 <ul class="status-brief" aria-label="Status Brief">
                   <li><strong>latest:</strong> f5ae10b handoff is current; product baseline is a332884 overview/bridge refinement.</li>
                   <li><strong>now:</strong> public/review/index.html?mode=brief から public/review/index.html?mode=bridge へ進む。</li>
@@ -2128,7 +2345,7 @@
                   <div class="decision-step-body">
                     <strong>Held-truth policy / 保留真実方針</strong>
                     <span>why: Toma fate, brass moth truth, Council motiveを決めるとcanon領域へ近づく。</span>
-                    <span>answer: 今回も保留 / 1つだけ狭める / まだ触らない。</span>
+                    <span>answer: ここでも保留 / 1つだけ狭める / まだ触らない。</span>
                   </div>
                   <button class="decision-link" type="button" data-mode-target="bridge" data-bridge-anchor="bridge-held-truths" aria-pressed="false">Bridge</button>
                 </li>
@@ -2172,7 +2389,7 @@
               <div class="folder-list">
                 <div class="folder-row" data-folder-role="current-work">
                   <div><strong>Current Work</strong><span class="status-pill">open now</span></div>
-                  <div class="folder-meta"><span>purpose: Overview + Bridgeで現在地と次判断を見る。</span><span>open_when: 今回のレビューを始める時。</span><span>do_not_open_when: source監査だけをする時。</span><span>next_action: Bridgeの順番レビューを開始。</span></div>
+                  <div class="folder-meta"><span>purpose: Overview + Bridgeで現在地と次判断を見る。</span><span>open_when: このレビューを始める時。</span><span>do_not_open_when: source監査だけをする時。</span><span>next_action: Bridgeの順番レビューを開始。</span></div>
                   <button class="decision-link" type="button" data-mode-target="bridge" aria-pressed="false">Bridge</button>
                 </div>
                 <div class="folder-row" data-folder-role="materials">
@@ -2214,7 +2431,7 @@
             </section>
           </section>
 
-          <section class="latest-overview-ribbon" data-latest-overview="bridge-refinement-overview-ribbon" aria-labelledby="latest-overview-title">
+          <section class="latest-overview-ribbon card-wall-suppressed" data-latest-overview="bridge-refinement-overview-ribbon" data-card-wall-suppressed="true" aria-labelledby="latest-overview-title">
             <div class="latest-overview-header">
               <div>
                 <p class="hub-eyebrow">Latest Overview Report / 最新概況報告</p>
@@ -2229,7 +2446,7 @@
               </article>
               <article class="overview-item" data-overview-item="latest-change">
                 <strong>直近の変更</strong>
-                <span>棚とメーターを整理済み。今回はBridge判断用の要約を追加します。</span>
+                <span>棚とメーターを整理済み。Bridge判断用の要約を追加します。</span>
               </article>
               <article class="overview-item" data-overview-item="read-now">
                 <strong>今読む場所</strong>
@@ -2246,7 +2463,7 @@
             </div>
           </section>
 
-          <div class="home-hero">
+          <div class="home-hero card-wall-suppressed" data-card-wall-suppressed="true">
             <div>
               <p class="hub-eyebrow">Home Cockpit / Review Home alias</p>
               <h2 id="home-cockpit-title">今読む場所を制御盤にする</h2>
@@ -2278,7 +2495,7 @@
             </div>
           </div>
 
-          <section class="cockpit-section legacy-cockpit-detail" data-card-grid-demoted="true" data-card-group="operator-track" aria-labelledby="operator-track-title">
+          <section class="cockpit-section legacy-cockpit-detail card-wall-suppressed" data-card-grid-demoted="true" data-card-wall-suppressed="true" data-card-group="operator-track" aria-labelledby="operator-track-title">
             <div class="cockpit-section-header">
               <div>
                 <p class="hub-eyebrow">Operator Track / 今読む導線</p>
@@ -2457,7 +2674,7 @@
             </summary>
           <div class="hub-panel">
             <p class="hub-eyebrow">Review Brief / まずここを見る</p>
-            <h2 id="review-brief-title">今回レビューするのは「候補とチャンネルをこのまま進めるか」です</h2>
+            <h2 id="review-brief-title">レビューするのは「候補とチャンネルをこのまま進めるか」です</h2>
             <p class="lede">長い履歴や抽出証跡は詳細タブに残しています。最初は下の3つだけ確認してください。まだ承認ではなく、候補・路線・未決定事項をどう扱うかを決めるための画面です。</p>
             <div class="brief-actions">
               <button class="brief-action primary" type="button" data-mode-target="bridge" aria-pressed="false">Draft-to-Video Bridgeへ</button>
@@ -2469,9 +2686,9 @@
 
           <div class="route-contract" aria-label="Review Route Contract">
             <article class="route-contract-card">
-              <p class="hub-eyebrow">Operator Track / 今回読む場所</p>
+              <p class="hub-eyebrow">Operator Track / 読む場所</p>
               <h3>Review Brief + Draft-to-Video Bridgeだけでよい</h3>
-              <p class="section-note">今回の判断は、候補・チャンネル路線・制作仮説をこのまま次に進めるかです。詳細な証跡棚を全部読む必要はありません。</p>
+              <p class="section-note">判断は、候補・チャンネル路線・制作仮説をこのまま次に進めるかです。詳細な証跡棚を全部読む必要はありません。</p>
             </article>
             <article class="route-contract-card">
               <p class="hub-eyebrow">Evidence Vault / 任意の証跡棚</p>
@@ -2479,7 +2696,7 @@
               <p class="section-note">監査や差分確認が必要な時だけ開きます。候補判断の主画面ではなく、保持された根拠棚です。</p>
             </article>
             <article class="route-contract-card">
-              <p class="hub-eyebrow">Not Active / 今回しないこと</p>
+              <p class="hub-eyebrow">Not Active / しないこと</p>
               <h3>生成・公開・確定はまだしない</h3>
               <ul>
                 <li>Provider/API・AI video・render・YouTube uploadなし</li>
@@ -2536,7 +2753,7 @@
         <section class="bridge-panel" id="draft-to-video-bridge-root" data-mode-panel="bridge" aria-labelledby="draft-to-video-bridge-title">
           <div class="bridge-hero">
             <p class="hub-eyebrow">Operator Track / Draft-to-Video Planning Bridge</p>
-            <h2 id="draft-to-video-bridge-title">今回の制作仮説: まだ動画生成せず、制作前に読む設計図</h2>
+            <h2 id="draft-to-video-bridge-title">制作仮説: まだ動画生成せず、制作前に読む設計図</h2>
             <p class="lede">Review Briefで進めると確認された候補を、動画前の確認パッケージにしました。これは最終脚本・絵コンテ・サムネ・動画ではありません。</p>
             <div class="tag-row">
               <span class="tag blue">public/review/index.html?mode=bridge</span>
@@ -2547,6 +2764,37 @@
               <span class="tag red">no upload</span>
             </div>
           </div>
+
+          <section class="bridge-decision-console" data-bridge-decision-console="true" aria-labelledby="bridge-decision-console-title">
+            <div class="console-shell">
+              <div class="console-main">
+                <p class="hub-eyebrow">Bridge Decision Console</p>
+                <h3 class="console-question" id="bridge-decision-console-title">この路線で進める？</h3>
+                <div class="step-rail" data-bridge-step-rail="true" aria-label="Bridge decision steps">
+                  <span class="rail-step current" data-bridge-console-step="route" data-bridge-console-step-state="current">▶ 路線</span>
+                  <span class="rail-step" data-bridge-console-step="narration" data-bridge-console-step-state="later">◇ 語り</span>
+                  <span class="rail-step" data-bridge-console-step="subtitle" data-bridge-console-step-state="later">◇ 字幕</span>
+                  <span class="rail-step" data-bridge-console-step="visual" data-bridge-console-step-state="later">◇ 画面</span>
+                  <span class="rail-step" data-bridge-console-step="thumbnail" data-bridge-console-step-state="later">◇ サムネ</span>
+                  <span class="rail-step" data-bridge-console-step="held-truth" data-bridge-console-step-state="later">🔒 保留真実</span>
+                </div>
+                <div class="choice-row" data-bridge-choice-row="true" aria-label="Bridge decision choices">
+                  <button class="choice-button" type="button" data-bridge-choice-button="advance">進める</button>
+                  <button class="choice-button" type="button" data-bridge-choice-button="narration">語り口を直す</button>
+                  <button class="choice-button" type="button" data-bridge-choice-button="subtitle">字幕を直す</button>
+                  <button class="choice-button" type="button" data-bridge-choice-button="thumbnail">サムネを直す</button>
+                  <button class="choice-button" type="button" data-bridge-choice-button="held-truth">保留真実を直す</button>
+                </div>
+              </div>
+              <aside class="context-dock" data-bridge-context-dock="true" aria-label="Bridge context">
+                <span class="console-chip" data-bridge-context-chip="candidate">candidate: designer-content-moth-investigation-3m</span>
+                <span class="console-chip" data-bridge-context-chip="channel">channel: designer-channel-mystery-lore</span>
+                <span class="console-chip locked" data-bridge-context-chip="no-generation">生成なし</span>
+                <span class="console-chip locked" data-bridge-context-chip="no-publish">公開なし</span>
+                <span class="console-chip locked" data-bridge-context-chip="no-canon">canon未確定</span>
+              </aside>
+            </div>
+          </section>
 
           <section class="bridge-guided-flow" data-bridge-guided-flow="true" aria-labelledby="bridge-guided-flow-title">
             <div class="bridge-refinement-header">
@@ -2576,7 +2824,7 @@
                 <span class="status-pill">later</span>
               </li>
               <li class="decision-step" data-bridge-decision-step="held-truth-policy" data-bridge-step-state="later">
-                <div class="decision-step-body"><strong>6. Held truths + rights boundary</strong><span>見る場所: Held-truth方針と権利・素材境界。答えること: 今回も保留し、生成・rights作業を閉じるか。</span></div>
+                <div class="decision-step-body"><strong>6. Held truths + rights boundary</strong><span>見る場所: Held-truth方針と権利・素材境界。答えること: ここでも保留し、生成・rights作業を閉じるか。</span></div>
                 <span class="status-pill">later</span>
               </li>
             </ol>

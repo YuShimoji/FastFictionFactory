@@ -203,3 +203,9 @@
 - Decision: Add a Guided Review Flow Workspace before the Home Cockpit card shelves.
   - Reason: Supervisor review marked the latest overview and Bridge refinement as pass, but the next user-side task still needed a more directed workspace so the reviewer sees one sequence instead of another set of parallel panels.
   - Effect: `fff-guided-review-flow-workspace-001` adds a first-visible Guided Review Flow, six-step Decision Queue, one Bridge action, Pinned Tray, Operations Notice, Important Folders, Inspiration Workspace, Bridge Guided Flow, `docs/review/guided-review-flow-workspace.md`, `artifacts/guided-review-flow-workspace-result.json`, and `node tools/fff-state.mjs smoke-guided-review-flow-workspace ...`, while preserving the Latest Overview Report, Bridge refinement, dark mode, candidate/channel IDs, Evidence Vault optionality, and all provider/API, credentials, upload, AI video, render, database, rights-clearance, and final-canon boundaries.
+
+## 2026-07-07
+
+- Decision: Replace the first visible `brief` surface with a Low-text Decision Console.
+  - Reason: User-side feedback said the guided workspace still felt like mass notes or lecture notes, and repeated "this time" phrasing made the review path feel heavy instead of decision-first.
+  - Effect: `fff-low-text-decision-console-001` adds one route question, five short choice buttons, one `Bridgeで確認` action, context chips, a six-step rail, closed detail/notes shelves, Bridge Decision Console, `docs/review/low-text-decision-console.md`, `artifacts/low-text-decision-console-result.json`, and `node tools/fff-state.mjs smoke-low-text-decision-console ...`, while preserving the Guided Review Flow, Latest Overview Report, Bridge refinement, Home Cockpit, dark mode, candidate/channel IDs, Evidence Vault optionality, and all provider/API, credentials, upload, AI video, render, database, rights-clearance, and final-canon boundaries.

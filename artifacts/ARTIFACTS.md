@@ -1,5 +1,22 @@
 # Artifacts
 
+## fff-low-text-decision-console-001
+
+- Title: Fast Fiction Factory Low-text Decision Console
+- Purpose: Make `public/review/index.html?mode=brief` start with one low-text route decision instead of lecture-note style guidance, while preserving Guided Flow, Latest Overview, Bridge refinement, Home Cockpit shelves, Evidence Vault optionality, dark mode, selected candidate/channel IDs, and closed production gates.
+- Repo relative path: `public/review/index.html`
+- Primary default route: `public/review/index.html?mode=brief`
+- Compatibility alias route: `public/review/index.html?mode=home`
+- Primary Bridge route: `public/review/index.html?mode=bridge`
+- Review doc: `docs/review/low-text-decision-console.md`
+- Readback result: `artifacts/low-text-decision-console-result.json`
+- Source artifacts: `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-contradictory-claim-guard-001`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-low-text-decision-console artifacts/low-text-decision-console-result.json artifacts/low-text-decision-console-result.json`
+- Review status: `ready_for_user_visual_review`
+- Review input mode: `freeform`
+- State: Active local review checkpoint; the first screen now starts with `この路線で進める？`, five short choices, one Bridge action, context chips, a six-step rail, closed detail/notes shelves, and a matching Bridge Decision Console. Provider/API, credentials, AI video generation, render, upload, final canon, database persistence, and rights-clearance claims remain closed.
+
 ## fff-guided-review-flow-workspace-001
 
 - Title: Fast Fiction Factory Guided Review Flow Workspace
@@ -15,7 +32,7 @@
 - Validation command: `node tools/fff-state.mjs smoke-guided-review-flow-workspace artifacts/guided-review-flow-workspace-result.json artifacts/guided-review-flow-workspace-result.json`
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
-- State: Active local review checkpoint; the first screen now starts with Guided Review Flow, a six-step Decision Queue, one primary Bridge action, Pinned Tray, Operations Notice, Important Folders, and an Inspiration Workspace. The Bridge route now starts with a matching guided sequence. Provider/API, credentials, AI video generation, render, upload, final canon, database persistence, and rights-clearance claims remain closed.
+- State: Preserved local review checkpoint beneath the Low-text Decision Console; it still provides Guided Review Flow, a six-step Decision Queue, one primary Bridge action, Pinned Tray, Operations Notice, Important Folders, and an Inspiration Workspace. The Bridge route keeps a matching guided sequence. Provider/API, credentials, AI video generation, render, upload, final canon, database persistence, and rights-clearance claims remain closed.
 
 ## fff-bridge-refinement-overview-ribbon-001
 

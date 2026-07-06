@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "fff.lowTextDecisionConsole.v1",
+  "artifact_id": "fff-low-text-decision-console-001",
+  "title": "Fast Fiction Factory Low-text Decision Console",
+  "generatedAt": "2026-07-06T16:11:23.457Z",
+  "review_status": "ready_for_user_visual_review",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=brief",
+  "bridge_route": "public/review/index.html?mode=bridge",
+  "input_result_path": "artifacts/low-text-decision-console-result.json",
+  "source_guided_flow_artifact_id": "fff-guided-review-flow-workspace-001",
+  "source_result_paths": {
+    "guided_review_flow_workspace": "artifacts/guided-review-flow-workspace-result.json",
+    "bridge_refinement_overview_ribbon": "artifacts/bridge-refinement-overview-ribbon-result.json",
+    "home_cockpit_metric_linking": "artifacts/home-cockpit-metric-linking-result.json",
+    "draft_to_video_planning_bridge": "artifacts/draft-to-video-planning-bridge-result.json",
+    "review_brief_dark_mode_ux": "artifacts/review-brief-dark-mode-ux-result.json",
+    "one_story_draft_review_pack": "artifacts/one-story-draft-review-pack-result.json",
+    "designer_candidate_dashboard": "artifacts/designer-candidate-dashboard-result.json",
+    "contradictory_claim_guard": "artifacts/contradictory-claim-guard-result.json"
+  },
+  "decision_console_visible": true,
+  "decision_console_first": true,
+  "active_question_text": "この路線で進める？",
+  "active_question_char_count": 9,
+  "choice_button_count": 5,
+  "choice_labels": [
+    "進める",
+    "語り口を直す",
+    "字幕を直す",
+    "サムネを直す",
+    "保留真実を直す"
+  ],
+  "choice_label_max_chars": 7,
+  "primary_action_count": 1,
+  "primary_action_label": "Bridgeで確認",
+  "context_dock_visible": true,
+  "context_chip_count": 6,
+  "step_rail_visible": true,
+  "step_labels": [
+    "路線",
+    "語り",
+    "字幕",
+    "画面",
+    "サムネ",
+    "保留真実"
+  ],
+  "current_step_count": 1,
+  "current_step_labels": [
+    "路線"
+  ],
+  "detail_drawer_default_closed": true,
+  "notes_shelf_visible": true,
+  "notes_shelf_default_closed": true,
+  "card_wall_suppressed": true,
+  "bridge_decision_console_visible": true,
+  "bridge_step_labels": [
+    "路線",
+    "語り",
+    "字幕",
+    "画面",
+    "サムネ",
+    "保留真実"
+  ],
+  "text_budget": {
+    "helper_line_char_count": 25,
+    "helper_line_max_chars": 42,
+    "paragraph_max_chars": 25,
+    "paragraph_limit_chars": 70,
+    "visible_sentence_count": 2,
+    "visible_sentence_limit": 5,
+    "repeated_this_time_count": 0,
+    "repeated_this_time_limit": 1,
+    "passed": true
+  },
+  "latest_overview_preserved": true,
+  "guided_flow_preserved": true,
+  "evidence_vault_optional": true,
+  "dark_mode_preserved": true,
+  "selected_candidate_id": "designer-content-moth-investigation-3m",
+  "selected_channel_route_id": "designer-channel-mystery-lore",
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "final_canon_decision": false,
+    "database_persistence": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "final_canon_decision": false,
+  "database_persistence": false,
+  "rights_cleared_claim": false,
+  "summary": {
+    "decision_console_visible": true,
+    "decision_console_first": true,
+    "choice_button_count": 5,
+    "primary_action_count": 1,
+    "context_chip_count": 6,
+    "step_count": 6,
+    "current_step_count": 1,
+    "bridge_console_visible": true,
+    "card_wall_suppressed": true,
+    "text_budget_passed": true,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "final_canon_decision": false,
+    "database_persistence": false,
+    "rights_cleared_claim": false,
+    "failures": 0
+  },
+  "validation_notes": [
+    "The first brief surface is a low-text decision console with one active question and one Bridge action.",
+    "Legacy Guided Flow, Latest Overview, Home Cockpit cards, and Evidence Vault remain preserved below the console.",
+    "Bridge mode repeats the same decision state before detailed bridge cards.",
+    "Top-console text stays within the requested short-label budget and avoids repeated this-time phrasing.",
+    "No provider/API, credential, video, render, upload, database, rights, or final-canon gate is opened."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-low-text-decision-console-001; schema=fff.lowTextDecisionConsole.v1; ui=public/review/index.html; access=public/review/index.html?mode=brief; bridge=public/review/index.html?mode=bridge; source=fff-guided-review-flow-workspace-001"
+    },
+    "source_readbacks_preserved": {
+      "passed": true,
+      "detail": "guided=fff-guided-review-flow-workspace-001/true; overview=fff-bridge-refinement-overview-ribbon-001/true; home=fff-home-cockpit-metric-linking-001/true; bridge=fff-draft-to-video-planning-bridge-001/true; brief=fff-review-brief-dark-mode-ux-001/true; draft=fff-one-story-draft-review-pack-001/true; designer=fff-designer-candidate-dashboard-001/true; contradictory=fff-contradictory-claim-guard-001/true"
+    },
+    "decision_console_visible_first": {
+      "passed": true,
+      "detail": "home=52725; console=52944; guided=56687; latest=70290; firstCard=74914"
+    },
+    "active_question_and_choices": {
+      "passed": true,
+      "detail": "question=この路線で進める？; questionChars=9; choices=進める,語り口を直す,字幕を直す,サムネを直す,保留真実を直す; maxChoiceChars=7"
+    },
+    "primary_action_exactly_one": {
+      "passed": true,
+      "detail": "primaryActionCount=1"
+    },
+    "context_dock_complete": {
+      "passed": true,
+      "detail": "chips=6; required=6/6"
+    },
+    "step_rail_complete": {
+      "passed": true,
+      "detail": "steps=路線,語り,字幕,画面,サムネ,保留真実; current=路線"
+    },
+    "detail_drawer_default_closed": {
+      "passed": true,
+      "detail": "detail drawer should be a closed details element with the required summary"
+    },
+    "notes_shelf_below_console": {
+      "passed": true,
+      "detail": "console=52944; notes=56428"
+    },
+    "card_wall_suppressed": {
+      "passed": true,
+      "detail": "suppressed=4; guided=56687; console=52944"
+    },
+    "bridge_console_visible": {
+      "passed": true,
+      "detail": "bridgeConsole=99934; bridgeGuided=102682; bridgeSteps=路線,語り,字幕,画面,サムネ,保留真実; current=1"
+    },
+    "text_budget": {
+      "passed": true,
+      "detail": "helperChars=25; paragraphMax=25; sentences=2; repeatedThisTime=0"
+    },
+    "preserved_content_and_optional_evidence": {
+      "passed": true,
+      "detail": "guided flow, latest overview, held truths, and Evidence Vault should remain searchable"
+    },
+    "dark_mode_preserved": {
+      "passed": true,
+      "detail": "theme variables and toggles should remain present"
+    },
+    "candidate_channel_preserved": {
+      "passed": true,
+      "detail": "candidate=designer-content-moth-investigation-3m; channel=designer-channel-mystery-lore"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "local=true; external=false; provider=false; credentials=false; upload=false; video=false; render=false; canon=false; database=false; rights=false; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

@@ -38,6 +38,7 @@ const REVIEW_HOME_MAP_METERS_SCHEMA_VERSION = "fff.reviewHomeMapMeters.v1";
 const HOME_COCKPIT_METRIC_LINKING_SCHEMA_VERSION = "fff.homeCockpitMetricLinking.v1";
 const BRIDGE_REFINEMENT_OVERVIEW_RIBBON_SCHEMA_VERSION = "fff.bridgeRefinementOverviewRibbon.v1";
 const GUIDED_REVIEW_FLOW_WORKSPACE_SCHEMA_VERSION = "fff.guidedReviewFlowWorkspace.v1";
+const LOW_TEXT_DECISION_CONSOLE_SCHEMA_VERSION = "fff.lowTextDecisionConsole.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -73,6 +74,7 @@ const DEFAULT_REVIEW_HOME_MAP_METERS_OUTPUT = "artifacts/review-home-map-meters-
 const DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT = "artifacts/home-cockpit-metric-linking-result.json";
 const DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT = "artifacts/bridge-refinement-overview-ribbon-result.json";
 const DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT = "artifacts/guided-review-flow-workspace-result.json";
+const DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT = "artifacts/low-text-decision-console-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -913,6 +915,25 @@ async function main() {
     }
     if (command === "smoke-bridge-refinement-overview-ribbon" || outputPath) {
       console.log(`bridge refinement overview ribbon passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-low-text-decision-console" || command === "smoke-low-text-decision-console") {
+    const readback = await readJson(inputPath);
+    const result = await validateLowTextDecisionConsole(readback, inputPath);
+    const target = outputPath || DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT;
+    if (command === "smoke-low-text-decision-console" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Low-text decision console failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-low-text-decision-console" || outputPath) {
+      console.log(`low-text decision console passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -8979,6 +9000,370 @@ async function validateBridgeRefinementOverviewRibbon(readback, readbackPath) {
   return result;
 }
 
+async function validateLowTextDecisionConsole(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const guidedPath = manifest.guided_review_flow_workspace_result_path || DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT;
+  const overviewPath = manifest.bridge_refinement_overview_ribbon_result_path || DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT;
+  const homeCockpitPath = manifest.home_cockpit_metric_linking_result_path || DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT;
+  const bridgePath = manifest.draft_to_video_planning_bridge_result_path || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+  const reviewBriefPath = manifest.review_brief_dark_mode_ux_result_path || DEFAULT_REVIEW_BRIEF_DARK_MODE_UX_OUTPUT;
+  const draftPackPath = manifest.one_story_draft_review_pack_result_path || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT;
+  const designerDashboardPath = manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT;
+  const contradictoryGuardPath = manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const guided = await readJson(guidedPath);
+  const overview = await readJson(overviewPath);
+  const homeCockpit = await readJson(homeCockpitPath);
+  const bridge = await readJson(bridgePath);
+  const reviewBrief = await readJson(reviewBriefPath);
+  const draftPack = await readJson(draftPackPath);
+  const designerDashboard = await readJson(designerDashboardPath);
+  const contradictoryGuard = await readJson(contradictoryGuardPath);
+  const html = await readFile("public/review/index.html", "utf8");
+  const credentialFindings = collectCredentialMaterial(readback);
+
+  const reviewHomeIndex = html.indexOf('id="review-home-root"');
+  const decisionConsoleIndex = html.indexOf('data-decision-console="low-text-decision-console"');
+  const guidedFlowIndex = html.indexOf('data-guided-flow="guided-review-flow-workspace"');
+  const latestOverviewIndex = html.indexOf('data-latest-overview="bridge-refinement-overview-ribbon"');
+  const firstCardIndex = html.indexOf('data-home-cockpit-card=');
+  const bridgeDecisionConsoleIndex = html.indexOf('data-bridge-decision-console="true"');
+  const bridgeGuidedFlowIndex = html.indexOf('data-bridge-guided-flow="true"');
+  const consoleBlock = extractFirstHtmlSectionByMarker(html, 'data-decision-console="low-text-decision-console"');
+  const visibleConsoleBlock = removeDetailsBlocks(consoleBlock);
+  const activeQuestionText = firstTaggedText(visibleConsoleBlock, /<h[2-3][^>]*data-active-question="true"[^>]*>([\s\S]*?)<\/h[2-3]>/i);
+  const choiceLabels = allTaggedTexts(visibleConsoleBlock, /<button[^>]*data-choice-button="[^"]+"[^>]*>([\s\S]*?)<\/button>/gi);
+  const helperText = firstTaggedText(visibleConsoleBlock, /<p[^>]*class="[^"]*\bconsole-helper\b[^"]*"[^>]*>([\s\S]*?)<\/p>/i);
+  const topParagraphTexts = allTaggedTexts(visibleConsoleBlock, /<p[^>]*>([\s\S]*?)<\/p>/gi);
+  const topConsoleText = stripHtmlTags(visibleConsoleBlock);
+  const stepLabels = allTaggedTexts(visibleConsoleBlock, /<span[^>]*data-console-step="[^"]+"[^>]*>([\s\S]*?)<\/span>/gi).map(normalizeDecisionStepLabel);
+  const currentStepLabels = allTaggedTexts(visibleConsoleBlock, /<span[^>]*data-console-step="[^"]+"[^>]*data-console-step-state="current"[^>]*>([\s\S]*?)<\/span>/gi).map(normalizeDecisionStepLabel);
+  const bridgeConsoleBlock = extractFirstHtmlSectionByMarker(html, 'data-bridge-decision-console="true"');
+  const bridgeStepLabels = allTaggedTexts(bridgeConsoleBlock, /<span[^>]*data-bridge-console-step="[^"]+"[^>]*>([\s\S]*?)<\/span>/gi).map(normalizeDecisionStepLabel);
+  const bridgeCurrentStepCount = (bridgeConsoleBlock.match(/data-bridge-console-step-state="current"/g) || []).length;
+  const contextChipCount = (visibleConsoleBlock.match(/data-context-chip=/g) || []).length;
+  const primaryActionCount = (visibleConsoleBlock.match(/data-console-primary-action="true"/g) || []).length;
+  const notesShelfIndex = html.indexOf('data-notes-shelf="true"');
+  const detailDrawerBlock = extractFirstHtmlBlockByMarker(html, "details", 'data-detail-drawer="true"');
+  const notesShelfBlock = extractFirstHtmlBlockByMarker(html, "details", 'data-notes-shelf="true"');
+  const cardWallSuppressedCount = (html.match(/data-card-wall-suppressed="true"/g) || []).length;
+  const repeatedThisTimeCount = countPattern(topConsoleText, /今回|this time/gi);
+  const visibleSentenceCount = countPattern(topConsoleText, /[。！？.!?]/g);
+  const topParagraphMaxChars = topParagraphTexts.reduce((max, text) => Math.max(max, countDisplayChars(text)), 0);
+  const choiceLabelMaxChars = choiceLabels.reduce((max, text) => Math.max(max, countDisplayChars(text)), 0);
+  const lockedMarkers = [
+    "provider/API",
+    "AI video",
+    "render",
+    "upload",
+    "final canon",
+    "database persistence",
+    "rights clearance"
+  ];
+  const requiredChoiceLabels = ["進める", "語り口を直す", "字幕を直す", "サムネを直す", "保留真実を直す"];
+  const requiredStepLabels = ["路線", "語り", "字幕", "画面", "サムネ", "保留真実"];
+  const requiredContextLabels = [
+    "designer-content-moth-investigation-3m",
+    "designer-channel-mystery-lore",
+    "pre-production",
+    "生成なし",
+    "公開なし",
+    "canon未確定"
+  ];
+  const selectedCandidateId = readback?.selected_candidate_id || guided?.selected_candidate_id || draftPack?.selected_candidate_id || bridge?.selected_candidate_id;
+  const selectedChannelRouteId = readback?.selected_channel_route_id || guided?.selected_channel_route_id || bridge?.selected_channel_route_id || draftPack?.channel_strategy_route?.id;
+
+  check(
+    "identity",
+    readback?.artifact_id === "fff-low-text-decision-console-001" &&
+      readback?.schemaVersion === LOW_TEXT_DECISION_CONSOLE_SCHEMA_VERSION &&
+      readback?.review_ui === "public/review/index.html" &&
+      readback?.access_route === "public/review/index.html?mode=brief" &&
+      readback?.bridge_route === "public/review/index.html?mode=bridge" &&
+      readback?.source_guided_flow_artifact_id === "fff-guided-review-flow-workspace-001",
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; ui=${readback?.review_ui}; access=${readback?.access_route}; bridge=${readback?.bridge_route}; source=${readback?.source_guided_flow_artifact_id}`
+  );
+  check(
+    "source_readbacks_preserved",
+    guided?.artifact_id === "fff-guided-review-flow-workspace-001" &&
+      guided?.passed === true &&
+      overview?.artifact_id === "fff-bridge-refinement-overview-ribbon-001" &&
+      overview?.passed === true &&
+      homeCockpit?.artifact_id === "fff-home-cockpit-metric-linking-001" &&
+      homeCockpit?.passed === true &&
+      bridge?.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+      bridge?.passed === true &&
+      reviewBrief?.artifact_id === "fff-review-brief-dark-mode-ux-001" &&
+      reviewBrief?.passed === true &&
+      draftPack?.artifact_id === "fff-one-story-draft-review-pack-001" &&
+      draftPack?.passed === true &&
+      designerDashboard?.artifact_id === "fff-designer-candidate-dashboard-001" &&
+      designerDashboard?.passed === true &&
+      contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
+      contradictoryGuard?.passed === true,
+    `guided=${guided?.artifact_id}/${guided?.passed}; overview=${overview?.artifact_id}/${overview?.passed}; home=${homeCockpit?.artifact_id}/${homeCockpit?.passed}; bridge=${bridge?.artifact_id}/${bridge?.passed}; brief=${reviewBrief?.artifact_id}/${reviewBrief?.passed}; draft=${draftPack?.artifact_id}/${draftPack?.passed}; designer=${designerDashboard?.artifact_id}/${designerDashboard?.passed}; contradictory=${contradictoryGuard?.artifact_id}/${contradictoryGuard?.passed}`
+  );
+  check(
+    "decision_console_visible_first",
+    reviewHomeIndex >= 0 &&
+      decisionConsoleIndex >= 0 &&
+      guidedFlowIndex >= 0 &&
+      latestOverviewIndex >= 0 &&
+      firstCardIndex >= 0 &&
+      reviewHomeIndex < decisionConsoleIndex &&
+      decisionConsoleIndex < guidedFlowIndex &&
+      decisionConsoleIndex < latestOverviewIndex &&
+      decisionConsoleIndex < firstCardIndex,
+    `home=${reviewHomeIndex}; console=${decisionConsoleIndex}; guided=${guidedFlowIndex}; latest=${latestOverviewIndex}; firstCard=${firstCardIndex}`
+  );
+  check(
+    "active_question_and_choices",
+    activeQuestionText === "この路線で進める？" &&
+      countDisplayChars(activeQuestionText) <= 34 &&
+      choiceLabels.length >= 3 &&
+      choiceLabels.length <= 5 &&
+      requiredChoiceLabels.every((label) => choiceLabels.includes(label)) &&
+      choiceLabelMaxChars <= 18,
+    `question=${activeQuestionText}; questionChars=${countDisplayChars(activeQuestionText)}; choices=${choiceLabels.join(",")}; maxChoiceChars=${choiceLabelMaxChars}`
+  );
+  check(
+    "primary_action_exactly_one",
+    primaryActionCount === 1 && visibleConsoleBlock.includes("Bridgeで確認"),
+    `primaryActionCount=${primaryActionCount}`
+  );
+  check(
+    "context_dock_complete",
+    html.includes('data-context-dock="true"') &&
+      contextChipCount >= 6 &&
+      requiredContextLabels.every((label) => visibleConsoleBlock.includes(label)),
+    `chips=${contextChipCount}; required=${requiredContextLabels.filter((label) => visibleConsoleBlock.includes(label)).length}/${requiredContextLabels.length}`
+  );
+  check(
+    "step_rail_complete",
+    html.includes('data-step-rail="true"') &&
+      stepLabels.length === 6 &&
+      requiredStepLabels.every((label) => stepLabels.includes(label)) &&
+      currentStepLabels.length === 1 &&
+      currentStepLabels[0] === "路線",
+    `steps=${stepLabels.join(",")}; current=${currentStepLabels.join(",") || "none"}`
+  );
+  check(
+    "detail_drawer_default_closed",
+    html.includes('data-detail-drawer="true"') &&
+      detailDrawerBlock &&
+      !/^<details[^>]*\sopen(\s|>|=)/i.test(detailDrawerBlock) &&
+      detailDrawerBlock.includes("詳細メモを開く"),
+    "detail drawer should be a closed details element with the required summary"
+  );
+  check(
+    "notes_shelf_below_console",
+    notesShelfIndex > decisionConsoleIndex &&
+      notesShelfBlock &&
+      !/^<details[^>]*\sopen(\s|>|=)/i.test(notesShelfBlock),
+    `console=${decisionConsoleIndex}; notes=${notesShelfIndex}`
+  );
+  check(
+    "card_wall_suppressed",
+    cardWallSuppressedCount >= 3 &&
+      guidedFlowIndex > decisionConsoleIndex &&
+      html.includes('data-card-wall-suppressed="true"'),
+    `suppressed=${cardWallSuppressedCount}; guided=${guidedFlowIndex}; console=${decisionConsoleIndex}`
+  );
+  check(
+    "bridge_console_visible",
+    bridgeDecisionConsoleIndex >= 0 &&
+      bridgeGuidedFlowIndex >= 0 &&
+      bridgeDecisionConsoleIndex < bridgeGuidedFlowIndex &&
+      bridgeStepLabels.length === 6 &&
+      requiredStepLabels.every((label) => bridgeStepLabels.includes(label)) &&
+      bridgeCurrentStepCount === 1,
+    `bridgeConsole=${bridgeDecisionConsoleIndex}; bridgeGuided=${bridgeGuidedFlowIndex}; bridgeSteps=${bridgeStepLabels.join(",")}; current=${bridgeCurrentStepCount}`
+  );
+  check(
+    "text_budget",
+    helperText &&
+      countDisplayChars(helperText) <= 42 &&
+      topParagraphMaxChars <= 70 &&
+      visibleSentenceCount <= 5 &&
+      repeatedThisTimeCount <= 1,
+    `helperChars=${countDisplayChars(helperText)}; paragraphMax=${topParagraphMaxChars}; sentences=${visibleSentenceCount}; repeatedThisTime=${repeatedThisTimeCount}`
+  );
+  check(
+    "preserved_content_and_optional_evidence",
+    html.includes('data-guided-flow="guided-review-flow-workspace"') &&
+      html.includes('data-latest-overview="bridge-refinement-overview-ribbon"') &&
+      html.includes("Evidence Vault") &&
+      html.includes("Source Audit / Project Cockpit / Artifacts") &&
+      html.includes("Toma fate held") &&
+      html.includes("brass moth truth held") &&
+      html.includes("Council motive held") &&
+      overview?.latest_overview_visible === true,
+    "guided flow, latest overview, held truths, and Evidence Vault should remain searchable"
+  );
+  check(
+    "dark_mode_preserved",
+    html.includes(':root[data-theme="dark"]') &&
+      html.includes(':root[data-theme="auto"]') &&
+      html.includes('data-theme-target="light"') &&
+      html.includes('data-theme-target="dark"') &&
+      html.includes('data-theme-target="auto"') &&
+      html.includes("THEME_STORAGE_KEY") &&
+      html.includes("--paper-soft") &&
+      html.includes("--surface-muted"),
+    "theme variables and toggles should remain present"
+  );
+  check(
+    "candidate_channel_preserved",
+    selectedCandidateId === "designer-content-moth-investigation-3m" &&
+      selectedChannelRouteId === "designer-channel-mystery-lore" &&
+      html.includes("designer-content-moth-investigation-3m") &&
+      html.includes("designer-channel-mystery-lore"),
+    `candidate=${selectedCandidateId}; channel=${selectedChannelRouteId}`
+  );
+  check(
+    "boundary_gates_closed",
+    readback?.local_only === true &&
+      readback?.external_call === false &&
+      readback?.provider_configured === false &&
+      readback?.credentials_touched === false &&
+      readback?.public_upload === false &&
+      readback?.ai_video_generation === false &&
+      readback?.production_render === false &&
+      readback?.final_canon_decision === false &&
+      readback?.database_persistence === false &&
+      readback?.rights_cleared_claim === false &&
+      lockedMarkers.every((marker) => html.includes(marker)) &&
+      credentialFindings.length === 0,
+    `local=${readback?.local_only}; external=${readback?.external_call}; provider=${readback?.provider_configured}; credentials=${readback?.credentials_touched}; upload=${readback?.public_upload}; video=${readback?.ai_video_generation}; render=${readback?.production_render}; canon=${readback?.final_canon_decision}; database=${readback?.database_persistence}; rights=${readback?.rights_cleared_claim}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+
+  return {
+    schemaVersion: LOW_TEXT_DECISION_CONSOLE_SCHEMA_VERSION,
+    artifact_id: "fff-low-text-decision-console-001",
+    title: "Fast Fiction Factory Low-text Decision Console",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_user_visual_review",
+    review_input_mode: "freeform",
+    review_ui: "public/review/index.html",
+    access_route: "public/review/index.html?mode=brief",
+    bridge_route: "public/review/index.html?mode=bridge",
+    input_result_path: toRepoPath(readbackPath),
+    source_guided_flow_artifact_id: "fff-guided-review-flow-workspace-001",
+    source_result_paths: {
+      guided_review_flow_workspace: guidedPath,
+      bridge_refinement_overview_ribbon: overviewPath,
+      home_cockpit_metric_linking: homeCockpitPath,
+      draft_to_video_planning_bridge: bridgePath,
+      review_brief_dark_mode_ux: reviewBriefPath,
+      one_story_draft_review_pack: draftPackPath,
+      designer_candidate_dashboard: designerDashboardPath,
+      contradictory_claim_guard: contradictoryGuardPath
+    },
+    decision_console_visible: checks.decision_console_visible_first?.passed === true,
+    decision_console_first: checks.decision_console_visible_first?.passed === true,
+    active_question_text: activeQuestionText,
+    active_question_char_count: countDisplayChars(activeQuestionText),
+    choice_button_count: choiceLabels.length,
+    choice_labels: choiceLabels,
+    choice_label_max_chars: choiceLabelMaxChars,
+    primary_action_count: primaryActionCount,
+    primary_action_label: "Bridgeで確認",
+    context_dock_visible: checks.context_dock_complete?.passed === true,
+    context_chip_count: contextChipCount,
+    step_rail_visible: checks.step_rail_complete?.passed === true,
+    step_labels: stepLabels,
+    current_step_count: currentStepLabels.length,
+    current_step_labels: currentStepLabels,
+    detail_drawer_default_closed: checks.detail_drawer_default_closed?.passed === true,
+    notes_shelf_visible: notesShelfIndex >= 0,
+    notes_shelf_default_closed: checks.notes_shelf_below_console?.passed === true,
+    card_wall_suppressed: checks.card_wall_suppressed?.passed === true,
+    bridge_decision_console_visible: checks.bridge_console_visible?.passed === true,
+    bridge_step_labels: bridgeStepLabels,
+    text_budget: {
+      helper_line_char_count: countDisplayChars(helperText),
+      helper_line_max_chars: 42,
+      paragraph_max_chars: topParagraphMaxChars,
+      paragraph_limit_chars: 70,
+      visible_sentence_count: visibleSentenceCount,
+      visible_sentence_limit: 5,
+      repeated_this_time_count: repeatedThisTimeCount,
+      repeated_this_time_limit: 1,
+      passed: checks.text_budget?.passed === true
+    },
+    latest_overview_preserved: checks.preserved_content_and_optional_evidence?.passed === true,
+    guided_flow_preserved: html.includes('data-guided-flow="guided-review-flow-workspace"'),
+    evidence_vault_optional: checks.preserved_content_and_optional_evidence?.passed === true,
+    dark_mode_preserved: checks.dark_mode_preserved?.passed === true,
+    selected_candidate_id: selectedCandidateId,
+    selected_channel_route_id: selectedChannelRouteId,
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      database_persistence: false,
+      rights_cleared_claim: false,
+      credential_material_findings: credentialFindings
+    },
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    final_canon_decision: false,
+    database_persistence: false,
+    rights_cleared_claim: false,
+    summary: {
+      decision_console_visible: checks.decision_console_visible_first?.passed === true,
+      decision_console_first: checks.decision_console_visible_first?.passed === true,
+      choice_button_count: choiceLabels.length,
+      primary_action_count: primaryActionCount,
+      context_chip_count: contextChipCount,
+      step_count: stepLabels.length,
+      current_step_count: currentStepLabels.length,
+      bridge_console_visible: checks.bridge_console_visible?.passed === true,
+      card_wall_suppressed: checks.card_wall_suppressed?.passed === true,
+      text_budget_passed: checks.text_budget?.passed === true,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      final_canon_decision: false,
+      database_persistence: false,
+      rights_cleared_claim: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "The first brief surface is a low-text decision console with one active question and one Bridge action.",
+      "Legacy Guided Flow, Latest Overview, Home Cockpit cards, and Evidence Vault remain preserved below the console.",
+      "Bridge mode repeats the same decision state before detailed bridge cards.",
+      "Top-console text stays within the requested short-label budget and avoids repeated this-time phrasing.",
+      "No provider/API, credential, video, render, upload, database, rights, or final-canon gate is opened."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateGuidedReviewFlowWorkspace(readback, readbackPath) {
   const failures = [];
   const checks = {};
@@ -10184,6 +10569,72 @@ function toRepoPath(filePath) {
   return relativePath.replace(/\\/g, "/");
 }
 
+function extractFirstHtmlSectionByMarker(html, marker) {
+  return extractFirstHtmlBlockByMarker(html, "section", marker);
+}
+
+function extractFirstHtmlBlockByMarker(html, tagName, marker) {
+  const markerIndex = html.indexOf(marker);
+  if (markerIndex < 0) {
+    return "";
+  }
+  const start = html.lastIndexOf(`<${tagName}`, markerIndex);
+  if (start < 0) {
+    return "";
+  }
+  const endMarker = `</${tagName}>`;
+  const end = html.indexOf(endMarker, markerIndex);
+  if (end < 0) {
+    return html.slice(start);
+  }
+  return html.slice(start, end + endMarker.length);
+}
+
+function removeDetailsBlocks(html) {
+  return html.replace(/<details\b[\s\S]*?<\/details>/gi, "");
+}
+
+function firstTaggedText(html, pattern) {
+  const match = pattern.exec(html);
+  return match ? stripHtmlTags(match[1]) : "";
+}
+
+function allTaggedTexts(html, pattern) {
+  pattern.lastIndex = 0;
+  const texts = [];
+  let match;
+  while ((match = pattern.exec(html)) !== null) {
+    texts.push(stripHtmlTags(match[1]));
+  }
+  return texts;
+}
+
+function stripHtmlTags(html) {
+  return html
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "")
+    .replace(/<style\b[\s\S]*?<\/style>/gi, "")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function normalizeDecisionStepLabel(text) {
+  return text.replace(/^[✅▶◇🔒\s]+/u, "").trim();
+}
+
+function countDisplayChars(text) {
+  return Array.from((text || "").trim()).length;
+}
+
+function countPattern(text, pattern) {
+  const matches = (text || "").match(pattern);
+  return matches ? matches.length : 0;
+}
+
 function validateExtractionContract(contract, options = {}) {
   const label = options.label || "extraction contract";
   const errors = [];
@@ -10960,6 +11411,8 @@ Usage:
   node tools/fff-state.mjs smoke-draft-to-video-planning-bridge <draft-to-video-planning-bridge-result.json> [output.json]
   node tools/fff-state.mjs validate-bridge-refinement-overview-ribbon <bridge-refinement-overview-ribbon-result.json>
   node tools/fff-state.mjs smoke-bridge-refinement-overview-ribbon <bridge-refinement-overview-ribbon-result.json> [output.json]
+  node tools/fff-state.mjs validate-low-text-decision-console <low-text-decision-console-result.json>
+  node tools/fff-state.mjs smoke-low-text-decision-console <low-text-decision-console-result.json> [output.json]
   node tools/fff-state.mjs validate-guided-review-flow-workspace <guided-review-flow-workspace-result.json>
   node tools/fff-state.mjs smoke-guided-review-flow-workspace <guided-review-flow-workspace-result.json> [output.json]
   node tools/fff-state.mjs validate-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json>
@@ -10993,6 +11446,9 @@ Default bridge refinement overview ribbon output:
 
 Default guided review flow workspace output:
   ${DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT}
+
+Default low-text decision console output:
+  ${DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT}
 
 Default home cockpit metric linking output:
   ${DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT}

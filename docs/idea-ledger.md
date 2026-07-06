@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Low-text Decision Console
+
+- Purpose: Fix the first-screen review failure where the guided flow still read like mass notes or lecture notes.
+- Effect: Adds one route question, five short choices, one `Bridgeで確認` action, context chips, a six-step rail, closed detail/notes shelves, and a matching Bridge Decision Console to `public/review/index.html`.
+- Requirements: Preserve `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, Evidence Vault optionality, dark mode, stable IDs, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
+- State: Implemented in `fff-low-text-decision-console-001`.
+- Owner: Product implementer for UI/readback; human reviewer for whether the route decision is now readable enough to proceed.
+- Next move: Review `public/review/index.html?mode=brief`, answer the route question, then open `public/review/index.html?mode=bridge` and name the weakest area: narration, subtitle rhythm, screen order, thumbnail direction, or held-truth policy.
+
 ### Guided Review Flow Workspace
 
 - Purpose: Make the active `brief` route guide the user through one review path before showing comprehensive Home Cockpit shelves.
