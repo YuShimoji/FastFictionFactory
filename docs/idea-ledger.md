@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Layout Lab Visual Audit
+
+- Purpose: Give the reviewer browser-based visual evidence for the Layout Research Lab before applying the split-pane Decision Shell to the default `brief` route.
+- Effect: Adds four local screenshots plus a contact sheet for `layout-lab`, the recommended Decision Shell alternative, preserved `brief`, and preserved `bridge`; adds `docs/review/layout-lab-visual-audit.md` and `artifacts/layout-lab-visual-audit-result.json`.
+- Requirements: Preserve `fff-layout-research-decision-shell-001`, `brief`, `bridge`, dark mode, Evidence Vault optionality, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
+- State: Implemented in `fff-layout-lab-visual-audit-001`.
+- Owner: Product implementer for visual audit packaging; human reviewer for whether the Split-pane Decision Shell should be applied to `brief`.
+- Next move: Review `artifacts/layout-lab-visual-audit-contact-sheet.png` and `public/review/index.html?mode=layout-lab`, then accept or reject `fff-apply-decision-shell-review-route-001`.
+
 ### Repo Sync / Next Terminal Handoff
 
 - Purpose: Keep the latest Layout Research Lab context durable in repository files so another terminal can resume from `master` without chat history.

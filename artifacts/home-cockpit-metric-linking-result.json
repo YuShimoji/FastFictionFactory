@@ -2,7 +2,7 @@
   "schemaVersion": "fff.homeCockpitMetricLinking.v1",
   "artifact_id": "fff-home-cockpit-metric-linking-001",
   "title": "Fast Fiction Factory Home Cockpit Metric Linking",
-  "generatedAt": "2026-07-06T17:36:38.115Z",
+  "generatedAt": "2026-07-07T06:14:39.023Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",

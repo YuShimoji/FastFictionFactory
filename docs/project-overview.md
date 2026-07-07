@@ -29,6 +29,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Local extraction adapter expansion | Ready for local review | [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Model/API boundary spec | Ready for local review | [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md) | `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json` |
 | Provider envelope readiness no-call | Ready for local readback | [`review/provider-envelope-readiness-no-call.md`](review/provider-envelope-readiness-no-call.md) | `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json` |
+| Layout Lab Visual Audit | Ready for visual review | [`review/layout-lab-visual-audit.md`](review/layout-lab-visual-audit.md) | `artifacts/layout-lab-visual-audit-contact-sheet.png`, `artifacts/review-screens/layout-lab.png`, `artifacts/review-screens/layout-lab-decision-shell.png` |
 | Layout Research Decision Shell | Ready for local wireframe review | [`review/layout-research-decision-shell.md`](review/layout-research-decision-shell.md) | `artifacts/layout-research-decision-shell-result.json`, `public/review/index.html?mode=layout-lab` |
 | Low-text Decision Console | Ready for local readback | [`review/low-text-decision-console.md`](review/low-text-decision-console.md) | `artifacts/low-text-decision-console-result.json`, `public/review/index.html?mode=brief`, `public/review/index.html?mode=bridge` |
 | Guided Review Flow Workspace | Ready for local readback | [`review/guided-review-flow-workspace.md`](review/guided-review-flow-workspace.md) | `artifacts/guided-review-flow-workspace-result.json`, `public/review/index.html?mode=brief`, `public/review/index.html?mode=bridge` |
@@ -54,6 +55,11 @@ The current quick visual review files are stored under `artifacts/`:
 | --- | --- |
 | `artifacts/fff-current-review-screenshot.png` | Current single-screen review evidence for the active local UI. |
 | `artifacts/fff-review-contact-sheet.png` | Four-mode contact sheet for fast visual scanning of the current review UI. |
+| `artifacts/layout-lab-visual-audit-contact-sheet.png` | Current Layout Lab visual audit contact sheet comparing Lab, Decision Shell, preserved Brief, and preserved Bridge. |
+| `artifacts/review-screens/layout-lab.png` | Layout Lab first-screen screenshot. |
+| `artifacts/review-screens/layout-lab-decision-shell.png` | Split-pane Decision Shell screenshot. |
+| `artifacts/review-screens/brief-preserved.png` | Preserved `brief` route screenshot. |
+| `artifacts/review-screens/bridge-preserved.png` | Preserved `bridge` route screenshot. |
 | `artifacts/review-screens/story-review.png` | Mode-specific Story Review screenshot. |
 | `artifacts/review-screens/source-audit.png` | Mode-specific Source Audit screenshot. |
 | `artifacts/review-screens/project-cockpit.png` | Mode-specific Project Cockpit screenshot. |
@@ -82,7 +88,7 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Layout Lab review, then Decision Shell application if accepted | The reviewer compares Card-first, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow, then accepts or rejects applying the Decision Shell to `brief`. | The repo can improve the operator review shell without drifting into script/subtitle asset generation, provider/API, video generation, rights, upload, database, or final canon. |
+| Next 1 turn | Layout Lab visual audit review, then Decision Shell application if accepted | The reviewer uses the contact sheet and Layout Lab route to compare Card-first, Briefing Inbox, Split-pane Decision Shell, Storyboard Flow, preserved Brief, and preserved Bridge, then accepts or rejects applying the Decision Shell to `brief`. | The repo can improve the operator review shell without drifting into script/subtitle asset generation, provider/API, video generation, rights, upload, database, or final canon. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |

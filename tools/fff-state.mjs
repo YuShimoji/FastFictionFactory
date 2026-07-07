@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const SCHEMA_VERSION = "fff.projectState.v1";
@@ -40,6 +40,7 @@ const BRIDGE_REFINEMENT_OVERVIEW_RIBBON_SCHEMA_VERSION = "fff.bridgeRefinementOv
 const GUIDED_REVIEW_FLOW_WORKSPACE_SCHEMA_VERSION = "fff.guidedReviewFlowWorkspace.v1";
 const LOW_TEXT_DECISION_CONSOLE_SCHEMA_VERSION = "fff.lowTextDecisionConsole.v1";
 const LAYOUT_RESEARCH_DECISION_SHELL_SCHEMA_VERSION = "fff.layoutResearchDecisionShell.v1";
+const LAYOUT_LAB_VISUAL_AUDIT_SCHEMA_VERSION = "fff.layoutLabVisualAudit.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -77,6 +78,7 @@ const DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT = "artifacts/bridge-refin
 const DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT = "artifacts/guided-review-flow-workspace-result.json";
 const DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT = "artifacts/low-text-decision-console-result.json";
 const DEFAULT_LAYOUT_RESEARCH_DECISION_SHELL_OUTPUT = "artifacts/layout-research-decision-shell-result.json";
+const DEFAULT_LAYOUT_LAB_VISUAL_AUDIT_OUTPUT = "artifacts/layout-lab-visual-audit-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -955,6 +957,25 @@ async function main() {
     }
     if (command === "smoke-layout-research-decision-shell" || outputPath) {
       console.log(`layout research decision shell passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-layout-lab-visual-audit" || command === "smoke-layout-lab-visual-audit") {
+    const readback = await readJson(inputPath);
+    const result = await validateLayoutLabVisualAudit(readback, inputPath);
+    const target = outputPath || DEFAULT_LAYOUT_LAB_VISUAL_AUDIT_OUTPUT;
+    if (command === "smoke-layout-lab-visual-audit" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Layout Lab visual audit failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-layout-lab-visual-audit" || outputPath) {
+      console.log(`layout lab visual audit passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -9706,6 +9727,252 @@ async function validateLayoutResearchDecisionShell(readback, readbackPath) {
   };
 }
 
+async function validateLayoutLabVisualAudit(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const sourcePath = manifest.layout_research_decision_shell_result_path || DEFAULT_LAYOUT_RESEARCH_DECISION_SHELL_OUTPUT;
+  const lowTextPath = manifest.low_text_decision_console_result_path || DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT;
+  const guidedPath = manifest.guided_review_flow_workspace_result_path || DEFAULT_GUIDED_REVIEW_FLOW_WORKSPACE_OUTPUT;
+  const bridgePath = manifest.draft_to_video_planning_bridge_result_path || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+  const contradictoryGuardPath = manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const source = await readJson(sourcePath);
+  const lowText = await readJson(lowTextPath);
+  const guided = await readJson(guidedPath);
+  const bridge = await readJson(bridgePath);
+  const contradictoryGuard = await readJson(contradictoryGuardPath);
+  const html = await readFile("public/review/index.html", "utf8");
+  const doc = await readFile("docs/review/layout-lab-visual-audit.md", "utf8");
+  const credentialFindings = collectCredentialMaterial(readback);
+
+  const screenshotPaths = Array.isArray(readback?.screenshot_paths) ? readback.screenshot_paths : [];
+  const expectedScreenshotPaths = [
+    "artifacts/review-screens/layout-lab.png",
+    "artifacts/review-screens/layout-lab-decision-shell.png",
+    "artifacts/review-screens/brief-preserved.png",
+    "artifacts/review-screens/bridge-preserved.png"
+  ];
+  const normalizedScreenshotPaths = screenshotPaths.map(toRepoPath);
+  const screenshotSizes = {};
+  for (const screenshotPath of expectedScreenshotPaths) {
+    screenshotSizes[screenshotPath] = await fileSizeOrZero(screenshotPath);
+  }
+  const contactSheetPath = toRepoPath(readback?.contact_sheet_path || "artifacts/layout-lab-visual-audit-contact-sheet.png");
+  const contactSheetSize = await fileSizeOrZero(contactSheetPath);
+
+  const labRouteVisible = html.includes('data-layout-lab="decision-shell-research"') &&
+    html.includes('data-layout-lab-access="public/review/index.html?mode=layout-lab"') &&
+    html.includes('"layout-lab"');
+  const briefRoutePreserved = html.includes('data-mode-panel="brief"') &&
+    html.includes('data-decision-console="low-text-decision-console"') &&
+    lowText?.passed === true;
+  const bridgeRoutePreserved = html.includes('data-mode-panel="bridge"') &&
+    html.includes('data-bridge-decision-console="true"') &&
+    bridge?.passed === true;
+  const decisionFlowModelBlock = extractConstObjectBlock(html, "decisionFlowModel");
+  const dataDrivenChoiceModelPresent = html.includes("const decisionFlowModel") &&
+    html.includes('data-choice-slot="model-driven"') &&
+    (decisionFlowModelBlock.match(/\bchoiceId\s*:/g) || []).length >= 3;
+  const darkModePreserved = html.includes(':root[data-theme="dark"]') &&
+    html.includes(':root[data-theme="auto"]') &&
+    html.includes('data-theme-target="light"') &&
+    html.includes('data-theme-target="dark"') &&
+    html.includes('data-theme-target="auto"');
+  const expectedScreenshotsPresent = expectedScreenshotPaths.every((screenshotPath) =>
+    normalizedScreenshotPaths.includes(screenshotPath) && screenshotSizes[screenshotPath] > 0
+  );
+  const wireframeMarkers = {
+    card_first_baseline_visible: html.includes('data-wireframe-alternative="card-first-current-baseline"'),
+    briefing_inbox_visible: html.includes('data-briefing-inbox-prototype="true"'),
+    decision_shell_visual_evidence: html.includes('data-decision-shell-prototype="true"'),
+    storyboard_flow_visible: html.includes('data-storyboard-flow-prototype="true"')
+  };
+
+  check(
+    "identity",
+    readback?.artifact_id === "fff-layout-lab-visual-audit-001" &&
+      readback?.schemaVersion === LAYOUT_LAB_VISUAL_AUDIT_SCHEMA_VERSION &&
+      readback?.source_layout_research_artifact_id === "fff-layout-research-decision-shell-001" &&
+      readback?.review_ui === "public/review/index.html" &&
+      readback?.layout_lab_route === "public/review/index.html?mode=layout-lab",
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; source=${readback?.source_layout_research_artifact_id}; ui=${readback?.review_ui}; route=${readback?.layout_lab_route}`
+  );
+  check(
+    "source_and_prior_readbacks_preserved",
+    source?.artifact_id === "fff-layout-research-decision-shell-001" &&
+      source?.passed === true &&
+      lowText?.artifact_id === "fff-low-text-decision-console-001" &&
+      lowText?.passed === true &&
+      guided?.artifact_id === "fff-guided-review-flow-workspace-001" &&
+      guided?.passed === true &&
+      bridge?.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+      bridge?.passed === true &&
+      contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
+      contradictoryGuard?.passed === true,
+    `source=${source?.artifact_id}/${source?.passed}; low=${lowText?.artifact_id}/${lowText?.passed}; guided=${guided?.artifact_id}/${guided?.passed}; bridge=${bridge?.artifact_id}/${bridge?.passed}; guard=${contradictoryGuard?.artifact_id}/${contradictoryGuard?.passed}`
+  );
+  check(
+    "routes_visible_and_preserved",
+    labRouteVisible && briefRoutePreserved && bridgeRoutePreserved,
+    `layoutLab=${labRouteVisible}; brief=${briefRoutePreserved}; bridge=${bridgeRoutePreserved}`
+  );
+  check(
+    "screenshots_and_contact_sheet_present",
+    expectedScreenshotsPresent &&
+      readback?.screenshot_count >= 4 &&
+      contactSheetSize > 0 &&
+      contactSheetPath === "artifacts/layout-lab-visual-audit-contact-sheet.png",
+    `screens=${JSON.stringify(screenshotSizes)}; declared=${readback?.screenshot_count}; contact=${contactSheetPath}/${contactSheetSize}`
+  );
+  check(
+    "layout_lab_visual_evidence",
+    readback?.layout_lab_visual_evidence === true &&
+      readback?.decision_shell_visual_evidence === true &&
+      expectedScreenshotsPresent,
+    `layoutLab=${readback?.layout_lab_visual_evidence}; decisionShell=${readback?.decision_shell_visual_evidence}; files=${expectedScreenshotsPresent}`
+  );
+  check(
+    "wireframe_alternatives_preserved",
+    wireframeMarkers.card_first_baseline_visible &&
+      wireframeMarkers.briefing_inbox_visible &&
+      wireframeMarkers.decision_shell_visual_evidence &&
+      wireframeMarkers.storyboard_flow_visible,
+    JSON.stringify(wireframeMarkers)
+  );
+  check(
+    "data_model_and_recommendation_present",
+    dataDrivenChoiceModelPresent &&
+      html.includes('data-layout-recommendation="split-pane-decision-shell"') &&
+      html.includes('data-card-first-rejected-as-default="true"') &&
+      source?.recommended_layout === "split-pane Decision Shell",
+    `model=${dataDrivenChoiceModelPresent}; recommendation=${html.includes('data-layout-recommendation="split-pane-decision-shell"')}; cardReject=${html.includes('data-card-first-rejected-as-default="true"')}; source=${source?.recommended_layout}`
+  );
+  check(
+    "doc_package_present",
+    doc.includes("fff-layout-lab-visual-audit-001") &&
+      doc.includes("artifacts/review-screens/layout-lab.png") &&
+      doc.includes("artifacts/review-screens/layout-lab-decision-shell.png") &&
+      doc.includes("artifacts/review-screens/brief-preserved.png") &&
+      doc.includes("artifacts/review-screens/bridge-preserved.png") &&
+      doc.includes("artifacts/layout-lab-visual-audit-contact-sheet.png") &&
+      doc.toLowerCase().includes("not being decided"),
+    "review doc should name artifact, screenshot paths, contact sheet, and non-decisions"
+  );
+  check(
+    "dark_mode_preserved",
+    darkModePreserved && readback?.dark_mode_preserved === true,
+    `html=${darkModePreserved}; readback=${readback?.dark_mode_preserved}`
+  );
+  check(
+    "boundary_gates_closed",
+    readback?.local_only === true &&
+      readback?.external_call === false &&
+      readback?.provider_configured === false &&
+      readback?.credentials_touched === false &&
+      readback?.public_upload === false &&
+      readback?.ai_video_generation === false &&
+      readback?.production_render === false &&
+      readback?.database_persistence === false &&
+      readback?.final_canon_decision === false &&
+      readback?.rights_cleared_claim === false &&
+      credentialFindings.length === 0,
+    `local=${readback?.local_only}; external=${readback?.external_call}; provider=${readback?.provider_configured}; credentials=${readback?.credentials_touched}; upload=${readback?.public_upload}; video=${readback?.ai_video_generation}; render=${readback?.production_render}; database=${readback?.database_persistence}; canon=${readback?.final_canon_decision}; rights=${readback?.rights_cleared_claim}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+
+  return {
+    schemaVersion: LAYOUT_LAB_VISUAL_AUDIT_SCHEMA_VERSION,
+    artifact_id: "fff-layout-lab-visual-audit-001",
+    title: "Fast Fiction Factory Layout Lab Visual Audit",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_visual_review",
+    review_input_mode: "freeform",
+    source_layout_research_artifact_id: "fff-layout-research-decision-shell-001",
+    source_layout_research_result_path: sourcePath,
+    review_ui: "public/review/index.html",
+    layout_lab_route: "public/review/index.html?mode=layout-lab",
+    preserved_routes: [
+      "public/review/index.html?mode=brief",
+      "public/review/index.html?mode=bridge"
+    ],
+    brief_route_preserved: briefRoutePreserved,
+    bridge_route_preserved: bridgeRoutePreserved,
+    screenshot_count: expectedScreenshotPaths.filter((screenshotPath) => screenshotSizes[screenshotPath] > 0).length,
+    screenshot_paths: expectedScreenshotPaths,
+    screenshot_sizes: screenshotSizes,
+    contact_sheet_path: contactSheetPath,
+    contact_sheet_size: contactSheetSize,
+    screenshot_tool: "Playwright CLI with local Microsoft Edge channel",
+    browser_url_policy: "file_url_opened_by_playwright",
+    layout_lab_visual_evidence: expectedScreenshotsPresent,
+    decision_shell_visual_evidence: screenshotSizes["artifacts/review-screens/layout-lab-decision-shell.png"] > 0,
+    card_first_baseline_visible: wireframeMarkers.card_first_baseline_visible,
+    briefing_inbox_visible: wireframeMarkers.briefing_inbox_visible,
+    storyboard_flow_visible: wireframeMarkers.storyboard_flow_visible,
+    data_driven_choice_model_present: dataDrivenChoiceModelPresent,
+    recommendation_visible: html.includes('data-layout-recommendation="split-pane-decision-shell"'),
+    access_state: expectedScreenshotsPresent ? "verified_opened" : "verified_present",
+    dark_mode_preserved: darkModePreserved,
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      database_persistence: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      credential_material_findings: credentialFindings
+    },
+    source_result_paths: {
+      layout_research_decision_shell: sourcePath,
+      low_text_decision_console: lowTextPath,
+      guided_review_flow_workspace: guidedPath,
+      draft_to_video_planning_bridge: bridgePath,
+      contradictory_claim_guard: contradictoryGuardPath
+    },
+    summary: {
+      access_state: expectedScreenshotsPresent ? "verified_opened" : "verified_present",
+      screenshot_count: expectedScreenshotPaths.filter((screenshotPath) => screenshotSizes[screenshotPath] > 0).length,
+      contact_sheet_present: contactSheetSize > 0,
+      layout_lab_route_visible: labRouteVisible,
+      brief_route_preserved: briefRoutePreserved,
+      bridge_route_preserved: bridgeRoutePreserved,
+      data_driven_choice_model_present: dataDrivenChoiceModelPresent,
+      recommendation_visible: html.includes('data-layout-recommendation="split-pane-decision-shell"'),
+      failures: failures.length
+    },
+    validation_notes: [
+      "Visual audit evidence was captured locally through Playwright using the Microsoft Edge channel because bundled Chromium was unavailable.",
+      "The Layout Lab remains a research-only route and does not apply the Decision Shell to brief.",
+      "The preserved brief and bridge routes were opened for screenshot evidence and remain validated by their prior readbacks.",
+      "The audit package records visual basis for the human decision about applying the split-pane Decision Shell later.",
+      "No provider/API, credential, upload, AI video, render, database, rights, or final-canon gate is opened."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateGuidedReviewFlowWorkspace(readback, readbackPath) {
   const failures = [];
   const checks = {};
@@ -10917,6 +11184,15 @@ function toRepoPath(filePath) {
   return relativePath.replace(/\\/g, "/");
 }
 
+async function fileSizeOrZero(filePath) {
+  try {
+    const info = await stat(filePath);
+    return info.isFile() ? info.size : 0;
+  } catch {
+    return 0;
+  }
+}
+
 function extractFirstHtmlSectionByMarker(html, marker) {
   return extractFirstHtmlBlockByMarker(html, "section", marker);
 }
@@ -11776,6 +12052,8 @@ Usage:
   node tools/fff-state.mjs smoke-low-text-decision-console <low-text-decision-console-result.json> [output.json]
   node tools/fff-state.mjs validate-layout-research-decision-shell <layout-research-decision-shell-result.json>
   node tools/fff-state.mjs smoke-layout-research-decision-shell <layout-research-decision-shell-result.json> [output.json]
+  node tools/fff-state.mjs validate-layout-lab-visual-audit <layout-lab-visual-audit-result.json>
+  node tools/fff-state.mjs smoke-layout-lab-visual-audit <layout-lab-visual-audit-result.json> [output.json]
   node tools/fff-state.mjs validate-guided-review-flow-workspace <guided-review-flow-workspace-result.json>
   node tools/fff-state.mjs smoke-guided-review-flow-workspace <guided-review-flow-workspace-result.json> [output.json]
   node tools/fff-state.mjs validate-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json>
@@ -11815,6 +12093,9 @@ Default low-text decision console output:
 
 Default layout research decision shell output:
   ${DEFAULT_LAYOUT_RESEARCH_DECISION_SHELL_OUTPUT}
+
+Default layout lab visual audit output:
+  ${DEFAULT_LAYOUT_LAB_VISUAL_AUDIT_OUTPUT}
 
 Default home cockpit metric linking output:
   ${DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT}

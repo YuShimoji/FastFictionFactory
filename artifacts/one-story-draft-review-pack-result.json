@@ -2,7 +2,7 @@
   "schemaVersion": "fff.oneStoryDraftReviewPack.v1",
   "artifact_id": "fff-one-story-draft-review-pack-001",
   "title": "Fast Fiction Factory One-story Draft Review Pack",
-  "generatedAt": "2026-07-06T17:36:38.484Z",
+  "generatedAt": "2026-07-07T06:14:39.227Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",

@@ -217,3 +217,7 @@
 - Decision: Refresh repo-local handoff after publishing the Layout Research Lab.
   - Reason: Another terminal needs the exact restart edge in repository files and remote `master`, not only in chat, while `.serena/project.yml` remains local transport residue outside product scope.
   - Effect: The handoff pass starts from synced `3c9d920 Add layout research decision shell`, updates `docs/review/next-terminal-handoff.md`, `docs/review/current-status.md`, and `docs/project-context.md` with current parity, active artifact, first review route, preserved routes, and restart commands; it adds no provider/API, credential, upload, AI video, render, database, rights-clearance, final-canon, or product UI behavior change.
+
+- Decision: Package a Layout Lab visual audit before applying the Decision Shell.
+  - Reason: Static readbacks proved the Layout Research Lab exists, but the user still needed visual evidence to judge whether the split-pane Decision Shell should replace the default `brief` shell later.
+  - Effect: `fff-layout-lab-visual-audit-001` adds four local screenshots, a contact sheet, `docs/review/layout-lab-visual-audit.md`, `artifacts/layout-lab-visual-audit-result.json`, and `node tools/fff-state.mjs smoke-layout-lab-visual-audit ...`, while preserving `layout-lab`, `brief`, `bridge`, the existing readbacks, and all provider/API, credential, upload, AI video, render, database, rights-clearance, and final-canon boundaries.

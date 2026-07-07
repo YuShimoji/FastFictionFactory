@@ -2,7 +2,7 @@
   "schemaVersion": "fff.lowTextDecisionConsole.v1",
   "artifact_id": "fff-low-text-decision-console-001",
   "title": "Fast Fiction Factory Low-text Decision Console",
-  "generatedAt": "2026-07-06T17:36:37.755Z",
+  "generatedAt": "2026-07-07T06:14:38.794Z",
   "review_status": "ready_for_user_visual_review",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",
@@ -144,7 +144,7 @@
     },
     "decision_console_visible_first": {
       "passed": true,
-      "detail": "home=58777; console=58996; guided=63041; latest=76644; firstCard=81268"
+      "detail": "home=56995; console=57214; guided=61259; latest=74862; firstCard=79417"
     },
     "active_question_and_choices": {
       "passed": true,
@@ -168,15 +168,15 @@
     },
     "notes_shelf_below_console": {
       "passed": true,
-      "detail": "console=58996; notes=62480"
+      "detail": "console=57214; notes=60698"
     },
     "card_wall_suppressed": {
       "passed": true,
-      "detail": "suppressed=4; guided=63041; console=58996"
+      "detail": "suppressed=4; guided=61259; console=57214"
     },
     "bridge_console_visible": {
       "passed": true,
-      "detail": "bridgeConsole=120505; bridgeGuided=123253; bridgeSteps=路線,語り,字幕,画面,サムネ,保留真実; current=1"
+      "detail": "bridgeConsole=118417; bridgeGuided=121165; bridgeSteps=路線,語り,字幕,画面,サムネ,保留真実; current=1"
     },
     "text_budget": {
       "passed": true,

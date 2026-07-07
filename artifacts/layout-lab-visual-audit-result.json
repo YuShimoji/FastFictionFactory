@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "fff.layoutLabVisualAudit.v1",
+  "artifact_id": "fff-layout-lab-visual-audit-001",
+  "title": "Fast Fiction Factory Layout Lab Visual Audit",
+  "generatedAt": "2026-07-07T06:14:38.636Z",
+  "review_status": "ready_for_visual_review",
+  "review_input_mode": "freeform",
+  "source_layout_research_artifact_id": "fff-layout-research-decision-shell-001",
+  "source_layout_research_result_path": "artifacts/layout-research-decision-shell-result.json",
+  "review_ui": "public/review/index.html",
+  "layout_lab_route": "public/review/index.html?mode=layout-lab",
+  "preserved_routes": [
+    "public/review/index.html?mode=brief",
+    "public/review/index.html?mode=bridge"
+  ],
+  "brief_route_preserved": true,
+  "bridge_route_preserved": true,
+  "screenshot_count": 4,
+  "screenshot_paths": [
+    "artifacts/review-screens/layout-lab.png",
+    "artifacts/review-screens/layout-lab-decision-shell.png",
+    "artifacts/review-screens/brief-preserved.png",
+    "artifacts/review-screens/bridge-preserved.png"
+  ],
+  "screenshot_sizes": {
+    "artifacts/review-screens/layout-lab.png": 197207,
+    "artifacts/review-screens/layout-lab-decision-shell.png": 75927,
+    "artifacts/review-screens/brief-preserved.png": 206210,
+    "artifacts/review-screens/bridge-preserved.png": 210393
+  },
+  "contact_sheet_path": "artifacts/layout-lab-visual-audit-contact-sheet.png",
+  "contact_sheet_size": 638089,
+  "screenshot_tool": "Playwright CLI with local Microsoft Edge channel",
+  "browser_url_policy": "file_url_opened_by_playwright",
+  "layout_lab_visual_evidence": true,
+  "decision_shell_visual_evidence": true,
+  "card_first_baseline_visible": true,
+  "briefing_inbox_visible": true,
+  "storyboard_flow_visible": true,
+  "data_driven_choice_model_present": true,
+  "recommendation_visible": true,
+  "access_state": "verified_opened",
+  "dark_mode_preserved": true,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "rights_cleared_claim": false,
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "source_result_paths": {
+    "layout_research_decision_shell": "artifacts/layout-research-decision-shell-result.json",
+    "low_text_decision_console": "artifacts/low-text-decision-console-result.json",
+    "guided_review_flow_workspace": "artifacts/guided-review-flow-workspace-result.json",
+    "draft_to_video_planning_bridge": "artifacts/draft-to-video-planning-bridge-result.json",
+    "contradictory_claim_guard": "artifacts/contradictory-claim-guard-result.json"
+  },
+  "summary": {
+    "access_state": "verified_opened",
+    "screenshot_count": 4,
+    "contact_sheet_present": true,
+    "layout_lab_route_visible": true,
+    "brief_route_preserved": true,
+    "bridge_route_preserved": true,
+    "data_driven_choice_model_present": true,
+    "recommendation_visible": true,
+    "failures": 0
+  },
+  "validation_notes": [
+    "Visual audit evidence was captured locally through Playwright using the Microsoft Edge channel because bundled Chromium was unavailable.",
+    "The Layout Lab remains a research-only route and does not apply the Decision Shell to brief.",
+    "The preserved brief and bridge routes were opened for screenshot evidence and remain validated by their prior readbacks.",
+    "The audit package records visual basis for the human decision about applying the split-pane Decision Shell later.",
+    "No provider/API, credential, upload, AI video, render, database, rights, or final-canon gate is opened."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-layout-lab-visual-audit-001; schema=fff.layoutLabVisualAudit.v1; source=fff-layout-research-decision-shell-001; ui=public/review/index.html; route=public/review/index.html?mode=layout-lab"
+    },
+    "source_and_prior_readbacks_preserved": {
+      "passed": true,
+      "detail": "source=fff-layout-research-decision-shell-001/true; low=fff-low-text-decision-console-001/true; guided=fff-guided-review-flow-workspace-001/true; bridge=fff-draft-to-video-planning-bridge-001/true; guard=fff-contradictory-claim-guard-001/true"
+    },
+    "routes_visible_and_preserved": {
+      "passed": true,
+      "detail": "layoutLab=true; brief=true; bridge=true"
+    },
+    "screenshots_and_contact_sheet_present": {
+      "passed": true,
+      "detail": "screens={\"artifacts/review-screens/layout-lab.png\":197207,\"artifacts/review-screens/layout-lab-decision-shell.png\":75927,\"artifacts/review-screens/brief-preserved.png\":206210,\"artifacts/review-screens/bridge-preserved.png\":210393}; declared=4; contact=artifacts/layout-lab-visual-audit-contact-sheet.png/638089"
+    },
+    "layout_lab_visual_evidence": {
+      "passed": true,
+      "detail": "layoutLab=true; decisionShell=true; files=true"
+    },
+    "wireframe_alternatives_preserved": {
+      "passed": true,
+      "detail": "{\"card_first_baseline_visible\":true,\"briefing_inbox_visible\":true,\"decision_shell_visual_evidence\":true,\"storyboard_flow_visible\":true}"
+    },
+    "data_model_and_recommendation_present": {
+      "passed": true,
+      "detail": "model=true; recommendation=true; cardReject=true; source=split-pane Decision Shell"
+    },
+    "doc_package_present": {
+      "passed": true,
+      "detail": "review doc should name artifact, screenshot paths, contact sheet, and non-decisions"
+    },
+    "dark_mode_preserved": {
+      "passed": true,
+      "detail": "html=true; readback=true"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "local=true; external=false; provider=false; credentials=false; upload=false; video=false; render=false; database=false; canon=false; rights=false; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

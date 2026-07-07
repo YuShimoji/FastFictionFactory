@@ -2,7 +2,7 @@
   "schemaVersion": "fff.layoutResearchDecisionShell.v1",
   "artifact_id": "fff-layout-research-decision-shell-001",
   "title": "Fast Fiction Factory Layout Research Decision Shell",
-  "generatedAt": "2026-07-06T17:36:37.640Z",
+  "generatedAt": "2026-07-07T06:14:38.723Z",
   "review_status": "ready_for_local_wireframe_review",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",
@@ -105,7 +105,7 @@
     },
     "layout_lab_route_visible_and_isolated": {
       "passed": true,
-      "detail": "lab=100792; modeRule=true; reviewModes=true; directLink=true; primaryTabLab=false; brief=35466; bridge=35601"
+      "detail": "lab=98785; modeRule=true; reviewModes=true; directLink=true; primaryTabLab=false; brief=34494; bridge=34629"
     },
     "wireframe_alternatives_visible": {
       "passed": true,

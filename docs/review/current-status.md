@@ -2,7 +2,7 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-layout-research-decision-shell-001`
+- Artifact id: `fff-layout-lab-visual-audit-001`
 - Review UI: `public/review/index.html`
 - Layout Research Lab mode: `public/review/index.html?mode=layout-lab`
 - Low-text Decision Console / Review Brief mode preserved: `public/review/index.html?mode=brief`
@@ -14,6 +14,11 @@
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
 - Repo-local shell launcher: `./scripts/operator/open_review.sh`
 - Manifest: `artifacts/artifact-manifest.json`
+- Layout Lab Visual Audit doc: `docs/review/layout-lab-visual-audit.md`
+- Layout Lab Visual Audit result: `artifacts/layout-lab-visual-audit-result.json`
+- Layout Lab Visual Audit contact sheet: `artifacts/layout-lab-visual-audit-contact-sheet.png`
+- Layout Lab Visual Audit screenshots: `artifacts/review-screens/layout-lab.png`, `artifacts/review-screens/layout-lab-decision-shell.png`, `artifacts/review-screens/brief-preserved.png`, `artifacts/review-screens/bridge-preserved.png`
+- Layout Lab Visual Audit smoke command: `node tools/fff-state.mjs smoke-layout-lab-visual-audit artifacts/layout-lab-visual-audit-result.json artifacts/layout-lab-visual-audit-result.json`
 - Layout Research Decision Shell doc: `docs/review/layout-research-decision-shell.md`
 - Layout Research Decision Shell result: `artifacts/layout-research-decision-shell-result.json`
 - Layout Research Decision Shell smoke command: `node tools/fff-state.mjs smoke-layout-research-decision-shell artifacts/layout-research-decision-shell-result.json artifacts/layout-research-decision-shell-result.json`
@@ -96,7 +101,10 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active checkpoint is `fff-layout-research-decision-shell-001`. It adds a direct-access local research surface at `public/review/index.html?mode=layout-lab` without replacing the default `brief` or `bridge` review routes.
+- The active checkpoint is `fff-layout-lab-visual-audit-001`. It packages local browser evidence for `public/review/index.html?mode=layout-lab`, the recommended Split-pane Decision Shell detail, and the preserved `brief` / `bridge` routes before changing any default review behavior.
+- The visual audit contact sheet is `artifacts/layout-lab-visual-audit-contact-sheet.png`. The individual screenshot evidence is `artifacts/review-screens/layout-lab.png`, `artifacts/review-screens/layout-lab-decision-shell.png`, `artifacts/review-screens/brief-preserved.png`, and `artifacts/review-screens/bridge-preserved.png`.
+- `artifacts/layout-lab-visual-audit-result.json` records screenshot_count=4, access_state=`verified_opened`, layout_lab_visual_evidence=true, decision_shell_visual_evidence=true, dark_mode_preserved=true, brief_route_preserved=true, bridge_route_preserved=true, local-only=true, external_call=false, provider_configured=false, credentials_touched=false, public_upload=false, ai_video_generation=false, production_render=false, database_persistence=false, final_canon_decision=false, rights_cleared_claim=false, and passed=true.
+- The source layout checkpoint remains `fff-layout-research-decision-shell-001`. It adds a direct-access local research surface at `public/review/index.html?mode=layout-lab` without replacing the default `brief` or `bridge` review routes.
 - The Layout Lab compares four low-fidelity wireframe alternatives: Card-first / current baseline, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow. The score matrix covers five layout families including the optional storyboard/timeline family.
 - The recommended layout is the split-pane Decision Shell: left step rail, center active decision panel, right context dock for pins/notices/locks, and bottom drawers for Evidence Vault, notes, and inspiration.
 - `decisionFlowModel` is present in `public/review/index.html` and renders the Lab Decision Shell choice list, step list, pins, and locks from local data. This proves future route choices can be data-driven without adding an API, provider, model call, database, or generated asset.
@@ -177,6 +185,7 @@ Preserved platform boundary:
 
 - Repo-sync handoff refresh on 2026-07-07 JST started from `3c9d920 Add layout research decision shell` with `master` already at `origin/master`; `HEAD...@{u}` reported `0 0`, `.serena/project.yml` remained local transport residue, and no product behavior change was added in the handoff-only pass.
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
+- `node tools/fff-state.mjs smoke-layout-lab-visual-audit artifacts/layout-lab-visual-audit-result.json artifacts/layout-lab-visual-audit-result.json` passed for the active Layout Lab Visual Audit package.
 - `node tools/fff-state.mjs smoke-layout-research-decision-shell artifacts/layout-research-decision-shell-result.json artifacts/layout-research-decision-shell-result.json` passed for the active Layout Research Decision Shell readback.
 - Guided Review Flow Workspace slice on 2026-07-06 JST started from `master` parity with `origin/master` after fetch/pull checks; local `.serena/project.yml` remained transport residue and was intentionally excluded from product staging. The slice adds `fff-guided-review-flow-workspace-001` as the active artifact and preserves the overview ribbon, Home Cockpit, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks.
 - Remote-sync handoff refresh on 2026-06-30 JST started from `ea08c669745a9516685841d36c05c0fd5de1e939` (`ea08c66 Add production adoption authorization packet`) after `git fetch --prune origin`, `git pull --ff-only origin master`, and `git rev-list --left-right --count "HEAD...origin/master"` reported already up to date and `0 0`; the pushed docs-only handoff commit is the next `git log -1 --oneline --decorate` value after pulling.
@@ -256,7 +265,7 @@ Preserved platform boundary:
 ## What Remains Missing
 
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
-- Human freeform review of the Layout Research Lab is the immediate next user-side work: compare alternatives A-D and accept, revise, or reject applying the split-pane Decision Shell to `brief`. Low-text Console and Draft-to-Video Bridge remain preserved operator routes after that decision.
+- Human freeform review of the Layout Lab visual audit is the immediate next user-side work: inspect the contact sheet and `layout-lab` route, then accept, revise, or reject applying the split-pane Decision Shell to `brief`. Low-text Console and Draft-to-Video Bridge remain preserved operator routes after that decision.
 - Remaining workflow expansion is now post-Profile: Timeline / Story Seed / Canon decision authorization, actual rollback, broader translated memo coverage, or very broad source-span fixture shape. The held claim preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, Claim Ledger one-claim production adoption, Claim Ledger rollback rehearsal, downstream target authorization packet, and Profile adoption mutation one-claim define candidate status, accepted-status meaning, rollback, mutation boundaries, a non-mutating ledger row, one fixture-only sandbox adoption row, one sandbox-only rollback rehearsal row, one production authorization packet, one Claim Ledger production adoption row, one non-destructive rollback rehearsal, one Profile-first downstream target choice surface, and one Profile-only non-canon annotation. Timeline, Story Seed, canon, provider/API/credential, publishing, additional-claim adoption, and actual production rollback remain unimplemented without separate authorization. The translated memo axis has a two-row minimum fixture, so only add more translated rows if they reduce a concrete coverage gap beyond `multi-x-object-brass-moth-key` and `multi-x-placeholder-translation-boundary`. Very broad source-span shape has been audited but not implemented because current broad rows are already resolved and no concrete source-output gap requires another fixture.
 - Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, transport behavior, external call permission, timeout value, and retry count remain blocked until explicit authorization.
 - Durable project database, YouTube publishing, automated upload, AI video generation, complete world chronology, and final canon decisions remain out of scope.
@@ -265,6 +274,7 @@ Preserved platform boundary:
 
 | Target | Current state | Next move |
 | --- | --- | --- |
+| Layout Lab Visual Audit | Covered by `fff-layout-lab-visual-audit-001`; the contact sheet and four screenshots show the Layout Lab, Split-pane Decision Shell, preserved `brief`, and preserved `bridge` routes | Human reviewer should inspect `artifacts/layout-lab-visual-audit-contact-sheet.png`, then accept, revise, or reject applying the Decision Shell to `brief` |
 | Layout Research Decision Shell | Covered by `fff-layout-research-decision-shell-001`; `public/review/index.html?mode=layout-lab` compares four wireframes, recommends split-pane Decision Shell, shows a heuristic score matrix, and renders choices from `decisionFlowModel` | Human reviewer should compare alternatives A-D, then accept or reject applying Decision Shell to `brief` |
 | Low-text Decision Console | Preserved by `fff-low-text-decision-console-001`; `public/review/index.html?mode=brief` starts with one question, five choices, one Bridge action, context chips, a six-step rail, closed detail drawer, and closed notes shelf before the guided flow and card shelves | Keep as the default route until the Decision Shell is accepted and applied |
 | Guided Review Flow Workspace | Preserved by `fff-guided-review-flow-workspace-001`; its guided sequence, one primary Bridge action, Decision Queue, Pinned Tray, Operations Notice, Important Folders, and Inspiration Workspace now sit below the low-text console | Treat as stored supporting structure, not the first stop |
@@ -324,6 +334,7 @@ Mode-specific local paths:
 ```text
 public/review/index.html?mode=brief
 public/review/index.html?mode=home
+public/review/index.html?mode=layout-lab
 public/review/index.html?mode=bridge
 public/review/index.html?mode=story
 public/review/index.html?mode=draft
@@ -341,4 +352,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The `brief` route now starts with the Low-text Decision Console so the reviewer sees one route question before scanning preserved overview, meters, or shelves. The next non-redundant move is human review of `public/review/index.html?mode=brief`, then `public/review/index.html?mode=bridge`: answer whether the route can proceed, then accept, revise, or reject narration candidates, subtitle rhythm, visual ordering, thumbnail direction, and held-truth policy. Timeline / Story Seed / Canon decision still requires equivalent explicit authorization; actual production rollback only if explicitly requested for `multi-claim-moth-key-label`; real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, additional adoption writes, production rollback, or final canon decisions unless explicitly requested.
+Use review memory before asking for another review. The next non-redundant move is visual review of `artifacts/layout-lab-visual-audit-contact-sheet.png` and `public/review/index.html?mode=layout-lab`: decide whether the Split-pane Decision Shell is accepted, needs revision, or should be rejected before any attempt to apply it to `brief`. If accepted, the next implementation slice is `fff-apply-decision-shell-review-route-001`; if revised or rejected, update the Lab evidence first. Timeline / Story Seed / Canon decision still requires equivalent explicit authorization; actual production rollback only if explicitly requested for `multi-claim-moth-key-label`; real provider adapter implementation only after explicit authorization for provider choice, credentials, endpoint, transport behavior, external call permission, timeout, and retry policy. Do not start model/API behavior, database persistence, publishing, AI video generation, production sync, credentials, additional adoption writes, production rollback, or final canon decisions unless explicitly requested.
