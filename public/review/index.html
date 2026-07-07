@@ -575,6 +575,99 @@
       margin-top: 2px;
     }
 
+    .decision-shell-applied {
+      border-left-color: var(--green);
+    }
+
+    .decision-shell-grid {
+      display: grid;
+      grid-template-columns: minmax(160px, 0.45fr) minmax(0, 1fr) minmax(220px, 0.65fr);
+      gap: 12px;
+      align-items: start;
+    }
+
+    .decision-shell-rail,
+    .active-decision-panel,
+    .governed-context-dock {
+      min-width: 0;
+    }
+
+    .decision-shell-rail {
+      display: grid;
+      gap: 8px;
+    }
+
+    .decision-model-meta,
+    .compact-gate-summary {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .decision-model-meta span,
+    .compact-gate-summary span {
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: var(--pill-bg);
+      color: var(--pill-ink);
+      font-size: 12px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+
+    .governed-context-dock {
+      display: block;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-muted);
+      padding: 10px;
+    }
+
+    .dock-scroll {
+      display: grid;
+      gap: 10px;
+      max-height: min(540px, 72vh);
+      overflow: auto;
+      padding-right: 2px;
+    }
+
+    .dock-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-content: start;
+    }
+
+    .dock-group strong {
+      flex-basis: 100%;
+      color: var(--muted-strong);
+      font-size: 12px;
+    }
+
+    .dock-group ul,
+    .gate-registry-list,
+    .non-gate-list,
+    .dock-overflow-list {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted-strong);
+      font-size: 12px;
+    }
+
+    .decision-shell-drawers {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .legacy-low-text-console[hidden] {
+      display: none !important;
+    }
+
     .layout-lab-link-row {
       display: flex;
       flex-wrap: wrap;
@@ -2390,6 +2483,8 @@
       .mode-tabs,
       .mode-summary-grid,
       .console-shell,
+      .decision-shell-grid,
+      .decision-shell-drawers,
       .layout-lab-header,
       .wireframe-grid,
       .decision-shell-wireframe,
@@ -2470,7 +2565,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Guided Review Flow / Review Brief <span class="jp-label">レビュー進行</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-layout-research-decision-shell-001</strong>. デフォルトの Review Brief と Bridge は保持したまま、研究用の <strong>public/review/index.html?mode=layout-lab</strong> で次の情報配置を比較します。</p>
+            <p class="lede">Active artifact id: <strong>fff-apply-decision-shell-guard-diet-001</strong>. Review Brief の先頭に Split-pane Decision Shell を適用し、Bridge と Evidence Vault は保持したまま判断量を圧縮します。</p>
           </div>
           <div class="hub-panel">
             <h3>How to open locally</h3>
@@ -2519,11 +2614,127 @@
         </nav>
 
         <section class="review-home" id="review-home-root" data-mode-panel="brief" data-home-map="review-home-map-meters" data-home-cockpit="home-cockpit-metric-linking" aria-labelledby="decision-console-title">
-          <section class="decision-console" data-decision-console="low-text-decision-console" aria-labelledby="decision-console-title">
+          <section class="decision-console decision-shell-applied" data-decision-console="low-text-decision-console" data-applied-decision-shell="brief" data-decision-flow-model-root="true" data-decision-flow-model-applied="true" data-dock-governor="true" data-dock-overflow="drawer" data-dock-max-visible="true" data-safety-gate-diet="true" data-safety-gate-registry="true" data-gate-display-budget="compact" data-non-gate-whitelist="true" data-card-wall-not-default="true" aria-labelledby="decision-console-title">
+            <div class="decision-shell-grid" data-split-pane-shell="brief">
+              <nav class="decision-shell-rail" aria-label="Decision steps">
+                <strong>Step rail</strong>
+                <div class="step-rail" data-step-rail="true" aria-label="Decision steps">
+                  <span class="rail-step current" data-console-step="route" data-console-step-state="current">▶ 路線</span>
+                  <span class="rail-step" data-console-step="narration" data-console-step-state="later">▷ 語り</span>
+                  <span class="rail-step" data-console-step="subtitle" data-console-step-state="later">▷ 字幕</span>
+                  <span class="rail-step" data-console-step="visual" data-console-step-state="later">▷ 画面</span>
+                  <span class="rail-step" data-console-step="thumbnail" data-console-step-state="later">▷ サムネ</span>
+                  <span class="rail-step" data-console-step="held-truth" data-console-step-state="later">🔒 保留真実</span>
+                </div>
+                <ol class="model-step-list" data-model-step-list>
+                  <li>route current</li>
+                </ol>
+              </nav>
+
+              <main class="active-decision-panel" data-active-decision-panel="true">
+                <p class="hub-eyebrow">Applied Decision Shell</p>
+                <h2 class="console-question" id="decision-console-title" data-active-question="true" data-model-current-question>この路線で進める？</h2>
+                <div class="decision-model-meta" aria-label="Current route context">
+                  <span data-model-current-route>brief</span>
+                  <span>candidate: <strong data-model-candidate-route>designer-content-moth-investigation-3m</strong></span>
+                  <span>channel: <strong data-model-channel-route>designer-channel-mystery-lore</strong></span>
+                </div>
+                <div class="choice-row model-choice-button-list" data-choice-row="true" data-model-choice-button-list data-choice-slot="model-driven" data-model-choice-count="5" aria-label="Decision choices">
+                  <button class="choice-button" type="button" data-choice-button="advance">進める</button>
+                  <button class="choice-button" type="button" data-choice-button="narration">語り口を直す</button>
+                  <button class="choice-button" type="button" data-choice-button="subtitle">字幕を直す</button>
+                  <button class="choice-button" type="button" data-choice-button="thumbnail">サムネを直す</button>
+                  <button class="choice-button" type="button" data-choice-button="held-truth">保留真実を直す</button>
+                </div>
+                <div class="compact-gate-summary" data-compact-gate-summary="true" aria-label="Compact safety locks">
+                  <span class="console-lock">8 gates closed</span>
+                  <span class="console-lock">local reversible work allowed</span>
+                  <span class="console-lock">details in Guard drawer</span>
+                </div>
+                <p class="console-helper">長いメモは閉じる。Bridgeで要点だけ確認します。</p>
+                <div class="console-action-row">
+                  <button class="brief-action primary" type="button" data-mode-target="bridge" data-console-primary-action="true" aria-pressed="false">Bridgeで確認</button>
+                  <span class="console-lock" data-console-lock="ready">✓ ready</span>
+                  <span class="console-lock" data-console-lock="current">▶ current</span>
+                  <span class="console-lock" data-console-lock="locked">🔒 locked</span>
+                </div>
+              </main>
+
+              <aside class="context-dock governed-context-dock" data-context-dock="true" data-dock-visible-pins="4" data-dock-visible-notices="3" data-dock-visible-locks="4" data-dock-visible-context="4" aria-label="Governed review context">
+                <div class="dock-scroll">
+                  <section class="dock-group" data-dock-group="context" data-dock-limit="4" data-model-context-list>
+                    <strong>Context max 4</strong>
+                    <span class="console-chip" data-context-chip="candidate">candidate: designer-content-moth-investigation-3m</span>
+                    <span class="console-chip" data-context-chip="channel">channel: designer-channel-mystery-lore</span>
+                    <span class="console-chip" data-context-chip="phase">pre-production</span>
+                    <span class="console-chip locked" data-context-chip="no-generation">生成なし</span>
+                  </section>
+                  <section class="dock-group" data-dock-group="pins" data-dock-limit="4">
+                    <strong>Pins max 4</strong>
+                    <ul class="model-pin-list" data-model-pin-list>
+                      <li>candidate pinned</li>
+                    </ul>
+                  </section>
+                  <section class="dock-group" data-dock-group="notices" data-dock-limit="3">
+                    <strong>Notices max 3</strong>
+                    <ul class="model-notice-list" data-model-notice-list>
+                      <li>compact only</li>
+                    </ul>
+                  </section>
+                  <section class="dock-group" data-dock-group="locks" data-dock-limit="4">
+                    <strong>Locks max 4</strong>
+                    <ul class="model-lock-list" data-model-lock-list>
+                      <li>provider/API closed</li>
+                    </ul>
+                  </section>
+                </div>
+              </aside>
+            </div>
+
+            <div class="decision-shell-drawers" aria-label="Decision Shell drawers">
+              <details class="detail-drawer" data-detail-drawer="true" data-decision-shell-drawer="evidence">
+                <summary>詳細メモを開く</summary>
+                <p>候補、チャンネル、Bridge refinement、Evidence Vault の根拠は下位メモに保持します。ここでは route 判断だけを先に置きます。</p>
+                <div class="layout-lab-link-row">
+                  <button class="brief-action" type="button" data-mode-target="layout-lab" data-layout-lab-link="true" aria-pressed="false">Layout Labを見る</button>
+                  <p class="section-note">研究用のみ。Brief / bridge の標準導線は置き換えません。</p>
+                </div>
+              </details>
+              <details class="notes-shelf" data-notes-shelf="true" data-notes-shelf-default="collapsed" data-decision-shell-drawer="notes">
+                <summary>メモ棚を開く</summary>
+                <p>Guided Flow、Latest Overview、Home Cockpit の長い説明はこの下に保存します。</p>
+              </details>
+              <details class="detail-drawer" data-decision-shell-drawer="inspiration">
+                <summary>発想棚を開く</summary>
+                <ul class="model-choice-list" data-model-choice-list>
+                  <li>model choices</li>
+                </ul>
+              </details>
+              <details class="detail-drawer guard-drawer" data-guard-drawer="true" data-decision-shell-drawer="guard">
+                <summary>Guard details</summary>
+                <ul class="gate-registry-list" data-gate-registry-list>
+                  <li>provider/API closed</li>
+                </ul>
+                <ul class="non-gate-list" data-non-gate-whitelist-list>
+                  <li>local UI/layout changes allowed</li>
+                </ul>
+                <ul class="dock-overflow-list" data-dock-overflow-list>
+                  <li data-dock-overflow-kind="context">公開なし</li>
+                  <li data-dock-overflow-kind="context">canon未確定</li>
+                  <li data-dock-overflow-kind="pin">Latest Overview and Home Cockpit remain below the shell</li>
+                  <li data-dock-overflow-kind="notice">Screenshots and docs are non-production evidence</li>
+                  <li data-dock-overflow-kind="lock">database persistence closed</li>
+                  <li data-dock-overflow-kind="lock">final canon closed</li>
+                  <li data-dock-overflow-kind="lock">rights clearance closed</li>
+                </ul>
+              </details>
+            </div>
+          </section>
+          <section class="decision-console legacy-low-text-console" data-legacy-decision-console="low-text-decision-console" aria-labelledby="legacy-decision-console-title" hidden aria-hidden="true">
             <div class="console-shell">
               <div class="console-main">
                 <p class="hub-eyebrow">Low-text Decision Console</p>
-                <h2 class="console-question" id="decision-console-title" data-active-question="true">この路線で進める？</h2>
+                <h2 class="console-question" id="legacy-decision-console-title" data-active-question="true">この路線で進める？</h2>
                 <div class="step-rail" data-step-rail="true" aria-label="Decision steps">
                   <span class="rail-step current" data-console-step="route" data-console-step-state="current">▶ 路線</span>
                   <span class="rail-step" data-console-step="narration" data-console-step-state="later">◇ 語り</span>
@@ -4445,35 +4656,51 @@ The story should feel intimate and strange, but not explain the magic too early.
 Possible ending: Mira refuses to restore the city's stolen time and instead gives one lost hour back to every person who was erased from the records.`;
 
     const decisionFlowModel = {
-      artifactId: "fff-layout-research-decision-shell-001",
-      currentQuestion: "この3分ミステリー・ロア路線を次のレビューへ進める？",
+      artifactId: "fff-apply-decision-shell-guard-diet-001",
+      currentRoute: "public/review/index.html?mode=brief",
+      currentQuestion: "この路線で進める？",
       candidateRoute: "designer-content-moth-investigation-3m",
       channelRoute: "designer-channel-mystery-lore",
       nextAction: {
-        label: "Decision Shellをbriefへ適用する",
-        route: "public/review/index.html?mode=brief"
+        label: "Bridgeで確認",
+        route: "public/review/index.html?mode=bridge"
       },
       choices: [
-        { choiceId: "route-advance", label: "進める", targetStep: "route", disposition: "continue" },
-        { choiceId: "route-revise-narration", label: "語り口を直す", targetStep: "narration", disposition: "revise" },
-        { choiceId: "route-revise-subtitle", label: "字幕リズムを直す", targetStep: "subtitle", disposition: "revise" },
-        { choiceId: "route-revise-visual-order", label: "画面順を直す", targetStep: "visual-order", disposition: "revise" },
-        { choiceId: "route-revise-thumbnail", label: "サムネ方向を直す", targetStep: "thumbnail", disposition: "revise" },
-        { choiceId: "route-hold-truth", label: "保留真実を直す", targetStep: "held-truth", disposition: "hold" }
+        { choiceId: "advance", label: "進める", targetStep: "route", disposition: "continue" },
+        { choiceId: "narration", label: "語り口を直す", targetStep: "narration", disposition: "revise" },
+        { choiceId: "subtitle", label: "字幕を直す", targetStep: "subtitle", disposition: "revise" },
+        { choiceId: "thumbnail", label: "サムネを直す", targetStep: "thumbnail", disposition: "revise" },
+        { choiceId: "held-truth", label: "保留真実を直す", targetStep: "held-truth", disposition: "hold" }
       ],
       steps: [
         { stepId: "route", label: "路線", state: "current" },
-        { stepId: "narration", label: "語り", state: "next" },
+        { stepId: "narration", label: "語り", state: "later" },
         { stepId: "subtitle", label: "字幕", state: "later" },
-        { stepId: "visual-order", label: "画面", state: "later" },
+        { stepId: "visual", label: "画面", state: "later" },
         { stepId: "thumbnail", label: "サムネ", state: "later" },
-        { stepId: "held-truth", label: "保留真実", state: "locked-review" }
+        { stepId: "held-truth", label: "保留真実", state: "locked" }
+      ],
+      context: [
+        { contextId: "candidate", label: "candidate: designer-content-moth-investigation-3m", locked: false },
+        { contextId: "channel", label: "channel: designer-channel-mystery-lore", locked: false },
+        { contextId: "phase", label: "pre-production", locked: false },
+        { contextId: "no-generation", label: "生成なし", locked: true },
+        { contextId: "no-publish", label: "公開なし", locked: true },
+        { contextId: "no-canon", label: "canon未確定", locked: true }
       ],
       pins: [
         "candidate: designer-content-moth-investigation-3m",
         "channel: designer-channel-mystery-lore",
-        "active review: low-text console feedback",
-        "next candidate slice: apply Decision Shell to brief"
+        "Brief route now uses Decision Shell first",
+        "Bridge route remains the review handoff",
+        "Layout Lab remains evidence only",
+        "Latest Overview and Home Cockpit remain below the shell"
+      ],
+      notices: [
+        "compact gate summary only",
+        "local UI, docs, screenshots, and smoke checks are allowed",
+        "Guard drawer stores long gate evidence",
+        "production actions still need explicit authorization"
       ],
       locks: [
         "provider/API closed",
@@ -4484,6 +4711,33 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         "rights clearance closed",
         "database persistence closed",
         "final canon closed"
+      ]
+    };
+
+    const safetyGateRegistry = {
+      compactSummary: [
+        "provider/API closed",
+        "credentials closed",
+        "AI video closed",
+        "render/upload closed"
+      ],
+      trueGates: [
+        { gateId: "provider-api", label: "provider/API", state: "closed", detail: "No provider endpoint, model call, or API contract change is authorized." },
+        { gateId: "credentials", label: "credentials", state: "closed", detail: "No secret, token, credential file, or auth setup is touched." },
+        { gateId: "ai-video", label: "AI video", state: "closed", detail: "No generated video, audio, voice, or external media job is started." },
+        { gateId: "render", label: "render", state: "closed", detail: "No production render is triggered." },
+        { gateId: "upload-public-publishing", label: "upload / public publishing", state: "closed", detail: "No public upload, posting, or publishing workflow is opened." },
+        { gateId: "database-persistence", label: "database persistence", state: "closed", detail: "No database write, migration, sync, or persistent production mutation is performed." },
+        { gateId: "final-canon", label: "final canon", state: "closed", detail: "No final canon, story truth, or downstream adoption decision is made." },
+        { gateId: "rights-clearance", label: "rights clearance", state: "closed", detail: "No rights clearance claim is made for assets, voices, footage, or distribution." }
+      ],
+      nonGateWhitelist: [
+        "local UI/layout changes",
+        "static JSON/readback updates",
+        "screenshots/contact sheets",
+        "docs/status/manifest updates",
+        "local smoke checks",
+        "mock/pre-production planning"
       ]
     };
 
@@ -4848,6 +5102,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     function renderAll() {
       currentModel = applyImportedModelOverrides(buildWorkbenchModel(memoInput.value || sampleMemo));
       renderDecisionFlowModel();
+      renderSafetyGateRegistry();
       renderExtractionContract(currentModel.extraction_contract);
       renderDesignerDashboard(currentModel.designer_dashboard);
       renderOneStoryDraftPack(currentModel.one_story_draft_pack);
@@ -4871,16 +5126,30 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       const modelRoots = Array.from(document.querySelectorAll("[data-decision-flow-model-root]"));
       modelRoots.forEach((root) => {
         const questionNode = root.querySelector("[data-model-current-question]");
+        const currentRouteNode = root.querySelector("[data-model-current-route]");
         const candidateNode = root.querySelector("[data-model-candidate-route]");
         const channelNode = root.querySelector("[data-model-channel-route]");
         const choiceSlot = root.querySelector("[data-choice-slot='model-driven']");
+        const choiceButtonList = root.querySelector("[data-model-choice-button-list]");
         const choiceList = root.querySelector("[data-model-choice-list]");
         const stepList = root.querySelector("[data-model-step-list]");
+        const contextList = root.querySelector("[data-model-context-list]");
         const pinList = root.querySelector("[data-model-pin-list]");
+        const noticeList = root.querySelector("[data-model-notice-list]");
         const lockList = root.querySelector("[data-model-lock-list]");
+        const overflowList = root.querySelector("[data-dock-overflow-list]");
+        const limits = {
+          context: Number(root.querySelector("[data-dock-visible-context]")?.getAttribute("data-dock-visible-context") || 4),
+          pins: Number(root.querySelector("[data-dock-visible-pins]")?.getAttribute("data-dock-visible-pins") || 4),
+          notices: Number(root.querySelector("[data-dock-visible-notices]")?.getAttribute("data-dock-visible-notices") || 3),
+          locks: Number(root.querySelector("[data-dock-visible-locks]")?.getAttribute("data-dock-visible-locks") || 4)
+        };
 
         if (questionNode) {
           questionNode.textContent = decisionFlowModel.currentQuestion;
+        }
+        if (currentRouteNode) {
+          currentRouteNode.textContent = decisionFlowModel.currentRoute;
         }
         if (candidateNode) {
           candidateNode.textContent = decisionFlowModel.candidateRoute;
@@ -4893,6 +5162,11 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           choiceSlot.setAttribute("data-model-next-action", decisionFlowModel.nextAction.label);
           choiceSlot.setAttribute("data-model-next-route", decisionFlowModel.nextAction.route);
         }
+        if (choiceButtonList) {
+          choiceButtonList.innerHTML = decisionFlowModel.choices
+            .map((choice) => `<button class="choice-button" type="button" data-choice-button="${escapeHtml(choice.choiceId)}">${escapeHtml(choice.label)}</button>`)
+            .join("");
+        }
         if (choiceList) {
           choiceList.innerHTML = decisionFlowModel.choices
             .map((choice) => `<li data-model-choice-id="${escapeHtml(choice.choiceId)}">${escapeHtml(choice.label)} <span class="section-note">${escapeHtml(choice.targetStep)}</span></li>`)
@@ -4903,12 +5177,52 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             .map((step) => `<li data-model-step-id="${escapeHtml(step.stepId)}">${escapeHtml(step.label)} <span class="section-note">${escapeHtml(step.state)}</span></li>`)
             .join("");
         }
+        if (contextList) {
+          const contextHeading = contextList.querySelector("strong")?.outerHTML || "<strong>Context max 4</strong>";
+          contextList.innerHTML = contextHeading + decisionFlowModel.context
+            .slice(0, limits.context)
+            .map((item) => `<span class="console-chip${item.locked ? " locked" : ""}" data-context-chip="${escapeHtml(item.contextId)}">${escapeHtml(item.label)}</span>`)
+            .join("");
+        }
         if (pinList) {
-          pinList.innerHTML = decisionFlowModel.pins.map((pin) => `<li>${escapeHtml(pin)}</li>`).join("");
+          pinList.innerHTML = decisionFlowModel.pins.slice(0, limits.pins).map((pin) => `<li>${escapeHtml(pin)}</li>`).join("");
+        }
+        if (noticeList) {
+          noticeList.innerHTML = decisionFlowModel.notices.slice(0, limits.notices).map((notice) => `<li>${escapeHtml(notice)}</li>`).join("");
         }
         if (lockList) {
-          lockList.innerHTML = decisionFlowModel.locks.map((lock) => `<li>${escapeHtml(lock)}</li>`).join("");
+          lockList.innerHTML = decisionFlowModel.locks.slice(0, limits.locks).map((lock) => `<li>${escapeHtml(lock)}</li>`).join("");
         }
+        if (overflowList) {
+          const overflowItems = [
+            ...decisionFlowModel.context.slice(limits.context).map((item) => ({ kind: "context", label: item.label })),
+            ...decisionFlowModel.pins.slice(limits.pins).map((label) => ({ kind: "pin", label })),
+            ...decisionFlowModel.notices.slice(limits.notices).map((label) => ({ kind: "notice", label })),
+            ...decisionFlowModel.locks.slice(limits.locks).map((label) => ({ kind: "lock", label }))
+          ];
+          overflowList.innerHTML = overflowItems
+            .map((item) => `<li data-dock-overflow-kind="${escapeHtml(item.kind)}">${escapeHtml(item.label)}</li>`)
+            .join("");
+          root.setAttribute("data-model-overflow-count", String(overflowItems.length));
+        }
+      });
+    }
+
+    function renderSafetyGateRegistry() {
+      document.querySelectorAll("[data-compact-gate-summary]").forEach((summary) => {
+        summary.innerHTML = safetyGateRegistry.compactSummary
+          .map((item) => `<span class="console-lock">${escapeHtml(item)}</span>`)
+          .join("");
+      });
+      document.querySelectorAll("[data-gate-registry-list]").forEach((list) => {
+        list.innerHTML = safetyGateRegistry.trueGates
+          .map((gate) => `<li data-gate-id="${escapeHtml(gate.gateId)}"><strong>${escapeHtml(gate.label)}</strong>: ${escapeHtml(gate.state)} - ${escapeHtml(gate.detail)}</li>`)
+          .join("");
+      });
+      document.querySelectorAll("[data-non-gate-whitelist-list]").forEach((list) => {
+        list.innerHTML = safetyGateRegistry.nonGateWhitelist
+          .map((item) => `<li data-non-gate-item="${escapeHtml(item)}">${escapeHtml(item)}</li>`)
+          .join("");
       });
     }
 

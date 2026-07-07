@@ -2,14 +2,23 @@
 
 ## Residual Work
 
+### Apply Decision Shell Guard Diet
+
+- Purpose: Make the default `brief` route use the accepted split-pane Decision Shell instead of a card-wall-first review surface.
+- Effect: Applies the Shell to `public/review/index.html?mode=brief`, renders the current route decision from `decisionFlowModel`, caps dock rows through Dock Governor, moves long gate evidence into the Guard drawer, and records `docs/review/apply-decision-shell-guard-diet.md` plus `artifacts/apply-decision-shell-guard-diet-result.json`.
+- Requirements: Preserve `layout-lab`, `bridge`, Guided Flow, Latest Overview, Home Cockpit, Evidence Vault, selected candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, dark mode, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
+- State: Implemented in `fff-apply-decision-shell-guard-diet-001`.
+- Owner: Product implementer for UI/readback; human reviewer for choosing advance, narration, subtitle, thumbnail, or held-truth follow-up from the applied Shell.
+- Next move: Open `public/review/index.html?mode=brief`, use the Shell to choose the next refinement lane, and keep provider/API, credential, upload, render, video, database, rights, and canon work closed until explicitly authorized.
+
 ### Layout Lab Visual Audit
 
 - Purpose: Give the reviewer browser-based visual evidence for the Layout Research Lab before applying the split-pane Decision Shell to the default `brief` route.
 - Effect: Adds four local screenshots plus a contact sheet for `layout-lab`, the recommended Decision Shell alternative, preserved `brief`, and preserved `bridge`; adds `docs/review/layout-lab-visual-audit.md` and `artifacts/layout-lab-visual-audit-result.json`.
 - Requirements: Preserve `fff-layout-research-decision-shell-001`, `brief`, `bridge`, dark mode, Evidence Vault optionality, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
 - State: Implemented in `fff-layout-lab-visual-audit-001`.
-- Owner: Product implementer for visual audit packaging; human reviewer for whether the Split-pane Decision Shell should be applied to `brief`.
-- Next move: Review `artifacts/layout-lab-visual-audit-contact-sheet.png` and `public/review/index.html?mode=layout-lab`, then accept or reject `fff-apply-decision-shell-review-route-001`.
+- Owner: Product implementer for visual audit packaging; human reviewer for comparing the source evidence if the applied Shell needs another layout pass.
+- Next move: Keep `artifacts/layout-lab-visual-audit-contact-sheet.png` and `public/review/index.html?mode=layout-lab` as source evidence; do not re-open layout research unless the applied brief Shell fails review.
 
 ### Repo Sync / Next Terminal Handoff
 
@@ -26,8 +35,8 @@
 - Effect: Adds `public/review/index.html?mode=layout-lab` with low-fidelity Card-first, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow wireframes; adds a five-family heuristic score matrix; recommends the split-pane Decision Shell; and renders a local `decisionFlowModel` choice slot.
 - Requirements: Preserve `public/review/index.html?mode=brief`, `public/review/index.html?mode=bridge`, `fff-low-text-decision-console-001`, `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, selected candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, Evidence Vault optionality, dark mode, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
 - State: Implemented in `fff-layout-research-decision-shell-001`.
-- Owner: Product implementer for UI/readback; human reviewer for whether the split-pane Decision Shell should be applied to the default `brief` route.
-- Next move: Review `public/review/index.html?mode=layout-lab`, compare alternatives A-D, then approve or reject `fff-apply-decision-shell-review-route-001` before any script, subtitle, thumbnail, provider/API, video, rights, upload, database, or final-canon work.
+- Owner: Product implementer for UI/readback; human reviewer only if the applied Shell needs another layout comparison.
+- Next move: Keep `public/review/index.html?mode=layout-lab` as source evidence; use the applied brief Shell for current route decisions before any script, subtitle, thumbnail, provider/API, video, rights, upload, database, or final-canon work.
 
 ### Low-text Decision Console
 

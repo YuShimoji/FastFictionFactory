@@ -2,7 +2,7 @@
   "schemaVersion": "fff.guidedReviewFlowWorkspace.v1",
   "artifact_id": "fff-guided-review-flow-workspace-001",
   "title": "Fast Fiction Factory Guided Review Flow Workspace",
-  "generatedAt": "2026-07-07T06:14:38.865Z",
+  "generatedAt": "2026-07-07T08:16:33.434Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",
@@ -102,7 +102,7 @@
     },
     "guided_flow_visible_first": {
       "passed": true,
-      "detail": "guided=61259; latest=74862; firstCard=79417"
+      "detail": "guided=71811; latest=85414; firstCard=89969"
     },
     "primary_action_exactly_one": {
       "passed": true,
@@ -138,7 +138,7 @@
     },
     "card_grid_demoted": {
       "passed": true,
-      "detail": "demoted=6; guided=61259; firstCard=79417"
+      "detail": "demoted=6; guided=71811; firstCard=89969"
     },
     "latest_overview_preserved": {
       "passed": true,

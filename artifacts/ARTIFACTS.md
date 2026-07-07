@@ -1,5 +1,24 @@
 # Artifacts
 
+## fff-apply-decision-shell-guard-diet-001
+
+- Title: Fast Fiction Factory Apply Decision Shell Guard Diet
+- Purpose: Apply the split-pane Decision Shell to the default `brief` route while keeping Bridge, Layout Lab evidence, Guided Flow, and production boundaries preserved.
+- Repo relative path: `public/review/index.html`
+- Primary default route: `public/review/index.html?mode=brief`
+- Preserved Layout Lab route: `public/review/index.html?mode=layout-lab`
+- Preserved Bridge route: `public/review/index.html?mode=bridge`
+- Review doc: `docs/review/apply-decision-shell-guard-diet.md`
+- Readback result: `artifacts/apply-decision-shell-guard-diet-result.json`
+- Screenshot evidence: `artifacts/review-screens/brief-decision-shell-applied.png`
+- Source artifact: `fff-layout-lab-visual-audit-001`
+- Preserved artifacts: `fff-layout-research-decision-shell-001`, `fff-low-text-decision-console-001`, `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, `fff-draft-to-video-planning-bridge-001`, `fff-contradictory-claim-guard-001`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet artifacts/apply-decision-shell-guard-diet-result.json artifacts/apply-decision-shell-guard-diet-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active local review package. The `brief` route now starts with the applied Decision Shell, renders choices/steps/context/pins/notices/locks/next action from `decisionFlowModel`, caps visible dock rows with overflow in the Guard drawer, keeps true production gates compact through `safetyGateRegistry`, and leaves provider/API, credentials, upload, AI video generation, production render, final canon, database persistence, and rights-clearance claims closed.
+
 ## fff-layout-lab-visual-audit-001
 
 - Title: Fast Fiction Factory Layout Lab Visual Audit

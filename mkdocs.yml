@@ -64,6 +64,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Apply Decision Shell Guard Diet: review/apply-decision-shell-guard-diet.md
       - Layout Lab Visual Audit: review/layout-lab-visual-audit.md
       - Layout Research Decision Shell: review/layout-research-decision-shell.md
       - Low-text Decision Console: review/low-text-decision-console.md

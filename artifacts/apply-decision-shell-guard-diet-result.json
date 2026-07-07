@@ -1,0 +1,204 @@
+{
+  "schemaVersion": "fff.applyDecisionShellGuardDiet.v1",
+  "artifact_id": "fff-apply-decision-shell-guard-diet-001",
+  "title": "Fast Fiction Factory Apply Decision Shell Guard Diet",
+  "generatedAt": "2026-07-07T08:16:33.178Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=brief",
+  "bridge_route": "public/review/index.html?mode=bridge",
+  "layout_lab_route": "public/review/index.html?mode=layout-lab",
+  "input_result_path": "artifacts/apply-decision-shell-guard-diet-result.json",
+  "source_layout_lab_visual_audit_artifact_id": "fff-layout-lab-visual-audit-001",
+  "source_result_paths": {
+    "layout_lab_visual_audit": "artifacts/layout-lab-visual-audit-result.json",
+    "layout_research_decision_shell": "artifacts/layout-research-decision-shell-result.json",
+    "low_text_decision_console": "artifacts/low-text-decision-console-result.json",
+    "guided_review_flow_workspace": "artifacts/guided-review-flow-workspace-result.json",
+    "draft_to_video_planning_bridge": "artifacts/draft-to-video-planning-bridge-result.json",
+    "contradictory_claim_guard": "artifacts/contradictory-claim-guard-result.json"
+  },
+  "preserved_routes": [
+    "public/review/index.html?mode=brief",
+    "public/review/index.html?mode=layout-lab",
+    "public/review/index.html?mode=bridge",
+    "public/review/index.html?mode=designer",
+    "public/review/index.html?mode=draft",
+    "public/review/index.html?mode=source",
+    "public/review/index.html?mode=project",
+    "public/review/index.html?mode=artifacts"
+  ],
+  "decision_shell_applied_to_brief": true,
+  "split_pane_shell_structure": true,
+  "decision_flow_model_applied": true,
+  "decision_flow_model_artifact_id": "fff-apply-decision-shell-guard-diet-001",
+  "decision_flow_model_choice_count": 5,
+  "decision_flow_model_step_count": 6,
+  "decision_flow_model_context_count": 6,
+  "decision_flow_model_pin_count": 6,
+  "decision_flow_model_notice_count": 4,
+  "decision_flow_model_lock_count": 8,
+  "decision_next_action_label": "Bridgeで確認",
+  "decision_next_action_route": "public/review/index.html?mode=bridge",
+  "selected_candidate_id": "designer-content-moth-investigation-3m",
+  "selected_channel_route_id": "designer-channel-mystery-lore",
+  "dock_governor": {
+    "enabled": true,
+    "max_visible_pins": 4,
+    "max_visible_notices": 3,
+    "max_visible_locks": 4,
+    "max_visible_context": 4,
+    "overflow_drawer": true,
+    "internal_scroll": true
+  },
+  "safety_gate_diet": {
+    "enabled": true,
+    "true_gate_count": 8,
+    "gate_display_budget": "compact",
+    "guard_drawer": true,
+    "true_gates": [
+      "provider/API",
+      "credentials",
+      "AI video",
+      "render",
+      "upload / public publishing",
+      "database persistence",
+      "final canon",
+      "rights clearance"
+    ]
+  },
+  "non_gate_whitelist": {
+    "enabled": true,
+    "item_count": 6,
+    "items": [
+      "local UI/layout changes",
+      "static JSON/readback updates",
+      "screenshots/contact sheets",
+      "docs/status/manifest updates",
+      "local smoke checks",
+      "mock/pre-production planning"
+    ]
+  },
+  "card_wall_not_default": true,
+  "visual_evidence": {
+    "screenshot_path": "artifacts/review-screens/brief-decision-shell-applied.png",
+    "screenshot_size": 187933,
+    "browser_url_policy": "file_url_opened_by_playwright",
+    "access_state": "verified_opened"
+  },
+  "route_preservation": {
+    "brief": true,
+    "layout_lab": true,
+    "bridge": true,
+    "designer": true,
+    "draft": true,
+    "source": true,
+    "project": true,
+    "artifacts": true,
+    "dark_mode": true
+  },
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "rights_cleared_claim": false,
+  "summary": {
+    "decision_shell_applied_to_brief": true,
+    "decision_flow_model_applied": true,
+    "dock_governor": true,
+    "safety_gate_diet": true,
+    "non_gate_whitelist": true,
+    "card_wall_not_default": true,
+    "route_preservation": true,
+    "visual_evidence": true,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "failures": 0
+  },
+  "validation_notes": [
+    "The default brief route now starts with the applied Split-pane Decision Shell.",
+    "Decision choices, steps, context, pins, notices, locks, and next action are rendered from decisionFlowModel.",
+    "Dock Governor limits visible context rows and sends overflow to the Guard drawer.",
+    "Safety Gate Diet keeps true production gates compact at the top and detailed in the Guard drawer.",
+    "Local UI/docs/readback/screenshots/smoke work is whitelisted; provider/API, credentials, upload, AI video, render, database, rights, and final-canon gates remain closed."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-apply-decision-shell-guard-diet-001; schema=fff.applyDecisionShellGuardDiet.v1; ui=public/review/index.html; access=public/review/index.html?mode=brief; bridge=public/review/index.html?mode=bridge; source=fff-layout-lab-visual-audit-001"
+    },
+    "source_readbacks_preserved": {
+      "passed": true,
+      "detail": "layoutLab=fff-layout-lab-visual-audit-001/true; layoutResearch=fff-layout-research-decision-shell-001/true; lowText=fff-low-text-decision-console-001/true; guided=fff-guided-review-flow-workspace-001/true; bridge=fff-draft-to-video-planning-bridge-001/true; guard=fff-contradictory-claim-guard-001/true"
+    },
+    "decision_shell_applied_to_brief_first": {
+      "passed": true,
+      "detail": "shell=59223; guided=71811; latest=85414; firstCard=89969; markers=11/11"
+    },
+    "split_pane_shell_structure": {
+      "passed": true,
+      "detail": "brief should expose left rail, center active decision, governed dock, and Evidence/Notes/Inspiration/Guard drawers"
+    },
+    "decision_flow_model_applied": {
+      "passed": true,
+      "detail": "choices=5; steps=6; context=6; renderer=true"
+    },
+    "dock_governor": {
+      "passed": true,
+      "detail": "pins=6/4; notices=4/3; locks=8/4; context=6/4"
+    },
+    "safety_gate_diet": {
+      "passed": true,
+      "detail": "gates=8; required=8/8"
+    },
+    "non_gate_whitelist": {
+      "passed": true,
+      "detail": "whitelist=6; required=6/6"
+    },
+    "card_wall_not_default": {
+      "passed": true,
+      "detail": "shell=59223; firstCard=89969; suppressed=4"
+    },
+    "route_preservation": {
+      "passed": true,
+      "detail": "routes=8/8; bridge=36529; layoutLab=36461"
+    },
+    "visual_and_doc_evidence": {
+      "passed": true,
+      "detail": "screenshot=artifacts/review-screens/brief-decision-shell-applied.png/187933; doc=true"
+    },
+    "candidate_channel_and_boundaries": {
+      "passed": true,
+      "detail": "candidate=true; channel=true; boundaries=true; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

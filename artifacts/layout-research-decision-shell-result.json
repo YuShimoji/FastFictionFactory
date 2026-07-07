@@ -2,7 +2,7 @@
   "schemaVersion": "fff.layoutResearchDecisionShell.v1",
   "artifact_id": "fff-layout-research-decision-shell-001",
   "title": "Fast Fiction Factory Layout Research Decision Shell",
-  "generatedAt": "2026-07-07T06:14:38.723Z",
+  "generatedAt": "2026-07-07T08:16:33.305Z",
   "review_status": "ready_for_local_wireframe_review",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",
@@ -34,7 +34,7 @@
   "briefing_inbox_prototype_visible": true,
   "storyboard_flow_prototype_visible": true,
   "data_driven_choice_model_present": true,
-  "decision_flow_model_choice_count": 6,
+  "decision_flow_model_choice_count": 5,
   "layout_score_matrix_present": true,
   "layout_scores_marked_heuristic": true,
   "text_density_guideline_present": true,
@@ -73,7 +73,7 @@
     "layout_families_compared_count": 5,
     "recommended_layout": "split-pane Decision Shell",
     "data_driven_choice_model_present": true,
-    "decision_flow_model_choice_count": 6,
+    "decision_flow_model_choice_count": 5,
     "layout_score_matrix_present": true,
     "local_only": true,
     "external_call_attempted": false,
@@ -105,7 +105,7 @@
     },
     "layout_lab_route_visible_and_isolated": {
       "passed": true,
-      "detail": "lab=98785; modeRule=true; reviewModes=true; directLink=true; primaryTabLab=false; brief=34494; bridge=34629"
+      "detail": "lab=109337; modeRule=true; reviewModes=true; directLink=true; primaryTabLab=false; brief=36394; bridge=36529"
     },
     "wireframe_alternatives_visible": {
       "passed": true,
@@ -117,7 +117,7 @@
     },
     "data_driven_choice_model": {
       "passed": true,
-      "detail": "choices=6; steps=6; renderer=true"
+      "detail": "choices=5; steps=6; renderer=true"
     },
     "layout_score_matrix": {
       "passed": true,

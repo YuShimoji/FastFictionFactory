@@ -2,6 +2,8 @@
 
 Artifact: `fff-layout-research-decision-shell-001`
 
+Current status note: the recommended split-pane Decision Shell has since been applied to `public/review/index.html?mode=brief` in `fff-apply-decision-shell-guard-diet-001`. This document remains the research rationale and comparison record.
+
 ## Purpose
 
 This slice responds to the user-side review that the low-text console is cleaner but still trapped by a card-format limitation: too many items feel equally valuable, the route choices are hardcoded, and the next decision needs a stronger layout shell before script/subtitle/thumbnail refinement continues.
@@ -15,7 +17,7 @@ Preserved routes:
 - `public/review/index.html?mode=brief`
 - `public/review/index.html?mode=bridge`
 
-This is local-only layout research. It does not replace the default `brief` or `bridge` surfaces yet.
+This is local-only layout research. It remains preserved as source rationale after the later `brief` application.
 
 ## Research Sources
 
@@ -96,7 +98,7 @@ Failure for this moment: as the first shell, it risks making the work look like 
 
 Recommendation confidence: medium-high.
 
-The next product slice should apply the split-pane Decision Shell to `public/review/index.html?mode=brief`, while preserving `public/review/index.html?mode=bridge` as the next review action. If the shell reads better on `brief`, mirror the shell at the top of `bridge` for narration, subtitle rhythm, screen order, thumbnail direction, and held-truth policy.
+The later product slice `fff-apply-decision-shell-guard-diet-001` applies the split-pane Decision Shell to `public/review/index.html?mode=brief`, while preserving `public/review/index.html?mode=bridge` as the next review action.
 
 Recommended structure:
 
@@ -135,7 +137,7 @@ The Decision Shell wireframe renders its choice list, step list, pins, and locks
 
 ## Text-density guideline
 
-For the future applied shell:
+For the applied shell:
 
 - one active question per center panel
 - no more than six top-level choices
@@ -153,11 +155,11 @@ Evidence Vault remains compatible if it is treated as a bottom drawer or seconda
 - Artifacts opens when readback files or validation logs are questioned.
 - These shelves remain searchable and preserved but do not compete with the active route question.
 
-## Future Apply Slice
+## Later Apply Slice
 
-Recommended next slice:
+Completed follow-up slice:
 
-- `fff-apply-decision-shell-review-route-001`
+- `fff-apply-decision-shell-guard-diet-001`
 
 Purpose:
 

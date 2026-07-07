@@ -2,15 +2,16 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-07 JST for `fff-layout-lab-visual-audit-001`.
+Latest handoff refresh: 2026-07-07 JST for `fff-apply-decision-shell-guard-diet-001`.
 This restart/readback refresh starts from synced `master` and makes
-`fff-layout-lab-visual-audit-001` the active review checkpoint. The package
-adds local Playwright/Edge screenshot evidence for
-`public/review/index.html?mode=layout-lab`, the Split-pane Decision Shell
-detail, preserved `public/review/index.html?mode=brief`, and preserved
-`public/review/index.html?mode=bridge`, plus the contact sheet
-`artifacts/layout-lab-visual-audit-contact-sheet.png`. It preserves source
-layout research `fff-layout-research-decision-shell-001` and also preserves
+`fff-apply-decision-shell-guard-diet-001` the active review checkpoint. The
+package applies the Split-pane Decision Shell to
+`public/review/index.html?mode=brief`, preserves
+`public/review/index.html?mode=layout-lab` as source evidence, preserves
+`public/review/index.html?mode=bridge` as the next-action route, and records the
+local screenshot `artifacts/review-screens/brief-decision-shell-applied.png`.
+It preserves the visual source checkpoint `fff-layout-lab-visual-audit-001`,
+source layout research `fff-layout-research-decision-shell-001`, and also preserves
 `fff-low-text-decision-console-001`,
 `fff-guided-review-flow-workspace-001`,
 `fff-bridge-refinement-overview-ribbon-001`,
@@ -48,13 +49,13 @@ that contains this visual audit package.
 ## Latest Remote Publish Snapshot
 
 - Branch: `master`
-- Active artifact: `fff-layout-lab-visual-audit-001`
-- Remote parity before this visual-audit package: `HEAD...origin/master = 0 0`
-- Baseline remote head before this visual-audit package: `0281884 Refresh layout lab handoff context`
-- Worktree state before this visual-audit package: product tree synced; `.serena/project.yml` remained local transport residue
-- User-side review evidence now: `artifacts/layout-lab-visual-audit-contact-sheet.png`, then `public/review/index.html?mode=layout-lab`
-- Preserved operator review route: `public/review/index.html?mode=brief`, then `public/review/index.html?mode=bridge`
-- Review decision needed next: inspect the visual audit package, then accept, revise, or reject applying the split-pane Decision Shell to `brief`
+- Active artifact: `fff-apply-decision-shell-guard-diet-001`
+- Remote parity before this package: `HEAD...origin/master = 0 0`
+- Baseline remote head before this package: synced `master` before local edits
+- Worktree state before this package: product tree synced
+- User-side review evidence now: `public/review/index.html?mode=brief`, `artifacts/review-screens/brief-decision-shell-applied.png`, and prior `artifacts/layout-lab-visual-audit-contact-sheet.png`
+- Preserved operator route: `public/review/index.html?mode=bridge`
+- Review decision needed next: use the applied brief Shell to choose whether to advance to Bridge refinement, revise narration/subtitle/thumbnail, or reopen held-truth review
 - Locked lanes: provider/API, credentials, AI video generation, production render, upload, rights-clearance claim, database persistence, and final canon
 
 ## Start Here
@@ -83,6 +84,9 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/apply-decision-shell-guard-diet.md
+artifacts/apply-decision-shell-guard-diet-result.json
+artifacts/review-screens/brief-decision-shell-applied.png
 docs/review/layout-lab-visual-audit.md
 artifacts/layout-lab-visual-audit-result.json
 artifacts/layout-lab-visual-audit-contact-sheet.png
@@ -186,8 +190,8 @@ or:
 ./scripts/operator/open_review.sh
 ```
 
-No-query access still defaults to Low-text Decision Console / Review Brief. The current research route is
-`public/review/index.html?mode=layout-lab`; the preserved operator route is
+No-query access still defaults to the Review Brief route, now with the applied Decision Shell first. The preserved research route is
+`public/review/index.html?mode=layout-lab`; the operator path is
 `public/review/index.html?mode=brief`, then
 `public/review/index.html?mode=bridge`; the preserved compatibility and detail routes
 are `public/review/index.html?mode=home`,
@@ -207,10 +211,11 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 
 ## Current Project State
 
-- Active artifact: `fff-layout-lab-visual-audit-001`
+- Active artifact: `fff-apply-decision-shell-guard-diet-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Apply Decision Shell Guard Diet doc/result/screenshot: `docs/review/apply-decision-shell-guard-diet.md`, `artifacts/apply-decision-shell-guard-diet-result.json`, `artifacts/review-screens/brief-decision-shell-applied.png`
 - Layout Lab Visual Audit doc/result/contact sheet: `docs/review/layout-lab-visual-audit.md`, `artifacts/layout-lab-visual-audit-result.json`, `artifacts/layout-lab-visual-audit-contact-sheet.png`
 - Layout Lab Visual Audit screenshots: `artifacts/review-screens/layout-lab.png`, `artifacts/review-screens/layout-lab-decision-shell.png`, `artifacts/review-screens/brief-preserved.png`, `artifacts/review-screens/bridge-preserved.png`
 - Layout Research Decision Shell doc/result: `docs/review/layout-research-decision-shell.md`, `artifacts/layout-research-decision-shell-result.json`
@@ -252,9 +257,14 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 - State adapter: `tools/fff-state.mjs`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact packages visual evidence rather than applying a new layout. It keeps `layout-lab` as research-only, preserves `brief` and `bridge` as operator routes, keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, database persistence, and final canon decisions closed.
+The current artifact applies the split-pane Decision Shell to `brief` while preserving `layout-lab` as source evidence and `bridge` as the next-action operator route. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, database persistence, and final canon decisions closed.
 
 ## What Finished
+
+- `fff-apply-decision-shell-guard-diet-001` adds `docs/review/apply-decision-shell-guard-diet.md`, `artifacts/apply-decision-shell-guard-diet-result.json`, `artifacts/review-screens/brief-decision-shell-applied.png`, and `node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet ...`.
+- The default `brief` route now starts with the applied Split-pane Decision Shell: left step rail, center active decision, governed right dock, compact safety summary, and Evidence / Notes / Inspiration / Guard drawers.
+- `decisionFlowModel` drives the route, candidate, channel, choices, steps, context, pins, notices, locks, and next action; `safetyGateRegistry` keeps true production gates compact at the top and detailed in the Guard drawer.
+- Dock Governor caps visible pins at 4, notices at 3, locks at 4, and context at 4, with overflow moved to the Guard drawer. Non-gate local work is whitelisted, while provider/API, credentials, AI video, render, upload, database, rights clearance, and final canon remain closed.
 
 - `fff-layout-lab-visual-audit-001` adds `docs/review/layout-lab-visual-audit.md`, `artifacts/layout-lab-visual-audit-result.json`, four local screenshots, one contact sheet, and `node tools/fff-state.mjs smoke-layout-lab-visual-audit ...`.
 - The visual audit confirms `public/review/index.html?mode=layout-lab`, the Split-pane Decision Shell detail, preserved `brief`, and preserved `bridge` can be opened locally before deciding whether to apply the shell to `brief`.
@@ -317,16 +327,17 @@ The current artifact packages visual evidence rather than applying a new layout.
 
 ## Validation Readback
 
-The active Layout Lab Visual Audit smoke validates `fff-layout-lab-visual-audit-001` while preserving the source Layout Research Decision Shell, Low-text Decision Console, Guided Review Flow, Latest Overview Report, Home Cockpit, Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the layout screenshots.
+The active Apply Decision Shell Guard Diet smoke validates `fff-apply-decision-shell-guard-diet-001` while preserving the source Layout Lab Visual Audit, Layout Research Decision Shell, Low-text Decision Console, Guided Review Flow, Latest Overview Report, Home Cockpit, Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the applied Shell.
 
-Current visual-audit checks passed in this refresh; the broader preserved readback list below remains useful when those underlying contracts change:
+Current apply-shell checks passed in this refresh; the broader preserved readback list below remains useful when those underlying contracts change:
 
 - `git fetch --prune origin`
 - `git status --short --branch --untracked-files=all`
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on the synced baseline before this slice.
 - `node --check tools/fff-state.mjs`
+- `node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet artifacts/apply-decision-shell-guard-diet-result.json artifacts/apply-decision-shell-guard-diet-result.json`
 - `node tools/fff-state.mjs smoke-layout-lab-visual-audit artifacts/layout-lab-visual-audit-result.json artifacts/layout-lab-visual-audit-result.json`
-- Static HTML marker check for `layout-lab`, Decision Shell, preserved `brief`, preserved `bridge`, `decisionFlowModel`, and locked production/provider/canon boundary copy
+- Static HTML marker check for applied Decision Shell, Dock Governor, Safety Gate Diet, non-gate whitelist, preserved `layout-lab`, preserved `bridge`, `decisionFlowModel`, `safetyGateRegistry`, and locked production/provider/canon boundary copy
 - `Invoke-Expression $manifest.validation_command`
 - `node tools/fff-state.mjs validate-extraction-fixtures artifacts/extraction-negative-fixtures`
 - `node tools/fff-state.mjs smoke-layout-research-decision-shell artifacts/layout-research-decision-shell-result.json artifacts/layout-research-decision-shell-result.json`
@@ -406,7 +417,8 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
-| Layout Lab Visual Audit | Give the reviewer a concrete visual package before changing the default review route | `fff-layout-lab-visual-audit-001` is active; the contact sheet and four screenshots show `layout-lab`, Split-pane Decision Shell detail, preserved `brief`, and preserved `bridge` with all production/provider/canon gates closed | Human reviewer should inspect `artifacts/layout-lab-visual-audit-contact-sheet.png`, then accept, revise, or reject applying the Decision Shell to `brief` |
+| Apply Decision Shell Guard Diet | Make the default review route decision-first without reopening production gates | `fff-apply-decision-shell-guard-diet-001` is active; `brief` starts with the applied Shell, Dock Governor, compact gate registry, and Guard drawer while `bridge` and `layout-lab` remain preserved | Human reviewer should use `public/review/index.html?mode=brief` to choose advance, narration, subtitle, thumbnail, or held-truth follow-up |
+| Layout Lab Visual Audit | Preserve visual evidence for why the default review route changed | `fff-layout-lab-visual-audit-001` is source evidence; the contact sheet and four screenshots show `layout-lab`, Split-pane Decision Shell detail, preserved `brief`, and preserved `bridge` with all production/provider/canon gates closed | Reopen only if the applied Shell needs a layout revision |
 | Layout Research Decision Shell | Decide whether the review UI should move beyond card-first layout before more content refinement | `fff-layout-research-decision-shell-001` is the preserved source; `layout-lab` compares Card-first, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow, recommends the split-pane Decision Shell, and keeps all production/provider/canon gates closed | Use this as the design source if the visual audit is revised or if the reviewer needs the route-level rationale |
 | Guided Review Flow Workspace | Put one review sequence before overview and card shelves | `fff-guided-review-flow-workspace-001` is preserved below the low-text console and layout research readback; no-query access still keeps Decision Queue, one Bridge action, Pinned Tray, Operations Notice, Important Folders, Inspiration Workspace, Bridge Guided Flow, and closed production lanes | Use as supporting structure if the Decision Shell is accepted or if `brief` wording needs regression comparison |
 | Bridge Refinement Overview Ribbon | Put latest status before comprehensive shelves and make Bridge judgement-ready | `fff-bridge-refinement-overview-ribbon-001` is preserved under the guided flow; the Latest Overview Report, folded legacy Brief, Bridge refinement cues, and closed production lanes remain visible | Human reviewer should use it as context after the Guided Flow, not as the first stop |

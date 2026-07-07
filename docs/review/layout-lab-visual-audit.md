@@ -2,9 +2,11 @@
 
 Artifact: `fff-layout-lab-visual-audit-001`
 
+Current status note: the recommended split-pane Decision Shell has since been applied to `public/review/index.html?mode=brief` in `fff-apply-decision-shell-guard-diet-001`. This document remains source visual evidence.
+
 ## Purpose
 
-This slice gives the reviewer visual evidence for the existing Layout Research Lab before any follow-up work applies the split-pane Decision Shell to the default `brief` route.
+This slice gives the reviewer visual evidence for the existing Layout Research Lab before the later follow-up applies the split-pane Decision Shell to the default `brief` route.
 
 It packages screenshots for the research route and the preserved operator routes so the next decision can be made from actual rendered screens, not only static readback JSON.
 
@@ -55,6 +57,6 @@ node .\tools\fff-state.mjs smoke-draft-to-video-planning-bridge .\artifacts\draf
 node .\tools\fff-state.mjs smoke-contradictory-claim-guard .\artifacts\extraction-validator-smoke-result.json .\artifacts\contradictory-claim-guard-result.json
 ```
 
-## Next Possible Slice
+## Later Follow-up
 
-If the reviewer accepts the visual direction, the next non-redundant implementation slice is `fff-apply-decision-shell-review-route-001`: apply the split-pane Decision Shell to `public/review/index.html?mode=brief` while preserving the existing `bridge`, Evidence Vault, dark mode, readbacks, and closed production/provider/canon gates.
+The follow-up implementation was completed as `fff-apply-decision-shell-guard-diet-001`: the split-pane Decision Shell is now applied to `public/review/index.html?mode=brief` while preserving the existing `bridge`, Evidence Vault, dark mode, readbacks, and closed production/provider/canon gates.
