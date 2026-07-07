@@ -225,4 +225,4 @@ First next move: use `public/review/index.html?mode=layout-lab` to compare the C
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-Latest Layout Research Decision Shell refresh started from synced `master` on 2026-07-07 JST with `HEAD...origin/master` clean before edits except local `.serena/project.yml` transport residue. After pulling, `git log -1 --oneline --decorate` shows the exact current remote head.
+Latest Layout Research Decision Shell refresh produced `3c9d920 Add layout research decision shell`. The follow-up handoff-only refresh started from synced `master` on 2026-07-07 JST with `HEAD...@{u}` clean and only local `.serena/project.yml` transport residue. After pulling, `git log -1 --oneline --decorate` shows the exact current remote head containing the latest handoff note.

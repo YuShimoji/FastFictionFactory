@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Repo Sync / Next Terminal Handoff
+
+- Purpose: Keep the latest Layout Research Lab context durable in repository files so another terminal can resume from `master` without chat history.
+- Effect: Updates the handoff/current-status/project-context docs with the current active artifact, remote parity, first review route, preserved routes, and local transport-residue boundary.
+- Requirements: Do not change product UI behavior, do not stage `.serena/project.yml`, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
+- State: Handoff-only refresh started from synced `3c9d920 Add layout research decision shell`.
+- Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
+- Next move: Pull latest `master`, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=layout-lab` for the user-side layout decision.
+
 ### Layout Research Decision Shell
 
 - Purpose: Resolve the remaining first-screen limitation where the low-text console is clearer but still feels constrained by card-format layout, equal-weight information, and hardcoded choices.

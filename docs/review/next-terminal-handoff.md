@@ -3,10 +3,11 @@
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
 Latest handoff refresh: 2026-07-07 JST for `fff-layout-research-decision-shell-001`.
-This restart/readback refresh started from synced `master`; before product
-edits, `git status --short --branch --untracked-files=all` showed tracked
-`master` parity with `origin/master` plus local `.serena/project.yml` transport
-residue. At refresh time, the active review checkpoint is
+This restart/readback refresh starts from synced commit
+`3c9d920 Add layout research decision shell`; `git status --short --branch
+--untracked-files=all` shows tracked `master` parity with `origin/master` plus
+local `.serena/project.yml` transport residue. At refresh time, the active
+review checkpoint is
 `fff-layout-research-decision-shell-001`; it adds
 `public/review/index.html?mode=layout-lab` as a direct-access local wireframe
 research surface and preserves `public/review/index.html?mode=brief` and
@@ -50,7 +51,8 @@ that contains this handoff note.
 - Branch: `master`
 - Active artifact: `fff-layout-research-decision-shell-001`
 - Remote parity before this handoff-only note: `HEAD...origin/master = 0 0`
-- Worktree state before this slice: product tree synced; `.serena/project.yml` remained local transport residue
+- Remote head before this handoff-only note: `3c9d920 Add layout research decision shell`
+- Worktree state before this handoff-only note: product tree synced; `.serena/project.yml` remained local transport residue
 - User-side review route now: `public/review/index.html?mode=layout-lab`
 - Preserved operator review route: `public/review/index.html?mode=brief`, then `public/review/index.html?mode=bridge`
 - Review decision needed next: compare the Layout Lab alternatives A-D, then accept or reject applying the split-pane Decision Shell to `brief`
@@ -199,10 +201,12 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 
 ## Current Project State
 
-- Active artifact: `fff-guided-review-flow-workspace-001`
+- Active artifact: `fff-layout-research-decision-shell-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Layout Research Decision Shell doc/result: `docs/review/layout-research-decision-shell.md`, `artifacts/layout-research-decision-shell-result.json`
+- Low-text Decision Console doc/result: `docs/review/low-text-decision-console.md`, `artifacts/low-text-decision-console-result.json`
 - Guided Review Flow Workspace doc/result: `docs/review/guided-review-flow-workspace.md`, `artifacts/guided-review-flow-workspace-result.json`
 - Bridge Refinement Overview Ribbon doc/result: `docs/review/bridge-refinement-overview-ribbon.md`, `artifacts/bridge-refinement-overview-ribbon-result.json`
 - Home Cockpit Metric Linking doc/result: `docs/review/home-cockpit-metric-linking.md`, `artifacts/home-cockpit-metric-linking-result.json`
@@ -370,7 +374,8 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
-| Verify: Guided Flow then Bridge review | Starts from the Guided Review Flow, then checks the Draft-to-Video Bridge refinement | Human reviewer can accept, revise, or reject the route, narration, subtitle rhythm, visual order, thumbnail direction, and held-truth policy without reopening Source Audit / Project Cockpit / Artifacts by default |
+| Review: Layout Lab Decision Shell | Starts from `public/review/index.html?mode=layout-lab` and compares four low-fidelity alternatives before changing the default route | Human reviewer can accept, revise, or reject applying the split-pane Decision Shell to `brief` without reopening provider/API, production, or final-canon lanes |
+| Verify: Low-text Console then Bridge review | Starts from the preserved `brief` route, then checks the Draft-to-Video Bridge refinement | Human reviewer can accept, revise, or reject the route, narration, subtitle rhythm, visual order, thumbnail direction, and held-truth policy without reopening Source Audit / Project Cockpit / Artifacts by default |
 | Advance: script/subtitle/shot refinement | Uses an accepted overview and Bridge route to narrow one narration path, subtitle rhythm, screen beats, and thumbnail comparison | One video package can become clearer while provider/API, video generation, upload, rights clearance, and final canon remain locked |
 | Advance: provider adapter authorization | Uses the authorization readiness Decision Packet only after provider choice, credentials, endpoint, transport scope, external call permission, timeout, and retry policy are explicitly approved | A real adapter can be implemented without silently crossing the boundary |
 | Verify: contradictory claim guard | Re-runs the held-conflict fixture and result after adapter edits | Future Claim Ledger acceptance paths can fail before they auto-promote conflicts |
@@ -387,7 +392,8 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
-| Guided Review Flow Workspace | Put one review sequence before overview and card shelves | `fff-guided-review-flow-workspace-001` is active; no-query access opens Guided Review Flow with Decision Queue, one Bridge action, Pinned Tray, Operations Notice, Important Folders, Inspiration Workspace, Bridge Guided Flow, and closed production lanes | Human reviewer should open Guided Flow, then Bridge, and respond freeform with accept / revise / reject |
+| Layout Research Decision Shell | Decide whether the review UI should move beyond card-first layout before more content refinement | `fff-layout-research-decision-shell-001` is active; `layout-lab` compares Card-first, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow, recommends the split-pane Decision Shell, and keeps all production/provider/canon gates closed | Human reviewer should open `public/review/index.html?mode=layout-lab`, compare alternatives A-D, and accept or reject applying the Decision Shell to `brief` |
+| Guided Review Flow Workspace | Put one review sequence before overview and card shelves | `fff-guided-review-flow-workspace-001` is preserved below the low-text console and layout research readback; no-query access still keeps Decision Queue, one Bridge action, Pinned Tray, Operations Notice, Important Folders, Inspiration Workspace, Bridge Guided Flow, and closed production lanes | Use as supporting structure if the Decision Shell is accepted or if `brief` wording needs regression comparison |
 | Bridge Refinement Overview Ribbon | Put latest status before comprehensive shelves and make Bridge judgement-ready | `fff-bridge-refinement-overview-ribbon-001` is preserved under the guided flow; the Latest Overview Report, folded legacy Brief, Bridge refinement cues, and closed production lanes remain visible | Human reviewer should use it as context after the Guided Flow, not as the first stop |
 | Home Cockpit Metric Linking | Make folded shelves legible before Bridge review | `fff-home-cockpit-metric-linking-001` is preserved under the guided flow; no-query access still exposes Operator Track, Workbench, Evidence Vault, Locked Lanes, and nine readiness meters below the first sequence | Human reviewer should only open Evidence Vault shelves when auditing |
 | Review Home Map Meters | Preserve prior shelf-map readback | `fff-review-home-map-meters-001` remains available through the `mode=home` alias and its result JSON | Use only for regression comparison if the Home Cockpit wording drifts |

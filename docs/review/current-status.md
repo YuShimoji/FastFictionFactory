@@ -175,6 +175,7 @@ Preserved platform boundary:
 
 ## What Was Verified
 
+- Repo-sync handoff refresh on 2026-07-07 JST started from `3c9d920 Add layout research decision shell` with `master` already at `origin/master`; `HEAD...@{u}` reported `0 0`, `.serena/project.yml` remained local transport residue, and no product behavior change was added in the handoff-only pass.
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
 - `node tools/fff-state.mjs smoke-layout-research-decision-shell artifacts/layout-research-decision-shell-result.json artifacts/layout-research-decision-shell-result.json` passed for the active Layout Research Decision Shell readback.
 - Guided Review Flow Workspace slice on 2026-07-06 JST started from `master` parity with `origin/master` after fetch/pull checks; local `.serena/project.yml` remained transport residue and was intentionally excluded from product staging. The slice adds `fff-guided-review-flow-workspace-001` as the active artifact and preserves the overview ribbon, Home Cockpit, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks.
