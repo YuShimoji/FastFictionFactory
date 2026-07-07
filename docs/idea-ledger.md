@@ -31,12 +31,12 @@
 
 ### Repo Sync / Next Terminal Handoff
 
-- Purpose: Keep the latest Layout Research Lab context durable in repository files so another terminal can resume from `master` without chat history.
-- Effect: Updates the handoff/current-status/project-context docs with the current active artifact, remote parity, first review route, preserved routes, and local transport-residue boundary.
-- Requirements: Do not change product UI behavior, do not stage `.serena/project.yml`, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: Handoff-only refresh started from synced `3c9d920 Add layout research decision shell`.
+- Purpose: Keep the latest Review Workbench Component Contract context durable in repository files so another terminal can resume from `master` without chat history.
+- Effect: Updates the handoff/current-status/project-context docs with the current active artifact, last pushed product commit, clean remote parity, first review route, preserved routes, and local boundary gates.
+- Requirements: Do not change product UI behavior, do not stage local transport residue, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
+- State: Handoff-only refresh started after `917cae4 Add review workbench component contract` was already pushed and `master...origin/master` was clean.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
-- Next move: Pull latest `master`, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=layout-lab` for the user-side layout decision.
+- Next move: Pull latest `master`, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=brief` for the Workbench role-boundary review or `public/review/index.html?mode=bridge` for the next production-hypothesis pass.
 
 ### Layout Research Decision Shell
 

@@ -243,4 +243,4 @@ First next move: open `public/review/index.html?mode=brief` and use the applied 
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-Latest Apply Decision Shell Guard Diet refresh packages the applied brief Shell, local screenshot, readback, validator, doc update, and preserved Layout Lab evidence. After pulling, `git log -1 --oneline --decorate` shows the exact current remote head containing this package.
+Latest handoff-only refresh starts from the remote-published Review Workbench Component Contract commit `917cae4 Add review workbench component contract`. It records that `master` and `origin/master` were cleanly aligned before the refresh, and it keeps `docs/review/next-terminal-handoff.md` as the first file for another terminal. After pulling, `git log -1 --oneline --decorate` shows the exact current remote head containing this handoff package.

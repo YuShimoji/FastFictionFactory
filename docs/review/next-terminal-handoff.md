@@ -2,8 +2,10 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-07 JST for `fff-review-workbench-component-contract-001`.
-This restart/readback refresh starts from synced `master` and makes
+Latest handoff refresh: 2026-07-07 JST for `fff-review-workbench-component-contract-001`,
+confirmed after remote publish of `917cae4 Add review workbench component contract`.
+This restart/readback refresh starts from synced `master`, found
+`master...origin/master` clean before the handoff-only refresh, and makes
 `fff-review-workbench-component-contract-001` the active review checkpoint. The
 package converts the default `brief` first screen into a role-contracted Review
 Workbench with a single framing source, compact route navigation, bounded
@@ -48,15 +50,16 @@ was removed from this repo, and
 `fff-profile-adoption-mutation-one-claim-001`, and
 `fff-very-broad-source-span-shape-audit-001` are preserved auxiliary readbacks.
 After pulling, run `git log -1 --oneline --decorate` for the exact remote head
-that contains this visual audit package.
+that contains this Review Workbench Component Contract package and this
+handoff refresh.
 
 ## Latest Remote Publish Snapshot
 
 - Branch: `master`
 - Active artifact: `fff-review-workbench-component-contract-001`
-- Remote parity before this package: `HEAD...origin/master = 0 0`
-- Baseline remote head before this package: synced `master` before local edits
-- Worktree state before this package: product tree synced
+- Remote parity before this handoff-only refresh: clean `master...origin/master`
+- Last pushed product commit before this handoff-only refresh: `917cae4 Add review workbench component contract`
+- Worktree state before this handoff-only refresh: product tree synced and clean
 - User-side review evidence now: `public/review/index.html?mode=brief`, `artifacts/review-screens/brief-component-contract-workbench.png`, `artifacts/review-workbench-component-contract-result.json`, and prior `artifacts/layout-lab-visual-audit-contact-sheet.png`
 - Preserved operator route: `public/review/index.html?mode=bridge`
 - Review decision needed next: use the role-contracted Workbench to choose whether to advance Bridge refinement, audit remaining first-screen duplication, excise stale preserved shelves, or verify route preservation
