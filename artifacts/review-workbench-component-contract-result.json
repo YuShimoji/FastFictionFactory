@@ -1,0 +1,210 @@
+{
+  "schemaVersion": "fff.reviewWorkbenchComponentContract.v1",
+  "artifact_id": "fff-review-workbench-component-contract-001",
+  "title": "Fast Fiction Factory Review Workbench Component Contract",
+  "generatedAt": "2026-07-07T09:46:17.422Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=brief",
+  "input_result_path": "artifacts/review-workbench-component-contract-result.json",
+  "source_apply_shell_artifact_id": "fff-apply-decision-shell-guard-diet-001",
+  "source_result_paths": {
+    "apply_decision_shell_guard_diet": "artifacts/apply-decision-shell-guard-diet-result.json",
+    "layout_lab_visual_audit": "artifacts/layout-lab-visual-audit-result.json",
+    "layout_research_decision_shell": "artifacts/layout-research-decision-shell-result.json",
+    "low_text_decision_console": "artifacts/low-text-decision-console-result.json",
+    "draft_to_video_planning_bridge": "artifacts/draft-to-video-planning-bridge-result.json",
+    "contradictory_claim_guard": "artifacts/contradictory-claim-guard-result.json"
+  },
+  "component_role_contract_present": true,
+  "component_contract_count": 10,
+  "component_contract_required_components": [
+    "appHeader",
+    "routeNavigator",
+    "processRail",
+    "activeDecisionCanvas",
+    "contextDock",
+    "evidenceDrawer",
+    "notesDrawer",
+    "inspirationDrawer",
+    "guardDrawer",
+    "legacyArchive"
+  ],
+  "single_framing_source": "activeDecisionCanvas",
+  "review_workbench_canvas_visible": true,
+  "route_nav_compact": true,
+  "operator_utility_drawer_present": true,
+  "context_dock_role_limited": true,
+  "context_dock_visible_item_budget_passed": true,
+  "duplication_budget_present": true,
+  "duplication_budget_passed": true,
+  "complement_rule_present": true,
+  "card_wall_not_first_screen": true,
+  "decision_flow_model_preserved": true,
+  "bridge_route_preserved": true,
+  "layout_lab_route_preserved": true,
+  "guard_drawer_preserved": true,
+  "safety_prominence_reduced": true,
+  "dark_mode_preserved": true,
+  "screenshot_path": "artifacts/review-screens/brief-component-contract-workbench.png",
+  "screenshot_size": 166364,
+  "selected_candidate_id": "designer-content-moth-investigation-3m",
+  "selected_channel_route_id": "designer-channel-mystery-lore",
+  "first_screen_counts": {
+    "current_route_explanation_count": 1,
+    "candidate_id_visible_count": 1,
+    "channel_id_visible_count": 1,
+    "provider_api_visible_count_outside_guard": 0,
+    "final_canon_visible_count_outside_guard": 0,
+    "competing_global_heading_count": 0,
+    "context_chip_visible_count": 4,
+    "pin_summary_visible_count": 1,
+    "notice_summary_visible_count": 1,
+    "lock_summary_visible_count": 1
+  },
+  "candidate_id_visible_count": 1,
+  "channel_id_visible_count": 1,
+  "provider_api_visible_count_outside_guard": 0,
+  "final_canon_visible_count_outside_guard": 0,
+  "competing_global_heading_count": 0,
+  "dock_governor": {
+    "max_visible_pins": 3,
+    "max_visible_notices": 2,
+    "max_visible_locks": 1,
+    "max_visible_context": 4,
+    "overflow_drawer": true
+  },
+  "preserved_routes": [
+    "public/review/index.html?mode=brief",
+    "public/review/index.html?mode=layout-lab",
+    "public/review/index.html?mode=bridge",
+    "public/review/index.html?mode=designer",
+    "public/review/index.html?mode=draft",
+    "public/review/index.html?mode=source",
+    "public/review/index.html?mode=project",
+    "public/review/index.html?mode=artifacts"
+  ],
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "rights_cleared_claim": false,
+  "summary": {
+    "component_role_contract_present": true,
+    "component_contract_count": 10,
+    "single_framing_source": "activeDecisionCanvas",
+    "route_nav_compact": true,
+    "context_dock_budget_passed": true,
+    "duplication_budget_passed": true,
+    "card_wall_not_first_screen": true,
+    "decision_flow_model_preserved": true,
+    "safety_prominence_reduced": true,
+    "bridge_route_preserved": true,
+    "layout_lab_route_preserved": true,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "failures": 0
+  },
+  "validation_notes": [
+    "The first brief surface now has a component role contract and one active framing owner.",
+    "Route navigation is compact and contains buttons only, while operator launch commands are collapsed in a utility drawer.",
+    "The Context Dock is limited to context chips, pins, notices, and one lock summary; overflow remains in drawers.",
+    "Guard details remain available, but visible safety prominence is reduced to one compact lock summary.",
+    "Bridge, Layout Lab, preserved readbacks, dark mode, and closed production gates remain intact."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-review-workbench-component-contract-001; schema=fff.reviewWorkbenchComponentContract.v1; ui=public/review/index.html; access=public/review/index.html?mode=brief; source=fff-apply-decision-shell-guard-diet-001"
+    },
+    "source_readbacks_preserved": {
+      "passed": true,
+      "detail": "apply=fff-apply-decision-shell-guard-diet-001/true; layoutLab=fff-layout-lab-visual-audit-001/true; layoutResearch=fff-layout-research-decision-shell-001/true; lowText=fff-low-text-decision-console-001/true; bridge=fff-draft-to-video-planning-bridge-001/true; guard=fff-contradictory-claim-guard-001/true"
+    },
+    "component_role_contract": {
+      "passed": true,
+      "detail": "components=10/10; roles=10; properties=6/6"
+    },
+    "single_framing_source": {
+      "passed": true,
+      "detail": "routeExplanations=1; routeNavParagraph=false"
+    },
+    "workbench_canvas_not_cards": {
+      "passed": true,
+      "detail": "workbench=61672; hubPanels=0; modeSummaries=0; firstCard=92991"
+    },
+    "route_nav_compact": {
+      "passed": true,
+      "detail": "routeButtons=9; hasParagraph=false; hasSummaryGrid=false"
+    },
+    "operator_utility_demoted": {
+      "passed": true,
+      "detail": "operator launch commands should live in a collapsed utility drawer, not a first-screen card"
+    },
+    "context_dock_boundaries": {
+      "passed": true,
+      "detail": "context=4/4; pins=1/3; notices=1/2; locks=1/1; modelPins=5; modelNotices=4; modelLocks=9; modelContext=6"
+    },
+    "duplication_budget": {
+      "passed": true,
+      "detail": "routeExplanation=1; candidate=1; channel=1; providerApi=0; finalCanon=0; competingHeadings=0"
+    },
+    "complement_rule": {
+      "passed": true,
+      "detail": "components should state owned content rather than describing everything outside their role"
+    },
+    "decision_flow_model_preserved": {
+      "passed": true,
+      "detail": "choices=5; steps=6; context=6; renderer=true"
+    },
+    "route_preservation": {
+      "passed": true,
+      "detail": "routes=8/8"
+    },
+    "guard_and_safety_prominence": {
+      "passed": true,
+      "detail": "compactSummary=1; visibleLocks=1; gates=8"
+    },
+    "dark_mode_preserved": {
+      "passed": true,
+      "detail": "theme variables and Light/Dark/Auto controls should remain present"
+    },
+    "doc_and_visual_evidence": {
+      "passed": true,
+      "detail": "doc=true; screenshot=artifacts/review-screens/brief-component-contract-workbench.png/166364"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "local=true; external=false; provider=false; credentials=false; upload=false; video=false; render=false; database=false; canon=false; rights=false; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

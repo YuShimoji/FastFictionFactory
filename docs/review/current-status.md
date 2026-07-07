@@ -2,9 +2,9 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-apply-decision-shell-guard-diet-001`
+- Artifact id: `fff-review-workbench-component-contract-001`
 - Review UI: `public/review/index.html`
-- Review Brief mode with applied Decision Shell: `public/review/index.html?mode=brief`
+- Review Brief mode with role-contracted Review Workbench: `public/review/index.html?mode=brief`
 - Layout Research Lab mode preserved: `public/review/index.html?mode=layout-lab`
 - Review Home compatibility alias: `public/review/index.html?mode=home`
 - Draft-to-Video Bridge mode preserved: `public/review/index.html?mode=bridge`
@@ -14,6 +14,10 @@
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
 - Repo-local shell launcher: `./scripts/operator/open_review.sh`
 - Manifest: `artifacts/artifact-manifest.json`
+- Review Workbench Component Contract doc: `docs/review/review-workbench-component-contract.md`
+- Review Workbench Component Contract result: `artifacts/review-workbench-component-contract-result.json`
+- Review Workbench Component Contract screenshot: `artifacts/review-screens/brief-component-contract-workbench.png`
+- Review Workbench Component Contract smoke command: `node tools/fff-state.mjs smoke-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json artifacts/review-workbench-component-contract-result.json`
 - Apply Decision Shell Guard Diet doc: `docs/review/apply-decision-shell-guard-diet.md`
 - Apply Decision Shell Guard Diet result: `artifacts/apply-decision-shell-guard-diet-result.json`
 - Apply Decision Shell Guard Diet screenshot: `artifacts/review-screens/brief-decision-shell-applied.png`
@@ -105,13 +109,20 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active checkpoint is `fff-apply-decision-shell-guard-diet-001`. It applies the Split-pane Decision Shell to the default `public/review/index.html?mode=brief` route, keeps `Bridgeで確認` as the next action, and moves long context into governed drawers instead of making the reviewer pass through a card wall first.
-- The applied Shell carries `data-applied-decision-shell="brief"`, `data-decision-flow-model-applied="true"`, `data-dock-governor="true"`, `data-safety-gate-diet="true"`, `data-guard-drawer="true"`, `data-non-gate-whitelist="true"`, and `data-card-wall-not-default="true"`.
+- The active checkpoint is `fff-review-workbench-component-contract-001`. It converts the default `public/review/index.html?mode=brief` first screen into a role-contracted Review Workbench, keeps `fff-apply-decision-shell-guard-diet-001` as the source shell, and prevents each component from repeating the global explanation.
+- The Workbench carries `data-component-role-contract="true"`, `data-single-framing-source="active-decision-canvas"`, `data-review-workbench-canvas="true"`, `data-route-nav-compact="true"`, `data-operator-utility-drawer="true"`, `data-context-dock-role="context-only"`, `data-duplication-budget="true"`, and `data-component-complement-rule="true"`.
+- `componentRoleContracts` defines appHeader, routeNavigator, processRail, activeDecisionCanvas, contextDock, evidenceDrawer, notesDrawer, inspirationDrawer, guardDrawer, and legacyArchive with role, owns, must_not_show, max_visible_items, source_of_truth, and route_or_drawer fields.
+- The single framing source is `activeDecisionCanvas`: header is identity/counters only, route navigation is navigation only, process rail is sequence only, Context Dock is pins/context only, Evidence owns evidence, and Guard owns gate details.
+- The Context Dock now declares visible limits of context chips max 4, pins max 3, notices max 2, and lock summaries max 1. First-screen measured counts in the Workbench result are candidate ID 1, channel ID 1, provider/API outside Guard 0, final canon outside Guard 0, and competing global heading count 0.
+- The route navigator is a compact strip rather than a summary dashboard, and the local launch commands moved behind `data-operator-utility-drawer="true"`.
+- `docs/review/review-workbench-component-contract.md`, `artifacts/review-workbench-component-contract-result.json`, and `artifacts/review-screens/brief-component-contract-workbench.png` record the current role-contract readback and visual evidence.
+- The preserved source checkpoint `fff-apply-decision-shell-guard-diet-001` still applies the Split-pane Decision Shell, keeps `Bridgeで確認` as the next action, and moves long context into governed drawers instead of making the reviewer pass through a card wall first.
+- The preserved applied Shell still carries `data-applied-decision-shell="brief"`, `data-decision-flow-model-applied="true"`, `data-dock-governor="true"`, `data-safety-gate-diet="true"`, `data-guard-drawer="true"`, `data-non-gate-whitelist="true"`, and `data-card-wall-not-default="true"`.
 - `decisionFlowModel` now represents the applied brief decision: current route `public/review/index.html?mode=brief`, candidate `designer-content-moth-investigation-3m`, channel `designer-channel-mystery-lore`, five choices, six steps, six context rows, pins, notices, locks, and next action `Bridgeで確認` to `public/review/index.html?mode=bridge`.
 - The Dock Governor caps visible pins at 4, notices at 3, locks at 4, and context rows at 4. Overflow rows go to the Guard drawer through `data-dock-overflow-list`, and the dock has a stable max height with internal scroll.
 - `safetyGateRegistry` keeps the compact top safety summary short while the Guard drawer holds the true gate registry: provider/API, credentials, AI video, render, upload / public publishing, database persistence, final canon, and rights clearance all remain closed.
 - The non-gate whitelist is explicit and local only: UI/layout changes, static JSON/readback updates, screenshots/contact sheets, docs/status/manifest updates, local smoke checks, and mock/pre-production planning.
-- `docs/review/apply-decision-shell-guard-diet.md` and `artifacts/apply-decision-shell-guard-diet-result.json` record the current readback. Screenshot evidence is `artifacts/review-screens/brief-decision-shell-applied.png`.
+- `docs/review/apply-decision-shell-guard-diet.md` and `artifacts/apply-decision-shell-guard-diet-result.json` record the preserved source-shell readback. Screenshot evidence is `artifacts/review-screens/brief-decision-shell-applied.png`.
 - The source visual checkpoint remains `fff-layout-lab-visual-audit-001`. Its contact sheet and four screenshots still preserve why the split-pane Shell was chosen: `artifacts/layout-lab-visual-audit-contact-sheet.png`, `artifacts/review-screens/layout-lab.png`, `artifacts/review-screens/layout-lab-decision-shell.png`, `artifacts/review-screens/brief-preserved.png`, and `artifacts/review-screens/bridge-preserved.png`.
 - The source layout checkpoint remains `fff-layout-research-decision-shell-001`. It keeps the direct-access local research surface at `public/review/index.html?mode=layout-lab` and remains evidence, not the default review route.
 - The preserved Review Hub checkpoint `fff-low-text-decision-console-001` remains a source readback beneath the applied Shell; it preserves `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, `fff-review-home-map-meters-001`, `fff-draft-to-video-planning-bridge-001`, `fff-review-brief-dark-mode-ux-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-draft-review-pack-stabilization-001`, and `fff-contradictory-claim-guard-001` instead of replacing their readbacks.
@@ -189,6 +200,7 @@ Preserved platform boundary:
 
 - Repo-sync handoff refresh on 2026-07-07 JST started from `3c9d920 Add layout research decision shell` with `master` already at `origin/master`; `HEAD...@{u}` reported `0 0`, `.serena/project.yml` remained local transport residue, and no product behavior change was added in the handoff-only pass.
 - Git parity before this slice: `git rev-list --left-right --count HEAD...origin/master` reported `0 0`.
+- `node tools/fff-state.mjs smoke-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json artifacts/review-workbench-component-contract-result.json` passed for the active Review Workbench Component Contract package.
 - `node tools/fff-state.mjs smoke-layout-lab-visual-audit artifacts/layout-lab-visual-audit-result.json artifacts/layout-lab-visual-audit-result.json` passed for the active Layout Lab Visual Audit package.
 - `node tools/fff-state.mjs smoke-layout-research-decision-shell artifacts/layout-research-decision-shell-result.json artifacts/layout-research-decision-shell-result.json` passed for the active Layout Research Decision Shell readback.
 - Guided Review Flow Workspace slice on 2026-07-06 JST started from `master` parity with `origin/master` after fetch/pull checks; local `.serena/project.yml` remained transport residue and was intentionally excluded from product staging. The slice adds `fff-guided-review-flow-workspace-001` as the active artifact and preserves the overview ribbon, Home Cockpit, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks.

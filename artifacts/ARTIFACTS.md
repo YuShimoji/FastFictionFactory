@@ -1,5 +1,24 @@
 # Artifacts
 
+## fff-review-workbench-component-contract-001
+
+- Title: Fast Fiction Factory Review Workbench Component Contract
+- Purpose: Convert the default `brief` first screen from a card-like applied shell into a role-contracted Review Workbench with single framing owner, compact route navigation, bounded Context Dock, duplication budget, and component complement rule.
+- Repo relative path: `public/review/index.html`
+- Primary default route: `public/review/index.html?mode=brief`
+- Preserved Layout Lab route: `public/review/index.html?mode=layout-lab`
+- Preserved Bridge route: `public/review/index.html?mode=bridge`
+- Review doc: `docs/review/review-workbench-component-contract.md`
+- Readback result: `artifacts/review-workbench-component-contract-result.json`
+- Screenshot evidence: `artifacts/review-screens/brief-component-contract-workbench.png`
+- Source artifact: `fff-apply-decision-shell-guard-diet-001`
+- Preserved artifacts: `fff-layout-lab-visual-audit-001`, `fff-layout-research-decision-shell-001`, `fff-low-text-decision-console-001`, `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, `fff-draft-to-video-planning-bridge-001`, `fff-contradictory-claim-guard-001`
+- State validator: `tools/fff-state.mjs`
+- Validation command: `node tools/fff-state.mjs smoke-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json artifacts/review-workbench-component-contract-result.json`
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active local review package. The `brief` route now starts with a Workbench Canvas: process rail only, active decision only, Context Dock only, and Evidence / Notes / Inspiration / Guard drawers below. The first-screen duplication budget passes with candidate ID 1, channel ID 1, provider/API outside Guard 0, final canon outside Guard 0, and competing global heading count 0. Provider/API, credentials, upload, AI video generation, production render, database persistence, final canon, and rights-clearance claims remain closed.
+
 ## fff-apply-decision-shell-guard-diet-001
 
 - Title: Fast Fiction Factory Apply Decision Shell Guard Diet

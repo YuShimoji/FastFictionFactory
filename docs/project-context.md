@@ -2,18 +2,18 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current review checkpoint is `fff-apply-decision-shell-guard-diet-001`, served through the static local Visual Review Hub at `public/review/index.html`. It applies the split-pane Decision Shell to the default `public/review/index.html?mode=brief` route, keeps `public/review/index.html?mode=bridge` as the next-action route, preserves `public/review/index.html?mode=layout-lab` as source evidence, and keeps `public/review/index.html?mode=home` as a compatibility alias. The checkpoint preserves the source visual audit `fff-layout-lab-visual-audit-001`, source layout research `fff-layout-research-decision-shell-001`, Low-text Decision Console `fff-low-text-decision-console-001`, Guided Review Flow Workspace `fff-guided-review-flow-workspace-001`, Bridge Refinement Overview Ribbon `fff-bridge-refinement-overview-ribbon-001`, Home Cockpit Metric Linking `fff-home-cockpit-metric-linking-001`, Review Home Map `fff-review-home-map-meters-001`, Draft-to-Video Planning Bridge `fff-draft-to-video-planning-bridge-001`, Review Brief / dark-mode UX checkpoint `fff-review-brief-dark-mode-ux-001`, One-story Draft Review Pack `fff-one-story-draft-review-pack-001`, Designer Candidate Dashboard `fff-designer-candidate-dashboard-001`, stabilization checkpoint `fff-draft-review-pack-stabilization-001`, and contradictory-claim guard `fff-contradictory-claim-guard-001`.
+Fast Fiction Factory is a local-first fiction production workbench. The current review checkpoint is `fff-review-workbench-component-contract-001`, served through the static local Visual Review Hub at `public/review/index.html`. It converts the default `public/review/index.html?mode=brief` first screen into a role-contracted Review Workbench with a single framing source, compact route navigation, bounded Context Dock, duplication budget, component complement rule, and collapsed operator utility drawer. The checkpoint keeps `fff-apply-decision-shell-guard-diet-001` as the source shell, keeps `public/review/index.html?mode=bridge` as the next-action route, preserves `public/review/index.html?mode=layout-lab` as source evidence, and keeps `public/review/index.html?mode=home` as a compatibility alias. It also preserves the source visual audit `fff-layout-lab-visual-audit-001`, source layout research `fff-layout-research-decision-shell-001`, Low-text Decision Console `fff-low-text-decision-console-001`, Guided Review Flow Workspace `fff-guided-review-flow-workspace-001`, Bridge Refinement Overview Ribbon `fff-bridge-refinement-overview-ribbon-001`, Home Cockpit Metric Linking `fff-home-cockpit-metric-linking-001`, Review Home Map `fff-review-home-map-meters-001`, Draft-to-Video Planning Bridge `fff-draft-to-video-planning-bridge-001`, Review Brief / dark-mode UX checkpoint `fff-review-brief-dark-mode-ux-001`, One-story Draft Review Pack `fff-one-story-draft-review-pack-001`, Designer Candidate Dashboard `fff-designer-candidate-dashboard-001`, stabilization checkpoint `fff-draft-review-pack-stabilization-001`, and contradictory-claim guard `fff-contradictory-claim-guard-001`.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is applied local review UX: `brief` now starts with a data-driven Decision Shell, `bridge` remains the production-hypothesis handoff, and `layout-lab` remains evidence. Route decision, workbench fallback, evidence audit shelves, inspiration prompts, locked production lanes, rights-risk posture, and production non-goals must remain distinct before any model/API extractor, provider/API setup, AI video generation, production render, public upload, rights-clearance claim, database persistence, or final canon path exists.
+Keep the MVP reviewable without production commitments. The current lane is applied local review UX: `brief` now starts with a role-contracted Workbench whose active decision canvas owns the current-state framing, `bridge` remains the production-hypothesis handoff, and `layout-lab` remains evidence. Route decision, context pins, evidence audit shelves, inspiration prompts, guard details, locked production lanes, rights-risk posture, and production non-goals must remain distinct before any model/API extractor, provider/API setup, AI video generation, production render, public upload, rights-clearance claim, database persistence, or final canon path exists.
 
 ## Current Slice
 
 The active slice is complete enough for local readback:
 
 - Review UI: `public/review/index.html`
-- Review Brief mode with applied Decision Shell: `public/review/index.html?mode=brief`
+- Review Brief mode with role-contracted Review Workbench: `public/review/index.html?mode=brief`
 - Layout Research Lab mode preserved: `public/review/index.html?mode=layout-lab`
 - Review Home compatibility alias: `public/review/index.html?mode=home`
 - Draft-to-Video Bridge mode: `public/review/index.html?mode=bridge`
@@ -21,6 +21,7 @@ The active slice is complete enough for local readback:
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Review Workbench Component Contract doc/result/screenshot: `docs/review/review-workbench-component-contract.md`, `artifacts/review-workbench-component-contract-result.json`, `artifacts/review-screens/brief-component-contract-workbench.png`
 - Apply Decision Shell Guard Diet doc/result/screenshot: `docs/review/apply-decision-shell-guard-diet.md`, `artifacts/apply-decision-shell-guard-diet-result.json`, `artifacts/review-screens/brief-decision-shell-applied.png`
 - Layout Lab Visual Audit doc/result/contact sheet: `docs/review/layout-lab-visual-audit.md`, `artifacts/layout-lab-visual-audit-result.json`, `artifacts/layout-lab-visual-audit-contact-sheet.png`
 - Layout Lab Visual Audit screenshots: `artifacts/review-screens/layout-lab.png`, `artifacts/review-screens/layout-lab-decision-shell.png`, `artifacts/review-screens/brief-preserved.png`, `artifacts/review-screens/bridge-preserved.png`
@@ -95,16 +96,21 @@ Route hygiene checkpoint, 2026-06-29 JST:
   cockpit summaries.
 - `docs/style_intent/` was removed because it was empty and residue-only.
 - The active Fast Fiction Factory review package is now
-  `fff-apply-decision-shell-guard-diet-001`; it applies the Split-pane Decision
-  Shell to `brief`, renders route choices from `decisionFlowModel`, caps dock
-  rows through the Dock Governor, and moves full production-boundary detail
-  into the Guard drawer. The source visual audit still records verified local
-  screenshots for `layout-lab`, the Split-pane Decision Shell detail, preserved
-  `brief`, and preserved `bridge`, plus a contact sheet for human visual
-  review. The source layout research still records four low-fidelity wireframe
-  alternatives, a heuristic layout score matrix, a split-pane Decision Shell
-  recommendation, and a local `decisionFlowModel` while preserving the no-query
-  `brief` entry, Bridge Decision Console, and closed production gates through
+  `fff-review-workbench-component-contract-001`; it turns the applied `brief`
+  Shell into a role-contracted Workbench, keeps `activeDecisionCanvas` as the
+  single framing source, makes route navigation compact, caps the Context Dock
+  at 4 context chips / 3 pins / 2 notices / 1 lock summary, and moves launch
+  commands behind the Operator utility drawer. The source applied Shell remains
+  `fff-apply-decision-shell-guard-diet-001`; it still renders route choices from
+  `decisionFlowModel`, keeps Dock Governor overflow, and keeps full production
+  boundary detail in the Guard drawer. The source visual audit still records
+  verified local screenshots for `layout-lab`, the Split-pane Decision Shell
+  detail, preserved `brief`, and preserved `bridge`, plus a contact sheet for
+  human visual review. The source layout research still records four
+  low-fidelity wireframe alternatives, a heuristic layout score matrix, a
+  split-pane Decision Shell recommendation, and a local `decisionFlowModel`
+  while preserving the no-query `brief` entry, Bridge Decision Console, and
+  closed production gates through
   `fff-low-text-decision-console-001`,
   `fff-guided-review-flow-workspace-001`,
   `fff-bridge-refinement-overview-ribbon-001`,

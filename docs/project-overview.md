@@ -29,6 +29,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Local extraction adapter expansion | Ready for local review | [`review/local-extraction-adapter-expansion-review.md`](review/local-extraction-adapter-expansion-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
 | Model/API boundary spec | Ready for local review | [`review/model-api-boundary-spec.md`](review/model-api-boundary-spec.md) | `artifacts/model-api-boundary-envelope.example.json`, `artifacts/model-api-boundary-smoke-result.json` |
 | Provider envelope readiness no-call | Ready for local readback | [`review/provider-envelope-readiness-no-call.md`](review/provider-envelope-readiness-no-call.md) | `artifacts/provider-envelope-readiness-no-call.example.json`, `artifacts/provider-envelope-readiness-no-call-result.json` |
+| Review Workbench Component Contract | Ready for local readback | [`review/review-workbench-component-contract.md`](review/review-workbench-component-contract.md) | `artifacts/review-workbench-component-contract-result.json`, `artifacts/review-screens/brief-component-contract-workbench.png`, `public/review/index.html?mode=brief` |
 | Apply Decision Shell Guard Diet | Ready for local readback | [`review/apply-decision-shell-guard-diet.md`](review/apply-decision-shell-guard-diet.md) | `artifacts/apply-decision-shell-guard-diet-result.json`, `artifacts/review-screens/brief-decision-shell-applied.png`, `public/review/index.html?mode=brief` |
 | Layout Lab Visual Audit | Ready for visual review | [`review/layout-lab-visual-audit.md`](review/layout-lab-visual-audit.md) | `artifacts/layout-lab-visual-audit-contact-sheet.png`, `artifacts/review-screens/layout-lab.png`, `artifacts/review-screens/layout-lab-decision-shell.png` |
 | Layout Research Decision Shell | Ready for local wireframe review | [`review/layout-research-decision-shell.md`](review/layout-research-decision-shell.md) | `artifacts/layout-research-decision-shell-result.json`, `public/review/index.html?mode=layout-lab` |
@@ -56,6 +57,7 @@ The current quick visual review files are stored under `artifacts/`:
 | --- | --- |
 | `artifacts/fff-current-review-screenshot.png` | Current single-screen review evidence for the active local UI. |
 | `artifacts/fff-review-contact-sheet.png` | Four-mode contact sheet for fast visual scanning of the current review UI. |
+| `artifacts/review-screens/brief-component-contract-workbench.png` | Current role-contracted Review Workbench screenshot for the default `brief` route. |
 | `artifacts/review-screens/brief-decision-shell-applied.png` | Current applied Decision Shell screenshot for the default `brief` route. |
 | `artifacts/layout-lab-visual-audit-contact-sheet.png` | Current Layout Lab visual audit contact sheet comparing Lab, Decision Shell, preserved Brief, and preserved Bridge. |
 | `artifacts/review-screens/layout-lab.png` | Layout Lab first-screen screenshot. |
@@ -103,7 +105,7 @@ The active UI remains:
 Invoke-Item .\public\review\index.html
 ```
 
-No-query access now defaults to the applied Decision Shell / Review Brief. The first read is the route question at the top of `brief`, followed by Bridge. Guided Flow, Latest Overview, and Home Cockpit shelves remain preserved below as supporting material.
+No-query access now defaults to the role-contracted Review Workbench / Review Brief. The first read is the active route question at the top of `brief`, followed by Bridge. Guided Flow, Latest Overview, and Home Cockpit shelves remain preserved below as supporting material.
 
 Mode-specific Decision Shell route:
 

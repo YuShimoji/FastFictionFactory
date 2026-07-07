@@ -127,6 +127,10 @@
       box-sizing: border-box;
     }
 
+    [hidden] {
+      display: none !important;
+    }
+
     body {
       margin: 0;
       background: var(--surface);
@@ -297,6 +301,34 @@
       margin-bottom: 16px;
     }
 
+    .workbench-hub-header {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .operator-utility-drawer {
+      justify-self: start;
+      max-width: min(100%, 760px);
+      border: 1px dashed var(--line);
+      border-radius: 6px;
+      padding: 7px 10px;
+      background: var(--surface-muted);
+      color: var(--muted-strong);
+      font-size: 12px;
+    }
+
+    .operator-utility-drawer summary {
+      cursor: pointer;
+      color: var(--ink);
+      font-weight: 800;
+    }
+
+    .operator-utility-drawer code {
+      display: block;
+      margin-top: 8px;
+    }
+
     .hub-eyebrow {
       margin-bottom: 6px;
       color: var(--blue);
@@ -407,6 +439,57 @@
     .mode-tab.is-advanced {
       border-style: dashed;
       opacity: 0.86;
+    }
+
+    .mode-switcher.workbench-route-nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      padding: 8px 10px;
+      background: var(--surface-muted);
+      box-shadow: none;
+    }
+
+    .workbench-route-nav .mode-tab-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .workbench-route-nav .mode-tab-group {
+      display: contents;
+      border: 0;
+      padding: 0;
+      background: transparent;
+    }
+
+    .workbench-route-nav .mode-group-label,
+    .workbench-route-nav .mode-tab span,
+    .mode-summary-grid[hidden] {
+      display: none;
+    }
+
+    .workbench-route-nav .mode-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .workbench-route-nav .mode-tab {
+      min-height: 32px;
+      border-radius: 999px;
+      padding: 5px 10px;
+      background: var(--paper);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .workbench-route-nav .mode-tab strong {
+      font-size: 12px;
     }
 
     .review-home {
@@ -579,11 +662,31 @@
       border-left-color: var(--green);
     }
 
+    .decision-shell-applied.review-workbench-canvas {
+      gap: 0;
+      border: 0;
+      border-radius: 8px;
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+      overflow: hidden;
+    }
+
     .decision-shell-grid {
       display: grid;
       grid-template-columns: minmax(160px, 0.45fr) minmax(0, 1fr) minmax(220px, 0.65fr);
       gap: 12px;
       align-items: start;
+    }
+
+    .review-workbench-canvas .decision-shell-grid {
+      grid-template-columns: 176px minmax(0, 1fr) 292px;
+      gap: 0;
+      align-items: stretch;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--green);
+      border-radius: 8px 8px 0 0;
+      background: var(--paper);
     }
 
     .decision-shell-rail,
@@ -595,6 +698,40 @@
     .decision-shell-rail {
       display: grid;
       gap: 8px;
+    }
+
+    .review-workbench-canvas .decision-shell-rail,
+    .review-workbench-canvas .active-decision-panel,
+    .review-workbench-canvas .governed-context-dock {
+      padding: 14px;
+    }
+
+    .review-workbench-canvas .decision-shell-rail {
+      border-right: 1px solid var(--line);
+      background: var(--paper-soft);
+    }
+
+    .review-workbench-canvas .active-decision-panel {
+      display: grid;
+      gap: 10px;
+      align-content: start;
+      background: var(--paper);
+    }
+
+    .review-workbench-canvas .governed-context-dock {
+      border-left: 1px solid var(--line);
+      background: var(--surface-muted);
+    }
+
+    .review-workbench-canvas .step-rail {
+      grid-template-columns: 1fr;
+    }
+
+    .framing-line {
+      margin: 0;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 720;
     }
 
     .decision-model-meta,
@@ -623,6 +760,12 @@
       border-radius: 8px;
       background: var(--surface-muted);
       padding: 10px;
+    }
+
+    .review-workbench-canvas .governed-context-dock {
+      border: 0;
+      border-radius: 0;
+      padding: 14px;
     }
 
     .dock-scroll {
@@ -662,6 +805,14 @@
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 8px;
+    }
+
+    .review-workbench-canvas .decision-shell-drawers {
+      border: 1px solid var(--line);
+      border-top: 0;
+      border-radius: 0 0 8px 8px;
+      padding: 10px;
+      background: var(--surface-muted);
     }
 
     .legacy-low-text-console[hidden] {
@@ -2540,7 +2691,7 @@
       <div class="topbar-inner">
         <div>
           <h1>Fast Fiction Factory</h1>
-          <p class="lede">Local-first MVP skeleton for turning a raw fiction memo into reviewable structured candidates. Nothing publishes externally and no candidate becomes canon until the human author marks it adopted.</p>
+          <p class="lede">Static local review workspace for the Fast Fiction Factory MVP.</p>
         </div>
         <div class="topbar-actions">
           <div class="summary-strip" aria-label="Review decision summary">
@@ -2561,63 +2712,53 @@
 
     <section class="review-hub" aria-labelledby="visual-review-title">
       <div class="hub-inner">
-        <div class="hub-header">
+        <div class="hub-header workbench-hub-header" data-component-contract-owner="appHeader">
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
-            <h2 id="visual-review-title">Guided Review Flow / Review Brief <span class="jp-label">レビュー進行</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-apply-decision-shell-guard-diet-001</strong>. Review Brief の先頭に Split-pane Decision Shell を適用し、Bridge と Evidence Vault は保持したまま判断量を圧縮します。</p>
+            <h2 id="visual-review-title">Review Workbench <span class="jp-label">役割契約付きレビュー面</span></h2>
+            <p class="lede">Active artifact id: <strong>fff-review-workbench-component-contract-001</strong>. Source shell: <strong>fff-apply-decision-shell-guard-diet-001</strong>.</p>
           </div>
-          <div class="hub-panel">
-            <h3>How to open locally</h3>
+          <details class="operator-utility-drawer" data-operator-utility-drawer="true" data-component-contract-owner="legacyArchive">
+            <summary>Operator utility</summary>
             <code class="code-line">Invoke-Item .\public\review\index.html</code>
             <p class="section-note">Launchers: <strong>.\scripts\operator\open_review.ps1</strong> or <strong>./scripts/operator/open_review.sh</strong>. Repo paths: <strong>scripts/operator/open_review.ps1</strong> and <strong>scripts/operator/open_review.sh</strong>. Authority path: <strong>public/review/index.html</strong>. Temporary localhost previews are validation-only.</p>
-          </div>
+          </details>
         </div>
 
-        <nav class="mode-switcher" aria-label="Review mode navigation">
+        <nav class="mode-switcher workbench-route-nav" data-route-nav-compact="true" data-component-contract-owner="routeNavigator" aria-label="Review mode navigation">
           <div class="mode-tab-stack">
             <div class="mode-tab-group primary">
               <span class="mode-group-label">Now / 今見る</span>
               <div class="mode-tabs">
-                <button class="mode-tab" type="button" data-mode-target="brief" aria-pressed="true"><strong>Home Cockpit / Review Brief</strong><span>現在地と次の判断</span></button>
-                <button class="mode-tab" type="button" data-mode-target="bridge" aria-pressed="false"><strong>Draft-to-Video Bridge</strong><span>制作仮説を見る</span></button>
+                <button class="mode-tab" type="button" data-mode-target="brief" aria-pressed="true"><strong>Brief</strong><span>現在地と次の判断</span></button>
+                <button class="mode-tab" type="button" data-mode-target="bridge" aria-pressed="false"><strong>Bridge</strong><span>制作仮説を見る</span></button>
+                <button class="mode-tab" type="button" data-mode-target="layout-lab" aria-pressed="false"><strong>Layout Lab</strong><span>研究証跡</span></button>
               </div>
             </div>
             <div class="mode-tab-group">
               <span class="mode-group-label">Workbench / 材料棚</span>
               <div class="mode-tabs">
-                <button class="mode-tab" type="button" data-mode-target="draft" aria-pressed="false"><strong>Draft Review Pack</strong><span>One story draft</span></button>
-                <button class="mode-tab" type="button" data-mode-target="designer" aria-pressed="false"><strong>Designer Dashboard</strong><span>Content strategy</span></button>
+                <button class="mode-tab" type="button" data-mode-target="draft" aria-pressed="false"><strong>Draft</strong><span>One story draft</span></button>
+                <button class="mode-tab" type="button" data-mode-target="designer" aria-pressed="false"><strong>Designer</strong><span>Content strategy</span></button>
                 <button class="mode-tab" type="button" data-mode-target="story" aria-pressed="false"><strong>Story Review</strong><span>本文と候補</span></button>
               </div>
             </div>
             <div class="mode-tab-group">
               <span class="mode-group-label">Evidence Vault / 証跡棚</span>
               <div class="mode-tabs">
-                <button class="mode-tab is-advanced" type="button" data-mode-target="source" aria-pressed="false"><strong>Source Audit</strong><span>抽出根拠</span></button>
-                <button class="mode-tab is-advanced" type="button" data-mode-target="project" aria-pressed="false"><strong>Project Cockpit</strong><span>状態と境界</span></button>
+                <button class="mode-tab is-advanced" type="button" data-mode-target="source" aria-pressed="false"><strong>Source</strong><span>抽出根拠</span></button>
+                <button class="mode-tab is-advanced" type="button" data-mode-target="project" aria-pressed="false"><strong>Project</strong><span>状態と境界</span></button>
                 <button class="mode-tab is-advanced" type="button" data-mode-target="artifacts" aria-pressed="false"><strong>Artifacts</strong><span>検証ログ</span></button>
               </div>
             </div>
           </div>
-          <div class="mode-summary-grid">
-            <div class="mode-summary"><strong>Home Cockpit / Review Brief</strong><span class="jp-label">入口と判断メーター</span></div>
-            <div class="mode-summary"><strong>Draft-to-Video Bridge</strong><span class="jp-label">制作仮説</span></div>
-            <div class="mode-summary"><strong>Story Review</strong><span class="jp-label">本文と候補</span></div>
-            <div class="mode-summary"><strong>Designer Dashboard</strong><span class="jp-label">候補とチャンネル案</span></div>
-            <div class="mode-summary"><strong>Draft Review Pack</strong><span class="jp-label">暫定ドラフト案</span></div>
-            <div class="mode-summary"><strong>Source Audit</strong><span class="jp-label">詳細証跡</span></div>
-            <div class="mode-summary"><strong>Project Cockpit</strong><span class="jp-label">履歴と境界</span></div>
-            <div class="mode-summary"><strong>Artifacts</strong><span class="jp-label">ファイルと検証</span></div>
-          </div>
-          <p class="section-note">Stable IDs, JSON keys, artifact IDs, and file paths remain English. Japanese labels are display-only review aids. <strong>public/review/index.html?mode=home</strong> is kept as an alias to the same Home Cockpit for compatibility.</p>
         </nav>
 
         <section class="review-home" id="review-home-root" data-mode-panel="brief" data-home-map="review-home-map-meters" data-home-cockpit="home-cockpit-metric-linking" aria-labelledby="decision-console-title">
-          <section class="decision-console decision-shell-applied" data-decision-console="low-text-decision-console" data-applied-decision-shell="brief" data-decision-flow-model-root="true" data-decision-flow-model-applied="true" data-dock-governor="true" data-dock-overflow="drawer" data-dock-max-visible="true" data-safety-gate-diet="true" data-safety-gate-registry="true" data-gate-display-budget="compact" data-non-gate-whitelist="true" data-card-wall-not-default="true" aria-labelledby="decision-console-title">
+          <section class="decision-console decision-shell-applied review-workbench-canvas" data-decision-console="low-text-decision-console" data-applied-decision-shell="brief" data-review-workbench-canvas="true" data-component-role-contract="true" data-component-contract-owner="activeDecisionCanvas" data-single-framing-source="active-decision-canvas" data-duplication-budget="true" data-component-complement-rule="true" data-decision-flow-model-root="true" data-decision-flow-model-applied="true" data-dock-governor="true" data-dock-overflow="drawer" data-dock-max-visible="true" data-safety-gate-diet="true" data-safety-gate-registry="true" data-gate-display-budget="compact" data-non-gate-whitelist="true" data-card-wall-not-default="true" aria-labelledby="decision-console-title">
             <div class="decision-shell-grid" data-split-pane-shell="brief">
-              <nav class="decision-shell-rail" aria-label="Decision steps">
-                <strong>Step rail</strong>
+              <nav class="decision-shell-rail process-rail" data-component-contract-owner="processRail" data-process-rail-role="process-only" aria-label="Decision steps">
+                <strong>Process</strong>
                 <div class="step-rail" data-step-rail="true" aria-label="Decision steps">
                   <span class="rail-step current" data-console-step="route" data-console-step-state="current">▶ 路線</span>
                   <span class="rail-step" data-console-step="narration" data-console-step-state="later">▷ 語り</span>
@@ -2626,18 +2767,17 @@
                   <span class="rail-step" data-console-step="thumbnail" data-console-step-state="later">▷ サムネ</span>
                   <span class="rail-step" data-console-step="held-truth" data-console-step-state="later">🔒 保留真実</span>
                 </div>
-                <ol class="model-step-list" data-model-step-list>
+                <ol class="model-step-list" data-model-step-list hidden aria-hidden="true">
                   <li>route current</li>
                 </ol>
               </nav>
 
-              <main class="active-decision-panel" data-active-decision-panel="true">
-                <p class="hub-eyebrow">Applied Decision Shell</p>
+              <main class="active-decision-panel active-decision-canvas" data-active-decision-panel="true" data-active-decision-canvas="true" data-component-contract-owner="activeDecisionCanvas">
+                <p class="hub-eyebrow">Active decision</p>
+                <p class="framing-line" data-current-route-explanation="true">Brief route decides the next lane; Bridge opens after choice.</p>
                 <h2 class="console-question" id="decision-console-title" data-active-question="true" data-model-current-question>この路線で進める？</h2>
                 <div class="decision-model-meta" aria-label="Current route context">
                   <span data-model-current-route>brief</span>
-                  <span>candidate: <strong data-model-candidate-route>designer-content-moth-investigation-3m</strong></span>
-                  <span>channel: <strong data-model-channel-route>designer-channel-mystery-lore</strong></span>
                 </div>
                 <div class="choice-row model-choice-button-list" data-choice-row="true" data-model-choice-button-list data-choice-slot="model-driven" data-model-choice-count="5" aria-label="Decision choices">
                   <button class="choice-button" type="button" data-choice-button="advance">進める</button>
@@ -2646,21 +2786,16 @@
                   <button class="choice-button" type="button" data-choice-button="thumbnail">サムネを直す</button>
                   <button class="choice-button" type="button" data-choice-button="held-truth">保留真実を直す</button>
                 </div>
-                <div class="compact-gate-summary" data-compact-gate-summary="true" aria-label="Compact safety locks">
-                  <span class="console-lock">8 gates closed</span>
-                  <span class="console-lock">local reversible work allowed</span>
-                  <span class="console-lock">details in Guard drawer</span>
+                <div class="compact-gate-summary" data-compact-gate-summary="true" aria-label="Compact safety locks" hidden aria-hidden="true">
+                  <span class="console-lock" data-lock-summary="true">Gates closed</span>
                 </div>
                 <p class="console-helper">長いメモは閉じる。Bridgeで要点だけ確認します。</p>
                 <div class="console-action-row">
                   <button class="brief-action primary" type="button" data-mode-target="bridge" data-console-primary-action="true" aria-pressed="false">Bridgeで確認</button>
-                  <span class="console-lock" data-console-lock="ready">✓ ready</span>
-                  <span class="console-lock" data-console-lock="current">▶ current</span>
-                  <span class="console-lock" data-console-lock="locked">🔒 locked</span>
                 </div>
               </main>
 
-              <aside class="context-dock governed-context-dock" data-context-dock="true" data-dock-visible-pins="4" data-dock-visible-notices="3" data-dock-visible-locks="4" data-dock-visible-context="4" aria-label="Governed review context">
+              <aside class="context-dock governed-context-dock" data-context-dock="true" data-context-dock-role="context-only" data-component-contract-owner="contextDock" data-dock-visible-pins="3" data-dock-visible-notices="2" data-dock-visible-locks="1" data-dock-visible-context="4" aria-label="Governed review context">
                 <div class="dock-scroll">
                   <section class="dock-group" data-dock-group="context" data-dock-limit="4" data-model-context-list>
                     <strong>Context max 4</strong>
@@ -2669,22 +2804,22 @@
                     <span class="console-chip" data-context-chip="phase">pre-production</span>
                     <span class="console-chip locked" data-context-chip="no-generation">生成なし</span>
                   </section>
-                  <section class="dock-group" data-dock-group="pins" data-dock-limit="4">
-                    <strong>Pins max 4</strong>
+                  <section class="dock-group" data-dock-group="pins" data-dock-limit="3">
+                    <strong>Pins max 3</strong>
                     <ul class="model-pin-list" data-model-pin-list>
-                      <li>candidate pinned</li>
+                      <li data-pin-summary="true">current artifact pinned</li>
                     </ul>
                   </section>
-                  <section class="dock-group" data-dock-group="notices" data-dock-limit="3">
-                    <strong>Notices max 3</strong>
+                  <section class="dock-group" data-dock-group="notices" data-dock-limit="2">
+                    <strong>Notices max 2</strong>
                     <ul class="model-notice-list" data-model-notice-list>
-                      <li>compact only</li>
+                      <li data-notice-summary="true">drawer overflow active</li>
                     </ul>
                   </section>
-                  <section class="dock-group" data-dock-group="locks" data-dock-limit="4">
-                    <strong>Locks max 4</strong>
+                  <section class="dock-group" data-dock-group="locks" data-dock-limit="1">
+                    <strong>Locks max 1</strong>
                     <ul class="model-lock-list" data-model-lock-list>
-                      <li>provider/API closed</li>
+                      <li data-lock-summary="true">Gates closed</li>
                     </ul>
                   </section>
                 </div>
@@ -2692,25 +2827,28 @@
             </div>
 
             <div class="decision-shell-drawers" aria-label="Decision Shell drawers">
-              <details class="detail-drawer" data-detail-drawer="true" data-decision-shell-drawer="evidence">
-                <summary>詳細メモを開く</summary>
-                <p>候補、チャンネル、Bridge refinement、Evidence Vault の根拠は下位メモに保持します。ここでは route 判断だけを先に置きます。</p>
+              <details class="detail-drawer" data-detail-drawer="true" data-decision-shell-drawer="evidence" data-component-contract-owner="evidenceDrawer">
+                <summary>Evidence</summary>
+                <p>Source evidence, Layout Lab readback, Bridge refinement evidence, and preserved route artifacts stay in this drawer.</p>
                 <div class="layout-lab-link-row">
                   <button class="brief-action" type="button" data-mode-target="layout-lab" data-layout-lab-link="true" aria-pressed="false">Layout Labを見る</button>
                   <p class="section-note">研究用のみ。Brief / bridge の標準導線は置き換えません。</p>
                 </div>
               </details>
-              <details class="notes-shelf" data-notes-shelf="true" data-notes-shelf-default="collapsed" data-decision-shell-drawer="notes">
-                <summary>メモ棚を開く</summary>
-                <p>Guided Flow、Latest Overview、Home Cockpit の長い説明はこの下に保存します。</p>
+              <details class="notes-shelf" data-notes-shelf="true" data-notes-shelf-default="collapsed" data-decision-shell-drawer="notes" data-component-contract-owner="notesDrawer">
+                <summary>Notes</summary>
+                <p>Guided Flow, Latest Overview, and Home Cockpit notes remain preserved below the Workbench.</p>
+                <ul data-component-contract-summary>
+                  <li>component contracts render here</li>
+                </ul>
               </details>
-              <details class="detail-drawer" data-decision-shell-drawer="inspiration">
-                <summary>発想棚を開く</summary>
+              <details class="detail-drawer" data-decision-shell-drawer="inspiration" data-component-contract-owner="inspirationDrawer">
+                <summary>Inspiration</summary>
                 <ul class="model-choice-list" data-model-choice-list>
                   <li>model choices</li>
                 </ul>
               </details>
-              <details class="detail-drawer guard-drawer" data-guard-drawer="true" data-decision-shell-drawer="guard">
+              <details class="detail-drawer guard-drawer" data-guard-drawer="true" data-decision-shell-drawer="guard" data-component-contract-owner="guardDrawer">
                 <summary>Guard details</summary>
                 <ul class="gate-registry-list" data-gate-registry-list>
                   <li>provider/API closed</li>
@@ -2730,7 +2868,7 @@
               </details>
             </div>
           </section>
-          <section class="decision-console legacy-low-text-console" data-legacy-decision-console="low-text-decision-console" aria-labelledby="legacy-decision-console-title" hidden aria-hidden="true">
+          <section class="decision-console legacy-low-text-console" data-legacy-decision-console="low-text-decision-console" data-component-contract-owner="legacyArchive" aria-labelledby="legacy-decision-console-title" hidden aria-hidden="true">
             <div class="console-shell">
               <div class="console-main">
                 <p class="hub-eyebrow">Low-text Decision Console</p>
@@ -4655,6 +4793,89 @@ The story should feel intimate and strange, but not explain the magic too early.
 
 Possible ending: Mira refuses to restore the city's stolen time and instead gives one lost hour back to every person who was erased from the records.`;
 
+    const componentRoleContracts = {
+      appHeader: {
+        role: "Identity header",
+        owns: ["product identity", "review counters", "theme controls"],
+        must_not_show: ["current route explanation", "evidence detail", "gate detail", "launch instructions"],
+        max_visible_items: { counters: 4, theme_controls: 3 },
+        source_of_truth: "local review state counters",
+        route_or_drawer: "topbar"
+      },
+      routeNavigator: {
+        role: "Compact route navigation",
+        owns: ["mode targets", "current route pressed state"],
+        must_not_show: ["global framing", "summary dashboard", "paragraph explanations", "evidence detail"],
+        max_visible_items: { route_buttons: 9, explanatory_paragraphs: 0 },
+        source_of_truth: "REVIEW_MODES and data-mode-target buttons",
+        route_or_drawer: "route strip"
+      },
+      processRail: {
+        role: "Decision sequence only",
+        owns: ["step order", "current step state"],
+        must_not_show: ["candidate explanation", "channel explanation", "gate detail", "evidence detail"],
+        max_visible_items: { steps: 6 },
+        source_of_truth: "decisionFlowModel.steps",
+        route_or_drawer: "left rail"
+      },
+      activeDecisionCanvas: {
+        role: "Single framing source and active choice",
+        owns: ["current route explanation", "active question", "model-driven choices", "primary next action"],
+        must_not_show: ["long evidence", "long gate text", "legacy shelf summaries"],
+        max_visible_items: { route_explanations: 1, choices: 5, primary_actions: 1, compact_locks: 1 },
+        source_of_truth: "decisionFlowModel",
+        route_or_drawer: "center canvas"
+      },
+      contextDock: {
+        role: "Context pins only",
+        owns: ["candidate chip", "channel chip", "current artifact pin", "compact notices", "compact lock summary"],
+        must_not_show: ["route instructions", "global framing", "evidence explanations", "safety paragraphs"],
+        max_visible_items: { context_chips: 4, pins: 3, notices: 2, lock_summaries: 1 },
+        source_of_truth: "decisionFlowModel context/pins/notices/locks",
+        route_or_drawer: "right dock"
+      },
+      evidenceDrawer: {
+        role: "Evidence detail",
+        owns: ["source evidence", "layout lab readback", "preserved route evidence"],
+        must_not_show: ["current choice framing", "guard policy", "inspiration prompts"],
+        max_visible_items: { visible_when_closed: 1 },
+        source_of_truth: "review docs and result artifacts",
+        route_or_drawer: "Evidence drawer"
+      },
+      notesDrawer: {
+        role: "Preserved notes and component contracts",
+        owns: ["legacy notes", "component contract summary"],
+        must_not_show: ["active decision framing", "gate registry", "source evidence body"],
+        max_visible_items: { visible_when_closed: 1 },
+        source_of_truth: "componentRoleContracts and preserved review notes",
+        route_or_drawer: "Notes drawer"
+      },
+      inspirationDrawer: {
+        role: "Choice alternatives",
+        owns: ["model choice list", "thinking prompts"],
+        must_not_show: ["evidence detail", "gate detail", "global framing"],
+        max_visible_items: { visible_when_closed: 1 },
+        source_of_truth: "decisionFlowModel.choices",
+        route_or_drawer: "Inspiration drawer"
+      },
+      guardDrawer: {
+        role: "Gate detail",
+        owns: ["true gates", "non-gate whitelist", "dock overflow"],
+        must_not_show: ["route instructions", "creative inspiration", "current choice explanation"],
+        max_visible_items: { visible_when_closed: 1, compact_top_summaries: 1 },
+        source_of_truth: "safetyGateRegistry and Dock Governor overflow",
+        route_or_drawer: "Guard drawer"
+      },
+      legacyArchive: {
+        role: "Preserved lower shelves and utilities",
+        owns: ["operator utility", "legacy cockpit", "historical readback shelves"],
+        must_not_show: ["first-screen global framing", "active choice ownership"],
+        max_visible_items: { first_screen_cards: 0 },
+        source_of_truth: "preserved DOM sections and docs",
+        route_or_drawer: "below workbench"
+      }
+    };
+
     const decisionFlowModel = {
       artifactId: "fff-apply-decision-shell-guard-diet-001",
       currentRoute: "public/review/index.html?mode=brief",
@@ -4689,20 +4910,20 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         { contextId: "no-canon", label: "canon未確定", locked: true }
       ],
       pins: [
-        "candidate: designer-content-moth-investigation-3m",
-        "channel: designer-channel-mystery-lore",
-        "Brief route now uses Decision Shell first",
+        "current artifact: fff-review-workbench-component-contract-001",
+        "source shell: fff-apply-decision-shell-guard-diet-001",
         "Bridge route remains the review handoff",
         "Layout Lab remains evidence only",
-        "Latest Overview and Home Cockpit remain below the shell"
+        "Legacy shelves remain below the Workbench"
       ],
       notices: [
-        "compact gate summary only",
-        "local UI, docs, screenshots, and smoke checks are allowed",
-        "Guard drawer stores long gate evidence",
+        "route nav is navigation only",
+        "dock overflow goes to drawers",
+        "Guard drawer stores gate evidence",
         "production actions still need explicit authorization"
       ],
       locks: [
+        "Gates closed",
         "provider/API closed",
         "credentials closed",
         "upload closed",
@@ -4716,10 +4937,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     const safetyGateRegistry = {
       compactSummary: [
-        "provider/API closed",
-        "credentials closed",
-        "AI video closed",
-        "render/upload closed"
+        "Gates closed"
       ],
       trueGates: [
         { gateId: "provider-api", label: "provider/API", state: "closed", detail: "No provider endpoint, model call, or API contract change is authorized." },
@@ -5101,6 +5319,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
 
     function renderAll() {
       currentModel = applyImportedModelOverrides(buildWorkbenchModel(memoInput.value || sampleMemo));
+      renderComponentRoleContracts();
       renderDecisionFlowModel();
       renderSafetyGateRegistry();
       renderExtractionContract(currentModel.extraction_contract);
@@ -5122,6 +5341,19 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       applyReviewFilters();
     }
 
+    function renderComponentRoleContracts() {
+      const entries = Object.entries(componentRoleContracts);
+      document.querySelectorAll("[data-component-role-contract='true']").forEach((root) => {
+        root.setAttribute("data-component-contract-count", String(entries.length));
+        root.setAttribute("data-component-contract-components", entries.map(([key]) => key).join(" "));
+      });
+      document.querySelectorAll("[data-component-contract-summary]").forEach((list) => {
+        list.innerHTML = entries
+          .map(([key, contract]) => `<li data-component-contract-key="${escapeHtml(key)}"><strong>${escapeHtml(key)}</strong>: ${escapeHtml(contract.role)}</li>`)
+          .join("");
+      });
+    }
+
     function renderDecisionFlowModel() {
       const modelRoots = Array.from(document.querySelectorAll("[data-decision-flow-model-root]"));
       modelRoots.forEach((root) => {
@@ -5140,9 +5372,9 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         const overflowList = root.querySelector("[data-dock-overflow-list]");
         const limits = {
           context: Number(root.querySelector("[data-dock-visible-context]")?.getAttribute("data-dock-visible-context") || 4),
-          pins: Number(root.querySelector("[data-dock-visible-pins]")?.getAttribute("data-dock-visible-pins") || 4),
-          notices: Number(root.querySelector("[data-dock-visible-notices]")?.getAttribute("data-dock-visible-notices") || 3),
-          locks: Number(root.querySelector("[data-dock-visible-locks]")?.getAttribute("data-dock-visible-locks") || 4)
+          pins: Number(root.querySelector("[data-dock-visible-pins]")?.getAttribute("data-dock-visible-pins") || 3),
+          notices: Number(root.querySelector("[data-dock-visible-notices]")?.getAttribute("data-dock-visible-notices") || 2),
+          locks: Number(root.querySelector("[data-dock-visible-locks]")?.getAttribute("data-dock-visible-locks") || 1)
         };
 
         if (questionNode) {
@@ -5185,13 +5417,13 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
             .join("");
         }
         if (pinList) {
-          pinList.innerHTML = decisionFlowModel.pins.slice(0, limits.pins).map((pin) => `<li>${escapeHtml(pin)}</li>`).join("");
+          pinList.innerHTML = decisionFlowModel.pins.slice(0, limits.pins).map((pin) => `<li data-pin-summary="true">${escapeHtml(pin)}</li>`).join("");
         }
         if (noticeList) {
-          noticeList.innerHTML = decisionFlowModel.notices.slice(0, limits.notices).map((notice) => `<li>${escapeHtml(notice)}</li>`).join("");
+          noticeList.innerHTML = decisionFlowModel.notices.slice(0, limits.notices).map((notice) => `<li data-notice-summary="true">${escapeHtml(notice)}</li>`).join("");
         }
         if (lockList) {
-          lockList.innerHTML = decisionFlowModel.locks.slice(0, limits.locks).map((lock) => `<li>${escapeHtml(lock)}</li>`).join("");
+          lockList.innerHTML = decisionFlowModel.locks.slice(0, limits.locks).map((lock) => `<li data-lock-summary="true">${escapeHtml(lock)}</li>`).join("");
         }
         if (overflowList) {
           const overflowItems = [

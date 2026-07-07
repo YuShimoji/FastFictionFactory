@@ -2,7 +2,7 @@
   "schemaVersion": "fff.applyDecisionShellGuardDiet.v1",
   "artifact_id": "fff-apply-decision-shell-guard-diet-001",
   "title": "Fast Fiction Factory Apply Decision Shell Guard Diet",
-  "generatedAt": "2026-07-07T08:16:33.178Z",
+  "generatedAt": "2026-07-07T09:46:17.486Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",
@@ -36,18 +36,18 @@
   "decision_flow_model_choice_count": 5,
   "decision_flow_model_step_count": 6,
   "decision_flow_model_context_count": 6,
-  "decision_flow_model_pin_count": 6,
+  "decision_flow_model_pin_count": 5,
   "decision_flow_model_notice_count": 4,
-  "decision_flow_model_lock_count": 8,
+  "decision_flow_model_lock_count": 9,
   "decision_next_action_label": "Bridgeで確認",
   "decision_next_action_route": "public/review/index.html?mode=bridge",
   "selected_candidate_id": "designer-content-moth-investigation-3m",
   "selected_channel_route_id": "designer-channel-mystery-lore",
   "dock_governor": {
     "enabled": true,
-    "max_visible_pins": 4,
-    "max_visible_notices": 3,
-    "max_visible_locks": 4,
+    "max_visible_pins": 3,
+    "max_visible_notices": 2,
+    "max_visible_locks": 1,
     "max_visible_context": 4,
     "overflow_drawer": true,
     "internal_scroll": true
@@ -160,7 +160,7 @@
     },
     "decision_shell_applied_to_brief_first": {
       "passed": true,
-      "detail": "shell=59223; guided=71811; latest=85414; firstCard=89969; markers=11/11"
+      "detail": "shell=61636; guided=74833; latest=88436; firstCard=92991; markers=11/11"
     },
     "split_pane_shell_structure": {
       "passed": true,
@@ -172,7 +172,7 @@
     },
     "dock_governor": {
       "passed": true,
-      "detail": "pins=6/4; notices=4/3; locks=8/4; context=6/4"
+      "detail": "pins=5/3; notices=4/2; locks=9/1; context=6/4"
     },
     "safety_gate_diet": {
       "passed": true,
@@ -184,11 +184,11 @@
     },
     "card_wall_not_default": {
       "passed": true,
-      "detail": "shell=59223; firstCard=89969; suppressed=4"
+      "detail": "shell=61636; firstCard=92991; suppressed=4"
     },
     "route_preservation": {
       "passed": true,
-      "detail": "routes=8/8; bridge=36529; layoutLab=36461"
+      "detail": "routes=8/8; bridge=39963; layoutLab=39895"
     },
     "visual_and_doc_evidence": {
       "passed": true,

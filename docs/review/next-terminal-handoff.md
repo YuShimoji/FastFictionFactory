@@ -2,15 +2,19 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-07 JST for `fff-apply-decision-shell-guard-diet-001`.
+Latest handoff refresh: 2026-07-07 JST for `fff-review-workbench-component-contract-001`.
 This restart/readback refresh starts from synced `master` and makes
-`fff-apply-decision-shell-guard-diet-001` the active review checkpoint. The
-package applies the Split-pane Decision Shell to
-`public/review/index.html?mode=brief`, preserves
+`fff-review-workbench-component-contract-001` the active review checkpoint. The
+package converts the default `brief` first screen into a role-contracted Review
+Workbench with a single framing source, compact route navigation, bounded
+Context Dock, duplication budget, component complement rule, and collapsed
+operator utility drawer. It keeps `fff-apply-decision-shell-guard-diet-001` as
+the source shell, preserves
 `public/review/index.html?mode=layout-lab` as source evidence, preserves
 `public/review/index.html?mode=bridge` as the next-action route, and records the
-local screenshot `artifacts/review-screens/brief-decision-shell-applied.png`.
-It preserves the visual source checkpoint `fff-layout-lab-visual-audit-001`,
+local screenshot `artifacts/review-screens/brief-component-contract-workbench.png`.
+It preserves the applied source checkpoint `fff-apply-decision-shell-guard-diet-001`,
+the visual source checkpoint `fff-layout-lab-visual-audit-001`,
 source layout research `fff-layout-research-decision-shell-001`, and also preserves
 `fff-low-text-decision-console-001`,
 `fff-guided-review-flow-workspace-001`,
@@ -49,13 +53,13 @@ that contains this visual audit package.
 ## Latest Remote Publish Snapshot
 
 - Branch: `master`
-- Active artifact: `fff-apply-decision-shell-guard-diet-001`
+- Active artifact: `fff-review-workbench-component-contract-001`
 - Remote parity before this package: `HEAD...origin/master = 0 0`
 - Baseline remote head before this package: synced `master` before local edits
 - Worktree state before this package: product tree synced
-- User-side review evidence now: `public/review/index.html?mode=brief`, `artifacts/review-screens/brief-decision-shell-applied.png`, and prior `artifacts/layout-lab-visual-audit-contact-sheet.png`
+- User-side review evidence now: `public/review/index.html?mode=brief`, `artifacts/review-screens/brief-component-contract-workbench.png`, `artifacts/review-workbench-component-contract-result.json`, and prior `artifacts/layout-lab-visual-audit-contact-sheet.png`
 - Preserved operator route: `public/review/index.html?mode=bridge`
-- Review decision needed next: use the applied brief Shell to choose whether to advance to Bridge refinement, revise narration/subtitle/thumbnail, or reopen held-truth review
+- Review decision needed next: use the role-contracted Workbench to choose whether to advance Bridge refinement, audit remaining first-screen duplication, excise stale preserved shelves, or verify route preservation
 - Locked lanes: provider/API, credentials, AI video generation, production render, upload, rights-clearance claim, database persistence, and final canon
 
 ## Start Here
@@ -84,6 +88,9 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/review-workbench-component-contract.md
+artifacts/review-workbench-component-contract-result.json
+artifacts/review-screens/brief-component-contract-workbench.png
 docs/review/apply-decision-shell-guard-diet.md
 artifacts/apply-decision-shell-guard-diet-result.json
 artifacts/review-screens/brief-decision-shell-applied.png
@@ -211,10 +218,11 @@ Use the `uvx` form if the default Windows Python launcher is unavailable or poin
 
 ## Current Project State
 
-- Active artifact: `fff-apply-decision-shell-guard-diet-001`
+- Active artifact: `fff-review-workbench-component-contract-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Review Workbench Component Contract doc/result/screenshot: `docs/review/review-workbench-component-contract.md`, `artifacts/review-workbench-component-contract-result.json`, `artifacts/review-screens/brief-component-contract-workbench.png`
 - Apply Decision Shell Guard Diet doc/result/screenshot: `docs/review/apply-decision-shell-guard-diet.md`, `artifacts/apply-decision-shell-guard-diet-result.json`, `artifacts/review-screens/brief-decision-shell-applied.png`
 - Layout Lab Visual Audit doc/result/contact sheet: `docs/review/layout-lab-visual-audit.md`, `artifacts/layout-lab-visual-audit-result.json`, `artifacts/layout-lab-visual-audit-contact-sheet.png`
 - Layout Lab Visual Audit screenshots: `artifacts/review-screens/layout-lab.png`, `artifacts/review-screens/layout-lab-decision-shell.png`, `artifacts/review-screens/brief-preserved.png`, `artifacts/review-screens/bridge-preserved.png`
@@ -327,14 +335,15 @@ The current artifact applies the split-pane Decision Shell to `brief` while pres
 
 ## Validation Readback
 
-The active Apply Decision Shell Guard Diet smoke validates `fff-apply-decision-shell-guard-diet-001` while preserving the source Layout Lab Visual Audit, Layout Research Decision Shell, Low-text Decision Console, Guided Review Flow, Latest Overview Report, Home Cockpit, Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the applied Shell.
+The active Review Workbench Component Contract smoke validates `fff-review-workbench-component-contract-001` while preserving the applied Decision Shell source, Layout Lab Visual Audit, Layout Research Decision Shell, Low-text Decision Console, Guided Review Flow, Latest Overview Report, Home Cockpit, Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the Workbench shell.
 
-Current apply-shell checks passed in this refresh; the broader preserved readback list below remains useful when those underlying contracts change:
+Current Workbench checks passed in this refresh; the broader preserved readback list below remains useful when those underlying contracts change:
 
 - `git fetch --prune origin`
 - `git status --short --branch --untracked-files=all`
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on the synced baseline before this slice.
 - `node --check tools/fff-state.mjs`
+- `node tools/fff-state.mjs smoke-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json artifacts/review-workbench-component-contract-result.json`
 - `node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet artifacts/apply-decision-shell-guard-diet-result.json artifacts/apply-decision-shell-guard-diet-result.json`
 - `node tools/fff-state.mjs smoke-layout-lab-visual-audit artifacts/layout-lab-visual-audit-result.json artifacts/layout-lab-visual-audit-result.json`
 - Static HTML marker check for applied Decision Shell, Dock Governor, Safety Gate Diet, non-gate whitelist, preserved `layout-lab`, preserved `bridge`, `decisionFlowModel`, `safetyGateRegistry`, and locked production/provider/canon boundary copy
@@ -417,7 +426,8 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
-| Apply Decision Shell Guard Diet | Make the default review route decision-first without reopening production gates | `fff-apply-decision-shell-guard-diet-001` is active; `brief` starts with the applied Shell, Dock Governor, compact gate registry, and Guard drawer while `bridge` and `layout-lab` remain preserved | Human reviewer should use `public/review/index.html?mode=brief` to choose advance, narration, subtitle, thumbnail, or held-truth follow-up |
+| Review Workbench Component Contract | Make the default review route feel like one coordinated Workbench rather than movable cards | `fff-review-workbench-component-contract-001` is active; `brief` starts with process rail only, active decision only, Context Dock only, and Evidence / Notes / Inspiration / Guard drawers while `bridge` and `layout-lab` remain preserved | Human reviewer should use `public/review/index.html?mode=brief` to judge role clarity, then choose Advance, Audit, Excise, or Verify follow-up |
+| Apply Decision Shell Guard Diet | Keep the default review route decision-first without reopening production gates | `fff-apply-decision-shell-guard-diet-001` is preserved as the source shell; Decision Flow Model, Dock Governor, compact gate registry, and Guard drawer remain intact under the Workbench contract | Reopen only if the Workbench contract breaks the applied Shell behavior |
 | Layout Lab Visual Audit | Preserve visual evidence for why the default review route changed | `fff-layout-lab-visual-audit-001` is source evidence; the contact sheet and four screenshots show `layout-lab`, Split-pane Decision Shell detail, preserved `brief`, and preserved `bridge` with all production/provider/canon gates closed | Reopen only if the applied Shell needs a layout revision |
 | Layout Research Decision Shell | Decide whether the review UI should move beyond card-first layout before more content refinement | `fff-layout-research-decision-shell-001` is the preserved source; `layout-lab` compares Card-first, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow, recommends the split-pane Decision Shell, and keeps all production/provider/canon gates closed | Use this as the design source if the visual audit is revised or if the reviewer needs the route-level rationale |
 | Guided Review Flow Workspace | Put one review sequence before overview and card shelves | `fff-guided-review-flow-workspace-001` is preserved below the low-text console and layout research readback; no-query access still keeps Decision Queue, one Bridge action, Pinned Tray, Operations Notice, Important Folders, Inspiration Workspace, Bridge Guided Flow, and closed production lanes | Use as supporting structure if the Decision Shell is accepted or if `brief` wording needs regression comparison |

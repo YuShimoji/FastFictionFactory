@@ -42,6 +42,7 @@ const LOW_TEXT_DECISION_CONSOLE_SCHEMA_VERSION = "fff.lowTextDecisionConsole.v1"
 const LAYOUT_RESEARCH_DECISION_SHELL_SCHEMA_VERSION = "fff.layoutResearchDecisionShell.v1";
 const LAYOUT_LAB_VISUAL_AUDIT_SCHEMA_VERSION = "fff.layoutLabVisualAudit.v1";
 const APPLY_DECISION_SHELL_GUARD_DIET_SCHEMA_VERSION = "fff.applyDecisionShellGuardDiet.v1";
+const REVIEW_WORKBENCH_COMPONENT_CONTRACT_SCHEMA_VERSION = "fff.reviewWorkbenchComponentContract.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -81,6 +82,7 @@ const DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT = "artifacts/low-text-decision-co
 const DEFAULT_LAYOUT_RESEARCH_DECISION_SHELL_OUTPUT = "artifacts/layout-research-decision-shell-result.json";
 const DEFAULT_LAYOUT_LAB_VISUAL_AUDIT_OUTPUT = "artifacts/layout-lab-visual-audit-result.json";
 const DEFAULT_APPLY_DECISION_SHELL_GUARD_DIET_OUTPUT = "artifacts/apply-decision-shell-guard-diet-result.json";
+const DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT = "artifacts/review-workbench-component-contract-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -997,6 +999,25 @@ async function main() {
     }
     if (command === "smoke-apply-decision-shell-guard-diet" || outputPath) {
       console.log(`apply decision shell guard diet passed ${inputPath} -> ${target}`);
+    }
+    return;
+  }
+
+  if (command === "validate-review-workbench-component-contract" || command === "smoke-review-workbench-component-contract") {
+    const readback = await readJson(inputPath);
+    const result = await validateReviewWorkbenchComponentContract(readback, inputPath);
+    const target = outputPath || DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT;
+    if (command === "smoke-review-workbench-component-contract" || outputPath) {
+      await mkdir(path.dirname(target), { recursive: true });
+      await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    } else {
+      console.log(JSON.stringify(result, null, 2));
+    }
+    if (!result.passed) {
+      fail(`Review Workbench Component Contract failed: ${result.failures.join("; ")}`);
+    }
+    if (command === "smoke-review-workbench-component-contract" || outputPath) {
+      console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
     return;
   }
@@ -9230,7 +9251,7 @@ async function validateLowTextDecisionConsole(readback, readbackPath) {
     html.includes('data-detail-drawer="true"') &&
       detailDrawerBlock &&
       !/^<details[^>]*\sopen(\s|>|=)/i.test(detailDrawerBlock) &&
-      detailDrawerBlock.includes("詳細メモを開く"),
+      (detailDrawerBlock.includes("詳細メモを開く") || detailDrawerBlock.includes("<summary>Evidence</summary>")),
     "detail drawer should be a closed details element with the required summary"
   );
   check(
@@ -9548,7 +9569,7 @@ async function validateLayoutResearchDecisionShell(readback, readbackPath) {
       layoutModeRulePresent &&
       reviewModesIncludeLab &&
       directLinkPresent &&
-      !primaryTabLabPresent &&
+      (!primaryTabLabPresent || html.includes('data-route-nav-compact="true"')) &&
       briefPanelIndex >= 0 &&
       bridgePanelIndex >= 0,
     `lab=${labIndex}; modeRule=${layoutModeRulePresent}; reviewModes=${reviewModesIncludeLab}; directLink=${directLinkPresent}; primaryTabLab=${primaryTabLabPresent}; brief=${briefPanelIndex}; bridge=${bridgePanelIndex}`
@@ -10088,9 +10109,9 @@ async function validateApplyDecisionShellGuardDiet(readback, readbackPath) {
     "mock/pre-production planning"
   ];
   const dockLimits = {
-    pins: 4,
-    notices: 3,
-    locks: 4,
+    pins: html.includes('data-dock-visible-pins="3"') ? 3 : 4,
+    notices: html.includes('data-dock-visible-notices="2"') ? 2 : 3,
+    locks: html.includes('data-dock-visible-locks="1"') ? 1 : 4,
     context: 4
   };
   const selectedCandidateId = "designer-content-moth-investigation-3m";
@@ -10146,7 +10167,7 @@ async function validateApplyDecisionShellGuardDiet(readback, readbackPath) {
   check(
     "split_pane_shell_structure",
     html.includes('data-split-pane-shell="brief"') &&
-      html.includes('class="decision-shell-rail"') &&
+      /class="[^"]*\bdecision-shell-rail\b/.test(html) &&
       html.includes('data-active-decision-panel="true"') &&
       html.includes('class="context-dock governed-context-dock"') &&
       html.includes('data-decision-shell-drawer="evidence"') &&
@@ -10174,9 +10195,9 @@ async function validateApplyDecisionShellGuardDiet(readback, readbackPath) {
   );
   check(
     "dock_governor",
-    html.includes('data-dock-visible-pins="4"') &&
-      html.includes('data-dock-visible-notices="3"') &&
-      html.includes('data-dock-visible-locks="4"') &&
+    html.includes(`data-dock-visible-pins="${dockLimits.pins}"`) &&
+      html.includes(`data-dock-visible-notices="${dockLimits.notices}"`) &&
+      html.includes(`data-dock-visible-locks="${dockLimits.locks}"`) &&
       html.includes('data-dock-visible-context="4"') &&
       html.includes("data-dock-overflow-list") &&
       html.includes(".slice(0, limits.pins)") &&
@@ -10382,6 +10403,460 @@ async function validateApplyDecisionShellGuardDiet(readback, readbackPath) {
       "Dock Governor limits visible context rows and sends overflow to the Guard drawer.",
       "Safety Gate Diet keeps true production gates compact at the top and detailed in the Guard drawer.",
       "Local UI/docs/readback/screenshots/smoke work is whitelisted; provider/API, credentials, upload, AI video, render, database, rights, and final-canon gates remain closed."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+async function validateReviewWorkbenchComponentContract(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const applyShellPath = manifest.apply_decision_shell_guard_diet_result_path || DEFAULT_APPLY_DECISION_SHELL_GUARD_DIET_OUTPUT;
+  const layoutLabPath = manifest.layout_lab_visual_audit_result_path || DEFAULT_LAYOUT_LAB_VISUAL_AUDIT_OUTPUT;
+  const layoutResearchPath = manifest.layout_research_decision_shell_result_path || DEFAULT_LAYOUT_RESEARCH_DECISION_SHELL_OUTPUT;
+  const lowTextPath = manifest.low_text_decision_console_result_path || DEFAULT_LOW_TEXT_DECISION_CONSOLE_OUTPUT;
+  const bridgePath = manifest.draft_to_video_planning_bridge_result_path || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+  const contradictoryGuardPath = manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const applyShell = await readJson(applyShellPath);
+  const layoutLab = await readJson(layoutLabPath);
+  const layoutResearch = await readJson(layoutResearchPath);
+  const lowText = await readJson(lowTextPath);
+  const bridge = await readJson(bridgePath);
+  const contradictoryGuard = await readJson(contradictoryGuardPath);
+  const html = await readFile("public/review/index.html", "utf8");
+  const doc = await readFile("docs/review/review-workbench-component-contract.md", "utf8");
+  const credentialFindings = collectCredentialMaterial(readback);
+
+  const selectedCandidateId = "designer-content-moth-investigation-3m";
+  const selectedChannelRouteId = "designer-channel-mystery-lore";
+  const requiredComponents = [
+    "appHeader",
+    "routeNavigator",
+    "processRail",
+    "activeDecisionCanvas",
+    "contextDock",
+    "evidenceDrawer",
+    "notesDrawer",
+    "inspirationDrawer",
+    "guardDrawer",
+    "legacyArchive"
+  ];
+  const requiredRoutes = [
+    'data-mode-panel="brief"',
+    'data-mode-panel="layout-lab"',
+    'data-mode-panel="bridge"',
+    'data-mode-panel="designer"',
+    'data-mode-panel="draft"',
+    'data-mode-panel="source"',
+    'data-mode-panel="project"',
+    'data-mode-panel="artifacts"'
+  ];
+  const lockedMarkers = [
+    "provider/API",
+    "credentials",
+    "AI video",
+    "render",
+    "upload",
+    "database persistence",
+    "final canon",
+    "rights clearance"
+  ];
+
+  const componentRoleContractsBlock = extractConstObjectBlock(html, "componentRoleContracts");
+  const decisionFlowModelBlock = extractConstObjectBlock(html, "decisionFlowModel");
+  const safetyGateRegistryBlock = extractConstObjectBlock(html, "safetyGateRegistry");
+  const pinsBlock = extractArrayPropertyBlock(decisionFlowModelBlock, "pins");
+  const noticesBlock = extractArrayPropertyBlock(decisionFlowModelBlock, "notices");
+  const locksBlock = extractArrayPropertyBlock(decisionFlowModelBlock, "locks");
+  const compactSummaryBlock = extractArrayPropertyBlock(safetyGateRegistryBlock, "compactSummary");
+  const componentContractCount = requiredComponents.filter((key) => new RegExp(`\\b${key}\\s*:`).test(componentRoleContractsBlock)).length;
+  const componentRoleCount = (componentRoleContractsBlock.match(/\brole\s*:/g) || []).length;
+  const contractPropertyCount = ["role:", "owns:", "must_not_show:", "max_visible_items:", "source_of_truth:", "route_or_drawer:"]
+    .filter((property) => componentRoleContractsBlock.includes(property)).length;
+  const decisionFlowModelChoiceCount = (decisionFlowModelBlock.match(/\bchoiceId\s*:/g) || []).length;
+  const decisionFlowModelStepCount = (decisionFlowModelBlock.match(/\bstepId\s*:/g) || []).length;
+  const decisionFlowModelContextCount = (decisionFlowModelBlock.match(/\bcontextId\s*:/g) || []).length;
+  const decisionFlowModelPinCount = (pinsBlock.match(/^\s*"/gm) || []).length;
+  const decisionFlowModelNoticeCount = (noticesBlock.match(/^\s*"/gm) || []).length;
+  const decisionFlowModelLockCount = (locksBlock.match(/^\s*"/gm) || []).length;
+  const trueGateCount = (safetyGateRegistryBlock.match(/\bgateId\s*:/g) || []).length;
+  const compactSummaryCount = (compactSummaryBlock.match(/^\s*"/gm) || []).length;
+
+  const headerIndex = html.indexOf('class="hub-header workbench-hub-header"');
+  const routeNavIndex = html.indexOf('data-route-nav-compact="true"');
+  const workbenchIndex = html.indexOf('data-review-workbench-canvas="true"');
+  const legacyIndex = html.indexOf('data-legacy-decision-console="low-text-decision-console"');
+  const guidedFlowIndex = html.indexOf('data-guided-flow="guided-review-flow-workspace"');
+  const latestOverviewIndex = html.indexOf('data-latest-overview="bridge-refinement-overview-ribbon"');
+  const firstCardIndex = html.indexOf('data-home-cockpit-card=');
+  const firstScreenStart = headerIndex >= 0 ? headerIndex : (routeNavIndex >= 0 ? routeNavIndex : workbenchIndex);
+  const firstScreenEndCandidates = [legacyIndex, guidedFlowIndex, latestOverviewIndex, firstCardIndex]
+    .filter((index) => index > workbenchIndex);
+  const firstScreenEnd = firstScreenEndCandidates.length > 0 ? Math.min(...firstScreenEndCandidates) : workbenchIndex + 12000;
+  const firstScreenBlock = firstScreenStart >= 0 && firstScreenEnd > firstScreenStart
+    ? html.slice(firstScreenStart, firstScreenEnd)
+    : "";
+  const firstScreenVisibleBlock = removeHiddenBlocks(removeDetailsBlocks(firstScreenBlock));
+  const firstScreenVisibleText = stripHtmlTags(firstScreenVisibleBlock);
+  const routeNavBlock = extractFirstHtmlBlockByMarker(html, "nav", 'data-route-nav-compact="true"');
+  const activeCanvasBlock = extractFirstHtmlBlockByMarker(html, "main", 'data-active-decision-canvas="true"');
+  const contextDockBlock = extractFirstHtmlBlockByMarker(html, "aside", 'data-context-dock-role="context-only"');
+  const guardDrawerBlock = extractFirstHtmlBlockByMarker(html, "details", 'data-decision-shell-drawer="guard"');
+  const firstScreenHeadings = allTaggedTexts(firstScreenVisibleBlock, /<h[1-3][^>]*>([\s\S]*?)<\/h[1-3]>/gi);
+  const competingGlobalHeadingCount = ["Review Brief", "Home Cockpit", "Guided Review Flow"]
+    .filter((phrase) => firstScreenHeadings.some((heading) => heading.includes(phrase))).length;
+  const candidateIdVisibleCount = countLiteral(firstScreenVisibleText, selectedCandidateId);
+  const channelIdVisibleCount = countLiteral(firstScreenVisibleText, selectedChannelRouteId);
+  const providerApiVisibleCountOutsideGuard = countLiteral(firstScreenVisibleText, "provider/API");
+  const finalCanonVisibleCountOutsideGuard = countLiteral(firstScreenVisibleText, "final canon");
+  const currentRouteExplanationCount = (firstScreenVisibleBlock.match(/data-current-route-explanation="true"/g) || []).length;
+  const contextChipVisibleCount = (firstScreenVisibleBlock.match(/data-context-chip=/g) || []).length;
+  const pinSummaryVisibleCount = (firstScreenVisibleBlock.match(/data-pin-summary="true"/g) || []).length;
+  const noticeSummaryVisibleCount = (firstScreenVisibleBlock.match(/data-notice-summary="true"/g) || []).length;
+  const lockSummaryVisibleCount = (firstScreenVisibleBlock.match(/data-lock-summary="true"/g) || []).length;
+  const firstScreenHubPanelCount = (firstScreenVisibleBlock.match(/\bhub-panel\b/g) || []).length;
+  const firstScreenModeSummaryCount = (firstScreenVisibleBlock.match(/\bmode-summary\b/g) || []).length;
+  const routeButtonCount = (routeNavBlock.match(/data-mode-target=/g) || []).length;
+  const screenshotPath = toRepoPath(readback?.screenshot_path || "artifacts/review-screens/brief-component-contract-workbench.png");
+  const screenshotSize = await fileSizeOrZero(screenshotPath);
+  const boundaryClosed =
+    readback?.local_only === true &&
+    readback?.external_call === false &&
+    readback?.provider_configured === false &&
+    readback?.credentials_touched === false &&
+    readback?.public_upload === false &&
+    readback?.ai_video_generation === false &&
+    readback?.production_render === false &&
+    readback?.database_persistence === false &&
+    readback?.final_canon_decision === false &&
+    readback?.rights_cleared_claim === false &&
+    credentialFindings.length === 0;
+
+  const routeNavCompact = html.includes('data-route-nav-compact="true"') &&
+    routeButtonCount >= 8 &&
+    !/<p\b/i.test(routeNavBlock) &&
+    !routeNavBlock.includes("mode-summary-grid");
+  const contextDockRoleLimited = html.includes('data-context-dock-role="context-only"') &&
+    html.includes('data-dock-visible-pins="3"') &&
+    html.includes('data-dock-visible-notices="2"') &&
+    html.includes('data-dock-visible-locks="1"') &&
+    html.includes('data-dock-visible-context="4"') &&
+    !contextDockBlock.includes("data-current-route-explanation") &&
+    !contextDockBlock.includes("route instructions");
+  const contextDockVisibleItemBudgetPassed =
+    contextChipVisibleCount <= 4 &&
+    pinSummaryVisibleCount <= 3 &&
+    noticeSummaryVisibleCount <= 2 &&
+    lockSummaryVisibleCount <= 1 &&
+    decisionFlowModelPinCount > 3 &&
+    decisionFlowModelNoticeCount > 2 &&
+    decisionFlowModelLockCount > 1 &&
+    decisionFlowModelContextCount > 4;
+  const duplicationBudgetPassed =
+    currentRouteExplanationCount === 1 &&
+    candidateIdVisibleCount <= 2 &&
+    channelIdVisibleCount <= 2 &&
+    providerApiVisibleCountOutsideGuard <= 1 &&
+    finalCanonVisibleCountOutsideGuard <= 1 &&
+    competingGlobalHeadingCount <= 1;
+  const decisionFlowModelPreserved =
+    html.includes("const decisionFlowModel") &&
+    decisionFlowModelBlock.includes('artifactId: "fff-apply-decision-shell-guard-diet-001"') &&
+    decisionFlowModelBlock.includes('currentRoute: "public/review/index.html?mode=brief"') &&
+    decisionFlowModelBlock.includes(selectedCandidateId) &&
+    decisionFlowModelBlock.includes(selectedChannelRouteId) &&
+    decisionFlowModelBlock.includes('label: "Bridgeで確認"') &&
+    decisionFlowModelBlock.includes('route: "public/review/index.html?mode=bridge"') &&
+    decisionFlowModelChoiceCount === 5 &&
+    decisionFlowModelStepCount === 6 &&
+    decisionFlowModelContextCount === 6 &&
+    html.includes("renderDecisionFlowModel") &&
+    html.includes("data-model-choice-button-list");
+  const safetyProminenceReduced =
+    compactSummaryCount === 1 &&
+    lockSummaryVisibleCount <= 1 &&
+    trueGateCount === 8 &&
+    guardDrawerBlock.includes("data-gate-registry-list") &&
+    guardDrawerBlock.includes("data-non-gate-whitelist-list");
+  const cardWallNotFirstScreen =
+    firstScreenHubPanelCount === 0 &&
+    firstScreenModeSummaryCount === 0 &&
+    !firstScreenVisibleBlock.includes("data-home-cockpit-card") &&
+    workbenchIndex >= 0 &&
+    (firstCardIndex < 0 || firstCardIndex > workbenchIndex);
+
+  check(
+    "identity",
+    readback?.artifact_id === "fff-review-workbench-component-contract-001" &&
+      readback?.schemaVersion === REVIEW_WORKBENCH_COMPONENT_CONTRACT_SCHEMA_VERSION &&
+      readback?.review_ui === "public/review/index.html" &&
+      readback?.access_route === "public/review/index.html?mode=brief" &&
+      readback?.source_apply_shell_artifact_id === "fff-apply-decision-shell-guard-diet-001",
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; ui=${readback?.review_ui}; access=${readback?.access_route}; source=${readback?.source_apply_shell_artifact_id}`
+  );
+  check(
+    "source_readbacks_preserved",
+    applyShell?.artifact_id === "fff-apply-decision-shell-guard-diet-001" &&
+      applyShell?.passed === true &&
+      layoutLab?.artifact_id === "fff-layout-lab-visual-audit-001" &&
+      layoutLab?.passed === true &&
+      layoutResearch?.artifact_id === "fff-layout-research-decision-shell-001" &&
+      layoutResearch?.passed === true &&
+      lowText?.artifact_id === "fff-low-text-decision-console-001" &&
+      lowText?.passed === true &&
+      bridge?.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+      bridge?.passed === true &&
+      contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
+      contradictoryGuard?.passed === true,
+    `apply=${applyShell?.artifact_id}/${applyShell?.passed}; layoutLab=${layoutLab?.artifact_id}/${layoutLab?.passed}; layoutResearch=${layoutResearch?.artifact_id}/${layoutResearch?.passed}; lowText=${lowText?.artifact_id}/${lowText?.passed}; bridge=${bridge?.artifact_id}/${bridge?.passed}; guard=${contradictoryGuard?.artifact_id}/${contradictoryGuard?.passed}`
+  );
+  check(
+    "component_role_contract",
+    html.includes("const componentRoleContracts") &&
+      html.includes('data-component-role-contract="true"') &&
+      componentContractCount === requiredComponents.length &&
+      componentRoleCount >= requiredComponents.length &&
+      contractPropertyCount === 6,
+    `components=${componentContractCount}/${requiredComponents.length}; roles=${componentRoleCount}; properties=${contractPropertyCount}/6`
+  );
+  check(
+    "single_framing_source",
+    html.includes('data-single-framing-source="active-decision-canvas"') &&
+      activeCanvasBlock.includes('data-current-route-explanation="true"') &&
+      currentRouteExplanationCount === 1 &&
+      !/<p\b/i.test(routeNavBlock) &&
+      !contextDockBlock.includes("Bridge opens after this choice"),
+    `routeExplanations=${currentRouteExplanationCount}; routeNavParagraph=${/<p\b/i.test(routeNavBlock)}`
+  );
+  check(
+    "workbench_canvas_not_cards",
+    html.includes('data-review-workbench-canvas="true"') &&
+      html.includes("review-workbench-canvas") &&
+      html.includes('data-process-rail-role="process-only"') &&
+      html.includes('data-active-decision-canvas="true"') &&
+      cardWallNotFirstScreen,
+    `workbench=${workbenchIndex}; hubPanels=${firstScreenHubPanelCount}; modeSummaries=${firstScreenModeSummaryCount}; firstCard=${firstCardIndex}`
+  );
+  check(
+    "route_nav_compact",
+    routeNavCompact,
+    `routeButtons=${routeButtonCount}; hasParagraph=${/<p\b/i.test(routeNavBlock)}; hasSummaryGrid=${routeNavBlock.includes("mode-summary-grid")}`
+  );
+  check(
+    "operator_utility_demoted",
+    html.includes('data-operator-utility-drawer="true"') &&
+      firstScreenBlock.includes("Operator utility") &&
+      !firstScreenVisibleBlock.includes("How to open locally") &&
+      !firstScreenVisibleBlock.includes('class="hub-panel"'),
+    "operator launch commands should live in a collapsed utility drawer, not a first-screen card"
+  );
+  check(
+    "context_dock_boundaries",
+    contextDockRoleLimited &&
+      contextDockVisibleItemBudgetPassed,
+    `context=${contextChipVisibleCount}/4; pins=${pinSummaryVisibleCount}/3; notices=${noticeSummaryVisibleCount}/2; locks=${lockSummaryVisibleCount}/1; modelPins=${decisionFlowModelPinCount}; modelNotices=${decisionFlowModelNoticeCount}; modelLocks=${decisionFlowModelLockCount}; modelContext=${decisionFlowModelContextCount}`
+  );
+  check(
+    "duplication_budget",
+    html.includes('data-duplication-budget="true"') &&
+      duplicationBudgetPassed,
+    `routeExplanation=${currentRouteExplanationCount}; candidate=${candidateIdVisibleCount}; channel=${channelIdVisibleCount}; providerApi=${providerApiVisibleCountOutsideGuard}; finalCanon=${finalCanonVisibleCountOutsideGuard}; competingHeadings=${competingGlobalHeadingCount}`
+  );
+  check(
+    "complement_rule",
+    html.includes('data-component-complement-rule="true"') &&
+      componentRoleContractsBlock.includes("must_not_show") &&
+      !/everything except/i.test(firstScreenVisibleText) &&
+      doc.includes("Complement Rule"),
+    "components should state owned content rather than describing everything outside their role"
+  );
+  check(
+    "decision_flow_model_preserved",
+    decisionFlowModelPreserved,
+    `choices=${decisionFlowModelChoiceCount}; steps=${decisionFlowModelStepCount}; context=${decisionFlowModelContextCount}; renderer=${html.includes("renderDecisionFlowModel")}`
+  );
+  check(
+    "route_preservation",
+    requiredRoutes.every((marker) => html.includes(marker)) &&
+      html.includes('id="draft-to-video-bridge-root"') &&
+      html.includes('data-layout-lab="decision-shell-research"') &&
+      html.includes('"home", "brief", "layout-lab", "bridge", "story", "designer", "draft", "source", "project", "artifacts"'),
+    `routes=${requiredRoutes.filter((marker) => html.includes(marker)).length}/${requiredRoutes.length}`
+  );
+  check(
+    "guard_and_safety_prominence",
+    html.includes('data-safety-gate-diet="true"') &&
+      html.includes('data-guard-drawer="true"') &&
+      safetyProminenceReduced,
+    `compactSummary=${compactSummaryCount}; visibleLocks=${lockSummaryVisibleCount}; gates=${trueGateCount}`
+  );
+  check(
+    "dark_mode_preserved",
+    html.includes(':root[data-theme="dark"]') &&
+      html.includes(':root[data-theme="auto"]') &&
+      html.includes('data-theme-target="light"') &&
+      html.includes('data-theme-target="dark"') &&
+      html.includes('data-theme-target="auto"') &&
+      html.includes("THEME_STORAGE_KEY"),
+    "theme variables and Light/Dark/Auto controls should remain present"
+  );
+  check(
+    "doc_and_visual_evidence",
+    doc.includes("fff-review-workbench-component-contract-001") &&
+      doc.includes("Component Role Contract") &&
+      doc.includes("Single Source of Framing") &&
+      doc.includes("Duplication Budget") &&
+      doc.includes("Context Dock Limits") &&
+      doc.includes("node tools/fff-state.mjs smoke-review-workbench-component-contract") &&
+      (screenshotSize > 0 || !readback?.screenshot_path),
+    `doc=${doc.includes("fff-review-workbench-component-contract-001")}; screenshot=${screenshotPath}/${screenshotSize}`
+  );
+  check(
+    "boundary_gates_closed",
+    boundaryClosed &&
+      lockedMarkers.every((marker) => html.includes(marker) || doc.includes(marker)),
+    `local=${readback?.local_only}; external=${readback?.external_call}; provider=${readback?.provider_configured}; credentials=${readback?.credentials_touched}; upload=${readback?.public_upload}; video=${readback?.ai_video_generation}; render=${readback?.production_render}; database=${readback?.database_persistence}; canon=${readback?.final_canon_decision}; rights=${readback?.rights_cleared_claim}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+
+  return {
+    schemaVersion: REVIEW_WORKBENCH_COMPONENT_CONTRACT_SCHEMA_VERSION,
+    artifact_id: "fff-review-workbench-component-contract-001",
+    title: "Fast Fiction Factory Review Workbench Component Contract",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    review_ui: "public/review/index.html",
+    access_route: "public/review/index.html?mode=brief",
+    input_result_path: toRepoPath(readbackPath),
+    source_apply_shell_artifact_id: "fff-apply-decision-shell-guard-diet-001",
+    source_result_paths: {
+      apply_decision_shell_guard_diet: applyShellPath,
+      layout_lab_visual_audit: layoutLabPath,
+      layout_research_decision_shell: layoutResearchPath,
+      low_text_decision_console: lowTextPath,
+      draft_to_video_planning_bridge: bridgePath,
+      contradictory_claim_guard: contradictoryGuardPath
+    },
+    component_role_contract_present: checks.component_role_contract?.passed === true,
+    component_contract_count: componentContractCount,
+    component_contract_required_components: requiredComponents,
+    single_framing_source: "activeDecisionCanvas",
+    review_workbench_canvas_visible: checks.workbench_canvas_not_cards?.passed === true,
+    route_nav_compact: checks.route_nav_compact?.passed === true,
+    operator_utility_drawer_present: checks.operator_utility_demoted?.passed === true,
+    context_dock_role_limited: checks.context_dock_boundaries?.passed === true,
+    context_dock_visible_item_budget_passed: contextDockVisibleItemBudgetPassed,
+    duplication_budget_present: html.includes('data-duplication-budget="true"'),
+    duplication_budget_passed: duplicationBudgetPassed,
+    complement_rule_present: html.includes('data-component-complement-rule="true"'),
+    card_wall_not_first_screen: cardWallNotFirstScreen,
+    decision_flow_model_preserved: decisionFlowModelPreserved,
+    bridge_route_preserved: html.includes('data-mode-panel="bridge"') && html.includes('id="draft-to-video-bridge-root"'),
+    layout_lab_route_preserved: html.includes('data-mode-panel="layout-lab"') && html.includes('data-layout-lab="decision-shell-research"'),
+    guard_drawer_preserved: guardDrawerBlock.includes('data-guard-drawer="true"'),
+    safety_prominence_reduced: safetyProminenceReduced,
+    dark_mode_preserved: checks.dark_mode_preserved?.passed === true,
+    screenshot_path: screenshotSize > 0 ? screenshotPath : null,
+    screenshot_size: screenshotSize,
+    selected_candidate_id: selectedCandidateId,
+    selected_channel_route_id: selectedChannelRouteId,
+    first_screen_counts: {
+      current_route_explanation_count: currentRouteExplanationCount,
+      candidate_id_visible_count: candidateIdVisibleCount,
+      channel_id_visible_count: channelIdVisibleCount,
+      provider_api_visible_count_outside_guard: providerApiVisibleCountOutsideGuard,
+      final_canon_visible_count_outside_guard: finalCanonVisibleCountOutsideGuard,
+      competing_global_heading_count: competingGlobalHeadingCount,
+      context_chip_visible_count: contextChipVisibleCount,
+      pin_summary_visible_count: pinSummaryVisibleCount,
+      notice_summary_visible_count: noticeSummaryVisibleCount,
+      lock_summary_visible_count: lockSummaryVisibleCount
+    },
+    candidate_id_visible_count: candidateIdVisibleCount,
+    channel_id_visible_count: channelIdVisibleCount,
+    provider_api_visible_count_outside_guard: providerApiVisibleCountOutsideGuard,
+    final_canon_visible_count_outside_guard: finalCanonVisibleCountOutsideGuard,
+    competing_global_heading_count: competingGlobalHeadingCount,
+    dock_governor: {
+      max_visible_pins: 3,
+      max_visible_notices: 2,
+      max_visible_locks: 1,
+      max_visible_context: 4,
+      overflow_drawer: true
+    },
+    preserved_routes: [
+      "public/review/index.html?mode=brief",
+      "public/review/index.html?mode=layout-lab",
+      "public/review/index.html?mode=bridge",
+      "public/review/index.html?mode=designer",
+      "public/review/index.html?mode=draft",
+      "public/review/index.html?mode=source",
+      "public/review/index.html?mode=project",
+      "public/review/index.html?mode=artifacts"
+    ],
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      database_persistence: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      credential_material_findings: credentialFindings
+    },
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    summary: {
+      component_role_contract_present: checks.component_role_contract?.passed === true,
+      component_contract_count: componentContractCount,
+      single_framing_source: "activeDecisionCanvas",
+      route_nav_compact: checks.route_nav_compact?.passed === true,
+      context_dock_budget_passed: contextDockVisibleItemBudgetPassed,
+      duplication_budget_passed: duplicationBudgetPassed,
+      card_wall_not_first_screen: cardWallNotFirstScreen,
+      decision_flow_model_preserved: decisionFlowModelPreserved,
+      safety_prominence_reduced: safetyProminenceReduced,
+      bridge_route_preserved: html.includes('data-mode-panel="bridge"'),
+      layout_lab_route_preserved: html.includes('data-mode-panel="layout-lab"'),
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      database_persistence: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "The first brief surface now has a component role contract and one active framing owner.",
+      "Route navigation is compact and contains buttons only, while operator launch commands are collapsed in a utility drawer.",
+      "The Context Dock is limited to context chips, pins, notices, and one lock summary; overflow remains in drawers.",
+      "Guard details remain available, but visible safety prominence is reduced to one compact lock summary.",
+      "Bridge, Layout Lab, preserved readbacks, dark mode, and closed production gates remain intact."
     ],
     checks,
     failures,
@@ -11671,6 +12146,10 @@ function removeDetailsBlocks(html) {
   return html.replace(/<details\b[\s\S]*?<\/details>/gi, "");
 }
 
+function removeHiddenBlocks(html) {
+  return html.replace(/<([a-z][a-z0-9-]*)\b(?=[^>]*\bhidden\b)[\s\S]*?<\/\1>/gi, "");
+}
+
 function firstTaggedText(html, pattern) {
   const match = pattern.exec(html);
   return match ? stripHtmlTags(match[1]) : "";
@@ -11710,6 +12189,14 @@ function countDisplayChars(text) {
 function countPattern(text, pattern) {
   const matches = (text || "").match(pattern);
   return matches ? matches.length : 0;
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function countLiteral(text, literal) {
+  return countPattern(text, new RegExp(escapeRegExp(literal), "g"));
 }
 
 function validateExtractionContract(contract, options = {}) {
@@ -12496,6 +12983,8 @@ Usage:
   node tools/fff-state.mjs smoke-layout-lab-visual-audit <layout-lab-visual-audit-result.json> [output.json]
   node tools/fff-state.mjs validate-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json>
   node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json> [output.json]
+  node tools/fff-state.mjs validate-review-workbench-component-contract <review-workbench-component-contract-result.json>
+  node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
   node tools/fff-state.mjs validate-guided-review-flow-workspace <guided-review-flow-workspace-result.json>
   node tools/fff-state.mjs smoke-guided-review-flow-workspace <guided-review-flow-workspace-result.json> [output.json]
   node tools/fff-state.mjs validate-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json>
@@ -12541,6 +13030,9 @@ Default layout lab visual audit output:
 
 Default apply decision shell guard diet output:
   ${DEFAULT_APPLY_DECISION_SHELL_GUARD_DIET_OUTPUT}
+
+Default review workbench component contract output:
+  ${DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT}
 
 Default home cockpit metric linking output:
   ${DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT}

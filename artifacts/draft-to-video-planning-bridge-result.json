@@ -2,7 +2,7 @@
   "schemaVersion": "fff.draftToVideoPlanningBridge.v1",
   "artifact_id": "fff-draft-to-video-planning-bridge-001",
   "title": "Fast Fiction Factory Draft-to-Video Planning Bridge",
-  "generatedAt": "2026-07-07T08:16:33.675Z",
+  "generatedAt": "2026-07-07T09:46:17.746Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",

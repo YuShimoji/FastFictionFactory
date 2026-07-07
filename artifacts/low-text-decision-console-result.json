@@ -2,7 +2,7 @@
   "schemaVersion": "fff.lowTextDecisionConsole.v1",
   "artifact_id": "fff-low-text-decision-console-001",
   "title": "Fast Fiction Factory Low-text Decision Console",
-  "generatedAt": "2026-07-07T08:16:33.369Z",
+  "generatedAt": "2026-07-07T09:46:17.684Z",
   "review_status": "ready_for_user_visual_review",
   "review_input_mode": "freeform",
   "review_ui": "public/review/index.html",
@@ -66,9 +66,9 @@
   "text_budget": {
     "helper_line_char_count": 26,
     "helper_line_max_chars": 42,
-    "paragraph_max_chars": 26,
+    "paragraph_max_chars": 61,
     "paragraph_limit_chars": 70,
-    "visible_sentence_count": 3,
+    "visible_sentence_count": 4,
     "visible_sentence_limit": 5,
     "repeated_this_time_count": 0,
     "repeated_this_time_limit": 1,
@@ -144,7 +144,7 @@
     },
     "decision_console_visible_first": {
       "passed": true,
-      "detail": "home=58931; console=59173; guided=71811; latest=85414; firstCard=89969"
+      "detail": "home=61320; console=61586; guided=74833; latest=88436; firstCard=92991"
     },
     "active_question_and_choices": {
       "passed": true,
@@ -168,19 +168,19 @@
     },
     "notes_shelf_below_console": {
       "passed": true,
-      "detail": "console=59173; notes=65895"
+      "detail": "console=61586; notes=68562"
     },
     "card_wall_suppressed": {
       "passed": true,
-      "detail": "suppressed=4; guided=71811; console=59173"
+      "detail": "suppressed=4; guided=74833; console=61586"
     },
     "bridge_console_visible": {
       "passed": true,
-      "detail": "bridgeConsole=128969; bridgeGuided=131717; bridgeSteps=路線,語り,字幕,画面,サムネ,保留真実; current=1"
+      "detail": "bridgeConsole=131991; bridgeGuided=134739; bridgeSteps=路線,語り,字幕,画面,サムネ,保留真実; current=1"
     },
     "text_budget": {
       "passed": true,
-      "detail": "helperChars=26; paragraphMax=26; sentences=3; repeatedThisTime=0"
+      "detail": "helperChars=26; paragraphMax=61; sentences=4; repeatedThisTime=0"
     },
     "preserved_content_and_optional_evidence": {
       "passed": true,

@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Review Workbench Component Contract
+
+- Purpose: Fix the first-screen component architecture failure where the applied shell still felt card-like and each component repeated a version of the whole system.
+- Effect: Adds `fff-review-workbench-component-contract-001`, a role-contracted Workbench Canvas for `public/review/index.html?mode=brief`, `componentRoleContracts`, single framing source marker, compact route nav, operator utility drawer, Context Dock limits, duplication budget smoke, `docs/review/review-workbench-component-contract.md`, `artifacts/review-workbench-component-contract-result.json`, and `artifacts/review-screens/brief-component-contract-workbench.png`.
+- Requirements: Preserve `fff-apply-decision-shell-guard-diet-001`, `layout-lab`, `bridge`, `designer`, `draft`, `source`, `project`, `artifacts`, dark mode, candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, existing readbacks, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
+- State: Implemented in `fff-review-workbench-component-contract-001`.
+- Owner: Product implementer for local UI/readback; human reviewer for judging whether the first screen now feels like one coordinated Workbench.
+- Next move: Open `public/review/index.html?mode=brief`, review the Workbench role boundaries, then choose Advance to Bridge, Audit first-screen duplication, Excise stale legacy shelves, or Verify route preservation.
+
 ### Apply Decision Shell Guard Diet
 
 - Purpose: Make the default `brief` route use the accepted split-pane Decision Shell instead of a card-wall-first review surface.
