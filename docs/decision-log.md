@@ -229,3 +229,9 @@
 - Decision: Add a component role contract to the default `brief` Review Workbench.
   - Reason: User review found that the applied Shell still felt card-like, with unclear component character, a right dock likely to grow, and repeated global explanations across components.
   - Effect: `fff-review-workbench-component-contract-001` adds `componentRoleContracts`, `data-component-role-contract`, `data-single-framing-source="active-decision-canvas"`, `data-review-workbench-canvas`, compact route navigation, an Operator utility drawer, Context Dock limits, duplication budget counts, Complement Rule marker, `docs/review/review-workbench-component-contract.md`, `artifacts/review-workbench-component-contract-result.json`, and `artifacts/review-screens/brief-component-contract-workbench.png`; it keeps Bridge, Layout Lab, existing readbacks, dark mode, and all provider/API, credential, upload, AI video, render, database, rights-clearance, and final-canon boundaries closed.
+
+## 2026-07-08
+
+- Decision: Refresh repo-local handoff context and push it without changing product behavior.
+  - Reason: Another terminal needs the latest restart edge in repository files and remote `master`, while local `.serena/project.yml` remains transport residue outside product scope.
+  - Effect: Updates `docs/review/next-terminal-handoff.md`, `docs/review/current-status.md`, `docs/project-context.md`, `docs/idea-ledger.md`, and this decision log with the 2026-07-08 parity/validation/readback state. The refresh starts from synced `eb35f45 Refresh next terminal handoff`, keeps `fff-review-workbench-component-contract-001` active, changes no Review UI behavior or result artifacts, and keeps provider/API, credential, upload, AI video, render, database, rights-clearance, and final-canon boundaries closed.

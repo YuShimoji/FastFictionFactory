@@ -3,6 +3,7 @@
 ## Active Artifact
 
 - Artifact id: `fff-review-workbench-component-contract-001`
+- Latest handoff refresh: 2026-07-08 JST docs-only handoff, starting from synced `eb35f45 Refresh next terminal handoff`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
 - Review UI: `public/review/index.html`
 - Review Brief mode with role-contracted Review Workbench: `public/review/index.html?mode=brief`
 - Layout Research Lab mode preserved: `public/review/index.html?mode=layout-lab`

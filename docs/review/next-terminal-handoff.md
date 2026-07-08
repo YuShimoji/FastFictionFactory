@@ -2,10 +2,11 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-07 JST for `fff-review-workbench-component-contract-001`,
-confirmed after remote publish of `917cae4 Add review workbench component contract`.
+Latest handoff refresh: 2026-07-08 JST for `fff-review-workbench-component-contract-001`,
+starting from synced `eb35f45 Refresh next terminal handoff` after the previous
+handoff package was already on remote `master`.
 This restart/readback refresh starts from synced `master`, found
-`master...origin/master` clean before the handoff-only refresh, and makes
+`master...origin/master` clean before the handoff-only refresh, and keeps
 `fff-review-workbench-component-contract-001` the active review checkpoint. The
 package converts the default `brief` first screen into a role-contracted Review
 Workbench with a single framing source, compact route navigation, bounded
@@ -50,7 +51,7 @@ was removed from this repo, and
 `fff-profile-adoption-mutation-one-claim-001`, and
 `fff-very-broad-source-span-shape-audit-001` are preserved auxiliary readbacks.
 After pulling, run `git log -1 --oneline --decorate` for the exact remote head
-that contains this Review Workbench Component Contract package and this
+that contains this Review Workbench Component Contract package and the latest
 handoff refresh.
 
 ## Latest Remote Publish Snapshot
@@ -58,8 +59,9 @@ handoff refresh.
 - Branch: `master`
 - Active artifact: `fff-review-workbench-component-contract-001`
 - Remote parity before this handoff-only refresh: clean `master...origin/master`
+- Baseline commit before this handoff-only refresh: `eb35f45 Refresh next terminal handoff`
 - Last pushed product commit before this handoff-only refresh: `917cae4 Add review workbench component contract`
-- Worktree state before this handoff-only refresh: product tree synced and clean
+- Worktree state before this handoff-only refresh: product tree synced and clean; local `.serena/project.yml` transport residue remains unstaged and outside product scope
 - User-side review evidence now: `public/review/index.html?mode=brief`, `artifacts/review-screens/brief-component-contract-workbench.png`, `artifacts/review-workbench-component-contract-result.json`, and prior `artifacts/layout-lab-visual-audit-contact-sheet.png`
 - Preserved operator route: `public/review/index.html?mode=bridge`
 - Review decision needed next: use the role-contracted Workbench to choose whether to advance Bridge refinement, audit remaining first-screen duplication, excise stale preserved shelves, or verify route preservation
@@ -82,6 +84,11 @@ git log -5 --oneline --decorate
 ```
 
 Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed product commit is whatever `git log -1 --oneline --decorate` reports after pulling. Local transport-residue files outside this product scope should not be treated as product work.
+
+The 2026-07-08 handoff-only refresh intentionally changes only durable docs. It
+does not change Review UI behavior, readback artifacts, smoke tooling, provider
+state, credentials, production generation, publishing, rights state, database
+persistence, or final canon.
 
 3. Read these files in this order:
 
@@ -344,7 +351,7 @@ Current Workbench checks passed in this refresh; the broader preserved readback 
 
 - `git fetch --prune origin`
 - `git status --short --branch --untracked-files=all`
-- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on the synced baseline before this slice.
+- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on the synced `eb35f45` baseline before this handoff-only refresh.
 - `node --check tools/fff-state.mjs`
 - `node tools/fff-state.mjs smoke-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json artifacts/review-workbench-component-contract-result.json`
 - `node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet artifacts/apply-decision-shell-guard-diet-result.json artifacts/apply-decision-shell-guard-diet-result.json`
@@ -381,6 +388,7 @@ Current Workbench checks passed in this refresh; the broader preserved readback 
 - HTML inline script syntax check for `public/review/index.html`
 - `uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"`
 - `git diff --check`
+- 2026-07-08 handoff verification: manifest validation passed, strict MkDocs build passed, `git diff --check` passed, and parity was `0 0` before staging the docs-only refresh.
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` before staging.
 - `git grep` and `rg` route-contamination searches returned no hits after
   cleanup and before the route-lock evidence was added. After this handoff,
