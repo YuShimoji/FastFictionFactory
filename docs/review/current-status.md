@@ -3,7 +3,7 @@
 ## Active Artifact
 
 - Artifact id: `fff-review-workbench-component-contract-001`
-- Latest handoff refresh: 2026-07-08 JST docs-only handoff, starting from synced `eb35f45 Refresh next terminal handoff`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
+- Latest handoff refresh: 2026-07-08 JST docs-only OPERATOR_FIRST handoff, starting from synced `d86b648 Refresh handoff context`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
 - Review UI: `public/review/index.html`
 - Review Brief mode with role-contracted Review Workbench: `public/review/index.html?mode=brief`
 - Layout Research Lab mode preserved: `public/review/index.html?mode=layout-lab`
@@ -14,6 +14,7 @@
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
 - Repo-local shell launcher: `./scripts/operator/open_review.sh`
+- Operator-first instruction: open `public/review/index.html?mode=brief`, compare against `artifacts/review-screens/brief-component-contract-workbench.png`, and return a freeform observation choosing Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision.
 - Manifest: `artifacts/artifact-manifest.json`
 - Review Workbench Component Contract doc: `docs/review/review-workbench-component-contract.md`
 - Review Workbench Component Contract result: `artifacts/review-workbench-component-contract-result.json`

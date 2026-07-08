@@ -3,7 +3,7 @@
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
 Latest handoff refresh: 2026-07-08 JST for `fff-review-workbench-component-contract-001`,
-starting from synced `eb35f45 Refresh next terminal handoff` after the previous
+starting from synced `d86b648 Refresh handoff context` after the previous
 handoff package was already on remote `master`.
 This restart/readback refresh starts from synced `master`, found
 `master...origin/master` clean before the handoff-only refresh, and keeps
@@ -54,17 +54,37 @@ After pulling, run `git log -1 --oneline --decorate` for the exact remote head
 that contains this Review Workbench Component Contract package and the latest
 handoff refresh.
 
+## Operator-first Readback
+
+Supervisor review for the current terminal is `pass / OPERATOR_FIRST`. Do not
+start another Worker Prompt for Bridge refinement, Storyboard Flow, stale shelf
+excision, or Workbench density until the human operator visually reviews the
+first Workbench screen.
+
+Operator should open `public/review/index.html?mode=brief` with:
+
+```powershell
+.\scripts\operator\open_review.ps1
+```
+
+Use `artifacts/review-screens/brief-component-contract-workbench.png` as the
+reference screenshot. The three observations needed are: whether the screen
+feels like a Workbench instead of a card group, whether repeated explanation is
+actually reduced, and whether the next lane should be Bridge Storyboard Flow,
+Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf
+Excision.
+
 ## Latest Remote Publish Snapshot
 
 - Branch: `master`
 - Active artifact: `fff-review-workbench-component-contract-001`
 - Remote parity before this handoff-only refresh: clean `master...origin/master`
-- Baseline commit before this handoff-only refresh: `eb35f45 Refresh next terminal handoff`
+- Baseline commit before this handoff-only refresh: `d86b648 Refresh handoff context`
 - Last pushed product commit before this handoff-only refresh: `917cae4 Add review workbench component contract`
 - Worktree state before this handoff-only refresh: product tree synced and clean; local `.serena/project.yml` transport residue remains unstaged and outside product scope
 - User-side review evidence now: `public/review/index.html?mode=brief`, `artifacts/review-screens/brief-component-contract-workbench.png`, `artifacts/review-workbench-component-contract-result.json`, and prior `artifacts/layout-lab-visual-audit-contact-sheet.png`
 - Preserved operator route: `public/review/index.html?mode=bridge`
-- Review decision needed next: use the role-contracted Workbench to choose whether to advance Bridge refinement, audit remaining first-screen duplication, excise stale preserved shelves, or verify route preservation
+- Review decision needed next: `OPERATOR_FIRST`; use the role-contracted Workbench to choose whether to advance Bridge Storyboard Flow, run a Workbench Visual Density Pass, run a Context Dock Minimal Pass, or excise stale preserved shelves
 - Locked lanes: provider/API, credentials, AI video generation, production render, upload, rights-clearance claim, database persistence, and final canon
 
 ## Start Here
@@ -351,7 +371,7 @@ Current Workbench checks passed in this refresh; the broader preserved readback 
 
 - `git fetch --prune origin`
 - `git status --short --branch --untracked-files=all`
-- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on the synced `eb35f45` baseline before this handoff-only refresh.
+- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on the synced `d86b648` baseline before this handoff-only refresh.
 - `node --check tools/fff-state.mjs`
 - `node tools/fff-state.mjs smoke-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json artifacts/review-workbench-component-contract-result.json`
 - `node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet artifacts/apply-decision-shell-guard-diet-result.json artifacts/apply-decision-shell-guard-diet-result.json`
