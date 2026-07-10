@@ -62,8 +62,14 @@ The following routes remain available:
 
 ```powershell
 node --check .\tools\fff-state.mjs
-node .\tools\fff-state.mjs smoke-review-workbench-component-contract .\artifacts\review-workbench-component-contract-result.json .\artifacts\review-workbench-component-contract-result.json
-# POSIX-style form used by the smoke readback:
+node .\tools\fff-state.mjs validate-review-workbench-component-contract .\artifacts\review-workbench-component-contract-result.json
+```
+
+The manifest health check uses the read-only `validate-*` path. The commands
+below regenerate tracked result JSON and should run only when those artifacts
+are intentionally being refreshed:
+
+```powershell
 node tools/fff-state.mjs smoke-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json artifacts/review-workbench-component-contract-result.json
 node .\tools\fff-state.mjs smoke-apply-decision-shell-guard-diet .\artifacts\apply-decision-shell-guard-diet-result.json .\artifacts\apply-decision-shell-guard-diet-result.json
 node .\tools\fff-state.mjs smoke-layout-lab-visual-audit .\artifacts\layout-lab-visual-audit-result.json .\artifacts\layout-lab-visual-audit-result.json
@@ -79,4 +85,4 @@ This slice does not redesign Bridge, write storyboard flow, refine script/subtit
 
 ## Next Possible Slice
 
-If the Workbench passes human review, the next narrow slice can advance one Bridge refinement lane, such as storyboard flow, narration wording, subtitle rhythm, thumbnail direction, or held-truth policy. If the Workbench still feels noisy, the next slice should audit first-screen visible text and remove one remaining low-value surface rather than adding another panel.
+If the Workbench passes human review, the next narrow slice is Bridge Storyboard Flow. If the Workbench still feels noisy, the human reviewer should choose Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision rather than adding another panel.

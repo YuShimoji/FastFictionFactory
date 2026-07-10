@@ -123,7 +123,11 @@ Route hygiene checkpoint, 2026-06-29 JST:
   `fff-designer-candidate-dashboard-001`, and
   `fff-contradictory-claim-guard-001` as readbacks.
 
-Last verified on 2026-07-07:
+Restart readiness was reverified on 2026-07-11 from synced `af4a376`: the
+read-only manifest validation chain, inline HTML script compilation, strict
+MkDocs build through `uvx`, `git diff --check`, and `HEAD...origin/master` parity
+all passed. The broader preserved safety chain below was last fully verified on
+2026-07-07 and was not re-run merely for this handoff refresh:
 
 ```powershell
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
@@ -232,7 +236,7 @@ Or use the dependency-free launchers:
 Open the local Markdown docs view from the repo root:
 
 ```powershell
-python -m mkdocs serve -a 127.0.0.1:8000
+uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 ```
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
@@ -243,4 +247,4 @@ First next move: `OPERATOR_FIRST`. Open `public/review/index.html?mode=brief` an
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-Latest handoff-only refresh starts from synced `d86b648 Refresh handoff context` on 2026-07-08 JST. It records that `master` and `origin/master` were cleanly aligned before the refresh, preserves `.serena/project.yml` as unstaged local transport residue outside product scope, records the Supervisor `pass / OPERATOR_FIRST` readback, and keeps `docs/review/next-terminal-handoff.md` as the first file for another terminal. After pulling, `git log -1 --oneline --decorate` shows the exact current remote head containing this handoff package. The 2026-07-08 handoff verification passed the manifest validation command, strict MkDocs build, `git diff --check`, and `HEAD...origin/master` parity before staging the docs-only refresh.
+Latest restart-readiness refresh starts from synced `af4a376 Record operator-first handoff` on 2026-07-11 JST. It records that `master` and `origin/master` were cleanly aligned before the refresh, changes the manifest validation chain to read-only `validate-*` commands, preserves `.serena/project.yml` as unstaged local transport residue outside product scope, records the Supervisor `pass / OPERATOR_FIRST` readback, and keeps `docs/review/next-terminal-handoff.md` as the first file for another terminal. After pulling, `git log -1 --oneline --decorate` shows the exact current remote head containing this handoff package. The 2026-07-11 verification passed all seven read-only manifest validators, inline HTML script compilation, strict MkDocs build, `git diff --check`, and `HEAD...origin/master` parity before staging the refresh.

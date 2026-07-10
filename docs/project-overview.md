@@ -164,8 +164,7 @@ For a fresh clone:
 ```powershell
 git clone https://github.com/YuShimoji/FastFictionFactory.git
 cd .\FastFictionFactory
-python -m pip install mkdocs-material
-python -m mkdocs serve -a 127.0.0.1:8000
+uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 ```
 
 Then open `http://127.0.0.1:8000/`, start from this page, and open the active review UI with:
@@ -174,4 +173,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The next recommended implementation work is to use the applied Shell to choose one refinement lane: advance to Bridge, revise narration, revise subtitle rhythm, revise thumbnail direction, or reopen held-truth review. Script/subtitle/shot/thumbnail implementation should still stay local and reversible, and explicit provider adapter implementation remains blocked until separate authorization.
+The next move is `OPERATOR_FIRST`, not implementation: review `public/review/index.html?mode=brief` against `artifacts/review-screens/brief-component-contract-workbench.png`, decide whether the screen feels like one Workbench and whether repeated explanation is reduced, then select Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision. Script/subtitle/shot/thumbnail implementation should still stay local and reversible, and explicit provider adapter implementation remains blocked until separate authorization.

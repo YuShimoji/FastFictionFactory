@@ -14,7 +14,8 @@
 - Source artifact: `fff-apply-decision-shell-guard-diet-001`
 - Preserved artifacts: `fff-layout-lab-visual-audit-001`, `fff-layout-research-decision-shell-001`, `fff-low-text-decision-console-001`, `fff-guided-review-flow-workspace-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-home-cockpit-metric-linking-001`, `fff-draft-to-video-planning-bridge-001`, `fff-contradictory-claim-guard-001`
 - State validator: `tools/fff-state.mjs`
-- Validation command: `node tools/fff-state.mjs smoke-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json artifacts/review-workbench-component-contract-result.json`
+- Read-only validation command: `node tools/fff-state.mjs validate-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json`
+- Artifact-regeneration command: `node tools/fff-state.mjs smoke-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json artifacts/review-workbench-component-contract-result.json`
 - Review status: `ready_for_local_readback`
 - Review input mode: `freeform`
 - State: Active local review package. The `brief` route now starts with a Workbench Canvas: process rail only, active decision only, Context Dock only, and Evidence / Notes / Inspiration / Guard drawers below. The first-screen duplication budget passes with candidate ID 1, channel ID 1, provider/API outside Guard 0, final canon outside Guard 0, and competing global heading count 0. Provider/API, credentials, upload, AI video generation, production render, database persistence, final canon, and rights-clearance claims remain closed.

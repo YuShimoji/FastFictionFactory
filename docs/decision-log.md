@@ -239,3 +239,13 @@
 - Decision: Treat the next step as OPERATOR_FIRST visual review instead of issuing another Worker Prompt.
   - Reason: Supervisor review passed the Review Workbench Component Contract and warned that additional workers would likely create a micro-adjustment loop before the human first-screen observation exists.
   - Effect: Records `public/review/index.html?mode=brief`, `.\scripts\operator\open_review.ps1`, and `artifacts/review-screens/brief-component-contract-workbench.png` as the operator review path; the next lane is selected by human observation among Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision, while provider/API, credential, upload, AI video, render, database, rights-clearance, and final-canon boundaries remain closed.
+
+## 2026-07-11
+
+- Decision: Make the published manifest validation contract read-only.
+  - Reason: The official restart command used self-output `smoke-*` commands, so a health check rewrote seven tracked result JSON files with timestamps and platform-dependent character offsets even when every assertion passed.
+  - Effect: `artifacts/artifact-manifest.json` now runs the equivalent seven `validate-*` commands without output paths. Intentional `smoke-*` artifact regeneration remains available and documented separately; the active validators, inline HTML script compilation, strict MkDocs build, and clean-result readback all pass.
+
+- Decision: Refresh the durable OPERATOR_FIRST handoff without selecting a product lane.
+  - Reason: Remote `master` advanced to `af4a376 Record operator-first handoff`, and stale five-choice or pre-application wording could send a later terminal around the current four-lane human observation gate.
+  - Effect: Updates `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/next-terminal-handoff.md`, `docs/idea-ledger.md`, and this decision log with the 2026-07-11 parity/validation state and the current Bridge Storyboard Flow / Workbench Visual Density Pass / Context Dock Minimal Pass / Stale Shelf Excision choices. No Review UI, provider/API, credential, upload, AI video, render, database, rights-clearance, or final-canon behavior changes.

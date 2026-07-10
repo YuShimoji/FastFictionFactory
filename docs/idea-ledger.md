@@ -9,7 +9,7 @@
 - Requirements: Preserve `fff-apply-decision-shell-guard-diet-001`, `layout-lab`, `bridge`, `designer`, `draft`, `source`, `project`, `artifacts`, dark mode, candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, existing readbacks, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
 - State: Implemented in `fff-review-workbench-component-contract-001`; current Supervisor readback is `pass / OPERATOR_FIRST`, so the next step is human visual review rather than another Worker Prompt.
 - Owner: Product implementer for local UI/readback; human reviewer for judging whether the first screen now feels like one coordinated Workbench.
-- Next move: Open `public/review/index.html?mode=brief`, review the Workbench role boundaries, then choose Advance to Bridge, Audit first-screen duplication, Excise stale legacy shelves, or Verify route preservation.
+- Next move: Open `public/review/index.html?mode=brief`, review the Workbench role boundaries, then choose Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision.
 
 ### Operator-first Workbench Visual Review
 
@@ -26,8 +26,8 @@
 - Effect: Applies the Shell to `public/review/index.html?mode=brief`, renders the current route decision from `decisionFlowModel`, caps dock rows through Dock Governor, moves long gate evidence into the Guard drawer, and records `docs/review/apply-decision-shell-guard-diet.md` plus `artifacts/apply-decision-shell-guard-diet-result.json`.
 - Requirements: Preserve `layout-lab`, `bridge`, Guided Flow, Latest Overview, Home Cockpit, Evidence Vault, selected candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, dark mode, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
 - State: Implemented in `fff-apply-decision-shell-guard-diet-001`.
-- Owner: Product implementer for UI/readback; human reviewer for choosing advance, narration, subtitle, thumbnail, or held-truth follow-up from the applied Shell.
-- Next move: Open `public/review/index.html?mode=brief`, use the Shell to choose the next refinement lane, and keep provider/API, credential, upload, render, video, database, rights, and canon work closed until explicitly authorized.
+- Owner: Product implementer for the preserved source-shell UI/readback; human reviewer for the active Workbench four-lane decision.
+- Next move: Treat this as the preserved source shell. Review the active Workbench first, then choose Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision while keeping provider/API, credential, upload, render, video, database, rights, and canon work closed until explicitly authorized.
 
 ### Layout Lab Visual Audit
 
@@ -43,9 +43,9 @@
 - Purpose: Keep the latest Review Workbench Component Contract context durable in repository files so another terminal can resume from `master` without chat history.
 - Effect: Updates the handoff/current-status/project-context docs with the current active artifact, baseline handoff commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
 - Requirements: Do not change product UI behavior, do not stage local transport residue, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: 2026-07-08 OPERATOR_FIRST handoff-only refresh starts from synced `d86b648 Refresh handoff context`, with `master...origin/master` clean and `.serena/project.yml` remaining unstaged local transport residue.
+- State: 2026-07-11 restart-readiness refresh starts from synced `af4a376 Record operator-first handoff`, with `master...origin/master` at `0 0`, the manifest validation chain converted to read-only `validate-*`, and `.serena/project.yml` remaining unstaged local transport residue.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
-- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=brief` for the Workbench role-boundary review or `public/review/index.html?mode=bridge` for the next production-hypothesis pass.
+- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=brief` for the human-owned Workbench role-boundary review before selecting any follow-up lane.
 
 ### Layout Research Decision Shell
 
