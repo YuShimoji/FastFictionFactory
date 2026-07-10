@@ -2,10 +2,10 @@
   "schemaVersion": "fff.profileAdoptionMutationOneClaim.v1",
   "artifact_id": "fff-profile-adoption-mutation-one-claim-001",
   "title": "Fast Fiction Factory Profile Adoption Mutation One Claim",
-  "generatedAt": "2026-07-06T01:13:00.898Z",
+  "generatedAt": "2026-07-10T08:53:05.743Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
+  "preserved_active_artifact_id": "fff-review-workbench-component-contract-001",
   "input_readbacks": {
     "downstream_target_authorization_packet_result_path": "artifacts/downstream-target-authorization-packet-result.json",
     "production_claim_ledger_rollback_rehearsal_result_path": "artifacts/production-claim-ledger-rollback-rehearsal-result.json",
@@ -49,7 +49,7 @@
     "before": {
       "target_claim_id": "multi-claim-moth-key-label",
       "source_span_id": "multi-x-object-brass-moth-key",
-      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
       "claim_ledger_status": "production_claim_ledger_adopted",
       "profile_adoption_status": "not_profile_adopted",
       "profile_mutation_count": 0,
@@ -60,7 +60,7 @@
     "after": {
       "target_claim_id": "multi-claim-moth-key-label",
       "source_span_id": "multi-x-object-brass-moth-key",
-      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
       "claim_ledger_status": "production_claim_ledger_adopted",
       "profile_adoption_status": "profile_adopted_noncanon",
       "profile_mutation_count": 1,
@@ -75,7 +75,7 @@
       "profile_adoption_mutation_row_id": "profile-adoption-mutation-row-moth-key-label",
       "target_claim_id": "multi-claim-moth-key-label",
       "source_span_id": "multi-x-object-brass-moth-key",
-      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
       "production_target_class": "Profile",
       "target_profile_id": "multi-profile-brass-moth-key",
       "existing_profile_reference_id": "profile-brass-moth",
@@ -90,7 +90,7 @@
         "value": "The brass moth key has a source-backed label from the multilingual memo.",
         "source_claim_id": "multi-claim-moth-key-label",
         "source_span_id": "multi-x-object-brass-moth-key",
-        "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+        "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
         "status": "profile_adopted_noncanon",
         "canon_status": false,
         "unresolved_dependencies_preserved": [
@@ -232,7 +232,7 @@
     },
     "manifest_and_review_memory_registered": {
       "passed": true,
-      "detail": "includesSmoke=true; preserves=true; memory=true"
+      "detail": "registered=true; preserves=true; memory=true"
     }
   },
   "failures": [],

@@ -19,6 +19,11 @@ const VALIDATOR_FIXTURE_DIR = "artifacts/extraction-negative-fixtures";
 const HUMAN_OWNED_DEPENDENCIES = ["Toma fate", "brass moth truth", "Council motive"];
 
 async function main() {
+  if (["--help", "-h", "help"].includes(process.argv[2])) {
+    console.log("Usage: node tools/fff-source-span-review-pack.mjs [fixture-dir] [output-dir] [expansion-smoke.json] [pack.json]");
+    return;
+  }
+
   const [
     fixtureDir = DEFAULT_FIXTURE_DIR,
     outputDir = DEFAULT_OUTPUT_DIR,
@@ -40,7 +45,7 @@ async function main() {
     const outputPath = toRepoPath(path.join(outputDir, file));
     const payload = await readJson(outputPath);
     const sourceMemoPath = toRepoPath(payload.sourceMemoRef || path.join(fixtureDir, `${path.basename(file, ".json")}.md`));
-    const rawMemo = await readFile(sourceMemoPath, "utf8");
+    const rawMemo = normalizeSourceText(await readFile(sourceMemoPath, "utf8"));
     const validation = runNode(["tools/fff-state.mjs", "validate-extraction", outputPath]);
     const audit = auditPayload(rawMemo, payload);
     const elements = payload.extractedElements.map((element) => reviewElement(element, payload, sourceMemoPath, rawMemo));
@@ -375,6 +380,10 @@ function sum(items, callback) {
 function toRepoPath(filePath) {
   const relativePath = path.isAbsolute(filePath) ? path.relative(process.cwd(), filePath) : filePath;
   return relativePath.split(path.sep).join("/");
+}
+
+function normalizeSourceText(text) {
+  return String(text).replace(/\r\n?/g, "\n");
 }
 
 function fail(message) {

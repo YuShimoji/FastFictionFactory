@@ -1,19 +1,20 @@
-site_name: Fast Fiction Factory Local Docs
-site_description: Local Markdown review and browser-assisted translation view.
+site_name: Fast Fiction Factory
+site_description: Local-first fiction production workbench documentation
 docs_dir: docs
 site_dir: build/mkdocs-site
 
 theme:
   name: material
-  language: en
+  language: ja
   features:
     - navigation.sections
-    - navigation.expand
     - navigation.top
     - content.code.copy
+    - search.highlight
 
 markdown_extensions:
   - admonition
+  - tables
   - toc:
       permalink: true
   - pymdownx.snippets:
@@ -48,63 +49,27 @@ exclude_docs: |
   *.html
 
 nav:
-  - Overview:
-      - Local Docs View: index.md
-      - Project Overview Map: project-overview.md
-      - Repo Instructions: local-view/agents.md
+  - 現在地:
+      - Docs Home: index.md
+      - Current Status: review/current-status.md
+      - Project Overview: project-overview.md
+  - 製品:
       - Project Context: project-context.md
-  - Specs:
       - Product Brief: product-brief.md
-      - Workflow: workflow.md
+      - Product and Development Workflow: workflow.md
       - Data Model: data-model.md
       - QA Gates: qa-gates.md
-  - Runtime State:
-      - Current Status Packet: review/current-status.md
-      - Next Terminal Handoff: review/next-terminal-handoff.md
+  - 開発:
+      - Active Idea Ledger: idea-ledger.md
       - Decision Log: decision-log.md
-      - Idea Ledger: idea-ledger.md
-  - Development Notes:
-      - Review Workbench Component Contract: review/review-workbench-component-contract.md
-      - Apply Decision Shell Guard Diet: review/apply-decision-shell-guard-diet.md
-      - Layout Lab Visual Audit: review/layout-lab-visual-audit.md
-      - Layout Research Decision Shell: review/layout-research-decision-shell.md
-      - Low-text Decision Console: review/low-text-decision-console.md
-      - Guided Review Flow Workspace: review/guided-review-flow-workspace.md
-      - Bridge Refinement Overview Ribbon: review/bridge-refinement-overview-ribbon.md
-      - Home Cockpit Metric Linking: review/home-cockpit-metric-linking.md
-      - Review Home Map Meters: review/review-home-map-meters.md
-      - Review Brief Dark Mode UX: review/review-brief-dark-mode-ux.md
-      - Draft-to-Video Planning Bridge: review/draft-to-video-planning-bridge.md
-      - Draft Review Pack Stabilization: review/draft-review-pack-stabilization.md
-      - One-story Draft Review Pack: review/one-story-draft-review-pack.md
-      - Designer Candidate Dashboard: review/designer-candidate-dashboard.md
-      - Claim Ledger Review: review/claim-ledger-review.md
-      - File Persistence Review: review/file-persistence-review.md
-      - First MVP Review: review/first-mvp-review.md
-      - Extraction Contract Review: review/extraction-contract-review.md
-      - Model API Boundary Spec: review/model-api-boundary-spec.md
-      - Provider Envelope Readiness No-Call: review/provider-envelope-readiness-no-call.md
-      - Remaining Fixture Coverage: review/remaining-fixture-coverage-one-class.md
-      - Translated Memo Fixture Audit: review/translated-memo-fixture-audit.md
-      - Very Broad Source-Span Shape Audit: review/very-broad-source-span-shape-audit.md
-      - Local Extraction Adapter Expansion Review: review/local-extraction-adapter-expansion-review.md
-      - Review Memory Dedup: review/review-memory-dedup.md
-      - Review Procedure Lock: review/review-procedure.md
-      - Review Hub IA Mode Split: review/review-hub-ia-mode-split.md
+      - Next Terminal Handoff: review/next-terminal-handoff.md
+  - 現行レビュー:
+      - Workbench Component Contract: review/review-workbench-component-contract.md
+      - Applied Decision Shell: review/apply-decision-shell-guard-diet.md
+      - Layout Visual Audit: review/layout-lab-visual-audit.md
+      - Draft-to-Video Bridge: review/draft-to-video-planning-bridge.md
       - Contradictory Claim Guard: review/contradictory-claim-guard.md
-      - Downstream Source-Span Adoption Gate: review/downstream-source-span-adoption-gate.md
-      - Broad Source-Span Split: review/broad-span-split.md
-      - Routing Policy Regression Hardening: review/routing-policy-regression-hardening.md
-      - Source-Span Routing Review Pack: review/source-span-routing-review-pack.md
-      - Source-Span Routing Triage: review/source-span-routing-triage.md
-      - Freeform Review Intake: review/freeform-review-intake.md
-      - JSON Export Import Review: review/json-export-import-review.md
-      - Checkpoint Readback: review/checkpoint-readback.md
-      - Profile Ghost Flow Review: review/profile-ghost-flow-review.md
-      - Review Ergonomics Review: review/review-ergonomics-review.md
-      - Timeline View Review: review/timeline-view-review.md
-      - v1.3 Compliance Review: review/v1-3-compliance-review.md
-      - Visual Review Hub Review: review/visual-review-hub-review.md
-  - Artifacts:
+  - 履歴と根拠:
       - Artifact Inventory: local-view/artifacts.md
+      - Repo Instructions: local-view/agents.md
       - Sample Story Memo: local-view/sample-story-memo.md

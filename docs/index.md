@@ -1,69 +1,37 @@
-# Fast Fiction Factory Local Docs View
+# Fast Fiction Factory Docs
 
-This page is a local viewing entry point for reading, auditing, and browser-assisted translation checks across the repository Markdown files.
+ここは repository 内の Markdown 正本を読むための local site です。現在地を知るだけなら、次の3ページで足ります。
 
-It does not replace the source Markdown documents, and it does not contain translated or summarized versions of the specifications. Use the navigation tree to open the original Markdown-rendered pages, then use Chrome, Edge, or a DeepL browser extension as a temporary reading aid.
+1. [Current Status](review/current-status.md) — いま動くもの、検証、未決、次の選択。
+2. [Workflow](workflow.md) — 監修AI・実装AI・人間の進め方。
+3. [Project Context](project-context.md) — 製品の目的、authority、architecture。
 
-For a project-wide scan, start with [`Project Overview Map`](project-overview.md).
-
-## Open Locally
-
-From Windows PowerShell at the repository root:
+## 起動
 
 ```powershell
-python -m pip install mkdocs-material
-python -m mkdocs serve -a 127.0.0.1:8000
+npm run docs:serve
 ```
 
-Then open:
-
-```text
-http://127.0.0.1:8000/
-```
-
-If the `mkdocs` command is already on your PATH, this is equivalent:
+`http://127.0.0.1:8000/` を開きます。strict build は次で確認できます。
 
 ```powershell
-mkdocs serve -a 127.0.0.1:8000
+npm run docs:check
 ```
 
-If port `8000` is already in use, choose a neighboring local port:
+## 情報の置き場所
 
-```powershell
-python -m mkdocs serve -a 127.0.0.1:8001
-```
-
-## Translation Check Flow
-
-1. Start the local MkDocs server.
-2. Open `http://127.0.0.1:8000/` in Chrome or Edge, or the alternate port you selected.
-3. Select a document from the left navigation tree.
-4. Use the browser page-translation feature, or a DeepL browser extension, for temporary reading support.
-5. Treat the original Markdown files in this repository as the source of truth.
-
-## Navigation Policy
-
-The tree uses practical audit categories only. These labels are not canon, status decisions, or content summaries.
-
-| Area | Intended use |
+| 種類 | 正本 |
 | --- | --- |
-| Overview | Entry points and repo-local orientation documents. |
-| Specs | Product, workflow, data model, and QA gate documents that appear specification-like. |
-| Runtime State | Current status, decision records, and residual work ledgers that describe the present review state. |
-| Development Notes | Review notes for implemented local slices. |
-| Artifacts | Artifact inventory and sample memo material. |
-| Misc | Markdown files that do not fit the above categories with enough confidence. |
+| GitHub から見える概要 | root `README.md` |
+| Live status | [review/current-status.md](review/current-status.md) |
+| Stable product contract | [project-context.md](project-context.md) |
+| Development contract | [workflow.md](workflow.md) |
+| Active choices | [idea-ledger.md](idea-ledger.md) |
+| Durable decisions | [decision-log.md](decision-log.md) |
+| Historical evidence | [Artifact Inventory](local-view/artifacts.md) |
 
-## Regenerating A Nav Candidate
+individual review notes は過去 checkpoint の evidence です。通常の再開時に全件読む必要はありません。
 
-The checked-in navigation is hand-reviewed. To inspect a fresh candidate from the current Markdown layout without changing files:
+## 一時翻訳
 
-```powershell
-node .\tools\generate-doc-nav.mjs
-```
-
-To write the candidate to a separate review file:
-
-```powershell
-node .\tools\generate-doc-nav.mjs --out .\build\doc-nav-candidate.yml
-```
+原文の source-of-truth を変更せずに読む場合は、browser のページ翻訳を利用します。翻訳された表示や inline gloss を、元 memo の source span や story authority として保存しません。

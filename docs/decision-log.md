@@ -239,3 +239,21 @@
 - Decision: Treat the next step as OPERATOR_FIRST visual review instead of issuing another Worker Prompt.
   - Reason: Supervisor review passed the Review Workbench Component Contract and warned that additional workers would likely create a micro-adjustment loop before the human first-screen observation exists.
   - Effect: Records `public/review/index.html?mode=brief`, `.\scripts\operator\open_review.ps1`, and `artifacts/review-screens/brief-component-contract-workbench.png` as the operator review path; the next lane is selected by human observation among Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision, while provider/API, credential, upload, AI video, render, database, rights-clearance, and final-canon boundaries remain closed.
+
+## 2026-07-10
+
+- Decision: Replace the Prompt relay with an outcome-based development contract.
+  - Reason: The repository had turned one user outcome into many micro-artifacts and approval steps. Reversible local UI, copy, documentation, fixtures, and validation were being delayed by safety language intended for destructive or external actions.
+  - Effect: `docs/workflow.md` now defines one Outcome Packet per coherent milestone, an autonomy table separating continue / direction-check / stop conditions, one direction gate and one acceptance gate, bundled adjacent fixes and verification, a two-adjustment limit before Explore / Audit / Excise, and explicit creative comparison across product, language, content, visual, and motion axes.
+
+- Decision: Give each control-plane document one responsibility and remove completed history from live status.
+  - Reason: Of 77 commits, 64 changed current status, 59 changed project context, and 57 changed terminal handoff. The former required reading had grown to 1,175 lines / 187,727 bytes, so orientation and multi-file transcription were consuming the capacity intended for product work.
+  - Effect: Root `README.md` becomes the GitHub-facing entry, `docs/review/current-status.md` owns live state, `docs/project-context.md` owns stable product truth, `docs/idea-ledger.md` contains only active choices, `docs/decision-log.md` keeps durable history, and `docs/review/next-terminal-handoff.md` is reduced to a pointer. Git history and artifact inventory retain deleted repetition.
+
+- Decision: Use the repository README as the external status entry instead of a manually duplicated Wiki.
+  - Reason: The public GitHub repository had no README, description, homepage, Pages deployment, or initialized Wiki content. A separately edited Wiki would recreate the update-loss problem.
+  - Effect: `README.md` links to the live current status and workflow, while future Pages or Wiki publishing must be generated one-way from repository sources. Dependency-free checks enforce active-artifact consistency, document size budgets, HTML script compilation, state/fixture validation, selected active guards in `npm run check`, the full read-only registry in `npm run check:manifest`, and whitespace hygiene.
+
+- Decision: Separate read-only validation from artifact regeneration and define source-span offsets over canonical LF text.
+  - Reason: Recalculation exposed 16 failing historical validators: six assumed an old active artifact, fourteen inferred registration from a writable smoke command string, and multilingual/sparse offsets counted CRLF while tracked fixtures used LF. The old manifest command also rewrote tracked result files during ordinary checks.
+  - Effect: The manifest now carries a 31-entry `read_only_validation_registry`; validators accept the current active artifact and preserved historical identities; extraction, state validation, and source-pack generation normalize source text to LF; dependent readbacks were regenerated; `npm run check:manifest` runs the full registry without output paths and fails if the worktree changes. Writable smoke regeneration is isolated behind `npm run artifact:refresh`.

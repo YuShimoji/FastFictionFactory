@@ -2,10 +2,10 @@
   "schemaVersion": "fff.heldClaimAdoptionPreflight.v1",
   "artifact_id": "fff-held-claim-adoption-preflight-001",
   "title": "Fast Fiction Factory Held Claim Adoption Preflight",
-  "generatedAt": "2026-07-06T01:13:00.257Z",
+  "generatedAt": "2026-07-10T08:53:04.960Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
+  "preserved_active_artifact_id": "fff-review-workbench-component-contract-001",
   "input_readbacks": {
     "translated_memo_fixture_minimum_result_path": "artifacts/translated-memo-fixture-minimum-result.json",
     "source_output_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
@@ -34,7 +34,7 @@
   "adoption_preflight_rows": [
     {
       "source_span_id": "multi-x-object-brass-moth-key",
-      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
       "translated_fixture_row_id": "translated-min-row-moth-key-label",
       "held_claim_id": "multi-claim-moth-key-label",
       "claim_text": "The brass moth key carries the Japanese label 真鍮の蛾の鍵.",
@@ -129,7 +129,7 @@
   "preflight_checks": {
     "active_artifact_and_translated_fixture_loaded": {
       "passed": true,
-      "detail": "current-active=fff-draft-to-video-planning-bridge-001; translated=fff-translated-memo-fixture-minimum-001/true"
+      "detail": "current-active=fff-review-workbench-component-contract-001; translated=fff-translated-memo-fixture-minimum-001/true"
     },
     "held_linked_claim_identified": {
       "passed": true,
@@ -157,7 +157,7 @@
     },
     "manifest_and_review_memory_registered": {
       "passed": true,
-      "detail": "includesSmoke=true; preserves=true; memory=true"
+      "detail": "registered=true; preserves=true; memory=true"
     }
   },
   "failures": [],

@@ -1,6 +1,6 @@
 # Fast Fiction Factory QA Gates
 
-These gates are visible in the MVP workbench. They are local review checks, not production approval.
+The story, canon, source, timeline, feasibility, typography, rights, and YouTube gates are visible in the MVP workbench. The final three gates below are development acceptance checks until the UI exposes equivalent behavior. None of these gates is production approval.
 
 ## Story Nucleus
 
@@ -57,3 +57,24 @@ These gates are visible in the MVP workbench. They are local review checks, not 
 - Pass: No upload, credentials, or publishing adapter is active.
 - Warn: Outline needs future metadata decisions.
 - Block: The system attempts upload, credential use, or public release.
+
+## Decision Interaction Readiness
+
+- Purpose: Ensure a visible choice is a real, reversible interaction rather than a decorative control.
+- Pass: Choice, local receipt, current step, URL/history, reload state, and undo behavior agree.
+- Warn: A low-fidelity direction prototype intentionally demonstrates only one thin interaction.
+- Block: The UI presents a decision as actionable but silently drops it or cannot reproduce the selected route.
+
+## Responsive And Language Readiness
+
+- Purpose: Keep the Japanese-first workbench usable across narrow and wide screens while preserving source-language ownership.
+- Pass: 360 px and 1440 px layouts remain operable; keyboard focus is visible; Light/Dark contrast passes review; page and mixed-language segments declare the correct language; reduced-motion is respected.
+- Warn: A research route has incomplete polish but no hidden or unreachable decision.
+- Block: Content is clipped behind hidden overflow, controls cannot be reached by keyboard, or translated text is presented as original source authority.
+
+## Workflow Evidence Quality
+
+- Purpose: Prevent marker/count checks from being mistaken for user-flow proof.
+- Pass: Static contract checks are paired with the smallest relevant behavioral or visual evidence.
+- Warn: Historical artifacts retain marker-only evidence and are not being changed.
+- Block: A changed interaction is declared ready solely because a marker, result file, or screenshot exists.
