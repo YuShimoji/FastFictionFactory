@@ -6,6 +6,9 @@ repo_root=$(CDPATH= cd -- "$script_dir/../.." && pwd)
 
 if [ "${1:-}" = "--docs" ]; then
   cd "$repo_root"
+  if command -v uvx >/dev/null 2>&1; then
+    exec uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
+  fi
   exec python -m mkdocs serve -a 127.0.0.1:8000
 fi
 

@@ -2,10 +2,10 @@
   "schemaVersion": "fff.adoptionCandidateLedgerDryRun.v1",
   "artifact_id": "fff-adoption-candidate-ledger-dry-run-001",
   "title": "Fast Fiction Factory Adoption Candidate Ledger Dry-Run",
-  "generatedAt": "2026-07-06T01:13:00.395Z",
+  "generatedAt": "2026-07-10T08:53:05.166Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
+  "preserved_active_artifact_id": "fff-review-workbench-component-contract-001",
   "input_readbacks": {
     "downstream_adoption_semantics_design_result_path": "artifacts/downstream-adoption-semantics-design-result.json",
     "held_claim_adoption_preflight_result_path": "artifacts/held-claim-adoption-preflight-result.json",
@@ -33,7 +33,7 @@
     {
       "ledger_row_id": "adoption-candidate-ledger-dry-run-row-moth-key-label",
       "source_span_id": "multi-x-object-brass-moth-key",
-      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
       "held_claim_id": "multi-claim-moth-key-label",
       "translated_fixture_row_id": "translated-min-row-moth-key-label",
       "prior_claim_status": "hold",
@@ -141,7 +141,7 @@
     },
     "manifest_and_review_memory_registered": {
       "passed": true,
-      "detail": "includesSmoke=true; preserves=true; memory=true"
+      "detail": "registered=true; preserves=true; memory=true"
     }
   },
   "failures": [],

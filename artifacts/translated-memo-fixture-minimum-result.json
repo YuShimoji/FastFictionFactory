@@ -2,10 +2,10 @@
   "schemaVersion": "fff.translatedMemoFixtureMinimum.v1",
   "artifact_id": "fff-translated-memo-fixture-minimum-001",
   "title": "Fast Fiction Factory Minimal Translated Memo Fixture",
-  "generatedAt": "2026-07-06T01:13:00.186Z",
+  "generatedAt": "2026-07-10T08:52:52.700Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
+  "preserved_active_artifact_id": "fff-review-workbench-component-contract-001",
   "fixture_path": "artifacts/translated-memo-fixture-minimum.json",
   "input_readbacks": {
     "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
@@ -36,8 +36,8 @@
     {
       "row_id": "translated-min-row-moth-key-label",
       "original_source_span_id": "multi-x-object-brass-moth-key",
-      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
-      "declared_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
+      "declared_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
       "original_source_text": "brass moth key is called \"真鍮の蛾の鍵\"",
       "raw_memo_text": "brass moth key is called \"真鍮の蛾の鍵\"",
       "translated_text": "The brass moth key is called \"the brass moth key\".",
@@ -67,8 +67,8 @@
     {
       "row_id": "translated-min-row-inline-gloss-boundary",
       "original_source_span_id": "multi-x-placeholder-translation-boundary",
-      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=551-580",
-      "declared_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=551-580",
+      "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
+      "declared_source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
       "original_source_text": "English gloss is in-line only",
       "raw_memo_text": "English gloss is in-line only",
       "translated_text": "The English gloss is inline only.",
@@ -166,7 +166,7 @@
     },
     "manifest_and_review_memory_registered": {
       "passed": true,
-      "detail": "includesSmoke=true; preserves=true; memory=true"
+      "detail": "registered=true; preserves=true; memory=true"
     }
   },
   "failures": [],

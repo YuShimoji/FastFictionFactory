@@ -2,10 +2,10 @@
   "schemaVersion": "fff.translationProvenanceSourceSpanReadback.v1",
   "artifact_id": "fff-translation-provenance-source-span-readback-001",
   "title": "Fast Fiction Factory Translation Provenance Source-Span Readback",
-  "generatedAt": "2026-07-06T01:13:00.043Z",
+  "generatedAt": "2026-07-10T08:52:52.540Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
+  "preserved_active_artifact_id": "fff-review-workbench-component-contract-001",
   "input_payload_path": "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json",
   "source_scope": {
     "source_fixture_path": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md",
@@ -41,9 +41,9 @@
     "display_text": "translation boundary placeholder",
     "source_span": {
       "text": "English gloss is in-line only",
-      "start": 551,
-      "end": 580,
-      "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=551-580",
+      "start": 537,
+      "end": 566,
+      "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=537-566",
       "matches_raw_memo": true,
       "source_pack_row_matches": true
     },
@@ -70,9 +70,9 @@
       },
       "source_span": {
         "text": "brass moth key is called \"真鍮の蛾の鍵\"",
-        "start": 294,
-        "end": 327,
-        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+        "start": 286,
+        "end": 319,
+        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
         "matches_raw_memo": true,
         "source_pack_row_matches": true
       },
@@ -143,9 +143,9 @@
       },
       "source_span": {
         "text": "Council archivists の記録 says Toma's route is a clerical error",
-        "start": 186,
-        "end": 246,
-        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=186-246",
+        "start": 180,
+        "end": 240,
+        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=180-240",
         "matches_raw_memo": true,
         "source_pack_row_matches": true
       },
@@ -216,9 +216,9 @@
       },
       "source_span": {
         "text": "observatory rings at noon even though bell is missing",
-        "start": 128,
-        "end": 181,
-        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=128-181",
+        "start": 124,
+        "end": 177,
+        "locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=124-177",
         "matches_raw_memo": true,
         "source_pack_row_matches": true
       },
@@ -319,11 +319,11 @@
   "readback_checks": {
     "active_artifact_and_prior_audits_loaded": {
       "passed": true,
-      "detail": "current-active=fff-draft-to-video-planning-bridge-001; remaining=fff-remaining-fixture-coverage-one-class-001; translated=fff-translated-memo-fixture-audit-001"
+      "detail": "current-active=fff-review-workbench-component-contract-001; remaining=fff-remaining-fixture-coverage-one-class-001; translated=fff-translated-memo-fixture-audit-001"
     },
     "manifest_validation_includes_readback": {
       "passed": true,
-      "detail": "includes smoke=true"
+      "detail": "registered=true"
     },
     "multilingual_payload_and_source_pack_loaded": {
       "passed": true,
@@ -359,7 +359,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=34; reviewInput=freeform"
+      "detail": "reviewMemory=37; reviewInput=freeform"
     }
   },
   "failures": [],

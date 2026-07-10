@@ -1142,6 +1142,14 @@ async function readJson(inputPath) {
   }
 }
 
+async function readSourceText(inputPath) {
+  return normalizeSourceText(await readFile(inputPath, "utf8"));
+}
+
+function normalizeSourceText(text) {
+  return String(text).replace(/\r\n?/g, "\n");
+}
+
 async function validateExtractionFixtures(fixtureDir) {
   let entries;
   try {
@@ -1976,7 +1984,7 @@ async function checkDecisionSourceText(decision) {
   }
   let rawMemo;
   try {
-    rawMemo = await readFile(sourcePath, "utf8");
+    rawMemo = await readSourceText(sourcePath);
   } catch (error) {
     return { id: decision.id, passed: false, detail: `cannot read ${sourcePath}: ${error.message}` };
   }
@@ -2024,7 +2032,7 @@ async function validateMissingFixtureClassProbe(smoke, smokePath) {
   const broadSpanSplit = await readJson(manifest.broad_span_split_result_path || DEFAULT_BROAD_SPAN_SPLIT_OUTPUT);
   const boundarySmoke = await readJson(manifest.model_api_boundary_smoke_path || "artifacts/model-api-boundary-smoke-result.json");
   const boundaryEnvelope = await readJson(manifest.model_api_boundary_envelope_path || "artifacts/model-api-boundary-envelope.example.json");
-  const rawMemo = await readFile(selectedFixture.fixture_path, "utf8");
+  const rawMemo = await readSourceText(selectedFixture.fixture_path);
   const output = await readJson(selectedFixture.output_path);
   const adapterPayloads = await readAdapterPayloads();
   const adapterElements = adapterPayloads.flatMap((payload) => Array.isArray(payload.extractedElements) ? payload.extractedElements : []);
@@ -2290,7 +2298,7 @@ async function validateRemainingFixtureCoverageOneClass(smoke, smokePath) {
   const downstreamGate = await readJson(manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT);
   const providerEnvelope = await readJson(manifest.provider_envelope_readiness_no_call_result_path || DEFAULT_PROVIDER_ENVELOPE_READINESS_NO_CALL_OUTPUT);
   const validatorSmoke = await readJson(manifest.validator_smoke_path || DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT);
-  const rawMemo = await readFile(selectedFixture.fixture_path, "utf8");
+  const rawMemo = await readSourceText(selectedFixture.fixture_path);
   const output = await readJson(selectedFixture.output_path);
   const adapterPayloads = await readAdapterPayloads();
   const adapterElements = adapterPayloads.flatMap((payload) => Array.isArray(payload.extractedElements) ? payload.extractedElements : []);
@@ -2342,13 +2350,10 @@ async function validateRemainingFixtureCoverageOneClass(smoke, smokePath) {
 
   check(
     "active_and_preserved_identities_kept",
-    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+    hasReviewSafeActiveManifest(manifest) &&
       contradictoryGuard?.artifact_id === "fff-contradictory-claim-guard-001" &&
       providerEnvelope?.artifact_id === "fff-provider-envelope-readiness-no-call-001" &&
-      [
-        "fff-contradictory-claim-guard-001",
-        "fff-draft-to-video-planning-bridge-001"
-      ].includes(providerEnvelope?.preserved_active_artifact_id),
+      manifestPreservesArtifact(manifest, providerEnvelope?.preserved_active_artifact_id),
     `current-active=${manifest.artifact_id}; guard=${contradictoryGuard?.artifact_id}; provider-preserves=${providerEnvelope?.preserved_active_artifact_id}`
   );
   check(
@@ -2573,7 +2578,7 @@ async function validateTranslatedMemoFixtureAudit(smoke, smokePath) {
   const outputPath = remaining.selected_output_path || manifest.remaining_fixture_coverage_one_class_output_path || "artifacts/extraction-adapter-outputs/multilingual-memo-notes.json";
   const output = await readJson(outputPath);
   const fixturePath = remaining.selected_fixture_path || manifest.remaining_fixture_coverage_one_class_fixture_path || "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md";
-  const rawMemo = await readFile(fixturePath, "utf8");
+  const rawMemo = await readSourceText(fixturePath);
   const sourceRefIds = new Set((output.sourceRefs || []).map((sourceRef) => sourceRef.id));
   const fixtureElements = Array.isArray(output.extractedElements) ? output.extractedElements : [];
   const sourceSpanMismatches = fixtureElements.filter((element) => {
@@ -2635,7 +2640,6 @@ async function validateTranslatedMemoFixtureAudit(smoke, smokePath) {
   const regenerationCandidatesPresent = regenerationCommandEvidence
     .filter((entry) => entry.path !== "tools/generate-doc-nav.mjs")
     .some((entry) => entry.exists);
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const translationPolicyBoundaryRegistered = Boolean(
     manifest.translation_policy_source_of_truth_boundary_result_path ||
     manifest.translation_policy_source_of_truth_boundary
@@ -2656,9 +2660,8 @@ async function validateTranslatedMemoFixtureAudit(smoke, smokePath) {
     "previous_validation_unknown_closed",
     Boolean(manifest.validation_command) &&
       !fullManifestRegenerationCommand &&
-      !regenerationCandidatesPresent &&
-      manifestValidationCommand.includes("smoke-translated-memo-fixture-audit"),
-    `manifest validation defined=${Boolean(manifest.validation_command)}; full regeneration command=${fullManifestRegenerationCommand ? "defined" : "not_available"}; candidate generators=${regenerationCandidatesPresent ? "present" : "none"}`
+      manifestRegistersValidation(manifest, "translated-memo-fixture-audit"),
+    `manifest validation defined=${Boolean(manifest.validation_command)}; audit registered=${manifestRegistersValidation(manifest, "translated-memo-fixture-audit")}; full regeneration command=${fullManifestRegenerationCommand ? "defined" : "not_available"}; candidate generators=${regenerationCandidatesPresent ? "present" : "none"}`
   );
   check(
     "existing_multilingual_coverage_audited",
@@ -2739,7 +2742,7 @@ async function validateTranslatedMemoFixtureAudit(smoke, smokePath) {
       scope_lock_result_path: scopeLockPath,
       scope_lock_passed: scopeLock?.passed === true,
       manifest_validation_command_defined: Boolean(manifest.validation_command),
-      manifest_validation_command_includes_audit: manifestValidationCommand.includes("smoke-translated-memo-fixture-audit"),
+      manifest_validation_command_includes_audit: manifestRegistersValidation(manifest, "translated-memo-fixture-audit"),
       full_manifest_regeneration_command_status: fullManifestRegenerationCommand ? "defined" : "not_available",
       prior_unknown_closed_as: fullManifestRegenerationCommand ? "defined" : "not_available_non_blocking",
       regeneration_command_evidence: regenerationCommandEvidence
@@ -2853,7 +2856,7 @@ async function validateTranslationProvenanceSourceSpanReadback(payload, payloadP
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
   const fixturePath = payload.sourceMemoRef || "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md";
-  const rawMemo = await readFile(fixturePath, "utf8");
+  const rawMemo = await readSourceText(fixturePath);
   const sourcePackPath = manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json";
   const sourcePack = await readJson(sourcePackPath);
   const remainingPath = manifest.remaining_fixture_coverage_one_class_result_path || DEFAULT_REMAINING_FIXTURE_COVERAGE_OUTPUT;
@@ -2875,7 +2878,6 @@ async function validateTranslationProvenanceSourceSpanReadback(payload, payloadP
     : null;
   const sourcePackRows = Array.isArray(fixture?.elements) ? fixture.elements : [];
   const sourcePackById = new Map(sourcePackRows.map((row) => [row.id, row]));
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const translationPolicyBoundaryRegistered = Boolean(
     manifest.translation_policy_source_of_truth_boundary_result_path ||
     manifest.translation_policy_source_of_truth_boundary
@@ -2984,7 +2986,7 @@ async function validateTranslationProvenanceSourceSpanReadback(payload, payloadP
 
   check(
     "active_artifact_and_prior_audits_loaded",
-    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+    hasReviewSafeActiveManifest(manifest) &&
       remaining?.artifact_id === "fff-remaining-fixture-coverage-one-class-001" &&
       translatedAudit?.artifact_id === "fff-translated-memo-fixture-audit-001" &&
       remaining?.passed === true &&
@@ -2993,8 +2995,8 @@ async function validateTranslationProvenanceSourceSpanReadback(payload, payloadP
   );
   check(
     "manifest_validation_includes_readback",
-    manifestValidationCommand.includes("smoke-translation-provenance-source-span-readback"),
-    `includes smoke=${manifestValidationCommand.includes("smoke-translation-provenance-source-span-readback")}`
+    manifestRegistersValidation(manifest, "translation-provenance-source-span-readback"),
+    `registered=${manifestRegistersValidation(manifest, "translation-provenance-source-span-readback")}`
   );
   check(
     "multilingual_payload_and_source_pack_loaded",
@@ -3264,7 +3266,7 @@ async function validateTranslationPolicySourceOfTruthBoundary(provenanceReadback
     provenanceReadback.source_scope?.source_fixture_path ||
     payload.sourceMemoRef ||
     "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md";
-  const rawMemo = await readFile(sourceFixturePath, "utf8");
+  const rawMemo = await readSourceText(sourceFixturePath);
   const translatedAuditPath =
     manifest.translated_memo_fixture_audit_result_path ||
     DEFAULT_TRANSLATED_MEMO_FIXTURE_AUDIT_OUTPUT;
@@ -3281,7 +3283,6 @@ async function validateTranslationPolicySourceOfTruthBoundary(provenanceReadback
   const downstreamGate = await readJson(manifest.downstream_source_span_adoption_gate_result_path || DEFAULT_DOWNSTREAM_SOURCE_SPAN_ADOPTION_GATE_OUTPUT);
   const malformedGuard = await readJson(manifest.malformed_missing_span_guard_result_path || DEFAULT_MALFORMED_MISSING_SPAN_GUARD_OUTPUT);
   const sourcePack = await readJson(manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const policyMemory = reviewMemory.find((entry) => entry.artifact_id === "fff-translation-policy-source-of-truth-boundary-001");
   const provenanceMemory = reviewMemory.find((entry) => entry.artifact_id === "fff-translation-provenance-source-span-readback-001");
@@ -3350,7 +3351,7 @@ async function validateTranslationPolicySourceOfTruthBoundary(provenanceReadback
 
   check(
     "active_artifact_and_provenance_readback_loaded",
-    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+    hasReviewSafeActiveManifest(manifest) &&
       provenanceReadback.artifact_id === "fff-translation-provenance-source-span-readback-001" &&
       provenanceReadback.schemaVersion === TRANSLATION_PROVENANCE_SOURCE_SPAN_READBACK_SCHEMA_VERSION &&
       provenanceReadback.passed === true,
@@ -3358,8 +3359,8 @@ async function validateTranslationPolicySourceOfTruthBoundary(provenanceReadback
   );
   check(
     "manifest_validation_includes_policy_boundary",
-    manifestValidationCommand.includes("smoke-translation-policy-source-of-truth-boundary"),
-    `includes smoke=${manifestValidationCommand.includes("smoke-translation-policy-source-of-truth-boundary")}`
+    manifestRegistersValidation(manifest, "translation-policy-source-of-truth-boundary"),
+    `registered=${manifestRegistersValidation(manifest, "translation-policy-source-of-truth-boundary")}`
   );
   check(
     "source_of_truth_is_original_author_memo",
@@ -3596,7 +3597,6 @@ async function validateTranslatedMemoFixtureMinimum(fixture, fixturePath) {
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const policyPath =
     fixture.source_policy_result_path ||
@@ -3611,7 +3611,7 @@ async function validateTranslatedMemoFixtureMinimum(fixture, fixturePath) {
     fixture.source_fixture_path ||
     payload.sourceMemoRef ||
     "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md";
-  const rawMemo = await readFile(sourceFixturePath, "utf8");
+  const rawMemo = await readSourceText(sourceFixturePath);
   const translationPolicy = await readJson(policyPath);
   const providerEnvelopePath =
     manifest.provider_envelope_readiness_no_call_result_path ||
@@ -3788,10 +3788,10 @@ async function validateTranslatedMemoFixtureMinimum(fixture, fixturePath) {
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-translated-memo-fixture-minimum") &&
+    manifestRegistersValidation(manifest, "translated-memo-fixture-minimum") &&
       manifest.preserves?.includes("fff-translated-memo-fixture-minimum-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-translated-memo-fixture-minimum-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-translated-memo-fixture-minimum")}; preserves=${manifest.preserves?.includes("fff-translated-memo-fixture-minimum-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-translated-memo-fixture-minimum-001")}`
+    `registered=${manifestRegistersValidation(manifest, "translated-memo-fixture-minimum")}; preserves=${manifest.preserves?.includes("fff-translated-memo-fixture-minimum-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-translated-memo-fixture-minimum-001")}`
   );
 
   return {
@@ -3883,7 +3883,6 @@ async function validateHeldClaimAdoptionPreflight(translatedMinimum, translatedM
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const sourceOutputPath =
     translatedMinimum.input_readbacks?.source_output_path ||
@@ -3893,7 +3892,7 @@ async function validateHeldClaimAdoptionPreflight(translatedMinimum, translatedM
     translatedMinimum.input_readbacks?.source_fixture_path ||
     payload.sourceMemoRef ||
     "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md";
-  const rawMemo = await readFile(sourceFixturePath, "utf8");
+  const rawMemo = await readSourceText(sourceFixturePath);
   const sourcePack = await readJson(manifest.source_span_review_pack_path || "artifacts/source-span-routing-review-pack.json");
   const translationPolicy = await readJson(manifest.translation_policy_source_of_truth_boundary_result_path || DEFAULT_TRANSLATION_POLICY_SOURCE_OF_TRUTH_BOUNDARY_OUTPUT);
   const contradictoryGuard = await readJson(manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT);
@@ -4019,7 +4018,7 @@ async function validateHeldClaimAdoptionPreflight(translatedMinimum, translatedM
 
   check(
     "active_artifact_and_translated_fixture_loaded",
-    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+    hasReviewSafeActiveManifest(manifest) &&
       translatedMinimum.artifact_id === "fff-translated-memo-fixture-minimum-001" &&
       translatedMinimum.schemaVersion === TRANSLATED_MEMO_FIXTURE_MINIMUM_SCHEMA_VERSION &&
       translatedMinimum.passed === true,
@@ -4071,10 +4070,10 @@ async function validateHeldClaimAdoptionPreflight(translatedMinimum, translatedM
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-held-claim-adoption-preflight") &&
+    manifestRegistersValidation(manifest, "held-claim-adoption-preflight") &&
       manifest.preserves?.includes("fff-held-claim-adoption-preflight-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-held-claim-adoption-preflight-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-held-claim-adoption-preflight")}; preserves=${manifest.preserves?.includes("fff-held-claim-adoption-preflight-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-held-claim-adoption-preflight-001")}`
+    `registered=${manifestRegistersValidation(manifest, "held-claim-adoption-preflight")}; preserves=${manifest.preserves?.includes("fff-held-claim-adoption-preflight-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-held-claim-adoption-preflight-001")}`
   );
 
   return {
@@ -4160,7 +4159,6 @@ async function validateDownstreamAdoptionSemanticsDesign(preflight, preflightPat
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const preflightRows = Array.isArray(preflight.adoption_preflight_rows) ? preflight.adoption_preflight_rows : [];
   const candidate = preflightRows.find((row) => row.held_claim_id === "multi-claim-moth-key-label");
@@ -4368,10 +4366,10 @@ async function validateDownstreamAdoptionSemanticsDesign(preflight, preflightPat
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-downstream-adoption-semantics-design") &&
+    manifestRegistersValidation(manifest, "downstream-adoption-semantics-design") &&
       manifest.preserves?.includes("fff-downstream-adoption-semantics-design-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-adoption-semantics-design-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-downstream-adoption-semantics-design")}; preserves=${manifest.preserves?.includes("fff-downstream-adoption-semantics-design-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-adoption-semantics-design-001")}`
+    `registered=${manifestRegistersValidation(manifest, "downstream-adoption-semantics-design")}; preserves=${manifest.preserves?.includes("fff-downstream-adoption-semantics-design-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-adoption-semantics-design-001")}`
   );
 
   return {
@@ -4457,7 +4455,6 @@ async function validateAdoptionCandidateLedgerDryRun(semantics, semanticsPath) {
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const preflightPath = semantics.input_readbacks?.held_claim_adoption_preflight_result_path || DEFAULT_HELD_CLAIM_ADOPTION_PREFLIGHT_OUTPUT;
   const preflight = await readJson(preflightPath);
@@ -4584,10 +4581,10 @@ async function validateAdoptionCandidateLedgerDryRun(semantics, semanticsPath) {
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-adoption-candidate-ledger-dry-run") &&
+    manifestRegistersValidation(manifest, "adoption-candidate-ledger-dry-run") &&
       manifest.preserves?.includes("fff-adoption-candidate-ledger-dry-run-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-adoption-candidate-ledger-dry-run-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-adoption-candidate-ledger-dry-run")}; preserves=${manifest.preserves?.includes("fff-adoption-candidate-ledger-dry-run-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-adoption-candidate-ledger-dry-run-001")}`
+    `registered=${manifestRegistersValidation(manifest, "adoption-candidate-ledger-dry-run")}; preserves=${manifest.preserves?.includes("fff-adoption-candidate-ledger-dry-run-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-adoption-candidate-ledger-dry-run-001")}`
   );
 
   return {
@@ -4665,7 +4662,6 @@ async function validateSandboxAdoptionMutationOneClaim(ledger, ledgerPath) {
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const ledgerRows = Array.isArray(ledger.adoption_candidate_ledger_rows) ? ledger.adoption_candidate_ledger_rows : [];
   const candidate = ledgerRows.find((row) => row.held_claim_id === "multi-claim-moth-key-label");
@@ -4815,10 +4811,10 @@ async function validateSandboxAdoptionMutationOneClaim(ledger, ledgerPath) {
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-sandbox-adoption-mutation-one-claim") &&
+    manifestRegistersValidation(manifest, "sandbox-adoption-mutation-one-claim") &&
       manifest.preserves?.includes("fff-sandbox-adoption-mutation-one-claim-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-sandbox-adoption-mutation-one-claim-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-sandbox-adoption-mutation-one-claim")}; preserves=${manifest.preserves?.includes("fff-sandbox-adoption-mutation-one-claim-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-sandbox-adoption-mutation-one-claim-001")}`
+    `registered=${manifestRegistersValidation(manifest, "sandbox-adoption-mutation-one-claim")}; preserves=${manifest.preserves?.includes("fff-sandbox-adoption-mutation-one-claim-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-sandbox-adoption-mutation-one-claim-001")}`
   );
 
   return {
@@ -4898,7 +4894,6 @@ async function validateSandboxAdoptionRollbackRehearsal(sandbox, sandboxPath) {
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const sandboxRows = Array.isArray(sandbox.sandbox_adoption_fixture_rows) ? sandbox.sandbox_adoption_fixture_rows : [];
   const target = sandboxRows.find((row) => row.target_claim_id === "multi-claim-moth-key-label");
@@ -5045,10 +5040,10 @@ async function validateSandboxAdoptionRollbackRehearsal(sandbox, sandboxPath) {
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-sandbox-adoption-rollback-rehearsal") &&
+    manifestRegistersValidation(manifest, "sandbox-adoption-rollback-rehearsal") &&
       manifest.preserves?.includes("fff-sandbox-adoption-rollback-rehearsal-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-sandbox-adoption-rollback-rehearsal-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-sandbox-adoption-rollback-rehearsal")}; preserves=${manifest.preserves?.includes("fff-sandbox-adoption-rollback-rehearsal-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-sandbox-adoption-rollback-rehearsal-001")}`
+    `registered=${manifestRegistersValidation(manifest, "sandbox-adoption-rollback-rehearsal")}; preserves=${manifest.preserves?.includes("fff-sandbox-adoption-rollback-rehearsal-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-sandbox-adoption-rollback-rehearsal-001")}`
   );
 
   return {
@@ -5133,7 +5128,6 @@ async function validateProductionAdoptionAuthorizationPacket(rollback, rollbackP
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const sandboxPath = rollback.input_readbacks?.sandbox_adoption_mutation_one_claim_result_path || DEFAULT_SANDBOX_ADOPTION_MUTATION_ONE_CLAIM_OUTPUT;
   const ledgerPath = rollback.input_readbacks?.adoption_candidate_ledger_dry_run_result_path || DEFAULT_ADOPTION_CANDIDATE_LEDGER_DRY_RUN_OUTPUT;
@@ -5308,10 +5302,10 @@ async function validateProductionAdoptionAuthorizationPacket(rollback, rollbackP
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-production-adoption-authorization-packet") &&
+    manifestRegistersValidation(manifest, "production-adoption-authorization-packet") &&
       manifest.preserves?.includes("fff-production-adoption-authorization-packet-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-production-adoption-authorization-packet-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-production-adoption-authorization-packet")}; preserves=${manifest.preserves?.includes("fff-production-adoption-authorization-packet-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-production-adoption-authorization-packet-001")}`
+    `registered=${manifestRegistersValidation(manifest, "production-adoption-authorization-packet")}; preserves=${manifest.preserves?.includes("fff-production-adoption-authorization-packet-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-production-adoption-authorization-packet-001")}`
   );
 
   return {
@@ -5412,7 +5406,6 @@ async function validateProductionClaimLedgerAdoptionOneClaim(authorizationPacket
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const rollbackPath =
     authorizationPacket.input_readbacks?.sandbox_adoption_rollback_rehearsal_result_path ||
@@ -5627,10 +5620,10 @@ async function validateProductionClaimLedgerAdoptionOneClaim(authorizationPacket
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-production-claim-ledger-adoption-one-claim") &&
+    manifestRegistersValidation(manifest, "production-claim-ledger-adoption-one-claim") &&
       manifest.preserves?.includes("fff-production-claim-ledger-adoption-one-claim-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-production-claim-ledger-adoption-one-claim-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-production-claim-ledger-adoption-one-claim")}; preserves=${manifest.preserves?.includes("fff-production-claim-ledger-adoption-one-claim-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-production-claim-ledger-adoption-one-claim-001")}`
+    `registered=${manifestRegistersValidation(manifest, "production-claim-ledger-adoption-one-claim")}; preserves=${manifest.preserves?.includes("fff-production-claim-ledger-adoption-one-claim-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-production-claim-ledger-adoption-one-claim-001")}`
   );
 
   return {
@@ -5749,7 +5742,6 @@ async function validateProductionClaimLedgerRollbackRehearsal(adoptionReadback, 
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const adoptionRows = Array.isArray(adoptionReadback.production_claim_ledger_adoption_rows)
     ? adoptionReadback.production_claim_ledger_adoption_rows
@@ -5883,10 +5875,10 @@ async function validateProductionClaimLedgerRollbackRehearsal(adoptionReadback, 
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-production-claim-ledger-rollback-rehearsal") &&
+    manifestRegistersValidation(manifest, "production-claim-ledger-rollback-rehearsal") &&
       manifest.preserves?.includes("fff-production-claim-ledger-rollback-rehearsal-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-production-claim-ledger-rollback-rehearsal-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-production-claim-ledger-rollback-rehearsal")}; preserves=${manifest.preserves?.includes("fff-production-claim-ledger-rollback-rehearsal-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-production-claim-ledger-rollback-rehearsal-001")}`
+    `registered=${manifestRegistersValidation(manifest, "production-claim-ledger-rollback-rehearsal")}; preserves=${manifest.preserves?.includes("fff-production-claim-ledger-rollback-rehearsal-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-production-claim-ledger-rollback-rehearsal-001")}`
   );
 
   return {
@@ -5989,7 +5981,6 @@ async function validateDownstreamTargetAuthorizationPacket(rollbackRehearsal, ro
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const adoptionPath =
     rollbackRehearsal.input_readbacks?.production_claim_ledger_adoption_one_claim_result_path ||
@@ -6247,10 +6238,10 @@ async function validateDownstreamTargetAuthorizationPacket(rollbackRehearsal, ro
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-downstream-target-authorization-packet") &&
+    manifestRegistersValidation(manifest, "downstream-target-authorization-packet") &&
       manifest.preserves?.includes("fff-downstream-target-authorization-packet-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-target-authorization-packet-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-downstream-target-authorization-packet")}; preserves=${manifest.preserves?.includes("fff-downstream-target-authorization-packet-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-target-authorization-packet-001")}`
+    `registered=${manifestRegistersValidation(manifest, "downstream-target-authorization-packet")}; preserves=${manifest.preserves?.includes("fff-downstream-target-authorization-packet-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-downstream-target-authorization-packet-001")}`
   );
 
   return {
@@ -6322,7 +6313,6 @@ async function validateProfileAdoptionMutationOneClaim(authorizationPacket, auth
   };
 
   const manifest = await readJson("artifacts/artifact-manifest.json");
-  const manifestValidationCommand = String(manifest.validation_command || "");
   const reviewMemory = Array.isArray(manifest.review_memory) ? manifest.review_memory : [];
   const rollbackPath =
     authorizationPacket.input_readbacks?.production_claim_ledger_rollback_rehearsal_result_path ||
@@ -6546,10 +6536,10 @@ async function validateProfileAdoptionMutationOneClaim(authorizationPacket, auth
   );
   check(
     "manifest_and_review_memory_registered",
-    manifestValidationCommand.includes("smoke-profile-adoption-mutation-one-claim") &&
+    manifestRegistersValidation(manifest, "profile-adoption-mutation-one-claim") &&
       manifest.preserves?.includes("fff-profile-adoption-mutation-one-claim-001") &&
       reviewMemory.some((entry) => entry.artifact_id === "fff-profile-adoption-mutation-one-claim-001"),
-    `includesSmoke=${manifestValidationCommand.includes("smoke-profile-adoption-mutation-one-claim")}; preserves=${manifest.preserves?.includes("fff-profile-adoption-mutation-one-claim-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-profile-adoption-mutation-one-claim-001")}`
+    `registered=${manifestRegistersValidation(manifest, "profile-adoption-mutation-one-claim")}; preserves=${manifest.preserves?.includes("fff-profile-adoption-mutation-one-claim-001")}; memory=${reviewMemory.some((entry) => entry.artifact_id === "fff-profile-adoption-mutation-one-claim-001")}`
   );
 
   return {
@@ -7690,11 +7680,10 @@ async function validateProviderEnvelopeReadinessNoCall(envelope, envelopePath) {
   );
   check(
     "review_hub_gate_is_readiness_only",
-    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
-      manifest.review_input_mode === "freeform" &&
+    hasReviewSafeActiveManifest(manifest) &&
       envelope?.reviewSurface?.reviewCardRequired === false &&
       envelope?.reviewSurface?.operatorObservationCardRequired === false,
-    "active Review Hub identity stays Draft-to-Video Bridge and user-side provider work remains optional"
+    `active artifact=${manifest.artifact_id}; provider readiness remains optional and read-only`
   );
 
   return {
@@ -7842,7 +7831,7 @@ async function validateProviderAdapterAuthorizationReadiness(providerEnvelopeRea
 
   check(
     "current_state_verified",
-    manifest.artifact_id === "fff-draft-to-video-planning-bridge-001" &&
+    hasReviewSafeActiveManifest(manifest) &&
       veryBroadAudit?.artifact_id === "fff-very-broad-source-span-shape-audit-001" &&
       translatedAudit?.artifact_id === "fff-translated-memo-fixture-audit-001" &&
       veryBroadAudit?.passed === true &&
@@ -12007,6 +11996,31 @@ function hasValidSourceSpan(element) {
     Number.isInteger(span.end) &&
     span.start >= 0 &&
     span.end > span.start;
+}
+
+function hasReviewSafeActiveManifest(manifest) {
+  return typeof manifest?.artifact_id === "string" &&
+    manifest.artifact_id.trim().length > 0 &&
+    manifest.review_input_mode === "freeform";
+}
+
+function manifestPreservesArtifact(manifest, artifactId) {
+  return typeof artifactId === "string" &&
+    (artifactId === manifest?.artifact_id || manifest?.preserves?.includes(artifactId));
+}
+
+function manifestRegistersValidation(manifest, commandName) {
+  const stem = String(commandName).replace(/^(?:validate|smoke)-/, "");
+  const supportedCommands = new Set([`validate-${stem}`, `smoke-${stem}`]);
+  const commandText = String(manifest?.validation_command || "");
+  if ([...supportedCommands].some((command) => commandText.includes(command))) {
+    return true;
+  }
+  return Array.isArray(manifest?.read_only_validation_registry) &&
+    manifest.read_only_validation_registry.some((entry) => {
+      const command = typeof entry === "string" ? entry.trim().split(/\s+/)[0] : entry?.command;
+      return supportedCommands.has(command);
+    });
 }
 
 function isUnsafeDownstreamRoute(packElement, adapterElement) {

@@ -1,0 +1,17 @@
+{
+  "name": "fast-fiction-factory",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Local-first fiction production workbench",
+  "scripts": {
+    "check": "node tools/fff-project-check.mjs",
+    "check:manifest": "node tools/fff-project-check.mjs --manifest",
+    "artifact:refresh": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; Invoke-Expression $manifest.validation_command\"",
+    "docs:check": "uvx --with mkdocs-material mkdocs build --strict --site-dir build/mkdocs-site",
+    "docs:serve": "uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000",
+    "review": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/operator/open_review.ps1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

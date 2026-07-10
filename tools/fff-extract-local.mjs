@@ -476,7 +476,7 @@ async function main() {
 }
 
 async function runSingle(inputPath, outputPath, smokePath) {
-  const rawMemo = await readFile(inputPath, "utf8");
+  const rawMemo = normalizeSourceText(await readFile(inputPath, "utf8"));
   const fixture = selectAdapterFixture(rawMemo, inputPath);
   const payload = buildExtractionPayload(rawMemo, inputPath, fixture);
 
@@ -511,7 +511,7 @@ async function runMatrix(fixtureDir, outputDir, smokePath) {
 
   for (const file of files) {
     const inputPath = toRepoPath(path.join(fixtureDir, file));
-    const rawMemo = await readFile(inputPath, "utf8");
+    const rawMemo = normalizeSourceText(await readFile(inputPath, "utf8"));
     const fixture = selectAdapterFixture(rawMemo, inputPath);
     const outputPath = toRepoPath(path.join(outputDir, `${fixture.key}.json`));
     const payload = buildExtractionPayload(rawMemo, inputPath, fixture);
@@ -988,6 +988,10 @@ function runNode(args) {
 
 function toRepoPath(filePath) {
   return filePath.split(path.sep).join("/");
+}
+
+function normalizeSourceText(text) {
+  return String(text).replace(/\r\n?/g, "\n");
 }
 
 main().catch((error) => {

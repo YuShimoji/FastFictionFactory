@@ -2,10 +2,10 @@
   "schemaVersion": "fff.downstreamTargetAuthorizationPacket.v1",
   "artifact_id": "fff-downstream-target-authorization-packet-001",
   "title": "Fast Fiction Factory Downstream Target Authorization Packet",
-  "generatedAt": "2026-07-06T01:13:00.834Z",
+  "generatedAt": "2026-07-10T08:53:05.660Z",
   "review_status": "ready_for_user_authorization",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
+  "preserved_active_artifact_id": "fff-review-workbench-component-contract-001",
   "input_readbacks": {
     "production_claim_ledger_rollback_rehearsal_result_path": "artifacts/production-claim-ledger-rollback-rehearsal-result.json",
     "production_claim_ledger_adoption_one_claim_result_path": "artifacts/production-claim-ledger-adoption-one-claim-result.json",
@@ -14,7 +14,7 @@
   "target_readback": {
     "target_claim_id": "multi-claim-moth-key-label",
     "source_span_id": "multi-x-object-brass-moth-key",
-    "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=294-327",
+    "source_span_locator": "artifacts/extraction-adapter-fixtures/multilingual-memo-notes.md#char=286-319",
     "current_status": "production_claim_ledger_adopted",
     "current_production_claim_ledger_adopted": true,
     "rollback_descriptor_status": "verified",
@@ -216,7 +216,7 @@
     },
     "manifest_and_review_memory_registered": {
       "passed": true,
-      "detail": "includesSmoke=true; preserves=true; memory=true"
+      "detail": "registered=true; preserves=true; memory=true"
     }
   },
   "failures": [],

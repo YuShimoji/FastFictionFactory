@@ -2,10 +2,10 @@
   "schemaVersion": "fff.translatedMemoFixtureAudit.v1",
   "artifact_id": "fff-translated-memo-fixture-audit-001",
   "title": "Fast Fiction Factory Translated / Multilingual Memo Fixture Audit",
-  "generatedAt": "2026-07-06T01:12:59.969Z",
+  "generatedAt": "2026-07-10T08:52:52.457Z",
   "review_status": "ready_for_local_readback",
   "review_input_mode": "freeform",
-  "preserved_active_artifact_id": "fff-draft-to-video-planning-bridge-001",
+  "preserved_active_artifact_id": "fff-review-workbench-component-contract-001",
   "audit_scope": {
     "translated_fixture_added": false,
     "multilingual_fixture_added": false,
@@ -25,7 +25,7 @@
     "regeneration_command_evidence": [
       {
         "path": "package.json",
-        "exists": false,
+        "exists": true,
         "interpretation": "no package scripts are available when absent"
       },
       {
@@ -148,7 +148,7 @@
     },
     "previous_validation_unknown_closed": {
       "passed": true,
-      "detail": "manifest validation defined=true; full regeneration command=not_available; candidate generators=none"
+      "detail": "manifest validation defined=true; audit registered=true; full regeneration command=not_available; candidate generators=present"
     },
     "existing_multilingual_coverage_audited": {
       "passed": true,
@@ -172,7 +172,7 @@
     },
     "review_nonredundancy_preserved": {
       "passed": true,
-      "detail": "reviewMemory=34; reviewInput=freeform; reviewCard=false; observation=false"
+      "detail": "reviewMemory=37; reviewInput=freeform; reviewCard=false; observation=false"
     }
   },
   "failures": [],

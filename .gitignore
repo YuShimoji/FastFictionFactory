@@ -1,0 +1,10 @@
+build/
+dist/
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.serena/
+.DS_Store
+Thumbs.db
