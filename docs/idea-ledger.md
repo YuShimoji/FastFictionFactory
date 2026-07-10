@@ -2,23 +2,32 @@
 
 ## Residual Work
 
+### Bridge Storyboard Flow
+
+- Purpose: Turn the accepted Workbench route choice into a story-shaped Bridge readback that is faster to scan than the preserved long decision/refinement page.
+- Effect: Adds `fff-bridge-storyboard-flow-001` at `public/review/index.html?mode=bridge`, exactly six Japanese-first beats, a compact rail, one active canvas, Previous / Next and keyboard navigation, one return to Brief, collapsed supporting Bridge evidence, `docs/review/bridge-storyboard-flow.md`, `artifacts/bridge-storyboard-flow-result.json`, and local screenshot evidence when capture succeeds.
+- Requirements: Preserve `fff-review-workbench-component-contract-001`, the selected candidate/channel, draft/bridge/guard source readbacks, dark mode, keyboard focus, all held truths, and all provider/API/credential/video/render/upload/database/rights/final-canon boundaries.
+- State: Implemented for local readback; `OPERATOR_FIRST` is closed from the accepted human observation. The Flow is planning-only and does not approve story truth, timing, assets, rights, or production.
+- Owner: Product implementer for the local Flow and validation; human reviewer for accept/revise/return of beat order and approximate timing.
+- Next move: Traverse all six beats at `public/review/index.html?mode=bridge`, then accept, revise, or return the order and timing allocation. Reopen wording only after that judgment.
+
 ### Review Workbench Component Contract
 
 - Purpose: Fix the first-screen component architecture failure where the applied shell still felt card-like and each component repeated a version of the whole system.
 - Effect: Adds `fff-review-workbench-component-contract-001`, a role-contracted Workbench Canvas for `public/review/index.html?mode=brief`, `componentRoleContracts`, single framing source marker, compact route nav, operator utility drawer, Context Dock limits, duplication budget smoke, `docs/review/review-workbench-component-contract.md`, `artifacts/review-workbench-component-contract-result.json`, and `artifacts/review-screens/brief-component-contract-workbench.png`.
 - Requirements: Preserve `fff-apply-decision-shell-guard-diet-001`, `layout-lab`, `bridge`, `designer`, `draft`, `source`, `project`, `artifacts`, dark mode, candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, existing readbacks, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
-- State: Implemented in `fff-review-workbench-component-contract-001`; current Supervisor readback is `pass / OPERATOR_FIRST`, so the next step is human visual review rather than another Worker Prompt.
+- State: Implemented and preserved in `fff-review-workbench-component-contract-001`; the supplied human observation accepts the top Workbench and closes `OPERATOR_FIRST` while noting lower-page density debt.
 - Owner: Product implementer for local UI/readback; human reviewer for judging whether the first screen now feels like one coordinated Workbench.
-- Next move: Open `public/review/index.html?mode=brief`, review the Workbench role boundaries, then choose Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision.
+- Next move: Keep the Workbench as the preserved Brief prelude; use the active Bridge Storyboard Flow for the next product readback.
 
 ### Operator-first Workbench Visual Review
 
 - Purpose: Convert the Supervisor `pass / OPERATOR_FIRST` judgment into a durable next-step instruction instead of spawning another micro-adjustment Worker.
-- Effect: Keeps the active artifact at `fff-review-workbench-component-contract-001` and makes the human operator's first-screen observation the next source of truth for Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision.
+- Effect: Preserved `fff-review-workbench-component-contract-001` until the human observation selected Bridge Storyboard Flow; `fff-bridge-storyboard-flow-001` is now active.
 - Requirements: Use `.\scripts\operator\open_review.ps1`, inspect `public/review/index.html?mode=brief`, compare against `artifacts/review-screens/brief-component-contract-workbench.png`, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: Pending human visual review.
-- Owner: Human reviewer for observation; next worker only after the observation selects a lane.
-- Next move: Report whether the screen feels like a Workbench, whether duplication is reduced, and which follow-up lane should run.
+- State: Completed. The human observation accepts the top Workbench, records that the lower page remains long and dense, and selects `BRIDGE_STORYBOARD_FLOW` for forward product movement.
+- Owner: Human reviewer supplied the deciding observation; product implementation moved to the selected lane.
+- Next move: Preserve the observation as the closed gate source; do not reopen it unless the Workbench itself materially changes.
 
 ### Apply Decision Shell Guard Diet
 
@@ -26,8 +35,8 @@
 - Effect: Applies the Shell to `public/review/index.html?mode=brief`, renders the current route decision from `decisionFlowModel`, caps dock rows through Dock Governor, moves long gate evidence into the Guard drawer, and records `docs/review/apply-decision-shell-guard-diet.md` plus `artifacts/apply-decision-shell-guard-diet-result.json`.
 - Requirements: Preserve `layout-lab`, `bridge`, Guided Flow, Latest Overview, Home Cockpit, Evidence Vault, selected candidate `designer-content-moth-investigation-3m`, channel route `designer-channel-mystery-lore`, dark mode, and all provider/API/video/render/upload/final-canon/database/rights boundaries.
 - State: Implemented in `fff-apply-decision-shell-guard-diet-001`.
-- Owner: Product implementer for the preserved source-shell UI/readback; human reviewer for the active Workbench four-lane decision.
-- Next move: Treat this as the preserved source shell. Review the active Workbench first, then choose Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision while keeping provider/API, credential, upload, render, video, database, rights, and canon work closed until explicitly authorized.
+- Owner: Product implementer for the preserved source-shell UI/readback; human reviewer only if a later change regresses it.
+- Next move: Treat this as preserved source-shell and regression evidence. `OPERATOR_FIRST` is closed; use the active Bridge Storyboard Flow while keeping provider/API, credential, upload, render, video, database, rights, and canon work closed until explicitly authorized.
 
 ### Layout Lab Visual Audit
 
@@ -43,9 +52,9 @@
 - Purpose: Keep the latest Review Workbench Component Contract context durable in repository files so another terminal can resume from `master` without chat history.
 - Effect: Updates the handoff/current-status/project-context docs with the current active artifact, baseline handoff commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
 - Requirements: Do not change product UI behavior, do not stage local transport residue, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: 2026-07-11 restart-readiness refresh starts from synced `af4a376 Record operator-first handoff`, with `master...origin/master` at `0 0`, the manifest validation chain converted to read-only `validate-*`, and `.serena/project.yml` remaining unstaged local transport residue.
+- State: The active implementation starts from synced `62f7d74 Harden restart validation and handoff`, with `master...origin/master` at `0 0` before edits, the manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
-- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=brief` for the human-owned Workbench role-boundary review before selecting any follow-up lane.
+- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=bridge` for the six-beat Flow readback.
 
 ### Layout Research Decision Shell
 

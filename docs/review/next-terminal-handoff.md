@@ -2,20 +2,25 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-11 JST for `fff-review-workbench-component-contract-001`,
-starting from synced `af4a376 Record operator-first handoff` after the previous
-handoff package was already on remote `master`.
-This restart/readback refresh starts from synced `master`, found
-`master...origin/master` clean before the handoff-only refresh, and keeps
-`fff-review-workbench-component-contract-001` the active review checkpoint. The
-package converts the default `brief` first screen into a role-contracted Review
-Workbench with a single framing source, compact route navigation, bounded
-Context Dock, duplication budget, component complement rule, and collapsed
-operator utility drawer. It keeps `fff-apply-decision-shell-guard-diet-001` as
-the source shell, preserves
-`public/review/index.html?mode=layout-lab` as source evidence, preserves
-`public/review/index.html?mode=bridge` as the next-action route, and records the
-local screenshot `artifacts/review-screens/brief-component-contract-workbench.png`.
+Latest handoff refresh: 2026-07-11 JST for `fff-bridge-storyboard-flow-001`,
+starting from synced `62f7d74 Harden restart validation and handoff` with
+`master...origin/master` at `0 0` before implementation. The supplied human
+observation accepts the top Workbench, records that the lower page remains long
+and dense, closes `OPERATOR_FIRST`, and selects `BRIDGE_STORYBOARD_FLOW` for
+forward product movement. The active local route is now
+`public/review/index.html?mode=bridge`: exactly six Japanese-first planning beats
+share one compact rail and one active canvas. The former Bridge hero, Decision
+Console, Guided Flow, overview, refinement, and comprehensive grid remain
+preserved inside one default-collapsed supporting-evidence section.
+
+The package preserves `fff-review-workbench-component-contract-001` at
+`public/review/index.html?mode=brief`, preserves
+`fff-apply-decision-shell-guard-diet-001` as its source shell, preserves
+`public/review/index.html?mode=layout-lab` as source evidence, and records the
+new doc/result plus local visual evidence at
+`docs/review/bridge-storyboard-flow.md`,
+`artifacts/bridge-storyboard-flow-result.json`, and
+`artifacts/review-screens/bridge-storyboard-flow.png`.
 It preserves the applied source checkpoint `fff-apply-decision-shell-guard-diet-001`,
 the visual source checkpoint `fff-layout-lab-visual-audit-001`,
 source layout research `fff-layout-research-decision-shell-001`, and also preserves
@@ -56,39 +61,35 @@ handoff refresh.
 
 ## Operator-first Readback
 
-Supervisor review for the current terminal is `pass / OPERATOR_FIRST`. Do not
-start another Worker Prompt for Bridge refinement, Storyboard Flow, stale shelf
-excision, or Workbench density until the human operator visually reviews the
-first Workbench screen.
+`OPERATOR_FIRST` is closed. The accepted human observation is: the top
+Workbench is accepted, the lower page remains long and dense, and the next lane
+should move forward through Bridge Storyboard Flow rather than another shell
+micro-adjustment.
 
-Operator should open `public/review/index.html?mode=brief` with:
+The next reviewer should open `public/review/index.html?mode=bridge` with:
 
 ```powershell
 .\scripts\operator\open_review.ps1
 ```
 
-Use `artifacts/review-screens/brief-component-contract-workbench.png` as the
-reference screenshot. The three observations needed are: whether the screen
-feels like a Workbench instead of a card group, whether repeated explanation is
-actually reduced, and whether the next lane should be Bridge Storyboard Flow,
-Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf
-Excision.
-
-The 2026-07-11 AI screenshot inspection is supplementary evidence only. It does
-not satisfy this human-owned observation gate or authorize a follow-up lane.
+Use `artifacts/review-screens/bridge-storyboard-flow.png` as the visual reference. Traverse
+all six beats, then accept, revise, or return the order and approximate timing.
+This readback does not authorize final script, asset selection, rights
+clearance, provider/API work, generation, render, upload, database persistence,
+or final canon.
 
 ## Latest Remote Publish Snapshot
 
 - Branch: `master`
-- Active artifact: `fff-review-workbench-component-contract-001`
+- Active artifact: `fff-bridge-storyboard-flow-001`
 - Remote parity before this handoff-only refresh: clean `master...origin/master`; `HEAD...origin/master` reported `0 0`
-- Baseline commit before this handoff-only refresh: `af4a376 Record operator-first handoff`
-- Last pushed product commit before this handoff-only refresh: `917cae4 Add review workbench component contract`
+- Baseline commit before this implementation: `62f7d74 Harden restart validation and handoff`
+- Last pushed product commit before this implementation: `62f7d74 Harden restart validation and handoff`
 - Worktree state before this handoff-only refresh: product tree synced and clean; local `.serena/project.yml` transport residue remains unstaged and outside product scope
 - Validation contract: `artifacts/artifact-manifest.json` now runs read-only `validate-*` commands; `smoke-*` commands remain artifact-regeneration commands and should be used only when tracked result JSON is intentionally refreshed
-- User-side review evidence now: `public/review/index.html?mode=brief`, `artifacts/review-screens/brief-component-contract-workbench.png`, `artifacts/review-workbench-component-contract-result.json`, and prior `artifacts/layout-lab-visual-audit-contact-sheet.png`
-- Preserved operator route: `public/review/index.html?mode=bridge`
-- Review decision needed next: `OPERATOR_FIRST`; use the role-contracted Workbench to choose whether to advance Bridge Storyboard Flow, run a Workbench Visual Density Pass, run a Context Dock Minimal Pass, or excise stale preserved shelves
+- User-side review evidence now: `public/review/index.html?mode=bridge`, `docs/review/bridge-storyboard-flow.md`, `artifacts/bridge-storyboard-flow-result.json`, and `artifacts/review-screens/bridge-storyboard-flow.png`
+- Preserved prelude route: `public/review/index.html?mode=brief`
+- Review decision needed next: accept, revise, or return the six-beat order and planning-time allocation
 - Locked lanes: provider/API, credentials, AI video generation, production render, upload, rights-clearance claim, database persistence, and final canon
 
 ## Start Here
@@ -109,11 +110,10 @@ git log -5 --oneline --decorate
 
 Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed product commit is whatever `git log -1 --oneline --decorate` reports after pulling. Local transport-residue files outside this product scope should not be treated as product work.
 
-The 2026-07-11 restart-readiness refresh changes the manifest validation contract
-and durable handoff docs only. It does not change Review UI behavior, readback
-artifact meaning, provider
-state, credentials, production generation, publishing, rights state, database
-persistence, or final canon.
+The 2026-07-11 Bridge Storyboard Flow slice changes the local Bridge review UI,
+adds one normalized result/readback contract, and synchronizes durable docs. It
+does not change provider state, credentials, production generation, publishing,
+rights state, database persistence, or final canon.
 
 3. Read these files in this order:
 
@@ -123,6 +123,9 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/bridge-storyboard-flow.md
+artifacts/bridge-storyboard-flow-result.json
+artifacts/review-screens/bridge-storyboard-flow.png
 docs/review/review-workbench-component-contract.md
 artifacts/review-workbench-component-contract-result.json
 artifacts/review-screens/brief-component-contract-workbench.png
@@ -256,10 +259,11 @@ WindowsApps stub.
 
 ## Current Project State
 
-- Active artifact: `fff-review-workbench-component-contract-001`
+- Active artifact: `fff-bridge-storyboard-flow-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Bridge Storyboard Flow doc/result/screenshot: `docs/review/bridge-storyboard-flow.md`, `artifacts/bridge-storyboard-flow-result.json`, `artifacts/review-screens/bridge-storyboard-flow.png`
 - Review Workbench Component Contract doc/result/screenshot: `docs/review/review-workbench-component-contract.md`, `artifacts/review-workbench-component-contract-result.json`, `artifacts/review-screens/brief-component-contract-workbench.png`
 - Apply Decision Shell Guard Diet doc/result/screenshot: `docs/review/apply-decision-shell-guard-diet.md`, `artifacts/apply-decision-shell-guard-diet-result.json`, `artifacts/review-screens/brief-decision-shell-applied.png`
 - Layout Lab Visual Audit doc/result/contact sheet: `docs/review/layout-lab-visual-audit.md`, `artifacts/layout-lab-visual-audit-result.json`, `artifacts/layout-lab-visual-audit-contact-sheet.png`
@@ -303,9 +307,14 @@ WindowsApps stub.
 - State adapter: `tools/fff-state.mjs`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact applies the split-pane Decision Shell to `brief` while preserving `layout-lab` as source evidence and `bridge` as the next-action operator route. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, and keeps provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, database persistence, and final canon decisions closed.
+The current artifact places a six-beat planning Flow first on `bridge`, preserves the accepted split-pane Workbench at `brief`, and keeps `layout-lab` as source evidence. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, while provider/API, credentials, AI video generation, production render, YouTube upload, rights-clearance claims, database persistence, and final canon decisions remain closed.
 
 ## What Finished
+
+- `fff-bridge-storyboard-flow-001` adds exactly six Japanese-first beats to the top of `public/review/index.html?mode=bridge`, with a compact rail, one active canvas, Previous / Next, Arrow-key plus Home / End navigation, and one return to Brief.
+- Each beat exposes planning time, story purpose, narration, subtitle, visual intent, held-truth boundary, and rights/asset note. Timing is planning-only; Toma fate, brass moth truth/function, Council motive, and the ending remain unresolved.
+- The old Bridge hero, Decision Console, Guided Flow, overview reference, refinement cards, and comprehensive grid remain preserved inside one default-collapsed supporting-evidence section.
+- `docs/review/bridge-storyboard-flow.md`, `artifacts/bridge-storyboard-flow-result.json`, `node tools/fff-state.mjs validate-bridge-storyboard-flow ...`, and local screenshot evidence when available record the active readback. `validate-*` is read-only; only `smoke-*` intentionally regenerates the tracked result.
 
 - `fff-apply-decision-shell-guard-diet-001` adds `docs/review/apply-decision-shell-guard-diet.md`, `artifacts/apply-decision-shell-guard-diet-result.json`, `artifacts/review-screens/brief-decision-shell-applied.png`, and `node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet ...`.
 - The default `brief` route now starts with the applied Split-pane Decision Shell: left step rail, center active decision, governed right dock, compact safety summary, and Evidence / Notes / Inspiration / Guard drawers.
@@ -373,14 +382,16 @@ The current artifact applies the split-pane Decision Shell to `brief` while pres
 
 ## Validation Readback
 
-The active Review Workbench Component Contract read-only validator validates `fff-review-workbench-component-contract-001` while preserving the applied Decision Shell source, Layout Lab Visual Audit, Layout Research Decision Shell, Low-text Decision Console, Guided Review Flow, Latest Overview Report, Home Cockpit, Home Map, bridge, brief, draft, designer, stabilization, and contradictory-claim readbacks. The prior broader auxiliary safety chain for `fff-contradictory-claim-guard-001`, provider-readiness, translation, adoption, rollback, and broad source-span readbacks should be run when touching those underlying contracts, not merely to review the Workbench shell.
+The active Bridge Storyboard Flow read-only validator validates `fff-bridge-storyboard-flow-001` while deriving its six-beat, interaction, first-surface, collapsed-evidence, theme, source-readback, and boundary checks from the current HTML, source artifacts, and review doc. The preserved Workbench validator remains in the manifest chain. The broader auxiliary provider/translation/adoption/rollback chain should run only when touching those underlying contracts.
 
-The 2026-07-11 read-only Workbench checks passed in this refresh. The remaining named `smoke-*` commands in the preserved list are intentional artifact-regeneration references for use only when those underlying contracts change; they are not the normal restart health check:
+The 2026-07-11 Bridge Storyboard checks pass locally. The remaining named `smoke-*` commands in the preserved list are intentional artifact-regeneration references for use only when those underlying contracts change; they are not the normal restart health check:
 
+- The active targeted manifest validation passed with nine result/readback hashes unchanged; the validate-output-path negative probe exited nonzero and created no file.
 - `git fetch --prune origin`
 - `git status --short --branch --untracked-files=all`
-- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on the synced `af4a376` baseline before this handoff-only refresh.
+- `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` on the synced `62f7d74` baseline before implementation.
 - `node --check tools/fff-state.mjs`
+- `node tools/fff-state.mjs validate-bridge-storyboard-flow artifacts/bridge-storyboard-flow-result.json`
 - `node tools/fff-state.mjs validate-review-workbench-component-contract artifacts/review-workbench-component-contract-result.json`
 - `node tools/fff-state.mjs validate-apply-decision-shell-guard-diet artifacts/apply-decision-shell-guard-diet-result.json`
 - `node tools/fff-state.mjs validate-layout-lab-visual-audit artifacts/layout-lab-visual-audit-result.json`
@@ -416,7 +427,7 @@ The 2026-07-11 read-only Workbench checks passed in this refresh. The remaining 
 - HTML inline script syntax check for `public/review/index.html`
 - `uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"`
 - `git diff --check`
-- 2026-07-11 restart-readiness verification: all seven read-only manifest validators passed; an expected missing-input failure returned nonzero; both success and failure paths left the seven tracked result JSON hashes unchanged; the inline HTML script compiled; strict MkDocs build passed through `uvx`; `git diff --check` passed; and parity was `0 0` before staging the handoff/validation-contract refresh.
+- Previous 2026-07-11 Workbench restart-readiness verification: all seven then-active read-only manifest validators passed; an expected missing-input failure returned nonzero; both success and failure paths left the seven tracked result JSON hashes unchanged; the inline HTML script compiled; strict MkDocs build passed through `uvx`; `git diff --check` passed; and parity was `0 0` before staging that handoff/validation-contract refresh.
 - `git rev-list --left-right --count "HEAD...origin/master"` reported `0 0` before staging.
 - `git grep` and `rg` route-contamination searches returned no hits after
   cleanup and before the route-lock evidence was added. After this handoff,
@@ -441,13 +452,13 @@ When review is needed, accept natural freeform review text instead of fixed phra
 
 Before emitting a Review Card, check the review memory. Do not ask the same target/evidence/axis again unless target, axis, evidence, decision value, or an explicit user request changed.
 
-No general Review Hub review is needed for the current state. Future review should be bounded to one concrete target such as provider adapter authorization, a remaining fixture class, or a specific source-span quality repair.
+No general Review Hub or Workbench gate review is needed for the current state. The active bounded review is the six-beat Bridge Storyboard Flow: accept, revise, or return its order and approximate timing.
 
 ## Next Useful Entrances
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
-| Review: Workbench Component Contract | Starts from `public/review/index.html?mode=brief` and compares it with `artifacts/review-screens/brief-component-contract-workbench.png`; `layout-lab` remains source evidence only | Human reviewer can judge Workbench unity and duplication, then select Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision without reopening provider/API, production, or final-canon lanes |
+| Review: Bridge Storyboard Flow | Starts from `public/review/index.html?mode=bridge` and compares it with `artifacts/review-screens/bridge-storyboard-flow.png`; `brief` and `layout-lab` remain preserved context only | Human reviewer can accept, revise, or return the six-beat order and approximate timing without reopening provider/API, production, rights, database, or final-canon lanes |
 | Verify: Low-text Console then Bridge review | Starts from the preserved `brief` route, then checks the Draft-to-Video Bridge refinement | Human reviewer can accept, revise, or reject the route, narration, subtitle rhythm, visual order, thumbnail direction, and held-truth policy without reopening Source Audit / Project Cockpit / Artifacts by default |
 | Advance: script/subtitle/shot refinement | Uses an accepted overview and Bridge route to narrow one narration path, subtitle rhythm, screen beats, and thumbnail comparison | One video package can become clearer while provider/API, video generation, upload, rights clearance, and final canon remain locked |
 | Advance: provider adapter authorization | Uses the authorization readiness Decision Packet only after provider choice, credentials, endpoint, transport scope, external call permission, timeout, and retry policy are explicitly approved | A real adapter can be implemented without silently crossing the boundary |
@@ -465,7 +476,8 @@ No general Review Hub review is needed for the current state. Future review shou
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
-| Review Workbench Component Contract | Make the default review route feel like one coordinated Workbench rather than movable cards | `fff-review-workbench-component-contract-001` is active; `brief` starts with process rail only, active decision only, Context Dock only, and Evidence / Notes / Inspiration / Guard drawers while `bridge` and `layout-lab` remain preserved | Human reviewer should use `public/review/index.html?mode=brief` to judge role clarity, then choose Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision |
+| Bridge Storyboard Flow | Make the chosen three-minute story hypothesis readable as one ordered production-planning flow | `fff-bridge-storyboard-flow-001` is active; exactly six beats share one rail and active canvas, and prior Bridge detail remains collapsed supporting evidence | Human reviewer accepts, revises, or returns the beat order and approximate timing; keep final narration, assets, rights, production, and canon closed |
+| Review Workbench Component Contract | Keep the default review route feeling like one coordinated Workbench rather than movable cards | `fff-review-workbench-component-contract-001` is preserved; the human observation accepted the top Workbench and closed `OPERATOR_FIRST` | Reopen only if a later change materially regresses the Brief Workbench; lower-page density remains acceptable non-blocking debt |
 | Apply Decision Shell Guard Diet | Keep the default review route decision-first without reopening production gates | `fff-apply-decision-shell-guard-diet-001` is preserved as the source shell; Decision Flow Model, Dock Governor, compact gate registry, and Guard drawer remain intact under the Workbench contract | Reopen only if the Workbench contract breaks the applied Shell behavior |
 | Layout Lab Visual Audit | Preserve visual evidence for why the default review route changed | `fff-layout-lab-visual-audit-001` is source evidence; the contact sheet and four screenshots show `layout-lab`, Split-pane Decision Shell detail, preserved `brief`, and preserved `bridge` with all production/provider/canon gates closed | Reopen only if the applied Shell needs a layout revision |
 | Layout Research Decision Shell | Decide whether the review UI should move beyond card-first layout before more content refinement | `fff-layout-research-decision-shell-001` is the preserved source; `layout-lab` compares Card-first, Briefing Inbox, Split-pane Decision Shell, and Storyboard Flow, recommends the split-pane Decision Shell, and keeps all production/provider/canon gates closed | Use this as the design source if the visual audit is revised or if the reviewer needs the route-level rationale |

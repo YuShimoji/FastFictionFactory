@@ -1,5 +1,26 @@
 # Artifacts
 
+## fff-bridge-storyboard-flow-001
+
+- Title: Fast Fiction Factory Bridge Storyboard Flow
+- Purpose: Put one six-beat Japanese-first Storyboard Flow first on the local Bridge route so narration, subtitle, visual intent, held truth, and rights notes can be reviewed beat by beat without opening production or canon gates.
+- Repo relative path: `public/review/index.html`
+- Primary route: `public/review/index.html?mode=bridge`
+- Return route: `public/review/index.html?mode=brief`
+- Review doc: `docs/review/bridge-storyboard-flow.md`
+- Readback result: `artifacts/bridge-storyboard-flow-result.json`
+- Visual evidence: `artifacts/review-screens/bridge-storyboard-flow.png` (900x1200, 185233 bytes, SHA256 `64626FD09CE077AEFBE9D0A42212197247CE464CEC9925E2D337BF1C481614AC`)
+- Preserved source artifact: `fff-review-workbench-component-contract-001`
+- Preserved Bridge artifacts: `fff-draft-to-video-planning-bridge-001`, `fff-bridge-refinement-overview-ribbon-001`
+- Story sources: `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-contradictory-claim-guard-001`
+- State validator: `tools/fff-state.mjs`
+- Read-only validation command: `node tools/fff-state.mjs validate-bridge-storyboard-flow artifacts/bridge-storyboard-flow-result.json`
+- Intentional regeneration command: `node tools/fff-state.mjs smoke-bridge-storyboard-flow artifacts/bridge-storyboard-flow-result.json artifacts/bridge-storyboard-flow-result.json`
+- Operator observation: accepted; `OPERATOR_FIRST` closed; `BRIDGE_STORYBOARD_FLOW` selected because the Workbench was accepted while the lower page remained long and dense.
+- Review status: `ready_for_local_readback`
+- Review input mode: `freeform`
+- State: Active local planning checkpoint. Exactly six beats are shown through a compact rail and one active canvas; former Bridge decision/refinement/detail surfaces remain preserved in collapsed supporting evidence. Provider/API, credentials, AI video, render, upload, database persistence, rights clearance, and final canon remain closed.
+
 ## fff-review-workbench-component-contract-001
 
 - Title: Fast Fiction Factory Review Workbench Component Contract

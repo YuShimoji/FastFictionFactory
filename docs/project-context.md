@@ -2,16 +2,17 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current review checkpoint is `fff-review-workbench-component-contract-001`, served through the static local Visual Review Hub at `public/review/index.html`. It converts the default `public/review/index.html?mode=brief` first screen into a role-contracted Review Workbench with a single framing source, compact route navigation, bounded Context Dock, duplication budget, component complement rule, and collapsed operator utility drawer. The checkpoint keeps `fff-apply-decision-shell-guard-diet-001` as the source shell, keeps `public/review/index.html?mode=bridge` as the next-action route, preserves `public/review/index.html?mode=layout-lab` as source evidence, and keeps `public/review/index.html?mode=home` as a compatibility alias. It also preserves the source visual audit `fff-layout-lab-visual-audit-001`, source layout research `fff-layout-research-decision-shell-001`, Low-text Decision Console `fff-low-text-decision-console-001`, Guided Review Flow Workspace `fff-guided-review-flow-workspace-001`, Bridge Refinement Overview Ribbon `fff-bridge-refinement-overview-ribbon-001`, Home Cockpit Metric Linking `fff-home-cockpit-metric-linking-001`, Review Home Map `fff-review-home-map-meters-001`, Draft-to-Video Planning Bridge `fff-draft-to-video-planning-bridge-001`, Review Brief / dark-mode UX checkpoint `fff-review-brief-dark-mode-ux-001`, One-story Draft Review Pack `fff-one-story-draft-review-pack-001`, Designer Candidate Dashboard `fff-designer-candidate-dashboard-001`, stabilization checkpoint `fff-draft-review-pack-stabilization-001`, and contradictory-claim guard `fff-contradictory-claim-guard-001`.
+Fast Fiction Factory is a local-first fiction production workbench. The current review checkpoint is `fff-bridge-storyboard-flow-001`, served through the static local Visual Review Hub at `public/review/index.html?mode=bridge`. It converts the chosen three-minute mystery-lore hypothesis into exactly six Japanese-first planning beats on one compact rail and one active canvas. The accepted operator observation closes `OPERATOR_FIRST`: the role-contracted Workbench at `?mode=brief` is preserved, while the old Bridge Decision Console, Guided Flow, overview, refinement, and comprehensive detail grid remain available in one collapsed supporting-evidence section. `fff-review-workbench-component-contract-001`, `fff-draft-to-video-planning-bridge-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, and `fff-contradictory-claim-guard-001` remain source authority; `?mode=layout-lab` remains design evidence and `?mode=home` remains a compatibility alias.
 
 ## Current Lane
 
-Keep the MVP reviewable without production commitments. The current lane is applied local review UX: `brief` now starts with a role-contracted Workbench whose active decision canvas owns the current-state framing, `bridge` remains the production-hypothesis handoff, and `layout-lab` remains evidence. Route decision, context pins, evidence audit shelves, inspiration prompts, guard details, locked production lanes, rights-risk posture, and production non-goals must remain distinct before any model/API extractor, provider/API setup, AI video generation, production render, public upload, rights-clearance claim, database persistence, or final canon path exists.
+Keep the MVP reviewable without production commitments. The current lane is `BRIDGE_STORYBOARD_FLOW`: align story purpose, narration, subtitle, visual intent, held truth, uncertainty, and rights notes beat by beat before any final script or asset work. The Flow is planning-only; timing windows are hypotheses. The `brief` Workbench remains the preserved prelude, detailed Bridge evidence remains auditable but collapsed, and provider/API setup, credentials, AI video generation, production render, public upload, rights clearance, database persistence, and final canon remain closed.
 
 ## Current Slice
 
 The active slice is complete enough for local readback:
 
+- Bridge Storyboard Flow doc/result/screenshot: `docs/review/bridge-storyboard-flow.md`, `artifacts/bridge-storyboard-flow-result.json`, `artifacts/review-screens/bridge-storyboard-flow.png`
 - Review UI: `public/review/index.html`
 - Review Brief mode with role-contracted Review Workbench: `public/review/index.html?mode=brief`
 - Layout Research Lab mode preserved: `public/review/index.html?mode=layout-lab`
@@ -96,7 +97,8 @@ Route hygiene checkpoint, 2026-06-29 JST:
   cockpit summaries.
 - `docs/style_intent/` was removed because it was empty and residue-only.
 - The active Fast Fiction Factory review package is now
-  `fff-review-workbench-component-contract-001`; it turns the applied `brief`
+  `fff-bridge-storyboard-flow-001`; it places a six-beat planning Flow first on
+  `bridge` while preserving `fff-review-workbench-component-contract-001` and the applied `brief`
   Shell into a role-contracted Workbench, keeps `activeDecisionCanvas` as the
   single framing source, makes route navigation compact, caps the Context Dock
   at 4 context chips / 3 pins / 2 notices / 1 lock summary, and moves launch
@@ -123,7 +125,13 @@ Route hygiene checkpoint, 2026-06-29 JST:
   `fff-designer-candidate-dashboard-001`, and
   `fff-contradictory-claim-guard-001` as readbacks.
 
-Restart readiness was reverified on 2026-07-11 from synced `af4a376`: the
+Current Bridge Storyboard Flow readiness was verified on 2026-07-11 from synced
+`62f7d74`: the targeted read-only manifest command passed, nine result/readback
+hashes remained unchanged, the validate-output-path rejection returned nonzero
+without creating a file, and the 900x1200 browser capture showed no horizontal
+overflow or interaction errors.
+
+The previous Workbench restart readiness was reverified from synced `af4a376`: the
 read-only manifest validation chain, inline HTML script compilation, strict
 MkDocs build through `uvx`, `git diff --check`, and `HEAD...origin/master` parity
 all passed. The broader preserved safety chain below was last fully verified on
@@ -241,10 +249,10 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: `OPERATOR_FIRST`. Open `public/review/index.html?mode=brief` and visually judge whether the role-contracted Workbench feels like one work surface rather than a card group, whether repeated candidate/channel/route/safety explanation is reduced, and whether the next implementation lane should be Bridge Storyboard Flow, Workbench Visual Density Pass, Context Dock Minimal Pass, or Stale Shelf Excision. `public/review/index.html?mode=layout-lab` and `artifacts/layout-lab-visual-audit-contact-sheet.png` remain useful only when the reviewer wants to inspect the source layout evidence. Script/subtitle/shot/thumbnail refinement, Timeline / Story Seed / Canon decision, actual production rollback, and provider adapter implementation remain blocked until separate explicit authorization and the relevant local gates still pass.
+First next move: open `public/review/index.html?mode=bridge`, traverse all six beats, and accept, revise, or return their order and approximate timing. `OPERATOR_FIRST` is closed by the accepted Workbench observation. `public/review/index.html?mode=brief`, `public/review/index.html?mode=layout-lab`, and the collapsed Bridge supporting evidence remain available for context only. Final narration, subtitle typography, asset selection, rights clearance, script/canon decisions, Timeline / Story Seed adoption, actual rollback, provider work, generation, render, upload, and database persistence remain blocked until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-Latest restart-readiness refresh starts from synced `af4a376 Record operator-first handoff` on 2026-07-11 JST. It records that `master` and `origin/master` were cleanly aligned before the refresh, changes the manifest validation chain to read-only `validate-*` commands, preserves `.serena/project.yml` as unstaged local transport residue outside product scope, records the Supervisor `pass / OPERATOR_FIRST` readback, and keeps `docs/review/next-terminal-handoff.md` as the first file for another terminal. After pulling, `git log -1 --oneline --decorate` shows the exact current remote head containing this handoff package. The 2026-07-11 verification passed all seven read-only manifest validators, inline HTML script compilation, strict MkDocs build, `git diff --check`, and `HEAD...origin/master` parity before staging the refresh.
+The current implementation starts from synced `62f7d74 Harden restart validation and handoff` on 2026-07-11 JST. It preserves `.serena/project.yml` as unstaged local transport residue outside product scope, closes `OPERATOR_FIRST` from the supplied human observation, and makes `fff-bridge-storyboard-flow-001` the active local readback. After pulling, `git log -1 --oneline --decorate` shows the exact published head; then run the manifest's read-only validation command before opening the Bridge route.

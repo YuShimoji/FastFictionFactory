@@ -171,7 +171,8 @@
 
     button:hover,
     button:focus-visible,
-    a:focus-visible {
+    a:focus-visible,
+    summary:focus-visible {
       border-color: var(--blue);
       outline: 2px solid var(--focus-ring);
       outline-offset: 1px;
@@ -1790,6 +1791,217 @@
       margin-top: 12px;
     }
 
+    body[data-review-mode="bridge"] .workbench-hub-header {
+      display: none;
+    }
+
+    .bridge-storyboard-flow {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--blue);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .storyboard-flow-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: start;
+      justify-content: space-between;
+    }
+
+    .storyboard-flow-header > div {
+      min-width: 0;
+      flex: 1 1 560px;
+    }
+
+    .storyboard-flow-header h2 {
+      margin-bottom: 6px;
+    }
+
+    .storyboard-route-identity {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .storyboard-route-token {
+      display: inline-flex;
+      max-width: 100%;
+      min-width: 0;
+      gap: 5px;
+      align-items: baseline;
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: var(--pill-bg);
+      color: var(--pill-ink);
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .storyboard-route-token code {
+      min-width: 0;
+      color: inherit;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .storyboard-beat-rail {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .storyboard-beat-tab {
+      min-width: 0;
+      min-height: 66px;
+      border-radius: 6px;
+      padding: 7px 8px;
+      background: var(--surface-muted);
+      text-align: left;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .storyboard-beat-tab[aria-selected="true"] {
+      border-color: var(--blue);
+      background: var(--active-bg);
+      color: var(--blue);
+    }
+
+    .storyboard-beat-number,
+    .storyboard-beat-time {
+      display: block;
+      color: var(--muted-strong);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .storyboard-beat-tab strong {
+      display: block;
+      margin: 2px 0;
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .storyboard-active-canvas {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .storyboard-active-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .storyboard-active-header h3,
+    .storyboard-active-header p {
+      margin: 0;
+    }
+
+    .storyboard-active-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.65fr);
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .storyboard-field-list {
+      min-width: 0;
+      margin: 0;
+    }
+
+    .storyboard-field-row {
+      display: grid;
+      grid-template-columns: minmax(112px, 0.28fr) minmax(0, 1fr);
+      gap: 10px;
+      border-top: 1px solid var(--line);
+      padding: 9px 0;
+    }
+
+    .storyboard-field-row:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .storyboard-field-row dt {
+      color: var(--muted-strong);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .storyboard-field-row dd {
+      min-width: 0;
+      margin: 0;
+      color: var(--ink);
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .storyboard-boundary-panel {
+      min-width: 0;
+      border-left: 3px solid var(--gold);
+      padding: 10px 12px;
+      background: var(--warning-bg);
+    }
+
+    .storyboard-boundary-panel h3 {
+      margin-bottom: 8px;
+    }
+
+    .storyboard-nav-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .storyboard-nav-actions .next {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: var(--primary-ink);
+      font-weight: 800;
+    }
+
+    .storyboard-nav-actions button:disabled {
+      cursor: not-allowed;
+      opacity: 0.48;
+    }
+
+    .bridge-supporting-details {
+      min-width: 0;
+    }
+
+    .bridge-supporting-details > summary .section-note {
+      display: block;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .bridge-supporting-details-body {
+      display: grid;
+      gap: 12px;
+      min-width: 0;
+      margin-top: 12px;
+    }
+
     .bridge-hero {
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -2682,6 +2894,25 @@
       .review-controls {
         grid-template-columns: repeat(2, minmax(90px, 1fr));
       }
+
+      .storyboard-beat-rail {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .storyboard-active-grid,
+      .storyboard-field-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .bridge-storyboard-flow,
+      .storyboard-beat-tab,
+      .storyboard-active-canvas {
+        animation: none;
+        scroll-behavior: auto;
+        transition: none;
+      }
     }
   </style>
 </head>
@@ -2716,7 +2947,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Workbench <span class="jp-label">役割契約付きレビュー面</span></h2>
-            <p class="lede">Active artifact id: <strong>fff-review-workbench-component-contract-001</strong>. Source shell: <strong>fff-apply-decision-shell-guard-diet-001</strong>.</p>
+            <p class="lede">Current project artifact: <strong>fff-bridge-storyboard-flow-001</strong>. Preserved Brief surface: <strong>fff-review-workbench-component-contract-001</strong>. Source shell: <strong>fff-apply-decision-shell-guard-diet-001</strong>.</p>
           </div>
           <details class="operator-utility-drawer" data-operator-utility-drawer="true" data-component-contract-owner="legacyArchive">
             <summary>Operator utility</summary>
@@ -3622,7 +3853,40 @@
           </div>
         </div>
 
-        <section class="bridge-panel" id="draft-to-video-bridge-root" data-mode-panel="bridge" aria-labelledby="draft-to-video-bridge-title">
+        <section class="bridge-panel" id="draft-to-video-bridge-root" data-mode-panel="bridge" aria-labelledby="bridge-storyboard-flow-title">
+          <section class="bridge-storyboard-flow" id="bridge-storyboard-flow-root" data-bridge-storyboard-flow="true" data-storyboard-first="true" data-storyboard-model="bridgeStoryboardFlowModel" data-storyboard-beat-count="6" data-storyboard-planning-only="true" aria-labelledby="bridge-storyboard-flow-title">
+            <header class="storyboard-flow-header">
+              <div>
+                <p class="hub-eyebrow">Bridge Storyboard Flow / 6拍 Storyboard Runway</p>
+                <h2 id="bridge-storyboard-flow-title">3分の物語を、拍ごとに同じ制作仮説として読む</h2>
+                <p class="lede">ナレーション、字幕、画面、保留真実、権利・素材境界を6拍でそろえて確認します。時間窓はplanning-onlyで、最終脚本・絵コンテ・canonではありません。</p>
+              </div>
+              <button class="brief-action" type="button" data-storyboard-return-brief="true" data-mode-target="brief" aria-pressed="false">Briefへ戻る</button>
+            </header>
+
+            <div class="storyboard-route-identity" data-storyboard-route-identity="true" aria-label="Bridge route identity">
+              <span class="storyboard-route-token"><strong>route</strong><code data-storyboard-review-route>public/review/index.html?mode=bridge</code></span>
+              <span class="storyboard-route-token"><strong>candidate</strong><code data-storyboard-selected-candidate>designer-content-moth-investigation-3m</code></span>
+              <span class="storyboard-route-token"><strong>channel</strong><code data-storyboard-selected-channel>designer-channel-mystery-lore</code></span>
+              <span class="tag gold" data-storyboard-planning-badge>planning-only</span>
+            </div>
+
+            <div class="storyboard-beat-rail" role="tablist" aria-label="6拍 Storyboard Runway" aria-orientation="horizontal" data-storyboard-beat-rail></div>
+
+            <section class="storyboard-active-canvas" id="bridge-storyboard-active-canvas" role="tabpanel" tabindex="0" data-storyboard-active-canvas aria-live="polite"></section>
+
+            <div class="storyboard-nav-actions" aria-label="Storyboard beat navigation">
+              <button class="brief-action" type="button" data-storyboard-prev disabled aria-label="前の拍はありません">前の拍</button>
+              <span class="section-note" data-storyboard-beat-progress>1 / 6拍を確認中</span>
+              <button class="brief-action next" type="button" data-storyboard-next aria-label="次の拍">次の拍</button>
+            </div>
+          </section>
+
+          <details class="detail-drawer bridge-supporting-details" data-bridge-supporting-details="true">
+            <summary>既存Bridge資料・証跡
+              <span class="section-note">Bridge Decision Console / Guided Flow / overview / refinement / comprehensive detailsを保存した補助資料です。</span>
+            </summary>
+            <div class="bridge-supporting-details-body" data-legacy-bridge-detail-preserved="true">
           <div class="bridge-hero">
             <p class="hub-eyebrow">Operator Track / Draft-to-Video Planning Bridge</p>
             <h2 id="draft-to-video-bridge-title">制作仮説: まだ動画生成せず、制作前に読む設計図</h2>
@@ -3880,6 +4144,8 @@
               </ol>
             </article>
           </div>
+            </div>
+          </details>
         </section>
 
         <div class="progress-map" aria-label="Progress map" data-mode-panel="project">
@@ -4935,6 +5201,88 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       ]
     };
 
+    const bridgeStoryboardFlowModel = {
+      artifactId: "fff-bridge-storyboard-flow-001",
+      reviewRoute: "public/review/index.html?mode=bridge",
+      planningOnly: true,
+      selectedCandidateId: "designer-content-moth-investigation-3m",
+      selectedChannelRouteId: "designer-channel-mystery-lore",
+      beats: [
+        {
+          beatId: "bridge-storyboard-beat-1-bellless-tower",
+          beatNumber: 1,
+          titleJa: "鐘のない塔",
+          timeWindow: "00:00-00:20 / planning-only",
+          storyPurpose: "最初の不可能な像として、鐘が無いのに鳴る矛盾だけを置き、3分ミステリーの入口を作る。",
+          narrationCue: "North Bell Stationと空の鐘枠を見せ、原因を説明せず長めの間を取る。これは非最終の語り方針。",
+          subtitleCue: "「The bell was gone. / But every noon, it rang.」を短く分け、矛盾の余韻を残す。",
+          visualIntent: "North Bell Station外観から空の鐘枠へ。昼の光、静止気味のwide shotで始める。",
+          truthBoundary: "bell removed but still ringsは意図的なcontradictionとして保持し、鳴る理由やwinter curfewの真相を事実化しない。",
+          rightsAssetNote: "鐘楼と駅はshot directionのみ。画像・フォント・テクスチャはasset placeholder / rights_unknown。"
+        },
+        {
+          beatId: "bridge-storyboard-beat-2-brass-moth",
+          beatNumber: 2,
+          titleJa: "真鍮の蛾",
+          timeWindow: "00:20-00:50 / planning-only",
+          storyPurpose: "Miraの個人的な欠落をTomaのメモとbrass mothへ接続し、調査を動かす物の手がかりを置く。",
+          narrationCue: "Miraの手元、Tomaのメモ、brass moth、9:17付近で止まる時計の順に、説明を増やさず提示する。",
+          subtitleCue: "「Toma left a brass moth.」をobject revealとして一度だけ出し、Tomaの状態は語らない。",
+          visualIntent: "作業机の手元、メモ、brass mothのmacro、止まった時計面を連続する寄りで見せる。",
+          truthBoundary: "Toma fateとbrass moth truth / functionは未決定。key、spy、memory containerのどれにも確定しない。",
+          rightsAssetNote: "メモ、brass moth、時計はtext-only asset direction。完成prop、生成画像、権利確認済み素材ではない。"
+        },
+        {
+          beatId: "bridge-storyboard-beat-3-erased-names",
+          beatNumber: 3,
+          titleJa: "消された名前",
+          timeWindow: "00:50-01:20 / planning-only",
+          storyPurpose: "Council ledgerを通してabandoned minutesと忘れられた人々を結び、推測ではなく調査可能な証拠面を作る。",
+          narrationCue: "ledgerの名前と分数をdocumentary寄りに読み、失われた時間との関係は疑いとして述べて断定を避ける。",
+          subtitleCue: "「Some names were paid for in minutes.」をwarning cueとして置き、短い読み時間を確保する。",
+          visualIntent: "ledger page、名前、時間の数字をgraphic insertで見せ、記録から名前が薄れる表現へつなぐ。",
+          truthBoundary: "ledgerと消された人々の関係は制作仮説。Council motiveや被害の全容を確定情報として昇格しない。",
+          rightsAssetNote: "ledger pageはtext graphic placeholder。書体、紙texture、固有意匠、出典の権利は未選定・未確認。"
+        },
+        {
+          beatId: "bridge-storyboard-beat-4-council-shadow",
+          beatNumber: 4,
+          titleJa: "評議会の影",
+          timeWindow: "01:20-01:45 / planning-only",
+          storyPurpose: "制度側の圧力を強めつつ、単純な悪役証明を避け、後半の保留真実へ緊張を渡す。",
+          narrationCue: "Councilがvillainous、desperate、divided、misled、false-recordのどれかを選ばず、記録の不自然さだけを示す。",
+          subtitleCue: "「Council ledger: motive unknown.」と表示し、guiltではなく未解決のmotiveをレビュー対象にする。",
+          visualIntent: "Councilは顔や個人を特定しないsilhouetteとledgerの影で見せ、断定につながる演技情報を避ける。",
+          truthBoundary: "Council motiveは曖昧なまま保持する。組織全体の悪意、善意、責任範囲をfinal canonとして決めない。",
+          rightsAssetNote: "silhouetteは構図メモのみ。人物、衣装、voice、performer、背景素材は未選定でrights clearanceなし。"
+        },
+        {
+          beatId: "bridge-storyboard-beat-5-held-answers",
+          beatNumber: 5,
+          titleJa: "答えを保留",
+          timeWindow: "01:45-02:35 / planning-only",
+          storyPurpose: "Toma、brass moth、Councilの三つの答えを解かずに並べ、謎を保ったまま終盤の選択圧へ進む。",
+          narrationCue: "可能性は見せても結論は言わず、Toma fate / brass moth truth / Council motiveをauthor reviewへ戻す。",
+          subtitleCue: "「Toma / moth / Council remain unresolved.」をhold cueとして明示し、答えではなく境界を読む。",
+          visualIntent: "Toma、moth、Councilの三つを未決定ラベル付きのreview markersとして順に止める。",
+          truthBoundary: "三項目はすべてhuman-owned。provisional route、adoption、final canon decisionへ自動昇格しない。",
+          rightsAssetNote: "未決定カードはoperator-facing review markerのみ。generated image、final character design、final assetを作らない。"
+        },
+        {
+          beatId: "bridge-storyboard-beat-6-time-or-names",
+          beatNumber: 6,
+          titleJa: "時間か、名前か",
+          timeWindow: "02:35-03:00 / planning-only",
+          storyPurpose: "時間を戻すか名前を戻すかという感情的な問いで閉じ、次の狭いレビュー対象を残す。",
+          narrationCue: "Miraの選択を確定せず、「時間を戻すか、名前を戻すか」と問いかけて非最終の余韻で閉じる。",
+          subtitleCue: "「Restore time, or restore names?」をclosing cueにし、ending candidateであることを保つ。",
+          visualIntent: "止まりかけの時計、閉じるledger、空の鐘枠へ戻るfinal frame。決着ではなくpauseで終える。",
+          truthBoundary: "ending route、Toma fate、brass moth truth、Council motiveは未決定。問いはfinal canon decisionを意味しない。",
+          rightsAssetNote: "時計、ledger、鐘音は方向性のみ。licensed audio、final image、production render、rights-cleared assetは存在しない。"
+        }
+      ]
+    };
+
     const safetyGateRegistry = {
       compactSummary: [
         "Gates closed"
@@ -4976,6 +5324,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     let activeExtractionGroupMode = "elementType";
     let activeExtractionFilter = "all";
     let activeExtractionSearchQuery = "";
+    let activeBridgeStoryboardBeatIndex = 0;
 
     const memoInput = document.querySelector("#memo-input");
     const roots = {
@@ -4993,7 +5342,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       qa: document.querySelector("#qa-root"),
       decisions: document.querySelector("#decision-log"),
       designerDashboard: document.querySelector("#designer-dashboard-root"),
-      oneStoryDraftPack: document.querySelector("#one-story-draft-pack-root")
+      oneStoryDraftPack: document.querySelector("#one-story-draft-pack-root"),
+      bridgeStoryboardFlow: document.querySelector("#bridge-storyboard-flow-root")
     };
     const jsonExportOutput = document.querySelector("#json-export-output");
     const jsonImportInput = document.querySelector("#json-import-input");
@@ -5039,6 +5389,47 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         setTheme(button.getAttribute("data-theme-target") || "auto");
       });
     });
+
+    if (roots.bridgeStoryboardFlow) {
+      roots.bridgeStoryboardFlow.addEventListener("click", (event) => {
+        const beatButton = event.target.closest("[data-storyboard-beat-select]");
+        if (beatButton) {
+          setActiveBridgeStoryboardBeat(Number(beatButton.getAttribute("data-storyboard-beat-index")), true);
+          return;
+        }
+
+        const navigationButton = event.target.closest("[data-storyboard-prev], [data-storyboard-next]");
+        if (navigationButton) {
+          const direction = navigationButton.hasAttribute("data-storyboard-prev") ? -1 : 1;
+          setActiveBridgeStoryboardBeat(activeBridgeStoryboardBeatIndex + direction, false);
+        }
+      });
+
+      roots.bridgeStoryboardFlow.addEventListener("keydown", (event) => {
+        const beatButton = event.target.closest("[data-storyboard-beat-select]");
+        if (!beatButton) {
+          return;
+        }
+
+        const beatCount = bridgeStoryboardFlowModel.beats.length;
+        const currentIndex = Number(beatButton.getAttribute("data-storyboard-beat-index"));
+        let nextIndex = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+          nextIndex = (currentIndex + 1) % beatCount;
+        } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+          nextIndex = (currentIndex - 1 + beatCount) % beatCount;
+        } else if (event.key === "Home") {
+          nextIndex = 0;
+        } else if (event.key === "End") {
+          nextIndex = beatCount - 1;
+        }
+
+        if (nextIndex !== null) {
+          event.preventDefault();
+          setActiveBridgeStoryboardBeat(nextIndex, true);
+        }
+      });
+    }
 
     function normalizeReviewMode(mode) {
       const allowedMode = REVIEW_MODES.includes(mode) ? mode : "brief";
@@ -5321,6 +5712,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       currentModel = applyImportedModelOverrides(buildWorkbenchModel(memoInput.value || sampleMemo));
       renderComponentRoleContracts();
       renderDecisionFlowModel();
+      renderBridgeStoryboardFlow(bridgeStoryboardFlowModel);
       renderSafetyGateRegistry();
       renderExtractionContract(currentModel.extraction_contract);
       renderDesignerDashboard(currentModel.designer_dashboard);
@@ -5438,6 +5830,121 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           root.setAttribute("data-model-overflow-count", String(overflowItems.length));
         }
       });
+    }
+
+    function setActiveBridgeStoryboardBeat(index, focusSelectedBeat = false) {
+      const lastIndex = bridgeStoryboardFlowModel.beats.length - 1;
+      activeBridgeStoryboardBeatIndex = Math.max(0, Math.min(Number.isFinite(index) ? index : 0, lastIndex));
+      renderBridgeStoryboardFlow(bridgeStoryboardFlowModel);
+      if (focusSelectedBeat && roots.bridgeStoryboardFlow) {
+        roots.bridgeStoryboardFlow
+          .querySelector(`[data-storyboard-beat-index="${activeBridgeStoryboardBeatIndex}"]`)
+          ?.focus();
+      }
+    }
+
+    function renderBridgeStoryboardFlow(model) {
+      const root = roots.bridgeStoryboardFlow;
+      if (!root || !model || !Array.isArray(model.beats) || model.beats.length === 0) {
+        return;
+      }
+
+      const lastIndex = model.beats.length - 1;
+      activeBridgeStoryboardBeatIndex = Math.max(0, Math.min(activeBridgeStoryboardBeatIndex, lastIndex));
+      const activeBeat = model.beats[activeBridgeStoryboardBeatIndex];
+      const previousBeat = model.beats[activeBridgeStoryboardBeatIndex - 1] || null;
+      const nextBeat = model.beats[activeBridgeStoryboardBeatIndex + 1] || null;
+      const beatRail = root.querySelector("[data-storyboard-beat-rail]");
+      const activeCanvas = root.querySelector("[data-storyboard-active-canvas]");
+      const previousButton = root.querySelector("[data-storyboard-prev]");
+      const nextButton = root.querySelector("[data-storyboard-next]");
+      const beatProgress = root.querySelector("[data-storyboard-beat-progress]");
+
+      root.setAttribute("data-storyboard-artifact-id", model.artifactId);
+      root.setAttribute("data-storyboard-beat-count", String(model.beats.length));
+      root.setAttribute("data-storyboard-planning-only", String(model.planningOnly));
+      root.querySelector("[data-storyboard-review-route]").textContent = model.reviewRoute;
+      root.querySelector("[data-storyboard-selected-candidate]").textContent = model.selectedCandidateId;
+      root.querySelector("[data-storyboard-selected-channel]").textContent = model.selectedChannelRouteId;
+
+      if (previousButton) {
+        previousButton.disabled = !previousBeat;
+        previousButton.textContent = previousBeat ? `前の拍: ${previousBeat.titleJa}` : "前の拍";
+        previousButton.setAttribute("aria-label", previousBeat ? `前の拍: ${previousBeat.titleJa}` : "前の拍はありません");
+      }
+      if (nextButton) {
+        nextButton.disabled = !nextBeat;
+        nextButton.textContent = nextBeat ? `次の拍: ${nextBeat.titleJa}` : "次の拍";
+        nextButton.setAttribute("aria-label", nextBeat ? `次の拍: ${nextBeat.titleJa}` : "次の拍はありません");
+      }
+      if (beatProgress) {
+        beatProgress.textContent = `${activeBeat.beatNumber} / ${model.beats.length}拍を確認中`;
+      }
+
+      if (beatRail) {
+        beatRail.innerHTML = model.beats
+          .map((beat, index) => {
+            const selected = index === activeBridgeStoryboardBeatIndex;
+            const tabId = `bridge-storyboard-tab-${beat.beatNumber}`;
+            return `
+              <button class="storyboard-beat-tab" id="${tabId}" type="button" role="tab"
+                aria-selected="${selected}" aria-controls="bridge-storyboard-active-canvas" tabindex="${selected ? "0" : "-1"}"
+                data-storyboard-beat-select data-storyboard-beat-index="${index}" data-storyboard-beat-id="${escapeHtml(beat.beatId)}">
+                <span class="storyboard-beat-number">BEAT ${escapeHtml(beat.beatNumber)} / 6</span>
+                <strong>${escapeHtml(beat.titleJa)}</strong>
+                <span class="storyboard-beat-time">${escapeHtml(beat.timeWindow.replace(" / planning-only", ""))}</span>
+              </button>
+            `;
+          })
+          .join("");
+      }
+
+      if (activeCanvas) {
+        activeCanvas.setAttribute("aria-labelledby", `bridge-storyboard-tab-${activeBeat.beatNumber}`);
+        activeCanvas.setAttribute("data-active-storyboard-beat-id", activeBeat.beatId);
+        activeCanvas.innerHTML = `
+          <header class="storyboard-active-header">
+            <div>
+              <p class="hub-eyebrow">Beat ${escapeHtml(activeBeat.beatNumber)} / 6</p>
+              <h3>${escapeHtml(activeBeat.titleJa)}</h3>
+            </div>
+            <span class="tag gold">${escapeHtml(activeBeat.timeWindow)}</span>
+          </header>
+          <div class="storyboard-active-grid">
+            <dl class="storyboard-field-list">
+              <div class="storyboard-field-row" data-storyboard-field="story-purpose">
+                <dt>物語上の役割</dt>
+                <dd>${escapeHtml(activeBeat.storyPurpose)}</dd>
+              </div>
+              <div class="storyboard-field-row" data-storyboard-field="narration-cue">
+                <dt>ナレーション意図</dt>
+                <dd>${escapeHtml(activeBeat.narrationCue)}</dd>
+              </div>
+              <div class="storyboard-field-row" data-storyboard-field="subtitle-cue">
+                <dt>字幕・画面テキスト</dt>
+                <dd>${escapeHtml(activeBeat.subtitleCue)}</dd>
+              </div>
+              <div class="storyboard-field-row" data-storyboard-field="visual-intent">
+                <dt>画面・ショット意図</dt>
+                <dd>${escapeHtml(activeBeat.visualIntent)}</dd>
+              </div>
+            </dl>
+            <aside class="storyboard-boundary-panel" aria-label="Truth and rights boundaries">
+              <h3>保留境界</h3>
+              <dl class="storyboard-field-list">
+                <div class="storyboard-field-row" data-storyboard-field="truth-boundary">
+                  <dt>truth / uncertainty</dt>
+                  <dd>${escapeHtml(activeBeat.truthBoundary)}</dd>
+                </div>
+                <div class="storyboard-field-row" data-storyboard-field="rights-asset-note">
+                  <dt>rights / asset</dt>
+                  <dd>${escapeHtml(activeBeat.rightsAssetNote)}</dd>
+                </div>
+              </dl>
+            </aside>
+          </div>
+        `;
+      }
     }
 
     function renderSafetyGateRegistry() {

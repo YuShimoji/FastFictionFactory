@@ -1,0 +1,201 @@
+{
+  "schemaVersion": "fff.bridgeStoryboardFlow.v1",
+  "artifact_id": "fff-bridge-storyboard-flow-001",
+  "title": "Fast Fiction Factory Bridge Storyboard Flow",
+  "generatedAt": "2026-07-10T18:06:59.248Z",
+  "review_status": "ready_for_local_readback",
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=bridge",
+  "review_route": "public/review/index.html?mode=bridge",
+  "input_result_path": "artifacts/bridge-storyboard-flow-result.json",
+  "source_workbench_artifact_id": "fff-review-workbench-component-contract-001",
+  "source_workbench_preserved": true,
+  "source_artifact_ids": [
+    "fff-review-workbench-component-contract-001",
+    "fff-apply-decision-shell-guard-diet-001",
+    "fff-draft-to-video-planning-bridge-001",
+    "fff-bridge-refinement-overview-ribbon-001",
+    "fff-one-story-draft-review-pack-001",
+    "fff-designer-candidate-dashboard-001",
+    "fff-contradictory-claim-guard-001"
+  ],
+  "source_result_paths": {
+    "review_workbench_component_contract": "artifacts/review-workbench-component-contract-result.json",
+    "apply_decision_shell_guard_diet": "artifacts/apply-decision-shell-guard-diet-result.json",
+    "draft_to_video_planning_bridge": "artifacts/draft-to-video-planning-bridge-result.json",
+    "bridge_refinement_overview_ribbon": "artifacts/bridge-refinement-overview-ribbon-result.json",
+    "one_story_draft_review_pack": "artifacts/one-story-draft-review-pack-result.json",
+    "designer_candidate_dashboard": "artifacts/designer-candidate-dashboard-result.json",
+    "contradictory_claim_guard": "artifacts/contradictory-claim-guard-result.json"
+  },
+  "selected_candidate_id": "designer-content-moth-investigation-3m",
+  "selected_channel_route_id": "designer-channel-mystery-lore",
+  "operator_observation_accepted": true,
+  "operator_first_closed": true,
+  "storyboard_flow_first": true,
+  "storyboard_flow_primary": true,
+  "beat_count": 6,
+  "beat_ids": [
+    "bridge-storyboard-beat-1-bellless-tower",
+    "bridge-storyboard-beat-2-brass-moth",
+    "bridge-storyboard-beat-3-erased-names",
+    "bridge-storyboard-beat-4-council-shadow",
+    "bridge-storyboard-beat-5-held-answers",
+    "bridge-storyboard-beat-6-time-or-names"
+  ],
+  "beat_numbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "beat_field_counts": {
+    "titleJa": 6,
+    "timeWindow": 6,
+    "storyPurpose": 6,
+    "narrationCue": 6,
+    "subtitleCue": 6,
+    "visualIntent": 6,
+    "truthBoundary": 6,
+    "rightsAssetNote": 6
+  },
+  "all_six_beats_have_narration": true,
+  "all_six_beats_have_subtitle": true,
+  "all_six_beats_have_visual": true,
+  "held_truth_or_uncertainty_boundary_present": true,
+  "final_canon_promotion_absent": true,
+  "timing_windows_planning_only": true,
+  "rights_asset_notes_represented": true,
+  "compact_six_beat_rail_visible": true,
+  "active_beat_canvas_visible": true,
+  "previous_next_controls_visible": true,
+  "brief_return_visible": true,
+  "keyboard_beat_selection": true,
+  "focus_visible_preserved": true,
+  "legacy_bridge_detail_demoted_or_collapsed": true,
+  "brief_route_preserved": true,
+  "dark_mode_preserved": true,
+  "screenshot_path": "artifacts/review-screens/bridge-storyboard-flow.png",
+  "screenshot_size": 185233,
+  "review_debt": [
+    "overall_brief_page_length",
+    "minor_workbench_readability",
+    "stale_shelf_excision",
+    "broader_visual_density_cleanup"
+  ],
+  "review_debt_is_blocker": false,
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "rights_cleared_claim": false,
+  "summary": {
+    "source_workbench_preserved": true,
+    "operator_observation_accepted": true,
+    "operator_first_closed": true,
+    "storyboard_flow_first": true,
+    "beat_count": 6,
+    "all_six_beats_have_narration": true,
+    "all_six_beats_have_subtitle": true,
+    "all_six_beats_have_visual": true,
+    "truth_boundary_present": true,
+    "legacy_detail_collapsed": true,
+    "brief_route_preserved": true,
+    "dark_mode_preserved": true,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "failures": 0
+  },
+  "validation_notes": [
+    "Bridge Storyboard Flow is the first substantive Bridge review surface and remains planning-only.",
+    "Six ordered beats align narration, subtitle, visual, truth-boundary, and rights/asset notes.",
+    "Legacy Bridge evidence remains preserved inside collapsed supporting details.",
+    "The accepted Workbench remains preserved while OPERATOR_FIRST is closed.",
+    "Provider/API, credentials, AI video, render, upload, database, final canon, and rights clearance remain closed."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-bridge-storyboard-flow-001; schema=fff.bridgeStoryboardFlow.v1; ui=public/review/index.html; route=public/review/index.html?mode=bridge; source=fff-review-workbench-component-contract-001"
+    },
+    "source_artifacts_preserved": {
+      "passed": true,
+      "detail": "review_workbench_component_contract=fff-review-workbench-component-contract-001/true; apply_decision_shell_guard_diet=fff-apply-decision-shell-guard-diet-001/true; draft_to_video_planning_bridge=fff-draft-to-video-planning-bridge-001/true; bridge_refinement_overview_ribbon=fff-bridge-refinement-overview-ribbon-001/true; one_story_draft_review_pack=fff-one-story-draft-review-pack-001/true; designer_candidate_dashboard=fff-designer-candidate-dashboard-001/true; contradictory_claim_guard=fff-contradictory-claim-guard-001/true"
+    },
+    "candidate_channel_preserved": {
+      "passed": true,
+      "detail": "candidate=designer-content-moth-investigation-3m; candidateSources=designer-content-moth-investigation-3m,designer-content-moth-investigation-3m,designer-content-moth-investigation-3m,designer-content-moth-investigation-3m; channel=designer-channel-mystery-lore; channelSources=designer-channel-mystery-lore,designer-channel-mystery-lore,designer-channel-mystery-lore,designer-channel-mystery-lore"
+    },
+    "operator_gate_transition": {
+      "passed": true,
+      "detail": "accepted=true; closed=true; doc=true"
+    },
+    "storyboard_flow_first": {
+      "passed": true,
+      "detail": "bridgeRoot=139656; storyboard=139844; supporting=142220; firstLegacy=143403"
+    },
+    "six_beat_contract": {
+      "passed": true,
+      "detail": "beats=6; unique=true; numbers=1,2,3,4,5,6; fields={\"titleJa\":6,\"timeWindow\":6,\"storyPurpose\":6,\"narrationCue\":6,\"subtitleCue\":6,\"visualIntent\":6,\"truthBoundary\":6,\"rightsAssetNote\":6}; empty={\"titleJa\":0,\"timeWindow\":0,\"storyPurpose\":0,\"narrationCue\":0,\"subtitleCue\":0,\"visualIntent\":0,\"truthBoundary\":0,\"rightsAssetNote\":0}"
+    },
+    "beat_content_alignment": {
+      "passed": true,
+      "detail": "narration=6; subtitle=6; visual=6"
+    },
+    "truth_and_rights_boundaries": {
+      "passed": true,
+      "detail": "truth=6; rights=6; heldTerms=true; planningOnly=true; guard=true"
+    },
+    "interaction_path": {
+      "passed": true,
+      "detail": "rail=true; active=true; prev=true; next=true; brief=true; keyboard=true"
+    },
+    "legacy_bridge_detail_demoted": {
+      "passed": true,
+      "detail": "collapsed=true; inside=true; supporting=142220; legacy=143403,146182,149487"
+    },
+    "brief_and_theme_preserved": {
+      "passed": true,
+      "detail": "brief=true; dark=true; workbench=true"
+    },
+    "doc_and_visual_evidence": {
+      "passed": true,
+      "detail": "doc=true; reviewDebt=true; screenshot=artifacts/review-screens/bridge-storyboard-flow.png/185233"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "local=true; external=false; provider=false; credentials=false; upload=false; video=false; render=false; database=false; canon=false; rights=false; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

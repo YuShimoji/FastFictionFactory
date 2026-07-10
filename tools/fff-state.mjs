@@ -43,6 +43,7 @@ const LAYOUT_RESEARCH_DECISION_SHELL_SCHEMA_VERSION = "fff.layoutResearchDecisio
 const LAYOUT_LAB_VISUAL_AUDIT_SCHEMA_VERSION = "fff.layoutLabVisualAudit.v1";
 const APPLY_DECISION_SHELL_GUARD_DIET_SCHEMA_VERSION = "fff.applyDecisionShellGuardDiet.v1";
 const REVIEW_WORKBENCH_COMPONENT_CONTRACT_SCHEMA_VERSION = "fff.reviewWorkbenchComponentContract.v1";
+const BRIDGE_STORYBOARD_FLOW_SCHEMA_VERSION = "fff.bridgeStoryboardFlow.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -83,6 +84,7 @@ const DEFAULT_LAYOUT_RESEARCH_DECISION_SHELL_OUTPUT = "artifacts/layout-research
 const DEFAULT_LAYOUT_LAB_VISUAL_AUDIT_OUTPUT = "artifacts/layout-lab-visual-audit-result.json";
 const DEFAULT_APPLY_DECISION_SHELL_GUARD_DIET_OUTPUT = "artifacts/apply-decision-shell-guard-diet-result.json";
 const DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT = "artifacts/review-workbench-component-contract-result.json";
+const DEFAULT_BRIDGE_STORYBOARD_FLOW_OUTPUT = "artifacts/bridge-storyboard-flow-result.json";
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -1019,6 +1021,32 @@ async function main() {
     if (command === "smoke-review-workbench-component-contract" || outputPath) {
       console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
+    return;
+  }
+
+  if (command === "validate-bridge-storyboard-flow") {
+    if (outputPath) {
+      fail("validate-bridge-storyboard-flow is read-only and does not accept an output path; use smoke-bridge-storyboard-flow for intentional result regeneration.");
+    }
+    const readback = await readJson(inputPath);
+    const result = await validateBridgeStoryboardFlow(readback, inputPath);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) {
+      fail(`Bridge Storyboard Flow failed: ${result.failures.join("; ")}`);
+    }
+    return;
+  }
+
+  if (command === "smoke-bridge-storyboard-flow") {
+    const readback = await readJson(inputPath);
+    const result = await validateBridgeStoryboardFlow(readback, inputPath);
+    const target = outputPath || DEFAULT_BRIDGE_STORYBOARD_FLOW_OUTPUT;
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    if (!result.passed) {
+      fail(`Bridge Storyboard Flow failed: ${result.failures.join("; ")}`);
+    }
+    console.log(`bridge storyboard flow passed ${inputPath} -> ${target}`);
     return;
   }
 
@@ -10864,6 +10892,426 @@ async function validateReviewWorkbenchComponentContract(readback, readbackPath) 
   };
 }
 
+async function validateBridgeStoryboardFlow(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const manifest = await readJson("artifacts/artifact-manifest.json");
+  const workbenchPath = manifest.review_workbench_component_contract_result_path || DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT;
+  const applyShellPath = manifest.apply_decision_shell_guard_diet_result_path || DEFAULT_APPLY_DECISION_SHELL_GUARD_DIET_OUTPUT;
+  const draftBridgePath = manifest.draft_to_video_planning_bridge_result_path || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+  const bridgeOverviewPath = manifest.bridge_refinement_overview_ribbon_result_path || DEFAULT_BRIDGE_REFINEMENT_OVERVIEW_RIBBON_OUTPUT;
+  const draftPackPath = manifest.one_story_draft_review_pack_result_path || DEFAULT_ONE_STORY_DRAFT_REVIEW_PACK_OUTPUT;
+  const designerDashboardPath = manifest.designer_candidate_dashboard_result_path || DEFAULT_DESIGNER_CANDIDATE_DASHBOARD_OUTPUT;
+  const contradictoryGuardPath = manifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const [
+    workbench,
+    applyShell,
+    draftBridge,
+    bridgeOverview,
+    draftPack,
+    designerDashboard,
+    contradictoryGuard,
+    html,
+    doc
+  ] = await Promise.all([
+    readJson(workbenchPath),
+    readJson(applyShellPath),
+    readJson(draftBridgePath),
+    readJson(bridgeOverviewPath),
+    readJson(draftPackPath),
+    readJson(designerDashboardPath),
+    readJson(contradictoryGuardPath),
+    readFile("public/review/index.html", "utf8"),
+    readFile("docs/review/bridge-storyboard-flow.md", "utf8")
+  ]);
+
+  const sourceReadbacks = [
+    {
+      key: "review_workbench_component_contract",
+      path: workbenchPath,
+      expectedArtifactId: "fff-review-workbench-component-contract-001",
+      result: workbench
+    },
+    {
+      key: "apply_decision_shell_guard_diet",
+      path: applyShellPath,
+      expectedArtifactId: "fff-apply-decision-shell-guard-diet-001",
+      result: applyShell
+    },
+    {
+      key: "draft_to_video_planning_bridge",
+      path: draftBridgePath,
+      expectedArtifactId: "fff-draft-to-video-planning-bridge-001",
+      result: draftBridge
+    },
+    {
+      key: "bridge_refinement_overview_ribbon",
+      path: bridgeOverviewPath,
+      expectedArtifactId: "fff-bridge-refinement-overview-ribbon-001",
+      result: bridgeOverview
+    },
+    {
+      key: "one_story_draft_review_pack",
+      path: draftPackPath,
+      expectedArtifactId: "fff-one-story-draft-review-pack-001",
+      result: draftPack
+    },
+    {
+      key: "designer_candidate_dashboard",
+      path: designerDashboardPath,
+      expectedArtifactId: "fff-designer-candidate-dashboard-001",
+      result: designerDashboard
+    },
+    {
+      key: "contradictory_claim_guard",
+      path: contradictoryGuardPath,
+      expectedArtifactId: "fff-contradictory-claim-guard-001",
+      result: contradictoryGuard
+    }
+  ];
+  const sourceResultPaths = Object.fromEntries(sourceReadbacks.map((source) => [source.key, source.path]));
+  const sourceArtifactIds = sourceReadbacks.map((source) => source.result?.artifact_id).filter(Boolean);
+  const sourceReadbacksPreserved = sourceReadbacks.every((source) =>
+    source.result?.artifact_id === source.expectedArtifactId && source.result?.passed === true
+  );
+
+  const selectedCandidateId = workbench?.selected_candidate_id || draftBridge?.selected_candidate_id || draftPack?.selected_candidate_id;
+  const selectedChannelRouteId = workbench?.selected_channel_route_id || draftBridge?.selected_channel_route_id || draftPack?.channel_strategy_route?.id;
+  const expectedCandidateId = "designer-content-moth-investigation-3m";
+  const expectedChannelRouteId = "designer-channel-mystery-lore";
+  const candidateSources = [
+    workbench?.selected_candidate_id,
+    draftBridge?.selected_candidate_id,
+    bridgeOverview?.selected_candidate_id,
+    draftPack?.selected_candidate_id
+  ].filter(Boolean);
+  const channelSources = [
+    workbench?.selected_channel_route_id,
+    draftBridge?.selected_channel_route_id,
+    bridgeOverview?.selected_channel_route_id,
+    draftPack?.channel_strategy_route?.id
+  ].filter(Boolean);
+
+  const modelBlock = extractConstObjectBlock(html, "bridgeStoryboardFlowModel");
+  const beatsBlock = extractArrayPropertyBlock(modelBlock, "beats");
+  const beatIds = [...beatsBlock.matchAll(/\bbeatId\s*:\s*["'`]([^"'`]+)["'`]/g)].map((match) => match[1]);
+  const beatNumbers = [...beatsBlock.matchAll(/\bbeatNumber\s*:\s*(\d+)/g)].map((match) => Number(match[1]));
+  const requiredBeatFields = [
+    "titleJa",
+    "timeWindow",
+    "storyPurpose",
+    "narrationCue",
+    "subtitleCue",
+    "visualIntent",
+    "truthBoundary",
+    "rightsAssetNote"
+  ];
+  const beatFieldCounts = Object.fromEntries(requiredBeatFields.map((field) => [
+    field,
+    countPattern(beatsBlock, new RegExp(`\\b${escapeRegExp(field)}\\s*:`, "g"))
+  ]));
+  const emptyBeatFieldCounts = Object.fromEntries(requiredBeatFields.map((field) => [
+    field,
+    countPattern(beatsBlock, new RegExp("\\b" + escapeRegExp(field) + "\\s*:\\s*(?:\"\"|''|``)", "g"))
+  ]));
+  const beatCount = beatIds.length;
+  const uniqueBeatIds = new Set(beatIds).size === beatIds.length;
+  const sequentialBeatNumbers = beatNumbers.length === 6 && beatNumbers.every((number, index) => number === index + 1);
+  const completeBeatFieldContract = requiredBeatFields.every((field) =>
+    beatFieldCounts[field] === 6 && emptyBeatFieldCounts[field] === 0
+  );
+  const allSixBeatsHaveNarration = beatCount === 6 && beatFieldCounts.narrationCue === 6 && emptyBeatFieldCounts.narrationCue === 0;
+  const allSixBeatsHaveSubtitle = beatCount === 6 && beatFieldCounts.subtitleCue === 6 && emptyBeatFieldCounts.subtitleCue === 0;
+  const allSixBeatsHaveVisual = beatCount === 6 && beatFieldCounts.visualIntent === 6 && emptyBeatFieldCounts.visualIntent === 0;
+  const allSixBeatsHaveTruthBoundary = beatCount === 6 && beatFieldCounts.truthBoundary === 6 && emptyBeatFieldCounts.truthBoundary === 0;
+  const allSixBeatsHaveRightsAssetNote = beatCount === 6 && beatFieldCounts.rightsAssetNote === 6 && emptyBeatFieldCounts.rightsAssetNote === 0;
+
+  const bridgeRootIndex = html.indexOf('id="draft-to-video-bridge-root"');
+  const storyboardIndex = html.indexOf('data-bridge-storyboard-flow="true"');
+  const supportingDetailsIndex = html.indexOf('data-bridge-supporting-details="true"');
+  const legacyMarkers = [
+    'data-bridge-decision-console="true"',
+    'data-bridge-guided-flow="true"',
+    'data-bridge-refinement="overview-ribbon-bridge-refinement"'
+  ];
+  const legacyIndices = legacyMarkers.map((marker) => html.indexOf(marker));
+  const firstLegacyIndex = legacyIndices.every((index) => index >= 0) ? Math.min(...legacyIndices) : -1;
+  const storyboardFlowFirst =
+    bridgeRootIndex >= 0 &&
+    storyboardIndex > bridgeRootIndex &&
+    supportingDetailsIndex > storyboardIndex &&
+    firstLegacyIndex > storyboardIndex;
+  const storyboardBlockEnd = supportingDetailsIndex > storyboardIndex
+    ? supportingDetailsIndex
+    : storyboardIndex + 20000;
+  const storyboardBlock = storyboardIndex >= 0 ? html.slice(storyboardIndex, storyboardBlockEnd) : "";
+  const supportingDetailsTagMatch = html.match(/<details\b[^>]*data-bridge-supporting-details="true"[^>]*>/i);
+  const supportingDetailsTag = supportingDetailsTagMatch?.[0] || "";
+  const supportingDetailsCollapsed = Boolean(supportingDetailsTag) && !/\sopen(?:\s|=|>)/i.test(supportingDetailsTag);
+  const legacyMarkersInsideSupportingDetails =
+    supportingDetailsIndex >= 0 &&
+    legacyIndices.every((index) => index > supportingDetailsIndex);
+  const legacyBridgeDetailDemotedOrCollapsed = supportingDetailsCollapsed && legacyMarkersInsideSupportingDetails;
+
+  const interactionPathPresent =
+    storyboardBlock.includes("data-storyboard-beat-rail") &&
+    html.includes("data-storyboard-beat-select") &&
+    storyboardBlock.includes("data-storyboard-active-canvas") &&
+    html.includes("data-storyboard-prev") &&
+    html.includes("data-storyboard-next") &&
+    storyboardBlock.includes("data-storyboard-return-brief") &&
+    storyboardBlock.includes('data-mode-target="brief"') &&
+    html.includes("renderBridgeStoryboardFlow") &&
+    html.includes("keydown") &&
+    html.includes("ArrowLeft") &&
+    html.includes("ArrowRight") &&
+    html.includes("ArrowUp") &&
+    html.includes("ArrowDown");
+  const truthBoundaryTermsPresent = ["Toma", "brass moth", "Council"].every((term) => modelBlock.includes(term));
+  const planningOnlyTiming = modelBlock.includes("planningOnly: true") && beatFieldCounts.timeWindow === 6;
+  const briefRoutePreserved =
+    html.includes('data-mode-panel="brief"') &&
+    html.includes('data-review-workbench-canvas="true"') &&
+    html.includes('data-single-framing-source="active-decision-canvas"');
+  const darkModePreserved =
+    html.includes(':root[data-theme="dark"]') &&
+    html.includes(':root[data-theme="auto"]') &&
+    html.includes('data-theme-target="light"') &&
+    html.includes('data-theme-target="dark"') &&
+    html.includes('data-theme-target="auto"') &&
+    html.includes(":focus-visible");
+
+  const readBoundary = (key) => readback?.[key] ?? readback?.boundaries?.[key];
+  const credentialFindings = collectCredentialMaterial(readback);
+  const boundaryClosed =
+    readBoundary("local_only") === true &&
+    readBoundary("external_call") === false &&
+    readBoundary("provider_configured") === false &&
+    readBoundary("credentials_touched") === false &&
+    readBoundary("public_upload") === false &&
+    readBoundary("ai_video_generation") === false &&
+    readBoundary("production_render") === false &&
+    readBoundary("database_persistence") === false &&
+    readBoundary("final_canon_decision") === false &&
+    readBoundary("rights_cleared_claim") === false &&
+    credentialFindings.length === 0;
+  const operatorGateRecordedInDoc =
+    doc.includes("OPERATOR_FIRST") &&
+    (doc.includes("accepted") || doc.includes("受理") || doc.includes("合格") || doc.includes("passed")) &&
+    (doc.includes("closed") || doc.includes("終了") || doc.includes("完了"));
+  const operatorObservationAccepted =
+    readback?.operator_observation_accepted === true &&
+    readback?.operator_first_closed === true &&
+    operatorGateRecordedInDoc;
+  const screenshotPath = toRepoPath(readback?.screenshot_path || "artifacts/review-screens/bridge-storyboard-flow.png");
+  const screenshotSize = await fileSizeOrZero(screenshotPath);
+
+  check(
+    "identity",
+    readback?.artifact_id === "fff-bridge-storyboard-flow-001" &&
+      readback?.schemaVersion === BRIDGE_STORYBOARD_FLOW_SCHEMA_VERSION &&
+      readback?.review_ui === "public/review/index.html" &&
+      (readback?.review_route || readback?.access_route) === "public/review/index.html?mode=bridge" &&
+      readback?.source_workbench_artifact_id === "fff-review-workbench-component-contract-001",
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; ui=${readback?.review_ui}; route=${readback?.review_route || readback?.access_route}; source=${readback?.source_workbench_artifact_id}`
+  );
+  check(
+    "source_artifacts_preserved",
+    sourceReadbacksPreserved,
+    sourceReadbacks.map((source) => `${source.key}=${source.result?.artifact_id}/${source.result?.passed}`).join("; ")
+  );
+  check(
+    "candidate_channel_preserved",
+    selectedCandidateId === expectedCandidateId &&
+      selectedChannelRouteId === expectedChannelRouteId &&
+      candidateSources.every((value) => value === expectedCandidateId) &&
+      channelSources.every((value) => value === expectedChannelRouteId) &&
+      modelBlock.includes(expectedCandidateId) &&
+      modelBlock.includes(expectedChannelRouteId),
+    `candidate=${selectedCandidateId}; candidateSources=${candidateSources.join(",")}; channel=${selectedChannelRouteId}; channelSources=${channelSources.join(",")}`
+  );
+  check(
+    "operator_gate_transition",
+    operatorObservationAccepted,
+    `accepted=${readback?.operator_observation_accepted}; closed=${readback?.operator_first_closed}; doc=${operatorGateRecordedInDoc}`
+  );
+  check(
+    "storyboard_flow_first",
+    storyboardFlowFirst &&
+      modelBlock.includes('artifactId: "fff-bridge-storyboard-flow-001"') &&
+      modelBlock.includes('reviewRoute: "public/review/index.html?mode=bridge"'),
+    `bridgeRoot=${bridgeRootIndex}; storyboard=${storyboardIndex}; supporting=${supportingDetailsIndex}; firstLegacy=${firstLegacyIndex}`
+  );
+  check(
+    "six_beat_contract",
+    beatCount === 6 && uniqueBeatIds && sequentialBeatNumbers && completeBeatFieldContract,
+    `beats=${beatCount}; unique=${uniqueBeatIds}; numbers=${beatNumbers.join(",")}; fields=${JSON.stringify(beatFieldCounts)}; empty=${JSON.stringify(emptyBeatFieldCounts)}`
+  );
+  check(
+    "beat_content_alignment",
+    allSixBeatsHaveNarration && allSixBeatsHaveSubtitle && allSixBeatsHaveVisual,
+    `narration=${beatFieldCounts.narrationCue}; subtitle=${beatFieldCounts.subtitleCue}; visual=${beatFieldCounts.visualIntent}`
+  );
+  check(
+    "truth_and_rights_boundaries",
+    allSixBeatsHaveTruthBoundary &&
+      allSixBeatsHaveRightsAssetNote &&
+      truthBoundaryTermsPresent &&
+      planningOnlyTiming &&
+      contradictoryGuard?.passed === true &&
+      readBoundary("final_canon_decision") === false &&
+      readBoundary("rights_cleared_claim") === false,
+    `truth=${beatFieldCounts.truthBoundary}; rights=${beatFieldCounts.rightsAssetNote}; heldTerms=${truthBoundaryTermsPresent}; planningOnly=${planningOnlyTiming}; guard=${contradictoryGuard?.passed}`
+  );
+  check(
+    "interaction_path",
+    interactionPathPresent,
+    `rail=${storyboardBlock.includes("data-storyboard-beat-rail")}; active=${storyboardBlock.includes("data-storyboard-active-canvas")}; prev=${html.includes("data-storyboard-prev")}; next=${html.includes("data-storyboard-next")}; brief=${storyboardBlock.includes("data-storyboard-return-brief")}; keyboard=${html.includes("keydown") && html.includes("ArrowLeft") && html.includes("ArrowRight") && html.includes("ArrowUp") && html.includes("ArrowDown")}`
+  );
+  check(
+    "legacy_bridge_detail_demoted",
+    legacyBridgeDetailDemotedOrCollapsed,
+    `collapsed=${supportingDetailsCollapsed}; inside=${legacyMarkersInsideSupportingDetails}; supporting=${supportingDetailsIndex}; legacy=${legacyIndices.join(",")}`
+  );
+  check(
+    "brief_and_theme_preserved",
+    briefRoutePreserved && darkModePreserved && workbench?.passed === true,
+    `brief=${briefRoutePreserved}; dark=${darkModePreserved}; workbench=${workbench?.passed}`
+  );
+  check(
+    "doc_and_visual_evidence",
+    doc.includes("fff-bridge-storyboard-flow-001") &&
+      doc.includes("public/review/index.html?mode=bridge") &&
+      doc.includes("Review Debt") &&
+      doc.includes("validate-bridge-storyboard-flow") &&
+      doc.includes("smoke-bridge-storyboard-flow") &&
+      (screenshotSize > 0 || !readback?.screenshot_path),
+    `doc=${doc.includes("fff-bridge-storyboard-flow-001")}; reviewDebt=${doc.includes("Review Debt")}; screenshot=${screenshotPath}/${screenshotSize}`
+  );
+  check(
+    "boundary_gates_closed",
+    boundaryClosed,
+    `local=${readBoundary("local_only")}; external=${readBoundary("external_call")}; provider=${readBoundary("provider_configured")}; credentials=${readBoundary("credentials_touched")}; upload=${readBoundary("public_upload")}; video=${readBoundary("ai_video_generation")}; render=${readBoundary("production_render")}; database=${readBoundary("database_persistence")}; canon=${readBoundary("final_canon_decision")}; rights=${readBoundary("rights_cleared_claim")}; findings=${credentialFindings.join(", ") || "none"}`
+  );
+
+  return {
+    schemaVersion: BRIDGE_STORYBOARD_FLOW_SCHEMA_VERSION,
+    artifact_id: "fff-bridge-storyboard-flow-001",
+    title: "Fast Fiction Factory Bridge Storyboard Flow",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_readback",
+    review_input_mode: "freeform",
+    review_ui: "public/review/index.html",
+    access_route: "public/review/index.html?mode=bridge",
+    review_route: "public/review/index.html?mode=bridge",
+    input_result_path: toRepoPath(readbackPath),
+    source_workbench_artifact_id: "fff-review-workbench-component-contract-001",
+    source_workbench_preserved: checks.source_artifacts_preserved?.passed === true && briefRoutePreserved,
+    source_artifact_ids: sourceArtifactIds,
+    source_result_paths: sourceResultPaths,
+    selected_candidate_id: selectedCandidateId,
+    selected_channel_route_id: selectedChannelRouteId,
+    operator_observation_accepted: checks.operator_gate_transition?.passed === true,
+    operator_first_closed: checks.operator_gate_transition?.passed === true,
+    storyboard_flow_first: checks.storyboard_flow_first?.passed === true,
+    storyboard_flow_primary: checks.storyboard_flow_first?.passed === true,
+    beat_count: beatCount,
+    beat_ids: beatIds,
+    beat_numbers: beatNumbers,
+    beat_field_counts: beatFieldCounts,
+    all_six_beats_have_narration: allSixBeatsHaveNarration,
+    all_six_beats_have_subtitle: allSixBeatsHaveSubtitle,
+    all_six_beats_have_visual: allSixBeatsHaveVisual,
+    held_truth_or_uncertainty_boundary_present: allSixBeatsHaveTruthBoundary && truthBoundaryTermsPresent,
+    final_canon_promotion_absent: planningOnlyTiming && readBoundary("final_canon_decision") === false,
+    timing_windows_planning_only: planningOnlyTiming,
+    rights_asset_notes_represented: allSixBeatsHaveRightsAssetNote,
+    compact_six_beat_rail_visible: interactionPathPresent && beatCount === 6,
+    active_beat_canvas_visible: storyboardBlock.includes("data-storyboard-active-canvas"),
+    previous_next_controls_visible: html.includes("data-storyboard-prev") && html.includes("data-storyboard-next"),
+    brief_return_visible: storyboardBlock.includes("data-storyboard-return-brief") && storyboardBlock.includes('data-mode-target="brief"'),
+    keyboard_beat_selection: html.includes("keydown") && html.includes("ArrowLeft") && html.includes("ArrowRight") && html.includes("ArrowUp") && html.includes("ArrowDown"),
+    focus_visible_preserved: html.includes(":focus-visible"),
+    legacy_bridge_detail_demoted_or_collapsed: legacyBridgeDetailDemotedOrCollapsed,
+    brief_route_preserved: briefRoutePreserved,
+    dark_mode_preserved: darkModePreserved,
+    screenshot_path: screenshotSize > 0 ? screenshotPath : null,
+    screenshot_size: screenshotSize,
+    review_debt: [
+      "overall_brief_page_length",
+      "minor_workbench_readability",
+      "stale_shelf_excision",
+      "broader_visual_density_cleanup"
+    ],
+    review_debt_is_blocker: false,
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      database_persistence: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      credential_material_findings: credentialFindings
+    },
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    summary: {
+      source_workbench_preserved: checks.source_artifacts_preserved?.passed === true && briefRoutePreserved,
+      operator_observation_accepted: checks.operator_gate_transition?.passed === true,
+      operator_first_closed: checks.operator_gate_transition?.passed === true,
+      storyboard_flow_first: checks.storyboard_flow_first?.passed === true,
+      beat_count: beatCount,
+      all_six_beats_have_narration: allSixBeatsHaveNarration,
+      all_six_beats_have_subtitle: allSixBeatsHaveSubtitle,
+      all_six_beats_have_visual: allSixBeatsHaveVisual,
+      truth_boundary_present: allSixBeatsHaveTruthBoundary && truthBoundaryTermsPresent,
+      legacy_detail_collapsed: legacyBridgeDetailDemotedOrCollapsed,
+      brief_route_preserved: briefRoutePreserved,
+      dark_mode_preserved: darkModePreserved,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      database_persistence: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "Bridge Storyboard Flow is the first substantive Bridge review surface and remains planning-only.",
+      "Six ordered beats align narration, subtitle, visual, truth-boundary, and rights/asset notes.",
+      "Legacy Bridge evidence remains preserved inside collapsed supporting details.",
+      "The accepted Workbench remains preserved while OPERATOR_FIRST is closed.",
+      "Provider/API, credentials, AI video, render, upload, database, final canon, and rights clearance remain closed."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateGuidedReviewFlowWorkspace(readback, readbackPath) {
   const failures = [];
   const checks = {};
@@ -12985,6 +13433,8 @@ Usage:
   node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json> [output.json]
   node tools/fff-state.mjs validate-review-workbench-component-contract <review-workbench-component-contract-result.json>
   node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
+  node tools/fff-state.mjs validate-bridge-storyboard-flow <bridge-storyboard-flow-result.json>
+  node tools/fff-state.mjs smoke-bridge-storyboard-flow <bridge-storyboard-flow-result.json> [output.json]
   node tools/fff-state.mjs validate-guided-review-flow-workspace <guided-review-flow-workspace-result.json>
   node tools/fff-state.mjs smoke-guided-review-flow-workspace <guided-review-flow-workspace-result.json> [output.json]
   node tools/fff-state.mjs validate-home-cockpit-metric-linking <home-cockpit-metric-linking-result.json>
@@ -13033,6 +13483,9 @@ Default apply decision shell guard diet output:
 
 Default review workbench component contract output:
   ${DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT}
+
+Default bridge storyboard flow output:
+  ${DEFAULT_BRIDGE_STORYBOARD_FLOW_OUTPUT}
 
 Default home cockpit metric linking output:
   ${DEFAULT_HOME_COCKPIT_METRIC_LINKING_OUTPUT}

@@ -249,3 +249,11 @@
 - Decision: Refresh the durable OPERATOR_FIRST handoff without selecting a product lane.
   - Reason: Remote `master` advanced to `af4a376 Record operator-first handoff`, and stale five-choice or pre-application wording could send a later terminal around the current four-lane human observation gate.
   - Effect: Updates `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/next-terminal-handoff.md`, `docs/idea-ledger.md`, and this decision log with the 2026-07-11 parity/validation state and the current Bridge Storyboard Flow / Workbench Visual Density Pass / Context Dock Minimal Pass / Stale Shelf Excision choices. No Review UI, provider/API, credential, upload, AI video, render, database, rights-clearance, or final-canon behavior changes.
+
+- Decision: Close `OPERATOR_FIRST` from the supplied human observation and select `BRIDGE_STORYBOARD_FLOW`.
+  - Reason: The operator accepted the top Workbench, identified the remaining lower-page length and density, and explicitly chose forward product movement rather than another shell micro-adjustment.
+  - Effect: `fff-review-workbench-component-contract-001` remains preserved, while `fff-bridge-storyboard-flow-001` becomes the active product lane. Workbench density, Context Dock minimalism, and stale-shelf excision remain non-blocking review debt rather than parallel implementation work.
+
+- Decision: Put exactly six planning beats first on the Bridge route and collapse prior Bridge evidence without deleting it.
+  - Reason: The reviewer needs one story-shaped sequence that aligns narration, subtitles, visuals, uncertainty, and rights notes; the prior console, guided flow, refinement, and comprehensive grid remain valuable audit evidence but are too dense to own the first screen.
+  - Effect: `public/review/index.html?mode=bridge` gains a compact six-beat rail, one active canvas, Previous / Next and keyboard navigation, one return to Brief, `docs/review/bridge-storyboard-flow.md`, `artifacts/bridge-storyboard-flow-result.json`, and a strict read-only validator. Timing remains planning-only, all held truths stay unresolved, and provider/API, credentials, generation, render, upload, database, rights clearance, and final canon remain closed.
