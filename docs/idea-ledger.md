@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Editorial Revision Roundtrip
+
+- Purpose: Let a writer or editor return structured changes without reconstructing the Handoff package or silently mutating its source.
+- Effect: Adds `fff-editorial-revision-roundtrip-001`, `public/review/index.html?mode=revision`, a six-file package under `artifacts/editorial-revision/`, local request import, fail-closed guard classification, one before/after diff, accept/hold/reject/return decisions, and safe-only decision/patch downloads.
+- Requirements: Preserve source Handoff bytes/hashes, six-beat order, 180-second timing, provisional truth, unselected assets, rights state, themes, keyboard behavior, and all provider/API/credential/generation/render/upload/database/canon gates. Apply no patch in this slice.
+- State: Implemented for guarded local readback. The deterministic example is 3 safe / 1 human / 2 blocked, decisions are 3 accept / 1 hold / 2 reject, and the three-change patch remains `not_applied`.
+- Owner: Product implementer for schema, UI, validation, and portability; human editor for request/decision content; human author for timing, order, truth, ending, and canon.
+- Next move: Use `mode=revision` for structured feedback and export only. Patch application, timing/order approval, story truth, assets, rights, provider, production, and canon require separate authority.
+
 ### Bridge Editorial Handoff Pack
 
 - Purpose: Turn the accepted six-beat Bridge implementation checkpoint into one portable local package that a writer, subtitle editor, or video editor can use without reconstructing the plan from review shelves.
@@ -58,12 +67,12 @@
 
 ### Repo Sync / Next Terminal Handoff
 
-- Purpose: Keep the latest Editorial Handoff Pack context durable in repository files so another terminal can resume from `master` without chat history.
-- Effect: Updates the handoff/current-status/project-context docs with the current active artifact, baseline handoff commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
+- Purpose: Keep the latest Editorial Revision Roundtrip context durable in repository files so another terminal can resume from `master` without chat history.
+- Effect: Updates the handoff/current-status/project-context docs with the current active artifact, immutable Handoff source, baseline commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
 - Requirements: Do not change product UI behavior, do not stage local transport residue, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: The active implementation starts from synced `0322b4963c8ffd85c90a183ba437cb91df36e8ce Add bridge storyboard flow`, with `master...origin/master` at `0 0` before edits, the Editorial Handoff manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
+- State: The active implementation starts from synced `4889970f045eb7c557057a367e502f8b4b2036fb Preserve editorial package hashes`, with `master...origin/master` at `0 0` before edits, the Editorial Revision manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
-- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=handoff` and `artifacts/editorial-handoff/README_DELIVERY.md` for manual transfer.
+- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=revision` and `artifacts/editorial-revision/README_REVISION.md` for guarded feedback/export.
 
 ### Layout Research Decision Shell
 

@@ -261,3 +261,13 @@
 - Decision: Convert the six-beat Bridge checkpoint into a separate manual Editorial Handoff Pack without promoting it to canon or production.
   - Reason: A writer, subtitle editor, or video editor needs one coherent portable package rather than reconstructing narration, subtitle timing, shot timing, truth holds, and rights notes from multiple review shelves. The accepted six-beat implementation is a usable provisional baseline, but it is not canon approval.
   - Effect: `fff-bridge-editorial-handoff-pack-001` adds `public/review/index.html?mode=handoff`, one compact Bridge action, `artifacts/editorial-handoff/` with delivery/narration/CSV/JSON/integrity files, `docs/review/bridge-editorial-handoff-pack.md`, `artifacts/bridge-editorial-handoff-pack-result.json`, and strict read-only validation. It preserves the exact six beats and 180 seconds, keeps all prose `provisional_editorial_draft`, keeps every asset unselected, keeps Toma fate, brass moth truth/function, Council motive, and ending truth unresolved, and leaves provider/API, credentials, external calls, generation, render, upload, database persistence, rights clearance, and final canon closed.
+
+## 2026-07-12
+
+- Decision: Add a guarded Editorial Revision Roundtrip without mutating or applying changes to the source Handoff package.
+  - Reason: A writer or editor needs a structured way to return wording proposals, compare them against exact source fingerprints, distinguish safe edits from human-author and blocked-boundary changes, and export decisions without silently changing timing, truth, rights, assets, or canon.
+  - Effect: `fff-editorial-revision-roundtrip-001` adds `public/review/index.html?mode=revision`, local size-limited JSON import, deterministic guard classification, one change rail and diff canvas, decision and unapplied-patch Blob exports, `artifacts/editorial-revision/`, strict read-only validation, and mode-aware launchers. The example remains exactly 3 safe / 1 human / 2 blocked with 3 accept / 1 hold / 2 reject, and only three safe wording changes enter the unapplied patch.
+
+- Decision: Make local review launchers mode-aware and testable without opening a browser.
+  - Reason: The prior handoff text claimed the bare PowerShell launcher opened Handoff, while it actually opened the default Brief route, and Docs mode used a WindowsApps-prone direct Python path.
+  - Effect: PowerShell gains `-Mode` and `-PrintUri`; the shell launcher gains `--mode` and `--print-uri`; no argument remains Brief; unknown/unsafe modes fail closed; Handoff and Revision preserve their query in a file URI; PowerShell Docs uses `uvx --with mkdocs-material`.

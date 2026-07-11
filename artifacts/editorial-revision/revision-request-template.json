@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "fff.editorialRevisionRequest.v1",
+  "request_id": "replace-with-stable-request-id",
+  "source": {
+    "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+    "editorial_handoff_sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+    "package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+  },
+  "candidate_id": "designer-content-moth-investigation-3m",
+  "channel_id": "designer-channel-mystery-lore",
+  "requested_by": "replace-with-editor-label",
+  "created_at": "replace-with-ISO-8601-timestamp",
+  "changes": [],
+  "change_contract": {
+    "required_fields": [
+      "change_id",
+      "beat_id",
+      "target_type",
+      "target_id",
+      "target_field",
+      "change_type",
+      "before",
+      "proposed_value",
+      "rationale",
+      "requested_status"
+    ],
+    "requested_status": "proposed",
+    "safe_local_edit_types": [
+      "narration_wording",
+      "subtitle_wording",
+      "shot_direction_wording"
+    ],
+    "human_author_required_types": [
+      "beat_order",
+      "beat_timing",
+      "story_truth",
+      "ending_choice"
+    ],
+    "blocked_boundary_types": [
+      "final_canon_promotion",
+      "rights_clearance",
+      "asset_selection",
+      "provider_api",
+      "credentials",
+      "external_model_call",
+      "generation",
+      "production_render",
+      "upload_publication",
+      "database_persistence"
+    ],
+    "unknown_values": "fail_closed"
+  },
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false
+  }
+}

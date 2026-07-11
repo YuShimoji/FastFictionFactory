@@ -2,16 +2,20 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-bridge-editorial-handoff-pack-001`, served through the static local Visual Review Hub at `public/review/index.html?mode=handoff` and the portable package at `artifacts/editorial-handoff/`. It converts the accepted six-beat Bridge implementation checkpoint into a manual-delivery-ready editorial package with one complete provisional narration segment per beat, 20 timed subtitle cues, 19 timed generic shot cues, three thumbnail directions, compact truth/rights guards, and SHA256 integrity metadata. `fff-bridge-storyboard-flow-001` remains the preserved source baseline at `?mode=bridge`; `fff-review-workbench-component-contract-001`, `fff-draft-to-video-planning-bridge-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, and `fff-contradictory-claim-guard-001` remain source authority. `?mode=brief`, `?mode=layout-lab`, and the other historical review routes remain preserved.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-editorial-revision-roundtrip-001`, served at `public/review/index.html?mode=revision` with a portable six-file package under `artifacts/editorial-revision/`. It adds a guarded request, before/after comparison, decision, and unapplied-patch return path over the immutable `fff-bridge-editorial-handoff-pack-001` source. The deterministic example contains six changes classified `3 safe_local_edit / 1 human_author_required / 2 blocked_boundary`, resolves them as `3 accept / 1 hold / 2 reject`, and exports only three accepted safe wording changes with `apply_status=not_applied`. The exact six-beat/180-second Handoff source, Bridge Storyboard Flow, Brief Workbench, themes, truth/rights boundaries, and package hashes remain preserved.
 
 ## Current Lane
 
-Keep the MVP reviewable and portable without production commitments. The current lane is `EDITORIAL_HANDOFF_PACK`: deliver the same six beats and exact 180-second allocation as a local editing package while keeping all prose `provisional_editorial_draft`, all assets unselected, and all unresolved truth owned by the human author. The `bridge` Flow remains the source sequence and the `brief` Workbench remains the preserved prelude. Provider/API setup, credentials, generation, production render, public upload, rights clearance, database persistence, and final canon remain closed.
+Keep the MVP repeatedly editable without silently mutating its source package. The current lane is `EDITORIAL_REVISION_ROUNDTRIP`: import local request JSON, fail closed on invalid identity or boundary changes, allow only wording edits to be accepted, and export decisions plus an unapplied safe patch. Timing/order, story truth, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload, and database persistence remain closed.
 
 ## Current Slice
 
-The active slice is complete enough for local manual delivery and readback:
+The active slice is complete enough for guarded local revision readback:
 
+- Editorial Revision Roundtrip doc/result/screenshot target: `docs/review/editorial-revision-roundtrip.md`, `artifacts/editorial-revision-roundtrip-result.json`, `artifacts/review-screens/editorial-revision-roundtrip.png`
+- Portable revision package: `artifacts/editorial-revision/README_REVISION.md`, `revision-request-template.json`, `revision-request.example.json`, `revision-decision.example.json`, `revision-patch.example.json`, `revision-roundtrip-manifest.json`
+- Focused Revision mode: `public/review/index.html?mode=revision`
+- Mode-aware launchers: `scripts/operator/open_review.ps1 -Mode revision`, `scripts/operator/open_review.sh --mode revision`; no argument remains Brief and print-only URI checks are available
 - Editorial Handoff Pack doc/result/screenshot target: `docs/review/bridge-editorial-handoff-pack.md`, `artifacts/bridge-editorial-handoff-pack-result.json`, `artifacts/review-screens/bridge-editorial-handoff-pack.png`
 - Portable package: `artifacts/editorial-handoff/README_DELIVERY.md`, `narration-script.md`, `subtitle-cues.csv`, `shot-list.csv`, `editorial-handoff.json`, `package-manifest.json`
 - Focused Handoff mode: `public/review/index.html?mode=handoff`
@@ -259,10 +263,10 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: open `public/review/index.html?mode=handoff`, traverse the six-beat editing runway, and use the package files for manual editorial transfer. Review may refine prose cadence, subtitle wrapping, or shot wording, but must keep the exact source timing, held truths, unselected assets, and provisional status unless a later authorized slice changes them explicitly. `public/review/index.html?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain preserved context. Final narration performance, subtitle typography, asset selection, rights clearance, script/canon decisions, provider work, generation, render, upload, and database persistence remain blocked until separately authorized.
+First next move: open `public/review/index.html?mode=revision`, inspect the deterministic sample or import a matching local request, and export decision/patch JSON if useful. The patch remains unapplied; source timing, truth, asset, rights, and canon state remain unchanged. `public/review/index.html?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain preserved context. Patch application, final narration performance, subtitle typography, asset selection, rights clearance, provider work, generation, render, upload, and database persistence remain blocked until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current implementation starts from synced `0322b4963c8ffd85c90a183ba437cb91df36e8ce Add bridge storyboard flow` on 2026-07-11 JST. It preserves `.serena/project.yml` as unstaged local transport residue outside product scope and advances from the Bridge checkpoint to `fff-bridge-editorial-handoff-pack-001`. After pulling, `git log -1 --oneline --decorate` shows the exact published head; run the manifest's read-only validation command before opening the Handoff route.
+The current implementation starts from synced `4889970f045eb7c557057a367e502f8b4b2036fb Preserve editorial package hashes` on 2026-07-12 JST. It preserves `.serena/project.yml` as unstaged local transport residue outside product scope and advances from immutable `fff-bridge-editorial-handoff-pack-001` to `fff-editorial-revision-roundtrip-001`. After pulling, `git log -1 --oneline --decorate` shows the exact published head; run the manifest's read-only validation command before opening the Revision route.

@@ -48,6 +48,11 @@ const BRIDGE_STORYBOARD_FLOW_SCHEMA_VERSION = "fff.bridgeStoryboardFlow.v1";
 const BRIDGE_EDITORIAL_HANDOFF_PACK_SCHEMA_VERSION = "fff.bridgeEditorialHandoffPack.v1";
 const EDITORIAL_HANDOFF_SCHEMA_VERSION = "fff.editorialHandoff.v1";
 const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.editorialHandoffPackageManifest.v1";
+const EDITORIAL_REVISION_ROUNDTRIP_SCHEMA_VERSION = "fff.editorialRevisionRoundtrip.v1";
+const EDITORIAL_REVISION_REQUEST_SCHEMA_VERSION = "fff.editorialRevisionRequest.v1";
+const EDITORIAL_REVISION_DECISION_SCHEMA_VERSION = "fff.editorialRevisionDecision.v1";
+const EDITORIAL_REVISION_PATCH_SCHEMA_VERSION = "fff.editorialRevisionPatch.v1";
+const EDITORIAL_REVISION_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.editorialRevisionRoundtripManifest.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -90,6 +95,7 @@ const DEFAULT_APPLY_DECISION_SHELL_GUARD_DIET_OUTPUT = "artifacts/apply-decision
 const DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT = "artifacts/review-workbench-component-contract-result.json";
 const DEFAULT_BRIDGE_STORYBOARD_FLOW_OUTPUT = "artifacts/bridge-storyboard-flow-result.json";
 const DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT = "artifacts/bridge-editorial-handoff-pack-result.json";
+const DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT = "artifacts/editorial-revision-roundtrip-result.json";
 const EDITORIAL_HANDOFF_PACKAGE_ROOT = "artifacts/editorial-handoff";
 const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/package-manifest.json`;
 const EDITORIAL_HANDOFF_PACKAGE_FILES = [
@@ -103,6 +109,48 @@ const EDITORIAL_HANDOFF_REQUIRED_FILES = [
   ...EDITORIAL_HANDOFF_PACKAGE_FILES,
   "package-manifest.json"
 ];
+const EDITORIAL_REVISION_PACKAGE_ROOT = "artifacts/editorial-revision";
+const EDITORIAL_REVISION_PACKAGE_MANIFEST_PATH = `${EDITORIAL_REVISION_PACKAGE_ROOT}/revision-roundtrip-manifest.json`;
+const EDITORIAL_REVISION_PACKAGE_FILES = [
+  "README_REVISION.md",
+  "revision-request-template.json",
+  "revision-request.example.json",
+  "revision-decision.example.json",
+  "revision-patch.example.json"
+];
+const EDITORIAL_REVISION_REQUIRED_FILES = [
+  ...EDITORIAL_REVISION_PACKAGE_FILES,
+  "revision-roundtrip-manifest.json"
+];
+const EDITORIAL_REVISION_ARTIFACT_ID = "fff-editorial-revision-roundtrip-001";
+const EDITORIAL_REVISION_SOURCE_ARTIFACT_ID = "fff-bridge-editorial-handoff-pack-001";
+const EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256 = "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080";
+const EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256 = "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971";
+const EDITORIAL_REVISION_CANDIDATE_ID = "designer-content-moth-investigation-3m";
+const EDITORIAL_REVISION_CHANNEL_ID = "designer-channel-mystery-lore";
+const EDITORIAL_REVISION_SAFE_TYPES = new Set([
+  "narration_wording",
+  "subtitle_wording",
+  "shot_direction_wording"
+]);
+const EDITORIAL_REVISION_HUMAN_TYPES = new Set([
+  "beat_order",
+  "beat_timing",
+  "story_truth",
+  "ending_choice"
+]);
+const EDITORIAL_REVISION_BLOCKED_TYPES = new Set([
+  "final_canon_promotion",
+  "rights_clearance",
+  "asset_selection",
+  "provider_api",
+  "credentials",
+  "external_model_call",
+  "generation",
+  "production_render",
+  "upload_publication",
+  "database_persistence"
+]);
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -1039,6 +1087,42 @@ async function main() {
     if (command === "smoke-review-workbench-component-contract" || outputPath) {
       console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
+    return;
+  }
+
+  if (command === "validate-editorial-revision-roundtrip") {
+    if (outputPath) {
+      fail("validate-editorial-revision-roundtrip is strictly read-only and does not accept an output path; use smoke-editorial-revision-roundtrip for intentional revision manifest and result regeneration.");
+    }
+    const readback = await readJson(inputPath);
+    const result = await validateEditorialRevisionRoundtrip(readback, inputPath);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) {
+      fail(`Editorial Revision Roundtrip failed: ${result.failures.join("; ")}`);
+    }
+    return;
+  }
+
+  if (command === "smoke-editorial-revision-roundtrip") {
+    const target = toRepoPath(outputPath || DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT);
+    if (target !== DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT) {
+      fail(`smoke-editorial-revision-roundtrip may write only ${DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT} in addition to ${EDITORIAL_REVISION_PACKAGE_MANIFEST_PATH}.`);
+    }
+    const packageManifest = await buildEditorialRevisionPackageManifest();
+    await mkdir(path.dirname(EDITORIAL_REVISION_PACKAGE_MANIFEST_PATH), { recursive: true });
+    await writeFile(
+      EDITORIAL_REVISION_PACKAGE_MANIFEST_PATH,
+      `${JSON.stringify(packageManifest, null, 2)}\n`,
+      "utf8"
+    );
+    const readback = await readEditorialRevisionSmokeSeed(inputPath, target);
+    const result = await validateEditorialRevisionRoundtrip(readback, inputPath);
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    if (!result.passed) {
+      fail(`Editorial Revision Roundtrip failed: ${result.failures.join("; ")}`);
+    }
+    console.log(`editorial revision roundtrip passed ${inputPath} -> ${target}`);
     return;
   }
 
@@ -11683,8 +11767,13 @@ async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
   const packageLinksPresent = EDITORIAL_HANDOFF_REQUIRED_FILES.every((relativePath) => html.includes(relativePath));
 
   const manifestValidationCommand = String(artifactManifest.validation_command || "");
+  const handoffActiveOrPreserved = artifactManifest.artifact_id === expectedArtifactId ||
+    (artifactManifest.artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+      artifactManifest.editorial_revision_roundtrip?.source_handoff_artifact_id === expectedArtifactId &&
+      Array.isArray(artifactManifest.preserves) &&
+      artifactManifest.preserves.includes(expectedArtifactId));
   const rootManifestRegistered = rootManifestRead.error === null &&
-    artifactManifest.artifact_id === expectedArtifactId &&
+    handoffActiveOrPreserved &&
     artifactManifest.bridge_editorial_handoff_pack_result_path === DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT &&
     (artifactManifest.bridge_editorial_handoff_pack_doc_path || artifactManifest.review_doc_path) === reviewDocPath &&
     artifactManifest.default_review_mode === "brief" &&
@@ -11952,6 +12041,683 @@ async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
       "Package integrity uses raw-byte sizes and SHA256 hashes; package-manifest.json intentionally has no self-hash.",
       "The Handoff route is separate from Bridge, while the Storyboard Flow remains the first substantive Bridge surface.",
       "Provider/API, credentials, AI video, render, upload, database, final canon, and rights clearance remain closed."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+async function validateEditorialRevisionRoundtrip(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(name + ": " + detail);
+    }
+  };
+
+  const expectedRevisionRoute = "public/review/index.html?mode=revision";
+  const expectedHandoffRoute = "public/review/index.html?mode=handoff";
+  const expectedBridgeRoute = "public/review/index.html?mode=bridge";
+  const expectedBriefRoute = "public/review/index.html?mode=brief";
+  const reviewDocPath = "docs/review/editorial-revision-roundtrip.md";
+  const requestTemplatePath = EDITORIAL_REVISION_PACKAGE_ROOT + "/revision-request-template.json";
+  const requestExamplePath = EDITORIAL_REVISION_PACKAGE_ROOT + "/revision-request.example.json";
+  const decisionExamplePath = EDITORIAL_REVISION_PACKAGE_ROOT + "/revision-decision.example.json";
+  const patchExamplePath = EDITORIAL_REVISION_PACKAGE_ROOT + "/revision-patch.example.json";
+
+  const revisionEntries = await Promise.all(
+    EDITORIAL_REVISION_REQUIRED_FILES.map(async (relativePath) => [
+      relativePath,
+      await readFileSnapshot(EDITORIAL_REVISION_PACKAGE_ROOT + "/" + relativePath)
+    ])
+  );
+  const revisionSnapshots = Object.fromEntries(revisionEntries);
+  const sourceEntries = await Promise.all(
+    EDITORIAL_HANDOFF_REQUIRED_FILES.map(async (relativePath) => [
+      relativePath,
+      await readFileSnapshot(EDITORIAL_HANDOFF_PACKAGE_ROOT + "/" + relativePath)
+    ])
+  );
+  const sourceSnapshots = Object.fromEntries(sourceEntries);
+  const [
+    htmlSnapshot,
+    powerShellLauncherSnapshot,
+    shellLauncherSnapshot,
+    rootManifestRead,
+    reviewDocSnapshot
+  ] = await Promise.all([
+    readFileSnapshot("public/review/index.html"),
+    readFileSnapshot("scripts/operator/open_review.ps1"),
+    readFileSnapshot("scripts/operator/open_review.sh"),
+    readJsonFileSnapshot("artifacts/artifact-manifest.json"),
+    readFileSnapshot(reviewDocPath)
+  ]);
+
+  const requestTemplateParse = parseJsonSnapshot(revisionSnapshots["revision-request-template.json"]);
+  const requestParse = parseJsonSnapshot(revisionSnapshots["revision-request.example.json"]);
+  const decisionParse = parseJsonSnapshot(revisionSnapshots["revision-decision.example.json"]);
+  const patchParse = parseJsonSnapshot(revisionSnapshots["revision-patch.example.json"]);
+  const revisionManifestParse = parseJsonSnapshot(revisionSnapshots["revision-roundtrip-manifest.json"]);
+  const sourceHandoffParse = parseJsonSnapshot(sourceSnapshots["editorial-handoff.json"]);
+  const sourceManifestParse = parseJsonSnapshot(sourceSnapshots["package-manifest.json"]);
+  const requestTemplate = requestTemplateParse.value || {};
+  const request = requestParse.value || {};
+  const decision = decisionParse.value || {};
+  const revisionPatch = patchParse.value || {};
+  const revisionManifest = revisionManifestParse.value || {};
+  const sourceHandoff = sourceHandoffParse.value || {};
+  const sourceManifest = sourceManifestParse.value || {};
+  const html = htmlSnapshot.text || "";
+  const powerShellLauncher = powerShellLauncherSnapshot.text || "";
+  const shellLauncher = shellLauncherSnapshot.text || "";
+  const reviewDoc = reviewDocSnapshot.text || "";
+  const rootManifest = rootManifestRead.value || {};
+
+  const sourceFingerprint = {
+    artifact_id: EDITORIAL_REVISION_SOURCE_ARTIFACT_ID,
+    editorial_handoff_sha256: EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256,
+    package_manifest_sha256: EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256
+  };
+  const sourceManifestFiles = Array.isArray(sourceManifest.files) ? sourceManifest.files : [];
+  const sourceManifestPaths = sourceManifestFiles.map((entry) => String(entry?.relative_path || ""));
+  const sourceManifestEntryErrors = [];
+  for (const entry of sourceManifestFiles) {
+    const relativePath = String(entry?.relative_path || "");
+    const snapshot = sourceSnapshots[relativePath];
+    if (!snapshot?.exists) {
+      sourceManifestEntryErrors.push((relativePath || "<missing path>") + ": missing");
+      continue;
+    }
+    if (entry?.byte_size !== snapshot.byteSize) {
+      sourceManifestEntryErrors.push(relativePath + ": byte_size mismatch");
+    }
+    if (String(entry?.sha256 || "").toLowerCase() !== String(snapshot.sha256 || "").toLowerCase()) {
+      sourceManifestEntryErrors.push(relativePath + ": sha256 mismatch");
+    }
+  }
+  const sourcePackageManifestValid =
+    sourceManifestParse.error === null &&
+    sourceManifest?.schemaVersion === EDITORIAL_HANDOFF_PACKAGE_MANIFEST_SCHEMA_VERSION &&
+    sourceManifest?.artifact_id === EDITORIAL_REVISION_SOURCE_ARTIFACT_ID &&
+    sourceManifest?.passed === true &&
+    sourceManifestFiles.length === EDITORIAL_HANDOFF_PACKAGE_FILES.length &&
+    new Set(sourceManifestPaths).size === sourceManifestPaths.length &&
+    EDITORIAL_HANDOFF_PACKAGE_FILES.every((relativePath) => sourceManifestPaths.includes(relativePath)) &&
+    !sourceManifestPaths.includes("package-manifest.json") &&
+    sourceManifestEntryErrors.length === 0;
+  const sourcePackageUnchanged =
+    sourceHandoffParse.error === null &&
+    sourceHandoff?.schemaVersion === EDITORIAL_HANDOFF_SCHEMA_VERSION &&
+    sourceHandoff?.artifact_id === EDITORIAL_REVISION_SOURCE_ARTIFACT_ID &&
+    sourceHandoff?.editorial_status === "provisional_editorial_draft" &&
+    sourceHandoff?.total_duration_seconds === 180 &&
+    Array.isArray(sourceHandoff?.beats) &&
+    sourceHandoff.beats.length === 6 &&
+    sourceSnapshots["editorial-handoff.json"]?.sha256 === EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256 &&
+    sourceSnapshots["package-manifest.json"]?.sha256 === EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256 &&
+    sourcePackageManifestValid;
+
+  const templateContract = validateEditorialRevisionTemplate(requestTemplate, sourceFingerprint);
+  const requestValidation = validateEditorialRevisionRequestPayload(request, sourceHandoff, sourceFingerprint);
+  const decisionValidation = validateEditorialRevisionDecisionPayload(
+    decision,
+    request,
+    requestValidation,
+    sourceFingerprint
+  );
+  const patchValidation = validateEditorialRevisionPatchPayload(
+    revisionPatch,
+    request,
+    decision,
+    requestValidation,
+    sourceFingerprint
+  );
+
+  const revisionManifestFiles = Array.isArray(revisionManifest.files) ? revisionManifest.files : [];
+  const revisionManifestPaths = revisionManifestFiles.map((entry) => String(entry?.relative_path || ""));
+  const revisionManifestEntryErrors = [];
+  for (const entry of revisionManifestFiles) {
+    const relativePath = String(entry?.relative_path || "");
+    const snapshot = revisionSnapshots[relativePath];
+    if (!snapshot?.exists) {
+      revisionManifestEntryErrors.push((relativePath || "<missing path>") + ": missing");
+      continue;
+    }
+    if (!Number.isInteger(entry?.byte_size) || entry.byte_size !== snapshot.byteSize) {
+      revisionManifestEntryErrors.push(relativePath + ": byte_size mismatch");
+    }
+    if (!/^[a-f0-9]{64}$/i.test(String(entry?.sha256 || "")) ||
+        String(entry.sha256).toLowerCase() !== String(snapshot.sha256 || "").toLowerCase()) {
+      revisionManifestEntryErrors.push(relativePath + ": sha256 mismatch");
+    }
+  }
+  const revisionManifestValid =
+    revisionManifestParse.error === null &&
+    revisionManifest?.schemaVersion === EDITORIAL_REVISION_PACKAGE_MANIFEST_SCHEMA_VERSION &&
+    revisionManifest?.artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+    toRepoPath(String(revisionManifest?.package_root || "")) === EDITORIAL_REVISION_PACKAGE_ROOT &&
+    editorialRevisionSourceMatches(revisionManifest?.source, sourceFingerprint) &&
+    typeof revisionManifest?.generatedAt === "string" &&
+    !Number.isNaN(Date.parse(revisionManifest.generatedAt)) &&
+    revisionManifest?.passed === true &&
+    revisionManifestFiles.length === EDITORIAL_REVISION_PACKAGE_FILES.length &&
+    new Set(revisionManifestPaths).size === revisionManifestPaths.length &&
+    EDITORIAL_REVISION_PACKAGE_FILES.every((relativePath) => revisionManifestPaths.includes(relativePath)) &&
+    revisionManifestPaths.every((relativePath) =>
+      EDITORIAL_REVISION_PACKAGE_FILES.includes(relativePath) &&
+      relativePath !== "revision-roundtrip-manifest.json" &&
+      !path.isAbsolute(relativePath) &&
+      !relativePath.split(/[\\/]/).includes("..")
+    ) &&
+    revisionManifestEntryErrors.length === 0;
+
+  const allRevisionFilesPresent = EDITORIAL_REVISION_REQUIRED_FILES.every((relativePath) =>
+    revisionSnapshots[relativePath]?.exists === true &&
+    revisionSnapshots[relativePath]?.byteSize > 0
+  );
+  const readme = revisionSnapshots["README_REVISION.md"]?.text || "";
+  const readmeValid =
+    readme.includes(EDITORIAL_REVISION_ARTIFACT_ID) &&
+    readme.includes(expectedRevisionRoute) &&
+    readme.includes(EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256) &&
+    readme.includes(EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256) &&
+    readme.includes("not_applied") &&
+    EDITORIAL_REVISION_REQUIRED_FILES.every((relativePath) => readme.includes(relativePath));
+
+  const revisionRootBlock = extractFirstHtmlSectionByMarker(html, 'data-editorial-revision-root="true"');
+  const handoffRootBlock = extractFirstHtmlSectionByMarker(html, 'data-editorial-handoff-root="true"');
+  const revisionMarkers = [
+    ["data-revision-focused-canvas", "true"],
+    ["data-revision-import-input", undefined],
+    ["data-revision-load-status", undefined],
+    ["data-revision-import-message", undefined],
+    ["data-revision-count-safe", undefined],
+    ["data-revision-count-human", undefined],
+    ["data-revision-count-blocked", undefined],
+    ["data-revision-count-accept", undefined],
+    ["data-revision-count-hold", undefined],
+    ["data-revision-count-reject", undefined],
+    ["data-revision-count-return", undefined],
+    ["data-revision-change-rail", undefined],
+    ["data-revision-diff-canvas", undefined],
+    ["data-revision-before", undefined],
+    ["data-revision-proposed", undefined],
+    ["data-revision-rationale", undefined],
+    ["data-revision-guard-rationale", undefined],
+    ["data-revision-download-decision", undefined],
+    ["data-revision-download-patch", undefined],
+    ["data-revision-return-handoff", undefined],
+    ["data-revision-return-brief", undefined],
+    ["data-revision-package-files", undefined]
+  ];
+  const revisionDecisionControls = ["accept", "hold", "reject", "return"].every((decisionName) =>
+    hasHtmlAttribute(html, "data-revision-decision-action", decisionName)
+  );
+  const revisionUiMarkersPresent =
+    revisionRootBlock.length > 0 &&
+    hasHtmlAttribute(html, "data-mode-panel", "revision") &&
+    hasHtmlAttribute(html, "data-editorial-revision-root", "true") &&
+    revisionMarkers.every(([name, value]) => hasHtmlAttribute(html, name, value)) &&
+    revisionDecisionControls;
+  const handoffActionPresent =
+    hasHtmlAttribute(handoffRootBlock, "data-handoff-open-revision", "true") &&
+    /href\s*=\s*["']\?mode=revision["']/i.test(handoffRootBlock) &&
+    countPattern(html, /data-handoff-open-revision/g) === 1;
+  const revisionModelPresent =
+    html.includes("const EDITORIAL_REVISION_SOURCE") &&
+    html.includes("const editorialRevisionSampleRequest") &&
+    html.includes(EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256) &&
+    html.includes(EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256) &&
+    html.includes(EDITORIAL_REVISION_REQUEST_SCHEMA_VERSION) &&
+    html.includes(EDITORIAL_REVISION_DECISION_SCHEMA_VERSION) &&
+    html.includes(EDITORIAL_REVISION_PATCH_SCHEMA_VERSION);
+  const localImportAndExportSafe =
+    html.includes("FileReader") &&
+    html.includes(".textContent") &&
+    html.includes("new Blob") &&
+    html.includes("materializeEditorialRevisionBeforeHashes") &&
+    html.includes("crypto.subtle.digest") &&
+    html.includes("editorialRevisionBoundariesAreClosed") &&
+    html.includes("canonicalBefore.beatId") &&
+    html.includes("unknown target") &&
+    /\.size\s*>|MAX_[A-Z_]*REVISION|REVISION_[A-Z_]*MAX/.test(html) &&
+    !/\beval\s*\(/.test(html);
+
+  const handoffPanelIndex = findHtmlAttributeIndex(html, "data-mode-panel", "handoff");
+  const handoffRootIndex = findHtmlAttributeIndex(html, "data-editorial-handoff-root", "true");
+  const handoffRunwayIndex = findHtmlAttributeIndex(html, "data-handoff-runway");
+  const handoffActiveBeatIndex = findHtmlAttributeIndex(html, "data-handoff-active-beat");
+  const bridgeStoryboardIndex = findHtmlAttributeIndex(html, "data-bridge-storyboard-flow", "true");
+  const bridgeSupportingIndex = findHtmlAttributeIndex(html, "data-bridge-supporting-details", "true");
+  const preservedRoutesAndHierarchy =
+    handoffPanelIndex >= 0 &&
+    handoffRootIndex >= handoffPanelIndex &&
+    handoffRunwayIndex > handoffRootIndex &&
+    handoffActiveBeatIndex > handoffRootIndex &&
+    bridgeStoryboardIndex >= 0 &&
+    bridgeSupportingIndex > bridgeStoryboardIndex &&
+    hasHtmlAttribute(html, "data-mode-panel", "brief") &&
+    html.includes('data-review-workbench-canvas="true"') &&
+    html.includes('data-single-framing-source="active-decision-canvas"') &&
+    hasHtmlAttribute(html, "data-mode-target", "brief") &&
+    hasHtmlAttribute(html, "data-revision-return-handoff", "true") &&
+    hasHtmlAttribute(html, "data-revision-return-brief", "true");
+  const themesAndKeyboardPreserved =
+    html.includes(':root[data-theme="dark"]') &&
+    html.includes(':root[data-theme="auto"]') &&
+    hasHtmlAttribute(html, "data-theme-target", "light") &&
+    hasHtmlAttribute(html, "data-theme-target", "dark") &&
+    hasHtmlAttribute(html, "data-theme-target", "auto") &&
+    html.includes(":focus-visible") &&
+    html.includes("keydown") &&
+    html.includes("ArrowLeft") &&
+    html.includes("ArrowRight") &&
+    html.includes("Home") &&
+    html.includes("End");
+
+  const launcherModes = ["brief", "handoff", "revision"];
+  const powerShellLauncherValid =
+    powerShellLauncherSnapshot.exists &&
+    /ValidateSet\s*\(/i.test(powerShellLauncher) &&
+    launcherModes.every((mode) => powerShellLauncher.includes('"' + mode + '"')) &&
+    /\[string\]\$Mode\s*=\s*"brief"/i.test(powerShellLauncher) &&
+    /\[switch\]\$PrintUri/i.test(powerShellLauncher) &&
+    powerShellLauncher.includes("AbsoluteUri") &&
+    powerShellLauncher.includes("?mode=$Mode") &&
+    powerShellLauncher.includes("uvx") &&
+    powerShellLauncher.includes("--with") &&
+    powerShellLauncher.includes("mkdocs-material");
+  const shellModeCaseMatch = shellLauncher.match(/case\s+"\$mode"\s+in([\s\S]*?)esac/);
+  const shellModeCase = shellModeCaseMatch?.[1] || "";
+  const shellLauncherValid =
+    shellLauncherSnapshot.exists &&
+    /mode=brief(?:\r?\n|$)/.test(shellLauncher) &&
+    shellLauncher.includes("--mode") &&
+    shellLauncher.includes("--print-uri") &&
+    launcherModes.every((mode) => shellModeCase.includes(mode)) &&
+    shellModeCase.includes("unknown or unsafe mode") &&
+    shellLauncher.includes("?mode=$mode") &&
+    shellLauncher.indexOf("uvx --with mkdocs-material") >= 0;
+  const modeAwareLauncherValid = powerShellLauncherValid && shellLauncherValid;
+
+  const wrongSourceRequest = cloneJsonValue(request);
+  if (wrongSourceRequest?.source) {
+    wrongSourceRequest.source.editorial_handoff_sha256 = "0".repeat(64);
+  }
+  const wrongSourceProbe = validateEditorialRevisionRequestPayload(
+    wrongSourceRequest,
+    sourceHandoff,
+    sourceFingerprint
+  );
+  const unknownTypeRequest = cloneJsonValue(request);
+  if (unknownTypeRequest?.changes?.[0]) {
+    unknownTypeRequest.changes[0].change_type = "unknown_revision_operation";
+    unknownTypeRequest.changes[0].derived_guard_class = "blocked_boundary";
+  }
+  const unknownTypeProbe = validateEditorialRevisionRequestPayload(
+    unknownTypeRequest,
+    sourceHandoff,
+    sourceFingerprint
+  );
+  const acceptedTimingDecision = cloneJsonValue(decision);
+  const timingDecisionRow = acceptedTimingDecision?.decisions?.find((item) =>
+    item?.change_id === "rev-change-b04-beat-timing"
+  );
+  if (timingDecisionRow) {
+    timingDecisionRow.decision = "accept";
+  }
+  const acceptedTimingProbe = validateEditorialRevisionDecisionPayload(
+    acceptedTimingDecision,
+    request,
+    requestValidation,
+    sourceFingerprint
+  );
+  const canonPromotionDecision = cloneJsonValue(decision);
+  const canonDecisionRow = canonPromotionDecision?.decisions?.find((item) =>
+    item?.change_id === "rev-change-b05-final-canon"
+  );
+  if (canonDecisionRow) {
+    canonDecisionRow.decision = "accept";
+  }
+  const canonPromotionProbe = validateEditorialRevisionDecisionPayload(
+    canonPromotionDecision,
+    request,
+    requestValidation,
+    sourceFingerprint
+  );
+  const rightsAssetDecision = cloneJsonValue(decision);
+  const rightsAssetDecisionRow = rightsAssetDecision?.decisions?.find((item) =>
+    item?.change_id === "rev-change-b06-asset-selection"
+  );
+  if (rightsAssetDecisionRow) {
+    rightsAssetDecisionRow.decision = "accept";
+  }
+  const rightsAssetProbe = validateEditorialRevisionDecisionPayload(
+    rightsAssetDecision,
+    request,
+    requestValidation,
+    sourceFingerprint
+  );
+  const unknownTargetRequest = cloneJsonValue(request);
+  if (unknownTargetRequest?.changes?.[0]) {
+    unknownTargetRequest.changes[0].target_type = "unknown_target";
+    unknownTargetRequest.changes[0].target_field = "unknown_field";
+    unknownTargetRequest.changes[0].derived_guard_class = "blocked_boundary";
+  }
+  const unknownTargetProbe = validateEditorialRevisionRequestPayload(
+    unknownTargetRequest,
+    sourceHandoff,
+    sourceFingerprint
+  );
+  const negativeGuardProbes = {
+    wrong_source_hash: {
+      passed: !wrongSourceProbe.valid &&
+        wrongSourceProbe.classifications.every((item) => item.guard_class === "blocked_boundary"),
+      fail_closed: true,
+      validation_errors: wrongSourceProbe.errors
+    },
+    unknown_change_type: {
+      passed: !unknownTypeProbe.valid &&
+        unknownTypeProbe.classifications[0]?.guard_class === "blocked_boundary",
+      fail_closed: true,
+      classification: unknownTypeProbe.classifications[0]?.guard_class || null,
+      validation_errors: unknownTypeProbe.errors
+    },
+    accepted_timing_change: {
+      passed: !acceptedTimingProbe.valid,
+      fail_closed: true,
+      validation_errors: acceptedTimingProbe.errors
+    },
+    accepted_canon_promotion: {
+      passed: !canonPromotionProbe.valid,
+      fail_closed: true,
+      validation_errors: canonPromotionProbe.errors
+    },
+    accepted_rights_or_asset_promotion: {
+      passed: !rightsAssetProbe.valid,
+      fail_closed: true,
+      validation_errors: rightsAssetProbe.errors
+    },
+    unknown_target: {
+      passed: !unknownTargetProbe.valid &&
+        unknownTargetProbe.classifications[0]?.guard_class === "blocked_boundary",
+      fail_closed: true,
+      classification: unknownTargetProbe.classifications[0]?.guard_class || null,
+      validation_errors: unknownTargetProbe.errors
+    }
+  };
+  const negativeGuardProbesPassed = Object.values(negativeGuardProbes).every((probe) =>
+    probe.passed === true && probe.fail_closed === true
+  );
+
+  const rootValidationCommand = String(rootManifest?.validation_command || "");
+  const rootManifestRegistered =
+    rootManifestRead.error === null &&
+    rootManifest?.artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+    rootManifest?.editorial_revision_roundtrip_result_path === DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT &&
+    (rootManifest?.editorial_revision_roundtrip_doc_path || rootManifest?.review_doc_path) === reviewDocPath &&
+    rootManifest?.default_review_mode === "brief" &&
+    rootValidationCommand.includes("validate-editorial-revision-roundtrip") &&
+    !rootValidationCommand.includes("smoke-editorial-revision-roundtrip");
+  const reviewDocRegistered =
+    reviewDocSnapshot.exists &&
+    reviewDoc.includes(EDITORIAL_REVISION_ARTIFACT_ID) &&
+    reviewDoc.includes(expectedRevisionRoute) &&
+    reviewDoc.includes("validate-editorial-revision-roundtrip") &&
+    reviewDoc.includes("smoke-editorial-revision-roundtrip") &&
+    EDITORIAL_REVISION_REQUIRED_FILES.every((relativePath) => reviewDoc.includes(relativePath));
+
+  const readbackIdentityValid =
+    readback?.schemaVersion === EDITORIAL_REVISION_ROUNDTRIP_SCHEMA_VERSION &&
+    readback?.artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+    editorialRevisionSourceMatches(readback?.source, sourceFingerprint) &&
+    (readback?.revision_route || readback?.review_route) === expectedRevisionRoute &&
+    readback?.handoff_route === expectedHandoffRoute &&
+    readback?.brief_route === expectedBriefRoute &&
+    readback?.passed === true &&
+    Array.isArray(readback?.failures) &&
+    readback.failures.length === 0;
+  const allBoundariesClosed = [
+    requestTemplate,
+    request,
+    decision,
+    revisionPatch,
+    readback
+  ].every(editorialRevisionBoundariesClosed);
+  const credentialFindings = [
+    ...collectCredentialMaterial(requestTemplate),
+    ...collectCredentialMaterial(request),
+    ...collectCredentialMaterial(decision),
+    ...collectCredentialMaterial(revisionPatch),
+    ...collectCredentialMaterial(readback)
+  ];
+
+  check(
+    "result_identity",
+    readbackIdentityValid,
+    "artifact=" + readback?.artifact_id + "; schema=" + readback?.schemaVersion +
+      "; route=" + (readback?.revision_route || readback?.review_route) +
+      "; passed=" + readback?.passed + "; failures=" + (readback?.failures?.length ?? "missing")
+  );
+  check(
+    "source_fingerprints_and_package_immutable",
+    sourcePackageUnchanged,
+    "handoff=" + sourceSnapshots["editorial-handoff.json"]?.sha256 +
+      "; manifest=" + sourceSnapshots["package-manifest.json"]?.sha256 +
+      "; manifestIntegrity=" + sourcePackageManifestValid +
+      "; errors=" + (sourceManifestEntryErrors.join(" | ") || "none")
+  );
+  check(
+    "request_template_contract",
+    templateContract.valid,
+    "errors=" + (templateContract.errors.join(" | ") || "none")
+  );
+  check(
+    "six_change_request_and_classifier",
+    requestValidation.valid &&
+      requestValidation.change_count === 6 &&
+      requestValidation.guard_counts.safe_local_edit === 3 &&
+      requestValidation.guard_counts.human_author_required === 1 &&
+      requestValidation.guard_counts.blocked_boundary === 2,
+    "changes=" + requestValidation.change_count +
+      "; safe=" + requestValidation.guard_counts.safe_local_edit +
+      "; human=" + requestValidation.guard_counts.human_author_required +
+      "; blocked=" + requestValidation.guard_counts.blocked_boundary +
+      "; errors=" + (requestValidation.errors.join(" | ") || "none")
+  );
+  check(
+    "decision_contract",
+    decisionValidation.valid &&
+      decisionValidation.decision_counts.accept === 3 &&
+      decisionValidation.decision_counts.hold === 1 &&
+      decisionValidation.decision_counts.reject === 2 &&
+      decisionValidation.decision_counts.return === 0,
+    "accept=" + decisionValidation.decision_counts.accept +
+      "; hold=" + decisionValidation.decision_counts.hold +
+      "; reject=" + decisionValidation.decision_counts.reject +
+      "; return=" + decisionValidation.decision_counts.return +
+      "; errors=" + (decisionValidation.errors.join(" | ") || "none")
+  );
+  check(
+    "accepted_unapplied_patch",
+    patchValidation.valid &&
+      patchValidation.change_count === 3 &&
+      revisionPatch?.apply_status === "not_applied" &&
+      revisionPatch?.beat_order_unchanged === true &&
+      revisionPatch?.timing_unchanged === true &&
+      revisionPatch?.canon_unchanged === true &&
+      revisionPatch?.rights_state_unchanged === true &&
+      revisionPatch?.asset_state_unchanged === true,
+    "changes=" + patchValidation.change_count +
+      "; apply=" + revisionPatch?.apply_status +
+      "; errors=" + (patchValidation.errors.join(" | ") || "none")
+  );
+  check(
+    "negative_guard_probes",
+    negativeGuardProbesPassed,
+    Object.entries(negativeGuardProbes).map(([name, probe]) =>
+      name + ":" + probe.passed + "/" + probe.fail_closed
+    ).join("; ")
+  );
+  check(
+    "revision_package_files",
+    allRevisionFilesPresent &&
+      requestTemplateParse.error === null &&
+      requestParse.error === null &&
+      decisionParse.error === null &&
+      patchParse.error === null &&
+      readmeValid,
+    EDITORIAL_REVISION_REQUIRED_FILES.map((relativePath) =>
+      relativePath + ":" + revisionSnapshots[relativePath]?.exists + "/" +
+      revisionSnapshots[relativePath]?.byteSize + "/" +
+      (revisionSnapshots[relativePath]?.error || "ok")
+    ).join("; ") + "; readme=" + readmeValid
+  );
+  check(
+    "revision_manifest_integrity",
+    revisionManifestValid,
+    "schema=" + revisionManifest?.schemaVersion +
+      "; artifact=" + revisionManifest?.artifact_id +
+      "; files=" + revisionManifestPaths.join(",") +
+      "; errors=" + (revisionManifestEntryErrors.join(" | ") || "none")
+  );
+  check(
+    "revision_ui_contract",
+    revisionUiMarkersPresent &&
+      handoffActionPresent &&
+      revisionModelPresent &&
+      localImportAndExportSafe,
+    "markers=" + revisionUiMarkersPresent +
+      "; handoffAction=" + handoffActionPresent +
+      "; model=" + revisionModelPresent +
+      "; importExportSafe=" + localImportAndExportSafe
+  );
+  check(
+    "handoff_bridge_brief_themes_keyboard_preserved",
+    preservedRoutesAndHierarchy && themesAndKeyboardPreserved,
+    "hierarchy=" + preservedRoutesAndHierarchy + "; themesKeyboard=" + themesAndKeyboardPreserved
+  );
+  check(
+    "mode_aware_launchers",
+    modeAwareLauncherValid,
+    "powershell=" + powerShellLauncherValid + "; shell=" + shellLauncherValid +
+      "; modes=" + launcherModes.join(",")
+  );
+  check(
+    "docs_and_root_manifest_registered",
+    rootManifestRegistered && reviewDocRegistered,
+    "manifest=" + rootManifestRegistered + "/" + (rootManifestRead.error || "ok") +
+      "; doc=" + reviewDocRegistered + "/" + (reviewDocSnapshot.error || "ok") +
+      "; validationReadOnly=" + !rootValidationCommand.includes("smoke-editorial-revision-roundtrip")
+  );
+  check(
+    "boundary_gates_closed",
+    allBoundariesClosed && credentialFindings.length === 0,
+    "closed=" + allBoundariesClosed + "; credentialFindings=" +
+      (credentialFindings.join(",") || "none")
+  );
+
+  const packageFilePaths = EDITORIAL_REVISION_REQUIRED_FILES.map((relativePath) =>
+    EDITORIAL_REVISION_PACKAGE_ROOT + "/" + relativePath
+  );
+  const packageFileHashes = Object.fromEntries(
+    EDITORIAL_REVISION_REQUIRED_FILES.map((relativePath) => [
+      EDITORIAL_REVISION_PACKAGE_ROOT + "/" + relativePath,
+      revisionSnapshots[relativePath]?.sha256 || null
+    ])
+  );
+  const boundaries = {
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    credential_material_findings: credentialFindings
+  };
+
+  return {
+    schemaVersion: EDITORIAL_REVISION_ROUNDTRIP_SCHEMA_VERSION,
+    artifact_id: EDITORIAL_REVISION_ARTIFACT_ID,
+    title: "Fast Fiction Factory Editorial Revision Roundtrip",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_guarded_revision",
+    review_ui: "public/review/index.html",
+    revision_route: expectedRevisionRoute,
+    review_route: expectedRevisionRoute,
+    handoff_route: expectedHandoffRoute,
+    bridge_route: expectedBridgeRoute,
+    brief_route: expectedBriefRoute,
+    input_result_path: toRepoPath(readbackPath),
+    package_directory: EDITORIAL_REVISION_PACKAGE_ROOT,
+    package_file_paths: packageFilePaths,
+    package_file_hashes: packageFileHashes,
+    request_template_path: requestTemplatePath,
+    request_example_path: requestExamplePath,
+    decision_example_path: decisionExamplePath,
+    patch_example_path: patchExamplePath,
+    manifest_path: EDITORIAL_REVISION_PACKAGE_MANIFEST_PATH,
+    source: sourceFingerprint,
+    source_handoff_artifact_id: EDITORIAL_REVISION_SOURCE_ARTIFACT_ID,
+    source_editorial_handoff_sha256: EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256,
+    source_package_manifest_sha256: EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256,
+    request_change_count: requestValidation.change_count,
+    safe_count: requestValidation.guard_counts.safe_local_edit,
+    human_author_required_count: requestValidation.guard_counts.human_author_required,
+    blocked_count: requestValidation.guard_counts.blocked_boundary,
+    accept_count: decisionValidation.decision_counts.accept,
+    hold_count: decisionValidation.decision_counts.hold,
+    reject_count: decisionValidation.decision_counts.reject,
+    return_count: decisionValidation.decision_counts.return,
+    patch_change_count: patchValidation.change_count,
+    source_package_unchanged: sourcePackageUnchanged,
+    beat_order_unchanged: patchValidation.valid && revisionPatch?.beat_order_unchanged === true,
+    timing_unchanged: patchValidation.valid && revisionPatch?.timing_unchanged === true,
+    canon_unchanged: patchValidation.valid && revisionPatch?.canon_unchanged === true,
+    rights_unchanged: patchValidation.valid && revisionPatch?.rights_state_unchanged === true,
+    assets_unchanged: patchValidation.valid && revisionPatch?.asset_state_unchanged === true,
+    apply_status: revisionPatch?.apply_status || null,
+    manifest_valid: revisionManifestValid,
+    mode_aware_launcher_valid: modeAwareLauncherValid,
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    boundaries,
+    negative_guard_probes: negativeGuardProbes,
+    summary: {
+      request_change_count: requestValidation.change_count,
+      safe_local_edit: requestValidation.guard_counts.safe_local_edit,
+      human_author_required: requestValidation.guard_counts.human_author_required,
+      blocked_boundary: requestValidation.guard_counts.blocked_boundary,
+      accept: decisionValidation.decision_counts.accept,
+      hold: decisionValidation.decision_counts.hold,
+      reject: decisionValidation.decision_counts.reject,
+      patch_change_count: patchValidation.change_count,
+      source_package_unchanged: sourcePackageUnchanged,
+      manifest_valid: revisionManifestValid,
+      mode_aware_launcher_valid: modeAwareLauncherValid,
+      failures: failures.length
+    },
+    validation_notes: [
+      "The source Editorial Handoff package is fingerprinted and remains immutable.",
+      "Classification uses explicit change_type plus protected target tuples and a narrow unsafe-claim text guard.",
+      "Only accepted safe wording changes enter the unapplied patch.",
+      "Negative probes for source mismatch, unknown values, timing, canon, and rights or asset promotion fail closed.",
+      "Provider/API, credentials, generation, render, upload, database, rights clearance, final canon, and patch application remain closed."
     ],
     checks,
     failures,
@@ -13440,6 +14206,585 @@ async function buildEditorialHandoffPackageManifest() {
   };
 }
 
+async function buildEditorialRevisionPackageManifest() {
+  const files = [];
+  for (const relativePath of EDITORIAL_REVISION_PACKAGE_FILES) {
+    const filePath = EDITORIAL_REVISION_PACKAGE_ROOT + "/" + relativePath;
+    const buffer = await readFile(filePath);
+    files.push({
+      relative_path: relativePath,
+      byte_size: buffer.byteLength,
+      sha256: createHash("sha256").update(buffer).digest("hex")
+    });
+  }
+  return {
+    schemaVersion: EDITORIAL_REVISION_PACKAGE_MANIFEST_SCHEMA_VERSION,
+    artifact_id: EDITORIAL_REVISION_ARTIFACT_ID,
+    generatedAt: new Date().toISOString(),
+    package_root: EDITORIAL_REVISION_PACKAGE_ROOT,
+    source: {
+      artifact_id: EDITORIAL_REVISION_SOURCE_ARTIFACT_ID,
+      editorial_handoff_sha256: EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256,
+      package_manifest_sha256: EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256
+    },
+    files,
+    passed: files.length === EDITORIAL_REVISION_PACKAGE_FILES.length
+  };
+}
+
+async function readEditorialRevisionSmokeSeed(inputPath, targetPath) {
+  if (path.resolve(inputPath) !== path.resolve(targetPath)) {
+    return readJson(inputPath);
+  }
+  return {
+    schemaVersion: EDITORIAL_REVISION_ROUNDTRIP_SCHEMA_VERSION,
+    artifact_id: EDITORIAL_REVISION_ARTIFACT_ID,
+    revision_route: "public/review/index.html?mode=revision",
+    handoff_route: "public/review/index.html?mode=handoff",
+    bridge_route: "public/review/index.html?mode=bridge",
+    brief_route: "public/review/index.html?mode=brief",
+    source: {
+      artifact_id: EDITORIAL_REVISION_SOURCE_ARTIFACT_ID,
+      editorial_handoff_sha256: EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256,
+      package_manifest_sha256: EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256
+    },
+    boundaries: {
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      database_persistence: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false
+    },
+    failures: [],
+    passed: true
+  };
+}
+
+function editorialRevisionSourceMatches(value, expected) {
+  return value?.artifact_id === expected.artifact_id &&
+    value?.editorial_handoff_sha256 === expected.editorial_handoff_sha256 &&
+    value?.package_manifest_sha256 === expected.package_manifest_sha256;
+}
+
+function editorialRevisionBoundariesClosed(value) {
+  const boundary = (key) => value?.[key] ?? value?.boundaries?.[key];
+  return boundary("local_only") === true &&
+    boundary("external_call") === false &&
+    boundary("provider_configured") === false &&
+    boundary("credentials_touched") === false &&
+    boundary("public_upload") === false &&
+    boundary("ai_video_generation") === false &&
+    boundary("production_render") === false &&
+    boundary("database_persistence") === false &&
+    boundary("final_canon_decision") === false &&
+    boundary("rights_cleared_claim") === false;
+}
+
+function validateEditorialRevisionTemplate(template, sourceFingerprint) {
+  const errors = [];
+  const contract = template?.change_contract || {};
+  const requiredChangeFields = [
+    "change_id",
+    "beat_id",
+    "target_type",
+    "target_id",
+    "target_field",
+    "change_type",
+    "before",
+    "proposed_value",
+    "rationale",
+    "requested_status"
+  ];
+  if (template?.schemaVersion !== EDITORIAL_REVISION_REQUEST_SCHEMA_VERSION) {
+    errors.push("template schemaVersion mismatch");
+  }
+  if (!editorialRevisionSourceMatches(template?.source, sourceFingerprint)) {
+    errors.push("template source fingerprint mismatch");
+  }
+  if (template?.candidate_id !== EDITORIAL_REVISION_CANDIDATE_ID ||
+      template?.channel_id !== EDITORIAL_REVISION_CHANNEL_ID) {
+    errors.push("template candidate or channel mismatch");
+  }
+  if (!Array.isArray(template?.changes) || template.changes.length !== 0) {
+    errors.push("template changes must start empty");
+  }
+  if (!requiredChangeFields.every((field) => contract?.required_fields?.includes(field))) {
+    errors.push("template required_fields are incomplete");
+  }
+  if (!arraySetEquals(contract?.safe_local_edit_types, EDITORIAL_REVISION_SAFE_TYPES)) {
+    errors.push("template safe_local_edit_types mismatch");
+  }
+  if (!arraySetEquals(contract?.human_author_required_types, EDITORIAL_REVISION_HUMAN_TYPES)) {
+    errors.push("template human_author_required_types mismatch");
+  }
+  if (!arraySetEquals(contract?.blocked_boundary_types, EDITORIAL_REVISION_BLOCKED_TYPES)) {
+    errors.push("template blocked_boundary_types mismatch");
+  }
+  if (contract?.unknown_values !== "fail_closed") {
+    errors.push("template unknown_values must fail_closed");
+  }
+  if (!editorialRevisionBoundariesClosed(template)) {
+    errors.push("template boundaries are not closed");
+  }
+  return { valid: errors.length === 0, errors };
+}
+
+function validateEditorialRevisionRequestPayload(request, sourceHandoff, sourceFingerprint) {
+  const errors = [];
+  const changes = Array.isArray(request?.changes) ? request.changes : [];
+  const sourceValid = editorialRevisionSourceMatches(request?.source, sourceFingerprint);
+  const requiredFields = [
+    "change_id",
+    "beat_id",
+    "target_type",
+    "target_id",
+    "target_field",
+    "change_type",
+    "proposed_value",
+    "rationale",
+    "requested_status"
+  ];
+  if (request?.schemaVersion !== EDITORIAL_REVISION_REQUEST_SCHEMA_VERSION) {
+    errors.push("request schemaVersion mismatch");
+  }
+  if (!hasNonEmptyText(request?.request_id) ||
+      !hasNonEmptyText(request?.requested_by) ||
+      !hasNonEmptyText(request?.created_at) ||
+      Number.isNaN(Date.parse(request?.created_at))) {
+    errors.push("request identity or timestamp invalid");
+  }
+  if (!sourceValid) {
+    errors.push("request source identity or fingerprint mismatch");
+  }
+  if (request?.candidate_id !== EDITORIAL_REVISION_CANDIDATE_ID ||
+      request?.channel_id !== EDITORIAL_REVISION_CHANNEL_ID) {
+    errors.push("request candidate or channel mismatch");
+  }
+  if (changes.length !== 6) {
+    errors.push("request must contain exactly six changes");
+  }
+  if (!editorialRevisionBoundariesClosed(request)) {
+    errors.push("request boundaries are not closed");
+  }
+
+  const sourceBeatIds = new Set(
+    (Array.isArray(sourceHandoff?.beats) ? sourceHandoff.beats : [])
+      .map((beat) => String(beat?.beat_id || ""))
+      .filter(Boolean)
+  );
+  const changeIds = changes.map((change) => String(change?.change_id || ""));
+  if (changeIds.some((id) => !id) || new Set(changeIds).size !== changeIds.length) {
+    errors.push("change_id values must be non-empty and unique");
+  }
+  const changeBeatIds = changes.map((change) => String(change?.beat_id || ""));
+  if (changeBeatIds.some((beatId) => !sourceBeatIds.has(beatId))) {
+    errors.push("every change must reference a source beat");
+  }
+  if (new Set(changeBeatIds).size !== 6 ||
+      sourceBeatIds.size !== 6 ||
+      ![...sourceBeatIds].every((beatId) => changeBeatIds.includes(beatId))) {
+    errors.push("example request must associate exactly one change with each source beat");
+  }
+
+  const classifications = [];
+  for (const [index, change] of changes.entries()) {
+    const label = String(change?.change_id || "change[" + index + "]");
+    for (const field of requiredFields) {
+      if (!Object.prototype.hasOwnProperty.call(change || {}, field) ||
+          (typeof change?.[field] === "string" && change[field].trim().length === 0)) {
+        errors.push(label + ": missing " + field);
+      }
+    }
+    const hasBefore = Object.prototype.hasOwnProperty.call(change || {}, "before");
+    const hasBeforeHash = /^[a-f0-9]{64}$/i.test(String(change?.before_hash || ""));
+    if (!hasBefore && !hasBeforeHash) {
+      errors.push(label + ": before value or before_hash is required");
+    }
+    if (change?.requested_status !== "proposed") {
+      errors.push(label + ": requested_status must be proposed");
+    }
+    const sourceTarget = resolveEditorialRevisionSourceTarget(sourceHandoff, change);
+    if (!sourceTarget.found) {
+      errors.push(label + ": " + sourceTarget.error);
+    } else {
+      const beforeMatches = hasBefore
+        ? jsonValuesEqual(change.before, sourceTarget.value)
+        : change.before_hash.toLowerCase() === editorialRevisionValueHash(sourceTarget.value);
+      if (!beforeMatches) {
+        errors.push(label + ": before value or hash does not match immutable source");
+      }
+      if (sourceTarget.beat_id && sourceTarget.beat_id !== change?.beat_id) {
+        errors.push(label + ": target beat does not match change beat");
+      }
+    }
+    const classification = classifyEditorialRevisionChange(change, {
+      sourceIdentityValid: sourceValid,
+      sourceTargetFound: sourceTarget.found
+    });
+    classifications.push({
+      change_id: label,
+      guard_class: classification.guard_class,
+      reason: classification.reason
+    });
+    if (change?.derived_guard_class !== classification.guard_class) {
+      errors.push(label + ": derived_guard_class mismatch; expected " + classification.guard_class);
+    }
+    if (!EDITORIAL_REVISION_SAFE_TYPES.has(change?.change_type) &&
+        !EDITORIAL_REVISION_HUMAN_TYPES.has(change?.change_type) &&
+        !EDITORIAL_REVISION_BLOCKED_TYPES.has(change?.change_type)) {
+      errors.push(label + ": unknown change_type fails closed");
+    }
+  }
+
+  const guardCounts = countGuardClasses(classifications);
+  const expectedReadback = request?.expected_readback || {};
+  if (expectedReadback?.change_count !== 6 ||
+      expectedReadback?.guard_counts?.safe_local_edit !== 3 ||
+      expectedReadback?.guard_counts?.human_author_required !== 1 ||
+      expectedReadback?.guard_counts?.blocked_boundary !== 2 ||
+      expectedReadback?.unknown_values !== "fail_closed") {
+    errors.push("request expected_readback mismatch");
+  }
+  return {
+    valid: errors.length === 0,
+    errors,
+    change_count: changes.length,
+    guard_counts: guardCounts,
+    classifications
+  };
+}
+
+function resolveEditorialRevisionSourceTarget(sourceHandoff, change) {
+  const targetType = String(change?.target_type || "");
+  const targetId = String(change?.target_id || "");
+  const targetField = String(change?.target_field || "");
+  const specs = {
+    narration_segment: ["narration_segments", "segment_id"],
+    subtitle_cue: ["subtitle_cues", "cue_id"],
+    shot_cue: ["shot_cues", "shot_id"],
+    beat: ["beats", "beat_id"],
+    truth_guard: ["truth_guards", "guard_id"]
+  };
+  const spec = specs[targetType];
+  if (!spec) {
+    return { found: false, error: "unknown target_type " + (targetType || "<empty>") };
+  }
+  const [collectionName, idKey] = spec;
+  const item = (Array.isArray(sourceHandoff?.[collectionName]) ? sourceHandoff[collectionName] : [])
+    .find((candidate) => String(candidate?.[idKey] || "") === targetId);
+  if (!item) {
+    return { found: false, error: "unknown target_id " + (targetId || "<empty>") };
+  }
+  let value;
+  if (targetType === "beat" && targetField === "time_window") {
+    value = {
+      start_time: item.start_time,
+      end_time: item.end_time,
+      start_seconds: item.start_seconds,
+      end_seconds: item.end_seconds
+    };
+  } else if (Object.prototype.hasOwnProperty.call(item, targetField)) {
+    value = item[targetField];
+  } else {
+    return { found: false, error: "unknown target_field " + (targetField || "<empty>") };
+  }
+  return {
+    found: true,
+    value,
+    beat_id: targetType === "beat" ? item.beat_id : item.beat_id || null
+  };
+}
+
+function classifyEditorialRevisionChange(change, options = {}) {
+  if (options.sourceIdentityValid !== true) {
+    return {
+      guard_class: "blocked_boundary",
+      reason: "source identity or fingerprint mismatch"
+    };
+  }
+  if (options.sourceTargetFound !== true) {
+    return {
+      guard_class: "blocked_boundary",
+      reason: "unknown target fails closed"
+    };
+  }
+  const changeType = String(change?.change_type || "");
+  const targetType = String(change?.target_type || "");
+  const targetField = String(change?.target_field || "");
+  if (editorialRevisionTextIsUnsafe(change?.proposed_value)) {
+    return {
+      guard_class: "blocked_boundary",
+      reason: "proposed text claims a closed canon, rights, asset, provider, generation, render, upload, publication, or persistence boundary"
+    };
+  }
+  if (EDITORIAL_REVISION_BLOCKED_TYPES.has(changeType)) {
+    return {
+      guard_class: "blocked_boundary",
+      reason: "change_type is a closed production or authority boundary"
+    };
+  }
+  if (EDITORIAL_REVISION_HUMAN_TYPES.has(changeType)) {
+    const humanTargetValid =
+      (changeType === "beat_timing" &&
+        targetType === "beat" &&
+        ["time_window", "start_time", "end_time", "start_seconds", "end_seconds", "duration_seconds"].includes(targetField)) ||
+      (changeType === "beat_order" &&
+        targetType === "beat" &&
+        ["beat_number", "order", "sequence"].includes(targetField)) ||
+      (["story_truth", "ending_choice"].includes(changeType) &&
+        targetType === "truth_guard" &&
+        ["state", "status", "safe_rule", "choice"].includes(targetField));
+    return humanTargetValid
+      ? {
+          guard_class: "human_author_required",
+          reason: "timing, order, story truth, or ending remains human-author-owned"
+        }
+      : {
+          guard_class: "blocked_boundary",
+          reason: "human-author change_type uses an incompatible protected target"
+        };
+  }
+  if (EDITORIAL_REVISION_SAFE_TYPES.has(changeType)) {
+    const safeTargetTuples = {
+      narration_wording: ["narration_segment", "text"],
+      subtitle_wording: ["subtitle_cue", "text_ja"],
+      shot_direction_wording: ["shot_cue", "visual_direction"]
+    };
+    const [safeTargetType, safeTargetField] = safeTargetTuples[changeType];
+    if (targetType !== safeTargetType || targetField !== safeTargetField) {
+      return {
+        guard_class: "blocked_boundary",
+        reason: "safe wording type is restricted to its exact source text field"
+      };
+    }
+    return {
+      guard_class: "safe_local_edit",
+      reason: "wording-only change on an exact allowed text target"
+    };
+  }
+  return {
+    guard_class: "blocked_boundary",
+    reason: "unknown change_type fails closed"
+  };
+}
+
+function editorialRevisionTextIsUnsafe(value) {
+  const text = typeof value === "string" ? value : JSON.stringify(value ?? "");
+  return /final[_\s-]?canon|canon(?:ical)?[_\s-]?(?:final|approved)|rights?[_\s-]?(?:cleared|approved)|selected\s*:|asset[_\s-]?selected|provider[_\s/-]?api|api[_\s-]?key|credential|external[_\s-]?model|production[_\s-]?render|rendered|uploaded|published|database[_\s-]?(?:write|persist)|最終(?:カノン|正史)|正史(?:に)?(?:確定|昇格)|権利(?:確認済み|処理済み|クリア)|素材(?:を)?(?:選定|確定)|プロバイダ|認証情報|生成済み|レンダー済み|アップロード済み|公開済み/i.test(text);
+}
+
+function validateEditorialRevisionDecisionPayload(decision, request, requestValidation, sourceFingerprint) {
+  const errors = [];
+  const decisions = Array.isArray(decision?.decisions) ? decision.decisions : [];
+  const requestChanges = Array.isArray(request?.changes) ? request.changes : [];
+  const classificationById = new Map(
+    requestValidation.classifications.map((item) => [item.change_id, item.guard_class])
+  );
+  if (decision?.schemaVersion !== EDITORIAL_REVISION_DECISION_SCHEMA_VERSION) {
+    errors.push("decision schemaVersion mismatch");
+  }
+  if (!hasNonEmptyText(decision?.decision_id) ||
+      decision?.request_id !== request?.request_id ||
+      !hasNonEmptyText(decision?.decided_by) ||
+      !hasNonEmptyText(decision?.decided_at) ||
+      Number.isNaN(Date.parse(decision?.decided_at))) {
+    errors.push("decision identity, request, or timestamp invalid");
+  }
+  if (!editorialRevisionSourceMatches(decision?.source, sourceFingerprint)) {
+    errors.push("decision source fingerprint mismatch");
+  }
+  if (decision?.candidate_id !== EDITORIAL_REVISION_CANDIDATE_ID ||
+      decision?.channel_id !== EDITORIAL_REVISION_CHANNEL_ID) {
+    errors.push("decision candidate or channel mismatch");
+  }
+  if (decision?.apply_status !== "not_applied") {
+    errors.push("decision apply_status must be not_applied");
+  }
+  if (!editorialRevisionBoundariesClosed(decision)) {
+    errors.push("decision boundaries are not closed");
+  }
+  const ids = decisions.map((item) => String(item?.change_id || ""));
+  const requestIds = requestChanges.map((item) => String(item?.change_id || ""));
+  if (decisions.length !== requestChanges.length ||
+      new Set(ids).size !== ids.length ||
+      !requestIds.every((id) => ids.includes(id)) ||
+      !ids.every((id) => requestIds.includes(id))) {
+    errors.push("decisions must cover each request change exactly once");
+  }
+  const allowedDecisionByClass = {
+    safe_local_edit: new Set(["accept", "hold", "reject", "return"]),
+    human_author_required: new Set(["hold", "return"]),
+    blocked_boundary: new Set(["reject", "return"])
+  };
+  for (const item of decisions) {
+    const id = String(item?.change_id || "");
+    const expectedClass = classificationById.get(id);
+    if (item?.guard_class !== expectedClass) {
+      errors.push(id + ": decision guard_class mismatch");
+    }
+    if (!allowedDecisionByClass[expectedClass]?.has(item?.decision)) {
+      errors.push(id + ": decision " + item?.decision + " is not allowed for " + expectedClass);
+    }
+    if (!hasNonEmptyText(item?.rationale)) {
+      errors.push(id + ": decision rationale missing");
+    }
+  }
+  const decisionCounts = {
+    accept: decisions.filter((item) => item?.decision === "accept").length,
+    hold: decisions.filter((item) => item?.decision === "hold").length,
+    reject: decisions.filter((item) => item?.decision === "reject").length,
+    return: decisions.filter((item) => item?.decision === "return").length
+  };
+  if (!["accept", "hold", "reject", "return"].every((name) =>
+    decision?.decision_counts?.[name] === decisionCounts[name]
+  )) {
+    errors.push("declared decision_counts do not match decisions");
+  }
+  if (decisionCounts.accept !== 3 ||
+      decisionCounts.hold !== 1 ||
+      decisionCounts.reject !== 2 ||
+      decisionCounts.return !== 0) {
+    errors.push("example decisions must be exactly 3 accept / 1 hold / 2 reject");
+  }
+  return {
+    valid: errors.length === 0,
+    errors,
+    decision_counts: decisionCounts
+  };
+}
+
+function validateEditorialRevisionPatchPayload(
+  revisionPatch,
+  request,
+  decision,
+  requestValidation,
+  sourceFingerprint
+) {
+  const errors = [];
+  const changes = Array.isArray(request?.changes) ? request.changes : [];
+  const acceptedChanges = Array.isArray(revisionPatch?.accepted_changes)
+    ? revisionPatch.accepted_changes
+    : [];
+  const decisionById = new Map(
+    (Array.isArray(decision?.decisions) ? decision.decisions : [])
+      .map((item) => [String(item?.change_id || ""), item])
+  );
+  const classificationById = new Map(
+    requestValidation.classifications.map((item) => [item.change_id, item.guard_class])
+  );
+  const expectedAccepted = changes.filter((change) =>
+    classificationById.get(String(change?.change_id || "")) === "safe_local_edit" &&
+    decisionById.get(String(change?.change_id || ""))?.decision === "accept"
+  );
+  if (revisionPatch?.schemaVersion !== EDITORIAL_REVISION_PATCH_SCHEMA_VERSION) {
+    errors.push("patch schemaVersion mismatch");
+  }
+  if (!hasNonEmptyText(revisionPatch?.patch_id) ||
+      revisionPatch?.request_id !== request?.request_id ||
+      revisionPatch?.decision_id !== decision?.decision_id ||
+      !hasNonEmptyText(revisionPatch?.created_at) ||
+      Number.isNaN(Date.parse(revisionPatch?.created_at))) {
+    errors.push("patch identity, linkage, or timestamp invalid");
+  }
+  if (!editorialRevisionSourceMatches(revisionPatch?.source, sourceFingerprint)) {
+    errors.push("patch source fingerprint mismatch");
+  }
+  if (revisionPatch?.candidate_id !== EDITORIAL_REVISION_CANDIDATE_ID ||
+      revisionPatch?.channel_id !== EDITORIAL_REVISION_CHANNEL_ID) {
+    errors.push("patch candidate or channel mismatch");
+  }
+  if (revisionPatch?.apply_status !== "not_applied") {
+    errors.push("patch apply_status must be not_applied");
+  }
+  const unchangedFlags = [
+    "source_package_unchanged",
+    "beat_order_unchanged",
+    "timing_unchanged",
+    "canon_unchanged",
+    "rights_state_unchanged",
+    "asset_state_unchanged",
+    "production_gates_closed"
+  ];
+  if (!unchangedFlags.every((field) => revisionPatch?.[field] === true)) {
+    errors.push("patch unchanged and production-gate flags must all be true");
+  }
+  if (!editorialRevisionBoundariesClosed(revisionPatch)) {
+    errors.push("patch boundaries are not closed");
+  }
+  const acceptedIds = acceptedChanges.map((item) => String(item?.change_id || ""));
+  const expectedIds = expectedAccepted.map((item) => String(item?.change_id || ""));
+  if (acceptedChanges.length !== 3 ||
+      new Set(acceptedIds).size !== acceptedIds.length ||
+      !expectedIds.every((id) => acceptedIds.includes(id)) ||
+      !acceptedIds.every((id) => expectedIds.includes(id))) {
+    errors.push("patch must contain exactly the three accepted safe changes");
+  }
+  const mirroredFields = [
+    "change_id",
+    "beat_id",
+    "target_type",
+    "target_id",
+    "target_field",
+    "change_type",
+    "before",
+    "proposed_value"
+  ];
+  for (const patchChange of acceptedChanges) {
+    const id = String(patchChange?.change_id || "");
+    const requestChange = changes.find((item) => item?.change_id === id);
+    if (!requestChange) {
+      errors.push(id + ": patch change is not in request");
+      continue;
+    }
+    if (patchChange?.guard_class !== "safe_local_edit" ||
+        classificationById.get(id) !== "safe_local_edit" ||
+        decisionById.get(id)?.decision !== "accept") {
+      errors.push(id + ": patch includes a non-safe or non-accepted change");
+    }
+    if (!mirroredFields.every((field) => jsonValuesEqual(patchChange?.[field], requestChange?.[field]))) {
+      errors.push(id + ": patch change does not exactly mirror request");
+    }
+  }
+  return {
+    valid: errors.length === 0,
+    errors,
+    change_count: acceptedChanges.length
+  };
+}
+
+function editorialRevisionValueHash(value) {
+  const serialized = typeof value === "string" ? value : JSON.stringify(value);
+  return createHash("sha256").update(Buffer.from(serialized, "utf8")).digest("hex");
+}
+
+function jsonValuesEqual(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function cloneJsonValue(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function countGuardClasses(classifications) {
+  return {
+    safe_local_edit: classifications.filter((item) => item.guard_class === "safe_local_edit").length,
+    human_author_required: classifications.filter((item) => item.guard_class === "human_author_required").length,
+    blocked_boundary: classifications.filter((item) => item.guard_class === "blocked_boundary").length
+  };
+}
+
+function arraySetEquals(value, expectedSet) {
+  return Array.isArray(value) &&
+    value.length === expectedSet.size &&
+    new Set(value).size === value.length &&
+    value.every((item) => expectedSet.has(item));
+}
+
 async function readBridgeEditorialHandoffSmokeSeed(inputPath, targetPath) {
   if (await fileSizeOrZero(inputPath) > 0) {
     return readJson(inputPath);
@@ -14366,6 +15711,8 @@ Usage:
   node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json> [output.json]
   node tools/fff-state.mjs validate-review-workbench-component-contract <review-workbench-component-contract-result.json>
   node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
+  node tools/fff-state.mjs validate-editorial-revision-roundtrip <editorial-revision-roundtrip-result.json>
+  node tools/fff-state.mjs smoke-editorial-revision-roundtrip <editorial-revision-roundtrip-result.json> [artifacts/editorial-revision-roundtrip-result.json]
   node tools/fff-state.mjs validate-bridge-editorial-handoff-pack <bridge-editorial-handoff-pack-result.json>
   node tools/fff-state.mjs smoke-bridge-editorial-handoff-pack <bridge-editorial-handoff-pack-result.json> [output.json]
   node tools/fff-state.mjs validate-bridge-storyboard-flow <bridge-storyboard-flow-result.json>
@@ -14418,6 +15765,9 @@ Default apply decision shell guard diet output:
 
 Default review workbench component contract output:
   ${DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT}
+
+Default editorial revision roundtrip output:
+  ${DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT}
 
 Default bridge editorial handoff pack output:
   ${DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT}

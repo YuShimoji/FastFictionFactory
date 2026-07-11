@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "fff.editorialRevisionDecision.v1",
+  "decision_id": "revision-decision-example-001",
+  "request_id": "revision-request-example-001",
+  "source": {
+    "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+    "editorial_handoff_sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+    "package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+  },
+  "candidate_id": "designer-content-moth-investigation-3m",
+  "channel_id": "designer-channel-mystery-lore",
+  "decided_by": "sample-operator",
+  "decided_at": "2026-07-12T09:05:00+09:00",
+  "decisions": [
+    {
+      "change_id": "rev-change-b01-narration-wording",
+      "guard_class": "safe_local_edit",
+      "decision": "accept",
+      "rationale": "wording のみを整え、truth、timing、asset、rights に影響しない。"
+    },
+    {
+      "change_id": "rev-change-b02-subtitle-wording",
+      "guard_class": "safe_local_edit",
+      "decision": "accept",
+      "rationale": "字幕文言のみを整え、真鍮の蛾の機能は未確定のまま。"
+    },
+    {
+      "change_id": "rev-change-b03-shot-direction-wording",
+      "guard_class": "safe_local_edit",
+      "decision": "accept",
+      "rationale": "generic direction の文言のみを明確化し、素材は unselected のまま。"
+    },
+    {
+      "change_id": "rev-change-b04-beat-timing",
+      "guard_class": "human_author_required",
+      "decision": "hold",
+      "rationale": "六幕・180秒の配分を変更するため、human author の構成判断まで保留する。"
+    },
+    {
+      "change_id": "rev-change-b05-final-canon",
+      "guard_class": "blocked_boundary",
+      "decision": "reject",
+      "rationale": "final canon promotion はこの roundtrip の閉じた境界。Toma fate は unresolved_human_owned を維持する。"
+    },
+    {
+      "change_id": "rev-change-b06-asset-selection",
+      "guard_class": "blocked_boundary",
+      "decision": "reject",
+      "rationale": "asset selection と rights clearance はこの roundtrip の閉じた境界。"
+    }
+  ],
+  "decision_counts": {
+    "accept": 3,
+    "hold": 1,
+    "reject": 2,
+    "return": 0
+  },
+  "apply_status": "not_applied",
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false
+  }
+}

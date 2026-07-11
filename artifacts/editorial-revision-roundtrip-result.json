@@ -1,0 +1,222 @@
+{
+  "schemaVersion": "fff.editorialRevisionRoundtrip.v1",
+  "artifact_id": "fff-editorial-revision-roundtrip-001",
+  "title": "Fast Fiction Factory Editorial Revision Roundtrip",
+  "generatedAt": "2026-07-11T18:59:15.399Z",
+  "review_status": "ready_for_local_guarded_revision",
+  "review_ui": "public/review/index.html",
+  "revision_route": "public/review/index.html?mode=revision",
+  "review_route": "public/review/index.html?mode=revision",
+  "handoff_route": "public/review/index.html?mode=handoff",
+  "bridge_route": "public/review/index.html?mode=bridge",
+  "brief_route": "public/review/index.html?mode=brief",
+  "input_result_path": "artifacts/editorial-revision-roundtrip-result.json",
+  "package_directory": "artifacts/editorial-revision",
+  "package_file_paths": [
+    "artifacts/editorial-revision/README_REVISION.md",
+    "artifacts/editorial-revision/revision-request-template.json",
+    "artifacts/editorial-revision/revision-request.example.json",
+    "artifacts/editorial-revision/revision-decision.example.json",
+    "artifacts/editorial-revision/revision-patch.example.json",
+    "artifacts/editorial-revision/revision-roundtrip-manifest.json"
+  ],
+  "package_file_hashes": {
+    "artifacts/editorial-revision/README_REVISION.md": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4",
+    "artifacts/editorial-revision/revision-request-template.json": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd",
+    "artifacts/editorial-revision/revision-request.example.json": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1",
+    "artifacts/editorial-revision/revision-decision.example.json": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d",
+    "artifacts/editorial-revision/revision-patch.example.json": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885",
+    "artifacts/editorial-revision/revision-roundtrip-manifest.json": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+  },
+  "request_template_path": "artifacts/editorial-revision/revision-request-template.json",
+  "request_example_path": "artifacts/editorial-revision/revision-request.example.json",
+  "decision_example_path": "artifacts/editorial-revision/revision-decision.example.json",
+  "patch_example_path": "artifacts/editorial-revision/revision-patch.example.json",
+  "manifest_path": "artifacts/editorial-revision/revision-roundtrip-manifest.json",
+  "source": {
+    "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+    "editorial_handoff_sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+    "package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+  },
+  "source_handoff_artifact_id": "fff-bridge-editorial-handoff-pack-001",
+  "source_editorial_handoff_sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+  "source_package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971",
+  "request_change_count": 6,
+  "safe_count": 3,
+  "human_author_required_count": 1,
+  "blocked_count": 2,
+  "accept_count": 3,
+  "hold_count": 1,
+  "reject_count": 2,
+  "return_count": 0,
+  "patch_change_count": 3,
+  "source_package_unchanged": true,
+  "beat_order_unchanged": true,
+  "timing_unchanged": true,
+  "canon_unchanged": true,
+  "rights_unchanged": true,
+  "assets_unchanged": true,
+  "apply_status": "not_applied",
+  "manifest_valid": true,
+  "mode_aware_launcher_valid": true,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "rights_cleared_claim": false,
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "negative_guard_probes": {
+    "wrong_source_hash": {
+      "passed": true,
+      "fail_closed": true,
+      "validation_errors": [
+        "request source identity or fingerprint mismatch",
+        "rev-change-b01-narration-wording: derived_guard_class mismatch; expected blocked_boundary",
+        "rev-change-b02-subtitle-wording: derived_guard_class mismatch; expected blocked_boundary",
+        "rev-change-b03-shot-direction-wording: derived_guard_class mismatch; expected blocked_boundary",
+        "rev-change-b04-beat-timing: derived_guard_class mismatch; expected blocked_boundary"
+      ]
+    },
+    "unknown_change_type": {
+      "passed": true,
+      "fail_closed": true,
+      "classification": "blocked_boundary",
+      "validation_errors": [
+        "rev-change-b01-narration-wording: unknown change_type fails closed"
+      ]
+    },
+    "accepted_timing_change": {
+      "passed": true,
+      "fail_closed": true,
+      "validation_errors": [
+        "rev-change-b04-beat-timing: decision accept is not allowed for human_author_required",
+        "declared decision_counts do not match decisions",
+        "example decisions must be exactly 3 accept / 1 hold / 2 reject"
+      ]
+    },
+    "accepted_canon_promotion": {
+      "passed": true,
+      "fail_closed": true,
+      "validation_errors": [
+        "rev-change-b05-final-canon: decision accept is not allowed for blocked_boundary",
+        "declared decision_counts do not match decisions",
+        "example decisions must be exactly 3 accept / 1 hold / 2 reject"
+      ]
+    },
+    "accepted_rights_or_asset_promotion": {
+      "passed": true,
+      "fail_closed": true,
+      "validation_errors": [
+        "rev-change-b06-asset-selection: decision accept is not allowed for blocked_boundary",
+        "declared decision_counts do not match decisions",
+        "example decisions must be exactly 3 accept / 1 hold / 2 reject"
+      ]
+    },
+    "unknown_target": {
+      "passed": true,
+      "fail_closed": true,
+      "classification": "blocked_boundary",
+      "validation_errors": [
+        "rev-change-b01-narration-wording: unknown target_type unknown_target"
+      ]
+    }
+  },
+  "summary": {
+    "request_change_count": 6,
+    "safe_local_edit": 3,
+    "human_author_required": 1,
+    "blocked_boundary": 2,
+    "accept": 3,
+    "hold": 1,
+    "reject": 2,
+    "patch_change_count": 3,
+    "source_package_unchanged": true,
+    "manifest_valid": true,
+    "mode_aware_launcher_valid": true,
+    "failures": 0
+  },
+  "validation_notes": [
+    "The source Editorial Handoff package is fingerprinted and remains immutable.",
+    "Classification uses explicit change_type plus protected target tuples and a narrow unsafe-claim text guard.",
+    "Only accepted safe wording changes enter the unapplied patch.",
+    "Negative probes for source mismatch, unknown values, timing, canon, and rights or asset promotion fail closed.",
+    "Provider/API, credentials, generation, render, upload, database, rights clearance, final canon, and patch application remain closed."
+  ],
+  "checks": {
+    "result_identity": {
+      "passed": true,
+      "detail": "artifact=fff-editorial-revision-roundtrip-001; schema=fff.editorialRevisionRoundtrip.v1; route=public/review/index.html?mode=revision; passed=true; failures=0"
+    },
+    "source_fingerprints_and_package_immutable": {
+      "passed": true,
+      "detail": "handoff=c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080; manifest=ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971; manifestIntegrity=true; errors=none"
+    },
+    "request_template_contract": {
+      "passed": true,
+      "detail": "errors=none"
+    },
+    "six_change_request_and_classifier": {
+      "passed": true,
+      "detail": "changes=6; safe=3; human=1; blocked=2; errors=none"
+    },
+    "decision_contract": {
+      "passed": true,
+      "detail": "accept=3; hold=1; reject=2; return=0; errors=none"
+    },
+    "accepted_unapplied_patch": {
+      "passed": true,
+      "detail": "changes=3; apply=not_applied; errors=none"
+    },
+    "negative_guard_probes": {
+      "passed": true,
+      "detail": "wrong_source_hash:true/true; unknown_change_type:true/true; accepted_timing_change:true/true; accepted_canon_promotion:true/true; accepted_rights_or_asset_promotion:true/true; unknown_target:true/true"
+    },
+    "revision_package_files": {
+      "passed": true,
+      "detail": "README_REVISION.md:true/4975/ok; revision-request-template.json:true/1831/ok; revision-request.example.json:true/5685/ok; revision-decision.example.json:true/2585/ok; revision-patch.example.json:true/3178/ok; revision-roundtrip-manifest.json:true/1405/ok; readme=true"
+    },
+    "revision_manifest_integrity": {
+      "passed": true,
+      "detail": "schema=fff.editorialRevisionRoundtripManifest.v1; artifact=fff-editorial-revision-roundtrip-001; files=README_REVISION.md,revision-request-template.json,revision-request.example.json,revision-decision.example.json,revision-patch.example.json; errors=none"
+    },
+    "revision_ui_contract": {
+      "passed": true,
+      "detail": "markers=true; handoffAction=true; model=true; importExportSafe=true"
+    },
+    "handoff_bridge_brief_themes_keyboard_preserved": {
+      "passed": true,
+      "detail": "hierarchy=true; themesKeyboard=true"
+    },
+    "mode_aware_launchers": {
+      "passed": true,
+      "detail": "powershell=true; shell=true; modes=brief,handoff,revision"
+    },
+    "docs_and_root_manifest_registered": {
+      "passed": true,
+      "detail": "manifest=true/ok; doc=true/ok; validationReadOnly=true"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "closed=true; credentialFindings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

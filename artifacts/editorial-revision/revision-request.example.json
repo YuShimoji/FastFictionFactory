@@ -1,0 +1,124 @@
+{
+  "schemaVersion": "fff.editorialRevisionRequest.v1",
+  "request_id": "revision-request-example-001",
+  "source": {
+    "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+    "editorial_handoff_sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+    "package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+  },
+  "candidate_id": "designer-content-moth-investigation-3m",
+  "channel_id": "designer-channel-mystery-lore",
+  "requested_by": "sample-editor",
+  "created_at": "2026-07-12T09:00:00+09:00",
+  "changes": [
+    {
+      "change_id": "rev-change-b01-narration-wording",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "target_type": "narration_segment",
+      "target_id": "narration-b01",
+      "target_field": "text",
+      "change_type": "narration_wording",
+      "before": "ある記録では、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。ならば今、何が鳴っているのでしょう。",
+      "proposed_value": "ある記録によれば、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。では今、何が鳴っているのでしょう。",
+      "rationale": "冒頭の伝聞性を保ったまま、問いへの接続を簡潔にする。鐘が鳴る原因は確定しない。",
+      "requested_status": "proposed",
+      "derived_guard_class": "safe_local_edit"
+    },
+    {
+      "change_id": "rev-change-b02-subtitle-wording",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "target_type": "subtitle_cue",
+      "target_id": "sub-b02-03",
+      "target_field": "text_ja",
+      "change_type": "subtitle_wording",
+      "before": "その機能は、まだ未決定。",
+      "proposed_value": "その働きは、まだ分からない。",
+      "rationale": "画面上で読みやすい自然な表現へ整える。真鍮の蛾の機能を確定しない。",
+      "requested_status": "proposed",
+      "derived_guard_class": "safe_local_edit"
+    },
+    {
+      "change_id": "rev-change-b03-shot-direction-wording",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "target_type": "shot_cue",
+      "target_id": "shot-b03-03",
+      "target_field": "visual_direction",
+      "change_type": "shot_direction_wording",
+      "before": "インクや名前が薄れる抽象的なmotion graphicを想定する。",
+      "proposed_value": "インクや名前の輪郭がゆっくり薄れる、抽象的なモーショングラフィックを想定する。",
+      "rationale": "generic shot direction の動きを明確にする。素材の選定やliteral erasureの確定は行わない。",
+      "requested_status": "proposed",
+      "derived_guard_class": "safe_local_edit"
+    },
+    {
+      "change_id": "rev-change-b04-beat-timing",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "target_type": "beat",
+      "target_id": "bridge-storyboard-beat-4-council-shadow",
+      "target_field": "time_window",
+      "change_type": "beat_timing",
+      "before": {
+        "start_time": "01:20",
+        "end_time": "01:45",
+        "start_seconds": 80,
+        "end_seconds": 105
+      },
+      "proposed_value": {
+        "start_time": "01:20",
+        "end_time": "01:50",
+        "start_seconds": 80,
+        "end_seconds": 110
+      },
+      "rationale": "評議会の二つの読みを見せる時間を5秒増やしたい。180秒配分に影響するため、人間の構成判断が必要。",
+      "requested_status": "proposed",
+      "derived_guard_class": "human_author_required"
+    },
+    {
+      "change_id": "rev-change-b05-final-canon",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "target_type": "truth_guard",
+      "target_id": "truth-toma-fate",
+      "target_field": "state",
+      "change_type": "final_canon_promotion",
+      "before": "unresolved_human_owned",
+      "proposed_value": "final_canon:Toma survived and is hiding",
+      "rationale": "Toma の生存を確定して後半の説明を単純化したい。final canon promotion のため、この roundtrip では許可しない。",
+      "requested_status": "proposed",
+      "derived_guard_class": "blocked_boundary"
+    },
+    {
+      "change_id": "rev-change-b06-asset-selection",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "target_type": "shot_cue",
+      "target_id": "shot-b06-03",
+      "target_field": "asset_status",
+      "change_type": "asset_selection",
+      "before": "unselected",
+      "proposed_value": "selected:tower-final-frame-v3.png",
+      "rationale": "終端フレームの素材を固定したい。asset selection と rights 確認は閉じた境界のため、この roundtrip では許可しない。",
+      "requested_status": "proposed",
+      "derived_guard_class": "blocked_boundary"
+    }
+  ],
+  "expected_readback": {
+    "change_count": 6,
+    "guard_counts": {
+      "safe_local_edit": 3,
+      "human_author_required": 1,
+      "blocked_boundary": 2
+    },
+    "unknown_values": "fail_closed"
+  },
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false
+  }
+}

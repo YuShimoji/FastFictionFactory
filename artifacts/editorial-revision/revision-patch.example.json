@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "fff.editorialRevisionPatch.v1",
+  "patch_id": "revision-patch-example-001",
+  "request_id": "revision-request-example-001",
+  "decision_id": "revision-decision-example-001",
+  "source": {
+    "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+    "editorial_handoff_sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+    "package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+  },
+  "candidate_id": "designer-content-moth-investigation-3m",
+  "channel_id": "designer-channel-mystery-lore",
+  "created_at": "2026-07-12T09:05:00+09:00",
+  "apply_status": "not_applied",
+  "accepted_changes": [
+    {
+      "change_id": "rev-change-b01-narration-wording",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "target_type": "narration_segment",
+      "target_id": "narration-b01",
+      "target_field": "text",
+      "change_type": "narration_wording",
+      "guard_class": "safe_local_edit",
+      "before": "ある記録では、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。ならば今、何が鳴っているのでしょう。",
+      "proposed_value": "ある記録によれば、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。では今、何が鳴っているのでしょう。"
+    },
+    {
+      "change_id": "rev-change-b02-subtitle-wording",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "target_type": "subtitle_cue",
+      "target_id": "sub-b02-03",
+      "target_field": "text_ja",
+      "change_type": "subtitle_wording",
+      "guard_class": "safe_local_edit",
+      "before": "その機能は、まだ未決定。",
+      "proposed_value": "その働きは、まだ分からない。"
+    },
+    {
+      "change_id": "rev-change-b03-shot-direction-wording",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "target_type": "shot_cue",
+      "target_id": "shot-b03-03",
+      "target_field": "visual_direction",
+      "change_type": "shot_direction_wording",
+      "guard_class": "safe_local_edit",
+      "before": "インクや名前が薄れる抽象的なmotion graphicを想定する。",
+      "proposed_value": "インクや名前の輪郭がゆっくり薄れる、抽象的なモーショングラフィックを想定する。"
+    }
+  ],
+  "source_package_unchanged": true,
+  "beat_order_unchanged": true,
+  "timing_unchanged": true,
+  "canon_unchanged": true,
+  "rights_state_unchanged": true,
+  "asset_state_unchanged": true,
+  "production_gates_closed": true,
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false
+  }
+}

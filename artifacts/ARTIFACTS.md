@@ -1,5 +1,28 @@
 # Artifacts
 
+## fff-editorial-revision-roundtrip-001
+
+- Title: Fast Fiction Factory Editorial Revision Roundtrip
+- Purpose: Return structured editorial feedback through a guarded request, before/after diff, decision, and unapplied safe-only patch without mutating the source Handoff package.
+- Review UI: `public/review/index.html`
+- Primary route: `public/review/index.html?mode=revision`
+- Source route: `public/review/index.html?mode=handoff`
+- Preserved routes: `public/review/index.html?mode=bridge`, `public/review/index.html?mode=brief`
+- Package directory: `artifacts/editorial-revision/`
+- Package files: `README_REVISION.md`, `revision-request-template.json`, `revision-request.example.json`, `revision-decision.example.json`, `revision-patch.example.json`, `revision-roundtrip-manifest.json`
+- Review doc: `docs/review/editorial-revision-roundtrip.md`
+- Readback result: `artifacts/editorial-revision-roundtrip-result.json`
+- Visual evidence: `artifacts/review-screens/editorial-revision-roundtrip.png` (885x1180 content capture from a 900x1200 viewport override, 155441 bytes, SHA256 `19C109123FA811B64DF7D6F417AD2ADF9B338491252ACD554191E307F90C82F9`)
+- Source artifact: `fff-bridge-editorial-handoff-pack-001`
+- Source fingerprints: `editorial-handoff.json=c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080`, `package-manifest.json=ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971`
+- Deterministic contract: 6 changes / guard `3 safe, 1 human, 2 blocked` / decisions `3 accept, 1 hold, 2 reject` / patch 3 safe changes / `apply_status=not_applied`
+- Launchers: `.\scripts\operator\open_review.ps1 -Mode revision`, `./scripts/operator/open_review.sh --mode revision`; print-only checks use `-PrintUri` / `--print-uri`
+- State validator: `tools/fff-state.mjs`
+- Read-only validation: `node tools/fff-state.mjs validate-editorial-revision-roundtrip artifacts/editorial-revision-roundtrip-result.json`
+- Intentional manifest/result regeneration: `node tools/fff-state.mjs smoke-editorial-revision-roundtrip artifacts/editorial-revision-roundtrip-result.json artifacts/editorial-revision-roundtrip-result.json`
+- Review status: `ready_for_local_revision_review`
+- State: Active local roundtrip. The source package remains immutable; timing/order, truth/canon, asset/rights, provider/API, credentials, generation, render, upload, publication, and database boundaries remain closed.
+
 ## fff-bridge-editorial-handoff-pack-001
 
 - Title: Fast Fiction Factory Bridge Editorial Handoff Pack
@@ -21,7 +44,7 @@
 - Read-only validation command: `node tools/fff-state.mjs validate-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json`
 - Intentional metadata/result regeneration: `node tools/fff-state.mjs smoke-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json artifacts/bridge-editorial-handoff-pack-result.json`
 - Review status: `ready_for_local_manual_delivery`
-- State: Active local editorial package. All prose remains `provisional_editorial_draft`; Toma fate, brass moth truth/function, Council motive, and ending truth remain unresolved; provider/API, credentials, generation, render, upload, database, rights clearance, and final canon remain closed.
+- State: Preserved immutable source package for `fff-editorial-revision-roundtrip-001`. All prose remains `provisional_editorial_draft`; Toma fate, brass moth truth/function, Council motive, and ending truth remain unresolved; provider/API, credentials, generation, render, upload, database, rights clearance, and final canon remain closed.
 
 ## fff-bridge-storyboard-flow-001
 

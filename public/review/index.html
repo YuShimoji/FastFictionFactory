@@ -1793,7 +1793,9 @@
 
     body[data-review-mode="bridge"] .workbench-hub-header,
     body[data-review-mode="handoff"] .workbench-hub-header,
-    body[data-review-mode="handoff"] .workbench-route-nav {
+    body[data-review-mode="handoff"] .workbench-route-nav,
+    body[data-review-mode="revision"] .workbench-hub-header,
+    body[data-review-mode="revision"] .workbench-route-nav {
       display: none;
     }
 
@@ -2212,6 +2214,381 @@
       font-size: 11px;
     }
 
+    .editorial-revision-panel,
+    .editorial-revision-shell,
+    .revision-workspace,
+    .revision-change-rail,
+    .revision-diff-canvas,
+    .revision-diff-panel {
+      min-width: 0;
+    }
+
+    .editorial-revision-panel {
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .editorial-revision-shell {
+      display: grid;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--blue);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .revision-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .revision-header h2,
+    .revision-source-card h3,
+    .revision-import-card h3,
+    .revision-diff-canvas h3,
+    .revision-diff-canvas h4 {
+      margin-bottom: 6px;
+    }
+
+    .revision-source-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .revision-source-card,
+    .revision-import-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 10px 12px;
+      background: var(--surface-muted);
+    }
+
+    .revision-fingerprint-list {
+      display: grid;
+      gap: 5px;
+      margin: 0;
+    }
+
+    .revision-fingerprint-row {
+      display: grid;
+      grid-template-columns: minmax(130px, 0.32fr) minmax(0, 1fr);
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    .revision-fingerprint-row dt {
+      color: var(--muted-strong);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .revision-fingerprint-row dd {
+      min-width: 0;
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 11px;
+      overflow-wrap: anywhere;
+    }
+
+    .revision-import-actions,
+    .revision-export-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .revision-file-picker {
+      position: relative;
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--blue);
+      border-radius: 6px;
+      padding: 6px 10px;
+      background: var(--blue);
+      color: var(--primary-ink);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .revision-file-picker input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .revision-load-status {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 4px 8px;
+      background: var(--pill-bg);
+      color: var(--pill-ink);
+      font-size: 11px;
+      font-weight: 850;
+      letter-spacing: 0.04em;
+    }
+
+    .revision-load-status[data-state="imported"] {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .revision-import-message {
+      margin: 7px 0 0;
+      color: var(--muted-strong);
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .revision-import-message[data-state="error"] {
+      color: var(--red);
+      font-weight: 750;
+    }
+
+    .revision-summary-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .revision-summary-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 8px;
+      background: var(--paper-soft);
+      overflow-wrap: anywhere;
+    }
+
+    .revision-summary-card strong,
+    .revision-summary-card span {
+      display: block;
+    }
+
+    .revision-summary-card strong {
+      color: var(--ink);
+      font-size: 18px;
+    }
+
+    .revision-summary-card span {
+      color: var(--muted-strong);
+      font-size: 10px;
+      font-weight: 750;
+      line-height: 1.25;
+    }
+
+    .revision-workspace {
+      display: grid;
+      grid-template-columns: minmax(210px, 0.34fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      border-top: 1px solid var(--line);
+      padding-top: 12px;
+    }
+
+    .revision-change-rail {
+      display: grid;
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .revision-change-tab {
+      display: grid;
+      width: 100%;
+      min-width: 0;
+      gap: 3px;
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--line);
+      border-radius: 7px;
+      padding: 8px 9px;
+      background: var(--surface-muted);
+      color: var(--ink);
+      text-align: left;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .revision-change-tab[aria-selected="true"] {
+      border-color: var(--blue);
+      border-left-color: var(--blue);
+      background: var(--active-bg);
+    }
+
+    .revision-change-tab[data-guard-class="safe_local_edit"] {
+      border-left-color: var(--green);
+    }
+
+    .revision-change-tab[data-guard-class="human_author_required"] {
+      border-left-color: var(--gold);
+    }
+
+    .revision-change-tab[data-guard-class="blocked_boundary"] {
+      border-left-color: var(--red);
+    }
+
+    .revision-change-tab strong,
+    .revision-change-tab span {
+      display: block;
+    }
+
+    .revision-change-tab strong {
+      font-size: 12px;
+    }
+
+    .revision-change-tab span {
+      color: var(--muted-strong);
+      font-size: 10px;
+    }
+
+    .revision-diff-canvas {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper-soft);
+    }
+
+    .revision-active-header {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .revision-active-header p,
+    .revision-active-header h3 {
+      margin-bottom: 0;
+    }
+
+    .revision-guard-badge {
+      display: inline-flex;
+      max-width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 11px;
+      font-weight: 850;
+      overflow-wrap: anywhere;
+    }
+
+    .revision-guard-badge[data-guard-class="safe_local_edit"] {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    .revision-guard-badge[data-guard-class="human_author_required"] {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .revision-guard-badge[data-guard-class="blocked_boundary"] {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .revision-diff-grid,
+    .revision-explanation-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .revision-diff-panel,
+    .revision-explanation-panel {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 10px;
+      background: var(--paper);
+    }
+
+    .revision-diff-panel.proposed {
+      border-left: 3px solid var(--blue);
+    }
+
+    .revision-diff-value {
+      min-height: 88px;
+      margin: 0;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 13px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .revision-explanation-panel p {
+      margin-bottom: 0;
+      color: var(--muted-strong);
+      font-size: 12px;
+      overflow-wrap: anywhere;
+    }
+
+    .revision-decision-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .revision-decision-button[aria-pressed="true"] {
+      border-color: var(--blue);
+      background: var(--active-bg);
+      color: var(--blue);
+      font-weight: 850;
+    }
+
+    .revision-decision-button:disabled {
+      cursor: not-allowed;
+      opacity: 0.42;
+    }
+
+    .revision-package-section {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.24fr) minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .revision-package-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .revision-footer {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
     .bridge-supporting-details {
       min-width: 0;
     }
@@ -2352,6 +2729,7 @@
     body[data-review-mode="layout-lab"] [data-mode-panel="layout-lab"],
     body[data-review-mode="bridge"] [data-mode-panel="bridge"],
     body[data-review-mode="handoff"] [data-mode-panel="handoff"],
+    body[data-review-mode="revision"] [data-mode-panel="revision"],
     body[data-review-mode="story"] [data-mode-panel="story"],
     body[data-review-mode="designer"] [data-mode-panel="designer"],
     body[data-review-mode="draft"] [data-mode-panel="draft"],
@@ -3135,19 +3513,32 @@
       .handoff-header,
       .handoff-package-section,
       .handoff-active-layout,
-      .handoff-cue-columns {
+      .handoff-cue-columns,
+      .revision-header,
+      .revision-source-grid,
+      .revision-workspace,
+      .revision-diff-grid,
+      .revision-explanation-grid,
+      .revision-package-section {
         grid-template-columns: 1fr;
       }
 
-      .handoff-file-links {
+      .handoff-file-links,
+      .revision-package-links {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .revision-summary-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .bridge-storyboard-flow,
       .editorial-handoff-shell,
+      .editorial-revision-shell,
       .storyboard-beat-tab,
+      .revision-change-tab,
       .storyboard-active-canvas {
         animation: none;
         scroll-behavior: auto;
@@ -4400,6 +4791,7 @@
                 <p class="lede">ナレーション、字幕、ショットを同じ時間軸にそろえたローカル編集パッケージです。内容は暫定稿であり、最終脚本・canon・権利許諾・制作承認ではありません。</p>
               </div>
               <nav class="handoff-route-actions" aria-label="Handoff return routes">
+                <a class="handoff-route-link primary" href="?mode=revision" data-handoff-open-revision="true">修正ラウンドトリップを開く</a>
                 <a class="handoff-route-link" href="?mode=bridge" data-handoff-return-bridge="true">Bridgeへ戻る</a>
                 <a class="handoff-route-link" href="?mode=brief" data-handoff-return-brief="true">Briefへ戻る</a>
               </nav>
@@ -4437,6 +4829,128 @@
               <span class="section-note" data-handoff-progress>1 / 6拍を編集中</span>
               <button class="brief-action next" type="button" data-handoff-next aria-label="次の拍">次の拍</button>
             </div>
+          </section>
+        </section>
+
+        <section class="editorial-revision-panel" id="editorial-revision-roundtrip-root" data-mode-panel="revision" data-editorial-revision-root="true" aria-labelledby="editorial-revision-title">
+          <section class="editorial-revision-shell" data-revision-focused-canvas="true">
+            <header class="revision-header">
+              <div>
+                <p class="hub-eyebrow">Editorial Revision Roundtrip / ローカル修正判断</p>
+                <h2 id="editorial-revision-title">原本を変えずに、修正案を比較・判断・返却する</h2>
+                <p class="lede">6拍・180秒のHandoffをimmutable baselineとして読み、変更ごとに安全な文言修正、人間著者の判断、閉じた境界を分けます。acceptしても原本へ適用せず、unapplied patchだけを保存します。</p>
+              </div>
+              <nav class="handoff-route-actions" aria-label="Revision return routes">
+                <a class="handoff-route-link" href="?mode=handoff" data-revision-return-handoff="true">Handoffへ戻る</a>
+                <a class="handoff-route-link" href="?mode=brief" data-revision-return-brief="true">Briefへ戻る</a>
+              </nav>
+            </header>
+
+            <div class="revision-source-grid">
+              <section class="revision-source-card" aria-labelledby="revision-source-title">
+                <p class="hub-eyebrow">Immutable source / 原本照合</p>
+                <h3 id="revision-source-title">Handoff source fingerprints</h3>
+                <dl class="revision-fingerprint-list">
+                  <div class="revision-fingerprint-row"><dt>artifact</dt><dd data-revision-source-artifact>fff-bridge-editorial-handoff-pack-001</dd></div>
+                  <div class="revision-fingerprint-row"><dt>candidate</dt><dd data-revision-source-candidate>designer-content-moth-investigation-3m</dd></div>
+                  <div class="revision-fingerprint-row"><dt>channel</dt><dd data-revision-source-channel>designer-channel-mystery-lore</dd></div>
+                  <div class="revision-fingerprint-row"><dt>editorial-handoff.json</dt><dd data-revision-source-editorial-sha>c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080</dd></div>
+                  <div class="revision-fingerprint-row"><dt>package-manifest.json</dt><dd data-revision-source-manifest-sha>ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971</dd></div>
+                </dl>
+              </section>
+
+              <section class="revision-import-card" aria-labelledby="revision-import-title">
+                <p class="hub-eyebrow">Local JSON import / 読み込み</p>
+                <h3 id="revision-import-title">検証済みrequestだけを表示</h3>
+                <div class="revision-import-actions">
+                  <span class="revision-load-status" data-revision-load-status data-state="sample">SAMPLE</span>
+                  <label class="revision-file-picker">
+                    修正requestを読み込む
+                    <input type="file" accept="application/json,.json" data-revision-import-input aria-describedby="revision-import-message">
+                  </label>
+                </div>
+                <p class="revision-import-message" id="revision-import-message" data-revision-import-message data-state="valid" role="status" aria-live="polite">内蔵の6変更サンプルを表示中。最大512 KiB、ローカル読込のみです。</p>
+              </section>
+            </div>
+
+            <section class="revision-summary-grid" aria-label="Guard and decision summary">
+              <div class="revision-summary-card"><strong data-revision-count-safe>3</strong><span>safe local edit</span></div>
+              <div class="revision-summary-card"><strong data-revision-count-human>1</strong><span>human author required</span></div>
+              <div class="revision-summary-card"><strong data-revision-count-blocked>2</strong><span>blocked boundary</span></div>
+              <div class="revision-summary-card"><strong data-revision-count-accept>3</strong><span>accept</span></div>
+              <div class="revision-summary-card"><strong data-revision-count-hold>1</strong><span>hold</span></div>
+              <div class="revision-summary-card"><strong data-revision-count-reject>2</strong><span>reject</span></div>
+              <div class="revision-summary-card"><strong data-revision-count-return>0</strong><span>return</span></div>
+            </section>
+
+            <div class="revision-workspace">
+              <nav class="revision-change-rail" role="tablist" aria-label="Revision change rail" aria-orientation="vertical" data-revision-change-rail></nav>
+
+              <section class="revision-diff-canvas" id="editorial-revision-active-diff" role="tabpanel" tabindex="0" aria-live="polite" data-revision-diff-canvas>
+                <header class="revision-active-header">
+                  <div>
+                    <p class="hub-eyebrow" data-revision-active-position>CHANGE 1 / 6</p>
+                    <h3 data-revision-active-title>修正案を読み込み中</h3>
+                    <p class="section-note" data-revision-active-target></p>
+                  </div>
+                  <span class="revision-guard-badge" data-revision-guard-class data-guard-class="safe_local_edit">safe_local_edit</span>
+                </header>
+
+                <div class="revision-diff-grid">
+                  <section class="revision-diff-panel" aria-labelledby="revision-before-title">
+                    <h4 id="revision-before-title">Before / 原文</h4>
+                    <pre class="revision-diff-value" data-revision-before></pre>
+                  </section>
+                  <section class="revision-diff-panel proposed" aria-labelledby="revision-proposed-title">
+                    <h4 id="revision-proposed-title">Proposed / 修正案</h4>
+                    <pre class="revision-diff-value" data-revision-proposed></pre>
+                  </section>
+                </div>
+
+                <div class="revision-explanation-grid">
+                  <section class="revision-explanation-panel" aria-labelledby="revision-rationale-title">
+                    <h4 id="revision-rationale-title">依頼理由</h4>
+                    <p data-revision-rationale></p>
+                  </section>
+                  <section class="revision-explanation-panel" aria-labelledby="revision-guard-title">
+                    <h4 id="revision-guard-title">Guard rationale</h4>
+                    <p data-revision-guard-rationale></p>
+                  </section>
+                </div>
+
+                <div class="revision-decision-controls" aria-label="Revision decision controls">
+                  <span class="revision-load-status" data-revision-current-decision>accept</span>
+                  <button class="brief-action revision-decision-button" type="button" data-revision-decision-action="accept">accept / 採用</button>
+                  <button class="brief-action revision-decision-button" type="button" data-revision-decision-action="hold">hold / 保留</button>
+                  <button class="brief-action revision-decision-button" type="button" data-revision-decision-action="reject">reject / 却下</button>
+                  <button class="brief-action revision-decision-button" type="button" data-revision-decision-action="return">return / 差し戻し</button>
+                </div>
+              </section>
+            </div>
+
+            <section class="revision-package-section" aria-labelledby="revision-package-title">
+              <div>
+                <p class="hub-eyebrow">Portable package</p>
+                <h3 id="revision-package-title">修正パッケージ</h3>
+                <p class="section-note">template、例、判断、未適用patch、manifestをローカルで確認します。</p>
+              </div>
+              <div class="revision-package-links" data-revision-package-files>
+                <a class="handoff-file-link" href="../../artifacts/editorial-revision/README_REVISION.md"><strong>README_REVISION.md</strong><span>運用ガイド</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-revision/revision-request-template.json"><strong>revision-request-template.json</strong><span>request schema template</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-revision/revision-request.example.json"><strong>revision-request.example.json</strong><span>6変更サンプル</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-revision/revision-decision.example.json"><strong>revision-decision.example.json</strong><span>3 accept / 1 hold / 2 reject</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-revision/revision-patch.example.json"><strong>revision-patch.example.json</strong><span>安全な3変更・未適用</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-revision/revision-roundtrip-manifest.json"><strong>revision-roundtrip-manifest.json</strong><span>bytes / SHA256</span></a>
+              </div>
+            </section>
+
+            <footer class="revision-footer">
+              <div class="revision-export-actions">
+                <button class="brief-action" type="button" data-revision-download-decision>decision JSONを保存</button>
+                <button class="brief-action" type="button" data-revision-download-patch>accepted patch JSONを保存</button>
+              </div>
+              <p class="section-note">apply_status=<strong>not_applied</strong> · canon / timing / rights / assets unchanged · production gates closed</p>
+            </footer>
           </section>
         </section>
 
@@ -5873,6 +6387,167 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       }
     };
 
+    const EDITORIAL_REVISION_SOURCE = Object.freeze({
+      artifact_id: "fff-bridge-editorial-handoff-pack-001",
+      editorial_handoff_sha256: "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+      package_manifest_sha256: "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+    });
+    const EDITORIAL_REVISION_REQUEST_SCHEMA = "fff.editorialRevisionRequest.v1";
+    const EDITORIAL_REVISION_DECISION_SCHEMA = "fff.editorialRevisionDecision.v1";
+    const EDITORIAL_REVISION_PATCH_SCHEMA = "fff.editorialRevisionPatch.v1";
+    const EDITORIAL_REVISION_MAX_FILE_BYTES = 512 * 1024;
+    const EDITORIAL_REVISION_SAFE_TYPES = new Set([
+      "narration_wording",
+      "subtitle_wording",
+      "shot_direction_wording"
+    ]);
+    const EDITORIAL_REVISION_HUMAN_TYPES = new Set([
+      "beat_order",
+      "beat_timing",
+      "story_truth",
+      "ending_choice"
+    ]);
+    const EDITORIAL_REVISION_BLOCKED_TYPES = new Set([
+      "final_canon_promotion",
+      "rights_clearance",
+      "asset_selection",
+      "provider_api",
+      "credentials",
+      "external_model_call",
+      "generation",
+      "production_render",
+      "upload_publication",
+      "database_persistence"
+    ]);
+    const EDITORIAL_REVISION_HUMAN_TARGETS = new Set(["beat_order", "beat_timing", "story_truth", "ending_choice"]);
+    const EDITORIAL_REVISION_BLOCKED_TARGETS = new Set([
+      "final_canon",
+      "rights_clearance",
+      "asset_selection",
+      "provider_api",
+      "credentials",
+      "external_model_call",
+      "generation",
+      "production_render",
+      "upload_publication",
+      "database_persistence"
+    ]);
+    const EDITORIAL_REVISION_ALLOWED_BEATS = new Set(bridgeEditorialHandoffModel.beats.map((beat) => beat.beat_id));
+    const editorialRevisionSampleRequest = {
+      schemaVersion: "fff.editorialRevisionRequest.v1",
+      request_id: "revision-request-example-001",
+      source: {
+        artifact_id: "fff-bridge-editorial-handoff-pack-001",
+        editorial_handoff_sha256: "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+        package_manifest_sha256: "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+      },
+      candidate_id: "designer-content-moth-investigation-3m",
+      channel_id: "designer-channel-mystery-lore",
+      requested_by: "sample-editor",
+      created_at: "2026-07-12T09:00:00+09:00",
+      changes: [
+        {
+          change_id: "rev-change-b01-narration-wording",
+          beat_id: "bridge-storyboard-beat-1-bellless-tower",
+          target_type: "narration_segment",
+          target_id: "narration-b01",
+          target_field: "text",
+          change_type: "narration_wording",
+          before: "ある記録では、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。ならば今、何が鳴っているのでしょう。",
+          proposed_value: "ある記録によれば、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。では今、何が鳴っているのでしょう。",
+          rationale: "冒頭の伝聞性を保ったまま、問いへの接続を簡潔にする。鐘が鳴る原因は確定しない。",
+          requested_status: "proposed",
+          derived_guard_class: "safe_local_edit"
+        },
+        {
+          change_id: "rev-change-b02-subtitle-wording",
+          beat_id: "bridge-storyboard-beat-2-brass-moth",
+          target_type: "subtitle_cue",
+          target_id: "sub-b02-03",
+          target_field: "text_ja",
+          change_type: "subtitle_wording",
+          before: "その機能は、まだ未決定。",
+          proposed_value: "その働きは、まだ分からない。",
+          rationale: "画面上で読みやすい自然な表現へ整える。真鍮の蛾の機能を確定しない。",
+          requested_status: "proposed",
+          derived_guard_class: "safe_local_edit"
+        },
+        {
+          change_id: "rev-change-b03-shot-direction-wording",
+          beat_id: "bridge-storyboard-beat-3-erased-names",
+          target_type: "shot_cue",
+          target_id: "shot-b03-03",
+          target_field: "visual_direction",
+          change_type: "shot_direction_wording",
+          before: "インクや名前が薄れる抽象的なmotion graphicを想定する。",
+          proposed_value: "インクや名前の輪郭がゆっくり薄れる、抽象的なモーショングラフィックを想定する。",
+          rationale: "generic shot direction の動きを明確にする。素材の選定やliteral erasureの確定は行わない。",
+          requested_status: "proposed",
+          derived_guard_class: "safe_local_edit"
+        },
+        {
+          change_id: "rev-change-b04-beat-timing",
+          beat_id: "bridge-storyboard-beat-4-council-shadow",
+          target_type: "beat",
+          target_id: "bridge-storyboard-beat-4-council-shadow",
+          target_field: "time_window",
+          change_type: "beat_timing",
+          before: { start_time: "01:20", end_time: "01:45", start_seconds: 80, end_seconds: 105 },
+          proposed_value: { start_time: "01:20", end_time: "01:50", start_seconds: 80, end_seconds: 110 },
+          rationale: "評議会の二つの読みを見せる時間を5秒増やしたい。180秒配分に影響するため、人間の構成判断が必要。",
+          requested_status: "proposed",
+          derived_guard_class: "human_author_required"
+        },
+        {
+          change_id: "rev-change-b05-final-canon",
+          beat_id: "bridge-storyboard-beat-5-held-answers",
+          target_type: "truth_guard",
+          target_id: "truth-toma-fate",
+          target_field: "state",
+          change_type: "final_canon_promotion",
+          before: "unresolved_human_owned",
+          proposed_value: "final_canon:Toma survived and is hiding",
+          rationale: "Toma の生存を確定して後半の説明を単純化したい。final canon promotion のため、この roundtrip では許可しない。",
+          requested_status: "proposed",
+          derived_guard_class: "blocked_boundary"
+        },
+        {
+          change_id: "rev-change-b06-asset-selection",
+          beat_id: "bridge-storyboard-beat-6-time-or-names",
+          target_type: "shot_cue",
+          target_id: "shot-b06-03",
+          target_field: "asset_status",
+          change_type: "asset_selection",
+          before: "unselected",
+          proposed_value: "selected:tower-final-frame-v3.png",
+          rationale: "終端フレームの素材を固定したい。asset selection と rights 確認は閉じた境界のため、この roundtrip では許可しない。",
+          requested_status: "proposed",
+          derived_guard_class: "blocked_boundary"
+        }
+      ],
+      expected_readback: {
+        change_count: 6,
+        guard_counts: {
+          safe_local_edit: 3,
+          human_author_required: 1,
+          blocked_boundary: 2
+        },
+        unknown_values: "fail_closed"
+      },
+      boundaries: {
+        local_only: true,
+        external_call: false,
+        provider_configured: false,
+        credentials_touched: false,
+        public_upload: false,
+        ai_video_generation: false,
+        production_render: false,
+        database_persistence: false,
+        final_canon_decision: false,
+        rights_cleared_claim: false
+      }
+    };
+
     const safetyGateRegistry = {
       compactSummary: [
         "Gates closed"
@@ -5916,6 +6591,15 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     let activeExtractionSearchQuery = "";
     let activeBridgeStoryboardBeatIndex = 0;
     let activeBridgeEditorialHandoffBeatIndex = 0;
+    let activeEditorialRevisionChangeIndex = 0;
+    let currentEditorialRevisionRequest = editorialRevisionSampleRequest;
+    let editorialRevisionLoadState = "sample";
+    let editorialRevisionLoadLabel = "内蔵の6変更サンプルを表示中。最大512 KiB、ローカル読込のみです。";
+    const editorialRevisionDecisions = new Map();
+    editorialRevisionSampleRequest.changes.forEach((change) => {
+      const guardClass = classifyEditorialRevisionChange(change);
+      editorialRevisionDecisions.set(change.change_id, defaultEditorialRevisionDecision(guardClass, true));
+    });
 
     const memoInput = document.querySelector("#memo-input");
     const roots = {
@@ -5935,7 +6619,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       designerDashboard: document.querySelector("#designer-dashboard-root"),
       oneStoryDraftPack: document.querySelector("#one-story-draft-pack-root"),
       bridgeStoryboardFlow: document.querySelector("#bridge-storyboard-flow-root"),
-      bridgeEditorialHandoff: document.querySelector("#bridge-editorial-handoff-root")
+      bridgeEditorialHandoff: document.querySelector("#bridge-editorial-handoff-root"),
+      editorialRevision: document.querySelector("#editorial-revision-roundtrip-root")
     };
     const jsonExportOutput = document.querySelector("#json-export-output");
     const jsonImportInput = document.querySelector("#json-import-input");
@@ -5964,6 +6649,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const REVIEW_MODES = [
       ...PRESERVED_REVIEW_MODES.slice(0, 4),
       "handoff",
+      "revision",
       ...PRESERVED_REVIEW_MODES.slice(4)
     ];
     const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "brief";
@@ -6065,6 +6751,68 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         if (nextIndex !== null) {
           event.preventDefault();
           setActiveBridgeEditorialHandoffBeat(nextIndex, true);
+        }
+      });
+    }
+
+    if (roots.editorialRevision) {
+      roots.editorialRevision.addEventListener("click", (event) => {
+        const changeButton = event.target.closest("[data-revision-change-select]");
+        if (changeButton) {
+          setActiveEditorialRevisionChange(Number(changeButton.getAttribute("data-revision-change-index")), true);
+          return;
+        }
+
+        const decisionButton = event.target.closest("[data-revision-decision-action]");
+        if (decisionButton && !decisionButton.disabled) {
+          const activeChange = currentEditorialRevisionRequest?.changes?.[activeEditorialRevisionChangeIndex];
+          const decision = decisionButton.getAttribute("data-revision-decision-action");
+          if (activeChange && decision) {
+            editorialRevisionDecisions.set(activeChange.change_id, decision);
+            renderEditorialRevisionRoundtrip();
+          }
+          return;
+        }
+
+        if (event.target.closest("[data-revision-download-decision]")) {
+          downloadEditorialRevisionJson("revision-decision.json", buildEditorialRevisionDecision());
+          return;
+        }
+
+        if (event.target.closest("[data-revision-download-patch]")) {
+          downloadEditorialRevisionJson("revision-patch.json", buildEditorialRevisionPatch());
+        }
+      });
+
+      roots.editorialRevision.addEventListener("keydown", (event) => {
+        const changeButton = event.target.closest("[data-revision-change-select]");
+        if (!changeButton) {
+          return;
+        }
+
+        const changeCount = currentEditorialRevisionRequest?.changes?.length || 0;
+        const currentIndex = Number(changeButton.getAttribute("data-revision-change-index"));
+        let nextIndex = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+          nextIndex = (currentIndex + 1) % changeCount;
+        } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+          nextIndex = (currentIndex - 1 + changeCount) % changeCount;
+        } else if (event.key === "Home") {
+          nextIndex = 0;
+        } else if (event.key === "End") {
+          nextIndex = changeCount - 1;
+        }
+
+        if (nextIndex !== null && changeCount > 0) {
+          event.preventDefault();
+          setActiveEditorialRevisionChange(nextIndex, true);
+        }
+      });
+
+      roots.editorialRevision.querySelector("[data-revision-import-input]")?.addEventListener("change", (event) => {
+        const file = event.target.files?.[0];
+        if (file) {
+          importEditorialRevisionFile(file, event.target);
         }
       });
     }
@@ -6352,6 +7100,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       renderDecisionFlowModel();
       renderBridgeStoryboardFlow(bridgeStoryboardFlowModel);
       renderBridgeEditorialHandoff(bridgeEditorialHandoffModel);
+      renderEditorialRevisionRoundtrip();
       renderSafetyGateRegistry();
       renderExtractionContract(currentModel.extraction_contract);
       renderDesignerDashboard(currentModel.designer_dashboard);
@@ -6757,6 +7506,623 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
           </div>
         `;
       }
+    }
+
+    function classifyEditorialRevisionChange(change) {
+      if (!change || typeof change !== "object") {
+        return "blocked_boundary";
+      }
+
+      const changeType = typeof change.change_type === "string" ? change.change_type : "";
+      const targetType = typeof change.target_type === "string" ? change.target_type : "";
+      const targetField = typeof change.target_field === "string" ? change.target_field : "";
+      const canonicalBefore = editorialRevisionCanonicalBefore(change);
+
+      if (
+        !canonicalBefore.known ||
+        (canonicalBefore.beatId && canonicalBefore.beatId !== change.beat_id) ||
+        !Object.prototype.hasOwnProperty.call(change, "before") ||
+        !editorialRevisionValuesEqual(change.before, canonicalBefore.value)
+      ) {
+        return "blocked_boundary";
+      }
+
+      if (
+        EDITORIAL_REVISION_BLOCKED_TYPES.has(changeType) ||
+        editorialRevisionHasUnsafeClaim(change.proposed_value)
+      ) {
+        return "blocked_boundary";
+      }
+
+      if (EDITORIAL_REVISION_HUMAN_TYPES.has(changeType)) {
+        const humanTargetValid =
+          (changeType === "beat_timing" &&
+            targetType === "beat" &&
+            ["time_window", "start_time", "end_time", "start_seconds", "end_seconds", "duration_seconds"].includes(targetField)) ||
+          (changeType === "beat_order" &&
+            targetType === "beat" &&
+            ["beat_number", "order", "sequence"].includes(targetField)) ||
+          (["story_truth", "ending_choice"].includes(changeType) &&
+            targetType === "truth_guard" &&
+            ["state", "status", "safe_rule", "choice"].includes(targetField));
+        return humanTargetValid ? "human_author_required" : "blocked_boundary";
+      }
+
+      if (!EDITORIAL_REVISION_SAFE_TYPES.has(changeType)) {
+        return "blocked_boundary";
+      }
+
+      const safeTargetSpecs = {
+        narration_wording: {
+          targetType: "narration_segment",
+          targetField: "text",
+          known: true
+        },
+        subtitle_wording: {
+          targetType: "subtitle_cue",
+          targetField: "text_ja",
+          known: true
+        },
+        shot_direction_wording: {
+          targetType: "shot_cue",
+          targetField: "visual_direction",
+          known: true
+        }
+      };
+      const targetSpec = safeTargetSpecs[changeType];
+      if (!targetSpec || targetType !== targetSpec.targetType || targetField !== targetSpec.targetField) {
+        return "blocked_boundary";
+      }
+
+      return "safe_local_edit";
+    }
+
+    function editorialRevisionCanonicalBefore(change) {
+      if (!change || typeof change !== "object") {
+        return { known: false, value: undefined, beatId: null };
+      }
+
+      let target = null;
+      if (change.target_type === "narration_segment") {
+        target = bridgeEditorialHandoffModel.narration_segments.find((segment) => segment.segment_id === change.target_id) || null;
+      } else if (change.target_type === "subtitle_cue") {
+        target = bridgeEditorialHandoffModel.subtitle_cues.find((cue) => cue.cue_id === change.target_id) || null;
+      } else if (change.target_type === "shot_cue") {
+        target = bridgeEditorialHandoffModel.shot_cues.find((shot) => shot.shot_id === change.target_id) || null;
+      } else if (change.target_type === "truth_guard") {
+        target = bridgeEditorialHandoffModel.truth_guards.find((guard) => guard.guard_id === change.target_id) || null;
+      } else if (change.target_type === "rights_guard") {
+        target = bridgeEditorialHandoffModel.rights_guards.find((guard) => guard.guard_id === change.target_id) || null;
+      } else if (change.target_type === "beat") {
+        target = bridgeEditorialHandoffModel.beats.find((beat) => beat.beat_id === change.target_id) || null;
+        if (target && change.target_field === "time_window") {
+          return {
+            known: true,
+            beatId: target.beat_id,
+            value: {
+              start_time: target.start_time,
+              end_time: target.end_time,
+              start_seconds: target.start_seconds,
+              end_seconds: target.end_seconds
+            }
+          };
+        }
+      }
+
+      if (!target || typeof change.target_field !== "string" || !Object.prototype.hasOwnProperty.call(target, change.target_field)) {
+        return { known: false, value: undefined, beatId: null };
+      }
+      return { known: true, value: target[change.target_field], beatId: target.beat_id || null };
+    }
+
+    function editorialRevisionValuesEqual(left, right) {
+      return JSON.stringify(left) === JSON.stringify(right);
+    }
+
+    function editorialRevisionHasUnsafeClaim(value) {
+      const text = formatEditorialRevisionValue(value);
+      return /final[_\s-]?canon|canon(?:ical)?[_\s-]?(?:final|approved)|rights?[_\s-]?(?:cleared|approved)|selected\s*:|asset[_\s-]?selected|provider[_\s\/-]?api|api[_\s-]?key|credential|external[_\s-]?model|production[_\s-]?render|rendered|uploaded|published|database[_\s-]?(?:write|persist)|最終(?:カノン|正史)|正史(?:に)?(?:確定|昇格)|権利(?:確認済み|処理済み|クリア)|素材(?:を)?(?:選定|確定)|プロバイダ|認証情報|生成済み|レンダー済み|アップロード済み|公開済み/i.test(text);
+    }
+
+    async function materializeEditorialRevisionBeforeHashes(request) {
+      const normalized = JSON.parse(JSON.stringify(request));
+      if (!Array.isArray(normalized?.changes)) {
+        return normalized;
+      }
+
+      for (const [index, change] of normalized.changes.entries()) {
+        if (!Object.prototype.hasOwnProperty.call(change, "before_hash")) {
+          continue;
+        }
+        if (!/^[a-f0-9]{64}$/i.test(String(change.before_hash))) {
+          throw new Error(`changes[${index}].before_hashはSHA256形式である必要があります。`);
+        }
+        const canonicalBefore = editorialRevisionCanonicalBefore(change);
+        if (!canonicalBefore.known) {
+          throw new Error(`changes[${index}]のbefore_hashを照合できるsource targetがありません。`);
+        }
+        const actualHash = await editorialRevisionValueSha256(canonicalBefore.value);
+        if (actualHash !== String(change.before_hash).toLowerCase()) {
+          throw new Error(`changes[${index}].before_hashがimmutable sourceと一致しません。`);
+        }
+        if (!Object.prototype.hasOwnProperty.call(change, "before")) {
+          change.before = JSON.parse(JSON.stringify(canonicalBefore.value));
+        }
+      }
+      return normalized;
+    }
+
+    async function editorialRevisionValueSha256(value) {
+      if (!globalThis.crypto?.subtle) {
+        throw new Error("before_hash検証に必要なWeb Cryptoを利用できません。");
+      }
+      const serialized = typeof value === "string" ? value : JSON.stringify(value);
+      const digest = await globalThis.crypto.subtle.digest("SHA-256", new TextEncoder().encode(serialized));
+      return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+    }
+
+    function validateEditorialRevisionRequest(request) {
+      if (!request || typeof request !== "object" || Array.isArray(request)) {
+        throw new Error("requestのルートはJSON objectである必要があります。");
+      }
+      if (request.schemaVersion !== EDITORIAL_REVISION_REQUEST_SCHEMA) {
+        throw new Error(`schemaVersionは${EDITORIAL_REVISION_REQUEST_SCHEMA}のみ受け付けます。`);
+      }
+
+      const requiredTopLevelStrings = ["request_id", "candidate_id", "channel_id", "requested_by", "created_at"];
+      requiredTopLevelStrings.forEach((field) => {
+        if (typeof request[field] !== "string" || !request[field].trim()) {
+          throw new Error(`${field}がありません。`);
+        }
+      });
+      if (!isStableEditorialRevisionId(request.request_id)) {
+        throw new Error("request_idの形式が不正です。");
+      }
+      if (!Number.isFinite(Date.parse(request.created_at))) {
+        throw new Error("created_atは有効な日時である必要があります。");
+      }
+      if (request.candidate_id !== bridgeEditorialHandoffModel.selected_candidate_id || request.channel_id !== bridgeEditorialHandoffModel.selected_channel_route_id) {
+        throw new Error("candidate_idまたはchannel_idが原本と一致しません。");
+      }
+
+      if (!request.source || typeof request.source !== "object" || Array.isArray(request.source)) {
+        throw new Error("source fingerprintsがありません。");
+      }
+      Object.entries(EDITORIAL_REVISION_SOURCE).forEach(([field, expected]) => {
+        if (request.source[field] !== expected) {
+          throw new Error(`source.${field}が原本と一致しません。`);
+        }
+      });
+      if (!editorialRevisionBoundariesAreClosed(request)) {
+        throw new Error("request boundariesが閉じた状態と一致しません。");
+      }
+
+      if (!Array.isArray(request.changes) || request.changes.length === 0 || request.changes.length > 100) {
+        throw new Error("changesは1〜100件の配列である必要があります。");
+      }
+
+      const seenChangeIds = new Set();
+      request.changes.forEach((change, index) => {
+        if (!change || typeof change !== "object" || Array.isArray(change)) {
+          throw new Error(`changes[${index}]はobjectである必要があります。`);
+        }
+        ["change_id", "beat_id", "target_type", "target_id", "target_field", "change_type", "rationale", "requested_status"].forEach((field) => {
+          if (typeof change[field] !== "string" || !change[field].trim()) {
+            throw new Error(`changes[${index}].${field}がありません。`);
+          }
+        });
+        if (!isStableEditorialRevisionId(change.change_id) || !isStableEditorialRevisionId(change.beat_id) || !isStableEditorialRevisionId(change.target_id)) {
+          throw new Error(`changes[${index}]のID形式が不正です。`);
+        }
+        if (seenChangeIds.has(change.change_id)) {
+          throw new Error(`change_id ${change.change_id} が重複しています。`);
+        }
+        seenChangeIds.add(change.change_id);
+        if (!EDITORIAL_REVISION_ALLOWED_BEATS.has(change.beat_id)) {
+          throw new Error(`beat_id ${change.beat_id} は原本にありません。`);
+        }
+        if (change.requested_status !== "proposed") {
+          throw new Error(`changes[${index}].requested_statusはproposedのみ受け付けます。`);
+        }
+        if (!Object.prototype.hasOwnProperty.call(change, "before") && !Object.prototype.hasOwnProperty.call(change, "before_hash")) {
+          throw new Error(`changes[${index}]にはbeforeまたはbefore_hashが必要です。`);
+        }
+        if (Object.prototype.hasOwnProperty.call(change, "before_hash") && !/^[a-f0-9]{64}$/i.test(String(change.before_hash))) {
+          throw new Error(`changes[${index}].before_hashはSHA256形式である必要があります。`);
+        }
+        if (!Object.prototype.hasOwnProperty.call(change, "proposed_value")) {
+          throw new Error(`changes[${index}].proposed_valueがありません。`);
+        }
+        const canonicalBefore = editorialRevisionCanonicalBefore(change);
+        if (!canonicalBefore.known) {
+          throw new Error(`changes[${index}]のunknown targetはblocked_boundaryとして読み込みを拒否します。`);
+        }
+        if (canonicalBefore.beatId && canonicalBefore.beatId !== change.beat_id) {
+          throw new Error(`changes[${index}].beat_idがsource targetのbeatと一致しません。`);
+        }
+        if (Object.prototype.hasOwnProperty.call(change, "before") && !editorialRevisionValuesEqual(change.before, canonicalBefore.value)) {
+          throw new Error(`changes[${index}].beforeがimmutable sourceと一致しません。`);
+        }
+        if (
+          !EDITORIAL_REVISION_SAFE_TYPES.has(change.change_type) &&
+          !EDITORIAL_REVISION_HUMAN_TYPES.has(change.change_type) &&
+          !EDITORIAL_REVISION_BLOCKED_TYPES.has(change.change_type)
+        ) {
+          throw new Error(`changes[${index}].change_typeはunknownのためblocked_boundaryとして読み込みを拒否します。`);
+        }
+        const beforeIsDisplayable = Object.prototype.hasOwnProperty.call(change, "before") ? isEditorialRevisionDisplayValue(change.before) : true;
+        if (!beforeIsDisplayable || !isEditorialRevisionDisplayValue(change.proposed_value)) {
+          throw new Error(`changes[${index}]のbefore/proposed_valueは表示可能なJSON値である必要があります。`);
+        }
+
+        const derivedGuardClass = classifyEditorialRevisionChange(change);
+        if (change.derived_guard_class !== undefined && change.derived_guard_class !== derivedGuardClass) {
+          throw new Error(`changes[${index}].derived_guard_classがローカル分類と一致しません。`);
+        }
+      });
+
+      return JSON.parse(JSON.stringify(request));
+    }
+
+    function isStableEditorialRevisionId(value) {
+      return typeof value === "string" && /^[A-Za-z0-9][A-Za-z0-9._:-]{0,127}$/.test(value);
+    }
+
+    function isEditorialRevisionDisplayValue(value) {
+      if (value === null || typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+        return true;
+      }
+      if (Array.isArray(value)) {
+        return value.length <= 100 && value.every(isEditorialRevisionDisplayValue);
+      }
+      if (typeof value === "object") {
+        const entries = Object.entries(value);
+        return entries.length <= 100 && entries.every(([key, child]) => key.length <= 128 && isEditorialRevisionDisplayValue(child));
+      }
+      return false;
+    }
+
+    function editorialRevisionBoundariesAreClosed(value) {
+      const expected = editorialRevisionClosedBoundaries();
+      return Object.entries(expected).every(([key, expectedValue]) => value?.boundaries?.[key] === expectedValue);
+    }
+
+    function defaultEditorialRevisionDecision(guardClass, useSampleDecisions = false) {
+      if (guardClass === "safe_local_edit") {
+        return useSampleDecisions ? "accept" : "hold";
+      }
+      return guardClass === "human_author_required" ? "hold" : "reject";
+    }
+
+    function allowedEditorialRevisionDecisions(guardClass) {
+      if (guardClass === "safe_local_edit") {
+        return new Set(["accept", "hold", "reject", "return"]);
+      }
+      if (guardClass === "human_author_required") {
+        return new Set(["hold", "return"]);
+      }
+      return new Set(["reject", "return"]);
+    }
+
+    function setActiveEditorialRevisionChange(index, focusSelectedChange = false) {
+      const changeCount = currentEditorialRevisionRequest?.changes?.length || 0;
+      activeEditorialRevisionChangeIndex = Math.max(0, Math.min(Number.isFinite(index) ? index : 0, Math.max(0, changeCount - 1)));
+      renderEditorialRevisionRoundtrip();
+      if (focusSelectedChange && roots.editorialRevision) {
+        roots.editorialRevision
+          .querySelector(`[data-revision-change-index="${activeEditorialRevisionChangeIndex}"]`)
+          ?.focus();
+      }
+    }
+
+    function renderEditorialRevisionRoundtrip() {
+      const root = roots.editorialRevision;
+      const request = currentEditorialRevisionRequest;
+      if (!root || !request || !Array.isArray(request.changes) || request.changes.length === 0) {
+        return;
+      }
+
+      activeEditorialRevisionChangeIndex = Math.max(0, Math.min(activeEditorialRevisionChangeIndex, request.changes.length - 1));
+      const classifiedChanges = request.changes.map((change) => ({ change, guardClass: classifyEditorialRevisionChange(change) }));
+      const guardCounts = classifiedChanges.reduce((counts, item) => {
+        counts[item.guardClass] += 1;
+        return counts;
+      }, { safe_local_edit: 0, human_author_required: 0, blocked_boundary: 0 });
+      const decisionCounts = { accept: 0, hold: 0, reject: 0, return: 0 };
+      classifiedChanges.forEach(({ change, guardClass }) => {
+        const allowed = allowedEditorialRevisionDecisions(guardClass);
+        let decision = editorialRevisionDecisions.get(change.change_id);
+        if (!allowed.has(decision)) {
+          decision = defaultEditorialRevisionDecision(guardClass, editorialRevisionLoadState === "sample");
+          editorialRevisionDecisions.set(change.change_id, decision);
+        }
+        decisionCounts[decision] += 1;
+      });
+
+      root.setAttribute("data-revision-artifact-id", "fff-editorial-revision-roundtrip-001");
+      root.setAttribute("data-revision-request-id", request.request_id);
+      root.setAttribute("data-revision-change-count", String(request.changes.length));
+      root.setAttribute("data-revision-safe-count", String(guardCounts.safe_local_edit));
+      root.setAttribute("data-revision-human-count", String(guardCounts.human_author_required));
+      root.setAttribute("data-revision-blocked-count", String(guardCounts.blocked_boundary));
+      root.setAttribute("data-revision-apply-status", "not_applied");
+      root.setAttribute("data-revision-source-valid", "true");
+
+      setEditorialRevisionText(root, "[data-revision-source-artifact]", request.source.artifact_id);
+      setEditorialRevisionText(root, "[data-revision-source-candidate]", request.candidate_id);
+      setEditorialRevisionText(root, "[data-revision-source-channel]", request.channel_id);
+      setEditorialRevisionText(root, "[data-revision-source-editorial-sha]", request.source.editorial_handoff_sha256);
+      setEditorialRevisionText(root, "[data-revision-source-manifest-sha]", request.source.package_manifest_sha256);
+      setEditorialRevisionText(root, "[data-revision-count-safe]", guardCounts.safe_local_edit);
+      setEditorialRevisionText(root, "[data-revision-count-human]", guardCounts.human_author_required);
+      setEditorialRevisionText(root, "[data-revision-count-blocked]", guardCounts.blocked_boundary);
+      setEditorialRevisionText(root, "[data-revision-count-accept]", decisionCounts.accept);
+      setEditorialRevisionText(root, "[data-revision-count-hold]", decisionCounts.hold);
+      setEditorialRevisionText(root, "[data-revision-count-reject]", decisionCounts.reject);
+      setEditorialRevisionText(root, "[data-revision-count-return]", decisionCounts.return);
+
+      const loadStatus = root.querySelector("[data-revision-load-status]");
+      if (loadStatus) {
+        loadStatus.textContent = editorialRevisionLoadState === "imported" ? "IMPORTED" : "SAMPLE";
+        loadStatus.setAttribute("data-state", editorialRevisionLoadState);
+      }
+      const importMessage = root.querySelector("[data-revision-import-message]");
+      if (importMessage && importMessage.getAttribute("data-state") !== "error") {
+        importMessage.textContent = editorialRevisionLoadLabel;
+        importMessage.setAttribute("data-state", "valid");
+      }
+
+      const rail = root.querySelector("[data-revision-change-rail]");
+      if (rail) {
+        const fragment = document.createDocumentFragment();
+        classifiedChanges.forEach(({ change, guardClass }, index) => {
+          const selected = index === activeEditorialRevisionChangeIndex;
+          const button = document.createElement("button");
+          button.className = "revision-change-tab";
+          button.type = "button";
+          button.id = `editorial-revision-change-tab-${index + 1}`;
+          button.setAttribute("role", "tab");
+          button.setAttribute("aria-selected", String(selected));
+          button.setAttribute("aria-controls", "editorial-revision-active-diff");
+          button.setAttribute("tabindex", selected ? "0" : "-1");
+          button.setAttribute("data-revision-change-select", "true");
+          button.setAttribute("data-revision-change-index", String(index));
+          button.setAttribute("data-revision-change-id", change.change_id);
+          button.setAttribute("data-guard-class", guardClass);
+
+          const position = document.createElement("span");
+          position.textContent = `${index + 1} / ${request.changes.length} · ${change.beat_id.replace("bridge-storyboard-beat-", "BEAT ")}`;
+          const title = document.createElement("strong");
+          title.textContent = change.change_type;
+          const state = document.createElement("span");
+          state.textContent = `${guardClass} · ${editorialRevisionDecisions.get(change.change_id)}`;
+          button.append(position, title, state);
+          fragment.appendChild(button);
+        });
+        rail.replaceChildren(fragment);
+      }
+
+      const active = classifiedChanges[activeEditorialRevisionChangeIndex];
+      if (!active) {
+        return;
+      }
+      const { change, guardClass } = active;
+      const decision = editorialRevisionDecisions.get(change.change_id);
+      const diffCanvas = root.querySelector("[data-revision-diff-canvas]");
+      if (diffCanvas) {
+        diffCanvas.setAttribute("aria-labelledby", `editorial-revision-change-tab-${activeEditorialRevisionChangeIndex + 1}`);
+        diffCanvas.setAttribute("data-revision-active-change-id", change.change_id);
+        diffCanvas.setAttribute("data-guard-class", guardClass);
+      }
+      setEditorialRevisionText(root, "[data-revision-active-position]", `CHANGE ${activeEditorialRevisionChangeIndex + 1} / ${request.changes.length}`);
+      setEditorialRevisionText(root, "[data-revision-active-title]", change.change_type);
+      setEditorialRevisionText(root, "[data-revision-active-target]", `${change.beat_id} · ${change.target_type}:${change.target_id}.${change.target_field}`);
+      setEditorialRevisionText(root, "[data-revision-before]", Object.prototype.hasOwnProperty.call(change, "before") ? formatEditorialRevisionValue(change.before) : `SHA256: ${change.before_hash}`);
+      setEditorialRevisionText(root, "[data-revision-proposed]", formatEditorialRevisionValue(change.proposed_value));
+      setEditorialRevisionText(root, "[data-revision-rationale]", change.rationale);
+      setEditorialRevisionText(root, "[data-revision-guard-rationale]", editorialRevisionGuardRationale(change, guardClass));
+      setEditorialRevisionText(root, "[data-revision-guard-class]", guardClass);
+      setEditorialRevisionText(root, "[data-revision-current-decision]", decision);
+
+      const guardBadge = root.querySelector("[data-revision-guard-class]");
+      guardBadge?.setAttribute("data-guard-class", guardClass);
+      const currentDecision = root.querySelector("[data-revision-current-decision]");
+      currentDecision?.setAttribute("data-state", decision);
+      const allowedDecisions = allowedEditorialRevisionDecisions(guardClass);
+      root.querySelectorAll("[data-revision-decision-action]").forEach((button) => {
+        const action = button.getAttribute("data-revision-decision-action");
+        button.disabled = !allowedDecisions.has(action);
+        button.setAttribute("aria-pressed", String(action === decision));
+        button.setAttribute("title", button.disabled ? `${guardClass}では${action}を選べません。` : `${action}として記録します。`);
+      });
+    }
+
+    function setEditorialRevisionText(root, selector, value) {
+      const node = root.querySelector(selector);
+      if (node) {
+        node.textContent = String(value ?? "");
+      }
+    }
+
+    function formatEditorialRevisionValue(value) {
+      if (value === undefined) {
+        return "";
+      }
+      return typeof value === "string" ? value : JSON.stringify(value, null, 2);
+    }
+
+    function editorialRevisionGuardRationale(change, guardClass) {
+      if (guardClass === "safe_local_edit") {
+        return "文言フィールドと既知のsource targetだけを変更します。accept可能ですが、downloadされるpatchはnot_appliedのままです。";
+      }
+      if (guardClass === "human_author_required") {
+        return "拍順・時間配分・物語真実・結末は人間著者の判断領域です。この画面ではholdまたはreturnだけを記録できます。";
+      }
+      if (!EDITORIAL_REVISION_SAFE_TYPES.has(change.change_type) && !EDITORIAL_REVISION_HUMAN_TYPES.has(change.change_type) && !EDITORIAL_REVISION_BLOCKED_TYPES.has(change.change_type)) {
+        return "未知のchange_typeまたはtargetはfail closedです。rejectまたはreturnだけを記録できます。";
+      }
+      return "canon、rights、asset、provider、生成、render、公開、databaseの境界は閉じています。rejectまたはreturnだけを記録できます。";
+    }
+
+    function importEditorialRevisionFile(file, input) {
+      if (file.size > EDITORIAL_REVISION_MAX_FILE_BYTES) {
+        setEditorialRevisionImportMessage(`読み込み拒否: 512 KiBを超えています（${file.size} bytes）。`, "error");
+        input.value = "";
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.addEventListener("load", async () => {
+        try {
+          const parsed = JSON.parse(String(reader.result || ""));
+          const normalized = await materializeEditorialRevisionBeforeHashes(parsed);
+          const validated = validateEditorialRevisionRequest(normalized);
+          currentEditorialRevisionRequest = validated;
+          activeEditorialRevisionChangeIndex = 0;
+          editorialRevisionLoadState = "imported";
+          editorialRevisionLoadLabel = `IMPORTED: ${file.name} · ${validated.changes.length} changes · source fingerprints verified`;
+          editorialRevisionDecisions.clear();
+          validated.changes.forEach((change) => {
+            const guardClass = classifyEditorialRevisionChange(change);
+            editorialRevisionDecisions.set(change.change_id, defaultEditorialRevisionDecision(guardClass, false));
+          });
+          setEditorialRevisionImportMessage(editorialRevisionLoadLabel, "valid");
+          renderEditorialRevisionRoundtrip();
+        } catch (error) {
+          setEditorialRevisionImportMessage(`読み込み拒否: ${error instanceof Error ? error.message : "JSONを検証できませんでした。"} 最後の有効なrequestを維持します。`, "error");
+        } finally {
+          input.value = "";
+        }
+      });
+      reader.addEventListener("error", () => {
+        setEditorialRevisionImportMessage("読み込み拒否: ローカルファイルを読めませんでした。最後の有効なrequestを維持します。", "error");
+        input.value = "";
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
+    function setEditorialRevisionImportMessage(message, stateName) {
+      const messageNode = roots.editorialRevision?.querySelector("[data-revision-import-message]");
+      if (messageNode) {
+        messageNode.textContent = message;
+        messageNode.setAttribute("data-state", stateName);
+      }
+    }
+
+    function buildEditorialRevisionDecision() {
+      const request = currentEditorialRevisionRequest;
+      const decidedAt = new Date().toISOString();
+      const decisions = request.changes.map((change) => {
+        const guardClass = classifyEditorialRevisionChange(change);
+        const decision = editorialRevisionDecisions.get(change.change_id);
+        return {
+          change_id: change.change_id,
+          guard_class: guardClass,
+          decision,
+          rationale: editorialRevisionDecisionRationale(guardClass, decision)
+        };
+      });
+      return {
+        schemaVersion: EDITORIAL_REVISION_DECISION_SCHEMA,
+        decision_id: `${request.request_id}-decision`,
+        request_id: request.request_id,
+        source: { ...request.source },
+        candidate_id: request.candidate_id,
+        channel_id: request.channel_id,
+        decided_by: "local-review-operator",
+        decided_at: decidedAt,
+        decisions,
+        decision_counts: decisions.reduce((counts, item) => {
+          counts[item.decision] += 1;
+          return counts;
+        }, { accept: 0, hold: 0, reject: 0, return: 0 }),
+        apply_status: "not_applied",
+        boundaries: editorialRevisionClosedBoundaries()
+      };
+    }
+
+    function buildEditorialRevisionPatch() {
+      const request = currentEditorialRevisionRequest;
+      const acceptedChanges = request.changes
+        .filter((change) => classifyEditorialRevisionChange(change) === "safe_local_edit" && editorialRevisionDecisions.get(change.change_id) === "accept")
+        .map((change) => ({
+          change_id: change.change_id,
+          beat_id: change.beat_id,
+          target_type: change.target_type,
+          target_id: change.target_id,
+          target_field: change.target_field,
+          change_type: change.change_type,
+          guard_class: "safe_local_edit",
+          before: Object.prototype.hasOwnProperty.call(change, "before") ? JSON.parse(JSON.stringify(change.before)) : undefined,
+          before_hash: change.before_hash,
+          proposed_value: JSON.parse(JSON.stringify(change.proposed_value))
+        }));
+      acceptedChanges.forEach((change) => {
+        if (change.before === undefined) {
+          delete change.before;
+        }
+        if (change.before_hash === undefined) {
+          delete change.before_hash;
+        }
+      });
+      return {
+        schemaVersion: EDITORIAL_REVISION_PATCH_SCHEMA,
+        patch_id: `${request.request_id}-patch`,
+        request_id: request.request_id,
+        decision_id: `${request.request_id}-decision`,
+        source: { ...request.source },
+        candidate_id: request.candidate_id,
+        channel_id: request.channel_id,
+        created_at: new Date().toISOString(),
+        apply_status: "not_applied",
+        accepted_changes: acceptedChanges,
+        source_package_unchanged: true,
+        beat_order_unchanged: true,
+        timing_unchanged: true,
+        canon_unchanged: true,
+        rights_state_unchanged: true,
+        asset_state_unchanged: true,
+        production_gates_closed: true,
+        boundaries: editorialRevisionClosedBoundaries()
+      };
+    }
+
+    function editorialRevisionDecisionRationale(guardClass, decision) {
+      if (guardClass === "safe_local_edit") {
+        return `${decision}: wording-only change; source package remains unchanged and any patch remains not_applied.`;
+      }
+      if (guardClass === "human_author_required") {
+        return `${decision}: beat order, timing, story truth, or ending requires explicit human-author review.`;
+      }
+      return `${decision}: closed production, canon, rights, asset, provider, or unknown boundary.`;
+    }
+
+    function editorialRevisionClosedBoundaries() {
+      return {
+        local_only: true,
+        external_call: false,
+        provider_configured: false,
+        credentials_touched: false,
+        public_upload: false,
+        ai_video_generation: false,
+        production_render: false,
+        database_persistence: false,
+        final_canon_decision: false,
+        rights_cleared_claim: false
+      };
+    }
+
+    function downloadEditorialRevisionJson(filename, payload) {
+      const blob = new Blob([`${JSON.stringify(payload, null, 2)}\n`], { type: "application/json;charset=utf-8" });
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = filename;
+      link.hidden = true;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 0);
     }
 
     function renderSafetyGateRegistry() {
