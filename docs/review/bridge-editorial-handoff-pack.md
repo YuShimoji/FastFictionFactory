@@ -39,6 +39,8 @@ The Bridge Storyboard Flow remains the first substantive Bridge surface. It adds
 | `artifacts/editorial-handoff/editorial-handoff.json` | Canonical machine-readable package |
 | `artifacts/editorial-handoff/package-manifest.json` | Integrity metadata for the other five files |
 
+The repository-level `.gitattributes` pins Markdown, CSV, and JSON files in this package to LF. This keeps the recorded byte sizes and SHA256 values stable on Windows checkouts where `core.autocrlf=true`.
+
 ## Editorial Contract
 
 - Beat count: exactly `6`
@@ -95,6 +97,7 @@ Read-only behavior was probed explicitly:
 - The normal manifest validation left 11 hashed package/result/source files unchanged.
 - Supplying an output path to `validate-bridge-editorial-handoff-pack` returned exit code 1 and created no file.
 - Temporarily withholding `subtitle-cues.csv` returned exit code 1; all remaining hashes stayed unchanged, the file was restored in `finally`, and the complete 11-file hash set matched the original afterward.
+- Filtered `git checkout-index --temp` readbacks of all six package files retained LF-only bytes and matched both the working files and package manifest metadata under the repository's `core.autocrlf=true` setting.
 
 Targeted source checks:
 
