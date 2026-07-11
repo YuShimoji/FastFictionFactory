@@ -1791,7 +1791,9 @@
       margin-top: 12px;
     }
 
-    body[data-review-mode="bridge"] .workbench-hub-header {
+    body[data-review-mode="bridge"] .workbench-hub-header,
+    body[data-review-mode="handoff"] .workbench-hub-header,
+    body[data-review-mode="handoff"] .workbench-route-nav {
       display: none;
     }
 
@@ -1818,6 +1820,36 @@
     .storyboard-flow-header > div {
       min-width: 0;
       flex: 1 1 560px;
+    }
+
+    .storyboard-header-actions,
+    .handoff-route-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .handoff-route-link {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 10px;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 750;
+      line-height: 1.2;
+      text-decoration: none;
+    }
+
+    .handoff-route-link.primary {
+      border-color: var(--blue);
+      background: var(--blue);
+      color: var(--primary-ink);
     }
 
     .storyboard-flow-header h2 {
@@ -1985,6 +2017,201 @@
       opacity: 0.48;
     }
 
+    .editorial-handoff-panel,
+    .editorial-handoff-shell,
+    .handoff-editorial-main,
+    .handoff-cue-group,
+    .handoff-guard-panel {
+      min-width: 0;
+    }
+
+    .editorial-handoff-panel {
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .editorial-handoff-shell {
+      display: grid;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--green);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .handoff-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .handoff-header h2 {
+      margin-bottom: 6px;
+    }
+
+    .handoff-status-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .handoff-package-section {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.28fr) minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .handoff-package-section h3,
+    .handoff-package-section p {
+      margin-bottom: 4px;
+    }
+
+    .handoff-file-links {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      min-width: 0;
+    }
+
+    .handoff-file-link {
+      display: grid;
+      min-width: 0;
+      gap: 2px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 7px 8px;
+      background: var(--surface-muted);
+      color: var(--ink);
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .handoff-file-link strong {
+      font-size: 12px;
+    }
+
+    .handoff-file-link span {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .handoff-active-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) minmax(240px, 0.55fr);
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .handoff-editorial-main {
+      display: grid;
+      gap: 12px;
+    }
+
+    .handoff-narration {
+      border-left: 3px solid var(--blue);
+      padding: 10px 12px;
+      background: var(--surface-muted);
+    }
+
+    .handoff-narration h4,
+    .handoff-narration p:last-child {
+      margin-bottom: 0;
+    }
+
+    .handoff-cue-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      min-width: 0;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .handoff-cue-group h4 {
+      margin: 0 0 6px;
+      font-size: 14px;
+    }
+
+    .handoff-cue-list,
+    .handoff-guard-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .handoff-cue-item,
+    .handoff-guard-item {
+      min-width: 0;
+      border-top: 1px solid var(--line);
+      padding: 7px 0;
+      overflow-wrap: anywhere;
+    }
+
+    .handoff-cue-item:first-child,
+    .handoff-guard-item:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .handoff-cue-time {
+      display: block;
+      color: var(--muted-strong);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .handoff-cue-copy {
+      display: block;
+      margin-top: 2px;
+      color: var(--ink);
+      font-size: 13px;
+    }
+
+    .handoff-cue-meta {
+      display: block;
+      margin-top: 3px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .handoff-guard-panel {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      border-left: 3px solid var(--gold);
+      padding: 10px 12px;
+      background: var(--warning-bg);
+    }
+
+    .handoff-guard-panel h3,
+    .handoff-guard-panel h4 {
+      margin-bottom: 6px;
+    }
+
+    .handoff-guard-item strong,
+    .handoff-guard-item span {
+      display: block;
+    }
+
+    .handoff-guard-item strong {
+      font-size: 12px;
+    }
+
+    .handoff-guard-item span {
+      margin-top: 2px;
+      color: var(--muted-strong);
+      font-size: 11px;
+    }
+
     .bridge-supporting-details {
       min-width: 0;
     }
@@ -2124,6 +2351,7 @@
     body[data-review-mode="brief"] [data-mode-panel="brief"],
     body[data-review-mode="layout-lab"] [data-mode-panel="layout-lab"],
     body[data-review-mode="bridge"] [data-mode-panel="bridge"],
+    body[data-review-mode="handoff"] [data-mode-panel="handoff"],
     body[data-review-mode="story"] [data-mode-panel="story"],
     body[data-review-mode="designer"] [data-mode-panel="designer"],
     body[data-review-mode="draft"] [data-mode-panel="draft"],
@@ -2903,10 +3131,22 @@
       .storyboard-field-row {
         grid-template-columns: 1fr;
       }
+
+      .handoff-header,
+      .handoff-package-section,
+      .handoff-active-layout,
+      .handoff-cue-columns {
+        grid-template-columns: 1fr;
+      }
+
+      .handoff-file-links {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .bridge-storyboard-flow,
+      .editorial-handoff-shell,
       .storyboard-beat-tab,
       .storyboard-active-canvas {
         animation: none;
@@ -2947,7 +3187,7 @@
           <div>
             <p class="hub-eyebrow">Visual Review Hub</p>
             <h2 id="visual-review-title">Review Workbench <span class="jp-label">役割契約付きレビュー面</span></h2>
-            <p class="lede">Current project artifact: <strong>fff-bridge-storyboard-flow-001</strong>. Preserved Brief surface: <strong>fff-review-workbench-component-contract-001</strong>. Source shell: <strong>fff-apply-decision-shell-guard-diet-001</strong>.</p>
+            <p class="lede">Current project artifact: <strong>fff-bridge-editorial-handoff-pack-001</strong>. Source Storyboard: <strong>fff-bridge-storyboard-flow-001</strong>. Preserved Brief surface: <strong>fff-review-workbench-component-contract-001</strong>.</p>
           </div>
           <details class="operator-utility-drawer" data-operator-utility-drawer="true" data-component-contract-owner="legacyArchive">
             <summary>Operator utility</summary>
@@ -3861,7 +4101,10 @@
                 <h2 id="bridge-storyboard-flow-title">3分の物語を、拍ごとに同じ制作仮説として読む</h2>
                 <p class="lede">ナレーション、字幕、画面、保留真実、権利・素材境界を6拍でそろえて確認します。時間窓はplanning-onlyで、最終脚本・絵コンテ・canonではありません。</p>
               </div>
-              <button class="brief-action" type="button" data-storyboard-return-brief="true" data-mode-target="brief" aria-pressed="false">Briefへ戻る</button>
+              <span class="storyboard-header-actions">
+                <a class="handoff-route-link primary" href="?mode=handoff" data-bridge-open-handoff="true" data-bridge-handoff-action="true">編集パックを開く</a>
+                <button class="brief-action" type="button" data-storyboard-return-brief="true" data-mode-target="brief" aria-pressed="false">Briefへ戻る</button>
+              </span>
             </header>
 
             <div class="storyboard-route-identity" data-storyboard-route-identity="true" aria-label="Bridge route identity">
@@ -4146,6 +4389,55 @@
           </div>
             </div>
           </details>
+        </section>
+
+        <section class="editorial-handoff-panel" id="bridge-editorial-handoff-root" data-mode-panel="handoff" data-editorial-handoff-root="true" aria-labelledby="editorial-handoff-title">
+          <section class="editorial-handoff-shell" data-handoff-focused-canvas="true">
+            <header class="handoff-header">
+              <div>
+                <p class="hub-eyebrow">Editorial Handoff Pack / 編集引き継ぎ</p>
+                <h2 id="editorial-handoff-title">6拍を、次の編集者がそのまま引き継げる形で読む</h2>
+                <p class="lede">ナレーション、字幕、ショットを同じ時間軸にそろえたローカル編集パッケージです。内容は暫定稿であり、最終脚本・canon・権利許諾・制作承認ではありません。</p>
+              </div>
+              <nav class="handoff-route-actions" aria-label="Handoff return routes">
+                <a class="handoff-route-link" href="?mode=bridge" data-handoff-return-bridge="true">Bridgeへ戻る</a>
+                <a class="handoff-route-link" href="?mode=brief" data-handoff-return-brief="true">Briefへ戻る</a>
+              </nav>
+            </header>
+
+            <div class="handoff-status-line" aria-label="Editorial handoff identity">
+              <span class="tag green">PROVISIONAL EDITORIAL PACKAGE</span>
+              <span class="storyboard-route-token"><strong>candidate</strong><code data-handoff-candidate>designer-content-moth-investigation-3m</code></span>
+              <span class="storyboard-route-token"><strong>channel</strong><code data-handoff-channel>designer-channel-mystery-lore</code></span>
+              <span class="storyboard-route-token"><strong>duration</strong><code data-handoff-duration>180 sec</code></span>
+            </div>
+
+            <section class="handoff-package-section" aria-labelledby="handoff-package-files-title">
+              <div>
+                <p class="hub-eyebrow">Delivery files</p>
+                <h3 id="handoff-package-files-title">編集ファイル</h3>
+                <p class="section-note">ガイドから順に開き、JSONとmanifestで整合性を確認します。</p>
+              </div>
+              <div class="handoff-file-links" data-handoff-package-files>
+                <a class="handoff-file-link" href="../../artifacts/editorial-handoff/README_DELIVERY.md"><strong>README_DELIVERY.md</strong><span>受け渡しガイド</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-handoff/narration-script.md"><strong>narration-script.md</strong><span>暫定ナレーション全文</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-handoff/subtitle-cues.csv"><strong>subtitle-cues.csv</strong><span>時間付き日本語字幕</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-handoff/shot-list.csv"><strong>shot-list.csv</strong><span>時間付きショット指示</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-handoff/editorial-handoff.json"><strong>editorial-handoff.json</strong><span>canonical package</span></a>
+                <a class="handoff-file-link" href="../../artifacts/editorial-handoff/package-manifest.json"><strong>package-manifest.json</strong><span>bytes / SHA256</span></a>
+              </div>
+            </section>
+
+            <div class="storyboard-beat-rail" role="tablist" aria-label="6拍 編集ランウェイ" aria-orientation="horizontal" data-handoff-runway></div>
+
+            <section class="storyboard-active-canvas handoff-active-beat" id="editorial-handoff-active-beat" role="tabpanel" tabindex="0" aria-live="polite" data-handoff-active-beat></section>
+
+            <div class="storyboard-nav-actions" aria-label="Editorial beat navigation">
+              <button class="brief-action" type="button" data-handoff-prev disabled aria-label="前の拍はありません">前の拍</button>
+              <span class="section-note" data-handoff-progress>1 / 6拍を編集中</span>
+              <button class="brief-action next" type="button" data-handoff-next aria-label="次の拍">次の拍</button>
+            </div>
+          </section>
         </section>
 
         <div class="progress-map" aria-label="Progress map" data-mode-panel="project">
@@ -5283,6 +5575,304 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       ]
     };
 
+    const bridgeEditorialHandoffModel = {
+      "schemaVersion": "fff.editorialHandoff.v1",
+      "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+      "title": "Fast Fiction Factory Bridge Editorial Handoff Pack",
+      "editorial_status": "provisional_editorial_draft",
+      "review_route": "public/review/index.html?mode=handoff",
+      "source_route": "public/review/index.html?mode=bridge",
+      "selected_candidate_id": "designer-content-moth-investigation-3m",
+      "selected_channel_route_id": "designer-channel-mystery-lore",
+      "total_duration_seconds": 180,
+      "source_artifact_ids": [
+        "fff-bridge-storyboard-flow-001",
+        "fff-review-workbench-component-contract-001",
+        "fff-draft-to-video-planning-bridge-001",
+        "fff-bridge-refinement-overview-ribbon-001",
+        "fff-one-story-draft-review-pack-001",
+        "fff-designer-candidate-dashboard-001",
+        "fff-contradictory-claim-guard-001"
+      ],
+      "beats": [
+        {
+          "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+          "beat_number": 1,
+          "title_ja": "鐘のない塔",
+          "start_time": "00:00",
+          "end_time": "00:20",
+          "start_seconds": 0,
+          "end_seconds": 20,
+          "story_purpose": "鐘がないのに鳴るという矛盾だけを置き、原因を決めずに調査の入口を作る。",
+          "truth_boundary": "鐘が鳴る原因とwinter curfewの真相は未確定。記録上の矛盾として扱う。",
+          "rights_boundary": "塔、駅、鐘枠、環境音は新規の汎用表現候補のみ。実在場所や第三者素材は未選定。"
+        },
+        {
+          "beat_id": "bridge-storyboard-beat-2-brass-moth",
+          "beat_number": 2,
+          "title_ja": "真鍮の蛾",
+          "start_time": "00:20",
+          "end_time": "00:50",
+          "start_seconds": 20,
+          "end_seconds": 50,
+          "story_purpose": "ミラの個人的な欠落を、トーマのメモと真鍮の蛾という物の手がかりへ結ぶ。",
+          "truth_boundary": "トーマの生死・所在と真鍮の蛾の正体・機能は未解決。複数の可能性を並置する。",
+          "rights_boundary": "人物、衣装、蛾の造形、時計意匠は未決定。顔や既存デザインを確定素材として使用しない。"
+        },
+        {
+          "beat_id": "bridge-storyboard-beat-3-erased-names",
+          "beat_number": 3,
+          "title_ja": "消された名前",
+          "start_time": "00:50",
+          "end_time": "01:20",
+          "start_seconds": 50,
+          "end_seconds": 80,
+          "story_purpose": "台帳、失われた時間、思い出されない名前を一つの調査線に置く。",
+          "truth_boundary": "台帳の真正性、所有者、時間と名前の因果関係は制作仮説。証拠・誘い餌・偽記録の可能性を残す。",
+          "rights_boundary": "台帳や公的記録は新規作成の仮文字・抽象図形のみ。実在文書、ロゴ、書体、紙面を転用しない。"
+        },
+        {
+          "beat_id": "bridge-storyboard-beat-4-council-shadow",
+          "beat_number": 4,
+          "title_ja": "評議会の影",
+          "start_time": "01:20",
+          "end_time": "01:45",
+          "start_seconds": 80,
+          "end_seconds": 105,
+          "story_purpose": "制度側の圧力を強めつつ、評議会を単純な悪役として確定しない。",
+          "truth_boundary": "評議会の動機、責任範囲、台帳との関係は未解決。告発と偽記録の両説を保持する。",
+          "rights_boundary": "評議会は匿名の汎用シルエットと抽象空間で示す。人物・衣装・演者・固有意匠は未選定。"
+        },
+        {
+          "beat_id": "bridge-storyboard-beat-5-held-answers",
+          "beat_number": 5,
+          "title_ja": "答えを保留",
+          "start_time": "01:45",
+          "end_time": "02:35",
+          "start_seconds": 105,
+          "end_seconds": 155,
+          "story_purpose": "トーマ、真鍮の蛾、評議会に関する複数解釈を並べ、判断を人間の監修へ戻す。",
+          "truth_boundary": "Toma fate、brass moth truth/function、Council motiveはすべてunresolved_human_owned。どの説もcanonへ昇格しない。",
+          "rights_boundary": "候補札やHOLD表示は編集者向けの汎用グラフィック。最終人物・小道具・画像を作成または選定しない。"
+        },
+        {
+          "beat_id": "bridge-storyboard-beat-6-time-or-names",
+          "beat_number": 6,
+          "title_ja": "時間か、名前か",
+          "start_time": "02:35",
+          "end_time": "03:00",
+          "start_seconds": 155,
+          "end_seconds": 180,
+          "story_purpose": "結論ではなく、時間を戻すか名前を戻すかという次の判断を促す問いで閉じる。",
+          "truth_boundary": "ミラの選択、一時間返還、鐘の再鳴、物語の結末はすべて未確定。問いはending candidateに留める。",
+          "rights_boundary": "時計、台帳、鐘音、終幕画面は方向性のみ。音源、画像、書体、render素材は未選定・未許諾。"
+        }
+      ],
+      "narration_segments": [
+        {
+          "segment_id": "narration-b01",
+          "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+          "start_time": "00:00",
+          "end_time": "00:20",
+          "text": "ある記録では、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。ならば今、何が鳴っているのでしょう。",
+          "status": "provisional_editorial_draft",
+          "character_count_estimate": 93,
+          "reading_seconds_estimate": 20,
+          "held_truth_notes": [
+            "鐘が鳴る原因は未確定",
+            "winter curfewと鐘撤去の真相は未確定"
+          ]
+        },
+        {
+          "segment_id": "narration-b02",
+          "beat_id": "bridge-storyboard-beat-2-brass-moth",
+          "start_time": "00:20",
+          "end_time": "00:50",
+          "text": "ガラス張りのアーケードで時計を直すミラ・ヴェイル。記録では、アーケードは毎夜九時十七分に閉じます。彼女の引き出しには、行方の分からない兄トーマが残したとされるメモと、真鍮の蛾があります。蛾が鍵なのか、監視具なのか、記憶の器なのかは、まだ決まっていません。",
+          "status": "provisional_editorial_draft",
+          "character_count_estimate": 127,
+          "reading_seconds_estimate": 30,
+          "held_truth_notes": [
+            "トーマの生死と所在は未確定",
+            "真鍮の蛾の正体と機能は未確定"
+          ]
+        },
+        {
+          "segment_id": "narration-b03",
+          "beat_id": "bridge-storyboard-beat-3-erased-names",
+          "start_time": "00:50",
+          "end_time": "01:20",
+          "text": "メモが指す先には、市の評議会に結びつく可能性のある『分』の台帳があります。そこには、捨て置かれた人生から時間が支払われたかのような記載と、思い出されなくなった名前が並びます。けれど、その帳面は証拠かもしれず、誘い餌や偽の記録かもしれません。文字は答えより多くの問いを残します。",
+          "status": "provisional_editorial_draft",
+          "character_count_estimate": 138,
+          "reading_seconds_estimate": 30,
+          "held_truth_notes": [
+            "台帳の真正性と所有者は未確定",
+            "時間と名前の因果関係は未確定"
+          ]
+        },
+        {
+          "segment_id": "narration-b04",
+          "beat_id": "bridge-storyboard-beat-4-council-shadow",
+          "start_time": "01:20",
+          "end_time": "01:45",
+          "text": "トーマのメモは、評議会が時間を売っていると告発します。ですが、台帳は証拠にも、誘い餌にも、誰かが植えた偽の記録にも見えます。評議会は奪ったのか、追い詰められていたのか、それとも内部で割れていたのか。動機も責任も、まだ決められません。",
+          "status": "provisional_editorial_draft",
+          "character_count_estimate": 116,
+          "reading_seconds_estimate": 25,
+          "held_truth_notes": [
+            "評議会の動機と責任範囲は未確定",
+            "告発と偽記録の矛盾は両方hold"
+          ]
+        },
+        {
+          "segment_id": "narration-b05",
+          "beat_id": "bridge-storyboard-beat-5-held-answers",
+          "start_time": "01:45",
+          "end_time": "02:35",
+          "text": "ここで、答えを一つに絞ることはできません。トーマは生きているのか、死んだのか、記録から消されたのか、それとも自ら姿を隠したのか。真鍮の蛾は扉を開く鍵か、誰かの目となる装置か、記憶を預ける器か。評議会も、利益のために時間を奪う敵か、追い詰められて危険な取引を選んだ者たちか、意見の割れた組織かもしれません。どの説も手がかりにはなります。けれど、どれもまだ物語の真実ではありません。",
+          "status": "provisional_editorial_draft",
+          "character_count_estimate": 189,
+          "reading_seconds_estimate": 50,
+          "held_truth_notes": [
+            "Toma fateはunresolved_human_owned",
+            "brass moth truth/functionはunresolved_human_owned",
+            "Council motiveはunresolved_human_owned"
+          ]
+        },
+        {
+          "segment_id": "narration-b06",
+          "beat_id": "bridge-storyboard-beat-6-time-or-names",
+          "start_time": "02:35",
+          "end_time": "03:00",
+          "text": "ミラが選ぶ結末も、まだ決まっていません。失われた時間を戻すのでしょうか。それとも、記録から消えたとされる人々へ名前を返すのでしょうか。一人に一時間を返す案も、今は結末候補にすぎません。空の鐘枠に音だけが残ります。時間か、名前か。",
+          "status": "provisional_editorial_draft",
+          "character_count_estimate": 114,
+          "reading_seconds_estimate": 25,
+          "held_truth_notes": [
+            "ミラの選択は未確定",
+            "一時間返還はpossible endingのみ",
+            "ending truthはunresolved_human_owned"
+          ]
+        }
+      ],
+      "subtitle_cues": [
+        { "cue_id": "sub-b01-01", "beat_id": "bridge-storyboard-beat-1-bellless-tower", "start_time": "00:01", "end_time": "00:07", "text_ja": "正午、鐘のない塔が鳴る。", "line_break_hint": "正午、鐘のない塔が｜鳴る。", "status": "provisional_editorial_draft", "truth_risk_marker": "medium" },
+        { "cue_id": "sub-b01-02", "beat_id": "bridge-storyboard-beat-1-bellless-tower", "start_time": "00:08", "end_time": "00:14", "text_ja": "鐘は外された、と記録にはある。", "line_break_hint": "鐘は外された、と｜記録にはある。", "status": "provisional_editorial_draft", "truth_risk_marker": "medium" },
+        { "cue_id": "sub-b01-03", "beat_id": "bridge-storyboard-beat-1-bellless-tower", "start_time": "00:15", "end_time": "00:19", "text_ja": "では、何が鳴っている？", "line_break_hint": "では、何が｜鳴っている？", "status": "provisional_editorial_draft", "truth_risk_marker": "low" },
+        { "cue_id": "sub-b02-01", "beat_id": "bridge-storyboard-beat-2-brass-moth", "start_time": "00:21", "end_time": "00:28", "text_ja": "アーケードは毎夜9:17に閉じる。", "line_break_hint": "アーケードは｜毎夜9:17に閉じる。", "status": "provisional_editorial_draft", "truth_risk_marker": "low" },
+        { "cue_id": "sub-b02-02", "beat_id": "bridge-storyboard-beat-2-brass-moth", "start_time": "00:29", "end_time": "00:39", "text_ja": "トーマが残したとされるメモと真鍮の蛾。", "line_break_hint": "トーマが残したとされる｜メモと真鍮の蛾。", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b02-03", "beat_id": "bridge-storyboard-beat-2-brass-moth", "start_time": "00:40", "end_time": "00:49", "text_ja": "その機能は、まだ未決定。", "line_break_hint": "その機能は、｜まだ未決定。", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b03-01", "beat_id": "bridge-storyboard-beat-3-erased-names", "start_time": "00:51", "end_time": "00:59", "text_ja": "台帳には『分』と名前が並ぶ。", "line_break_hint": "台帳には『分』と｜名前が並ぶ。", "status": "provisional_editorial_draft", "truth_risk_marker": "medium" },
+        { "cue_id": "sub-b03-02", "beat_id": "bridge-storyboard-beat-3-erased-names", "start_time": "01:00", "end_time": "01:09", "text_ja": "時間は、忘れられた人生から？", "line_break_hint": "時間は、忘れられた｜人生から？", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b03-03", "beat_id": "bridge-storyboard-beat-3-erased-names", "start_time": "01:10", "end_time": "01:19", "text_ja": "証拠か、誘い餌か、偽の記録か。", "line_break_hint": "証拠か、誘い餌か、｜偽の記録か。", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b04-01", "beat_id": "bridge-storyboard-beat-4-council-shadow", "start_time": "01:21", "end_time": "01:28", "text_ja": "メモは評議会を告発する。", "line_break_hint": "メモは評議会を｜告発する。", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b04-02", "beat_id": "bridge-storyboard-beat-4-council-shadow", "start_time": "01:29", "end_time": "01:36", "text_ja": "だが、台帳の真偽は未確定。", "line_break_hint": "だが、台帳の真偽は｜未確定。", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b04-03", "beat_id": "bridge-storyboard-beat-4-council-shadow", "start_time": "01:37", "end_time": "01:44", "text_ja": "評議会の動機：不明", "line_break_hint": "評議会の動機：｜不明", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b05-01", "beat_id": "bridge-storyboard-beat-5-held-answers", "start_time": "01:46", "end_time": "01:55", "text_ja": "トーマの運命：未解決", "line_break_hint": "トーマの運命：｜未解決", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b05-02", "beat_id": "bridge-storyboard-beat-5-held-answers", "start_time": "01:56", "end_time": "02:05", "text_ja": "真鍮の蛾の機能：未解決", "line_break_hint": "真鍮の蛾の機能：｜未解決", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b05-03", "beat_id": "bridge-storyboard-beat-5-held-answers", "start_time": "02:06", "end_time": "02:15", "text_ja": "評議会の動機：未解決", "line_break_hint": "評議会の動機：｜未解決", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b05-04", "beat_id": "bridge-storyboard-beat-5-held-answers", "start_time": "02:16", "end_time": "02:24", "text_ja": "複数の説が残っている。", "line_break_hint": "複数の説が｜残っている。", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b05-05", "beat_id": "bridge-storyboard-beat-5-held-answers", "start_time": "02:25", "end_time": "02:34", "text_ja": "どれも、まだ物語の真実ではない。", "line_break_hint": "どれも、まだ｜物語の真実ではない。", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b06-01", "beat_id": "bridge-storyboard-beat-6-time-or-names", "start_time": "02:36", "end_time": "02:43", "text_ja": "失われた時間を戻す？", "line_break_hint": "失われた時間を｜戻す？", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b06-02", "beat_id": "bridge-storyboard-beat-6-time-or-names", "start_time": "02:44", "end_time": "02:51", "text_ja": "それとも、消えた名前を返す？", "line_break_hint": "それとも、消えた｜名前を返す？", "status": "provisional_editorial_draft", "truth_risk_marker": "high" },
+        { "cue_id": "sub-b06-03", "beat_id": "bridge-storyboard-beat-6-time-or-names", "start_time": "02:52", "end_time": "02:59", "text_ja": "結末候補：時間か、名前か。", "line_break_hint": "結末候補：｜時間か、名前か。", "status": "provisional_editorial_draft", "truth_risk_marker": "high" }
+      ],
+      "shot_cues": [
+        { "shot_id": "shot-b01-01", "beat_id": "bridge-storyboard-beat-1-bellless-tower", "start_time": "00:00", "end_time": "00:07", "shot_purpose": "矛盾の舞台を置く", "visual_direction": "ノース・ベル駅と古い天文台を汎用の遠景で置き、空の鐘枠を読ませる。", "asset_class": "environment_plate", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。実在の駅、塔、ロゴ、写真を使わず、新規の汎用構図のみ。", "truth_boundary_note": "鐘が鳴る原因を画面化しない。" },
+        { "shot_id": "shot-b01-02", "beat_id": "bridge-storyboard-beat-1-bellless-tower", "start_time": "00:07", "end_time": "00:14", "shot_purpose": "鐘がないことを確認する", "visual_direction": "昼光の中の空の鐘枠、取付部、静かな塔内部を抽象的に示す。", "asset_class": "environment_detail", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。既存建築写真や固有意匠を参照素材として固定しない。", "truth_boundary_note": "撤去理由やwinter curfewを証明しない。" },
+        { "shot_id": "shot-b01-03", "beat_id": "bridge-storyboard-beat-1-bellless-tower", "start_time": "00:14", "end_time": "00:20", "shot_purpose": "未解決の問いへ止める", "visual_direction": "空の枠を固定で保持し、『正午』の小さな時間表示だけを添える。", "asset_class": "motion_graphic_placeholder", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。文字と図形は新規作成のplaceholderに限る。", "truth_boundary_note": "魔法、機械、人物のいずれも原因として示さない。" },
+        { "shot_id": "shot-b02-01", "beat_id": "bridge-storyboard-beat-2-brass-moth", "start_time": "00:20", "end_time": "00:30", "shot_purpose": "ミラの仕事と手元を置く", "visual_direction": "時計修理台の手元だけを見せ、顔、衣装、身体的特徴は確定しない。", "asset_class": "character_hands", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。演者、手の写真、衣装、時計意匠は未選定。", "truth_boundary_note": "final character designではない。" },
+        { "shot_id": "shot-b02-02", "beat_id": "bridge-storyboard-beat-2-brass-moth", "start_time": "00:30", "end_time": "00:40", "shot_purpose": "個人的な手がかりを並べる", "visual_direction": "引き出し内のメモと静止した真鍮の蛾をflat-layの汎用構図で見せる。", "asset_class": "prop_insert", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。メモ文面と蛾の造形は新規placeholderのみ。", "truth_boundary_note": "蛾を作動させず、機能を示さない。" },
+        { "shot_id": "shot-b02-03", "beat_id": "bridge-storyboard-beat-2-brass-moth", "start_time": "00:40", "end_time": "00:50", "shot_purpose": "9:17のmotifと蛾を分けて示す", "visual_direction": "9:17の時計面と蛾を別焦点に置き、因果を作らない。", "asset_class": "clock_insert", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。時計面、書体、propは汎用の新規設計候補のみ。", "truth_boundary_note": "9:17は閉店時刻のmotifであり、時計停止の確定事実にはしない。" },
+        { "shot_id": "shot-b03-01", "beat_id": "bridge-storyboard-beat-3-erased-names", "start_time": "00:50", "end_time": "01:00", "shot_purpose": "調査対象の台帳を開く", "visual_direction": "評議会に結びつく可能性のある台帳を開く手元を汎用propで示す。", "asset_class": "document_prop", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。実在の公文書、紋章、scan、紙面を使わない。", "truth_boundary_note": "所有者、真正性、有罪を確定しない。" },
+        { "shot_id": "shot-b03-02", "beat_id": "bridge-storyboard-beat-3-erased-names", "start_time": "01:00", "end_time": "01:10", "shot_purpose": "名前と分の関係を可視化する", "visual_direction": "名前と『分』の列を新規作成の仮文字で示し、関係は疑問形に保つ。", "asset_class": "document_graphic", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。文字、表、紙texture、fontは最終素材ではない。", "truth_boundary_note": "実在文書でも確定証拠でもない。" },
+        { "shot_id": "shot-b03-03", "beat_id": "bridge-storyboard-beat-3-erased-names", "start_time": "01:10", "end_time": "01:20", "shot_purpose": "記録欠落の感覚を作る", "visual_direction": "インクや名前が薄れる抽象的なmotion graphicを想定する。", "asset_class": "motion_graphic_placeholder", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。既存animationやtextureを流用しない。", "truth_boundary_note": "literal erasureの証明ではなくvisual metaphor。" },
+        { "shot_id": "shot-b04-01", "beat_id": "bridge-storyboard-beat-4-council-shadow", "start_time": "01:20", "end_time": "01:28", "shot_purpose": "制度側の存在だけを示す", "visual_direction": "半透明の仕切り越しに中立的な匿名シルエットを置く。", "asset_class": "anonymous_character_group", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。演者、顔、衣装、施設、ロゴは未選定。", "truth_boundary_note": "guilty acting、個人特定、単純悪役化を避ける。" },
+        { "shot_id": "shot-b04-02", "beat_id": "bridge-storyboard-beat-4-council-shadow", "start_time": "01:28", "end_time": "01:36", "shot_purpose": "矛盾する二説を並置する", "visual_direction": "『時間販売の告発？』と『偽の記録？』を同じ重さで並べる。", "asset_class": "review_graphic", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。新規の編集用文字面のみ。", "truth_boundary_note": "Contradictory Claim Guardのどちらも勝たせない。" },
+        { "shot_id": "shot-b04-03", "beat_id": "bridge-storyboard-beat-4-council-shadow", "start_time": "01:36", "end_time": "01:45", "shot_purpose": "動機不明のまま緊張を渡す", "visual_direction": "台帳の影と閉じた抽象空間に『MOTIVE UNKNOWN』を小さく表示する。", "asset_class": "institutional_environment", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。施設、書体、背景は汎用placeholderのみ。", "truth_boundary_note": "動機と責任範囲を未決定のまま保つ。" },
+        { "shot_id": "shot-b05-01", "beat_id": "bridge-storyboard-beat-5-held-answers", "start_time": "01:45", "end_time": "01:58", "shot_purpose": "トーマの複数の運命を保留する", "visual_direction": "未確定シルエットと複数のfate札を並べ、どれも選択しない。", "asset_class": "character_placeholder", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。人物像、演者、写真、衣装を確定しない。", "truth_boundary_note": "生存、死亡、消失、潜伏のいずれも採用しない。" },
+        { "shot_id": "shot-b05-02", "beat_id": "bridge-storyboard-beat-5-held-answers", "start_time": "01:58", "end_time": "02:11", "shot_purpose": "蛾の機能候補を分離する", "visual_direction": "真鍮の蛾と『key / spy / memory』の候補語を別々に表示する。", "asset_class": "object_diagram", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。蛾の造形やdiagramは編集用placeholderのみ。", "truth_boundary_note": "activationや正解表示を行わない。" },
+        { "shot_id": "shot-b05-03", "beat_id": "bridge-storyboard-beat-5-held-answers", "start_time": "02:11", "end_time": "02:23", "shot_purpose": "評議会の動機候補を保留する", "visual_direction": "中立的な制度像と『villainous / desperate / divided / misled』の候補札を並べる。", "asset_class": "review_route_graphic", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。制度像と文字面は汎用の新規候補のみ。", "truth_boundary_note": "いずれもderived possibilityであり事実ではない。" },
+        { "shot_id": "shot-b05-04", "beat_id": "bridge-storyboard-beat-5-held-answers", "start_time": "02:23", "end_time": "02:35", "shot_purpose": "三つの問いをHOLDへ戻す", "visual_direction": "Toma / moth / Councilを一つのHOLD面に戻して編集上の境界を示す。", "asset_class": "review_hold_graphic", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。operator-facing markerのみでrelease assetではない。", "truth_boundary_note": "物語世界の表示やcanon上の事実ではない。" },
+        { "shot_id": "shot-b06-01", "beat_id": "bridge-storyboard-beat-6-time-or-names", "start_time": "02:35", "end_time": "02:44", "shot_purpose": "終幕の二択を置く", "visual_direction": "時計面と空欄の名前欄を左右に並べ、中央は空ける。", "asset_class": "symbolic_split_frame", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。時計、文書、文字面は新規の汎用候補のみ。", "truth_boundary_note": "ミラの選択を示さない。" },
+        { "shot_id": "shot-b06-02", "beat_id": "bridge-storyboard-beat-6-time-or-names", "start_time": "02:44", "end_time": "02:52", "shot_purpose": "結論を書かずに台帳を閉じる", "visual_direction": "未記入欄を残したまま汎用の台帳が閉じる。", "asset_class": "document_prop", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。実在文書、scan、書体、紙面を使用しない。", "truth_boundary_note": "消された人々や回復を確定しない。" },
+        { "shot_id": "shot-b06-03", "beat_id": "bridge-storyboard-beat-6-time-or-names", "start_time": "02:52", "end_time": "03:00", "shot_purpose": "問いのまま冒頭像へ戻る", "visual_direction": "空の鐘枠へ戻り、『時間か、名前か』で静止する。", "asset_class": "environment_return", "asset_status": "unselected", "rights_note": "素材未選定・権利未確認。塔、音、文字、final frameはいずれも未制作。", "truth_boundary_note": "ending candidateの問いで閉じ、解決を描かない。" }
+      ],
+      "thumbnail_directions": [
+        {
+          "direction_id": "thumb-paradox-bellless",
+          "title_ja": "鐘のない塔",
+          "direction": "空の鐘枠を画面の大半に置き、真鍮の蛾を小さな真鍮色のアクセントにする。冷たい昼光、黒・灰・真鍮色。短い題字は『鐘のない塔』。",
+          "truth_boundary_note": "鐘が鳴る原因を描かない。",
+          "asset_status": "unselected",
+          "rights_note": "artwork未生成・素材未選定・権利未確認。"
+        },
+        {
+          "direction_id": "thumb-clue-moth-question",
+          "title_ja": "この蛾は鍵か？",
+          "direction": "真鍮の蛾のmacroと、下に半分隠れたメモと台帳。人物は手元のみ。題字は質問形の『この蛾は鍵か？』。",
+          "truth_boundary_note": "蛾が鍵として作動する描写を入れない。",
+          "asset_status": "unselected",
+          "rights_note": "artwork未生成・素材未選定・権利未確認。"
+        },
+        {
+          "direction_id": "thumb-choice-time-or-names",
+          "title_ja": "時間か、名前か",
+          "direction": "左に時計、右に名前欄、中央に小さな未確定のミラのシルエット。題字は『時間か、名前か』。",
+          "truth_boundary_note": "結末の選択や一時間返還を成立済みに見せない。",
+          "asset_status": "unselected",
+          "rights_note": "artwork未生成・素材未選定・権利未確認。"
+        }
+      ],
+      "sound_music_mood_brief": {
+        "status": "provisional_unselected",
+        "overall_mood": "親密、奇妙、調査的。trailer調ではなく抑制する。",
+        "narration_pace_target": "約240-250 Japanese characters per minute",
+        "beat_direction": [
+          "Beat 1: ほぼ無音の駅環境と一度の抽象的な空洞共鳴。鐘音素材は未選定。",
+          "Beat 2: 乾いた時計音と小さな金属の気配。蛾の作動音にはしない。",
+          "Beat 3: 抑えたpulseと紙・鉛筆のfoley候補。documentary clarityを保つ。",
+          "Beat 4: 低域を暗くするが、villain stingや有罪を示すcadenceを避ける。",
+          "Beat 5: 三つの疎なmotifを分けて置き、一つの答えへ解決しない。",
+          "Beat 6: tickingを引き、冒頭の共鳴だけを未解決のtailで戻す。"
+        ],
+        "rights_note": "voice、performer、music、SFX library、mix、licenseはすべて未選定・未確認。"
+      },
+      "truth_guards": [
+        { "guard_id": "truth-toma-fate", "subject": "Toma fate", "state": "unresolved_human_owned", "safe_rule": "生存、死亡、消失、潜伏のどれも事実として語らない。" },
+        { "guard_id": "truth-brass-moth", "subject": "brass moth truth/function", "state": "unresolved_human_owned", "safe_rule": "key、spy、memory containerは可能性としてのみ示し、作動や正解を描かない。" },
+        { "guard_id": "truth-council-motive", "subject": "Council motive", "state": "unresolved_human_owned", "safe_rule": "告発、管理、偽記録、villainous、desperate、divided、misledの各説を保持する。" },
+        { "guard_id": "truth-ending", "subject": "ending truth", "state": "unresolved_human_owned", "safe_rule": "一時間返還も時間対名前の選択もending candidateに留め、ミラの選択を確定しない。" }
+      ],
+      "rights_guards": [
+        { "guard_id": "rights-assets", "state": "uncleared_unselected", "rule": "すべてのshotとthumbnailでasset_status=unselectedを維持する。" },
+        { "guard_id": "rights-third-party", "state": "closed", "rule": "実在の場所、ロゴ、演者の肖像、第三者キャラクター、archival scan、既存素材を選定しない。" },
+        { "guard_id": "rights-font-audio", "state": "closed", "rule": "書体、texture、music、SFX、voice、footageのlicenseやclearanceを主張しない。" },
+        { "guard_id": "rights-release", "state": "closed", "rule": "author memoの物語由来をcommercial/distribution rightsの証明に使わない。" }
+      ],
+      "file_inventory": [
+        { "relative_path": "README_DELIVERY.md", "role": "manual delivery guide", "required": true },
+        { "relative_path": "narration-script.md", "role": "complete provisional narration draft", "required": true },
+        { "relative_path": "subtitle-cues.csv", "role": "timed Japanese subtitle cues", "required": true },
+        { "relative_path": "shot-list.csv", "role": "timed generic shot directions", "required": true },
+        { "relative_path": "editorial-handoff.json", "role": "canonical machine-readable package", "required": true },
+        { "relative_path": "package-manifest.json", "role": "byte-size and SHA256 integrity metadata", "required": true }
+      ],
+      "boundaries": {
+        "local_only": true,
+        "external_call": false,
+        "provider_configured": false,
+        "credentials_touched": false,
+        "public_upload": false,
+        "ai_video_generation": false,
+        "production_render": false,
+        "database_persistence": false,
+        "final_canon_decision": false,
+        "rights_cleared_claim": false
+      }
+    };
+
     const safetyGateRegistry = {
       compactSummary: [
         "Gates closed"
@@ -5325,6 +5915,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     let activeExtractionFilter = "all";
     let activeExtractionSearchQuery = "";
     let activeBridgeStoryboardBeatIndex = 0;
+    let activeBridgeEditorialHandoffBeatIndex = 0;
 
     const memoInput = document.querySelector("#memo-input");
     const roots = {
@@ -5343,7 +5934,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       decisions: document.querySelector("#decision-log"),
       designerDashboard: document.querySelector("#designer-dashboard-root"),
       oneStoryDraftPack: document.querySelector("#one-story-draft-pack-root"),
-      bridgeStoryboardFlow: document.querySelector("#bridge-storyboard-flow-root")
+      bridgeStoryboardFlow: document.querySelector("#bridge-storyboard-flow-root"),
+      bridgeEditorialHandoff: document.querySelector("#bridge-editorial-handoff-root")
     };
     const jsonExportOutput = document.querySelector("#json-export-output");
     const jsonImportInput = document.querySelector("#json-import-input");
@@ -5368,7 +5960,12 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     const modeButtons = Array.from(document.querySelectorAll("[data-mode-target]"));
     const themeButtons = Array.from(document.querySelectorAll("[data-theme-target]"));
     const THEME_STORAGE_KEY = "fff-review-theme";
-    const REVIEW_MODES = ["home", "brief", "layout-lab", "bridge", "story", "designer", "draft", "source", "project", "artifacts"];
+    const PRESERVED_REVIEW_MODES = ["home", "brief", "layout-lab", "bridge", "story", "designer", "draft", "source", "project", "artifacts"];
+    const REVIEW_MODES = [
+      ...PRESERVED_REVIEW_MODES.slice(0, 4),
+      "handoff",
+      ...PRESERVED_REVIEW_MODES.slice(4)
+    ];
     const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "brief";
 
     memoInput.value = state.memo || sampleMemo;
@@ -5427,6 +6024,47 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         if (nextIndex !== null) {
           event.preventDefault();
           setActiveBridgeStoryboardBeat(nextIndex, true);
+        }
+      });
+    }
+
+    if (roots.bridgeEditorialHandoff) {
+      roots.bridgeEditorialHandoff.addEventListener("click", (event) => {
+        const beatButton = event.target.closest("[data-handoff-beat-select]");
+        if (beatButton) {
+          setActiveBridgeEditorialHandoffBeat(Number(beatButton.getAttribute("data-handoff-beat-index")), true);
+          return;
+        }
+
+        const navigationButton = event.target.closest("[data-handoff-prev], [data-handoff-next]");
+        if (navigationButton) {
+          const direction = navigationButton.hasAttribute("data-handoff-prev") ? -1 : 1;
+          setActiveBridgeEditorialHandoffBeat(activeBridgeEditorialHandoffBeatIndex + direction, false);
+        }
+      });
+
+      roots.bridgeEditorialHandoff.addEventListener("keydown", (event) => {
+        const beatButton = event.target.closest("[data-handoff-beat-select]");
+        if (!beatButton) {
+          return;
+        }
+
+        const beatCount = bridgeEditorialHandoffModel.beats.length;
+        const currentIndex = Number(beatButton.getAttribute("data-handoff-beat-index"));
+        let nextIndex = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+          nextIndex = (currentIndex + 1) % beatCount;
+        } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+          nextIndex = (currentIndex - 1 + beatCount) % beatCount;
+        } else if (event.key === "Home") {
+          nextIndex = 0;
+        } else if (event.key === "End") {
+          nextIndex = beatCount - 1;
+        }
+
+        if (nextIndex !== null) {
+          event.preventDefault();
+          setActiveBridgeEditorialHandoffBeat(nextIndex, true);
         }
       });
     }
@@ -5713,6 +6351,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       renderComponentRoleContracts();
       renderDecisionFlowModel();
       renderBridgeStoryboardFlow(bridgeStoryboardFlowModel);
+      renderBridgeEditorialHandoff(bridgeEditorialHandoffModel);
       renderSafetyGateRegistry();
       renderExtractionContract(currentModel.extraction_contract);
       renderDesignerDashboard(currentModel.designer_dashboard);
@@ -5941,6 +6580,179 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
                   <dd>${escapeHtml(activeBeat.rightsAssetNote)}</dd>
                 </div>
               </dl>
+            </aside>
+          </div>
+        `;
+      }
+    }
+
+    function setActiveBridgeEditorialHandoffBeat(index, focusSelectedBeat = false) {
+      const lastIndex = bridgeEditorialHandoffModel.beats.length - 1;
+      activeBridgeEditorialHandoffBeatIndex = Math.max(0, Math.min(Number.isFinite(index) ? index : 0, lastIndex));
+      renderBridgeEditorialHandoff(bridgeEditorialHandoffModel);
+      if (focusSelectedBeat && roots.bridgeEditorialHandoff) {
+        roots.bridgeEditorialHandoff
+          .querySelector(`[data-handoff-beat-index="${activeBridgeEditorialHandoffBeatIndex}"]`)
+          ?.focus();
+      }
+    }
+
+    function renderBridgeEditorialHandoff(model) {
+      const root = roots.bridgeEditorialHandoff;
+      if (!root || !model || !Array.isArray(model.beats) || model.beats.length === 0) {
+        return;
+      }
+
+      const lastIndex = model.beats.length - 1;
+      activeBridgeEditorialHandoffBeatIndex = Math.max(0, Math.min(activeBridgeEditorialHandoffBeatIndex, lastIndex));
+      const activeBeat = model.beats[activeBridgeEditorialHandoffBeatIndex];
+      const previousBeat = model.beats[activeBridgeEditorialHandoffBeatIndex - 1] || null;
+      const nextBeat = model.beats[activeBridgeEditorialHandoffBeatIndex + 1] || null;
+      const narration = model.narration_segments.find((segment) => segment.beat_id === activeBeat.beat_id) || null;
+      const subtitles = model.subtitle_cues.filter((cue) => cue.beat_id === activeBeat.beat_id);
+      const shots = model.shot_cues.filter((shot) => shot.beat_id === activeBeat.beat_id);
+      const runway = root.querySelector("[data-handoff-runway]");
+      const activeBeatRoot = root.querySelector("[data-handoff-active-beat]");
+      const packageFilesRoot = root.querySelector("[data-handoff-package-files]");
+      const previousButton = root.querySelector("[data-handoff-prev]");
+      const nextButton = root.querySelector("[data-handoff-next]");
+      const progress = root.querySelector("[data-handoff-progress]");
+
+      root.setAttribute("data-handoff-artifact-id", model.artifact_id);
+      root.setAttribute("data-handoff-editorial-status", model.editorial_status);
+      root.setAttribute("data-handoff-beat-count", String(model.beats.length));
+      root.setAttribute("data-handoff-narration-count", String(model.narration_segments.length));
+      root.setAttribute("data-handoff-subtitle-count", String(model.subtitle_cues.length));
+      root.setAttribute("data-handoff-shot-count", String(model.shot_cues.length));
+      root.querySelector("[data-handoff-candidate]").textContent = model.selected_candidate_id;
+      root.querySelector("[data-handoff-channel]").textContent = model.selected_channel_route_id;
+      root.querySelector("[data-handoff-duration]").textContent = `${model.total_duration_seconds} sec`;
+
+      if (packageFilesRoot) {
+        packageFilesRoot.setAttribute("data-handoff-package-file-count", String(model.file_inventory.length));
+      }
+
+      if (previousButton) {
+        previousButton.disabled = !previousBeat;
+        previousButton.textContent = previousBeat ? `前の拍: ${previousBeat.title_ja}` : "前の拍";
+        previousButton.setAttribute("aria-label", previousBeat ? `前の拍: ${previousBeat.title_ja}` : "前の拍はありません");
+      }
+      if (nextButton) {
+        nextButton.disabled = !nextBeat;
+        nextButton.textContent = nextBeat ? `次の拍: ${nextBeat.title_ja}` : "次の拍";
+        nextButton.setAttribute("aria-label", nextBeat ? `次の拍: ${nextBeat.title_ja}` : "次の拍はありません");
+      }
+      if (progress) {
+        progress.textContent = `${activeBeat.beat_number} / ${model.beats.length}拍を編集中`;
+      }
+
+      if (runway) {
+        runway.innerHTML = model.beats
+          .map((beat, index) => {
+            const selected = index === activeBridgeEditorialHandoffBeatIndex;
+            const tabId = `editorial-handoff-tab-${beat.beat_number}`;
+            return `
+              <button class="storyboard-beat-tab" id="${tabId}" type="button" role="tab"
+                aria-selected="${selected}" aria-controls="editorial-handoff-active-beat" tabindex="${selected ? "0" : "-1"}"
+                data-handoff-beat-select data-handoff-beat-index="${index}" data-handoff-beat-id="${escapeHtml(beat.beat_id)}">
+                <span class="storyboard-beat-number">BEAT ${escapeHtml(beat.beat_number)} / ${model.beats.length}</span>
+                <strong>${escapeHtml(beat.title_ja)}</strong>
+                <span class="storyboard-beat-time">${escapeHtml(beat.start_time)}-${escapeHtml(beat.end_time)}</span>
+              </button>
+            `;
+          })
+          .join("");
+      }
+
+      if (activeBeatRoot) {
+        activeBeatRoot.setAttribute("aria-labelledby", `editorial-handoff-tab-${activeBeat.beat_number}`);
+        activeBeatRoot.setAttribute("data-handoff-active-beat-id", activeBeat.beat_id);
+        activeBeatRoot.innerHTML = `
+          <header class="storyboard-active-header">
+            <div>
+              <p class="hub-eyebrow">Beat ${escapeHtml(activeBeat.beat_number)} / ${model.beats.length} · 編集連続性</p>
+              <h3>${escapeHtml(activeBeat.title_ja)}</h3>
+            </div>
+            <span class="tag gold">${escapeHtml(activeBeat.start_time)}-${escapeHtml(activeBeat.end_time)} / provisional</span>
+          </header>
+          <div class="handoff-active-layout">
+            <div class="handoff-editorial-main">
+              <div class="storyboard-field-row" data-handoff-field="story-purpose">
+                <dt>物語上の役割</dt>
+                <dd>${escapeHtml(activeBeat.story_purpose)}</dd>
+              </div>
+              <section class="handoff-narration" aria-label="Active narration segment">
+                <p class="hub-eyebrow">Narration / 暫定ナレーション</p>
+                <h4>${narration ? escapeHtml(narration.segment_id) : "segment missing"}</h4>
+                <p>${narration ? escapeHtml(narration.text) : "この拍のナレーションsegmentがありません。"}</p>
+                <p class="section-note">${narration ? `${escapeHtml(narration.character_count_estimate)}字目安 · ${escapeHtml(narration.reading_seconds_estimate)}秒目安 · ${escapeHtml(narration.status)}` : "要確認"}</p>
+                ${narration ? `<p class="section-note">held: ${escapeHtml(narration.held_truth_notes.join(" / "))}</p>` : ""}
+              </section>
+              <div class="handoff-cue-columns">
+                <section class="handoff-cue-group" aria-labelledby="handoff-subtitle-cues-title">
+                  <h4 id="handoff-subtitle-cues-title">字幕 ${subtitles.length} cues</h4>
+                  <ol class="handoff-cue-list">
+                    ${subtitles.map((cue) => `
+                      <li class="handoff-cue-item" data-handoff-subtitle-id="${escapeHtml(cue.cue_id)}">
+                        <span class="handoff-cue-time">${escapeHtml(cue.start_time)}-${escapeHtml(cue.end_time)}</span>
+                        <span class="handoff-cue-copy">${escapeHtml(cue.text_ja)}</span>
+                        <span class="handoff-cue-meta">${escapeHtml(cue.cue_id)} · truth risk ${escapeHtml(cue.truth_risk_marker)}</span>
+                      </li>
+                    `).join("")}
+                  </ol>
+                </section>
+                <section class="handoff-cue-group" aria-labelledby="handoff-shot-cues-title">
+                  <h4 id="handoff-shot-cues-title">ショット ${shots.length} cues</h4>
+                  <ol class="handoff-cue-list">
+                    ${shots.map((shot) => `
+                      <li class="handoff-cue-item" data-handoff-shot-id="${escapeHtml(shot.shot_id)}">
+                        <span class="handoff-cue-time">${escapeHtml(shot.start_time)}-${escapeHtml(shot.end_time)} · ${escapeHtml(shot.shot_purpose)}</span>
+                        <span class="handoff-cue-copy">${escapeHtml(shot.visual_direction)}</span>
+                        <span class="handoff-cue-meta">${escapeHtml(shot.shot_id)} · ${escapeHtml(shot.asset_class)} · ${escapeHtml(shot.asset_status)}</span>
+                      </li>
+                    `).join("")}
+                  </ol>
+                </section>
+              </div>
+            </div>
+            <aside class="handoff-guard-panel" aria-label="Truth and rights guards">
+              <div>
+                <p class="hub-eyebrow">Guard / 保留境界</p>
+                <h3>この拍で確定しないこと</h3>
+              </div>
+              <div>
+                <h4>truth / uncertainty</h4>
+                <p class="section-note">${escapeHtml(activeBeat.truth_boundary)}</p>
+              </div>
+              <div>
+                <h4>rights / asset</h4>
+                <p class="section-note">${escapeHtml(activeBeat.rights_boundary)}</p>
+              </div>
+              <div class="tag-row">
+                <span class="tag gold">${model.truth_guards.length} truth holds</span>
+                <span class="tag red">${model.rights_guards.length} rights guards</span>
+              </div>
+              <details>
+                <summary>全体guardを確認</summary>
+                <h4>Truth guards</h4>
+                <ul class="handoff-guard-list">
+                  ${model.truth_guards.map((guard) => `
+                    <li class="handoff-guard-item" data-handoff-truth-guard="${escapeHtml(guard.guard_id)}">
+                      <strong>${escapeHtml(guard.subject)} · ${escapeHtml(guard.state)}</strong>
+                      <span>${escapeHtml(guard.safe_rule)}</span>
+                    </li>
+                  `).join("")}
+                </ul>
+                <h4>Rights guards</h4>
+                <ul class="handoff-guard-list">
+                  ${model.rights_guards.map((guard) => `
+                    <li class="handoff-guard-item" data-handoff-rights-guard="${escapeHtml(guard.guard_id)}">
+                      <strong>${escapeHtml(guard.guard_id)} · ${escapeHtml(guard.state)}</strong>
+                      <span>${escapeHtml(guard.rule)}</span>
+                    </li>
+                  `).join("")}
+                </ul>
+              </details>
             </aside>
           </div>
         `;

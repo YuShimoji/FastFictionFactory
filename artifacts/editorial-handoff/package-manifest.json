@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "fff.editorialHandoffPackageManifest.v1",
+  "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+  "generatedAt": "2026-07-11T12:06:29.112Z",
+  "package_root": "artifacts/editorial-handoff",
+  "files": [
+    {
+      "relative_path": "README_DELIVERY.md",
+      "byte_size": 4390,
+      "sha256": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2"
+    },
+    {
+      "relative_path": "narration-script.md",
+      "byte_size": 4992,
+      "sha256": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081"
+    },
+    {
+      "relative_path": "subtitle-cues.csv",
+      "byte_size": 3945,
+      "sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+    },
+    {
+      "relative_path": "shot-list.csv",
+      "byte_size": 7366,
+      "sha256": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676"
+    },
+    {
+      "relative_path": "editorial-handoff.json",
+      "byte_size": 31907,
+      "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+    }
+  ],
+  "passed": true
+}

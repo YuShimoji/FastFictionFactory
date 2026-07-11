@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 
 const SCHEMA_VERSION = "fff.projectState.v1";
@@ -44,6 +45,9 @@ const LAYOUT_LAB_VISUAL_AUDIT_SCHEMA_VERSION = "fff.layoutLabVisualAudit.v1";
 const APPLY_DECISION_SHELL_GUARD_DIET_SCHEMA_VERSION = "fff.applyDecisionShellGuardDiet.v1";
 const REVIEW_WORKBENCH_COMPONENT_CONTRACT_SCHEMA_VERSION = "fff.reviewWorkbenchComponentContract.v1";
 const BRIDGE_STORYBOARD_FLOW_SCHEMA_VERSION = "fff.bridgeStoryboardFlow.v1";
+const BRIDGE_EDITORIAL_HANDOFF_PACK_SCHEMA_VERSION = "fff.bridgeEditorialHandoffPack.v1";
+const EDITORIAL_HANDOFF_SCHEMA_VERSION = "fff.editorialHandoff.v1";
+const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.editorialHandoffPackageManifest.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -85,6 +89,20 @@ const DEFAULT_LAYOUT_LAB_VISUAL_AUDIT_OUTPUT = "artifacts/layout-lab-visual-audi
 const DEFAULT_APPLY_DECISION_SHELL_GUARD_DIET_OUTPUT = "artifacts/apply-decision-shell-guard-diet-result.json";
 const DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT = "artifacts/review-workbench-component-contract-result.json";
 const DEFAULT_BRIDGE_STORYBOARD_FLOW_OUTPUT = "artifacts/bridge-storyboard-flow-result.json";
+const DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT = "artifacts/bridge-editorial-handoff-pack-result.json";
+const EDITORIAL_HANDOFF_PACKAGE_ROOT = "artifacts/editorial-handoff";
+const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/package-manifest.json`;
+const EDITORIAL_HANDOFF_PACKAGE_FILES = [
+  "README_DELIVERY.md",
+  "narration-script.md",
+  "subtitle-cues.csv",
+  "shot-list.csv",
+  "editorial-handoff.json"
+];
+const EDITORIAL_HANDOFF_REQUIRED_FILES = [
+  ...EDITORIAL_HANDOFF_PACKAGE_FILES,
+  "package-manifest.json"
+];
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -1021,6 +1039,39 @@ async function main() {
     if (command === "smoke-review-workbench-component-contract" || outputPath) {
       console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
+    return;
+  }
+
+  if (command === "validate-bridge-editorial-handoff-pack") {
+    if (outputPath) {
+      fail("validate-bridge-editorial-handoff-pack is read-only and does not accept an output path; use smoke-bridge-editorial-handoff-pack for intentional package metadata and result regeneration.");
+    }
+    const readback = await readJson(inputPath);
+    const result = await validateBridgeEditorialHandoffPack(readback, inputPath);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) {
+      fail(`Bridge Editorial Handoff Pack failed: ${result.failures.join("; ")}`);
+    }
+    return;
+  }
+
+  if (command === "smoke-bridge-editorial-handoff-pack") {
+    const target = outputPath || DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT;
+    const packageManifest = await buildEditorialHandoffPackageManifest();
+    await mkdir(path.dirname(EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH), { recursive: true });
+    await writeFile(
+      EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH,
+      `${JSON.stringify(packageManifest, null, 2)}\n`,
+      "utf8"
+    );
+    const readback = await readBridgeEditorialHandoffSmokeSeed(inputPath, target);
+    const result = await validateBridgeEditorialHandoffPack(readback, inputPath);
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    if (!result.passed) {
+      fail(`Bridge Editorial Handoff Pack failed: ${result.failures.join("; ")}`);
+    }
+    console.log(`bridge editorial handoff pack passed ${inputPath} -> ${target}`);
     return;
   }
 
@@ -11312,6 +11363,602 @@ async function validateBridgeStoryboardFlow(readback, readbackPath) {
   };
 }
 
+async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+
+  const expectedArtifactId = "fff-bridge-editorial-handoff-pack-001";
+  const expectedCandidateId = "designer-content-moth-investigation-3m";
+  const expectedChannelRouteId = "designer-channel-mystery-lore";
+  const expectedReviewRoute = "public/review/index.html?mode=handoff";
+  const expectedBridgeRoute = "public/review/index.html?mode=bridge";
+  const expectedBriefRoute = "public/review/index.html?mode=brief";
+  const reviewDocPath = "docs/review/bridge-editorial-handoff-pack.md";
+  const canonicalPackagePath = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/editorial-handoff.json`;
+  const expectedSourceArtifactIds = [
+    "fff-bridge-storyboard-flow-001",
+    "fff-review-workbench-component-contract-001",
+    "fff-draft-to-video-planning-bridge-001",
+    "fff-bridge-refinement-overview-ribbon-001",
+    "fff-one-story-draft-review-pack-001",
+    "fff-designer-candidate-dashboard-001",
+    "fff-contradictory-claim-guard-001"
+  ];
+  const expectedBeatWindows = [
+    { beatNumber: 1, titleJa: "鐘のない塔", startSeconds: 0, endSeconds: 20 },
+    { beatNumber: 2, titleJa: "真鍮の蛾", startSeconds: 20, endSeconds: 50 },
+    { beatNumber: 3, titleJa: "消された名前", startSeconds: 50, endSeconds: 80 },
+    { beatNumber: 4, titleJa: "評議会の影", startSeconds: 80, endSeconds: 105 },
+    { beatNumber: 5, titleJa: "答えを保留", startSeconds: 105, endSeconds: 155 },
+    { beatNumber: 6, titleJa: "時間か、名前か", startSeconds: 155, endSeconds: 180 }
+  ];
+  const subtitleHeaders = [
+    "cue_id",
+    "beat_id",
+    "start_time",
+    "end_time",
+    "text_ja",
+    "line_break_hint",
+    "status",
+    "truth_risk_marker"
+  ];
+  const shotHeaders = [
+    "shot_id",
+    "beat_id",
+    "start_time",
+    "end_time",
+    "shot_purpose",
+    "visual_direction",
+    "asset_class",
+    "asset_status",
+    "rights_note",
+    "truth_boundary_note"
+  ];
+
+  const rootManifestRead = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
+  const artifactManifest = rootManifestRead.value || {};
+  const storyboardPath = artifactManifest.bridge_storyboard_flow_result_path || DEFAULT_BRIDGE_STORYBOARD_FLOW_OUTPUT;
+  const workbenchPath = artifactManifest.review_workbench_component_contract_result_path || DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT;
+  const draftBridgePath = artifactManifest.draft_to_video_planning_bridge_result_path || DEFAULT_DRAFT_TO_VIDEO_PLANNING_BRIDGE_OUTPUT;
+  const contradictoryGuardPath = artifactManifest.contradictory_claim_guard_result_path || DEFAULT_CONTRADICTORY_CLAIM_GUARD_OUTPUT;
+  const sourceSpecs = [
+    { key: "bridge_storyboard_flow", path: storyboardPath, expectedArtifactId: "fff-bridge-storyboard-flow-001" },
+    { key: "review_workbench_component_contract", path: workbenchPath, expectedArtifactId: "fff-review-workbench-component-contract-001" },
+    { key: "draft_to_video_planning_bridge", path: draftBridgePath, expectedArtifactId: "fff-draft-to-video-planning-bridge-001" },
+    { key: "contradictory_claim_guard", path: contradictoryGuardPath, expectedArtifactId: "fff-contradictory-claim-guard-001" }
+  ];
+
+  const packageSnapshotEntries = await Promise.all(
+    EDITORIAL_HANDOFF_REQUIRED_FILES.map(async (relativePath) => [
+      relativePath,
+      await readFileSnapshot(`${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${relativePath}`)
+    ])
+  );
+  const packageSnapshots = Object.fromEntries(packageSnapshotEntries);
+  const sourceReadbackEntries = await Promise.all(
+    sourceSpecs.map(async (source) => [source.key, await readJsonFileSnapshot(source.path)])
+  );
+  const sourceReadbacks = Object.fromEntries(sourceReadbackEntries);
+  const [htmlSnapshot, docSnapshot] = await Promise.all([
+    readFileSnapshot("public/review/index.html"),
+    readFileSnapshot(reviewDocPath)
+  ]);
+
+  const handoffParse = parseJsonSnapshot(packageSnapshots["editorial-handoff.json"]);
+  const packageManifestParse = parseJsonSnapshot(packageSnapshots["package-manifest.json"]);
+  const handoff = handoffParse.value || {};
+  const packageManifest = packageManifestParse.value || {};
+  const subtitleCsvParse = parseCsvSnapshot(packageSnapshots["subtitle-cues.csv"]);
+  const shotCsvParse = parseCsvSnapshot(packageSnapshots["shot-list.csv"]);
+  const html = htmlSnapshot.text || "";
+  const doc = docSnapshot.text || "";
+  const readme = packageSnapshots["README_DELIVERY.md"]?.text || "";
+  const narrationMarkdown = packageSnapshots["narration-script.md"]?.text || "";
+
+  const beats = Array.isArray(handoff.beats) ? handoff.beats : [];
+  const narrationSegments = Array.isArray(handoff.narration_segments) ? handoff.narration_segments : [];
+  const subtitleCues = Array.isArray(handoff.subtitle_cues) ? handoff.subtitle_cues : [];
+  const shotCues = Array.isArray(handoff.shot_cues) ? handoff.shot_cues : [];
+  const thumbnailDirections = Array.isArray(handoff.thumbnail_directions) ? handoff.thumbnail_directions : [];
+  const truthGuards = Array.isArray(handoff.truth_guards) ? handoff.truth_guards : [];
+  const rightsGuards = Array.isArray(handoff.rights_guards) ? handoff.rights_guards : [];
+  const sourceArtifactIds = Array.isArray(handoff.source_artifact_ids) ? handoff.source_artifact_ids : [];
+  const beatIds = beats.map((beat) => String(beat?.beat_id || ""));
+  const uniqueBeatIds = beatIds.length === new Set(beatIds).size && beatIds.every(Boolean);
+  const beatById = new Map(beats.map((beat) => [String(beat?.beat_id || ""), beat]));
+
+  const beatContractPassed = beats.length === expectedBeatWindows.length &&
+    uniqueBeatIds &&
+    beats.every((beat, index) => {
+      const expected = expectedBeatWindows[index];
+      return beat?.beat_number === expected.beatNumber &&
+        beat?.title_ja === expected.titleJa &&
+        parseEditorialTimeSeconds(beat?.start_time) === expected.startSeconds &&
+        parseEditorialTimeSeconds(beat?.end_time) === expected.endSeconds &&
+        beat?.start_seconds === expected.startSeconds &&
+        beat?.end_seconds === expected.endSeconds &&
+        hasNonEmptyText(beat?.story_purpose) &&
+        hasNonEmptyText(beat?.truth_boundary) &&
+        hasNonEmptyText(beat?.rights_boundary);
+    });
+
+  const narrationIds = narrationSegments.map((segment) => String(segment?.segment_id || ""));
+  const narrationIdsUnique = narrationIds.length === new Set(narrationIds).size && narrationIds.every(Boolean);
+  const narrationCountsByBeat = countItemsByKey(narrationSegments, "beat_id");
+  const narrationContractPassed = narrationSegments.length === 6 &&
+    narrationIdsUnique &&
+    narrationSegments.every((segment, index) => {
+      const beat = beatById.get(String(segment?.beat_id || ""));
+      return Boolean(beat) &&
+        String(segment?.beat_id || "") === beatIds[index] &&
+        narrationCountsByBeat.get(String(segment?.beat_id || "")) === 1 &&
+        parseEditorialTimeSeconds(segment?.start_time) === beat.start_seconds &&
+        parseEditorialTimeSeconds(segment?.end_time) === beat.end_seconds &&
+        hasNonEmptyText(segment?.text) &&
+        Array.from(String(segment.text)).length >= 20 &&
+        segment?.status === "provisional_editorial_draft" &&
+        Number.isFinite(segment?.character_count_estimate) &&
+        segment.character_count_estimate > 0 &&
+        Number.isFinite(segment?.reading_seconds_estimate) &&
+        segment.reading_seconds_estimate > 0 &&
+        Array.isArray(segment?.held_truth_notes) &&
+        segment.held_truth_notes.length > 0 &&
+        segment.held_truth_notes.every(hasNonEmptyText);
+    });
+
+  const subtitleIds = subtitleCues.map((cue) => String(cue?.cue_id || ""));
+  const subtitleIdsUnique = subtitleIds.length === new Set(subtitleIds).size && subtitleIds.every(Boolean);
+  const subtitleCountsByBeat = countItemsByKey(subtitleCues, "beat_id");
+  const subtitleTiming = validateEditorialTimedSequence(subtitleCues, "cue_id", beatById);
+  const subtitleJsonContractPassed = subtitleCues.length >= 12 &&
+    subtitleIdsUnique &&
+    beatIds.every((beatId) => (subtitleCountsByBeat.get(beatId) || 0) >= 2) &&
+    subtitleTiming.errors.length === 0 &&
+    subtitleCues.every((cue) =>
+      hasNonEmptyText(cue?.text_ja) &&
+      (cue?.line_break_hint === null || cue?.line_break_hint === undefined || typeof cue.line_break_hint === "string") &&
+      cue?.status === "provisional_editorial_draft" &&
+      hasNonEmptyText(cue?.truth_risk_marker)
+    );
+  const subtitleCsvContractPassed = subtitleCsvParse.error === null &&
+    arrayEqualsExact(subtitleCsvParse.headers, subtitleHeaders) &&
+    csvRecordsMatchObjects(subtitleCsvParse.records, subtitleCues, subtitleHeaders);
+
+  const shotIds = shotCues.map((cue) => String(cue?.shot_id || ""));
+  const shotIdsUnique = shotIds.length === new Set(shotIds).size && shotIds.every(Boolean);
+  const shotCountsByBeat = countItemsByKey(shotCues, "beat_id");
+  const shotTiming = validateEditorialTimedSequence(shotCues, "shot_id", beatById);
+  const shotJsonContractPassed = shotCues.length >= 12 &&
+    shotIdsUnique &&
+    beatIds.every((beatId) => (shotCountsByBeat.get(beatId) || 0) >= 2) &&
+    shotTiming.errors.length === 0 &&
+    shotCues.every((cue) =>
+      hasNonEmptyText(cue?.shot_purpose) &&
+      hasNonEmptyText(cue?.visual_direction) &&
+      hasNonEmptyText(cue?.asset_class) &&
+      cue?.asset_status === "unselected" &&
+      hasNonEmptyText(cue?.rights_note) &&
+      hasNonEmptyText(cue?.truth_boundary_note)
+    );
+  const shotCsvContractPassed = shotCsvParse.error === null &&
+    arrayEqualsExact(shotCsvParse.headers, shotHeaders) &&
+    csvRecordsMatchObjects(shotCsvParse.records, shotCues, shotHeaders);
+
+  const expectedTruthMarkers = [
+    ["toma", "fate"],
+    ["brass", "moth"],
+    ["council", "motive"],
+    ["ending", "truth"]
+  ];
+  const truthGuardText = JSON.stringify(truthGuards).toLowerCase();
+  const truthGuardTopicsPresent = expectedTruthMarkers.every((terms) => terms.every((term) => truthGuardText.includes(term)));
+  const truthGuardsHeld = truthGuards.length >= 4 && truthGuards.every((guard) => {
+    const state = String(guard?.status ?? guard?.state ?? guard?.disposition ?? "").toLowerCase();
+    const text = JSON.stringify(guard).toLowerCase();
+    return /(held|hold|unresolved|human_owned|human-owned|open)/.test(state || text) &&
+      !["resolved", "final", "canon", "adopt", "accepted"].includes(state);
+  });
+  const rightsGuardsHeld = rightsGuards.length > 0 && rightsGuards.every((guard) => {
+    const state = String(guard?.status ?? guard?.state ?? guard?.disposition ?? "").toLowerCase();
+    const text = JSON.stringify(guard).toLowerCase();
+    return /(uncleared|not[_ -]?cleared|rights_unknown|rights unknown|unselected|blocked|held|hold|open|closed)/.test(state || text) &&
+      !["cleared", "rights_cleared", "approved"].includes(state);
+  });
+
+  const soundBriefValid = handoff.sound_music_mood_brief &&
+    typeof handoff.sound_music_mood_brief === "object" &&
+    !Array.isArray(handoff.sound_music_mood_brief) &&
+    Object.keys(handoff.sound_music_mood_brief).length > 0;
+  const thumbnailDirectionsValid = thumbnailDirections.length === 3 &&
+    thumbnailDirections.every((direction) => direction && typeof direction === "object" && Object.keys(direction).length > 0);
+  const inventoryPaths = (Array.isArray(handoff.file_inventory) ? handoff.file_inventory : [])
+    .map(editorialInventoryPath)
+    .filter(Boolean);
+  const inventoryValid = EDITORIAL_HANDOFF_REQUIRED_FILES.every((relativePath) => inventoryPaths.includes(relativePath));
+
+  const allPackageFilesPresent = EDITORIAL_HANDOFF_REQUIRED_FILES.every((relativePath) =>
+    packageSnapshots[relativePath]?.exists === true && packageSnapshots[relativePath]?.byteSize > 0
+  );
+  const packageManifestFiles = Array.isArray(packageManifest.files) ? packageManifest.files : [];
+  const packageManifestRelativePaths = packageManifestFiles.map((entry) => String(entry?.relative_path || ""));
+  const packageManifestPathSetValid = packageManifestFiles.length === EDITORIAL_HANDOFF_PACKAGE_FILES.length &&
+    new Set(packageManifestRelativePaths).size === packageManifestRelativePaths.length &&
+    EDITORIAL_HANDOFF_PACKAGE_FILES.every((relativePath) => packageManifestRelativePaths.includes(relativePath)) &&
+    packageManifestRelativePaths.every((relativePath) =>
+      EDITORIAL_HANDOFF_PACKAGE_FILES.includes(relativePath) &&
+      !path.isAbsolute(relativePath) &&
+      !relativePath.split(/[\\/]/).includes("..")
+    );
+  const packageManifestEntryErrors = [];
+  for (const entry of packageManifestFiles) {
+    const relativePath = String(entry?.relative_path || "");
+    const snapshot = packageSnapshots[relativePath];
+    if (!snapshot?.exists) {
+      packageManifestEntryErrors.push(`${relativePath || "<missing path>"}: file missing`);
+      continue;
+    }
+    if (!Number.isInteger(entry?.byte_size) || entry.byte_size !== snapshot.byteSize) {
+      packageManifestEntryErrors.push(`${relativePath}: bytes ${entry?.byte_size} != ${snapshot.byteSize}`);
+    }
+    if (!/^[a-f0-9]{64}$/i.test(String(entry?.sha256 || "")) ||
+        String(entry.sha256).toLowerCase() !== snapshot.sha256.toLowerCase()) {
+      packageManifestEntryErrors.push(`${relativePath}: sha256 mismatch`);
+    }
+  }
+  const packageManifestValid = packageManifestParse.error === null &&
+    packageManifest?.schemaVersion === EDITORIAL_HANDOFF_PACKAGE_MANIFEST_SCHEMA_VERSION &&
+    packageManifest?.artifact_id === expectedArtifactId &&
+    toRepoPath(String(packageManifest?.package_root || "")) === EDITORIAL_HANDOFF_PACKAGE_ROOT &&
+    typeof packageManifest?.generatedAt === "string" &&
+    !Number.isNaN(Date.parse(packageManifest.generatedAt)) &&
+    packageManifest?.passed === true &&
+    packageManifestPathSetValid &&
+    packageManifestEntryErrors.length === 0;
+
+  const packageFilePaths = EDITORIAL_HANDOFF_REQUIRED_FILES.map((relativePath) =>
+    `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${relativePath}`
+  );
+  const packageFileHashes = Object.fromEntries(EDITORIAL_HANDOFF_REQUIRED_FILES.map((relativePath) => [
+    `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${relativePath}`,
+    packageSnapshots[relativePath]?.sha256 || null
+  ]));
+
+  const sourceReadbacksPreserved = sourceSpecs.every((source) => {
+    const sourceRead = sourceReadbacks[source.key];
+    return sourceRead?.error === null &&
+      sourceRead?.value?.artifact_id === source.expectedArtifactId &&
+      sourceRead?.value?.passed === true;
+  });
+  const storyboard = sourceReadbacks.bridge_storyboard_flow?.value || {};
+  const workbench = sourceReadbacks.review_workbench_component_contract?.value || {};
+  const draftBridge = sourceReadbacks.draft_to_video_planning_bridge?.value || {};
+  const contradictoryGuard = sourceReadbacks.contradictory_claim_guard?.value || {};
+  const sourceResultPaths = Object.fromEntries(sourceSpecs.map((source) => [source.key, source.path]));
+  const declaredSourceArtifactsPreserved = expectedSourceArtifactIds.every((artifactId) => sourceArtifactIds.includes(artifactId));
+
+  const handoffPanelIndex = findHtmlAttributeIndex(html, "data-mode-panel", "handoff");
+  const handoffRootIndex = findHtmlAttributeIndex(html, "data-editorial-handoff-root", "true");
+  const handoffRunwayIndex = findHtmlAttributeIndex(html, "data-handoff-runway");
+  const handoffActiveBeatIndex = findHtmlAttributeIndex(html, "data-handoff-active-beat");
+  const handoffPackageFilesIndex = findHtmlAttributeIndex(html, "data-handoff-package-files");
+  const handoffReturnBridgeIndex = findHtmlAttributeIndex(html, "data-handoff-return-bridge");
+  const handoffReturnBriefIndex = findHtmlAttributeIndex(html, "data-handoff-return-brief");
+  const storyboardIndex = findHtmlAttributeIndex(html, "data-bridge-storyboard-flow", "true");
+  const supportingDetailsIndex = findHtmlAttributeIndex(html, "data-bridge-supporting-details", "true");
+  const bridgeHandoffActionIndex = findHtmlAttributeIndex(html, "data-bridge-open-handoff");
+  const handoffHierarchyValid = handoffPanelIndex >= 0 &&
+    handoffRootIndex >= handoffPanelIndex &&
+    [handoffRunwayIndex, handoffActiveBeatIndex, handoffPackageFilesIndex, handoffReturnBridgeIndex, handoffReturnBriefIndex]
+      .every((index) => index > handoffRootIndex) &&
+    hasHtmlAttribute(html, "data-mode-target", "bridge") &&
+    hasHtmlAttribute(html, "data-mode-target", "brief");
+  const storyboardFlowFirstOnBridge = storyboardIndex >= 0 &&
+    supportingDetailsIndex > storyboardIndex &&
+    bridgeHandoffActionIndex > storyboardIndex &&
+    bridgeHandoffActionIndex < supportingDetailsIndex &&
+    countPattern(html, /data-bridge-open-handoff/g) === 1;
+  const handoffModelBlock = extractConstObjectBlock(html, "bridgeEditorialHandoffModel");
+  const handoffModelPresent = handoffModelBlock.includes(expectedArtifactId) &&
+    handoffModelBlock.includes(expectedCandidateId) &&
+    handoffModelBlock.includes(expectedChannelRouteId) &&
+    handoffModelBlock.includes("180");
+  const briefRoutePreserved = hasHtmlAttribute(html, "data-mode-panel", "brief") &&
+    html.includes('data-review-workbench-canvas="true"') &&
+    html.includes('data-single-framing-source="active-decision-canvas"');
+  const darkModePreserved = html.includes(':root[data-theme="dark"]') &&
+    html.includes(':root[data-theme="auto"]') &&
+    hasHtmlAttribute(html, "data-theme-target", "light") &&
+    hasHtmlAttribute(html, "data-theme-target", "dark") &&
+    hasHtmlAttribute(html, "data-theme-target", "auto") &&
+    html.includes(":focus-visible");
+  const keyboardNavigationPreserved = html.includes("keydown") &&
+    html.includes("ArrowLeft") &&
+    html.includes("ArrowRight");
+  const packageLinksPresent = EDITORIAL_HANDOFF_REQUIRED_FILES.every((relativePath) => html.includes(relativePath));
+
+  const manifestValidationCommand = String(artifactManifest.validation_command || "");
+  const rootManifestRegistered = rootManifestRead.error === null &&
+    artifactManifest.artifact_id === expectedArtifactId &&
+    artifactManifest.bridge_editorial_handoff_pack_result_path === DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT &&
+    (artifactManifest.bridge_editorial_handoff_pack_doc_path || artifactManifest.review_doc_path) === reviewDocPath &&
+    artifactManifest.default_review_mode === "brief" &&
+    manifestValidationCommand.includes("validate-bridge-editorial-handoff-pack") &&
+    !manifestValidationCommand.includes("smoke-bridge-editorial-handoff-pack");
+  const docRegistered = docSnapshot.exists &&
+    doc.includes(expectedArtifactId) &&
+    doc.includes(expectedReviewRoute) &&
+    doc.includes("validate-bridge-editorial-handoff-pack") &&
+    doc.includes("smoke-bridge-editorial-handoff-pack") &&
+    EDITORIAL_HANDOFF_REQUIRED_FILES.every((relativePath) => doc.includes(relativePath));
+
+  const readBoundary = (value, key) => value?.[key] ?? value?.boundaries?.[key];
+  const boundariesClosed = (value) =>
+    readBoundary(value, "local_only") === true &&
+    readBoundary(value, "external_call") === false &&
+    readBoundary(value, "provider_configured") === false &&
+    readBoundary(value, "credentials_touched") === false &&
+    readBoundary(value, "public_upload") === false &&
+    readBoundary(value, "ai_video_generation") === false &&
+    readBoundary(value, "production_render") === false &&
+    readBoundary(value, "database_persistence") === false &&
+    readBoundary(value, "final_canon_decision") === false &&
+    readBoundary(value, "rights_cleared_claim") === false;
+  const credentialFindings = [
+    ...collectCredentialMaterial(readback),
+    ...collectCredentialMaterial(handoff)
+  ];
+  const boundaryGatesClosed = boundariesClosed(readback) &&
+    boundariesClosed(handoff) &&
+    credentialFindings.length === 0;
+
+  const readmeContractPassed = readme.includes(expectedArtifactId) &&
+    readme.includes(expectedCandidateId) &&
+    readme.includes(expectedChannelRouteId) &&
+    /provisional/i.test(readme) &&
+    /truth/i.test(readme) &&
+    /rights/i.test(readme) &&
+    expectedBeatWindows.every((beat) => readme.includes(beat.titleJa)) &&
+    EDITORIAL_HANDOFF_REQUIRED_FILES.every((relativePath) => readme.includes(relativePath));
+  const narrationMarkdownContractPassed = narrationSegments.length === 6 &&
+    narrationSegments.every((segment, index) =>
+      narrationMarkdown.includes(String(segment.segment_id)) &&
+      narrationMarkdown.includes(expectedBeatWindows[index].titleJa) &&
+      narrationMarkdown.includes(String(segment.start_time)) &&
+      narrationMarkdown.includes(String(segment.end_time))
+    );
+
+  check(
+    "identity",
+    readback?.schemaVersion === BRIDGE_EDITORIAL_HANDOFF_PACK_SCHEMA_VERSION &&
+      readback?.artifact_id === expectedArtifactId &&
+      readback?.editorial_status === "provisional_editorial_draft" &&
+      readback?.review_ui === "public/review/index.html" &&
+      (readback?.review_route || readback?.access_route) === expectedReviewRoute &&
+      readback?.selected_candidate_id === expectedCandidateId &&
+      readback?.selected_channel_route_id === expectedChannelRouteId,
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; status=${readback?.editorial_status}; route=${readback?.review_route || readback?.access_route}`
+  );
+  check(
+    "canonical_package_identity",
+    handoffParse.error === null &&
+      handoff?.schemaVersion === EDITORIAL_HANDOFF_SCHEMA_VERSION &&
+      handoff?.artifact_id === expectedArtifactId &&
+      handoff?.editorial_status === "provisional_editorial_draft" &&
+      handoff?.selected_candidate_id === expectedCandidateId &&
+      handoff?.selected_channel_route_id === expectedChannelRouteId &&
+      handoff?.total_duration_seconds === 180,
+    `parse=${handoffParse.error || "ok"}; artifact=${handoff?.artifact_id}; schema=${handoff?.schemaVersion}; status=${handoff?.editorial_status}; duration=${handoff?.total_duration_seconds}`
+  );
+  check(
+    "source_artifacts_preserved",
+    sourceReadbacksPreserved && declaredSourceArtifactsPreserved,
+    `declared=${sourceArtifactIds.join(",")}; readbacks=${sourceSpecs.map((source) => `${source.key}:${sourceReadbacks[source.key]?.value?.artifact_id}/${sourceReadbacks[source.key]?.value?.passed}/${sourceReadbacks[source.key]?.error || "ok"}`).join("; ")}`
+  );
+  check(
+    "candidate_channel_duration",
+    handoff?.selected_candidate_id === expectedCandidateId &&
+      handoff?.selected_channel_route_id === expectedChannelRouteId &&
+      handoff?.total_duration_seconds === 180 &&
+      storyboard?.selected_candidate_id === expectedCandidateId &&
+      storyboard?.selected_channel_route_id === expectedChannelRouteId &&
+      workbench?.selected_candidate_id === expectedCandidateId &&
+      workbench?.selected_channel_route_id === expectedChannelRouteId &&
+      draftBridge?.selected_candidate_id === expectedCandidateId &&
+      draftBridge?.selected_channel_route_id === expectedChannelRouteId,
+    `candidate=${handoff?.selected_candidate_id}; channel=${handoff?.selected_channel_route_id}; duration=${handoff?.total_duration_seconds}`
+  );
+  check(
+    "six_beat_baseline",
+    beatContractPassed,
+    `beats=${beats.length}; ids=${beatIds.join(",")}; windows=${beats.map((beat) => `${beat?.title_ja}:${beat?.start_time}-${beat?.end_time}/${beat?.start_seconds}-${beat?.end_seconds}`).join("; ")}`
+  );
+  check(
+    "narration_contract",
+    narrationContractPassed && narrationMarkdownContractPassed,
+    `segments=${narrationSegments.length}; unique=${narrationIdsUnique}; perBeat=${beatIds.map((beatId) => `${beatId}:${narrationCountsByBeat.get(beatId) || 0}`).join(",")}; markdown=${narrationMarkdownContractPassed}`
+  );
+  check(
+    "subtitle_contract",
+    subtitleJsonContractPassed && subtitleCsvContractPassed,
+    `cues=${subtitleCues.length}; unique=${subtitleIdsUnique}; timing=${subtitleTiming.errors.join(" | ") || "ok"}; csv=${subtitleCsvParse.error || "ok"}; headers=${subtitleCsvParse.headers.join(",")}; crossMatch=${csvRecordsMatchObjects(subtitleCsvParse.records, subtitleCues, subtitleHeaders)}`
+  );
+  check(
+    "shot_contract",
+    shotJsonContractPassed && shotCsvContractPassed,
+    `shots=${shotCues.length}; unique=${shotIdsUnique}; timing=${shotTiming.errors.join(" | ") || "ok"}; csv=${shotCsvParse.error || "ok"}; headers=${shotCsvParse.headers.join(",")}; crossMatch=${csvRecordsMatchObjects(shotCsvParse.records, shotCues, shotHeaders)}`
+  );
+  check(
+    "editorial_briefs_and_inventory",
+    thumbnailDirectionsValid && soundBriefValid && inventoryValid && readmeContractPassed,
+    `thumbnails=${thumbnailDirections.length}; sound=${soundBriefValid}; inventory=${inventoryPaths.join(",")}; readme=${readmeContractPassed}`
+  );
+  check(
+    "truth_and_rights_guards",
+    truthGuardTopicsPresent &&
+      truthGuardsHeld &&
+      rightsGuardsHeld &&
+      contradictoryGuard?.passed === true &&
+      handoff?.editorial_status === "provisional_editorial_draft" &&
+      narrationSegments.every((segment) => segment?.status === "provisional_editorial_draft") &&
+      subtitleCues.every((cue) => cue?.status === "provisional_editorial_draft") &&
+      readBoundary(handoff, "final_canon_decision") === false &&
+      readBoundary(handoff, "rights_cleared_claim") === false,
+    `truth=${truthGuards.length}/${truthGuardTopicsPresent}/${truthGuardsHeld}; rights=${rightsGuards.length}/${rightsGuardsHeld}; contradictory=${contradictoryGuard?.passed}`
+  );
+  check(
+    "package_files_present",
+    allPackageFilesPresent && handoffParse.error === null && subtitleCsvParse.error === null && shotCsvParse.error === null,
+    EDITORIAL_HANDOFF_REQUIRED_FILES.map((relativePath) => `${relativePath}:${packageSnapshots[relativePath]?.exists}/${packageSnapshots[relativePath]?.byteSize}/${packageSnapshots[relativePath]?.error || "ok"}`).join("; ")
+  );
+  check(
+    "package_manifest_integrity",
+    packageManifestValid,
+    `parse=${packageManifestParse.error || "ok"}; schema=${packageManifest?.schemaVersion}; artifact=${packageManifest?.artifact_id}; root=${packageManifest?.package_root}; files=${packageManifestRelativePaths.join(",")}; errors=${packageManifestEntryErrors.join(" | ") || "none"}`
+  );
+  check(
+    "handoff_route_hierarchy",
+    handoffHierarchyValid && handoffModelPresent && packageLinksPresent,
+    `panel=${handoffPanelIndex}; root=${handoffRootIndex}; runway=${handoffRunwayIndex}; active=${handoffActiveBeatIndex}; files=${handoffPackageFilesIndex}; bridgeReturn=${handoffReturnBridgeIndex}; briefReturn=${handoffReturnBriefIndex}; model=${handoffModelPresent}; links=${packageLinksPresent}`
+  );
+  check(
+    "bridge_and_brief_preserved",
+    storyboardFlowFirstOnBridge &&
+      briefRoutePreserved &&
+      darkModePreserved &&
+      keyboardNavigationPreserved &&
+      storyboard?.passed === true &&
+      workbench?.passed === true,
+    `storyboard=${storyboardIndex}; action=${bridgeHandoffActionIndex}; supporting=${supportingDetailsIndex}; brief=${briefRoutePreserved}; dark=${darkModePreserved}; keyboard=${keyboardNavigationPreserved}`
+  );
+  check(
+    "docs_and_root_manifest_registered",
+    docRegistered && rootManifestRegistered,
+    `doc=${docRegistered}/${docSnapshot.error || "ok"}; manifest=${rootManifestRegistered}/${rootManifestRead.error || "ok"}; active=${artifactManifest?.artifact_id}; result=${artifactManifest?.bridge_editorial_handoff_pack_result_path}; default=${artifactManifest?.default_review_mode}; readOnly=${!manifestValidationCommand.includes("smoke-bridge-editorial-handoff-pack")}`
+  );
+  check(
+    "boundary_gates_closed",
+    boundaryGatesClosed,
+    `readback=${boundariesClosed(readback)}; package=${boundariesClosed(handoff)}; findings=${credentialFindings.join(",") || "none"}`
+  );
+
+  const packageManifestHashes = Object.fromEntries(packageManifestFiles.map((entry) => [
+    String(entry?.relative_path || ""),
+    String(entry?.sha256 || "")
+  ]));
+  const boundaries = {
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    credential_material_findings: credentialFindings
+  };
+
+  return {
+    schemaVersion: BRIDGE_EDITORIAL_HANDOFF_PACK_SCHEMA_VERSION,
+    artifact_id: expectedArtifactId,
+    title: "Fast Fiction Factory Bridge Editorial Handoff Pack",
+    generatedAt: new Date().toISOString(),
+    review_status: "ready_for_local_manual_delivery",
+    editorial_status: "provisional_editorial_draft",
+    provisional_editorial_status: true,
+    review_input_mode: "freeform",
+    review_ui: "public/review/index.html",
+    access_route: expectedReviewRoute,
+    review_route: expectedReviewRoute,
+    bridge_route: expectedBridgeRoute,
+    brief_route: expectedBriefRoute,
+    input_result_path: toRepoPath(readbackPath),
+    canonical_package_path: canonicalPackagePath,
+    source_storyboard_artifact_id: "fff-bridge-storyboard-flow-001",
+    source_storyboard_preserved: checks.source_artifacts_preserved?.passed === true && storyboard?.passed === true,
+    source_artifact_ids: sourceArtifactIds,
+    source_result_paths: sourceResultPaths,
+    selected_candidate_id: handoff?.selected_candidate_id || expectedCandidateId,
+    selected_channel_route_id: handoff?.selected_channel_route_id || expectedChannelRouteId,
+    package_directory: EDITORIAL_HANDOFF_PACKAGE_ROOT,
+    package_file_paths: packageFilePaths,
+    package_file_hashes: packageFileHashes,
+    package_manifest_hashes: packageManifestHashes,
+    beat_count: beats.length,
+    beat_ids: beatIds,
+    total_duration: handoff?.total_duration_seconds ?? null,
+    total_duration_seconds: handoff?.total_duration_seconds ?? null,
+    narration_segment_count: narrationSegments.length,
+    subtitle_cue_count: subtitleCues.length,
+    shot_cue_count: shotCues.length,
+    thumbnail_direction_count: thumbnailDirections.length,
+    truth_guard_count: truthGuards.length,
+    rights_guard_count: rightsGuards.length,
+    truth_guards_present: truthGuardTopicsPresent && truthGuardsHeld,
+    rights_guards_present: rightsGuardsHeld,
+    package_manifest_valid: packageManifestValid,
+    handoff_route_first_screen_hierarchy_valid: handoffHierarchyValid && handoffModelPresent && packageLinksPresent,
+    storyboard_flow_first_on_bridge: storyboardFlowFirstOnBridge,
+    bridge_handoff_action_present: bridgeHandoffActionIndex >= 0,
+    brief_route_preserved: briefRoutePreserved,
+    dark_mode_preserved: darkModePreserved,
+    keyboard_navigation_preserved: keyboardNavigationPreserved,
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    boundaries,
+    summary: {
+      source_storyboard_preserved: checks.source_artifacts_preserved?.passed === true && storyboard?.passed === true,
+      beat_count: beats.length,
+      total_duration_seconds: handoff?.total_duration_seconds ?? null,
+      narration_segment_count: narrationSegments.length,
+      subtitle_cue_count: subtitleCues.length,
+      shot_cue_count: shotCues.length,
+      thumbnail_direction_count: thumbnailDirections.length,
+      truth_guards_present: truthGuardTopicsPresent && truthGuardsHeld,
+      rights_guards_present: rightsGuardsHeld,
+      package_manifest_valid: packageManifestValid,
+      handoff_route_first_screen_hierarchy_valid: handoffHierarchyValid && handoffModelPresent && packageLinksPresent,
+      dark_mode_preserved: darkModePreserved,
+      local_only: true,
+      external_call_attempted: false,
+      provider_configured: false,
+      credentials_touched: false,
+      public_upload: false,
+      ai_video_generation: false,
+      production_render: false,
+      database_persistence: false,
+      final_canon_decision: false,
+      rights_cleared_claim: false,
+      failures: failures.length
+    },
+    validation_notes: [
+      "The Editorial Handoff Pack is a local manual-delivery package and remains a provisional editorial draft.",
+      "Six exact baseline beats align narration, subtitle cues, shot cues, truth guards, and rights guards across Markdown, CSV, and JSON.",
+      "Package integrity uses raw-byte sizes and SHA256 hashes; package-manifest.json intentionally has no self-hash.",
+      "The Handoff route is separate from Bridge, while the Storyboard Flow remains the first substantive Bridge surface.",
+      "Provider/API, credentials, AI video, render, upload, database, final canon, and rights clearance remain closed."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateGuidedReviewFlowWorkspace(readback, readbackPath) {
   const failures = [];
   const checks = {};
@@ -12532,6 +13179,292 @@ async function fileSizeOrZero(filePath) {
   }
 }
 
+async function readFileSnapshot(filePath) {
+  try {
+    const buffer = await readFile(filePath);
+    return {
+      path: toRepoPath(filePath),
+      exists: true,
+      buffer,
+      text: buffer.toString("utf8"),
+      byteSize: buffer.byteLength,
+      sha256: createHash("sha256").update(buffer).digest("hex"),
+      error: null
+    };
+  } catch (error) {
+    return {
+      path: toRepoPath(filePath),
+      exists: false,
+      buffer: null,
+      text: "",
+      byteSize: 0,
+      sha256: null,
+      error: error.message
+    };
+  }
+}
+
+function parseJsonSnapshot(snapshot) {
+  if (!snapshot?.exists) {
+    return { value: null, error: snapshot?.error || "file missing" };
+  }
+  try {
+    return { value: JSON.parse(snapshot.text), error: null };
+  } catch (error) {
+    return { value: null, error: `Invalid JSON in ${snapshot.path}: ${error.message}` };
+  }
+}
+
+async function readJsonFileSnapshot(filePath) {
+  const snapshot = await readFileSnapshot(filePath);
+  const parsed = parseJsonSnapshot(snapshot);
+  return {
+    ...snapshot,
+    value: parsed.value,
+    error: parsed.error
+  };
+}
+
+function parseCsvSnapshot(snapshot) {
+  if (!snapshot?.exists) {
+    return { headers: [], records: [], error: snapshot?.error || "file missing" };
+  }
+  try {
+    const parsed = parseCsvText(snapshot.text);
+    return { ...parsed, error: null };
+  } catch (error) {
+    return { headers: [], records: [], error: `Invalid CSV in ${snapshot.path}: ${error.message}` };
+  }
+}
+
+function parseCsvText(text) {
+  const rows = [];
+  let row = [];
+  let field = "";
+  let inQuotes = false;
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    if (inQuotes) {
+      if (char === '"') {
+        if (text[index + 1] === '"') {
+          field += '"';
+          index += 1;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        field += char;
+      }
+      continue;
+    }
+
+    if (char === '"') {
+      if (field.length > 0) {
+        throw new Error("unexpected quote inside an unquoted field");
+      }
+      inQuotes = true;
+    } else if (char === ",") {
+      row.push(field);
+      field = "";
+    } else if (char === "\n" || char === "\r") {
+      if (char === "\r" && text[index + 1] === "\n") {
+        index += 1;
+      }
+      row.push(field);
+      if (row.some((value) => value.length > 0)) {
+        rows.push(row);
+      }
+      row = [];
+      field = "";
+    } else {
+      field += char;
+    }
+  }
+
+  if (inQuotes) {
+    throw new Error("unterminated quoted field");
+  }
+  row.push(field);
+  if (row.some((value) => value.length > 0)) {
+    rows.push(row);
+  }
+  if (rows.length === 0) {
+    throw new Error("CSV is empty");
+  }
+
+  const headers = rows[0].map((value, index) => index === 0 ? value.replace(/^\uFEFF/, "") : value);
+  if (new Set(headers).size !== headers.length || headers.some((header) => header.length === 0)) {
+    throw new Error("CSV headers must be unique and non-empty");
+  }
+  const records = rows.slice(1).map((values, index) => {
+    if (values.length !== headers.length) {
+      throw new Error(`row ${index + 2} has ${values.length} columns; expected ${headers.length}`);
+    }
+    return Object.fromEntries(headers.map((header, columnIndex) => [header, values[columnIndex]]));
+  });
+  return { headers, records };
+}
+
+function parseEditorialTimeSeconds(value) {
+  if (typeof value !== "string" && typeof value !== "number") {
+    return null;
+  }
+  if (typeof value === "number") {
+    return Number.isFinite(value) && value >= 0 ? value : null;
+  }
+  const normalized = value.trim();
+  if (!normalized) {
+    return null;
+  }
+  const parts = normalized.split(":");
+  if (parts.length !== 2 && parts.length !== 3) {
+    return null;
+  }
+  const numbers = parts.map(Number);
+  if (numbers.some((number) => !Number.isFinite(number) || number < 0)) {
+    return null;
+  }
+  const seconds = numbers[numbers.length - 1];
+  const minutes = numbers[numbers.length - 2];
+  const hours = numbers.length === 3 ? numbers[0] : 0;
+  if (seconds >= 60 || (numbers.length === 3 && minutes >= 60)) {
+    return null;
+  }
+  return (hours * 3600) + (minutes * 60) + seconds;
+}
+
+function validateEditorialTimedSequence(items, idKey, beatById) {
+  const errors = [];
+  let previousEnd = -1;
+  for (const [index, item] of items.entries()) {
+    const id = String(item?.[idKey] || `<row ${index + 1}>`);
+    const beatId = String(item?.beat_id || "");
+    const beat = beatById.get(beatId);
+    const start = parseEditorialTimeSeconds(item?.start_time);
+    const end = parseEditorialTimeSeconds(item?.end_time);
+    if (!beat) {
+      errors.push(`${id}: invalid beat_id ${beatId || "<empty>"}`);
+      continue;
+    }
+    if (start === null || end === null || start >= end) {
+      errors.push(`${id}: invalid range ${item?.start_time}-${item?.end_time}`);
+      continue;
+    }
+    if (start < beat.start_seconds || end > beat.end_seconds) {
+      errors.push(`${id}: range ${start}-${end} is outside ${beatId} ${beat.start_seconds}-${beat.end_seconds}`);
+    }
+    if (start < previousEnd) {
+      errors.push(`${id}: start ${start} overlaps or precedes prior end ${previousEnd}`);
+    }
+    previousEnd = end;
+  }
+  return { errors };
+}
+
+function countItemsByKey(items, key) {
+  const counts = new Map();
+  for (const item of items) {
+    const value = String(item?.[key] || "");
+    counts.set(value, (counts.get(value) || 0) + 1);
+  }
+  return counts;
+}
+
+function hasNonEmptyText(value) {
+  return typeof value === "string" && value.trim().length > 0;
+}
+
+function arrayEqualsExact(value, expected) {
+  return Array.isArray(value) &&
+    value.length === expected.length &&
+    value.every((item, index) => item === expected[index]);
+}
+
+function csvRecordsMatchObjects(records, objects, headers) {
+  if (!Array.isArray(records) || !Array.isArray(objects) || records.length !== objects.length) {
+    return false;
+  }
+  return records.every((record, index) => headers.every((header) =>
+    String(record?.[header] ?? "") === String(objects[index]?.[header] ?? "")
+  ));
+}
+
+function editorialInventoryPath(entry) {
+  const raw = typeof entry === "string"
+    ? entry
+    : entry?.relative_path ?? entry?.path ?? entry?.file_path ?? entry?.filename ?? entry?.name;
+  if (!raw) {
+    return "";
+  }
+  const normalized = toRepoPath(String(raw)).replace(/^\.\//, "");
+  const packagePrefix = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/`;
+  return normalized.startsWith(packagePrefix) ? normalized.slice(packagePrefix.length) : normalized;
+}
+
+function htmlAttributePattern(attributeName, expectedValue) {
+  const name = escapeRegExp(attributeName);
+  if (expectedValue === undefined) {
+    return new RegExp(`\\b${name}(?:\\s*=\\s*(?:"[^"]*"|'[^']*'|[^\\s>]+))?`, "i");
+  }
+  const value = escapeRegExp(expectedValue);
+  return new RegExp(`\\b${name}\\s*=\\s*(?:"${value}"|'${value}')`, "i");
+}
+
+function hasHtmlAttribute(html, attributeName, expectedValue) {
+  return htmlAttributePattern(attributeName, expectedValue).test(html);
+}
+
+function findHtmlAttributeIndex(html, attributeName, expectedValue) {
+  return html.search(htmlAttributePattern(attributeName, expectedValue));
+}
+
+async function buildEditorialHandoffPackageManifest() {
+  const files = [];
+  for (const relativePath of EDITORIAL_HANDOFF_PACKAGE_FILES) {
+    const filePath = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${relativePath}`;
+    const buffer = await readFile(filePath);
+    files.push({
+      relative_path: relativePath,
+      byte_size: buffer.byteLength,
+      sha256: createHash("sha256").update(buffer).digest("hex")
+    });
+  }
+  return {
+    schemaVersion: EDITORIAL_HANDOFF_PACKAGE_MANIFEST_SCHEMA_VERSION,
+    artifact_id: "fff-bridge-editorial-handoff-pack-001",
+    generatedAt: new Date().toISOString(),
+    package_root: EDITORIAL_HANDOFF_PACKAGE_ROOT,
+    files,
+    passed: true
+  };
+}
+
+async function readBridgeEditorialHandoffSmokeSeed(inputPath, targetPath) {
+  if (await fileSizeOrZero(inputPath) > 0) {
+    return readJson(inputPath);
+  }
+  if (path.resolve(inputPath) !== path.resolve(targetPath)) {
+    return readJson(inputPath);
+  }
+  const handoff = await readJson(`${EDITORIAL_HANDOFF_PACKAGE_ROOT}/editorial-handoff.json`);
+  return {
+    schemaVersion: BRIDGE_EDITORIAL_HANDOFF_PACK_SCHEMA_VERSION,
+    artifact_id: "fff-bridge-editorial-handoff-pack-001",
+    editorial_status: "provisional_editorial_draft",
+    review_ui: "public/review/index.html",
+    review_route: "public/review/index.html?mode=handoff",
+    access_route: "public/review/index.html?mode=handoff",
+    bridge_route: "public/review/index.html?mode=bridge",
+    brief_route: "public/review/index.html?mode=brief",
+    source_storyboard_artifact_id: "fff-bridge-storyboard-flow-001",
+    selected_candidate_id: handoff.selected_candidate_id,
+    selected_channel_route_id: handoff.selected_channel_route_id,
+    boundaries: handoff.boundaries,
+    ...handoff.boundaries
+  };
+}
+
 function extractFirstHtmlSectionByMarker(html, marker) {
   return extractFirstHtmlBlockByMarker(html, "section", marker);
 }
@@ -13433,6 +14366,8 @@ Usage:
   node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json> [output.json]
   node tools/fff-state.mjs validate-review-workbench-component-contract <review-workbench-component-contract-result.json>
   node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
+  node tools/fff-state.mjs validate-bridge-editorial-handoff-pack <bridge-editorial-handoff-pack-result.json>
+  node tools/fff-state.mjs smoke-bridge-editorial-handoff-pack <bridge-editorial-handoff-pack-result.json> [output.json]
   node tools/fff-state.mjs validate-bridge-storyboard-flow <bridge-storyboard-flow-result.json>
   node tools/fff-state.mjs smoke-bridge-storyboard-flow <bridge-storyboard-flow-result.json> [output.json]
   node tools/fff-state.mjs validate-guided-review-flow-workspace <guided-review-flow-workspace-result.json>
@@ -13483,6 +14418,9 @@ Default apply decision shell guard diet output:
 
 Default review workbench component contract output:
   ${DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT}
+
+Default bridge editorial handoff pack output:
+  ${DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT}
 
 Default bridge storyboard flow output:
   ${DEFAULT_BRIDGE_STORYBOARD_FLOW_OUTPUT}

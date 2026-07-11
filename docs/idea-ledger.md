@@ -2,14 +2,23 @@
 
 ## Residual Work
 
+### Bridge Editorial Handoff Pack
+
+- Purpose: Turn the accepted six-beat Bridge implementation checkpoint into one portable local package that a writer, subtitle editor, or video editor can use without reconstructing the plan from review shelves.
+- Effect: Adds `fff-bridge-editorial-handoff-pack-001`, `public/review/index.html?mode=handoff`, one compact Bridge action, `artifacts/editorial-handoff/` with six delivery files, 6 complete provisional narration segments, 20 subtitle cues, 19 generic shot cues, 3 thumbnail directions, truth/rights guards, integrity metadata, `docs/review/bridge-editorial-handoff-pack.md`, and `artifacts/bridge-editorial-handoff-pack-result.json`.
+- Requirements: Preserve the exact six-beat order and 180-second allocation, keep all prose `provisional_editorial_draft`, keep every asset `unselected`, keep Toma fate, brass moth truth/function, Council motive, and ending truth `unresolved_human_owned`, keep manifest validation read-only, and keep provider/API/credential/generation/render/upload/database/rights/final-canon gates closed.
+- State: Implemented for local manual delivery and readback. The package is portable and hash-verifiable but is not final narration, canon, rights clearance, production approval, or public delivery.
+- Owner: Product implementer for package integrity and local UI; human writer/subtitle editor/video editor for later manual refinement; human author for story truth and canon.
+- Next move: Use `public/review/index.html?mode=handoff` and `artifacts/editorial-handoff/` for manual editorial work. Any timing change, asset selection, rights claim, final narration, or canon decision requires an explicit later slice.
+
 ### Bridge Storyboard Flow
 
 - Purpose: Turn the accepted Workbench route choice into a story-shaped Bridge readback that is faster to scan than the preserved long decision/refinement page.
 - Effect: Adds `fff-bridge-storyboard-flow-001` at `public/review/index.html?mode=bridge`, exactly six Japanese-first beats, a compact rail, one active canvas, Previous / Next and keyboard navigation, one return to Brief, collapsed supporting Bridge evidence, `docs/review/bridge-storyboard-flow.md`, `artifacts/bridge-storyboard-flow-result.json`, and local screenshot evidence when capture succeeds.
 - Requirements: Preserve `fff-review-workbench-component-contract-001`, the selected candidate/channel, draft/bridge/guard source readbacks, dark mode, keyboard focus, all held truths, and all provider/API/credential/video/render/upload/database/rights/final-canon boundaries.
-- State: Implemented for local readback; `OPERATOR_FIRST` is closed from the accepted human observation. The Flow is planning-only and does not approve story truth, timing, assets, rights, or production.
+- State: Implemented and preserved as the source baseline for `fff-bridge-editorial-handoff-pack-001`; `OPERATOR_FIRST` is closed from the accepted human observation. The Flow is planning-only and does not approve story truth, timing, assets, rights, or production.
 - Owner: Product implementer for the local Flow and validation; human reviewer for accept/revise/return of beat order and approximate timing.
-- Next move: Traverse all six beats at `public/review/index.html?mode=bridge`, then accept, revise, or return the order and timing allocation. Reopen wording only after that judgment.
+- Next move: Use the focused Handoff route for manual editorial transfer. Reopen the source Flow only when a later explicit decision changes order or timing.
 
 ### Review Workbench Component Contract
 
@@ -49,12 +58,12 @@
 
 ### Repo Sync / Next Terminal Handoff
 
-- Purpose: Keep the latest Review Workbench Component Contract context durable in repository files so another terminal can resume from `master` without chat history.
+- Purpose: Keep the latest Editorial Handoff Pack context durable in repository files so another terminal can resume from `master` without chat history.
 - Effect: Updates the handoff/current-status/project-context docs with the current active artifact, baseline handoff commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
 - Requirements: Do not change product UI behavior, do not stage local transport residue, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: The active implementation starts from synced `62f7d74 Harden restart validation and handoff`, with `master...origin/master` at `0 0` before edits, the manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
+- State: The active implementation starts from synced `0322b4963c8ffd85c90a183ba437cb91df36e8ce Add bridge storyboard flow`, with `master...origin/master` at `0 0` before edits, the Editorial Handoff manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
-- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=bridge` for the six-beat Flow readback.
+- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=handoff` and `artifacts/editorial-handoff/README_DELIVERY.md` for manual transfer.
 
 ### Layout Research Decision Shell
 

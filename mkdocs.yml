@@ -64,6 +64,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Bridge Editorial Handoff Pack: review/bridge-editorial-handoff-pack.md
       - Bridge Storyboard Flow: review/bridge-storyboard-flow.md
       - Review Workbench Component Contract: review/review-workbench-component-contract.md
       - Apply Decision Shell Guard Diet: review/apply-decision-shell-guard-diet.md

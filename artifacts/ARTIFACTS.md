@@ -1,5 +1,28 @@
 # Artifacts
 
+## fff-bridge-editorial-handoff-pack-001
+
+- Title: Fast Fiction Factory Bridge Editorial Handoff Pack
+- Purpose: Convert the six-beat Bridge Storyboard Flow into a local manual-delivery package with aligned provisional narration, subtitle timing, shot timing, truth/rights guards, and portable integrity metadata.
+- Review UI: `public/review/index.html`
+- Primary route: `public/review/index.html?mode=handoff`
+- Source route: `public/review/index.html?mode=bridge`
+- Return route: `public/review/index.html?mode=brief`
+- Package directory: `artifacts/editorial-handoff/`
+- Package files: `README_DELIVERY.md`, `narration-script.md`, `subtitle-cues.csv`, `shot-list.csv`, `editorial-handoff.json`, `package-manifest.json`
+- Review doc: `docs/review/bridge-editorial-handoff-pack.md`
+- Readback result: `artifacts/bridge-editorial-handoff-pack-result.json`
+- Visual evidence: `artifacts/review-screens/bridge-editorial-handoff-pack.png` (900x1200, 141616 bytes, SHA256 `CB72EB10A02EB0E4E6BE21D19B7A0D515D3C92756915C5F5446ACE6387ECE7E2`)
+- Source artifact: `fff-bridge-storyboard-flow-001`
+- Preserved artifacts: `fff-review-workbench-component-contract-001`, `fff-draft-to-video-planning-bridge-001`, `fff-bridge-refinement-overview-ribbon-001`, `fff-one-story-draft-review-pack-001`, `fff-designer-candidate-dashboard-001`, `fff-contradictory-claim-guard-001`
+- Candidate/channel: `designer-content-moth-investigation-3m` / `designer-channel-mystery-lore`
+- Editorial contract: exactly 6 beats / 180 seconds / 6 narration segments / 20 subtitle cues / 19 shot cues / 3 thumbnail directions / all shots `asset_status=unselected`
+- State validator: `tools/fff-state.mjs`
+- Read-only validation command: `node tools/fff-state.mjs validate-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json`
+- Intentional metadata/result regeneration: `node tools/fff-state.mjs smoke-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json artifacts/bridge-editorial-handoff-pack-result.json`
+- Review status: `ready_for_local_manual_delivery`
+- State: Active local editorial package. All prose remains `provisional_editorial_draft`; Toma fate, brass moth truth/function, Council motive, and ending truth remain unresolved; provider/API, credentials, generation, render, upload, database, rights clearance, and final canon remain closed.
+
 ## fff-bridge-storyboard-flow-001
 
 - Title: Fast Fiction Factory Bridge Storyboard Flow

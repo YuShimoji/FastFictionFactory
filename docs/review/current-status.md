@@ -2,9 +2,16 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-bridge-storyboard-flow-001`
-- Latest implementation baseline: synced `62f7d74 Harden restart validation and handoff`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
+- Artifact id: `fff-bridge-editorial-handoff-pack-001`
+- Latest implementation baseline: synced `0322b4963c8ffd85c90a183ba437cb91df36e8ce Add bridge storyboard flow`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
 - Review UI: `public/review/index.html`
+- Focused Editorial Handoff mode: `public/review/index.html?mode=handoff`
+- Portable package directory: `artifacts/editorial-handoff/`
+- Editorial Handoff Pack doc: `docs/review/bridge-editorial-handoff-pack.md`
+- Editorial Handoff Pack result: `artifacts/bridge-editorial-handoff-pack-result.json`
+- Editorial Handoff Pack screenshot: `artifacts/review-screens/bridge-editorial-handoff-pack.png` (900x1200, 141616 bytes, SHA256 `CB72EB10A02EB0E4E6BE21D19B7A0D515D3C92756915C5F5446ACE6387ECE7E2`)
+- Editorial Handoff Pack read-only validation command: `node tools/fff-state.mjs validate-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json`
+- Editorial Handoff Pack metadata/result regeneration command: `node tools/fff-state.mjs smoke-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json artifacts/bridge-editorial-handoff-pack-result.json` (intentional write of only the new package manifest and result)
 - Review Brief mode with role-contracted Review Workbench: `public/review/index.html?mode=brief`
 - Layout Research Lab mode preserved: `public/review/index.html?mode=layout-lab`
 - Review Home compatibility alias: `public/review/index.html?mode=home`
@@ -14,7 +21,8 @@
 - Open command: `Invoke-Item .\public\review\index.html`
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1`
 - Repo-local shell launcher: `./scripts/operator/open_review.sh`
-- Operator observation: accepted. The top Workbench is accepted, the lower page remains long and dense, `OPERATOR_FIRST` is closed, and `BRIDGE_STORYBOARD_FLOW` is the selected forward lane.
+- Editorial transition: the accepted six-beat Bridge implementation checkpoint is now the source baseline for a manual-delivery-ready package; this does not approve its timing as canon or open production gates.
+- Operator observation: preserved. The top Workbench is accepted, the lower page remains long and dense, and `OPERATOR_FIRST` remains closed.
 - Manifest: `artifacts/artifact-manifest.json`
 - Bridge Storyboard Flow doc: `docs/review/bridge-storyboard-flow.md`
 - Bridge Storyboard Flow result: `artifacts/bridge-storyboard-flow-result.json`
@@ -117,10 +125,14 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active checkpoint is `fff-bridge-storyboard-flow-001`. `public/review/index.html?mode=bridge` starts with one compact six-beat rail and one active storyboard canvas, with Japanese-first title, planning time, story purpose, narration, subtitle, visual intent, held-truth boundary, and rights/asset note for every beat.
-- Beat selection, Previous / Next, Arrow-key plus Home / End navigation, and one `Briefへ戻る` action share the same ordered model. The only next review is whether to accept, revise, or return the six-beat order and timing allocation.
+- The active checkpoint is `fff-bridge-editorial-handoff-pack-001`. `public/review/index.html?mode=handoff` presents a focused six-beat editing runway, one active beat canvas, aligned narration/subtitle/shot content, compact truth/rights guards, and direct links to all six package files.
+- `artifacts/editorial-handoff/` contains `README_DELIVERY.md`, `narration-script.md`, `subtitle-cues.csv`, `shot-list.csv`, `editorial-handoff.json`, and `package-manifest.json`. The package preserves exactly 6 beats and 180 seconds, with 6 complete provisional narration segments, 20 subtitle cues, 19 generic shot cues, 3 thumbnail directions, and one unselected sound/music/mood brief.
+- All prose is `provisional_editorial_draft`; every shot and thumbnail stays `asset_status=unselected`; Toma fate, brass moth truth/function, Council motive, and ending truth remain `unresolved_human_owned`.
+- `fff-bridge-storyboard-flow-001` remains the source checkpoint. Bridge keeps the Storyboard Flow first and adds one compact Handoff action without duplicating the package or reopening the collapsed historical evidence.
+- The preserved source checkpoint is `fff-bridge-storyboard-flow-001`. `public/review/index.html?mode=bridge` starts with one compact six-beat rail and one active storyboard canvas, with Japanese-first title, planning time, story purpose, narration, subtitle, visual intent, held-truth boundary, and rights/asset note for every beat.
+- Beat selection, Previous / Next, Arrow-key plus Home / End navigation, and one `Briefへ戻る` action share the same ordered model. That order and timing now serve as the explicit provisional source baseline for the Handoff package; reopening them requires a later explicit revision.
 - The former Bridge hero, Decision Console, Guided Flow, overview reference, refinement cards, and comprehensive Bridge grid are preserved inside one default-collapsed supporting-evidence section. They remain available for audit but no longer compete with the active Flow.
-- The accepted operator observation closes `OPERATOR_FIRST`: the Workbench remains the preserved prelude at `public/review/index.html?mode=brief`, while forward product movement now occurs on the Bridge route.
+- The accepted operator observation closes `OPERATOR_FIRST`: the Workbench remains the preserved prelude at `public/review/index.html?mode=brief`, Bridge remains the source sequence, and forward product movement now occurs on the Handoff route.
 - The preserved Workbench checkpoint is `fff-review-workbench-component-contract-001`. It converts the default `public/review/index.html?mode=brief` first screen into a role-contracted Review Workbench, keeps `fff-apply-decision-shell-guard-diet-001` as the source shell, and prevents each component from repeating the global explanation.
 - The Workbench carries `data-component-role-contract="true"`, `data-single-framing-source="active-decision-canvas"`, `data-review-workbench-canvas="true"`, `data-route-nav-compact="true"`, `data-operator-utility-drawer="true"`, `data-context-dock-role="context-only"`, `data-duplication-budget="true"`, and `data-component-complement-rule="true"`.
 - `componentRoleContracts` defines appHeader, routeNavigator, processRail, activeDecisionCanvas, contextDock, evidenceDrawer, notesDrawer, inspirationDrawer, guardDrawer, and legacyArchive with role, owns, must_not_show, max_visible_items, source_of_truth, and route_or_drawer fields.
@@ -210,6 +222,10 @@ Preserved platform boundary:
 
 ## What Was Verified
 
+- `node tools/fff-state.mjs validate-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json` validates the canonical package, both CSVs, narration/README content, exact six-beat timing, package hashes, Handoff route, Bridge action, preserved source routes/themes/keyboard behavior, truth/rights guards, and closed boundary flags without writing files.
+- The package contains 6 narration segments, 20 subtitle cues, 19 shot cues, and 3 thumbnail directions across exactly 180 seconds; all subtitle/shot timings are monotonic, non-overlapping, beat-contained, and every shot remains `unselected` with a rights note.
+- `package-manifest.json` covers exactly the other five package files with matching raw byte sizes and SHA256 values. Normal manifest validation is read-only; the missing-file probe returns nonzero without mutating the package or result artifacts.
+- Browser readback at 900x1200 confirmed no horizontal overflow, package inventory and editing path visible together, six runway tabs, Light/Dark readability, Arrow/Home/End behavior, focus-visible=true, hidden Bridge history, and zero console warnings/errors. Screenshot evidence is `artifacts/review-screens/bridge-editorial-handoff-pack.png`.
 - `node tools/fff-state.mjs validate-bridge-storyboard-flow artifacts/bridge-storyboard-flow-result.json` passes with six beats, all required field counts at 6, rail/canvas/Previous/Next/Brief/keyboard behavior present, legacy Bridge evidence collapsed, Workbench and dark mode preserved, closed boundary gates, and zero failures.
 - The 900x1200 screenshot `artifacts/review-screens/bridge-storyboard-flow.png` is 185233 bytes with SHA256 `64626FD09CE077AEFBE9D0A42212197247CE464CEC9925E2D337BF1C481614AC`. Browser readback measured no horizontal overflow, verified Light/Dark readability, Arrow/Home/End and button navigation, visible focus, reduced-motion behavior, and no console/page errors.
 - The normal manifest health command stays read-only. `smoke-bridge-storyboard-flow` was used once to intentionally create the tracked normalized result and is not part of restart validation.
@@ -299,7 +315,7 @@ Preserved platform boundary:
 ## What Remains Missing
 
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
-- Human review of the Bridge Storyboard Flow is the immediate next user-side work: open `public/review/index.html?mode=bridge`, traverse all six beats, and accept, revise, or return the order and planning-time allocation. The accepted Workbench observation does not imply approval of story truth, production assets, rights, or final canon.
+- The immediate user-side work is manual editorial use: open `public/review/index.html?mode=handoff`, traverse all six beats, and transfer or refine the package files. Any later change to beat order/timing, final narration, story truth, asset selection, rights state, or canon requires an explicit new decision; the package itself grants none of those approvals.
 - Remaining workflow expansion is now post-Profile: Timeline / Story Seed / Canon decision authorization, actual rollback, broader translated memo coverage, or very broad source-span fixture shape. The held claim preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, Claim Ledger one-claim production adoption, Claim Ledger rollback rehearsal, downstream target authorization packet, and Profile adoption mutation one-claim define candidate status, accepted-status meaning, rollback, mutation boundaries, a non-mutating ledger row, one fixture-only sandbox adoption row, one sandbox-only rollback rehearsal row, one production authorization packet, one Claim Ledger production adoption row, one non-destructive rollback rehearsal, one Profile-first downstream target choice surface, and one Profile-only non-canon annotation. Timeline, Story Seed, canon, provider/API/credential, publishing, additional-claim adoption, and actual production rollback remain unimplemented without separate authorization. The translated memo axis has a two-row minimum fixture, so only add more translated rows if they reduce a concrete coverage gap beyond `multi-x-object-brass-moth-key` and `multi-x-placeholder-translation-boundary`. Very broad source-span shape has been audited but not implemented because current broad rows are already resolved and no concrete source-output gap requires another fixture.
 - Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, transport behavior, external call permission, timeout value, and retry count remain blocked until explicit authorization.
 - Durable project database, YouTube publishing, automated upload, AI video generation, complete world chronology, and final canon decisions remain out of scope.
@@ -310,7 +326,8 @@ Preserved platform boundary:
 
 | Target | Current state | Next move |
 | --- | --- | --- |
-| Bridge Storyboard Flow | `fff-bridge-storyboard-flow-001` is active; exactly six planning beats share one rail and active canvas, while old Bridge consoles/refinement/details remain preserved under one collapsed supporting-evidence section | Human reviewer accepts, revises, or returns the beat order and approximate timing; keep narration performance, assets, rights, production, and canon closed |
+| Bridge Editorial Handoff Pack | `fff-bridge-editorial-handoff-pack-001` is active; a focused Handoff route and six portable files align the exact 180-second baseline, narration, 20 subtitle cues, 19 shot cues, truth/rights guards, and SHA256 integrity metadata | Use locally for manual writing/subtitle/video editing; keep timing changes explicit and keep final narration, assets, rights, provider, production, and canon closed |
+| Bridge Storyboard Flow | `fff-bridge-storyboard-flow-001` is preserved as the exact source baseline; exactly six planning beats share one rail and active canvas, while old Bridge consoles/refinement/details remain preserved under one collapsed supporting-evidence section | Reopen only when an explicit later decision changes the order or timing; keep narration performance, assets, rights, production, and canon closed |
 | Apply Decision Shell Guard Diet | Covered by `fff-apply-decision-shell-guard-diet-001`; `brief` starts with the applied Shell, model-driven choices, Dock Governor, compact safety summary, Guard drawer, non-gate whitelist, and preserved `bridge` / `layout-lab` routes | Treat as preserved source-shell and regression evidence; `OPERATOR_FIRST` is closed and the active review is the Bridge Storyboard Flow |
 | Layout Lab Visual Audit | Covered by `fff-layout-lab-visual-audit-001`; the contact sheet and four screenshots show the Layout Lab, Split-pane Decision Shell, preserved `brief`, and preserved `bridge` routes | Use as source evidence only if the applied Shell needs a layout revision |
 | Layout Research Decision Shell | Covered by `fff-layout-research-decision-shell-001`; `public/review/index.html?mode=layout-lab` compares four wireframes, recommends split-pane Decision Shell, shows a heuristic score matrix, and renders choices from `decisionFlowModel` | Treat as design source, not the active route |
@@ -374,6 +391,7 @@ public/review/index.html?mode=brief
 public/review/index.html?mode=home
 public/review/index.html?mode=layout-lab
 public/review/index.html?mode=bridge
+public/review/index.html?mode=handoff
 public/review/index.html?mode=story
 public/review/index.html?mode=draft
 public/review/index.html?mode=designer
@@ -390,4 +408,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The next non-redundant move is a bounded human readback of `public/review/index.html?mode=bridge`: accept, revise, or return the six-beat order and approximate timing, with special attention to whether the held-truth and rights notes remain legible while the active story flow stays dominant. A later implementation slice may refine narration/subtitle/visual wording only after that review; it must not infer final canon, select assets, clear rights, configure a provider, generate video, render, upload, persist to a database, or make additional adoption writes without explicit authorization.
+Use review memory before asking for another review. The next non-redundant move is manual editorial use of `public/review/index.html?mode=handoff` and `artifacts/editorial-handoff/`: refine cadence, subtitle wrapping, or generic shot language while preserving the exact six-beat timing, provisional status, held truths, unselected assets, and integrity metadata. Do not infer final canon, select assets, clear rights, configure a provider, generate media, render, upload, persist to a database, or make additional adoption writes without explicit authorization.

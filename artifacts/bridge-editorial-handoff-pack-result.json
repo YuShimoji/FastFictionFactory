@@ -1,0 +1,209 @@
+{
+  "schemaVersion": "fff.bridgeEditorialHandoffPack.v1",
+  "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+  "title": "Fast Fiction Factory Bridge Editorial Handoff Pack",
+  "generatedAt": "2026-07-11T12:06:29.146Z",
+  "review_status": "ready_for_local_manual_delivery",
+  "editorial_status": "provisional_editorial_draft",
+  "provisional_editorial_status": true,
+  "review_input_mode": "freeform",
+  "review_ui": "public/review/index.html",
+  "access_route": "public/review/index.html?mode=handoff",
+  "review_route": "public/review/index.html?mode=handoff",
+  "bridge_route": "public/review/index.html?mode=bridge",
+  "brief_route": "public/review/index.html?mode=brief",
+  "input_result_path": "artifacts/bridge-editorial-handoff-pack-result.json",
+  "canonical_package_path": "artifacts/editorial-handoff/editorial-handoff.json",
+  "source_storyboard_artifact_id": "fff-bridge-storyboard-flow-001",
+  "source_storyboard_preserved": true,
+  "source_artifact_ids": [
+    "fff-bridge-storyboard-flow-001",
+    "fff-review-workbench-component-contract-001",
+    "fff-draft-to-video-planning-bridge-001",
+    "fff-bridge-refinement-overview-ribbon-001",
+    "fff-one-story-draft-review-pack-001",
+    "fff-designer-candidate-dashboard-001",
+    "fff-contradictory-claim-guard-001"
+  ],
+  "source_result_paths": {
+    "bridge_storyboard_flow": "artifacts/bridge-storyboard-flow-result.json",
+    "review_workbench_component_contract": "artifacts/review-workbench-component-contract-result.json",
+    "draft_to_video_planning_bridge": "artifacts/draft-to-video-planning-bridge-result.json",
+    "contradictory_claim_guard": "artifacts/contradictory-claim-guard-result.json"
+  },
+  "selected_candidate_id": "designer-content-moth-investigation-3m",
+  "selected_channel_route_id": "designer-channel-mystery-lore",
+  "package_directory": "artifacts/editorial-handoff",
+  "package_file_paths": [
+    "artifacts/editorial-handoff/README_DELIVERY.md",
+    "artifacts/editorial-handoff/narration-script.md",
+    "artifacts/editorial-handoff/subtitle-cues.csv",
+    "artifacts/editorial-handoff/shot-list.csv",
+    "artifacts/editorial-handoff/editorial-handoff.json",
+    "artifacts/editorial-handoff/package-manifest.json"
+  ],
+  "package_file_hashes": {
+    "artifacts/editorial-handoff/README_DELIVERY.md": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2",
+    "artifacts/editorial-handoff/narration-script.md": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081",
+    "artifacts/editorial-handoff/subtitle-cues.csv": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069",
+    "artifacts/editorial-handoff/shot-list.csv": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676",
+    "artifacts/editorial-handoff/editorial-handoff.json": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+    "artifacts/editorial-handoff/package-manifest.json": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+  },
+  "package_manifest_hashes": {
+    "README_DELIVERY.md": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2",
+    "narration-script.md": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081",
+    "subtitle-cues.csv": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069",
+    "shot-list.csv": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676",
+    "editorial-handoff.json": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+  },
+  "beat_count": 6,
+  "beat_ids": [
+    "bridge-storyboard-beat-1-bellless-tower",
+    "bridge-storyboard-beat-2-brass-moth",
+    "bridge-storyboard-beat-3-erased-names",
+    "bridge-storyboard-beat-4-council-shadow",
+    "bridge-storyboard-beat-5-held-answers",
+    "bridge-storyboard-beat-6-time-or-names"
+  ],
+  "total_duration": 180,
+  "total_duration_seconds": 180,
+  "narration_segment_count": 6,
+  "subtitle_cue_count": 20,
+  "shot_cue_count": 19,
+  "thumbnail_direction_count": 3,
+  "truth_guard_count": 4,
+  "rights_guard_count": 4,
+  "truth_guards_present": true,
+  "rights_guards_present": true,
+  "package_manifest_valid": true,
+  "handoff_route_first_screen_hierarchy_valid": true,
+  "storyboard_flow_first_on_bridge": true,
+  "bridge_handoff_action_present": true,
+  "brief_route_preserved": true,
+  "dark_mode_preserved": true,
+  "keyboard_navigation_preserved": true,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "rights_cleared_claim": false,
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "summary": {
+    "source_storyboard_preserved": true,
+    "beat_count": 6,
+    "total_duration_seconds": 180,
+    "narration_segment_count": 6,
+    "subtitle_cue_count": 20,
+    "shot_cue_count": 19,
+    "thumbnail_direction_count": 3,
+    "truth_guards_present": true,
+    "rights_guards_present": true,
+    "package_manifest_valid": true,
+    "handoff_route_first_screen_hierarchy_valid": true,
+    "dark_mode_preserved": true,
+    "local_only": true,
+    "external_call_attempted": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "failures": 0
+  },
+  "validation_notes": [
+    "The Editorial Handoff Pack is a local manual-delivery package and remains a provisional editorial draft.",
+    "Six exact baseline beats align narration, subtitle cues, shot cues, truth guards, and rights guards across Markdown, CSV, and JSON.",
+    "Package integrity uses raw-byte sizes and SHA256 hashes; package-manifest.json intentionally has no self-hash.",
+    "The Handoff route is separate from Bridge, while the Storyboard Flow remains the first substantive Bridge surface.",
+    "Provider/API, credentials, AI video, render, upload, database, final canon, and rights clearance remain closed."
+  ],
+  "checks": {
+    "identity": {
+      "passed": true,
+      "detail": "artifact=fff-bridge-editorial-handoff-pack-001; schema=fff.bridgeEditorialHandoffPack.v1; status=provisional_editorial_draft; route=public/review/index.html?mode=handoff"
+    },
+    "canonical_package_identity": {
+      "passed": true,
+      "detail": "parse=ok; artifact=fff-bridge-editorial-handoff-pack-001; schema=fff.editorialHandoff.v1; status=provisional_editorial_draft; duration=180"
+    },
+    "source_artifacts_preserved": {
+      "passed": true,
+      "detail": "declared=fff-bridge-storyboard-flow-001,fff-review-workbench-component-contract-001,fff-draft-to-video-planning-bridge-001,fff-bridge-refinement-overview-ribbon-001,fff-one-story-draft-review-pack-001,fff-designer-candidate-dashboard-001,fff-contradictory-claim-guard-001; readbacks=bridge_storyboard_flow:fff-bridge-storyboard-flow-001/true/ok; review_workbench_component_contract:fff-review-workbench-component-contract-001/true/ok; draft_to_video_planning_bridge:fff-draft-to-video-planning-bridge-001/true/ok; contradictory_claim_guard:fff-contradictory-claim-guard-001/true/ok"
+    },
+    "candidate_channel_duration": {
+      "passed": true,
+      "detail": "candidate=designer-content-moth-investigation-3m; channel=designer-channel-mystery-lore; duration=180"
+    },
+    "six_beat_baseline": {
+      "passed": true,
+      "detail": "beats=6; ids=bridge-storyboard-beat-1-bellless-tower,bridge-storyboard-beat-2-brass-moth,bridge-storyboard-beat-3-erased-names,bridge-storyboard-beat-4-council-shadow,bridge-storyboard-beat-5-held-answers,bridge-storyboard-beat-6-time-or-names; windows=鐘のない塔:00:00-00:20/0-20; 真鍮の蛾:00:20-00:50/20-50; 消された名前:00:50-01:20/50-80; 評議会の影:01:20-01:45/80-105; 答えを保留:01:45-02:35/105-155; 時間か、名前か:02:35-03:00/155-180"
+    },
+    "narration_contract": {
+      "passed": true,
+      "detail": "segments=6; unique=true; perBeat=bridge-storyboard-beat-1-bellless-tower:1,bridge-storyboard-beat-2-brass-moth:1,bridge-storyboard-beat-3-erased-names:1,bridge-storyboard-beat-4-council-shadow:1,bridge-storyboard-beat-5-held-answers:1,bridge-storyboard-beat-6-time-or-names:1; markdown=true"
+    },
+    "subtitle_contract": {
+      "passed": true,
+      "detail": "cues=20; unique=true; timing=ok; csv=ok; headers=cue_id,beat_id,start_time,end_time,text_ja,line_break_hint,status,truth_risk_marker; crossMatch=true"
+    },
+    "shot_contract": {
+      "passed": true,
+      "detail": "shots=19; unique=true; timing=ok; csv=ok; headers=shot_id,beat_id,start_time,end_time,shot_purpose,visual_direction,asset_class,asset_status,rights_note,truth_boundary_note; crossMatch=true"
+    },
+    "editorial_briefs_and_inventory": {
+      "passed": true,
+      "detail": "thumbnails=3; sound=true; inventory=README_DELIVERY.md,narration-script.md,subtitle-cues.csv,shot-list.csv,editorial-handoff.json,package-manifest.json; readme=true"
+    },
+    "truth_and_rights_guards": {
+      "passed": true,
+      "detail": "truth=4/true/true; rights=4/true; contradictory=true"
+    },
+    "package_files_present": {
+      "passed": true,
+      "detail": "README_DELIVERY.md:true/4390/ok; narration-script.md:true/4992/ok; subtitle-cues.csv:true/3945/ok; shot-list.csv:true/7366/ok; editorial-handoff.json:true/31907/ok; package-manifest.json:true/1081/ok"
+    },
+    "package_manifest_integrity": {
+      "passed": true,
+      "detail": "parse=ok; schema=fff.editorialHandoffPackageManifest.v1; artifact=fff-bridge-editorial-handoff-pack-001; root=artifacts/editorial-handoff; files=README_DELIVERY.md,narration-script.md,subtitle-cues.csv,shot-list.csv,editorial-handoff.json; errors=none"
+    },
+    "handoff_route_hierarchy": {
+      "passed": true,
+      "detail": "panel=51128; root=163952; runway=167031; active=167216; files=165824; bridgeReturn=164620; briefReturn=164733; model=true; links=true"
+    },
+    "bridge_and_brief_preserved": {
+      "passed": true,
+      "detail": "storyboard=144922; action=145664; supporting=147531; brief=true; dark=true; keyboard=true"
+    },
+    "docs_and_root_manifest_registered": {
+      "passed": true,
+      "detail": "doc=true/ok; manifest=true/ok; active=fff-bridge-editorial-handoff-pack-001; result=artifacts/bridge-editorial-handoff-pack-result.json; default=brief; readOnly=true"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "readback=true; package=true; findings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

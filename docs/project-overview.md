@@ -18,7 +18,8 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 
 | Slice | Current state | Main review location | Quick visual evidence |
 | --- | --- | --- | --- |
-| Bridge Storyboard Flow | Active; ready for local readback | [`review/bridge-storyboard-flow.md`](review/bridge-storyboard-flow.md) | `artifacts/bridge-storyboard-flow-result.json`, `artifacts/review-screens/bridge-storyboard-flow.png`, `public/review/index.html?mode=bridge` |
+| Bridge Editorial Handoff Pack | Active; ready for local manual delivery | [`review/bridge-editorial-handoff-pack.md`](review/bridge-editorial-handoff-pack.md) | `artifacts/bridge-editorial-handoff-pack-result.json`, `artifacts/editorial-handoff/`, `public/review/index.html?mode=handoff` |
+| Bridge Storyboard Flow | Preserved source baseline | [`review/bridge-storyboard-flow.md`](review/bridge-storyboard-flow.md) | `artifacts/bridge-storyboard-flow-result.json`, `artifacts/review-screens/bridge-storyboard-flow.png`, `public/review/index.html?mode=bridge` |
 | MVP skeleton review workbench | Ready for local review | [`review/first-mvp-review.md`](review/first-mvp-review.md) | `artifacts/fff-mvp-skeleton-review.png` |
 | JSON export/import | Ready for local review | [`review/json-export-import-review.md`](review/json-export-import-review.md) | Current visual evidence moved to the shared review screenshot. |
 | Visual Review Hub | Ready for local review | [`review/visual-review-hub-review.md`](review/visual-review-hub-review.md) | `artifacts/fff-current-review-screenshot.png`, `artifacts/fff-review-contact-sheet.png` |
@@ -56,6 +57,7 @@ The current quick visual review files are stored under `artifacts/`:
 
 | File | Use |
 | --- | --- |
+| `artifacts/review-screens/bridge-editorial-handoff-pack.png` | 900x1200 browser evidence for the focused Editorial Handoff route. |
 | `artifacts/review-screens/bridge-storyboard-flow.png` | 900x1200 evidence for the active six-beat Bridge Storyboard Flow. |
 | `artifacts/fff-current-review-screenshot.png` | Current single-screen review evidence for the active local UI. |
 | `artifacts/fff-review-contact-sheet.png` | Four-mode contact sheet for fast visual scanning of the current review UI. |
@@ -94,7 +96,7 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Bridge Storyboard Flow readback | The reviewer traverses six planning beats and accepts, revises, or returns the order and approximate timing while truth and rights notes remain held. | A later narrow narration/subtitle/visual wording pass can proceed without opening provider/API, asset, render, upload, database, rights, or final-canon gates. |
+| Next 1 turn | Manual Editorial Handoff use | A writer, subtitle editor, or video editor opens the focused Handoff route and uses the portable six-file package while the 180-second baseline, truth guards, and unselected assets remain explicit. | Human editing feedback can refine narration cadence, subtitle wrapping, and shot language without reconstructing the plan or opening production gates. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
@@ -107,7 +109,13 @@ The active UI remains:
 Invoke-Item .\public\review\index.html
 ```
 
-No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The active product readback is now the six-beat Storyboard Flow at `public/review/index.html?mode=bridge`; former Bridge consoles and detail shelves remain collapsed supporting evidence.
+No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The active product readback is the focused Editorial Handoff route at `public/review/index.html?mode=handoff`; its source six-beat Storyboard Flow remains at `public/review/index.html?mode=bridge`, with former Bridge consoles and detail shelves collapsed as supporting evidence.
+
+Mode-specific Editorial Handoff route:
+
+```text
+public/review/index.html?mode=handoff
+```
 
 Mode-specific Decision Shell route:
 
@@ -175,4 +183,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The supplied human observation closes `OPERATOR_FIRST` and selects `BRIDGE_STORYBOARD_FLOW`. The next move is a bounded review of `public/review/index.html?mode=bridge`: accept, revise, or return the six-beat order and planning-time allocation. Final script/subtitle typography/asset work remains local-only and unstarted, and provider, generation, render, upload, database, rights-clearance, and canon work remains blocked until separate authorization.
+The accepted six-beat Bridge checkpoint now feeds `fff-bridge-editorial-handoff-pack-001`. The next move is to open `public/review/index.html?mode=handoff` and use `artifacts/editorial-handoff/` for manual editorial transfer. Final narration performance, subtitle typography, asset selection, provider work, generation, render, upload, database persistence, rights clearance, and canon work remain blocked until separate authorization.
