@@ -2,15 +2,16 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-Latest handoff refresh: 2026-07-12 JST for `fff-editorial-derivative-preview-001`,
-starting from synced `7ac57e60f94599307d7529177163092dffc40841 Add editorial revision roundtrip`
-with `master...origin/master` at `0 0` before implementation. The accepted
-safe-only patch now produces a complete derived-copy preview at
-`public/review/index.html?mode=derivative`. The portable derivative package is
-`artifacts/editorial-derivative/`. Exactly three accepted wording changes appear
-across aligned narration Markdown, subtitle CSV, shot CSV, and derived JSON,
-with provenance, integrity metadata, and `discard_derived_package` rollback.
-The source Handoff and existing Revision package bytes and hashes remain unchanged.
+Latest handoff refresh: 2026-07-13 JST for `fff-content-production-blueprint-001`,
+starting from synced `4fb9d56e6264545acda5b8194cf6bbcb85204d57 Add editorial derivative preview`
+with `master...origin/master` at `0 0` before implementation. The active local
+review route is `public/review/index.html?mode=blueprint`; its portable eight-file
+package is `artifacts/production-blueprint/`. It derives quantitative beat, shot,
+subtitle, visual-system, constraint-envelope, and Definition of Done contracts
+from the provisional Derivative baseline without changing its content, order,
+timing, truth, rights, or asset state. Every byte under the Handoff, Revision,
+and Derivative package directories remains protected. The Blueprint is local
+planning evidence only, not production approval, rights clearance, or canon.
 
 The derivative preserves `fff-editorial-revision-roundtrip-001` at
 `public/review/index.html?mode=revision` as its safe-patch source, preserves
@@ -63,32 +64,34 @@ was removed from this repo, and
 After pulling, run `git log -1 --oneline --decorate` for the exact remote head
 that contains this Editorial Derivative Preview and the latest handoff refresh.
 
-## Current Derivative Entrance
+## Current Blueprint Entrance
 
 `OPERATOR_FIRST` remains closed as historical source context: the top Workbench
-was accepted and the Bridge Storyboard Flow was selected. The current active
-lane is a non-canonical Derivative Preview generated from the guarded Revision patch.
+was accepted and the Bridge Storyboard Flow was selected. The three safe wording
+changes are accepted only as a provisional editorial baseline. The current active
+lane is a quantitative Content Production Blueprint generated from that protected
+Derivative package.
 
-The next editor should open `public/review/index.html?mode=derivative` with:
+The next reviewer should open `public/review/index.html?mode=blueprint` with:
 
 ```powershell
-.\scripts\operator\open_review.ps1 -Mode derivative
+.\scripts\operator\open_review.ps1 -Mode blueprint
 ```
 
-Use `.\scripts\operator\open_review.ps1 -Mode derivative -PrintUri` for a non-opening URI check. No argument intentionally opens `mode=brief`; Revision and Handoff remain explicit modes. Shell equivalents are `./scripts/operator/open_review.sh --mode derivative` and `--print-uri`. Use `artifacts/editorial-derivative/README_DERIVATIVE.md` as the derived-copy contract. This readback does not apply the patch to source or authorize timing/order, story truth, asset selection, rights clearance, provider/API work, generation, render, upload, publication, database persistence, or final canon.
+Use `.\scripts\operator\open_review.ps1 -Mode blueprint -PrintUri` for a non-opening URI check. No argument intentionally opens `mode=brief`; Derivative, Revision, and Handoff remain explicit modes. Shell equivalents are `./scripts/operator/open_review.sh --mode blueprint` and `--print-uri`. Use `artifacts/production-blueprint/README_BLUEPRINT.md` as the planning contract. This readback does not apply the patch to source or authorize timing/order, story truth, asset selection, rights clearance, provider/API work, generation, render, upload, publication, database persistence, or final canon.
 
 ## Latest Remote Publish Snapshot
 
 - Branch: `master`
-- Active artifact: `fff-editorial-derivative-preview-001`
+- Active artifact: `fff-content-production-blueprint-001`
 - Remote parity before this implementation: clean `master...origin/master`; `HEAD...origin/master` reported `0 0`
-- Baseline commit before this implementation: `7ac57e60 Add editorial revision roundtrip`
-- Last pushed product commit before this implementation: `7ac57e60 Add editorial revision roundtrip`
+- Baseline commit before this implementation: `4fb9d56e Add editorial derivative preview`
+- Last pushed product commit before this implementation: `4fb9d56e Add editorial derivative preview`
 - Worktree state before this implementation: product tree synced and clean; local `.serena/project.yml` transport residue remains unstaged and outside product scope
 - Validation contract: `artifacts/artifact-manifest.json` now runs read-only `validate-*` commands; `smoke-*` commands remain artifact-regeneration commands and should be used only when tracked result JSON is intentionally refreshed
-- User-side review evidence now: `public/review/index.html?mode=derivative`, `docs/review/editorial-derivative-preview.md`, `artifacts/editorial-derivative-preview-result.json`, `artifacts/editorial-derivative/`, and `artifacts/review-screens/editorial-derivative-preview.png`
+- User-side review evidence now: `public/review/index.html?mode=blueprint`, `docs/review/content-production-blueprint.md`, `artifacts/content-production-blueprint-result.json`, `artifacts/production-blueprint/`, and `artifacts/review-screens/content-production-blueprint.png` (885x1180 content capture from a 900x1200 viewport, 133623 bytes, SHA256 `2694f69af62466e5612e9021a6308c3bee8aca8aa133606a0c8c0a9f802afec9`)
 - Preserved prelude route: `public/review/index.html?mode=brief`
-- Next human work: review the deterministic derived package or import a matching safe-only patch; keep source application closed and treat the derivative as non-canonical
+- Next human work: review Blueprint production readiness in freeform; keep H2 asset/shot brief work, source application, production, rights, and canon closed
 - Locked lanes: provider/API, credentials, AI video generation, production render, upload, rights-clearance claim, database persistence, and final canon
 
 ## Start Here
@@ -109,12 +112,13 @@ git log -5 --oneline --decorate
 
 Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed product commit is whatever `git log -1 --oneline --decorate` reports after pulling. Local transport-residue files outside this product scope should not be treated as product work.
 
-The 2026-07-12 Editorial Derivative Preview slice adds one complete derived-copy
-package from the accepted safe-only patch, a focused route, deterministic
-provenance/integrity metadata, mode-aware launchers, one normalized result/readback
-contract, and synchronized durable docs. It does not apply the patch to source or
-change provider state, credentials, generation, publishing, source timing/order,
-truth, assets, rights state, database persistence, or final canon.
+The 2026-07-13 Content Production Blueprint slice adds one quantitative planning
+package from the provisional Derivative baseline, a focused route, controlled
+vocabularies, explicit creative degrees of freedom, machine-readable acceptance,
+mode-aware launchers, one normalized result/readback contract, and synchronized
+durable docs. It does not apply the patch to source or change provider state,
+credentials, generation, publishing, source timing/order, truth, assets, rights
+state, database persistence, or final canon.
 
 3. Read these files in this order:
 
@@ -124,6 +128,16 @@ docs/project-context.md
 docs/review/current-status.md
 docs/review/next-terminal-handoff.md
 artifacts/artifact-manifest.json
+docs/review/content-production-blueprint.md
+artifacts/content-production-blueprint-result.json
+artifacts/production-blueprint/README_BLUEPRINT.md
+artifacts/production-blueprint/production-blueprint.json
+artifacts/production-blueprint/beat-specs.csv
+artifacts/production-blueprint/shot-specs.csv
+artifacts/production-blueprint/subtitle-metrics.csv
+artifacts/production-blueprint/visual-system.md
+artifacts/production-blueprint/acceptance-matrix.csv
+artifacts/production-blueprint/blueprint-package-manifest.json
 docs/review/editorial-derivative-preview.md
 artifacts/editorial-derivative-preview-result.json
 artifacts/editorial-derivative/README_DERIVATIVE.md
@@ -262,10 +276,10 @@ or:
 ./scripts/operator/open_review.sh
 ```
 
-No-query access still defaults to the Review Brief route, now with the applied Decision Shell first. The focused manual-delivery route is `public/review/index.html?mode=handoff`. The preserved research route is
+No-query access still defaults to the Review Brief route, now with the applied Decision Shell first. The active quantitative route is `public/review/index.html?mode=blueprint`. The focused manual-delivery route is `public/review/index.html?mode=handoff`. The preserved research route is
 `public/review/index.html?mode=layout-lab`; the operator path is
 `public/review/index.html?mode=brief`, then
-`public/review/index.html?mode=bridge`, then `public/review/index.html?mode=handoff`, then `public/review/index.html?mode=revision`, then `public/review/index.html?mode=derivative`; the preserved compatibility and detail routes
+`public/review/index.html?mode=bridge`, then `public/review/index.html?mode=handoff`, then `public/review/index.html?mode=revision`, then `public/review/index.html?mode=derivative`, then `public/review/index.html?mode=blueprint`; the preserved compatibility and detail routes
 are `public/review/index.html?mode=home`,
 `public/review/index.html?mode=draft`, and
 `public/review/index.html?mode=designer`.
@@ -286,10 +300,12 @@ WindowsApps stub.
 
 ## Current Project State
 
-- Active artifact: `fff-editorial-derivative-preview-001`
+- Active artifact: `fff-content-production-blueprint-001`
 - Active UI: `public/review/index.html`
 - Manifest: `artifacts/artifact-manifest.json`
 - Current status: `docs/review/current-status.md`
+- Content Production Blueprint doc/result/screenshot: `docs/review/content-production-blueprint.md`, `artifacts/content-production-blueprint-result.json`, `artifacts/review-screens/content-production-blueprint.png` (captured; 133623 bytes, SHA256 `2694f69af62466e5612e9021a6308c3bee8aca8aa133606a0c8c0a9f802afec9`)
+- Portable Content Production Blueprint package: `artifacts/production-blueprint/README_BLUEPRINT.md`, `production-blueprint.json`, `beat-specs.csv`, `shot-specs.csv`, `subtitle-metrics.csv`, `visual-system.md`, `acceptance-matrix.csv`, `blueprint-package-manifest.json`
 - Editorial Derivative Preview doc/result/screenshot: `docs/review/editorial-derivative-preview.md`, `artifacts/editorial-derivative-preview-result.json`, `artifacts/review-screens/editorial-derivative-preview.png`
 - Portable Editorial Derivative package: `artifacts/editorial-derivative/README_DERIVATIVE.md`, `narration-script.derived.md`, `subtitle-cues.derived.csv`, `shot-list.derived.csv`, `editorial-handoff.derived.json`, `applied-revision-patch.json`, `derivative-provenance.json`, `derivative-package-manifest.json`
 - Editorial Revision Roundtrip doc/result/screenshot: `docs/review/editorial-revision-roundtrip.md`, `artifacts/editorial-revision-roundtrip-result.json`, `artifacts/review-screens/editorial-revision-roundtrip.png`
@@ -340,9 +356,14 @@ WindowsApps stub.
 - State adapter: `tools/fff-state.mjs`
 - Model/API boundary spec: `docs/review/model-api-boundary-spec.md`
 
-The current artifact adds the focused non-canonical route at `derivative` and the portable package under `artifacts/editorial-derivative/`. It preserves Revision, the immutable Handoff package, the six-beat planning Flow at `bridge`, the accepted split-pane Workbench at `brief`, and `layout-lab` as source evidence. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, while provider/API, credentials, AI video generation, production render, upload/publication, rights-clearance claims, database persistence, and final canon decisions remain closed.
+The current artifact adds the focused quantitative route at `blueprint` and the portable package under `artifacts/production-blueprint/`. It preserves the provisional Derivative package, Revision, the immutable Handoff package, the six-beat planning Flow at `bridge`, the accepted split-pane Workbench at `brief`, and `layout-lab` as source evidence. It keeps `designer-content-moth-investigation-3m` and `designer-channel-mystery-lore`, while provider/API, credentials, asset selection, AI video generation, production render, upload/publication, rights-clearance claims, database persistence, and final canon decisions remain closed.
 
 ## What Finished
+
+- `fff-content-production-blueprint-001` derives an eight-file quantitative planning package from the byte-protected Derivative source without changing its six-beat order, exact 180-second timing, three accepted wording changes, truth, rights, or asset state.
+- The Blueprint constrains every beat, all 19 shots, and all 20 subtitle cues with controlled production vocabularies, numeric budgets, a provisional 1920x1080 / 16:9 / 30fps profile, explicit LOCKED / BOUNDED / FREE fields, and machine-readable Definition of Done and pass/warn/fail acceptance.
+- `validate-content-production-blueprint` is strictly read-only. Only `smoke-content-production-blueprint` may regenerate the eight Blueprint files and `artifacts/content-production-blueprint-result.json`.
+- `mode=derivative` keeps status and its concise three-change summary visible, but gives Before/After provenance to one collapsed Change History owner and package inventory/downloads to one collapsed Files / Export owner.
 
 - `fff-editorial-derivative-preview-001` applies exactly three accepted `safe_local_edit` wording changes to a derived copy and generates eight portable files from one derived JSON model.
 - Narration Markdown and derived JSON agree for `narration-b01`; subtitle CSV and JSON agree for `sub-b02-03`; shot CSV and JSON agree for `shot-b03-03`. All unaffected editorial content, IDs, beat order, timing, held truths, rights guards, and unselected assets match the source.
@@ -422,6 +443,11 @@ The current artifact adds the focused non-canonical route at `derivative` and th
 - No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, Timeline mutation, Story Seed mutation, provider route, production rollback, additional-claim adoption, or final canon decision was added. The production adoption readbacks now consist of one Claim Ledger row and one Profile-only non-canon annotation for `multi-claim-moth-key-label`.
 
 ## Validation Readback
+
+The active Blueprint validator regenerates nothing during normal health checks. It verifies exact source fingerprints, counts and timing, controlled vocabularies, quantitative metrics, Definition of Done coverage, acceptance status, utility ownership, launcher/route markers, protected package immutability, and 18 in-memory fail-closed probes from current files.
+
+- `node tools/fff-state.mjs validate-content-production-blueprint artifacts/content-production-blueprint-result.json`
+- `node tools/fff-state.mjs smoke-content-production-blueprint artifacts/content-production-blueprint-result.json artifacts/content-production-blueprint-result.json` is intentional regeneration only.
 
 The active Editorial Derivative validator regenerates nothing during normal health checks. It derives the expected copy from immutable source JSON plus the accepted patch, verifies exact three-change application, cross-file Markdown/CSV/JSON consistency, provenance, package hashes, UI/access markers, preserved routes, and closed boundaries from current files.
 
@@ -514,12 +540,13 @@ When review is needed, accept natural freeform review text instead of fixed phra
 
 Before emitting a Review Card, check the review memory. Do not ask the same target/evidence/axis again unless target, axis, evidence, decision value, or an explicit user request changed.
 
-No general Review Hub or Workbench gate review is needed for the current state. The active bounded path is local review of the non-canonical derived copy; Revision and the immutable Handoff package remain its preserved evidence chain, and the six-beat Bridge Flow remains the exact source baseline.
+No general Review Hub or Workbench gate review is needed for the current state. The active bounded path is local production-readiness review of the quantitative Blueprint; the non-canonical Derivative, Revision, and immutable Handoff package remain its protected evidence chain, and the six-beat Bridge Flow remains the exact source baseline.
 
 ## Next Useful Entrances
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
+| Review: Content Production Blueprint | Starts from `public/review/index.html?mode=blueprint` and the eight planning files in `artifacts/production-blueprint/` | Human reviewer can judge whether the scope, shot grammar, visual constraints, and completion conditions are sufficient for a separate creator without opening production gates |
 | Review: Editorial Derivative Preview | Starts from `public/review/index.html?mode=derivative` and the eight portable files in `artifacts/editorial-derivative/` | Human reviewer can inspect exactly three safe edits in full package context and discard the derivative without touching source |
 | Review: Editorial Revision Roundtrip | Starts from `public/review/index.html?mode=revision` and the local package in `artifacts/editorial-revision/` | Human editorial changes can be classified, compared, decided, and exported as an unapplied safe-only patch without mutating the Handoff source |
 | Use: Editorial Handoff Pack | Starts from `public/review/index.html?mode=handoff` and the six portable files in `artifacts/editorial-handoff/` | A writer, subtitle editor, or video editor can continue from one aligned 180-second package without reconstructing the plan or opening production gates |
@@ -541,6 +568,7 @@ No general Review Hub or Workbench gate review is needed for the current state. 
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
+| Content Production Blueprint | Turn the provisional editorial derivative into a measurable planning contract | `fff-content-production-blueprint-001` is active; eight files define profile, constraint envelope, controlled vocabulary, quantitative beat/shot/subtitle specs, visual system, Definition of Done, and acceptance | Review production readiness in freeform; start an asset brief or shot board only after separate authorization |
 | Editorial Derivative Preview | Materialize the accepted safe-only patch as a complete reversible package | `fff-editorial-derivative-preview-001` is active; eight files expose exactly three copy-only wording edits with provenance, integrity metadata, and discard rollback | Review locally; start a real Human Revision Pilot or canonical application only with separate input and authorization |
 | Bridge Editorial Handoff Pack | Make the accepted six-beat implementation portable for manual editorial delivery | `fff-bridge-editorial-handoff-pack-001` is the preserved immutable source; the focused route and six-file package align narration, 20 subtitle cues, 19 shots, truth/rights guards, and integrity metadata | Use locally for manual refinement; keep timing changes explicit and provider, generation, asset selection, render, upload, rights, database, and canon closed |
 | Bridge Storyboard Flow | Make the chosen three-minute story hypothesis readable as one ordered production-planning flow | `fff-bridge-storyboard-flow-001` is preserved as the exact source baseline; exactly six beats share one rail and active canvas, and prior Bridge detail remains collapsed supporting evidence | Reopen only when an explicit later decision changes order or timing; keep final narration, assets, rights, production, and canon closed |

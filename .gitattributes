@@ -6,4 +6,7 @@ artifacts/editorial-revision/*.json text eol=lf
 artifacts/editorial-derivative/*.md text eol=lf
 artifacts/editorial-derivative/*.csv text eol=lf
 artifacts/editorial-derivative/*.json text eol=lf
+artifacts/production-blueprint/*.md text eol=lf
+artifacts/production-blueprint/*.csv text eol=lf
+artifacts/production-blueprint/*.json text eol=lf
 scripts/operator/*.sh text eol=lf

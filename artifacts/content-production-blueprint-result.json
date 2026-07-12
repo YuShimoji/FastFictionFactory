@@ -1,0 +1,653 @@
+{
+  "schemaVersion": "fff.contentProductionBlueprintResult.v1",
+  "artifact_id": "fff-content-production-blueprint-001",
+  "title": "Fast Fiction Factory Content Production Blueprint Readback",
+  "generatedAt": "2026-07-13T00:00:00+09:00",
+  "route": "public/review/index.html?mode=blueprint",
+  "review_ui": "public/review/index.html",
+  "input_result_path": "artifacts/content-production-blueprint-result.json",
+  "package_directory": "artifacts/production-blueprint",
+  "package_file_paths": [
+    "artifacts/production-blueprint/README_BLUEPRINT.md",
+    "artifacts/production-blueprint/production-blueprint.json",
+    "artifacts/production-blueprint/beat-specs.csv",
+    "artifacts/production-blueprint/shot-specs.csv",
+    "artifacts/production-blueprint/subtitle-metrics.csv",
+    "artifacts/production-blueprint/visual-system.md",
+    "artifacts/production-blueprint/acceptance-matrix.csv",
+    "artifacts/production-blueprint/blueprint-package-manifest.json"
+  ],
+  "package_file_hashes": {
+    "artifacts/production-blueprint/README_BLUEPRINT.md": "c018bfb033c290fd3693be5176df397983dfae902145a3fbc91ab7229776d40b",
+    "artifacts/production-blueprint/production-blueprint.json": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d",
+    "artifacts/production-blueprint/beat-specs.csv": "6de66391518c3084d6369e5af5d34818e09d3d75186633328c386d29393ec0bb",
+    "artifacts/production-blueprint/shot-specs.csv": "f36b413da40a4bf53d7a96a5408df41f77381310f089ae3e1784a8899d427914",
+    "artifacts/production-blueprint/subtitle-metrics.csv": "ed3ac3491120e433cac6dccc0960d94e7931ff5c566d3beb511384f514e8d816",
+    "artifacts/production-blueprint/visual-system.md": "1784b672c36551562437c274c1b6a49db0c214dc58cef5f059631c8066d77392",
+    "artifacts/production-blueprint/acceptance-matrix.csv": "65b319b7528ba202acda464dd18c3b25403a5be95a94422bf5d9347552ff46f4",
+    "artifacts/production-blueprint/blueprint-package-manifest.json": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245"
+  },
+  "package_file_bytes": {
+    "artifacts/production-blueprint/README_BLUEPRINT.md": 2569,
+    "artifacts/production-blueprint/production-blueprint.json": 202005,
+    "artifacts/production-blueprint/beat-specs.csv": 3600,
+    "artifacts/production-blueprint/shot-specs.csv": 7268,
+    "artifacts/production-blueprint/subtitle-metrics.csv": 2818,
+    "artifacts/production-blueprint/visual-system.md": 2316,
+    "artifacts/production-blueprint/acceptance-matrix.csv": 12686,
+    "artifacts/production-blueprint/blueprint-package-manifest.json": 2843
+  },
+  "package_manifest_path": "artifacts/production-blueprint/blueprint-package-manifest.json",
+  "source_derivative_artifact_id": "fff-editorial-derivative-preview-001",
+  "source_derivative_sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+  "source_derivative_manifest_sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577",
+  "source_derivative_core_fingerprint_sha256": "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44",
+  "source": {
+    "artifact_id": "fff-editorial-derivative-preview-001",
+    "derivative_editorial_handoff_path": "artifacts/editorial-derivative/editorial-handoff.derived.json",
+    "derivative_editorial_handoff_sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+    "derivative_package_manifest_path": "artifacts/editorial-derivative/derivative-package-manifest.json",
+    "derivative_package_manifest_sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577",
+    "derivative_core_fingerprint_sha256": "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44",
+    "accepted_change_ids": [
+      "rev-change-b01-narration-wording",
+      "rev-change-b02-subtitle-wording",
+      "rev-change-b03-shot-direction-wording"
+    ]
+  },
+  "provisional_review_profile": {
+    "status": "provisional_review_profile",
+    "canvas_width_px": 1920,
+    "canvas_height_px": 1080,
+    "aspect_ratio": "16:9",
+    "planning_timebase_fps": 30,
+    "render_authorized": false,
+    "vertical_export_authorized": false,
+    "title_safe_percent": {
+      "top": 5,
+      "right": 5,
+      "bottom": 5,
+      "left": 5
+    },
+    "subtitle_safe_percent": {
+      "top": 5,
+      "right": 7,
+      "bottom": 8,
+      "left": 7
+    },
+    "replacement_rule": "explicit_format_decision_required"
+  },
+  "beat_count": 6,
+  "six_beats": true,
+  "total_duration_seconds": 180,
+  "narration_segment_count": 6,
+  "subtitle_cue_count": 20,
+  "shot_count": 19,
+  "thumbnail_direction_count": 3,
+  "locked_field_count": 12,
+  "bounded_field_count": 13,
+  "free_field_count": 4,
+  "vocabulary_counts": {
+    "composition_class": 8,
+    "shot_scale": 5,
+    "camera_motion": 6,
+    "transition": 5,
+    "palette_role": 6,
+    "asset_class": 7,
+    "information_role": 7,
+    "focal_zone": 7,
+    "overlay_text_mode": 4,
+    "audio_role": 5,
+    "motif": 6
+  },
+  "definition_of_done_template_counts": {
+    "global": 13,
+    "beat": 10,
+    "shot": 15,
+    "subtitle": 5
+  },
+  "global_dod_check_count": 13,
+  "beat_dod_check_count": 60,
+  "shot_dod_check_count": 285,
+  "subtitle_dod_check_count": 100,
+  "pass_count": 42,
+  "warning_count": 4,
+  "failure_count": 0,
+  "change_history_owner_count": 1,
+  "files_export_owner_count": 1,
+  "duplicate_primary_diff_count": 0,
+  "maximum_utility_anchor_movement_css_px": 0,
+  "layout_stability": {
+    "viewport_css_px": {
+      "width": 900,
+      "height": 1200
+    },
+    "utility_anchor_positions_css_px": [
+      1880.171875,
+      1880.171875,
+      1880.171875,
+      1880.171875,
+      1880.171875,
+      1880.171875
+    ],
+    "maximum_utility_anchor_movement_css_px": 0,
+    "limit_css_px": 8,
+    "measurement_source": "browser_in_app_900x1200_css_measurement"
+  },
+  "metrics": {
+    "narration_character_total": 778,
+    "narration_character_range": {
+      "min": 94,
+      "max": 189
+    },
+    "narration_characters_per_second_range": {
+      "min": 3.78,
+      "max": 4.7
+    },
+    "subtitle_duration_seconds_range": {
+      "min": 4,
+      "max": 10
+    },
+    "subtitle_character_range": {
+      "min": 9,
+      "max": 19
+    },
+    "subtitle_characters_per_second_range": {
+      "min": 1.11,
+      "max": 2.75
+    },
+    "subtitle_line_count_range": {
+      "min": 2,
+      "max": 2
+    },
+    "subtitle_maximum_actual_characters_per_line": 11,
+    "shot_duration_seconds_range": {
+      "min": 6,
+      "max": 13
+    },
+    "shot_duration_seconds_average": 9.47,
+    "narration_warnings": [
+      {
+        "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+        "metric": "narration_characters_per_second",
+        "value": 4.7,
+        "threshold": "project-local pass<=4.5; warn<=5.0; fail>5.0",
+        "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-3-erased-names",
+        "metric": "narration_characters_per_second",
+        "value": 4.6,
+        "threshold": "project-local pass<=4.5; warn<=5.0; fail>5.0",
+        "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-4-council-shadow",
+        "metric": "narration_characters_per_second",
+        "value": 4.64,
+        "threshold": "project-local pass<=4.5; warn<=5.0; fail>5.0",
+        "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-6-time-or-names",
+        "metric": "narration_characters_per_second",
+        "value": 4.56,
+        "threshold": "project-local pass<=4.5; warn<=5.0; fail>5.0",
+        "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+      }
+    ],
+    "subtitle_warning_count": 0,
+    "subtitle_failure_count": 0
+  },
+  "source_package_pre_hashes": {
+    "artifacts/editorial-handoff/README_DELIVERY.md": {
+      "exists": true,
+      "byte_size": 4390,
+      "sha256": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2"
+    },
+    "artifacts/editorial-handoff/narration-script.md": {
+      "exists": true,
+      "byte_size": 4992,
+      "sha256": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081"
+    },
+    "artifacts/editorial-handoff/subtitle-cues.csv": {
+      "exists": true,
+      "byte_size": 3945,
+      "sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+    },
+    "artifacts/editorial-handoff/shot-list.csv": {
+      "exists": true,
+      "byte_size": 7366,
+      "sha256": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676"
+    },
+    "artifacts/editorial-handoff/editorial-handoff.json": {
+      "exists": true,
+      "byte_size": 31907,
+      "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+    },
+    "artifacts/editorial-handoff/package-manifest.json": {
+      "exists": true,
+      "byte_size": 1081,
+      "sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+    },
+    "artifacts/editorial-revision/README_REVISION.md": {
+      "exists": true,
+      "byte_size": 4975,
+      "sha256": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4"
+    },
+    "artifacts/editorial-revision/revision-request-template.json": {
+      "exists": true,
+      "byte_size": 1831,
+      "sha256": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd"
+    },
+    "artifacts/editorial-revision/revision-request.example.json": {
+      "exists": true,
+      "byte_size": 5685,
+      "sha256": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1"
+    },
+    "artifacts/editorial-revision/revision-decision.example.json": {
+      "exists": true,
+      "byte_size": 2585,
+      "sha256": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d"
+    },
+    "artifacts/editorial-revision/revision-patch.example.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-revision/revision-roundtrip-manifest.json": {
+      "exists": true,
+      "byte_size": 1405,
+      "sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+    },
+    "artifacts/editorial-derivative/README_DERIVATIVE.md": {
+      "exists": true,
+      "byte_size": 1919,
+      "sha256": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe"
+    },
+    "artifacts/editorial-derivative/narration-script.derived.md": {
+      "exists": true,
+      "byte_size": 4774,
+      "sha256": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6"
+    },
+    "artifacts/editorial-derivative/subtitle-cues.derived.csv": {
+      "exists": true,
+      "byte_size": 3615,
+      "sha256": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe"
+    },
+    "artifacts/editorial-derivative/shot-list.derived.csv": {
+      "exists": true,
+      "byte_size": 7009,
+      "sha256": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4"
+    },
+    "artifacts/editorial-derivative/editorial-handoff.derived.json": {
+      "exists": true,
+      "byte_size": 37134,
+      "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+    },
+    "artifacts/editorial-derivative/applied-revision-patch.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-derivative/derivative-provenance.json": {
+      "exists": true,
+      "byte_size": 5841,
+      "sha256": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd"
+    },
+    "artifacts/editorial-derivative/derivative-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2134,
+      "sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+    }
+  },
+  "source_package_post_hashes": {
+    "artifacts/editorial-handoff/README_DELIVERY.md": {
+      "exists": true,
+      "byte_size": 4390,
+      "sha256": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2"
+    },
+    "artifacts/editorial-handoff/narration-script.md": {
+      "exists": true,
+      "byte_size": 4992,
+      "sha256": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081"
+    },
+    "artifacts/editorial-handoff/subtitle-cues.csv": {
+      "exists": true,
+      "byte_size": 3945,
+      "sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+    },
+    "artifacts/editorial-handoff/shot-list.csv": {
+      "exists": true,
+      "byte_size": 7366,
+      "sha256": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676"
+    },
+    "artifacts/editorial-handoff/editorial-handoff.json": {
+      "exists": true,
+      "byte_size": 31907,
+      "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+    },
+    "artifacts/editorial-handoff/package-manifest.json": {
+      "exists": true,
+      "byte_size": 1081,
+      "sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+    },
+    "artifacts/editorial-revision/README_REVISION.md": {
+      "exists": true,
+      "byte_size": 4975,
+      "sha256": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4"
+    },
+    "artifacts/editorial-revision/revision-request-template.json": {
+      "exists": true,
+      "byte_size": 1831,
+      "sha256": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd"
+    },
+    "artifacts/editorial-revision/revision-request.example.json": {
+      "exists": true,
+      "byte_size": 5685,
+      "sha256": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1"
+    },
+    "artifacts/editorial-revision/revision-decision.example.json": {
+      "exists": true,
+      "byte_size": 2585,
+      "sha256": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d"
+    },
+    "artifacts/editorial-revision/revision-patch.example.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-revision/revision-roundtrip-manifest.json": {
+      "exists": true,
+      "byte_size": 1405,
+      "sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+    },
+    "artifacts/editorial-derivative/README_DERIVATIVE.md": {
+      "exists": true,
+      "byte_size": 1919,
+      "sha256": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe"
+    },
+    "artifacts/editorial-derivative/narration-script.derived.md": {
+      "exists": true,
+      "byte_size": 4774,
+      "sha256": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6"
+    },
+    "artifacts/editorial-derivative/subtitle-cues.derived.csv": {
+      "exists": true,
+      "byte_size": 3615,
+      "sha256": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe"
+    },
+    "artifacts/editorial-derivative/shot-list.derived.csv": {
+      "exists": true,
+      "byte_size": 7009,
+      "sha256": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4"
+    },
+    "artifacts/editorial-derivative/editorial-handoff.derived.json": {
+      "exists": true,
+      "byte_size": 37134,
+      "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+    },
+    "artifacts/editorial-derivative/applied-revision-patch.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-derivative/derivative-provenance.json": {
+      "exists": true,
+      "byte_size": 5841,
+      "sha256": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd"
+    },
+    "artifacts/editorial-derivative/derivative-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2134,
+      "sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+    }
+  },
+  "source_packages_unchanged": true,
+  "package_manifest_valid": true,
+  "validation_read_only": true,
+  "canonical": false,
+  "production_approved": false,
+  "assets_selected": false,
+  "rights_cleared_claim": false,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "public_upload": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "assets_selected": false,
+    "rights_cleared_claim": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "public_upload": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "production_approved": false
+  },
+  "negative_probes": {
+    "source_fingerprint_mismatch": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "source fingerprint mismatch"
+      ]
+    },
+    "changed_beat_timing": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "bridge-storyboard-beat-1-bellless-tower: changed beat timing",
+        "bridge-storyboard-beat-1-bellless-tower: narration metric or exact wording mismatch"
+      ]
+    },
+    "changed_beat_order": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "changed beat order is forbidden"
+      ]
+    },
+    "missing_shot": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "missing shot or duplicate shot id",
+        "shot ids or order differ from source",
+        "bridge-storyboard-beat-6-time-or-names: exact inventory mismatch"
+      ]
+    },
+    "fourth_authored_wording_change": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "fourth authored wording change or change-history mismatch"
+      ]
+    },
+    "unknown_composition_class": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot-b01-01: unknown composition_class"
+      ]
+    },
+    "unknown_camera_motion": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "compound_coverage": {
+        "unknown_camera_motion_rejected": true,
+        "transition_frequency_violation_rejected": true
+      },
+      "validation_errors": [
+        "shot-b01-01: unknown camera_motion",
+        "transition frequency limits exceeded: hard_cut_consecutive=0; match_cut_total=19; per_beat=true"
+      ]
+    },
+    "missing_asset_count": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot-b01-01: missing or invalid asset count"
+      ]
+    },
+    "unbounded_freeform_visual_direction": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot-b01-01: unbounded freeform visual direction"
+      ]
+    },
+    "missing_truth_boundary": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot-b01-01: required production field missing",
+        "shot-b01-01: missing truth boundary"
+      ]
+    },
+    "selected_asset": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot-b01-01: selected asset is forbidden"
+      ]
+    },
+    "rights_cleared_claim": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot-b01-01: rights-cleared claim is forbidden",
+        "boundary rights_cleared_claim must be false"
+      ]
+    },
+    "final_canon_promotion": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "final-canon promotion is forbidden",
+        "boundary final_canon_decision must be false"
+      ]
+    },
+    "duplicate_change_history_owner": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "duplicate Change History owner"
+      ]
+    },
+    "package_inventory_in_beat_primary": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "package inventory in beat-dependent primary flow is forbidden"
+      ]
+    },
+    "utility_anchor_movement_above_8": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "utility-anchor movement above 8 pixels"
+      ]
+    },
+    "missing_acceptance_criterion": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot-b01-01: missing acceptance criterion or failed shot check"
+      ]
+    },
+    "manifest_hash_mismatch": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "manifest hash mismatch: README_BLUEPRINT.md"
+      ]
+    }
+  },
+  "checks": {
+    "result_identity": {
+      "passed": true,
+      "detail": "schema=fff.contentProductionBlueprintResult.v1; artifact=fff-content-production-blueprint-001; route=public/review/index.html?mode=blueprint"
+    },
+    "exact_source_fingerprints": {
+      "passed": true,
+      "detail": "derivative=15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c; manifest=7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577; core=94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44"
+    },
+    "source_packages_immutable": {
+      "passed": true,
+      "detail": "protected_files=20; unchanged=true"
+    },
+    "complete_deterministic_blueprint_package": {
+      "passed": true,
+      "detail": "files=8/8; disk=ok; generated=ok"
+    },
+    "controlled_vocabulary_and_metrics": {
+      "passed": true,
+      "detail": "vocab={\"composition_class\":8,\"shot_scale\":5,\"camera_motion\":6,\"transition\":5,\"palette_role\":6,\"asset_class\":7,\"information_role\":7,\"focal_zone\":7,\"overlay_text_mode\":4,\"audio_role\":5,\"motif\":6}; narration=778; fallback=ok"
+    },
+    "definition_of_done_and_acceptance_matrix": {
+      "passed": true,
+      "detail": "dod={\"global\":13,\"beat\":60,\"shot\":285,\"subtitle\":100}; acceptance={\"row_count\":46,\"pass_count\":42,\"warning_count\":4,\"failure_count\":0}"
+    },
+    "negative_probes_fail_closed": {
+      "passed": true,
+      "detail": "source_fingerprint_mismatch:true; changed_beat_timing:true; changed_beat_order:true; missing_shot:true; fourth_authored_wording_change:true; unknown_composition_class:true; unknown_camera_motion:true; missing_asset_count:true; unbounded_freeform_visual_direction:true; missing_truth_boundary:true; selected_asset:true; rights_cleared_claim:true; final_canon_promotion:true; duplicate_change_history_owner:true; package_inventory_in_beat_primary:true; utility_anchor_movement_above_8:true; missing_acceptance_criterion:true; manifest_hash_mismatch:true"
+    },
+    "blueprint_ui_information_architecture": {
+      "passed": true,
+      "detail": "markers=true; owners=1/1; packageOutsidePrimary=true; preserved=true"
+    },
+    "derivative_ia_correction": {
+      "passed": true,
+      "detail": "history=1; files=1; duplicatePrimary=0"
+    },
+    "layout_stability": {
+      "passed": true,
+      "detail": "positions=1880.171875,1880.171875,1880.171875,1880.171875,1880.171875,1880.171875; movement=0; limit=8; source=browser_in_app_900x1200_css_measurement; viewport=900x1200"
+    },
+    "mode_aware_launchers": {
+      "passed": true,
+      "detail": "powershell=true; shell=true; modes=brief,bridge,handoff,revision,derivative,blueprint"
+    },
+    "docs_and_root_manifest_registered": {
+      "passed": true,
+      "detail": "manifest=true/ok; doc=true/ok; order=1563/1763"
+    },
+    "normal_validation_read_only": {
+      "passed": true,
+      "detail": "package=true; protected=true"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "closed=true; credentialFindings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

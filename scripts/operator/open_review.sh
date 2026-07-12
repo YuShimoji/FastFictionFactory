@@ -61,7 +61,7 @@ fi
 review_path="$repo_root/public/review/index.html"
 
 case "$mode" in
-  brief|home|layout-lab|bridge|handoff|revision|derivative|story|designer|draft|source|project|artifacts)
+  brief|home|layout-lab|bridge|handoff|revision|derivative|blueprint|story|designer|draft|source|project|artifacts)
     ;;
   *)
     fail "unknown or unsafe mode: $mode"

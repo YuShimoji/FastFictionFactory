@@ -1797,7 +1797,9 @@
     body[data-review-mode="revision"] .workbench-hub-header,
     body[data-review-mode="revision"] .workbench-route-nav,
     body[data-review-mode="derivative"] .workbench-hub-header,
-    body[data-review-mode="derivative"] .workbench-route-nav {
+    body[data-review-mode="derivative"] .workbench-route-nav,
+    body[data-review-mode="blueprint"] .workbench-hub-header,
+    body[data-review-mode="blueprint"] .workbench-route-nav {
       display: none;
     }
 
@@ -2795,6 +2797,444 @@
       opacity: 0.48;
     }
 
+    .content-production-blueprint-panel,
+    .content-production-blueprint-shell,
+    .blueprint-header,
+    .blueprint-section,
+    .blueprint-contract-grid,
+    .blueprint-constraint-grid,
+    .blueprint-runway,
+    .blueprint-active-canvas,
+    .blueprint-active-body,
+    .blueprint-spec-grid,
+    .blueprint-shot-list,
+    .blueprint-subtitle-list,
+    .blueprint-utility-region {
+      min-width: 0;
+    }
+
+    .content-production-blueprint-panel {
+      gap: 10px;
+      margin-top: 0;
+    }
+
+    .content-production-blueprint-shell {
+      display: grid;
+      gap: 10px;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--blue);
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .blueprint-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .blueprint-header h2,
+    .blueprint-header p {
+      margin-bottom: 5px;
+    }
+
+    .blueprint-identity-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .blueprint-section {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 9px 10px;
+      background: var(--paper-soft);
+    }
+
+    .blueprint-section-head {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 12px;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 7px;
+    }
+
+    .blueprint-section-head h3,
+    .blueprint-section-head p {
+      margin: 0;
+    }
+
+    .blueprint-contract-grid {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(68px, 1fr));
+      gap: 6px;
+    }
+
+    .blueprint-contract-copy-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .blueprint-contract-copy-grid article {
+      min-width: 0;
+      border-left: 3px solid var(--blue);
+      padding: 5px 7px;
+      background: var(--surface-muted);
+    }
+
+    .blueprint-contract-copy-grid strong,
+    .blueprint-contract-copy-grid span {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .blueprint-contract-copy-grid strong {
+      color: var(--ink);
+      font-size: 9px;
+      text-transform: uppercase;
+    }
+
+    .blueprint-contract-copy-grid span {
+      margin-top: 2px;
+      color: var(--muted-strong);
+      font-size: 10px;
+    }
+
+    .blueprint-contract-metric {
+      display: grid;
+      align-content: center;
+      min-height: 54px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 7px;
+      background: var(--paper);
+    }
+
+    .blueprint-contract-metric strong {
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+    }
+
+    .blueprint-contract-metric span {
+      color: var(--muted-strong);
+      font-size: 9px;
+      font-weight: 750;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .blueprint-dod-summary {
+      grid-column: 1 / -1;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 12px;
+      align-items: center;
+      border-left: 4px solid var(--green);
+      padding: 6px 8px;
+      background: var(--success-bg);
+      color: var(--ink);
+      font-size: 11px;
+    }
+
+    .blueprint-constraint-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .blueprint-constraint-column {
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 7px 8px;
+      background: var(--paper);
+    }
+
+    .blueprint-constraint-column h4 {
+      margin-bottom: 4px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .blueprint-constraint-column ul,
+    .blueprint-acceptance-list,
+    .blueprint-history-list,
+    .blueprint-guard-list {
+      display: grid;
+      gap: 3px;
+      margin: 0;
+      padding-left: 17px;
+      color: var(--muted-strong);
+      font-size: 10px;
+    }
+
+    .blueprint-constraint-column li,
+    .blueprint-acceptance-list li,
+    .blueprint-history-list li,
+    .blueprint-guard-list li {
+      overflow-wrap: anywhere;
+    }
+
+    .blueprint-runway {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 6px;
+    }
+
+    .blueprint-beat-tab {
+      display: grid;
+      align-content: start;
+      gap: 2px;
+      height: 76px;
+      min-width: 0;
+      cursor: pointer;
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      padding: 7px;
+      background: var(--paper);
+      color: var(--ink);
+      font: inherit;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .blueprint-beat-tab strong,
+    .blueprint-beat-tab span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .blueprint-beat-tab strong {
+      font-size: 11px;
+    }
+
+    .blueprint-beat-tab span {
+      color: var(--muted-strong);
+      font-size: 9px;
+    }
+
+    .blueprint-beat-tab[aria-selected="true"] {
+      border-color: var(--blue);
+      background: var(--blue-soft);
+      box-shadow: inset 0 0 0 1px var(--blue);
+    }
+
+    .blueprint-active-canvas {
+      height: 560px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      scroll-behavior: smooth;
+      border: 1px solid var(--line-strong);
+      border-radius: 7px;
+      background: var(--paper);
+    }
+
+    .blueprint-active-header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: start;
+      border-bottom: 1px solid var(--line);
+      padding: 9px 10px;
+      background: var(--paper);
+      box-shadow: 0 3px 8px rgba(37, 35, 31, 0.08);
+    }
+
+    .blueprint-active-header h3,
+    .blueprint-active-header p {
+      margin-bottom: 3px;
+    }
+
+    .blueprint-active-body {
+      display: grid;
+      gap: 9px;
+      padding: 9px 10px 14px;
+    }
+
+    .blueprint-beat-facts {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 5px;
+    }
+
+    .blueprint-fact {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 5px 6px;
+      background: var(--surface-muted);
+    }
+
+    .blueprint-fact strong,
+    .blueprint-fact span {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .blueprint-fact strong {
+      color: var(--ink);
+      font-size: 11px;
+    }
+
+    .blueprint-fact span {
+      color: var(--muted-strong);
+      font-size: 8px;
+      font-weight: 750;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .blueprint-active-dod {
+      display: grid;
+      grid-template-columns: minmax(120px, 0.22fr) minmax(0, 1fr);
+      gap: 7px;
+      border-left: 4px solid var(--green);
+      padding: 7px 8px;
+      background: var(--success-bg);
+    }
+
+    .blueprint-active-dod strong {
+      color: var(--ink);
+      font-size: 11px;
+    }
+
+    .blueprint-spec-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .blueprint-spec-card,
+    .blueprint-shot-card,
+    .blueprint-subtitle-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 8px;
+      background: var(--paper-soft);
+    }
+
+    .blueprint-spec-card h4,
+    .blueprint-shot-card h4,
+    .blueprint-subtitle-card h4,
+    .blueprint-spec-card p,
+    .blueprint-shot-card p,
+    .blueprint-subtitle-card p {
+      margin-bottom: 5px;
+    }
+
+    .blueprint-shot-list,
+    .blueprint-subtitle-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .blueprint-data-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 4px;
+    }
+
+    .blueprint-data-cell {
+      min-width: 0;
+      border-top: 1px solid var(--line);
+      padding-top: 4px;
+    }
+
+    .blueprint-data-cell strong,
+    .blueprint-data-cell span {
+      display: block;
+      overflow-wrap: anywhere;
+    }
+
+    .blueprint-data-cell strong {
+      color: var(--ink);
+      font-size: 10px;
+    }
+
+    .blueprint-data-cell span {
+      color: var(--muted-strong);
+      font-size: 8px;
+      text-transform: uppercase;
+    }
+
+    .blueprint-utility-region {
+      display: grid;
+      gap: 6px;
+    }
+
+    .blueprint-utility-region details,
+    .derivative-utility-drawer {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 0 9px;
+      background: var(--paper-soft);
+    }
+
+    .blueprint-utility-region summary,
+    .derivative-utility-drawer > summary {
+      cursor: pointer;
+      padding: 9px 0;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .blueprint-utility-body,
+    .derivative-utility-body {
+      display: grid;
+      gap: 9px;
+      min-width: 0;
+      border-top: 1px solid var(--line);
+      padding: 9px 0;
+    }
+
+    .blueprint-file-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 5px;
+    }
+
+    .blueprint-file-grid .handoff-file-link {
+      min-height: 0;
+      padding: 6px 7px;
+    }
+
+    .derivative-change-summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 6px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .derivative-change-summary li {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--green);
+      border-radius: 5px;
+      padding: 6px 7px;
+      background: var(--paper-soft);
+      color: var(--muted-strong);
+      font-size: 10px;
+      overflow-wrap: anywhere;
+    }
+
     .bridge-supporting-details {
       min-width: 0;
     }
@@ -2937,6 +3377,7 @@
     body[data-review-mode="handoff"] [data-mode-panel="handoff"],
     body[data-review-mode="revision"] [data-mode-panel="revision"],
     body[data-review-mode="derivative"] [data-mode-panel="derivative"],
+    body[data-review-mode="blueprint"] [data-mode-panel="blueprint"],
     body[data-review-mode="story"] [data-mode-panel="story"],
     body[data-review-mode="designer"] [data-mode-panel="designer"],
     body[data-review-mode="draft"] [data-mode-panel="draft"],
@@ -3731,7 +4172,10 @@
       .derivative-import-row,
       .derivative-context-grid,
       .derivative-workspace,
-      .derivative-package-columns {
+      .derivative-package-columns,
+      .blueprint-header,
+      .blueprint-active-header,
+      .blueprint-spec-grid {
         grid-template-columns: 1fr;
       }
 
@@ -3743,6 +4187,22 @@
       .revision-summary-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
+
+      .blueprint-contract-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .blueprint-constraint-grid,
+      .blueprint-contract-copy-grid,
+      .derivative-change-summary {
+        grid-template-columns: 1fr;
+      }
+
+      .blueprint-beat-facts,
+      .blueprint-data-grid,
+      .blueprint-file-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -3750,9 +4210,12 @@
       .editorial-handoff-shell,
       .editorial-revision-shell,
       .editorial-derivative-shell,
+      .content-production-blueprint-shell,
       .storyboard-beat-tab,
+      .blueprint-beat-tab,
       .revision-change-tab,
-      .storyboard-active-canvas {
+      .storyboard-active-canvas,
+      .blueprint-active-canvas {
         animation: none;
         scroll-behavior: auto;
         transition: none;
@@ -5192,6 +5655,12 @@
               <p class="derivative-status-copy">source_apply_status=<strong>not_applied</strong> · derived_apply_status=<strong>applied_to_derived_copy</strong> · rollback=<strong>discard_derived_package</strong></p>
             </div>
 
+            <ol class="derivative-change-summary" aria-label="Accepted three-change summary" data-derivative-three-change-summary="true">
+              <li><strong>01 · narration-b01.text</strong><br>冒頭の伝聞性を保ったまま問いへの接続を簡潔化。</li>
+              <li><strong>02 · sub-b02-03.text_ja</strong><br>真鍮の蛾の機能を決めず、画面で読める表現へ調整。</li>
+              <li><strong>03 · shot-b03-03.visual_direction</strong><br>名前が消える動きを明確化し、literal erasure は主張しない。</li>
+            </ol>
+
             <section class="derivative-fingerprint-grid" aria-label="Source patch and derivative fingerprints">
               <article class="derivative-fingerprint-card">
                 <strong>Source / Handoff</strong>
@@ -5257,31 +5726,6 @@
                 </article>
               </div>
 
-              <div class="derivative-workspace">
-                <nav class="revision-change-rail" role="tablist" aria-label="Applied safe change rail" aria-orientation="vertical" data-derivative-change-rail></nav>
-
-                <section class="revision-diff-canvas" id="editorial-derivative-active-diff" role="tabpanel" tabindex="0" aria-live="polite" data-derivative-diff-canvas>
-                  <header class="revision-active-header">
-                    <div>
-                      <p class="hub-eyebrow" data-derivative-change-position>CHANGE 1 / 3 · APPLIED TO DERIVED COPY</p>
-                      <h3 data-derivative-change-title>narration_wording</h3>
-                      <p class="section-note" data-derivative-change-target></p>
-                    </div>
-                    <span class="revision-guard-badge" data-guard-class="safe_local_edit">safe_local_edit</span>
-                  </header>
-                  <div class="revision-diff-grid">
-                    <section class="revision-diff-panel" aria-labelledby="derivative-before-title">
-                      <h4 id="derivative-before-title">Before / immutable source</h4>
-                      <pre class="revision-diff-value" data-derivative-before></pre>
-                    </section>
-                    <section class="revision-diff-panel proposed" aria-labelledby="derivative-after-title">
-                      <h4 id="derivative-after-title">After / derived copy</h4>
-                      <pre class="revision-diff-value" data-derivative-after></pre>
-                    </section>
-                  </div>
-                  <p class="section-note" data-derivative-change-proof>source unchanged · target and before value verified · safe wording only</p>
-                </section>
-              </div>
             </section>
 
             <div class="storyboard-nav-actions" aria-label="Derivative beat navigation">
@@ -5290,6 +5734,41 @@
               <button class="brief-action next" type="button" data-derivative-next aria-label="次の拍">次の拍</button>
             </div>
 
+            <details class="derivative-utility-drawer" data-derivative-change-history-owner="true">
+              <summary>Change History / 変更履歴（3件・既定で閉じる）</summary>
+              <div class="derivative-utility-body">
+                <p class="section-note">この棚だけが Before / After と provenance を所有します。上の主画面は現在の派生内容だけを表示します。</p>
+                <div class="derivative-workspace">
+                  <nav class="revision-change-rail" role="tablist" aria-label="Applied safe change rail" aria-orientation="vertical" data-derivative-change-rail></nav>
+
+                  <section class="revision-diff-canvas" id="editorial-derivative-active-diff" role="tabpanel" tabindex="0" aria-live="polite" data-derivative-diff-canvas>
+                    <header class="revision-active-header">
+                      <div>
+                        <p class="hub-eyebrow" data-derivative-change-position>CHANGE 1 / 3 · APPLIED TO DERIVED COPY</p>
+                        <h3 data-derivative-change-title>narration_wording</h3>
+                        <p class="section-note" data-derivative-change-target></p>
+                      </div>
+                      <span class="revision-guard-badge" data-guard-class="safe_local_edit">safe_local_edit</span>
+                    </header>
+                    <div class="revision-diff-grid">
+                      <section class="revision-diff-panel" aria-labelledby="derivative-before-title">
+                        <h4 id="derivative-before-title">Before / immutable source</h4>
+                        <pre class="revision-diff-value" data-derivative-before></pre>
+                      </section>
+                      <section class="revision-diff-panel proposed" aria-labelledby="derivative-after-title">
+                        <h4 id="derivative-after-title">After / derived copy</h4>
+                        <pre class="revision-diff-value" data-derivative-after></pre>
+                      </section>
+                    </div>
+                    <p class="section-note" data-derivative-change-proof>source unchanged · target and before value verified · safe wording only</p>
+                  </section>
+                </div>
+              </div>
+            </details>
+
+            <details class="derivative-utility-drawer" data-derivative-files-export-owner="true">
+              <summary>Files / Export（8ファイル・既定で閉じる）</summary>
+              <div class="derivative-utility-body">
             <section class="revision-package-section" aria-labelledby="derivative-package-title">
               <div>
                 <p class="hub-eyebrow">Portable derivative package</p>
@@ -5325,10 +5804,150 @@
                 </div>
               </div>
             </section>
+              </div>
+            </details>
 
             <footer class="revision-footer">
               <p class="section-note">6 beats · 180 seconds · 6 narration · 20 subtitles · 19 shots · 3 thumbnails</p>
               <p class="section-note">canonical=<strong>false</strong> · application_scope=<strong>derived_copy_only</strong> · network/filesystem write=<strong>none</strong></p>
+            </footer>
+          </section>
+        </section>
+
+        <section class="content-production-blueprint-panel" id="content-production-blueprint-root" data-mode-panel="blueprint" data-content-production-blueprint-root="true" aria-labelledby="content-production-blueprint-title">
+          <section class="content-production-blueprint-shell" data-blueprint-review-only="true" data-blueprint-production-approved="false">
+            <header class="blueprint-header">
+              <div>
+                <p class="hub-eyebrow">Content Production Blueprint / 定量制作設計</p>
+                <h2 id="content-production-blueprint-title">『鐘のない塔』を、判断可能な制作仕様として読む</h2>
+                <p class="lede">3件の採用済み文言を暫定基準に、180秒・6拍・19ショット・20字幕を測定可能な制約へ変換したローカル設計です。生成・素材選定・権利許諾・canon・production approval は行いません。</p>
+                <div class="blueprint-identity-row" aria-label="Blueprint identity and status">
+                  <span class="tag blue">fff-content-production-blueprint-001</span>
+                  <span class="tag gold">PROVISIONAL PRODUCTION BLUEPRINT</span>
+                  <span class="tag red">NOT APPROVED / NOT CANONICAL</span>
+                  <span class="tag" data-blueprint-data-source>embedded read-only fallback</span>
+                </div>
+              </div>
+              <nav class="handoff-route-actions" aria-label="Blueprint source routes">
+                <a class="handoff-route-link" href="?mode=derivative">Derivativeへ戻る</a>
+                <a class="handoff-route-link" href="?mode=handoff">Handoff</a>
+                <a class="handoff-route-link" href="?mode=brief">Brief</a>
+              </nav>
+            </header>
+
+            <section class="blueprint-section" data-blueprint-content-contract="true" aria-labelledby="blueprint-content-contract-title">
+              <header class="blueprint-section-head">
+                <div>
+                  <p class="hub-eyebrow">1 / Content Contract</p>
+                  <h3 id="blueprint-content-contract-title">何を約束し、何を未解決のまま残すか</h3>
+                </div>
+                <span class="tag gold" data-blueprint-profile-status>provisional_review_profile</span>
+              </header>
+              <div class="blueprint-contract-grid">
+                <div class="blueprint-contract-metric"><strong data-blueprint-duration>180s</strong><span>total runtime</span></div>
+                <div class="blueprint-contract-metric"><strong data-blueprint-beat-count>6</strong><span>beats</span></div>
+                <div class="blueprint-contract-metric"><strong data-blueprint-shot-count>19</strong><span>shots</span></div>
+                <div class="blueprint-contract-metric"><strong data-blueprint-subtitle-count>20</strong><span>subtitles</span></div>
+                <div class="blueprint-contract-metric"><strong data-blueprint-narration-count>6</strong><span>narrations</span></div>
+                <div class="blueprint-contract-metric"><strong data-blueprint-thumbnail-count>3</strong><span>thumbnails</span></div>
+                <div class="blueprint-contract-metric"><strong>1920×1080</strong><span>16:9 · 30fps planning</span></div>
+                <div class="blueprint-contract-metric"><strong data-blueprint-acceptance-status>P/W/F</strong><span>acceptance</span></div>
+                <div class="blueprint-dod-summary" data-blueprint-global-dod>
+                  <strong>Definition of Done</strong>
+                  <span>global + 6 beats + 19 shots + 20 subtitles を全件検査</span>
+                  <span>unknown vocabulary=fail</span>
+                  <span>failures=0 / warningsは明示</span>
+                  <span>review-only; render=false</span>
+                </div>
+              </div>
+              <div class="blueprint-contract-copy-grid" aria-label="Content promise and unresolved boundary">
+                <article><strong>Content promise</strong><span data-blueprint-content-promise>鐘のない塔から未解決の選択へ進む3分の調査導線。</span></article>
+                <article><strong>Presented question</strong><span data-blueprint-presented-question>時間を戻すか、名前を戻すか。</span></article>
+                <article><strong>Deliberately unresolved</strong><span data-blueprint-unresolved>Toma / brass moth / Council / ending truth。</span></article>
+              </div>
+            </section>
+
+            <section class="blueprint-section" data-blueprint-constraint-envelope="true" aria-labelledby="blueprint-constraint-envelope-title">
+              <header class="blueprint-section-head">
+                <div>
+                  <p class="hub-eyebrow">2 / Constraint Envelope</p>
+                  <h3 id="blueprint-constraint-envelope-title">LOCKED / BOUNDED / FREE</h3>
+                </div>
+                <p class="section-note">FREEは非意味的な微差のみ。各ショットは列挙値と数値範囲で制御。</p>
+              </header>
+              <div class="blueprint-constraint-grid">
+                <article class="blueprint-constraint-column"><h4>LOCKED · 変更不可</h4><ul data-blueprint-locked-list><li>6拍順序・180秒・IDs・3件の文言</li></ul></article>
+                <article class="blueprint-constraint-column"><h4>BOUNDED · 列挙 / 数値</h4><ul data-blueprint-bounded-list><li>composition / scale / motion / transition / occupancy</li></ul></article>
+                <article class="blueprint-constraint-column"><h4>FREE · 低リスク微差</h4><ul data-blueprint-free-list><li>texture nuance / decorative variation / minor easing / prop wear</li></ul></article>
+              </div>
+              <p class="section-note" data-blueprint-vocabulary-summary>controlled vocabulary: composition 8 · scale 5 · motion 6 · transition 5 · palette 6 · asset 7 · information 7</p>
+            </section>
+
+            <section class="blueprint-section" data-blueprint-runway="true" aria-labelledby="blueprint-runway-title">
+              <header class="blueprint-section-head">
+                <div>
+                  <p class="hub-eyebrow">3 / Six-beat Runway</p>
+                  <h3 id="blueprint-runway-title">時間・shot・subtitleを固定して拍を切り替える</h3>
+                </div>
+                <p class="section-note">Arrow / Home / End · utility anchorは全拍で固定</p>
+              </header>
+              <div class="blueprint-runway" role="tablist" aria-label="Content Production Blueprint six-beat runway" aria-orientation="horizontal" data-blueprint-beat-tabs></div>
+            </section>
+
+            <section class="blueprint-active-canvas" id="content-production-blueprint-active-canvas" role="tabpanel" tabindex="0" aria-live="polite" data-blueprint-active-canvas="true">
+              <header class="blueprint-active-header">
+                <div>
+                  <p class="hub-eyebrow" data-blueprint-active-position>4 / ACTIVE BEAT · BEAT 1 / 6</p>
+                  <h3 data-blueprint-active-title>読み込み中</h3>
+                  <p class="section-note" data-blueprint-active-time>00:00-00:20 · 20s</p>
+                </div>
+                <div class="tag-row">
+                  <span class="tag blue" data-blueprint-active-scale>3 shots</span>
+                  <span class="tag gold" data-blueprint-active-dod-count>DoD pending</span>
+                </div>
+              </header>
+              <div class="blueprint-active-body" data-blueprint-active-body>
+                <p class="empty-state">定量仕様を読み込んでいます。</p>
+              </div>
+            </section>
+
+            <section class="blueprint-utility-region" data-blueprint-utility-anchor="true" aria-label="Blueprint utility drawers">
+              <p class="hub-eyebrow">5 / Utility Drawers · beat非依存領域</p>
+              <details data-blueprint-change-history-owner="true">
+                <summary>Change History / 変更履歴（3件・既定で閉じる）</summary>
+                <div class="blueprint-utility-body">
+                  <p class="section-note">Before / After と provenance はこの棚だけが所有し、Active Beatには重複表示しません。</p>
+                  <ol class="blueprint-history-list" data-blueprint-change-history-list></ol>
+                </div>
+              </details>
+              <details data-blueprint-files-export-owner="true">
+                <summary>Files / Export（Blueprint 8ファイル・既定で閉じる）</summary>
+                <div class="blueprint-utility-body">
+                  <p class="section-note">静的パッケージは監査・手動移送用です。ファイルの存在は制作、素材選定、権利許諾を意味しません。</p>
+                  <div class="blueprint-file-grid" data-blueprint-package-files>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/README_BLUEPRINT.md"><strong>README_BLUEPRINT.md</strong><span>operator guide</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/production-blueprint.json"><strong>production-blueprint.json</strong><span>machine authority</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/beat-specs.csv"><strong>beat-specs.csv</strong><span>6 beat rows</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/shot-specs.csv"><strong>shot-specs.csv</strong><span>19 shot rows</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/subtitle-metrics.csv"><strong>subtitle-metrics.csv</strong><span>20 cue rows</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/visual-system.md"><strong>visual-system.md</strong><span>tokens / grammar</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/acceptance-matrix.csv"><strong>acceptance-matrix.csv</strong><span>pass / warn / fail</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/blueprint-package-manifest.json"><strong>blueprint-package-manifest.json</strong><span>bytes / SHA256</span></a>
+                  </div>
+                </div>
+              </details>
+              <details data-blueprint-guards-owner="true">
+                <summary>Guards / 制作・真実・権利境界（既定で閉じる）</summary>
+                <div class="blueprint-utility-body">
+                  <p class="section-note">provider/API、credentials、generation、render、upload、publication、database、asset selection、rights clearance、final canon は閉鎖。</p>
+                  <ul class="blueprint-guard-list" data-blueprint-guard-list></ul>
+                </div>
+              </details>
+            </section>
+
+            <footer class="revision-footer">
+              <p class="section-note">status=<strong>provisional_production_blueprint</strong> · canonical=<strong>false</strong> · production_approved=<strong>false</strong></p>
+              <p class="section-note">asset_status=<strong>unselected</strong> · rights_status=<strong>not_cleared</strong> · render_authorized=<strong>false</strong></p>
             </footer>
           </section>
         </section>
@@ -6965,6 +7584,21 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       "derivative-package-manifest.json": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
     });
     const EDITORIAL_DERIVATIVE_EXPECTED_CORE_FINGERPRINT = "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44";
+    const CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID = "fff-content-production-blueprint-001";
+    const CONTENT_PRODUCTION_BLUEPRINT_PATH = "../../artifacts/production-blueprint/production-blueprint.json";
+    const CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES = Object.freeze({
+      composition_class: ["environment_establishing", "character_context", "evidence_insert", "object_detail", "institutional_pressure", "abstract_information", "unresolved_choice", "closing_question"],
+      shot_scale: ["wide", "medium", "close", "extreme_close", "graphic_fullframe"],
+      camera_motion: ["locked", "slow_push", "slow_pull", "slow_pan", "controlled_parallax", "graphic_dissolve"],
+      transition: ["hard_cut", "short_dissolve", "match_cut", "graphic_match", "held_fade"],
+      palette_role: ["midnight_base", "brass_accent", "paper_neutral", "warning_rust", "uncertainty_cool", "text_high_contrast"],
+      asset_class: ["environment", "character_silhouette", "prop", "document_graphic", "abstract_graphic", "typography", "audio_cue"],
+      information_role: ["hook", "evidence", "context", "pressure", "competing_hypothesis", "unresolved_question", "closing_prompt"],
+      focal_zone: ["center", "center_left", "center_right", "upper_third", "lower_third", "split_frame", "full_frame"],
+      overlay_text_mode: ["none", "subtitle_only", "single_label", "subtitle_plus_single_label"],
+      audio_role: ["ambient_bed", "mechanical_detail", "tension_pulse", "silence_hold", "closing_resonance"],
+      motif: ["bellless_frame", "brass_moth_and_9_17", "fading_name_contours", "translucent_divider", "hold_labels", "time_or_names_split"]
+    });
     const editorialDerivativeSamplePatch = {
       schemaVersion: EDITORIAL_REVISION_PATCH_SCHEMA,
       patch_id: "revision-patch-example-001",
@@ -7061,6 +7695,11 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       patchSha256: EDITORIAL_DERIVATIVE_PATCH_SHA256,
       derivedSha256: "fingerprint calculating..."
     };
+    let activeContentProductionBlueprintBeatIndex = 0;
+    const contentProductionBlueprintFallbackCandidate = buildContentProductionBlueprintFallback(currentEditorialDerivativePackage.model);
+    let contentProductionBlueprintFallbackErrors = validateContentProductionBlueprintContract(contentProductionBlueprintFallbackCandidate, currentEditorialDerivativePackage.model);
+    let contentProductionBlueprintLoadState = contentProductionBlueprintFallbackErrors.length === 0 ? "embedded_fallback_validated" : "fallback_blocked";
+    let currentContentProductionBlueprint = contentProductionBlueprintFallbackErrors.length === 0 ? contentProductionBlueprintFallbackCandidate : null;
 
     const memoInput = document.querySelector("#memo-input");
     const roots = {
@@ -7082,7 +7721,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       bridgeStoryboardFlow: document.querySelector("#bridge-storyboard-flow-root"),
       bridgeEditorialHandoff: document.querySelector("#bridge-editorial-handoff-root"),
       editorialRevision: document.querySelector("#editorial-revision-roundtrip-root"),
-      editorialDerivative: document.querySelector("#editorial-derivative-preview-root")
+      editorialDerivative: document.querySelector("#editorial-derivative-preview-root"),
+      contentProductionBlueprint: document.querySelector("#content-production-blueprint-root")
     };
     const jsonExportOutput = document.querySelector("#json-export-output");
     const jsonImportInput = document.querySelector("#json-import-input");
@@ -7113,6 +7753,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       "handoff",
       "revision",
       "derivative",
+      "blueprint",
       ...PRESERVED_REVIEW_MODES.slice(4)
     ];
     const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "brief";
@@ -7124,6 +7765,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     renderAll();
     showFileSupportMessage();
     void initializeEditorialDerivativeSample();
+    void initializeContentProductionBlueprint();
 
     modeButtons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -7347,6 +7989,38 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         const file = event.target.files?.[0];
         if (file) {
           importEditorialDerivativePatch(file, event.target);
+        }
+      });
+    }
+
+    if (roots.contentProductionBlueprint) {
+      roots.contentProductionBlueprint.addEventListener("click", (event) => {
+        const beatButton = event.target.closest("[data-blueprint-beat-select]");
+        if (beatButton) {
+          setActiveContentProductionBlueprintBeat(Number(beatButton.getAttribute("data-blueprint-beat-index")), true);
+        }
+      });
+
+      roots.contentProductionBlueprint.addEventListener("keydown", (event) => {
+        const beatButton = event.target.closest("[data-blueprint-beat-select]");
+        if (!beatButton) {
+          return;
+        }
+        const beatCount = currentContentProductionBlueprint?.beats?.length || 0;
+        const currentIndex = Number(beatButton.getAttribute("data-blueprint-beat-index"));
+        let nextIndex = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+          nextIndex = (currentIndex + 1) % beatCount;
+        } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+          nextIndex = (currentIndex - 1 + beatCount) % beatCount;
+        } else if (event.key === "Home") {
+          nextIndex = 0;
+        } else if (event.key === "End") {
+          nextIndex = beatCount - 1;
+        }
+        if (nextIndex !== null && beatCount > 0) {
+          event.preventDefault();
+          setActiveContentProductionBlueprintBeat(nextIndex, true);
         }
       });
     }
@@ -7636,6 +8310,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       renderBridgeEditorialHandoff(bridgeEditorialHandoffModel);
       renderEditorialRevisionRoundtrip();
       renderEditorialDerivativePreview();
+      renderContentProductionBlueprint();
       renderSafetyGateRegistry();
       renderExtractionContract(currentModel.extraction_contract);
       renderDesignerDashboard(currentModel.designer_dashboard);
@@ -9364,6 +10039,803 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       if (node) {
         node.textContent = String(value ?? "");
       }
+    }
+
+    function buildContentProductionBlueprintFallback(sourceModel) {
+      const shotPlans = [
+        ["shot-b01-01", "environment_establishing", "wide", "center", 20, 45, "slow_push", "hard_cut", "midnight_base", "environment", 1, "subtitle_only", "ambient_bed", "hook"],
+        ["shot-b01-02", "object_detail", "close", "center", 35, 60, "locked", "short_dissolve", "paper_neutral", "environment", 1, "subtitle_only", "ambient_bed", "evidence"],
+        ["shot-b01-03", "closing_question", "medium", "center", 25, 45, "locked", "held_fade", "uncertainty_cool", "typography", 1, "subtitle_plus_single_label", "silence_hold", "unresolved_question"],
+        ["shot-b02-01", "character_context", "close", "lower_third", 35, 60, "slow_pan", "hard_cut", "paper_neutral", "character_silhouette", 1, "subtitle_only", "mechanical_detail", "context"],
+        ["shot-b02-02", "evidence_insert", "close", "center", 40, 65, "locked", "match_cut", "brass_accent", "prop", 2, "subtitle_only", "ambient_bed", "evidence"],
+        ["shot-b02-03", "object_detail", "extreme_close", "split_frame", 25, 45, "controlled_parallax", "graphic_match", "brass_accent", "prop", 2, "subtitle_only", "mechanical_detail", "competing_hypothesis"],
+        ["shot-b03-01", "evidence_insert", "close", "lower_third", 35, 60, "slow_push", "hard_cut", "paper_neutral", "document_graphic", 1, "subtitle_only", "ambient_bed", "evidence"],
+        ["shot-b03-02", "abstract_information", "graphic_fullframe", "center", 20, 55, "locked", "graphic_match", "uncertainty_cool", "document_graphic", 1, "subtitle_plus_single_label", "tension_pulse", "evidence"],
+        ["shot-b03-03", "abstract_information", "graphic_fullframe", "full_frame", 20, 70, "graphic_dissolve", "short_dissolve", "uncertainty_cool", "abstract_graphic", 1, "subtitle_only", "tension_pulse", "competing_hypothesis"],
+        ["shot-b04-01", "institutional_pressure", "wide", "center", 15, 35, "slow_push", "hard_cut", "midnight_base", "character_silhouette", 3, "subtitle_only", "tension_pulse", "pressure"],
+        ["shot-b04-02", "unresolved_choice", "graphic_fullframe", "split_frame", 20, 60, "locked", "graphic_match", "warning_rust", "document_graphic", 2, "subtitle_plus_single_label", "tension_pulse", "competing_hypothesis"],
+        ["shot-b04-03", "institutional_pressure", "medium", "center", 25, 50, "slow_pull", "held_fade", "midnight_base", "environment", 1, "subtitle_plus_single_label", "silence_hold", "pressure"],
+        ["shot-b05-01", "unresolved_choice", "medium", "split_frame", 20, 55, "slow_pan", "hard_cut", "uncertainty_cool", "character_silhouette", 1, "subtitle_plus_single_label", "tension_pulse", "competing_hypothesis"],
+        ["shot-b05-02", "object_detail", "close", "center", 35, 60, "controlled_parallax", "match_cut", "brass_accent", "prop", 1, "subtitle_plus_single_label", "mechanical_detail", "context"],
+        ["shot-b05-03", "unresolved_choice", "graphic_fullframe", "split_frame", 20, 65, "locked", "graphic_match", "warning_rust", "document_graphic", 1, "subtitle_plus_single_label", "tension_pulse", "competing_hypothesis"],
+        ["shot-b05-04", "abstract_information", "graphic_fullframe", "full_frame", 20, 70, "graphic_dissolve", "held_fade", "text_high_contrast", "typography", 1, "subtitle_plus_single_label", "silence_hold", "unresolved_question"],
+        ["shot-b06-01", "unresolved_choice", "graphic_fullframe", "split_frame", 25, 60, "locked", "hard_cut", "uncertainty_cool", "abstract_graphic", 2, "subtitle_only", "tension_pulse", "unresolved_question"],
+        ["shot-b06-02", "evidence_insert", "close", "lower_third", 35, 60, "slow_pull", "graphic_match", "paper_neutral", "document_graphic", 1, "subtitle_only", "ambient_bed", "context"],
+        ["shot-b06-03", "closing_question", "wide", "center", 20, 45, "slow_pull", "held_fade", "midnight_base", "environment", 1, "subtitle_plus_single_label", "closing_resonance", "closing_prompt"]
+      ].map(([shot_id, composition_class, shot_scale, focal_zone, subject_occupancy_percent_min,
+        subject_occupancy_percent_max, camera_motion, transition, palette_role, asset_class,
+        required_asset_count, overlay_text_mode, audio_role, information_role]) => ({
+        shot_id, composition_class, shot_scale, focal_zone, subject_occupancy_percent_min,
+        subject_occupancy_percent_max, camera_motion, transition, palette_role, asset_class,
+        required_asset_count, overlay_text_mode, audio_role, information_role
+      }));
+      const shotPlanById = new Map(shotPlans.map((plan) => [plan.shot_id, plan]));
+      const beatPlans = [
+        [1, "hook", ["evidence", "unresolved_question"], "bellless_frame"],
+        [2, "context", ["evidence", "competing_hypothesis"], "brass_moth_and_9_17"],
+        [3, "evidence", ["context", "competing_hypothesis"], "fading_name_contours"],
+        [4, "pressure", ["evidence", "competing_hypothesis"], "translucent_divider"],
+        [5, "competing_hypothesis", ["context", "unresolved_question"], "hold_labels"],
+        [6, "closing_prompt", ["context", "unresolved_question"], "time_or_names_split"]
+      ].map(([beat_number, primary_information_goal, supporting_information_goals, recurring_motif]) => ({
+        beat_number, primary_information_goal, supporting_information_goals, recurring_motif
+      }));
+      const beatPlanByNumber = new Map(beatPlans.map((plan) => [plan.beat_number, plan]));
+      const focalSubjects = {
+        "shot-b01-01": "空の鐘枠を持つ天文台遠景", "shot-b01-02": "空の鐘枠と取付部", "shot-b01-03": "空の鐘枠と正午表示",
+        "shot-b02-01": "ミラの手元と時計修理台", "shot-b02-02": "メモと静止した真鍮の蛾", "shot-b02-03": "9:17の時計面と真鍮の蛾",
+        "shot-b03-01": "開かれる台帳", "shot-b03-02": "名前と分の列", "shot-b03-03": "薄れる名前の輪郭",
+        "shot-b04-01": "匿名の評議会シルエット", "shot-b04-02": "同じ重みの二つの仮説", "shot-b04-03": "閉じた制度空間と台帳の影",
+        "shot-b05-01": "未確定のトーマ候補", "shot-b05-02": "真鍮の蛾と機能候補", "shot-b05-03": "評議会の動機候補",
+        "shot-b05-04": "Toma / moth / Council HOLD面", "shot-b06-01": "時計面と空欄の名前欄", "shot-b06-02": "未記入欄を残す台帳",
+        "shot-b06-03": "空の鐘枠と終幕の問い"
+      };
+      const sourceShots = Array.isArray(sourceModel?.shot_cues) ? sourceModel.shot_cues : [];
+      const sourceSubtitles = Array.isArray(sourceModel?.subtitle_cues) ? sourceModel.subtitle_cues : [];
+      const sourceNarration = Array.isArray(sourceModel?.narration_segments) ? sourceModel.narration_segments : [];
+      const sourceBeats = Array.isArray(sourceModel?.beats) ? sourceModel.beats : [];
+      const definitions = contentProductionBlueprintFallbackDodDefinitions();
+      const shots = sourceShots.map((shot) => {
+        const plan = shotPlanById.get(shot.shot_id);
+        const startSeconds = blueprintTimeToSeconds(shot.start_time);
+        const endSeconds = blueprintTimeToSeconds(shot.end_time);
+        const overlayMaxLines = plan.overlay_text_mode === "none" ? 0 : plan.overlay_text_mode === "single_label" ? 1 : 2;
+        const checks = blueprintFallbackCheckObjects(definitions.shot, {
+          "shot-timing": `${shot.start_time}-${shot.end_time}`,
+          "shot-occupancy": `${plan.subject_occupancy_percent_min}-${plan.subject_occupancy_percent_max}%`,
+          "shot-asset-quantity": `required_asset_count=${plan.required_asset_count}`,
+          "shot-asset-rights": "asset_status=unselected; rights_status=not_cleared",
+          "shot-visual-control": "current wording=LOCKED_SOURCE_WORDING; production degrees=BOUNDED"
+        });
+        return {
+          shot_id: shot.shot_id,
+          beat_id: shot.beat_id,
+          start_time: shot.start_time,
+          end_time: shot.end_time,
+          start_seconds: startSeconds,
+          end_seconds: endSeconds,
+          duration_seconds: endSeconds - startSeconds,
+          shot_function: shot.shot_purpose,
+          current_visual_direction: shot.visual_direction,
+          visual_direction_control: "LOCKED_SOURCE_WORDING",
+          focal_subject_control: "LOCKED_BLUEPRINT_SPEC",
+          locked_fields: ["shot_function", "current_visual_direction", "focal_subject", "truth_boundary", "rights_note", "asset_status", "rights_status"],
+          bounded_visual_fields: ["composition_class", "shot_scale", "focal_zone", "subject_occupancy_percent_min", "subject_occupancy_percent_max", "camera_motion", "transition", "palette_role", "asset_class", "required_asset_count", "overlay_text_allowance", "audio_role", "information_role"],
+          free_micro_detail_fields: ["texture_nuance", "decorative_variation", "minor_easing", "prop_wear"],
+          field_control_summary: { LOCKED: 7, BOUNDED: 13, FREE: 4 },
+          composition_class: plan.composition_class,
+          shot_scale: plan.shot_scale,
+          focal_subject: focalSubjects[shot.shot_id],
+          focal_zone: plan.focal_zone,
+          subject_occupancy_percent_min: plan.subject_occupancy_percent_min,
+          subject_occupancy_percent_max: plan.subject_occupancy_percent_max,
+          camera_motion: plan.camera_motion,
+          transition: plan.transition,
+          palette_role: plan.palette_role,
+          asset_class: plan.asset_class,
+          required_asset_count: plan.required_asset_count,
+          overlay_text_allowance: {
+            mode: plan.overlay_text_mode,
+            max_lines: overlayMaxLines,
+            max_characters_per_line: overlayMaxLines === 0 ? 0 : 18
+          },
+          audio_role: plan.audio_role,
+          information_role: plan.information_role,
+          truth_boundary: shot.truth_boundary_note,
+          rights_note: shot.rights_note,
+          source_asset_class: shot.asset_class,
+          asset_status: "unselected",
+          rights_status: "not_cleared",
+          acceptance_checks: checks,
+          acceptance_status: blueprintFallbackAcceptanceStatus(checks)
+        };
+      });
+      const subtitleMetrics = sourceSubtitles.map((cue) => {
+        const startSeconds = blueprintTimeToSeconds(cue.start_time);
+        const endSeconds = blueprintTimeToSeconds(cue.end_time);
+        const duration = endSeconds - startSeconds;
+        const characterCount = Array.from(String(cue.text_ja || "")).length;
+        const lineLengths = String(cue.line_break_hint || cue.text_ja).split("｜").map((line) => Array.from(line).length);
+        const lineCount = lineLengths.length;
+        const cps = duration > 0 ? blueprintFallbackRound(characterCount / duration) : 0;
+        const structuralFailure = startSeconds >= endSeconds || lineCount > 2 || Math.max(...lineLengths) > 18;
+        const status = structuralFailure || cps > 4 ? "fail" : cps > 3 ? "warn" : "pass";
+        const smallestLaterCorrection = status === "pass" ? "none" : "Later authorized subtitle pass: shorten or redistribute the cue without changing truth, timing, or source in this slice.";
+        const checks = blueprintFallbackCheckObjects(definitions.subtitle, {
+          "subtitle-timing": { status: startSeconds < endSeconds ? "pass" : "fail", evidence: `${cue.start_time}-${cue.end_time}; duration=${duration}s` },
+          "subtitle-line-budget": { status: lineCount <= 2 ? "pass" : "fail", evidence: `${lineCount}/2 lines` },
+          "subtitle-metrics": { status: Number.isFinite(cps) ? "pass" : "fail", evidence: `${characterCount} chars / ${duration}s = ${cps} chars/s` },
+          "subtitle-classification": { status: ["pass", "warn", "fail"].includes(status) ? "pass" : "fail", evidence: `readback=${status}` },
+          "subtitle-readability": { status, evidence: `${cps} chars/s; ${lineCount}/2 lines; max ${Math.max(...lineLengths)}/18 chars/line` }
+        });
+        return {
+          cue_id: cue.cue_id,
+          beat_id: cue.beat_id,
+          start_time: cue.start_time,
+          end_time: cue.end_time,
+          start_seconds: startSeconds,
+          end_seconds: endSeconds,
+          duration_seconds: duration,
+          text_ja: cue.text_ja,
+          line_break_hint: cue.line_break_hint,
+          character_count: characterCount,
+          characters_per_second: cps,
+          line_count: lineCount,
+          line_count_budget: 2,
+          characters_per_line_budget: 18,
+          maximum_actual_characters_per_line: Math.max(...lineLengths),
+          status,
+          smallest_later_correction: smallestLaterCorrection,
+          truth_risk_marker: cue.truth_risk_marker,
+          acceptance_checks: checks,
+          acceptance_status: blueprintFallbackAcceptanceStatus(checks)
+        };
+      });
+      const beats = sourceBeats.map((beat) => {
+        const plan = beatPlanByNumber.get(beat.beat_number);
+        const beatShots = shots.filter((shot) => shot.beat_id === beat.beat_id);
+        const beatSubtitles = subtitleMetrics.filter((cue) => cue.beat_id === beat.beat_id);
+        const narration = sourceNarration.find((segment) => segment.beat_id === beat.beat_id) || {};
+        const startSeconds = Number.isFinite(beat.start_seconds) ? beat.start_seconds : blueprintTimeToSeconds(beat.start_time);
+        const endSeconds = Number.isFinite(beat.end_seconds) ? beat.end_seconds : blueprintTimeToSeconds(beat.end_time);
+        const narrationCount = Array.from(String(narration.text || "")).length;
+        const narrationCps = endSeconds > startSeconds ? blueprintFallbackRound(narrationCount / (endSeconds - startSeconds)) : 0;
+        const narrationStatus = narrationCps > 5 ? "fail" : narrationCps > 4.5 ? "warn" : "pass";
+        const checks = blueprintFallbackCheckObjects(definitions.beat, {
+          "beat-primary-goal": plan.primary_information_goal,
+          "beat-support-limit": `${plan.supporting_information_goals.length}/2`,
+          "beat-timing": `${beat.start_time}-${beat.end_time}; ${endSeconds - startSeconds}s`,
+          "beat-inventory": `narration=1; shots=${beatShots.length}; subtitles=${beatSubtitles.length}`,
+          "beat-narration-metric": `${narrationCount} chars / ${endSeconds - startSeconds}s = ${narrationCps} chars/s`,
+          "beat-motif": `${plan.recurring_motif}; budget=1`,
+          "beat-palette": [...new Set(beatShots.map((shot) => shot.palette_role))].join("|"),
+          "beat-truth": beat.truth_boundary,
+          "beat-roles": "asset and information roles derived from owned shots",
+          "beat-narration-pace": { status: narrationStatus, evidence: `${narrationCps} chars/s; project-local pass<=4.5, warn<=5.0, fail>5.0` }
+        });
+        return {
+          beat_id: beat.beat_id,
+          beat_number: beat.beat_number,
+          title_ja: beat.title_ja,
+          start_time: beat.start_time,
+          end_time: beat.end_time,
+          start_seconds: startSeconds,
+          end_seconds: endSeconds,
+          duration_seconds: endSeconds - startSeconds,
+          narration_segment_id: narration.segment_id,
+          narration_text: narration.text,
+          narration_character_count: narrationCount,
+          narration_characters_per_second: narrationCps,
+          narration_metric_status: narrationStatus,
+          shot_count: beatShots.length,
+          subtitle_count: beatSubtitles.length,
+          primary_information_goal: plan.primary_information_goal,
+          supporting_information_goals: plan.supporting_information_goals,
+          recurring_motif: plan.recurring_motif,
+          motif_budget: 1,
+          palette_roles: [...new Set(beatShots.map((shot) => shot.palette_role))],
+          asset_classes: [...new Set(beatShots.map((shot) => shot.asset_class))],
+          information_roles: [...new Set(beatShots.map((shot) => shot.information_role))],
+          required_asset_count: beatShots.reduce((total, shot) => total + shot.required_asset_count, 0),
+          truth_boundary: beat.truth_boundary,
+          rights_boundary: beat.rights_boundary,
+          shot_ids: beatShots.map((shot) => shot.shot_id),
+          subtitle_cue_ids: beatSubtitles.map((cue) => cue.cue_id),
+          smallest_later_correction: narrationStatus === "warn" ? "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice." : "none",
+          acceptance_checks: checks,
+          acceptance_status: blueprintFallbackAcceptanceStatus(checks)
+        };
+      });
+      const globalChecks = blueprintFallbackCheckObjects(definitions.global, {
+        "global-identity": `${CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID}; provisional`,
+        "global-runtime": "180 seconds",
+        "global-counts": "6/6/20/19/3",
+        "global-wording": (sourceModel?.applied_changes || []).map((change) => change.change_id).join("|"),
+        "global-integrity": "verified by blueprint-package-manifest.json"
+      });
+      const acceptanceMatrix = [{
+        scope: "global", subject_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+        status: blueprintFallbackAcceptanceStatus(globalChecks), criteria_count: globalChecks.length,
+        criterion_ids: globalChecks.map((check) => check.criterion_id),
+        evidence: "identity, source, profile, vocabulary, boundary, and package integrity gates",
+        owner: "production_blueprint_operator", next_move: "none"
+      }];
+      beats.forEach((beat) => acceptanceMatrix.push({
+        scope: "beat", subject_id: beat.beat_id, status: beat.acceptance_status,
+        criteria_count: beat.acceptance_checks.length, criterion_ids: beat.acceptance_checks.map((check) => check.criterion_id),
+        evidence: `${beat.duration_seconds}s; ${beat.shot_count} shots; ${beat.subtitle_count} subtitles; narration ${beat.narration_characters_per_second} chars/s`,
+        owner: "editorial_production_operator", next_move: beat.acceptance_status === "warn" ? beat.smallest_later_correction : "none"
+      }));
+      shots.forEach((shot) => acceptanceMatrix.push({
+        scope: "shot", subject_id: shot.shot_id, status: shot.acceptance_status,
+        criteria_count: shot.acceptance_checks.length, criterion_ids: shot.acceptance_checks.map((check) => check.criterion_id),
+        evidence: `${shot.duration_seconds}s; ${shot.composition_class}; ${shot.shot_scale}; occupancy ${shot.subject_occupancy_percent_min}-${shot.subject_occupancy_percent_max}%`,
+        owner: "shot_planner", next_move: "none"
+      }));
+      subtitleMetrics.forEach((cue) => acceptanceMatrix.push({
+        scope: "subtitle", subject_id: cue.cue_id, status: cue.acceptance_status,
+        criteria_count: cue.acceptance_checks.length, criterion_ids: cue.acceptance_checks.map((check) => check.criterion_id),
+        evidence: `${cue.duration_seconds}s; ${cue.character_count} chars; ${cue.characters_per_second} chars/s; ${cue.line_count}/2 lines`,
+        owner: "subtitle_reviewer", next_move: cue.smallest_later_correction
+      }));
+      const locked = [
+        ["beat_order", "six beats in source order"], ["total_duration_seconds", "exactly 180"],
+        ["beat_windows", "exact source start/end"], ["beat_ids", "exact six source ids"],
+        ["narration_ids", "exact six source ids"], ["subtitle_ids", "exact twenty source ids"],
+        ["shot_ids", "exact nineteen source ids"], ["truth_boundaries", "byte-derived source wording"],
+        ["rights_and_asset_status", "unselected and not cleared"], ["accepted_wording_changes", "exactly three"],
+        ["total_counts", "6/180/6/20/19/3"], ["canonical_status", "false"]
+      ].map(([field, limit]) => ({ field, control_class: "LOCKED", limit, validation: "exact_match" }));
+      const bounded = [
+        ["composition_class", "controlled vocabulary"], ["shot_scale", "controlled vocabulary"],
+        ["subject_occupancy", "15-80 percent, shot-specific min/max"], ["focal_zone", "controlled vocabulary"],
+        ["camera_motion", "one controlled class per shot"], ["transition", "controlled vocabulary and frequency limits"],
+        ["palette_role", "controlled vocabulary"], ["overlay_text_amount", "maximum 2 lines / 18 characters per line"],
+        ["motif_use", "one controlled motif per beat"], ["audio_role", "controlled vocabulary"],
+        ["asset_quantity", "integer 0-4 per shot"], ["asset_class", "controlled vocabulary"],
+        ["information_role", "controlled vocabulary"]
+      ].map(([field, limit]) => ({ field, control_class: "BOUNDED", limit, validation: "pass_warn_fail" }));
+      const free = [
+        ["texture_nuance", "non-semantic only"], ["decorative_variation", "non-semantic only"],
+        ["minor_easing", "within approved motion class"], ["prop_wear", "within approved asset class"]
+      ].map(([field, limit]) => ({
+        field, control_class: "FREE", limit,
+        must_not_alter: ["story_meaning", "evidence_relation", "timing", "truth", "readability", "rights_state", "composition_class", "asset_count"]
+      }));
+      const passCount = acceptanceMatrix.filter((row) => row.status === "pass").length;
+      const warningCount = acceptanceMatrix.filter((row) => row.status === "warn").length;
+      const failureCount = acceptanceMatrix.filter((row) => row.status === "fail").length;
+      return {
+        schemaVersion: "fff.contentProductionBlueprint.v1",
+        artifact_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+        title: "Fast Fiction Factory Content Production Blueprint",
+        generatedAt: "2026-07-13T00:00:00+09:00",
+        status: "provisional_production_blueprint",
+        canonical: false,
+        production_approved: false,
+        route: "public/review/index.html?mode=blueprint",
+        source: {
+          artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+          derivative_editorial_handoff_path: "artifacts/editorial-derivative/editorial-handoff.derived.json",
+          derivative_editorial_handoff_sha256: EDITORIAL_DERIVATIVE_EXPECTED_FILE_SHA256["editorial-handoff.derived.json"],
+          derivative_package_manifest_path: "artifacts/editorial-derivative/derivative-package-manifest.json",
+          derivative_package_manifest_sha256: EDITORIAL_DERIVATIVE_EXPECTED_FILE_SHA256["derivative-package-manifest.json"],
+          derivative_core_fingerprint_sha256: EDITORIAL_DERIVATIVE_EXPECTED_CORE_FINGERPRINT,
+          accepted_change_ids: (sourceModel?.applied_changes || []).map((change) => change.change_id)
+        },
+        profile: {
+          status: "provisional_review_profile",
+          canvas_width_px: 1920,
+          canvas_height_px: 1080,
+          aspect_ratio: "16:9",
+          planning_timebase_fps: 30,
+          render_authorized: false,
+          vertical_export_authorized: false,
+          title_safe_percent: { top: 5, right: 5, bottom: 5, left: 5 },
+          subtitle_safe_percent: { top: 5, right: 7, bottom: 8, left: 7 },
+          replacement_rule: "explicit_format_decision_required"
+        },
+        content_contract: {
+          content_promise_ja: "鐘のない塔が鳴る矛盾から、失われた時間と名前をめぐる調査線を提示する3分のミステリー／ロア候補。",
+          presented_question_ja: "時間を戻すのか、消えた名前を返すのか。",
+          deliberately_unresolved_ja: ["鐘が鳴る原因", "トーマの生死と所在", "真鍮の蛾の正体と機能", "台帳の真正性と所有者", "評議会の動機と責任", "ミラの最終選択とending truth"],
+          total_duration_seconds: 180,
+          beat_count: 6,
+          shot_count: 19,
+          subtitle_cue_count: 20,
+          narration_segment_count: 6,
+          thumbnail_direction_count: 3,
+          target_profile_status: "provisional_review_profile",
+          definition_of_done_summary_ja: "source一致、全bounded fields、46 scope readbacks、failure 0、production gates closed。"
+        },
+        constraint_envelope: { LOCKED: locked, BOUNDED: bounded, FREE: free },
+        vocabularies: CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES,
+        visual_system: {
+          constraint_authority: "project_local_planning_constraints_not_industry_standards",
+          palette: {
+            midnight_base: { hex: "#111827", contrast_role: "primary_dark_background" },
+            brass_accent: { hex: "#C79A42", contrast_role: "evidence_and_motif_accent" },
+            paper_neutral: { hex: "#E8E1D3", contrast_role: "document_surface" },
+            warning_rust: { hex: "#B4533C", contrast_role: "warning_only" },
+            uncertainty_cool: { hex: "#5B8DB8", contrast_role: "held_or_unresolved_information" },
+            text_high_contrast: { hex: "#F8FAFC", contrast_role: "text_on_midnight_base" }
+          },
+          contrast_roles: { default_text_pair: ["text_high_contrast", "midnight_base"], document_text_pair: ["midnight_base", "paper_neutral"], project_local_minimum_ratio: 4.5, warning_color_requires_text_or_icon_redundancy: true },
+          typography: { font_selection_status: "unselected", licensed_font_selected: false, roles_1080p_px: { display: { min: 64, max: 76 }, heading: { min: 42, max: 52 }, body: { min: 30, max: 38 }, subtitle: { min: 44, max: 52 }, label: { min: 24, max: 30 } } },
+          safe_areas_percent: { title: { top: 5, right: 5, bottom: 5, left: 5 }, subtitle: { top: 5, right: 7, bottom: 8, left: 7 } },
+          subject_occupancy_percent: { minimum: 15, maximum: 80 },
+          maximum_simultaneous_focal_elements: 2,
+          motion_grammar: { maximum_camera_motion_classes_per_shot: 1, minor_easing_within_approved_class: "FREE_low_risk_micro_detail" },
+          transition_frequency_limits: { hard_cut_max_consecutive: 3, short_dissolve_max_per_beat: 1, match_cut_max_total: 2, graphic_match_max_per_beat: 1, held_fade_max_per_beat: 1 },
+          recurring_motif_budget_per_beat: 1,
+          overlay_text_budget: { maximum_lines: 2, maximum_characters_per_line: 18, count_method: "Unicode code points; punctuation included" },
+          forbidden_combinations: ["low_contrast_text_on_midnight_base", "more_than_two_simultaneous_focal_elements", "more_than_one_camera_motion_class_per_shot", "warning_rust_as_sole_warning_signal", "declarative_truth_label_on_unresolved_information", "selected_or_rights_cleared_asset_in_this_blueprint", "overlay_text_above_two_lines_or_eighteen_characters_per_line"]
+        },
+        beats,
+        shots,
+        subtitle_metrics: subtitleMetrics,
+        definition_of_done: {
+          ...definitions,
+          global_acceptance_checks: globalChecks,
+          template_counts: { global: definitions.global.length, beat: definitions.beat.length, shot: definitions.shot.length, subtitle: definitions.subtitle.length },
+          evaluated_check_counts: { global: globalChecks.length, beat: beats.reduce((count, beat) => count + beat.acceptance_checks.length, 0), shot: shots.reduce((count, shot) => count + shot.acceptance_checks.length, 0), subtitle: subtitleMetrics.reduce((count, cue) => count + cue.acceptance_checks.length, 0) }
+        },
+        acceptance_matrix: acceptanceMatrix,
+        change_history: (sourceModel?.applied_changes || []).map((change) => ({ ...change })),
+        ui_contract: { change_history_owner_count: 1, files_export_owner_count: 1, duplicate_primary_diff_count: 0, package_inventory_in_beat_primary: false, utility_anchor_positions_css_px: [0, 0, 0, 0, 0, 0], maximum_utility_anchor_movement_css_px: 0, utility_anchor_limit_css_px: 8, layout_measurement_method: "fixed-height structural contract; browser confirmation required" },
+        metrics: contentProductionBlueprintFallbackMetrics(beats, shots, subtitleMetrics),
+        vocabulary_counts: Object.fromEntries(Object.entries(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES).map(([name, values]) => [name, values.length])),
+        acceptance_summary: { row_count: acceptanceMatrix.length, pass_count: passCount, warning_count: warningCount, failure_count: failureCount },
+        boundaries: {
+          local_only: true,
+          external_call: false,
+          provider_configured: false,
+          credentials_touched: false,
+          assets_selected: false,
+          rights_cleared_claim: false,
+          ai_video_generation: false,
+          production_render: false,
+          public_upload: false,
+          database_persistence: false,
+          final_canon_decision: false,
+          production_approved: false
+        },
+        failures: [],
+        passed: failureCount === 0
+      };
+    }
+
+    function blueprintTimeToSeconds(value) {
+      const parts = String(value || "0:00").split(":").map(Number);
+      return parts.length === 2 && parts.every(Number.isFinite) ? parts[0] * 60 + parts[1] : 0;
+    }
+
+    function blueprintFallbackRound(value, digits = 2) {
+      const factor = 10 ** digits;
+      return Math.round((value + Number.EPSILON) * factor) / factor;
+    }
+
+    function contentProductionBlueprintFallbackDodDefinitions() {
+      const define = (prefix, suffixes) => suffixes.map((suffix) => ({
+        criterion_id: `${prefix}-${suffix}`,
+        requirement_ja: `${prefix} ${suffix} project-local requirement`,
+        status_vocabulary: ["pass", "warn", "fail"]
+      }));
+      return {
+        global: define("global", ["identity", "runtime", "counts", "locked", "bounded", "vocabulary", "assets", "rights", "gates", "profile", "wording", "freedom", "integrity"]),
+        beat: define("beat", ["primary-goal", "support-limit", "timing", "inventory", "narration-metric", "motif", "palette", "truth", "roles", "narration-pace"]),
+        shot: define("shot", ["required-fields", "timing", "composition", "scale", "motion", "transition", "occupancy", "focal-zone", "asset-quantity", "overlay", "truth", "asset-rights", "palette", "information", "visual-control"]),
+        subtitle: define("subtitle", ["timing", "line-budget", "metrics", "classification", "readability"])
+      };
+    }
+
+    function blueprintFallbackCheckObjects(definitions, overrides = {}) {
+      return definitions.map((definition) => {
+        const override = overrides[definition.criterion_id];
+        return {
+          criterion_id: definition.criterion_id,
+          status: typeof override === "object" && override ? override.status || "pass" : "pass",
+          evidence: typeof override === "object" && override ? override.evidence || definition.requirement_ja : override || definition.requirement_ja
+        };
+      });
+    }
+
+    function blueprintFallbackAcceptanceStatus(checks) {
+      return checks.some((check) => check.status === "fail") ? "fail" : checks.some((check) => check.status === "warn") ? "warn" : "pass";
+    }
+
+    function contentProductionBlueprintFallbackMetrics(beats, shots, subtitles) {
+      const range = (values) => ({ min: Math.min(...values), max: Math.max(...values) });
+      const narrationCharacters = beats.map((beat) => beat.narration_character_count);
+      const narrationCps = beats.map((beat) => beat.narration_characters_per_second);
+      const shotDurations = shots.map((shot) => shot.duration_seconds);
+      const subtitleDurations = subtitles.map((cue) => cue.duration_seconds);
+      const subtitleCharacters = subtitles.map((cue) => cue.character_count);
+      const subtitleCps = subtitles.map((cue) => cue.characters_per_second);
+      return {
+        narration_character_total: narrationCharacters.reduce((total, value) => total + value, 0),
+        narration_character_range: range(narrationCharacters),
+        narration_characters_per_second_range: range(narrationCps),
+        subtitle_duration_seconds_range: range(subtitleDurations),
+        subtitle_character_range: range(subtitleCharacters),
+        subtitle_characters_per_second_range: range(subtitleCps),
+        subtitle_line_count_range: range(subtitles.map((cue) => cue.line_count)),
+        subtitle_maximum_actual_characters_per_line: Math.max(...subtitles.map((cue) => cue.maximum_actual_characters_per_line)),
+        shot_duration_seconds_range: range(shotDurations),
+        shot_duration_seconds_average: blueprintFallbackRound(shotDurations.reduce((total, value) => total + value, 0) / shotDurations.length),
+        narration_warnings: beats.filter((beat) => beat.narration_metric_status === "warn").map((beat) => ({
+          beat_id: beat.beat_id,
+          metric: "narration_characters_per_second",
+          value: beat.narration_characters_per_second,
+          threshold: "project-local pass<=4.5; warn<=5.0; fail>5.0",
+          smallest_later_correction: beat.smallest_later_correction
+        })),
+        subtitle_warning_count: subtitles.filter((cue) => cue.status === "warn").length,
+        subtitle_failure_count: subtitles.filter((cue) => cue.status === "fail").length
+      };
+    }
+
+    function validateContentProductionBlueprintContract(model, sourceModel) {
+      const errors = [];
+      const add = (condition, message) => { if (!condition) errors.push(message); };
+      const exact = (actual, expected) => JSON.stringify(actual) === JSON.stringify(expected);
+      const definitions = contentProductionBlueprintFallbackDodDefinitions();
+      const beats = Array.isArray(model?.beats) ? model.beats : [];
+      const shots = Array.isArray(model?.shots) ? model.shots : [];
+      const subtitles = Array.isArray(model?.subtitle_metrics) ? model.subtitle_metrics : [];
+      const sourceBeats = Array.isArray(sourceModel?.beats) ? sourceModel.beats : [];
+      const sourceShots = Array.isArray(sourceModel?.shot_cues) ? sourceModel.shot_cues : [];
+      const sourceSubtitles = Array.isArray(sourceModel?.subtitle_cues) ? sourceModel.subtitle_cues : [];
+      const sourceNarration = Array.isArray(sourceModel?.narration_segments) ? sourceModel.narration_segments : [];
+      const sourceChanges = Array.isArray(sourceModel?.applied_changes) ? sourceModel.applied_changes : [];
+      const sourceShotById = new Map(sourceShots.map((shot) => [shot.shot_id, shot]));
+      const sourceSubtitleById = new Map(sourceSubtitles.map((cue) => [cue.cue_id, cue]));
+      const sourceNarrationByBeat = new Map(sourceNarration.map((segment) => [segment.beat_id, segment]));
+
+      add(model?.schemaVersion === "fff.contentProductionBlueprint.v1" && model?.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID, "identity mismatch");
+      add(model?.status === "provisional_production_blueprint" && model?.canonical === false && model?.production_approved === false && model?.route === "public/review/index.html?mode=blueprint", "status or route mismatch");
+      add(model?.source?.derivative_editorial_handoff_sha256 === EDITORIAL_DERIVATIVE_EXPECTED_FILE_SHA256["editorial-handoff.derived.json"] && model?.source?.derivative_package_manifest_sha256 === EDITORIAL_DERIVATIVE_EXPECTED_FILE_SHA256["derivative-package-manifest.json"] && model?.source?.derivative_core_fingerprint_sha256 === EDITORIAL_DERIVATIVE_EXPECTED_CORE_FINGERPRINT, "source fingerprint mismatch");
+      add(exact(model?.source?.accepted_change_ids, sourceChanges.map((change) => change.change_id)) && exact(model?.change_history, sourceChanges) && sourceChanges.length === 3, "change history mismatch");
+      const profile = model?.profile || {};
+      add(profile.status === "provisional_review_profile" && profile.canvas_width_px === 1920 && profile.canvas_height_px === 1080 && profile.aspect_ratio === "16:9" && profile.planning_timebase_fps === 30 && profile.render_authorized === false && profile.vertical_export_authorized === false, "profile mismatch");
+      add(exact(profile.title_safe_percent, { top: 5, right: 5, bottom: 5, left: 5 }) && exact(profile.subtitle_safe_percent, { top: 5, right: 7, bottom: 8, left: 7 }), "safe area mismatch");
+      add(model?.content_contract?.total_duration_seconds === 180 && model?.content_contract?.beat_count === 6 && model?.content_contract?.shot_count === 19 && model?.content_contract?.subtitle_cue_count === 20 && model?.content_contract?.narration_segment_count === 6 && model?.content_contract?.thumbnail_direction_count === 3, "content counts mismatch");
+      add(model?.constraint_envelope?.LOCKED?.length === 12 && model.constraint_envelope.LOCKED.every((item) => item.control_class === "LOCKED"), "LOCKED envelope mismatch");
+      add(model?.constraint_envelope?.BOUNDED?.length === 13 && model.constraint_envelope.BOUNDED.every((item) => item.control_class === "BOUNDED"), "BOUNDED envelope mismatch");
+      add(model?.constraint_envelope?.FREE?.length === 4 && model.constraint_envelope.FREE.every((item) => item.control_class === "FREE" && item.must_not_alter?.length === 8), "FREE envelope mismatch");
+      Object.entries(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES).forEach(([name, expected]) => add(exact(model?.vocabularies?.[name], expected), `unknown ${name}`));
+      add(beats.length === 6 && shots.length === 19 && subtitles.length === 20 && exact(beats.map((beat) => beat.beat_id), sourceBeats.map((beat) => beat.beat_id)) && exact(shots.map((shot) => shot.shot_id), sourceShots.map((shot) => shot.shot_id)), "inventory or order mismatch");
+
+      beats.forEach((beat) => {
+        const narration = sourceNarrationByBeat.get(beat.beat_id);
+        const duration = beat.end_seconds - beat.start_seconds;
+        add(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.information_role.includes(beat.primary_information_goal) && beat.supporting_information_goals?.length <= 2 && beat.supporting_information_goals.every((role) => CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.information_role.includes(role)), `${beat.beat_id}: information role mismatch`);
+        add(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.motif.includes(beat.recurring_motif) && beat.motif_budget === 1, `${beat.beat_id}: motif mismatch`);
+        add(beat.narration_text === narration?.text && beat.narration_character_count === Array.from(String(narration?.text || "")).length && beat.narration_characters_per_second === blueprintFallbackRound(Array.from(String(narration?.text || "")).length / duration), `${beat.beat_id}: narration metric mismatch`);
+        add(beat.acceptance_checks?.length === definitions.beat.length && exact(beat.acceptance_checks.map((check) => check.criterion_id), definitions.beat.map((item) => item.criterion_id)) && ["pass", "warn"].includes(beat.acceptance_status), `${beat.beat_id}: acceptance mismatch`);
+      });
+
+      shots.forEach((shot) => {
+        const sourceShot = sourceShotById.get(shot.shot_id);
+        ["composition_class", "shot_scale", "focal_zone", "camera_motion", "transition", "palette_role", "asset_class", "audio_role", "information_role"].forEach((field) => add(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES[field].includes(shot[field]), `${shot.shot_id}: unknown ${field}`));
+        add(shot.subject_occupancy_percent_min >= 15 && shot.subject_occupancy_percent_max <= 80 && shot.subject_occupancy_percent_min < shot.subject_occupancy_percent_max, `${shot.shot_id}: occupancy out of bounds`);
+        add(Number.isInteger(shot.required_asset_count) && shot.required_asset_count >= 0 && shot.required_asset_count <= 4, `${shot.shot_id}: asset count out of bounds`);
+        add(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.overlay_text_mode.includes(shot.overlay_text_allowance?.mode) && Number.isInteger(shot.overlay_text_allowance?.max_lines) && shot.overlay_text_allowance.max_lines >= 0 && shot.overlay_text_allowance.max_lines <= 2 && Number.isInteger(shot.overlay_text_allowance?.max_characters_per_line) && shot.overlay_text_allowance.max_characters_per_line >= 0 && shot.overlay_text_allowance.max_characters_per_line <= 18, `${shot.shot_id}: overlay mismatch`);
+        add(
+          shot.visual_direction_control === "LOCKED_SOURCE_WORDING"
+            && shot.focal_subject_control === "LOCKED_BLUEPRINT_SPEC"
+            && exact(shot.locked_fields, ["shot_function", "current_visual_direction", "focal_subject", "truth_boundary", "rights_note", "asset_status", "rights_status"])
+            && exact(shot.bounded_visual_fields, ["composition_class", "shot_scale", "focal_zone", "subject_occupancy_percent_min", "subject_occupancy_percent_max", "camera_motion", "transition", "palette_role", "asset_class", "required_asset_count", "overlay_text_allowance", "audio_role", "information_role"])
+            && exact(shot.free_micro_detail_fields, ["texture_nuance", "decorative_variation", "minor_easing", "prop_wear"])
+            && exact(shot.field_control_summary, { LOCKED: 7, BOUNDED: 13, FREE: 4 })
+            && shot.current_visual_direction === sourceShot?.visual_direction
+            && shot.truth_boundary === sourceShot?.truth_boundary_note
+            && shot.asset_status === "unselected"
+            && shot.rights_status === "not_cleared",
+          `${shot.shot_id}: source or boundary mismatch`
+        );
+        add(shot.acceptance_checks?.length === definitions.shot.length && exact(shot.acceptance_checks.map((check) => check.criterion_id), definitions.shot.map((item) => item.criterion_id)) && shot.acceptance_status === "pass", `${shot.shot_id}: acceptance mismatch`);
+      });
+      const matchCutCount = shots.filter((shot) => shot.transition === "match_cut").length;
+      add(matchCutCount <= 2, "match_cut frequency exceeds 2");
+      beats.forEach((beat) => {
+        const owned = shots.filter((shot) => shot.beat_id === beat.beat_id);
+        add(owned.filter((shot) => shot.transition === "short_dissolve").length <= 1 && owned.filter((shot) => shot.transition === "graphic_match").length <= 1 && owned.filter((shot) => shot.transition === "held_fade").length <= 1, `${beat.beat_id}: transition frequency exceeded`);
+      });
+
+      subtitles.forEach((cue) => {
+        const sourceCue = sourceSubtitleById.get(cue.cue_id);
+        const duration = blueprintTimeToSeconds(sourceCue?.end_time) - blueprintTimeToSeconds(sourceCue?.start_time);
+        const characters = Array.from(String(sourceCue?.text_ja || "")).length;
+        const lineLengths = String(sourceCue?.line_break_hint || sourceCue?.text_ja).split("｜").map((line) => Array.from(line).length);
+        add(cue.character_count === characters && cue.characters_per_second === blueprintFallbackRound(characters / duration) && cue.line_count === lineLengths.length && cue.line_count_budget === 2 && cue.characters_per_line_budget === 18 && cue.maximum_actual_characters_per_line === Math.max(...lineLengths), `${cue.cue_id}: metric mismatch`);
+        add(cue.acceptance_checks?.length === definitions.subtitle.length && exact(cue.acceptance_checks.map((check) => check.criterion_id), definitions.subtitle.map((item) => item.criterion_id)) && cue.acceptance_status !== "fail", `${cue.cue_id}: acceptance mismatch`);
+      });
+      add(model?.definition_of_done?.evaluated_check_counts?.global === 13 && model.definition_of_done.evaluated_check_counts.beat === 60 && model.definition_of_done.evaluated_check_counts.shot === 285 && model.definition_of_done.evaluated_check_counts.subtitle === 100, "DoD count mismatch");
+      add(model?.acceptance_matrix?.length === 46 && model?.acceptance_summary?.failure_count === 0 && model?.failures?.length === 0 && model?.passed === true, "acceptance summary mismatch");
+      add(model?.boundaries?.assets_selected === false && model?.boundaries?.rights_cleared_claim === false && model?.boundaries?.production_render === false && model?.boundaries?.final_canon_decision === false && model?.boundaries?.production_approved === false, "boundary mismatch");
+      return errors;
+    }
+
+    async function initializeContentProductionBlueprint() {
+      if (!roots.contentProductionBlueprint) {
+        return;
+      }
+      applyContentProductionBlueprintValidationState();
+      if (!["http:", "https:"].includes(window.location.protocol)) {
+        renderContentProductionBlueprint();
+        return;
+      }
+      try {
+        const response = await fetch(CONTENT_PRODUCTION_BLUEPRINT_PATH, { cache: "no-store", credentials: "same-origin" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        const payload = await response.json();
+        validateContentProductionBlueprintViewModel(payload);
+        currentContentProductionBlueprint = payload;
+        contentProductionBlueprintLoadState = "static_package_authority";
+      } catch (error) {
+        contentProductionBlueprintFallbackErrors = validateContentProductionBlueprintContract(contentProductionBlueprintFallbackCandidate, currentEditorialDerivativePackage.model);
+        currentContentProductionBlueprint = contentProductionBlueprintFallbackErrors.length === 0 ? contentProductionBlueprintFallbackCandidate : null;
+        contentProductionBlueprintLoadState = contentProductionBlueprintFallbackErrors.length === 0 ? "embedded_fallback_validated" : "fallback_blocked";
+      }
+      applyContentProductionBlueprintValidationState();
+      renderContentProductionBlueprint();
+    }
+
+    function validateContentProductionBlueprintViewModel(model) {
+      const errors = validateContentProductionBlueprintContract(model, currentEditorialDerivativePackage.model);
+      if (errors.length > 0) {
+        throw new Error(`Blueprint fail-closed validation: ${errors.join(" | ")}`);
+      }
+      return model;
+    }
+
+    function applyContentProductionBlueprintValidationState() {
+      const root = roots.contentProductionBlueprint;
+      if (!root) return;
+      const fallbackPassed = contentProductionBlueprintFallbackErrors.length === 0;
+      root.setAttribute("data-blueprint-fallback-self-validation", fallbackPassed ? "pass" : "fail");
+      root.setAttribute("data-blueprint-fallback-plan-parity", fallbackPassed ? "exact" : "blocked");
+      root.setAttribute("data-blueprint-fail-closed", String(!fallbackPassed));
+      root.setAttribute("data-blueprint-fallback-error-count", String(contentProductionBlueprintFallbackErrors.length));
+      if (!fallbackPassed) {
+        setEditorialDerivativeText(root, "[data-blueprint-data-source]", "FALLBACK BLOCKED · contract validation failed");
+        const body = root.querySelector("[data-blueprint-active-body]");
+        if (body) body.innerHTML = "<p class=\"empty-state\">Blueprint fallback is blocked because its controlled contract does not match the authoritative model.</p>";
+      }
+    }
+
+    function setActiveContentProductionBlueprintBeat(index, focusSelectedBeat = false) {
+      const beats = currentContentProductionBlueprint?.beats || [];
+      if (!beats.length) {
+        return;
+      }
+      activeContentProductionBlueprintBeatIndex = Math.max(0, Math.min(Number.isFinite(index) ? index : 0, beats.length - 1));
+      renderContentProductionBlueprint();
+      const canvas = roots.contentProductionBlueprint?.querySelector("[data-blueprint-active-canvas]");
+      if (canvas) {
+        canvas.scrollTop = 0;
+      }
+      if (focusSelectedBeat) {
+        roots.contentProductionBlueprint?.querySelector(`[data-blueprint-beat-index="${activeContentProductionBlueprintBeatIndex}"]`)?.focus();
+      }
+    }
+
+    function renderContentProductionBlueprint() {
+      const root = roots.contentProductionBlueprint;
+      const model = currentContentProductionBlueprint;
+      if (!root || !model?.beats?.length) {
+        return;
+      }
+      activeContentProductionBlueprintBeatIndex = Math.max(0, Math.min(activeContentProductionBlueprintBeatIndex, model.beats.length - 1));
+      const beat = model.beats[activeContentProductionBlueprintBeatIndex];
+      const shots = (model.shots || []).filter((shot) => shot.beat_id === beat.beat_id);
+      const subtitles = (model.subtitle_metrics || []).filter((cue) => cue.beat_id === beat.beat_id);
+      const contract = model.content_contract || {};
+
+      root.setAttribute("data-blueprint-artifact-id", model.artifact_id);
+      root.setAttribute("data-blueprint-status", model.status);
+      root.setAttribute("data-blueprint-canonical", String(model.canonical));
+      root.setAttribute("data-blueprint-production-approved", String(model.production_approved));
+      root.setAttribute("data-blueprint-beat-count", String(model.beats.length));
+      root.setAttribute("data-blueprint-shot-count", String(model.shots?.length || 0));
+      root.setAttribute("data-blueprint-subtitle-count", String(model.subtitle_metrics?.length || 0));
+      root.setAttribute("data-blueprint-load-state", contentProductionBlueprintLoadState);
+      root.querySelector("[data-blueprint-utility-anchor]")?.setAttribute("data-blueprint-active-beat-id", beat.beat_id);
+
+      setEditorialDerivativeText(root, "[data-blueprint-data-source]", contentProductionBlueprintLoadState === "static_package_authority" ? "static package authority · contract validated" : contentProductionBlueprintLoadState === "embedded_fallback_validated" ? "embedded read-only fallback · self-validated exact plan" : "FALLBACK BLOCKED");
+      setEditorialDerivativeText(root, "[data-blueprint-profile-status]", model.profile?.status || contract.target_profile_status || "provisional_review_profile");
+      setEditorialDerivativeText(root, "[data-blueprint-duration]", `${contract.total_duration_seconds || 180}s`);
+      setEditorialDerivativeText(root, "[data-blueprint-beat-count]", contract.beat_count ?? model.beats.length);
+      setEditorialDerivativeText(root, "[data-blueprint-shot-count]", contract.shot_count ?? model.shots?.length ?? 0);
+      setEditorialDerivativeText(root, "[data-blueprint-subtitle-count]", contract.subtitle_cue_count ?? model.subtitle_metrics?.length ?? 0);
+      setEditorialDerivativeText(root, "[data-blueprint-narration-count]", contract.narration_segment_count ?? 6);
+      setEditorialDerivativeText(root, "[data-blueprint-thumbnail-count]", contract.thumbnail_direction_count ?? 3);
+      const acceptanceRows = Array.isArray(model.acceptance_matrix) ? model.acceptance_matrix : [];
+      const acceptanceCounts = ["pass", "warn", "fail"].map((status) => acceptanceRows.filter((row) => row.status === status).length);
+      setEditorialDerivativeText(root, "[data-blueprint-acceptance-status]", acceptanceCounts.join("/"));
+      setEditorialDerivativeText(root, "[data-blueprint-content-promise]", contract.content_promise_ja || "3分の調査導線");
+      setEditorialDerivativeText(root, "[data-blueprint-presented-question]", contract.presented_question_ja || "時間を戻すか、名前を戻すか。");
+      setEditorialDerivativeText(root, "[data-blueprint-unresolved]", Array.isArray(contract.deliberately_unresolved_ja) ? contract.deliberately_unresolved_ja.join(" / ") : contract.deliberately_unresolved_ja || "Toma / brass moth / Council / ending truth");
+
+      renderBlueprintEnvelopeList(root.querySelector("[data-blueprint-locked-list]"), model.constraint_envelope?.LOCKED);
+      renderBlueprintEnvelopeList(root.querySelector("[data-blueprint-bounded-list]"), model.constraint_envelope?.BOUNDED);
+      renderBlueprintEnvelopeList(root.querySelector("[data-blueprint-free-list]"), model.constraint_envelope?.FREE);
+      renderContentProductionBlueprintRunway(root, model.beats);
+
+      const activeCanvas = root.querySelector("[data-blueprint-active-canvas]");
+      activeCanvas?.setAttribute("aria-labelledby", `content-production-blueprint-beat-tab-${beat.beat_number}`);
+      activeCanvas?.setAttribute("data-blueprint-active-beat-id", beat.beat_id);
+      setEditorialDerivativeText(root, "[data-blueprint-active-position]", `4 / ACTIVE BEAT · BEAT ${beat.beat_number} / ${model.beats.length}`);
+      setEditorialDerivativeText(root, "[data-blueprint-active-title]", `${beat.title_ja} · ${beat.beat_id}`);
+      setEditorialDerivativeText(root, "[data-blueprint-active-time]", `${beat.start_time}-${beat.end_time} · ${beat.duration_seconds}s`);
+      setEditorialDerivativeText(root, "[data-blueprint-active-scale]", `${shots.length} shots · ${subtitles.length} subtitles`);
+      setEditorialDerivativeText(root, "[data-blueprint-active-dod-count]", `DoD ${beat.acceptance_checks?.length || 0} checks`);
+
+      const activeBody = root.querySelector("[data-blueprint-active-body]");
+      if (activeBody) {
+        activeBody.innerHTML = renderContentProductionBlueprintBeat(beat, shots, subtitles, model);
+      }
+      renderBlueprintChangeHistory(root.querySelector("[data-blueprint-change-history-list]"), model.change_history || []);
+      renderBlueprintGuards(root.querySelector("[data-blueprint-guard-list]"), model.boundaries || {});
+    }
+
+    function renderContentProductionBlueprintRunway(root, beats) {
+      const runway = root.querySelector("[data-blueprint-beat-tabs]");
+      if (!runway) {
+        return;
+      }
+      runway.innerHTML = beats.map((beat, index) => {
+        const selected = index === activeContentProductionBlueprintBeatIndex;
+        return `
+          <button class="blueprint-beat-tab" type="button" id="content-production-blueprint-beat-tab-${escapeHtml(beat.beat_number)}" role="tab" aria-selected="${selected}" aria-controls="content-production-blueprint-active-canvas" tabindex="${selected ? "0" : "-1"}" data-blueprint-beat-select="true" data-blueprint-beat-index="${index}" data-blueprint-beat-id="${escapeHtml(beat.beat_id)}">
+            <strong>BEAT ${escapeHtml(beat.beat_number)} · ${escapeHtml(beat.title_ja)}</strong>
+            <span>${escapeHtml(beat.start_time)}-${escapeHtml(beat.end_time)} · ${escapeHtml(beat.duration_seconds)}s</span>
+            <span>${escapeHtml(beat.shot_count)} shots · ${escapeHtml(beat.subtitle_count)} subtitles</span>
+          </button>`;
+      }).join("");
+    }
+
+    function renderContentProductionBlueprintBeat(beat, shots, subtitles, model) {
+      const beatChecks = Array.isArray(beat.acceptance_checks) ? beat.acceptance_checks : [];
+      const supportingGoals = Array.isArray(beat.supporting_information_goals) ? beat.supporting_information_goals : [];
+      return `
+        <div class="blueprint-beat-facts" aria-label="Active beat scale">
+          ${blueprintFact(`${beat.duration_seconds}s`, "duration")}
+          ${blueprintFact(beat.shot_count, "shot count")}
+          ${blueprintFact(beat.subtitle_count, "subtitle count")}
+          ${blueprintFact(`${blueprintNumber(beat.narration_character_count)}字`, "narration volume")}
+          ${blueprintFact(`${blueprintNumber(beat.narration_characters_per_second)}字/s`, "narration cps")}
+          ${blueprintFact(`${blueprintNumber(beat.motif_budget)}`, "motif budget")}
+        </div>
+        <div class="blueprint-active-dod">
+          <strong>Beat Definition of Done<br>${beatChecks.length} checks</strong>
+          <ul class="blueprint-acceptance-list">${beatChecks.map((item) => `<li>${escapeHtml(blueprintFormatItem(item))}</li>`).join("")}</ul>
+        </div>
+        <div class="blueprint-spec-grid">
+          <article class="blueprint-spec-card">
+            <p class="hub-eyebrow">Information contract</p>
+            <h4>${escapeHtml(beat.primary_information_goal)}</h4>
+            <p class="section-note"><strong>supporting limit:</strong> ${escapeHtml(supportingGoals.slice(0, 2).join(" / ") || "none")}</p>
+            <p class="section-note"><strong>information_role:</strong> ${escapeHtml((beat.information_roles || []).join(" / "))}</p>
+          </article>
+          <article class="blueprint-spec-card">
+            <p class="hub-eyebrow">Visual grammar</p>
+            <h4>${escapeHtml(beat.recurring_motif)} · budget ${escapeHtml(beat.motif_budget)}</h4>
+            <p class="section-note"><strong>palette_role:</strong> ${escapeHtml((beat.palette_roles || []).join(" / "))}</p>
+            <p class="section-note"><strong>asset_class:</strong> ${escapeHtml((beat.asset_classes || []).join(" / "))}</p>
+          </article>
+          <article class="blueprint-spec-card">
+            <p class="hub-eyebrow">Narration · ${escapeHtml(beat.narration_segment_id)}</p>
+            <p>${escapeHtml(beat.narration_text)}</p>
+          </article>
+          <article class="blueprint-spec-card">
+            <p class="hub-eyebrow">Truth / rights boundary</p>
+            <p><strong>truth:</strong> ${escapeHtml(beat.truth_boundary)}</p>
+            <p class="section-note"><strong>rights:</strong> ${escapeHtml(beat.rights_boundary)}</p>
+          </article>
+        </div>
+        <section aria-labelledby="blueprint-active-shots-title">
+          <div class="blueprint-section-head"><h3 id="blueprint-active-shots-title">Shot Production Specs · ${shots.length}</h3><p class="section-note">各shotは1 composition / 1 scale / 0-1 motion / 1 transition</p></div>
+          <div class="blueprint-shot-list">${shots.map(renderContentProductionBlueprintShot).join("")}</div>
+        </section>
+        <section aria-labelledby="blueprint-active-subtitles-title">
+          <div class="blueprint-section-head"><h3 id="blueprint-active-subtitles-title">Subtitle Metrics · ${subtitles.length}</h3><p class="section-note">duration / chars / CPS / line budget / pass-warn</p></div>
+          <div class="blueprint-subtitle-list">${subtitles.map(renderContentProductionBlueprintSubtitle).join("")}</div>
+        </section>`;
+    }
+
+    function renderContentProductionBlueprintShot(shot) {
+      const overlay = shot.overlay_text_allowance || {};
+      return `
+        <article class="blueprint-shot-card" data-blueprint-shot-spec="${escapeHtml(shot.shot_id)}">
+          <div class="blueprint-section-head">
+            <h4>${escapeHtml(shot.shot_id)} · ${escapeHtml(shot.start_time)}-${escapeHtml(shot.end_time)} · ${escapeHtml(shot.duration_seconds)}s</h4>
+            <span class="tag gold">${escapeHtml(shot.asset_status)} / ${escapeHtml(shot.rights_status)}</span>
+          </div>
+          <p><strong>${escapeHtml(shot.shot_function)}</strong></p>
+          <p class="section-note">${escapeHtml(shot.current_visual_direction)}</p>
+          <p class="section-note" data-blueprint-field-control-readback="${escapeHtml(shot.shot_id)}"><strong>field control:</strong> LOCKED ${escapeHtml(shot.field_control_summary?.LOCKED)} / BOUNDED ${escapeHtml(shot.field_control_summary?.BOUNDED)} / FREE ${escapeHtml(shot.field_control_summary?.FREE)} · focal_subject=${escapeHtml(shot.focal_subject_control)}</p>
+          <div class="blueprint-data-grid">
+            ${blueprintDataCell(shot.composition_class, "composition_class")}
+            ${blueprintDataCell(shot.shot_scale, "shot_scale")}
+            ${blueprintDataCell(`${shot.subject_occupancy_percent_min}-${shot.subject_occupancy_percent_max}%`, "subject_occupancy")}
+            ${blueprintDataCell(shot.focal_zone, "focal_zone")}
+            ${blueprintDataCell(shot.camera_motion, "camera_motion")}
+            ${blueprintDataCell(shot.transition, "transition")}
+            ${blueprintDataCell(shot.palette_role, "palette_role")}
+            ${blueprintDataCell(`${shot.asset_class} × ${shot.required_asset_count}`, "asset_class / quantity")}
+            ${blueprintDataCell(`${overlay.mode || "none"} · ${overlay.max_lines ?? 0}L × ${overlay.max_characters_per_line ?? 0}ch`, "overlay_allowance")}
+            ${blueprintDataCell(shot.information_role, "information_role")}
+            ${blueprintDataCell(shot.audio_role, "audio_role")}
+            ${blueprintDataCell(shot.focal_subject, "focal_subject")}
+          </div>
+          <p class="section-note"><strong>truth:</strong> ${escapeHtml(shot.truth_boundary)}</p>
+          <p class="section-note"><strong>rights:</strong> ${escapeHtml(shot.rights_note)}</p>
+          <ul class="blueprint-acceptance-list">${(shot.acceptance_checks || []).map((item) => `<li>${escapeHtml(blueprintFormatItem(item))}</li>`).join("")}</ul>
+        </article>`;
+    }
+
+    function renderContentProductionBlueprintSubtitle(cue) {
+      return `
+        <article class="blueprint-subtitle-card" data-blueprint-subtitle-metric="${escapeHtml(cue.cue_id)}">
+          <div class="blueprint-section-head">
+            <h4>${escapeHtml(cue.cue_id)} · ${escapeHtml(cue.start_time)}-${escapeHtml(cue.end_time)}</h4>
+            <span class="tag ${cue.status === "pass" ? "green" : "gold"}">${escapeHtml(cue.status)}</span>
+          </div>
+          <p>${escapeHtml(cue.text_ja)}</p>
+          <div class="blueprint-data-grid">
+            ${blueprintDataCell(`${cue.duration_seconds}s`, "duration")}
+            ${blueprintDataCell(cue.character_count, "characters")}
+            ${blueprintDataCell(cue.characters_per_second, "characters_per_second")}
+            ${blueprintDataCell(`${cue.line_count}/${cue.line_count_budget} · ${cue.characters_per_line_budget}ch/L`, "line_budget")}
+          </div>
+          <p class="section-note"><strong>line_break_hint:</strong> ${escapeHtml(cue.line_break_hint)} · <strong>smallest correction:</strong> ${escapeHtml(cue.smallest_later_correction)}</p>
+        </article>`;
+    }
+
+    function renderBlueprintEnvelopeList(root, items) {
+      if (!root) return;
+      root.innerHTML = (Array.isArray(items) ? items : []).map((item) => `<li>${escapeHtml(blueprintFormatItem(item))}</li>`).join("");
+    }
+
+    function renderBlueprintChangeHistory(root, items) {
+      if (!root) return;
+      root.innerHTML = (Array.isArray(items) ? items : []).map((item, index) => {
+        const target = item.target_id || item.field || item.target || `change-${index + 1}`;
+        const before = item.before ?? item.source_value ?? item.previous_value ?? "recorded in derivative provenance";
+        const after = item.after ?? item.proposed_value ?? item.blueprint_value ?? item.current_value ?? "accepted derived wording";
+        return `<li><strong>${escapeHtml(item.change_id || `change-${index + 1}`)} · ${escapeHtml(target)}</strong><br><span>Before: ${escapeHtml(blueprintFormatItem(before))}</span><br><span>After: ${escapeHtml(blueprintFormatItem(after))}</span></li>`;
+      }).join("") || "<li>3 accepted wording changes are preserved in the source derivative provenance.</li>";
+    }
+
+    function renderBlueprintGuards(root, boundaries) {
+      if (!root) return;
+      root.innerHTML = Object.entries(boundaries).map(([key, value]) => `<li><strong>${escapeHtml(key)}</strong>: ${escapeHtml(String(value))}</li>`).join("");
+    }
+
+    function blueprintFormatItem(item) {
+      if (item === null || item === undefined) return "not set";
+      if (typeof item === "string" || typeof item === "number" || typeof item === "boolean") return String(item);
+      if (Array.isArray(item)) return item.map(blueprintFormatItem).join(" / ");
+      const label = item.field || item.criterion_id || item.check_id || item.name || item.id;
+      const detail = item.limit || item.rule || item.description || item.status || item.value;
+      return label ? `${label}${detail !== undefined ? `: ${blueprintFormatItem(detail)}` : ""}` : JSON.stringify(item);
+    }
+
+    function blueprintNumber(value) {
+      const number = Number(value);
+      return Number.isFinite(number) ? Number(number.toFixed(2)) : value ?? "n/a";
+    }
+
+    function blueprintFact(value, label) {
+      return `<div class="blueprint-fact"><strong>${escapeHtml(value)}</strong><span>${escapeHtml(label)}</span></div>`;
+    }
+
+    function blueprintDataCell(value, label) {
+      return `<div class="blueprint-data-cell"><strong>${escapeHtml(value ?? "n/a")}</strong><span>${escapeHtml(label)}</span></div>`;
     }
 
     function downloadEditorialDerivativeFile(filename) {

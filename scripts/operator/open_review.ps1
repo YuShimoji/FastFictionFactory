@@ -9,6 +9,7 @@ param(
     "handoff",
     "revision",
     "derivative",
+    "blueprint",
     "story",
     "designer",
     "draft",

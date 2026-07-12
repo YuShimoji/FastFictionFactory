@@ -1,0 +1,6508 @@
+{
+  "schemaVersion": "fff.contentProductionBlueprint.v1",
+  "artifact_id": "fff-content-production-blueprint-001",
+  "title": "Fast Fiction Factory Content Production Blueprint",
+  "generatedAt": "2026-07-13T00:00:00+09:00",
+  "status": "provisional_production_blueprint",
+  "canonical": false,
+  "production_approved": false,
+  "route": "public/review/index.html?mode=blueprint",
+  "source": {
+    "artifact_id": "fff-editorial-derivative-preview-001",
+    "derivative_editorial_handoff_path": "artifacts/editorial-derivative/editorial-handoff.derived.json",
+    "derivative_editorial_handoff_sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+    "derivative_package_manifest_path": "artifacts/editorial-derivative/derivative-package-manifest.json",
+    "derivative_package_manifest_sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577",
+    "derivative_core_fingerprint_sha256": "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44",
+    "accepted_change_ids": [
+      "rev-change-b01-narration-wording",
+      "rev-change-b02-subtitle-wording",
+      "rev-change-b03-shot-direction-wording"
+    ]
+  },
+  "profile": {
+    "status": "provisional_review_profile",
+    "canvas_width_px": 1920,
+    "canvas_height_px": 1080,
+    "aspect_ratio": "16:9",
+    "planning_timebase_fps": 30,
+    "render_authorized": false,
+    "vertical_export_authorized": false,
+    "title_safe_percent": {
+      "top": 5,
+      "right": 5,
+      "bottom": 5,
+      "left": 5
+    },
+    "subtitle_safe_percent": {
+      "top": 5,
+      "right": 7,
+      "bottom": 8,
+      "left": 7
+    },
+    "replacement_rule": "explicit_format_decision_required"
+  },
+  "content_contract": {
+    "content_promise_ja": "鐘のない塔が鳴る矛盾から、失われた時間と名前をめぐる調査線を提示する3分のミステリー／ロア候補。",
+    "presented_question_ja": "時間を戻すのか、消えた名前を返すのか。",
+    "deliberately_unresolved_ja": [
+      "鐘が鳴る原因",
+      "トーマの生死と所在",
+      "真鍮の蛾の正体と機能",
+      "台帳の真正性と所有者",
+      "評議会の動機と責任",
+      "ミラの最終選択とending truth"
+    ],
+    "total_duration_seconds": 180,
+    "beat_count": 6,
+    "shot_count": 19,
+    "subtitle_cue_count": 20,
+    "narration_segment_count": 6,
+    "thumbnail_direction_count": 3,
+    "target_profile_status": "provisional_review_profile",
+    "definition_of_done_summary_ja": "source一致、全bounded fields、46 scope readbacks、failure 0、production gates closed。"
+  },
+  "constraint_envelope": {
+    "LOCKED": [
+      {
+        "field": "beat_order",
+        "control_class": "LOCKED",
+        "limit": "six beats in source order",
+        "validation": "exact_match"
+      },
+      {
+        "field": "total_duration_seconds",
+        "control_class": "LOCKED",
+        "limit": "exactly 180",
+        "validation": "exact_match"
+      },
+      {
+        "field": "beat_windows",
+        "control_class": "LOCKED",
+        "limit": "exact source start/end",
+        "validation": "exact_match"
+      },
+      {
+        "field": "beat_ids",
+        "control_class": "LOCKED",
+        "limit": "exact six source ids",
+        "validation": "exact_match"
+      },
+      {
+        "field": "narration_ids",
+        "control_class": "LOCKED",
+        "limit": "exact six source ids",
+        "validation": "exact_match"
+      },
+      {
+        "field": "subtitle_ids",
+        "control_class": "LOCKED",
+        "limit": "exact twenty source ids",
+        "validation": "exact_match"
+      },
+      {
+        "field": "shot_ids",
+        "control_class": "LOCKED",
+        "limit": "exact nineteen source ids",
+        "validation": "exact_match"
+      },
+      {
+        "field": "truth_boundaries",
+        "control_class": "LOCKED",
+        "limit": "byte-derived source wording",
+        "validation": "exact_match"
+      },
+      {
+        "field": "rights_and_asset_status",
+        "control_class": "LOCKED",
+        "limit": "unselected and not cleared",
+        "validation": "exact_match"
+      },
+      {
+        "field": "accepted_wording_changes",
+        "control_class": "LOCKED",
+        "limit": "exactly three",
+        "validation": "exact_match"
+      },
+      {
+        "field": "total_counts",
+        "control_class": "LOCKED",
+        "limit": "6/180/6/20/19/3",
+        "validation": "exact_match"
+      },
+      {
+        "field": "canonical_status",
+        "control_class": "LOCKED",
+        "limit": "false",
+        "validation": "exact_match"
+      }
+    ],
+    "BOUNDED": [
+      {
+        "field": "composition_class",
+        "control_class": "BOUNDED",
+        "limit": "controlled vocabulary",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "shot_scale",
+        "control_class": "BOUNDED",
+        "limit": "controlled vocabulary",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "subject_occupancy",
+        "control_class": "BOUNDED",
+        "limit": "15-80 percent, shot-specific min/max",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "focal_zone",
+        "control_class": "BOUNDED",
+        "limit": "controlled vocabulary",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "camera_motion",
+        "control_class": "BOUNDED",
+        "limit": "one controlled class per shot",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "transition",
+        "control_class": "BOUNDED",
+        "limit": "controlled vocabulary and frequency limits",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "palette_role",
+        "control_class": "BOUNDED",
+        "limit": "controlled vocabulary",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "overlay_text_amount",
+        "control_class": "BOUNDED",
+        "limit": "maximum 2 lines / 18 characters per line",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "motif_use",
+        "control_class": "BOUNDED",
+        "limit": "one controlled motif per beat",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "audio_role",
+        "control_class": "BOUNDED",
+        "limit": "controlled vocabulary",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "asset_quantity",
+        "control_class": "BOUNDED",
+        "limit": "integer 0-4 per shot",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "asset_class",
+        "control_class": "BOUNDED",
+        "limit": "controlled vocabulary",
+        "validation": "pass_warn_fail"
+      },
+      {
+        "field": "information_role",
+        "control_class": "BOUNDED",
+        "limit": "controlled vocabulary",
+        "validation": "pass_warn_fail"
+      }
+    ],
+    "FREE": [
+      {
+        "field": "texture_nuance",
+        "control_class": "FREE",
+        "limit": "non-semantic only",
+        "must_not_alter": [
+          "story_meaning",
+          "evidence_relation",
+          "timing",
+          "truth",
+          "readability",
+          "rights_state",
+          "composition_class",
+          "asset_count"
+        ]
+      },
+      {
+        "field": "decorative_variation",
+        "control_class": "FREE",
+        "limit": "non-semantic only",
+        "must_not_alter": [
+          "story_meaning",
+          "evidence_relation",
+          "timing",
+          "truth",
+          "readability",
+          "rights_state",
+          "composition_class",
+          "asset_count"
+        ]
+      },
+      {
+        "field": "minor_easing",
+        "control_class": "FREE",
+        "limit": "within approved motion class",
+        "must_not_alter": [
+          "story_meaning",
+          "evidence_relation",
+          "timing",
+          "truth",
+          "readability",
+          "rights_state",
+          "composition_class",
+          "asset_count"
+        ]
+      },
+      {
+        "field": "prop_wear",
+        "control_class": "FREE",
+        "limit": "within approved asset class",
+        "must_not_alter": [
+          "story_meaning",
+          "evidence_relation",
+          "timing",
+          "truth",
+          "readability",
+          "rights_state",
+          "composition_class",
+          "asset_count"
+        ]
+      }
+    ]
+  },
+  "vocabularies": {
+    "composition_class": [
+      "environment_establishing",
+      "character_context",
+      "evidence_insert",
+      "object_detail",
+      "institutional_pressure",
+      "abstract_information",
+      "unresolved_choice",
+      "closing_question"
+    ],
+    "shot_scale": [
+      "wide",
+      "medium",
+      "close",
+      "extreme_close",
+      "graphic_fullframe"
+    ],
+    "camera_motion": [
+      "locked",
+      "slow_push",
+      "slow_pull",
+      "slow_pan",
+      "controlled_parallax",
+      "graphic_dissolve"
+    ],
+    "transition": [
+      "hard_cut",
+      "short_dissolve",
+      "match_cut",
+      "graphic_match",
+      "held_fade"
+    ],
+    "palette_role": [
+      "midnight_base",
+      "brass_accent",
+      "paper_neutral",
+      "warning_rust",
+      "uncertainty_cool",
+      "text_high_contrast"
+    ],
+    "asset_class": [
+      "environment",
+      "character_silhouette",
+      "prop",
+      "document_graphic",
+      "abstract_graphic",
+      "typography",
+      "audio_cue"
+    ],
+    "information_role": [
+      "hook",
+      "evidence",
+      "context",
+      "pressure",
+      "competing_hypothesis",
+      "unresolved_question",
+      "closing_prompt"
+    ],
+    "focal_zone": [
+      "center",
+      "center_left",
+      "center_right",
+      "upper_third",
+      "lower_third",
+      "split_frame",
+      "full_frame"
+    ],
+    "overlay_text_mode": [
+      "none",
+      "subtitle_only",
+      "single_label",
+      "subtitle_plus_single_label"
+    ],
+    "audio_role": [
+      "ambient_bed",
+      "mechanical_detail",
+      "tension_pulse",
+      "silence_hold",
+      "closing_resonance"
+    ],
+    "motif": [
+      "bellless_frame",
+      "brass_moth_and_9_17",
+      "fading_name_contours",
+      "translucent_divider",
+      "hold_labels",
+      "time_or_names_split"
+    ]
+  },
+  "visual_system": {
+    "constraint_authority": "project_local_planning_constraints_not_industry_standards",
+    "palette": {
+      "midnight_base": {
+        "hex": "#111827",
+        "contrast_role": "primary_dark_background"
+      },
+      "brass_accent": {
+        "hex": "#C79A42",
+        "contrast_role": "evidence_and_motif_accent"
+      },
+      "paper_neutral": {
+        "hex": "#E8E1D3",
+        "contrast_role": "document_surface"
+      },
+      "warning_rust": {
+        "hex": "#B4533C",
+        "contrast_role": "warning_only"
+      },
+      "uncertainty_cool": {
+        "hex": "#5B8DB8",
+        "contrast_role": "held_or_unresolved_information"
+      },
+      "text_high_contrast": {
+        "hex": "#F8FAFC",
+        "contrast_role": "text_on_midnight_base"
+      }
+    },
+    "contrast_roles": {
+      "default_text_pair": [
+        "text_high_contrast",
+        "midnight_base"
+      ],
+      "document_text_pair": [
+        "midnight_base",
+        "paper_neutral"
+      ],
+      "project_local_minimum_ratio": 4.5,
+      "warning_color_requires_text_or_icon_redundancy": true
+    },
+    "typography": {
+      "font_selection_status": "unselected",
+      "licensed_font_selected": false,
+      "roles_1080p_px": {
+        "display": {
+          "min": 64,
+          "max": 76
+        },
+        "heading": {
+          "min": 42,
+          "max": 52
+        },
+        "body": {
+          "min": 30,
+          "max": 38
+        },
+        "subtitle": {
+          "min": 44,
+          "max": 52
+        },
+        "label": {
+          "min": 24,
+          "max": 30
+        }
+      }
+    },
+    "safe_areas_percent": {
+      "title": {
+        "top": 5,
+        "right": 5,
+        "bottom": 5,
+        "left": 5
+      },
+      "subtitle": {
+        "top": 5,
+        "right": 7,
+        "bottom": 8,
+        "left": 7
+      }
+    },
+    "subject_occupancy_percent": {
+      "minimum": 15,
+      "maximum": 80
+    },
+    "maximum_simultaneous_focal_elements": 2,
+    "motion_grammar": {
+      "maximum_camera_motion_classes_per_shot": 1,
+      "minor_easing_within_approved_class": "FREE_low_risk_micro_detail"
+    },
+    "transition_frequency_limits": {
+      "hard_cut_max_consecutive": 3,
+      "short_dissolve_max_per_beat": 1,
+      "match_cut_max_total": 2,
+      "graphic_match_max_per_beat": 1,
+      "held_fade_max_per_beat": 1
+    },
+    "recurring_motif_budget_per_beat": 1,
+    "overlay_text_budget": {
+      "maximum_lines": 2,
+      "maximum_characters_per_line": 18,
+      "count_method": "Unicode code points; punctuation included"
+    },
+    "forbidden_combinations": [
+      "more_than_two_simultaneous_focal_elements",
+      "more_than_one_camera_motion_class_per_shot",
+      "warning_rust_as_sole_warning_signal",
+      "declarative_truth_label_on_unresolved_information",
+      "selected_or_rights_cleared_asset_in_this_blueprint",
+      "overlay_text_above_two_lines_or_eighteen_characters_per_line"
+    ]
+  },
+  "beats": [
+    {
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "beat_number": 1,
+      "title_ja": "鐘のない塔",
+      "start_time": "00:00",
+      "end_time": "00:20",
+      "start_seconds": 0,
+      "end_seconds": 20,
+      "duration_seconds": 20,
+      "narration_segment_id": "narration-b01",
+      "narration_text": "ある記録によれば、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。では今、何が鳴っているのでしょう。",
+      "narration_character_count": 94,
+      "narration_characters_per_second": 4.7,
+      "narration_metric_status": "warn",
+      "shot_count": 3,
+      "subtitle_count": 3,
+      "primary_information_goal": "hook",
+      "supporting_information_goals": [
+        "evidence",
+        "unresolved_question"
+      ],
+      "recurring_motif": "bellless_frame",
+      "motif_budget": 1,
+      "palette_roles": [
+        "midnight_base",
+        "paper_neutral",
+        "uncertainty_cool"
+      ],
+      "asset_classes": [
+        "environment",
+        "typography"
+      ],
+      "information_roles": [
+        "hook",
+        "evidence",
+        "unresolved_question"
+      ],
+      "required_asset_count": 3,
+      "truth_boundary": "鐘が鳴る原因とwinter curfewの真相は未確定。記録上の矛盾として扱う。",
+      "rights_boundary": "塔、駅、鐘枠、環境音は新規の汎用表現候補のみ。実在場所や第三者素材は未選定。",
+      "shot_ids": [
+        "shot-b01-01",
+        "shot-b01-02",
+        "shot-b01-03"
+      ],
+      "subtitle_cue_ids": [
+        "sub-b01-01",
+        "sub-b01-02",
+        "sub-b01-03"
+      ],
+      "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice.",
+      "acceptance_checks": [
+        {
+          "criterion_id": "beat-primary-goal",
+          "status": "pass",
+          "evidence": "hook"
+        },
+        {
+          "criterion_id": "beat-support-limit",
+          "status": "pass",
+          "evidence": "2/2"
+        },
+        {
+          "criterion_id": "beat-timing",
+          "status": "pass",
+          "evidence": "00:00-00:20; 20s"
+        },
+        {
+          "criterion_id": "beat-inventory",
+          "status": "pass",
+          "evidence": "narration=1; shots=3; subtitles=3"
+        },
+        {
+          "criterion_id": "beat-narration-metric",
+          "status": "pass",
+          "evidence": "94 chars / 20s = 4.7 chars/s"
+        },
+        {
+          "criterion_id": "beat-motif",
+          "status": "pass",
+          "evidence": "bellless_frame; budget=1"
+        },
+        {
+          "criterion_id": "beat-palette",
+          "status": "pass",
+          "evidence": "midnight_base|paper_neutral|uncertainty_cool"
+        },
+        {
+          "criterion_id": "beat-truth",
+          "status": "pass",
+          "evidence": "鐘が鳴る原因とwinter curfewの真相は未確定。記録上の矛盾として扱う。"
+        },
+        {
+          "criterion_id": "beat-roles",
+          "status": "pass",
+          "evidence": "asset and information roles derived from owned shots"
+        },
+        {
+          "criterion_id": "beat-narration-pace",
+          "status": "warn",
+          "evidence": "4.7 chars/s; project-local pass<=4.5, warn<=5.0, fail>5.0"
+        }
+      ],
+      "acceptance_status": "warn"
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "beat_number": 2,
+      "title_ja": "真鍮の蛾",
+      "start_time": "00:20",
+      "end_time": "00:50",
+      "start_seconds": 20,
+      "end_seconds": 50,
+      "duration_seconds": 30,
+      "narration_segment_id": "narration-b02",
+      "narration_text": "ガラス張りのアーケードで時計を直すミラ・ヴェイル。記録では、アーケードは毎夜九時十七分に閉じます。彼女の引き出しには、行方の分からない兄トーマが残したとされるメモと、真鍮の蛾があります。蛾が鍵なのか、監視具なのか、記憶の器なのかは、まだ決まっていません。",
+      "narration_character_count": 127,
+      "narration_characters_per_second": 4.23,
+      "narration_metric_status": "pass",
+      "shot_count": 3,
+      "subtitle_count": 3,
+      "primary_information_goal": "context",
+      "supporting_information_goals": [
+        "evidence",
+        "competing_hypothesis"
+      ],
+      "recurring_motif": "brass_moth_and_9_17",
+      "motif_budget": 1,
+      "palette_roles": [
+        "paper_neutral",
+        "brass_accent"
+      ],
+      "asset_classes": [
+        "character_silhouette",
+        "prop"
+      ],
+      "information_roles": [
+        "context",
+        "evidence",
+        "competing_hypothesis"
+      ],
+      "required_asset_count": 5,
+      "truth_boundary": "トーマの生死・所在と真鍮の蛾の正体・機能は未解決。複数の可能性を並置する。",
+      "rights_boundary": "人物、衣装、蛾の造形、時計意匠は未決定。顔や既存デザインを確定素材として使用しない。",
+      "shot_ids": [
+        "shot-b02-01",
+        "shot-b02-02",
+        "shot-b02-03"
+      ],
+      "subtitle_cue_ids": [
+        "sub-b02-01",
+        "sub-b02-02",
+        "sub-b02-03"
+      ],
+      "smallest_later_correction": "none",
+      "acceptance_checks": [
+        {
+          "criterion_id": "beat-primary-goal",
+          "status": "pass",
+          "evidence": "context"
+        },
+        {
+          "criterion_id": "beat-support-limit",
+          "status": "pass",
+          "evidence": "2/2"
+        },
+        {
+          "criterion_id": "beat-timing",
+          "status": "pass",
+          "evidence": "00:20-00:50; 30s"
+        },
+        {
+          "criterion_id": "beat-inventory",
+          "status": "pass",
+          "evidence": "narration=1; shots=3; subtitles=3"
+        },
+        {
+          "criterion_id": "beat-narration-metric",
+          "status": "pass",
+          "evidence": "127 chars / 30s = 4.23 chars/s"
+        },
+        {
+          "criterion_id": "beat-motif",
+          "status": "pass",
+          "evidence": "brass_moth_and_9_17; budget=1"
+        },
+        {
+          "criterion_id": "beat-palette",
+          "status": "pass",
+          "evidence": "paper_neutral|brass_accent"
+        },
+        {
+          "criterion_id": "beat-truth",
+          "status": "pass",
+          "evidence": "トーマの生死・所在と真鍮の蛾の正体・機能は未解決。複数の可能性を並置する。"
+        },
+        {
+          "criterion_id": "beat-roles",
+          "status": "pass",
+          "evidence": "asset and information roles derived from owned shots"
+        },
+        {
+          "criterion_id": "beat-narration-pace",
+          "status": "pass",
+          "evidence": "4.23 chars/s; project-local pass<=4.5, warn<=5.0, fail>5.0"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "beat_number": 3,
+      "title_ja": "消された名前",
+      "start_time": "00:50",
+      "end_time": "01:20",
+      "start_seconds": 50,
+      "end_seconds": 80,
+      "duration_seconds": 30,
+      "narration_segment_id": "narration-b03",
+      "narration_text": "メモが指す先には、市の評議会に結びつく可能性のある『分』の台帳があります。そこには、捨て置かれた人生から時間が支払われたかのような記載と、思い出されなくなった名前が並びます。けれど、その帳面は証拠かもしれず、誘い餌や偽の記録かもしれません。文字は答えより多くの問いを残します。",
+      "narration_character_count": 138,
+      "narration_characters_per_second": 4.6,
+      "narration_metric_status": "warn",
+      "shot_count": 3,
+      "subtitle_count": 3,
+      "primary_information_goal": "evidence",
+      "supporting_information_goals": [
+        "context",
+        "competing_hypothesis"
+      ],
+      "recurring_motif": "fading_name_contours",
+      "motif_budget": 1,
+      "palette_roles": [
+        "paper_neutral",
+        "uncertainty_cool"
+      ],
+      "asset_classes": [
+        "document_graphic",
+        "abstract_graphic"
+      ],
+      "information_roles": [
+        "evidence",
+        "competing_hypothesis"
+      ],
+      "required_asset_count": 3,
+      "truth_boundary": "台帳の真正性、所有者、時間と名前の因果関係は制作仮説。証拠・誘い餌・偽記録の可能性を残す。",
+      "rights_boundary": "台帳や公的記録は新規作成の仮文字・抽象図形のみ。実在文書、ロゴ、書体、紙面を転用しない。",
+      "shot_ids": [
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b03-03"
+      ],
+      "subtitle_cue_ids": [
+        "sub-b03-01",
+        "sub-b03-02",
+        "sub-b03-03"
+      ],
+      "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice.",
+      "acceptance_checks": [
+        {
+          "criterion_id": "beat-primary-goal",
+          "status": "pass",
+          "evidence": "evidence"
+        },
+        {
+          "criterion_id": "beat-support-limit",
+          "status": "pass",
+          "evidence": "2/2"
+        },
+        {
+          "criterion_id": "beat-timing",
+          "status": "pass",
+          "evidence": "00:50-01:20; 30s"
+        },
+        {
+          "criterion_id": "beat-inventory",
+          "status": "pass",
+          "evidence": "narration=1; shots=3; subtitles=3"
+        },
+        {
+          "criterion_id": "beat-narration-metric",
+          "status": "pass",
+          "evidence": "138 chars / 30s = 4.6 chars/s"
+        },
+        {
+          "criterion_id": "beat-motif",
+          "status": "pass",
+          "evidence": "fading_name_contours; budget=1"
+        },
+        {
+          "criterion_id": "beat-palette",
+          "status": "pass",
+          "evidence": "paper_neutral|uncertainty_cool"
+        },
+        {
+          "criterion_id": "beat-truth",
+          "status": "pass",
+          "evidence": "台帳の真正性、所有者、時間と名前の因果関係は制作仮説。証拠・誘い餌・偽記録の可能性を残す。"
+        },
+        {
+          "criterion_id": "beat-roles",
+          "status": "pass",
+          "evidence": "asset and information roles derived from owned shots"
+        },
+        {
+          "criterion_id": "beat-narration-pace",
+          "status": "warn",
+          "evidence": "4.6 chars/s; project-local pass<=4.5, warn<=5.0, fail>5.0"
+        }
+      ],
+      "acceptance_status": "warn"
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "beat_number": 4,
+      "title_ja": "評議会の影",
+      "start_time": "01:20",
+      "end_time": "01:45",
+      "start_seconds": 80,
+      "end_seconds": 105,
+      "duration_seconds": 25,
+      "narration_segment_id": "narration-b04",
+      "narration_text": "トーマのメモは、評議会が時間を売っていると告発します。ですが、台帳は証拠にも、誘い餌にも、誰かが植えた偽の記録にも見えます。評議会は奪ったのか、追い詰められていたのか、それとも内部で割れていたのか。動機も責任も、まだ決められません。",
+      "narration_character_count": 116,
+      "narration_characters_per_second": 4.64,
+      "narration_metric_status": "warn",
+      "shot_count": 3,
+      "subtitle_count": 3,
+      "primary_information_goal": "pressure",
+      "supporting_information_goals": [
+        "evidence",
+        "competing_hypothesis"
+      ],
+      "recurring_motif": "translucent_divider",
+      "motif_budget": 1,
+      "palette_roles": [
+        "midnight_base",
+        "warning_rust"
+      ],
+      "asset_classes": [
+        "character_silhouette",
+        "document_graphic",
+        "environment"
+      ],
+      "information_roles": [
+        "pressure",
+        "competing_hypothesis"
+      ],
+      "required_asset_count": 6,
+      "truth_boundary": "評議会の動機、責任範囲、台帳との関係は未解決。告発と偽記録の両説を保持する。",
+      "rights_boundary": "評議会は匿名の汎用シルエットと抽象空間で示す。人物・衣装・演者・固有意匠は未選定。",
+      "shot_ids": [
+        "shot-b04-01",
+        "shot-b04-02",
+        "shot-b04-03"
+      ],
+      "subtitle_cue_ids": [
+        "sub-b04-01",
+        "sub-b04-02",
+        "sub-b04-03"
+      ],
+      "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice.",
+      "acceptance_checks": [
+        {
+          "criterion_id": "beat-primary-goal",
+          "status": "pass",
+          "evidence": "pressure"
+        },
+        {
+          "criterion_id": "beat-support-limit",
+          "status": "pass",
+          "evidence": "2/2"
+        },
+        {
+          "criterion_id": "beat-timing",
+          "status": "pass",
+          "evidence": "01:20-01:45; 25s"
+        },
+        {
+          "criterion_id": "beat-inventory",
+          "status": "pass",
+          "evidence": "narration=1; shots=3; subtitles=3"
+        },
+        {
+          "criterion_id": "beat-narration-metric",
+          "status": "pass",
+          "evidence": "116 chars / 25s = 4.64 chars/s"
+        },
+        {
+          "criterion_id": "beat-motif",
+          "status": "pass",
+          "evidence": "translucent_divider; budget=1"
+        },
+        {
+          "criterion_id": "beat-palette",
+          "status": "pass",
+          "evidence": "midnight_base|warning_rust"
+        },
+        {
+          "criterion_id": "beat-truth",
+          "status": "pass",
+          "evidence": "評議会の動機、責任範囲、台帳との関係は未解決。告発と偽記録の両説を保持する。"
+        },
+        {
+          "criterion_id": "beat-roles",
+          "status": "pass",
+          "evidence": "asset and information roles derived from owned shots"
+        },
+        {
+          "criterion_id": "beat-narration-pace",
+          "status": "warn",
+          "evidence": "4.64 chars/s; project-local pass<=4.5, warn<=5.0, fail>5.0"
+        }
+      ],
+      "acceptance_status": "warn"
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "beat_number": 5,
+      "title_ja": "答えを保留",
+      "start_time": "01:45",
+      "end_time": "02:35",
+      "start_seconds": 105,
+      "end_seconds": 155,
+      "duration_seconds": 50,
+      "narration_segment_id": "narration-b05",
+      "narration_text": "ここで、答えを一つに絞ることはできません。トーマは生きているのか、死んだのか、記録から消されたのか、それとも自ら姿を隠したのか。真鍮の蛾は扉を開く鍵か、誰かの目となる装置か、記憶を預ける器か。評議会も、利益のために時間を奪う敵か、追い詰められて危険な取引を選んだ者たちか、意見の割れた組織かもしれません。どの説も手がかりにはなります。けれど、どれもまだ物語の真実ではありません。",
+      "narration_character_count": 189,
+      "narration_characters_per_second": 3.78,
+      "narration_metric_status": "pass",
+      "shot_count": 4,
+      "subtitle_count": 5,
+      "primary_information_goal": "competing_hypothesis",
+      "supporting_information_goals": [
+        "context",
+        "unresolved_question"
+      ],
+      "recurring_motif": "hold_labels",
+      "motif_budget": 1,
+      "palette_roles": [
+        "uncertainty_cool",
+        "brass_accent",
+        "warning_rust",
+        "text_high_contrast"
+      ],
+      "asset_classes": [
+        "character_silhouette",
+        "prop",
+        "document_graphic",
+        "typography"
+      ],
+      "information_roles": [
+        "competing_hypothesis",
+        "context",
+        "unresolved_question"
+      ],
+      "required_asset_count": 4,
+      "truth_boundary": "Toma fate、brass moth truth/function、Council motiveはすべてunresolved_human_owned。どの説もcanonへ昇格しない。",
+      "rights_boundary": "候補札やHOLD表示は編集者向けの汎用グラフィック。最終人物・小道具・画像を作成または選定しない。",
+      "shot_ids": [
+        "shot-b05-01",
+        "shot-b05-02",
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "subtitle_cue_ids": [
+        "sub-b05-01",
+        "sub-b05-02",
+        "sub-b05-03",
+        "sub-b05-04",
+        "sub-b05-05"
+      ],
+      "smallest_later_correction": "none",
+      "acceptance_checks": [
+        {
+          "criterion_id": "beat-primary-goal",
+          "status": "pass",
+          "evidence": "competing_hypothesis"
+        },
+        {
+          "criterion_id": "beat-support-limit",
+          "status": "pass",
+          "evidence": "2/2"
+        },
+        {
+          "criterion_id": "beat-timing",
+          "status": "pass",
+          "evidence": "01:45-02:35; 50s"
+        },
+        {
+          "criterion_id": "beat-inventory",
+          "status": "pass",
+          "evidence": "narration=1; shots=4; subtitles=5"
+        },
+        {
+          "criterion_id": "beat-narration-metric",
+          "status": "pass",
+          "evidence": "189 chars / 50s = 3.78 chars/s"
+        },
+        {
+          "criterion_id": "beat-motif",
+          "status": "pass",
+          "evidence": "hold_labels; budget=1"
+        },
+        {
+          "criterion_id": "beat-palette",
+          "status": "pass",
+          "evidence": "uncertainty_cool|brass_accent|warning_rust|text_high_contrast"
+        },
+        {
+          "criterion_id": "beat-truth",
+          "status": "pass",
+          "evidence": "Toma fate、brass moth truth/function、Council motiveはすべてunresolved_human_owned。どの説もcanonへ昇格しない。"
+        },
+        {
+          "criterion_id": "beat-roles",
+          "status": "pass",
+          "evidence": "asset and information roles derived from owned shots"
+        },
+        {
+          "criterion_id": "beat-narration-pace",
+          "status": "pass",
+          "evidence": "3.78 chars/s; project-local pass<=4.5, warn<=5.0, fail>5.0"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "beat_number": 6,
+      "title_ja": "時間か、名前か",
+      "start_time": "02:35",
+      "end_time": "03:00",
+      "start_seconds": 155,
+      "end_seconds": 180,
+      "duration_seconds": 25,
+      "narration_segment_id": "narration-b06",
+      "narration_text": "ミラが選ぶ結末も、まだ決まっていません。失われた時間を戻すのでしょうか。それとも、記録から消えたとされる人々へ名前を返すのでしょうか。一人に一時間を返す案も、今は結末候補にすぎません。空の鐘枠に音だけが残ります。時間か、名前か。",
+      "narration_character_count": 114,
+      "narration_characters_per_second": 4.56,
+      "narration_metric_status": "warn",
+      "shot_count": 3,
+      "subtitle_count": 3,
+      "primary_information_goal": "closing_prompt",
+      "supporting_information_goals": [
+        "context",
+        "unresolved_question"
+      ],
+      "recurring_motif": "time_or_names_split",
+      "motif_budget": 1,
+      "palette_roles": [
+        "uncertainty_cool",
+        "paper_neutral",
+        "midnight_base"
+      ],
+      "asset_classes": [
+        "abstract_graphic",
+        "document_graphic",
+        "environment"
+      ],
+      "information_roles": [
+        "unresolved_question",
+        "context",
+        "closing_prompt"
+      ],
+      "required_asset_count": 4,
+      "truth_boundary": "ミラの選択、一時間返還、鐘の再鳴、物語の結末はすべて未確定。問いはending candidateに留める。",
+      "rights_boundary": "時計、台帳、鐘音、終幕画面は方向性のみ。音源、画像、書体、render素材は未選定・未許諾。",
+      "shot_ids": [
+        "shot-b06-01",
+        "shot-b06-02",
+        "shot-b06-03"
+      ],
+      "subtitle_cue_ids": [
+        "sub-b06-01",
+        "sub-b06-02",
+        "sub-b06-03"
+      ],
+      "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice.",
+      "acceptance_checks": [
+        {
+          "criterion_id": "beat-primary-goal",
+          "status": "pass",
+          "evidence": "closing_prompt"
+        },
+        {
+          "criterion_id": "beat-support-limit",
+          "status": "pass",
+          "evidence": "2/2"
+        },
+        {
+          "criterion_id": "beat-timing",
+          "status": "pass",
+          "evidence": "02:35-03:00; 25s"
+        },
+        {
+          "criterion_id": "beat-inventory",
+          "status": "pass",
+          "evidence": "narration=1; shots=3; subtitles=3"
+        },
+        {
+          "criterion_id": "beat-narration-metric",
+          "status": "pass",
+          "evidence": "114 chars / 25s = 4.56 chars/s"
+        },
+        {
+          "criterion_id": "beat-motif",
+          "status": "pass",
+          "evidence": "time_or_names_split; budget=1"
+        },
+        {
+          "criterion_id": "beat-palette",
+          "status": "pass",
+          "evidence": "uncertainty_cool|paper_neutral|midnight_base"
+        },
+        {
+          "criterion_id": "beat-truth",
+          "status": "pass",
+          "evidence": "ミラの選択、一時間返還、鐘の再鳴、物語の結末はすべて未確定。問いはending candidateに留める。"
+        },
+        {
+          "criterion_id": "beat-roles",
+          "status": "pass",
+          "evidence": "asset and information roles derived from owned shots"
+        },
+        {
+          "criterion_id": "beat-narration-pace",
+          "status": "warn",
+          "evidence": "4.56 chars/s; project-local pass<=4.5, warn<=5.0, fail>5.0"
+        }
+      ],
+      "acceptance_status": "warn"
+    }
+  ],
+  "shots": [
+    {
+      "shot_id": "shot-b01-01",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "start_time": "00:00",
+      "end_time": "00:07",
+      "start_seconds": 0,
+      "end_seconds": 7,
+      "duration_seconds": 7,
+      "shot_function": "矛盾の舞台を置く",
+      "current_visual_direction": "ノース・ベル駅と古い天文台を汎用の遠景で置き、空の鐘枠を読ませる。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "environment_establishing",
+      "shot_scale": "wide",
+      "focal_subject": "空の鐘枠を持つ天文台遠景",
+      "focal_zone": "center",
+      "subject_occupancy_percent_min": 20,
+      "subject_occupancy_percent_max": 45,
+      "camera_motion": "slow_push",
+      "transition": "hard_cut",
+      "palette_role": "midnight_base",
+      "asset_class": "environment",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "ambient_bed",
+      "information_role": "hook",
+      "truth_boundary": "鐘が鳴る原因を画面化しない。",
+      "rights_note": "素材未選定・権利未確認。実在の駅、塔、ロゴ、写真を使わず、新規の汎用構図のみ。",
+      "source_asset_class": "environment_plate",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "00:00-00:07"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "20-45%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b01-02",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "start_time": "00:07",
+      "end_time": "00:14",
+      "start_seconds": 7,
+      "end_seconds": 14,
+      "duration_seconds": 7,
+      "shot_function": "鐘がないことを確認する",
+      "current_visual_direction": "昼光の中の空の鐘枠、取付部、静かな塔内部を抽象的に示す。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "object_detail",
+      "shot_scale": "close",
+      "focal_subject": "空の鐘枠と取付部",
+      "focal_zone": "center",
+      "subject_occupancy_percent_min": 35,
+      "subject_occupancy_percent_max": 60,
+      "camera_motion": "locked",
+      "transition": "short_dissolve",
+      "palette_role": "paper_neutral",
+      "asset_class": "environment",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "ambient_bed",
+      "information_role": "evidence",
+      "truth_boundary": "撤去理由やwinter curfewを証明しない。",
+      "rights_note": "素材未選定・権利未確認。既存建築写真や固有意匠を参照素材として固定しない。",
+      "source_asset_class": "environment_detail",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "00:07-00:14"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "35-60%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b01-03",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "start_time": "00:14",
+      "end_time": "00:20",
+      "start_seconds": 14,
+      "end_seconds": 20,
+      "duration_seconds": 6,
+      "shot_function": "未解決の問いへ止める",
+      "current_visual_direction": "空の枠を固定で保持し、『正午』の小さな時間表示だけを添える。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "closing_question",
+      "shot_scale": "medium",
+      "focal_subject": "空の鐘枠と正午表示",
+      "focal_zone": "center",
+      "subject_occupancy_percent_min": 25,
+      "subject_occupancy_percent_max": 45,
+      "camera_motion": "locked",
+      "transition": "held_fade",
+      "palette_role": "uncertainty_cool",
+      "asset_class": "typography",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_plus_single_label",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "silence_hold",
+      "information_role": "unresolved_question",
+      "truth_boundary": "魔法、機械、人物のいずれも原因として示さない。",
+      "rights_note": "素材未選定・権利未確認。文字と図形は新規作成のplaceholderに限る。",
+      "source_asset_class": "motion_graphic_placeholder",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "00:14-00:20"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "25-45%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b02-01",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "start_time": "00:20",
+      "end_time": "00:30",
+      "start_seconds": 20,
+      "end_seconds": 30,
+      "duration_seconds": 10,
+      "shot_function": "ミラの仕事と手元を置く",
+      "current_visual_direction": "時計修理台の手元だけを見せ、顔、衣装、身体的特徴は確定しない。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "character_context",
+      "shot_scale": "close",
+      "focal_subject": "ミラの手元と時計修理台",
+      "focal_zone": "lower_third",
+      "subject_occupancy_percent_min": 35,
+      "subject_occupancy_percent_max": 60,
+      "camera_motion": "slow_pan",
+      "transition": "hard_cut",
+      "palette_role": "paper_neutral",
+      "asset_class": "character_silhouette",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "mechanical_detail",
+      "information_role": "context",
+      "truth_boundary": "final character designではない。",
+      "rights_note": "素材未選定・権利未確認。演者、手の写真、衣装、時計意匠は未選定。",
+      "source_asset_class": "character_hands",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "00:20-00:30"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "35-60%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b02-02",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "start_time": "00:30",
+      "end_time": "00:40",
+      "start_seconds": 30,
+      "end_seconds": 40,
+      "duration_seconds": 10,
+      "shot_function": "個人的な手がかりを並べる",
+      "current_visual_direction": "引き出し内のメモと静止した真鍮の蛾をflat-layの汎用構図で見せる。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "evidence_insert",
+      "shot_scale": "close",
+      "focal_subject": "メモと静止した真鍮の蛾",
+      "focal_zone": "center",
+      "subject_occupancy_percent_min": 40,
+      "subject_occupancy_percent_max": 65,
+      "camera_motion": "locked",
+      "transition": "match_cut",
+      "palette_role": "brass_accent",
+      "asset_class": "prop",
+      "required_asset_count": 2,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "ambient_bed",
+      "information_role": "evidence",
+      "truth_boundary": "蛾を作動させず、機能を示さない。",
+      "rights_note": "素材未選定・権利未確認。メモ文面と蛾の造形は新規placeholderのみ。",
+      "source_asset_class": "prop_insert",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "00:30-00:40"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "40-65%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=2"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b02-03",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "start_time": "00:40",
+      "end_time": "00:50",
+      "start_seconds": 40,
+      "end_seconds": 50,
+      "duration_seconds": 10,
+      "shot_function": "9:17のmotifと蛾を分けて示す",
+      "current_visual_direction": "9:17の時計面と蛾を別焦点に置き、因果を作らない。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "object_detail",
+      "shot_scale": "extreme_close",
+      "focal_subject": "9:17の時計面と真鍮の蛾",
+      "focal_zone": "split_frame",
+      "subject_occupancy_percent_min": 25,
+      "subject_occupancy_percent_max": 45,
+      "camera_motion": "controlled_parallax",
+      "transition": "graphic_match",
+      "palette_role": "brass_accent",
+      "asset_class": "prop",
+      "required_asset_count": 2,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "mechanical_detail",
+      "information_role": "competing_hypothesis",
+      "truth_boundary": "9:17は閉店時刻のmotifであり、時計停止の確定事実にはしない。",
+      "rights_note": "素材未選定・権利未確認。時計面、書体、propは汎用の新規設計候補のみ。",
+      "source_asset_class": "clock_insert",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "00:40-00:50"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "25-45%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=2"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b03-01",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "start_time": "00:50",
+      "end_time": "01:00",
+      "start_seconds": 50,
+      "end_seconds": 60,
+      "duration_seconds": 10,
+      "shot_function": "調査対象の台帳を開く",
+      "current_visual_direction": "評議会に結びつく可能性のある台帳を開く手元を汎用propで示す。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "evidence_insert",
+      "shot_scale": "close",
+      "focal_subject": "開かれる台帳",
+      "focal_zone": "lower_third",
+      "subject_occupancy_percent_min": 35,
+      "subject_occupancy_percent_max": 60,
+      "camera_motion": "slow_push",
+      "transition": "hard_cut",
+      "palette_role": "paper_neutral",
+      "asset_class": "document_graphic",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "ambient_bed",
+      "information_role": "evidence",
+      "truth_boundary": "所有者、真正性、有罪を確定しない。",
+      "rights_note": "素材未選定・権利未確認。実在の公文書、紋章、scan、紙面を使わない。",
+      "source_asset_class": "document_prop",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "00:50-01:00"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "35-60%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b03-02",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "start_time": "01:00",
+      "end_time": "01:10",
+      "start_seconds": 60,
+      "end_seconds": 70,
+      "duration_seconds": 10,
+      "shot_function": "名前と分の関係を可視化する",
+      "current_visual_direction": "名前と『分』の列を新規作成の仮文字で示し、関係は疑問形に保つ。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "abstract_information",
+      "shot_scale": "graphic_fullframe",
+      "focal_subject": "名前と分の列",
+      "focal_zone": "center",
+      "subject_occupancy_percent_min": 20,
+      "subject_occupancy_percent_max": 55,
+      "camera_motion": "locked",
+      "transition": "graphic_match",
+      "palette_role": "uncertainty_cool",
+      "asset_class": "document_graphic",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_plus_single_label",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "tension_pulse",
+      "information_role": "evidence",
+      "truth_boundary": "実在文書でも確定証拠でもない。",
+      "rights_note": "素材未選定・権利未確認。文字、表、紙texture、fontは最終素材ではない。",
+      "source_asset_class": "document_graphic",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "01:00-01:10"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "20-55%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b03-03",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "start_time": "01:10",
+      "end_time": "01:20",
+      "start_seconds": 70,
+      "end_seconds": 80,
+      "duration_seconds": 10,
+      "shot_function": "記録欠落の感覚を作る",
+      "current_visual_direction": "インクや名前の輪郭がゆっくり薄れる、抽象的なモーショングラフィックを想定する。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "abstract_information",
+      "shot_scale": "graphic_fullframe",
+      "focal_subject": "薄れる名前の輪郭",
+      "focal_zone": "full_frame",
+      "subject_occupancy_percent_min": 20,
+      "subject_occupancy_percent_max": 70,
+      "camera_motion": "graphic_dissolve",
+      "transition": "short_dissolve",
+      "palette_role": "uncertainty_cool",
+      "asset_class": "abstract_graphic",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "tension_pulse",
+      "information_role": "competing_hypothesis",
+      "truth_boundary": "literal erasureの証明ではなくvisual metaphor。",
+      "rights_note": "素材未選定・権利未確認。既存animationやtextureを流用しない。",
+      "source_asset_class": "motion_graphic_placeholder",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "01:10-01:20"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "20-70%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b04-01",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "start_time": "01:20",
+      "end_time": "01:28",
+      "start_seconds": 80,
+      "end_seconds": 88,
+      "duration_seconds": 8,
+      "shot_function": "制度側の存在だけを示す",
+      "current_visual_direction": "半透明の仕切り越しに中立的な匿名シルエットを置く。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "institutional_pressure",
+      "shot_scale": "wide",
+      "focal_subject": "匿名の評議会シルエット",
+      "focal_zone": "center",
+      "subject_occupancy_percent_min": 15,
+      "subject_occupancy_percent_max": 35,
+      "camera_motion": "slow_push",
+      "transition": "hard_cut",
+      "palette_role": "midnight_base",
+      "asset_class": "character_silhouette",
+      "required_asset_count": 3,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "tension_pulse",
+      "information_role": "pressure",
+      "truth_boundary": "guilty acting、個人特定、単純悪役化を避ける。",
+      "rights_note": "素材未選定・権利未確認。演者、顔、衣装、施設、ロゴは未選定。",
+      "source_asset_class": "anonymous_character_group",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "01:20-01:28"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "15-35%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=3"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b04-02",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "start_time": "01:28",
+      "end_time": "01:36",
+      "start_seconds": 88,
+      "end_seconds": 96,
+      "duration_seconds": 8,
+      "shot_function": "矛盾する二説を並置する",
+      "current_visual_direction": "『時間販売の告発？』と『偽の記録？』を同じ重さで並べる。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "unresolved_choice",
+      "shot_scale": "graphic_fullframe",
+      "focal_subject": "同じ重みの二つの仮説",
+      "focal_zone": "split_frame",
+      "subject_occupancy_percent_min": 20,
+      "subject_occupancy_percent_max": 60,
+      "camera_motion": "locked",
+      "transition": "graphic_match",
+      "palette_role": "warning_rust",
+      "asset_class": "document_graphic",
+      "required_asset_count": 2,
+      "overlay_text_allowance": {
+        "mode": "subtitle_plus_single_label",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "tension_pulse",
+      "information_role": "competing_hypothesis",
+      "truth_boundary": "Contradictory Claim Guardのどちらも勝たせない。",
+      "rights_note": "素材未選定・権利未確認。新規の編集用文字面のみ。",
+      "source_asset_class": "review_graphic",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "01:28-01:36"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "20-60%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=2"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b04-03",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "start_time": "01:36",
+      "end_time": "01:45",
+      "start_seconds": 96,
+      "end_seconds": 105,
+      "duration_seconds": 9,
+      "shot_function": "動機不明のまま緊張を渡す",
+      "current_visual_direction": "台帳の影と閉じた抽象空間に『MOTIVE UNKNOWN』を小さく表示する。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "institutional_pressure",
+      "shot_scale": "medium",
+      "focal_subject": "閉じた制度空間と台帳の影",
+      "focal_zone": "center",
+      "subject_occupancy_percent_min": 25,
+      "subject_occupancy_percent_max": 50,
+      "camera_motion": "slow_pull",
+      "transition": "held_fade",
+      "palette_role": "midnight_base",
+      "asset_class": "environment",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_plus_single_label",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "silence_hold",
+      "information_role": "pressure",
+      "truth_boundary": "動機と責任範囲を未決定のまま保つ。",
+      "rights_note": "素材未選定・権利未確認。施設、書体、背景は汎用placeholderのみ。",
+      "source_asset_class": "institutional_environment",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "01:36-01:45"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "25-50%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b05-01",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "01:45",
+      "end_time": "01:58",
+      "start_seconds": 105,
+      "end_seconds": 118,
+      "duration_seconds": 13,
+      "shot_function": "トーマの複数の運命を保留する",
+      "current_visual_direction": "未確定シルエットと複数のfate札を並べ、どれも選択しない。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "unresolved_choice",
+      "shot_scale": "medium",
+      "focal_subject": "未確定のトーマ候補",
+      "focal_zone": "split_frame",
+      "subject_occupancy_percent_min": 20,
+      "subject_occupancy_percent_max": 55,
+      "camera_motion": "slow_pan",
+      "transition": "hard_cut",
+      "palette_role": "uncertainty_cool",
+      "asset_class": "character_silhouette",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_plus_single_label",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "tension_pulse",
+      "information_role": "competing_hypothesis",
+      "truth_boundary": "生存、死亡、消失、潜伏のいずれも採用しない。",
+      "rights_note": "素材未選定・権利未確認。人物像、演者、写真、衣装を確定しない。",
+      "source_asset_class": "character_placeholder",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "01:45-01:58"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "20-55%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b05-02",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "01:58",
+      "end_time": "02:11",
+      "start_seconds": 118,
+      "end_seconds": 131,
+      "duration_seconds": 13,
+      "shot_function": "蛾の機能候補を分離する",
+      "current_visual_direction": "真鍮の蛾と『key / spy / memory』の候補語を別々に表示する。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "object_detail",
+      "shot_scale": "close",
+      "focal_subject": "真鍮の蛾と機能候補",
+      "focal_zone": "center",
+      "subject_occupancy_percent_min": 35,
+      "subject_occupancy_percent_max": 60,
+      "camera_motion": "controlled_parallax",
+      "transition": "match_cut",
+      "palette_role": "brass_accent",
+      "asset_class": "prop",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_plus_single_label",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "mechanical_detail",
+      "information_role": "context",
+      "truth_boundary": "activationや正解表示を行わない。",
+      "rights_note": "素材未選定・権利未確認。蛾の造形やdiagramは編集用placeholderのみ。",
+      "source_asset_class": "object_diagram",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "01:58-02:11"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "35-60%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b05-03",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "02:11",
+      "end_time": "02:23",
+      "start_seconds": 131,
+      "end_seconds": 143,
+      "duration_seconds": 12,
+      "shot_function": "評議会の動機候補を保留する",
+      "current_visual_direction": "中立的な制度像と『villainous / desperate / divided / misled』の候補札を並べる。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "unresolved_choice",
+      "shot_scale": "graphic_fullframe",
+      "focal_subject": "評議会の動機候補",
+      "focal_zone": "split_frame",
+      "subject_occupancy_percent_min": 20,
+      "subject_occupancy_percent_max": 65,
+      "camera_motion": "locked",
+      "transition": "graphic_match",
+      "palette_role": "warning_rust",
+      "asset_class": "document_graphic",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_plus_single_label",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "tension_pulse",
+      "information_role": "competing_hypothesis",
+      "truth_boundary": "いずれもderived possibilityであり事実ではない。",
+      "rights_note": "素材未選定・権利未確認。制度像と文字面は汎用の新規候補のみ。",
+      "source_asset_class": "review_route_graphic",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "02:11-02:23"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "20-65%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b05-04",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "02:23",
+      "end_time": "02:35",
+      "start_seconds": 143,
+      "end_seconds": 155,
+      "duration_seconds": 12,
+      "shot_function": "三つの問いをHOLDへ戻す",
+      "current_visual_direction": "Toma / moth / Councilを一つのHOLD面に戻して編集上の境界を示す。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "abstract_information",
+      "shot_scale": "graphic_fullframe",
+      "focal_subject": "Toma / moth / Council HOLD面",
+      "focal_zone": "full_frame",
+      "subject_occupancy_percent_min": 20,
+      "subject_occupancy_percent_max": 70,
+      "camera_motion": "graphic_dissolve",
+      "transition": "held_fade",
+      "palette_role": "text_high_contrast",
+      "asset_class": "typography",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_plus_single_label",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "silence_hold",
+      "information_role": "unresolved_question",
+      "truth_boundary": "物語世界の表示やcanon上の事実ではない。",
+      "rights_note": "素材未選定・権利未確認。operator-facing markerのみでrelease assetではない。",
+      "source_asset_class": "review_hold_graphic",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "02:23-02:35"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "20-70%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b06-01",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:35",
+      "end_time": "02:44",
+      "start_seconds": 155,
+      "end_seconds": 164,
+      "duration_seconds": 9,
+      "shot_function": "終幕の二択を置く",
+      "current_visual_direction": "時計面と空欄の名前欄を左右に並べ、中央は空ける。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "unresolved_choice",
+      "shot_scale": "graphic_fullframe",
+      "focal_subject": "時計面と空欄の名前欄",
+      "focal_zone": "split_frame",
+      "subject_occupancy_percent_min": 25,
+      "subject_occupancy_percent_max": 60,
+      "camera_motion": "locked",
+      "transition": "hard_cut",
+      "palette_role": "uncertainty_cool",
+      "asset_class": "abstract_graphic",
+      "required_asset_count": 2,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "tension_pulse",
+      "information_role": "unresolved_question",
+      "truth_boundary": "ミラの選択を示さない。",
+      "rights_note": "素材未選定・権利未確認。時計、文書、文字面は新規の汎用候補のみ。",
+      "source_asset_class": "symbolic_split_frame",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "02:35-02:44"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "25-60%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=2"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b06-02",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:44",
+      "end_time": "02:52",
+      "start_seconds": 164,
+      "end_seconds": 172,
+      "duration_seconds": 8,
+      "shot_function": "結論を書かずに台帳を閉じる",
+      "current_visual_direction": "未記入欄を残したまま汎用の台帳が閉じる。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "evidence_insert",
+      "shot_scale": "close",
+      "focal_subject": "未記入欄を残す台帳",
+      "focal_zone": "lower_third",
+      "subject_occupancy_percent_min": 35,
+      "subject_occupancy_percent_max": 60,
+      "camera_motion": "slow_pull",
+      "transition": "graphic_match",
+      "palette_role": "paper_neutral",
+      "asset_class": "document_graphic",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_only",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "ambient_bed",
+      "information_role": "context",
+      "truth_boundary": "消された人々や回復を確定しない。",
+      "rights_note": "素材未選定・権利未確認。実在文書、scan、書体、紙面を使用しない。",
+      "source_asset_class": "document_prop",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "02:44-02:52"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "35-60%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "shot_id": "shot-b06-03",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:52",
+      "end_time": "03:00",
+      "start_seconds": 172,
+      "end_seconds": 180,
+      "duration_seconds": 8,
+      "shot_function": "問いのまま冒頭像へ戻る",
+      "current_visual_direction": "空の鐘枠へ戻り、『時間か、名前か』で静止する。",
+      "visual_direction_control": "LOCKED_SOURCE_WORDING",
+      "focal_subject_control": "LOCKED_BLUEPRINT_SPEC",
+      "locked_fields": [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      "bounded_visual_fields": [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      "free_micro_detail_fields": [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      "field_control_summary": {
+        "LOCKED": 7,
+        "BOUNDED": 13,
+        "FREE": 4
+      },
+      "composition_class": "closing_question",
+      "shot_scale": "wide",
+      "focal_subject": "空の鐘枠と終幕の問い",
+      "focal_zone": "center",
+      "subject_occupancy_percent_min": 20,
+      "subject_occupancy_percent_max": 45,
+      "camera_motion": "slow_pull",
+      "transition": "held_fade",
+      "palette_role": "midnight_base",
+      "asset_class": "environment",
+      "required_asset_count": 1,
+      "overlay_text_allowance": {
+        "mode": "subtitle_plus_single_label",
+        "max_lines": 2,
+        "max_characters_per_line": 18
+      },
+      "audio_role": "closing_resonance",
+      "information_role": "closing_prompt",
+      "truth_boundary": "ending candidateの問いで閉じ、解決を描かない。",
+      "rights_note": "素材未選定・権利未確認。塔、音、文字、final frameはいずれも未制作。",
+      "source_asset_class": "environment_return",
+      "asset_status": "unselected",
+      "rights_status": "not_cleared",
+      "acceptance_checks": [
+        {
+          "criterion_id": "shot-required-fields",
+          "status": "pass",
+          "evidence": "全required production fieldsが存在する"
+        },
+        {
+          "criterion_id": "shot-timing",
+          "status": "pass",
+          "evidence": "02:52-03:00"
+        },
+        {
+          "criterion_id": "shot-composition",
+          "status": "pass",
+          "evidence": "composition classが1件である"
+        },
+        {
+          "criterion_id": "shot-scale",
+          "status": "pass",
+          "evidence": "shot scaleが1件である"
+        },
+        {
+          "criterion_id": "shot-motion",
+          "status": "pass",
+          "evidence": "camera motion classが最大1件である"
+        },
+        {
+          "criterion_id": "shot-transition",
+          "status": "pass",
+          "evidence": "transitionが1件である"
+        },
+        {
+          "criterion_id": "shot-occupancy",
+          "status": "pass",
+          "evidence": "20-45%"
+        },
+        {
+          "criterion_id": "shot-focal-zone",
+          "status": "pass",
+          "evidence": "focal zoneがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-asset-quantity",
+          "status": "pass",
+          "evidence": "required_asset_count=1"
+        },
+        {
+          "criterion_id": "shot-overlay",
+          "status": "pass",
+          "evidence": "overlay allowanceがline/character budgetを持つ"
+        },
+        {
+          "criterion_id": "shot-truth",
+          "status": "pass",
+          "evidence": "truth-safe wording boundaryが存在する"
+        },
+        {
+          "criterion_id": "shot-asset-rights",
+          "status": "pass",
+          "evidence": "asset_status=unselected; rights_status=not_cleared"
+        },
+        {
+          "criterion_id": "shot-palette",
+          "status": "pass",
+          "evidence": "palette roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-information",
+          "status": "pass",
+          "evidence": "information roleがcontrolled vocabulary内である"
+        },
+        {
+          "criterion_id": "shot-visual-control",
+          "status": "pass",
+          "evidence": "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+        }
+      ],
+      "acceptance_status": "pass"
+    }
+  ],
+  "subtitle_metrics": [
+    {
+      "cue_id": "sub-b01-01",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "start_time": "00:01",
+      "end_time": "00:07",
+      "start_seconds": 1,
+      "end_seconds": 7,
+      "duration_seconds": 6,
+      "text_ja": "正午、鐘のない塔が鳴る。",
+      "line_break_hint": "正午、鐘のない塔が｜鳴る。",
+      "character_count": 12,
+      "characters_per_second": 2,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 9,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "medium",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "00:01-00:07; duration=6s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "12 chars / 6s = 2 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "2 chars/s; 2/2 lines; max 9/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b01-02",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "start_time": "00:08",
+      "end_time": "00:14",
+      "start_seconds": 8,
+      "end_seconds": 14,
+      "duration_seconds": 6,
+      "text_ja": "鐘は外された、と記録にはある。",
+      "line_break_hint": "鐘は外された、と｜記録にはある。",
+      "character_count": 15,
+      "characters_per_second": 2.5,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 8,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "medium",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "00:08-00:14; duration=6s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "15 chars / 6s = 2.5 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "2.5 chars/s; 2/2 lines; max 8/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b01-03",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "start_time": "00:15",
+      "end_time": "00:19",
+      "start_seconds": 15,
+      "end_seconds": 19,
+      "duration_seconds": 4,
+      "text_ja": "では、何が鳴っている？",
+      "line_break_hint": "では、何が｜鳴っている？",
+      "character_count": 11,
+      "characters_per_second": 2.75,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 6,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "low",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "00:15-00:19; duration=4s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "11 chars / 4s = 2.75 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "2.75 chars/s; 2/2 lines; max 6/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b02-01",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "start_time": "00:21",
+      "end_time": "00:28",
+      "start_seconds": 21,
+      "end_seconds": 28,
+      "duration_seconds": 7,
+      "text_ja": "アーケードは毎夜9:17に閉じる。",
+      "line_break_hint": "アーケードは｜毎夜9:17に閉じる。",
+      "character_count": 17,
+      "characters_per_second": 2.43,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 11,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "low",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "00:21-00:28; duration=7s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "17 chars / 7s = 2.43 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "2.43 chars/s; 2/2 lines; max 11/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b02-02",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "start_time": "00:29",
+      "end_time": "00:39",
+      "start_seconds": 29,
+      "end_seconds": 39,
+      "duration_seconds": 10,
+      "text_ja": "トーマが残したとされるメモと真鍮の蛾。",
+      "line_break_hint": "トーマが残したとされる｜メモと真鍮の蛾。",
+      "character_count": 19,
+      "characters_per_second": 1.9,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 11,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "00:29-00:39; duration=10s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "19 chars / 10s = 1.9 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.9 chars/s; 2/2 lines; max 11/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b02-03",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "start_time": "00:40",
+      "end_time": "00:49",
+      "start_seconds": 40,
+      "end_seconds": 49,
+      "duration_seconds": 9,
+      "text_ja": "その働きは、まだ分からない。",
+      "line_break_hint": "その機能は、｜まだ未決定。",
+      "character_count": 14,
+      "characters_per_second": 1.56,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 6,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "00:40-00:49; duration=9s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "14 chars / 9s = 1.56 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.56 chars/s; 2/2 lines; max 6/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b03-01",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "start_time": "00:51",
+      "end_time": "00:59",
+      "start_seconds": 51,
+      "end_seconds": 59,
+      "duration_seconds": 8,
+      "text_ja": "台帳には『分』と名前が並ぶ。",
+      "line_break_hint": "台帳には『分』と｜名前が並ぶ。",
+      "character_count": 14,
+      "characters_per_second": 1.75,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 8,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "medium",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "00:51-00:59; duration=8s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "14 chars / 8s = 1.75 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.75 chars/s; 2/2 lines; max 8/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b03-02",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "start_time": "01:00",
+      "end_time": "01:09",
+      "start_seconds": 60,
+      "end_seconds": 69,
+      "duration_seconds": 9,
+      "text_ja": "時間は、忘れられた人生から？",
+      "line_break_hint": "時間は、忘れられた｜人生から？",
+      "character_count": 14,
+      "characters_per_second": 1.56,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 9,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "01:00-01:09; duration=9s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "14 chars / 9s = 1.56 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.56 chars/s; 2/2 lines; max 9/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b03-03",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "start_time": "01:10",
+      "end_time": "01:19",
+      "start_seconds": 70,
+      "end_seconds": 79,
+      "duration_seconds": 9,
+      "text_ja": "証拠か、誘い餌か、偽の記録か。",
+      "line_break_hint": "証拠か、誘い餌か、｜偽の記録か。",
+      "character_count": 15,
+      "characters_per_second": 1.67,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 9,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "01:10-01:19; duration=9s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "15 chars / 9s = 1.67 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.67 chars/s; 2/2 lines; max 9/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b04-01",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "start_time": "01:21",
+      "end_time": "01:28",
+      "start_seconds": 81,
+      "end_seconds": 88,
+      "duration_seconds": 7,
+      "text_ja": "メモは評議会を告発する。",
+      "line_break_hint": "メモは評議会を｜告発する。",
+      "character_count": 12,
+      "characters_per_second": 1.71,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 7,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "01:21-01:28; duration=7s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "12 chars / 7s = 1.71 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.71 chars/s; 2/2 lines; max 7/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b04-02",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "start_time": "01:29",
+      "end_time": "01:36",
+      "start_seconds": 89,
+      "end_seconds": 96,
+      "duration_seconds": 7,
+      "text_ja": "だが、台帳の真偽は未確定。",
+      "line_break_hint": "だが、台帳の真偽は｜未確定。",
+      "character_count": 13,
+      "characters_per_second": 1.86,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 9,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "01:29-01:36; duration=7s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "13 chars / 7s = 1.86 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.86 chars/s; 2/2 lines; max 9/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b04-03",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "start_time": "01:37",
+      "end_time": "01:44",
+      "start_seconds": 97,
+      "end_seconds": 104,
+      "duration_seconds": 7,
+      "text_ja": "評議会の動機：不明",
+      "line_break_hint": "評議会の動機：｜不明",
+      "character_count": 9,
+      "characters_per_second": 1.29,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 7,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "01:37-01:44; duration=7s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "9 chars / 7s = 1.29 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.29 chars/s; 2/2 lines; max 7/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b05-01",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "01:46",
+      "end_time": "01:55",
+      "start_seconds": 106,
+      "end_seconds": 115,
+      "duration_seconds": 9,
+      "text_ja": "トーマの運命：未解決",
+      "line_break_hint": "トーマの運命：｜未解決",
+      "character_count": 10,
+      "characters_per_second": 1.11,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 7,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "01:46-01:55; duration=9s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "10 chars / 9s = 1.11 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.11 chars/s; 2/2 lines; max 7/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b05-02",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "01:56",
+      "end_time": "02:05",
+      "start_seconds": 116,
+      "end_seconds": 125,
+      "duration_seconds": 9,
+      "text_ja": "真鍮の蛾の機能：未解決",
+      "line_break_hint": "真鍮の蛾の機能：｜未解決",
+      "character_count": 11,
+      "characters_per_second": 1.22,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 8,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "01:56-02:05; duration=9s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "11 chars / 9s = 1.22 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.22 chars/s; 2/2 lines; max 8/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b05-03",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "02:06",
+      "end_time": "02:15",
+      "start_seconds": 126,
+      "end_seconds": 135,
+      "duration_seconds": 9,
+      "text_ja": "評議会の動機：未解決",
+      "line_break_hint": "評議会の動機：｜未解決",
+      "character_count": 10,
+      "characters_per_second": 1.11,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 7,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "02:06-02:15; duration=9s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "10 chars / 9s = 1.11 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.11 chars/s; 2/2 lines; max 7/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b05-04",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "02:16",
+      "end_time": "02:24",
+      "start_seconds": 136,
+      "end_seconds": 144,
+      "duration_seconds": 8,
+      "text_ja": "複数の説が残っている。",
+      "line_break_hint": "複数の説が｜残っている。",
+      "character_count": 11,
+      "characters_per_second": 1.38,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 6,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "02:16-02:24; duration=8s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "11 chars / 8s = 1.38 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.38 chars/s; 2/2 lines; max 6/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b05-05",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "02:25",
+      "end_time": "02:34",
+      "start_seconds": 145,
+      "end_seconds": 154,
+      "duration_seconds": 9,
+      "text_ja": "どれも、まだ物語の真実ではない。",
+      "line_break_hint": "どれも、まだ｜物語の真実ではない。",
+      "character_count": 16,
+      "characters_per_second": 1.78,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 10,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "02:25-02:34; duration=9s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "16 chars / 9s = 1.78 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.78 chars/s; 2/2 lines; max 10/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b06-01",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:36",
+      "end_time": "02:43",
+      "start_seconds": 156,
+      "end_seconds": 163,
+      "duration_seconds": 7,
+      "text_ja": "失われた時間を戻す？",
+      "line_break_hint": "失われた時間を｜戻す？",
+      "character_count": 10,
+      "characters_per_second": 1.43,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 7,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "02:36-02:43; duration=7s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "10 chars / 7s = 1.43 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.43 chars/s; 2/2 lines; max 7/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b06-02",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:44",
+      "end_time": "02:51",
+      "start_seconds": 164,
+      "end_seconds": 171,
+      "duration_seconds": 7,
+      "text_ja": "それとも、消えた名前を返す？",
+      "line_break_hint": "それとも、消えた｜名前を返す？",
+      "character_count": 14,
+      "characters_per_second": 2,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 8,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "02:44-02:51; duration=7s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "14 chars / 7s = 2 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "2 chars/s; 2/2 lines; max 8/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    },
+    {
+      "cue_id": "sub-b06-03",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:52",
+      "end_time": "02:59",
+      "start_seconds": 172,
+      "end_seconds": 179,
+      "duration_seconds": 7,
+      "text_ja": "結末候補：時間か、名前か。",
+      "line_break_hint": "結末候補：｜時間か、名前か。",
+      "character_count": 13,
+      "characters_per_second": 1.86,
+      "line_count": 2,
+      "line_count_budget": 2,
+      "characters_per_line_budget": 18,
+      "maximum_actual_characters_per_line": 8,
+      "status": "pass",
+      "smallest_later_correction": "none",
+      "truth_risk_marker": "high",
+      "acceptance_checks": [
+        {
+          "criterion_id": "subtitle-timing",
+          "status": "pass",
+          "evidence": "02:52-02:59; duration=7s"
+        },
+        {
+          "criterion_id": "subtitle-line-budget",
+          "status": "pass",
+          "evidence": "2/2 lines"
+        },
+        {
+          "criterion_id": "subtitle-metrics",
+          "status": "pass",
+          "evidence": "13 chars / 7s = 1.86 chars/s"
+        },
+        {
+          "criterion_id": "subtitle-classification",
+          "status": "pass",
+          "evidence": "readback=pass"
+        },
+        {
+          "criterion_id": "subtitle-readability",
+          "status": "pass",
+          "evidence": "1.86 chars/s; 2/2 lines; max 8/18 chars/line"
+        }
+      ],
+      "acceptance_status": "pass"
+    }
+  ],
+  "definition_of_done": {
+    "global": [
+      {
+        "criterion_id": "global-identity",
+        "requirement_ja": "Blueprint identityとprovisional statusが明示される",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-runtime",
+        "requirement_ja": "総尺が180秒である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-counts",
+        "requirement_ja": "6 beat / 6 narration / 20 subtitle / 19 shot / 3 thumbnailに一致する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-locked",
+        "requirement_ja": "LOCKED fieldsがsourceと一致する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-bounded",
+        "requirement_ja": "全BOUNDED fieldsが列挙値または数値範囲で埋まる",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-vocabulary",
+        "requirement_ja": "未知のproduction termがない",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-assets",
+        "requirement_ja": "actual assetが選定されていない",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-rights",
+        "requirement_ja": "rights-cleared claimがない",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-gates",
+        "requirement_ja": "provider / generation / render / upload / database / canon gatesが閉じる",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-profile",
+        "requirement_ja": "provisional 1920x1080 / 16:9 / 30fps profileを使う",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-wording",
+        "requirement_ja": "accepted wording changesがexactly threeである",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-freedom",
+        "requirement_ja": "LOCKED / BOUNDED / FREE envelopeが完全である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "global-integrity",
+        "requirement_ja": "package manifest hashesが一致する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      }
+    ],
+    "beat": [
+      {
+        "criterion_id": "beat-primary-goal",
+        "requirement_ja": "primary information goalが1件である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "beat-support-limit",
+        "requirement_ja": "supporting information goalsが2件以下である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "beat-timing",
+        "requirement_ja": "exact beat windowとdurationがsourceに一致する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "beat-inventory",
+        "requirement_ja": "exact shot/subtitle/narration inventoryを持つ",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "beat-narration-metric",
+        "requirement_ja": "narration volumeとcharacters/secondが計測される",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "beat-motif",
+        "requirement_ja": "motifがcontrolled vocabularyから1件である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "beat-palette",
+        "requirement_ja": "palette rolesがcontrolled vocabulary内である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "beat-truth",
+        "requirement_ja": "truth boundaryが明示される",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "beat-roles",
+        "requirement_ja": "asset classesとinformation rolesが列挙される",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "beat-narration-pace",
+        "requirement_ja": "project-local narration paceがpass/warn/fail分類される",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      }
+    ],
+    "shot": [
+      {
+        "criterion_id": "shot-required-fields",
+        "requirement_ja": "全required production fieldsが存在する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-timing",
+        "requirement_ja": "shot windowがowning beat内に収まる",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-composition",
+        "requirement_ja": "composition classが1件である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-scale",
+        "requirement_ja": "shot scaleが1件である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-motion",
+        "requirement_ja": "camera motion classが最大1件である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-transition",
+        "requirement_ja": "transitionが1件である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-occupancy",
+        "requirement_ja": "subject occupancyが15-80%の数値範囲である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-focal-zone",
+        "requirement_ja": "focal zoneがcontrolled vocabulary内である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-asset-quantity",
+        "requirement_ja": "required asset countが0-4の整数である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-overlay",
+        "requirement_ja": "overlay allowanceがline/character budgetを持つ",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-truth",
+        "requirement_ja": "truth-safe wording boundaryが存在する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-asset-rights",
+        "requirement_ja": "assetはunselected、rightsはnot_clearedである",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-palette",
+        "requirement_ja": "palette roleがcontrolled vocabulary内である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-information",
+        "requirement_ja": "information roleがcontrolled vocabulary内である",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "shot-visual-control",
+        "requirement_ja": "source visual wordingはLOCKED_SOURCE_WORDING、focal subjectはLOCKED_BLUEPRINT_SPEC、production fieldsはBOUNDEDである",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      }
+    ],
+    "subtitle": [
+      {
+        "criterion_id": "subtitle-timing",
+        "requirement_ja": "cue timingがvalidでowning beat内にある",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "subtitle-line-budget",
+        "requirement_ja": "line count budgetが存在する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "subtitle-metrics",
+        "requirement_ja": "duration/character/CPS metricsが存在する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "subtitle-classification",
+        "requirement_ja": "pass/warn/fail resultが存在する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      },
+      {
+        "criterion_id": "subtitle-readability",
+        "requirement_ja": "2 lines / 18 characters-per-line project-local budgetを評価する",
+        "status_vocabulary": [
+          "pass",
+          "warn",
+          "fail"
+        ]
+      }
+    ],
+    "global_acceptance_checks": [
+      {
+        "criterion_id": "global-identity",
+        "status": "pass",
+        "evidence": "fff-content-production-blueprint-001; provisional"
+      },
+      {
+        "criterion_id": "global-runtime",
+        "status": "pass",
+        "evidence": "180 seconds"
+      },
+      {
+        "criterion_id": "global-counts",
+        "status": "pass",
+        "evidence": "6/6/20/19/3"
+      },
+      {
+        "criterion_id": "global-locked",
+        "status": "pass",
+        "evidence": "LOCKED fieldsがsourceと一致する"
+      },
+      {
+        "criterion_id": "global-bounded",
+        "status": "pass",
+        "evidence": "全BOUNDED fieldsが列挙値または数値範囲で埋まる"
+      },
+      {
+        "criterion_id": "global-vocabulary",
+        "status": "pass",
+        "evidence": "未知のproduction termがない"
+      },
+      {
+        "criterion_id": "global-assets",
+        "status": "pass",
+        "evidence": "actual assetが選定されていない"
+      },
+      {
+        "criterion_id": "global-rights",
+        "status": "pass",
+        "evidence": "rights-cleared claimがない"
+      },
+      {
+        "criterion_id": "global-gates",
+        "status": "pass",
+        "evidence": "provider / generation / render / upload / database / canon gatesが閉じる"
+      },
+      {
+        "criterion_id": "global-profile",
+        "status": "pass",
+        "evidence": "provisional 1920x1080 / 16:9 / 30fps profileを使う"
+      },
+      {
+        "criterion_id": "global-wording",
+        "status": "pass",
+        "evidence": "rev-change-b01-narration-wording|rev-change-b02-subtitle-wording|rev-change-b03-shot-direction-wording"
+      },
+      {
+        "criterion_id": "global-freedom",
+        "status": "pass",
+        "evidence": "LOCKED / BOUNDED / FREE envelopeが完全である"
+      },
+      {
+        "criterion_id": "global-integrity",
+        "status": "pass",
+        "evidence": "verified by blueprint-package-manifest.json"
+      }
+    ],
+    "template_counts": {
+      "global": 13,
+      "beat": 10,
+      "shot": 15,
+      "subtitle": 5
+    },
+    "evaluated_check_counts": {
+      "global": 13,
+      "beat": 60,
+      "shot": 285,
+      "subtitle": 100
+    }
+  },
+  "acceptance_matrix": [
+    {
+      "scope": "global",
+      "subject_id": "fff-content-production-blueprint-001",
+      "status": "pass",
+      "criteria_count": 13,
+      "criterion_ids": [
+        "global-identity",
+        "global-runtime",
+        "global-counts",
+        "global-locked",
+        "global-bounded",
+        "global-vocabulary",
+        "global-assets",
+        "global-rights",
+        "global-gates",
+        "global-profile",
+        "global-wording",
+        "global-freedom",
+        "global-integrity"
+      ],
+      "evidence": "identity, source, profile, vocabulary, boundary, and package integrity gates",
+      "owner": "production_blueprint_operator",
+      "next_move": "none"
+    },
+    {
+      "scope": "beat",
+      "subject_id": "bridge-storyboard-beat-1-bellless-tower",
+      "status": "warn",
+      "criteria_count": 10,
+      "criterion_ids": [
+        "beat-primary-goal",
+        "beat-support-limit",
+        "beat-timing",
+        "beat-inventory",
+        "beat-narration-metric",
+        "beat-motif",
+        "beat-palette",
+        "beat-truth",
+        "beat-roles",
+        "beat-narration-pace"
+      ],
+      "evidence": "20s; 3 shots; 3 subtitles; narration 4.7 chars/s",
+      "owner": "editorial_production_operator",
+      "next_move": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+    },
+    {
+      "scope": "beat",
+      "subject_id": "bridge-storyboard-beat-2-brass-moth",
+      "status": "pass",
+      "criteria_count": 10,
+      "criterion_ids": [
+        "beat-primary-goal",
+        "beat-support-limit",
+        "beat-timing",
+        "beat-inventory",
+        "beat-narration-metric",
+        "beat-motif",
+        "beat-palette",
+        "beat-truth",
+        "beat-roles",
+        "beat-narration-pace"
+      ],
+      "evidence": "30s; 3 shots; 3 subtitles; narration 4.23 chars/s",
+      "owner": "editorial_production_operator",
+      "next_move": "none"
+    },
+    {
+      "scope": "beat",
+      "subject_id": "bridge-storyboard-beat-3-erased-names",
+      "status": "warn",
+      "criteria_count": 10,
+      "criterion_ids": [
+        "beat-primary-goal",
+        "beat-support-limit",
+        "beat-timing",
+        "beat-inventory",
+        "beat-narration-metric",
+        "beat-motif",
+        "beat-palette",
+        "beat-truth",
+        "beat-roles",
+        "beat-narration-pace"
+      ],
+      "evidence": "30s; 3 shots; 3 subtitles; narration 4.6 chars/s",
+      "owner": "editorial_production_operator",
+      "next_move": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+    },
+    {
+      "scope": "beat",
+      "subject_id": "bridge-storyboard-beat-4-council-shadow",
+      "status": "warn",
+      "criteria_count": 10,
+      "criterion_ids": [
+        "beat-primary-goal",
+        "beat-support-limit",
+        "beat-timing",
+        "beat-inventory",
+        "beat-narration-metric",
+        "beat-motif",
+        "beat-palette",
+        "beat-truth",
+        "beat-roles",
+        "beat-narration-pace"
+      ],
+      "evidence": "25s; 3 shots; 3 subtitles; narration 4.64 chars/s",
+      "owner": "editorial_production_operator",
+      "next_move": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+    },
+    {
+      "scope": "beat",
+      "subject_id": "bridge-storyboard-beat-5-held-answers",
+      "status": "pass",
+      "criteria_count": 10,
+      "criterion_ids": [
+        "beat-primary-goal",
+        "beat-support-limit",
+        "beat-timing",
+        "beat-inventory",
+        "beat-narration-metric",
+        "beat-motif",
+        "beat-palette",
+        "beat-truth",
+        "beat-roles",
+        "beat-narration-pace"
+      ],
+      "evidence": "50s; 4 shots; 5 subtitles; narration 3.78 chars/s",
+      "owner": "editorial_production_operator",
+      "next_move": "none"
+    },
+    {
+      "scope": "beat",
+      "subject_id": "bridge-storyboard-beat-6-time-or-names",
+      "status": "warn",
+      "criteria_count": 10,
+      "criterion_ids": [
+        "beat-primary-goal",
+        "beat-support-limit",
+        "beat-timing",
+        "beat-inventory",
+        "beat-narration-metric",
+        "beat-motif",
+        "beat-palette",
+        "beat-truth",
+        "beat-roles",
+        "beat-narration-pace"
+      ],
+      "evidence": "25s; 3 shots; 3 subtitles; narration 4.56 chars/s",
+      "owner": "editorial_production_operator",
+      "next_move": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b01-01",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "7s; environment_establishing; wide; occupancy 20-45%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b01-02",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "7s; object_detail; close; occupancy 35-60%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b01-03",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "6s; closing_question; medium; occupancy 25-45%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b02-01",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "10s; character_context; close; occupancy 35-60%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b02-02",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "10s; evidence_insert; close; occupancy 40-65%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b02-03",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "10s; object_detail; extreme_close; occupancy 25-45%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b03-01",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "10s; evidence_insert; close; occupancy 35-60%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b03-02",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "10s; abstract_information; graphic_fullframe; occupancy 20-55%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b03-03",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "10s; abstract_information; graphic_fullframe; occupancy 20-70%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b04-01",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "8s; institutional_pressure; wide; occupancy 15-35%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b04-02",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "8s; unresolved_choice; graphic_fullframe; occupancy 20-60%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b04-03",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "9s; institutional_pressure; medium; occupancy 25-50%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b05-01",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "13s; unresolved_choice; medium; occupancy 20-55%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b05-02",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "13s; object_detail; close; occupancy 35-60%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b05-03",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "12s; unresolved_choice; graphic_fullframe; occupancy 20-65%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b05-04",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "12s; abstract_information; graphic_fullframe; occupancy 20-70%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b06-01",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "9s; unresolved_choice; graphic_fullframe; occupancy 25-60%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b06-02",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "8s; evidence_insert; close; occupancy 35-60%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "shot",
+      "subject_id": "shot-b06-03",
+      "status": "pass",
+      "criteria_count": 15,
+      "criterion_ids": [
+        "shot-required-fields",
+        "shot-timing",
+        "shot-composition",
+        "shot-scale",
+        "shot-motion",
+        "shot-transition",
+        "shot-occupancy",
+        "shot-focal-zone",
+        "shot-asset-quantity",
+        "shot-overlay",
+        "shot-truth",
+        "shot-asset-rights",
+        "shot-palette",
+        "shot-information",
+        "shot-visual-control"
+      ],
+      "evidence": "8s; closing_question; wide; occupancy 20-45%",
+      "owner": "shot_planner",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b01-01",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "6s; 12 chars; 2 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b01-02",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "6s; 15 chars; 2.5 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b01-03",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "4s; 11 chars; 2.75 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b02-01",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "7s; 17 chars; 2.43 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b02-02",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "10s; 19 chars; 1.9 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b02-03",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "9s; 14 chars; 1.56 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b03-01",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "8s; 14 chars; 1.75 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b03-02",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "9s; 14 chars; 1.56 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b03-03",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "9s; 15 chars; 1.67 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b04-01",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "7s; 12 chars; 1.71 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b04-02",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "7s; 13 chars; 1.86 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b04-03",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "7s; 9 chars; 1.29 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b05-01",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "9s; 10 chars; 1.11 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b05-02",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "9s; 11 chars; 1.22 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b05-03",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "9s; 10 chars; 1.11 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b05-04",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "8s; 11 chars; 1.38 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b05-05",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "9s; 16 chars; 1.78 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b06-01",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "7s; 10 chars; 1.43 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b06-02",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "7s; 14 chars; 2 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    },
+    {
+      "scope": "subtitle",
+      "subject_id": "sub-b06-03",
+      "status": "pass",
+      "criteria_count": 5,
+      "criterion_ids": [
+        "subtitle-timing",
+        "subtitle-line-budget",
+        "subtitle-metrics",
+        "subtitle-classification",
+        "subtitle-readability"
+      ],
+      "evidence": "7s; 13 chars; 1.86 chars/s; 2/2 lines",
+      "owner": "subtitle_reviewer",
+      "next_move": "none"
+    }
+  ],
+  "change_history": [
+    {
+      "change_id": "rev-change-b01-narration-wording",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "target_type": "narration_segment",
+      "target_id": "narration-b01",
+      "target_field": "text",
+      "change_type": "narration_wording",
+      "guard_class": "safe_local_edit",
+      "before": "ある記録では、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。ならば今、何が鳴っているのでしょう。",
+      "after": "ある記録によれば、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。では今、何が鳴っているのでしょう。"
+    },
+    {
+      "change_id": "rev-change-b02-subtitle-wording",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "target_type": "subtitle_cue",
+      "target_id": "sub-b02-03",
+      "target_field": "text_ja",
+      "change_type": "subtitle_wording",
+      "guard_class": "safe_local_edit",
+      "before": "その機能は、まだ未決定。",
+      "after": "その働きは、まだ分からない。"
+    },
+    {
+      "change_id": "rev-change-b03-shot-direction-wording",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "target_type": "shot_cue",
+      "target_id": "shot-b03-03",
+      "target_field": "visual_direction",
+      "change_type": "shot_direction_wording",
+      "guard_class": "safe_local_edit",
+      "before": "インクや名前が薄れる抽象的なmotion graphicを想定する。",
+      "after": "インクや名前の輪郭がゆっくり薄れる、抽象的なモーショングラフィックを想定する。"
+    }
+  ],
+  "ui_contract": {
+    "change_history_owner_count": 1,
+    "files_export_owner_count": 1,
+    "duplicate_primary_diff_count": 0,
+    "package_inventory_in_beat_primary": false,
+    "utility_anchor_positions_css_px": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "maximum_utility_anchor_movement_css_px": 0,
+    "utility_anchor_limit_css_px": 8,
+    "layout_measurement_method": "fixed-height structural contract; browser confirmation required"
+  },
+  "metrics": {
+    "narration_character_total": 778,
+    "narration_character_range": {
+      "min": 94,
+      "max": 189
+    },
+    "narration_characters_per_second_range": {
+      "min": 3.78,
+      "max": 4.7
+    },
+    "subtitle_duration_seconds_range": {
+      "min": 4,
+      "max": 10
+    },
+    "subtitle_character_range": {
+      "min": 9,
+      "max": 19
+    },
+    "subtitle_characters_per_second_range": {
+      "min": 1.11,
+      "max": 2.75
+    },
+    "subtitle_line_count_range": {
+      "min": 2,
+      "max": 2
+    },
+    "subtitle_maximum_actual_characters_per_line": 11,
+    "shot_duration_seconds_range": {
+      "min": 6,
+      "max": 13
+    },
+    "shot_duration_seconds_average": 9.47,
+    "narration_warnings": [
+      {
+        "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+        "metric": "narration_characters_per_second",
+        "value": 4.7,
+        "threshold": "project-local pass<=4.5; warn<=5.0; fail>5.0",
+        "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-3-erased-names",
+        "metric": "narration_characters_per_second",
+        "value": 4.6,
+        "threshold": "project-local pass<=4.5; warn<=5.0; fail>5.0",
+        "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-4-council-shadow",
+        "metric": "narration_characters_per_second",
+        "value": 4.64,
+        "threshold": "project-local pass<=4.5; warn<=5.0; fail>5.0",
+        "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-6-time-or-names",
+        "metric": "narration_characters_per_second",
+        "value": 4.56,
+        "threshold": "project-local pass<=4.5; warn<=5.0; fail>5.0",
+        "smallest_later_correction": "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+      }
+    ],
+    "subtitle_warning_count": 0,
+    "subtitle_failure_count": 0
+  },
+  "vocabulary_counts": {
+    "composition_class": 8,
+    "shot_scale": 5,
+    "camera_motion": 6,
+    "transition": 5,
+    "palette_role": 6,
+    "asset_class": 7,
+    "information_role": 7,
+    "focal_zone": 7,
+    "overlay_text_mode": 4,
+    "audio_role": 5,
+    "motif": 6
+  },
+  "acceptance_summary": {
+    "row_count": 46,
+    "pass_count": 42,
+    "warning_count": 4,
+    "failure_count": 0
+  },
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "assets_selected": false,
+    "rights_cleared_claim": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "public_upload": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "production_approved": false
+  },
+  "failures": [],
+  "passed": true
+}

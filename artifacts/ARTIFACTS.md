@@ -1,5 +1,29 @@
 # Artifacts
 
+## fff-content-production-blueprint-001
+
+- Title: Fast Fiction Factory Content Production Blueprint
+- Purpose: Convert the accepted three-wording derivative baseline into a quantitative, operator-readable planning contract without mutating its source or opening generation, production, rights, or canon gates.
+- Review UI: `public/review/index.html`
+- Primary route: `public/review/index.html?mode=blueprint`
+- Source routes: `public/review/index.html?mode=derivative`, `public/review/index.html?mode=revision`, `public/review/index.html?mode=handoff`, `public/review/index.html?mode=bridge`, `public/review/index.html?mode=brief`
+- Package directory: `artifacts/production-blueprint/`
+- Package files: `README_BLUEPRINT.md`, `production-blueprint.json`, `beat-specs.csv`, `shot-specs.csv`, `subtitle-metrics.csv`, `visual-system.md`, `acceptance-matrix.csv`, `blueprint-package-manifest.json`
+- Review doc: `docs/review/content-production-blueprint.md`
+- Readback result: `artifacts/content-production-blueprint-result.json`
+- Visual evidence target: `artifacts/review-screens/content-production-blueprint.png`
+- Source artifact: `fff-editorial-derivative-preview-001`
+- Source fingerprints: derivative core `94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44`, `editorial-handoff.derived.json=15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c`, accepted patch `ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885`
+- Planning profile: `1920x1080`, `16:9`, `30fps`, `status=provisional_review_profile`, `render_authorized=false`, `vertical_export_authorized=false`
+- Structural contract: exactly 6 beats / 180 seconds / 6 narration segments / 20 subtitle cues / 19 shots / 3 thumbnail directions; all LOCKED fields preserved, all BOUNDED fields controlled and measurable, and FREE fields limited to non-semantic micro-detail.
+- Utility ownership: one collapsed Change History owner, one collapsed Files / Export owner, and no primary duplicate Before/After diff; the utility anchor may move no more than 8 CSS pixels across all six beats at the tested approximately 900x1200 viewport.
+- Launchers: `.\scripts\operator\open_review.ps1 -Mode blueprint`, `./scripts/operator/open_review.sh --mode blueprint`; print-only checks use `-PrintUri` / `--print-uri`.
+- State validator: `tools/fff-state.mjs`
+- Read-only validation: `node tools/fff-state.mjs validate-content-production-blueprint artifacts/content-production-blueprint-result.json`
+- Intentional package/result regeneration: `node tools/fff-state.mjs smoke-content-production-blueprint artifacts/content-production-blueprint-result.json artifacts/content-production-blueprint-result.json`
+- Write boundary: validation writes nothing; smoke may write only the eight Blueprint package files and `artifacts/content-production-blueprint-result.json`. Handoff, Revision, Derivative, and historical result artifacts remain protected.
+- State: Local quantitative planning surface only. The three wording changes are a provisional working baseline; the Blueprint is not canonical, production-approved, rights-cleared, asset-selected, rendered, uploaded, published, or persisted to a database.
+
 ## fff-editorial-derivative-preview-001
 
 - Title: Fast Fiction Factory Editorial Derivative Preview

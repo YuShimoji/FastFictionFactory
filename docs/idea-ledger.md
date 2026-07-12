@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Content Production Blueprint
+
+- Purpose: Convert the provisional editorial derivative into a quantitative, operator-readable planning contract before any asset, image, audio, video, render, or publication work.
+- Effect: Adds `fff-content-production-blueprint-001`, `public/review/index.html?mode=blueprint`, an eight-file package under `artifacts/production-blueprint/`, exact beat/shot/subtitle metrics, controlled production vocabularies, LOCKED / BOUNDED / FREE constraints, a provisional 1920x1080 / 30fps profile, a machine-readable acceptance matrix, and stable secondary utility drawers.
+- Requirements: Preserve every Handoff, Revision, and Derivative package byte; keep the three wording edits provisional; keep six-beat order, exact 180-second timing, truth, rights, assets, provider, credentials, generation, render, upload, publication, database, and canon boundaries closed; normal validation must remain read-only.
+- State: Implemented in the active bounded slice. The Blueprint is a local planning specification and does not authorize production, asset selection, rights clearance, or canon promotion.
+- Owner: Product implementer for deterministic package and UI maintenance; human reviewer for the H1 production-readiness judgment; a separate creator only after later explicit authorization.
+- Next move: Open `public/review/index.html?mode=blueprint` and provide freeform review of scope, shot grammar, visual constraints, and Definition of Done. Asset briefs, shot boards, generation, and H1 implementation remain blocked until that review and separate authorization.
+
 ### Editorial Derivative Preview
 
 - Purpose: Show the accepted safe-only revision patch as a complete, portable editorial package without mutating its Handoff source.
@@ -76,12 +85,12 @@
 
 ### Repo Sync / Next Terminal Handoff
 
-- Purpose: Keep the latest Editorial Derivative Preview context durable in repository files so another terminal can resume from `master` without chat history.
-- Effect: Updates the handoff/current-status/project-context docs with the current active artifact, immutable Handoff source, baseline commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
+- Purpose: Keep the latest Content Production Blueprint context durable in repository files so another terminal can resume from `master` without chat history.
+- Effect: Updates the handoff/current-status/project-context docs with the current active artifact, protected Handoff / Revision / Derivative chain, baseline commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
 - Requirements: Do not change product UI behavior, do not stage local transport residue, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: The active implementation starts from synced `7ac57e60f94599307d7529177163092dffc40841 Add editorial revision roundtrip`, with `master...origin/master` at `0 0` before edits, the Editorial Derivative manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
+- State: The active implementation starts from synced `4fb9d56e6264545acda5b8194cf6bbcb85204d57 Add editorial derivative preview`, with `master...origin/master` at `0 0` before edits, the Blueprint manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
-- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=derivative` and `artifacts/editorial-derivative/README_DERIVATIVE.md` for local derived-copy review.
+- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=blueprint` and `artifacts/production-blueprint/README_BLUEPRINT.md` for local production-readiness review.
 
 ### Layout Research Decision Shell
 

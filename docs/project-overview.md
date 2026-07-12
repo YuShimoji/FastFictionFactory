@@ -18,7 +18,8 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 
 | Slice | Current state | Main review location | Quick visual evidence |
 | --- | --- | --- | --- |
-| Editorial Derivative Preview | Active; ready for local derived-copy review | [`review/editorial-derivative-preview.md`](review/editorial-derivative-preview.md) | `artifacts/editorial-derivative-preview-result.json`, `artifacts/editorial-derivative/`, `public/review/index.html?mode=derivative` |
+| Content Production Blueprint | Active; quantitative local planning review | [`review/content-production-blueprint.md`](review/content-production-blueprint.md) | `artifacts/content-production-blueprint-result.json`, `artifacts/production-blueprint/`, `public/review/index.html?mode=blueprint` |
+| Editorial Derivative Preview | Preserved provisional source baseline | [`review/editorial-derivative-preview.md`](review/editorial-derivative-preview.md) | `artifacts/editorial-derivative-preview-result.json`, `artifacts/editorial-derivative/`, `public/review/index.html?mode=derivative` |
 | Editorial Revision Roundtrip | Preserved safe-patch source | [`review/editorial-revision-roundtrip.md`](review/editorial-revision-roundtrip.md) | `artifacts/editorial-revision-roundtrip-result.json`, `artifacts/editorial-revision/`, `public/review/index.html?mode=revision` |
 | Bridge Editorial Handoff Pack | Preserved immutable source; ready for local manual delivery | [`review/bridge-editorial-handoff-pack.md`](review/bridge-editorial-handoff-pack.md) | `artifacts/bridge-editorial-handoff-pack-result.json`, `artifacts/editorial-handoff/`, `public/review/index.html?mode=handoff` |
 | Bridge Storyboard Flow | Preserved source baseline | [`review/bridge-storyboard-flow.md`](review/bridge-storyboard-flow.md) | `artifacts/bridge-storyboard-flow-result.json`, `artifacts/review-screens/bridge-storyboard-flow.png`, `public/review/index.html?mode=bridge` |
@@ -59,6 +60,7 @@ The current quick visual review files are stored under `artifacts/`:
 
 | File | Use |
 | --- | --- |
+| `artifacts/review-screens/content-production-blueprint.png` | 885x1180 content capture from a 900x1200 browser viewport for the focused quantitative Blueprint route; 133623 bytes, SHA256 `2694f69af62466e5612e9021a6308c3bee8aca8aa133606a0c8c0a9f802afec9`. |
 | `artifacts/review-screens/editorial-derivative-preview.png` | 885x1180 content capture from a 900x1200 browser viewport for the focused non-canonical Derivative route; 130553 bytes, SHA256 `ef79e99a42c879431f75aa9c265bbf37ff7bdf66062a9d58b6576128880b0599`. |
 | `artifacts/review-screens/editorial-revision-roundtrip.png` | 900x1200 browser evidence for the focused Editorial Revision route. |
 | `artifacts/review-screens/bridge-editorial-handoff-pack.png` | 900x1200 browser evidence for the focused Editorial Handoff route. |
@@ -100,7 +102,7 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Human Revision Pilot | A real human-authored request is reviewed through Revision and produces a derived preview through the same guarded mechanism. | Request → decision → patch → derived package can complete once with real content and one fingerprint chain. |
+| Next 1 turn | Human Blueprint production-readiness review | A reviewer judges whether quantitative scope, shot grammar, visual constraints, and acceptance conditions are sufficient for a separate creator. | A separately authorized Blueprint-constrained asset brief and shot board can be considered. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
@@ -113,12 +115,12 @@ The active UI remains:
 Invoke-Item .\public\review\index.html
 ```
 
-No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The active product readback is the focused Editorial Derivative Preview at `public/review/index.html?mode=derivative`; Revision remains at `?mode=revision`, the immutable Handoff source at `?mode=handoff`, and its six-beat Storyboard Flow at `?mode=bridge`.
+No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The active product readback is the focused Content Production Blueprint at `public/review/index.html?mode=blueprint`; the provisional Derivative baseline remains at `?mode=derivative`, Revision at `?mode=revision`, the immutable Handoff source at `?mode=handoff`, and its six-beat Storyboard Flow at `?mode=bridge`.
 
-Mode-specific Editorial Derivative route:
+Mode-specific Content Production Blueprint route:
 
 ```text
-public/review/index.html?mode=derivative
+public/review/index.html?mode=blueprint
 ```
 
 Mode-specific Decision Shell route:

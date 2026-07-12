@@ -2,9 +2,18 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-editorial-derivative-preview-001`
-- Latest implementation baseline: synced `7ac57e60f94599307d7529177163092dffc40841 Add editorial revision roundtrip`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
+- Artifact id: `fff-content-production-blueprint-001`
+- Latest implementation baseline: synced `4fb9d56e6264545acda5b8194cf6bbcb85204d57 Add editorial derivative preview`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
 - Review UI: `public/review/index.html`
+- Focused Content Production Blueprint mode: `public/review/index.html?mode=blueprint`
+- Portable Blueprint package directory: `artifacts/production-blueprint/`
+- Content Production Blueprint doc: `docs/review/content-production-blueprint.md`
+- Content Production Blueprint result: `artifacts/content-production-blueprint-result.json`
+- Content Production Blueprint screenshot: `artifacts/review-screens/content-production-blueprint.png` (885x1180 content capture from a 900x1200 viewport, 133623 bytes, SHA256 `2694f69af62466e5612e9021a6308c3bee8aca8aa133606a0c8c0a9f802afec9`)
+- Blueprint read-only validation command: `node tools/fff-state.mjs validate-content-production-blueprint artifacts/content-production-blueprint-result.json`
+- Blueprint regeneration command: `node tools/fff-state.mjs smoke-content-production-blueprint artifacts/content-production-blueprint-result.json artifacts/content-production-blueprint-result.json` (intentional write of only the eight Blueprint package files and Blueprint result)
+- Blueprint planning profile: 1920x1080, 16:9, 30fps, `provisional_review_profile`; render and vertical export authorization are false
+- Blueprint package contract: 6 beats / 180 seconds / 6 narration segments / 20 subtitle cues / 19 shots / 3 thumbnail directions; LOCKED / BOUNDED / FREE fields and project-local controlled vocabularies are machine validated
 - Focused Editorial Derivative mode: `public/review/index.html?mode=derivative`
 - Portable derivative package directory: `artifacts/editorial-derivative/`
 - Editorial Derivative Preview doc: `docs/review/editorial-derivative-preview.md`
@@ -32,7 +41,7 @@
 - Preserved Bridge Storyboard Flow: `public/review/index.html?mode=bridge`
 - Draft Review Pack mode: `public/review/index.html?mode=draft`
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
-- Open command: `.\scripts\operator\open_review.ps1 -Mode derivative`
+- Open command: `.\scripts\operator\open_review.ps1 -Mode blueprint`
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1 -Mode <known-mode>`; no argument opens Brief; `-PrintUri` performs a non-opening URI check
 - Repo-local shell launcher: `./scripts/operator/open_review.sh --mode <known-mode>`; no argument opens Brief; `--print-uri` performs a non-opening URI check
 - Docs launcher: `.\scripts\operator\open_review.ps1 -Docs` uses `uvx --with mkdocs-material`; it no longer relies on the WindowsApps-prone direct Python path
@@ -140,7 +149,9 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active checkpoint is `fff-editorial-derivative-preview-001`. `public/review/index.html?mode=derivative` presents DERIVED PREVIEW / NOT CANONICAL identity, source/patch/derived fingerprints, local patch import, a six-beat runway, a three-change rail, one active before/after canvas, eight static package links, and per-file Blob downloads. Exactly three accepted safe wording changes are applied to a copy; source application remains `not_applied` and rollback is `discard_derived_package`.
+- The active checkpoint is `fff-content-production-blueprint-001`. `public/review/index.html?mode=blueprint` separates Content Contract, Constraint Envelope, Six-beat Runway, one stable-height Active Beat Production Spec, and collapsed utility drawers. Identity, provisional status, 180 seconds, 6 beats, 19 shots, 20 subtitles, 6 narration segments, 3 thumbnail directions, the 1920x1080 / 30fps planning profile, and Definition of Done summary are visible before beat-dependent detail.
+- `artifacts/production-blueprint/` contains one canonical planning model plus beat, shot, subtitle, visual-system, acceptance, README, and manifest files. All 19 shots use controlled composition, scale, motion, transition, palette, asset, and information vocabularies plus numeric occupancy, asset-count, overlay, timing, and acceptance limits. The Blueprint remains `provisional_review_profile`, not production approval.
+- `fff-editorial-derivative-preview-001` remains the provisional wording source at `mode=derivative`. Its current derived wording stays primary, while exactly one collapsed Change History owns provenance and exactly one collapsed Files / Export utility owns package inventory and downloads. Exactly three safe wording changes remain applied to a copy; source application is `not_applied`, rollback is `discard_derived_package`, and the package bytes remain protected.
 - `fff-editorial-revision-roundtrip-001` remains the preserved request/decision/safe-patch source. `public/review/index.html?mode=revision` keeps immutable source fingerprints, guarded import/classification, constrained decisions, and unapplied-patch export. `fff-bridge-editorial-handoff-pack-001` remains the immutable six-beat/180-second source at `mode=handoff`.
 - `artifacts/editorial-handoff/` contains `README_DELIVERY.md`, `narration-script.md`, `subtitle-cues.csv`, `shot-list.csv`, `editorial-handoff.json`, and `package-manifest.json`. The package preserves exactly 6 beats and 180 seconds, with 6 complete provisional narration segments, 20 subtitle cues, 19 generic shot cues, 3 thumbnail directions, and one unselected sound/music/mood brief.
 - All prose is `provisional_editorial_draft`; every shot and thumbnail stays `asset_status=unselected`; Toma fate, brass moth truth/function, Council motive, and ending truth remain `unresolved_human_owned`.
@@ -334,18 +345,19 @@ Preserved platform boundary:
 ## What Remains Missing
 
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
-- The immediate user-side work is derived preview review: open `public/review/index.html?mode=derivative`, inspect the deterministic package or import a matching safe-only patch, and download individual derived files if useful. The Handoff source and Revision patch remain unchanged; the derivative is not human-accepted or canonical, and beat order/timing, story truth, asset selection, rights state, production, and canon still require separate authority.
+- The immediate user-side work is H1 human production-readiness review: open `public/review/index.html?mode=blueprint` and judge whether scope, shot grammar, visual constraints, and acceptance conditions are sufficient for a separate creator to prepare a proposal. Asset/shot brief generation, actual asset selection, production, rights clearance, and canon remain blocked.
 - Remaining workflow expansion is now post-Profile: Timeline / Story Seed / Canon decision authorization, actual rollback, broader translated memo coverage, or very broad source-span fixture shape. The held claim preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, Claim Ledger one-claim production adoption, Claim Ledger rollback rehearsal, downstream target authorization packet, and Profile adoption mutation one-claim define candidate status, accepted-status meaning, rollback, mutation boundaries, a non-mutating ledger row, one fixture-only sandbox adoption row, one sandbox-only rollback rehearsal row, one production authorization packet, one Claim Ledger production adoption row, one non-destructive rollback rehearsal, one Profile-first downstream target choice surface, and one Profile-only non-canon annotation. Timeline, Story Seed, canon, provider/API/credential, publishing, additional-claim adoption, and actual production rollback remain unimplemented without separate authorization. The translated memo axis has a two-row minimum fixture, so only add more translated rows if they reduce a concrete coverage gap beyond `multi-x-object-brass-moth-key` and `multi-x-placeholder-translation-boundary`. Very broad source-span shape has been audited but not implemented because current broad rows are already resolved and no concrete source-output gap requires another fixture.
 - Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, transport behavior, external call permission, timeout value, and retry count remain blocked until explicit authorization.
 - Durable project database, YouTube publishing, automated upload, AI video generation, complete world chronology, and final canon decisions remain out of scope.
 
 ## Review Debt
 
-- Overall page length, lower-page density, minor Workbench readability, Context Dock minimalism, and stale-shelf excision remain non-blocking Review Debt. They do not block `fff-bridge-storyboard-flow-001` local readback.
+- Four narration-rate warnings remain visible rather than rewriting provisional content to force a pass. Broader Brief cleanup, stale-shelf excision, actual asset art, final typography, multi-format export, ZIP bundling, provider work, and production tooling remain non-blocking Review Debt outside this slice.
 
 | Target | Current state | Next move |
 | --- | --- | --- |
-| Editorial Derivative Preview | `fff-editorial-derivative-preview-001` is active; exactly three accepted safe edits are applied to a complete derived copy with cross-file consistency, provenance, integrity metadata, and discard rollback | Review locally; a real human pilot and canonical application require separate input and authorization |
+| Content Production Blueprint | `fff-content-production-blueprint-001` is active; the provisional derivative is expressed as a measurable six-beat / 19-shot / 20-subtitle planning contract with controlled vocabularies and machine-readable acceptance | Review production readiness in freeform; only a separate authorization may open an asset brief or shot-board slice |
+| Editorial Derivative Preview | `fff-editorial-derivative-preview-001` is preserved; exactly three accepted safe edits remain in a complete derived copy, with one secondary Change History owner and one Files / Export owner | Use as the provisional wording source; a real human pilot and canonical application require separate input and authorization |
 | Editorial Revision Roundtrip | `fff-editorial-revision-roundtrip-001` is preserved; local request import, fail-closed guard classification, before/after diff, decisions, and an unapplied safe-only patch preserve the source Handoff hashes | Use as the structured patch source; keep canonical application, timing/order, truth, assets, rights, provider, production, and canon closed |
 | Bridge Editorial Handoff Pack | `fff-bridge-editorial-handoff-pack-001` is the preserved immutable source; a focused Handoff route and six portable files align the exact 180-second baseline, narration, 20 subtitle cues, 19 shot cues, truth/rights guards, and SHA256 integrity metadata | Use locally for manual writing/subtitle/video editing; keep timing changes explicit and keep final narration, assets, rights, provider, production, and canon closed |
 | Bridge Storyboard Flow | `fff-bridge-storyboard-flow-001` is preserved as the exact source baseline; exactly six planning beats share one rail and active canvas, while old Bridge consoles/refinement/details remain preserved under one collapsed supporting-evidence section | Reopen only when an explicit later decision changes the order or timing; keep narration performance, assets, rights, production, and canon closed |
@@ -415,6 +427,7 @@ public/review/index.html?mode=bridge
 public/review/index.html?mode=handoff
 public/review/index.html?mode=revision
 public/review/index.html?mode=derivative
+public/review/index.html?mode=blueprint
 public/review/index.html?mode=story
 public/review/index.html?mode=draft
 public/review/index.html?mode=designer
@@ -431,4 +444,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The next non-redundant move is a Human Revision Pilot: supply one real human-authored request, keep guard decisions explicit, generate a derived preview through the same mechanism, and review it without canonical application. Do not infer final canon, change timing/order or story truth, select assets, clear rights, configure a provider, generate media, render, upload, publish, persist to a database, or make additional adoption writes without explicit authorization.
+Use review memory before asking for another review. The next non-redundant move is a Human Blueprint production-readiness review: inspect `mode=blueprint` and answer in freeform whether its scope, shot grammar, visual system, and completion conditions are sufficient for a separate creator. Do not start the H2 asset brief / shot board, infer final canon, change timing/order or story truth, select assets, clear rights, configure a provider, generate media, render, upload, publish, persist to a database, or make additional adoption writes without explicit authorization.

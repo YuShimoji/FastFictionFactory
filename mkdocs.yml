@@ -64,6 +64,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Content Production Blueprint: review/content-production-blueprint.md
       - Editorial Derivative Preview: review/editorial-derivative-preview.md
       - Editorial Revision Roundtrip: review/editorial-revision-roundtrip.md
       - Bridge Editorial Handoff Pack: review/bridge-editorial-handoff-pack.md

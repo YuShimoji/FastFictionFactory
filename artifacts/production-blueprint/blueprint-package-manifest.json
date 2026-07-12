@@ -1,0 +1,76 @@
+{
+  "schemaVersion": "fff.contentProductionBlueprintPackageManifest.v1",
+  "artifact_id": "fff-content-production-blueprint-001",
+  "generatedAt": "2026-07-13T00:00:00+09:00",
+  "package_root": "artifacts/production-blueprint",
+  "status": "provisional_production_blueprint",
+  "canonical": false,
+  "production_approved": false,
+  "source": {
+    "artifact_id": "fff-editorial-derivative-preview-001",
+    "derivative_editorial_handoff_path": "artifacts/editorial-derivative/editorial-handoff.derived.json",
+    "derivative_editorial_handoff_sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+    "derivative_package_manifest_path": "artifacts/editorial-derivative/derivative-package-manifest.json",
+    "derivative_package_manifest_sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577",
+    "derivative_core_fingerprint_sha256": "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44",
+    "accepted_change_ids": [
+      "rev-change-b01-narration-wording",
+      "rev-change-b02-subtitle-wording",
+      "rev-change-b03-shot-direction-wording"
+    ]
+  },
+  "package_fingerprint_sha256": "be4c3bb8fd886644ab70223f341d8ec869f8d55246582ef56a40866e203f24fa",
+  "files": [
+    {
+      "relative_path": "README_BLUEPRINT.md",
+      "byte_size": 2569,
+      "sha256": "c018bfb033c290fd3693be5176df397983dfae902145a3fbc91ab7229776d40b"
+    },
+    {
+      "relative_path": "production-blueprint.json",
+      "byte_size": 202005,
+      "sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d"
+    },
+    {
+      "relative_path": "beat-specs.csv",
+      "byte_size": 3600,
+      "sha256": "6de66391518c3084d6369e5af5d34818e09d3d75186633328c386d29393ec0bb"
+    },
+    {
+      "relative_path": "shot-specs.csv",
+      "byte_size": 7268,
+      "sha256": "f36b413da40a4bf53d7a96a5408df41f77381310f089ae3e1784a8899d427914"
+    },
+    {
+      "relative_path": "subtitle-metrics.csv",
+      "byte_size": 2818,
+      "sha256": "ed3ac3491120e433cac6dccc0960d94e7931ff5c566d3beb511384f514e8d816"
+    },
+    {
+      "relative_path": "visual-system.md",
+      "byte_size": 2316,
+      "sha256": "1784b672c36551562437c274c1b6a49db0c214dc58cef5f059631c8066d77392"
+    },
+    {
+      "relative_path": "acceptance-matrix.csv",
+      "byte_size": 12686,
+      "sha256": "65b319b7528ba202acda464dd18c3b25403a5be95a94422bf5d9347552ff46f4"
+    }
+  ],
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "assets_selected": false,
+    "rights_cleared_claim": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "public_upload": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "production_approved": false
+  },
+  "failures": [],
+  "passed": true
+}

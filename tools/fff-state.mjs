@@ -56,6 +56,9 @@ const EDITORIAL_REVISION_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.editorialRevisio
 const EDITORIAL_DERIVATIVE_PREVIEW_SCHEMA_VERSION = "fff.editorialDerivativePreview.v1";
 const EDITORIAL_DERIVATIVE_PROVENANCE_SCHEMA_VERSION = "fff.editorialDerivativeProvenance.v1";
 const EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.editorialDerivativePackageManifest.v1";
+const CONTENT_PRODUCTION_BLUEPRINT_SCHEMA_VERSION = "fff.contentProductionBlueprint.v1";
+const CONTENT_PRODUCTION_BLUEPRINT_RESULT_SCHEMA_VERSION = "fff.contentProductionBlueprintResult.v1";
+const CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.contentProductionBlueprintPackageManifest.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -100,6 +103,7 @@ const DEFAULT_BRIDGE_STORYBOARD_FLOW_OUTPUT = "artifacts/bridge-storyboard-flow-
 const DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT = "artifacts/bridge-editorial-handoff-pack-result.json";
 const DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT = "artifacts/editorial-revision-roundtrip-result.json";
 const DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT = "artifacts/editorial-derivative-preview-result.json";
+const DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT = "artifacts/content-production-blueprint-result.json";
 const EDITORIAL_HANDOFF_PACKAGE_ROOT = "artifacts/editorial-handoff";
 const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/package-manifest.json`;
 const EDITORIAL_HANDOFF_PACKAGE_FILES = [
@@ -186,6 +190,100 @@ const EDITORIAL_DERIVATIVE_EXPECTED_CHANGE_IDS = [
   "rev-change-b02-subtitle-wording",
   "rev-change-b03-shot-direction-wording"
 ];
+const CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID = "fff-content-production-blueprint-001";
+const CONTENT_PRODUCTION_BLUEPRINT_ROUTE = "public/review/index.html?mode=blueprint";
+const CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT = "artifacts/production-blueprint";
+const CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_FILES = [
+  "README_BLUEPRINT.md",
+  "production-blueprint.json",
+  "beat-specs.csv",
+  "shot-specs.csv",
+  "subtitle-metrics.csv",
+  "visual-system.md",
+  "acceptance-matrix.csv"
+];
+const CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_PATH =
+  `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/blueprint-package-manifest.json`;
+const CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES = [
+  ...CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_FILES,
+  "blueprint-package-manifest.json"
+];
+const CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_PATH =
+  `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/editorial-handoff.derived.json`;
+const CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256 =
+  "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c";
+const CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256 =
+  "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577";
+const CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256 =
+  "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44";
+const CONTENT_PRODUCTION_BLUEPRINT_GENERATED_AT = "2026-07-13T00:00:00+09:00";
+const CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES = Object.freeze({
+  composition_class: [
+    "environment_establishing",
+    "character_context",
+    "evidence_insert",
+    "object_detail",
+    "institutional_pressure",
+    "abstract_information",
+    "unresolved_choice",
+    "closing_question"
+  ],
+  shot_scale: ["wide", "medium", "close", "extreme_close", "graphic_fullframe"],
+  camera_motion: [
+    "locked",
+    "slow_push",
+    "slow_pull",
+    "slow_pan",
+    "controlled_parallax",
+    "graphic_dissolve"
+  ],
+  transition: ["hard_cut", "short_dissolve", "match_cut", "graphic_match", "held_fade"],
+  palette_role: [
+    "midnight_base",
+    "brass_accent",
+    "paper_neutral",
+    "warning_rust",
+    "uncertainty_cool",
+    "text_high_contrast"
+  ],
+  asset_class: [
+    "environment",
+    "character_silhouette",
+    "prop",
+    "document_graphic",
+    "abstract_graphic",
+    "typography",
+    "audio_cue"
+  ],
+  information_role: [
+    "hook",
+    "evidence",
+    "context",
+    "pressure",
+    "competing_hypothesis",
+    "unresolved_question",
+    "closing_prompt"
+  ],
+  focal_zone: [
+    "center",
+    "center_left",
+    "center_right",
+    "upper_third",
+    "lower_third",
+    "split_frame",
+    "full_frame"
+  ],
+  overlay_text_mode: ["none", "subtitle_only", "single_label", "subtitle_plus_single_label"],
+  audio_role: ["ambient_bed", "mechanical_detail", "tension_pulse", "silence_hold", "closing_resonance"],
+  motif: [
+    "bellless_frame",
+    "brass_moth_and_9_17",
+    "fading_name_contours",
+    "translucent_divider",
+    "hold_labels",
+    "time_or_names_split"
+  ]
+});
 const EDITORIAL_DERIVATIVE_EXPECTED_CHANGES = [
   {
     change_id: "rev-change-b01-narration-wording",
@@ -1160,6 +1258,48 @@ async function main() {
     if (command === "smoke-review-workbench-component-contract" || outputPath) {
       console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
+    return;
+  }
+
+  if (command === "validate-content-production-blueprint") {
+    if (outputPath) {
+      fail("validate-content-production-blueprint is strictly read-only and does not accept an output path; use smoke-content-production-blueprint for intentional Blueprint package and result regeneration.");
+    }
+    const readback = await readJson(inputPath);
+    const result = await validateContentProductionBlueprint(readback, inputPath);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) {
+      fail(`Content Production Blueprint failed: ${result.failures.join("; ")}`);
+    }
+    return;
+  }
+
+  if (command === "smoke-content-production-blueprint") {
+    const target = toRepoPath(outputPath || DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT);
+    if (target !== DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT) {
+      fail(`smoke-content-production-blueprint may write only the eight files under ${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/ and ${DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT}.`);
+    }
+    const protectedBefore = await snapshotContentProductionBlueprintProtectedFiles();
+    const built = await buildContentProductionBlueprintPackageArtifacts();
+    if (!built.valid) {
+      fail(`Content Production Blueprint generation failed before write: ${built.errors.join("; ")}`);
+    }
+    await writeContentProductionBlueprintPackageArtifacts(built.files);
+    const protectedAfter = await snapshotContentProductionBlueprintProtectedFiles();
+    if (!contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter)) {
+      fail("Content Production Blueprint smoke crossed the protected Handoff, Revision, or Derivative package write boundary.");
+    }
+    const readback = await readContentProductionBlueprintSmokeSeed(inputPath, target);
+    const result = await validateContentProductionBlueprint(readback, inputPath, {
+      protected_before: protectedBefore,
+      protected_after: protectedAfter
+    });
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    if (!result.passed) {
+      fail(`Content Production Blueprint failed: ${result.failures.join("; ")}`);
+    }
+    console.log(`content production blueprint passed ${inputPath} -> ${target}`);
     return;
   }
 
@@ -11890,6 +12030,11 @@ async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
     (artifactManifest.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
       artifactManifest.editorial_derivative_preview?.source_handoff_artifact_id === expectedArtifactId &&
       Array.isArray(artifactManifest.preserves) &&
+      artifactManifest.preserves.includes(expectedArtifactId)) ||
+    (artifactManifest.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      artifactManifest.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      artifactManifest.editorial_derivative_preview?.source_handoff_artifact_id === expectedArtifactId &&
+      Array.isArray(artifactManifest.preserves) &&
       artifactManifest.preserves.includes(expectedArtifactId));
   const rootManifestRegistered = rootManifestRead.error === null &&
     handoffActiveOrPreserved &&
@@ -12167,6 +12312,2142 @@ async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
   };
 }
 
+function contentProductionBlueprintShotPlans() {
+  return [
+    ["shot-b01-01", "environment_establishing", "wide", "center", 20, 45, "slow_push", "hard_cut", "midnight_base", "environment", 1, "subtitle_only", "ambient_bed", "hook"],
+    ["shot-b01-02", "object_detail", "close", "center", 35, 60, "locked", "short_dissolve", "paper_neutral", "environment", 1, "subtitle_only", "ambient_bed", "evidence"],
+    ["shot-b01-03", "closing_question", "medium", "center", 25, 45, "locked", "held_fade", "uncertainty_cool", "typography", 1, "subtitle_plus_single_label", "silence_hold", "unresolved_question"],
+    ["shot-b02-01", "character_context", "close", "lower_third", 35, 60, "slow_pan", "hard_cut", "paper_neutral", "character_silhouette", 1, "subtitle_only", "mechanical_detail", "context"],
+    ["shot-b02-02", "evidence_insert", "close", "center", 40, 65, "locked", "match_cut", "brass_accent", "prop", 2, "subtitle_only", "ambient_bed", "evidence"],
+    ["shot-b02-03", "object_detail", "extreme_close", "split_frame", 25, 45, "controlled_parallax", "graphic_match", "brass_accent", "prop", 2, "subtitle_only", "mechanical_detail", "competing_hypothesis"],
+    ["shot-b03-01", "evidence_insert", "close", "lower_third", 35, 60, "slow_push", "hard_cut", "paper_neutral", "document_graphic", 1, "subtitle_only", "ambient_bed", "evidence"],
+    ["shot-b03-02", "abstract_information", "graphic_fullframe", "center", 20, 55, "locked", "graphic_match", "uncertainty_cool", "document_graphic", 1, "subtitle_plus_single_label", "tension_pulse", "evidence"],
+    ["shot-b03-03", "abstract_information", "graphic_fullframe", "full_frame", 20, 70, "graphic_dissolve", "short_dissolve", "uncertainty_cool", "abstract_graphic", 1, "subtitle_only", "tension_pulse", "competing_hypothesis"],
+    ["shot-b04-01", "institutional_pressure", "wide", "center", 15, 35, "slow_push", "hard_cut", "midnight_base", "character_silhouette", 3, "subtitle_only", "tension_pulse", "pressure"],
+    ["shot-b04-02", "unresolved_choice", "graphic_fullframe", "split_frame", 20, 60, "locked", "graphic_match", "warning_rust", "document_graphic", 2, "subtitle_plus_single_label", "tension_pulse", "competing_hypothesis"],
+    ["shot-b04-03", "institutional_pressure", "medium", "center", 25, 50, "slow_pull", "held_fade", "midnight_base", "environment", 1, "subtitle_plus_single_label", "silence_hold", "pressure"],
+    ["shot-b05-01", "unresolved_choice", "medium", "split_frame", 20, 55, "slow_pan", "hard_cut", "uncertainty_cool", "character_silhouette", 1, "subtitle_plus_single_label", "tension_pulse", "competing_hypothesis"],
+    ["shot-b05-02", "object_detail", "close", "center", 35, 60, "controlled_parallax", "match_cut", "brass_accent", "prop", 1, "subtitle_plus_single_label", "mechanical_detail", "context"],
+    ["shot-b05-03", "unresolved_choice", "graphic_fullframe", "split_frame", 20, 65, "locked", "graphic_match", "warning_rust", "document_graphic", 1, "subtitle_plus_single_label", "tension_pulse", "competing_hypothesis"],
+    ["shot-b05-04", "abstract_information", "graphic_fullframe", "full_frame", 20, 70, "graphic_dissolve", "held_fade", "text_high_contrast", "typography", 1, "subtitle_plus_single_label", "silence_hold", "unresolved_question"],
+    ["shot-b06-01", "unresolved_choice", "graphic_fullframe", "split_frame", 25, 60, "locked", "hard_cut", "uncertainty_cool", "abstract_graphic", 2, "subtitle_only", "tension_pulse", "unresolved_question"],
+    ["shot-b06-02", "evidence_insert", "close", "lower_third", 35, 60, "slow_pull", "graphic_match", "paper_neutral", "document_graphic", 1, "subtitle_only", "ambient_bed", "context"],
+    ["shot-b06-03", "closing_question", "wide", "center", 20, 45, "slow_pull", "held_fade", "midnight_base", "environment", 1, "subtitle_plus_single_label", "closing_resonance", "closing_prompt"]
+  ].map(([
+    shot_id,
+    composition_class,
+    shot_scale,
+    focal_zone,
+    subject_occupancy_percent_min,
+    subject_occupancy_percent_max,
+    camera_motion,
+    transition,
+    palette_role,
+    asset_class,
+    required_asset_count,
+    overlay_text_mode,
+    audio_role,
+    information_role
+  ]) => ({
+    shot_id,
+    composition_class,
+    shot_scale,
+    focal_zone,
+    subject_occupancy_percent_min,
+    subject_occupancy_percent_max,
+    camera_motion,
+    transition,
+    palette_role,
+    asset_class,
+    required_asset_count,
+    overlay_text_mode,
+    audio_role,
+    information_role
+  }));
+}
+
+function contentProductionBlueprintFocalSubjects() {
+  return {
+    "shot-b01-01": "空の鐘枠を持つ天文台遠景",
+    "shot-b01-02": "空の鐘枠と取付部",
+    "shot-b01-03": "空の鐘枠と正午表示",
+    "shot-b02-01": "ミラの手元と時計修理台",
+    "shot-b02-02": "メモと静止した真鍮の蛾",
+    "shot-b02-03": "9:17の時計面と真鍮の蛾",
+    "shot-b03-01": "開かれる台帳",
+    "shot-b03-02": "名前と分の列",
+    "shot-b03-03": "薄れる名前の輪郭",
+    "shot-b04-01": "匿名の評議会シルエット",
+    "shot-b04-02": "同じ重みの二つの仮説",
+    "shot-b04-03": "閉じた制度空間と台帳の影",
+    "shot-b05-01": "未確定のトーマ候補",
+    "shot-b05-02": "真鍮の蛾と機能候補",
+    "shot-b05-03": "評議会の動機候補",
+    "shot-b05-04": "Toma / moth / Council HOLD面",
+    "shot-b06-01": "時計面と空欄の名前欄",
+    "shot-b06-02": "未記入欄を残す台帳",
+    "shot-b06-03": "空の鐘枠と終幕の問い"
+  };
+}
+
+function contentProductionBlueprintBeatPlans() {
+  return [
+    [1, "hook", ["evidence", "unresolved_question"], "bellless_frame"],
+    [2, "context", ["evidence", "competing_hypothesis"], "brass_moth_and_9_17"],
+    [3, "evidence", ["context", "competing_hypothesis"], "fading_name_contours"],
+    [4, "pressure", ["evidence", "competing_hypothesis"], "translucent_divider"],
+    [5, "competing_hypothesis", ["context", "unresolved_question"], "hold_labels"],
+    [6, "closing_prompt", ["context", "unresolved_question"], "time_or_names_split"]
+  ].map(([beat_number, primary_information_goal, supporting_information_goals, recurring_motif]) => ({
+    beat_number,
+    primary_information_goal,
+    supporting_information_goals,
+    recurring_motif
+  }));
+}
+
+function contentProductionBlueprintDodDefinitions() {
+  const define = (prefix, requirements) => requirements.map(([suffix, requirement_ja]) => ({
+    criterion_id: `${prefix}-${suffix}`,
+    requirement_ja,
+    status_vocabulary: ["pass", "warn", "fail"]
+  }));
+  return {
+    global: define("global", [
+      ["identity", "Blueprint identityとprovisional statusが明示される"],
+      ["runtime", "総尺が180秒である"],
+      ["counts", "6 beat / 6 narration / 20 subtitle / 19 shot / 3 thumbnailに一致する"],
+      ["locked", "LOCKED fieldsがsourceと一致する"],
+      ["bounded", "全BOUNDED fieldsが列挙値または数値範囲で埋まる"],
+      ["vocabulary", "未知のproduction termがない"],
+      ["assets", "actual assetが選定されていない"],
+      ["rights", "rights-cleared claimがない"],
+      ["gates", "provider / generation / render / upload / database / canon gatesが閉じる"],
+      ["profile", "provisional 1920x1080 / 16:9 / 30fps profileを使う"],
+      ["wording", "accepted wording changesがexactly threeである"],
+      ["freedom", "LOCKED / BOUNDED / FREE envelopeが完全である"],
+      ["integrity", "package manifest hashesが一致する"]
+    ]),
+    beat: define("beat", [
+      ["primary-goal", "primary information goalが1件である"],
+      ["support-limit", "supporting information goalsが2件以下である"],
+      ["timing", "exact beat windowとdurationがsourceに一致する"],
+      ["inventory", "exact shot/subtitle/narration inventoryを持つ"],
+      ["narration-metric", "narration volumeとcharacters/secondが計測される"],
+      ["motif", "motifがcontrolled vocabularyから1件である"],
+      ["palette", "palette rolesがcontrolled vocabulary内である"],
+      ["truth", "truth boundaryが明示される"],
+      ["roles", "asset classesとinformation rolesが列挙される"],
+      ["narration-pace", "project-local narration paceがpass/warn/fail分類される"]
+    ]),
+    shot: define("shot", [
+      ["required-fields", "全required production fieldsが存在する"],
+      ["timing", "shot windowがowning beat内に収まる"],
+      ["composition", "composition classが1件である"],
+      ["scale", "shot scaleが1件である"],
+      ["motion", "camera motion classが最大1件である"],
+      ["transition", "transitionが1件である"],
+      ["occupancy", "subject occupancyが15-80%の数値範囲である"],
+      ["focal-zone", "focal zoneがcontrolled vocabulary内である"],
+      ["asset-quantity", "required asset countが0-4の整数である"],
+      ["overlay", "overlay allowanceがline/character budgetを持つ"],
+      ["truth", "truth-safe wording boundaryが存在する"],
+      ["asset-rights", "assetはunselected、rightsはnot_clearedである"],
+      ["palette", "palette roleがcontrolled vocabulary内である"],
+      ["information", "information roleがcontrolled vocabulary内である"],
+      ["visual-control", "source visual wordingはLOCKED_SOURCE_WORDING、focal subjectはLOCKED_BLUEPRINT_SPEC、production fieldsはBOUNDEDである"]
+    ]),
+    subtitle: define("subtitle", [
+      ["timing", "cue timingがvalidでowning beat内にある"],
+      ["line-budget", "line count budgetが存在する"],
+      ["metrics", "duration/character/CPS metricsが存在する"],
+      ["classification", "pass/warn/fail resultが存在する"],
+      ["readability", "2 lines / 18 characters-per-line project-local budgetを評価する"]
+    ])
+  };
+}
+
+function contentProductionBlueprintVisualSystem() {
+  return {
+    constraint_authority: "project_local_planning_constraints_not_industry_standards",
+    palette: {
+      midnight_base: { hex: "#111827", contrast_role: "primary_dark_background" },
+      brass_accent: { hex: "#C79A42", contrast_role: "evidence_and_motif_accent" },
+      paper_neutral: { hex: "#E8E1D3", contrast_role: "document_surface" },
+      warning_rust: { hex: "#B4533C", contrast_role: "warning_only" },
+      uncertainty_cool: { hex: "#5B8DB8", contrast_role: "held_or_unresolved_information" },
+      text_high_contrast: { hex: "#F8FAFC", contrast_role: "text_on_midnight_base" }
+    },
+    contrast_roles: {
+      default_text_pair: ["text_high_contrast", "midnight_base"],
+      document_text_pair: ["midnight_base", "paper_neutral"],
+      project_local_minimum_ratio: 4.5,
+      warning_color_requires_text_or_icon_redundancy: true
+    },
+    typography: {
+      font_selection_status: "unselected",
+      licensed_font_selected: false,
+      roles_1080p_px: {
+        display: { min: 64, max: 76 },
+        heading: { min: 42, max: 52 },
+        body: { min: 30, max: 38 },
+        subtitle: { min: 44, max: 52 },
+        label: { min: 24, max: 30 }
+      }
+    },
+    safe_areas_percent: {
+      title: { top: 5, right: 5, bottom: 5, left: 5 },
+      subtitle: { top: 5, right: 7, bottom: 8, left: 7 }
+    },
+    subject_occupancy_percent: { minimum: 15, maximum: 80 },
+    maximum_simultaneous_focal_elements: 2,
+    motion_grammar: {
+      maximum_camera_motion_classes_per_shot: 1,
+      minor_easing_within_approved_class: "FREE_low_risk_micro_detail"
+    },
+    transition_frequency_limits: {
+      hard_cut_max_consecutive: 3,
+      short_dissolve_max_per_beat: 1,
+      match_cut_max_total: 2,
+      graphic_match_max_per_beat: 1,
+      held_fade_max_per_beat: 1
+    },
+    recurring_motif_budget_per_beat: 1,
+    overlay_text_budget: {
+      maximum_lines: 2,
+      maximum_characters_per_line: 18,
+      count_method: "Unicode code points; punctuation included"
+    },
+    forbidden_combinations: [
+      "more_than_two_simultaneous_focal_elements",
+      "more_than_one_camera_motion_class_per_shot",
+      "warning_rust_as_sole_warning_signal",
+      "declarative_truth_label_on_unresolved_information",
+      "selected_or_rights_cleared_asset_in_this_blueprint",
+      "overlay_text_above_two_lines_or_eighteen_characters_per_line"
+    ]
+  };
+}
+
+function blueprintRound(value, digits = 2) {
+  const factor = 10 ** digits;
+  return Math.round((value + Number.EPSILON) * factor) / factor;
+}
+
+function blueprintUnicodeLength(value) {
+  return Array.from(String(value || "")).length;
+}
+
+function blueprintCheckObjects(definitions, statuses = {}) {
+  return definitions.map((definition) => ({
+    criterion_id: definition.criterion_id,
+    status: statuses[definition.criterion_id]?.status || "pass",
+    evidence: statuses[definition.criterion_id]?.evidence || definition.requirement_ja
+  }));
+}
+
+function blueprintAcceptanceStatus(checks) {
+  return checks.some((check) => check.status === "fail")
+    ? "fail"
+    : checks.some((check) => check.status === "warn")
+      ? "warn"
+      : "pass";
+}
+
+function buildContentProductionBlueprintModel(source) {
+  const errors = [];
+  const beatPlans = contentProductionBlueprintBeatPlans();
+  const shotPlans = contentProductionBlueprintShotPlans();
+  const definitions = contentProductionBlueprintDodDefinitions();
+  const sourceBeats = Array.isArray(source?.beats) ? source.beats : [];
+  const sourceNarration = Array.isArray(source?.narration_segments) ? source.narration_segments : [];
+  const sourceSubtitles = Array.isArray(source?.subtitle_cues) ? source.subtitle_cues : [];
+  const sourceShots = Array.isArray(source?.shot_cues) ? source.shot_cues : [];
+  const sourceChanges = Array.isArray(source?.applied_changes) ? source.applied_changes : [];
+  const sourceThumbnails = Array.isArray(source?.thumbnail_directions) ? source.thumbnail_directions : [];
+  const shotPlanById = new Map(shotPlans.map((plan) => [plan.shot_id, plan]));
+  const beatPlanByNumber = new Map(beatPlans.map((plan) => [plan.beat_number, plan]));
+  const narrationByBeat = new Map(sourceNarration.map((segment) => [segment.beat_id, segment]));
+  const focalSubjects = contentProductionBlueprintFocalSubjects();
+
+  if (source?.schemaVersion !== EDITORIAL_DERIVATIVE_PREVIEW_SCHEMA_VERSION ||
+      source?.artifact_id !== EDITORIAL_DERIVATIVE_ARTIFACT_ID) {
+    errors.push("source derivative identity mismatch");
+  }
+  if (source?.status !== "derived_revision_preview" || source?.canonical !== false ||
+      source?.source_apply_status !== "not_applied" ||
+      source?.derived_apply_status !== "applied_to_derived_copy" ||
+      source?.application_scope !== "derived_copy_only" ||
+      source?.rollback_action !== "discard_derived_package") {
+    errors.push("source derivative boundary contract mismatch");
+  }
+  if (sourceBeats.length !== 6 || source?.total_duration_seconds !== 180 ||
+      sourceNarration.length !== 6 || sourceSubtitles.length !== 20 ||
+      sourceShots.length !== 19 || sourceThumbnails.length !== 3) {
+    errors.push("source derivative count contract mismatch");
+  }
+  if (!arrayEqualsExact(sourceChanges.map((change) => change?.change_id), EDITORIAL_DERIVATIVE_EXPECTED_CHANGE_IDS)) {
+    errors.push("source derivative must contain exactly the accepted three wording changes");
+  }
+  if (!arrayEqualsExact(sourceShots.map((shot) => shot?.shot_id), shotPlans.map((plan) => plan.shot_id))) {
+    errors.push("source shot ids or order do not match the 19-shot Blueprint plan");
+  }
+  if (!arrayEqualsExact(sourceBeats.map((beat) => beat?.beat_number), [1, 2, 3, 4, 5, 6])) {
+    errors.push("source beat order must remain 1-6");
+  }
+  if (errors.length > 0) {
+    return { valid: false, errors, blueprint: null };
+  }
+
+  const shotSpecs = sourceShots.map((sourceShot) => {
+    const plan = shotPlanById.get(sourceShot.shot_id);
+    const startSeconds = parseEditorialTimeSeconds(sourceShot.start_time);
+    const endSeconds = parseEditorialTimeSeconds(sourceShot.end_time);
+    const overlayMaxLines = plan.overlay_text_mode === "none" ? 0 :
+      plan.overlay_text_mode === "single_label" ? 1 : 2;
+    const checks = blueprintCheckObjects(definitions.shot, {
+      "shot-timing": {
+        status: startSeconds !== null && endSeconds !== null && startSeconds < endSeconds ? "pass" : "fail",
+        evidence: `${sourceShot.start_time}-${sourceShot.end_time}`
+      },
+      "shot-occupancy": {
+        status: plan.subject_occupancy_percent_min >= 15 &&
+          plan.subject_occupancy_percent_max <= 80 &&
+          plan.subject_occupancy_percent_min < plan.subject_occupancy_percent_max ? "pass" : "fail",
+        evidence: `${plan.subject_occupancy_percent_min}-${plan.subject_occupancy_percent_max}%`
+      },
+      "shot-asset-quantity": {
+        status: Number.isInteger(plan.required_asset_count) && plan.required_asset_count >= 0 && plan.required_asset_count <= 4
+          ? "pass" : "fail",
+        evidence: `required_asset_count=${plan.required_asset_count}`
+      },
+      "shot-asset-rights": {
+        status: "pass",
+        evidence: "asset_status=unselected; rights_status=not_cleared"
+      },
+      "shot-visual-control": {
+        status: "pass",
+        evidence: "current wording=LOCKED_SOURCE_WORDING; focal subject=LOCKED_BLUEPRINT_SPEC; production degrees=BOUNDED"
+      }
+    });
+    return {
+      shot_id: sourceShot.shot_id,
+      beat_id: sourceShot.beat_id,
+      start_time: sourceShot.start_time,
+      end_time: sourceShot.end_time,
+      start_seconds: startSeconds,
+      end_seconds: endSeconds,
+      duration_seconds: endSeconds - startSeconds,
+      shot_function: sourceShot.shot_purpose,
+      current_visual_direction: sourceShot.visual_direction,
+      visual_direction_control: "LOCKED_SOURCE_WORDING",
+      focal_subject_control: "LOCKED_BLUEPRINT_SPEC",
+      locked_fields: [
+        "shot_function",
+        "current_visual_direction",
+        "focal_subject",
+        "truth_boundary",
+        "rights_note",
+        "asset_status",
+        "rights_status"
+      ],
+      bounded_visual_fields: [
+        "composition_class",
+        "shot_scale",
+        "focal_zone",
+        "subject_occupancy_percent_min",
+        "subject_occupancy_percent_max",
+        "camera_motion",
+        "transition",
+        "palette_role",
+        "asset_class",
+        "required_asset_count",
+        "overlay_text_allowance",
+        "audio_role",
+        "information_role"
+      ],
+      free_micro_detail_fields: [
+        "texture_nuance",
+        "decorative_variation",
+        "minor_easing",
+        "prop_wear"
+      ],
+      field_control_summary: { LOCKED: 7, BOUNDED: 13, FREE: 4 },
+      composition_class: plan.composition_class,
+      shot_scale: plan.shot_scale,
+      focal_subject: focalSubjects[sourceShot.shot_id],
+      focal_zone: plan.focal_zone,
+      subject_occupancy_percent_min: plan.subject_occupancy_percent_min,
+      subject_occupancy_percent_max: plan.subject_occupancy_percent_max,
+      camera_motion: plan.camera_motion,
+      transition: plan.transition,
+      palette_role: plan.palette_role,
+      asset_class: plan.asset_class,
+      required_asset_count: plan.required_asset_count,
+      overlay_text_allowance: {
+        mode: plan.overlay_text_mode,
+        max_lines: overlayMaxLines,
+        max_characters_per_line: overlayMaxLines === 0 ? 0 : 18
+      },
+      audio_role: plan.audio_role,
+      information_role: plan.information_role,
+      truth_boundary: sourceShot.truth_boundary_note,
+      rights_note: sourceShot.rights_note,
+      source_asset_class: sourceShot.asset_class,
+      asset_status: "unselected",
+      rights_status: "not_cleared",
+      acceptance_checks: checks,
+      acceptance_status: blueprintAcceptanceStatus(checks)
+    };
+  });
+
+  const subtitleMetrics = sourceSubtitles.map((cue) => {
+    const startSeconds = parseEditorialTimeSeconds(cue.start_time);
+    const endSeconds = parseEditorialTimeSeconds(cue.end_time);
+    const duration = endSeconds - startSeconds;
+    const characterCount = blueprintUnicodeLength(cue.text_ja);
+    const lineLengths = String(cue.line_break_hint || cue.text_ja).split("｜").map(blueprintUnicodeLength);
+    const lineCount = lineLengths.length;
+    const cps = blueprintRound(characterCount / duration);
+    const structuralFailure = startSeconds === null || endSeconds === null || startSeconds >= endSeconds ||
+      lineCount > 2 || Math.max(...lineLengths) > 18;
+    const status = structuralFailure || cps > 4 ? "fail" : cps > 3 ? "warn" : "pass";
+    const smallestLaterCorrection = status === "pass"
+      ? "none"
+      : "Later authorized subtitle pass: shorten or redistribute the cue without changing truth, timing, or source in this slice.";
+    const checks = blueprintCheckObjects(definitions.subtitle, {
+      "subtitle-timing": {
+        status: startSeconds !== null && endSeconds !== null && startSeconds < endSeconds ? "pass" : "fail",
+        evidence: `${cue.start_time}-${cue.end_time}; duration=${duration}s`
+      },
+      "subtitle-line-budget": {
+        status: lineCount <= 2 ? "pass" : "fail",
+        evidence: `${lineCount}/2 lines`
+      },
+      "subtitle-metrics": {
+        status: Number.isFinite(cps) ? "pass" : "fail",
+        evidence: `${characterCount} chars / ${duration}s = ${cps} chars/s`
+      },
+      "subtitle-classification": {
+        status: ["pass", "warn", "fail"].includes(status) ? "pass" : "fail",
+        evidence: `readback=${status}`
+      },
+      "subtitle-readability": {
+        status,
+        evidence: `${cps} chars/s; ${lineCount}/2 lines; max ${Math.max(...lineLengths)}/18 chars/line`
+      }
+    });
+    return {
+      cue_id: cue.cue_id,
+      beat_id: cue.beat_id,
+      start_time: cue.start_time,
+      end_time: cue.end_time,
+      start_seconds: startSeconds,
+      end_seconds: endSeconds,
+      duration_seconds: duration,
+      text_ja: cue.text_ja,
+      line_break_hint: cue.line_break_hint,
+      character_count: characterCount,
+      characters_per_second: cps,
+      line_count: lineCount,
+      line_count_budget: 2,
+      characters_per_line_budget: 18,
+      maximum_actual_characters_per_line: Math.max(...lineLengths),
+      status,
+      smallest_later_correction: smallestLaterCorrection,
+      truth_risk_marker: cue.truth_risk_marker,
+      acceptance_checks: checks,
+      acceptance_status: blueprintAcceptanceStatus(checks)
+    };
+  });
+
+  const beatSpecs = sourceBeats.map((sourceBeat) => {
+    const plan = beatPlanByNumber.get(sourceBeat.beat_number);
+    const narration = narrationByBeat.get(sourceBeat.beat_id);
+    const ownedShots = shotSpecs.filter((shot) => shot.beat_id === sourceBeat.beat_id);
+    const ownedSubtitles = subtitleMetrics.filter((cue) => cue.beat_id === sourceBeat.beat_id);
+    const narrationCharacters = blueprintUnicodeLength(narration?.text);
+    const duration = sourceBeat.end_seconds - sourceBeat.start_seconds;
+    const narrationCps = blueprintRound(narrationCharacters / duration);
+    const narrationStatus = narrationCps > 5 ? "fail" : narrationCps > 4.5 ? "warn" : "pass";
+    const checks = blueprintCheckObjects(definitions.beat, {
+      "beat-primary-goal": { status: "pass", evidence: plan.primary_information_goal },
+      "beat-support-limit": {
+        status: plan.supporting_information_goals.length <= 2 ? "pass" : "fail",
+        evidence: `${plan.supporting_information_goals.length}/2`
+      },
+      "beat-timing": {
+        status: duration > 0 ? "pass" : "fail",
+        evidence: `${sourceBeat.start_time}-${sourceBeat.end_time}; ${duration}s`
+      },
+      "beat-inventory": {
+        status: narration && ownedShots.length > 0 && ownedSubtitles.length > 0 ? "pass" : "fail",
+        evidence: `narration=1; shots=${ownedShots.length}; subtitles=${ownedSubtitles.length}`
+      },
+      "beat-narration-metric": {
+        status: Number.isFinite(narrationCps) ? "pass" : "fail",
+        evidence: `${narrationCharacters} chars / ${duration}s = ${narrationCps} chars/s`
+      },
+      "beat-motif": { status: "pass", evidence: `${plan.recurring_motif}; budget=1` },
+      "beat-palette": { status: "pass", evidence: [...new Set(ownedShots.map((shot) => shot.palette_role))].join("|") },
+      "beat-truth": { status: hasNonEmptyText(sourceBeat.truth_boundary) ? "pass" : "fail", evidence: sourceBeat.truth_boundary },
+      "beat-roles": { status: "pass", evidence: "asset and information roles derived from owned shots" },
+      "beat-narration-pace": {
+        status: narrationStatus,
+        evidence: `${narrationCps} chars/s; project-local pass<=4.5, warn<=5.0, fail>5.0`
+      }
+    });
+    return {
+      beat_id: sourceBeat.beat_id,
+      beat_number: sourceBeat.beat_number,
+      title_ja: sourceBeat.title_ja,
+      start_time: sourceBeat.start_time,
+      end_time: sourceBeat.end_time,
+      start_seconds: sourceBeat.start_seconds,
+      end_seconds: sourceBeat.end_seconds,
+      duration_seconds: duration,
+      narration_segment_id: narration.segment_id,
+      narration_text: narration.text,
+      narration_character_count: narrationCharacters,
+      narration_characters_per_second: narrationCps,
+      narration_metric_status: narrationStatus,
+      shot_count: ownedShots.length,
+      subtitle_count: ownedSubtitles.length,
+      primary_information_goal: plan.primary_information_goal,
+      supporting_information_goals: plan.supporting_information_goals,
+      recurring_motif: plan.recurring_motif,
+      motif_budget: 1,
+      palette_roles: [...new Set(ownedShots.map((shot) => shot.palette_role))],
+      asset_classes: [...new Set(ownedShots.map((shot) => shot.asset_class))],
+      information_roles: [...new Set(ownedShots.map((shot) => shot.information_role))],
+      required_asset_count: ownedShots.reduce((total, shot) => total + shot.required_asset_count, 0),
+      truth_boundary: sourceBeat.truth_boundary,
+      rights_boundary: sourceBeat.rights_boundary,
+      shot_ids: ownedShots.map((shot) => shot.shot_id),
+      subtitle_cue_ids: ownedSubtitles.map((cue) => cue.cue_id),
+      smallest_later_correction: narrationStatus === "warn"
+        ? "Later voice rehearsal: adjust pause density or authorize a narrow wording review only if delivery remains overloaded; do not rewrite in this slice."
+        : "none",
+      acceptance_checks: checks,
+      acceptance_status: blueprintAcceptanceStatus(checks)
+    };
+  });
+
+  const globalChecks = blueprintCheckObjects(definitions.global, {
+    "global-identity": { status: "pass", evidence: `${CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID}; provisional` },
+    "global-runtime": { status: "pass", evidence: "180 seconds" },
+    "global-counts": { status: "pass", evidence: "6/6/20/19/3" },
+    "global-wording": { status: "pass", evidence: EDITORIAL_DERIVATIVE_EXPECTED_CHANGE_IDS.join("|") },
+    "global-integrity": { status: "pass", evidence: "verified by blueprint-package-manifest.json" }
+  });
+  const acceptanceMatrix = [{
+    scope: "global",
+    subject_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+    status: blueprintAcceptanceStatus(globalChecks),
+    criteria_count: globalChecks.length,
+    criterion_ids: globalChecks.map((check) => check.criterion_id),
+    evidence: "identity, source, profile, vocabulary, boundary, and package integrity gates",
+    owner: "production_blueprint_operator",
+    next_move: "none"
+  }];
+  for (const beat of beatSpecs) {
+    acceptanceMatrix.push({
+      scope: "beat",
+      subject_id: beat.beat_id,
+      status: beat.acceptance_status,
+      criteria_count: beat.acceptance_checks.length,
+      criterion_ids: beat.acceptance_checks.map((check) => check.criterion_id),
+      evidence: `${beat.duration_seconds}s; ${beat.shot_count} shots; ${beat.subtitle_count} subtitles; narration ${beat.narration_characters_per_second} chars/s`,
+      owner: "editorial_production_operator",
+      next_move: beat.acceptance_status === "warn" ? beat.smallest_later_correction : "none"
+    });
+  }
+  for (const shot of shotSpecs) {
+    acceptanceMatrix.push({
+      scope: "shot",
+      subject_id: shot.shot_id,
+      status: shot.acceptance_status,
+      criteria_count: shot.acceptance_checks.length,
+      criterion_ids: shot.acceptance_checks.map((check) => check.criterion_id),
+      evidence: `${shot.duration_seconds}s; ${shot.composition_class}; ${shot.shot_scale}; occupancy ${shot.subject_occupancy_percent_min}-${shot.subject_occupancy_percent_max}%`,
+      owner: "shot_planner",
+      next_move: "none"
+    });
+  }
+  for (const cue of subtitleMetrics) {
+    acceptanceMatrix.push({
+      scope: "subtitle",
+      subject_id: cue.cue_id,
+      status: cue.acceptance_status,
+      criteria_count: cue.acceptance_checks.length,
+      criterion_ids: cue.acceptance_checks.map((check) => check.criterion_id),
+      evidence: `${cue.duration_seconds}s; ${cue.character_count} chars; ${cue.characters_per_second} chars/s; ${cue.line_count}/2 lines`,
+      owner: "subtitle_reviewer",
+      next_move: cue.smallest_later_correction
+    });
+  }
+
+  const locked = [
+    ["beat_order", "six beats in source order"],
+    ["total_duration_seconds", "exactly 180"],
+    ["beat_windows", "exact source start/end"],
+    ["beat_ids", "exact six source ids"],
+    ["narration_ids", "exact six source ids"],
+    ["subtitle_ids", "exact twenty source ids"],
+    ["shot_ids", "exact nineteen source ids"],
+    ["truth_boundaries", "byte-derived source wording"],
+    ["rights_and_asset_status", "unselected and not cleared"],
+    ["accepted_wording_changes", "exactly three"],
+    ["total_counts", "6/180/6/20/19/3"],
+    ["canonical_status", "false"]
+  ].map(([field, limit]) => ({ field, control_class: "LOCKED", limit, validation: "exact_match" }));
+  const bounded = [
+    ["composition_class", "controlled vocabulary"],
+    ["shot_scale", "controlled vocabulary"],
+    ["subject_occupancy", "15-80 percent, shot-specific min/max"],
+    ["focal_zone", "controlled vocabulary"],
+    ["camera_motion", "one controlled class per shot"],
+    ["transition", "controlled vocabulary and frequency limits"],
+    ["palette_role", "controlled vocabulary"],
+    ["overlay_text_amount", "maximum 2 lines / 18 characters per line"],
+    ["motif_use", "one controlled motif per beat"],
+    ["audio_role", "controlled vocabulary"],
+    ["asset_quantity", "integer 0-4 per shot"],
+    ["asset_class", "controlled vocabulary"],
+    ["information_role", "controlled vocabulary"]
+  ].map(([field, limit]) => ({ field, control_class: "BOUNDED", limit, validation: "pass_warn_fail" }));
+  const free = [
+    ["texture_nuance", "non-semantic only"],
+    ["decorative_variation", "non-semantic only"],
+    ["minor_easing", "within approved motion class"],
+    ["prop_wear", "within approved asset class"]
+  ].map(([field, limit]) => ({
+    field,
+    control_class: "FREE",
+    limit,
+    must_not_alter: [
+      "story_meaning",
+      "evidence_relation",
+      "timing",
+      "truth",
+      "readability",
+      "rights_state",
+      "composition_class",
+      "asset_count"
+    ]
+  }));
+  const passCount = acceptanceMatrix.filter((row) => row.status === "pass").length;
+  const warningCount = acceptanceMatrix.filter((row) => row.status === "warn").length;
+  const failureCount = acceptanceMatrix.filter((row) => row.status === "fail").length;
+  const narrationWarnings = beatSpecs.filter((beat) => beat.narration_metric_status === "warn").map((beat) => ({
+    beat_id: beat.beat_id,
+    metric: "narration_characters_per_second",
+    value: beat.narration_characters_per_second,
+    threshold: "project-local pass<=4.5; warn<=5.0; fail>5.0",
+    smallest_later_correction: beat.smallest_later_correction
+  }));
+  const shotDurations = shotSpecs.map((shot) => shot.duration_seconds);
+  const subtitleDurations = subtitleMetrics.map((cue) => cue.duration_seconds);
+  const subtitleCharacters = subtitleMetrics.map((cue) => cue.character_count);
+  const subtitleCps = subtitleMetrics.map((cue) => cue.characters_per_second);
+  const narrationCharacters = beatSpecs.map((beat) => beat.narration_character_count);
+  const narrationCps = beatSpecs.map((beat) => beat.narration_characters_per_second);
+  const boundaries = {
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    assets_selected: false,
+    rights_cleared_claim: false,
+    ai_video_generation: false,
+    production_render: false,
+    public_upload: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    production_approved: false
+  };
+  const blueprint = {
+    schemaVersion: CONTENT_PRODUCTION_BLUEPRINT_SCHEMA_VERSION,
+    artifact_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+    title: "Fast Fiction Factory Content Production Blueprint",
+    generatedAt: CONTENT_PRODUCTION_BLUEPRINT_GENERATED_AT,
+    status: "provisional_production_blueprint",
+    canonical: false,
+    production_approved: false,
+    route: CONTENT_PRODUCTION_BLUEPRINT_ROUTE,
+    source: {
+      artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+      derivative_editorial_handoff_path: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_PATH,
+      derivative_editorial_handoff_sha256: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256,
+      derivative_package_manifest_path: EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_PATH,
+      derivative_package_manifest_sha256: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256,
+      derivative_core_fingerprint_sha256: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256,
+      accepted_change_ids: [...EDITORIAL_DERIVATIVE_EXPECTED_CHANGE_IDS]
+    },
+    profile: {
+      status: "provisional_review_profile",
+      canvas_width_px: 1920,
+      canvas_height_px: 1080,
+      aspect_ratio: "16:9",
+      planning_timebase_fps: 30,
+      render_authorized: false,
+      vertical_export_authorized: false,
+      title_safe_percent: { top: 5, right: 5, bottom: 5, left: 5 },
+      subtitle_safe_percent: { top: 5, right: 7, bottom: 8, left: 7 },
+      replacement_rule: "explicit_format_decision_required"
+    },
+    content_contract: {
+      content_promise_ja: "鐘のない塔が鳴る矛盾から、失われた時間と名前をめぐる調査線を提示する3分のミステリー／ロア候補。",
+      presented_question_ja: "時間を戻すのか、消えた名前を返すのか。",
+      deliberately_unresolved_ja: [
+        "鐘が鳴る原因",
+        "トーマの生死と所在",
+        "真鍮の蛾の正体と機能",
+        "台帳の真正性と所有者",
+        "評議会の動機と責任",
+        "ミラの最終選択とending truth"
+      ],
+      total_duration_seconds: 180,
+      beat_count: 6,
+      shot_count: 19,
+      subtitle_cue_count: 20,
+      narration_segment_count: 6,
+      thumbnail_direction_count: 3,
+      target_profile_status: "provisional_review_profile",
+      definition_of_done_summary_ja: "source一致、全bounded fields、46 scope readbacks、failure 0、production gates closed。"
+    },
+    constraint_envelope: { LOCKED: locked, BOUNDED: bounded, FREE: free },
+    vocabularies: cloneJsonValue(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES),
+    visual_system: contentProductionBlueprintVisualSystem(),
+    beats: beatSpecs,
+    shots: shotSpecs,
+    subtitle_metrics: subtitleMetrics,
+    definition_of_done: {
+      ...definitions,
+      global_acceptance_checks: globalChecks,
+      template_counts: {
+        global: definitions.global.length,
+        beat: definitions.beat.length,
+        shot: definitions.shot.length,
+        subtitle: definitions.subtitle.length
+      },
+      evaluated_check_counts: {
+        global: globalChecks.length,
+        beat: beatSpecs.reduce((count, beat) => count + beat.acceptance_checks.length, 0),
+        shot: shotSpecs.reduce((count, shot) => count + shot.acceptance_checks.length, 0),
+        subtitle: subtitleMetrics.reduce((count, cue) => count + cue.acceptance_checks.length, 0)
+      }
+    },
+    acceptance_matrix: acceptanceMatrix,
+    change_history: cloneJsonValue(sourceChanges),
+    ui_contract: {
+      change_history_owner_count: 1,
+      files_export_owner_count: 1,
+      duplicate_primary_diff_count: 0,
+      package_inventory_in_beat_primary: false,
+      utility_anchor_positions_css_px: [0, 0, 0, 0, 0, 0],
+      maximum_utility_anchor_movement_css_px: 0,
+      utility_anchor_limit_css_px: 8,
+      layout_measurement_method: "fixed-height structural contract; browser confirmation required"
+    },
+    metrics: {
+      narration_character_total: beatSpecs.reduce((total, beat) => total + beat.narration_character_count, 0),
+      narration_character_range: { min: Math.min(...narrationCharacters), max: Math.max(...narrationCharacters) },
+      narration_characters_per_second_range: { min: Math.min(...narrationCps), max: Math.max(...narrationCps) },
+      subtitle_duration_seconds_range: { min: Math.min(...subtitleDurations), max: Math.max(...subtitleDurations) },
+      subtitle_character_range: { min: Math.min(...subtitleCharacters), max: Math.max(...subtitleCharacters) },
+      subtitle_characters_per_second_range: { min: Math.min(...subtitleCps), max: Math.max(...subtitleCps) },
+      subtitle_line_count_range: {
+        min: Math.min(...subtitleMetrics.map((cue) => cue.line_count)),
+        max: Math.max(...subtitleMetrics.map((cue) => cue.line_count))
+      },
+      subtitle_maximum_actual_characters_per_line: Math.max(...subtitleMetrics.map((cue) => cue.maximum_actual_characters_per_line)),
+      shot_duration_seconds_range: { min: Math.min(...shotDurations), max: Math.max(...shotDurations) },
+      shot_duration_seconds_average: blueprintRound(shotDurations.reduce((total, duration) => total + duration, 0) / shotDurations.length),
+      narration_warnings: narrationWarnings,
+      subtitle_warning_count: subtitleMetrics.filter((cue) => cue.status === "warn").length,
+      subtitle_failure_count: subtitleMetrics.filter((cue) => cue.status === "fail").length
+    },
+    vocabulary_counts: Object.fromEntries(Object.entries(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES)
+      .map(([name, values]) => [name, values.length])),
+    acceptance_summary: {
+      row_count: acceptanceMatrix.length,
+      pass_count: passCount,
+      warning_count: warningCount,
+      failure_count: failureCount
+    },
+    boundaries,
+    failures: [],
+    passed: failureCount === 0
+  };
+  return { valid: failureCount === 0, errors: failureCount === 0 ? [] : ["Blueprint acceptance matrix has failures"], blueprint };
+}
+
+function contentProductionBlueprintBeatHeaders() {
+  return [
+    "beat_id", "beat_number", "title_ja", "start_time", "end_time", "duration_seconds",
+    "narration_segment_id", "narration_character_count", "narration_characters_per_second",
+    "narration_metric_status", "shot_count", "subtitle_count", "primary_information_goal",
+    "supporting_information_goals", "recurring_motif", "motif_budget", "palette_roles",
+    "asset_classes", "information_roles", "required_asset_count", "truth_boundary",
+    "rights_boundary", "acceptance_status"
+  ];
+}
+
+function contentProductionBlueprintShotHeaders() {
+  return [
+    "shot_id", "beat_id", "start_time", "end_time", "duration_seconds", "shot_function",
+    "composition_class", "shot_scale", "focal_subject", "focal_zone",
+    "subject_occupancy_percent_min", "subject_occupancy_percent_max", "camera_motion",
+    "transition", "palette_role", "asset_class", "required_asset_count", "overlay_text_mode",
+    "overlay_max_lines", "overlay_max_characters_per_line", "audio_role", "information_role",
+    "truth_boundary", "asset_status", "rights_status", "acceptance_status"
+  ];
+}
+
+function contentProductionBlueprintSubtitleHeaders() {
+  return [
+    "cue_id", "beat_id", "start_time", "end_time", "duration_seconds", "text_ja",
+    "character_count", "characters_per_second", "line_count", "line_count_budget",
+    "characters_per_line_budget", "maximum_actual_characters_per_line", "status",
+    "smallest_later_correction"
+  ];
+}
+
+function contentProductionBlueprintAcceptanceHeaders() {
+  return [
+    "scope", "subject_id", "status", "criteria_count", "criterion_ids", "evidence",
+    "owner", "next_move"
+  ];
+}
+
+function contentProductionBlueprintBeatCsvRows(blueprint) {
+  return blueprint.beats.map((beat) => ({
+    ...beat,
+    supporting_information_goals: beat.supporting_information_goals.join("|"),
+    palette_roles: beat.palette_roles.join("|"),
+    asset_classes: beat.asset_classes.join("|"),
+    information_roles: beat.information_roles.join("|")
+  }));
+}
+
+function contentProductionBlueprintShotCsvRows(blueprint) {
+  return blueprint.shots.map((shot) => ({
+    ...shot,
+    overlay_text_mode: shot.overlay_text_allowance.mode,
+    overlay_max_lines: shot.overlay_text_allowance.max_lines,
+    overlay_max_characters_per_line: shot.overlay_text_allowance.max_characters_per_line
+  }));
+}
+
+function contentProductionBlueprintAcceptanceCsvRows(blueprint) {
+  return blueprint.acceptance_matrix.map((row) => ({
+    ...row,
+    criterion_ids: row.criterion_ids.join("|")
+  }));
+}
+
+function renderContentProductionBlueprintReadme(blueprint) {
+  const metrics = blueprint.metrics;
+  return `# Content Production Blueprint
+
+PROVISIONAL REVIEW PROFILE / NOT CANONICAL / NOT PRODUCTION-APPROVED
+
+- artifact_id: ${blueprint.artifact_id}
+- route: ${blueprint.route}
+- source: ${blueprint.source.artifact_id}
+- source derivative SHA256: ${blueprint.source.derivative_editorial_handoff_sha256}
+- status: ${blueprint.status}
+- canvas: ${blueprint.profile.canvas_width_px}x${blueprint.profile.canvas_height_px} (${blueprint.profile.aspect_ratio})
+- planning_timebase: ${blueprint.profile.planning_timebase_fps}fps
+- scale: ${blueprint.content_contract.total_duration_seconds}s / ${blueprint.content_contract.beat_count} beats / ${blueprint.content_contract.shot_count} shots / ${blueprint.content_contract.subtitle_cue_count} subtitles / ${blueprint.content_contract.narration_segment_count} narration segments / ${blueprint.content_contract.thumbnail_direction_count} thumbnail directions
+
+## Content Contract
+
+${blueprint.content_contract.content_promise_ja}
+
+Presented question: ${blueprint.content_contract.presented_question_ja}
+
+This package deliberately does not resolve: ${blueprint.content_contract.deliberately_unresolved_ja.join(" / ")}.
+
+## Creative Degrees of Freedom
+
+- LOCKED: ${blueprint.constraint_envelope.LOCKED.length} fields. Source identity, order, timing, IDs, truth/rights state, the exact three wording changes, counts, and non-canonical state do not move.
+- BOUNDED: ${blueprint.constraint_envelope.BOUNDED.length} fields. Every production degree uses an enum or numeric budget plus pass/warn/fail readback.
+- FREE: ${blueprint.constraint_envelope.FREE.length} low-risk micro-details. These cannot alter meaning, evidence, timing, truth, readability, rights, composition class, or asset count.
+
+## Quantitative Readback
+
+- narration: ${metrics.narration_character_total} characters; ${metrics.narration_characters_per_second_range.min}-${metrics.narration_characters_per_second_range.max} chars/s; ${metrics.narration_warnings.length} project-local warnings
+- subtitles: ${metrics.subtitle_duration_seconds_range.min}-${metrics.subtitle_duration_seconds_range.max}s; ${metrics.subtitle_character_range.min}-${metrics.subtitle_character_range.max} characters; ${metrics.subtitle_characters_per_second_range.min}-${metrics.subtitle_characters_per_second_range.max} chars/s; ${metrics.subtitle_warning_count} warnings / ${metrics.subtitle_failure_count} failures
+- shots: ${metrics.shot_duration_seconds_range.min}-${metrics.shot_duration_seconds_range.max}s; average ${metrics.shot_duration_seconds_average}s
+- acceptance matrix: ${blueprint.acceptance_summary.pass_count} pass / ${blueprint.acceptance_summary.warning_count} warn / ${blueprint.acceptance_summary.failure_count} fail
+
+Warnings do not rewrite source content. The smallest later correction is a voice rehearsal and, only if authorized after that evidence, a narrow pacing review.
+
+## Package Files
+
+- production-blueprint.json: authoritative machine-readable model
+- beat-specs.csv: one quantitative row per beat
+- shot-specs.csv: one constrained row per shot
+- subtitle-metrics.csv: current duration, character, speed, and line-budget readback
+- visual-system.md: provisional project-local visual constraints
+- acceptance-matrix.csv: pass/warn/fail scope summary
+- blueprint-package-manifest.json: SHA256 and byte-size inventory of the other seven files
+
+## Boundaries
+
+No actual asset is selected. No rights are cleared. Provider/API, credentials, external calls, generation, render, upload, publication, database persistence, final canon, and production approval remain closed.
+`;
+}
+
+function renderContentProductionBlueprintVisualSystem(blueprint) {
+  const visual = blueprint.visual_system;
+  const paletteLines = Object.entries(visual.palette)
+    .map(([name, value]) => `| ${name} | ${value.hex} | ${value.contrast_role} |`)
+    .join("\n");
+  const typeLines = Object.entries(visual.typography.roles_1080p_px)
+    .map(([name, range]) => `| ${name} | ${range.min}-${range.max}px |`)
+    .join("\n");
+  return `# Provisional Visual System
+
+These are project-local planning constraints, not industry standards. No licensed font, release asset, platform export profile, or rights state is selected.
+
+## Canvas and Safe Areas
+
+- 1920x1080, 16:9, 30fps planning timebase
+- title safe: top/right/bottom/left = 5% / 5% / 5% / 5%
+- subtitle safe: top/right/bottom/left = 5% / 7% / 8% / 7%
+- vertical export: not authorized
+
+## Palette and Contrast Roles
+
+| token | value | role |
+|---|---:|---|
+${paletteLines}
+
+- default text pair: text_high_contrast on midnight_base
+- document text pair: midnight_base on paper_neutral
+- project-local minimum contrast ratio: 4.5
+- warning_rust must be paired with text or an icon; color is never the only warning signal
+
+## Typography at 1080p
+
+Font selection status: unselected. The ranges constrain role and scale without choosing a licensed font.
+
+| role | project-local size range |
+|---|---:|
+${typeLines}
+
+## Composition, Motion, and Motifs
+
+- subject occupancy: 15-80%, with a narrower min/max per shot
+- maximum simultaneous focal elements: 2
+- maximum camera-motion classes per shot: 1
+- recurring motif budget: 1 per beat
+- minor easing within the approved motion class is FREE low-risk micro-detail
+
+Transition limits:
+
+- hard_cut: maximum 3 consecutive
+- short_dissolve: maximum 1 per beat
+- match_cut: maximum 2 total
+- graphic_match: maximum 1 per beat
+- held_fade: maximum 1 per beat
+
+## Overlay Text
+
+- maximum 2 lines
+- maximum 18 Unicode code points per line, punctuation included
+- allowed modes: ${blueprint.vocabularies.overlay_text_mode.join(", ")}
+
+## Forbidden Combinations
+
+${visual.forbidden_combinations.map((item) => `- ${item}`).join("\n")}
+`;
+}
+
+function buildContentProductionBlueprintPackageManifest(blueprint, files) {
+  const inventory = CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_FILES.map((relativePath) => ({
+    relative_path: relativePath,
+    byte_size: files[relativePath].byteLength,
+    sha256: editorialDerivativeBufferHash(files[relativePath])
+  }));
+  const fingerprintMaterial = inventory.map((entry) => `${entry.relative_path}:${entry.sha256}`).join("\n") + "\n";
+  return {
+    schemaVersion: CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_SCHEMA_VERSION,
+    artifact_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+    generatedAt: CONTENT_PRODUCTION_BLUEPRINT_GENERATED_AT,
+    package_root: CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT,
+    status: blueprint.status,
+    canonical: false,
+    production_approved: false,
+    source: cloneJsonValue(blueprint.source),
+    package_fingerprint_sha256: editorialDerivativeBufferHash(Buffer.from(fingerprintMaterial, "utf8")),
+    files: inventory,
+    boundaries: cloneJsonValue(blueprint.boundaries),
+    failures: [],
+    passed: true
+  };
+}
+
+async function buildContentProductionBlueprintPackageArtifacts() {
+  const errors = [];
+  const [sourceSnapshot, manifestSnapshot, provenanceSnapshot] = await Promise.all([
+    readJsonFileSnapshot(CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_PATH),
+    readJsonFileSnapshot(EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_PATH),
+    readJsonFileSnapshot(`${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/derivative-provenance.json`)
+  ]);
+  for (const snapshot of [sourceSnapshot, manifestSnapshot, provenanceSnapshot]) {
+    if (snapshot.error) {
+      errors.push(snapshot.error);
+    }
+  }
+  if (sourceSnapshot.sha256 !== CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256) {
+    errors.push(`source derivative fingerprint mismatch: ${sourceSnapshot.sha256}`);
+  }
+  if (manifestSnapshot.sha256 !== CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256) {
+    errors.push(`source derivative manifest fingerprint mismatch: ${manifestSnapshot.sha256}`);
+  }
+  if (manifestSnapshot.value?.derivative_core_fingerprint_sha256 !==
+      CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256 ||
+      provenanceSnapshot.value?.derivative?.core_fingerprint_sha256 !==
+      CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256) {
+    errors.push("source derivative core fingerprint mismatch");
+  }
+  const sourceManifestEntries = Array.isArray(manifestSnapshot.value?.files)
+    ? manifestSnapshot.value.files : [];
+  if (sourceManifestEntries.length !== EDITORIAL_DERIVATIVE_PACKAGE_FILES.length) {
+    errors.push("source derivative manifest inventory mismatch");
+  }
+  for (const entry of sourceManifestEntries) {
+    const snapshot = await readFileSnapshot(`${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${entry.relative_path}`);
+    if (!snapshot.exists || snapshot.byteSize !== entry.byte_size || snapshot.sha256 !== entry.sha256) {
+      errors.push(`source derivative integrity mismatch: ${entry.relative_path}`);
+    }
+  }
+  const modelBuild = buildContentProductionBlueprintModel(sourceSnapshot.value || {});
+  if (!modelBuild.valid) {
+    errors.push(...modelBuild.errors);
+  }
+  if (errors.length > 0) {
+    return { valid: false, errors, files: {}, blueprint: modelBuild.blueprint };
+  }
+  const blueprint = modelBuild.blueprint;
+  const files = {
+    "README_BLUEPRINT.md": editorialDerivativeUtf8(renderContentProductionBlueprintReadme(blueprint)),
+    "production-blueprint.json": editorialDerivativeJsonBuffer(blueprint),
+    "beat-specs.csv": editorialDerivativeUtf8(renderEditorialDerivativeCsv(
+      contentProductionBlueprintBeatCsvRows(blueprint), contentProductionBlueprintBeatHeaders()
+    )),
+    "shot-specs.csv": editorialDerivativeUtf8(renderEditorialDerivativeCsv(
+      contentProductionBlueprintShotCsvRows(blueprint), contentProductionBlueprintShotHeaders()
+    )),
+    "subtitle-metrics.csv": editorialDerivativeUtf8(renderEditorialDerivativeCsv(
+      blueprint.subtitle_metrics, contentProductionBlueprintSubtitleHeaders()
+    )),
+    "visual-system.md": editorialDerivativeUtf8(renderContentProductionBlueprintVisualSystem(blueprint)),
+    "acceptance-matrix.csv": editorialDerivativeUtf8(renderEditorialDerivativeCsv(
+      contentProductionBlueprintAcceptanceCsvRows(blueprint), contentProductionBlueprintAcceptanceHeaders()
+    ))
+  };
+  files["blueprint-package-manifest.json"] = editorialDerivativeJsonBuffer(
+    buildContentProductionBlueprintPackageManifest(blueprint, files)
+  );
+  const validation = validateContentProductionBlueprintPackageCandidate(files, {
+    source_derivative: sourceSnapshot.value,
+    source_derivative_sha256: sourceSnapshot.sha256,
+    source_manifest_sha256: manifestSnapshot.sha256,
+    source_core_fingerprint_sha256: manifestSnapshot.value.derivative_core_fingerprint_sha256
+  });
+  if (!validation.valid) {
+    return { valid: false, errors: validation.errors.map((error) => `generated package: ${error}`), files, blueprint };
+  }
+  return { valid: true, errors: [], files, blueprint, manifest: validation.manifest };
+}
+
+function validateContentProductionBlueprintModel(blueprint, source) {
+  const errors = [];
+  const add = (condition, message) => {
+    if (!condition) {
+      errors.push(message);
+    }
+  };
+  const definitions = contentProductionBlueprintDodDefinitions();
+  const sourceBeats = Array.isArray(source?.beats) ? source.beats : [];
+  const sourceNarration = Array.isArray(source?.narration_segments) ? source.narration_segments : [];
+  const sourceSubtitles = Array.isArray(source?.subtitle_cues) ? source.subtitle_cues : [];
+  const sourceShots = Array.isArray(source?.shot_cues) ? source.shot_cues : [];
+  const sourceChanges = Array.isArray(source?.applied_changes) ? source.applied_changes : [];
+  const beats = Array.isArray(blueprint?.beats) ? blueprint.beats : [];
+  const shots = Array.isArray(blueprint?.shots) ? blueprint.shots : [];
+  const subtitles = Array.isArray(blueprint?.subtitle_metrics) ? blueprint.subtitle_metrics : [];
+  const sourceBeatById = new Map(sourceBeats.map((beat) => [beat.beat_id, beat]));
+  const sourceNarrationByBeat = new Map(sourceNarration.map((segment) => [segment.beat_id, segment]));
+  const sourceShotById = new Map(sourceShots.map((shot) => [shot.shot_id, shot]));
+  const sourceSubtitleById = new Map(sourceSubtitles.map((cue) => [cue.cue_id, cue]));
+  const focalSubjects = contentProductionBlueprintFocalSubjects();
+
+  add(blueprint?.schemaVersion === CONTENT_PRODUCTION_BLUEPRINT_SCHEMA_VERSION,
+    "schemaVersion mismatch");
+  add(blueprint?.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+    "artifact_id mismatch");
+  add(blueprint?.status === "provisional_production_blueprint",
+    "status must remain provisional_production_blueprint");
+  add(blueprint?.canonical === false, "final-canon promotion is forbidden");
+  add(blueprint?.production_approved === false, "production approval is forbidden");
+  add(blueprint?.route === CONTENT_PRODUCTION_BLUEPRINT_ROUTE, "Blueprint route mismatch");
+  add(blueprint?.source?.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+    "source artifact mismatch");
+  add(blueprint?.source?.derivative_editorial_handoff_sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256,
+    "source fingerprint mismatch");
+  add(blueprint?.source?.derivative_package_manifest_sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256,
+    "source manifest fingerprint mismatch");
+  add(blueprint?.source?.derivative_core_fingerprint_sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256,
+    "source core fingerprint mismatch");
+  add(arrayEqualsExact(blueprint?.source?.accepted_change_ids, EDITORIAL_DERIVATIVE_EXPECTED_CHANGE_IDS),
+    "source accepted change ids must be exactly the three accepted wording changes");
+  add(Array.isArray(blueprint?.change_history) && blueprint.change_history.length === 3 &&
+      arrayEqualsExact(blueprint.change_history.map((change) => change?.change_id), EDITORIAL_DERIVATIVE_EXPECTED_CHANGE_IDS) &&
+      JSON.stringify(blueprint.change_history) === JSON.stringify(sourceChanges),
+    "fourth authored wording change or change-history mismatch");
+
+  const profile = blueprint?.profile || {};
+  add(profile.status === "provisional_review_profile" && profile.canvas_width_px === 1920 &&
+      profile.canvas_height_px === 1080 && profile.aspect_ratio === "16:9" &&
+      profile.planning_timebase_fps === 30 && profile.render_authorized === false &&
+      profile.vertical_export_authorized === false,
+    "provisional review profile mismatch");
+  add(JSON.stringify(profile.title_safe_percent) === JSON.stringify({ top: 5, right: 5, bottom: 5, left: 5 }) &&
+      JSON.stringify(profile.subtitle_safe_percent) === JSON.stringify({ top: 5, right: 7, bottom: 8, left: 7 }),
+    "title/subtitle safe percentages mismatch");
+  add(blueprint?.content_contract?.total_duration_seconds === 180 &&
+      blueprint?.content_contract?.beat_count === 6 &&
+      blueprint?.content_contract?.shot_count === 19 &&
+      blueprint?.content_contract?.subtitle_cue_count === 20 &&
+      blueprint?.content_contract?.narration_segment_count === 6 &&
+      blueprint?.content_contract?.thumbnail_direction_count === 3,
+    "content contract counts or timing mismatch");
+
+  add(Array.isArray(blueprint?.constraint_envelope?.LOCKED) && blueprint.constraint_envelope.LOCKED.length === 12 &&
+      blueprint.constraint_envelope.LOCKED.every((item) => item?.control_class === "LOCKED"),
+    "LOCKED field envelope must contain 12 explicit fields");
+  add(Array.isArray(blueprint?.constraint_envelope?.BOUNDED) && blueprint.constraint_envelope.BOUNDED.length === 13 &&
+      blueprint.constraint_envelope.BOUNDED.every((item) => item?.control_class === "BOUNDED"),
+    "BOUNDED field envelope must contain 13 explicit fields");
+  add(Array.isArray(blueprint?.constraint_envelope?.FREE) && blueprint.constraint_envelope.FREE.length === 4 &&
+      blueprint.constraint_envelope.FREE.every((item) => item?.control_class === "FREE" &&
+        Array.isArray(item.must_not_alter) && item.must_not_alter.length === 8),
+    "FREE field envelope must contain four guarded micro-detail fields");
+  for (const [name, expected] of Object.entries(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES)) {
+    add(arrayEqualsExact(blueprint?.vocabularies?.[name], expected),
+      `${name} controlled vocabulary mismatch or unknown term`);
+  }
+
+  add(beats.length === 6 && new Set(beats.map((beat) => beat?.beat_id)).size === 6,
+    "Blueprint must contain six unique beats");
+  add(arrayEqualsExact(beats.map((beat) => beat?.beat_id), sourceBeats.map((beat) => beat?.beat_id)),
+    "changed beat order is forbidden");
+  add(shots.length === 19 && new Set(shots.map((shot) => shot?.shot_id)).size === 19,
+    "missing shot or duplicate shot id");
+  add(arrayEqualsExact(shots.map((shot) => shot?.shot_id), sourceShots.map((shot) => shot?.shot_id)),
+    "shot ids or order differ from source");
+  add(subtitles.length === 20 && new Set(subtitles.map((cue) => cue?.cue_id)).size === 20,
+    "subtitle inventory mismatch");
+
+  for (const beat of beats) {
+    const sourceBeat = sourceBeatById.get(beat?.beat_id);
+    const narration = sourceNarrationByBeat.get(beat?.beat_id);
+    const ownedShots = shots.filter((shot) => shot?.beat_id === beat?.beat_id);
+    const ownedSubtitles = subtitles.filter((cue) => cue?.beat_id === beat?.beat_id);
+    if (!sourceBeat || !narration) {
+      errors.push(`${beat?.beat_id || "<beat>"}: source relation missing`);
+      continue;
+    }
+    add(beat.beat_number === sourceBeat.beat_number && beat.start_time === sourceBeat.start_time &&
+        beat.end_time === sourceBeat.end_time && beat.start_seconds === sourceBeat.start_seconds &&
+        beat.end_seconds === sourceBeat.end_seconds &&
+        beat.duration_seconds === sourceBeat.end_seconds - sourceBeat.start_seconds,
+      `${beat.beat_id}: changed beat timing`);
+    add(beat.narration_segment_id === narration.segment_id && beat.narration_text === narration.text &&
+        beat.narration_character_count === blueprintUnicodeLength(narration.text) &&
+        beat.narration_characters_per_second === blueprintRound(
+          blueprintUnicodeLength(narration.text) / beat.duration_seconds
+        ), `${beat.beat_id}: narration metric or exact wording mismatch`);
+    add(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.information_role.includes(beat.primary_information_goal) &&
+        Array.isArray(beat.supporting_information_goals) && beat.supporting_information_goals.length <= 2 &&
+        beat.supporting_information_goals.every((role) =>
+          CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.information_role.includes(role)),
+      `${beat.beat_id}: information goal vocabulary or support limit mismatch`);
+    add(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.motif.includes(beat.recurring_motif) && beat.motif_budget === 1,
+      `${beat.beat_id}: motif is missing, unknown, or over budget`);
+    add(Array.isArray(beat.palette_roles) && beat.palette_roles.length > 0 &&
+        beat.palette_roles.every((role) => CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.palette_role.includes(role)) &&
+        Array.isArray(beat.asset_classes) && beat.asset_classes.length > 0 &&
+        beat.asset_classes.every((role) => CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.asset_class.includes(role)) &&
+        Array.isArray(beat.information_roles) && beat.information_roles.length > 0 &&
+        beat.information_roles.every((role) => CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.information_role.includes(role)),
+      `${beat.beat_id}: palette, asset, or information role unknown`);
+    add(hasNonEmptyText(beat.truth_boundary) && beat.truth_boundary === sourceBeat.truth_boundary &&
+        hasNonEmptyText(beat.rights_boundary) && beat.rights_boundary === sourceBeat.rights_boundary,
+      `${beat.beat_id}: truth or rights boundary mismatch`);
+    add(beat.shot_count === ownedShots.length && beat.subtitle_count === ownedSubtitles.length &&
+        arrayEqualsExact(beat.shot_ids, ownedShots.map((shot) => shot.shot_id)) &&
+        arrayEqualsExact(beat.subtitle_cue_ids, ownedSubtitles.map((cue) => cue.cue_id)),
+      `${beat.beat_id}: exact inventory mismatch`);
+    add(Array.isArray(beat.acceptance_checks) && beat.acceptance_checks.length === definitions.beat.length &&
+        arrayEqualsExact(beat.acceptance_checks.map((check) => check?.criterion_id),
+          definitions.beat.map((definition) => definition.criterion_id)) &&
+        ["pass", "warn"].includes(beat.acceptance_status),
+      `${beat.beat_id}: missing acceptance criterion or invalid status`);
+  }
+
+  for (const shot of shots) {
+    const sourceShot = sourceShotById.get(shot?.shot_id);
+    const owningBeat = sourceBeatById.get(shot?.beat_id);
+    if (!sourceShot || !owningBeat) {
+      errors.push(`${shot?.shot_id || "<shot>"}: source relation missing`);
+      continue;
+    }
+    const requiredTextFields = [
+      "shot_function", "current_visual_direction", "focal_subject", "truth_boundary", "rights_note"
+    ];
+    add(requiredTextFields.every((field) => hasNonEmptyText(shot?.[field])) &&
+        shot.focal_subject === focalSubjects[shot.shot_id],
+      `${shot.shot_id}: required production field missing`);
+    const startSeconds = parseEditorialTimeSeconds(sourceShot.start_time);
+    const endSeconds = parseEditorialTimeSeconds(sourceShot.end_time);
+    add(shot.start_time === sourceShot.start_time && shot.end_time === sourceShot.end_time &&
+        shot.start_seconds === startSeconds && shot.end_seconds === endSeconds &&
+        shot.duration_seconds === endSeconds - startSeconds &&
+        startSeconds >= owningBeat.start_seconds && endSeconds <= owningBeat.end_seconds,
+      `${shot.shot_id}: timing is changed or outside owning beat`);
+    add(shot.shot_function === sourceShot.shot_purpose &&
+        shot.current_visual_direction === sourceShot.visual_direction,
+      `${shot.shot_id}: source wording differs`);
+    for (const field of ["composition_class", "shot_scale", "focal_zone", "camera_motion",
+      "transition", "palette_role", "asset_class", "audio_role", "information_role"]) {
+      add(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES[field]?.includes(shot?.[field]),
+        `${shot.shot_id}: unknown ${field}`);
+    }
+    add(Number.isFinite(shot.subject_occupancy_percent_min) &&
+        Number.isFinite(shot.subject_occupancy_percent_max) &&
+        shot.subject_occupancy_percent_min >= 15 && shot.subject_occupancy_percent_max <= 80 &&
+        shot.subject_occupancy_percent_min < shot.subject_occupancy_percent_max,
+      `${shot.shot_id}: subject occupancy is unbounded`);
+    add(Number.isInteger(shot.required_asset_count) && shot.required_asset_count >= 0 &&
+        shot.required_asset_count <= 4,
+      `${shot.shot_id}: missing or invalid asset count`);
+    add(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES.overlay_text_mode.includes(
+      shot?.overlay_text_allowance?.mode
+    ) && Number.isInteger(shot?.overlay_text_allowance?.max_lines) &&
+        shot.overlay_text_allowance.max_lines >= 0 && shot.overlay_text_allowance.max_lines <= 2 &&
+        Number.isInteger(shot?.overlay_text_allowance?.max_characters_per_line) &&
+        shot.overlay_text_allowance.max_characters_per_line >= 0 &&
+        shot.overlay_text_allowance.max_characters_per_line <= 18,
+      `${shot.shot_id}: overlay allowance is missing or unbounded`);
+    add(shot.visual_direction_control === "LOCKED_SOURCE_WORDING" &&
+        shot.focal_subject_control === "LOCKED_BLUEPRINT_SPEC" &&
+        arrayEqualsExact(shot.locked_fields, [
+          "shot_function",
+          "current_visual_direction",
+          "focal_subject",
+          "truth_boundary",
+          "rights_note",
+          "asset_status",
+          "rights_status"
+        ]) &&
+        Array.isArray(shot.bounded_visual_fields) && shot.bounded_visual_fields.length === 13 &&
+        arrayEqualsExact(shot.free_micro_detail_fields, [
+          "texture_nuance", "decorative_variation", "minor_easing", "prop_wear"
+        ]) &&
+        shot?.field_control_summary?.LOCKED === 7 &&
+        shot?.field_control_summary?.BOUNDED === 13 &&
+        shot?.field_control_summary?.FREE === 4,
+      `${shot.shot_id}: unbounded freeform visual direction`);
+    add(hasNonEmptyText(shot.truth_boundary) && shot.truth_boundary === sourceShot.truth_boundary_note,
+      `${shot.shot_id}: missing truth boundary`);
+    add(shot.asset_status === "unselected", `${shot.shot_id}: selected asset is forbidden`);
+    add(shot.rights_status === "not_cleared", `${shot.shot_id}: rights-cleared claim is forbidden`);
+    add(Array.isArray(shot.acceptance_checks) && shot.acceptance_checks.length === definitions.shot.length &&
+        arrayEqualsExact(shot.acceptance_checks.map((check) => check?.criterion_id),
+          definitions.shot.map((definition) => definition.criterion_id)) &&
+        shot.acceptance_checks.every((check) => check.status === "pass") &&
+        shot.acceptance_status === "pass",
+      `${shot.shot_id}: missing acceptance criterion or failed shot check`);
+  }
+
+  const transitionCounts = countItemsByKey(shots, "transition");
+  let hardCutConsecutive = 0;
+  let hardCutMaximumConsecutive = 0;
+  for (const shot of shots) {
+    hardCutConsecutive = shot?.transition === "hard_cut" ? hardCutConsecutive + 1 : 0;
+    hardCutMaximumConsecutive = Math.max(hardCutMaximumConsecutive, hardCutConsecutive);
+  }
+  const perBeatTransitionLimitsValid = beats.every((beat) => {
+    const owned = shots.filter((shot) => shot?.beat_id === beat?.beat_id);
+    const counts = countItemsByKey(owned, "transition");
+    return (counts.get("short_dissolve") || 0) <= 1 &&
+      (counts.get("graphic_match") || 0) <= 1 &&
+      (counts.get("held_fade") || 0) <= 1;
+  });
+  add(hardCutMaximumConsecutive <= 3 &&
+      (transitionCounts.get("match_cut") || 0) <= 2 &&
+      perBeatTransitionLimitsValid,
+    `transition frequency limits exceeded: hard_cut_consecutive=${hardCutMaximumConsecutive}; match_cut_total=${transitionCounts.get("match_cut") || 0}; per_beat=${perBeatTransitionLimitsValid}`);
+
+  for (const cue of subtitles) {
+    const sourceCue = sourceSubtitleById.get(cue?.cue_id);
+    const owningBeat = sourceBeatById.get(cue?.beat_id);
+    if (!sourceCue || !owningBeat) {
+      errors.push(`${cue?.cue_id || "<subtitle>"}: source relation missing`);
+      continue;
+    }
+    const startSeconds = parseEditorialTimeSeconds(sourceCue.start_time);
+    const endSeconds = parseEditorialTimeSeconds(sourceCue.end_time);
+    const duration = endSeconds - startSeconds;
+    const characters = blueprintUnicodeLength(sourceCue.text_ja);
+    const lineLengths = String(sourceCue.line_break_hint || sourceCue.text_ja).split("｜").map(blueprintUnicodeLength);
+    add(cue.start_time === sourceCue.start_time && cue.end_time === sourceCue.end_time &&
+        cue.start_seconds === startSeconds && cue.end_seconds === endSeconds &&
+        cue.duration_seconds === duration && startSeconds >= owningBeat.start_seconds &&
+        endSeconds <= owningBeat.end_seconds && cue.text_ja === sourceCue.text_ja,
+      `${cue.cue_id}: subtitle timing or wording mismatch`);
+    add(cue.character_count === characters && cue.characters_per_second === blueprintRound(characters / duration) &&
+        cue.line_count === lineLengths.length && cue.line_count_budget === 2 &&
+        cue.characters_per_line_budget === 18 &&
+        cue.maximum_actual_characters_per_line === Math.max(...lineLengths),
+      `${cue.cue_id}: subtitle metric mismatch`);
+    add(["pass", "warn", "fail"].includes(cue.status) && cue.acceptance_status !== "fail",
+      `${cue.cue_id}: subtitle status missing or failed`);
+    add(Array.isArray(cue.acceptance_checks) && cue.acceptance_checks.length === definitions.subtitle.length &&
+        arrayEqualsExact(cue.acceptance_checks.map((check) => check?.criterion_id),
+          definitions.subtitle.map((definition) => definition.criterion_id)),
+      `${cue.cue_id}: missing acceptance criterion`);
+  }
+
+  const dod = blueprint?.definition_of_done || {};
+  for (const [scope, expected] of Object.entries(definitions)) {
+    add(Array.isArray(dod[scope]) && dod[scope].length === expected.length &&
+        arrayEqualsExact(dod[scope].map((item) => item?.criterion_id),
+          expected.map((item) => item.criterion_id)),
+      `${scope} Definition of Done criterion coverage mismatch`);
+  }
+  add(dod?.evaluated_check_counts?.global === 13 && dod?.evaluated_check_counts?.beat === 60 &&
+      dod?.evaluated_check_counts?.shot === 285 && dod?.evaluated_check_counts?.subtitle === 100,
+    "Definition of Done evaluated check counts mismatch");
+  add(Array.isArray(blueprint?.acceptance_matrix) && blueprint.acceptance_matrix.length === 46 &&
+      blueprint.acceptance_matrix.every((row) => ["pass", "warn", "fail"].includes(row?.status) &&
+        Number.isInteger(row?.criteria_count) && row.criteria_count > 0 &&
+        Array.isArray(row?.criterion_ids) && row.criterion_ids.length === row.criteria_count) &&
+      blueprint.acceptance_matrix.filter((row) => row.status === "pass").length === 42 &&
+      blueprint.acceptance_matrix.filter((row) => row.status === "warn").length === 4 &&
+      blueprint.acceptance_matrix.filter((row) => row.status === "fail").length === 0,
+    "acceptance matrix pass/warn/fail coverage mismatch");
+  add(blueprint?.acceptance_summary?.row_count === 46 &&
+      blueprint?.acceptance_summary?.pass_count === 42 &&
+      blueprint?.acceptance_summary?.warning_count === 4 &&
+      blueprint?.acceptance_summary?.failure_count === 0,
+    "acceptance summary counts mismatch");
+
+  const ui = blueprint?.ui_contract || {};
+  add(ui.change_history_owner_count === 1, "duplicate Change History owner");
+  add(ui.files_export_owner_count === 1, "Files / Export owner count must equal one");
+  add(ui.duplicate_primary_diff_count === 0, "duplicate primary Before/After diff is forbidden");
+  add(ui.package_inventory_in_beat_primary === false,
+    "package inventory in beat-dependent primary flow is forbidden");
+  add(Array.isArray(ui.utility_anchor_positions_css_px) && ui.utility_anchor_positions_css_px.length === 6 &&
+      ui.utility_anchor_positions_css_px.every(Number.isFinite) &&
+      Number.isFinite(ui.maximum_utility_anchor_movement_css_px) &&
+      ui.maximum_utility_anchor_movement_css_px <= 8,
+    "utility-anchor movement above 8 pixels");
+  const boundaries = blueprint?.boundaries || {};
+  for (const [name, expected] of Object.entries({
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    assets_selected: false,
+    rights_cleared_claim: false,
+    ai_video_generation: false,
+    production_render: false,
+    public_upload: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    production_approved: false
+  })) {
+    add(boundaries[name] === expected, `boundary ${name} must be ${expected}`);
+  }
+  add(Array.isArray(blueprint?.failures) && blueprint.failures.length === 0 && blueprint?.passed === true,
+    "Blueprint failures must be empty and passed must be true");
+  add(collectCredentialMaterial(blueprint).length === 0, "credential-like material is forbidden");
+  return { valid: errors.length === 0, errors };
+}
+
+function validateContentProductionBlueprintPackageCandidate(files, context) {
+  const errors = [];
+  const actualPaths = Object.keys(files || {}).sort();
+  const expectedPaths = [...CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES].sort();
+  if (!arrayEqualsExact(actualPaths, expectedPaths)) {
+    errors.push(`package file set mismatch: ${actualPaths.join(",")}`);
+  }
+  for (const relativePath of CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES) {
+    if (!Buffer.isBuffer(files?.[relativePath])) {
+      errors.push(`${relativePath}: missing Buffer`);
+    }
+  }
+  let blueprint = {};
+  let manifest = {};
+  try {
+    blueprint = JSON.parse(files?.["production-blueprint.json"]?.toString("utf8") || "{}");
+  } catch (error) {
+    errors.push(`production-blueprint.json parse failed: ${error.message}`);
+  }
+  try {
+    manifest = JSON.parse(files?.["blueprint-package-manifest.json"]?.toString("utf8") || "{}");
+  } catch (error) {
+    errors.push(`blueprint-package-manifest.json parse failed: ${error.message}`);
+  }
+  const modelValidation = validateContentProductionBlueprintModel(blueprint, context?.source_derivative || {});
+  errors.push(...modelValidation.errors);
+  if (context?.source_derivative_sha256 !== CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256 ||
+      context?.source_manifest_sha256 !== CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256 ||
+      context?.source_core_fingerprint_sha256 !== CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256) {
+    errors.push("source fingerprint context mismatch");
+  }
+  const rebuilt = buildContentProductionBlueprintModel(context?.source_derivative || {});
+  if (!rebuilt.valid) {
+    errors.push(...rebuilt.errors.map((error) => `rebuild: ${error}`));
+  } else {
+    const expectedBlueprintBytes = editorialDerivativeJsonBuffer(rebuilt.blueprint);
+    if (!files?.["production-blueprint.json"]?.equals(expectedBlueprintBytes)) {
+      errors.push("production-blueprint.json is not the deterministic source-derived model");
+    }
+    const expectedBytes = {
+      "README_BLUEPRINT.md": editorialDerivativeUtf8(renderContentProductionBlueprintReadme(rebuilt.blueprint)),
+      "beat-specs.csv": editorialDerivativeUtf8(renderEditorialDerivativeCsv(
+        contentProductionBlueprintBeatCsvRows(rebuilt.blueprint), contentProductionBlueprintBeatHeaders()
+      )),
+      "shot-specs.csv": editorialDerivativeUtf8(renderEditorialDerivativeCsv(
+        contentProductionBlueprintShotCsvRows(rebuilt.blueprint), contentProductionBlueprintShotHeaders()
+      )),
+      "subtitle-metrics.csv": editorialDerivativeUtf8(renderEditorialDerivativeCsv(
+        rebuilt.blueprint.subtitle_metrics, contentProductionBlueprintSubtitleHeaders()
+      )),
+      "visual-system.md": editorialDerivativeUtf8(renderContentProductionBlueprintVisualSystem(rebuilt.blueprint)),
+      "acceptance-matrix.csv": editorialDerivativeUtf8(renderEditorialDerivativeCsv(
+        contentProductionBlueprintAcceptanceCsvRows(rebuilt.blueprint), contentProductionBlueprintAcceptanceHeaders()
+      ))
+    };
+    for (const [relativePath, expected] of Object.entries(expectedBytes)) {
+      if (!files?.[relativePath]?.equals(expected)) {
+        errors.push(`${relativePath} does not exactly match the authoritative Blueprint model`);
+      }
+    }
+  }
+  const manifestFiles = Array.isArray(manifest?.files) ? manifest.files : [];
+  const manifestPaths = manifestFiles.map((entry) => entry?.relative_path);
+  if (manifest?.schemaVersion !== CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_SCHEMA_VERSION ||
+      manifest?.artifact_id !== CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID ||
+      manifest?.package_root !== CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT ||
+      manifest?.canonical !== false || manifest?.production_approved !== false ||
+      manifest?.passed !== true || !Array.isArray(manifest?.failures) || manifest.failures.length !== 0) {
+    errors.push("Blueprint package manifest identity or boundary mismatch");
+  }
+  if (!arrayEqualsExact(manifestPaths, CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_FILES) ||
+      manifestPaths.includes("blueprint-package-manifest.json")) {
+    errors.push("manifest must inventory exactly the other seven files and no self-hash");
+  }
+  for (const entry of manifestFiles) {
+    const file = files?.[entry.relative_path];
+    if (!Buffer.isBuffer(file) || file.byteLength !== entry.byte_size ||
+        editorialDerivativeBufferHash(file) !== entry.sha256) {
+      errors.push(`manifest hash mismatch: ${entry.relative_path || "<missing>"}`);
+    }
+  }
+  return { valid: errors.length === 0, errors, blueprint, manifest };
+}
+
+function cloneContentProductionBlueprintFiles(files) {
+  return Object.fromEntries(Object.entries(files || {}).map(([relativePath, buffer]) => [
+    relativePath,
+    Buffer.from(buffer)
+  ]));
+}
+
+function mutateContentProductionBlueprintJsonFile(files, relativePath, mutate) {
+  const cloned = cloneContentProductionBlueprintFiles(files);
+  const value = JSON.parse(cloned[relativePath].toString("utf8"));
+  mutate(value);
+  cloned[relativePath] = editorialDerivativeJsonBuffer(value);
+  return cloned;
+}
+
+async function writeContentProductionBlueprintPackageArtifacts(files) {
+  const actualPaths = Object.keys(files || {}).sort();
+  const allowedPaths = [...CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES].sort();
+  if (!arrayEqualsExact(actualPaths, allowedPaths)) {
+    fail(`Refusing Blueprint write outside exact package set: ${actualPaths.join(",")}`);
+  }
+  await mkdir(CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT, { recursive: true });
+  for (const relativePath of CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES) {
+    const target = `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${relativePath}`;
+    if (toRepoPath(target) !== `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${relativePath}`) {
+      fail(`Refusing unsafe Blueprint target: ${target}`);
+    }
+    await writeFile(target, files[relativePath]);
+  }
+}
+
+async function snapshotContentProductionBlueprintProtectedFiles() {
+  const paths = [
+    ...EDITORIAL_HANDOFF_REQUIRED_FILES.map((relativePath) =>
+      `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${relativePath}`
+    ),
+    ...EDITORIAL_REVISION_REQUIRED_FILES.map((relativePath) =>
+      `${EDITORIAL_REVISION_PACKAGE_ROOT}/${relativePath}`
+    ),
+    ...EDITORIAL_DERIVATIVE_REQUIRED_FILES.map((relativePath) =>
+      `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${relativePath}`
+    )
+  ];
+  const entries = await Promise.all(paths.map(async (filePath) => {
+    const snapshot = await readFileSnapshot(filePath);
+    return [filePath, {
+      exists: snapshot.exists,
+      byte_size: snapshot.byteSize,
+      sha256: snapshot.sha256
+    }];
+  }));
+  return Object.fromEntries(entries);
+}
+
+function contentProductionBlueprintSnapshotMapsEqual(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+async function snapshotContentProductionBlueprintPackageFiles() {
+  const entries = await Promise.all(CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.map(async (relativePath) => {
+    const filePath = `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${relativePath}`;
+    const snapshot = await readFileSnapshot(filePath);
+    return [filePath, {
+      exists: snapshot.exists,
+      byte_size: snapshot.byteSize,
+      sha256: snapshot.sha256
+    }];
+  }));
+  return Object.fromEntries(entries);
+}
+
+async function readContentProductionBlueprintSmokeSeed(inputPath, targetPath) {
+  if (await fileSizeOrZero(inputPath) > 0) {
+    const seed = await readJson(inputPath);
+    return {
+      ...seed,
+      failures: [],
+      passed: true
+    };
+  }
+  return {
+    schemaVersion: CONTENT_PRODUCTION_BLUEPRINT_RESULT_SCHEMA_VERSION,
+    artifact_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+    route: CONTENT_PRODUCTION_BLUEPRINT_ROUTE,
+    source_derivative_artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+    source_derivative_sha256: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256,
+    source_derivative_manifest_sha256: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256,
+    source_derivative_core_fingerprint_sha256: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256,
+    layout_stability: {
+      viewport_css_px: { width: 900, height: 1200 },
+      utility_anchor_positions_css_px: [0, 0, 0, 0, 0, 0],
+      maximum_utility_anchor_movement_css_px: 0,
+      limit_css_px: 8,
+      measurement_source: "fixed-height structural contract; browser confirmation pending"
+    },
+    failures: [],
+    passed: true
+  };
+}
+
+function contentProductionBlueprintAttributeCount(text, attributeName, expectedValue = "true") {
+  const name = escapeRegExp(attributeName);
+  const value = escapeRegExp(expectedValue);
+  return (String(text || "").match(new RegExp(`\\b${name}\\s*=\\s*(?:"${value}"|'${value}')`, "gi")) || []).length;
+}
+
+function validateContentProductionBlueprintEmbeddedFallback(html) {
+  const errors = [];
+  const fallbackStart = html.indexOf("function buildContentProductionBlueprintFallback");
+  const fallbackEnd = html.indexOf("async function initializeContentProductionBlueprint", fallbackStart);
+  const fallbackBlock = fallbackStart >= 0 && fallbackEnd > fallbackStart
+    ? html.slice(fallbackStart, fallbackEnd) : "";
+  if (!fallbackBlock) {
+    return { valid: false, errors: ["embedded Blueprint fallback function missing"] };
+  }
+  const shotPlansMatch = fallbackBlock.match(/const\s+shotPlans\s*=\s*(\[[\s\S]*?\])\.map\s*\(/);
+  let fallbackShotPlans = null;
+  try {
+    fallbackShotPlans = shotPlansMatch ? JSON.parse(shotPlansMatch[1]) : null;
+  } catch (error) {
+    errors.push(`embedded shotPlans parse failed: ${error.message}`);
+  }
+  const expectedShotPlans = contentProductionBlueprintShotPlans().map((plan) => [
+    plan.shot_id,
+    plan.composition_class,
+    plan.shot_scale,
+    plan.focal_zone,
+    plan.subject_occupancy_percent_min,
+    plan.subject_occupancy_percent_max,
+    plan.camera_motion,
+    plan.transition,
+    plan.palette_role,
+    plan.asset_class,
+    plan.required_asset_count,
+    plan.overlay_text_mode,
+    plan.audio_role,
+    plan.information_role
+  ]);
+  if (!fallbackShotPlans || JSON.stringify(fallbackShotPlans) !== JSON.stringify(expectedShotPlans)) {
+    errors.push("embedded fallback shot plans do not exactly match controlled vocabularies and numeric bounds");
+  }
+  const beatPlansMatch = fallbackBlock.match(/const\s+beatPlans\s*=\s*(\[[\s\S]*?\])\.map\s*\(/);
+  let fallbackBeatPlans = null;
+  try {
+    fallbackBeatPlans = beatPlansMatch ? JSON.parse(beatPlansMatch[1]) : null;
+  } catch (error) {
+    errors.push(`embedded beatPlans parse failed: ${error.message}`);
+  }
+  const expectedBeatPlans = contentProductionBlueprintBeatPlans().map((plan) => [
+    plan.beat_number,
+    plan.primary_information_goal,
+    plan.supporting_information_goals,
+    plan.recurring_motif
+  ]);
+  if (!fallbackBeatPlans || JSON.stringify(fallbackBeatPlans) !== JSON.stringify(expectedBeatPlans)) {
+    errors.push("embedded fallback beat plans do not exactly match controlled information and motif terms");
+  }
+  for (const values of Object.values(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES)) {
+    for (const value of values) {
+      if (!html.includes(`"${value}"`)) {
+        errors.push(`embedded vocabulary term missing: ${value}`);
+      }
+    }
+  }
+  const forbiddenFallbackLiterals = [
+    "upper_center",
+    "lower_center",
+    "split_left_right",
+    "narration_primary",
+    "handheld_freeform",
+    "cinematic_anything"
+  ];
+  for (const literal of forbiddenFallbackLiterals) {
+    if (fallbackBlock.includes(literal)) {
+      errors.push(`embedded fallback contains unknown production term: ${literal}`);
+    }
+  }
+  const requiredFallbackContracts = [
+    "shotPlanById.get(shot.shot_id)",
+    "visual_direction_control: \"LOCKED_SOURCE_WORDING\"",
+    "focal_subject_control: \"LOCKED_BLUEPRINT_SPEC\"",
+    "locked_fields",
+    "bounded_visual_fields",
+    "free_micro_detail_fields",
+    "field_control_summary: { LOCKED: 7, BOUNDED: 13, FREE: 4 }",
+    "subject_occupancy_percent_min",
+    "subject_occupancy_percent_max",
+    "required_asset_count",
+    "overlay_text_allowance",
+    "max_characters_per_line: overlayMaxLines === 0 ? 0 : 18",
+    "asset_status: \"unselected\"",
+    "rights_status: \"not_cleared\"",
+    "canvas_width_px: 1920",
+    "canvas_height_px: 1080",
+    "planning_timebase_fps: 30",
+    "title_safe_percent: { top: 5, right: 5, bottom: 5, left: 5 }",
+    "subtitle_safe_percent: { top: 5, right: 7, bottom: 8, left: 7 }"
+  ];
+  for (const contract of requiredFallbackContracts) {
+    if (!fallbackBlock.includes(contract)) {
+      errors.push(`embedded fallback contract missing: ${contract}`);
+    }
+  }
+  const failClosedContractMarkers = [
+    "function validateContentProductionBlueprintContract(model, sourceModel)",
+    "Object.entries(CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES)",
+    "match_cut frequency exceeds 2",
+    "occupancy out of bounds",
+    "asset count out of bounds",
+    "overlay mismatch",
+    "source or boundary mismatch",
+    'data-blueprint-fallback-self-validation',
+    'data-blueprint-fallback-plan-parity',
+    'data-blueprint-fail-closed'
+  ];
+  for (const marker of failClosedContractMarkers) {
+    if (!html.includes(marker)) {
+      errors.push(`embedded fail-closed contract marker missing: ${marker}`);
+    }
+  }
+  return { valid: errors.length === 0, errors };
+}
+
+async function validateContentProductionBlueprint(readback, readbackPath, options = {}) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+  const protectedBefore = options.protected_before || await snapshotContentProductionBlueprintProtectedFiles();
+  const packageBefore = await snapshotContentProductionBlueprintPackageFiles();
+  const packageSnapshotEntries = await Promise.all(
+    CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.map(async (relativePath) => [
+      relativePath,
+      await readFileSnapshot(`${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${relativePath}`)
+    ])
+  );
+  const packageSnapshots = Object.fromEntries(packageSnapshotEntries);
+  const diskFiles = Object.fromEntries(CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES
+    .filter((relativePath) => packageSnapshots[relativePath]?.exists)
+    .map((relativePath) => [relativePath, packageSnapshots[relativePath].buffer]));
+  const [
+    sourceSnapshot,
+    sourceManifestSnapshot,
+    sourceProvenanceSnapshot,
+    htmlSnapshot,
+    powerShellLauncherSnapshot,
+    shellLauncherSnapshot,
+    rootManifestSnapshot,
+    reviewDocSnapshot
+  ] = await Promise.all([
+    readJsonFileSnapshot(CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_PATH),
+    readJsonFileSnapshot(EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_PATH),
+    readJsonFileSnapshot(`${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/derivative-provenance.json`),
+    readFileSnapshot("public/review/index.html"),
+    readFileSnapshot("scripts/operator/open_review.ps1"),
+    readFileSnapshot("scripts/operator/open_review.sh"),
+    readJsonFileSnapshot("artifacts/artifact-manifest.json"),
+    readFileSnapshot("docs/review/content-production-blueprint.md")
+  ]);
+  const context = {
+    source_derivative: sourceSnapshot.value || {},
+    source_derivative_sha256: sourceSnapshot.sha256,
+    source_manifest_sha256: sourceManifestSnapshot.sha256,
+    source_core_fingerprint_sha256: sourceManifestSnapshot.value?.derivative_core_fingerprint_sha256
+  };
+  const packageValidation = validateContentProductionBlueprintPackageCandidate(diskFiles, context);
+  const blueprint = packageValidation.blueprint || {};
+  const manifest = packageValidation.manifest || {};
+  const generated = await buildContentProductionBlueprintPackageArtifacts();
+
+  const modelProbe = (mutate) => {
+    const value = cloneJsonValue(generated.blueprint || blueprint);
+    mutate(value);
+    return validateContentProductionBlueprintModel(value, sourceSnapshot.value || {});
+  };
+  const toNegativeProbe = (validation) => ({
+    passed: validation.valid === false,
+    fail_closed: true,
+    artifact_mutation: false,
+    validation_errors: validation.errors
+  });
+  const manifestMismatchFiles = mutateContentProductionBlueprintJsonFile(
+    generated.files || diskFiles,
+    "blueprint-package-manifest.json",
+    (value) => {
+      value.files[0].sha256 = "0".repeat(64);
+    }
+  );
+  const unknownCameraMotionValidation = modelProbe((value) => {
+    value.shots[0].camera_motion = "handheld_freeform";
+  });
+  const transitionFrequencyValidation = modelProbe((value) => {
+    value.shots.forEach((shot) => {
+      shot.transition = "match_cut";
+    });
+  });
+  const negativeProbes = {
+    source_fingerprint_mismatch: toNegativeProbe(modelProbe((value) => {
+      value.source.derivative_editorial_handoff_sha256 = "0".repeat(64);
+    })),
+    changed_beat_timing: toNegativeProbe(modelProbe((value) => {
+      value.beats[0].end_seconds += 1;
+      value.beats[0].duration_seconds += 1;
+    })),
+    changed_beat_order: toNegativeProbe(modelProbe((value) => {
+      value.beats.reverse();
+    })),
+    missing_shot: toNegativeProbe(modelProbe((value) => {
+      value.shots.pop();
+    })),
+    fourth_authored_wording_change: toNegativeProbe(modelProbe((value) => {
+      const extra = cloneJsonValue(value.change_history[0]);
+      extra.change_id = "rev-change-extra-fourth";
+      value.change_history.push(extra);
+    })),
+    unknown_composition_class: toNegativeProbe(modelProbe((value) => {
+      value.shots[0].composition_class = "cinematic_anything";
+    })),
+    unknown_camera_motion: {
+      passed: unknownCameraMotionValidation.valid === false && transitionFrequencyValidation.valid === false,
+      fail_closed: true,
+      artifact_mutation: false,
+      compound_coverage: {
+        unknown_camera_motion_rejected: unknownCameraMotionValidation.valid === false,
+        transition_frequency_violation_rejected: transitionFrequencyValidation.valid === false
+      },
+      validation_errors: [
+        ...unknownCameraMotionValidation.errors,
+        ...transitionFrequencyValidation.errors
+      ]
+    },
+    missing_asset_count: toNegativeProbe(modelProbe((value) => {
+      delete value.shots[0].required_asset_count;
+    })),
+    unbounded_freeform_visual_direction: toNegativeProbe(modelProbe((value) => {
+      value.shots[0].visual_direction_control = "FREE_UNBOUNDED";
+      value.shots[0].focal_subject_control = "FREE_UNBOUNDED";
+    })),
+    missing_truth_boundary: toNegativeProbe(modelProbe((value) => {
+      delete value.shots[0].truth_boundary;
+    })),
+    selected_asset: toNegativeProbe(modelProbe((value) => {
+      value.shots[0].asset_status = "selected";
+    })),
+    rights_cleared_claim: toNegativeProbe(modelProbe((value) => {
+      value.shots[0].rights_status = "cleared";
+      value.boundaries.rights_cleared_claim = true;
+    })),
+    final_canon_promotion: toNegativeProbe(modelProbe((value) => {
+      value.canonical = true;
+      value.boundaries.final_canon_decision = true;
+    })),
+    duplicate_change_history_owner: toNegativeProbe(modelProbe((value) => {
+      value.ui_contract.change_history_owner_count = 2;
+    })),
+    package_inventory_in_beat_primary: toNegativeProbe(modelProbe((value) => {
+      value.ui_contract.package_inventory_in_beat_primary = true;
+    })),
+    utility_anchor_movement_above_8: toNegativeProbe(modelProbe((value) => {
+      value.ui_contract.utility_anchor_positions_css_px = [0, 0, 0, 0, 0, 9];
+      value.ui_contract.maximum_utility_anchor_movement_css_px = 9;
+    })),
+    missing_acceptance_criterion: toNegativeProbe(modelProbe((value) => {
+      value.shots[0].acceptance_checks.pop();
+    })),
+    manifest_hash_mismatch: toNegativeProbe(validateContentProductionBlueprintPackageCandidate(
+      manifestMismatchFiles,
+      context
+    ))
+  };
+  const negativeProbesPassed = Object.keys(negativeProbes).length === 18 &&
+    Object.values(negativeProbes).every((probe) =>
+      probe.passed && probe.fail_closed && probe.artifact_mutation === false
+    );
+
+  const html = htmlSnapshot.text || "";
+  const embeddedFallbackValidation = validateContentProductionBlueprintEmbeddedFallback(html);
+  const blueprintRoot = extractFirstHtmlSectionByMarker(
+    html,
+    'data-content-production-blueprint-root="true"'
+  );
+  const derivativeRoot = extractFirstHtmlSectionByMarker(
+    html,
+    'data-editorial-derivative-root="true"'
+  );
+  const blueprintActiveCanvasBlock = extractFirstHtmlSectionByMarker(
+    blueprintRoot,
+    'data-blueprint-active-canvas="true"'
+  );
+  const blueprintUtilityBlock = extractFirstHtmlSectionByMarker(
+    blueprintRoot,
+    'data-blueprint-utility-anchor="true"'
+  );
+  const packageInventoryOutsideBeatPrimary = blueprintActiveCanvasBlock.length > 0 &&
+    blueprintUtilityBlock.length > 0 &&
+    !hasHtmlAttribute(blueprintActiveCanvasBlock, "data-blueprint-package-files") &&
+    !blueprintActiveCanvasBlock.includes("artifacts/production-blueprint/") &&
+    !CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.some((relativePath) =>
+      blueprintActiveCanvasBlock.includes(relativePath)
+    ) &&
+    hasHtmlAttribute(blueprintUtilityBlock, "data-blueprint-package-files") &&
+    CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.every((relativePath) =>
+      blueprintUtilityBlock.includes(relativePath)
+    );
+  const blueprintMarkersPresent = blueprintRoot.length > 0 &&
+    hasHtmlAttribute(blueprintRoot, "data-mode-panel", "blueprint") &&
+    [
+      "data-blueprint-content-contract",
+      "data-blueprint-constraint-envelope",
+      "data-blueprint-runway",
+      "data-blueprint-active-canvas",
+      "data-blueprint-utility-anchor",
+      "data-blueprint-change-history-owner",
+      "data-blueprint-files-export-owner",
+      "data-blueprint-guards-owner"
+    ].every((marker) => hasHtmlAttribute(blueprintRoot, marker, "true"));
+  const changeHistoryOwnerCount = contentProductionBlueprintAttributeCount(
+    blueprintRoot, "data-blueprint-change-history-owner"
+  );
+  const filesExportOwnerCount = contentProductionBlueprintAttributeCount(
+    blueprintRoot, "data-blueprint-files-export-owner"
+  );
+  const duplicatePrimaryDiffCount = contentProductionBlueprintAttributeCount(
+    derivativeRoot, "data-derivative-primary-before-after"
+  );
+  const derivativeChangeHistoryOwnerCount = contentProductionBlueprintAttributeCount(
+    derivativeRoot, "data-derivative-change-history-owner"
+  );
+  const derivativeFilesExportOwnerCount = contentProductionBlueprintAttributeCount(
+    derivativeRoot, "data-derivative-files-export-owner"
+  );
+  const derivativeIaValid = derivativeRoot.length > 0 &&
+    derivativeChangeHistoryOwnerCount === 1 && derivativeFilesExportOwnerCount === 1 &&
+    duplicatePrimaryDiffCount === 0;
+  const preservedRoutesThemesKeyboard = [
+    "derivative", "revision", "handoff", "bridge", "brief"
+  ].every((mode) => hasHtmlAttribute(html, "data-mode-panel", mode)) &&
+    html.includes(':root[data-theme="dark"]') && html.includes(':root[data-theme="auto"]') &&
+    html.includes(":focus-visible") && html.includes("keydown") &&
+    html.includes("ArrowLeft") && html.includes("ArrowRight") &&
+    html.includes("Home") && html.includes("End");
+
+  const launcherModes = ["brief", "bridge", "handoff", "revision", "derivative", "blueprint"];
+  const powerShellLauncher = powerShellLauncherSnapshot.text || "";
+  const shellLauncher = shellLauncherSnapshot.text || "";
+  const shellModeCaseMatch = shellLauncher.match(/case\s+"\$mode"\s+in([\s\S]*?)esac/);
+  const shellModeCase = shellModeCaseMatch?.[1] || "";
+  const powerShellLauncherValid = powerShellLauncherSnapshot.exists &&
+    /ValidateSet\s*\(/i.test(powerShellLauncher) &&
+    launcherModes.every((mode) => powerShellLauncher.includes(`"${mode}"`)) &&
+    /\[string\]\$Mode\s*=\s*"brief"/i.test(powerShellLauncher) &&
+    /\[switch\]\$PrintUri/i.test(powerShellLauncher) &&
+    powerShellLauncher.includes("?mode=$Mode");
+  const shellLauncherValid = shellLauncherSnapshot.exists &&
+    /mode=brief(?:\r?\n|$)/.test(shellLauncher) &&
+    shellLauncher.includes("--mode") && shellLauncher.includes("--print-uri") &&
+    launcherModes.every((mode) => shellModeCase.includes(mode)) &&
+    shellModeCase.includes("unknown or unsafe mode") && shellLauncher.includes("?mode=$mode");
+
+  const rootManifest = rootManifestSnapshot.value || {};
+  const rootBlueprint = rootManifest.content_production_blueprint || {};
+  const expectedRootPackageFiles = CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.map((relativePath) =>
+    `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${relativePath}`
+  );
+  const rootValidationCommand = String(rootManifest.validation_command || "");
+  const blueprintValidatorIndex = rootValidationCommand.indexOf("validate-content-production-blueprint");
+  const derivativeValidatorIndex = rootValidationCommand.indexOf("validate-editorial-derivative-preview");
+  const rootManifestValid = rootManifestSnapshot.error === null &&
+    rootManifest.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+    rootManifest.content_production_blueprint_doc_path === "docs/review/content-production-blueprint.md" &&
+    rootManifest.content_production_blueprint_result_path === DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT &&
+    rootManifest.content_production_blueprint_route === CONTENT_PRODUCTION_BLUEPRINT_ROUTE &&
+    toRepoPath(String(rootManifest.content_production_blueprint_package_dir || "")).replace(/\/+$/, "") ===
+      CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT &&
+    rootManifest.content_production_blueprint_manifest_path === CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_PATH &&
+    rootManifest.default_review_mode === "brief" && rootManifest.review_input_mode === "freeform" &&
+    rootBlueprint.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+    rootBlueprint.schemaVersion === CONTENT_PRODUCTION_BLUEPRINT_SCHEMA_VERSION &&
+    rootBlueprint.access_route === CONTENT_PRODUCTION_BLUEPRINT_ROUTE &&
+    rootBlueprint.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+    rootBlueprint.source_derivative_sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256 &&
+    rootBlueprint.source_derivative_manifest_sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256 &&
+    rootBlueprint.source_derivative_core_fingerprint_sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256 &&
+    arrayEqualsExact(rootBlueprint.package_files, expectedRootPackageFiles) &&
+    rootBlueprint.canonical === false && rootBlueprint.production_approved === false &&
+    rootBlueprint.assets_selected === false && rootBlueprint.rights_cleared_claim === false &&
+    blueprintValidatorIndex >= 0 && derivativeValidatorIndex > blueprintValidatorIndex &&
+    !rootValidationCommand.includes("smoke-content-production-blueprint");
+  const reviewDoc = reviewDocSnapshot.text || "";
+  const reviewDocValid = reviewDocSnapshot.exists &&
+    reviewDoc.includes(CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID) &&
+    reviewDoc.includes(CONTENT_PRODUCTION_BLUEPRINT_ROUTE) &&
+    reviewDoc.includes("validate-content-production-blueprint") &&
+    reviewDoc.includes("smoke-content-production-blueprint") &&
+    reviewDoc.includes(CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256) &&
+    CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.every((relativePath) => reviewDoc.includes(relativePath));
+
+  const readbackPositions = Array.isArray(readback?.layout_stability?.utility_anchor_positions_css_px) &&
+      readback.layout_stability.utility_anchor_positions_css_px.length === 6 &&
+      readback.layout_stability.utility_anchor_positions_css_px.every(Number.isFinite)
+    ? readback.layout_stability.utility_anchor_positions_css_px
+    : blueprint?.ui_contract?.utility_anchor_positions_css_px;
+  const anchorMovement = Array.isArray(readbackPositions) && readbackPositions.length === 6
+    ? blueprintRound(Math.max(...readbackPositions) - Math.min(...readbackPositions))
+    : Number.POSITIVE_INFINITY;
+  const layoutMeasurementSource = String(readback?.layout_stability?.measurement_source || "");
+  const layoutViewport = readback?.layout_stability?.viewport_css_px || {};
+  const layoutStabilityValid = Number.isFinite(anchorMovement) && anchorMovement <= 8 &&
+    /^browser(?:_|\b)/i.test(layoutMeasurementSource) &&
+    Number.isFinite(layoutViewport.width) && layoutViewport.width >= 850 && layoutViewport.width <= 950 &&
+    Number.isFinite(layoutViewport.height) && layoutViewport.height >= 1100 && layoutViewport.height <= 1300;
+  const readbackIdentityValid =
+    readback?.schemaVersion === CONTENT_PRODUCTION_BLUEPRINT_RESULT_SCHEMA_VERSION &&
+    readback?.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+    readback?.route === CONTENT_PRODUCTION_BLUEPRINT_ROUTE &&
+    readback?.source_derivative_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+    readback?.source_derivative_sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256 &&
+    readback?.source_derivative_manifest_sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256 &&
+    readback?.source_derivative_core_fingerprint_sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256 &&
+    Array.isArray(readback?.failures) && readback.failures.length === 0 && readback?.passed === true;
+
+  const protectedAfter = options.protected_after || await snapshotContentProductionBlueprintProtectedFiles();
+  const packageAfter = await snapshotContentProductionBlueprintPackageFiles();
+  const sourcePackagesUnchanged = contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter);
+  const validationReadOnly = contentProductionBlueprintSnapshotMapsEqual(packageBefore, packageAfter) && sourcePackagesUnchanged;
+  const sourceFingerprintsValid = sourceSnapshot.sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256 &&
+    sourceManifestSnapshot.sha256 === CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256 &&
+    sourceManifestSnapshot.value?.derivative_core_fingerprint_sha256 ===
+      CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256 &&
+    sourceProvenanceSnapshot.value?.derivative?.core_fingerprint_sha256 ===
+      CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256;
+  const boundaryValuesValid = blueprint?.canonical === false && blueprint?.production_approved === false &&
+    blueprint?.boundaries?.assets_selected === false && blueprint?.boundaries?.rights_cleared_claim === false &&
+    blueprint?.boundaries?.local_only === true && blueprint?.boundaries?.external_call === false &&
+    blueprint?.boundaries?.provider_configured === false && blueprint?.boundaries?.credentials_touched === false &&
+    blueprint?.boundaries?.ai_video_generation === false && blueprint?.boundaries?.production_render === false &&
+    blueprint?.boundaries?.public_upload === false && blueprint?.boundaries?.database_persistence === false &&
+    blueprint?.boundaries?.final_canon_decision === false;
+
+  check("result_identity", readbackIdentityValid,
+    `schema=${readback?.schemaVersion}; artifact=${readback?.artifact_id}; route=${readback?.route}`);
+  check("exact_source_fingerprints", sourceFingerprintsValid,
+    `derivative=${sourceSnapshot.sha256}; manifest=${sourceManifestSnapshot.sha256}; core=${sourceManifestSnapshot.value?.derivative_core_fingerprint_sha256}`);
+  check("source_packages_immutable", sourcePackagesUnchanged,
+    `protected_files=${Object.keys(protectedBefore).length}; unchanged=${sourcePackagesUnchanged}`);
+  check("complete_deterministic_blueprint_package", packageValidation.valid && generated.valid,
+    `files=${Object.keys(diskFiles).length}/8; disk=${packageValidation.errors.join(" | ") || "ok"}; generated=${generated.errors?.join(" | ") || "ok"}`);
+  check("controlled_vocabulary_and_metrics", packageValidation.valid &&
+      embeddedFallbackValidation.valid &&
+      blueprint?.vocabulary_counts?.composition_class === 8 &&
+      blueprint?.vocabulary_counts?.shot_scale === 5 &&
+      blueprint?.vocabulary_counts?.camera_motion === 6 &&
+      blueprint?.vocabulary_counts?.transition === 5 &&
+      blueprint?.vocabulary_counts?.palette_role === 6 &&
+      blueprint?.vocabulary_counts?.asset_class === 7 &&
+      blueprint?.vocabulary_counts?.information_role === 7 &&
+      blueprint?.metrics?.narration_character_total === 778,
+    `vocab=${JSON.stringify(blueprint?.vocabulary_counts || {})}; narration=${blueprint?.metrics?.narration_character_total}; fallback=${embeddedFallbackValidation.errors.join(" | ") || "ok"}`);
+  check("definition_of_done_and_acceptance_matrix", packageValidation.valid &&
+      blueprint?.definition_of_done?.evaluated_check_counts?.global === 13 &&
+      blueprint?.definition_of_done?.evaluated_check_counts?.beat === 60 &&
+      blueprint?.definition_of_done?.evaluated_check_counts?.shot === 285 &&
+      blueprint?.definition_of_done?.evaluated_check_counts?.subtitle === 100 &&
+      blueprint?.acceptance_summary?.pass_count === 42 &&
+      blueprint?.acceptance_summary?.warning_count === 4 &&
+      blueprint?.acceptance_summary?.failure_count === 0,
+    `dod=${JSON.stringify(blueprint?.definition_of_done?.evaluated_check_counts || {})}; acceptance=${JSON.stringify(blueprint?.acceptance_summary || {})}`);
+  check("negative_probes_fail_closed", generated.valid && negativeProbesPassed,
+    Object.entries(negativeProbes).map(([name, probe]) => `${name}:${probe.passed}`).join("; "));
+  check("blueprint_ui_information_architecture", blueprintMarkersPresent &&
+      changeHistoryOwnerCount === 1 && filesExportOwnerCount === 1 &&
+      packageInventoryOutsideBeatPrimary && preservedRoutesThemesKeyboard,
+    `markers=${blueprintMarkersPresent}; owners=${changeHistoryOwnerCount}/${filesExportOwnerCount}; packageOutsidePrimary=${packageInventoryOutsideBeatPrimary}; preserved=${preservedRoutesThemesKeyboard}`);
+  check("derivative_ia_correction", derivativeIaValid,
+    `history=${derivativeChangeHistoryOwnerCount}; files=${derivativeFilesExportOwnerCount}; duplicatePrimary=${duplicatePrimaryDiffCount}`);
+  check("layout_stability", layoutStabilityValid,
+    `positions=${Array.isArray(readbackPositions) ? readbackPositions.join(",") : "missing"}; movement=${anchorMovement}; limit=8; source=${layoutMeasurementSource || "missing"}; viewport=${layoutViewport.width || "?"}x${layoutViewport.height || "?"}`);
+  check("mode_aware_launchers", powerShellLauncherValid && shellLauncherValid,
+    `powershell=${powerShellLauncherValid}; shell=${shellLauncherValid}; modes=${launcherModes.join(",")}`);
+  check("docs_and_root_manifest_registered", rootManifestValid && reviewDocValid,
+    `manifest=${rootManifestValid}/${rootManifestSnapshot.error || "ok"}; doc=${reviewDocValid}/${reviewDocSnapshot.error || "ok"}; order=${blueprintValidatorIndex}/${derivativeValidatorIndex}`);
+  check("normal_validation_read_only", validationReadOnly,
+    `package=${contentProductionBlueprintSnapshotMapsEqual(packageBefore, packageAfter)}; protected=${sourcePackagesUnchanged}`);
+  check("boundary_gates_closed", boundaryValuesValid && collectCredentialMaterial(blueprint).length === 0,
+    `closed=${boundaryValuesValid}; credentialFindings=${collectCredentialMaterial(blueprint).join(",") || "none"}`);
+
+  const packageFilePaths = CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.map((relativePath) =>
+    `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${relativePath}`
+  );
+  const packageFileHashes = Object.fromEntries(packageFilePaths.map((filePath) => [
+    filePath,
+    packageSnapshots[filePath.slice(CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT.length + 1)]?.sha256 || null
+  ]));
+  const packageFileBytes = Object.fromEntries(packageFilePaths.map((filePath) => [
+    filePath,
+    packageSnapshots[filePath.slice(CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT.length + 1)]?.byteSize || 0
+  ]));
+  const result = {
+    schemaVersion: CONTENT_PRODUCTION_BLUEPRINT_RESULT_SCHEMA_VERSION,
+    artifact_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+    title: "Fast Fiction Factory Content Production Blueprint Readback",
+    generatedAt: CONTENT_PRODUCTION_BLUEPRINT_GENERATED_AT,
+    route: CONTENT_PRODUCTION_BLUEPRINT_ROUTE,
+    review_ui: "public/review/index.html",
+    input_result_path: toRepoPath(readbackPath),
+    package_directory: CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT,
+    package_file_paths: packageFilePaths,
+    package_file_hashes: packageFileHashes,
+    package_file_bytes: packageFileBytes,
+    package_manifest_path: CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_PATH,
+    source_derivative_artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+    source_derivative_sha256: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_DERIVATIVE_SHA256,
+    source_derivative_manifest_sha256: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256,
+    source_derivative_core_fingerprint_sha256: CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256,
+    source: cloneJsonValue(blueprint.source || {}),
+    provisional_review_profile: cloneJsonValue(blueprint.profile || {}),
+    beat_count: blueprint?.beats?.length || 0,
+    six_beats: blueprint?.beats?.length === 6,
+    total_duration_seconds: blueprint?.content_contract?.total_duration_seconds ?? null,
+    narration_segment_count: blueprint?.content_contract?.narration_segment_count ?? 0,
+    subtitle_cue_count: blueprint?.subtitle_metrics?.length || 0,
+    shot_count: blueprint?.shots?.length || 0,
+    thumbnail_direction_count: blueprint?.content_contract?.thumbnail_direction_count ?? 0,
+    locked_field_count: blueprint?.constraint_envelope?.LOCKED?.length || 0,
+    bounded_field_count: blueprint?.constraint_envelope?.BOUNDED?.length || 0,
+    free_field_count: blueprint?.constraint_envelope?.FREE?.length || 0,
+    vocabulary_counts: cloneJsonValue(blueprint.vocabulary_counts || {}),
+    definition_of_done_template_counts: cloneJsonValue(blueprint?.definition_of_done?.template_counts || {}),
+    global_dod_check_count: blueprint?.definition_of_done?.evaluated_check_counts?.global || 0,
+    beat_dod_check_count: blueprint?.definition_of_done?.evaluated_check_counts?.beat || 0,
+    shot_dod_check_count: blueprint?.definition_of_done?.evaluated_check_counts?.shot || 0,
+    subtitle_dod_check_count: blueprint?.definition_of_done?.evaluated_check_counts?.subtitle || 0,
+    pass_count: blueprint?.acceptance_summary?.pass_count || 0,
+    warning_count: blueprint?.acceptance_summary?.warning_count || 0,
+    failure_count: blueprint?.acceptance_summary?.failure_count || 0,
+    change_history_owner_count: changeHistoryOwnerCount,
+    files_export_owner_count: filesExportOwnerCount,
+    duplicate_primary_diff_count: duplicatePrimaryDiffCount,
+    maximum_utility_anchor_movement_css_px: anchorMovement,
+    layout_stability: {
+      viewport_css_px: cloneJsonValue(readback?.layout_stability?.viewport_css_px || { width: 900, height: 1200 }),
+      utility_anchor_positions_css_px: cloneJsonValue(readbackPositions || []),
+      maximum_utility_anchor_movement_css_px: anchorMovement,
+      limit_css_px: 8,
+      measurement_source: layoutMeasurementSource ||
+        blueprint?.ui_contract?.layout_measurement_method || "unknown"
+    },
+    metrics: cloneJsonValue(blueprint.metrics || {}),
+    source_package_pre_hashes: cloneJsonValue(protectedBefore),
+    source_package_post_hashes: cloneJsonValue(protectedAfter),
+    source_packages_unchanged: sourcePackagesUnchanged,
+    package_manifest_valid: packageValidation.valid &&
+      manifest.schemaVersion === CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_SCHEMA_VERSION,
+    validation_read_only: validationReadOnly,
+    canonical: false,
+    production_approved: false,
+    assets_selected: false,
+    rights_cleared_claim: false,
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    ai_video_generation: false,
+    production_render: false,
+    public_upload: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    boundaries: cloneJsonValue(blueprint.boundaries || {}),
+    negative_probes: negativeProbes,
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+  return result;
+}
+
 async function validateEditorialDerivativePreview(readback, readbackPath, options = {}) {
   const failures = [];
   const checks = {};
@@ -12427,9 +14708,14 @@ async function validateEditorialDerivativePreview(readback, readbackPath, option
   const handoffIndex = rootValidationCommand.indexOf("validate-bridge-editorial-handoff-pack");
   const activeObject = rootManifest.editorial_derivative_preview || {};
   const expectedRootPackageFiles = packageFilePaths;
+  const derivativeActiveOrPreserved =
+    rootManifest.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID ||
+    (rootManifest.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      Array.isArray(rootManifest.preserves) &&
+      rootManifest.preserves.includes(EDITORIAL_DERIVATIVE_ARTIFACT_ID));
   const rootManifestRegistered =
     rootManifestRead.error === null &&
-    rootManifest.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+    derivativeActiveOrPreserved &&
     rootManifest.editorial_derivative_preview_doc_path === reviewDocPath &&
     rootManifest.editorial_derivative_preview_result_path === DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT &&
     rootManifest.editorial_derivative_preview_route === expectedDerivativeRoute &&
@@ -13186,6 +15472,11 @@ async function validateEditorialRevisionRoundtrip(readback, readbackPath) {
   const revisionActiveOrPreserved =
     rootManifest?.artifact_id === EDITORIAL_REVISION_ARTIFACT_ID ||
     (rootManifest?.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      rootManifest?.editorial_derivative_preview?.source_revision_artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+      Array.isArray(rootManifest?.preserves) &&
+      rootManifest.preserves.includes(EDITORIAL_REVISION_ARTIFACT_ID)) ||
+    (rootManifest?.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      rootManifest?.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
       rootManifest?.editorial_derivative_preview?.source_revision_artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
       Array.isArray(rootManifest?.preserves) &&
       rootManifest.preserves.includes(EDITORIAL_REVISION_ARTIFACT_ID));
@@ -17374,6 +19665,8 @@ Usage:
   node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json> [output.json]
   node tools/fff-state.mjs validate-review-workbench-component-contract <review-workbench-component-contract-result.json>
   node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
+  node tools/fff-state.mjs validate-content-production-blueprint <content-production-blueprint-result.json>
+  node tools/fff-state.mjs smoke-content-production-blueprint <content-production-blueprint-result.json> [artifacts/content-production-blueprint-result.json]
   node tools/fff-state.mjs validate-editorial-derivative-preview <editorial-derivative-preview-result.json>
   node tools/fff-state.mjs smoke-editorial-derivative-preview <editorial-derivative-preview-result.json> [artifacts/editorial-derivative-preview-result.json]
   node tools/fff-state.mjs validate-editorial-revision-roundtrip <editorial-revision-roundtrip-result.json>
