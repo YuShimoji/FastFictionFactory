@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Editorial Derivative Preview
+
+- Purpose: Show the accepted safe-only revision patch as a complete, portable editorial package without mutating its Handoff source.
+- Effect: Adds `fff-editorial-derivative-preview-001`, `public/review/index.html?mode=derivative`, an eight-file package under `artifacts/editorial-derivative/`, exactly three derived wording deltas, cross-consistent Markdown/CSV/JSON outputs, source/patch/derived provenance, integrity metadata, local patch import, per-file downloads, and discard-based rollback.
+- Requirements: Preserve every byte under `artifacts/editorial-handoff/` and every existing file under `artifacts/editorial-revision/`; keep six beats, 180 seconds, 6 narration segments, 20 subtitle cues, 19 shot cues, 3 thumbnail directions, order, timing, truth, canon, rights, and asset state unchanged; keep normal validation read-only and all external/production gates closed.
+- State: Implemented as `derived_revision_preview`; the source patch remains `not_applied`, exactly three safe changes are `applied_to_derived_copy`, the output is not canonical or human-accepted, and rollback is `discard_derived_package`.
+- Owner: Product implementer for deterministic generation, UI, integrity, and readback; human editor for later real request content and derived-package acceptance; human author for any canonical, timing, order, truth, ending, or canon decision.
+- Next move: Open `mode=derivative` for local review. A real Human Revision Pilot and any canonical application require separate input and authorization; ZIP bundling remains optional while individual files and the manifest are usable.
+
 ### Editorial Revision Roundtrip
 
 - Purpose: Let a writer or editor return structured changes without reconstructing the Handoff package or silently mutating its source.
@@ -9,7 +18,7 @@
 - Requirements: Preserve source Handoff bytes/hashes, six-beat order, 180-second timing, provisional truth, unselected assets, rights state, themes, keyboard behavior, and all provider/API/credential/generation/render/upload/database/canon gates. Apply no patch in this slice.
 - State: Implemented for guarded local readback. The deterministic example is 3 safe / 1 human / 2 blocked, decisions are 3 accept / 1 hold / 2 reject, and the three-change patch remains `not_applied`.
 - Owner: Product implementer for schema, UI, validation, and portability; human editor for request/decision content; human author for timing, order, truth, ending, and canon.
-- Next move: Use `mode=revision` for structured feedback and export only. Patch application, timing/order approval, story truth, assets, rights, provider, production, and canon require separate authority.
+- Next move: Treat this as the preserved request/decision/patch source for `fff-editorial-derivative-preview-001`. Real request content, canonical patch application, timing/order approval, story truth, assets, rights, provider, production, and canon require separate authority.
 
 ### Bridge Editorial Handoff Pack
 
@@ -67,12 +76,12 @@
 
 ### Repo Sync / Next Terminal Handoff
 
-- Purpose: Keep the latest Editorial Revision Roundtrip context durable in repository files so another terminal can resume from `master` without chat history.
+- Purpose: Keep the latest Editorial Derivative Preview context durable in repository files so another terminal can resume from `master` without chat history.
 - Effect: Updates the handoff/current-status/project-context docs with the current active artifact, immutable Handoff source, baseline commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
 - Requirements: Do not change product UI behavior, do not stage local transport residue, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: The active implementation starts from synced `4889970f045eb7c557057a367e502f8b4b2036fb Preserve editorial package hashes`, with `master...origin/master` at `0 0` before edits, the Editorial Revision manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
+- State: The active implementation starts from synced `7ac57e60f94599307d7529177163092dffc40841 Add editorial revision roundtrip`, with `master...origin/master` at `0 0` before edits, the Editorial Derivative manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
-- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=revision` and `artifacts/editorial-revision/README_REVISION.md` for guarded feedback/export.
+- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=derivative` and `artifacts/editorial-derivative/README_DERIVATIVE.md` for local derived-copy review.
 
 ### Layout Research Decision Shell
 

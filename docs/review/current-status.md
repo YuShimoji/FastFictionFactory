@@ -2,9 +2,16 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-editorial-revision-roundtrip-001`
-- Latest implementation baseline: synced `4889970f045eb7c557057a367e502f8b4b2036fb Preserve editorial package hashes`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
+- Artifact id: `fff-editorial-derivative-preview-001`
+- Latest implementation baseline: synced `7ac57e60f94599307d7529177163092dffc40841 Add editorial revision roundtrip`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
 - Review UI: `public/review/index.html`
+- Focused Editorial Derivative mode: `public/review/index.html?mode=derivative`
+- Portable derivative package directory: `artifacts/editorial-derivative/`
+- Editorial Derivative Preview doc: `docs/review/editorial-derivative-preview.md`
+- Editorial Derivative Preview result: `artifacts/editorial-derivative-preview-result.json`
+- Editorial Derivative Preview screenshot: `artifacts/review-screens/editorial-derivative-preview.png` (885x1180 content capture from a 900x1200 viewport override, 130553 bytes, SHA256 `ef79e99a42c879431f75aa9c265bbf37ff7bdf66062a9d58b6576128880b0599`)
+- Editorial Derivative read-only validation command: `node tools/fff-state.mjs validate-editorial-derivative-preview artifacts/editorial-derivative-preview-result.json`
+- Editorial Derivative regeneration command: `node tools/fff-state.mjs smoke-editorial-derivative-preview artifacts/editorial-derivative-preview-result.json artifacts/editorial-derivative-preview-result.json` (intentional write of only the eight derivative package files and derivative result)
 - Focused Editorial Revision mode: `public/review/index.html?mode=revision`
 - Portable revision package directory: `artifacts/editorial-revision/`
 - Editorial Revision Roundtrip doc: `docs/review/editorial-revision-roundtrip.md`
@@ -25,11 +32,11 @@
 - Preserved Bridge Storyboard Flow: `public/review/index.html?mode=bridge`
 - Draft Review Pack mode: `public/review/index.html?mode=draft`
 - Designer Dashboard mode: `public/review/index.html?mode=designer`
-- Open command: `.\scripts\operator\open_review.ps1 -Mode revision`
+- Open command: `.\scripts\operator\open_review.ps1 -Mode derivative`
 - Repo-local PowerShell launcher: `.\scripts\operator\open_review.ps1 -Mode <known-mode>`; no argument opens Brief; `-PrintUri` performs a non-opening URI check
 - Repo-local shell launcher: `./scripts/operator/open_review.sh --mode <known-mode>`; no argument opens Brief; `--print-uri` performs a non-opening URI check
 - Docs launcher: `.\scripts\operator\open_review.ps1 -Docs` uses `uvx --with mkdocs-material`; it no longer relies on the WindowsApps-prone direct Python path
-- Editorial transition: the accepted Handoff checkpoint is now an immutable source for guarded request/diff/decision/unapplied-patch return; this does not apply a patch or approve timing, story truth, assets, rights, production, or canon.
+- Editorial transition: the accepted safe-only patch is applied to a complete derived copy only. The source Handoff and Revision packages remain immutable; source application, timing/order, story truth, assets, rights, production, and canon remain closed.
 - Operator observation: preserved. The top Workbench is accepted, the lower page remains long and dense, and `OPERATOR_FIRST` remains closed.
 - Manifest: `artifacts/artifact-manifest.json`
 - Bridge Storyboard Flow doc: `docs/review/bridge-storyboard-flow.md`
@@ -133,7 +140,8 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active checkpoint is `fff-editorial-revision-roundtrip-001`. `public/review/index.html?mode=revision` presents immutable source fingerprints, local request import, exact guard/decision counts, a six-change rail, one active before/after diff, constrained decisions, and decision/unapplied-patch export. `fff-bridge-editorial-handoff-pack-001` remains the immutable six-beat/180-second source at `mode=handoff`.
+- The active checkpoint is `fff-editorial-derivative-preview-001`. `public/review/index.html?mode=derivative` presents DERIVED PREVIEW / NOT CANONICAL identity, source/patch/derived fingerprints, local patch import, a six-beat runway, a three-change rail, one active before/after canvas, eight static package links, and per-file Blob downloads. Exactly three accepted safe wording changes are applied to a copy; source application remains `not_applied` and rollback is `discard_derived_package`.
+- `fff-editorial-revision-roundtrip-001` remains the preserved request/decision/safe-patch source. `public/review/index.html?mode=revision` keeps immutable source fingerprints, guarded import/classification, constrained decisions, and unapplied-patch export. `fff-bridge-editorial-handoff-pack-001` remains the immutable six-beat/180-second source at `mode=handoff`.
 - `artifacts/editorial-handoff/` contains `README_DELIVERY.md`, `narration-script.md`, `subtitle-cues.csv`, `shot-list.csv`, `editorial-handoff.json`, and `package-manifest.json`. The package preserves exactly 6 beats and 180 seconds, with 6 complete provisional narration segments, 20 subtitle cues, 19 generic shot cues, 3 thumbnail directions, and one unselected sound/music/mood brief.
 - All prose is `provisional_editorial_draft`; every shot and thumbnail stays `asset_status=unselected`; Toma fate, brass moth truth/function, Council motive, and ending truth remain `unresolved_human_owned`.
 - `fff-bridge-storyboard-flow-001` remains the source checkpoint. Bridge keeps the Storyboard Flow first and adds one compact Handoff action without duplicating the package or reopening the collapsed historical evidence.
@@ -230,6 +238,9 @@ Preserved platform boundary:
 
 ## What Was Verified
 
+- `node tools/fff-state.mjs smoke-editorial-derivative-preview artifacts/editorial-derivative-preview-result.json artifacts/editorial-derivative-preview-result.json` generated exactly eight derivative files plus the result, then passed 12/12 in-memory fail-closed probes. The result records 3 exact authored deltas, 6 beats, 180 seconds, 6 narration segments, 20 subtitle cues, 19 shot cues, 3 thumbnail directions, valid provenance/manifest, and `failures=[]`.
+- Source and Revision pre/post snapshots stayed byte-identical across all 12 protected files. The immutable source hashes remain `c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080` and `ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971`; the accepted patch and byte-identical applied-patch copy remain `ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885`. The non-circular five-core-file derivative fingerprint is `94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44`.
+- Browser readback at exactly 900x1200 confirmed the Derivative root is 837 CSS pixels wide with no horizontal overflow, six beat tabs, three change tabs, eight static links, eight enabled Blob actions, distinct Light/Dark/Auto states, Arrow-key focus/selection with `:focus-visible=true`, zero console warnings/errors, one concise Revision action, and no added Handoff action. The runtime reports 8/8 SHA256 equality with the static authority and displays derived JSON hash `15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c`. Screenshot evidence is `artifacts/review-screens/editorial-derivative-preview.png`.
 - `node tools/fff-state.mjs validate-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json` validates the canonical package, both CSVs, narration/README content, exact six-beat timing, package hashes, Handoff route, Bridge action, preserved source routes/themes/keyboard behavior, truth/rights guards, and closed boundary flags without writing files.
 - The package contains 6 narration segments, 20 subtitle cues, 19 shot cues, and 3 thumbnail directions across exactly 180 seconds; all subtitle/shot timings are monotonic, non-overlapping, beat-contained, and every shot remains `unselected` with a rights note.
 - `package-manifest.json` covers exactly the other five package files with matching raw byte sizes and SHA256 values. Normal manifest validation is read-only; the missing-file probe returns nonzero without mutating the package or result artifacts.
@@ -323,7 +334,7 @@ Preserved platform boundary:
 ## What Remains Missing
 
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
-- The immediate user-side work is guarded revision review: open `public/review/index.html?mode=revision`, inspect the deterministic sample or import a matching local request, and download decision/patch JSON if useful. The patch remains unapplied; beat order/timing, story truth, asset selection, rights state, production, and canon still require separate authority.
+- The immediate user-side work is derived preview review: open `public/review/index.html?mode=derivative`, inspect the deterministic package or import a matching safe-only patch, and download individual derived files if useful. The Handoff source and Revision patch remain unchanged; the derivative is not human-accepted or canonical, and beat order/timing, story truth, asset selection, rights state, production, and canon still require separate authority.
 - Remaining workflow expansion is now post-Profile: Timeline / Story Seed / Canon decision authorization, actual rollback, broader translated memo coverage, or very broad source-span fixture shape. The held claim preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, Claim Ledger one-claim production adoption, Claim Ledger rollback rehearsal, downstream target authorization packet, and Profile adoption mutation one-claim define candidate status, accepted-status meaning, rollback, mutation boundaries, a non-mutating ledger row, one fixture-only sandbox adoption row, one sandbox-only rollback rehearsal row, one production authorization packet, one Claim Ledger production adoption row, one non-destructive rollback rehearsal, one Profile-first downstream target choice surface, and one Profile-only non-canon annotation. Timeline, Story Seed, canon, provider/API/credential, publishing, additional-claim adoption, and actual production rollback remain unimplemented without separate authorization. The translated memo axis has a two-row minimum fixture, so only add more translated rows if they reduce a concrete coverage gap beyond `multi-x-object-brass-moth-key` and `multi-x-placeholder-translation-boundary`. Very broad source-span shape has been audited but not implemented because current broad rows are already resolved and no concrete source-output gap requires another fixture.
 - Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, transport behavior, external call permission, timeout value, and retry count remain blocked until explicit authorization.
 - Durable project database, YouTube publishing, automated upload, AI video generation, complete world chronology, and final canon decisions remain out of scope.
@@ -334,10 +345,11 @@ Preserved platform boundary:
 
 | Target | Current state | Next move |
 | --- | --- | --- |
-| Editorial Revision Roundtrip | `fff-editorial-revision-roundtrip-001` is active; local request import, fail-closed guard classification, before/after diff, decisions, and an unapplied safe-only patch preserve the source Handoff hashes | Use for local structured feedback; keep patch application, timing/order, truth, assets, rights, provider, production, and canon closed |
+| Editorial Derivative Preview | `fff-editorial-derivative-preview-001` is active; exactly three accepted safe edits are applied to a complete derived copy with cross-file consistency, provenance, integrity metadata, and discard rollback | Review locally; a real human pilot and canonical application require separate input and authorization |
+| Editorial Revision Roundtrip | `fff-editorial-revision-roundtrip-001` is preserved; local request import, fail-closed guard classification, before/after diff, decisions, and an unapplied safe-only patch preserve the source Handoff hashes | Use as the structured patch source; keep canonical application, timing/order, truth, assets, rights, provider, production, and canon closed |
 | Bridge Editorial Handoff Pack | `fff-bridge-editorial-handoff-pack-001` is the preserved immutable source; a focused Handoff route and six portable files align the exact 180-second baseline, narration, 20 subtitle cues, 19 shot cues, truth/rights guards, and SHA256 integrity metadata | Use locally for manual writing/subtitle/video editing; keep timing changes explicit and keep final narration, assets, rights, provider, production, and canon closed |
 | Bridge Storyboard Flow | `fff-bridge-storyboard-flow-001` is preserved as the exact source baseline; exactly six planning beats share one rail and active canvas, while old Bridge consoles/refinement/details remain preserved under one collapsed supporting-evidence section | Reopen only when an explicit later decision changes the order or timing; keep narration performance, assets, rights, production, and canon closed |
-| Apply Decision Shell Guard Diet | Covered by `fff-apply-decision-shell-guard-diet-001`; `brief` starts with the applied Shell, model-driven choices, Dock Governor, compact safety summary, Guard drawer, non-gate whitelist, and preserved `bridge` / `layout-lab` routes | Treat as preserved source-shell and regression evidence; `OPERATOR_FIRST` is closed and the active review is the Editorial Revision Roundtrip |
+| Apply Decision Shell Guard Diet | Covered by `fff-apply-decision-shell-guard-diet-001`; `brief` starts with the applied Shell, model-driven choices, Dock Governor, compact safety summary, Guard drawer, non-gate whitelist, and preserved `bridge` / `layout-lab` routes | Treat as preserved source-shell and regression evidence; `OPERATOR_FIRST` is closed and the active review is the Editorial Derivative Preview |
 | Layout Lab Visual Audit | Covered by `fff-layout-lab-visual-audit-001`; the contact sheet and four screenshots show the Layout Lab, Split-pane Decision Shell, preserved `brief`, and preserved `bridge` routes | Use as source evidence only if the applied Shell needs a layout revision |
 | Layout Research Decision Shell | Covered by `fff-layout-research-decision-shell-001`; `public/review/index.html?mode=layout-lab` compares four wireframes, recommends split-pane Decision Shell, shows a heuristic score matrix, and renders choices from `decisionFlowModel` | Treat as design source, not the active route |
 | Low-text Decision Console | Preserved by `fff-low-text-decision-console-001`; its one route question, five choices, one Bridge action, six-step rail, and compact context pattern are now absorbed into the applied Shell | Keep as prior readback and regression evidence |
@@ -401,6 +413,8 @@ public/review/index.html?mode=home
 public/review/index.html?mode=layout-lab
 public/review/index.html?mode=bridge
 public/review/index.html?mode=handoff
+public/review/index.html?mode=revision
+public/review/index.html?mode=derivative
 public/review/index.html?mode=story
 public/review/index.html?mode=draft
 public/review/index.html?mode=designer
@@ -417,4 +431,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review. The next non-redundant move is manual editorial use of `public/review/index.html?mode=handoff` and `artifacts/editorial-handoff/`: refine cadence, subtitle wrapping, or generic shot language while preserving the exact six-beat timing, provisional status, held truths, unselected assets, and integrity metadata. Do not infer final canon, select assets, clear rights, configure a provider, generate media, render, upload, persist to a database, or make additional adoption writes without explicit authorization.
+Use review memory before asking for another review. The next non-redundant move is a Human Revision Pilot: supply one real human-authored request, keep guard decisions explicit, generate a derived preview through the same mechanism, and review it without canonical application. Do not infer final canon, change timing/order or story truth, select assets, clear rights, configure a provider, generate media, render, upload, publish, persist to a database, or make additional adoption writes without explicit authorization.

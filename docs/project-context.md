@@ -2,15 +2,21 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-editorial-revision-roundtrip-001`, served at `public/review/index.html?mode=revision` with a portable six-file package under `artifacts/editorial-revision/`. It adds a guarded request, before/after comparison, decision, and unapplied-patch return path over the immutable `fff-bridge-editorial-handoff-pack-001` source. The deterministic example contains six changes classified `3 safe_local_edit / 1 human_author_required / 2 blocked_boundary`, resolves them as `3 accept / 1 hold / 2 reject`, and exports only three accepted safe wording changes with `apply_status=not_applied`. The exact six-beat/180-second Handoff source, Bridge Storyboard Flow, Brief Workbench, themes, truth/rights boundaries, and package hashes remain preserved.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-editorial-derivative-preview-001`, served at `public/review/index.html?mode=derivative` with a portable eight-file package under `artifacts/editorial-derivative/`. It applies the three accepted safe wording changes from the preserved `fff-editorial-revision-roundtrip-001` patch to a derived copy only, regenerates aligned Markdown/CSV/JSON outputs from one derived model, and records provenance, integrity metadata, and discard-based rollback. The exact six-beat/180-second Handoff source, the existing Revision package, Bridge Storyboard Flow, Brief Workbench, themes, truth/rights boundaries, and all source hashes remain preserved. The derivative is `derived_revision_preview`, not canonical, approved, rights-cleared, or production-ready.
 
 ## Current Lane
 
-Keep the MVP repeatedly editable without silently mutating its source package. The current lane is `EDITORIAL_REVISION_ROUNDTRIP`: import local request JSON, fail closed on invalid identity or boundary changes, allow only wording edits to be accepted, and export decisions plus an unapplied safe patch. Timing/order, story truth, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload, and database persistence remain closed.
+Keep the MVP repeatedly editable without silently mutating its source package. The current lane is `EDITORIAL_DERIVATIVE_PREVIEW`: validate a local safe-only patch, apply exactly three accepted wording changes to an in-memory or static derived copy, and expose a complete reversible preview package. Source application, timing/order, story truth, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload, publication, and database persistence remain closed.
 
 ## Current Slice
 
-The active slice is complete enough for guarded local revision readback:
+The active slice is complete enough for local derived-package readback:
+
+- Editorial Derivative Preview doc/result/screenshot target: `docs/review/editorial-derivative-preview.md`, `artifacts/editorial-derivative-preview-result.json`, `artifacts/review-screens/editorial-derivative-preview.png`
+- Portable derivative package: `artifacts/editorial-derivative/README_DERIVATIVE.md`, `narration-script.derived.md`, `subtitle-cues.derived.csv`, `shot-list.derived.csv`, `editorial-handoff.derived.json`, `applied-revision-patch.json`, `derivative-provenance.json`, `derivative-package-manifest.json`
+- Focused Derivative mode: `public/review/index.html?mode=derivative`
+- Application contract: source `not_applied`, derived copy `applied_to_derived_copy`, rollback by `discard_derived_package`, exactly 3 safe wording deltas
+- Mode-aware launchers: `scripts/operator/open_review.ps1 -Mode derivative`, `scripts/operator/open_review.sh --mode derivative`; no argument remains Brief and print-only URI checks remain available
 
 - Editorial Revision Roundtrip doc/result/screenshot target: `docs/review/editorial-revision-roundtrip.md`, `artifacts/editorial-revision-roundtrip-result.json`, `artifacts/review-screens/editorial-revision-roundtrip.png`
 - Portable revision package: `artifacts/editorial-revision/README_REVISION.md`, `revision-request-template.json`, `revision-request.example.json`, `revision-decision.example.json`, `revision-patch.example.json`, `revision-roundtrip-manifest.json`
@@ -93,6 +99,16 @@ The active slice is complete enough for guarded local revision readback:
 
 ## Verification Snapshot
 
+Editorial Derivative Preview checkpoint, 2026-07-12 JST:
+
+- `fff-editorial-derivative-preview-001` derives a complete eight-file local package from accepted patch `revision-patch-example-001` without changing the Handoff or Revision package.
+- Exactly three content deltas are applied to the copy: `narration-b01.text`, `sub-b02-03.text_ja`, and `shot-b03-03.visual_direction`. Narration character estimates are recalculated; all other editorial content, IDs, six beats, 180 seconds, 20 subtitle cues, 19 shot cues, three thumbnail directions, timing, truth, rights, and asset state remain unchanged.
+- `source_apply_status=not_applied`, `derived_apply_status=applied_to_derived_copy`, `application_scope=derived_copy_only`, `status=derived_revision_preview`, and `rollback_action=discard_derived_package` keep the derivative reversible and non-canonical.
+- The active manifest health path uses `validate-editorial-derivative-preview` followed by preserved read-only validators. `smoke-editorial-derivative-preview` is reserved for intentional regeneration of only the eight derivative files and its result.
+- The generated package passed exact-delta/cross-file/integrity checks and all 12 in-memory fail-closed probes. Its non-circular five-core-file fingerprint is `94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44`; all 12 protected Handoff/Revision files remained byte-identical.
+- Browser evidence at 900x1200 passed with no horizontal overflow, readable Light/Dark/Auto states, visible keyboard focus, six beat tabs, three change tabs, eight static links, eight enabled Blob actions, 8/8 static SHA256 equality, and zero console warnings/errors. `artifacts/review-screens/editorial-derivative-preview.png` is an 885x1180 content capture, 130553 bytes, with SHA256 `ef79e99a42c879431f75aa9c265bbf37ff7bdf66062a9d58b6576128880b0599`.
+- Provider/API, credentials, external calls, generation, render, upload, publication, database persistence, asset/rights decisions, and final canon remain closed.
+
 Editorial Handoff Pack checkpoint, 2026-07-11 JST:
 
 - `fff-bridge-editorial-handoff-pack-001` preserves the exact six-beat order and windows for 180 seconds, adds 6 complete provisional narration segments, 20 subtitle cues, 19 generic shot cues, 3 thumbnail directions, 4 held truth guards, 4 rights guards, and a five-file SHA256 package manifest.
@@ -110,7 +126,7 @@ Route hygiene checkpoint, 2026-06-29 JST:
   confined to `fff-route-lock-clean-state-readback-001` evidence and its
   cockpit summaries.
 - `docs/style_intent/` was removed because it was empty and residue-only.
-- The active Fast Fiction Factory review package is now
+- The Fast Fiction Factory review package at that checkpoint was
   `fff-bridge-storyboard-flow-001`; it places a six-beat planning Flow first on
   `bridge` while preserving `fff-review-workbench-component-contract-001` and the applied `brief`
   Shell into a role-contracted Workbench, keeps `activeDecisionCanvas` as the
@@ -263,10 +279,10 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: open `public/review/index.html?mode=revision`, inspect the deterministic sample or import a matching local request, and export decision/patch JSON if useful. The patch remains unapplied; source timing, truth, asset, rights, and canon state remain unchanged. `public/review/index.html?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain preserved context. Patch application, final narration performance, subtitle typography, asset selection, rights clearance, provider work, generation, render, upload, and database persistence remain blocked until separately authorized.
+First next move: open `public/review/index.html?mode=derivative`, inspect the deterministic derived preview, and use its eight portable files or local per-file downloads. The source patch remains unapplied; the derivative can be rolled back by discarding it. `public/review/index.html?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain preserved context. Real human revision content, canonical patch application, timing/order approval, truth/canon, subtitle typography, asset selection, rights clearance, provider work, generation, render, upload, publication, and database persistence remain blocked until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current implementation starts from synced `4889970f045eb7c557057a367e502f8b4b2036fb Preserve editorial package hashes` on 2026-07-12 JST. It preserves `.serena/project.yml` as unstaged local transport residue outside product scope and advances from immutable `fff-bridge-editorial-handoff-pack-001` to `fff-editorial-revision-roundtrip-001`. After pulling, `git log -1 --oneline --decorate` shows the exact published head; run the manifest's read-only validation command before opening the Revision route.
+The current implementation starts from synced `7ac57e60f94599307d7529177163092dffc40841 Add editorial revision roundtrip` on 2026-07-12 JST. It preserves `.serena/project.yml` as unstaged local transport residue outside product scope and advances from preserved `fff-editorial-revision-roundtrip-001` to `fff-editorial-derivative-preview-001` while keeping `fff-bridge-editorial-handoff-pack-001` immutable. After pulling, `git log -1 --oneline --decorate` shows the exact published head; run the manifest's read-only validation command before opening the Derivative route.

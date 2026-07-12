@@ -8,6 +8,7 @@ param(
     "bridge",
     "handoff",
     "revision",
+    "derivative",
     "story",
     "designer",
     "draft",

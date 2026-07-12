@@ -1,5 +1,30 @@
 # Artifacts
 
+## fff-editorial-derivative-preview-001
+
+- Title: Fast Fiction Factory Editorial Derivative Preview
+- Purpose: Apply exactly three accepted safe wording changes to a complete derived copy while preserving the source Handoff and Revision packages byte-for-byte.
+- Review UI: `public/review/index.html`
+- Primary route: `public/review/index.html?mode=derivative`
+- Source routes: `public/review/index.html?mode=revision`, `public/review/index.html?mode=handoff`
+- Return route: `public/review/index.html?mode=brief`
+- Package directory: `artifacts/editorial-derivative/`
+- Package files: `README_DERIVATIVE.md`, `narration-script.derived.md`, `subtitle-cues.derived.csv`, `shot-list.derived.csv`, `editorial-handoff.derived.json`, `applied-revision-patch.json`, `derivative-provenance.json`, `derivative-package-manifest.json`
+- Review doc: `docs/review/editorial-derivative-preview.md`
+- Readback result: `artifacts/editorial-derivative-preview-result.json`
+- Visual evidence target: `artifacts/review-screens/editorial-derivative-preview.png`
+- Source artifact: `fff-bridge-editorial-handoff-pack-001`
+- Source fingerprints: `editorial-handoff.json=c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080`, `package-manifest.json=ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971`
+- Patch: `revision-patch-example-001`, SHA256 `ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885`
+- Derived contract: `status=derived_revision_preview`, `canonical=false`, `source_apply_status=not_applied`, `derived_apply_status=applied_to_derived_copy`, `application_scope=derived_copy_only`, `rollback_action=discard_derived_package`
+- Exact authored deltas: `narration-b01.text`, `sub-b02-03.text_ja`, `shot-b03-03.visual_direction`; narration character metadata recalculates from 93 to 94 and total from 777 to 778.
+- Counts preserved: 6 beats / 180 seconds / 6 narration segments / 20 subtitle cues / 19 shot cues / 3 thumbnail directions.
+- Launchers: `.\scripts\operator\open_review.ps1 -Mode derivative`, `./scripts/operator/open_review.sh --mode derivative`; print-only checks use `-PrintUri` / `--print-uri`.
+- State validator: `tools/fff-state.mjs`
+- Read-only validation: `node tools/fff-state.mjs validate-editorial-derivative-preview artifacts/editorial-derivative-preview-result.json`
+- Intentional package/result regeneration: `node tools/fff-state.mjs smoke-editorial-derivative-preview artifacts/editorial-derivative-preview-result.json artifacts/editorial-derivative-preview-result.json`
+- State: Local derived preview only. It is not canonical, approved, rights-cleared, production-ready, or applied to the source; discard the derivative package to roll back.
+
 ## fff-editorial-revision-roundtrip-001
 
 - Title: Fast Fiction Factory Editorial Revision Roundtrip

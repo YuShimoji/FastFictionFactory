@@ -3,4 +3,7 @@ artifacts/editorial-handoff/*.csv text eol=lf
 artifacts/editorial-handoff/*.json text eol=lf
 artifacts/editorial-revision/*.md text eol=lf
 artifacts/editorial-revision/*.json text eol=lf
+artifacts/editorial-derivative/*.md text eol=lf
+artifacts/editorial-derivative/*.csv text eol=lf
+artifacts/editorial-derivative/*.json text eol=lf
 scripts/operator/*.sh text eol=lf

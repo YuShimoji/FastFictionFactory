@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "fff.editorialDerivativeProvenance.v1",
+  "artifact_id": "fff-editorial-derivative-preview-001",
+  "generatedAt": "2026-07-12T09:05:00+09:00",
+  "status": "derived_revision_preview",
+  "canonical": false,
+  "source": {
+    "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+    "editorial_handoff_sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+    "package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+  },
+  "patch": {
+    "patch_id": "revision-patch-example-001",
+    "path": "artifacts/editorial-revision/revision-patch.example.json",
+    "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+  },
+  "derivative": {
+    "artifact_id": "fff-editorial-derivative-preview-001",
+    "editorial_handoff_sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+    "core_fingerprint_sha256": "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44",
+    "core_fingerprint_algorithm": "sha256 of LF-joined ordered relative_path:sha256 pairs for the five core files"
+  },
+  "source_apply_status": "not_applied",
+  "derived_apply_status": "applied_to_derived_copy",
+  "application_scope": "derived_copy_only",
+  "rollback_action": "discard_derived_package",
+  "applied_change_count": 3,
+  "content_delta_count": 3,
+  "changes": [
+    {
+      "change_id": "rev-change-b01-narration-wording",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "target_type": "narration_segment",
+      "target_id": "narration-b01",
+      "target_field": "text",
+      "guard_class": "safe_local_edit",
+      "before": "ある記録では、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。ならば今、何が鳴っているのでしょう。",
+      "before_sha256": "ffca1a8c9b55b05e57fb5b5d4e9565c1eb25d7750dbf972a4e0a475111cac279",
+      "after": "ある記録によれば、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。では今、何が鳴っているのでしょう。",
+      "after_sha256": "37355d6292ddd92dc081be3ecbd2bc3f213211032ea58659f4332f8cb97ea247",
+      "derived_file_locations": [
+        "narration-script.derived.md",
+        "editorial-handoff.derived.json"
+      ]
+    },
+    {
+      "change_id": "rev-change-b02-subtitle-wording",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "target_type": "subtitle_cue",
+      "target_id": "sub-b02-03",
+      "target_field": "text_ja",
+      "guard_class": "safe_local_edit",
+      "before": "その機能は、まだ未決定。",
+      "before_sha256": "72a6c5e604c4052019d6fbe9a5b7633ab3a0ddb7d59a611bbebc5c8aa11fa057",
+      "after": "その働きは、まだ分からない。",
+      "after_sha256": "33ef0b68341c3e7b92fea840c5c33302dd95df06e836a11fedbe568d3e9967ad",
+      "derived_file_locations": [
+        "subtitle-cues.derived.csv",
+        "editorial-handoff.derived.json"
+      ]
+    },
+    {
+      "change_id": "rev-change-b03-shot-direction-wording",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "target_type": "shot_cue",
+      "target_id": "shot-b03-03",
+      "target_field": "visual_direction",
+      "guard_class": "safe_local_edit",
+      "before": "インクや名前が薄れる抽象的なmotion graphicを想定する。",
+      "before_sha256": "7ca6f50a8ad80dd55ec32613e8711ba108efe861ebf26edf7de62c03e6b6ed4b",
+      "after": "インクや名前の輪郭がゆっくり薄れる、抽象的なモーショングラフィックを想定する。",
+      "after_sha256": "e971cc59c626eac23cfaf94058eceae2d994dc8963fb9ed7a1ba54cfe2be9b5c",
+      "derived_file_locations": [
+        "shot-list.derived.csv",
+        "editorial-handoff.derived.json"
+      ]
+    }
+  ],
+  "core_files": [
+    {
+      "relative_path": "narration-script.derived.md",
+      "byte_size": 4774,
+      "sha256": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6"
+    },
+    {
+      "relative_path": "subtitle-cues.derived.csv",
+      "byte_size": 3615,
+      "sha256": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe"
+    },
+    {
+      "relative_path": "shot-list.derived.csv",
+      "byte_size": 7009,
+      "sha256": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4"
+    },
+    {
+      "relative_path": "editorial-handoff.derived.json",
+      "byte_size": 37134,
+      "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+    },
+    {
+      "relative_path": "applied-revision-patch.json",
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    }
+  ],
+  "invariants": {
+    "source_package_unchanged": true,
+    "revision_package_unchanged": true,
+    "beat_order_unchanged": true,
+    "timing_unchanged": true,
+    "canon_unchanged": true,
+    "truth_state_unchanged": true,
+    "rights_unchanged": true,
+    "assets_unchanged": true,
+    "beat_count": 6,
+    "total_duration_seconds": 180,
+    "narration_segment_count": 6,
+    "subtitle_cue_count": 20,
+    "shot_cue_count": 19,
+    "thumbnail_direction_count": 3,
+    "narration_character_count_before": 777,
+    "narration_character_count_after": 778
+  },
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false
+  }
+}

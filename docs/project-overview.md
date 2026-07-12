@@ -18,7 +18,8 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 
 | Slice | Current state | Main review location | Quick visual evidence |
 | --- | --- | --- | --- |
-| Editorial Revision Roundtrip | Active; ready for guarded local revision review | [`review/editorial-revision-roundtrip.md`](review/editorial-revision-roundtrip.md) | `artifacts/editorial-revision-roundtrip-result.json`, `artifacts/editorial-revision/`, `public/review/index.html?mode=revision` |
+| Editorial Derivative Preview | Active; ready for local derived-copy review | [`review/editorial-derivative-preview.md`](review/editorial-derivative-preview.md) | `artifacts/editorial-derivative-preview-result.json`, `artifacts/editorial-derivative/`, `public/review/index.html?mode=derivative` |
+| Editorial Revision Roundtrip | Preserved safe-patch source | [`review/editorial-revision-roundtrip.md`](review/editorial-revision-roundtrip.md) | `artifacts/editorial-revision-roundtrip-result.json`, `artifacts/editorial-revision/`, `public/review/index.html?mode=revision` |
 | Bridge Editorial Handoff Pack | Preserved immutable source; ready for local manual delivery | [`review/bridge-editorial-handoff-pack.md`](review/bridge-editorial-handoff-pack.md) | `artifacts/bridge-editorial-handoff-pack-result.json`, `artifacts/editorial-handoff/`, `public/review/index.html?mode=handoff` |
 | Bridge Storyboard Flow | Preserved source baseline | [`review/bridge-storyboard-flow.md`](review/bridge-storyboard-flow.md) | `artifacts/bridge-storyboard-flow-result.json`, `artifacts/review-screens/bridge-storyboard-flow.png`, `public/review/index.html?mode=bridge` |
 | MVP skeleton review workbench | Ready for local review | [`review/first-mvp-review.md`](review/first-mvp-review.md) | `artifacts/fff-mvp-skeleton-review.png` |
@@ -58,6 +59,7 @@ The current quick visual review files are stored under `artifacts/`:
 
 | File | Use |
 | --- | --- |
+| `artifacts/review-screens/editorial-derivative-preview.png` | 885x1180 content capture from a 900x1200 browser viewport for the focused non-canonical Derivative route; 130553 bytes, SHA256 `ef79e99a42c879431f75aa9c265bbf37ff7bdf66062a9d58b6576128880b0599`. |
 | `artifacts/review-screens/editorial-revision-roundtrip.png` | 900x1200 browser evidence for the focused Editorial Revision route. |
 | `artifacts/review-screens/bridge-editorial-handoff-pack.png` | 900x1200 browser evidence for the focused Editorial Handoff route. |
 | `artifacts/review-screens/bridge-storyboard-flow.png` | 900x1200 evidence for the active six-beat Bridge Storyboard Flow. |
@@ -98,7 +100,7 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Manual Editorial Handoff use | A writer, subtitle editor, or video editor opens the focused Handoff route and uses the portable six-file package while the 180-second baseline, truth guards, and unselected assets remain explicit. | Human editing feedback can refine narration cadence, subtitle wrapping, and shot language without reconstructing the plan or opening production gates. |
+| Next 1 turn | Human Revision Pilot | A real human-authored request is reviewed through Revision and produces a derived preview through the same guarded mechanism. | Request → decision → patch → derived package can complete once with real content and one fingerprint chain. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
@@ -111,12 +113,12 @@ The active UI remains:
 Invoke-Item .\public\review\index.html
 ```
 
-No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The active product readback is the focused Editorial Handoff route at `public/review/index.html?mode=handoff`; its source six-beat Storyboard Flow remains at `public/review/index.html?mode=bridge`, with former Bridge consoles and detail shelves collapsed as supporting evidence.
+No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The active product readback is the focused Editorial Derivative Preview at `public/review/index.html?mode=derivative`; Revision remains at `?mode=revision`, the immutable Handoff source at `?mode=handoff`, and its six-beat Storyboard Flow at `?mode=bridge`.
 
-Mode-specific Editorial Handoff route:
+Mode-specific Editorial Derivative route:
 
 ```text
-public/review/index.html?mode=handoff
+public/review/index.html?mode=derivative
 ```
 
 Mode-specific Decision Shell route:

@@ -53,6 +53,9 @@ const EDITORIAL_REVISION_REQUEST_SCHEMA_VERSION = "fff.editorialRevisionRequest.
 const EDITORIAL_REVISION_DECISION_SCHEMA_VERSION = "fff.editorialRevisionDecision.v1";
 const EDITORIAL_REVISION_PATCH_SCHEMA_VERSION = "fff.editorialRevisionPatch.v1";
 const EDITORIAL_REVISION_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.editorialRevisionRoundtripManifest.v1";
+const EDITORIAL_DERIVATIVE_PREVIEW_SCHEMA_VERSION = "fff.editorialDerivativePreview.v1";
+const EDITORIAL_DERIVATIVE_PROVENANCE_SCHEMA_VERSION = "fff.editorialDerivativeProvenance.v1";
+const EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.editorialDerivativePackageManifest.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -96,6 +99,7 @@ const DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT = "artifacts/review-wor
 const DEFAULT_BRIDGE_STORYBOARD_FLOW_OUTPUT = "artifacts/bridge-storyboard-flow-result.json";
 const DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT = "artifacts/bridge-editorial-handoff-pack-result.json";
 const DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT = "artifacts/editorial-revision-roundtrip-result.json";
+const DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT = "artifacts/editorial-derivative-preview-result.json";
 const EDITORIAL_HANDOFF_PACKAGE_ROOT = "artifacts/editorial-handoff";
 const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/package-manifest.json`;
 const EDITORIAL_HANDOFF_PACKAGE_FILES = [
@@ -151,6 +155,75 @@ const EDITORIAL_REVISION_BLOCKED_TYPES = new Set([
   "upload_publication",
   "database_persistence"
 ]);
+const EDITORIAL_DERIVATIVE_ARTIFACT_ID = "fff-editorial-derivative-preview-001";
+const EDITORIAL_DERIVATIVE_SOURCE_REVISION_ARTIFACT_ID = "fff-editorial-revision-roundtrip-001";
+const EDITORIAL_DERIVATIVE_PACKAGE_ROOT = "artifacts/editorial-derivative";
+const EDITORIAL_DERIVATIVE_PATCH_PATH = `${EDITORIAL_REVISION_PACKAGE_ROOT}/revision-patch.example.json`;
+const EDITORIAL_DERIVATIVE_PATCH_SHA256 = "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885";
+const EDITORIAL_DERIVATIVE_PACKAGE_FILES = [
+  "README_DERIVATIVE.md",
+  "narration-script.derived.md",
+  "subtitle-cues.derived.csv",
+  "shot-list.derived.csv",
+  "editorial-handoff.derived.json",
+  "applied-revision-patch.json",
+  "derivative-provenance.json"
+];
+const EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_PATH = `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/derivative-package-manifest.json`;
+const EDITORIAL_DERIVATIVE_REQUIRED_FILES = [
+  ...EDITORIAL_DERIVATIVE_PACKAGE_FILES,
+  "derivative-package-manifest.json"
+];
+const EDITORIAL_DERIVATIVE_CORE_FILES = [
+  "narration-script.derived.md",
+  "subtitle-cues.derived.csv",
+  "shot-list.derived.csv",
+  "editorial-handoff.derived.json",
+  "applied-revision-patch.json"
+];
+const EDITORIAL_DERIVATIVE_EXPECTED_CHANGE_IDS = [
+  "rev-change-b01-narration-wording",
+  "rev-change-b02-subtitle-wording",
+  "rev-change-b03-shot-direction-wording"
+];
+const EDITORIAL_DERIVATIVE_EXPECTED_CHANGES = [
+  {
+    change_id: "rev-change-b01-narration-wording",
+    beat_id: "bridge-storyboard-beat-1-bellless-tower",
+    target_type: "narration_segment",
+    target_id: "narration-b01",
+    target_field: "text",
+    change_type: "narration_wording",
+    derived_file_locations: [
+      "narration-script.derived.md",
+      "editorial-handoff.derived.json"
+    ]
+  },
+  {
+    change_id: "rev-change-b02-subtitle-wording",
+    beat_id: "bridge-storyboard-beat-2-brass-moth",
+    target_type: "subtitle_cue",
+    target_id: "sub-b02-03",
+    target_field: "text_ja",
+    change_type: "subtitle_wording",
+    derived_file_locations: [
+      "subtitle-cues.derived.csv",
+      "editorial-handoff.derived.json"
+    ]
+  },
+  {
+    change_id: "rev-change-b03-shot-direction-wording",
+    beat_id: "bridge-storyboard-beat-3-erased-names",
+    target_type: "shot_cue",
+    target_id: "shot-b03-03",
+    target_field: "visual_direction",
+    change_type: "shot_direction_wording",
+    derived_file_locations: [
+      "shot-list.derived.csv",
+      "editorial-handoff.derived.json"
+    ]
+  }
+];
 
 const REVIEW_STATUSES = ["adopt", "provisional", "hold", "reject"];
 const RISK_LEVELS = ["low", "medium", "high"];
@@ -1087,6 +1160,48 @@ async function main() {
     if (command === "smoke-review-workbench-component-contract" || outputPath) {
       console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
+    return;
+  }
+
+  if (command === "validate-editorial-derivative-preview") {
+    if (outputPath) {
+      fail("validate-editorial-derivative-preview is strictly read-only and does not accept an output path; use smoke-editorial-derivative-preview for intentional derivative package and result regeneration.");
+    }
+    const readback = await readJson(inputPath);
+    const result = await validateEditorialDerivativePreview(readback, inputPath);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) {
+      fail(`Editorial Derivative Preview failed: ${result.failures.join("; ")}`);
+    }
+    return;
+  }
+
+  if (command === "smoke-editorial-derivative-preview") {
+    const target = toRepoPath(outputPath || DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT);
+    if (target !== DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT) {
+      fail(`smoke-editorial-derivative-preview may write only the eight files under ${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/ and ${DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT}.`);
+    }
+    const protectedBefore = await snapshotEditorialDerivativeProtectedFiles();
+    const built = await buildEditorialDerivativePackageArtifacts();
+    if (!built.valid) {
+      fail(`Editorial Derivative Preview generation failed before write: ${built.errors.join("; ")}`);
+    }
+    await writeEditorialDerivativePackageArtifacts(built.files);
+    const protectedAfter = await snapshotEditorialDerivativeProtectedFiles();
+    if (!editorialDerivativeSnapshotMapsEqual(protectedBefore, protectedAfter)) {
+      fail("Editorial Derivative Preview smoke crossed the protected Handoff or Revision package write boundary.");
+    }
+    const readback = await readEditorialDerivativeSmokeSeed(inputPath, target);
+    const result = await validateEditorialDerivativePreview(readback, inputPath, {
+      protected_before: protectedBefore,
+      protected_after: protectedAfter
+    });
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    if (!result.passed) {
+      fail(`Editorial Derivative Preview failed: ${result.failures.join("; ")}`);
+    }
+    console.log(`editorial derivative preview passed ${inputPath} -> ${target}`);
     return;
   }
 
@@ -11771,6 +11886,10 @@ async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
     (artifactManifest.artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
       artifactManifest.editorial_revision_roundtrip?.source_handoff_artifact_id === expectedArtifactId &&
       Array.isArray(artifactManifest.preserves) &&
+      artifactManifest.preserves.includes(expectedArtifactId)) ||
+    (artifactManifest.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      artifactManifest.editorial_derivative_preview?.source_handoff_artifact_id === expectedArtifactId &&
+      Array.isArray(artifactManifest.preserves) &&
       artifactManifest.preserves.includes(expectedArtifactId));
   const rootManifestRegistered = rootManifestRead.error === null &&
     handoffActiveOrPreserved &&
@@ -12041,6 +12160,616 @@ async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
       "Package integrity uses raw-byte sizes and SHA256 hashes; package-manifest.json intentionally has no self-hash.",
       "The Handoff route is separate from Bridge, while the Storyboard Flow remains the first substantive Bridge surface.",
       "Provider/API, credentials, AI video, render, upload, database, final canon, and rights clearance remain closed."
+    ],
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
+async function validateEditorialDerivativePreview(readback, readbackPath, options = {}) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) {
+      failures.push(`${name}: ${detail}`);
+    }
+  };
+  const expectedDerivativeRoute = "public/review/index.html?mode=derivative";
+  const expectedRevisionRoute = "public/review/index.html?mode=revision";
+  const expectedHandoffRoute = "public/review/index.html?mode=handoff";
+  const expectedBridgeRoute = "public/review/index.html?mode=bridge";
+  const expectedBriefRoute = "public/review/index.html?mode=brief";
+  const reviewDocPath = "docs/review/editorial-derivative-preview.md";
+  const sourceFingerprint = {
+    artifact_id: EDITORIAL_REVISION_SOURCE_ARTIFACT_ID,
+    editorial_handoff_sha256: EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256,
+    package_manifest_sha256: EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256
+  };
+
+  const derivativeSnapshotEntries = await Promise.all(
+    EDITORIAL_DERIVATIVE_REQUIRED_FILES.map(async (relativePath) => [
+      relativePath,
+      await readFileSnapshot(`${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${relativePath}`)
+    ])
+  );
+  const derivativeSnapshots = Object.fromEntries(derivativeSnapshotEntries);
+  const sourceSnapshotEntries = await Promise.all(
+    EDITORIAL_HANDOFF_REQUIRED_FILES.map(async (relativePath) => [
+      relativePath,
+      await readFileSnapshot(`${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${relativePath}`)
+    ])
+  );
+  const sourceSnapshots = Object.fromEntries(sourceSnapshotEntries);
+  const revisionSnapshotEntries = await Promise.all(
+    EDITORIAL_REVISION_REQUIRED_FILES.map(async (relativePath) => [
+      relativePath,
+      await readFileSnapshot(`${EDITORIAL_REVISION_PACKAGE_ROOT}/${relativePath}`)
+    ])
+  );
+  const revisionSnapshots = Object.fromEntries(revisionSnapshotEntries);
+  const [
+    htmlSnapshot,
+    powerShellLauncherSnapshot,
+    shellLauncherSnapshot,
+    rootManifestRead,
+    reviewDocSnapshot
+  ] = await Promise.all([
+    readFileSnapshot("public/review/index.html"),
+    readFileSnapshot("scripts/operator/open_review.ps1"),
+    readFileSnapshot("scripts/operator/open_review.sh"),
+    readJsonFileSnapshot("artifacts/artifact-manifest.json"),
+    readFileSnapshot(reviewDocPath)
+  ]);
+  const sourceHandoffParse = parseJsonSnapshot(sourceSnapshots["editorial-handoff.json"]);
+  const sourceManifestParse = parseJsonSnapshot(sourceSnapshots["package-manifest.json"]);
+  const revisionPatchParse = parseJsonSnapshot(revisionSnapshots["revision-patch.example.json"]);
+  const revisionManifestParse = parseJsonSnapshot(revisionSnapshots["revision-roundtrip-manifest.json"]);
+  const sourceHandoff = sourceHandoffParse.value || {};
+  const sourceManifest = sourceManifestParse.value || {};
+  const revisionPatch = revisionPatchParse.value || {};
+  const revisionManifest = revisionManifestParse.value || {};
+  const html = htmlSnapshot.text || "";
+  const powerShellLauncher = powerShellLauncherSnapshot.text || "";
+  const shellLauncher = shellLauncherSnapshot.text || "";
+  const rootManifest = rootManifestRead.value || {};
+  const reviewDoc = reviewDocSnapshot.text || "";
+
+  const sourceManifestFiles = Array.isArray(sourceManifest.files) ? sourceManifest.files : [];
+  const sourceManifestErrors = [];
+  for (const entry of sourceManifestFiles) {
+    const relativePath = String(entry?.relative_path || "");
+    const snapshot = sourceSnapshots[relativePath];
+    if (!snapshot?.exists || entry?.byte_size !== snapshot.byteSize ||
+        String(entry?.sha256 || "").toLowerCase() !== String(snapshot?.sha256 || "").toLowerCase()) {
+      sourceManifestErrors.push(`${relativePath || "<missing>"}: integrity mismatch`);
+    }
+  }
+  const sourceManifestPaths = sourceManifestFiles.map((entry) => String(entry?.relative_path || ""));
+  const sourceIntegrityValid =
+    sourceHandoffParse.error === null &&
+    sourceManifestParse.error === null &&
+    sourceHandoff.schemaVersion === EDITORIAL_HANDOFF_SCHEMA_VERSION &&
+    sourceHandoff.artifact_id === EDITORIAL_REVISION_SOURCE_ARTIFACT_ID &&
+    sourceSnapshots["editorial-handoff.json"]?.sha256 === EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256 &&
+    sourceSnapshots["package-manifest.json"]?.sha256 === EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256 &&
+    sourceManifest.schemaVersion === EDITORIAL_HANDOFF_PACKAGE_MANIFEST_SCHEMA_VERSION &&
+    sourceManifest.artifact_id === EDITORIAL_REVISION_SOURCE_ARTIFACT_ID &&
+    sourceManifest.passed === true &&
+    sourceManifestFiles.length === EDITORIAL_HANDOFF_PACKAGE_FILES.length &&
+    arraySetEquals(sourceManifestPaths, new Set(EDITORIAL_HANDOFF_PACKAGE_FILES)) &&
+    sourceManifestErrors.length === 0;
+
+  const revisionManifestFiles = Array.isArray(revisionManifest.files) ? revisionManifest.files : [];
+  const revisionManifestErrors = [];
+  for (const entry of revisionManifestFiles) {
+    const relativePath = String(entry?.relative_path || "");
+    const snapshot = revisionSnapshots[relativePath];
+    if (!snapshot?.exists || entry?.byte_size !== snapshot.byteSize ||
+        String(entry?.sha256 || "").toLowerCase() !== String(snapshot?.sha256 || "").toLowerCase()) {
+      revisionManifestErrors.push(`${relativePath || "<missing>"}: integrity mismatch`);
+    }
+  }
+  const revisionManifestPaths = revisionManifestFiles.map((entry) => String(entry?.relative_path || ""));
+  const revisionIntegrityValid =
+    revisionPatchParse.error === null &&
+    revisionManifestParse.error === null &&
+    revisionSnapshots["revision-patch.example.json"]?.sha256 === EDITORIAL_DERIVATIVE_PATCH_SHA256 &&
+    revisionManifest.schemaVersion === EDITORIAL_REVISION_PACKAGE_MANIFEST_SCHEMA_VERSION &&
+    revisionManifest.artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+    revisionManifest.passed === true &&
+    revisionManifestFiles.length === EDITORIAL_REVISION_PACKAGE_FILES.length &&
+    arraySetEquals(revisionManifestPaths, new Set(EDITORIAL_REVISION_PACKAGE_FILES)) &&
+    revisionManifestErrors.length === 0 &&
+    editorialRevisionSourceMatches(revisionManifest.source, sourceFingerprint);
+  const derivativePatchValidation = validateEditorialDerivativePatchInput(
+    revisionPatch,
+    revisionSnapshots["revision-patch.example.json"]?.sha256,
+    sourceHandoff,
+    sourceFingerprint
+  );
+
+  const diskFiles = Object.fromEntries(EDITORIAL_DERIVATIVE_REQUIRED_FILES
+    .filter((relativePath) => derivativeSnapshots[relativePath]?.exists)
+    .map((relativePath) => [relativePath, derivativeSnapshots[relativePath].buffer]));
+  const packageValidation = validateEditorialDerivativePackageCandidate(diskFiles, {
+    source_handoff: sourceHandoff,
+    revision_patch: revisionPatch,
+    patch_sha256: revisionSnapshots["revision-patch.example.json"]?.sha256,
+    source_fingerprint: sourceFingerprint
+  });
+  const derived = packageValidation.derived || {};
+  const provenance = packageValidation.provenance || {};
+  const manifest = packageValidation.manifest || {};
+  const packageFilePaths = EDITORIAL_DERIVATIVE_REQUIRED_FILES.map((relativePath) =>
+    `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${relativePath}`
+  );
+  const packageFileHashes = Object.fromEntries(
+    EDITORIAL_DERIVATIVE_REQUIRED_FILES.map((relativePath) => [
+      `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${relativePath}`,
+      derivativeSnapshots[relativePath]?.sha256 || null
+    ])
+  );
+  const packageFileBytes = Object.fromEntries(
+    EDITORIAL_DERIVATIVE_REQUIRED_FILES.map((relativePath) => [
+      `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${relativePath}`,
+      derivativeSnapshots[relativePath]?.byteSize || 0
+    ])
+  );
+
+  const derivativeRootBlock = extractFirstHtmlSectionByMarker(
+    html,
+    'data-editorial-derivative-root="true"'
+  );
+  const revisionRootBlock = extractFirstHtmlSectionByMarker(
+    html,
+    'data-editorial-revision-root="true"'
+  );
+  const derivativeMarkers = [
+    ["data-derivative-runway", undefined],
+    ["data-derivative-active-canvas", undefined],
+    ["data-derivative-change-rail", undefined],
+    ["data-derivative-before", undefined],
+    ["data-derivative-after", undefined],
+    ["data-derivative-import-input", undefined],
+    ["data-derivative-load-status", undefined],
+    ["data-derivative-import-message", undefined],
+    ["data-derivative-package-files", undefined],
+    ["data-derivative-download-file", undefined],
+    ["data-derivative-integrity-authority", undefined],
+    ["data-derivative-return-revision", undefined],
+    ["data-derivative-return-handoff", undefined],
+    ["data-derivative-return-brief", undefined]
+  ];
+  const derivativeUiMarkersPresent =
+    derivativeRootBlock.length > 0 &&
+    hasHtmlAttribute(html, "data-mode-panel", "derivative") &&
+    hasHtmlAttribute(html, "data-editorial-derivative-root", "true") &&
+    derivativeMarkers.every(([name, value]) => hasHtmlAttribute(derivativeRootBlock, name, value)) &&
+    EDITORIAL_DERIVATIVE_REQUIRED_FILES.every((relativePath) => html.includes(relativePath));
+  const revisionActionPresent =
+    hasHtmlAttribute(revisionRootBlock, "data-revision-open-derivative", "true") &&
+    /href\s*=\s*["']\?mode=derivative["']/i.test(revisionRootBlock) &&
+    countPattern(html, /data-revision-open-derivative/g) === 1;
+  const derivativeUiExpectedHashesPresent =
+    html.includes("EDITORIAL_DERIVATIVE_EXPECTED_FILE_SHA256") &&
+    html.includes("EDITORIAL_DERIVATIVE_EXPECTED_CORE_FINGERPRINT") &&
+    html.includes("integrity mismatch") &&
+    html.includes("integrityVerified: true") &&
+    html.includes("Static verified filesがauthority") &&
+    html.includes("byte-identical") &&
+    EDITORIAL_DERIVATIVE_REQUIRED_FILES.every((relativePath) =>
+      html.includes(`"${relativePath}": "${derivativeSnapshots[relativePath]?.sha256 || "<missing>"}"`)
+    ) &&
+    html.includes(packageValidation.core_fingerprint_sha256 || "<missing core fingerprint>");
+  const derivativeModelAndSafeImportPresent =
+    html.includes("editorialDerivativeSamplePatch") &&
+    html.includes("buildEditorialDerivativePackage") &&
+    html.includes(EDITORIAL_DERIVATIVE_PREVIEW_SCHEMA_VERSION) &&
+    html.includes(EDITORIAL_DERIVATIVE_PATCH_SHA256) &&
+    html.includes("derived_revision_preview") &&
+    html.includes("applied_to_derived_copy") &&
+    html.includes("discard_derived_package") &&
+    html.includes("FileReader") &&
+    html.includes("JSON.parse") &&
+    html.includes(".textContent") &&
+    html.includes("new Blob") &&
+    html.includes("crypto.subtle.digest") &&
+    derivativeUiExpectedHashesPresent &&
+    /\.size\s*>|MAX_[A-Z_]*DERIVATIVE|DERIVATIVE_[A-Z_]*MAX/.test(html) &&
+    !/\beval\s*\(/.test(html);
+  const preservedRoutesThemesKeyboard =
+    hasHtmlAttribute(html, "data-mode-panel", "revision") &&
+    hasHtmlAttribute(html, "data-mode-panel", "handoff") &&
+    hasHtmlAttribute(html, "data-mode-panel", "bridge") &&
+    hasHtmlAttribute(html, "data-mode-panel", "brief") &&
+    hasHtmlAttribute(html, "data-editorial-revision-root", "true") &&
+    hasHtmlAttribute(html, "data-editorial-handoff-root", "true") &&
+    hasHtmlAttribute(html, "data-bridge-storyboard-flow", "true") &&
+    html.includes('data-review-workbench-canvas="true"') &&
+    html.includes(':root[data-theme="dark"]') &&
+    html.includes(':root[data-theme="auto"]') &&
+    hasHtmlAttribute(html, "data-theme-target", "light") &&
+    hasHtmlAttribute(html, "data-theme-target", "dark") &&
+    hasHtmlAttribute(html, "data-theme-target", "auto") &&
+    html.includes(":focus-visible") &&
+    html.includes("keydown") &&
+    html.includes("ArrowLeft") &&
+    html.includes("ArrowRight") &&
+    html.includes("Home") &&
+    html.includes("End");
+
+  const launcherModes = ["brief", "handoff", "revision", "derivative"];
+  const powerShellLauncherValid =
+    powerShellLauncherSnapshot.exists &&
+    /ValidateSet\s*\(/i.test(powerShellLauncher) &&
+    launcherModes.every((mode) => powerShellLauncher.includes(`"${mode}"`)) &&
+    /\[string\]\$Mode\s*=\s*"brief"/i.test(powerShellLauncher) &&
+    /\[switch\]\$PrintUri/i.test(powerShellLauncher) &&
+    powerShellLauncher.includes("AbsoluteUri") &&
+    powerShellLauncher.includes("?mode=$Mode");
+  const shellModeCaseMatch = shellLauncher.match(/case\s+"\$mode"\s+in([\s\S]*?)esac/);
+  const shellModeCase = shellModeCaseMatch?.[1] || "";
+  const shellLauncherValid =
+    shellLauncherSnapshot.exists &&
+    /mode=brief(?:\r?\n|$)/.test(shellLauncher) &&
+    shellLauncher.includes("--mode") &&
+    shellLauncher.includes("--print-uri") &&
+    launcherModes.every((mode) => shellModeCase.includes(mode)) &&
+    shellModeCase.includes("unknown or unsafe mode") &&
+    shellLauncher.includes("?mode=$mode");
+  const launcherValid = powerShellLauncherValid && shellLauncherValid;
+
+  const rootValidationCommand = String(rootManifest.validation_command || "");
+  const derivativeIndex = rootValidationCommand.indexOf("validate-editorial-derivative-preview");
+  const revisionIndex = rootValidationCommand.indexOf("validate-editorial-revision-roundtrip");
+  const handoffIndex = rootValidationCommand.indexOf("validate-bridge-editorial-handoff-pack");
+  const activeObject = rootManifest.editorial_derivative_preview || {};
+  const expectedRootPackageFiles = packageFilePaths;
+  const rootManifestRegistered =
+    rootManifestRead.error === null &&
+    rootManifest.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+    rootManifest.editorial_derivative_preview_doc_path === reviewDocPath &&
+    rootManifest.editorial_derivative_preview_result_path === DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT &&
+    rootManifest.editorial_derivative_preview_route === expectedDerivativeRoute &&
+    toRepoPath(String(rootManifest.editorial_derivative_preview_package_dir || "")).replace(/\/+$/, "") === EDITORIAL_DERIVATIVE_PACKAGE_ROOT &&
+    rootManifest.editorial_derivative_preview_manifest_path === EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_PATH &&
+    rootManifest.default_review_mode === "brief" &&
+    activeObject.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+    activeObject.source_handoff_artifact_id === EDITORIAL_REVISION_SOURCE_ARTIFACT_ID &&
+    activeObject.source_revision_artifact_id === EDITORIAL_DERIVATIVE_SOURCE_REVISION_ARTIFACT_ID &&
+    activeObject.source_patch_path === EDITORIAL_DERIVATIVE_PATCH_PATH &&
+    activeObject.source_patch_sha256 === EDITORIAL_DERIVATIVE_PATCH_SHA256 &&
+    activeObject.access_route === expectedDerivativeRoute &&
+    toRepoPath(String(activeObject.package_directory || "")).replace(/\/+$/, "") === EDITORIAL_DERIVATIVE_PACKAGE_ROOT &&
+    arrayEqualsExact(activeObject.package_files, expectedRootPackageFiles) &&
+    activeObject.derived_status === "derived_revision_preview" &&
+    editorialRevisionBoundariesClosed(activeObject) &&
+    Array.isArray(rootManifest.preserves) &&
+    rootManifest.preserves.includes(EDITORIAL_DERIVATIVE_SOURCE_REVISION_ARTIFACT_ID) &&
+    rootManifest.preserves.includes(EDITORIAL_REVISION_SOURCE_ARTIFACT_ID) &&
+    derivativeIndex >= 0 && revisionIndex > derivativeIndex && handoffIndex > revisionIndex &&
+    !rootValidationCommand.includes("smoke-editorial-derivative-preview") &&
+    !rootValidationCommand.includes("smoke-editorial-revision-roundtrip") &&
+    !rootValidationCommand.includes("smoke-bridge-editorial-handoff-pack");
+  const reviewDocRegistered =
+    reviewDocSnapshot.exists &&
+    reviewDoc.includes(EDITORIAL_DERIVATIVE_ARTIFACT_ID) &&
+    reviewDoc.includes(expectedDerivativeRoute) &&
+    reviewDoc.includes("validate-editorial-derivative-preview") &&
+    reviewDoc.includes("smoke-editorial-derivative-preview") &&
+    reviewDoc.includes(EDITORIAL_DERIVATIVE_PATCH_SHA256) &&
+    EDITORIAL_DERIVATIVE_REQUIRED_FILES.every((relativePath) => reviewDoc.includes(relativePath));
+
+  const generated = await buildEditorialDerivativePackageArtifacts();
+  const probeBaseFiles = generated.files || diskFiles;
+  const probeContext = {
+    source_handoff: sourceHandoff,
+    revision_patch: revisionPatch,
+    patch_sha256: EDITORIAL_DERIVATIVE_PATCH_SHA256,
+    source_fingerprint: sourceFingerprint
+  };
+  const patchProbe = (mutate, sha256 = EDITORIAL_DERIVATIVE_PATCH_SHA256) => {
+    const value = cloneJsonValue(revisionPatch);
+    mutate(value);
+    return validateEditorialDerivativePatchInput(value, sha256, sourceHandoff, sourceFingerprint);
+  };
+  const fileProbe = (files) => validateEditorialDerivativePackageCandidate(files, probeContext);
+  const wrongSourceProbe = patchProbe((value) => {
+    value.source.editorial_handoff_sha256 = "0".repeat(64);
+  });
+  const wrongPatchProbe = validateEditorialDerivativePatchInput(
+    revisionPatch,
+    "0".repeat(64),
+    sourceHandoff,
+    sourceFingerprint
+  );
+  const beforeMismatchProbe = patchProbe((value) => {
+    value.accepted_changes[0].before = "mismatched before value";
+  });
+  const unknownTargetProbe = patchProbe((value) => {
+    value.accepted_changes[0].target_id = "unknown-target";
+  });
+  const extraChangeProbe = patchProbe((value) => {
+    const extra = cloneJsonValue(value.accepted_changes[0]);
+    extra.change_id = "rev-change-extra-fourth";
+    value.accepted_changes.push(extra);
+  });
+  const timingOrderFiles = mutateEditorialDerivativeJsonFile(
+    probeBaseFiles,
+    "editorial-handoff.derived.json",
+    (value) => {
+      value.beats.reverse();
+      value.beats[0].start_seconds = 154;
+    }
+  );
+  const canonTruthFiles = mutateEditorialDerivativeJsonFile(
+    probeBaseFiles,
+    "editorial-handoff.derived.json",
+    (value) => {
+      value.canonical = true;
+      value.status = "canonical";
+      value.truth_guards[0].state = "resolved";
+    }
+  );
+  const assetRightsFiles = mutateEditorialDerivativeJsonFile(
+    probeBaseFiles,
+    "editorial-handoff.derived.json",
+    (value) => {
+      value.shot_cues[0].asset_status = "selected";
+      value.rights_guards[0].state = "cleared";
+    }
+  );
+  const sourceAppliedFiles = mutateEditorialDerivativeJsonFile(
+    probeBaseFiles,
+    "editorial-handoff.derived.json",
+    (value) => {
+      value.source_apply_status = "applied";
+    }
+  );
+  const derivativeCanonicalFiles = mutateEditorialDerivativeJsonFile(
+    probeBaseFiles,
+    "editorial-handoff.derived.json",
+    (value) => {
+      value.canonical = true;
+      value.derived_status = "canonical";
+    }
+  );
+  const missingFileFiles = cloneEditorialDerivativeFiles(probeBaseFiles);
+  delete missingFileFiles["subtitle-cues.derived.csv"];
+  const manifestHashFiles = mutateEditorialDerivativeJsonFile(
+    probeBaseFiles,
+    "derivative-package-manifest.json",
+    (value) => {
+      value.files[0].sha256 = "0".repeat(64);
+    }
+  );
+  const timingOrderProbe = fileProbe(timingOrderFiles);
+  const canonTruthProbe = fileProbe(canonTruthFiles);
+  const assetRightsProbe = fileProbe(assetRightsFiles);
+  const sourceAppliedProbe = fileProbe(sourceAppliedFiles);
+  const derivativeCanonicalProbe = fileProbe(derivativeCanonicalFiles);
+  const missingFileProbe = fileProbe(missingFileFiles);
+  const manifestHashProbe = fileProbe(manifestHashFiles);
+  const toNegativeProbe = (validation) => ({
+    passed: validation.valid === false,
+    fail_closed: true,
+    artifact_mutation: false,
+    validation_errors: validation.errors
+  });
+  const negativeProbes = {
+    wrong_source_fingerprint: toNegativeProbe(wrongSourceProbe),
+    wrong_patch_fingerprint: toNegativeProbe(wrongPatchProbe),
+    before_value_mismatch: toNegativeProbe(beforeMismatchProbe),
+    unknown_target: toNegativeProbe(unknownTargetProbe),
+    extra_fourth_change: toNegativeProbe(extraChangeProbe),
+    timing_or_order_change: toNegativeProbe(timingOrderProbe),
+    canon_or_truth_promotion: toNegativeProbe(canonTruthProbe),
+    asset_or_rights_promotion: toNegativeProbe(assetRightsProbe),
+    source_apply_status_applied: toNegativeProbe(sourceAppliedProbe),
+    derivative_marked_canonical: toNegativeProbe(derivativeCanonicalProbe),
+    missing_package_file: toNegativeProbe(missingFileProbe),
+    manifest_hash_mismatch: toNegativeProbe(manifestHashProbe)
+  };
+  const negativeProbesPassed = Object.values(negativeProbes).every((probe) =>
+    probe.passed && probe.fail_closed && probe.artifact_mutation === false
+  );
+
+  const protectedBefore = options.protected_before || await snapshotEditorialDerivativeProtectedFiles();
+  const protectedAfter = options.protected_after || await snapshotEditorialDerivativeProtectedFiles();
+  const protectedUnchanged = editorialDerivativeSnapshotMapsEqual(protectedBefore, protectedAfter);
+  const derivativeAfterEntries = await Promise.all(
+    EDITORIAL_DERIVATIVE_REQUIRED_FILES.map(async (relativePath) => [
+      relativePath,
+      await readFileSnapshot(`${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${relativePath}`)
+    ])
+  );
+  const derivativeAfter = Object.fromEntries(derivativeAfterEntries);
+  const derivativeReadOnly = EDITORIAL_DERIVATIVE_REQUIRED_FILES.every((relativePath) =>
+    derivativeSnapshots[relativePath]?.exists === derivativeAfter[relativePath]?.exists &&
+    derivativeSnapshots[relativePath]?.byteSize === derivativeAfter[relativePath]?.byteSize &&
+    derivativeSnapshots[relativePath]?.sha256 === derivativeAfter[relativePath]?.sha256
+  );
+  const sourcePackageUnchanged = sourceIntegrityValid && protectedUnchanged;
+  const revisionPackageUnchanged = revisionIntegrityValid && protectedUnchanged;
+  const boundariesClosed = [derived, provenance, readback, activeObject]
+    .every(editorialRevisionBoundariesClosed);
+  const credentialFindings = [
+    ...collectCredentialMaterial(derived),
+    ...collectCredentialMaterial(provenance),
+    ...collectCredentialMaterial(readback)
+  ];
+  const readbackIdentityValid =
+    readback?.schemaVersion === EDITORIAL_DERIVATIVE_PREVIEW_SCHEMA_VERSION &&
+    readback?.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+    (readback?.derivative_route || readback?.review_route) === expectedDerivativeRoute &&
+    readback?.revision_route === expectedRevisionRoute &&
+    readback?.handoff_route === expectedHandoffRoute &&
+    readback?.bridge_route === expectedBridgeRoute &&
+    readback?.brief_route === expectedBriefRoute &&
+    editorialRevisionSourceMatches(readback?.source, sourceFingerprint) &&
+    readback?.patch?.sha256 === EDITORIAL_DERIVATIVE_PATCH_SHA256 &&
+    readback?.derived_status === "derived_revision_preview" &&
+    readback?.source_apply_status === "not_applied" &&
+    readback?.derived_apply_status === "applied_to_derived_copy" &&
+    readback?.application_scope === "derived_copy_only" &&
+    readback?.rollback_action === "discard_derived_package" &&
+    readback?.passed === true &&
+    Array.isArray(readback?.failures) &&
+    readback.failures.length === 0;
+
+  check("result_identity", readbackIdentityValid,
+    `artifact=${readback?.artifact_id}; schema=${readback?.schemaVersion}; route=${readback?.derivative_route || readback?.review_route}; status=${readback?.derived_status}`);
+  check("source_package_immutable", sourcePackageUnchanged,
+    `handoff=${sourceSnapshots["editorial-handoff.json"]?.sha256}; manifest=${sourceSnapshots["package-manifest.json"]?.sha256}; integrity=${sourceIntegrityValid}; protected=${protectedUnchanged}; errors=${sourceManifestErrors.join(" | ") || "none"}`);
+  check("revision_package_immutable", revisionPackageUnchanged && derivativePatchValidation.valid,
+    `patch=${revisionSnapshots["revision-patch.example.json"]?.sha256}; integrity=${revisionIntegrityValid}; patchValid=${derivativePatchValidation.valid}; protected=${protectedUnchanged}; errors=${revisionManifestErrors.concat(derivativePatchValidation.errors).join(" | ") || "none"}`);
+  check("complete_derivative_package", packageValidation.valid,
+    `files=${Object.keys(diskFiles).length}/${EDITORIAL_DERIVATIVE_REQUIRED_FILES.length}; errors=${packageValidation.errors.join(" | ") || "none"}`);
+  check("exact_three_change_model", packageValidation.audit?.valid === true && packageValidation.audit?.content_delta_count === 3,
+    `deltas=${packageValidation.audit?.content_delta_count}; chars=${packageValidation.audit?.narration_character_count_before}->${packageValidation.audit?.narration_character_count_after}; errors=${packageValidation.audit?.errors?.join(" | ") || "none"}`);
+  check("package_provenance_and_manifest", packageValidation.valid &&
+      provenance?.schemaVersion === EDITORIAL_DERIVATIVE_PROVENANCE_SCHEMA_VERSION &&
+      manifest?.schemaVersion === EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_SCHEMA_VERSION &&
+      manifest?.files?.length === 7,
+    `provenance=${provenance?.schemaVersion}; manifest=${manifest?.schemaVersion}; inventory=${manifest?.files?.length}; core=${packageValidation.core_fingerprint_sha256}`);
+  check("negative_probes_fail_closed", generated.valid && negativeProbesPassed,
+    `generated=${generated.valid}; ${Object.entries(negativeProbes).map(([name, probe]) => `${name}:${probe.passed}/${probe.fail_closed}/${probe.artifact_mutation}`).join("; ")}`);
+  check("derivative_ui_and_local_import", derivativeUiMarkersPresent && revisionActionPresent && derivativeModelAndSafeImportPresent,
+    `markers=${derivativeUiMarkersPresent}; revisionAction=${revisionActionPresent}; expectedHashes=${derivativeUiExpectedHashesPresent}; modelImport=${derivativeModelAndSafeImportPresent}`);
+  check("preserved_routes_themes_keyboard", preservedRoutesThemesKeyboard,
+    `preserved=${preservedRoutesThemesKeyboard}`);
+  check("mode_aware_launchers", launcherValid,
+    `powershell=${powerShellLauncherValid}; shell=${shellLauncherValid}; modes=${launcherModes.join(",")}`);
+  check("docs_and_root_manifest_registered", rootManifestRegistered && reviewDocRegistered,
+    `manifest=${rootManifestRegistered}/${rootManifestRead.error || "ok"}; doc=${reviewDocRegistered}/${reviewDocSnapshot.error || "ok"}; order=${derivativeIndex}/${revisionIndex}/${handoffIndex}`);
+  check("normal_validation_read_only", derivativeReadOnly && protectedUnchanged,
+    `derivative=${derivativeReadOnly}; protected=${protectedUnchanged}`);
+  check("boundary_gates_closed", boundariesClosed && credentialFindings.length === 0,
+    `closed=${boundariesClosed}; credentialFindings=${credentialFindings.join(",") || "none"}`);
+
+  const sourcePackageHashes = Object.fromEntries(EDITORIAL_HANDOFF_REQUIRED_FILES.map((relativePath) => [
+    `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${relativePath}`,
+    sourceSnapshots[relativePath]?.sha256 || null
+  ]));
+  const revisionPackageHashes = Object.fromEntries(EDITORIAL_REVISION_REQUIRED_FILES.map((relativePath) => [
+    `${EDITORIAL_REVISION_PACKAGE_ROOT}/${relativePath}`,
+    revisionSnapshots[relativePath]?.sha256 || null
+  ]));
+  const boundaries = {
+    ...editorialDerivativeClosedBoundaries(),
+    credential_material_findings: credentialFindings
+  };
+  const appliedChanges = Array.isArray(derived.applied_changes) ? derived.applied_changes : [];
+  return {
+    schemaVersion: EDITORIAL_DERIVATIVE_PREVIEW_SCHEMA_VERSION,
+    artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+    title: "Fast Fiction Factory Editorial Derivative Preview",
+    generatedAt: revisionPatch.created_at || new Date().toISOString(),
+    review_status: "ready_for_local_derived_preview",
+    derived_status: "derived_revision_preview",
+    canonical: false,
+    review_ui: "public/review/index.html",
+    derivative_route: expectedDerivativeRoute,
+    review_route: expectedDerivativeRoute,
+    revision_route: expectedRevisionRoute,
+    handoff_route: expectedHandoffRoute,
+    bridge_route: expectedBridgeRoute,
+    brief_route: expectedBriefRoute,
+    input_result_path: toRepoPath(readbackPath),
+    package_directory: EDITORIAL_DERIVATIVE_PACKAGE_ROOT,
+    package_file_paths: packageFilePaths,
+    package_file_hashes: packageFileHashes,
+    package_file_bytes: packageFileBytes,
+    manifest_path: EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_PATH,
+    provenance_path: `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/derivative-provenance.json`,
+    derived_editorial_handoff_path: `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/editorial-handoff.derived.json`,
+    source: sourceFingerprint,
+    source_handoff_artifact_id: EDITORIAL_REVISION_SOURCE_ARTIFACT_ID,
+    source_revision_artifact_id: EDITORIAL_DERIVATIVE_SOURCE_REVISION_ARTIFACT_ID,
+    source_editorial_handoff_sha256: EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256,
+    source_package_manifest_sha256: EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256,
+    patch: {
+      patch_id: revisionPatch.patch_id || null,
+      path: EDITORIAL_DERIVATIVE_PATCH_PATH,
+      sha256: EDITORIAL_DERIVATIVE_PATCH_SHA256
+    },
+    source_patch_path: EDITORIAL_DERIVATIVE_PATCH_PATH,
+    source_patch_sha256: EDITORIAL_DERIVATIVE_PATCH_SHA256,
+    derivative_editorial_handoff_sha256: provenance?.derivative?.editorial_handoff_sha256 || null,
+    derivative_core_fingerprint_sha256: provenance?.derivative?.core_fingerprint_sha256 || null,
+    applied_change_count: appliedChanges.length,
+    narration_change_count: appliedChanges.filter((change) => change.target_type === "narration_segment").length,
+    subtitle_change_count: appliedChanges.filter((change) => change.target_type === "subtitle_cue").length,
+    shot_change_count: appliedChanges.filter((change) => change.target_type === "shot_cue").length,
+    exact_content_deltas: cloneJsonValue(provenance?.changes || []),
+    beat_count: derived?.beats?.length || 0,
+    six_beats: derived?.beats?.length === 6,
+    total_duration: derived?.total_duration_seconds ?? null,
+    total_duration_seconds: derived?.total_duration_seconds ?? null,
+    narration_segments: derived?.narration_segments?.length || 0,
+    narration_segment_count: derived?.narration_segments?.length || 0,
+    subtitle_cues: derived?.subtitle_cues?.length || 0,
+    subtitle_cue_count: derived?.subtitle_cues?.length || 0,
+    shot_cues: derived?.shot_cues?.length || 0,
+    shot_cue_count: derived?.shot_cues?.length || 0,
+    thumbnail_directions: derived?.thumbnail_directions?.length || 0,
+    thumbnail_direction_count: derived?.thumbnail_directions?.length || 0,
+    narration_character_count_before: packageValidation.audit?.narration_character_count_before ?? null,
+    narration_character_count_after: packageValidation.audit?.narration_character_count_after ?? null,
+    source_package_hashes: sourcePackageHashes,
+    revision_package_hashes: revisionPackageHashes,
+    source_package_unchanged: sourcePackageUnchanged,
+    revision_package_unchanged: revisionPackageUnchanged,
+    beat_order_unchanged: packageValidation.audit?.valid === true,
+    timing_unchanged: packageValidation.audit?.valid === true,
+    canon_unchanged: packageValidation.audit?.valid === true && derived.canonical === false,
+    truth_state_unchanged: packageValidation.audit?.valid === true,
+    rights_unchanged: packageValidation.audit?.valid === true,
+    assets_unchanged: packageValidation.audit?.valid === true,
+    source_apply_status: derived.source_apply_status || null,
+    derived_apply_status: derived.derived_apply_status || null,
+    application_scope: derived.application_scope || null,
+    rollback_action: derived.rollback_action || null,
+    provenance_valid: packageValidation.valid && provenance.schemaVersion === EDITORIAL_DERIVATIVE_PROVENANCE_SCHEMA_VERSION,
+    manifest_valid: packageValidation.valid && manifest.schemaVersion === EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_SCHEMA_VERSION,
+    launcher_valid: launcherValid,
+    validation_read_only: derivativeReadOnly && protectedUnchanged,
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false,
+    boundaries,
+    negative_probes: negativeProbes,
+    summary: {
+      applied_change_count: appliedChanges.length,
+      beat_count: derived?.beats?.length || 0,
+      total_duration_seconds: derived?.total_duration_seconds ?? null,
+      narration_segment_count: derived?.narration_segments?.length || 0,
+      subtitle_cue_count: derived?.subtitle_cues?.length || 0,
+      shot_cue_count: derived?.shot_cues?.length || 0,
+      thumbnail_direction_count: derived?.thumbnail_directions?.length || 0,
+      source_package_unchanged: sourcePackageUnchanged,
+      revision_package_unchanged: revisionPackageUnchanged,
+      provenance_valid: packageValidation.valid,
+      manifest_valid: packageValidation.valid,
+      negative_probe_count: Object.keys(negativeProbes).length,
+      failures: failures.length
+    },
+    validation_notes: [
+      "Exactly three accepted safe wording changes are applied to the derived copy only.",
+      "The immutable Handoff and Revision packages remain byte-identical across validation and smoke write boundaries.",
+      "Markdown, CSV, and JSON are deterministically generated from one derived JSON model; narration character estimates recalculate 93 to 94 and total 777 to 778.",
+      "The manifest inventories the other seven files without a self-hash; the non-circular core fingerprint covers five ordered core file hashes.",
+      "All twelve required negative probes operate in memory, fail closed, and do not mutate artifacts.",
+      "Timing, order, truth, canon, rights, assets, provider, credentials, external calls, generation, render, upload, publication, and database gates remain closed."
     ],
     checks,
     failures,
@@ -12454,9 +13183,15 @@ async function validateEditorialRevisionRoundtrip(readback, readbackPath) {
   );
 
   const rootValidationCommand = String(rootManifest?.validation_command || "");
+  const revisionActiveOrPreserved =
+    rootManifest?.artifact_id === EDITORIAL_REVISION_ARTIFACT_ID ||
+    (rootManifest?.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      rootManifest?.editorial_derivative_preview?.source_revision_artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+      Array.isArray(rootManifest?.preserves) &&
+      rootManifest.preserves.includes(EDITORIAL_REVISION_ARTIFACT_ID));
   const rootManifestRegistered =
     rootManifestRead.error === null &&
-    rootManifest?.artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+    revisionActiveOrPreserved &&
     rootManifest?.editorial_revision_roundtrip_result_path === DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT &&
     (rootManifest?.editorial_revision_roundtrip_doc_path || rootManifest?.review_doc_path) === reviewDocPath &&
     rootManifest?.default_review_mode === "brief" &&
@@ -14265,6 +15000,925 @@ async function readEditorialRevisionSmokeSeed(inputPath, targetPath) {
   };
 }
 
+async function buildEditorialDerivativePackageArtifacts() {
+  const errors = [];
+  const [sourceSnapshot, patchSnapshot, requestSnapshot, decisionSnapshot] = await Promise.all([
+    readJsonFileSnapshot(`${EDITORIAL_HANDOFF_PACKAGE_ROOT}/editorial-handoff.json`),
+    readJsonFileSnapshot(EDITORIAL_DERIVATIVE_PATCH_PATH),
+    readJsonFileSnapshot(`${EDITORIAL_REVISION_PACKAGE_ROOT}/revision-request.example.json`),
+    readJsonFileSnapshot(`${EDITORIAL_REVISION_PACKAGE_ROOT}/revision-decision.example.json`)
+  ]);
+  const sourceHandoff = sourceSnapshot.value || {};
+  const revisionPatch = patchSnapshot.value || {};
+  const request = requestSnapshot.value || {};
+  const decision = decisionSnapshot.value || {};
+  const sourceFingerprint = {
+    artifact_id: EDITORIAL_REVISION_SOURCE_ARTIFACT_ID,
+    editorial_handoff_sha256: EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256,
+    package_manifest_sha256: EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256
+  };
+
+  for (const snapshot of [sourceSnapshot, patchSnapshot, requestSnapshot, decisionSnapshot]) {
+    if (snapshot.error) {
+      errors.push(snapshot.error);
+    }
+  }
+  const requestValidation = validateEditorialRevisionRequestPayload(
+    request,
+    sourceHandoff,
+    sourceFingerprint
+  );
+  const decisionValidation = validateEditorialRevisionDecisionPayload(
+    decision,
+    request,
+    requestValidation,
+    sourceFingerprint
+  );
+  const patchValidation = validateEditorialRevisionPatchPayload(
+    revisionPatch,
+    request,
+    decision,
+    requestValidation,
+    sourceFingerprint
+  );
+  const derivativePatchValidation = validateEditorialDerivativePatchInput(
+    revisionPatch,
+    patchSnapshot.sha256,
+    sourceHandoff,
+    sourceFingerprint
+  );
+  if (!requestValidation.valid) {
+    errors.push(...requestValidation.errors.map((error) => `request: ${error}`));
+  }
+  if (!decisionValidation.valid) {
+    errors.push(...decisionValidation.errors.map((error) => `decision: ${error}`));
+  }
+  if (!patchValidation.valid) {
+    errors.push(...patchValidation.errors.map((error) => `patch: ${error}`));
+  }
+  if (!derivativePatchValidation.valid) {
+    errors.push(...derivativePatchValidation.errors.map((error) => `derivative patch: ${error}`));
+  }
+  if (errors.length > 0) {
+    return { valid: false, errors, files: {} };
+  }
+
+  const derivativeBuild = buildEditorialDerivativeModel(
+    sourceHandoff,
+    revisionPatch,
+    sourceFingerprint,
+    patchSnapshot.sha256
+  );
+  if (!derivativeBuild.valid) {
+    return { valid: false, errors: derivativeBuild.errors, files: {} };
+  }
+  const derived = derivativeBuild.derived;
+  const files = {
+    "narration-script.derived.md": editorialDerivativeUtf8(
+      renderEditorialDerivativeNarration(derived)
+    ),
+    "subtitle-cues.derived.csv": editorialDerivativeUtf8(
+      renderEditorialDerivativeCsv(derived.subtitle_cues, editorialDerivativeSubtitleHeaders())
+    ),
+    "shot-list.derived.csv": editorialDerivativeUtf8(
+      renderEditorialDerivativeCsv(derived.shot_cues, editorialDerivativeShotHeaders())
+    ),
+    "editorial-handoff.derived.json": editorialDerivativeJsonBuffer(derived),
+    "applied-revision-patch.json": patchSnapshot.buffer
+  };
+  const coreFingerprint = editorialDerivativeCoreFingerprint(files);
+  const provenance = buildEditorialDerivativeProvenance(
+    derived,
+    sourceHandoff,
+    revisionPatch,
+    patchSnapshot.sha256,
+    files,
+    coreFingerprint
+  );
+  files["derivative-provenance.json"] = editorialDerivativeJsonBuffer(provenance);
+  files["README_DERIVATIVE.md"] = editorialDerivativeUtf8(
+    renderEditorialDerivativeReadme(derived, provenance)
+  );
+  const manifest = buildEditorialDerivativePackageManifest(
+    derived,
+    revisionPatch,
+    patchSnapshot.sha256,
+    files,
+    coreFingerprint
+  );
+  files["derivative-package-manifest.json"] = editorialDerivativeJsonBuffer(manifest);
+  const candidateValidation = validateEditorialDerivativePackageCandidate(files, {
+    source_handoff: sourceHandoff,
+    revision_patch: revisionPatch,
+    patch_sha256: patchSnapshot.sha256,
+    source_fingerprint: sourceFingerprint
+  });
+  if (!candidateValidation.valid) {
+    return {
+      valid: false,
+      errors: candidateValidation.errors.map((error) => `generated package: ${error}`),
+      files
+    };
+  }
+  return {
+    valid: true,
+    errors: [],
+    files,
+    derived,
+    provenance,
+    manifest,
+    core_fingerprint_sha256: coreFingerprint
+  };
+}
+
+function buildEditorialDerivativeModel(sourceHandoff, revisionPatch, sourceFingerprint, patchSha256) {
+  const errors = [];
+  const derived = {
+    schemaVersion: EDITORIAL_DERIVATIVE_PREVIEW_SCHEMA_VERSION,
+    artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+    title: "Fast Fiction Factory Editorial Derivative Preview",
+    generatedAt: revisionPatch?.created_at || null,
+    status: "derived_revision_preview",
+    derived_status: "derived_revision_preview",
+    canonical: false,
+    source_apply_status: "not_applied",
+    derived_apply_status: "applied_to_derived_copy",
+    application_scope: "derived_copy_only",
+    rollback_action: "discard_derived_package",
+    review_route: "public/review/index.html?mode=derivative",
+    source: cloneJsonValue(sourceFingerprint),
+    patch: {
+      patch_id: revisionPatch?.patch_id || null,
+      path: EDITORIAL_DERIVATIVE_PATCH_PATH,
+      sha256: patchSha256
+    },
+    selected_candidate_id: sourceHandoff?.selected_candidate_id || null,
+    selected_channel_route_id: sourceHandoff?.selected_channel_route_id || null,
+    total_duration_seconds: sourceHandoff?.total_duration_seconds ?? null,
+    source_artifact_ids: cloneJsonValue(sourceHandoff?.source_artifact_ids || []),
+    beats: cloneJsonValue(sourceHandoff?.beats || []),
+    narration_segments: cloneJsonValue(sourceHandoff?.narration_segments || []),
+    subtitle_cues: cloneJsonValue(sourceHandoff?.subtitle_cues || []),
+    shot_cues: cloneJsonValue(sourceHandoff?.shot_cues || []),
+    thumbnail_directions: cloneJsonValue(sourceHandoff?.thumbnail_directions || []),
+    sound_music_mood_brief: cloneJsonValue(sourceHandoff?.sound_music_mood_brief || {}),
+    truth_guards: cloneJsonValue(sourceHandoff?.truth_guards || []),
+    rights_guards: cloneJsonValue(sourceHandoff?.rights_guards || []),
+    applied_changes: [],
+    file_inventory: EDITORIAL_DERIVATIVE_REQUIRED_FILES.map((relativePath) => ({
+      relative_path: relativePath,
+      required: true
+    })),
+    boundaries: editorialDerivativeClosedBoundaries()
+  };
+  const changes = Array.isArray(revisionPatch?.accepted_changes)
+    ? revisionPatch.accepted_changes
+    : [];
+  for (const change of changes) {
+    const target = resolveEditorialDerivativeTarget(derived, change);
+    if (!target) {
+      errors.push(`${change?.change_id || "<missing change>"}: target not found`);
+      continue;
+    }
+    if (!jsonValuesEqual(target.item?.[change.target_field], change.before)) {
+      errors.push(`${change.change_id}: before value does not match source-derived copy`);
+      continue;
+    }
+    target.item[change.target_field] = cloneJsonValue(change.proposed_value);
+    if (change.target_type === "narration_segment" && change.target_field === "text") {
+      target.item.character_count_estimate = Array.from(String(change.proposed_value)).length;
+    }
+    derived.applied_changes.push({
+      change_id: change.change_id,
+      beat_id: change.beat_id,
+      target_type: change.target_type,
+      target_id: change.target_id,
+      target_field: change.target_field,
+      change_type: change.change_type,
+      guard_class: change.guard_class,
+      before: cloneJsonValue(change.before),
+      after: cloneJsonValue(change.proposed_value)
+    });
+  }
+  const audit = auditEditorialDerivativeModel(sourceHandoff, derived, revisionPatch);
+  errors.push(...audit.errors);
+  return { valid: errors.length === 0, errors, derived, audit };
+}
+
+function resolveEditorialDerivativeTarget(derived, change) {
+  const collectionByType = {
+    narration_segment: ["narration_segments", "segment_id"],
+    subtitle_cue: ["subtitle_cues", "cue_id"],
+    shot_cue: ["shot_cues", "shot_id"]
+  };
+  const mapping = collectionByType[change?.target_type];
+  if (!mapping) {
+    return null;
+  }
+  const [collectionName, idField] = mapping;
+  const collection = Array.isArray(derived?.[collectionName]) ? derived[collectionName] : [];
+  const item = collection.find((candidate) => candidate?.[idField] === change?.target_id);
+  if (!item || item?.beat_id !== change?.beat_id || !(change?.target_field in item)) {
+    return null;
+  }
+  return { collectionName, idField, item };
+}
+
+function validateEditorialDerivativePatchInput(
+  revisionPatch,
+  patchSha256,
+  sourceHandoff,
+  sourceFingerprint
+) {
+  const errors = [];
+  const changes = Array.isArray(revisionPatch?.accepted_changes)
+    ? revisionPatch.accepted_changes
+    : [];
+  if (revisionPatch?.schemaVersion !== EDITORIAL_REVISION_PATCH_SCHEMA_VERSION) {
+    errors.push("schemaVersion mismatch");
+  }
+  if (patchSha256 !== EDITORIAL_DERIVATIVE_PATCH_SHA256) {
+    errors.push("patch SHA256 mismatch");
+  }
+  if (!editorialRevisionSourceMatches(revisionPatch?.source, sourceFingerprint)) {
+    errors.push("source fingerprint mismatch");
+  }
+  if (revisionPatch?.apply_status !== "not_applied") {
+    errors.push("source apply status must remain not_applied");
+  }
+  if (!editorialRevisionBoundariesClosed(revisionPatch)) {
+    errors.push("patch boundaries are not closed");
+  }
+  const changeIds = changes.map((change) => String(change?.change_id || ""));
+  if (changes.length !== EDITORIAL_DERIVATIVE_EXPECTED_CHANGES.length ||
+      new Set(changeIds).size !== changeIds.length ||
+      !arrayEqualsExact(changeIds, EDITORIAL_DERIVATIVE_EXPECTED_CHANGE_IDS)) {
+    errors.push("patch must contain exactly the three expected safe changes in order");
+  }
+  for (const expected of EDITORIAL_DERIVATIVE_EXPECTED_CHANGES) {
+    const change = changes.find((candidate) => candidate?.change_id === expected.change_id);
+    if (!change) {
+      errors.push(`${expected.change_id}: missing`);
+      continue;
+    }
+    const tupleFields = [
+      "beat_id",
+      "target_type",
+      "target_id",
+      "target_field",
+      "change_type"
+    ];
+    if (!tupleFields.every((field) => change?.[field] === expected[field])) {
+      errors.push(`${expected.change_id}: target tuple mismatch`);
+    }
+    if (change?.guard_class !== "safe_local_edit") {
+      errors.push(`${expected.change_id}: guard class must be safe_local_edit`);
+    }
+    const sourceTarget = resolveEditorialRevisionSourceTarget(sourceHandoff, change);
+    if (!sourceTarget) {
+      errors.push(`${expected.change_id}: unknown source target`);
+    } else if (!jsonValuesEqual(sourceTarget.value, change?.before)) {
+      errors.push(`${expected.change_id}: before value mismatch`);
+    }
+    if (!hasNonEmptyText(change?.proposed_value) || jsonValuesEqual(change?.before, change?.proposed_value)) {
+      errors.push(`${expected.change_id}: proposed value must be non-empty and changed`);
+    }
+  }
+  return { valid: errors.length === 0, errors, change_count: changes.length };
+}
+
+function auditEditorialDerivativeModel(sourceHandoff, derived, revisionPatch) {
+  const errors = [];
+  const changes = Array.isArray(revisionPatch?.accepted_changes)
+    ? revisionPatch.accepted_changes
+    : [];
+  const compareCollections = [
+    ["beats", "beat_id"],
+    ["narration_segments", "segment_id"],
+    ["subtitle_cues", "cue_id"],
+    ["shot_cues", "shot_id"],
+    ["thumbnail_directions", "direction_id"],
+    ["truth_guards", "guard_id"],
+    ["rights_guards", "guard_id"]
+  ];
+  const allowedPaths = new Map();
+  for (const change of changes) {
+    allowedPaths.set(
+      `${change.target_type}/${change.target_id}/${change.target_field}`,
+      change
+    );
+  }
+  for (const [collectionName, idField] of compareCollections) {
+    const sourceItems = Array.isArray(sourceHandoff?.[collectionName])
+      ? sourceHandoff[collectionName]
+      : [];
+    const derivedItems = Array.isArray(derived?.[collectionName])
+      ? derived[collectionName]
+      : [];
+    if (sourceItems.length !== derivedItems.length) {
+      errors.push(`${collectionName}: item count changed`);
+      continue;
+    }
+    for (let index = 0; index < sourceItems.length; index += 1) {
+      const sourceItem = sourceItems[index];
+      const derivedItem = derivedItems[index];
+      if (sourceItem?.[idField] !== derivedItem?.[idField]) {
+        errors.push(`${collectionName}: ID or order changed at index ${index}`);
+        continue;
+      }
+      const targetType = collectionName === "narration_segments"
+        ? "narration_segment"
+        : collectionName === "subtitle_cues"
+          ? "subtitle_cue"
+          : collectionName === "shot_cues"
+            ? "shot_cue"
+            : null;
+      const keys = new Set([...Object.keys(sourceItem || {}), ...Object.keys(derivedItem || {})]);
+      for (const key of keys) {
+        const pathKey = `${targetType}/${sourceItem?.[idField]}/${key}`;
+        const allowed = targetType ? allowedPaths.get(pathKey) : null;
+        if (allowed) {
+          if (!jsonValuesEqual(sourceItem?.[key], allowed.before) ||
+              !jsonValuesEqual(derivedItem?.[key], allowed.proposed_value)) {
+            errors.push(`${allowed.change_id}: before or after value mismatch`);
+          }
+          continue;
+        }
+        const narrationEstimateAllowed = collectionName === "narration_segments" &&
+          sourceItem?.segment_id === "narration-b01" &&
+          key === "character_count_estimate";
+        if (narrationEstimateAllowed) {
+          const expectedEstimate = Array.from(String(derivedItem?.text || "")).length;
+          if (sourceItem?.character_count_estimate !== 93 ||
+              derivedItem?.character_count_estimate !== expectedEstimate ||
+              expectedEstimate !== 94) {
+            errors.push("narration-b01 character_count_estimate must recalculate 93 to 94");
+          }
+          continue;
+        }
+        if (!jsonValuesEqual(sourceItem?.[key], derivedItem?.[key])) {
+          errors.push(`${collectionName}/${sourceItem?.[idField]}/${key}: hidden change`);
+        }
+      }
+    }
+  }
+  for (const key of ["sound_music_mood_brief", "source_artifact_ids"]) {
+    if (!jsonValuesEqual(sourceHandoff?.[key], derived?.[key])) {
+      errors.push(`${key}: hidden change`);
+    }
+  }
+  const applied = Array.isArray(derived?.applied_changes) ? derived.applied_changes : [];
+  if (applied.length !== 3 || !arrayEqualsExact(
+    applied.map((change) => change?.change_id),
+    EDITORIAL_DERIVATIVE_EXPECTED_CHANGE_IDS
+  )) {
+    errors.push("derived applied_changes must be exactly the three expected changes");
+  }
+  const sourceNarrationTotal = (sourceHandoff?.narration_segments || [])
+    .reduce((total, segment) => total + Number(segment?.character_count_estimate || 0), 0);
+  const derivedNarrationTotal = (derived?.narration_segments || [])
+    .reduce((total, segment) => total + Number(segment?.character_count_estimate || 0), 0);
+  if (sourceNarrationTotal !== 777 || derivedNarrationTotal !== 778) {
+    errors.push(`narration character totals must be 777 -> 778, got ${sourceNarrationTotal} -> ${derivedNarrationTotal}`);
+  }
+  return {
+    valid: errors.length === 0,
+    errors,
+    content_delta_count: changes.length,
+    narration_character_count_before: sourceNarrationTotal,
+    narration_character_count_after: derivedNarrationTotal
+  };
+}
+
+function editorialDerivativeSubtitleHeaders() {
+  return [
+    "cue_id",
+    "beat_id",
+    "start_time",
+    "end_time",
+    "text_ja",
+    "line_break_hint",
+    "status",
+    "truth_risk_marker"
+  ];
+}
+
+function editorialDerivativeShotHeaders() {
+  return [
+    "shot_id",
+    "beat_id",
+    "start_time",
+    "end_time",
+    "shot_purpose",
+    "visual_direction",
+    "asset_class",
+    "asset_status",
+    "rights_note",
+    "truth_boundary_note"
+  ];
+}
+
+function renderEditorialDerivativeNarration(derived) {
+  const lines = [
+    "# Editorial Derivative Preview — Narration Script",
+    "",
+    "DERIVED PREVIEW / NOT CANONICAL",
+    "",
+    `- artifact_id: ${derived.artifact_id}`,
+    `- status: ${derived.status}`,
+    `- source_apply_status: ${derived.source_apply_status}`,
+    `- derived_apply_status: ${derived.derived_apply_status}`,
+    `- application_scope: ${derived.application_scope}`,
+    `- rollback_action: ${derived.rollback_action}`,
+    ""
+  ];
+  for (const segment of derived.narration_segments) {
+    const beat = derived.beats.find((candidate) => candidate.beat_id === segment.beat_id) || {};
+    lines.push(
+      `## Beat ${beat.beat_number}: ${beat.title_ja}`,
+      "",
+      `- beat_id: ${segment.beat_id}`,
+      `- segment_id: ${segment.segment_id}`,
+      `- timing: ${segment.start_time}-${segment.end_time}`,
+      `- status: ${segment.status}`,
+      `- character_count_estimate: ${segment.character_count_estimate}`,
+      `- reading_seconds_estimate: ${segment.reading_seconds_estimate}`,
+      "",
+      segment.text,
+      "",
+      "Held truth notes:",
+      ...segment.held_truth_notes.map((note) => `- ${note}`),
+      ""
+    );
+  }
+  return `${lines.join("\n").trimEnd()}\n`;
+}
+
+function renderEditorialDerivativeCsv(records, headers) {
+  const rows = [headers.join(",")];
+  for (const record of records) {
+    rows.push(headers.map((header) => editorialDerivativeCsvField(record?.[header])).join(","));
+  }
+  return `${rows.join("\n")}\n`;
+}
+
+function editorialDerivativeCsvField(value) {
+  const text = value === null || value === undefined ? "" : String(value);
+  if (!/[",\r\n]/.test(text)) {
+    return text;
+  }
+  return `"${text.replace(/"/g, '""')}"`;
+}
+
+function buildEditorialDerivativeProvenance(
+  derived,
+  sourceHandoff,
+  revisionPatch,
+  patchSha256,
+  coreFiles,
+  coreFingerprint
+) {
+  const changes = revisionPatch.accepted_changes.map((change) => {
+    const expected = EDITORIAL_DERIVATIVE_EXPECTED_CHANGES.find((item) =>
+      item.change_id === change.change_id
+    );
+    return {
+      change_id: change.change_id,
+      beat_id: change.beat_id,
+      target_type: change.target_type,
+      target_id: change.target_id,
+      target_field: change.target_field,
+      guard_class: change.guard_class,
+      before: cloneJsonValue(change.before),
+      before_sha256: editorialRevisionValueHash(change.before),
+      after: cloneJsonValue(change.proposed_value),
+      after_sha256: editorialRevisionValueHash(change.proposed_value),
+      derived_file_locations: cloneJsonValue(expected?.derived_file_locations || [])
+    };
+  });
+  const coreFileEntries = EDITORIAL_DERIVATIVE_CORE_FILES.map((relativePath) => ({
+    relative_path: relativePath,
+    byte_size: coreFiles[relativePath].byteLength,
+    sha256: editorialDerivativeBufferHash(coreFiles[relativePath])
+  }));
+  return {
+    schemaVersion: EDITORIAL_DERIVATIVE_PROVENANCE_SCHEMA_VERSION,
+    artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+    generatedAt: revisionPatch.created_at,
+    status: "derived_revision_preview",
+    canonical: false,
+    source: {
+      artifact_id: EDITORIAL_REVISION_SOURCE_ARTIFACT_ID,
+      editorial_handoff_sha256: EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256,
+      package_manifest_sha256: EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256
+    },
+    patch: {
+      patch_id: revisionPatch.patch_id,
+      path: EDITORIAL_DERIVATIVE_PATCH_PATH,
+      sha256: patchSha256
+    },
+    derivative: {
+      artifact_id: derived.artifact_id,
+      editorial_handoff_sha256: editorialDerivativeBufferHash(
+        coreFiles["editorial-handoff.derived.json"]
+      ),
+      core_fingerprint_sha256: coreFingerprint,
+      core_fingerprint_algorithm: "sha256 of LF-joined ordered relative_path:sha256 pairs for the five core files"
+    },
+    source_apply_status: "not_applied",
+    derived_apply_status: "applied_to_derived_copy",
+    application_scope: "derived_copy_only",
+    rollback_action: "discard_derived_package",
+    applied_change_count: 3,
+    content_delta_count: 3,
+    changes,
+    core_files: coreFileEntries,
+    invariants: {
+      source_package_unchanged: true,
+      revision_package_unchanged: true,
+      beat_order_unchanged: true,
+      timing_unchanged: true,
+      canon_unchanged: true,
+      truth_state_unchanged: true,
+      rights_unchanged: true,
+      assets_unchanged: true,
+      beat_count: sourceHandoff.beats.length,
+      total_duration_seconds: sourceHandoff.total_duration_seconds,
+      narration_segment_count: sourceHandoff.narration_segments.length,
+      subtitle_cue_count: sourceHandoff.subtitle_cues.length,
+      shot_cue_count: sourceHandoff.shot_cues.length,
+      thumbnail_direction_count: sourceHandoff.thumbnail_directions.length,
+      narration_character_count_before: 777,
+      narration_character_count_after: 778
+    },
+    boundaries: editorialDerivativeClosedBoundaries()
+  };
+}
+
+function renderEditorialDerivativeReadme(derived, provenance) {
+  const lines = [
+    "# Fast Fiction Factory Editorial Derivative Preview",
+    "",
+    "**DERIVED PREVIEW / NOT CANONICAL**",
+    "",
+    `Artifact: \`${derived.artifact_id}\``,
+    "",
+    "This local package applies exactly three accepted safe wording edits to a copy of the immutable Editorial Handoff package. It is not final, approved, canonical, rights-cleared, production-ready, rendered, uploaded, published, or persisted to a database.",
+    "",
+    "## Application contract",
+    "",
+    `- source_apply_status: \`${derived.source_apply_status}\``,
+    `- derived_apply_status: \`${derived.derived_apply_status}\``,
+    `- application_scope: \`${derived.application_scope}\``,
+    `- rollback_action: \`${derived.rollback_action}\``,
+    `- applied changes: \`${derived.applied_changes.length}\``,
+    "- rollback: discard this entire derived package; no source file was modified.",
+    "",
+    "## Fingerprints",
+    "",
+    `- source editorial-handoff.json: \`${provenance.source.editorial_handoff_sha256}\``,
+    `- source package-manifest.json: \`${provenance.source.package_manifest_sha256}\``,
+    `- accepted patch: \`${provenance.patch.sha256}\``,
+    `- derived editorial JSON: \`${provenance.derivative.editorial_handoff_sha256}\``,
+    `- derived core fingerprint: \`${provenance.derivative.core_fingerprint_sha256}\``,
+    "",
+    "## Package files",
+    "",
+    ...EDITORIAL_DERIVATIVE_REQUIRED_FILES.map((relativePath) => `- \`${relativePath}\``),
+    "",
+    "The manifest inventories the other seven files and intentionally has no self-hash. The core fingerprint is SHA256 over LF-joined ordered `relative_path:sha256` pairs for narration, subtitle, shot, derived JSON, and the byte-identical accepted patch.",
+    "",
+    "## Closed boundaries",
+    "",
+    "Timing, beat order, truth, ending, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload/publication, and database persistence remain unchanged or closed.",
+    ""
+  ];
+  return `${lines.join("\n").trimEnd()}\n`;
+}
+
+function buildEditorialDerivativePackageManifest(
+  derived,
+  revisionPatch,
+  patchSha256,
+  packageFiles,
+  coreFingerprint
+) {
+  const files = EDITORIAL_DERIVATIVE_PACKAGE_FILES.map((relativePath) => ({
+    relative_path: relativePath,
+    byte_size: packageFiles[relativePath].byteLength,
+    sha256: editorialDerivativeBufferHash(packageFiles[relativePath])
+  }));
+  return {
+    schemaVersion: EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_SCHEMA_VERSION,
+    artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+    generatedAt: revisionPatch.created_at,
+    package_root: EDITORIAL_DERIVATIVE_PACKAGE_ROOT,
+    status: "derived_revision_preview",
+    canonical: false,
+    source: cloneJsonValue(derived.source),
+    patch: {
+      patch_id: revisionPatch.patch_id,
+      path: EDITORIAL_DERIVATIVE_PATCH_PATH,
+      sha256: patchSha256
+    },
+    derivative_core_fingerprint_sha256: coreFingerprint,
+    files,
+    passed: files.length === EDITORIAL_DERIVATIVE_PACKAGE_FILES.length
+  };
+}
+
+function editorialDerivativeCoreFingerprint(files) {
+  const material = EDITORIAL_DERIVATIVE_CORE_FILES.map((relativePath) =>
+    `${relativePath}:${editorialDerivativeBufferHash(files[relativePath])}`
+  ).join("\n") + "\n";
+  return editorialDerivativeBufferHash(Buffer.from(material, "utf8"));
+}
+
+function editorialDerivativeJsonBuffer(value) {
+  return Buffer.from(`${JSON.stringify(value, null, 2)}\n`, "utf8");
+}
+
+function editorialDerivativeUtf8(value) {
+  return Buffer.from(value, "utf8");
+}
+
+function editorialDerivativeBufferHash(value) {
+  return createHash("sha256").update(value).digest("hex");
+}
+
+function editorialDerivativeClosedBoundaries() {
+  return {
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    public_upload: false,
+    ai_video_generation: false,
+    production_render: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    rights_cleared_claim: false
+  };
+}
+
+function validateEditorialDerivativePackageCandidate(filesInput, context) {
+  const errors = [];
+  const files = {};
+  for (const [relativePath, value] of Object.entries(filesInput || {})) {
+    files[relativePath] = Buffer.isBuffer(value) ? value : Buffer.from(String(value ?? ""), "utf8");
+  }
+  const actualPaths = Object.keys(files).sort();
+  const requiredPaths = [...EDITORIAL_DERIVATIVE_REQUIRED_FILES].sort();
+  if (!arrayEqualsExact(actualPaths, requiredPaths)) {
+    errors.push(`package file set mismatch: ${actualPaths.join(",")}`);
+  }
+  const missing = EDITORIAL_DERIVATIVE_REQUIRED_FILES.filter((relativePath) =>
+    !files[relativePath] || files[relativePath].byteLength === 0
+  );
+  if (missing.length > 0) {
+    errors.push(`missing package files: ${missing.join(",")}`);
+    return { valid: false, errors };
+  }
+
+  const parsePackageJson = (relativePath) => {
+    try {
+      return JSON.parse(files[relativePath].toString("utf8"));
+    } catch (error) {
+      errors.push(`${relativePath}: invalid JSON: ${error.message}`);
+      return null;
+    }
+  };
+  const derived = parsePackageJson("editorial-handoff.derived.json");
+  const appliedPatch = parsePackageJson("applied-revision-patch.json");
+  const provenance = parsePackageJson("derivative-provenance.json");
+  const manifest = parsePackageJson("derivative-package-manifest.json");
+  if (!derived || !appliedPatch || !provenance || !manifest) {
+    return { valid: false, errors };
+  }
+
+  const sourceHandoff = context?.source_handoff || {};
+  const revisionPatch = context?.revision_patch || {};
+  const patchSha256 = context?.patch_sha256 || null;
+  const sourceFingerprint = context?.source_fingerprint || {};
+  const patchInputValidation = validateEditorialDerivativePatchInput(
+    appliedPatch,
+    editorialDerivativeBufferHash(files["applied-revision-patch.json"]),
+    sourceHandoff,
+    sourceFingerprint
+  );
+  if (!patchInputValidation.valid) {
+    errors.push(...patchInputValidation.errors.map((error) => `applied patch: ${error}`));
+  }
+  if (!jsonValuesEqual(appliedPatch, revisionPatch) ||
+      editorialDerivativeBufferHash(files["applied-revision-patch.json"]) !== patchSha256) {
+    errors.push("applied-revision-patch.json must be a byte-identical copy of the accepted source patch");
+  }
+
+  const identityValid =
+    derived.schemaVersion === EDITORIAL_DERIVATIVE_PREVIEW_SCHEMA_VERSION &&
+    derived.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+    derived.generatedAt === revisionPatch.created_at &&
+    derived.status === "derived_revision_preview" &&
+    derived.derived_status === "derived_revision_preview" &&
+    derived.canonical === false &&
+    derived.source_apply_status === "not_applied" &&
+    derived.derived_apply_status === "applied_to_derived_copy" &&
+    derived.application_scope === "derived_copy_only" &&
+    derived.rollback_action === "discard_derived_package" &&
+    derived.review_route === "public/review/index.html?mode=derivative" &&
+    editorialRevisionSourceMatches(derived.source, sourceFingerprint) &&
+    derived.patch?.patch_id === revisionPatch.patch_id &&
+    derived.patch?.path === EDITORIAL_DERIVATIVE_PATCH_PATH &&
+    derived.patch?.sha256 === patchSha256 &&
+    derived.selected_candidate_id === EDITORIAL_REVISION_CANDIDATE_ID &&
+    derived.selected_channel_route_id === EDITORIAL_REVISION_CHANNEL_ID &&
+    editorialRevisionBoundariesClosed(derived);
+  if (!identityValid) {
+    errors.push("derived JSON identity, application semantics, source, patch, route, or boundaries invalid");
+  }
+  const modelAudit = auditEditorialDerivativeModel(sourceHandoff, derived, revisionPatch);
+  errors.push(...modelAudit.errors.map((error) => `derived model: ${error}`));
+
+  const expectedNarration = renderEditorialDerivativeNarration(derived);
+  if (files["narration-script.derived.md"].toString("utf8") !== expectedNarration) {
+    errors.push("narration Markdown does not exactly match the derived JSON model");
+  }
+  const expectedSubtitleCsv = renderEditorialDerivativeCsv(
+    derived.subtitle_cues,
+    editorialDerivativeSubtitleHeaders()
+  );
+  if (files["subtitle-cues.derived.csv"].toString("utf8") !== expectedSubtitleCsv) {
+    errors.push("subtitle CSV does not exactly match the derived JSON model");
+  }
+  const expectedShotCsv = renderEditorialDerivativeCsv(
+    derived.shot_cues,
+    editorialDerivativeShotHeaders()
+  );
+  if (files["shot-list.derived.csv"].toString("utf8") !== expectedShotCsv) {
+    errors.push("shot CSV does not exactly match the derived JSON model");
+  }
+  try {
+    const subtitleCsv = parseCsvText(files["subtitle-cues.derived.csv"].toString("utf8"));
+    if (!arrayEqualsExact(subtitleCsv.headers, editorialDerivativeSubtitleHeaders()) ||
+        !csvRecordsMatchObjects(
+          subtitleCsv.records,
+          derived.subtitle_cues,
+          editorialDerivativeSubtitleHeaders()
+        )) {
+      errors.push("subtitle CSV headers or rows fail structured cross-match");
+    }
+  } catch (error) {
+    errors.push(`subtitle CSV parse failed: ${error.message}`);
+  }
+  try {
+    const shotCsv = parseCsvText(files["shot-list.derived.csv"].toString("utf8"));
+    if (!arrayEqualsExact(shotCsv.headers, editorialDerivativeShotHeaders()) ||
+        !csvRecordsMatchObjects(
+          shotCsv.records,
+          derived.shot_cues,
+          editorialDerivativeShotHeaders()
+        )) {
+      errors.push("shot CSV headers or rows fail structured cross-match");
+    }
+  } catch (error) {
+    errors.push(`shot CSV parse failed: ${error.message}`);
+  }
+
+  const coreFingerprint = editorialDerivativeCoreFingerprint(files);
+  const expectedProvenance = buildEditorialDerivativeProvenance(
+    derived,
+    sourceHandoff,
+    revisionPatch,
+    patchSha256,
+    files,
+    coreFingerprint
+  );
+  if (!jsonValuesEqual(provenance, expectedProvenance)) {
+    errors.push("derivative provenance is incomplete or does not match source, patch, deltas, or core hashes");
+  }
+  const expectedReadme = renderEditorialDerivativeReadme(derived, expectedProvenance);
+  if (files["README_DERIVATIVE.md"].toString("utf8") !== expectedReadme) {
+    errors.push("README_DERIVATIVE.md does not match the deterministic package contract");
+  }
+  const packageWithoutManifest = Object.fromEntries(
+    EDITORIAL_DERIVATIVE_PACKAGE_FILES.map((relativePath) => [relativePath, files[relativePath]])
+  );
+  const expectedManifest = buildEditorialDerivativePackageManifest(
+    derived,
+    revisionPatch,
+    patchSha256,
+    packageWithoutManifest,
+    coreFingerprint
+  );
+  if (!jsonValuesEqual(manifest, expectedManifest)) {
+    errors.push("derivative package manifest does not match byte sizes, hashes, source, patch, or core fingerprint");
+  }
+  const manifestPaths = Array.isArray(manifest?.files)
+    ? manifest.files.map((entry) => String(entry?.relative_path || ""))
+    : [];
+  if (manifestPaths.length !== EDITORIAL_DERIVATIVE_PACKAGE_FILES.length ||
+      !arrayEqualsExact(manifestPaths, EDITORIAL_DERIVATIVE_PACKAGE_FILES) ||
+      manifestPaths.includes("derivative-package-manifest.json")) {
+    errors.push("manifest must inventory exactly the other seven files and no self-hash");
+  }
+  return {
+    valid: errors.length === 0,
+    errors,
+    derived,
+    provenance,
+    manifest,
+    audit: modelAudit,
+    core_fingerprint_sha256: coreFingerprint
+  };
+}
+
+async function writeEditorialDerivativePackageArtifacts(files) {
+  const actualPaths = Object.keys(files || {}).sort();
+  const allowedPaths = [...EDITORIAL_DERIVATIVE_REQUIRED_FILES].sort();
+  if (!arrayEqualsExact(actualPaths, allowedPaths)) {
+    fail(`Refusing derivative write outside exact package set: ${actualPaths.join(",")}`);
+  }
+  await mkdir(EDITORIAL_DERIVATIVE_PACKAGE_ROOT, { recursive: true });
+  for (const relativePath of EDITORIAL_DERIVATIVE_REQUIRED_FILES) {
+    const target = `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${relativePath}`;
+    if (toRepoPath(target) !== `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${relativePath}`) {
+      fail(`Refusing unsafe derivative target: ${target}`);
+    }
+    await writeFile(target, files[relativePath]);
+  }
+}
+
+async function snapshotEditorialDerivativeProtectedFiles() {
+  const paths = [
+    ...EDITORIAL_HANDOFF_REQUIRED_FILES.map((relativePath) =>
+      `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${relativePath}`
+    ),
+    ...EDITORIAL_REVISION_REQUIRED_FILES.map((relativePath) =>
+      `${EDITORIAL_REVISION_PACKAGE_ROOT}/${relativePath}`
+    )
+  ];
+  const entries = await Promise.all(paths.map(async (filePath) => {
+    const snapshot = await readFileSnapshot(filePath);
+    return [filePath, {
+      exists: snapshot.exists,
+      byte_size: snapshot.byteSize,
+      sha256: snapshot.sha256
+    }];
+  }));
+  return Object.fromEntries(entries);
+}
+
+function editorialDerivativeSnapshotMapsEqual(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+async function readEditorialDerivativeSmokeSeed(inputPath, targetPath) {
+  if (path.resolve(inputPath) !== path.resolve(targetPath) && await fileSizeOrZero(inputPath) > 0) {
+    return readJson(inputPath);
+  }
+  return {
+    schemaVersion: EDITORIAL_DERIVATIVE_PREVIEW_SCHEMA_VERSION,
+    artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+    derivative_route: "public/review/index.html?mode=derivative",
+    revision_route: "public/review/index.html?mode=revision",
+    handoff_route: "public/review/index.html?mode=handoff",
+    bridge_route: "public/review/index.html?mode=bridge",
+    brief_route: "public/review/index.html?mode=brief",
+    source: {
+      artifact_id: EDITORIAL_REVISION_SOURCE_ARTIFACT_ID,
+      editorial_handoff_sha256: EDITORIAL_REVISION_SOURCE_HANDOFF_SHA256,
+      package_manifest_sha256: EDITORIAL_REVISION_SOURCE_MANIFEST_SHA256
+    },
+    patch: {
+      path: EDITORIAL_DERIVATIVE_PATCH_PATH,
+      sha256: EDITORIAL_DERIVATIVE_PATCH_SHA256
+    },
+    derived_status: "derived_revision_preview",
+    source_apply_status: "not_applied",
+    derived_apply_status: "applied_to_derived_copy",
+    application_scope: "derived_copy_only",
+    rollback_action: "discard_derived_package",
+    boundaries: editorialDerivativeClosedBoundaries(),
+    failures: [],
+    passed: true
+  };
+}
+
+function cloneEditorialDerivativeFiles(files) {
+  return Object.fromEntries(Object.entries(files).map(([relativePath, buffer]) => [
+    relativePath,
+    Buffer.from(buffer)
+  ]));
+}
+
+function mutateEditorialDerivativeJsonFile(files, relativePath, mutate) {
+  const clone = cloneEditorialDerivativeFiles(files);
+  const value = JSON.parse(clone[relativePath].toString("utf8"));
+  mutate(value);
+  clone[relativePath] = editorialDerivativeJsonBuffer(value);
+  return clone;
+}
+
 function editorialRevisionSourceMatches(value, expected) {
   return value?.artifact_id === expected.artifact_id &&
     value?.editorial_handoff_sha256 === expected.editorial_handoff_sha256 &&
@@ -14823,12 +16477,21 @@ function extractFirstHtmlBlockByMarker(html, tagName, marker) {
   if (start < 0) {
     return "";
   }
-  const endMarker = `</${tagName}>`;
-  const end = html.indexOf(endMarker, markerIndex);
-  if (end < 0) {
-    return html.slice(start);
+  const tagPattern = new RegExp(`<\\/?${escapeRegExp(tagName)}\\b[^>]*>`, "gi");
+  tagPattern.lastIndex = start;
+  let depth = 0;
+  let match;
+  while ((match = tagPattern.exec(html)) !== null) {
+    if (/^<\//.test(match[0])) {
+      depth -= 1;
+      if (depth === 0) {
+        return html.slice(start, tagPattern.lastIndex);
+      }
+    } else {
+      depth += 1;
+    }
   }
-  return html.slice(start, end + endMarker.length);
+  return html.slice(start);
 }
 
 function extractConstObjectBlock(text, constName) {
@@ -15711,6 +17374,8 @@ Usage:
   node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json> [output.json]
   node tools/fff-state.mjs validate-review-workbench-component-contract <review-workbench-component-contract-result.json>
   node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
+  node tools/fff-state.mjs validate-editorial-derivative-preview <editorial-derivative-preview-result.json>
+  node tools/fff-state.mjs smoke-editorial-derivative-preview <editorial-derivative-preview-result.json> [artifacts/editorial-derivative-preview-result.json]
   node tools/fff-state.mjs validate-editorial-revision-roundtrip <editorial-revision-roundtrip-result.json>
   node tools/fff-state.mjs smoke-editorial-revision-roundtrip <editorial-revision-roundtrip-result.json> [artifacts/editorial-revision-roundtrip-result.json]
   node tools/fff-state.mjs validate-bridge-editorial-handoff-pack <bridge-editorial-handoff-pack-result.json>
@@ -15768,6 +17433,9 @@ Default review workbench component contract output:
 
 Default editorial revision roundtrip output:
   ${DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT}
+
+Default editorial derivative preview output:
+  ${DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT}
 
 Default bridge editorial handoff pack output:
   ${DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT}

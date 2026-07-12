@@ -1,0 +1,397 @@
+{
+  "schemaVersion": "fff.editorialDerivativePreview.v1",
+  "artifact_id": "fff-editorial-derivative-preview-001",
+  "title": "Fast Fiction Factory Editorial Derivative Preview",
+  "generatedAt": "2026-07-12T09:05:00+09:00",
+  "review_status": "ready_for_local_derived_preview",
+  "derived_status": "derived_revision_preview",
+  "canonical": false,
+  "review_ui": "public/review/index.html",
+  "derivative_route": "public/review/index.html?mode=derivative",
+  "review_route": "public/review/index.html?mode=derivative",
+  "revision_route": "public/review/index.html?mode=revision",
+  "handoff_route": "public/review/index.html?mode=handoff",
+  "bridge_route": "public/review/index.html?mode=bridge",
+  "brief_route": "public/review/index.html?mode=brief",
+  "input_result_path": "artifacts/editorial-derivative-preview-result.json",
+  "package_directory": "artifacts/editorial-derivative",
+  "package_file_paths": [
+    "artifacts/editorial-derivative/README_DERIVATIVE.md",
+    "artifacts/editorial-derivative/narration-script.derived.md",
+    "artifacts/editorial-derivative/subtitle-cues.derived.csv",
+    "artifacts/editorial-derivative/shot-list.derived.csv",
+    "artifacts/editorial-derivative/editorial-handoff.derived.json",
+    "artifacts/editorial-derivative/applied-revision-patch.json",
+    "artifacts/editorial-derivative/derivative-provenance.json",
+    "artifacts/editorial-derivative/derivative-package-manifest.json"
+  ],
+  "package_file_hashes": {
+    "artifacts/editorial-derivative/README_DERIVATIVE.md": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe",
+    "artifacts/editorial-derivative/narration-script.derived.md": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6",
+    "artifacts/editorial-derivative/subtitle-cues.derived.csv": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe",
+    "artifacts/editorial-derivative/shot-list.derived.csv": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4",
+    "artifacts/editorial-derivative/editorial-handoff.derived.json": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+    "artifacts/editorial-derivative/applied-revision-patch.json": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885",
+    "artifacts/editorial-derivative/derivative-provenance.json": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd",
+    "artifacts/editorial-derivative/derivative-package-manifest.json": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+  },
+  "package_file_bytes": {
+    "artifacts/editorial-derivative/README_DERIVATIVE.md": 1919,
+    "artifacts/editorial-derivative/narration-script.derived.md": 4774,
+    "artifacts/editorial-derivative/subtitle-cues.derived.csv": 3615,
+    "artifacts/editorial-derivative/shot-list.derived.csv": 7009,
+    "artifacts/editorial-derivative/editorial-handoff.derived.json": 37134,
+    "artifacts/editorial-derivative/applied-revision-patch.json": 3178,
+    "artifacts/editorial-derivative/derivative-provenance.json": 5841,
+    "artifacts/editorial-derivative/derivative-package-manifest.json": 2134
+  },
+  "manifest_path": "artifacts/editorial-derivative/derivative-package-manifest.json",
+  "provenance_path": "artifacts/editorial-derivative/derivative-provenance.json",
+  "derived_editorial_handoff_path": "artifacts/editorial-derivative/editorial-handoff.derived.json",
+  "source": {
+    "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+    "editorial_handoff_sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+    "package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+  },
+  "source_handoff_artifact_id": "fff-bridge-editorial-handoff-pack-001",
+  "source_revision_artifact_id": "fff-editorial-revision-roundtrip-001",
+  "source_editorial_handoff_sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+  "source_package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971",
+  "patch": {
+    "patch_id": "revision-patch-example-001",
+    "path": "artifacts/editorial-revision/revision-patch.example.json",
+    "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+  },
+  "source_patch_path": "artifacts/editorial-revision/revision-patch.example.json",
+  "source_patch_sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885",
+  "derivative_editorial_handoff_sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+  "derivative_core_fingerprint_sha256": "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44",
+  "applied_change_count": 3,
+  "narration_change_count": 1,
+  "subtitle_change_count": 1,
+  "shot_change_count": 1,
+  "exact_content_deltas": [
+    {
+      "change_id": "rev-change-b01-narration-wording",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "target_type": "narration_segment",
+      "target_id": "narration-b01",
+      "target_field": "text",
+      "guard_class": "safe_local_edit",
+      "before": "ある記録では、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。ならば今、何が鳴っているのでしょう。",
+      "before_sha256": "ffca1a8c9b55b05e57fb5b5d4e9565c1eb25d7750dbf972a4e0a475111cac279",
+      "after": "ある記録によれば、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。では今、何が鳴っているのでしょう。",
+      "after_sha256": "37355d6292ddd92dc081be3ecbd2bc3f213211032ea58659f4332f8cb97ea247",
+      "derived_file_locations": [
+        "narration-script.derived.md",
+        "editorial-handoff.derived.json"
+      ]
+    },
+    {
+      "change_id": "rev-change-b02-subtitle-wording",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "target_type": "subtitle_cue",
+      "target_id": "sub-b02-03",
+      "target_field": "text_ja",
+      "guard_class": "safe_local_edit",
+      "before": "その機能は、まだ未決定。",
+      "before_sha256": "72a6c5e604c4052019d6fbe9a5b7633ab3a0ddb7d59a611bbebc5c8aa11fa057",
+      "after": "その働きは、まだ分からない。",
+      "after_sha256": "33ef0b68341c3e7b92fea840c5c33302dd95df06e836a11fedbe568d3e9967ad",
+      "derived_file_locations": [
+        "subtitle-cues.derived.csv",
+        "editorial-handoff.derived.json"
+      ]
+    },
+    {
+      "change_id": "rev-change-b03-shot-direction-wording",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "target_type": "shot_cue",
+      "target_id": "shot-b03-03",
+      "target_field": "visual_direction",
+      "guard_class": "safe_local_edit",
+      "before": "インクや名前が薄れる抽象的なmotion graphicを想定する。",
+      "before_sha256": "7ca6f50a8ad80dd55ec32613e8711ba108efe861ebf26edf7de62c03e6b6ed4b",
+      "after": "インクや名前の輪郭がゆっくり薄れる、抽象的なモーショングラフィックを想定する。",
+      "after_sha256": "e971cc59c626eac23cfaf94058eceae2d994dc8963fb9ed7a1ba54cfe2be9b5c",
+      "derived_file_locations": [
+        "shot-list.derived.csv",
+        "editorial-handoff.derived.json"
+      ]
+    }
+  ],
+  "beat_count": 6,
+  "six_beats": true,
+  "total_duration": 180,
+  "total_duration_seconds": 180,
+  "narration_segments": 6,
+  "narration_segment_count": 6,
+  "subtitle_cues": 20,
+  "subtitle_cue_count": 20,
+  "shot_cues": 19,
+  "shot_cue_count": 19,
+  "thumbnail_directions": 3,
+  "thumbnail_direction_count": 3,
+  "narration_character_count_before": 777,
+  "narration_character_count_after": 778,
+  "source_package_hashes": {
+    "artifacts/editorial-handoff/README_DELIVERY.md": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2",
+    "artifacts/editorial-handoff/narration-script.md": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081",
+    "artifacts/editorial-handoff/subtitle-cues.csv": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069",
+    "artifacts/editorial-handoff/shot-list.csv": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676",
+    "artifacts/editorial-handoff/editorial-handoff.json": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080",
+    "artifacts/editorial-handoff/package-manifest.json": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+  },
+  "revision_package_hashes": {
+    "artifacts/editorial-revision/README_REVISION.md": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4",
+    "artifacts/editorial-revision/revision-request-template.json": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd",
+    "artifacts/editorial-revision/revision-request.example.json": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1",
+    "artifacts/editorial-revision/revision-decision.example.json": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d",
+    "artifacts/editorial-revision/revision-patch.example.json": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885",
+    "artifacts/editorial-revision/revision-roundtrip-manifest.json": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+  },
+  "source_package_unchanged": true,
+  "revision_package_unchanged": true,
+  "beat_order_unchanged": true,
+  "timing_unchanged": true,
+  "canon_unchanged": true,
+  "truth_state_unchanged": true,
+  "rights_unchanged": true,
+  "assets_unchanged": true,
+  "source_apply_status": "not_applied",
+  "derived_apply_status": "applied_to_derived_copy",
+  "application_scope": "derived_copy_only",
+  "rollback_action": "discard_derived_package",
+  "provenance_valid": true,
+  "manifest_valid": true,
+  "launcher_valid": true,
+  "validation_read_only": true,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "rights_cleared_claim": false,
+  "boundaries": {
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false,
+    "rights_cleared_claim": false,
+    "credential_material_findings": []
+  },
+  "negative_probes": {
+    "wrong_source_fingerprint": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "source fingerprint mismatch"
+      ]
+    },
+    "wrong_patch_fingerprint": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "patch SHA256 mismatch"
+      ]
+    },
+    "before_value_mismatch": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "rev-change-b01-narration-wording: before value mismatch"
+      ]
+    },
+    "unknown_target": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "rev-change-b01-narration-wording: target tuple mismatch",
+        "rev-change-b01-narration-wording: before value mismatch"
+      ]
+    },
+    "extra_fourth_change": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "patch must contain exactly the three expected safe changes in order"
+      ]
+    },
+    "timing_or_order_change": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "derived model: beats: ID or order changed at index 0",
+        "derived model: beats: ID or order changed at index 1",
+        "derived model: beats: ID or order changed at index 2",
+        "derived model: beats: ID or order changed at index 3",
+        "derived model: beats: ID or order changed at index 4",
+        "derived model: beats: ID or order changed at index 5",
+        "derivative provenance is incomplete or does not match source, patch, deltas, or core hashes",
+        "README_DERIVATIVE.md does not match the deterministic package contract",
+        "derivative package manifest does not match byte sizes, hashes, source, patch, or core fingerprint"
+      ]
+    },
+    "canon_or_truth_promotion": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "derived JSON identity, application semantics, source, patch, route, or boundaries invalid",
+        "derived model: truth_guards/truth-toma-fate/state: hidden change",
+        "narration Markdown does not exactly match the derived JSON model",
+        "derivative provenance is incomplete or does not match source, patch, deltas, or core hashes",
+        "README_DERIVATIVE.md does not match the deterministic package contract",
+        "derivative package manifest does not match byte sizes, hashes, source, patch, or core fingerprint"
+      ]
+    },
+    "asset_or_rights_promotion": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "derived model: shot_cues/shot-b01-01/asset_status: hidden change",
+        "derived model: rights_guards/rights-assets/state: hidden change",
+        "shot CSV does not exactly match the derived JSON model",
+        "shot CSV headers or rows fail structured cross-match",
+        "derivative provenance is incomplete or does not match source, patch, deltas, or core hashes",
+        "README_DERIVATIVE.md does not match the deterministic package contract",
+        "derivative package manifest does not match byte sizes, hashes, source, patch, or core fingerprint"
+      ]
+    },
+    "source_apply_status_applied": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "derived JSON identity, application semantics, source, patch, route, or boundaries invalid",
+        "narration Markdown does not exactly match the derived JSON model",
+        "derivative provenance is incomplete or does not match source, patch, deltas, or core hashes",
+        "README_DERIVATIVE.md does not match the deterministic package contract",
+        "derivative package manifest does not match byte sizes, hashes, source, patch, or core fingerprint"
+      ]
+    },
+    "derivative_marked_canonical": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "derived JSON identity, application semantics, source, patch, route, or boundaries invalid",
+        "derivative provenance is incomplete or does not match source, patch, deltas, or core hashes",
+        "README_DERIVATIVE.md does not match the deterministic package contract",
+        "derivative package manifest does not match byte sizes, hashes, source, patch, or core fingerprint"
+      ]
+    },
+    "missing_package_file": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "package file set mismatch: README_DERIVATIVE.md,applied-revision-patch.json,derivative-package-manifest.json,derivative-provenance.json,editorial-handoff.derived.json,narration-script.derived.md,shot-list.derived.csv",
+        "missing package files: subtitle-cues.derived.csv"
+      ]
+    },
+    "manifest_hash_mismatch": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "derivative package manifest does not match byte sizes, hashes, source, patch, or core fingerprint"
+      ]
+    }
+  },
+  "summary": {
+    "applied_change_count": 3,
+    "beat_count": 6,
+    "total_duration_seconds": 180,
+    "narration_segment_count": 6,
+    "subtitle_cue_count": 20,
+    "shot_cue_count": 19,
+    "thumbnail_direction_count": 3,
+    "source_package_unchanged": true,
+    "revision_package_unchanged": true,
+    "provenance_valid": true,
+    "manifest_valid": true,
+    "negative_probe_count": 12,
+    "failures": 0
+  },
+  "validation_notes": [
+    "Exactly three accepted safe wording changes are applied to the derived copy only.",
+    "The immutable Handoff and Revision packages remain byte-identical across validation and smoke write boundaries.",
+    "Markdown, CSV, and JSON are deterministically generated from one derived JSON model; narration character estimates recalculate 93 to 94 and total 777 to 778.",
+    "The manifest inventories the other seven files without a self-hash; the non-circular core fingerprint covers five ordered core file hashes.",
+    "All twelve required negative probes operate in memory, fail closed, and do not mutate artifacts.",
+    "Timing, order, truth, canon, rights, assets, provider, credentials, external calls, generation, render, upload, publication, and database gates remain closed."
+  ],
+  "checks": {
+    "result_identity": {
+      "passed": true,
+      "detail": "artifact=fff-editorial-derivative-preview-001; schema=fff.editorialDerivativePreview.v1; route=public/review/index.html?mode=derivative; status=derived_revision_preview"
+    },
+    "source_package_immutable": {
+      "passed": true,
+      "detail": "handoff=c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080; manifest=ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971; integrity=true; protected=true; errors=none"
+    },
+    "revision_package_immutable": {
+      "passed": true,
+      "detail": "patch=ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885; integrity=true; patchValid=true; protected=true; errors=none"
+    },
+    "complete_derivative_package": {
+      "passed": true,
+      "detail": "files=8/8; errors=none"
+    },
+    "exact_three_change_model": {
+      "passed": true,
+      "detail": "deltas=3; chars=777->778; errors=none"
+    },
+    "package_provenance_and_manifest": {
+      "passed": true,
+      "detail": "provenance=fff.editorialDerivativeProvenance.v1; manifest=fff.editorialDerivativePackageManifest.v1; inventory=7; core=94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44"
+    },
+    "negative_probes_fail_closed": {
+      "passed": true,
+      "detail": "generated=true; wrong_source_fingerprint:true/true/false; wrong_patch_fingerprint:true/true/false; before_value_mismatch:true/true/false; unknown_target:true/true/false; extra_fourth_change:true/true/false; timing_or_order_change:true/true/false; canon_or_truth_promotion:true/true/false; asset_or_rights_promotion:true/true/false; source_apply_status_applied:true/true/false; derivative_marked_canonical:true/true/false; missing_package_file:true/true/false; manifest_hash_mismatch:true/true/false"
+    },
+    "derivative_ui_and_local_import": {
+      "passed": true,
+      "detail": "markers=true; revisionAction=true; expectedHashes=true; modelImport=true"
+    },
+    "preserved_routes_themes_keyboard": {
+      "passed": true,
+      "detail": "preserved=true"
+    },
+    "mode_aware_launchers": {
+      "passed": true,
+      "detail": "powershell=true; shell=true; modes=brief,handoff,revision,derivative"
+    },
+    "docs_and_root_manifest_registered": {
+      "passed": true,
+      "detail": "manifest=true/ok; doc=true/ok; order=2441/2641/2841"
+    },
+    "normal_validation_read_only": {
+      "passed": true,
+      "detail": "derivative=true; protected=true"
+    },
+    "boundary_gates_closed": {
+      "passed": true,
+      "detail": "closed=true; credentialFindings=none"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

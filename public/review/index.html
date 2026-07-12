@@ -1795,7 +1795,9 @@
     body[data-review-mode="handoff"] .workbench-hub-header,
     body[data-review-mode="handoff"] .workbench-route-nav,
     body[data-review-mode="revision"] .workbench-hub-header,
-    body[data-review-mode="revision"] .workbench-route-nav {
+    body[data-review-mode="revision"] .workbench-route-nav,
+    body[data-review-mode="derivative"] .workbench-hub-header,
+    body[data-review-mode="derivative"] .workbench-route-nav {
       display: none;
     }
 
@@ -2589,6 +2591,210 @@
       padding-top: 10px;
     }
 
+    .editorial-derivative-panel,
+    .editorial-derivative-shell,
+    .derivative-status-banner,
+    .derivative-fingerprint-grid,
+    .derivative-context-grid,
+    .derivative-context-card,
+    .derivative-workspace,
+    .derivative-package-columns,
+    .derivative-compact-list {
+      min-width: 0;
+    }
+
+    .editorial-derivative-panel {
+      gap: 12px;
+      margin-top: 0;
+    }
+
+    .editorial-derivative-shell {
+      display: grid;
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--green);
+      border-radius: 8px;
+      padding: 14px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .derivative-status-banner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid var(--gold);
+      border-left: 5px solid var(--red);
+      border-radius: 7px;
+      padding: 9px 11px;
+      background: var(--warning-bg);
+    }
+
+    .derivative-status-copy {
+      margin: 0;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 750;
+      overflow-wrap: anywhere;
+    }
+
+    .derivative-fingerprint-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .derivative-fingerprint-card {
+      min-width: 0;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 9px 10px;
+      background: var(--surface-muted);
+    }
+
+    .derivative-fingerprint-card strong,
+    .derivative-fingerprint-card code,
+    .derivative-fingerprint-card span {
+      display: block;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .derivative-fingerprint-card strong {
+      margin-bottom: 4px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .derivative-fingerprint-card code,
+    .derivative-fingerprint-card span {
+      color: var(--muted-strong);
+      font-size: 10px;
+      white-space: normal;
+    }
+
+    .derivative-import-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 9px 10px;
+      background: var(--paper-soft);
+    }
+
+    .derivative-import-row p {
+      margin: 0;
+    }
+
+    .derivative-context-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .derivative-context-card {
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 9px 10px;
+      background: var(--paper-soft);
+    }
+
+    .derivative-context-card.narration {
+      grid-column: 1 / -1;
+    }
+
+    .derivative-context-card h4,
+    .derivative-context-card p {
+      margin-bottom: 6px;
+    }
+
+    .derivative-context-copy {
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+    }
+
+    .derivative-cue-list {
+      display: grid;
+      gap: 5px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .derivative-cue-list li {
+      display: grid;
+      gap: 2px;
+      border-top: 1px solid var(--line);
+      padding-top: 5px;
+      font-size: 11px;
+      overflow-wrap: anywhere;
+    }
+
+    .derivative-cue-list li:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .derivative-cue-list strong {
+      color: var(--ink);
+    }
+
+    .derivative-cue-list span {
+      color: var(--muted-strong);
+    }
+
+    .derivative-workspace {
+      display: grid;
+      grid-template-columns: minmax(190px, 0.3fr) minmax(0, 1fr);
+      gap: 10px;
+      align-items: start;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+    }
+
+    .derivative-package-columns {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .derivative-package-column {
+      min-width: 0;
+    }
+
+    .derivative-package-column h4 {
+      margin-bottom: 6px;
+    }
+
+    .derivative-compact-list {
+      display: grid;
+      gap: 4px;
+    }
+
+    .derivative-compact-list .handoff-file-link {
+      min-height: 0;
+      padding: 6px 8px;
+    }
+
+    .derivative-download-button {
+      width: 100%;
+      cursor: pointer;
+      font: inherit;
+      text-align: left;
+    }
+
+    .derivative-download-button:disabled {
+      cursor: wait;
+      opacity: 0.48;
+    }
+
     .bridge-supporting-details {
       min-width: 0;
     }
@@ -2730,6 +2936,7 @@
     body[data-review-mode="bridge"] [data-mode-panel="bridge"],
     body[data-review-mode="handoff"] [data-mode-panel="handoff"],
     body[data-review-mode="revision"] [data-mode-panel="revision"],
+    body[data-review-mode="derivative"] [data-mode-panel="derivative"],
     body[data-review-mode="story"] [data-mode-panel="story"],
     body[data-review-mode="designer"] [data-mode-panel="designer"],
     body[data-review-mode="draft"] [data-mode-panel="draft"],
@@ -3519,7 +3726,12 @@
       .revision-workspace,
       .revision-diff-grid,
       .revision-explanation-grid,
-      .revision-package-section {
+      .revision-package-section,
+      .derivative-fingerprint-grid,
+      .derivative-import-row,
+      .derivative-context-grid,
+      .derivative-workspace,
+      .derivative-package-columns {
         grid-template-columns: 1fr;
       }
 
@@ -3537,6 +3749,7 @@
       .bridge-storyboard-flow,
       .editorial-handoff-shell,
       .editorial-revision-shell,
+      .editorial-derivative-shell,
       .storyboard-beat-tab,
       .revision-change-tab,
       .storyboard-active-canvas {
@@ -4841,6 +5054,7 @@
                 <p class="lede">6拍・180秒のHandoffをimmutable baselineとして読み、変更ごとに安全な文言修正、人間著者の判断、閉じた境界を分けます。acceptしても原本へ適用せず、unapplied patchだけを保存します。</p>
               </div>
               <nav class="handoff-route-actions" aria-label="Revision return routes">
+                <a class="handoff-route-link primary" href="?mode=derivative" data-revision-open-derivative="true">派生プレビューを開く</a>
                 <a class="handoff-route-link" href="?mode=handoff" data-revision-return-handoff="true">Handoffへ戻る</a>
                 <a class="handoff-route-link" href="?mode=brief" data-revision-return-brief="true">Briefへ戻る</a>
               </nav>
@@ -4950,6 +5164,171 @@
                 <button class="brief-action" type="button" data-revision-download-patch>accepted patch JSONを保存</button>
               </div>
               <p class="section-note">apply_status=<strong>not_applied</strong> · canon / timing / rights / assets unchanged · production gates closed</p>
+            </footer>
+          </section>
+        </section>
+
+        <section class="editorial-derivative-panel" id="editorial-derivative-preview-root" data-mode-panel="derivative" data-editorial-derivative-root="true" aria-labelledby="editorial-derivative-title">
+          <section class="editorial-derivative-shell" data-derivative-focused-canvas="true">
+            <header class="revision-header">
+              <div>
+                <p class="hub-eyebrow">Editorial Derivative Preview / 安全な派生コピー</p>
+                <h2 id="editorial-derivative-title">採用済みの3文言だけを、原本とは別の完全パッケージで読む</h2>
+                <p class="lede">immutable Handoffとaccepted safe-only patchからローカル派生コピーを組み立てます。原本への適用、canon化、権利・素材選定、production移行は行いません。</p>
+              </div>
+              <nav class="handoff-route-actions" aria-label="Derivative return routes">
+                <a class="handoff-route-link" href="?mode=revision" data-derivative-return-revision="true">Revisionへ戻る</a>
+                <a class="handoff-route-link" href="?mode=handoff" data-derivative-return-handoff="true">Handoffへ戻る</a>
+                <a class="handoff-route-link" href="?mode=brief" data-derivative-return-brief="true">Briefへ戻る</a>
+              </nav>
+            </header>
+
+            <div class="derivative-status-banner" aria-label="Derivative preview status">
+              <div class="tag-row">
+                <span class="tag green">DERIVED PREVIEW</span>
+                <span class="tag red">NOT CANONICAL</span>
+                <span class="tag gold">3 SAFE CHANGES</span>
+              </div>
+              <p class="derivative-status-copy">source_apply_status=<strong>not_applied</strong> · derived_apply_status=<strong>applied_to_derived_copy</strong> · rollback=<strong>discard_derived_package</strong></p>
+            </div>
+
+            <section class="derivative-fingerprint-grid" aria-label="Source patch and derivative fingerprints">
+              <article class="derivative-fingerprint-card">
+                <strong>Source / Handoff</strong>
+                <span>fff-bridge-editorial-handoff-pack-001</span>
+                <code data-derivative-source-sha>c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080</code>
+                <code data-derivative-source-manifest-sha>ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971</code>
+              </article>
+              <article class="derivative-fingerprint-card">
+                <strong>Patch / accepted safe-only</strong>
+                <span data-derivative-patch-id>revision-patch-example-001</span>
+                <code data-derivative-patch-sha>ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885</code>
+              </article>
+              <article class="derivative-fingerprint-card">
+                <strong>Derived / JSON content</strong>
+                <span>fff-editorial-derivative-preview-001</span>
+                <code data-derivative-derived-sha>fingerprint calculating...</code>
+              </article>
+            </section>
+
+            <section class="derivative-import-row" aria-labelledby="derivative-import-title">
+              <div>
+                <p class="hub-eyebrow">Local patch import / ローカル読込</p>
+                <h3 id="derivative-import-title">sourceとpatch fingerprintが一致したsafe-only patchだけを生成</h3>
+                <p class="revision-import-message" id="derivative-import-message" data-derivative-import-message data-state="valid" role="status" aria-live="polite">内蔵のaccepted patchを検証し、8ファイルをメモリ内で準備しています。</p>
+              </div>
+              <div class="revision-import-actions">
+                <span class="revision-load-status" data-derivative-load-status data-state="building">BUILDING</span>
+                <label class="revision-file-picker">
+                  patch JSONを読み込む
+                  <input type="file" accept="application/json,.json" data-derivative-import-input aria-describedby="derivative-import-message">
+                </label>
+              </div>
+            </section>
+
+            <div class="storyboard-beat-rail" role="tablist" aria-label="6拍 派生プレビューランウェイ" aria-orientation="horizontal" data-derivative-runway></div>
+
+            <section class="storyboard-active-canvas" id="editorial-derivative-active-canvas" role="tabpanel" tabindex="0" aria-live="polite" data-derivative-active-canvas>
+              <header class="storyboard-active-header">
+                <div>
+                  <p class="hub-eyebrow" data-derivative-active-position>BEAT 1 / 6 · DERIVED CONTEXT</p>
+                  <h3 data-derivative-active-title>鐘のない塔</h3>
+                  <p class="section-note" data-derivative-active-purpose></p>
+                </div>
+                <span class="tag green" data-derivative-active-time>00:00-00:20 · derived_revision_preview</span>
+              </header>
+
+              <div class="derivative-context-grid" aria-label="Active derived beat context">
+                <article class="derivative-context-card narration">
+                  <p class="hub-eyebrow">Narration / 派生ナレーション</p>
+                  <h4 data-derivative-narration-id>narration-b01</h4>
+                  <p class="derivative-context-copy" data-derivative-narration-text></p>
+                  <p class="section-note" data-derivative-narration-meta></p>
+                </article>
+                <article class="derivative-context-card">
+                  <p class="hub-eyebrow">Subtitle / 同一タイムライン</p>
+                  <h4 data-derivative-subtitle-heading>字幕 cues</h4>
+                  <ol class="derivative-cue-list" data-derivative-subtitle-list></ol>
+                </article>
+                <article class="derivative-context-card">
+                  <p class="hub-eyebrow">Shot / 同一タイムライン</p>
+                  <h4 data-derivative-shot-heading>ショット cues</h4>
+                  <ol class="derivative-cue-list" data-derivative-shot-list></ol>
+                </article>
+              </div>
+
+              <div class="derivative-workspace">
+                <nav class="revision-change-rail" role="tablist" aria-label="Applied safe change rail" aria-orientation="vertical" data-derivative-change-rail></nav>
+
+                <section class="revision-diff-canvas" id="editorial-derivative-active-diff" role="tabpanel" tabindex="0" aria-live="polite" data-derivative-diff-canvas>
+                  <header class="revision-active-header">
+                    <div>
+                      <p class="hub-eyebrow" data-derivative-change-position>CHANGE 1 / 3 · APPLIED TO DERIVED COPY</p>
+                      <h3 data-derivative-change-title>narration_wording</h3>
+                      <p class="section-note" data-derivative-change-target></p>
+                    </div>
+                    <span class="revision-guard-badge" data-guard-class="safe_local_edit">safe_local_edit</span>
+                  </header>
+                  <div class="revision-diff-grid">
+                    <section class="revision-diff-panel" aria-labelledby="derivative-before-title">
+                      <h4 id="derivative-before-title">Before / immutable source</h4>
+                      <pre class="revision-diff-value" data-derivative-before></pre>
+                    </section>
+                    <section class="revision-diff-panel proposed" aria-labelledby="derivative-after-title">
+                      <h4 id="derivative-after-title">After / derived copy</h4>
+                      <pre class="revision-diff-value" data-derivative-after></pre>
+                    </section>
+                  </div>
+                  <p class="section-note" data-derivative-change-proof>source unchanged · target and before value verified · safe wording only</p>
+                </section>
+              </div>
+            </section>
+
+            <div class="storyboard-nav-actions" aria-label="Derivative beat navigation">
+              <button class="brief-action" type="button" data-derivative-prev disabled aria-label="前の拍はありません">前の拍</button>
+              <span class="section-note" data-derivative-progress>1 / 6拍をプレビュー</span>
+              <button class="brief-action next" type="button" data-derivative-next aria-label="次の拍">次の拍</button>
+            </div>
+
+            <section class="revision-package-section" aria-labelledby="derivative-package-title">
+              <div>
+                <p class="hub-eyebrow">Portable derivative package</p>
+                <h3 id="derivative-package-title">8ファイル・原本とは別の派生物</h3>
+                <p class="section-note" data-derivative-integrity-authority>Static verified filesがauthorityです。Current in-memory filesは8件すべてのSHA256照合に成功した場合だけ、static packageとbyte-identicalとしてdownloadできます。</p>
+              </div>
+              <div class="derivative-package-columns">
+                <div class="derivative-package-column">
+                  <h4>Static verified files</h4>
+                  <div class="derivative-compact-list" data-derivative-package-files>
+                    <a class="handoff-file-link" href="../../artifacts/editorial-derivative/README_DERIVATIVE.md"><strong>README_DERIVATIVE.md</strong><span>運用・rollback</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/editorial-derivative/narration-script.derived.md"><strong>narration-script.derived.md</strong><span>6 narration segments</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/editorial-derivative/subtitle-cues.derived.csv"><strong>subtitle-cues.derived.csv</strong><span>20 subtitle cues</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/editorial-derivative/shot-list.derived.csv"><strong>shot-list.derived.csv</strong><span>19 shot cues</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/editorial-derivative/editorial-handoff.derived.json"><strong>editorial-handoff.derived.json</strong><span>canonical derived model</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/editorial-derivative/applied-revision-patch.json"><strong>applied-revision-patch.json</strong><span>source remains not_applied</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/editorial-derivative/derivative-provenance.json"><strong>derivative-provenance.json</strong><span>3 exact deltas</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/editorial-derivative/derivative-package-manifest.json"><strong>derivative-package-manifest.json</strong><span>7-file inventory / no self-hash</span></a>
+                  </div>
+                </div>
+                <div class="derivative-package-column">
+                  <h4>Current in-memory files</h4>
+                  <div class="derivative-compact-list" data-derivative-memory-downloads>
+                    <button class="handoff-file-link derivative-download-button" type="button" data-derivative-download-file="README_DERIVATIVE.md" disabled><strong>README_DERIVATIVE.md</strong><span>Blob download</span></button>
+                    <button class="handoff-file-link derivative-download-button" type="button" data-derivative-download-file="narration-script.derived.md" disabled><strong>narration-script.derived.md</strong><span>Blob download</span></button>
+                    <button class="handoff-file-link derivative-download-button" type="button" data-derivative-download-file="subtitle-cues.derived.csv" disabled><strong>subtitle-cues.derived.csv</strong><span>Blob download</span></button>
+                    <button class="handoff-file-link derivative-download-button" type="button" data-derivative-download-file="shot-list.derived.csv" disabled><strong>shot-list.derived.csv</strong><span>Blob download</span></button>
+                    <button class="handoff-file-link derivative-download-button" type="button" data-derivative-download-file="editorial-handoff.derived.json" disabled><strong>editorial-handoff.derived.json</strong><span>Blob download</span></button>
+                    <button class="handoff-file-link derivative-download-button" type="button" data-derivative-download-file="applied-revision-patch.json" disabled><strong>applied-revision-patch.json</strong><span>Blob download</span></button>
+                    <button class="handoff-file-link derivative-download-button" type="button" data-derivative-download-file="derivative-provenance.json" disabled><strong>derivative-provenance.json</strong><span>Blob download</span></button>
+                    <button class="handoff-file-link derivative-download-button" type="button" data-derivative-download-file="derivative-package-manifest.json" disabled><strong>derivative-package-manifest.json</strong><span>Blob download</span></button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <footer class="revision-footer">
+              <p class="section-note">6 beats · 180 seconds · 6 narration · 20 subtitles · 19 shots · 3 thumbnails</p>
+              <p class="section-note">canonical=<strong>false</strong> · application_scope=<strong>derived_copy_only</strong> · network/filesystem write=<strong>none</strong></p>
             </footer>
           </section>
         </section>
@@ -6548,6 +6927,75 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       }
     };
 
+    const EDITORIAL_DERIVATIVE_SCHEMA = "fff.editorialDerivativePreview.v1";
+    const EDITORIAL_DERIVATIVE_PROVENANCE_SCHEMA = "fff.editorialDerivativeProvenance.v1";
+    const EDITORIAL_DERIVATIVE_MANIFEST_SCHEMA = "fff.editorialDerivativePackageManifest.v1";
+    const EDITORIAL_DERIVATIVE_ARTIFACT_ID = "fff-editorial-derivative-preview-001";
+    const EDITORIAL_DERIVATIVE_PATCH_SHA256 = "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885";
+    const EDITORIAL_DERIVATIVE_SOURCE_REVISION_ARTIFACT_ID = "fff-editorial-revision-roundtrip-001";
+    const EDITORIAL_DERIVATIVE_PACKAGE_ROOT = "artifacts/editorial-derivative";
+    const EDITORIAL_DERIVATIVE_PATCH_PATH = "artifacts/editorial-revision/revision-patch.example.json";
+    const EDITORIAL_DERIVATIVE_MAX_FILE_BYTES = 512 * 1024;
+    const EDITORIAL_DERIVATIVE_FILE_SPECS = Object.freeze([
+      { filename: "README_DERIVATIVE.md", role: "operator guide and discard rollback", mime: "text/markdown;charset=utf-8" },
+      { filename: "narration-script.derived.md", role: "six-segment derived narration", mime: "text/markdown;charset=utf-8" },
+      { filename: "subtitle-cues.derived.csv", role: "twenty derived subtitle cues", mime: "text/csv;charset=utf-8" },
+      { filename: "shot-list.derived.csv", role: "nineteen derived shot cues", mime: "text/csv;charset=utf-8" },
+      { filename: "editorial-handoff.derived.json", role: "canonical derived preview model", mime: "application/json;charset=utf-8" },
+      { filename: "applied-revision-patch.json", role: "normalized accepted patch with source not applied", mime: "application/json;charset=utf-8" },
+      { filename: "derivative-provenance.json", role: "source patch and exact delta provenance", mime: "application/json;charset=utf-8" },
+      { filename: "derivative-package-manifest.json", role: "seven-file byte and SHA256 inventory", mime: "application/json;charset=utf-8" }
+    ]);
+    const EDITORIAL_DERIVATIVE_PACKAGE_FILES = Object.freeze(EDITORIAL_DERIVATIVE_FILE_SPECS.slice(0, 7).map((spec) => spec.filename));
+    const EDITORIAL_DERIVATIVE_CORE_FILES = Object.freeze([
+      "narration-script.derived.md",
+      "subtitle-cues.derived.csv",
+      "shot-list.derived.csv",
+      "editorial-handoff.derived.json",
+      "applied-revision-patch.json"
+    ]);
+    const EDITORIAL_DERIVATIVE_EXPECTED_FILE_SHA256 = Object.freeze({
+      "README_DERIVATIVE.md": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe",
+      "narration-script.derived.md": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6",
+      "subtitle-cues.derived.csv": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe",
+      "shot-list.derived.csv": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4",
+      "editorial-handoff.derived.json": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+      "applied-revision-patch.json": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885",
+      "derivative-provenance.json": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd",
+      "derivative-package-manifest.json": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+    });
+    const EDITORIAL_DERIVATIVE_EXPECTED_CORE_FINGERPRINT = "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44";
+    const editorialDerivativeSamplePatch = {
+      schemaVersion: EDITORIAL_REVISION_PATCH_SCHEMA,
+      patch_id: "revision-patch-example-001",
+      request_id: "revision-request-example-001",
+      decision_id: "revision-decision-example-001",
+      source: { ...EDITORIAL_REVISION_SOURCE },
+      candidate_id: "designer-content-moth-investigation-3m",
+      channel_id: "designer-channel-mystery-lore",
+      created_at: "2026-07-12T09:05:00+09:00",
+      apply_status: "not_applied",
+      accepted_changes: editorialRevisionSampleRequest.changes.slice(0, 3).map((change) => ({
+        change_id: change.change_id,
+        beat_id: change.beat_id,
+        target_type: change.target_type,
+        target_id: change.target_id,
+        target_field: change.target_field,
+        change_type: change.change_type,
+        guard_class: "safe_local_edit",
+        before: JSON.parse(JSON.stringify(change.before)),
+        proposed_value: JSON.parse(JSON.stringify(change.proposed_value))
+      })),
+      source_package_unchanged: true,
+      beat_order_unchanged: true,
+      timing_unchanged: true,
+      canon_unchanged: true,
+      rights_state_unchanged: true,
+      asset_state_unchanged: true,
+      production_gates_closed: true,
+      boundaries: editorialRevisionClosedBoundaries()
+    };
+
     const safetyGateRegistry = {
       compactSummary: [
         "Gates closed"
@@ -6600,6 +7048,19 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       const guardClass = classifyEditorialRevisionChange(change);
       editorialRevisionDecisions.set(change.change_id, defaultEditorialRevisionDecision(guardClass, true));
     });
+    let activeEditorialDerivativeBeatIndex = 0;
+    let activeEditorialDerivativeChangeIndex = 0;
+    let editorialDerivativeBuildVersion = 0;
+    let editorialDerivativeLoadState = "building";
+    let editorialDerivativeLoadLabel = "内蔵のaccepted patchを検証し、8ファイルをメモリ内で準備しています。";
+    let currentEditorialDerivativePatch = JSON.parse(JSON.stringify(editorialDerivativeSamplePatch));
+    let currentEditorialDerivativePackage = {
+      model: buildEditorialDerivativeModel(currentEditorialDerivativePatch),
+      files: new Map(),
+      fileHashes: new Map(),
+      patchSha256: EDITORIAL_DERIVATIVE_PATCH_SHA256,
+      derivedSha256: "fingerprint calculating..."
+    };
 
     const memoInput = document.querySelector("#memo-input");
     const roots = {
@@ -6620,7 +7081,8 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       oneStoryDraftPack: document.querySelector("#one-story-draft-pack-root"),
       bridgeStoryboardFlow: document.querySelector("#bridge-storyboard-flow-root"),
       bridgeEditorialHandoff: document.querySelector("#bridge-editorial-handoff-root"),
-      editorialRevision: document.querySelector("#editorial-revision-roundtrip-root")
+      editorialRevision: document.querySelector("#editorial-revision-roundtrip-root"),
+      editorialDerivative: document.querySelector("#editorial-derivative-preview-root")
     };
     const jsonExportOutput = document.querySelector("#json-export-output");
     const jsonImportInput = document.querySelector("#json-import-input");
@@ -6650,6 +7112,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       ...PRESERVED_REVIEW_MODES.slice(0, 4),
       "handoff",
       "revision",
+      "derivative",
       ...PRESERVED_REVIEW_MODES.slice(4)
     ];
     const initialReviewMode = new URLSearchParams(window.location.search).get("mode") || window.location.hash.replace(/^#/, "") || "brief";
@@ -6660,6 +7123,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
     setReviewMode(initialReviewMode);
     renderAll();
     showFileSupportMessage();
+    void initializeEditorialDerivativeSample();
 
     modeButtons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -6813,6 +7277,76 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
         const file = event.target.files?.[0];
         if (file) {
           importEditorialRevisionFile(file, event.target);
+        }
+      });
+    }
+
+    if (roots.editorialDerivative) {
+      roots.editorialDerivative.addEventListener("click", (event) => {
+        const beatButton = event.target.closest("[data-derivative-beat-select]");
+        if (beatButton) {
+          setActiveEditorialDerivativeBeat(Number(beatButton.getAttribute("data-derivative-beat-index")), true);
+          return;
+        }
+
+        const changeButton = event.target.closest("[data-derivative-change-select]");
+        if (changeButton) {
+          setActiveEditorialDerivativeChange(Number(changeButton.getAttribute("data-derivative-change-index")), true);
+          return;
+        }
+
+        const navigationButton = event.target.closest("[data-derivative-prev], [data-derivative-next]");
+        if (navigationButton) {
+          const direction = navigationButton.hasAttribute("data-derivative-prev") ? -1 : 1;
+          setActiveEditorialDerivativeBeat(activeEditorialDerivativeBeatIndex + direction, false);
+          return;
+        }
+
+        const downloadButton = event.target.closest("[data-derivative-download-file]");
+        if (downloadButton && !downloadButton.disabled) {
+          downloadEditorialDerivativeFile(downloadButton.getAttribute("data-derivative-download-file"));
+        }
+      });
+
+      roots.editorialDerivative.addEventListener("keydown", (event) => {
+        const beatButton = event.target.closest("[data-derivative-beat-select]");
+        const changeButton = event.target.closest("[data-derivative-change-select]");
+        const itemButton = beatButton || changeButton;
+        if (!itemButton) {
+          return;
+        }
+
+        const isBeat = Boolean(beatButton);
+        const itemCount = isBeat
+          ? currentEditorialDerivativePackage.model.beats.length
+          : currentEditorialDerivativePatch.accepted_changes.length;
+        const indexAttribute = isBeat ? "data-derivative-beat-index" : "data-derivative-change-index";
+        const currentIndex = Number(itemButton.getAttribute(indexAttribute));
+        let nextIndex = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+          nextIndex = (currentIndex + 1) % itemCount;
+        } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+          nextIndex = (currentIndex - 1 + itemCount) % itemCount;
+        } else if (event.key === "Home") {
+          nextIndex = 0;
+        } else if (event.key === "End") {
+          nextIndex = itemCount - 1;
+        }
+
+        if (nextIndex !== null && itemCount > 0) {
+          event.preventDefault();
+          if (isBeat) {
+            setActiveEditorialDerivativeBeat(nextIndex, true);
+          } else {
+            setActiveEditorialDerivativeChange(nextIndex, true);
+          }
+        }
+      });
+
+      roots.editorialDerivative.querySelector("[data-derivative-import-input]")?.addEventListener("change", (event) => {
+        const file = event.target.files?.[0];
+        if (file) {
+          importEditorialDerivativePatch(file, event.target);
         }
       });
     }
@@ -7101,6 +7635,7 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       renderBridgeStoryboardFlow(bridgeStoryboardFlowModel);
       renderBridgeEditorialHandoff(bridgeEditorialHandoffModel);
       renderEditorialRevisionRoundtrip();
+      renderEditorialDerivativePreview();
       renderSafetyGateRegistry();
       renderExtractionContract(currentModel.extraction_contract);
       renderDesignerDashboard(currentModel.designer_dashboard);
@@ -8123,6 +8658,731 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       link.click();
       link.remove();
       window.setTimeout(() => URL.revokeObjectURL(objectUrl), 0);
+    }
+
+    async function initializeEditorialDerivativeSample() {
+      const buildVersion = ++editorialDerivativeBuildVersion;
+      try {
+        const patchText = canonicalEditorialDerivativeJson(editorialDerivativeSamplePatch);
+        const validated = await validateEditorialDerivativePatch(editorialDerivativeSamplePatch, patchText);
+        const nextPackage = await buildEditorialDerivativePackage(validated.patch, validated.patchSha256);
+        if (buildVersion !== editorialDerivativeBuildVersion) {
+          return;
+        }
+        currentEditorialDerivativePatch = validated.patch;
+        currentEditorialDerivativePackage = nextPackage;
+        editorialDerivativeLoadState = "sample";
+        editorialDerivativeLoadLabel = "SAMPLE: accepted patch検証済み · 8/8 SHA256一致 · static packageとbyte-identical。";
+        setEditorialDerivativeImportMessage(editorialDerivativeLoadLabel, "valid");
+        renderEditorialDerivativePreview();
+      } catch (error) {
+        if (buildVersion === editorialDerivativeBuildVersion) {
+          setEditorialDerivativeImportMessage(`内蔵patchの準備に失敗: ${error instanceof Error ? error.message : "検証できませんでした。"}`, "error");
+        }
+      }
+    }
+
+    function canonicalEditorialDerivativeJson(value) {
+      return `${JSON.stringify(value, null, 2)}\n`;
+    }
+
+    async function validateEditorialDerivativePatch(value, rawText) {
+      if (!value || typeof value !== "object" || Array.isArray(value)) {
+        throw new Error("patch rootはJSON objectである必要があります。");
+      }
+      if (value.schemaVersion !== EDITORIAL_REVISION_PATCH_SCHEMA) {
+        throw new Error(`schemaVersionは${EDITORIAL_REVISION_PATCH_SCHEMA}が必要です。`);
+      }
+      const patchSha256 = await editorialDerivativeSha256Text(rawText);
+      if (patchSha256 !== EDITORIAL_DERIVATIVE_PATCH_SHA256) {
+        throw new Error(`patch fingerprintがaccepted exampleと一致しません（${patchSha256}）。`);
+      }
+      if (!isStableEditorialRevisionId(value.patch_id) || !isStableEditorialRevisionId(value.request_id) || !isStableEditorialRevisionId(value.decision_id)) {
+        throw new Error("patch/request/decision idが不正です。");
+      }
+      if (
+        value.source?.artifact_id !== EDITORIAL_REVISION_SOURCE.artifact_id ||
+        value.source?.editorial_handoff_sha256 !== EDITORIAL_REVISION_SOURCE.editorial_handoff_sha256 ||
+        value.source?.package_manifest_sha256 !== EDITORIAL_REVISION_SOURCE.package_manifest_sha256
+      ) {
+        throw new Error("immutable Handoff source fingerprintsが一致しません。");
+      }
+      if (value.candidate_id !== bridgeEditorialHandoffModel.selected_candidate_id || value.channel_id !== bridgeEditorialHandoffModel.selected_channel_route_id) {
+        throw new Error("candidateまたはchannel identityがsourceと一致しません。");
+      }
+      if (value.apply_status !== "not_applied") {
+        throw new Error("source apply_statusはnot_appliedでなければなりません。");
+      }
+      const requiredTrueFlags = [
+        "source_package_unchanged",
+        "beat_order_unchanged",
+        "timing_unchanged",
+        "canon_unchanged",
+        "rights_state_unchanged",
+        "asset_state_unchanged",
+        "production_gates_closed"
+      ];
+      if (requiredTrueFlags.some((field) => value[field] !== true)) {
+        throw new Error("source/timing/canon/rights/assetsのunchanged flagsを維持してください。");
+      }
+      const expectedBoundaries = editorialRevisionClosedBoundaries();
+      if (
+        !value.boundaries ||
+        Object.keys(value.boundaries).length !== Object.keys(expectedBoundaries).length ||
+        Object.entries(expectedBoundaries).some(([key, expected]) => value.boundaries[key] !== expected)
+      ) {
+        throw new Error("production/canon/rights boundariesはすべて閉じている必要があります。");
+      }
+      if (!Array.isArray(value.accepted_changes) || value.accepted_changes.length !== 3) {
+        throw new Error("accepted_changesは既知のsafe変更3件だけである必要があります。");
+      }
+
+      const expectedChanges = new Map(editorialDerivativeSamplePatch.accepted_changes.map((change) => [change.change_id, change]));
+      const seen = new Set();
+      for (const change of value.accepted_changes) {
+        const expected = expectedChanges.get(change?.change_id);
+        if (!expected || seen.has(change.change_id)) {
+          throw new Error("未知または重複したchange_idを検出しました。");
+        }
+        seen.add(change.change_id);
+        for (const field of ["beat_id", "target_type", "target_id", "target_field", "change_type", "guard_class"]) {
+          if (change[field] !== expected[field]) {
+            throw new Error(`${change.change_id}.${field}がaccepted patch contractと一致しません。`);
+          }
+        }
+        const canonicalBefore = editorialRevisionCanonicalBefore(change);
+        if (
+          change.guard_class !== "safe_local_edit" ||
+          classifyEditorialRevisionChange(change) !== "safe_local_edit" ||
+          !canonicalBefore.known ||
+          canonicalBefore.beatId !== change.beat_id ||
+          !editorialRevisionValuesEqual(change.before, canonicalBefore.value) ||
+          !editorialRevisionValuesEqual(change.before, expected.before) ||
+          !editorialRevisionValuesEqual(change.proposed_value, expected.proposed_value) ||
+          editorialRevisionHasUnsafeClaim(change.proposed_value)
+        ) {
+          throw new Error(`${change.change_id}はsource一致のsafe wording changeではありません。`);
+        }
+      }
+      if (seen.size !== expectedChanges.size) {
+        throw new Error("accepted safe changeが不足しています。");
+      }
+      return { patch: JSON.parse(JSON.stringify(value)), patchSha256 };
+    }
+
+    function buildEditorialDerivativeModel(patch) {
+      const sourceHandoff = bridgeEditorialHandoffModel;
+      const model = {
+        schemaVersion: EDITORIAL_DERIVATIVE_SCHEMA,
+        artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+        title: "Fast Fiction Factory Editorial Derivative Preview",
+        generatedAt: patch?.created_at || null,
+        status: "derived_revision_preview",
+        derived_status: "derived_revision_preview",
+        canonical: false,
+        source_apply_status: "not_applied",
+        derived_apply_status: "applied_to_derived_copy",
+        application_scope: "derived_copy_only",
+        rollback_action: "discard_derived_package",
+        review_route: "public/review/index.html?mode=derivative",
+        source: JSON.parse(JSON.stringify(EDITORIAL_REVISION_SOURCE)),
+        patch: {
+          patch_id: patch?.patch_id || null,
+          path: EDITORIAL_DERIVATIVE_PATCH_PATH,
+          sha256: EDITORIAL_DERIVATIVE_PATCH_SHA256
+        },
+        selected_candidate_id: sourceHandoff.selected_candidate_id || null,
+        selected_channel_route_id: sourceHandoff.selected_channel_route_id || null,
+        total_duration_seconds: sourceHandoff.total_duration_seconds ?? null,
+        source_artifact_ids: JSON.parse(JSON.stringify(sourceHandoff.source_artifact_ids || [])),
+        beats: JSON.parse(JSON.stringify(sourceHandoff.beats || [])),
+        narration_segments: JSON.parse(JSON.stringify(sourceHandoff.narration_segments || [])),
+        subtitle_cues: JSON.parse(JSON.stringify(sourceHandoff.subtitle_cues || [])),
+        shot_cues: JSON.parse(JSON.stringify(sourceHandoff.shot_cues || [])),
+        thumbnail_directions: JSON.parse(JSON.stringify(sourceHandoff.thumbnail_directions || [])),
+        sound_music_mood_brief: JSON.parse(JSON.stringify(sourceHandoff.sound_music_mood_brief || {})),
+        truth_guards: JSON.parse(JSON.stringify(sourceHandoff.truth_guards || [])),
+        rights_guards: JSON.parse(JSON.stringify(sourceHandoff.rights_guards || [])),
+        applied_changes: [],
+        file_inventory: EDITORIAL_DERIVATIVE_FILE_SPECS.map((spec) => ({
+          relative_path: spec.filename,
+          required: true
+        })),
+        boundaries: editorialRevisionClosedBoundaries()
+      };
+
+      patch.accepted_changes.forEach((change) => {
+        const targetCollection = change.target_type === "narration_segment"
+          ? model.narration_segments
+          : change.target_type === "subtitle_cue"
+            ? model.subtitle_cues
+            : model.shot_cues;
+        const idField = change.target_type === "narration_segment" ? "segment_id" : change.target_type === "subtitle_cue" ? "cue_id" : "shot_id";
+        const target = targetCollection.find((item) => item[idField] === change.target_id);
+        if (!target || target.beat_id !== change.beat_id || !Object.prototype.hasOwnProperty.call(target, change.target_field)) {
+          throw new Error(`${change.change_id}のderived targetが見つかりません。`);
+        }
+        if (!editorialRevisionValuesEqual(target[change.target_field], change.before)) {
+          throw new Error(`${change.change_id}のbefore valueがsourceと一致しません。`);
+        }
+        target[change.target_field] = JSON.parse(JSON.stringify(change.proposed_value));
+        if (change.target_type === "narration_segment" && change.target_field === "text") {
+          target.character_count_estimate = Array.from(target.text).length;
+        }
+        model.applied_changes.push({
+          change_id: change.change_id,
+          beat_id: change.beat_id,
+          target_type: change.target_type,
+          target_id: change.target_id,
+          target_field: change.target_field,
+          change_type: change.change_type,
+          guard_class: change.guard_class,
+          before: JSON.parse(JSON.stringify(change.before)),
+          after: JSON.parse(JSON.stringify(change.proposed_value))
+        });
+      });
+      return model;
+    }
+
+    async function buildEditorialDerivativePackage(patch, patchSha256 = EDITORIAL_DERIVATIVE_PATCH_SHA256) {
+      const model = buildEditorialDerivativeModel(patch);
+      const files = new Map();
+      const normalizedPatchText = canonicalEditorialDerivativeJson(patch);
+      const normalizedPatchSha = await editorialDerivativeSha256Text(normalizedPatchText);
+      if (normalizedPatchSha !== patchSha256 || normalizedPatchSha !== EDITORIAL_DERIVATIVE_PATCH_SHA256) {
+        throw new Error("normalized applied patch fingerprintが一致しません。");
+      }
+
+      files.set("narration-script.derived.md", renderEditorialDerivativeNarrationStatic(model));
+      files.set("subtitle-cues.derived.csv", renderEditorialDerivativeCsvStatic(model.subtitle_cues, editorialDerivativeSubtitleHeadersStatic()));
+      files.set("shot-list.derived.csv", renderEditorialDerivativeCsvStatic(model.shot_cues, editorialDerivativeShotHeadersStatic()));
+      const derivedJsonText = canonicalEditorialDerivativeJson(model);
+      const derivedSha256 = await editorialDerivativeSha256Text(derivedJsonText);
+      files.set("editorial-handoff.derived.json", derivedJsonText);
+      files.set("applied-revision-patch.json", normalizedPatchText);
+
+      const coreFingerprint = await editorialDerivativeCoreFingerprintStatic(files);
+      const provenance = await buildEditorialDerivativeProvenanceStatic(model, patch, patchSha256, files, coreFingerprint);
+      files.set("derivative-provenance.json", canonicalEditorialDerivativeJson(provenance));
+      files.set("README_DERIVATIVE.md", renderEditorialDerivativeReadmeStatic(model, provenance));
+      const manifest = await buildEditorialDerivativePackageManifestStatic(model, patch, patchSha256, files, coreFingerprint);
+      const manifestText = canonicalEditorialDerivativeJson(manifest);
+      files.set("derivative-package-manifest.json", manifestText);
+
+      const fileHashes = new Map();
+      for (const spec of EDITORIAL_DERIVATIVE_FILE_SPECS) {
+        const content = files.get(spec.filename);
+        const actualSha256 = typeof content === "string" ? await editorialDerivativeSha256Text(content) : "missing";
+        fileHashes.set(spec.filename, actualSha256);
+        if (actualSha256 !== EDITORIAL_DERIVATIVE_EXPECTED_FILE_SHA256[spec.filename]) {
+          throw new Error(`${spec.filename} integrity mismatch: ${actualSha256}`);
+        }
+      }
+      if (coreFingerprint !== EDITORIAL_DERIVATIVE_EXPECTED_CORE_FINGERPRINT) {
+        throw new Error(`derivative core fingerprint mismatch: ${coreFingerprint}`);
+      }
+      return { model, files, fileHashes, patchSha256, derivedSha256, coreFingerprint, provenance, manifest, integrityVerified: true };
+    }
+
+    function editorialDerivativeSubtitleHeadersStatic() {
+      return ["cue_id", "beat_id", "start_time", "end_time", "text_ja", "line_break_hint", "status", "truth_risk_marker"];
+    }
+
+    function editorialDerivativeShotHeadersStatic() {
+      return ["shot_id", "beat_id", "start_time", "end_time", "shot_purpose", "visual_direction", "asset_class", "asset_status", "rights_note", "truth_boundary_note"];
+    }
+
+    function renderEditorialDerivativeNarrationStatic(derived) {
+      const lines = [
+        "# Editorial Derivative Preview — Narration Script",
+        "",
+        "DERIVED PREVIEW / NOT CANONICAL",
+        "",
+        `- artifact_id: ${derived.artifact_id}`,
+        `- status: ${derived.status}`,
+        `- source_apply_status: ${derived.source_apply_status}`,
+        `- derived_apply_status: ${derived.derived_apply_status}`,
+        `- application_scope: ${derived.application_scope}`,
+        `- rollback_action: ${derived.rollback_action}`,
+        ""
+      ];
+      for (const segment of derived.narration_segments) {
+        const beat = derived.beats.find((candidate) => candidate.beat_id === segment.beat_id) || {};
+        lines.push(
+          `## Beat ${beat.beat_number}: ${beat.title_ja}`,
+          "",
+          `- beat_id: ${segment.beat_id}`,
+          `- segment_id: ${segment.segment_id}`,
+          `- timing: ${segment.start_time}-${segment.end_time}`,
+          `- status: ${segment.status}`,
+          `- character_count_estimate: ${segment.character_count_estimate}`,
+          `- reading_seconds_estimate: ${segment.reading_seconds_estimate}`,
+          "",
+          segment.text,
+          "",
+          "Held truth notes:",
+          ...segment.held_truth_notes.map((note) => `- ${note}`),
+          ""
+        );
+      }
+      return `${lines.join("\n").trimEnd()}\n`;
+    }
+
+    function renderEditorialDerivativeCsvStatic(records, headers) {
+      const rows = [headers.join(",")];
+      for (const record of records) {
+        rows.push(headers.map((header) => editorialDerivativeCsvFieldStatic(record?.[header])).join(","));
+      }
+      return `${rows.join("\n")}\n`;
+    }
+
+    function editorialDerivativeCsvFieldStatic(value) {
+      const text = value === null || value === undefined ? "" : String(value);
+      if (!/[",\r\n]/.test(text)) {
+        return text;
+      }
+      return `"${text.replace(/"/g, '""')}"`;
+    }
+
+    async function buildEditorialDerivativeProvenanceStatic(derived, revisionPatch, patchSha256, coreFiles, coreFingerprint) {
+      const changes = await Promise.all(revisionPatch.accepted_changes.map(async (change) => ({
+        change_id: change.change_id,
+        beat_id: change.beat_id,
+        target_type: change.target_type,
+        target_id: change.target_id,
+        target_field: change.target_field,
+        guard_class: change.guard_class,
+        before: JSON.parse(JSON.stringify(change.before)),
+        before_sha256: await editorialDerivativeValueHashStatic(change.before),
+        after: JSON.parse(JSON.stringify(change.proposed_value)),
+        after_sha256: await editorialDerivativeValueHashStatic(change.proposed_value),
+        derived_file_locations: change.target_type === "narration_segment"
+          ? ["narration-script.derived.md", "editorial-handoff.derived.json"]
+          : change.target_type === "subtitle_cue"
+            ? ["subtitle-cues.derived.csv", "editorial-handoff.derived.json"]
+            : ["shot-list.derived.csv", "editorial-handoff.derived.json"]
+      })));
+      const coreFileEntries = [];
+      for (const relativePath of EDITORIAL_DERIVATIVE_CORE_FILES) {
+        const content = coreFiles.get(relativePath);
+        coreFileEntries.push({
+          relative_path: relativePath,
+          byte_size: new TextEncoder().encode(content).byteLength,
+          sha256: await editorialDerivativeSha256Text(content)
+        });
+      }
+      return {
+        schemaVersion: EDITORIAL_DERIVATIVE_PROVENANCE_SCHEMA,
+        artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+        generatedAt: revisionPatch.created_at,
+        status: "derived_revision_preview",
+        canonical: false,
+        source: JSON.parse(JSON.stringify(EDITORIAL_REVISION_SOURCE)),
+        patch: {
+          patch_id: revisionPatch.patch_id,
+          path: EDITORIAL_DERIVATIVE_PATCH_PATH,
+          sha256: patchSha256
+        },
+        derivative: {
+          artifact_id: derived.artifact_id,
+          editorial_handoff_sha256: await editorialDerivativeSha256Text(coreFiles.get("editorial-handoff.derived.json")),
+          core_fingerprint_sha256: coreFingerprint,
+          core_fingerprint_algorithm: "sha256 of LF-joined ordered relative_path:sha256 pairs for the five core files"
+        },
+        source_apply_status: "not_applied",
+        derived_apply_status: "applied_to_derived_copy",
+        application_scope: "derived_copy_only",
+        rollback_action: "discard_derived_package",
+        applied_change_count: 3,
+        content_delta_count: 3,
+        changes,
+        core_files: coreFileEntries,
+        invariants: {
+          source_package_unchanged: true,
+          revision_package_unchanged: true,
+          beat_order_unchanged: true,
+          timing_unchanged: true,
+          canon_unchanged: true,
+          truth_state_unchanged: true,
+          rights_unchanged: true,
+          assets_unchanged: true,
+          beat_count: bridgeEditorialHandoffModel.beats.length,
+          total_duration_seconds: bridgeEditorialHandoffModel.total_duration_seconds,
+          narration_segment_count: bridgeEditorialHandoffModel.narration_segments.length,
+          subtitle_cue_count: bridgeEditorialHandoffModel.subtitle_cues.length,
+          shot_cue_count: bridgeEditorialHandoffModel.shot_cues.length,
+          thumbnail_direction_count: bridgeEditorialHandoffModel.thumbnail_directions.length,
+          narration_character_count_before: 777,
+          narration_character_count_after: 778
+        },
+        boundaries: editorialRevisionClosedBoundaries()
+      };
+    }
+
+    async function editorialDerivativeValueHashStatic(value) {
+      return editorialDerivativeSha256Text(typeof value === "string" ? value : JSON.stringify(value));
+    }
+
+    function renderEditorialDerivativeReadmeStatic(derived, provenance) {
+      const lines = [
+        "# Fast Fiction Factory Editorial Derivative Preview",
+        "",
+        "**DERIVED PREVIEW / NOT CANONICAL**",
+        "",
+        `Artifact: \`${derived.artifact_id}\``,
+        "",
+        "This local package applies exactly three accepted safe wording edits to a copy of the immutable Editorial Handoff package. It is not final, approved, canonical, rights-cleared, production-ready, rendered, uploaded, published, or persisted to a database.",
+        "",
+        "## Application contract",
+        "",
+        `- source_apply_status: \`${derived.source_apply_status}\``,
+        `- derived_apply_status: \`${derived.derived_apply_status}\``,
+        `- application_scope: \`${derived.application_scope}\``,
+        `- rollback_action: \`${derived.rollback_action}\``,
+        `- applied changes: \`${derived.applied_changes.length}\``,
+        "- rollback: discard this entire derived package; no source file was modified.",
+        "",
+        "## Fingerprints",
+        "",
+        `- source editorial-handoff.json: \`${provenance.source.editorial_handoff_sha256}\``,
+        `- source package-manifest.json: \`${provenance.source.package_manifest_sha256}\``,
+        `- accepted patch: \`${provenance.patch.sha256}\``,
+        `- derived editorial JSON: \`${provenance.derivative.editorial_handoff_sha256}\``,
+        `- derived core fingerprint: \`${provenance.derivative.core_fingerprint_sha256}\``,
+        "",
+        "## Package files",
+        "",
+        ...EDITORIAL_DERIVATIVE_FILE_SPECS.map((spec) => `- \`${spec.filename}\``),
+        "",
+        "The manifest inventories the other seven files and intentionally has no self-hash. The core fingerprint is SHA256 over LF-joined ordered `relative_path:sha256` pairs for narration, subtitle, shot, derived JSON, and the byte-identical accepted patch.",
+        "",
+        "## Closed boundaries",
+        "",
+        "Timing, beat order, truth, ending, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload/publication, and database persistence remain unchanged or closed.",
+        ""
+      ];
+      return `${lines.join("\n").trimEnd()}\n`;
+    }
+
+    async function buildEditorialDerivativePackageManifestStatic(derived, revisionPatch, patchSha256, packageFiles, coreFingerprint) {
+      const files = [];
+      for (const relativePath of EDITORIAL_DERIVATIVE_PACKAGE_FILES) {
+        const content = packageFiles.get(relativePath);
+        files.push({
+          relative_path: relativePath,
+          byte_size: new TextEncoder().encode(content).byteLength,
+          sha256: await editorialDerivativeSha256Text(content)
+        });
+      }
+      return {
+        schemaVersion: EDITORIAL_DERIVATIVE_MANIFEST_SCHEMA,
+        artifact_id: EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+        generatedAt: revisionPatch.created_at,
+        package_root: EDITORIAL_DERIVATIVE_PACKAGE_ROOT,
+        status: "derived_revision_preview",
+        canonical: false,
+        source: JSON.parse(JSON.stringify(derived.source)),
+        patch: {
+          patch_id: revisionPatch.patch_id,
+          path: EDITORIAL_DERIVATIVE_PATCH_PATH,
+          sha256: patchSha256
+        },
+        derivative_core_fingerprint_sha256: coreFingerprint,
+        files,
+        passed: files.length === EDITORIAL_DERIVATIVE_PACKAGE_FILES.length
+      };
+    }
+
+    async function editorialDerivativeCoreFingerprintStatic(files) {
+      const pairs = [];
+      for (const relativePath of EDITORIAL_DERIVATIVE_CORE_FILES) {
+        pairs.push(`${relativePath}:${await editorialDerivativeSha256Text(files.get(relativePath))}`);
+      }
+      return editorialDerivativeSha256Text(`${pairs.join("\n")}\n`);
+    }
+
+    async function editorialDerivativeSha256Text(value) {
+      if (!globalThis.crypto?.subtle) {
+        throw new Error("Web Crypto SHA256を利用できません。");
+      }
+      const digest = await globalThis.crypto.subtle.digest("SHA-256", new TextEncoder().encode(String(value)));
+      return Array.from(new Uint8Array(digest), (byte) => byte.toString(16).padStart(2, "0")).join("");
+    }
+
+    function importEditorialDerivativePatch(file, input) {
+      if (file.size > EDITORIAL_DERIVATIVE_MAX_FILE_BYTES) {
+        setEditorialDerivativeImportMessage(`読み込み拒否: 512 KiBを超えています（${file.size} bytes）。最後の有効な派生表示を維持します。`, "error");
+        input.value = "";
+        return;
+      }
+      const buildVersion = ++editorialDerivativeBuildVersion;
+      const reader = new FileReader();
+      reader.addEventListener("load", async () => {
+        try {
+          const rawText = String(reader.result || "");
+          const parsed = JSON.parse(rawText);
+          const validated = await validateEditorialDerivativePatch(parsed, rawText);
+          const nextPackage = await buildEditorialDerivativePackage(validated.patch, validated.patchSha256);
+          if (buildVersion !== editorialDerivativeBuildVersion) {
+            return;
+          }
+          currentEditorialDerivativePatch = validated.patch;
+          currentEditorialDerivativePackage = nextPackage;
+          activeEditorialDerivativeBeatIndex = 0;
+          activeEditorialDerivativeChangeIndex = 0;
+          editorialDerivativeLoadState = "imported";
+          editorialDerivativeLoadLabel = `IMPORTED: ${file.name} · fingerprint verified · 8/8 SHA256一致 · static packageとbyte-identical`;
+          setEditorialDerivativeImportMessage(editorialDerivativeLoadLabel, "valid");
+          renderEditorialDerivativePreview();
+        } catch (error) {
+          if (buildVersion === editorialDerivativeBuildVersion) {
+            setEditorialDerivativeImportMessage(`読み込み拒否: ${error instanceof Error ? error.message : "JSONを検証できませんでした。"} 最後の有効な派生表示を維持します。`, "error");
+          }
+        } finally {
+          input.value = "";
+        }
+      });
+      reader.addEventListener("error", () => {
+        if (buildVersion === editorialDerivativeBuildVersion) {
+          setEditorialDerivativeImportMessage("読み込み拒否: ローカルpatchを読めませんでした。最後の有効な派生表示を維持します。", "error");
+        }
+        input.value = "";
+      });
+      reader.readAsText(file, "utf-8");
+    }
+
+    function setEditorialDerivativeImportMessage(message, stateName) {
+      const node = roots.editorialDerivative?.querySelector("[data-derivative-import-message]");
+      if (node) {
+        node.textContent = message;
+        node.setAttribute("data-state", stateName);
+      }
+    }
+
+    function setActiveEditorialDerivativeBeat(index, focusSelectedBeat = false) {
+      const beats = currentEditorialDerivativePackage.model.beats;
+      activeEditorialDerivativeBeatIndex = Math.max(0, Math.min(Number.isFinite(index) ? index : 0, beats.length - 1));
+      const activeBeatId = beats[activeEditorialDerivativeBeatIndex].beat_id;
+      const relatedChangeIndex = currentEditorialDerivativePatch.accepted_changes.findIndex((change) => change.beat_id === activeBeatId);
+      if (relatedChangeIndex >= 0) {
+        activeEditorialDerivativeChangeIndex = relatedChangeIndex;
+      }
+      renderEditorialDerivativePreview();
+      if (focusSelectedBeat && roots.editorialDerivative) {
+        roots.editorialDerivative.querySelector(`[data-derivative-beat-index="${activeEditorialDerivativeBeatIndex}"]`)?.focus();
+      }
+    }
+
+    function setActiveEditorialDerivativeChange(index, focusSelectedChange = false) {
+      const changes = currentEditorialDerivativePatch.accepted_changes;
+      activeEditorialDerivativeChangeIndex = Math.max(0, Math.min(Number.isFinite(index) ? index : 0, changes.length - 1));
+      const beatIndex = currentEditorialDerivativePackage.model.beats.findIndex((beat) => beat.beat_id === changes[activeEditorialDerivativeChangeIndex].beat_id);
+      if (beatIndex >= 0) {
+        activeEditorialDerivativeBeatIndex = beatIndex;
+      }
+      renderEditorialDerivativePreview();
+      if (focusSelectedChange && roots.editorialDerivative) {
+        roots.editorialDerivative.querySelector(`[data-derivative-change-index="${activeEditorialDerivativeChangeIndex}"]`)?.focus();
+      }
+    }
+
+    function renderEditorialDerivativePreview() {
+      const root = roots.editorialDerivative;
+      const model = currentEditorialDerivativePackage?.model;
+      const patch = currentEditorialDerivativePatch;
+      if (!root || !model?.beats?.length || !patch?.accepted_changes?.length) {
+        return;
+      }
+      activeEditorialDerivativeBeatIndex = Math.max(0, Math.min(activeEditorialDerivativeBeatIndex, model.beats.length - 1));
+      activeEditorialDerivativeChangeIndex = Math.max(0, Math.min(activeEditorialDerivativeChangeIndex, patch.accepted_changes.length - 1));
+      const activeBeat = model.beats[activeEditorialDerivativeBeatIndex];
+      const activeChange = patch.accepted_changes[activeEditorialDerivativeChangeIndex];
+      const narration = model.narration_segments.find((segment) => segment.beat_id === activeBeat.beat_id);
+      const subtitles = model.subtitle_cues.filter((cue) => cue.beat_id === activeBeat.beat_id);
+      const shots = model.shot_cues.filter((shot) => shot.beat_id === activeBeat.beat_id);
+      const previousBeat = model.beats[activeEditorialDerivativeBeatIndex - 1] || null;
+      const nextBeat = model.beats[activeEditorialDerivativeBeatIndex + 1] || null;
+
+      root.setAttribute("data-derivative-artifact-id", model.artifact_id);
+      root.setAttribute("data-derivative-status", model.status);
+      root.setAttribute("data-derivative-canonical", String(model.canonical));
+      root.setAttribute("data-derivative-beat-count", String(model.beats.length));
+      root.setAttribute("data-derivative-change-count", String(patch.accepted_changes.length));
+      root.setAttribute("data-derivative-source-apply-status", model.source_apply_status);
+      root.setAttribute("data-derivative-apply-status", model.derived_apply_status);
+      root.setAttribute("data-derivative-file-count", String(currentEditorialDerivativePackage.files.size));
+      root.setAttribute("data-derivative-integrity-verified", String(currentEditorialDerivativePackage.integrityVerified === true));
+      setEditorialDerivativeText(root, "[data-derivative-source-sha]", EDITORIAL_REVISION_SOURCE.editorial_handoff_sha256);
+      setEditorialDerivativeText(root, "[data-derivative-source-manifest-sha]", EDITORIAL_REVISION_SOURCE.package_manifest_sha256);
+      setEditorialDerivativeText(root, "[data-derivative-patch-id]", patch.patch_id);
+      setEditorialDerivativeText(root, "[data-derivative-patch-sha]", currentEditorialDerivativePackage.patchSha256);
+      setEditorialDerivativeText(root, "[data-derivative-derived-sha]", currentEditorialDerivativePackage.derivedSha256);
+
+      const loadStatus = root.querySelector("[data-derivative-load-status]");
+      if (loadStatus) {
+        loadStatus.textContent = editorialDerivativeLoadState === "imported" ? "IMPORTED" : editorialDerivativeLoadState === "sample" ? "SAMPLE" : "BUILDING";
+        loadStatus.setAttribute("data-state", editorialDerivativeLoadState);
+      }
+      const importMessage = root.querySelector("[data-derivative-import-message]");
+      if (importMessage && importMessage.getAttribute("data-state") !== "error") {
+        importMessage.textContent = editorialDerivativeLoadLabel;
+        importMessage.setAttribute("data-state", "valid");
+      }
+
+      const runway = root.querySelector("[data-derivative-runway]");
+      if (runway) {
+        const fragment = document.createDocumentFragment();
+        model.beats.forEach((beat, index) => {
+          const relatedChanges = patch.accepted_changes.filter((change) => change.beat_id === beat.beat_id).length;
+          const selected = index === activeEditorialDerivativeBeatIndex;
+          const button = document.createElement("button");
+          button.className = "storyboard-beat-tab";
+          button.type = "button";
+          button.id = `editorial-derivative-beat-tab-${beat.beat_number}`;
+          button.setAttribute("role", "tab");
+          button.setAttribute("aria-selected", String(selected));
+          button.setAttribute("aria-controls", "editorial-derivative-active-canvas");
+          button.setAttribute("tabindex", selected ? "0" : "-1");
+          button.setAttribute("data-derivative-beat-select", "true");
+          button.setAttribute("data-derivative-beat-index", String(index));
+          button.setAttribute("data-derivative-beat-id", beat.beat_id);
+          const number = document.createElement("span");
+          number.className = "storyboard-beat-number";
+          number.textContent = `BEAT ${beat.beat_number} / ${model.beats.length}`;
+          const title = document.createElement("strong");
+          title.textContent = beat.title_ja;
+          const time = document.createElement("span");
+          time.className = "storyboard-beat-time";
+          time.textContent = `${beat.start_time}-${beat.end_time} · ${relatedChanges ? `${relatedChanges} change` : "unchanged"}`;
+          button.append(number, title, time);
+          fragment.appendChild(button);
+        });
+        runway.replaceChildren(fragment);
+      }
+
+      const activeCanvas = root.querySelector("[data-derivative-active-canvas]");
+      activeCanvas?.setAttribute("aria-labelledby", `editorial-derivative-beat-tab-${activeBeat.beat_number}`);
+      activeCanvas?.setAttribute("data-derivative-active-beat-id", activeBeat.beat_id);
+      setEditorialDerivativeText(root, "[data-derivative-active-position]", `BEAT ${activeBeat.beat_number} / ${model.beats.length} · DERIVED CONTEXT`);
+      setEditorialDerivativeText(root, "[data-derivative-active-title]", activeBeat.title_ja);
+      setEditorialDerivativeText(root, "[data-derivative-active-purpose]", activeBeat.story_purpose);
+      setEditorialDerivativeText(root, "[data-derivative-active-time]", `${activeBeat.start_time}-${activeBeat.end_time} · derived_revision_preview`);
+      setEditorialDerivativeText(root, "[data-derivative-narration-id]", narration?.segment_id || "segment missing");
+      setEditorialDerivativeText(root, "[data-derivative-narration-text]", narration?.text || "この拍のナレーションsegmentがありません。");
+      setEditorialDerivativeText(root, "[data-derivative-narration-meta]", narration ? `${narration.character_count_estimate}字 · ${narration.reading_seconds_estimate}秒 · timing unchanged` : "要確認");
+      setEditorialDerivativeText(root, "[data-derivative-subtitle-heading]", `字幕 ${subtitles.length} cues`);
+      setEditorialDerivativeText(root, "[data-derivative-shot-heading]", `ショット ${shots.length} cues`);
+      renderEditorialDerivativeCueList(root.querySelector("[data-derivative-subtitle-list]"), subtitles, "subtitle");
+      renderEditorialDerivativeCueList(root.querySelector("[data-derivative-shot-list]"), shots, "shot");
+
+      const previousButton = root.querySelector("[data-derivative-prev]");
+      const nextButton = root.querySelector("[data-derivative-next]");
+      if (previousButton) {
+        previousButton.disabled = !previousBeat;
+        previousButton.textContent = previousBeat ? `前の拍: ${previousBeat.title_ja}` : "前の拍";
+        previousButton.setAttribute("aria-label", previousBeat ? `前の拍: ${previousBeat.title_ja}` : "前の拍はありません");
+      }
+      if (nextButton) {
+        nextButton.disabled = !nextBeat;
+        nextButton.textContent = nextBeat ? `次の拍: ${nextBeat.title_ja}` : "次の拍";
+        nextButton.setAttribute("aria-label", nextBeat ? `次の拍: ${nextBeat.title_ja}` : "次の拍はありません");
+      }
+      setEditorialDerivativeText(root, "[data-derivative-progress]", `${activeBeat.beat_number} / ${model.beats.length}拍をプレビュー`);
+
+      const rail = root.querySelector("[data-derivative-change-rail]");
+      if (rail) {
+        const fragment = document.createDocumentFragment();
+        patch.accepted_changes.forEach((change, index) => {
+          const selected = index === activeEditorialDerivativeChangeIndex;
+          const button = document.createElement("button");
+          button.className = "revision-change-tab";
+          button.type = "button";
+          button.id = `editorial-derivative-change-tab-${index + 1}`;
+          button.setAttribute("role", "tab");
+          button.setAttribute("aria-selected", String(selected));
+          button.setAttribute("aria-controls", "editorial-derivative-active-diff");
+          button.setAttribute("tabindex", selected ? "0" : "-1");
+          button.setAttribute("data-derivative-change-select", "true");
+          button.setAttribute("data-derivative-change-index", String(index));
+          button.setAttribute("data-derivative-change-id", change.change_id);
+          button.setAttribute("data-guard-class", "safe_local_edit");
+          const position = document.createElement("span");
+          position.textContent = `${index + 1} / ${patch.accepted_changes.length} · ${change.beat_id.replace("bridge-storyboard-beat-", "BEAT ")}`;
+          const title = document.createElement("strong");
+          title.textContent = change.change_type;
+          const state = document.createElement("span");
+          state.textContent = "safe_local_edit · applied to derived copy";
+          button.append(position, title, state);
+          fragment.appendChild(button);
+        });
+        rail.replaceChildren(fragment);
+      }
+
+      const diffCanvas = root.querySelector("[data-derivative-diff-canvas]");
+      diffCanvas?.setAttribute("aria-labelledby", `editorial-derivative-change-tab-${activeEditorialDerivativeChangeIndex + 1}`);
+      diffCanvas?.setAttribute("data-derivative-active-change-id", activeChange.change_id);
+      setEditorialDerivativeText(root, "[data-derivative-change-position]", `CHANGE ${activeEditorialDerivativeChangeIndex + 1} / ${patch.accepted_changes.length} · APPLIED TO DERIVED COPY`);
+      setEditorialDerivativeText(root, "[data-derivative-change-title]", activeChange.change_type);
+      setEditorialDerivativeText(root, "[data-derivative-change-target]", `${activeChange.beat_id} · ${activeChange.target_type}:${activeChange.target_id}.${activeChange.target_field}`);
+      setEditorialDerivativeText(root, "[data-derivative-before]", formatEditorialRevisionValue(activeChange.before));
+      setEditorialDerivativeText(root, "[data-derivative-after]", formatEditorialRevisionValue(activeChange.proposed_value));
+      setEditorialDerivativeText(root, "[data-derivative-change-proof]", "source unchanged · target and before value verified · safe wording only · timing/canon/rights/assets unchanged");
+
+      const packageReady = currentEditorialDerivativePackage.integrityVerified === true &&
+        currentEditorialDerivativePackage.files.size === EDITORIAL_DERIVATIVE_FILE_SPECS.length;
+      root.querySelector("[data-derivative-package-files]")?.setAttribute("data-derivative-package-file-count", String(EDITORIAL_DERIVATIVE_FILE_SPECS.length));
+      root.querySelectorAll("[data-derivative-download-file]").forEach((button) => {
+        const filename = button.getAttribute("data-derivative-download-file");
+        button.disabled = !packageReady || !currentEditorialDerivativePackage.files.has(filename);
+      });
+    }
+
+    function renderEditorialDerivativeCueList(root, items, kind) {
+      if (!root) {
+        return;
+      }
+      const fragment = document.createDocumentFragment();
+      items.forEach((item) => {
+        const entry = document.createElement("li");
+        const heading = document.createElement("strong");
+        const copy = document.createElement("span");
+        if (kind === "subtitle") {
+          heading.textContent = `${item.start_time}-${item.end_time} · ${item.cue_id}`;
+          copy.textContent = item.text_ja;
+        } else {
+          heading.textContent = `${item.start_time}-${item.end_time} · ${item.shot_id}`;
+          copy.textContent = item.visual_direction;
+        }
+        entry.append(heading, copy);
+        fragment.appendChild(entry);
+      });
+      root.replaceChildren(fragment);
+    }
+
+    function setEditorialDerivativeText(root, selector, value) {
+      const node = root.querySelector(selector);
+      if (node) {
+        node.textContent = String(value ?? "");
+      }
+    }
+
+    function downloadEditorialDerivativeFile(filename) {
+      const spec = EDITORIAL_DERIVATIVE_FILE_SPECS.find((item) => item.filename === filename);
+      const content = currentEditorialDerivativePackage.files.get(filename);
+      if (!spec || typeof content !== "string") {
+        setEditorialDerivativeImportMessage(`download拒否: ${filename || "unknown file"}は現在の有効packageにありません。`, "error");
+        return;
+      }
+      const blob = new Blob([content], { type: spec.mime });
+      const objectUrl = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = objectUrl;
+      link.download = spec.filename;
+      link.hidden = true;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      window.setTimeout(() => URL.revokeObjectURL(objectUrl), 1000);
     }
 
     function renderSafetyGateRegistry() {
