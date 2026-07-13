@@ -1,0 +1,1679 @@
+{
+  "schemaVersion": "fff.productionStoryboardBrief.v1",
+  "artifact_id": "fff-production-storyboard-brief-001",
+  "title": "Fast Fiction Factory Production Storyboard Brief",
+  "generatedAt": "2026-07-14T12:00:00+09:00",
+  "status": "provisional_storyboard_planning_brief",
+  "route": "artifacts/production-storyboard-brief/production-storyboard-brief.html",
+  "source": {
+    "artifact_id": "fff-production-execution-pack-001",
+    "package_root": "artifacts/production-execution-pack",
+    "fingerprints": {
+      "production_execution_pack_fingerprint_sha256": "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+      "production_execution_html_sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c",
+      "production_execution_json_sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb",
+      "production_execution_manifest_sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7",
+      "production_execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+    },
+    "source_package_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345",
+    "derivation_rule": "Execution Packの順序・時刻・文言・truth・asset stateを保持し、done_whenだけを肯定条件と否定guardへ機械的に分離する。"
+  },
+  "premise_ja": "鐘がない塔から正午に鐘音がする矛盾が、調査の入口になる。",
+  "central_question_ja": "結末の問いは『失われた時間か、消えた名前か』。選択は未定。",
+  "provisional": true,
+  "counts": {
+    "total_duration_seconds": 180,
+    "beat_count": 6,
+    "shot_count": 19,
+    "subtitle_count": 20,
+    "narration_segment_count": 6,
+    "asset_requirement_count": 14,
+    "glossary_count": 25
+  },
+  "voice_planning": {
+    "voice_mode": "synthetic",
+    "human_articulation_check_required": false,
+    "engine_selected": false,
+    "voice_selected": false,
+    "audio_generated": false,
+    "engine_calibration_pending": true,
+    "actual_engine_timing_measured": false,
+    "provenance_note": "3–5秒の余白は人の読み上げによるtext-density proxyであり、synthetic voice engineの実測ではない。"
+  },
+  "overview_sentences": [
+    "鐘がない塔から正午に鐘音がする矛盾が、調査の入口になる。",
+    "ミラ、兄トーマのメモ、正体不明の真鍮の蛾が結び付く。",
+    "『分』と名前が並ぶ台帳は、証拠にも偽記録にも見える。",
+    "評議会への告発はあるが、動機も台帳との関係も確定しない。",
+    "トーマ、蛾、評議会には複数説があり、どれもまだ真実ではない。",
+    "結末の問いは『失われた時間か、消えた名前か』。選択は未定。"
+  ],
+  "beat_shot_grouping": [
+    3,
+    3,
+    3,
+    3,
+    4,
+    3
+  ],
+  "glossary": [
+    {
+      "term_id": "term-north-bell-station",
+      "term_ja": "ノース・ベル駅",
+      "category": "place",
+      "definition_ja": "古い天文台とともに冒頭の遠景へ置かれる作品内の場所名。実在の場所や最終環境designは未選定。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-bellless-observatory",
+      "term_ja": "鐘のない塔／古い天文台",
+      "category": "place",
+      "definition_ja": "空の鐘枠を持ち、正午の鐘音という矛盾を調べる起点。鳴動原因は未確定。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-empty-bell-frame",
+      "term_ja": "空の鐘枠",
+      "category": "object",
+      "definition_ja": "鐘が存在しないことを示す第一幕と終幕のvisual anchor。鳴動原因や撤去理由は示さない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-noon",
+      "term_ja": "正午",
+      "category": "repeated_time_marker",
+      "definition_ja": "鐘音とともに示される時刻。音の原因を確定する表示ではない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-winter-curfew",
+      "term_ja": "winter curfew",
+      "category": "unresolved_event",
+      "definition_ja": "鐘の撤去理由に関係する可能性があるが、真相は未確定。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-mira",
+      "term_ja": "ミラ",
+      "category": "person",
+      "definition_ja": "時計修理台の手元で示される主人公。外見、final character design、終幕の選択は未確定。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-toma",
+      "term_ja": "トーマ／Toma",
+      "category": "person",
+      "definition_ja": "ミラの兄として手掛かりに結びつく人物。生死と所在は未解決。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-toma-note",
+      "term_ja": "トーマのメモ",
+      "category": "document",
+      "definition_ja": "真鍮の蛾とともに示される個人的な手掛かり。由来や真実性は確定しない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-brass-moth",
+      "term_ja": "真鍮の蛾／moth",
+      "category": "object",
+      "definition_ja": "正体と機能が不明な物。key、spy、memoryはいずれも候補で、作動や正解を示さない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-nine-seventeen",
+      "term_ja": "9:17",
+      "category": "repeated_time_marker",
+      "definition_ja": "閉店時刻のmotifとして扱う反復表示。時計停止の確定事実ではない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-minutes-ledger",
+      "term_ja": "『分』の台帳",
+      "category": "document",
+      "definition_ja": "名前と『分』が並ぶ文書。証拠、誘い餌、偽記録のどれかは未確定。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-minutes-column",
+      "term_ja": "名前と『分』の列",
+      "category": "document_field",
+      "definition_ja": "台帳に並ぶ欄。時間と名前の因果関係は制作仮説に留まる。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-erased-names",
+      "term_ja": "消された名前／消えた名前",
+      "category": "unresolved_concept",
+      "definition_ja": "欠落や忘却として示される名前。literalな消去や回復は証明されていない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-council",
+      "term_ja": "評議会／Council",
+      "category": "organization",
+      "definition_ja": "台帳との関係を疑われる制度組織。動機、責任、関係は未確定で、単純な悪役ではない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-ledger-hypotheses",
+      "term_ja": "証拠／誘い餌／偽の記録",
+      "category": "unresolved_choice",
+      "definition_ja": "台帳に対する同格の読み。どれも採用済みの真実ではない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-council-accusation",
+      "term_ja": "時間販売の告発",
+      "category": "unresolved_claim",
+      "definition_ja": "評議会への告発候補。偽記録説と同じ重みで保持する。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-toma-fate",
+      "term_ja": "トーマの運命",
+      "category": "unresolved_choice",
+      "definition_ja": "生存、死亡、消失、潜伏の候補。どれも採用しない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-moth-function",
+      "term_ja": "真鍮の蛾の機能",
+      "category": "unresolved_choice",
+      "definition_ja": "key、spy、memoryの候補。どれも作動、正解、canonとして採用しない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-council-motive",
+      "term_ja": "評議会の動機",
+      "category": "unresolved_choice",
+      "definition_ja": "villainous、desperate、divided、misled等の候補。責任範囲も未確定。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-hold",
+      "term_ja": "HOLD",
+      "category": "review_label",
+      "definition_ja": "判断を人間へ戻す編集者向け表示。物語世界内の物や事実ではない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-canon",
+      "term_ja": "canon",
+      "category": "review_term",
+      "definition_ja": "採用済みの物語上の真実。今回の候補はcanonへ昇格していない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-contradictory-claim-guard",
+      "term_ja": "Contradictory Claim Guard",
+      "category": "review_guard",
+      "definition_ja": "矛盾する説のどちらも自動採用しないためのreview guard。物語内の存在ではない。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-lost-time",
+      "term_ja": "失われた時間",
+      "category": "unresolved_concept",
+      "definition_ja": "終幕で回復候補として扱われる時間。奪取、販売、返還の成立は未確定。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-ending-choice",
+      "term_ja": "時間か、名前か",
+      "category": "unresolved_choice",
+      "definition_ja": "失われた時間か消えた名前かを問う結末候補。ミラの選択は未定。",
+      "uncertainty_preserved": true
+    },
+    {
+      "term_id": "term-ending-candidate",
+      "term_ja": "ending candidate",
+      "category": "review_term",
+      "definition_ja": "未採用の結末案。解決済みのending truthではない。",
+      "uncertainty_preserved": true
+    }
+  ],
+  "beats": [
+    {
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "beat_number": 1,
+      "title_ja": "鐘のない塔",
+      "start_time": "00:00",
+      "end_time": "00:20",
+      "duration_seconds": 20,
+      "purpose_ja": "空の鐘枠を証拠として見せ、原因を問いのまま残す。",
+      "viewer_takeaway_ja": "鐘がない塔から正午に鐘音がする矛盾が、調査の入口になる。",
+      "narration": {
+        "segment_id": "narration-b01",
+        "text": "ある記録によれば、正午、ノース・ベル駅の上に立つ古い天文台から鐘の音が響きます。けれど、塔の枠は空です。鐘は冬の外出禁止令のころに外されたとされています。では今、何が鳴っているのでしょう。",
+        "source_metric_status": "warn",
+        "timing_state": "proxy_headroom_confirmed",
+        "observed_slack_min_seconds": 3,
+        "observed_slack_max_seconds": 5,
+        "proxy_spoken_duration_min_seconds": 15,
+        "proxy_spoken_duration_max_seconds": 17,
+        "evidence_kind": "human_read_aloud_text_density_proxy",
+        "engine_timing_verified": false,
+        "punctuation_pause_opportunity_count": 8,
+        "punctuation_note": "句読点からpause候補を数えたのみ。原文変更・SSML化・engine計測はしていない。"
+      },
+      "subtitle_count": 3,
+      "shot_count": 3,
+      "completion_statement_ja": "空の鐘枠、撤去記録、『何が鳴る？』の順で読め、原因を確定しない。",
+      "truth_boundary": "鐘が鳴る原因とwinter curfewの真相は未確定。記録上の矛盾として扱う。",
+      "shot_ids": [
+        "shot-b01-01",
+        "shot-b01-02",
+        "shot-b01-03"
+      ],
+      "glossary_term_ids": [
+        "term-north-bell-station",
+        "term-bellless-observatory",
+        "term-empty-bell-frame",
+        "term-noon",
+        "term-winter-curfew"
+      ]
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "beat_number": 2,
+      "title_ja": "真鍮の蛾",
+      "start_time": "00:20",
+      "end_time": "00:50",
+      "duration_seconds": 30,
+      "purpose_ja": "主人公の文脈と個人的な手掛かりを置き、蛾の複数候補を開く。",
+      "viewer_takeaway_ja": "ミラ、兄トーマのメモ、正体不明の真鍮の蛾が結び付く。",
+      "narration": {
+        "segment_id": "narration-b02",
+        "text": "ガラス張りのアーケードで時計を直すミラ・ヴェイル。記録では、アーケードは毎夜九時十七分に閉じます。彼女の引き出しには、行方の分からない兄トーマが残したとされるメモと、真鍮の蛾があります。蛾が鍵なのか、監視具なのか、記憶の器なのかは、まだ決まっていません。",
+        "source_metric_status": "pass",
+        "timing_state": "existing_pass_unmeasured",
+        "observed_slack_min_seconds": null,
+        "observed_slack_max_seconds": null,
+        "proxy_spoken_duration_min_seconds": null,
+        "proxy_spoken_duration_max_seconds": null,
+        "evidence_kind": "existing_blueprint_metric_pass_unmeasured",
+        "engine_timing_verified": false,
+        "punctuation_pause_opportunity_count": 10,
+        "punctuation_note": "句読点からpause候補を数えたのみ。原文変更・SSML化・engine計測はしていない。"
+      },
+      "subtitle_count": 3,
+      "shot_count": 3,
+      "completion_statement_ja": "仕事場、メモと蛾、9:17を示し、蛾の機能やトーマの生死を決めない。",
+      "truth_boundary": "トーマの生死・所在と真鍮の蛾の正体・機能は未解決。複数の可能性を並置する。",
+      "shot_ids": [
+        "shot-b02-01",
+        "shot-b02-02",
+        "shot-b02-03"
+      ],
+      "glossary_term_ids": [
+        "term-mira",
+        "term-toma",
+        "term-toma-note",
+        "term-brass-moth",
+        "term-nine-seventeen"
+      ]
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "beat_number": 3,
+      "title_ja": "消された名前",
+      "start_time": "00:50",
+      "end_time": "01:20",
+      "duration_seconds": 30,
+      "purpose_ja": "調査対象を具体化しながら、手掛かりへの疑いを広げる。",
+      "viewer_takeaway_ja": "『分』と名前が並ぶ台帳は、証拠にも偽記録にも見える。",
+      "narration": {
+        "segment_id": "narration-b03",
+        "text": "メモが指す先には、市の評議会に結びつく可能性のある『分』の台帳があります。そこには、捨て置かれた人生から時間が支払われたかのような記載と、思い出されなくなった名前が並びます。けれど、その帳面は証拠かもしれず、誘い餌や偽の記録かもしれません。文字は答えより多くの問いを残します。",
+        "source_metric_status": "warn",
+        "timing_state": "proxy_headroom_confirmed",
+        "observed_slack_min_seconds": 3,
+        "observed_slack_max_seconds": 5,
+        "proxy_spoken_duration_min_seconds": 25,
+        "proxy_spoken_duration_max_seconds": 27,
+        "evidence_kind": "human_read_aloud_text_density_proxy",
+        "engine_timing_verified": false,
+        "punctuation_pause_opportunity_count": 9,
+        "punctuation_note": "句読点からpause候補を数えたのみ。原文変更・SSML化・engine計測はしていない。"
+      },
+      "subtitle_count": 3,
+      "shot_count": 3,
+      "completion_statement_ja": "台帳、名前と分、薄れる輪郭を示し、真正性や消失を事実化しない。",
+      "truth_boundary": "台帳の真正性、所有者、時間と名前の因果関係は制作仮説。証拠・誘い餌・偽記録の可能性を残す。",
+      "shot_ids": [
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b03-03"
+      ],
+      "glossary_term_ids": [
+        "term-minutes-ledger",
+        "term-minutes-column",
+        "term-erased-names",
+        "term-ledger-hypotheses"
+      ]
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "beat_number": 4,
+      "title_ja": "評議会の影",
+      "start_time": "01:20",
+      "end_time": "01:45",
+      "duration_seconds": 25,
+      "purpose_ja": "制度的な圧力を加え、告発説と偽記録説を同じ重みで保つ。",
+      "viewer_takeaway_ja": "評議会への告発はあるが、動機も台帳との関係も確定しない。",
+      "narration": {
+        "segment_id": "narration-b04",
+        "text": "トーマのメモは、評議会が時間を売っていると告発します。ですが、台帳は証拠にも、誘い餌にも、誰かが植えた偽の記録にも見えます。評議会は奪ったのか、追い詰められていたのか、それとも内部で割れていたのか。動機も責任も、まだ決められません。",
+        "source_metric_status": "warn",
+        "timing_state": "proxy_headroom_confirmed",
+        "observed_slack_min_seconds": 3,
+        "observed_slack_max_seconds": 5,
+        "proxy_spoken_duration_min_seconds": 20,
+        "proxy_spoken_duration_max_seconds": 22,
+        "evidence_kind": "human_read_aloud_text_density_proxy",
+        "engine_timing_verified": false,
+        "punctuation_pause_opportunity_count": 11,
+        "punctuation_note": "句読点からpause候補を数えたのみ。原文変更・SSML化・engine計測はしていない。"
+      },
+      "subtitle_count": 3,
+      "shot_count": 3,
+      "completion_statement_ja": "制度側、二つの説、動機不明を渡し、単純な悪役にしない。",
+      "truth_boundary": "評議会の動機、責任範囲、台帳との関係は未解決。告発と偽記録の両説を保持する。",
+      "shot_ids": [
+        "shot-b04-01",
+        "shot-b04-02",
+        "shot-b04-03"
+      ],
+      "glossary_term_ids": [
+        "term-council",
+        "term-council-accusation",
+        "term-contradictory-claim-guard"
+      ]
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "beat_number": 5,
+      "title_ja": "答えを保留",
+      "start_time": "01:45",
+      "end_time": "02:35",
+      "duration_seconds": 50,
+      "purpose_ja": "三つの主要疑問を明示的に保留し、答えの自動確定を防ぐ。",
+      "viewer_takeaway_ja": "トーマ、蛾、評議会には複数説があり、どれもまだ真実ではない。",
+      "narration": {
+        "segment_id": "narration-b05",
+        "text": "ここで、答えを一つに絞ることはできません。トーマは生きているのか、死んだのか、記録から消されたのか、それとも自ら姿を隠したのか。真鍮の蛾は扉を開く鍵か、誰かの目となる装置か、記憶を預ける器か。評議会も、利益のために時間を奪う敵か、追い詰められて危険な取引を選んだ者たちか、意見の割れた組織かもしれません。どの説も手がかりにはなります。けれど、どれもまだ物語の真実ではありません。",
+        "source_metric_status": "pass",
+        "timing_state": "existing_pass_unmeasured",
+        "observed_slack_min_seconds": null,
+        "observed_slack_max_seconds": null,
+        "proxy_spoken_duration_min_seconds": null,
+        "proxy_spoken_duration_max_seconds": null,
+        "evidence_kind": "existing_blueprint_metric_pass_unmeasured",
+        "engine_timing_verified": false,
+        "punctuation_pause_opportunity_count": 16,
+        "punctuation_note": "句読点からpause候補を数えたのみ。原文変更・SSML化・engine計測はしていない。"
+      },
+      "subtitle_count": 5,
+      "shot_count": 4,
+      "completion_statement_ja": "三組の候補を見せ、どの生死・機能・動機も採用しない。",
+      "truth_boundary": "Toma fate、brass moth truth/function、Council motiveはすべてunresolved_human_owned。どの説もcanonへ昇格しない。",
+      "shot_ids": [
+        "shot-b05-01",
+        "shot-b05-02",
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "glossary_term_ids": [
+        "term-toma-fate",
+        "term-moth-function",
+        "term-council-motive",
+        "term-hold",
+        "term-canon"
+      ]
+    },
+    {
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "beat_number": 6,
+      "title_ja": "時間か、名前か",
+      "start_time": "02:35",
+      "end_time": "03:00",
+      "duration_seconds": 25,
+      "purpose_ja": "二択を提示し、冒頭の鐘枠へ戻して問いのまま終える。",
+      "viewer_takeaway_ja": "結末の問いは『失われた時間か、消えた名前か』。選択は未定。",
+      "narration": {
+        "segment_id": "narration-b06",
+        "text": "ミラが選ぶ結末も、まだ決まっていません。失われた時間を戻すのでしょうか。それとも、記録から消えたとされる人々へ名前を返すのでしょうか。一人に一時間を返す案も、今は結末候補にすぎません。空の鐘枠に音だけが残ります。時間か、名前か。",
+        "source_metric_status": "warn",
+        "timing_state": "proxy_headroom_confirmed",
+        "observed_slack_min_seconds": 3,
+        "observed_slack_max_seconds": 5,
+        "proxy_spoken_duration_min_seconds": 20,
+        "proxy_spoken_duration_max_seconds": 22,
+        "evidence_kind": "human_read_aloud_text_density_proxy",
+        "engine_timing_verified": false,
+        "punctuation_pause_opportunity_count": 10,
+        "punctuation_note": "句読点からpause候補を数えたのみ。原文変更・SSML化・engine計測はしていない。"
+      },
+      "subtitle_count": 3,
+      "shot_count": 3,
+      "completion_statement_ja": "二択、空欄の台帳、空の鐘枠を示し、最終選択や回復を描かない。",
+      "truth_boundary": "ミラの選択、一時間返還、鐘の再鳴、物語の結末はすべて未確定。問いはending candidateに留める。",
+      "shot_ids": [
+        "shot-b06-01",
+        "shot-b06-02",
+        "shot-b06-03"
+      ],
+      "glossary_term_ids": [
+        "term-lost-time",
+        "term-erased-names",
+        "term-ending-choice",
+        "term-ending-candidate",
+        "term-mira"
+      ]
+    }
+  ],
+  "shots": [
+    {
+      "sequence": 1,
+      "shot_id": "shot-b01-01",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "start_time": "00:00",
+      "end_time": "00:07",
+      "duration_seconds": 7,
+      "what_is_seen_ja": "空の鐘枠を持つ天文台遠景",
+      "purpose_ja": "矛盾の舞台を置く",
+      "visual_direction": "ノース・ベル駅と古い天文台を汎用の遠景で置き、空の鐘枠を読ませる。",
+      "positive_condition_ja": "「空の鐘枠を持つ天文台遠景」へ最初に視線が集まること。",
+      "negative_guard_ja": "鐘が鳴る原因を画面化しない。",
+      "source_done_when": "「空の鐘枠を持つ天文台遠景」へ最初に視線が集まり、鐘が鳴る原因を画面化しない。",
+      "scale": "wide",
+      "motion": "slow_push",
+      "transition": "hard_cut",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-ENV-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "空の天文台環境＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-north-bell-station",
+        "term-bellless-observatory",
+        "term-empty-bell-frame"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "空の鐘枠を持つ天文台遠景",
+        "motion": "slow_push",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 2,
+      "shot_id": "shot-b01-02",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "start_time": "00:07",
+      "end_time": "00:14",
+      "duration_seconds": 7,
+      "what_is_seen_ja": "空の鐘枠と取付部",
+      "purpose_ja": "鐘がないことを確認する",
+      "visual_direction": "昼光の中の空の鐘枠、取付部、静かな塔内部を抽象的に示す。",
+      "positive_condition_ja": "「空の鐘枠と取付部」へ最初に視線が集まること。",
+      "negative_guard_ja": "撤去理由やwinter curfewを証明しない。",
+      "source_done_when": "「空の鐘枠と取付部」へ最初に視線が集まり、撤去理由やwinter curfewを証明しない。",
+      "scale": "close",
+      "motion": "locked",
+      "transition": "short_dissolve",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-ENV-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "空の天文台環境＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-empty-bell-frame",
+        "term-winter-curfew"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "空の鐘枠と取付部",
+        "motion": "locked",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 3,
+      "shot_id": "shot-b01-03",
+      "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+      "start_time": "00:14",
+      "end_time": "00:20",
+      "duration_seconds": 6,
+      "what_is_seen_ja": "空の鐘枠と正午表示",
+      "purpose_ja": "未解決の問いへ止める",
+      "visual_direction": "空の枠を固定で保持し、『正午』の小さな時間表示だけを添える。",
+      "positive_condition_ja": "「空の鐘枠と正午表示」へ最初に視線が集まること。",
+      "negative_guard_ja": "魔法、機械、人物のいずれも原因として示さない。",
+      "source_done_when": "「空の鐘枠と正午表示」へ最初に視線が集まり、魔法、機械、人物のいずれも原因として示さない。",
+      "scale": "medium",
+      "motion": "locked",
+      "transition": "held_fade",
+      "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-ENV-01",
+        "AR-TYPE-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "空の天文台環境＋日本語中心のtype system＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-empty-bell-frame",
+        "term-noon"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "空の鐘枠と正午表示",
+        "motion": "locked",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 4,
+      "shot_id": "shot-b02-01",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "start_time": "00:20",
+      "end_time": "00:30",
+      "duration_seconds": 10,
+      "what_is_seen_ja": "ミラの手元と時計修理台",
+      "purpose_ja": "ミラの仕事と手元を置く",
+      "visual_direction": "時計修理台の手元だけを見せ、顔、衣装、身体的特徴は確定しない。",
+      "positive_condition_ja": "「ミラの手元と時計修理台」へ最初に視線が集まること。",
+      "negative_guard_ja": "final character designではない。",
+      "source_done_when": "「ミラの手元と時計修理台」へ最初に視線が集まり、final character designではない。",
+      "scale": "close",
+      "motion": "slow_pan",
+      "transition": "hard_cut",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-CHAR-01",
+        "AR-PROP-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "匿名の手元insert＋時計修理台と9:17時計＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-mira"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "ミラの手元と時計修理台",
+        "motion": "slow_pan",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 5,
+      "shot_id": "shot-b02-02",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "start_time": "00:30",
+      "end_time": "00:40",
+      "duration_seconds": 10,
+      "what_is_seen_ja": "メモと静止した真鍮の蛾",
+      "purpose_ja": "個人的な手がかりを並べる",
+      "visual_direction": "引き出し内のメモと静止した真鍮の蛾をflat-layの汎用構図で見せる。",
+      "positive_condition_ja": "「メモと静止した真鍮の蛾」へ最初に視線が集まること。",
+      "negative_guard_ja": "蛾を作動させず、機能を示さない。",
+      "source_done_when": "「メモと静止した真鍮の蛾」へ最初に視線が集まり、蛾を作動させず、機能を示さない。",
+      "scale": "close",
+      "motion": "locked",
+      "transition": "match_cut",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-PROP-02",
+        "AR-PROP-03",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "静止した真鍮の蛾＋汎用のトーマのメモ＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 2,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-toma-note",
+        "term-brass-moth"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "メモと静止した真鍮の蛾",
+        "motion": "locked",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 6,
+      "shot_id": "shot-b02-03",
+      "beat_id": "bridge-storyboard-beat-2-brass-moth",
+      "start_time": "00:40",
+      "end_time": "00:50",
+      "duration_seconds": 10,
+      "what_is_seen_ja": "9:17の時計面と真鍮の蛾",
+      "purpose_ja": "9:17のmotifと蛾を分けて示す",
+      "visual_direction": "9:17の時計面と蛾を別焦点に置き、因果を作らない。",
+      "positive_condition_ja": "「9:17の時計面と真鍮の蛾」へ最初に視線が集まること。",
+      "negative_guard_ja": "9:17は閉店時刻のmotifであり、時計停止の確定事実にはしない。",
+      "source_done_when": "「9:17の時計面と真鍮の蛾」へ最初に視線が集まり、9:17は閉店時刻のmotifであり、時計停止の確定事実にはしない。",
+      "scale": "extreme_close",
+      "motion": "controlled_parallax",
+      "transition": "graphic_match",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-PROP-01",
+        "AR-PROP-02",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "時計修理台と9:17時計＋静止した真鍮の蛾＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 2,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-nine-seventeen",
+        "term-brass-moth"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "9:17の時計面と真鍮の蛾",
+        "motion": "controlled_parallax",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 7,
+      "shot_id": "shot-b03-01",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "start_time": "00:50",
+      "end_time": "01:00",
+      "duration_seconds": 10,
+      "what_is_seen_ja": "開かれる台帳",
+      "purpose_ja": "調査対象の台帳を開く",
+      "visual_direction": "評議会に結びつく可能性のある台帳を開く手元を汎用propで示す。",
+      "positive_condition_ja": "「開かれる台帳」へ最初に視線が集まること。",
+      "negative_guard_ja": "所有者、真正性、有罪を確定しない。",
+      "source_done_when": "「開かれる台帳」へ最初に視線が集まり、所有者、真正性、有罪を確定しない。",
+      "scale": "close",
+      "motion": "slow_push",
+      "transition": "hard_cut",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-CHAR-01",
+        "AR-DOC-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "匿名の手元insert＋架空の台帳variants＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-minutes-ledger",
+        "term-council",
+        "term-ledger-hypotheses"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "開かれる台帳",
+        "motion": "slow_push",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 8,
+      "shot_id": "shot-b03-02",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "start_time": "01:00",
+      "end_time": "01:10",
+      "duration_seconds": 10,
+      "what_is_seen_ja": "名前と分の列",
+      "purpose_ja": "名前と分の関係を可視化する",
+      "visual_direction": "名前と『分』の列を新規作成の仮文字で示し、関係は疑問形に保つ。",
+      "positive_condition_ja": "「名前と分の列」へ最初に視線が集まること。",
+      "negative_guard_ja": "実在文書でも確定証拠でもない。",
+      "source_done_when": "「名前と分の列」へ最初に視線が集まり、実在文書でも確定証拠でもない。",
+      "scale": "graphic_fullframe",
+      "motion": "locked",
+      "transition": "graphic_match",
+      "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-DOC-01",
+        "AR-TYPE-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "架空の台帳variants＋日本語中心のtype system＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-minutes-ledger",
+        "term-minutes-column",
+        "term-erased-names"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "名前と分の列",
+        "motion": "locked",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 9,
+      "shot_id": "shot-b03-03",
+      "beat_id": "bridge-storyboard-beat-3-erased-names",
+      "start_time": "01:10",
+      "end_time": "01:20",
+      "duration_seconds": 10,
+      "what_is_seen_ja": "薄れる名前の輪郭",
+      "purpose_ja": "記録欠落の感覚を作る",
+      "visual_direction": "インクや名前の輪郭がゆっくり薄れる、抽象的なモーショングラフィックを想定する。",
+      "positive_condition_ja": "「薄れる名前の輪郭」へ最初に視線が集まること。",
+      "negative_guard_ja": "literal erasureの証明ではなくvisual metaphor。",
+      "source_done_when": "「薄れる名前の輪郭」へ最初に視線が集まり、literal erasureの証明ではなくvisual metaphor。",
+      "scale": "graphic_fullframe",
+      "motion": "graphic_dissolve",
+      "transition": "short_dissolve",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-ABS-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "薄れる名前の抽象graphic＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-erased-names"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "薄れる名前の輪郭",
+        "motion": "graphic_dissolve",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 10,
+      "shot_id": "shot-b04-01",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "start_time": "01:20",
+      "end_time": "01:28",
+      "duration_seconds": 8,
+      "what_is_seen_ja": "匿名の評議会シルエット",
+      "purpose_ja": "制度側の存在だけを示す",
+      "visual_direction": "半透明の仕切り越しに中立的な匿名シルエットを置く。",
+      "positive_condition_ja": "「匿名の評議会シルエット」へ最初に視線が集まること。",
+      "negative_guard_ja": "guilty acting、個人特定、単純悪役化を避ける。",
+      "source_done_when": "「匿名の評議会シルエット」へ最初に視線が集まり、guilty acting、個人特定、単純悪役化を避ける。",
+      "scale": "wide",
+      "motion": "slow_push",
+      "transition": "hard_cut",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-ENV-02",
+        "AR-CHAR-02",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "中立的な制度空間＋匿名の評議会silhouette＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 3,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-council"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "匿名の評議会シルエット",
+        "motion": "slow_push",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 11,
+      "shot_id": "shot-b04-02",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "start_time": "01:28",
+      "end_time": "01:36",
+      "duration_seconds": 8,
+      "what_is_seen_ja": "同じ重みの二つの仮説",
+      "purpose_ja": "矛盾する二説を並置する",
+      "visual_direction": "『時間販売の告発？』と『偽の記録？』を同じ重さで並べる。",
+      "positive_condition_ja": "「同じ重みの二つの仮説」へ最初に視線が集まること。",
+      "negative_guard_ja": "Contradictory Claim Guardのどちらも勝たせない。",
+      "source_done_when": "「同じ重みの二つの仮説」へ最初に視線が集まり、Contradictory Claim Guardのどちらも勝たせない。",
+      "scale": "graphic_fullframe",
+      "motion": "locked",
+      "transition": "graphic_match",
+      "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-DOC-02",
+        "AR-TYPE-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "仮説／HOLD graphic＋日本語中心のtype system＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 2,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-council-accusation",
+        "term-ledger-hypotheses",
+        "term-contradictory-claim-guard"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "同じ重みの二つの仮説",
+        "motion": "locked",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 12,
+      "shot_id": "shot-b04-03",
+      "beat_id": "bridge-storyboard-beat-4-council-shadow",
+      "start_time": "01:36",
+      "end_time": "01:45",
+      "duration_seconds": 9,
+      "what_is_seen_ja": "閉じた制度空間と台帳の影",
+      "purpose_ja": "動機不明のまま緊張を渡す",
+      "visual_direction": "台帳の影と閉じた抽象空間に『MOTIVE UNKNOWN』を小さく表示する。",
+      "positive_condition_ja": "「閉じた制度空間と台帳の影」へ最初に視線が集まること。",
+      "negative_guard_ja": "動機と責任範囲を未決定のまま保つ。",
+      "source_done_when": "「閉じた制度空間と台帳の影」へ最初に視線が集まり、動機と責任範囲を未決定のまま保つ。",
+      "scale": "medium",
+      "motion": "slow_pull",
+      "transition": "held_fade",
+      "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-ENV-02",
+        "AR-DOC-01",
+        "AR-TYPE-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "中立的な制度空間＋架空の台帳variants＋日本語中心のtype system＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-council",
+        "term-council-motive",
+        "term-minutes-ledger"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "閉じた制度空間と台帳の影",
+        "motion": "slow_pull",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 13,
+      "shot_id": "shot-b05-01",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "01:45",
+      "end_time": "01:58",
+      "duration_seconds": 13,
+      "what_is_seen_ja": "未確定のトーマ候補",
+      "purpose_ja": "トーマの複数の運命を保留する",
+      "visual_direction": "未確定シルエットと複数のfate札を並べ、どれも選択しない。",
+      "positive_condition_ja": "「未確定のトーマ候補」へ最初に視線が集まること。",
+      "negative_guard_ja": "生存、死亡、消失、潜伏のいずれも採用しない。",
+      "source_done_when": "「未確定のトーマ候補」へ最初に視線が集まり、生存、死亡、消失、潜伏のいずれも採用しない。",
+      "scale": "medium",
+      "motion": "slow_pan",
+      "transition": "hard_cut",
+      "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-CHAR-03",
+        "AR-DOC-02",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "未確定のトーマsilhouette＋仮説／HOLD graphic＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-toma",
+        "term-toma-fate"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "未確定のトーマ候補",
+        "motion": "slow_pan",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 14,
+      "shot_id": "shot-b05-02",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "01:58",
+      "end_time": "02:11",
+      "duration_seconds": 13,
+      "what_is_seen_ja": "真鍮の蛾と機能候補",
+      "purpose_ja": "蛾の機能候補を分離する",
+      "visual_direction": "真鍮の蛾と『key / spy / memory』の候補語を別々に表示する。",
+      "positive_condition_ja": "「真鍮の蛾と機能候補」へ最初に視線が集まること。",
+      "negative_guard_ja": "activationや正解表示を行わない。",
+      "source_done_when": "「真鍮の蛾と機能候補」へ最初に視線が集まり、activationや正解表示を行わない。",
+      "scale": "close",
+      "motion": "controlled_parallax",
+      "transition": "match_cut",
+      "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-PROP-02",
+        "AR-DOC-02",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "静止した真鍮の蛾＋仮説／HOLD graphic＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-brass-moth",
+        "term-moth-function"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "真鍮の蛾と機能候補",
+        "motion": "controlled_parallax",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 15,
+      "shot_id": "shot-b05-03",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "02:11",
+      "end_time": "02:23",
+      "duration_seconds": 12,
+      "what_is_seen_ja": "評議会の動機候補",
+      "purpose_ja": "評議会の動機候補を保留する",
+      "visual_direction": "中立的な制度像と『villainous / desperate / divided / misled』の候補札を並べる。",
+      "positive_condition_ja": "「評議会の動機候補」へ最初に視線が集まること。",
+      "negative_guard_ja": "いずれもderived possibilityであり事実ではない。",
+      "source_done_when": "「評議会の動機候補」へ最初に視線が集まり、いずれもderived possibilityであり事実ではない。",
+      "scale": "graphic_fullframe",
+      "motion": "locked",
+      "transition": "graphic_match",
+      "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-ENV-02",
+        "AR-DOC-02",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "中立的な制度空間＋仮説／HOLD graphic＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-council",
+        "term-council-motive"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "評議会の動機候補",
+        "motion": "locked",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 16,
+      "shot_id": "shot-b05-04",
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "02:23",
+      "end_time": "02:35",
+      "duration_seconds": 12,
+      "what_is_seen_ja": "Toma / moth / Council HOLD面",
+      "purpose_ja": "三つの問いをHOLDへ戻す",
+      "visual_direction": "Toma / moth / Councilを一つのHOLD面に戻して編集上の境界を示す。",
+      "positive_condition_ja": "「Toma / moth / Council HOLD面」へ最初に視線が集まること。",
+      "negative_guard_ja": "物語世界の表示やcanon上の事実ではない。",
+      "source_done_when": "「Toma / moth / Council HOLD面」へ最初に視線が集まり、物語世界の表示やcanon上の事実ではない。",
+      "scale": "graphic_fullframe",
+      "motion": "graphic_dissolve",
+      "transition": "held_fade",
+      "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-DOC-02",
+        "AR-TYPE-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "仮説／HOLD graphic＋日本語中心のtype system＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-toma-fate",
+        "term-moth-function",
+        "term-council-motive",
+        "term-hold",
+        "term-canon"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "Toma / moth / Council HOLD面",
+        "motion": "graphic_dissolve",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 17,
+      "shot_id": "shot-b06-01",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:35",
+      "end_time": "02:44",
+      "duration_seconds": 9,
+      "what_is_seen_ja": "時計面と空欄の名前欄",
+      "purpose_ja": "終幕の二択を置く",
+      "visual_direction": "時計面と空欄の名前欄を左右に並べ、中央は空ける。",
+      "positive_condition_ja": "「時計面と空欄の名前欄」へ最初に視線が集まること。",
+      "negative_guard_ja": "ミラの選択を示さない。",
+      "source_done_when": "「時計面と空欄の名前欄」へ最初に視線が集まり、ミラの選択を示さない。",
+      "scale": "graphic_fullframe",
+      "motion": "locked",
+      "transition": "hard_cut",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-ABS-02",
+        "AR-TYPE-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "時間／名前の二択panel＋日本語中心のtype system＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 2,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-mira",
+        "term-lost-time",
+        "term-erased-names",
+        "term-ending-choice"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "時計面と空欄の名前欄",
+        "motion": "locked",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 18,
+      "shot_id": "shot-b06-02",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:44",
+      "end_time": "02:52",
+      "duration_seconds": 8,
+      "what_is_seen_ja": "未記入欄を残す台帳",
+      "purpose_ja": "結論を書かずに台帳を閉じる",
+      "visual_direction": "未記入欄を残したまま汎用の台帳が閉じる。",
+      "positive_condition_ja": "「未記入欄を残す台帳」へ最初に視線が集まること。",
+      "negative_guard_ja": "消された人々や回復を確定しない。",
+      "source_done_when": "「未記入欄を残す台帳」へ最初に視線が集まり、消された人々や回復を確定しない。",
+      "scale": "close",
+      "motion": "slow_pull",
+      "transition": "graphic_match",
+      "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-DOC-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "架空の台帳variants＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-minutes-ledger",
+        "term-erased-names"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "未記入欄を残す台帳",
+        "motion": "slow_pull",
+        "final_art": false
+      }
+    },
+    {
+      "sequence": 19,
+      "shot_id": "shot-b06-03",
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:52",
+      "end_time": "03:00",
+      "duration_seconds": 8,
+      "what_is_seen_ja": "空の鐘枠と終幕の問い",
+      "purpose_ja": "問いのまま冒頭像へ戻る",
+      "visual_direction": "空の鐘枠へ戻り、『時間か、名前か』で静止する。",
+      "positive_condition_ja": "「空の鐘枠と終幕の問い」へ最初に視線が集まること。",
+      "negative_guard_ja": "ending candidateの問いで閉じ、解決を描かない。",
+      "source_done_when": "「空の鐘枠と終幕の問い」へ最初に視線が集まり、ending candidateの問いで閉じ、解決を描かない。",
+      "scale": "wide",
+      "motion": "slow_pull",
+      "transition": "held_fade",
+      "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+      "asset_requirement_ids": [
+        "AR-ENV-01",
+        "AR-TYPE-01",
+        "AR-AUDIO-01"
+      ],
+      "asset_summary_ja": "空の天文台環境＋日本語中心のtype system＋6幕のaudio cue placeholder",
+      "source_required_asset_count": 1,
+      "source_asset_status": "unselected",
+      "source_rights_status": "not_cleared",
+      "requirement_asset_status": "unselected",
+      "requirement_rights_status": "not_reviewed",
+      "requirement_provenance_required": true,
+      "glossary_term_ids": [
+        "term-empty-bell-frame",
+        "term-ending-choice",
+        "term-ending-candidate"
+      ],
+      "frame": {
+        "kind": "planning_only_inline_svg",
+        "aspect_ratio": "16:9",
+        "focal_label_ja": "空の鐘枠と終幕の問い",
+        "motion": "slow_pull",
+        "final_art": false
+      }
+    }
+  ],
+  "asset_operations": [
+    {
+      "requirement_id": "AR-ENV-01",
+      "asset_class": "environment",
+      "generic_description_ja": "鐘のない天文台と空の鐘枠を、遠景・内部寄り・終幕回帰で再利用できる汎用セット。",
+      "one_line_requirement_ja": "AR-ENV-01｜鐘のない天文台と空の鐘枠を、遠景・内部寄り・終幕回帰で再利用できる汎用セット。",
+      "quantity": 1,
+      "quantity_unit": "reusable_set",
+      "shot_usage": [
+        "shot-b01-01",
+        "shot-b01-02",
+        "shot-b01-03",
+        "shot-b06-03"
+      ],
+      "visual_constraints_ja": "鐘そのものや鳴動原因を描かず、実在駅・施設・ロゴを特定しない。",
+      "operation_scope": "reusable",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "複数shotで同じ制作単位を再利用する。",
+      "requirements_ja": "鐘そのものや鳴動原因を描かず、実在駅・施設・ロゴを特定しない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-ENV-02",
+      "asset_class": "environment",
+      "generic_description_ja": "半透明仕切りを含む中立的な制度空間。評議会場・台帳の影・制度候補面へ再利用する。",
+      "one_line_requirement_ja": "AR-ENV-02｜半透明仕切りを含む中立的な制度空間。評議会場・台帳の影・制度候補面へ再利用する。",
+      "quantity": 1,
+      "quantity_unit": "reusable_set",
+      "shot_usage": [
+        "shot-b04-01",
+        "shot-b04-03",
+        "shot-b05-03"
+      ],
+      "visual_constraints_ja": "有罪演技、悪役記号、実在組織の紋章や施設意匠を避ける。",
+      "operation_scope": "reusable",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "複数shotで同じ制作単位を再利用する。",
+      "requirements_ja": "有罪演技、悪役記号、実在組織の紋章や施設意匠を避ける。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-CHAR-01",
+      "asset_class": "character_silhouette",
+      "generic_description_ja": "人物を特定しない手元insert。時計修理と台帳を開く動作で共有する。",
+      "one_line_requirement_ja": "AR-CHAR-01｜人物を特定しない手元insert。時計修理と台帳を開く動作で共有する。",
+      "quantity": 1,
+      "quantity_unit": "insert_set",
+      "shot_usage": [
+        "shot-b02-01",
+        "shot-b03-01"
+      ],
+      "visual_constraints_ja": "顔、固有衣装、身体的特徴、演者を確定しない。",
+      "operation_scope": "reusable",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "複数shotで同じ制作単位を再利用する。",
+      "requirements_ja": "顔、固有衣装、身体的特徴、演者を確定しない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-CHAR-02",
+      "asset_class": "character_silhouette",
+      "generic_description_ja": "匿名の評議会構成員を示す中立的なシルエット。",
+      "one_line_requirement_ja": "AR-CHAR-02｜匿名の評議会構成員を示す中立的なシルエット。",
+      "quantity": 3,
+      "quantity_unit": "silhouettes",
+      "shot_usage": [
+        "shot-b04-01"
+      ],
+      "visual_constraints_ja": "個人特定、威圧的悪役化、顔や衣装のfinal designを行わない。",
+      "operation_scope": "beat_specific",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "該当shotだけの要件を分離する。",
+      "requirements_ja": "個人特定、威圧的悪役化、顔や衣装のfinal designを行わない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-CHAR-03",
+      "asset_class": "character_silhouette",
+      "generic_description_ja": "トーマの複数の運命候補を保持する未確定シルエット。",
+      "one_line_requirement_ja": "AR-CHAR-03｜トーマの複数の運命候補を保持する未確定シルエット。",
+      "quantity": 1,
+      "quantity_unit": "silhouette",
+      "shot_usage": [
+        "shot-b05-01"
+      ],
+      "visual_constraints_ja": "生存・死亡・消失・潜伏のどれも確定させない。",
+      "operation_scope": "beat_specific",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "該当shotだけの要件を分離する。",
+      "requirements_ja": "生存・死亡・消失・潜伏のどれも確定させない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-PROP-01",
+      "asset_class": "prop",
+      "generic_description_ja": "時計修理台と9:17の時計面を同じ造形系で使えるモジュール。",
+      "one_line_requirement_ja": "AR-PROP-01｜時計修理台と9:17の時計面を同じ造形系で使えるモジュール。",
+      "quantity": 1,
+      "quantity_unit": "modular_set",
+      "shot_usage": [
+        "shot-b02-01",
+        "shot-b02-03"
+      ],
+      "visual_constraints_ja": "9:17は閉店時刻motifに留め、時計停止の確定事実にしない。",
+      "operation_scope": "reusable",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "複数shotで同じ制作単位を再利用する。",
+      "requirements_ja": "9:17は閉店時刻motifに留め、時計停止の確定事実にしない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-PROP-02",
+      "asset_class": "prop",
+      "generic_description_ja": "静止した真鍮の蛾。手掛かり、時計面、機能候補の三用途で再利用する。",
+      "one_line_requirement_ja": "AR-PROP-02｜静止した真鍮の蛾。手掛かり、時計面、機能候補の三用途で再利用する。",
+      "quantity": 1,
+      "quantity_unit": "prop",
+      "shot_usage": [
+        "shot-b02-02",
+        "shot-b02-03",
+        "shot-b05-02"
+      ],
+      "visual_constraints_ja": "作動、正解機能、既存キャラクター類似を描かない。",
+      "operation_scope": "reusable",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "複数shotで同じ制作単位を再利用する。",
+      "requirements_ja": "作動、正解機能、既存キャラクター類似を描かない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-PROP-03",
+      "asset_class": "prop",
+      "generic_description_ja": "トーマが残したとされる汎用メモ。",
+      "one_line_requirement_ja": "AR-PROP-03｜トーマが残したとされる汎用メモ。",
+      "quantity": 1,
+      "quantity_unit": "prop",
+      "shot_usage": [
+        "shot-b02-02"
+      ],
+      "visual_constraints_ja": "筆跡、由来、真正性、生死を証明する文面にしない。",
+      "operation_scope": "beat_specific",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "該当shotだけの要件を分離する。",
+      "requirements_ja": "筆跡、由来、真正性、生死を証明する文面にしない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-DOC-01",
+      "asset_class": "document_graphic",
+      "generic_description_ja": "架空の台帳、名前欄、『分』欄、未記入欄を持つ再利用可能な文書variant群。",
+      "one_line_requirement_ja": "AR-DOC-01｜架空の台帳、名前欄、『分』欄、未記入欄を持つ再利用可能な文書variant群。",
+      "quantity": 1,
+      "quantity_unit": "variant_set",
+      "shot_usage": [
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b04-03",
+        "shot-b06-02"
+      ],
+      "visual_constraints_ja": "実在公文書、紋章、scan、既存紙面を使わず、真正性や因果を確定しない。",
+      "operation_scope": "reusable",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "複数shotで同じ制作単位を再利用する。",
+      "requirements_ja": "実在公文書、紋章、scan、既存紙面を使わず、真正性や因果を確定しない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-DOC-02",
+      "asset_class": "document_graphic",
+      "generic_description_ja": "仮説、運命、機能、動機、HOLDを同じ重みで並べる図版システム。",
+      "one_line_requirement_ja": "AR-DOC-02｜仮説、運命、機能、動機、HOLDを同じ重みで並べる図版システム。",
+      "quantity": 1,
+      "quantity_unit": "graphic_system",
+      "shot_usage": [
+        "shot-b04-02",
+        "shot-b05-01",
+        "shot-b05-02",
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "visual_constraints_ja": "候補間に勝敗・採用・canon上の優先順位を付けない。",
+      "operation_scope": "reusable",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "複数shotで同じ制作単位を再利用する。",
+      "requirements_ja": "候補間に勝敗・採用・canon上の優先順位を付けない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-ABS-01",
+      "asset_class": "abstract_graphic",
+      "generic_description_ja": "名前の輪郭が薄れる感覚を示す抽象モーショングラフィック。",
+      "one_line_requirement_ja": "AR-ABS-01｜名前の輪郭が薄れる感覚を示す抽象モーショングラフィック。",
+      "quantity": 1,
+      "quantity_unit": "graphic",
+      "shot_usage": [
+        "shot-b03-03"
+      ],
+      "visual_constraints_ja": "literal erasureの証拠や既存animationの流用にしない。",
+      "operation_scope": "beat_specific",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "該当shotだけの要件を分離する。",
+      "requirements_ja": "literal erasureの証拠や既存animationの流用にしない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-ABS-02",
+      "asset_class": "abstract_graphic",
+      "generic_description_ja": "時間と名前を同じ重みで並べ、中央を未決定のまま空ける分割図版。",
+      "one_line_requirement_ja": "AR-ABS-02｜時間と名前を同じ重みで並べ、中央を未決定のまま空ける分割図版。",
+      "quantity": 2,
+      "quantity_unit": "panels",
+      "shot_usage": [
+        "shot-b06-01"
+      ],
+      "visual_constraints_ja": "ミラの選択、時間返還、名前回復を成立済みに見せない。",
+      "operation_scope": "beat_specific",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "該当shotだけの要件を分離する。",
+      "requirements_ja": "ミラの選択、時間返還、名前回復を成立済みに見せない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-TYPE-01",
+      "asset_class": "typography",
+      "generic_description_ja": "字幕と短いlabelを統一する日本語firstの文字システム。font自体は未選定。",
+      "one_line_requirement_ja": "AR-TYPE-01｜字幕と短いlabelを統一する日本語firstの文字システム。font自体は未選定。",
+      "quantity": 1,
+      "quantity_unit": "type_system",
+      "shot_usage": [
+        "shot-b01-03",
+        "shot-b03-02",
+        "shot-b04-02",
+        "shot-b04-03",
+        "shot-b05-04",
+        "shot-b06-01",
+        "shot-b06-03"
+      ],
+      "visual_constraints_ja": "最大2行・1行18字の既存allowanceを守り、既存書体のlicenseを主張しない。",
+      "operation_scope": "common",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "複数shotで同じ制作単位を再利用する。",
+      "requirements_ja": "最大2行・1行18字の既存allowanceを守り、既存書体のlicenseを主張しない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    },
+    {
+      "requirement_id": "AR-AUDIO-01",
+      "asset_class": "audio_cue",
+      "generic_description_ja": "六幕それぞれの音設計位置を示すcue placeholder。音声fileや素材は含めない。",
+      "one_line_requirement_ja": "AR-AUDIO-01｜六幕それぞれの音設計位置を示すcue placeholder。音声fileや素材は含めない。",
+      "quantity": 6,
+      "quantity_unit": "beat_cue_placeholders",
+      "shot_usage": [
+        "shot-b01-01",
+        "shot-b01-02",
+        "shot-b01-03",
+        "shot-b02-01",
+        "shot-b02-02",
+        "shot-b02-03",
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b03-03",
+        "shot-b04-01",
+        "shot-b04-02",
+        "shot-b04-03",
+        "shot-b05-01",
+        "shot-b05-02",
+        "shot-b05-03",
+        "shot-b05-04",
+        "shot-b06-01",
+        "shot-b06-02",
+        "shot-b06-03"
+      ],
+      "visual_constraints_ja": "engine、voice、music、SFX、performer、licenseを選定せず、実audioを生成しない。",
+      "operation_scope": "common",
+      "purpose_ja": "対応shotの構図計画を成立させる汎用制作要件。",
+      "effect_ja": "複数shotで同じ制作単位を再利用する。",
+      "requirements_ja": "engine、voice、music、SFX、performer、licenseを選定せず、実audioを生成しない。",
+      "state": {
+        "asset_status": "unselected",
+        "rights_status": "not_reviewed",
+        "provenance_required": true
+      },
+      "owner": "human production / rights review",
+      "next_move": "asset sourcingとrights reviewの別承認後に候補を比較する。"
+    }
+  ],
+  "theme": {
+    "default": "auto",
+    "options": [
+      "light",
+      "dark",
+      "auto"
+    ],
+    "title_px": {
+      "900x1200": 36,
+      "1280x900": 40
+    },
+    "light": {
+      "background": "#f4f1e8",
+      "panel": "#fffdfa",
+      "text": "#171a1d",
+      "muted": "#4c5962",
+      "accent": "#8b4b19",
+      "line": "#c9c2b3"
+    },
+    "dark": {
+      "background": "#101820",
+      "panel": "#18232d",
+      "text": "#f2f5f7",
+      "muted": "#b9c6cf",
+      "accent": "#f4b36f",
+      "line": "#40515d"
+    }
+  },
+  "appendix": {
+    "initially_open": false,
+    "disclosure_hit_area_px": 48,
+    "open_label_ja": "制作準備付録を開く",
+    "close_label_ja": "制作準備付録を閉じる",
+    "asset_requirement_count": 14
+  },
+  "boundaries": {
+    "canonical": false,
+    "production_approved": false,
+    "local_only": true,
+    "external_call": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "assets_selected": false,
+    "rights_cleared_claim": false,
+    "tts_engine_selected": false,
+    "voice_selected": false,
+    "audio_generated": false,
+    "public_upload": false,
+    "ai_video_generation": false,
+    "production_render": false,
+    "database_persistence": false,
+    "final_canon_decision": false
+  }
+}

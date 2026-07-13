@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "fff.productionStoryboardBriefManifest.v1",
+  "artifact_id": "fff-production-storyboard-brief-001",
+  "generatedAt": "2026-07-14T12:00:00+09:00",
+  "package_root": "artifacts/production-storyboard-brief",
+  "source_artifact_id": "fff-production-execution-pack-001",
+  "source_fingerprints": {
+    "production_execution_pack_fingerprint_sha256": "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+    "production_execution_html_sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c",
+    "production_execution_json_sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb",
+    "production_execution_manifest_sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7",
+    "production_execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+  },
+  "files": [
+    {
+      "relative_path": "README_STORYBOARD_BRIEF.md",
+      "byte_size": 1320,
+      "sha256": "c3638abd5131664104f778cbdcc3b6585788b1f6502859fe6f401173a0535e81"
+    },
+    {
+      "relative_path": "production-storyboard-brief.html",
+      "byte_size": 104219,
+      "sha256": "03adf435908922de11e280abc3cf9f6c440a06ddda1f25b87dee0665ebe3255f"
+    },
+    {
+      "relative_path": "production-storyboard-brief.json",
+      "byte_size": 74741,
+      "sha256": "50cd787d1643d8b5e1d5138d3c81c38befb33bd107914b21a0696c09e611d4cf"
+    },
+    {
+      "relative_path": "storyboard-shot-map.csv",
+      "byte_size": 11453,
+      "sha256": "b4ba1bbe2b5975959a41827751ad6017735bf6099d592b9576fc4926a30666c3"
+    },
+    {
+      "relative_path": "story-glossary.csv",
+      "byte_size": 3833,
+      "sha256": "083de3dd228521699561912c051770b3aa60024c3c3203729f80e13726e52520"
+    },
+    {
+      "relative_path": "asset-operations-summary.csv",
+      "byte_size": 5978,
+      "sha256": "23b83f9bb0a014c4c2ac408e0654f7dd041b72b5b6fa9732ebfecf32ef5c3e7a"
+    }
+  ],
+  "package_fingerprint_sha256": "400d01a3abaa935103e1080b2f42b2f9e20553e225e13e90aec7a740e7ed3861",
+  "counts": {
+    "total_duration_seconds": 180,
+    "beat_count": 6,
+    "shot_count": 19,
+    "subtitle_count": 20,
+    "narration_segment_count": 6,
+    "asset_requirement_count": 14,
+    "glossary_count": 25
+  },
+  "beat_shot_grouping": [
+    3,
+    3,
+    3,
+    3,
+    4,
+    3
+  ],
+  "default_theme": "auto",
+  "theme_modes": [
+    "light",
+    "dark",
+    "auto"
+  ],
+  "canonical": false,
+  "production_approved": false,
+  "assets_selected": false,
+  "rights_cleared_claim": false,
+  "local_only": true,
+  "passed": true,
+  "failures": []
+}

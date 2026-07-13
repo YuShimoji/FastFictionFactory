@@ -2,7 +2,55 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-## 監修AI向け制作実行パック同期報告（2026-07-13 JST）
+## 監修AI向け Production Storyboard Brief 引き継ぎ（2026-07-14 JST）
+
+現在の active artifact は `fff-production-storyboard-brief-001`、lane は `PRODUCTION_STORYBOARD_BRIEF` です。同期済み `master` の `04c554c923ae8860fc39047fec515b6b16c195d0` を開始点に、受け入れ済み Production Execution Pack を一切変更せず、別の制作者が作品の前提・用語・六幕・19ショットの意図を一つのページから理解するための独立した七ファイル package を追加しました。最終公開 commit と parity は Git を正本とします。
+
+### Start Here
+
+1. `git fetch --prune origin` と `git pull --ff-only origin master` を clean worktree で行う。
+2. `git rev-list --left-right --count "HEAD...@{u}"` が `0 0`、`git status --short` が空であることを確認する。
+3. 次をこの順に読む。
+
+```text
+AGENTS.md
+docs/project-context.md
+docs/review/current-status.md
+docs/review/next-terminal-handoff.md
+docs/review/supervisor-current-report.md
+artifacts/artifact-manifest.json
+docs/review/production-storyboard-brief.md
+artifacts/production-storyboard-brief-result.json
+artifacts/production-storyboard-brief/README_STORYBOARD_BRIEF.md
+```
+
+4. Storyboard Brief を単体で開く。
+
+```powershell
+Invoke-Item .\artifacts\production-storyboard-brief\production-storyboard-brief.html
+```
+
+5. 通常の機械確認は read-only validator を使う。
+
+```powershell
+node tools/fff-state.mjs validate-production-storyboard-brief artifacts/production-storyboard-brief-result.json
+```
+
+### Current Contract
+
+| 対象 | 現在の状態 | 次の判断 |
+| --- | --- | --- |
+| Storyboard Brief | 6 overview sentences、25 glossary terms、6 beat groups、19 planning-only SVG frames、Light/Dark/Auto、印刷対応 | H1 freeform comprehension review |
+| Shot semantics | 19/19 で `ねらい` / `成立させること` / `描かないこと` を同一ブロック化 | 代表ショットを人が正負に分けて説明できるか |
+| Operational appendix | 14 one-line requirements、2 common / 7 reusable / 5 beat-specific、initially closed | H1 では開かなくても作品を理解できるか |
+| Production Execution Pack | 九ファイルと source fingerprint を byte 保護 | operational/audit source としてのみ使用 |
+| Production gates | asset/rights/engine/voice/provider/generation/render/publication/database/canon は closed | 別承認なしに開かない |
+
+H0 は green です。`artifacts/production-storyboard-brief-result.json` が、18/18 negative probes、source immutability、glossary/shot/SVG/semantic audit、900x1200 Dark、1280x900 Light、Auto resolution、keyboard、print、manifest integrity の source of truth です。理解改善はまだ推測であり、H1 は未実施です。
+
+次の正規作業は H1 だけです。レビュー者はこの HTML だけを見て、作品の前提、中心の未解決問い、六幕の進行、代表ショットの見えるもの・ねらい・成立条件・描かないこと、主要用語を自由文で説明します。pass 後も H2 の asset/rights candidates、synthetic voice calibration、実素材、生成、render、release は自動では開きません。
+
+## 保存された制作実行パック同期報告（2026-07-13 JST）
 
 最新の live sync、Windows checkout の hash portability 修復、完成度、不足、G0〜G11 の長期目標案は `docs/review/supervisor-current-report.md` を正本とする。この handoff の以下の記録は active artifact の詳細と履歴を保持する。
 
@@ -118,7 +166,7 @@ was removed from this repo, and
 After pulling, run `git log -1 --oneline --decorate` for the exact remote head
 that contains this Editorial Derivative Preview and the latest handoff refresh.
 
-## Current Production Execution Entrance
+## Preserved Production Execution Entrance (Historical)
 
 The current active artifact is `fff-production-execution-pack-001`. Open its standalone
 HTML first; it is the portable handoff, while the accepted Operator Brief and
@@ -139,7 +187,7 @@ Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
 | 900x1200 | 40px; line-height 43.2px; 2 lines; 86.375px block; viewport ratio 0.07197916666666666 | body 17px; title/body 2.3529411764705883; metric 22px; section 26px | bottom 837.640625px; 5 completion conditions visible; overflow/nested/overlap/clipping/orphan = 0 |
 | 1280x900 | 48px; line-height 51.84px; 2 lines; 103.65625px block; viewport ratio 0.11517361111111112 | body 17.28px; title/body 2.7777777777777777; metric 28px; section 33.92px | bottom 803.359375px; 5 completion conditions visible; overflow/nested/overlap/clipping/orphan = 0 |
 
-## Latest Remote Publish Snapshot
+## Previous Remote Publish Snapshot
 
 - Branch: `master`
 - Active artifact: `fff-production-execution-pack-001`; Typography Balance, Operator Brief, Blueprint, Derivative, Revision, and Handoff are preserved sources
@@ -153,7 +201,7 @@ Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
 - Next human work: H1 execution-readiness review; H0 is validated, while H2 engine calibration, real asset selection, production, rights, and canon remain separately authorized, deferred, or closed
 - Locked lanes: provider/API, credentials, AI video generation, production render, upload, rights-clearance claim, database persistence, and final canon
 
-## Start Here
+## Previous Execution-Pack Restart Procedure (Historical)
 
 1. Pull the latest remote state:
 
@@ -371,7 +419,7 @@ corresponding tracked result JSON is intentionally being regenerated. Use the
 `uvx` form because the default Windows Python launcher may point at the
 WindowsApps stub.
 
-## Current Project State
+## Preserved Project State Before Storyboard Brief
 
 - Active artifact: `fff-production-execution-pack-001`; Typography Balance / Operator / Blueprint / Derivative / Revision / Handoff are protected sources
 - Active handoff: `artifacts/production-execution-pack/production-execution-pack.html`; `public/review/index.html?mode=blueprint` is the preserved source route with one compact link
@@ -435,7 +483,7 @@ WindowsApps stub.
 
 The current artifact turns the protected six-beat source chain into a portable execution handoff without changing that chain. Its six run rows, 19 shot rows, 14 reusable generic requirements, narration timing envelope, print page, and transfer checklist are new overlay data. The six-file Operator package and quantitative Blueprint remain byte-protected alongside Derivative, Revision, immutable Handoff, Bridge Flow, Workbench, and layout source evidence. Provider/API, credentials, engine/voice/audio selection, real assets, AI video generation, production render, upload/publication, rights-clearance claims, database persistence, and final canon remain closed.
 
-## What Finished
+## What Had Finished Before Storyboard Brief
 
 - `fff-production-execution-pack-001` defines one nine-file package, one standalone print-first reading surface, complete 6-beat / 19-shot coverage, 14 deduplicated generic requirements, and an honest synthetic timing overlay. Its read-only result is green and confirms final hashes, viewport/print evidence, 20 negative probes, and protected-source identity.
 - B1/B3/B4/B6 are recorded as `proxy_headroom_confirmed` from 3–5 seconds of human-proxy slack; B2/B5 remain `existing_pass_unmeasured`. No narration, timing window, shot wording, engine, voice, audio, real asset, rights status, or canon is changed.
@@ -522,7 +570,7 @@ The current artifact turns the protected six-beat source chain into a portable e
 - `fff-very-broad-source-span-shape-audit-001` audits the broad fixture candidate without adding another fixture. It confirms the current 2 broad rows are already resolved by the broad-span split/keep readback, leaves broad fixture work deferred until source output changes or coverage is the bottleneck, and preserves 0 source-span mismatches, 0 missing refs, 0 unsafe routes, 0 non-held defaults, 0 downstream adopted candidates, no provider configured, no external call, and no credentials touched.
 - No Review Card, Operator Observation Card, repeated general Review Hub request, model/API call, credential, database persistence, publishing, production sync, AI video generation, Timeline mutation, Story Seed mutation, provider route, production rollback, additional-claim adoption, or final canon decision was added. The production adoption readbacks now consist of one Claim Ledger row and one Profile-only non-canon annotation for `multi-claim-moth-key-label`.
 
-## Validation Readback
+## Preserved Validation Readback
 
 The current health entrance is the Production Execution Pack validator. It must rebuild the canonical nine-file candidate in memory, verify the actual package bytes and manifest, cover all 19 shot-to-asset references, audit the four proxy/two unmeasured timing rows, run exactly 20 fail-closed probes without artifact mutation, verify the standalone/Blueprint link and viewport/print evidence, and preserve the 34-file source aggregate. Treat `artifacts/production-execution-pack-result.json` as the source of truth; do not infer success from this prose.
 
@@ -633,7 +681,7 @@ Before emitting a Review Card, check the review memory. Do not ask the same targ
 
 No general Review Hub, Workbench, or repeated Operator Brief comprehension review is needed. That review passed judgment A and the title hierarchy repair is complete. The new H1 question is different: can another creator explain preparation and assembly from the Execution Pack without technical audit files? The quantitative Blueprint, non-canonical Derivative, Revision, immutable Handoff package, and six-beat Bridge Flow remain the protected evidence chain.
 
-## Current Entrance and Deferred Reference Paths
+## Preserved Entrance and Deferred Reference Paths
 
 H1 Operator Brief comprehension is complete. The current entrance is H1 Production Execution readiness after H0 validator evidence; the remaining rows are preserved reference paths or separately authorized later lanes, not competing next-step recommendations.
 

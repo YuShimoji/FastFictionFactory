@@ -1,0 +1,444 @@
+{
+  "schemaVersion": "fff.productionStoryboardBriefResult.v1",
+  "artifact_id": "fff-production-storyboard-brief-001",
+  "source_artifact_id": "fff-production-execution-pack-001",
+  "source_fingerprints": {
+    "production_execution_pack_fingerprint_sha256": "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+    "production_execution_html_sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c",
+    "production_execution_json_sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb",
+    "production_execution_manifest_sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7",
+    "production_execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+  },
+  "package_files": [
+    {
+      "relative_path": "README_STORYBOARD_BRIEF.md",
+      "path": "artifacts/production-storyboard-brief/README_STORYBOARD_BRIEF.md",
+      "byte_size": 1320,
+      "sha256": "c3638abd5131664104f778cbdcc3b6585788b1f6502859fe6f401173a0535e81"
+    },
+    {
+      "relative_path": "production-storyboard-brief.html",
+      "path": "artifacts/production-storyboard-brief/production-storyboard-brief.html",
+      "byte_size": 104219,
+      "sha256": "03adf435908922de11e280abc3cf9f6c440a06ddda1f25b87dee0665ebe3255f"
+    },
+    {
+      "relative_path": "production-storyboard-brief.json",
+      "path": "artifacts/production-storyboard-brief/production-storyboard-brief.json",
+      "byte_size": 74741,
+      "sha256": "50cd787d1643d8b5e1d5138d3c81c38befb33bd107914b21a0696c09e611d4cf"
+    },
+    {
+      "relative_path": "storyboard-shot-map.csv",
+      "path": "artifacts/production-storyboard-brief/storyboard-shot-map.csv",
+      "byte_size": 11453,
+      "sha256": "b4ba1bbe2b5975959a41827751ad6017735bf6099d592b9576fc4926a30666c3"
+    },
+    {
+      "relative_path": "story-glossary.csv",
+      "path": "artifacts/production-storyboard-brief/story-glossary.csv",
+      "byte_size": 3833,
+      "sha256": "083de3dd228521699561912c051770b3aa60024c3c3203729f80e13726e52520"
+    },
+    {
+      "relative_path": "asset-operations-summary.csv",
+      "path": "artifacts/production-storyboard-brief/asset-operations-summary.csv",
+      "byte_size": 5978,
+      "sha256": "23b83f9bb0a014c4c2ac408e0654f7dd041b72b5b6fa9732ebfecf32ef5c3e7a"
+    },
+    {
+      "relative_path": "production-storyboard-brief-manifest.json",
+      "path": "artifacts/production-storyboard-brief/production-storyboard-brief-manifest.json",
+      "byte_size": 2607,
+      "sha256": "71642f7fd18b838cd7b34af2563e03b4739faa20a6f19ba8198fe7a04d93441d"
+    }
+  ],
+  "package_fingerprint_sha256": "400d01a3abaa935103e1080b2f42b2f9e20553e225e13e90aec7a740e7ed3861",
+  "total_duration_seconds": 180,
+  "beat_count": 6,
+  "shot_count": 19,
+  "subtitle_count": 20,
+  "narration_segment_count": 6,
+  "storyboard_svg_count": 19,
+  "asset_requirement_count": 14,
+  "glossary_count": 25,
+  "unresolved_glossary_reference_count": 0,
+  "positive_condition_count": 19,
+  "negative_guard_count": 19,
+  "beat_shot_grouping": [
+    3,
+    3,
+    3,
+    3,
+    4,
+    3
+  ],
+  "overview_sentence_count": 6,
+  "appendix_owner_count": 1,
+  "primary_asset_table_count": 0,
+  "theme_modes": [
+    "light",
+    "dark",
+    "auto"
+  ],
+  "default_theme": "auto",
+  "synthetic_voice_planning_preserved": true,
+  "voice_planning": {
+    "voice_mode": "synthetic",
+    "human_articulation_check_required": false,
+    "engine_selected": false,
+    "voice_selected": false,
+    "audio_generated": false,
+    "engine_calibration_pending": true,
+    "actual_engine_timing_measured": false,
+    "provenance_note": "3–5秒の余白は人の読み上げによるtext-density proxyであり、synthetic voice engineの実測ではない。"
+  },
+  "source_package_pre_hashes": {
+    "README_PRODUCTION_EXECUTION.md": {
+      "exists": true,
+      "byte_size": 1094,
+      "sha256": "963d162bfb9f11807e1dc7f1d65a1d83cfc47cdcb586953d462bcc7b89be59b6"
+    },
+    "production-execution-pack.html": {
+      "exists": true,
+      "byte_size": 35720,
+      "sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c"
+    },
+    "production-execution-pack.json": {
+      "exists": true,
+      "byte_size": 47347,
+      "sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb"
+    },
+    "beat-run-sheet.csv": {
+      "exists": true,
+      "byte_size": 1770,
+      "sha256": "98287106f8da8851f28f4f48494ea0b646515a0a68e4c69b67ab5013a528de03"
+    },
+    "shot-execution-sheet.csv": {
+      "exists": true,
+      "byte_size": 10277,
+      "sha256": "f6d9e6692f770d5d8fb591542a5bcd270ad551fe502a211002090a245ce56eee"
+    },
+    "asset-requirements.csv": {
+      "exists": true,
+      "byte_size": 4143,
+      "sha256": "caa71679693005d643b6bd8346a30ecc38dd6a5d43e2b43d7a526e776f7a58d1"
+    },
+    "narration-timing-envelope.csv": {
+      "exists": true,
+      "byte_size": 1128,
+      "sha256": "82ed47ab2c24c8b7be082f3e9fb547c2978a3d718eb71a5f28bdf8bcfc57e847"
+    },
+    "thumbnail-requirements.md": {
+      "exists": true,
+      "byte_size": 1294,
+      "sha256": "6a3a769c7a95e0d8e86cd8350e1a2d05e9d86ab3526b662ea416c2926e1ddbd7"
+    },
+    "production-execution-manifest.json": {
+      "exists": true,
+      "byte_size": 3554,
+      "sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7"
+    }
+  },
+  "source_package_post_hashes": {
+    "README_PRODUCTION_EXECUTION.md": {
+      "exists": true,
+      "byte_size": 1094,
+      "sha256": "963d162bfb9f11807e1dc7f1d65a1d83cfc47cdcb586953d462bcc7b89be59b6"
+    },
+    "production-execution-pack.html": {
+      "exists": true,
+      "byte_size": 35720,
+      "sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c"
+    },
+    "production-execution-pack.json": {
+      "exists": true,
+      "byte_size": 47347,
+      "sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb"
+    },
+    "beat-run-sheet.csv": {
+      "exists": true,
+      "byte_size": 1770,
+      "sha256": "98287106f8da8851f28f4f48494ea0b646515a0a68e4c69b67ab5013a528de03"
+    },
+    "shot-execution-sheet.csv": {
+      "exists": true,
+      "byte_size": 10277,
+      "sha256": "f6d9e6692f770d5d8fb591542a5bcd270ad551fe502a211002090a245ce56eee"
+    },
+    "asset-requirements.csv": {
+      "exists": true,
+      "byte_size": 4143,
+      "sha256": "caa71679693005d643b6bd8346a30ecc38dd6a5d43e2b43d7a526e776f7a58d1"
+    },
+    "narration-timing-envelope.csv": {
+      "exists": true,
+      "byte_size": 1128,
+      "sha256": "82ed47ab2c24c8b7be082f3e9fb547c2978a3d718eb71a5f28bdf8bcfc57e847"
+    },
+    "thumbnail-requirements.md": {
+      "exists": true,
+      "byte_size": 1294,
+      "sha256": "6a3a769c7a95e0d8e86cd8350e1a2d05e9d86ab3526b662ea416c2926e1ddbd7"
+    },
+    "production-execution-manifest.json": {
+      "exists": true,
+      "byte_size": 3554,
+      "sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7"
+    }
+  },
+  "source_packages_unchanged": true,
+  "canonical": false,
+  "production_approved": false,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "assets_selected": false,
+  "rights_cleared_claim": false,
+  "tts_engine_selected": false,
+  "voice_selected": false,
+  "audio_generated": false,
+  "public_upload": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "browser_evidence": {
+    "900x1200-dark": {
+      "viewport_width": 900,
+      "viewport_height": 1200,
+      "theme": "dark",
+      "resolved_color_scheme": "dark",
+      "document_scroll_width": 900,
+      "document_scroll_height": 20946,
+      "client_width": 900,
+      "horizontal_overflow": false,
+      "nested_scroll_container_count": 0,
+      "first_view_contract_met": true,
+      "title_font_size_px": 36,
+      "title_line_count": 2,
+      "appendix_hit_area_px": 48,
+      "appendix_initially_open": false,
+      "storyboard_svg_count": 19,
+      "contrast_min_ratio": 10.260805921667776,
+      "screenshot_path": "artifacts/review-screens/production-storyboard-brief-900x1200-dark.png",
+      "screenshot_byte_size": 2149707,
+      "screenshot_sha256": "d7eaca3543cf010106f7b465fd5cb11f2e415dcfb7e2d2b1e6a61af7bf30ca84",
+      "svg_ratio_valid": true
+    },
+    "1280x900-light": {
+      "viewport_width": 1280,
+      "viewport_height": 900,
+      "theme": "light",
+      "resolved_color_scheme": "light",
+      "document_scroll_width": 1280,
+      "document_scroll_height": 11635,
+      "client_width": 1280,
+      "horizontal_overflow": false,
+      "nested_scroll_container_count": 0,
+      "first_view_contract_met": true,
+      "title_font_size_px": 40,
+      "title_line_count": 2,
+      "appendix_hit_area_px": 48,
+      "appendix_initially_open": false,
+      "storyboard_svg_count": 19,
+      "contrast_min_ratio": 6.383935776595327,
+      "screenshot_path": "artifacts/review-screens/production-storyboard-brief-1280x900-light.png",
+      "screenshot_byte_size": 1899382,
+      "screenshot_sha256": "3ba0312bc554f41e7aea27400ecc71f9ec03e5ef396c0443e9d668ca8e67c496",
+      "svg_ratio_valid": true
+    }
+  },
+  "theme_evidence": {
+    "default_theme_auto": true,
+    "explicit_light_applied": true,
+    "explicit_dark_applied": true,
+    "auto_light_resolved": true,
+    "auto_dark_resolved": true,
+    "preference_persisted_after_reload": true,
+    "controls_aria_pressed_valid": true,
+    "appendix_enter_toggles": true,
+    "appendix_space_toggles": true
+  },
+  "print_evidence": {
+    "media": "print",
+    "controls_hidden": true,
+    "background_light": true,
+    "no_horizontal_overflow": true,
+    "storyboard_frames_visible": true
+  },
+  "browser_evidence_complete": true,
+  "manifest_size_hash_integrity": true,
+  "validation_read_only": true,
+  "negative_probes": {
+    "source_mismatch": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "exact source fingerprint mismatch rejected"
+    },
+    "missing_glossary_term": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "missing glossary term rejected"
+    },
+    "unresolved_glossary_reference": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "unresolved glossary reference rejected"
+    },
+    "missing_shot": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "missing storyboard shot rejected"
+    },
+    "duplicate_shot": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "duplicate storyboard shot rejected"
+    },
+    "missing_svg": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "missing inline SVG rejected"
+    },
+    "mixed_success_guard_field": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "mixed success and guard field rejected"
+    },
+    "asset_table_in_primary": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "asset inventory table in primary rejected"
+    },
+    "appendix_open_by_default": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "open-by-default appendix rejected"
+    },
+    "disclosure_hit_area_below_44px": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "sub-44px disclosure hit area rejected"
+    },
+    "title_oversized": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "oversized title token rejected"
+    },
+    "theme_missing": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "missing theme mode rejected"
+    },
+    "dark_contrast_failure": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "dark contrast failure rejected"
+    },
+    "nested_scroll": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "nested scroll CSS rejected"
+    },
+    "selected_asset": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "selected asset rejected"
+    },
+    "rights_claim": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "rights-cleared claim rejected"
+    },
+    "content_mutation": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "source-derived storyboard content mutation rejected"
+    },
+    "manifest_mismatch": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "manifest payload hash mismatch rejected"
+    }
+  },
+  "checks": {
+    "result_contract": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "canonical_package_candidate": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "source_execution_pack_byte_identical": {
+      "passed": true,
+      "detail": "aggregate=10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+    },
+    "package_paths_hashes_and_manifest": {
+      "passed": true,
+      "detail": "files=7; fingerprint=400d01a3abaa935103e1080b2f42b2f9e20553e225e13e90aec7a740e7ed3861"
+    },
+    "overview_glossary_and_storyboard_coverage": {
+      "passed": true,
+      "detail": "overview=6; glossary=25; shots=19"
+    },
+    "shot_semantics_split": {
+      "passed": true,
+      "detail": "positive=19; guards=19"
+    },
+    "root_manifest_registered": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "blueprint_compact_link": {
+      "passed": true,
+      "detail": "markerCount=1"
+    },
+    "review_doc_registered": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "browser_and_screenshot_evidence": {
+      "passed": true,
+      "detail": "complete=true"
+    },
+    "theme_and_keyboard_evidence": {
+      "passed": true,
+      "detail": "complete=true"
+    },
+    "print_evidence": {
+      "passed": true,
+      "detail": "complete=true"
+    },
+    "negative_probes_fail_closed": {
+      "passed": true,
+      "detail": "count=18"
+    },
+    "normal_validation_read_only": {
+      "passed": true,
+      "detail": "readOnly=true"
+    }
+  },
+  "failures": [],
+  "passed": true
+}

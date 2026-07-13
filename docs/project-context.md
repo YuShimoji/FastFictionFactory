@@ -2,23 +2,32 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-production-execution-pack-001`: a standalone, print-friendly nine-file handoff under `artifacts/production-execution-pack/`. It aligns the accepted 180-second / 6-beat / 19-shot / 20-subtitle / 6-narration / 3-thumbnail contract with 14 deduplicated generic asset requirements and an engine-neutral synthetic-narration timing envelope. `fff-operator-production-brief-typography-balance-001`, Operator Brief, Blueprint, Derivative, Revision, and Handoff are protected sources; their wording, timing, order, truth, rights, canon state, and package bytes do not change.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-production-storyboard-brief-001`: a standalone, print-friendly seven-file human-comprehension handoff under `artifacts/production-storyboard-brief/`. It translates the preserved 180-second / 6-beat / 19-shot story plan into six overview sentences, a complete core glossary, and 19 low-fidelity 16:9 planning frames without changing the Production Execution Pack or any protected source wording, timing, IDs, truth, rights, asset, or canon state.
 
 ## Current Lane
 
-Keep the MVP repeatedly editable while handing a coherent production plan to another creator without forcing reconstruction from multiple review routes. The current lane is `PRODUCTION_EXECUTION_PACK`: preserve the accepted source chain, expose one portable six-beat run sheet and complete 19-shot preparation matrix, deduplicate reusable generic requirements, and record narration headroom without claiming engine calibration. Actual assets, rights clearance, engine, voice, provider/API, credentials, external calls, audio or media generation, render, upload, publication, database persistence, production approval, and final canon remain closed.
+Keep the precise Production Execution Pack as operational and audit authority while giving another creator one context-complete visual reading surface. The current lane is `PRODUCTION_STORYBOARD_BRIEF`: make premise, terms, six-beat progression, focal intent, positive success condition, and negative truth guard understandable in one document. The 14 generic requirements remain an initially closed operational appendix. Actual assets, rights clearance, engine, voice, provider/API, credentials, external calls, audio or media generation, render, upload, publication, database persistence, production approval, and final canon remain closed.
 
 ## Current Slice
 
-The active slice is the portable Production Execution Pack:
+The active slice is the Production Storyboard Brief:
 
-- Standalone entry: `artifacts/production-execution-pack/production-execution-pack.html`; Blueprint exposes exactly one compact `制作実行パックを開く` link without adding an app mode
-- Package: nine files covering identity/boundaries, six-beat run, narration timing, 19-shot execution, 14 generic asset requirements, three thumbnail directions, checklist/transfer, and integrity metadata
-- Timing overlay: B1/B3/B4/B6 are `proxy_headroom_confirmed` with 3–5 seconds of human-proxy slack and derived spoken ranges 15–17 / 25–27 / 20–22 / 20–22 seconds; B2/B5 remain `existing_pass_unmeasured`
-- Voice flags: `voice_mode=synthetic`, `human_articulation_check_required=false`, `engine_selected=false`, `voice_selected=false`, `audio_generated=false`, `engine_calibration_pending=true`
-- Asset flags: all 14 reusable requirements remain `asset_status=unselected`, `rights_status=not_reviewed`, and `provenance_required=true`; every one of the 19 shots references a valid requirement
-- Review evidence: `docs/review/production-execution-pack.md`, `artifacts/production-execution-pack-result.json`, `artifacts/review-screens/production-execution-pack-900x1200.png`, `artifacts/review-screens/production-execution-pack-1280x900.png`
-- Validation contract: `validate-production-execution-pack` is read-only; `smoke-production-execution-pack` may regenerate only the nine new package files and its result. The validator result is the source of truth for final pass/failure, hashes, 20 negative probes, viewport/print evidence, and protected-source immutability.
+- Standalone entry: `artifacts/production-storyboard-brief/production-storyboard-brief.html`; Blueprint exposes exactly one compact `絵コンテ版を開く` link without adding an app mode
+- Package: seven files covering identity/boundaries, the canonical brief model, 19-shot map, 25-term glossary, 14 one-line asset operations, standalone HTML, and integrity metadata
+- Reading order: 作品の概略 → 用語の地図 → 六幕の流れ → 19ショット絵コンテ → 完成の見方 → 制作準備付録
+- Storyboard contract: exactly 6 beat groups / 19 frames in 3/3/3/3/4/3 grouping; every frame has a planning-only 16:9 inline SVG, focal label, motion notation, `ねらい`, `成立させること`, and `描かないこと`
+- Theme/access contract: Auto is the persisted default; Light and Dark are explicit; title is restrained and responsive; one document owns scrolling; the 48px operational disclosure is initially closed and keyboard accessible
+- Asset/rights contract: all 14 requirements remain `unselected` / `not_reviewed` and appear only as one-line operational entries; no asset, URL, vendor, voice, engine, font, or final art is selected
+- Review evidence: `docs/review/production-storyboard-brief.md`, `artifacts/production-storyboard-brief-result.json`, `artifacts/review-screens/production-storyboard-brief-900x1200-dark.png`, `artifacts/review-screens/production-storyboard-brief-1280x900-light.png`
+- Validation contract: `validate-production-storyboard-brief` is read-only; `smoke-production-storyboard-brief` may regenerate only the seven new package files and its result. The result owns exact counts, hashes, 18 fail-closed probes, source immutability, browser/theme/keyboard evidence, and print evidence
+- Human boundary: H0 is machine-validated; comprehension improvement is inferred until H1 freeform review. H2 asset/rights preparation and every production gate require separate authorization.
+
+Preserved Production Execution Pack source:
+
+- Source artifact: `fff-production-execution-pack-001` at `artifacts/production-execution-pack/`
+- Source contract: 180 seconds / 6 beats / 19 shots / 20 subtitle cues / 6 narration segments / 3 thumbnail directions / 14 generic requirements / synthetic planning state
+- Immutability: all nine source files and the recorded aggregate fingerprint remain byte-identical; its operational tables remain the audit authority
+- Human-observation status: its H1 transfer-comprehension attempt did not pass, which motivated the separate Storyboard Brief rather than a restyle or mutation
 
 Preserved responsive typography balance over the accepted Operator Production Brief:
 

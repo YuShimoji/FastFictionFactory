@@ -7,7 +7,8 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Question | Primary document | What it answers |
 | --- | --- | --- |
 | What is the current artifact and review state? | [`review/current-status.md`](review/current-status.md) | Active artifact, implemented features, verified behavior, missing work, and next recommended slice. |
-| What can another creator execute now? | [`review/production-execution-pack.md`](review/production-execution-pack.md) | The six-beat run, 19 shots, 14 generic asset requirements, synthetic timing evidence, closed boundaries, and H1 handoff question. |
+| What can another creator understand now? | [`review/production-storyboard-brief.md`](review/production-storyboard-brief.md) | Premise, core terms, six-beat progression, 19 planning frames, positive success conditions, negative guards, and the H1 comprehension question. |
+| What remains the operational source? | [`review/production-execution-pack.md`](review/production-execution-pack.md) | The preserved six-beat run, 19-shot ledger, 14 generic requirements, synthetic timing evidence, and closed production boundaries. |
 | What has been implemented by slice? | [`local-view/artifacts.md`](local-view/artifacts.md) | Artifact-by-artifact inventory with purpose, paths, screenshots, smoke evidence, and review status. |
 | What does each implementation slice contain? | [`review/*.md`](review/current-status.md) | Per-slice review notes with implemented items, preserved product truth, validation notes, known limitations, and next slice. |
 | What is the product supposed to be? | [`product-brief.md`](product-brief.md) | MVP purpose, user path, scope, out-of-scope boundaries, and review standard. |
@@ -19,7 +20,8 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 
 | Slice | Current state | Main review location | Quick visual evidence |
 | --- | --- | --- | --- |
-| Production Execution Pack | H0 validated; portable execution handoff is ready for H1 execution-readiness review | [`review/production-execution-pack.md`](review/production-execution-pack.md) | `artifacts/production-execution-pack/`, green `artifacts/production-execution-pack-result.json`, two measured viewport screenshots |
+| Production Storyboard Brief | H0 validated; standalone human-comprehension surface is ready for H1 freeform review | [`review/production-storyboard-brief.md`](review/production-storyboard-brief.md) | `artifacts/production-storyboard-brief/`, green `artifacts/production-storyboard-brief-result.json`, 900x1200 Dark and 1280x900 Light screenshots |
+| Production Execution Pack | Preserved byte-identical operational/audit source after its H1 transfer-comprehension failure | [`review/production-execution-pack.md`](review/production-execution-pack.md) | `artifacts/production-execution-pack/`, preserved green result, two source viewport screenshots |
 | Operator Brief Typography Balance | Preserved accepted human-facing source; H1 judgment A and title-only repair remain complete | [`review/operator-production-brief-typography-balance.md`](review/operator-production-brief-typography-balance.md) | `artifacts/operator-production-brief-typography-balance-result.json`, two balanced viewport screenshots, `public/review/index.html?mode=blueprint` |
 | Operator Production Brief | Preserved human-facing one-scroll production instruction | [`review/operator-production-brief.md`](review/operator-production-brief.md) | `artifacts/operator-production-brief-result.json`, `artifacts/operator-production-brief/`, source screenshots, shared `mode=blueprint` |
 | Content Production Blueprint | Preserved quantitative machine/audit source | [`review/content-production-blueprint.md`](review/content-production-blueprint.md) | `artifacts/content-production-blueprint-result.json`, `artifacts/production-blueprint/`, shared `mode=blueprint` Audit & Files |
@@ -64,6 +66,8 @@ The current quick visual review files are stored under `artifacts/`:
 
 | File | Use |
 | --- | --- |
+| `artifacts/review-screens/production-storyboard-brief-900x1200-dark.png` | Active standalone Storyboard Brief in Dark mode; the result owns title, first-view, overflow, scroll, contrast, appendix, SVG, and theme assertions. |
+| `artifacts/review-screens/production-storyboard-brief-1280x900-light.png` | Active standalone Storyboard Brief in Light mode; the result owns title, first-view, overflow, scroll, contrast, appendix, SVG, and theme assertions. |
 | `artifacts/review-screens/production-execution-pack-900x1200.png` | Standalone execution pack evidence at 900x1200; result JSON owns the measured overflow, scroll, counts, and print assertions. |
 | `artifacts/review-screens/production-execution-pack-1280x900.png` | Standalone execution pack evidence at 1280x900; result JSON owns the measured overflow, scroll, counts, and print assertions. |
 | `artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png` | Final 900x1200 evidence: 40px two-line title, 837.640625px first-view bottom, all five completion conditions visible, and no overflow, nested scroll, overlap, clipping, or orphan line. |
@@ -110,27 +114,27 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | H1 execution-readiness review | A reviewer can explain the six-beat preparation, 19-shot assembly, reusable generic requirements, and remaining gates without opening technical audit files. | Transfer ambiguities can be repaired without selecting real assets, rights, an engine, or media. |
-| Following 1 turn after authorization | H2 local synthetic-engine calibration | One selected local engine is timed against unchanged narration; pronunciation, pause, and prosody findings are recorded honestly. | Actual audio timing can replace the human-proxy envelope without rewriting the accepted text. |
+| Next 1 turn | H1 Storyboard Brief comprehension review | A reviewer can explain premise, central unresolved question, six-beat progression, representative shot logic, key terms, and positive/negative boundaries from the standalone page alone. | Only measured wording/grouping/diagram friction may be repaired before any production gate opens. |
+| Following 1 turn after separate authorization | Asset/rights readiness or H2 local synthetic-engine calibration | One bounded candidate-intake schema or one selected local engine is tested without changing the accepted story contract. | Concrete preparation evidence can replace generic or proxy state while preserving separate approvals. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
 
 ## Current Local Review Entry
 
-The active deliverable is the standalone static pack:
+The active deliverable is the standalone Storyboard Brief:
 
 ```powershell
-Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
+Invoke-Item .\artifacts\production-storyboard-brief\production-storyboard-brief.html
 ```
 
-The accepted Blueprint retains one compact access link to this file. Its no-query review UI remains available as a preserved source surface:
+The accepted Blueprint retains one compact `絵コンテ版を開く` access link to this file. Its no-query review UI remains available as a preserved source surface:
 
 ```powershell
 Invoke-Item .\public\review\index.html
 ```
 
-No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The current artifact is `fff-production-execution-pack-001`; `public/review/index.html?mode=blueprint` remains its accepted source route and compact launcher. Typography Balance, Operator Brief, quantitative Blueprint, provisional Derivative, Revision, immutable Handoff, and six-beat Storyboard Flow are preserved inputs rather than competing active deliverables.
+No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The current artifact is `fff-production-storyboard-brief-001`; `public/review/index.html?mode=blueprint` is only the compact launcher. Production Execution Pack, Typography Balance, Operator Brief, quantitative Blueprint, provisional Derivative, Revision, immutable Handoff, and the earlier six-beat Storyboard Flow are preserved inputs rather than competing active deliverables.
 
 Mode-specific Content Production Blueprint route:
 

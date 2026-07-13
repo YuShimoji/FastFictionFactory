@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Production Storyboard Brief
+
+- Purpose: Let a separate creator understand the work's premise, core terms, six-beat progression, visual intention, and positive/negative completion boundaries before opening operational spreadsheets or selecting media.
+- Effect: `fff-production-storyboard-brief-001` provides one standalone Light/Dark/Auto page with a six-sentence overview, 25-term glossary, and 19 planning-only 16:9 SVG frames grouped 3/3/3/3/4/3. Each shot keeps focal subject, motion, `ねらい`, `成立させること`, `描かないこと`, duration, text allowance, and a one-line asset summary adjacent; the 14-row operational inventory is initially closed.
+- Requirements: Keep all nine Production Execution Pack files byte-identical; preserve 180 seconds, 6 beats, 19 shots, 20 subtitle cues, 6 narration segments, synthetic voice planning, source wording/timing/order/IDs, truth, rights, asset, and canon state; do not add final art, select media, or open provider/production gates.
+- State: H0 machine validation is green with 18/18 fail-closed probes, complete glossary/shot/SVG coverage, two measured viewports, theme/keyboard/print evidence, and unchanged sources. Human comprehension improvement remains inferred.
+- Owner: Product implementer owns deterministic rendering, validation, source protection, and accessibility evidence; a human supervisor or delegated creator owns H1 comprehension; production, voice, asset, rights, and canon owners remain outside the lane.
+- Next move: Run one H1 freeform review from the standalone page only. If it fails, repair only evidenced wording, grouping, or low-fidelity-diagram friction; asset/rights readiness and synthetic voice calibration require separate authorization after H1.
+
 ### Cross-platform Hash-Stable Checkout
 
 - Purpose: Make raw-byte package and result validation produce the same outcome on Windows and non-Windows checkouts.

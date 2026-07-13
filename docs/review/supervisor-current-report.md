@@ -1,219 +1,289 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-13 JST
+更新日: 2026-07-14 JST
 
 ## 結論
 
-Fast Fiction Factory は、ローカル完結のレビュー用プロトタイプから、別の制作者へ制作準備を引き渡せる段階まで進んでいます。現在の active artifact は `fff-production-execution-pack-001`、active lane は `PRODUCTION_EXECUTION_PACK` です。受理済みの 180 秒 / 6 ビート / 19 ショット / 20 字幕 / 6 ナレーション / 3 サムネイル方向を、14 件の再利用可能な generic asset requirements と synthetic narration timing envelope に接続した九ファイル package が存在します。
+Fast Fiction Factory の active artifact は `fff-production-storyboard-brief-001`、active lane は `PRODUCTION_STORYBOARD_BRIEF` です。H1 で別制作者への伝達に失敗した Production Execution Pack を改変せず、作品の前提、中心に残る問い、主要用語、六幕の進行、19ショットの視覚意図、肯定的な成立条件、否定的な truth guard を一つの standalone HTML から理解するための Storyboard Brief を追加しました。
 
-H0 の機械検証は、Windows checkout の改行差を恒久的に防ぐ `.gitattributes` 修正後の現環境で green です。次の正規ゲートは H1 Human Execution-Readiness Review です。H1 では technical audit を開かず、別の制作者が準備物、再利用物、19 ショットの組立順、未選択の判断を説明できるかを自由文で確認します。
+H0 の機械検証は green です。七ファイル package、25語の glossary、19枚の planning-only 16:9 SVG、3/3/3/3/4/3 の beat grouping、18/18 fail-closed probes、Light/Dark/Auto、keyboard、900x1200 / 1280x900、print、source immutability が検証済みです。理解しやすくなったという判定だけは推測であり、次の正規 gate は H1 freeform comprehension review です。
 
-この報告は、engine / voice / asset / rights / provider / credential / generation / render / upload / publication / database / final canon の承認ではありません。以下の長期目標は順序と依存関係の提案であり、閉じた gate を自動的に開きません。
+この checkpoint は、asset、rights、engine、voice、provider/API、credentials、external call、art/audio/video generation、render、upload、publication、database、production approval、final canon を承認しません。以下の長期目標は依存関係を先まで見えるようにする提案であり、閉じた gate を自動的に開きません。
 
 ## 同期と開発可能性
 
-| 項目 | 現在の確認結果 |
+| 項目 | 確認済みの状態 |
 | --- | --- |
 | Repository | `C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory` |
 | Branch | `master` |
-| 取り込み済み remote base | `79160c3 Record production execution handoff` |
-| Remote parity | 取り込み直後の `HEAD...origin/master` は `0 0`。この報告と改行固定を含む successor は Git の最新 HEAD を正本とする |
-| Product implementation checkpoint | `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack` |
-| Runtime | Node.js `v24.13.0`; npm `11.6.2`; uvx `0.10.7` |
-| 通常 health check | `artifacts/artifact-manifest.json` の `validation_command`; read-only `validate-*` chain |
-| Review entry | `artifacts/production-execution-pack/production-execution-pack.html` |
-| Current authority | `docs/project-context.md`、`docs/review/current-status.md`、本報告、`artifacts/production-execution-pack-result.json` |
+| 同期済み開始点 | `04c554c923ae8860fc39047fec515b6b16c195d0 Harden cross-platform supervisor handoff` |
+| 開始時 parity | `HEAD...origin/master = 0 0`、index/worktree clean |
+| 公開 state | この slice の最終 commit / push / parity は Git を正本とし、chat や固定記述から推測しない |
+| Runtime | Node.js `v24.13.0`、npm `11.6.2`、uvx `0.10.7` |
+| Active entry | `artifacts/production-storyboard-brief/production-storyboard-brief.html` |
+| Read-only health | `node tools/fff-state.mjs validate-production-storyboard-brief artifacts/production-storyboard-brief-result.json` |
+| Root health | `artifacts/artifact-manifest.json` の `validation_command` |
+| Durable authority | `docs/project-context.md` → `docs/review/current-status.md` → 本報告 → Storyboard review/result |
 
-### 同期時に検出し、修復した開発阻害要因
+Windows checkout の LF policy は `.gitattributes` で維持されています。今回の新規 Markdown / CSV / JSON / HTML も LF を固定し、raw-byte SHA256 と OS の改行設定が衝突しないようにしています。
 
-リモートを fast-forward した直後、Windows の global `core.autocrlf=true` により、Git blob では LF の top-level result JSON と review HTML が worktree では CRLF になっていました。製品内容の差ではありませんが、raw-byte SHA256 を契約にする Production Execution Pack validator はこれを source fingerprint mismatch として正しく拒否しました。
+## 状態遷移
 
-- 114 件の JSON / HTML / MJS を比較し、53 件の worktree-byte mismatch を確認
-- 53 件はすべて CRLF を LF に戻すだけで Git blob と一致
-- `.gitattributes` に `* text=auto eol=lf` を追加し、OS をまたいでも hash-sensitive text が LF になるよう固定
-- LF 適用後、Production Execution Pack、Typography Balance、Operator Brief、Blueprint、Derivative、Revision、Handoff の read-only chain が pass
-- package や source の内容、timing、truth、rights、canon、UI behavior は変更していない
+### Before
 
-この修復の目的は、Windows checkout でも「tracked file は clean なのに raw-byte validator だけ失敗する」状態を再発させないことです。
+- purpose と completion が離れ、shot を横断して読む必要があった
+- negative truth guard が肯定的な completion と同じ見え方だった
+- 真鍮の蛾などの固有語を、その場の文脈なしで理解する必要があった
+- reusable asset ledger が story flow と視覚的に競合した
+- visual storyboard がなく、governance data が作品の構想より強く見えた
+- title が大きく、Light only だった
 
-## 現在あるもの
+### After
 
-1. `artifacts/production-execution-pack/`
-   - 九ファイルの standalone handoff
-   - 6 beats / 180 seconds / 19 shots / 20 subtitles / 6 narration segments / 3 thumbnail directions
-   - 14 deduplicated generic asset requirements; 19/19 shots が requirement を参照
-   - B1/B3/B4/B6 は `proxy_headroom_confirmed`; B2/B5 は `existing_pass_unmeasured`
-   - `voice_mode=synthetic` だが engine / voice / audio は未選択・未生成
+- premise と central unresolved question を first view に表示
+- 六文 overview と 25語 glossary だけで core context を取得可能
+- 六幕・19枚の planning frame を 3/3/3/3/4/3 で連続して読める
+- `ねらい`、`成立させること`、`描かないこと` を全19shotで隣接
+- positive action を主、negative guard を従として視覚分離
+- 14 requirements を initially closed の operational appendix へ移動
+- restrained responsive title と Light/Dark/Auto、light print を提供
+- Production Execution Pack は byte-identical の operational/audit source として保持
 
-2. 保護された制作指示 source chain
-   - Operator Brief Typography Balance
-   - Operator Production Brief
-   - Content Production Blueprint
-   - Editorial Derivative Preview
-   - Editorial Revision Roundtrip
-   - Bridge Editorial Handoff Pack
-   - Bridge Storyboard Flow
+## 現在の成果物
 
-3. ローカル review / governance foundation
-   - Review Workbench、Brief、Bridge、Handoff、Revision、Derivative、Blueprint の各 route
-   - source-span、contradictory claim、translation provenance、downstream adoption、rollback の fail-closed readbacks
-   - Claim Ledger に 1 件、Profile に non-canon annotation 1 件だけを明示的な過去承認の下で保持
-   - Toma fate、brass moth truth、Council motive、contradictory claim truth は human-owned のまま
+### Production Storyboard Brief
 
-4. 再現可能なローカル toolchain
-   - zero-dependency Node.js validation / adapter tools
-   - `uvx --with mkdocs-material` による strict docs build
-   - dependency-free local review launcher
+- `artifacts/production-storyboard-brief/README_STORYBOARD_BRIEF.md`
+- `artifacts/production-storyboard-brief/production-storyboard-brief.html`
+- `artifacts/production-storyboard-brief/production-storyboard-brief.json`
+- `artifacts/production-storyboard-brief/storyboard-shot-map.csv`
+- `artifacts/production-storyboard-brief/story-glossary.csv`
+- `artifacts/production-storyboard-brief/asset-operations-summary.csv`
+- `artifacts/production-storyboard-brief/production-storyboard-brief-manifest.json`
+
+Review authority:
+
+- `docs/review/production-storyboard-brief.md`
+- `artifacts/production-storyboard-brief-result.json`
+- `artifacts/review-screens/production-storyboard-brief-900x1200-dark.png`
+- `artifacts/review-screens/production-storyboard-brief-1280x900-light.png`
+
+Access:
+
+```powershell
+Invoke-Item .\artifacts\production-storyboard-brief\production-storyboard-brief.html
+```
+
+`public/review/index.html?mode=blueprint` には compact な `絵コンテ版を開く` link を一つだけ追加しました。新しい application mode はありません。
+
+### Canonical model coverage
+
+- 180 seconds / 6 beats / 19 shots
+- 20 subtitle cues と 6 narration segments を source から明示継承
+- 14 generic requirements、すべて `unselected` / `not_reviewed` / provenance required
+- `voice_mode=synthetic` を継承
+- `engine_selected=false`、`voice_selected=false`、`audio_generated=false`
+- `engine_calibration_pending=true`、`actual_engine_timing_measured=false`
+- 25 glossary terms、unresolved reference 0
+- 19 positive conditions / 19 negative guards / 19 SVGs
+
+## 機械検証と視覚証拠
+
+| Evidence | 結果 |
+| --- | --- |
+| Package identity | exact 7 files、manifest size/hash integrity pass |
+| Source identity | Execution Pack 9-file aggregate `10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345` unchanged |
+| Story grouping | 6 beats、19 shots、3/3/3/3/4/3 |
+| Glossary | 25 entries、all primary references resolved |
+| Shot semantics | 19 positive / 19 negative、source `done_when` を再構成可能 |
+| Storyboard | 19 inline SVG、16:9、focal label、motion notation、final art false |
+| Operational appendix | owner 1、primary asset table 0、14 one-line rows、48px、initially closed |
+| Themes | Light / Dark / Auto、Auto default、system light/dark resolution、preference persistence |
+| 900x1200 Dark | title 36px / 2 lines、horizontal overflow false、nested scroll 0、contrast minimum 10.26 |
+| 1280x900 Light | title 40px / 2 lines、horizontal overflow false、nested scroll 0、contrast minimum 6.38 |
+| Keyboard | theme aria state、appendix Enter / Space toggle pass |
+| Print | controls hidden、light background、no horizontal overflow、frames visible |
+| Negative probes | 18/18 fail closed、artifact mutation 0 |
+| Predecessors | Execution Pack、Typography、Operator、Blueprint、Derivative、Revision、Handoff remain valid |
+
+画面の改善は verified structure と browser measurement に基づきます。ただし「人が説明できる」は H1 でのみ確定します。
+
+## Source immutability
+
+| Source evidence | SHA256 |
+| --- | --- |
+| Production Execution package fingerprint | `a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca` |
+| Source HTML | `f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c` |
+| Source JSON | `24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb` |
+| Source manifest | `f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7` |
+| Nine-file aggregate | `10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345` |
+
+Source wording、narration、subtitle、timing、order、IDs、truth、rights、asset state、canon state は変更していません。Storyboard model は source narration と synthetic planning state をコピーして継承を検証しますが、primary page では operational data を story flow より前へ出しません。
 
 ## 完成度の見立て
 
-この割合は承認判定ではなく、残作業の規模を比較するための planning estimate です。
+これは承認率ではなく、残作業の規模を比べる planning estimate です。
 
-- Active Production Execution Pack slice: `[█████████░] 90%`
-  - deterministic package、integrity、browser/print evidence、negative probes は完了
-  - 残る正規 gate は H1 transfer-comprehension
-- Local-first review and handoff MVP: `[████████░░] 80%`
-  - memo review、candidate governance、editorial roundtrip、production planning、portable handoff は存在
-  - real provider extraction、durable database、production execution は未実装
+- Production Storyboard Brief slice: `[█████████░] 95%`
+  - H0、package、browser、print、source protection、publication準備は完了
+  - 残る product gate は H1 human comprehension
+- Human transfer path: `[█████████░] 90%`
+  - operational source と visual brief の役割分離は完了
+  - 外部 creator による実説明は未実施
+- Local-first review / handoff MVP: `[████████░░] 82%`
+  - source review、revision、blueprint、handoff、execution、storyboard が連結
+  - real provider、durable database、production execution は未実装
 - End-to-end publishable fiction factory: `[███░░░░░░░] 30%`
-  - production-ready source contract はあるが、engine calibration、cleared media、render、release approval、publishing loop が未開始
+  - production planning contract はある
+  - calibrated voice、cleared media、assembly、release approval、publishing loop は未開始
 
 ## 現在不足しているもの
 
-| 不足 | 現在の state | 影響 |
+| 不足 | State | Effect |
 | --- | --- | --- |
-| H1 execution-readiness | 未実施 | package が別制作者へ説明なしで伝わるか未確定 |
-| Synthetic engine calibration | 未開始 | human proxy はあるが実音声の pronunciation / pause / prosody / duration は不明 |
-| B2/B5 timing evidence | `existing_pass_unmeasured` | 数値を捏造せず保留中。H2 で全 beat を実測する必要がある |
-| Asset selection and provenance | 14/14 `unselected` | 19 shots を実素材で組めない |
-| Rights review | 14/14 `not_reviewed`; protected source shots `not_cleared` | release candidate を名乗れない |
-| Audio / image / video generation and render | 未開始 | offline playable production が存在しない |
-| Model/API extraction adapter | 未開始 | memo からの生成は deterministic local adapter の範囲 |
-| Durable project database | 未開始 | browser/local JSON を越える migration / backup / multi-session state がない |
-| Publishing adapter and release gate | 未開始 | upload、public release、post-release rollback がない |
-| Final canon decisions | human-owned unresolved | ending-sensitive Timeline / Story Seed / Canon を確定できない |
+| H1 Storyboard comprehension | 未実施 | visual brief が説明なしで本当に伝わるか未確定 |
+| External creator trial | 未実施 | project knowledge を持たない制作者の preparation cost は未計測 |
+| Asset candidates / provenance | 14/14 unselected | frame を実素材へ割り当てられない |
+| Rights review | 14/14 not_reviewed、source shots not_cleared | production-ready / release-ready を名乗れない |
+| Synthetic engine calibration | 未開始 | proxy timing はあるが pronunciation / pause / prosody / actual duration は不明 |
+| Offline assembly | 未開始 | 180秒 timeline の編集・字幕・render cost が未実測 |
+| Canon-sensitive decisions | human-owned unresolved | ending-sensitive production choiceを確定できない |
+| Real provider extraction | no-call boundaries only | memo-to-candidate generationはlocal deterministic範囲 |
+| Durable database | 未開始 | migration / backup / multi-session stateがない |
+| Publishing and release controls | closed | upload、release approval、rollback運用がない |
 
-## 推奨する目標列
+## Goal Horizon
 
-### G0 — Checkout portability を固定する
+各目標は Purpose / Effect / Requirements / State / Owner / Next move を明示します。
 
-- Purpose: Windows / Linux のどちらでも raw-byte integrity validation を同じ結果にする。
-- Effect: clean checkout 直後に manifest health check が再現可能になる。
-- Requirements: LF policy を維持し、hash-sensitive text を editor の OS 設定へ依存させない。
-- State: 本報告を含む successor で実装。現 checkout の read-only chain は pass。
-- Owner: Product implementer / repository maintainer。
-- Next move: commit 後の clean checkout でも manifest と `git diff --check` を再確認する。
+### G0 — H1 Storyboard Comprehension Review
 
-### G1 — H1 Human Execution-Readiness Review を閉じる
+- Purpose: project外の人が standalone page だけから作品とshot logicを説明できるか確認する。
+- Effect: governanceの正しさではなく、実際のtransfer comprehensionを判定できる。
+- Requirements: page以外を見ず、premise、central question、six beats、代表shot、core terms、positive/negative boundaryを自由文で説明する。
+- State: ready; H0 green、H1 not started。
+- Owner: human supervisor または delegated creator。
+- Next move: pass / bounded revision notesを記録する。
 
-- Purpose: technical audit を開かず、別制作者が package を実行可能な順序で説明できるか確認する。
-- Effect: instruction ambiguity と transfer friction を production 開始前に修正できる。
-- Requirements: standalone HTML だけを起点に、6 beats、19 shots、14 requirements、再利用、閉じた選択を自由文で説明する。
-- State: 次の正規 gate。H0 は green。
-- Owner: Human reviewer; agent は観察を構造化して記録する。
-- Next move: H1 を実施し、pass なら current slice を閉じる。fail なら wording / grouping のみを狭く修正する。
+### G1 — Evidence-Bounded Comprehension Repair
 
-### G2 — H2 Local Synthetic Voice Calibration
+- Purpose: H1で観測された実際の摩擦だけを修正する。
+- Effect: scopeを広げずtransfer qualityを閉じられる。
+- Requirements: wording、grouping、glossary definition、low-fidelity diagram clarity、theme/accessibilityの範囲に限定し、source wording/truthを変えない。
+- State: conditional; H1で具体的な問題が出た場合のみ。
+- Owner: product implementer。
+- Next move: passならskip、failなら一回のnarrow repair後にH1再実施。
 
-- Purpose: proxy timing を一つの実 engine / voice の実測へ置き換える。
-- Effect: 6 beats 全体の pronunciation、pause、prosody、duration と headroom が分かる。
-- Requirements: engine / voice の明示承認、local-only 実行、unchanged narration baseline、B1–B6 の同一条件測定、生成 audio の non-release 表示。
-- State: 未開始、別承認が必要。
-- Owner: Voice/audio implementer + human listener。
-- Next move: 一つの local engine に限定した calibration packet を先に設計し、生成・採用・公開を分離する。
+### G2 — Asset and Rights Readiness Sandbox
 
-### G3 — Asset and Rights Readiness Pack
+- Purpose: 14 generic requirementsをprovenance付き候補へ変える方法を検証する。
+- Effect: selectedとrights-clearedを混同せず、19shotの具体準備へ進める。
+- Requirements: separate authorization、source URL/creator/license/acquisition/use/attribution記録、rejection/replacement path、no production claim。
+- State: closed; 14/14 unselected / not_reviewed。
+- Owner: producer / asset curator / rights reviewer。
+- Next move: H1 pass後、1 requirementだけをsandbox intakeする。
 
-- Purpose: 14 generic requirements を、provenance と権利状態が追跡できる候補へ変える。
-- Effect: 19 shots を具体素材へ割り当てても release readiness を誤認しなくなる。
-- Requirements: source URL / creator / license / acquisition date / permitted use / modification / attribution / expiry を記録し、`selected` と `rights_cleared` を別 gate にする。
-- State: 14/14 unselected、14/14 rights not reviewed。
-- Owner: Producer / asset curator / rights owner。
-- Next move: まず 1 requirement を sandbox intake し、provenance schema と rejection / replacement path を検証する。
+### G3 — Local Synthetic Voice Calibration
+
+- Purpose: text-density proxyを一つの実engine/voiceの測定へ置き換える。
+- Effect: pronunciation、pause、prosody、B1–B6 durationとheadroomが分かる。
+- Requirements: explicit engine/voice authorization、unchanged narration、local-only execution、non-release audio labeling。
+- State: closed; engine/voice/audio unselected、calibration pending。
+- Owner: voice implementer + human listener。
+- Next move: engineを一つに限定したcalibration packetを先に設計する。
 
 ### G4 — Offline Assembly Rehearsal
 
-- Purpose: publish せず、音声・字幕・19 shots を 180 秒 timeline に一度組み上げる。
-- Effect: timing、readability、missing assets、edit cost、render reproducibility を実測できる。
-- Requirements: G2 の calibrated timing、G3 の使用可能素材、local render authorization、watermark/non-release labeling、deterministic render manifest。
-- State: 未開始。
-- Owner: Production implementer + human editor。
-- Next move: low-resolution local-only render を acceptance target にし、upload / public release は明示的に除外する。
+- Purpose: publishせず、voice、subtitle、19 shotsを180秒timelineへ一度組む。
+- Effect: edit cost、timing conflict、missing media、readability、render reproducibilityを実測できる。
+- Requirements: G2/G3 evidence、local render authorization、watermark/non-release label、deterministic render manifest。
+- State: not started。
+- Owner: production implementer + human editor。
+- Next move: low-resolution local-only candidateをacceptance targetにする。
 
 ### G5 — First Production-Ready Local Candidate
 
-- Purpose: story source、editorial package、voice、assets、rights evidence、render recipe を一つの reviewable candidate に束ねる。
-- Effect: 「計画が揃った」から「公開前の完成候補が再現できる」へ進む。
-- Requirements: G1–G4 pass、canon-sensitive unresolved items の明示、release checklist、rollback and provenance manifest。
-- State: 未開始。
-- Owner: Human product owner + production implementer。
-- Next move: candidate definition と acceptance matrix を作り、production approval と public release approval を別判定にする。
+- Purpose: story、editorial、voice、asset、rights evidence、render recipeを一つのreviewable candidateへ束ねる。
+- Effect: planning completeからreproducible pre-release candidateへ進む。
+- Requirements: G0–G4 pass、unresolved canonの明示、production approvalとrelease approvalの分離、rollback/provenance manifest。
+- State: not started。
+- Owner: human product owner + production implementer。
+- Next move: candidate acceptance matrixを先に定義する。
 
-### G6 — Guarded Provider-Backed Extraction
+### G6 — Human Canon and Story-Truth Gate
 
-- Purpose: deterministic mock extraction を、source-tracked provider output で補完する。
-- Effect: raw memo から candidate を増やせるが、human authority と fail-closed guards を維持できる。
-- Requirements: provider / model / endpoint / credential storage / transport / timeout / retry / external call permission の個別承認、既存 validator・source-span・contradictory-claim gates の pass。
-- State: boundary / envelope / no-call readiness は存在。real adapter は未開始。
-- Owner: Product owner + AI implementer + security owner。
-- Next move: credentials を触らない adapter interface と record/replay fixture を先に作り、live call を最後の gate にする。
+- Purpose: Toma fate、brass moth truth/function、Council motive、ending choiceをhuman authorityで扱う。
+- Effect:制作仮説とcanonを混同せず、必要な場面だけ最終化できる。
+- Requirements: explicit human decision、before/after evidence、affected artifacts、rollback、no silent promotion。
+- State: unresolved and held。
+- Owner: human author / canon owner。
+- Next move: G5 candidateが要求する最小decisionだけをdecision packet化する。
 
-### G7 — Durable Project State
+### G7 — Guarded Provider-Backed Extraction
 
-- Purpose: browser storage と手動 JSON を越えて、複数 session の project state を安全に保持する。
-- Effect: versioned project、backup、migration、recovery、audit が可能になる。
-- Requirements: file-backed / SQLite / browser expansion の選定、schema version、migration policy、backup/export、no silent canon promotion、concurrent-write rule。
-- State: 未開始。
-- Owner: Product implementer。
-- Next move: provider / publishing と独立した local SQLite spike を行い、export/import parity と rollback を検証する。
+- Purpose: deterministic local extractionをsource-tracked provider outputで補完する。
+- Effect: candidate throughputを上げながらhuman authorityとfail-closed guardsを維持する。
+- Requirements: provider/model/endpoint/credential/transport/timeout/retry/external-call authorization、record/replay fixture、existing validator/source-span gates。
+- State: interface and no-call readiness exist; live adapter not started。
+- Owner: product owner + AI implementer + security owner。
+- Next move: credentialを触らないadapter interfaceとreplay testを先行する。
 
-### G8 — Reproducible Production Orchestration
+### G8 — Durable Project State
 
-- Purpose: extraction、review、editorial revision、asset intake、voice、render を一つの resumable job graph にする。
-- Effect: 一話の再実行、部分再生成、failure recovery、provenance が自動化できる。
-- Requirements: G5–G7 の stable contracts、idempotent steps、artifact cache、job state、cost/time telemetry、human approval checkpoints。
-- State: 未開始。
-- Owner: Pipeline implementer + product owner。
-- Next move: production candidate 一件だけを対象に、no-publish orchestration plan と stop conditions を定義する。
+- Purpose: browser storageとmanual JSONを越えてversioned project stateを保持する。
+- Effect: backup、migration、recovery、multi-session auditが可能になる。
+- Requirements: file-backed / SQLite / browser expansionの選定、schema version、migration、backup/export、concurrent-write rule、no silent canon。
+- State: not started。
+- Owner: product implementer。
+- Next move: provider/publishingと分離したlocal SQLite spikeを行う。
 
-### G9 — Publishing Staging and Release Gate
+### G9 — Reproducible Production Orchestration
 
-- Purpose: upload 操作と公開判断を production pipeline から分離して安全に扱う。
-- Effect: metadata preview、private/unlisted staging、release approval、rollback が監査可能になる。
-- Requirements: credential isolation、rights clearance、final canon / production approval、platform policy、dry-run、human release decision、post-release incident path。
-- State: 未開始、現在は明示的に closed。
-- Owner: Human release owner + publishing implementer。
-- Next move: API call なしの publication envelope と dry-run manifest を設計し、credential work はその後に別承認する。
+- Purpose: extraction、review、revision、asset intake、voice、renderをresumable job graphにする。
+- Effect: partial rerun、failure recovery、artifact provenance、cost/time observationが可能になる。
+- Requirements: G5/G7/G8 stable contracts、idempotency、cache、job state、human checkpoints。
+- State: not started。
+- Owner: pipeline implementer + product owner。
+- Next move:一作品・no-publish限定のorchestration planを定義する。
 
-### G10 — First Human-Approved Release
+### G10 — Publishing Staging and Release Gate
 
-- Purpose: 一つの作品を、story authority・rights・production・publication の全 gate を通して公開する。
-- Effect: Fast Fiction Factory の end-to-end value と真の運用コストを実証できる。
-- Requirements: G5、G8、G9、最終 human approvals、release evidence、rollback/retention plan。
-- State: 未開始。
-- Owner: Human author / product owner / release operator。
-- Next move: 公開前に acceptance report を生成し、各 approval owner の明示的な署名相当を揃える。
+- Purpose: upload操作と公開判断をproduction pipelineから分離する。
+- Effect: metadata preview、private/unlisted staging、release approval、rollbackが監査可能になる。
+- Requirements: credential isolation、rights clearance、canon/production approval、platform policy、dry-run、human release decision。
+- State: explicitly closed。
+- Owner: human release owner + publishing implementer。
+- Next move: API callなしのpublication envelopeを先に作る。
 
-### G11 — Multi-Project / Series Scale and Learning Loop
+### G11 — First Human-Approved Release
 
-- Purpose: 一話の成功を複数作品・シリーズ運用へ拡張し、品質と作業時間を継続改善する。
-- Effect: reusable style packs、series canon、asset reuse、review latency、production cost、release quality を横断管理できる。
-- Requirements: project isolation、series canon hierarchy、tenant/credential separation、metrics taxonomy、human override、retention/privacy policy。
-- State: 長期構想。
-- Owner: Product owner + platform implementer + editorial/production leads。
-- Next move: 最初の human-approved release 後に、実測 bottleneck だけを KPI 化し、先回りした大規模 platform 化を避ける。
+- Purpose:一作品をstory authority、rights、production、publicationの全gateを通して公開する。
+- Effect: Fast Fiction Factoryのend-to-end valueと実運用costを検証する。
+- Requirements: G5/G6/G9/G10、final human approvals、release evidence、rollback/retention plan。
+- State: not started。
+- Owner: human author / product owner / release operator。
+- Next move: release前acceptance reportとapproval owner一覧を生成する。
+
+### G12 — Multi-Project / Series Learning Loop
+
+- Purpose:一作品の結果を複数作品・seriesへ安全に拡張する。
+- Effect: style reuse、series canon、asset reuse、review latency、production cost、release qualityを横断改善できる。
+- Requirements: project isolation、series canon hierarchy、credential separation、metrics taxonomy、override、retention/privacy policy。
+- State: long-term horizon。
+- Owner: product owner + platform/editorial/production leads。
+- Next move: G11後の実測bottleneckだけをKPI化し、先回りしたplatform化を避ける。
 
 ## 推奨クリティカルパス
 
-`G0 portability → G1 H1 review → (G2 voice calibration + G3 asset/rights) → G4 offline assembly → G5 production-ready local candidate → G8 orchestration → G9 release gate → G10 first release → G11 scale`
+`G0 H1 → (必要時のみ G1) → [G2 asset/rights + G3 voice] → G4 offline assembly → G5 local candidate → G6 minimum canon decisions → G9 orchestration → G10 release gate → G11 first release → G12 scale`
 
-G6 provider extraction と G7 durable state は、G1 後に独立した platform lane として進められます。ただし、現作品の first local production candidate を provider / database 実装待ちにする必要はありません。
+G7 provider extraction と G8 durable state は、G0後にproduction laneと分離して進められます。現作品のG4/G5をproviderやdatabase待ちにする必要はありません。
 
 ## 監修 AI に求める次の判断
 
-1. 直近は G1 H1 review を優先し、current slice を閉じるか。
-2. H1 pass 後、G2 voice calibration と G3 asset/rights のどちらを先行または並行するか。
-3. G6 provider extraction / G7 durable state を制作 lane と分離した platform lane として許可するか。
-4. Toma fate、brass moth truth、Council motive は引き続き held とし、production candidate でも unresolved boundary として扱うか。
+1. 直近を G0 H1 Storyboard comprehension review に限定するか。
+2. H1 pass後、G2 asset/rights sandbox と G3 voice calibration のどちらを先行または並行許可するか。
+3. G6 の human-owned truth は G5 が必要とする最小範囲まで held にするか。
+4. G7/G8 を production lane と分離した platform lane として進めるか。
 
-推奨は、まず G1 を完了し、その後 G2 と G3 を狭い sandbox で並行準備することです。これが、既存の受理済み content contract を壊さず、最短で G4 offline assembly へ到達する経路です。
+推奨は、まず H1 を standalone Storyboard Brief だけで実施することです。passなら成果物を閉じ、次に G2 と G3 を別承認の小さな sandbox として準備します。これが、source contractを壊さず最短でoffline assemblyへ進む経路です。

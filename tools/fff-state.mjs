@@ -66,6 +66,9 @@ const OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCHEMA_VERSION = "fff.operato
 const PRODUCTION_EXECUTION_PACK_SCHEMA_VERSION = "fff.productionExecutionPack.v1";
 const PRODUCTION_EXECUTION_PACK_RESULT_SCHEMA_VERSION = "fff.productionExecutionPackResult.v1";
 const PRODUCTION_EXECUTION_PACK_MANIFEST_SCHEMA_VERSION = "fff.productionExecutionPackManifest.v1";
+const PRODUCTION_STORYBOARD_BRIEF_SCHEMA_VERSION = "fff.productionStoryboardBrief.v1";
+const PRODUCTION_STORYBOARD_BRIEF_RESULT_SCHEMA_VERSION = "fff.productionStoryboardBriefResult.v1";
+const PRODUCTION_STORYBOARD_BRIEF_MANIFEST_SCHEMA_VERSION = "fff.productionStoryboardBriefManifest.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -114,6 +117,7 @@ const DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT = "artifacts/content-productio
 const DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT = "artifacts/operator-production-brief-result.json";
 const DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT = "artifacts/operator-production-brief-typography-balance-result.json";
 const DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT = "artifacts/production-execution-pack-result.json";
+const DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT = "artifacts/production-storyboard-brief-result.json";
 const EDITORIAL_HANDOFF_PACKAGE_ROOT = "artifacts/editorial-handoff";
 const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/package-manifest.json`;
 const EDITORIAL_HANDOFF_PACKAGE_FILES = [
@@ -305,6 +309,37 @@ const PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS = Object.freeze([
   EDITORIAL_REVISION_ARTIFACT_ID,
   EDITORIAL_REVISION_SOURCE_ARTIFACT_ID
 ]);
+const PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID = "fff-production-storyboard-brief-001";
+const PRODUCTION_STORYBOARD_BRIEF_GENERATED_AT = "2026-07-14T12:00:00+09:00";
+const PRODUCTION_STORYBOARD_BRIEF_ROOT = "artifacts/production-storyboard-brief";
+const PRODUCTION_STORYBOARD_BRIEF_HTML_PATH = `${PRODUCTION_STORYBOARD_BRIEF_ROOT}/production-storyboard-brief.html`;
+const PRODUCTION_STORYBOARD_BRIEF_REVIEW_DOC_PATH = "docs/review/production-storyboard-brief.md";
+const PRODUCTION_STORYBOARD_BRIEF_ROUTE = PRODUCTION_STORYBOARD_BRIEF_HTML_PATH;
+const PRODUCTION_STORYBOARD_BRIEF_LINK_HREF = "../../artifacts/production-storyboard-brief/production-storyboard-brief.html";
+const PRODUCTION_STORYBOARD_BRIEF_LINK_TEXT = "絵コンテ版を開く";
+const PRODUCTION_STORYBOARD_BRIEF_FILES = Object.freeze([
+  "README_STORYBOARD_BRIEF.md",
+  "production-storyboard-brief.html",
+  "production-storyboard-brief.json",
+  "storyboard-shot-map.csv",
+  "story-glossary.csv",
+  "asset-operations-summary.csv"
+]);
+const PRODUCTION_STORYBOARD_BRIEF_REQUIRED_FILES = Object.freeze([
+  ...PRODUCTION_STORYBOARD_BRIEF_FILES,
+  "production-storyboard-brief-manifest.json"
+]);
+const PRODUCTION_STORYBOARD_BRIEF_SCREENSHOTS = Object.freeze({
+  "900x1200-dark": "artifacts/review-screens/production-storyboard-brief-900x1200-dark.png",
+  "1280x900-light": "artifacts/review-screens/production-storyboard-brief-1280x900-light.png"
+});
+const PRODUCTION_STORYBOARD_SOURCE_FINGERPRINTS = Object.freeze({
+  production_execution_pack_fingerprint_sha256: "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+  production_execution_html_sha256: "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c",
+  production_execution_json_sha256: "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb",
+  production_execution_manifest_sha256: "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7"
+});
+const PRODUCTION_STORYBOARD_SHOT_GROUPING = Object.freeze([3, 3, 3, 3, 4, 3]);
 const PRODUCTION_EXECUTION_NARRATION_TIMING = Object.freeze({
   1: { timing_state: "proxy_headroom_confirmed", observed_slack_min_seconds: 3, observed_slack_max_seconds: 5, proxy_spoken_duration_min_seconds: 15, proxy_spoken_duration_max_seconds: 17 },
   2: { timing_state: "existing_pass_unmeasured", observed_slack_min_seconds: null, observed_slack_max_seconds: null, proxy_spoken_duration_min_seconds: null, proxy_spoken_duration_max_seconds: null },
@@ -1508,6 +1543,18 @@ async function main() {
     if (command === "smoke-review-workbench-component-contract" || outputPath) {
       console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
+    return;
+  }
+
+  if (command === "validate-production-storyboard-brief") {
+    const { runProductionStoryboardBriefCommand } = await import("./fff-production-storyboard-brief.mjs");
+    await runProductionStoryboardBriefCommand({ command, inputPath, outputPath });
+    return;
+  }
+
+  if (command === "smoke-production-storyboard-brief") {
+    const { runProductionStoryboardBriefCommand } = await import("./fff-production-storyboard-brief.mjs");
+    await runProductionStoryboardBriefCommand({ command, inputPath, outputPath });
     return;
   }
 
@@ -14903,7 +14950,11 @@ function productionExecutionArrayExact(left, right) {
 }
 
 function productionExecutionRootPreserves(manifest, artifactId) {
-  return manifest?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID &&
+  const executionActive = manifest?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID;
+  const storyboardWrapsExecution = manifest?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
+    manifest?.production_storyboard_brief?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
+    manifest?.production_storyboard_brief?.source_artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID;
+  return (executionActive || storyboardWrapsExecution) &&
     manifest?.production_execution_pack?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID &&
     Array.isArray(manifest?.production_execution_pack?.source_artifact_ids) &&
     manifest.production_execution_pack.source_artifact_ids.includes(artifactId) &&
@@ -15330,7 +15381,9 @@ async function snapshotProductionExecutionPackProtectedFiles() {
 
 async function snapshotProductionExecutionPackHistoricalResults() {
   const names = (await readdir("artifacts"))
-    .filter((name) => name.endsWith("-result.json") && name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT));
+    .filter((name) => name.endsWith("-result.json") &&
+      name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT) &&
+      name !== path.basename(DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT));
   return snapshotOperatorProductionBriefTypographyPaths(names.map((name) => `artifacts/${name}`));
 }
 
@@ -15662,8 +15715,11 @@ function validateProductionExecutionPackRootManifest(manifest, packageSnapshots,
   const allowBootstrapEvidence = options.allow_bootstrap_evidence === true;
   const entry = manifest?.production_execution_pack || {};
   const files = entry.files || entry.package_files || [];
-  add(manifest?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID, "root active execution-pack artifact mismatch");
-  add(manifest?.review_doc_path === PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH && manifest?.smoke_result_path === DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT, "root execution-pack doc or result path mismatch");
+  const storyboardWrapped = manifest?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
+    manifest?.production_storyboard_brief?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
+    manifest?.production_storyboard_brief?.source_artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID;
+  add(manifest?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID || storyboardWrapped, "root active execution-pack artifact mismatch");
+  add(storyboardWrapped || (manifest?.review_doc_path === PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH && manifest?.smoke_result_path === DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT), "root execution-pack doc or result path mismatch");
   add(manifest?.production_execution_pack_dir === PRODUCTION_EXECUTION_PACK_ROOT && manifest?.production_execution_pack_result_path === DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT && manifest?.production_execution_pack_doc_path === PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH && manifest?.production_execution_pack_route === PRODUCTION_EXECUTION_PACK_ROUTE, "root execution-pack registration mismatch");
   add(entry.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID && entry.schemaVersion === PRODUCTION_EXECUTION_PACK_SCHEMA_VERSION && entry.package_root === PRODUCTION_EXECUTION_PACK_ROOT && entry.result_path === DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT && entry.review_doc_path === PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH && entry.access_route === PRODUCTION_EXECUTION_PACK_ROUTE, "nested execution-pack registration mismatch");
   add(productionExecutionArrayExact(entry.source_artifact_ids, PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS), "nested source artifact IDs mismatch");
@@ -15678,15 +15734,17 @@ function validateProductionExecutionPackRootManifest(manifest, packageSnapshots,
     add(allowBootstrapEvidence || (screenshot.exists && evidence.path === screenshotPath && evidence.byte_size === screenshot.byteSize && evidence.sha256 === screenshot.sha256), `nested screenshot hash mismatch: ${viewport}`);
   }
   const validationCommand = String(manifest?.validation_command || "");
+  const exactStoryboard = `node tools/fff-state.mjs validate-production-storyboard-brief ${DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT}`;
   const exactExecution = `node tools/fff-state.mjs validate-production-execution-pack ${DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT}`;
   const exactTypography = `node tools/fff-state.mjs validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`;
   const exactOperator = `node tools/fff-state.mjs validate-operator-production-brief ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT}`;
   const exactBlueprint = `node tools/fff-state.mjs validate-content-production-blueprint ${DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT}`;
+  const storyboardIndex = validationCommand.indexOf(exactStoryboard);
   const executionIndex = validationCommand.indexOf(exactExecution);
   const typographyIndex = validationCommand.indexOf(exactTypography);
   const operatorIndex = validationCommand.indexOf(exactOperator);
   const blueprintIndex = validationCommand.indexOf(exactBlueprint);
-  add(executionIndex >= 0 && typographyIndex > executionIndex && operatorIndex > typographyIndex && blueprintIndex > operatorIndex && !validationCommand.includes("smoke-production-execution-pack"), "root read-only validation command order mismatch");
+  add((!storyboardWrapped || (storyboardIndex >= 0 && executionIndex > storyboardIndex)) && executionIndex >= 0 && typographyIndex > executionIndex && operatorIndex > typographyIndex && blueprintIndex > operatorIndex && !validationCommand.includes("smoke-production-storyboard-brief") && !validationCommand.includes("smoke-production-execution-pack"), "root read-only validation command order mismatch");
   add(entry.canonical === false && entry.production_approved === false && entry.boundaries?.local_only === true && Object.entries(entry.boundaries || {}).every(([key, value]) => key === "local_only" ? value === true : value === false), "nested execution-pack boundary opened");
   return { valid: errors.length === 0, errors };
 }
@@ -16350,7 +16408,8 @@ async function snapshotOperatorProductionBriefHistoricalResults() {
   const names = (await readdir("artifacts"))
     .filter((name) => name.endsWith("-result.json") &&
       name !== path.basename(DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT) &&
-      name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT));
+      name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT) &&
+      name !== path.basename(DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT));
   return snapshotOperatorProductionBriefTypographyPaths(names.map((name) => `artifacts/${name}`));
 }
 

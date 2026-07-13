@@ -1,0 +1,26 @@
+term_id,term_ja,category,definition_ja,uncertainty_preserved
+term-north-bell-station,ノース・ベル駅,place,古い天文台とともに冒頭の遠景へ置かれる作品内の場所名。実在の場所や最終環境designは未選定。,true
+term-bellless-observatory,鐘のない塔／古い天文台,place,空の鐘枠を持ち、正午の鐘音という矛盾を調べる起点。鳴動原因は未確定。,true
+term-empty-bell-frame,空の鐘枠,object,鐘が存在しないことを示す第一幕と終幕のvisual anchor。鳴動原因や撤去理由は示さない。,true
+term-noon,正午,repeated_time_marker,鐘音とともに示される時刻。音の原因を確定する表示ではない。,true
+term-winter-curfew,winter curfew,unresolved_event,鐘の撤去理由に関係する可能性があるが、真相は未確定。,true
+term-mira,ミラ,person,時計修理台の手元で示される主人公。外見、final character design、終幕の選択は未確定。,true
+term-toma,トーマ／Toma,person,ミラの兄として手掛かりに結びつく人物。生死と所在は未解決。,true
+term-toma-note,トーマのメモ,document,真鍮の蛾とともに示される個人的な手掛かり。由来や真実性は確定しない。,true
+term-brass-moth,真鍮の蛾／moth,object,正体と機能が不明な物。key、spy、memoryはいずれも候補で、作動や正解を示さない。,true
+term-nine-seventeen,9:17,repeated_time_marker,閉店時刻のmotifとして扱う反復表示。時計停止の確定事実ではない。,true
+term-minutes-ledger,『分』の台帳,document,名前と『分』が並ぶ文書。証拠、誘い餌、偽記録のどれかは未確定。,true
+term-minutes-column,名前と『分』の列,document_field,台帳に並ぶ欄。時間と名前の因果関係は制作仮説に留まる。,true
+term-erased-names,消された名前／消えた名前,unresolved_concept,欠落や忘却として示される名前。literalな消去や回復は証明されていない。,true
+term-council,評議会／Council,organization,台帳との関係を疑われる制度組織。動機、責任、関係は未確定で、単純な悪役ではない。,true
+term-ledger-hypotheses,証拠／誘い餌／偽の記録,unresolved_choice,台帳に対する同格の読み。どれも採用済みの真実ではない。,true
+term-council-accusation,時間販売の告発,unresolved_claim,評議会への告発候補。偽記録説と同じ重みで保持する。,true
+term-toma-fate,トーマの運命,unresolved_choice,生存、死亡、消失、潜伏の候補。どれも採用しない。,true
+term-moth-function,真鍮の蛾の機能,unresolved_choice,key、spy、memoryの候補。どれも作動、正解、canonとして採用しない。,true
+term-council-motive,評議会の動機,unresolved_choice,villainous、desperate、divided、misled等の候補。責任範囲も未確定。,true
+term-hold,HOLD,review_label,判断を人間へ戻す編集者向け表示。物語世界内の物や事実ではない。,true
+term-canon,canon,review_term,採用済みの物語上の真実。今回の候補はcanonへ昇格していない。,true
+term-contradictory-claim-guard,Contradictory Claim Guard,review_guard,矛盾する説のどちらも自動採用しないためのreview guard。物語内の存在ではない。,true
+term-lost-time,失われた時間,unresolved_concept,終幕で回復候補として扱われる時間。奪取、販売、返還の成立は未確定。,true
+term-ending-choice,時間か、名前か,unresolved_choice,失われた時間か消えた名前かを問う結末候補。ミラの選択は未定。,true
+term-ending-candidate,ending candidate,review_term,未採用の結末案。解決済みのending truthではない。,true

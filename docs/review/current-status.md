@@ -1,6 +1,31 @@
 # Current Status Packet
 
-## Live Sync And Development Readiness
+## Current Storyboard Brief Update
+
+- Active artifact: `fff-production-storyboard-brief-001`
+- Active lane: `PRODUCTION_STORYBOARD_BRIEF`
+- Development base: synced `master` at `04c554c923ae8860fc39047fec515b6b16c195d0 Harden cross-platform supervisor handoff` with initial upstream parity `0 0` and a clean index/worktree
+- Standalone entry: `artifacts/production-storyboard-brief/production-storyboard-brief.html`
+- Package: `artifacts/production-storyboard-brief/` with exactly seven files; result and review authority are `artifacts/production-storyboard-brief-result.json` and `docs/review/production-storyboard-brief.md`
+- Source authority: `fff-production-execution-pack-001` remains byte-identical at `artifacts/production-execution-pack/`; its 180 seconds / 6 beats / 19 shots / 20 subtitle cues / 6 narration segments / 14 generic requirements and synthetic planning state are unchanged
+- Human surface: six-sentence overview, 25 glossary entries, 6 beat groups, and exactly 19 planning-only 16:9 SVG frames grouped 3/3/3/3/4/3
+- Shot semantics: all 19 frames keep focal subject, motion, visible content, purpose, positive `成立させること`, secondary negative `描かないこと`, duration, text allowance, and one-line asset summary adjacent
+- Theme/access: Light / Dark / Auto, Auto default with persisted preference and system resolution, visible focus, one document scroll, 48px full-width keyboard disclosure initially closed, and print-forced light output
+- Operational boundary: 14/14 asset requirements are one-line appendix entries, separated as 2 common / 7 reusable / 5 beat-specific; all remain `unselected` and `not_reviewed`
+- Browser evidence: `artifacts/review-screens/production-storyboard-brief-900x1200-dark.png` and `artifacts/review-screens/production-storyboard-brief-1280x900-light.png`; exact measurements and hashes are in the green result
+- Machine gate: H0 is green with `passed=true`, `failures=[]`, 18/18 fail-closed probes, exact source fingerprints, glossary/shot/SVG/semantic checks, theme/keyboard/viewport/print evidence, and predecessor validator compatibility
+- Human gate: H1 is not started. Improved comprehension is an inference until a reviewer can explain the premise, six-beat progression, representative shot logic, key terms, and positive/negative boundaries from this page alone
+- Closed gates: asset/rights candidate work, engine or voice selection, provider/API, credentials, external calls, art/audio/video generation, render, upload, publication, database persistence, production approval, and final canon
+- Read-only validation: `node tools/fff-state.mjs validate-production-storyboard-brief artifacts/production-storyboard-brief-result.json`
+- Intentional regeneration only: `node tools/fff-state.mjs smoke-production-storyboard-brief artifacts/production-storyboard-brief-result.json`
+- Publication: preferred commit subject is `Add production storyboard brief`; after publication, Git is the authority for the exact commit and upstream parity
+- Supervisor report: `docs/review/supervisor-current-report.md`
+
+## Next Gate
+
+Run one H1 freeform review from the standalone Storyboard Brief only. Pass means a reviewer can state the premise, central unresolved question, six-beat progression, representative shot purpose/success/guard distinction, and core glossary meanings without opening the Execution Pack. If H1 reports friction, allow only a bounded wording, grouping, or low-fidelity-diagram clarification; do not select assets, resolve story truth, or begin H2.
+
+## Preserved Execution Pack Baseline
 
 - Supervisor report: `docs/review/supervisor-current-report.md`
 - Synced remote base: `79160c3 Record production execution handoff`; the report and portability-fix successor owns the exact final HEAD after publication
@@ -10,7 +35,7 @@
 - Verification after LF normalization: root manifest read-only validation passes through Production Execution Pack, Typography Balance, Operator Brief, Blueprint, Derivative, Revision, and Handoff
 - Next gate remains H1 Production Execution readiness; the fix does not authorize H2, assets, rights, provider/API, generation, render, upload, publication, database, or canon work
 
-## Active Artifact
+## Preserved Source Artifact
 
 - Artifact id: `fff-production-execution-pack-001`
 - Published implementation: `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack`; push to `origin/master`, clean worktree, and parity `0 0` were verified on 2026-07-13 JST before the successor restart-context commit
