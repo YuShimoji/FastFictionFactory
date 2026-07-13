@@ -1,0 +1,607 @@
+{
+  "schemaVersion": "fff.operatorProductionBriefTypographyBalance.v1",
+  "artifact_id": "fff-operator-production-brief-typography-balance-001",
+  "route": "public/review/index.html?mode=blueprint",
+  "source_artifact_id": "fff-operator-production-brief-001",
+  "source_fingerprints": {
+    "primary_visible_text_sha256": "8dd887dcfbb6d68cddb7ae00d46a94878b90ba73f6390f05f1247b6e849c60e8",
+    "primary_html_sha256": "0c977a8ab17857e151218ea72f6700d34cbf49311c38b496247a027b373e93d1",
+    "operator_model_sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6",
+    "operator_manifest_sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40",
+    "runtime_visible_text_sha256": "8c61321ad73f991a0e113936790d5c1eec7a245c383b56dc220e92bd63d42379",
+    "runtime_all_beat_details_sha256": "ccd25c3a452a7ed45f54f830c2deb041c26e556fd50f9290ac2272a41b0273ab"
+  },
+  "content_fingerprint_unchanged": true,
+  "package_hashes_unchanged": true,
+  "protected_package_aggregate_sha256": "396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95",
+  "historical_results_aggregate_sha256": "372a0088c16af8cd4c11748c568932e558911ec89e03cfc9df31480a9106183b",
+  "measurements": {
+    "900x1200": {
+      "title_font_size_px": 40,
+      "title_line_height_px": 43.2,
+      "title_line_count": 2,
+      "title_block_height_px": 86.375,
+      "title_viewport_height_ratio": 0.07197916666666666,
+      "body_font_size_px": 17,
+      "title_body_ratio": 2.3529411764705883,
+      "metric_font_size_px": 22,
+      "metric_label_font_size_px": 11,
+      "section_heading_font_size_px": 26,
+      "first_view_content_bottom_px": 837.640625,
+      "completion_conditions_visible": 5,
+      "horizontal_overflow": false,
+      "nested_scroll_owner_count": 0,
+      "overlap_count": 0,
+      "clipped_text_count": 0,
+      "orphan_single_character_line_count": 0,
+      "required_elements_visible": {
+        "synopsis": true,
+        "status": true,
+        "counts": true,
+        "question": true,
+        "completion_conditions": true,
+        "narration_advisory": true
+      }
+    },
+    "1280x900": {
+      "title_font_size_px": 48,
+      "title_line_height_px": 51.84,
+      "title_line_count": 2,
+      "title_block_height_px": 103.65625,
+      "title_viewport_height_ratio": 0.11517361111111112,
+      "body_font_size_px": 17.28,
+      "title_body_ratio": 2.7777777777777777,
+      "metric_font_size_px": 28,
+      "metric_label_font_size_px": 11,
+      "section_heading_font_size_px": 33.92,
+      "first_view_content_bottom_px": 803.359375,
+      "completion_conditions_visible": 5,
+      "horizontal_overflow": false,
+      "nested_scroll_owner_count": 0,
+      "overlap_count": 0,
+      "clipped_text_count": 0,
+      "orphan_single_character_line_count": 0,
+      "required_elements_visible": {
+        "synopsis": true,
+        "status": true,
+        "counts": true,
+        "question": true,
+        "completion_conditions": true,
+        "narration_advisory": true
+      }
+    }
+  },
+  "raw_machine_key_visible_count": 0,
+  "global_counter_visibility": false,
+  "print_contract_preserved": true,
+  "print_measurement": {
+    "title_font_size_px": 34,
+    "title_line_height_px": 37.4,
+    "utility_chrome_visible": false,
+    "paper_background": true
+  },
+  "manifest_hashes_match": true,
+  "content_unchanged": true,
+  "timing_unchanged": true,
+  "order_unchanged": true,
+  "truth_boundaries_unchanged": true,
+  "canonical": false,
+  "production_approved": false,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "assets_selected": false,
+  "rights_cleared_claim": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "public_upload": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "failures": [],
+  "passed": true,
+  "protected_package_pre_hashes": {
+    "artifacts/editorial-derivative/README_DERIVATIVE.md": {
+      "exists": true,
+      "byte_size": 1919,
+      "sha256": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe"
+    },
+    "artifacts/editorial-derivative/applied-revision-patch.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-derivative/derivative-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2134,
+      "sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+    },
+    "artifacts/editorial-derivative/derivative-provenance.json": {
+      "exists": true,
+      "byte_size": 5841,
+      "sha256": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd"
+    },
+    "artifacts/editorial-derivative/editorial-handoff.derived.json": {
+      "exists": true,
+      "byte_size": 37134,
+      "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+    },
+    "artifacts/editorial-derivative/narration-script.derived.md": {
+      "exists": true,
+      "byte_size": 4774,
+      "sha256": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6"
+    },
+    "artifacts/editorial-derivative/shot-list.derived.csv": {
+      "exists": true,
+      "byte_size": 7009,
+      "sha256": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4"
+    },
+    "artifacts/editorial-derivative/subtitle-cues.derived.csv": {
+      "exists": true,
+      "byte_size": 3615,
+      "sha256": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe"
+    },
+    "artifacts/editorial-handoff/README_DELIVERY.md": {
+      "exists": true,
+      "byte_size": 4390,
+      "sha256": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2"
+    },
+    "artifacts/editorial-handoff/editorial-handoff.json": {
+      "exists": true,
+      "byte_size": 31907,
+      "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+    },
+    "artifacts/editorial-handoff/narration-script.md": {
+      "exists": true,
+      "byte_size": 4992,
+      "sha256": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081"
+    },
+    "artifacts/editorial-handoff/package-manifest.json": {
+      "exists": true,
+      "byte_size": 1081,
+      "sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+    },
+    "artifacts/editorial-handoff/shot-list.csv": {
+      "exists": true,
+      "byte_size": 7366,
+      "sha256": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676"
+    },
+    "artifacts/editorial-handoff/subtitle-cues.csv": {
+      "exists": true,
+      "byte_size": 3945,
+      "sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+    },
+    "artifacts/editorial-revision/README_REVISION.md": {
+      "exists": true,
+      "byte_size": 4975,
+      "sha256": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4"
+    },
+    "artifacts/editorial-revision/revision-decision.example.json": {
+      "exists": true,
+      "byte_size": 2585,
+      "sha256": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d"
+    },
+    "artifacts/editorial-revision/revision-patch.example.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-revision/revision-request-template.json": {
+      "exists": true,
+      "byte_size": 1831,
+      "sha256": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd"
+    },
+    "artifacts/editorial-revision/revision-request.example.json": {
+      "exists": true,
+      "byte_size": 5685,
+      "sha256": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1"
+    },
+    "artifacts/editorial-revision/revision-roundtrip-manifest.json": {
+      "exists": true,
+      "byte_size": 1405,
+      "sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+    },
+    "artifacts/operator-production-brief/README_OPERATOR_BRIEF.md": {
+      "exists": true,
+      "byte_size": 699,
+      "sha256": "4202f04f6fa9ece43d654938379ad698af54544a61a5d93b1ab8ab7bfdd58484"
+    },
+    "artifacts/operator-production-brief/beat-story-map.csv": {
+      "exists": true,
+      "byte_size": 2327,
+      "sha256": "9dc744c60db073a89f0bf280f4f50026a990fd5fb0dbd84ad9dad6a419a8fff7"
+    },
+    "artifacts/operator-production-brief/operator-brief-manifest.json": {
+      "exists": true,
+      "byte_size": 1365,
+      "sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40"
+    },
+    "artifacts/operator-production-brief/operator-completion-checklist.md": {
+      "exists": true,
+      "byte_size": 441,
+      "sha256": "0e49c81efe375349af0911fe57255031ad94e8aef5e7490a487ffd1acf36ef13"
+    },
+    "artifacts/operator-production-brief/operator-production-brief.json": {
+      "exists": true,
+      "byte_size": 27229,
+      "sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6"
+    },
+    "artifacts/operator-production-brief/visual-grammar-guide.md": {
+      "exists": true,
+      "byte_size": 1810,
+      "sha256": "d4752baf826e4a3ed776c70573d018197b8fb2e6dbc841248ee20d9b3b185dcd"
+    },
+    "artifacts/production-blueprint/README_BLUEPRINT.md": {
+      "exists": true,
+      "byte_size": 2569,
+      "sha256": "c018bfb033c290fd3693be5176df397983dfae902145a3fbc91ab7229776d40b"
+    },
+    "artifacts/production-blueprint/acceptance-matrix.csv": {
+      "exists": true,
+      "byte_size": 12686,
+      "sha256": "65b319b7528ba202acda464dd18c3b25403a5be95a94422bf5d9347552ff46f4"
+    },
+    "artifacts/production-blueprint/beat-specs.csv": {
+      "exists": true,
+      "byte_size": 3600,
+      "sha256": "6de66391518c3084d6369e5af5d34818e09d3d75186633328c386d29393ec0bb"
+    },
+    "artifacts/production-blueprint/blueprint-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2843,
+      "sha256": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245"
+    },
+    "artifacts/production-blueprint/production-blueprint.json": {
+      "exists": true,
+      "byte_size": 202005,
+      "sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d"
+    },
+    "artifacts/production-blueprint/shot-specs.csv": {
+      "exists": true,
+      "byte_size": 7268,
+      "sha256": "f36b413da40a4bf53d7a96a5408df41f77381310f089ae3e1784a8899d427914"
+    },
+    "artifacts/production-blueprint/subtitle-metrics.csv": {
+      "exists": true,
+      "byte_size": 2818,
+      "sha256": "ed3ac3491120e433cac6dccc0960d94e7931ff5c566d3beb511384f514e8d816"
+    },
+    "artifacts/production-blueprint/visual-system.md": {
+      "exists": true,
+      "byte_size": 2316,
+      "sha256": "1784b672c36551562437c274c1b6a49db0c214dc58cef5f059631c8066d77392"
+    }
+  },
+  "protected_package_post_hashes": {
+    "artifacts/editorial-derivative/README_DERIVATIVE.md": {
+      "exists": true,
+      "byte_size": 1919,
+      "sha256": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe"
+    },
+    "artifacts/editorial-derivative/applied-revision-patch.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-derivative/derivative-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2134,
+      "sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+    },
+    "artifacts/editorial-derivative/derivative-provenance.json": {
+      "exists": true,
+      "byte_size": 5841,
+      "sha256": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd"
+    },
+    "artifacts/editorial-derivative/editorial-handoff.derived.json": {
+      "exists": true,
+      "byte_size": 37134,
+      "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+    },
+    "artifacts/editorial-derivative/narration-script.derived.md": {
+      "exists": true,
+      "byte_size": 4774,
+      "sha256": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6"
+    },
+    "artifacts/editorial-derivative/shot-list.derived.csv": {
+      "exists": true,
+      "byte_size": 7009,
+      "sha256": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4"
+    },
+    "artifacts/editorial-derivative/subtitle-cues.derived.csv": {
+      "exists": true,
+      "byte_size": 3615,
+      "sha256": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe"
+    },
+    "artifacts/editorial-handoff/README_DELIVERY.md": {
+      "exists": true,
+      "byte_size": 4390,
+      "sha256": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2"
+    },
+    "artifacts/editorial-handoff/editorial-handoff.json": {
+      "exists": true,
+      "byte_size": 31907,
+      "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+    },
+    "artifacts/editorial-handoff/narration-script.md": {
+      "exists": true,
+      "byte_size": 4992,
+      "sha256": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081"
+    },
+    "artifacts/editorial-handoff/package-manifest.json": {
+      "exists": true,
+      "byte_size": 1081,
+      "sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+    },
+    "artifacts/editorial-handoff/shot-list.csv": {
+      "exists": true,
+      "byte_size": 7366,
+      "sha256": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676"
+    },
+    "artifacts/editorial-handoff/subtitle-cues.csv": {
+      "exists": true,
+      "byte_size": 3945,
+      "sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+    },
+    "artifacts/editorial-revision/README_REVISION.md": {
+      "exists": true,
+      "byte_size": 4975,
+      "sha256": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4"
+    },
+    "artifacts/editorial-revision/revision-decision.example.json": {
+      "exists": true,
+      "byte_size": 2585,
+      "sha256": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d"
+    },
+    "artifacts/editorial-revision/revision-patch.example.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-revision/revision-request-template.json": {
+      "exists": true,
+      "byte_size": 1831,
+      "sha256": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd"
+    },
+    "artifacts/editorial-revision/revision-request.example.json": {
+      "exists": true,
+      "byte_size": 5685,
+      "sha256": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1"
+    },
+    "artifacts/editorial-revision/revision-roundtrip-manifest.json": {
+      "exists": true,
+      "byte_size": 1405,
+      "sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+    },
+    "artifacts/operator-production-brief/README_OPERATOR_BRIEF.md": {
+      "exists": true,
+      "byte_size": 699,
+      "sha256": "4202f04f6fa9ece43d654938379ad698af54544a61a5d93b1ab8ab7bfdd58484"
+    },
+    "artifacts/operator-production-brief/beat-story-map.csv": {
+      "exists": true,
+      "byte_size": 2327,
+      "sha256": "9dc744c60db073a89f0bf280f4f50026a990fd5fb0dbd84ad9dad6a419a8fff7"
+    },
+    "artifacts/operator-production-brief/operator-brief-manifest.json": {
+      "exists": true,
+      "byte_size": 1365,
+      "sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40"
+    },
+    "artifacts/operator-production-brief/operator-completion-checklist.md": {
+      "exists": true,
+      "byte_size": 441,
+      "sha256": "0e49c81efe375349af0911fe57255031ad94e8aef5e7490a487ffd1acf36ef13"
+    },
+    "artifacts/operator-production-brief/operator-production-brief.json": {
+      "exists": true,
+      "byte_size": 27229,
+      "sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6"
+    },
+    "artifacts/operator-production-brief/visual-grammar-guide.md": {
+      "exists": true,
+      "byte_size": 1810,
+      "sha256": "d4752baf826e4a3ed776c70573d018197b8fb2e6dbc841248ee20d9b3b185dcd"
+    },
+    "artifacts/production-blueprint/README_BLUEPRINT.md": {
+      "exists": true,
+      "byte_size": 2569,
+      "sha256": "c018bfb033c290fd3693be5176df397983dfae902145a3fbc91ab7229776d40b"
+    },
+    "artifacts/production-blueprint/acceptance-matrix.csv": {
+      "exists": true,
+      "byte_size": 12686,
+      "sha256": "65b319b7528ba202acda464dd18c3b25403a5be95a94422bf5d9347552ff46f4"
+    },
+    "artifacts/production-blueprint/beat-specs.csv": {
+      "exists": true,
+      "byte_size": 3600,
+      "sha256": "6de66391518c3084d6369e5af5d34818e09d3d75186633328c386d29393ec0bb"
+    },
+    "artifacts/production-blueprint/blueprint-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2843,
+      "sha256": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245"
+    },
+    "artifacts/production-blueprint/production-blueprint.json": {
+      "exists": true,
+      "byte_size": 202005,
+      "sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d"
+    },
+    "artifacts/production-blueprint/shot-specs.csv": {
+      "exists": true,
+      "byte_size": 7268,
+      "sha256": "f36b413da40a4bf53d7a96a5408df41f77381310f089ae3e1784a8899d427914"
+    },
+    "artifacts/production-blueprint/subtitle-metrics.csv": {
+      "exists": true,
+      "byte_size": 2818,
+      "sha256": "ed3ac3491120e433cac6dccc0960d94e7931ff5c566d3beb511384f514e8d816"
+    },
+    "artifacts/production-blueprint/visual-system.md": {
+      "exists": true,
+      "byte_size": 2316,
+      "sha256": "1784b672c36551562437c274c1b6a49db0c214dc58cef5f059631c8066d77392"
+    }
+  },
+  "operator_validator_passed": true,
+  "technical_blueprint_validator_passed": true,
+  "historical_results_unchanged": true,
+  "validation_read_only": true,
+  "negative_probes": {
+    "title_font_above_maximum": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "900px title maximum rejected"
+    },
+    "title_font_below_minimum": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "900px title minimum rejected"
+    },
+    "title_height_ratio_above_threshold": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "title height threshold rejected"
+    },
+    "title_more_than_three_lines": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "four-line title rejected"
+    },
+    "body_below_readable_baseline": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "sub-17px body text rejected"
+    },
+    "title_equals_section_scale": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "equal title/section scale rejected"
+    },
+    "metric_competes_with_title": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "competing metric scale rejected"
+    },
+    "completion_condition_missing": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "missing first-view completion condition rejected"
+    },
+    "horizontal_overflow": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "horizontal overflow rejected"
+    },
+    "nested_scroll_owner": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "nested primary scroll rejected"
+    },
+    "global_counters_visible": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "global counters rejected"
+    },
+    "raw_machine_key_visible": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "raw machine key rejected"
+    },
+    "visible_text_changed": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "visible text mutation rejected"
+    },
+    "package_hash_changed": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "package hash mutation rejected"
+    },
+    "print_title_oversized": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "oversized print title rejected"
+    },
+    "manifest_hash_mismatch": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "manifest screenshot hash mismatch rejected"
+    }
+  },
+  "checks": {
+    "result_contract": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "source_content_fingerprints": {
+      "passed": true,
+      "detail": "text=8dd887dcfbb6d68cddb7ae00d46a94878b90ba73f6390f05f1247b6e849c60e8; html=0c977a8ab17857e151218ea72f6700d34cbf49311c38b496247a027b373e93d1; model=25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6; manifest=05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40"
+    },
+    "blueprint_scoped_responsive_type_system": {
+      "passed": true,
+      "detail": "markerCount=1"
+    },
+    "print_stylesheet": {
+      "passed": true,
+      "detail": "printCss=true"
+    },
+    "protected_package_hashes": {
+      "passed": true,
+      "detail": "files=34; aggregate=396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95"
+    },
+    "historical_results_unchanged": {
+      "passed": true,
+      "detail": "files=67; aggregate=372a0088c16af8cd4c11748c568932e558911ec89e03cfc9df31480a9106183b"
+    },
+    "root_manifest_registered": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "review_doc_registered": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "screenshot_evidence": {
+      "passed": true,
+      "detail": "900x1200=858740; 1280x900=905819"
+    },
+    "operator_validator": {
+      "passed": true,
+      "detail": "passed=true; failures=0"
+    },
+    "technical_blueprint_validator": {
+      "passed": true,
+      "detail": "passed=true; failures=0"
+    },
+    "negative_probes_fail_closed": {
+      "passed": true,
+      "detail": "count=16"
+    },
+    "prior_negative_probe_readback": {
+      "passed": true,
+      "detail": "generatedSeed=true"
+    },
+    "normal_validation_read_only": {
+      "passed": true,
+      "detail": "readOnly=true"
+    }
+  }
+}

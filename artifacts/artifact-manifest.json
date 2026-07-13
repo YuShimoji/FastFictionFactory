@@ -1,18 +1,27 @@
 {
-  "artifact_id": "fff-operator-production-brief-001",
+  "artifact_id": "fff-operator-production-brief-typography-balance-001",
   "preserved_source_span_artifact_id": "fff-source-span-routing-review-pack-001",
   "preserved_model_api_boundary_artifact_id": "fff-model-api-boundary-spec-001",
   "preserved_adapter_expansion_artifact_id": "fff-local-extraction-adapter-expansion-001",
   "preserved_adapter_artifact_id": "fff-local-extraction-adapter-spike-001",
   "preserved_artifact_id": "fff-extraction-validator-hardening-001",
   "preserved_contract_artifact_id": "fff-extraction-contract-001",
-  "title": "Fast Fiction Factory Operator Production Brief",
-  "purpose": "Turn the protected quantitative Blueprint into one plain-language production instruction path with a compact Focus Shell, a continuous six-beat spine, visual grammar diagrams, human completion conditions, and closed technical audit while preserving every source byte and production boundary.",
+  "title": "Fast Fiction Factory Operator Production Brief Typography Balance",
+  "purpose": "Reduce the accepted Operator Production Brief title's visual dominance through one Blueprint-scoped responsive type system while preserving every visible word, first-view instruction, package byte, and production boundary.",
   "repo_relative_path": "public/review/index.html",
   "open_command": ".\\scripts\\operator\\open_review.ps1 -Mode blueprint",
   "repo_local_launcher": "scripts/operator/open_review.ps1",
-  "review_doc_path": "docs/review/operator-production-brief.md",
-  "smoke_result_path": "artifacts/operator-production-brief-result.json",
+  "review_doc_path": "docs/review/operator-production-brief-typography-balance.md",
+  "smoke_result_path": "artifacts/operator-production-brief-typography-balance-result.json",
+  "operator_production_brief_typography_balance_doc_path": "docs/review/operator-production-brief-typography-balance.md",
+  "operator_production_brief_typography_balance_result_path": "artifacts/operator-production-brief-typography-balance-result.json",
+  "operator_production_brief_typography_balance_route": "public/review/index.html?mode=blueprint",
+  "operator_production_brief_typography_balance_screenshot_900_path": "artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png",
+  "operator_production_brief_typography_balance_screenshot_1280_path": "artifacts/review-screens/operator-production-brief-typography-balance-1280x900.png",
+  "operator_production_brief_typography_balance_screenshot_900_size": 858740,
+  "operator_production_brief_typography_balance_screenshot_900_sha256": "7370ab17d289cd1157a3f6b56cd8a7c5436c8c7f63a6de8840edd962f792f836",
+  "operator_production_brief_typography_balance_screenshot_1280_size": 905819,
+  "operator_production_brief_typography_balance_screenshot_1280_sha256": "8f395384c57397e54dcaebe8d9546cd2218f14b8322003506de012dab115eb33",
   "operator_production_brief_doc_path": "docs/review/operator-production-brief.md",
   "operator_production_brief_result_path": "artifacts/operator-production-brief-result.json",
   "operator_production_brief_route": "public/review/index.html?mode=blueprint",
@@ -369,13 +378,13 @@
   "created_at": "2026-06-23T14:06:00+09:00",
   "editorial_handoff_line_ending_policy": "LF enforced by .gitattributes for portable byte-size and SHA256 verification",
   "editorial_handoff_portability_validation_result": "passed 6/6 filtered checkout files; LF-only bytes, working-tree hashes, and package-manifest hashes matched with core.autocrlf=true on 2026-07-12",
-  "validation_command": "& { node --check tools/fff-state.mjs; if ($LASTEXITCODE -ne 0) { throw 'State tool syntax failed' }; node tools/fff-state.mjs validate-operator-production-brief artifacts/operator-production-brief-result.json; if ($LASTEXITCODE -ne 0) { throw 'Operator Production Brief validation failed' }; node tools/fff-state.mjs validate-content-production-blueprint artifacts/content-production-blueprint-result.json; if ($LASTEXITCODE -ne 0) { throw 'Content Production Blueprint validation failed' }; node tools/fff-state.mjs validate-editorial-derivative-preview artifacts/editorial-derivative-preview-result.json; if ($LASTEXITCODE -ne 0) { throw 'Editorial Derivative Preview validation failed' }; node tools/fff-state.mjs validate-editorial-revision-roundtrip artifacts/editorial-revision-roundtrip-result.json; if ($LASTEXITCODE -ne 0) { throw 'Editorial Revision Roundtrip validation failed' }; node tools/fff-state.mjs validate-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json; if ($LASTEXITCODE -ne 0) { throw 'Bridge Editorial Handoff Pack validation failed' }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($manifest.artifact_id -ne 'fff-operator-production-brief-001' -or $manifest.default_review_mode -ne 'brief' -or $manifest.review_input_mode -ne 'freeform') { throw 'Manifest active Operator Production Brief mismatch' }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; @('data-operator-production-brief-root=\"true\"', 'data-operator-focus-shell=\"true\"', 'data-operator-primary-flow=\"true\"', 'data-operator-audit-files=\"true\"', 'data-mode-panel=\"derivative\"', 'data-mode-panel=\"revision\"', 'data-mode-panel=\"handoff\"', 'data-bridge-storyboard-flow=\"true\"', 'data-review-workbench-canvas=\"true\"') | ForEach-Object { if (-not $html.Contains($_)) { throw ('Missing Operator Production Brief marker: ' + $_) } }; Write-Output 'Operator Production Brief read-only validation passed' }",
-  "validation_result": "passed_targeted_operator_production_brief_validation_2026-07-13; operator 18/18 checks, technical Blueprint and Derivative/Revision/Handoff preserved validators, 22/22 deterministic negative probes fail-closed, browser 900x1200 and 1280x900, protected 28-file hashes unchanged, normal validation read-only",
+  "validation_command": "& { node --check tools/fff-state.mjs; if ($LASTEXITCODE -ne 0) { throw 'State tool syntax failed' }; node tools/fff-state.mjs validate-operator-production-brief-typography-balance artifacts/operator-production-brief-typography-balance-result.json; if ($LASTEXITCODE -ne 0) { throw 'Operator Production Brief typography balance validation failed' }; node tools/fff-state.mjs validate-operator-production-brief artifacts/operator-production-brief-result.json; if ($LASTEXITCODE -ne 0) { throw 'Operator Production Brief validation failed' }; node tools/fff-state.mjs validate-content-production-blueprint artifacts/content-production-blueprint-result.json; if ($LASTEXITCODE -ne 0) { throw 'Content Production Blueprint validation failed' }; node tools/fff-state.mjs validate-editorial-derivative-preview artifacts/editorial-derivative-preview-result.json; if ($LASTEXITCODE -ne 0) { throw 'Editorial Derivative Preview validation failed' }; node tools/fff-state.mjs validate-editorial-revision-roundtrip artifacts/editorial-revision-roundtrip-result.json; if ($LASTEXITCODE -ne 0) { throw 'Editorial Revision Roundtrip validation failed' }; node tools/fff-state.mjs validate-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json; if ($LASTEXITCODE -ne 0) { throw 'Bridge Editorial Handoff Pack validation failed' }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($manifest.artifact_id -ne 'fff-operator-production-brief-typography-balance-001' -or $manifest.default_review_mode -ne 'brief' -or $manifest.review_input_mode -ne 'freeform') { throw 'Manifest active typography balance mismatch' }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; @('operator-production-brief-typography-balance:v1', 'data-operator-production-brief-root=\"true\"', 'data-operator-focus-shell=\"true\"', 'data-operator-primary-flow=\"true\"', 'data-operator-audit-files=\"true\"', 'data-mode-panel=\"derivative\"', 'data-mode-panel=\"revision\"', 'data-mode-panel=\"handoff\"', 'data-bridge-storyboard-flow=\"true\"', 'data-review-workbench-canvas=\"true\"') | ForEach-Object { if (-not $html.Contains($_)) { throw ('Missing Operator Production Brief typography marker: ' + $_) } }; Write-Output 'Operator Production Brief typography balance read-only validation passed' }",
+  "validation_result": "passed 2026-07-13 JST: node syntax, strict read-only typography validation, 16/16 fail-closed probes, Operator/Blueprint/Derivative/Revision/Handoff regression chain, 900x1200 and 1280x900 browser hierarchy/first-view checks, print/dark/focus/console checks, exact 34-file package and 67-result history aggregates, inline script compile, Blueprint print-only URI, strict MkDocs, JSON parse, and git diff check",
   "scope_lock_validation_result": "passed 2026-06-23T18:00:28+09:00; fff-downstream-adoption-gate-scope-lock-001 parsed and confirmed readback-only, no adoption implementation, no Profile/Claim/Timeline mutation, no canon promotion, no DB persistence, no model/API/provider execution, no production sync, contradictory claims held, and pre-adoption source/routing/hold checks preserved over the latest downstream gate readback.",
-  "review_status": "ready_for_local_blueprint_review",
+  "review_status": "typography_balance_validated",
   "review_input_mode": "freeform",
-  "review_prompt_hint": "Open public/review/index.html?mode=blueprint and review whether the quantitative scope, shot grammar, visual system, and completion criteria are sufficient for a separate creator without opening production gates.",
-  "next_action": "H1 human comprehension review may answer five plain-language production questions after one pass. Narration rehearsal, asset/shot brief, separate-creator test, old-branch audit, production, rights, provider, generation, render, publication, database, and final canon remain deferred or closed.",
+  "review_prompt_hint": "Open public/review/index.html?mode=blueprint only if a visual readback is useful; Human Comprehension already passed judgment A and this slice changes no wording or structure.",
+  "next_action": "Typography balance is complete. Narration Read-Aloud remains advisory; Asset / Shot Brief, assets, rights, provider, generation, render, publication, database, and canon require separate authorization.",
   "context_synced_at": "2026-07-13T00:00:00+09:00",
   "handoff_remote_head": "4fb9d56e6264545acda5b8194cf6bbcb85204d57",
   "handoff_remote_head_short": "4fb9d56e",
@@ -398,6 +407,16 @@
   "review_procedure_doc_path": "docs/review/review-procedure.md",
   "review_procedure_smoke_result_path": "artifacts/review-procedure-lock-smoke-result.json",
   "review_memory": [
+    {
+      "artifact_id": "fff-operator-production-brief-typography-balance-001",
+      "axis": "operator_production_brief_typography_balance",
+      "prior_review_count": 1,
+      "human_observation": "H1 comprehension passed judgment A; main story title was visually too large",
+      "requested_repair": "rebalance the accepted first-view hierarchy without changing content or structure",
+      "review_card_emitted": false,
+      "repeated_general_review_request_emitted": false,
+      "next_review": "optional visual readback only; do not reopen comprehension or production gates"
+    },
     {
       "artifact_id": "fff-bridge-refinement-overview-ribbon-001",
       "axis": "bridge_refinement_overview_ribbon",
@@ -2912,6 +2931,67 @@
     },
     "next_review": "Preserved as the immutable Handoff source for the active Editorial Derivative Preview."
   },
+  "operator_production_brief_typography_balance": {
+    "artifact_id": "fff-operator-production-brief-typography-balance-001",
+    "schemaVersion": "fff.operatorProductionBriefTypographyBalance.v1",
+    "review_ui": "public/review/index.html",
+    "access_route": "public/review/index.html?mode=blueprint",
+    "source_artifact_id": "fff-operator-production-brief-001",
+    "primary_visible_text_sha256": "8dd887dcfbb6d68cddb7ae00d46a94878b90ba73f6390f05f1247b6e849c60e8",
+    "primary_html_sha256": "0c977a8ab17857e151218ea72f6700d34cbf49311c38b496247a027b373e93d1",
+    "runtime_visible_text_sha256": "8c61321ad73f991a0e113936790d5c1eec7a245c383b56dc220e92bd63d42379",
+    "runtime_all_beat_details_sha256": "ccd25c3a452a7ed45f54f830c2deb041c26e556fd50f9290ac2272a41b0273ab",
+    "operator_model_sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6",
+    "operator_manifest_sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40",
+    "protected_package_aggregate_sha256": "396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95",
+    "historical_results_aggregate_sha256": "372a0088c16af8cd4c11748c568932e558911ec89e03cfc9df31480a9106183b",
+    "measurements": {
+      "900x1200": {
+        "title_font_size_px": 40,
+        "title_line_count": 2,
+        "title_block_height_px": 86.375,
+        "title_body_ratio": 2.3529411764705883,
+        "first_view_content_bottom_px": 837.640625
+      },
+      "1280x900": {
+        "title_font_size_px": 48,
+        "title_line_count": 2,
+        "title_block_height_px": 103.65625,
+        "title_body_ratio": 2.7777777777777777,
+        "first_view_content_bottom_px": 803.359375
+      }
+    },
+    "screenshots": {
+      "900x1200": {
+        "path": "artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png",
+        "byte_size": 858740,
+        "sha256": "7370ab17d289cd1157a3f6b56cd8a7c5436c8c7f63a6de8840edd962f792f836"
+      },
+      "1280x900": {
+        "path": "artifacts/review-screens/operator-production-brief-typography-balance-1280x900.png",
+        "byte_size": 905819,
+        "sha256": "8f395384c57397e54dcaebe8d9546cd2218f14b8322003506de012dab115eb33"
+      }
+    },
+    "review_doc_path": "docs/review/operator-production-brief-typography-balance.md",
+    "result_path": "artifacts/operator-production-brief-typography-balance-result.json",
+    "canonical": false,
+    "production_approved": false,
+    "boundaries": {
+      "local_only": true,
+      "external_call": false,
+      "provider_configured": false,
+      "credentials_touched": false,
+      "assets_selected": false,
+      "rights_cleared_claim": false,
+      "public_upload": false,
+      "ai_video_generation": false,
+      "production_render": false,
+      "database_persistence": false,
+      "final_canon_decision": false
+    },
+    "next_review": "Typography balance is complete; Narration Read-Aloud remains advisory and Asset / Shot Brief still requires separate authorization."
+  },
   "operator_production_brief": {
     "artifact_id": "fff-operator-production-brief-001",
     "schemaVersion": "fff.operatorProductionBrief.v1",
@@ -2961,7 +3041,7 @@
       "database_persistence": false,
       "final_canon_decision": false
     },
-    "next_review": "H1 human comprehension review: answer five plain-language production questions after one pass. Narration rehearsal, asset and shot brief, separate-creator test, production, rights, and canon remain deferred or closed."
+    "next_review": "H1 Human Comprehension passed judgment A. The active typography-balance wrapper preserves this source; narration rehearsal remains advisory and asset / shot work still requires separate authorization."
   },
   "content_production_blueprint": {
     "artifact_id": "fff-content-production-blueprint-001",

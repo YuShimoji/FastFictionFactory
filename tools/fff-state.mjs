@@ -62,6 +62,7 @@ const CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.conten
 const OPERATOR_PRODUCTION_BRIEF_SCHEMA_VERSION = "fff.operatorProductionBrief.v1";
 const OPERATOR_PRODUCTION_BRIEF_RESULT_SCHEMA_VERSION = "fff.operatorProductionBriefResult.v1";
 const OPERATOR_PRODUCTION_BRIEF_MANIFEST_SCHEMA_VERSION = "fff.operatorProductionBriefManifest.v1";
+const OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCHEMA_VERSION = "fff.operatorProductionBriefTypographyBalance.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -108,6 +109,7 @@ const DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT = "artifacts/editorial-revisio
 const DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT = "artifacts/editorial-derivative-preview-result.json";
 const DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT = "artifacts/content-production-blueprint-result.json";
 const DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT = "artifacts/operator-production-brief-result.json";
+const DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT = "artifacts/operator-production-brief-typography-balance-result.json";
 const EDITORIAL_HANDOFF_PACKAGE_ROOT = "artifacts/editorial-handoff";
 const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/package-manifest.json`;
 const EDITORIAL_HANDOFF_PACKAGE_FILES = [
@@ -236,6 +238,22 @@ const OPERATOR_PRODUCTION_BRIEF_REQUIRED_FILES = [
   "operator-brief-manifest.json"
 ];
 const OPERATOR_PRODUCTION_BRIEF_GENERATED_AT = "2026-07-13T12:00:00+09:00";
+const OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID = "fff-operator-production-brief-typography-balance-001";
+const OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ROUTE = OPERATOR_PRODUCTION_BRIEF_ROUTE;
+const OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_DOC_PATH = "docs/review/operator-production-brief-typography-balance.md";
+const OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCREENSHOTS = Object.freeze({
+  "900x1200": "artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png",
+  "1280x900": "artifacts/review-screens/operator-production-brief-typography-balance-1280x900.png"
+});
+const OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_MARKER = "operator-production-brief-typography-balance:v1";
+const OPERATOR_PRODUCTION_BRIEF_PRIMARY_TEXT_SHA256 = "8dd887dcfbb6d68cddb7ae00d46a94878b90ba73f6390f05f1247b6e849c60e8";
+const OPERATOR_PRODUCTION_BRIEF_PRIMARY_HTML_SHA256 = "0c977a8ab17857e151218ea72f6700d34cbf49311c38b496247a027b373e93d1";
+const OPERATOR_PRODUCTION_BRIEF_MODEL_SHA256 = "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6";
+const OPERATOR_PRODUCTION_BRIEF_MANIFEST_SHA256 = "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40";
+const OPERATOR_PRODUCTION_BRIEF_RUNTIME_VISIBLE_TEXT_SHA256 = "8c61321ad73f991a0e113936790d5c1eec7a245c383b56dc220e92bd63d42379";
+const OPERATOR_PRODUCTION_BRIEF_RUNTIME_ALL_BEATS_SHA256 = "ccd25c3a452a7ed45f54f830c2deb041c26e556fd50f9290ac2272a41b0273ab";
+const OPERATOR_PRODUCTION_BRIEF_PROTECTED_PACKAGE_AGGREGATE_SHA256 = "396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95";
+const OPERATOR_PRODUCTION_BRIEF_HISTORICAL_RESULTS_AGGREGATE_SHA256 = "372a0088c16af8cd4c11748c568932e558911ec89e03cfc9df31480a9106183b";
 const CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES = Object.freeze({
   composition_class: [
     "environment_establishing",
@@ -1277,6 +1295,44 @@ async function main() {
     if (command === "smoke-review-workbench-component-contract" || outputPath) {
       console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
+    return;
+  }
+
+  if (command === "validate-operator-production-brief-typography-balance") {
+    if (outputPath) {
+      fail("validate-operator-production-brief-typography-balance is strictly read-only and does not accept an output path; use smoke-operator-production-brief-typography-balance to regenerate only its result JSON.");
+    }
+    const source = inputPath || DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT;
+    const readback = await readJson(source);
+    const result = await validateOperatorProductionBriefTypographyBalance(readback, source);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) {
+      fail(`Operator Production Brief typography balance failed: ${result.failures.join("; ")}`);
+    }
+    return;
+  }
+
+  if (command === "smoke-operator-production-brief-typography-balance") {
+    const target = toRepoPath(outputPath || DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT);
+    if (target !== DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT) {
+      fail(`smoke-operator-production-brief-typography-balance may write only ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}.`);
+    }
+    const packageBefore = await snapshotOperatorProductionBriefTypographyProtectedPackages();
+    const historicalBefore = await snapshotOperatorProductionBriefHistoricalResults();
+    const seed = buildOperatorProductionBriefTypographyBalanceSeed();
+    const result = await validateOperatorProductionBriefTypographyBalance(seed, target, { generated_seed: true });
+    if (!result.passed) {
+      fail(`Operator Production Brief typography balance failed before write: ${result.failures.join("; ")}`);
+    }
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    const packageAfter = await snapshotOperatorProductionBriefTypographyProtectedPackages();
+    const historicalAfter = await snapshotOperatorProductionBriefHistoricalResults();
+    if (!contentProductionBlueprintSnapshotMapsEqual(packageBefore, packageAfter) ||
+        !contentProductionBlueprintSnapshotMapsEqual(historicalBefore, historicalAfter)) {
+      fail("Typography-balance smoke crossed its result-only write boundary.");
+    }
+    console.log(`operator production brief typography balance passed ${inputPath || "generated-seed"} -> ${target}`);
     return;
   }
 
@@ -12102,6 +12158,13 @@ async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
       artifactManifest.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
       artifactManifest.editorial_derivative_preview?.source_handoff_artifact_id === expectedArtifactId &&
       Array.isArray(artifactManifest.preserves) &&
+      artifactManifest.preserves.includes(expectedArtifactId)) ||
+    (artifactManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
+      artifactManifest.operator_production_brief_typography_balance?.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+      artifactManifest.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      artifactManifest.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      artifactManifest.editorial_derivative_preview?.source_handoff_artifact_id === expectedArtifactId &&
+      Array.isArray(artifactManifest.preserves) &&
       artifactManifest.preserves.includes(expectedArtifactId));
   const rootManifestRegistered = rootManifestRead.error === null &&
     handoffActiveOrPreserved &&
@@ -14304,12 +14367,14 @@ async function validateContentProductionBlueprint(readback, readbackPath, option
     `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${relativePath}`
   );
   const rootValidationCommand = String(rootManifest.validation_command || "");
-  const operatorValidatorIndex = rootValidationCommand.indexOf("validate-operator-production-brief");
-  const blueprintValidatorIndex = rootValidationCommand.indexOf("validate-content-production-blueprint");
-  const derivativeValidatorIndex = rootValidationCommand.indexOf("validate-editorial-derivative-preview");
+  const typographyValidatorIndex = rootValidationCommand.indexOf(`node tools/fff-state.mjs validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`);
+  const operatorValidatorIndex = rootValidationCommand.indexOf(`node tools/fff-state.mjs validate-operator-production-brief ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT}`);
+  const blueprintValidatorIndex = rootValidationCommand.indexOf(`node tools/fff-state.mjs validate-content-production-blueprint ${DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT}`);
+  const derivativeValidatorIndex = rootValidationCommand.indexOf(`node tools/fff-state.mjs validate-editorial-derivative-preview ${DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT}`);
   const rootOperator = rootManifest.operator_production_brief || {};
   const rootManifestValid = rootManifestSnapshot.error === null &&
-    rootManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+    rootManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
+    rootManifest.operator_production_brief_typography_balance?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
     rootOperator.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
     rootOperator.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
     rootOperator.access_route === CONTENT_PRODUCTION_BLUEPRINT_ROUTE &&
@@ -14330,7 +14395,8 @@ async function validateContentProductionBlueprint(readback, readbackPath, option
     arrayEqualsExact(rootBlueprint.package_files, expectedRootPackageFiles) &&
     rootBlueprint.canonical === false && rootBlueprint.production_approved === false &&
     rootBlueprint.assets_selected === false && rootBlueprint.rights_cleared_claim === false &&
-    operatorValidatorIndex >= 0 && blueprintValidatorIndex > operatorValidatorIndex && derivativeValidatorIndex > blueprintValidatorIndex &&
+    typographyValidatorIndex >= 0 && operatorValidatorIndex > typographyValidatorIndex && blueprintValidatorIndex > operatorValidatorIndex && derivativeValidatorIndex > blueprintValidatorIndex &&
+    !rootValidationCommand.includes("smoke-operator-production-brief-typography-balance") &&
     !rootValidationCommand.includes("smoke-content-production-blueprint");
   const reviewDoc = reviewDocSnapshot.text || "";
   const reviewDocValid = reviewDocSnapshot.exists &&
@@ -14894,6 +14960,386 @@ async function readOperatorProductionBriefSmokeSeed(inputPath) {
   return { browser_measurements: [], failures: [], passed: true };
 }
 
+function buildOperatorProductionBriefTypographyBalanceSeed() {
+  return {
+    schemaVersion: OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCHEMA_VERSION,
+    artifact_id: OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID,
+    route: OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ROUTE,
+    source_artifact_id: OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID,
+    source_fingerprints: {
+      primary_visible_text_sha256: OPERATOR_PRODUCTION_BRIEF_PRIMARY_TEXT_SHA256,
+      primary_html_sha256: OPERATOR_PRODUCTION_BRIEF_PRIMARY_HTML_SHA256,
+      operator_model_sha256: OPERATOR_PRODUCTION_BRIEF_MODEL_SHA256,
+      operator_manifest_sha256: OPERATOR_PRODUCTION_BRIEF_MANIFEST_SHA256,
+      runtime_visible_text_sha256: OPERATOR_PRODUCTION_BRIEF_RUNTIME_VISIBLE_TEXT_SHA256,
+      runtime_all_beat_details_sha256: OPERATOR_PRODUCTION_BRIEF_RUNTIME_ALL_BEATS_SHA256
+    },
+    content_fingerprint_unchanged: true,
+    package_hashes_unchanged: true,
+    protected_package_aggregate_sha256: OPERATOR_PRODUCTION_BRIEF_PROTECTED_PACKAGE_AGGREGATE_SHA256,
+    historical_results_aggregate_sha256: OPERATOR_PRODUCTION_BRIEF_HISTORICAL_RESULTS_AGGREGATE_SHA256,
+    measurements: {
+      "900x1200": {
+        title_font_size_px: 40,
+        title_line_height_px: 43.2,
+        title_line_count: 2,
+        title_block_height_px: 86.375,
+        title_viewport_height_ratio: 0.07197916666666666,
+        body_font_size_px: 17,
+        title_body_ratio: 2.3529411764705883,
+        metric_font_size_px: 22,
+        metric_label_font_size_px: 11,
+        section_heading_font_size_px: 26,
+        first_view_content_bottom_px: 837.640625,
+        completion_conditions_visible: 5,
+        horizontal_overflow: false,
+        nested_scroll_owner_count: 0,
+        overlap_count: 0,
+        clipped_text_count: 0,
+        orphan_single_character_line_count: 0,
+        required_elements_visible: {
+          synopsis: true,
+          status: true,
+          counts: true,
+          question: true,
+          completion_conditions: true,
+          narration_advisory: true
+        }
+      },
+      "1280x900": {
+        title_font_size_px: 48,
+        title_line_height_px: 51.84,
+        title_line_count: 2,
+        title_block_height_px: 103.65625,
+        title_viewport_height_ratio: 0.11517361111111112,
+        body_font_size_px: 17.28,
+        title_body_ratio: 2.7777777777777777,
+        metric_font_size_px: 28,
+        metric_label_font_size_px: 11,
+        section_heading_font_size_px: 33.92,
+        first_view_content_bottom_px: 803.359375,
+        completion_conditions_visible: 5,
+        horizontal_overflow: false,
+        nested_scroll_owner_count: 0,
+        overlap_count: 0,
+        clipped_text_count: 0,
+        orphan_single_character_line_count: 0,
+        required_elements_visible: {
+          synopsis: true,
+          status: true,
+          counts: true,
+          question: true,
+          completion_conditions: true,
+          narration_advisory: true
+        }
+      }
+    },
+    raw_machine_key_visible_count: 0,
+    global_counter_visibility: false,
+    print_contract_preserved: true,
+    print_measurement: {
+      title_font_size_px: 34,
+      title_line_height_px: 37.4,
+      utility_chrome_visible: false,
+      paper_background: true
+    },
+    manifest_hashes_match: true,
+    content_unchanged: true,
+    timing_unchanged: true,
+    order_unchanged: true,
+    truth_boundaries_unchanged: true,
+    canonical: false,
+    production_approved: false,
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    assets_selected: false,
+    rights_cleared_claim: false,
+    ai_video_generation: false,
+    production_render: false,
+    public_upload: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    failures: [],
+    passed: true
+  };
+}
+
+function validateOperatorProductionBriefTypographyBalanceCandidate(candidate) {
+  const errors = [];
+  const add = (condition, message) => { if (!condition) errors.push(message); };
+  const fingerprints = candidate?.source_fingerprints || {};
+  add(candidate?.schemaVersion === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCHEMA_VERSION, "typography schema mismatch");
+  add(candidate?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID, "typography artifact identity mismatch");
+  add(candidate?.route === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ROUTE && candidate?.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID, "typography route or source identity mismatch");
+  add(fingerprints.primary_visible_text_sha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_TEXT_SHA256, "primary visible-text fingerprint changed");
+  add(fingerprints.primary_html_sha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_HTML_SHA256, "primary HTML fingerprint changed");
+  add(fingerprints.operator_model_sha256 === OPERATOR_PRODUCTION_BRIEF_MODEL_SHA256, "operator model fingerprint changed");
+  add(fingerprints.operator_manifest_sha256 === OPERATOR_PRODUCTION_BRIEF_MANIFEST_SHA256, "operator manifest fingerprint changed");
+  add(fingerprints.runtime_visible_text_sha256 === OPERATOR_PRODUCTION_BRIEF_RUNTIME_VISIBLE_TEXT_SHA256, "runtime visible-text fingerprint changed");
+  add(fingerprints.runtime_all_beat_details_sha256 === OPERATOR_PRODUCTION_BRIEF_RUNTIME_ALL_BEATS_SHA256, "runtime all-beat fingerprint changed");
+  add(candidate?.content_fingerprint_unchanged === true && candidate?.content_unchanged === true, "content immutability flag changed");
+  add(candidate?.package_hashes_unchanged === true && candidate?.protected_package_aggregate_sha256 === OPERATOR_PRODUCTION_BRIEF_PROTECTED_PACKAGE_AGGREGATE_SHA256, "protected package fingerprint changed");
+  add(candidate?.historical_results_aggregate_sha256 === OPERATOR_PRODUCTION_BRIEF_HISTORICAL_RESULTS_AGGREGATE_SHA256, "historical result fingerprint changed");
+
+  const viewportSpecs = {
+    "900x1200": { width: 900, height: 1200, titleMin: 32, titleMax: 48, heightRatioMax: 0.16, firstViewMax: 1080 },
+    "1280x900": { width: 1280, height: 900, titleMin: 36, titleMax: 52, heightRatioMax: 0.18, firstViewMax: 809 }
+  };
+  for (const [viewport, spec] of Object.entries(viewportSpecs)) {
+    const measurement = candidate?.measurements?.[viewport] || {};
+    const values = [
+      measurement.title_font_size_px,
+      measurement.title_line_height_px,
+      measurement.title_line_count,
+      measurement.title_block_height_px,
+      measurement.title_viewport_height_ratio,
+      measurement.body_font_size_px,
+      measurement.title_body_ratio,
+      measurement.metric_font_size_px,
+      measurement.metric_label_font_size_px,
+      measurement.section_heading_font_size_px,
+      measurement.first_view_content_bottom_px,
+      measurement.completion_conditions_visible,
+      measurement.nested_scroll_owner_count
+    ];
+    add(values.every(Number.isFinite), `${viewport} has non-finite measurements`);
+    add(measurement.title_font_size_px >= spec.titleMin && measurement.title_font_size_px <= spec.titleMax, `${viewport} title font is outside bounds`);
+    add(Number.isInteger(measurement.title_line_count) && measurement.title_line_count >= 1 && measurement.title_line_count <= 3, `${viewport} title line count exceeds three`);
+    const computedHeightRatio = Number(measurement.title_block_height_px) / spec.height;
+    add(Math.abs(computedHeightRatio - Number(measurement.title_viewport_height_ratio)) <= 0.0005 && computedHeightRatio <= spec.heightRatioMax, `${viewport} title block ratio exceeds bounds`);
+    add(Math.abs(Number(measurement.title_block_height_px) - Number(measurement.title_line_height_px) * Number(measurement.title_line_count)) <= 1, `${viewport} title height and line count disagree`);
+    add(Number(measurement.body_font_size_px) >= 17, `${viewport} body text is below the readable baseline`);
+    const computedTitleBodyRatio = Number(measurement.title_font_size_px) / Number(measurement.body_font_size_px);
+    add(Math.abs(computedTitleBodyRatio - Number(measurement.title_body_ratio)) <= 0.001 && computedTitleBodyRatio >= 2.2 && computedTitleBodyRatio <= 3.2, `${viewport} title/body ratio is outside bounds`);
+    add(Number(measurement.metric_font_size_px) < Number(measurement.title_font_size_px) && Number(measurement.metric_font_size_px) > Number(measurement.metric_label_font_size_px), `${viewport} metric hierarchy is invalid`);
+    add(Number(measurement.section_heading_font_size_px) > Number(measurement.body_font_size_px) && Number(measurement.section_heading_font_size_px) < Number(measurement.title_font_size_px), `${viewport} section heading competes with the title`);
+    add(Number(measurement.first_view_content_bottom_px) <= spec.firstViewMax, `${viewport} first-view content exceeds the accepted bottom`);
+    add(measurement.completion_conditions_visible === 5, `${viewport} does not show all five completion conditions`);
+    add(measurement.horizontal_overflow === false, `${viewport} has horizontal overflow`);
+    add(measurement.nested_scroll_owner_count === 0, `${viewport} has a nested primary scroll owner`);
+    add(measurement.overlap_count === 0 && measurement.clipped_text_count === 0 && measurement.orphan_single_character_line_count === 0, `${viewport} has overlap, clipping, or an orphan line`);
+    add(measurement.required_elements_visible && Object.values(measurement.required_elements_visible).length === 6 && Object.values(measurement.required_elements_visible).every((value) => value === true), `${viewport} lost required first-view content`);
+  }
+  add(candidate?.raw_machine_key_visible_count === 0, "raw machine key became visible");
+  add(candidate?.global_counter_visibility === false, "global counters became visible");
+  add(candidate?.print_contract_preserved === true && candidate?.print_measurement?.title_font_size_px <= 36 && candidate?.print_measurement?.utility_chrome_visible === false && candidate?.print_measurement?.paper_background === true, "print contract changed or title is oversized");
+  add(candidate?.manifest_hashes_match === true, "manifest evidence hash mismatch");
+  add(candidate?.timing_unchanged === true && candidate?.order_unchanged === true && candidate?.truth_boundaries_unchanged === true, "timing, order, or truth boundary changed");
+  add(candidate?.canonical === false && candidate?.production_approved === false && candidate?.local_only === true && candidate?.external_call === false && candidate?.provider_configured === false && candidate?.credentials_touched === false && candidate?.assets_selected === false && candidate?.rights_cleared_claim === false && candidate?.ai_video_generation === false && candidate?.production_render === false && candidate?.public_upload === false && candidate?.database_persistence === false && candidate?.final_canon_decision === false, "typography boundary opened");
+  add(Array.isArray(candidate?.failures) && candidate.failures.length === 0 && candidate?.passed === true, "result pass contract is not clean");
+  return { valid: errors.length === 0, errors };
+}
+
+async function snapshotOperatorProductionBriefTypographyPaths(paths) {
+  const entries = await Promise.all([...new Set(paths)].sort().map(async (filePath) => {
+    const snapshot = await readFileSnapshot(filePath);
+    return [filePath, { exists: snapshot.exists, byte_size: snapshot.byteSize, sha256: snapshot.sha256 }];
+  }));
+  return Object.fromEntries(entries);
+}
+
+async function snapshotOperatorProductionBriefTypographyProtectedPackages() {
+  return snapshotOperatorProductionBriefTypographyPaths([
+    ...EDITORIAL_HANDOFF_REQUIRED_FILES.map((name) => `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${name}`),
+    ...EDITORIAL_REVISION_REQUIRED_FILES.map((name) => `${EDITORIAL_REVISION_PACKAGE_ROOT}/${name}`),
+    ...EDITORIAL_DERIVATIVE_REQUIRED_FILES.map((name) => `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${name}`),
+    ...CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.map((name) => `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${name}`),
+    ...OPERATOR_PRODUCTION_BRIEF_REQUIRED_FILES.map((name) => `${OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT}/${name}`)
+  ]);
+}
+
+async function snapshotOperatorProductionBriefHistoricalResults() {
+  const names = (await readdir("artifacts"))
+    .filter((name) => name.endsWith("-result.json") && name !== path.basename(DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT));
+  return snapshotOperatorProductionBriefTypographyPaths(names.map((name) => `artifacts/${name}`));
+}
+
+function operatorProductionBriefTypographySnapshotAggregate(snapshotMap) {
+  const rows = Object.entries(snapshotMap).sort(([left], [right]) => left < right ? -1 : left > right ? 1 : 0).map(([filePath, snapshot]) =>
+    `${filePath}|${snapshot.byte_size}|${snapshot.sha256}`
+  );
+  return createHash("sha256").update(rows.join("\n")).digest("hex");
+}
+
+async function snapshotOperatorProductionBriefTypographyValidationScope(readbackPath) {
+  const packages = await snapshotOperatorProductionBriefTypographyProtectedPackages();
+  const historical = await snapshotOperatorProductionBriefHistoricalResults();
+  return snapshotOperatorProductionBriefTypographyPaths([
+    ...Object.keys(packages),
+    ...Object.keys(historical),
+    "public/review/index.html",
+    "artifacts/artifact-manifest.json",
+    OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_DOC_PATH,
+    ...Object.values(OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCREENSHOTS),
+    readbackPath
+  ].filter(Boolean));
+}
+
+function validateOperatorProductionBriefTypographyManifest(manifest, screenshotSnapshots) {
+  const errors = [];
+  const add = (condition, message) => { if (!condition) errors.push(message); };
+  const entry = manifest?.operator_production_brief_typography_balance || {};
+  const exactTypographyCommand = `node tools/fff-state.mjs validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`;
+  const exactOperatorCommand = `node tools/fff-state.mjs validate-operator-production-brief ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT}`;
+  const exactBlueprintCommand = `node tools/fff-state.mjs validate-content-production-blueprint ${DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT}`;
+  const validationCommand = String(manifest?.validation_command || "");
+  const typographyIndex = validationCommand.indexOf(exactTypographyCommand);
+  const operatorIndex = validationCommand.indexOf(exactOperatorCommand);
+  const blueprintIndex = validationCommand.indexOf(exactBlueprintCommand);
+  add(manifest?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID, "root active typography artifact mismatch");
+  add(manifest?.review_doc_path === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_DOC_PATH && manifest?.smoke_result_path === DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT, "root typography doc or result path mismatch");
+  add(manifest?.operator_production_brief_typography_balance_doc_path === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_DOC_PATH && manifest?.operator_production_brief_typography_balance_result_path === DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT && manifest?.operator_production_brief_typography_balance_route === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ROUTE, "root typography route registration mismatch");
+  add(entry.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID && entry.schemaVersion === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCHEMA_VERSION && entry.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID && entry.access_route === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ROUTE, "nested typography registration mismatch");
+  add(entry.primary_visible_text_sha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_TEXT_SHA256 && entry.primary_html_sha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_HTML_SHA256 && entry.operator_model_sha256 === OPERATOR_PRODUCTION_BRIEF_MODEL_SHA256 && entry.operator_manifest_sha256 === OPERATOR_PRODUCTION_BRIEF_MANIFEST_SHA256, "nested content fingerprints mismatch");
+  add(entry.protected_package_aggregate_sha256 === OPERATOR_PRODUCTION_BRIEF_PROTECTED_PACKAGE_AGGREGATE_SHA256 && entry.historical_results_aggregate_sha256 === OPERATOR_PRODUCTION_BRIEF_HISTORICAL_RESULTS_AGGREGATE_SHA256, "nested immutable aggregate mismatch");
+  for (const [viewport, screenshotPath] of Object.entries(OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCREENSHOTS)) {
+    const snapshot = screenshotSnapshots[viewport] || {};
+    const topSuffix = viewport === "900x1200" ? "900" : "1280";
+    add(snapshot.exists && manifest?.[`operator_production_brief_typography_balance_screenshot_${topSuffix}_path`] === screenshotPath && manifest?.[`operator_production_brief_typography_balance_screenshot_${topSuffix}_size`] === snapshot.byteSize && String(manifest?.[`operator_production_brief_typography_balance_screenshot_${topSuffix}_sha256`] || "").toLowerCase() === snapshot.sha256, `${viewport} top screenshot hash mismatch`);
+    add(entry?.screenshots?.[viewport]?.path === screenshotPath && entry?.screenshots?.[viewport]?.byte_size === snapshot.byteSize && String(entry?.screenshots?.[viewport]?.sha256 || "").toLowerCase() === snapshot.sha256, `${viewport} nested screenshot hash mismatch`);
+  }
+  add(typographyIndex >= 0 && operatorIndex > typographyIndex && blueprintIndex > operatorIndex && !validationCommand.includes("smoke-operator-production-brief-typography-balance"), "read-only validation command order mismatch");
+  add(entry.canonical === false && entry.production_approved === false && entry.boundaries?.local_only === true && Object.entries(entry.boundaries || {}).every(([key, value]) => key === "local_only" ? value === true : value === false), "nested typography boundary opened");
+  return { valid: errors.length === 0, errors };
+}
+
+function runOperatorProductionBriefTypographyBalanceNegativeProbes({ manifest, screenshotSnapshots }) {
+  const clone = (value) => JSON.parse(JSON.stringify(value));
+  const outcome = (closed, detail) => ({ passed: Boolean(closed), fail_closed: Boolean(closed), artifact_mutation: false, detail });
+  const rejected = (candidate) => !validateOperatorProductionBriefTypographyBalanceCandidate(candidate).valid;
+  const seed = buildOperatorProductionBriefTypographyBalanceSeed();
+  const probe = (mutate, detail) => { const candidate = clone(seed); mutate(candidate); return outcome(rejected(candidate), detail); };
+  const manifestMismatch = clone(manifest);
+  manifestMismatch.operator_production_brief_typography_balance_screenshot_900_sha256 = "0".repeat(64);
+  return {
+    title_font_above_maximum: probe((candidate) => { candidate.measurements["900x1200"].title_font_size_px = 49; candidate.measurements["900x1200"].title_body_ratio = 49 / 17; }, "900px title maximum rejected"),
+    title_font_below_minimum: probe((candidate) => { candidate.measurements["900x1200"].title_font_size_px = 31; candidate.measurements["900x1200"].title_body_ratio = 31 / 17; }, "900px title minimum rejected"),
+    title_height_ratio_above_threshold: probe((candidate) => { const value = candidate.measurements["900x1200"]; value.title_block_height_px = 193; value.title_viewport_height_ratio = 193 / 1200; }, "title height threshold rejected"),
+    title_more_than_three_lines: probe((candidate) => { const value = candidate.measurements["900x1200"]; value.title_line_count = 4; value.title_block_height_px = value.title_line_height_px * 4; value.title_viewport_height_ratio = value.title_block_height_px / 1200; }, "four-line title rejected"),
+    body_below_readable_baseline: probe((candidate) => { const value = candidate.measurements["900x1200"]; value.body_font_size_px = 16.9; value.title_body_ratio = value.title_font_size_px / value.body_font_size_px; }, "sub-17px body text rejected"),
+    title_equals_section_scale: probe((candidate) => { candidate.measurements["900x1200"].section_heading_font_size_px = candidate.measurements["900x1200"].title_font_size_px; }, "equal title/section scale rejected"),
+    metric_competes_with_title: probe((candidate) => { candidate.measurements["900x1200"].metric_font_size_px = candidate.measurements["900x1200"].title_font_size_px; }, "competing metric scale rejected"),
+    completion_condition_missing: probe((candidate) => { candidate.measurements["900x1200"].completion_conditions_visible = 4; }, "missing first-view completion condition rejected"),
+    horizontal_overflow: probe((candidate) => { candidate.measurements["900x1200"].horizontal_overflow = true; }, "horizontal overflow rejected"),
+    nested_scroll_owner: probe((candidate) => { candidate.measurements["900x1200"].nested_scroll_owner_count = 1; }, "nested primary scroll rejected"),
+    global_counters_visible: probe((candidate) => { candidate.global_counter_visibility = true; }, "global counters rejected"),
+    raw_machine_key_visible: probe((candidate) => { candidate.raw_machine_key_visible_count = 1; }, "raw machine key rejected"),
+    visible_text_changed: probe((candidate) => { candidate.source_fingerprints.primary_visible_text_sha256 = "0".repeat(64); candidate.content_fingerprint_unchanged = false; }, "visible text mutation rejected"),
+    package_hash_changed: probe((candidate) => { candidate.protected_package_aggregate_sha256 = "0".repeat(64); candidate.package_hashes_unchanged = false; }, "package hash mutation rejected"),
+    print_title_oversized: probe((candidate) => { candidate.print_measurement.title_font_size_px = 52; candidate.print_contract_preserved = false; }, "oversized print title rejected"),
+    manifest_hash_mismatch: outcome(!validateOperatorProductionBriefTypographyManifest(manifestMismatch, screenshotSnapshots).valid, "manifest screenshot hash mismatch rejected")
+  };
+}
+
+async function validateOperatorProductionBriefTypographyBalance(readback, readbackPath, options = {}) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) failures.push(`${name}: ${detail}`);
+  };
+  const validationScopeBefore = await snapshotOperatorProductionBriefTypographyValidationScope(readbackPath);
+  const protectedBefore = await snapshotOperatorProductionBriefTypographyProtectedPackages();
+  const historicalBefore = await snapshotOperatorProductionBriefHistoricalResults();
+  const [htmlSnapshot, manifestSnapshot, reviewDocSnapshot, operatorModelSnapshot, operatorManifestSnapshot] = await Promise.all([
+    readFileSnapshot("public/review/index.html"),
+    readJsonFileSnapshot("artifacts/artifact-manifest.json"),
+    readFileSnapshot(OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_DOC_PATH),
+    readFileSnapshot(`${OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT}/operator-production-brief.json`),
+    readFileSnapshot(`${OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT}/operator-brief-manifest.json`)
+  ]);
+  const screenshotEntries = await Promise.all(Object.entries(OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCREENSHOTS).map(async ([viewport, filePath]) => [viewport, await readFileSnapshot(filePath)]));
+  const screenshotSnapshots = Object.fromEntries(screenshotEntries);
+  const html = htmlSnapshot.text || "";
+  const root = extractFirstHtmlSectionByMarker(html, 'data-operator-production-brief-root="true"');
+  const primary = extractFirstHtmlBlockByMarker(root, "main", 'data-operator-primary-flow="true"');
+  const primaryTextSha256 = createHash("sha256").update(Buffer.from(stripHtmlTags(primary), "utf8")).digest("hex");
+  const primaryHtmlSha256 = createHash("sha256").update(Buffer.from(primary, "utf8")).digest("hex");
+  const markerCount = (html.match(new RegExp(escapeRegExp(OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_MARKER), "g")) || []).length;
+  const responsiveScopeValid = markerCount === 1 && html.includes('body[data-review-mode="blueprint"] .operator-production-brief {') &&
+    html.includes("--operator-type-title: clamp(40px, 3.75vw, 48px)") &&
+    html.includes("--operator-type-section: clamp(26px, 2.65vw, 34px)") &&
+    html.includes("font-size: var(--operator-type-title") &&
+    html.includes("font-size: var(--operator-type-section") &&
+    html.includes("font-size: var(--operator-type-metric") &&
+    html.includes("font-size: var(--operator-type-question") &&
+    html.includes("text-wrap: balance") && !html.includes("font-size: clamp(44px, 4.4vw, 56px)");
+  const printStart = html.indexOf("@media print");
+  const printEnd = html.indexOf("@media (prefers-reduced-motion", printStart);
+  const printCss = printStart >= 0 ? html.slice(printStart, printEnd >= 0 ? printEnd : undefined) : "";
+  const printCssValid = printCss.includes("body[data-review-mode=\"blueprint\"] .operator-glance h1") && printCss.includes("font-size: 34px") && printCss.includes(".operator-focus-shell") && printCss.includes("display: none !important");
+  const packageAggregate = operatorProductionBriefTypographySnapshotAggregate(protectedBefore);
+  const historicalAggregate = operatorProductionBriefTypographySnapshotAggregate(historicalBefore);
+  const allPackagesExist = Object.values(protectedBefore).every((snapshot) => snapshot.exists);
+  const historicalResultsExist = Object.values(historicalBefore).every((snapshot) => snapshot.exists);
+  const candidateValidation = validateOperatorProductionBriefTypographyBalanceCandidate(readback);
+  const manifestValidation = validateOperatorProductionBriefTypographyManifest(manifestSnapshot.value || {}, screenshotSnapshots);
+  const reviewDocValid = reviewDocSnapshot.exists && [
+    OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID,
+    "validate-operator-production-brief-typography-balance",
+    "smoke-operator-production-brief-typography-balance",
+    OPERATOR_PRODUCTION_BRIEF_PRIMARY_TEXT_SHA256,
+    OPERATOR_PRODUCTION_BRIEF_PROTECTED_PACKAGE_AGGREGATE_SHA256,
+    ...Object.values(OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCREENSHOTS)
+  ].every((text) => reviewDocSnapshot.text.includes(text));
+  const screenshotEvidenceValid = Object.values(screenshotSnapshots).every((snapshot) => snapshot.exists && snapshot.byteSize > 0 && /^[0-9a-f]{64}$/.test(String(snapshot.sha256 || "")));
+  let operatorResult = { passed: false, failures: ["not run"] };
+  let blueprintResult = { passed: false, failures: ["not run"] };
+  try {
+    operatorResult = await validateOperatorProductionBrief(await readJson(DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT), DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT);
+  } catch (error) {
+    operatorResult = { passed: false, failures: [error.message] };
+  }
+  try {
+    blueprintResult = await validateContentProductionBlueprint(await readJson(DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT), DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT);
+  } catch (error) {
+    blueprintResult = { passed: false, failures: [error.message] };
+  }
+  const negativeProbes = runOperatorProductionBriefTypographyBalanceNegativeProbes({ manifest: manifestSnapshot.value || {}, screenshotSnapshots });
+  const priorNegativeProbesValid = options.generated_seed === true || (readback?.negative_probes && Object.keys(readback.negative_probes).length === 16 && Object.values(readback.negative_probes).every((probe) => probe.passed === true && probe.fail_closed === true && probe.artifact_mutation === false));
+  const validationScopeAfter = await snapshotOperatorProductionBriefTypographyValidationScope(readbackPath);
+  const protectedAfter = await snapshotOperatorProductionBriefTypographyProtectedPackages();
+  const historicalAfter = await snapshotOperatorProductionBriefHistoricalResults();
+  const validationReadOnly = contentProductionBlueprintSnapshotMapsEqual(validationScopeBefore, validationScopeAfter) && contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter) && contentProductionBlueprintSnapshotMapsEqual(historicalBefore, historicalAfter);
+  for (const probe of Object.values(negativeProbes)) probe.artifact_mutation = !validationReadOnly;
+
+  check("result_contract", candidateValidation.valid, candidateValidation.errors.join(" | ") || "ok");
+  check("source_content_fingerprints", primaryTextSha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_TEXT_SHA256 && primaryHtmlSha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_HTML_SHA256 && operatorModelSnapshot.sha256 === OPERATOR_PRODUCTION_BRIEF_MODEL_SHA256 && operatorManifestSnapshot.sha256 === OPERATOR_PRODUCTION_BRIEF_MANIFEST_SHA256, `text=${primaryTextSha256}; html=${primaryHtmlSha256}; model=${operatorModelSnapshot.sha256}; manifest=${operatorManifestSnapshot.sha256}`);
+  check("blueprint_scoped_responsive_type_system", responsiveScopeValid, `markerCount=${markerCount}`);
+  check("print_stylesheet", printCssValid, `printCss=${printCssValid}`);
+  check("protected_package_hashes", allPackagesExist && Object.keys(protectedBefore).length === 34 && packageAggregate === OPERATOR_PRODUCTION_BRIEF_PROTECTED_PACKAGE_AGGREGATE_SHA256, `files=${Object.keys(protectedBefore).length}; aggregate=${packageAggregate}`);
+  check("historical_results_unchanged", historicalResultsExist && Object.keys(historicalBefore).length === 67 && historicalAggregate === OPERATOR_PRODUCTION_BRIEF_HISTORICAL_RESULTS_AGGREGATE_SHA256, `files=${Object.keys(historicalBefore).length}; aggregate=${historicalAggregate}`);
+  check("root_manifest_registered", manifestValidation.valid, manifestValidation.errors.join(" | ") || "ok");
+  check("review_doc_registered", reviewDocValid, reviewDocSnapshot.error || "ok");
+  check("screenshot_evidence", screenshotEvidenceValid, Object.entries(screenshotSnapshots).map(([viewport, snapshot]) => `${viewport}=${snapshot.byteSize}`).join("; "));
+  check("operator_validator", operatorResult.passed === true, `passed=${operatorResult.passed}; failures=${(operatorResult.failures || []).length}`);
+  check("technical_blueprint_validator", blueprintResult.passed === true, `passed=${blueprintResult.passed}; failures=${(blueprintResult.failures || []).length}`);
+  check("negative_probes_fail_closed", Object.keys(negativeProbes).length === 16 && Object.values(negativeProbes).every((probe) => probe.passed && probe.fail_closed && !probe.artifact_mutation), `count=${Object.keys(negativeProbes).length}`);
+  check("prior_negative_probe_readback", priorNegativeProbesValid, `generatedSeed=${options.generated_seed === true}`);
+  check("normal_validation_read_only", validationReadOnly, `readOnly=${validationReadOnly}`);
+
+  return {
+    ...readback,
+    protected_package_pre_hashes: protectedBefore,
+    protected_package_post_hashes: protectedAfter,
+    protected_package_aggregate_sha256: packageAggregate,
+    historical_results_aggregate_sha256: historicalAggregate,
+    content_fingerprint_unchanged: primaryTextSha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_TEXT_SHA256 && primaryHtmlSha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_HTML_SHA256,
+    package_hashes_unchanged: packageAggregate === OPERATOR_PRODUCTION_BRIEF_PROTECTED_PACKAGE_AGGREGATE_SHA256 && contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter),
+    print_contract_preserved: readback?.print_contract_preserved === true && printCssValid,
+    operator_validator_passed: operatorResult.passed === true,
+    technical_blueprint_validator_passed: blueprintResult.passed === true,
+    historical_results_unchanged: historicalAggregate === OPERATOR_PRODUCTION_BRIEF_HISTORICAL_RESULTS_AGGREGATE_SHA256 && contentProductionBlueprintSnapshotMapsEqual(historicalBefore, historicalAfter),
+    validation_read_only: validationReadOnly,
+    negative_probes: negativeProbes,
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
+}
+
 async function validateOperatorProductionBrief(readback, readbackPath, options = {}) {
   const failures = [];
   const checks = {};
@@ -14939,10 +15385,15 @@ async function validateOperatorProductionBrief(readback, readbackPath, options =
   const handoffAuthorityValid = handoff.includes(OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID) && handoff.includes("OPERATOR_PRODUCTION_BRIEF") && handoff.includes("Deferred") && !handoff.includes("**Audit — stale branch intent**");
   const manifest = manifestSnapshot.value || {};
   const rootValidation = String(manifest.validation_command || "");
-  const manifestValid = manifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+  const exactTypographyValidation = `node tools/fff-state.mjs validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`;
+  const exactOperatorValidation = `node tools/fff-state.mjs validate-operator-production-brief ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT}`;
+  const manifestValid = manifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
+    manifest.operator_production_brief_typography_balance?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
     manifest.operator_production_brief?.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
-    rootValidation.includes("validate-operator-production-brief") &&
-    !rootValidation.includes("smoke-operator-production-brief");
+    rootValidation.indexOf(exactTypographyValidation) >= 0 &&
+    rootValidation.indexOf(exactOperatorValidation) > rootValidation.indexOf(exactTypographyValidation) &&
+    !rootValidation.includes("smoke-operator-production-brief-typography-balance") &&
+    !rootValidation.includes("smoke-operator-production-brief ");
   const browserMeasurements = Array.isArray(readback?.browser_measurements) ? readback.browser_measurements : [];
   const browserValid = browserMeasurements.length === 2 && browserMeasurements.every((measurement) =>
     measurement.horizontal_overflow === false && measurement.nested_primary_scroll_owner_count === 0 &&
@@ -14987,7 +15438,7 @@ async function validateOperatorProductionBrief(readback, readbackPath, options =
   check("single_closed_audit_inventory", audit.length > 0 && !auditInitiallyOpen && inventoryCount === 1, `open=${auditInitiallyOpen}; inventory=${inventoryCount}`);
   check("planner007_handoff_preserved", handoffFactsPreserved && handoffAuthorityValid, `facts=${handoffFactsPreserved}; authority=${handoffAuthorityValid}`);
   check("review_doc_registered", reviewDocSnapshot.exists && reviewDocSnapshot.text.includes(OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID), reviewDocSnapshot.error || "ok");
-  check("root_manifest_registered", manifestValid, `artifact=${manifest.artifact_id}; command=${rootValidation.includes("validate-operator-production-brief")}`);
+  check("root_manifest_registered", manifestValid, `artifact=${manifest.artifact_id}; command=${rootValidation.includes(exactOperatorValidation)}`);
   check("browser_viewports", browserValid, `measurements=${browserMeasurements.length}`);
   check("routes_themes_focus_keyboard_preserved", preservedRoutesThemesFocusKeyboard, `preserved=${preservedRoutesThemesFocusKeyboard}`);
   check("technical_blueprint_still_valid", technicalBlueprintResult.passed === true, `passed=${technicalBlueprintResult.passed}; failures=${(technicalBlueprintResult.failures || []).length}`);
@@ -15310,6 +15761,11 @@ async function validateEditorialDerivativePreview(readback, readbackPath, option
       Array.isArray(rootManifest.preserves) &&
       rootManifest.preserves.includes(EDITORIAL_DERIVATIVE_ARTIFACT_ID)) ||
     (rootManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+      rootManifest.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      Array.isArray(rootManifest.preserves) &&
+      rootManifest.preserves.includes(EDITORIAL_DERIVATIVE_ARTIFACT_ID)) ||
+    (rootManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
+      rootManifest.operator_production_brief_typography_balance?.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
       rootManifest.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
       Array.isArray(rootManifest.preserves) &&
       rootManifest.preserves.includes(EDITORIAL_DERIVATIVE_ARTIFACT_ID));
@@ -16081,6 +16537,13 @@ async function validateEditorialRevisionRoundtrip(readback, readbackPath) {
       Array.isArray(rootManifest?.preserves) &&
       rootManifest.preserves.includes(EDITORIAL_REVISION_ARTIFACT_ID)) ||
     (rootManifest?.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+      rootManifest?.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      rootManifest?.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      rootManifest?.editorial_derivative_preview?.source_revision_artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+      Array.isArray(rootManifest?.preserves) &&
+      rootManifest.preserves.includes(EDITORIAL_REVISION_ARTIFACT_ID)) ||
+    (rootManifest?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
+      rootManifest?.operator_production_brief_typography_balance?.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
       rootManifest?.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
       rootManifest?.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
       rootManifest?.editorial_derivative_preview?.source_revision_artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
@@ -20271,6 +20734,10 @@ Usage:
   node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json> [output.json]
   node tools/fff-state.mjs validate-review-workbench-component-contract <review-workbench-component-contract-result.json>
   node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
+  node tools/fff-state.mjs validate-operator-production-brief-typography-balance <operator-production-brief-typography-balance-result.json>
+  node tools/fff-state.mjs smoke-operator-production-brief-typography-balance <operator-production-brief-typography-balance-result.json> [artifacts/operator-production-brief-typography-balance-result.json]
+  node tools/fff-state.mjs validate-operator-production-brief <operator-production-brief-result.json>
+  node tools/fff-state.mjs smoke-operator-production-brief <operator-production-brief-result.json> [artifacts/operator-production-brief-result.json]
   node tools/fff-state.mjs validate-content-production-blueprint <content-production-blueprint-result.json>
   node tools/fff-state.mjs smoke-content-production-blueprint <content-production-blueprint-result.json> [artifacts/content-production-blueprint-result.json]
   node tools/fff-state.mjs validate-editorial-derivative-preview <editorial-derivative-preview-result.json>

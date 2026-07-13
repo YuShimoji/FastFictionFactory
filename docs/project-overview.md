@@ -18,7 +18,8 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 
 | Slice | Current state | Main review location | Quick visual evidence |
 | --- | --- | --- | --- |
-| Operator Production Brief | Active; human-facing one-scroll production instruction | [`review/operator-production-brief.md`](review/operator-production-brief.md) | `artifacts/operator-production-brief-result.json`, `artifacts/operator-production-brief/`, two viewport screenshots, `public/review/index.html?mode=blueprint` |
+| Operator Brief Typography Balance | Active; H1 judgment A is preserved and the title-only responsive hierarchy repair is complete | [`review/operator-production-brief-typography-balance.md`](review/operator-production-brief-typography-balance.md) | `artifacts/operator-production-brief-typography-balance-result.json`, two balanced viewport screenshots, `public/review/index.html?mode=blueprint` |
+| Operator Production Brief | Preserved human-facing one-scroll production instruction | [`review/operator-production-brief.md`](review/operator-production-brief.md) | `artifacts/operator-production-brief-result.json`, `artifacts/operator-production-brief/`, source screenshots, shared `mode=blueprint` |
 | Content Production Blueprint | Preserved quantitative machine/audit source | [`review/content-production-blueprint.md`](review/content-production-blueprint.md) | `artifacts/content-production-blueprint-result.json`, `artifacts/production-blueprint/`, shared `mode=blueprint` Audit & Files |
 | Editorial Derivative Preview | Preserved provisional source baseline | [`review/editorial-derivative-preview.md`](review/editorial-derivative-preview.md) | `artifacts/editorial-derivative-preview-result.json`, `artifacts/editorial-derivative/`, `public/review/index.html?mode=derivative` |
 | Editorial Revision Roundtrip | Preserved safe-patch source | [`review/editorial-revision-roundtrip.md`](review/editorial-revision-roundtrip.md) | `artifacts/editorial-revision-roundtrip-result.json`, `artifacts/editorial-revision/`, `public/review/index.html?mode=revision` |
@@ -61,6 +62,8 @@ The current quick visual review files are stored under `artifacts/`:
 
 | File | Use |
 | --- | --- |
+| `artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png` | Final 900x1200 evidence: 40px two-line title, 837.640625px first-view bottom, all five completion conditions visible, and no overflow, nested scroll, overlap, clipping, or orphan line. |
+| `artifacts/review-screens/operator-production-brief-typography-balance-1280x900.png` | Final 1280x900 evidence: 48px two-line title, 803.359375px first-view bottom, all five completion conditions visible, and no overflow, nested scroll, overlap, clipping, or orphan line. |
 | `artifacts/review-screens/content-production-blueprint.png` | 885x1180 content capture from a 900x1200 browser viewport for the focused quantitative Blueprint route; 133623 bytes, SHA256 `2694f69af62466e5612e9021a6308c3bee8aca8aa133606a0c8c0a9f802afec9`. |
 | `artifacts/review-screens/editorial-derivative-preview.png` | 885x1180 content capture from a 900x1200 browser viewport for the focused non-canonical Derivative route; 130553 bytes, SHA256 `ef79e99a42c879431f75aa9c265bbf37ff7bdf66062a9d58b6576128880b0599`. |
 | `artifacts/review-screens/editorial-revision-roundtrip.png` | 900x1200 browser evidence for the focused Editorial Revision route. |
@@ -103,7 +106,7 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | H1 Operator Brief comprehension review | A reviewer explains the intended piece, scale, six-part progression, visual language, and observable completion state after one pass through the human-facing route. | A separately authorized narration rehearsal or Blueprint-constrained asset/shot brief can be considered without reopening the technical source. |
+| Next 1 turn | Narration read-aloud advisory or separately authorized H2 asset/shot brief | H1 comprehension already passed judgment A and the title hierarchy is balanced at both accepted viewports. | The reviewer can test delivery rhythm without changing wording, or explicitly authorize asset/shot work without reopening the technical source. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
@@ -116,7 +119,7 @@ The active UI remains:
 Invoke-Item .\public\review\index.html
 ```
 
-No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The active product readback is the focused Content Production Blueprint at `public/review/index.html?mode=blueprint`; the provisional Derivative baseline remains at `?mode=derivative`, Revision at `?mode=revision`, the immutable Handoff source at `?mode=handoff`, and its six-beat Storyboard Flow at `?mode=bridge`.
+No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The active product readback is `fff-operator-production-brief-typography-balance-001` at `public/review/index.html?mode=blueprint`; the accepted Operator Brief and quantitative Blueprint remain preserved below it, with the provisional Derivative at `?mode=derivative`, Revision at `?mode=revision`, immutable Handoff at `?mode=handoff`, and six-beat Storyboard Flow at `?mode=bridge`.
 
 Mode-specific Content Production Blueprint route:
 
@@ -190,4 +193,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The accepted six-beat Bridge checkpoint now feeds `fff-bridge-editorial-handoff-pack-001`. The next move is to open `public/review/index.html?mode=handoff` and use `artifacts/editorial-handoff/` for manual editorial transfer. Final narration performance, subtitle typography, asset selection, provider work, generation, render, upload, database persistence, rights clearance, and canon work remain blocked until separate authorization.
+The accepted Operator Brief now has a completed title-only responsive hierarchy repair. H1 comprehension passed judgment A; narration read-aloud remains an advisory next check, while any asset/shot brief, actual asset selection, provider work, generation, render, upload, database persistence, rights clearance, or canon work still needs separate authorization.

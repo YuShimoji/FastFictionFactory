@@ -2,15 +2,24 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-operator-production-brief-001`, served at `public/review/index.html?mode=blueprint` with a six-file human-facing package under `artifacts/operator-production-brief/`. The same route preserves `fff-content-production-blueprint-001` as its eight-file machine/audit source. Counts, timing, three accepted wording changes, truth, rights, and all bytes under Handoff, Revision, Derivative, and Production Blueprint remain unchanged. The Brief is local planning evidence only: it is not canonical, production-approved, rights-cleared, rendered, or asset-selected.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-operator-production-brief-typography-balance-001`, served at `public/review/index.html?mode=blueprint`. It preserves `fff-operator-production-brief-001` and its six-file human-facing package, while the same route preserves `fff-content-production-blueprint-001` as its eight-file machine/audit source. H1 comprehension passed judgment A; the only repair was a responsive reduction and rebalance of the main story title. Counts, wording, structure, timing, three accepted wording changes, truth, rights, and all package bytes under Operator, Handoff, Revision, Derivative, and Production Blueprint remain unchanged. The Brief is local planning evidence only: it is not canonical, production-approved, rights-cleared, rendered, or asset-selected.
 
 ## Current Lane
 
-Keep the MVP repeatedly editable while translating machine-valid production constraints into one non-specialist reading path without mutating the source chain. The current lane is `OPERATOR_PRODUCTION_BRIEF`: expose content purpose and scale, one continuous six-beat spine, Japanese visual grammar with diagrams, one-level shot disclosure, and five human-observable completion conditions. Technical fields remain in one closed `Audit & Files`. Source content, timing/order, story truth, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload, publication, and database persistence remain closed.
+Keep the MVP repeatedly editable while translating machine-valid production constraints into one non-specialist reading path without mutating the source chain. The current lane is `OPERATOR_PRODUCTION_BRIEF`: preserve the accepted content purpose and scale, one continuous six-beat spine, Japanese visual grammar, one-level shot disclosure, five human-observable completion conditions, and a balanced responsive first-view hierarchy. Technical fields remain in one closed `Audit & Files`. Source content, timing/order, story truth, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload, publication, and database persistence remain closed.
 
 ## Current Slice
 
-The active slice is the human-facing Operator Production Brief:
+The active slice is the responsive typography balance wrapper over the accepted Operator Production Brief:
+
+- Typography balance doc/result/screenshots: `docs/review/operator-production-brief-typography-balance.md`, `artifacts/operator-production-brief-typography-balance-result.json`, `artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png`, `artifacts/review-screens/operator-production-brief-typography-balance-1280x900.png`
+- Human judgment: H1 comprehension passed judgment A; the main story title was the only observed imbalance and its title-only hierarchy repair is complete
+- 900x1200: title 40px / line-height 43.2px / 2 lines / 86.375px block / viewport ratio 0.07197916666666666; body 17px; title/body 2.3529411764705883; metric 22px; section 26px; first-view bottom 837.640625px
+- 1280x900: title 48px / line-height 51.84px / 2 lines / 103.65625px block / viewport ratio 0.11517361111111112; body 17.28px; title/body 2.7777777777777777; metric 28px; section 33.92px; first-view bottom 803.359375px
+- Both viewports: five completion conditions visible; horizontal overflow, nested scroll owner, overlap, clipping, and orphan single-character line counts are 0
+- Validation contract: `validate-operator-production-brief-typography-balance` is read-only; `smoke-operator-production-brief-typography-balance` may regenerate only the new typography result JSON
+
+Preserved human-facing Operator Production Brief:
 
 - Operator Brief doc/result/screenshots: `docs/review/operator-production-brief.md`, `artifacts/operator-production-brief-result.json`, `artifacts/review-screens/operator-production-brief-900x1200.png`, `artifacts/review-screens/operator-production-brief-1280x900.png`
 - Portable Operator package: `artifacts/operator-production-brief/README_OPERATOR_BRIEF.md`, `operator-production-brief.json`, `beat-story-map.csv`, `visual-grammar-guide.md`, `operator-completion-checklist.md`, `operator-brief-manifest.json`
@@ -113,6 +122,12 @@ Preserved quantitative Blueprint source:
 - Next-terminal handoff: `docs/review/next-terminal-handoff.md`
 
 ## Verification Snapshot
+
+Operator Production Brief Typography Balance checkpoint, 2026-07-13 JST:
+
+- `fff-operator-production-brief-typography-balance-001` started from synced base HEAD `89197c9 Add operator production brief` and changes only Blueprint-scoped responsive typography and spacing; final commit/push identity is established by Git after publication.
+- Primary visible-text SHA256 `8dd887dcfbb6d68cddb7ae00d46a94878b90ba73f6390f05f1247b6e849c60e8` and primary HTML SHA256 `0c977a8ab17857e151218ea72f6700d34cbf49311c38b496247a027b373e93d1` preserve content identity. Protected-package aggregate SHA256 `396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95` and historical-result aggregate SHA256 `372a0088c16af8cd4c11748c568932e558911ec89e03cfc9df31480a9106183b` preserve the accepted evidence chain.
+- H1 is complete with judgment A. Narration read-aloud remains advisory; H2 asset/shot work requires separate authorization.
 
 Editorial Derivative Preview checkpoint, 2026-07-12 JST:
 
@@ -294,10 +309,10 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: open `public/review/index.html?mode=blueprint` and perform H1 Human Comprehension Review against the plain-language purpose, scale, six-part progression, visual grammar, and observable completion conditions. `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain preserved context. The source patch remains unapplied and the derivative remains non-canonical. Narration rehearsal, asset briefs, actual asset selection, canonical application, timing/order changes, story truth, rights clearance, provider work, generation, render, upload, publication, and database persistence remain deferred or blocked until separately authorized.
+First next move: use `public/review/index.html?mode=blueprint` for an advisory narration read-aloud, or seek separate authorization before H2 asset/shot work. H1 comprehension already passed judgment A and should not be repeated without new evidence. `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain preserved context. The source patch remains unapplied and the derivative remains non-canonical. Asset briefs, actual asset selection, canonical application, timing/order changes, story truth, rights clearance, provider work, generation, render, upload, publication, and database persistence remain deferred or blocked until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current repository handoff names `fff-operator-production-brief-001` as active and `fff-content-production-blueprint-001` as its protected technical source. Handoff, Revision, Derivative, and Production Blueprint package bytes remain immutable. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count HEAD...@{u}` to establish the exact published head and parity, then run the manifest's read-only validation command before opening the Operator Brief route.
+The current repository handoff names `fff-operator-production-brief-typography-balance-001` as active, `fff-operator-production-brief-001` as its preserved human-facing source, and `fff-content-production-blueprint-001` as the protected technical source. Operator, Handoff, Revision, Derivative, and Production Blueprint package bytes remain immutable. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count HEAD...@{u}` to establish the exact published head and parity, then run the manifest's read-only validation command before opening the Operator Brief route.

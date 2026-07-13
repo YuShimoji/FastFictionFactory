@@ -64,6 +64,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Operator Brief Typography Balance: review/operator-production-brief-typography-balance.md
       - Operator Production Brief: review/operator-production-brief.md
       - Content Production Blueprint: review/content-production-blueprint.md
       - Editorial Derivative Preview: review/editorial-derivative-preview.md

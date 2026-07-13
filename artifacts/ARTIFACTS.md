@@ -1,5 +1,21 @@
 # Artifacts
 
+## fff-operator-production-brief-typography-balance-001
+
+- Title: Fast Fiction Factory Operator Production Brief Typography Balance
+- Purpose: Preserve the accepted Operator Brief while reducing the oversized main story title and rebalancing the responsive first-view hierarchy without changing wording, structure, package content, or production boundaries.
+- Source artifact: `fff-operator-production-brief-001` (preserved below)
+- Primary route: `public/review/index.html?mode=blueprint`
+- Human observation: H1 comprehension passed judgment A; the only requested repair was the visually oversized main story title.
+- Review doc/result: `docs/review/operator-production-brief-typography-balance.md`, `artifacts/operator-production-brief-typography-balance-result.json`
+- Visual evidence: `artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png`, `artifacts/review-screens/operator-production-brief-typography-balance-1280x900.png`
+- Responsive evidence: at 900x1200 the title is 40px / 43.2px line-height, 2 lines, 86.375px high, viewport ratio 0.07197916666666666, body 17px, title/body 2.3529411764705883, metric 22px, section heading 26px, and first-view bottom 837.640625px; at 1280x900 it is 48px / 51.84px, 2 lines, 103.65625px high, viewport ratio 0.11517361111111112, body 17.28px, title/body 2.7777777777777777, metric 28px, section heading 33.92px, and first-view bottom 803.359375px.
+- First-view integrity: all five completion conditions remain visible at both viewports; horizontal overflow, nested scroll owners, overlap, clipping, and orphan single-character lines are all 0.
+- Content/package integrity: primary visible-text SHA256 `8dd887dcfbb6d68cddb7ae00d46a94878b90ba73f6390f05f1247b6e849c60e8`; primary HTML SHA256 `0c977a8ab17857e151218ea72f6700d34cbf49311c38b496247a027b373e93d1`; protected-package aggregate SHA256 `396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95`; historical-result aggregate SHA256 `372a0088c16af8cd4c11748c568932e558911ec89e03cfc9df31480a9106183b`.
+- Read-only validation: `node tools/fff-state.mjs validate-operator-production-brief-typography-balance artifacts/operator-production-brief-typography-balance-result.json`
+- Intentional result regeneration only: `node tools/fff-state.mjs smoke-operator-production-brief-typography-balance artifacts/operator-production-brief-typography-balance-result.json artifacts/operator-production-brief-typography-balance-result.json`
+- State: Typography-only repair complete from base HEAD `89197c9`; narration read-aloud remains advisory and asset/shot work requires separate authorization. No production, rights, provider, generation, render, upload, publication, database, canon, content, order, or package boundary was opened.
+
 ## fff-operator-production-brief-001
 
 - Title: Fast Fiction Factory Operator Production Brief
@@ -12,7 +28,7 @@
 - Information architecture: compact Blueprint-only Focus Shell; exactly four primary sections; one browser document scroll; six-beat continuous spine; one expanded beat; five shot-scale and six camera-motion explanations with 11 inline SVG diagrams; 19 human-readable shot summaries; five observable completion conditions; one closed Audit & Files.
 - Read-only validation: `node tools/fff-state.mjs validate-operator-production-brief artifacts/operator-production-brief-result.json`
 - Intentional regeneration: `node tools/fff-state.mjs smoke-operator-production-brief artifacts/operator-production-brief-result.json artifacts/operator-production-brief-result.json`
-- State: H0 complete, H1 comprehension review not run. Narration rehearsal, assets, rights, provider, generation, render, upload, publication, database, final canon, and old workflow branch work remain deferred or closed.
+- State: Preserved human-facing source for `fff-operator-production-brief-typography-balance-001`. H0 is complete and H1 comprehension passed judgment A; narration read-aloud is advisory, while asset/shot work, rights, provider, generation, render, upload, publication, database, final canon, and old workflow branch work remain deferred or closed.
 
 ## fff-content-production-blueprint-001
 

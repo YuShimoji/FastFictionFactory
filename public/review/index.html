@@ -4221,6 +4221,21 @@
       padding-inline: clamp(14px, 3vw, 36px);
     }
 
+    body[data-review-mode="blueprint"] .operator-production-brief {
+      /* operator-production-brief-typography-balance:v1 */
+      --operator-type-title: clamp(40px, 3.75vw, 48px);
+      --operator-type-section: clamp(26px, 2.65vw, 34px);
+      --operator-type-body: clamp(17px, 1.35vw, 18px);
+      --operator-type-metric: clamp(22px, 2.2vw, 28px);
+      --operator-type-question: clamp(24px, 2.35vw, 30px);
+      --operator-type-label: 11px;
+      --operator-type-badge: 12px;
+      --operator-type-microcopy: 10px;
+      --operator-first-view-gap: clamp(14px, 1.8vw, 18px);
+      --operator-reading-start: clamp(28px, 4vw, 48px);
+      --operator-section-content-gap: clamp(18px, 2vw, 22px);
+    }
+
     .operator-brief-shell {
       display: grid;
       gap: 0;
@@ -4318,12 +4333,12 @@
     .operator-reading-flow {
       display: grid;
       gap: clamp(44px, 7vw, 84px);
-      padding-top: clamp(32px, 6vw, 68px);
+      padding-top: var(--operator-reading-start, clamp(32px, 6vw, 68px));
     }
 
     .operator-primary-section {
       display: grid;
-      gap: 22px;
+      gap: var(--operator-section-content-gap, 22px);
       min-width: 0;
       scroll-margin-top: 20px;
     }
@@ -4334,29 +4349,36 @@
     }
 
     .operator-glance {
+      gap: var(--operator-first-view-gap, 22px);
       max-width: 980px;
     }
 
     .operator-glance h1 {
-      max-width: 18ch;
+      max-width: 22ch;
       margin: 0;
-      font-size: clamp(36px, 7vw, 72px);
-      line-height: 1.06;
+      font-size: var(--operator-type-title, clamp(36px, 7vw, 72px));
+      line-height: 1.08;
       letter-spacing: -0.045em;
+      line-break: strict;
+      text-wrap: balance;
     }
 
     .operator-promise {
       max-width: 48em;
       margin: 0;
       color: var(--muted-strong);
-      font-size: clamp(17px, 2.2vw, 23px);
-      line-height: 1.65;
+      font-size: var(--operator-type-body, clamp(17px, 2.2vw, 23px));
+      line-height: 1.6;
     }
 
     .operator-first-view-status {
       display: flex;
       gap: 7px;
       flex-wrap: wrap;
+    }
+
+    .operator-first-view-status .tag {
+      font-size: var(--operator-type-badge, 12px);
     }
 
     .operator-scale-strip {
@@ -4368,7 +4390,7 @@
     .operator-scale-strip > div {
       display: grid;
       gap: 2px;
-      padding: 14px 12px;
+      padding: clamp(10px, 1.2vw, 12px);
       border-right: 1px solid var(--line);
     }
 
@@ -4377,7 +4399,7 @@
     }
 
     .operator-scale-strip strong {
-      font-size: clamp(24px, 4vw, 38px);
+      font-size: var(--operator-type-metric, clamp(24px, 4vw, 38px));
       line-height: 1;
     }
 
@@ -4385,7 +4407,7 @@
     .operator-question-line span,
     .operator-experience-line > span {
       color: var(--muted);
-      font-size: 11px;
+      font-size: var(--operator-type-label, 11px);
       font-weight: 800;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -4400,14 +4422,14 @@
 
     .operator-question-line strong {
       color: var(--blue);
-      font-size: clamp(22px, 4vw, 36px);
+      font-size: var(--operator-type-question, clamp(22px, 4vw, 36px));
       line-height: 1.35;
     }
 
     .operator-experience-line p {
       margin: 0;
       font-size: 16px;
-      line-height: 1.75;
+      line-height: 1.65;
     }
 
     .operator-first-done {
@@ -4415,7 +4437,7 @@
       gap: 8px;
       max-width: 850px;
       border-left: 4px solid var(--blue);
-      padding: 14px 18px;
+      padding: clamp(11px, 1.3vw, 14px) clamp(14px, 2vw, 18px);
       background: var(--blue-soft);
     }
 
@@ -4428,6 +4450,7 @@
     }
 
     .operator-first-done li {
+      font-size: clamp(14px, 1.2vw, 16px);
       line-height: 1.55;
     }
 
@@ -4437,7 +4460,7 @@
       align-items: flex-start;
       gap: 12px;
       border-top: 1px dashed var(--line-strong);
-      padding-top: 12px;
+      padding-top: clamp(9px, 1.2vw, 12px);
       color: var(--muted-strong);
       font-size: 13px;
       line-height: 1.6;
@@ -4456,7 +4479,7 @@
 
     .operator-section-heading h2 {
       margin: 0;
-      font-size: clamp(28px, 5vw, 48px);
+      font-size: var(--operator-type-section, clamp(28px, 5vw, 48px));
       line-height: 1.12;
       letter-spacing: -0.035em;
     }
@@ -4776,21 +4799,24 @@
     }
 
     @media (min-width: 1000px) and (max-height: 950px) {
+      body[data-review-mode="blueprint"] .operator-production-brief {
+        --operator-reading-start: 28px;
+        --operator-first-view-gap: 12px;
+      }
+
       .operator-reading-flow {
-        padding-top: 28px;
+        padding-top: var(--operator-reading-start);
       }
 
       .operator-glance {
-        gap: 12px;
+        gap: var(--operator-first-view-gap);
       }
 
       .operator-glance h1 {
         max-width: 22ch;
-        font-size: clamp(44px, 4.4vw, 56px);
       }
 
       .operator-promise {
-        font-size: 17px;
         line-height: 1.5;
       }
 
@@ -4799,16 +4825,16 @@
       }
 
       .operator-scale-strip strong {
-        font-size: 28px;
+        font-size: var(--operator-type-metric);
       }
 
       .operator-question-line strong {
-        font-size: 28px;
+        font-size: var(--operator-type-question);
       }
 
       .operator-experience-line p,
       .operator-first-done li {
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.45;
       }
 
@@ -4850,7 +4876,9 @@
       }
 
       body[data-review-mode="blueprint"] .operator-glance h1 {
-        font-size: 40px;
+        max-width: 24ch;
+        font-size: 34px;
+        line-height: 1.1;
       }
 
       body[data-review-mode="blueprint"] .operator-story-spine .blueprint-beat-tab,

@@ -2,14 +2,23 @@
 
 ## Residual Work
 
+### Operator Brief Typography Balance
+
+- Purpose: Preserve the accepted H1 reading path while correcting the one observed visual imbalance: an oversized main story title.
+- Effect: `fff-operator-production-brief-typography-balance-001` gives the Blueprint-scoped first view a responsive title/body/metric/section hierarchy at 900x1200 and 1280x900, keeps all five completion conditions visible, and preserves print readability without changing content or structure.
+- Requirements: Keep the Operator, Blueprint, Derivative, Revision, and Handoff packages byte-identical; preserve visible wording, order, timing, truth, rights, asset state, and production boundaries; normal validation must stay read-only.
+- State: Complete from base HEAD `89197c9`. H1 comprehension passed judgment A; both viewports show a two-line title, first-view bottoms of 837.640625px and 803.359375px, five visible completion conditions, and zero overflow, nested scroll, overlap, clipping, or orphan single-character lines.
+- Owner: Product implementer owns the completed responsive hierarchy and validator; a human may run narration read-aloud as advisory; asset/shot work requires separate authorization.
+- Next move: Use narration read-aloud only to assess delivery rhythm, or explicitly authorize H2 asset/shot work. Reopen typography only if a new viewport or content change produces measured hierarchy regression.
+
 ### Operator Production Brief
 
 - Purpose: Let a non-specialist understand and reproduce the Blueprint direction without reading nested machine checks or specialist enums.
 - Effect: Reuses `mode=blueprint` for one document scroll with a compact Focus Shell, four primary sections, six-beat story spine, one-level shot disclosure, 11 visual-grammar diagrams, 19 plain-language shot summaries, five completion conditions, and one closed Audit & Files.
 - Requirements: Preserve all Handoff, Revision, Derivative, and Production Blueprint bytes; keep timing, order, wording, truth, rights, assets, provider, generation, production, publication, database, canon, and old workflow branch unchanged or closed.
-- State: H0 implemented as `fff-operator-production-brief-001`; H1 comprehension review has not run.
-- Owner: Product implementer for UI/package/validator; human reviewer for H1; production and rights owners remain outside this lane.
-- Next move: Open `public/review/index.html?mode=blueprint` once and answer the five plain-language production questions. Narration rehearsal, asset/shot brief, old-branch audit, and separate-creator test are deferred.
+- State: Preserved as `fff-operator-production-brief-001`; H1 comprehension passed judgment A and its sole title-size concern is resolved by `fff-operator-production-brief-typography-balance-001`.
+- Owner: Product implementer for UI/package/validator preservation; production and rights owners remain outside this lane.
+- Next move: Use narration read-aloud as an advisory check or seek separate authorization for asset/shot work; do not repeat H1 or reopen the package contract without new evidence.
 
 ### Content Production Blueprint
 
