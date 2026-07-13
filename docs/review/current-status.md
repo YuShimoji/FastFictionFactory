@@ -1,5 +1,15 @@
 # Current Status Packet
 
+## Live Sync And Development Readiness
+
+- Supervisor report: `docs/review/supervisor-current-report.md`
+- Synced remote base: `79160c3 Record production execution handoff`; the report and portability-fix successor owns the exact final HEAD after publication
+- Windows portability finding: global `core.autocrlf=true` changed hash-sensitive tracked text from LF blobs to CRLF worktree bytes; 53/53 inspected mismatches were CRLF-only
+- Repository fix: `.gitattributes` now sets `* text=auto eol=lf`; product content and behavior are unchanged
+- Current runtime: Node.js `v24.13.0`, npm `11.6.2`, uvx `0.10.7`
+- Verification after LF normalization: root manifest read-only validation passes through Production Execution Pack, Typography Balance, Operator Brief, Blueprint, Derivative, Revision, and Handoff
+- Next gate remains H1 Production Execution readiness; the fix does not authorize H2, assets, rights, provider/API, generation, render, upload, publication, database, or canon work
+
 ## Active Artifact
 
 - Artifact id: `fff-production-execution-pack-001`

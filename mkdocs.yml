@@ -59,6 +59,7 @@ nav:
       - Data Model: data-model.md
       - QA Gates: qa-gates.md
   - Runtime State:
+      - Supervisor Current Report: review/supervisor-current-report.md
       - Current Status Packet: review/current-status.md
       - Next Terminal Handoff: review/next-terminal-handoff.md
       - Decision Log: decision-log.md

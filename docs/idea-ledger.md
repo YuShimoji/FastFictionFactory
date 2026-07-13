@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Cross-platform Hash-Stable Checkout
+
+- Purpose: Make raw-byte package and result validation produce the same outcome on Windows and non-Windows checkouts.
+- Effect: Prevents global `core.autocrlf=true` from converting hash-sensitive LF blobs to CRLF worktree bytes and falsely blocking the normal read-only manifest health check.
+- Requirements: Keep `* text=auto eol=lf` in `.gitattributes`; treat package and result hashes as byte contracts; do not regenerate artifacts merely to hide a line-ending mismatch.
+- State: Implemented after syncing remote base `79160c3`; 53 inspected mismatches were CRLF-only, and the root read-only validation chain passes after normalization.
+- Owner: Repository maintainer for checkout policy; product implementer for hash-contract regression checks.
+- Next move: Verify a clean successor checkout, then keep this as infrastructure rather than reopening Production Execution Pack content.
+
 ### Production Execution Pack
 
 - Purpose: Let another creator identify the exact six-beat schedule, all 19 shots, reusable generic production needs, and narration calibration state from one portable package rather than reconstructing them from protected review sources.

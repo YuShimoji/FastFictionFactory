@@ -4,6 +4,8 @@ This packet preserves the current working context inside the repository so anoth
 
 ## 監修AI向け制作実行パック同期報告（2026-07-13 JST）
 
+最新の live sync、Windows checkout の hash portability 修復、完成度、不足、G0〜G11 の長期目標案は `docs/review/supervisor-current-report.md` を正本とする。この handoff の以下の記録は active artifact の詳細と履歴を保持する。
+
 現在の active artifact は `fff-production-execution-pack-001`、lane は `PRODUCTION_EXECUTION_PACK` です。製品実装 `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack` で、受け入れ済みの 180 秒 / 6 ビート / 19 ショット / 20 字幕 / 6 narration / 3 thumbnail directions を、別の制作者が一つの静的資料から準備できる九ファイル package へ移行済みです。Typography Balance、Operator Brief、Blueprint、Derivative、Revision、Handoff の package は source として byte 保護されています。
 
 新しい overlay は narration を変更しません。B1/B3/B4/B6 は人の読み上げで 3–5 秒早く終わったという text-density proxy から `proxy_headroom_confirmed`、B2/B5 は値を補わず `existing_pass_unmeasured` です。意図する delivery は synthetic ですが、engine / voice / audio は未選択・未生成、engine calibration は pending、human articulation check は false です。14 件の asset requirements はすべて generic、`unselected`、`not_reviewed`、provenance required で、実素材や URL を指しません。

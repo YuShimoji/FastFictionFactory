@@ -1,3 +1,5 @@
+* text=auto eol=lf
+
 artifacts/editorial-handoff/*.md text eol=lf
 artifacts/editorial-handoff/*.csv text eol=lf
 artifacts/editorial-handoff/*.json text eol=lf
