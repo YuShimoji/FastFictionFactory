@@ -87,8 +87,8 @@
 
 - Purpose: Keep the latest Content Production Blueprint context durable in repository files so another terminal can resume from `master` without chat history.
 - Effect: Updates the handoff/current-status/project-context docs with the current active artifact, protected Handoff / Revision / Derivative chain, baseline commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
-- Requirements: Do not change product UI behavior, do not stage local transport residue, and keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: The active implementation starts from synced `4fb9d56e6264545acda5b8194cf6bbcb85204d57 Add editorial derivative preview`, with `master...origin/master` at `0 0` before edits, the Blueprint manifest validation chain remaining read-only, and `.serena/project.yml` remaining unstaged local transport residue.
+- Requirements: Do not change product UI behavior; preserve the Serena-generated configuration update only as restart infrastructure; keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
+- State: The handoff refresh starts from synced published product commit `4b9b22e Add content production blueprint`, with `master...origin/master` at `0 0` before edits. The Blueprint manifest validation chain remains read-only, and the local `.serena/project.yml` schema refresh is included so another checkout receives the same project configuration.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
 - Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=blueprint` and `artifacts/production-blueprint/README_BLUEPRINT.md` for local production-readiness review.
 

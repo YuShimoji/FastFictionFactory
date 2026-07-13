@@ -3,7 +3,7 @@
 ## Active Artifact
 
 - Artifact id: `fff-content-production-blueprint-001`
-- Latest implementation baseline: synced `4fb9d56e6264545acda5b8194cf6bbcb85204d57 Add editorial derivative preview`; exact published head is whatever `git log -1 --oneline --decorate` reports after pulling latest `master`
+- Latest published product checkpoint: synced `4b9b22e Add content production blueprint`; the following handoff-only commit preserves restart context and the Serena configuration-schema refresh without changing product behavior
 - Review UI: `public/review/index.html`
 - Focused Content Production Blueprint mode: `public/review/index.html?mode=blueprint`
 - Portable Blueprint package directory: `artifacts/production-blueprint/`

@@ -285,3 +285,7 @@
 - Decision: Give audit history and file transfer exactly one secondary owner on Blueprint and Derivative routes.
   - Reason: Repeated Before/After provenance was being mistaken for current production instruction, and a package block in beat-dependent flow caused vertical movement and mixed transfer metadata with semantic content.
   - Effect: The active content shows current derived wording only. Change History owns provenance once, Files / Export owns package inventory once, both are collapsed by default, and the Blueprint active canvas uses a stable height with internal scrolling so beat selection does not move the utility anchor beyond the bounded layout budget.
+
+- Decision: Publish a restart-only handoff refresh after the Content Production Blueprint checkpoint.
+  - Reason: Another terminal must receive the exact active route, validation contract, protected source chain, residual-work ownership, and the locally generated Serena project configuration without relying on chat or machine-local residue.
+  - Effect: Refreshes the durable handoff/current-state references from synced product commit `4b9b22e`, records remote parity, and versions the Serena configuration-schema update. Product UI, Blueprint package content, provider/API, credentials, generation, render, upload, publication, database, rights, and canon behavior remain unchanged.

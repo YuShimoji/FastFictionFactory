@@ -3,8 +3,8 @@
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
 Latest handoff refresh: 2026-07-13 JST for `fff-content-production-blueprint-001`,
-starting from synced `4fb9d56e6264545acda5b8194cf6bbcb85204d57 Add editorial derivative preview`
-with `master...origin/master` at `0 0` before implementation. The active local
+from synced published head `4b9b22e Add content production blueprint`, with
+`master...origin/master` at `0 0` before this handoff refresh. The active local
 review route is `public/review/index.html?mode=blueprint`; its portable eight-file
 package is `artifacts/production-blueprint/`. It derives quantitative beat, shot,
 subtitle, visual-system, constraint-envelope, and Definition of Done contracts
@@ -85,9 +85,8 @@ Use `.\scripts\operator\open_review.ps1 -Mode blueprint -PrintUri` for a non-ope
 - Branch: `master`
 - Active artifact: `fff-content-production-blueprint-001`
 - Remote parity before this implementation: clean `master...origin/master`; `HEAD...origin/master` reported `0 0`
-- Baseline commit before this implementation: `4fb9d56e Add editorial derivative preview`
-- Last pushed product commit before this implementation: `4fb9d56e Add editorial derivative preview`
-- Worktree state before this implementation: product tree synced and clean; local `.serena/project.yml` transport residue remains unstaged and outside product scope
+- Published product commit before this handoff refresh: `4b9b22e Add content production blueprint`
+- Worktree state before this handoff refresh: product tree synced; `.serena/project.yml` contained a local Serena-generated configuration-schema refresh, now preserved in Git for cross-terminal parity without changing product behavior
 - Validation contract: `artifacts/artifact-manifest.json` now runs read-only `validate-*` commands; `smoke-*` commands remain artifact-regeneration commands and should be used only when tracked result JSON is intentionally refreshed
 - User-side review evidence now: `public/review/index.html?mode=blueprint`, `docs/review/content-production-blueprint.md`, `artifacts/content-production-blueprint-result.json`, `artifacts/production-blueprint/`, and `artifacts/review-screens/content-production-blueprint.png` (885x1180 content capture from a 900x1200 viewport, 133623 bytes, SHA256 `2694f69af62466e5612e9021a6308c3bee8aca8aa133606a0c8c0a9f802afec9`)
 - Preserved prelude route: `public/review/index.html?mode=brief`
