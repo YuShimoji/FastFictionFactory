@@ -2,15 +2,30 @@
 
 ## Active Artifact
 
-- Artifact id: `fff-operator-production-brief-typography-balance-001`
+- Artifact id: `fff-production-execution-pack-001`
+- Implementation base: public `97a3ec2 Balance operator brief typography`; the final commit/push identity must be taken from Git after this slice is published
+- Standalone entry: `artifacts/production-execution-pack/production-execution-pack.html`
+- Package directory: `artifacts/production-execution-pack/` (9 files)
+- Review doc/result: `docs/review/production-execution-pack.md`, `artifacts/production-execution-pack-result.json`
+- Browser evidence: `artifacts/review-screens/production-execution-pack-900x1200.png`, `artifacts/review-screens/production-execution-pack-1280x900.png`; both viewports passed first-view, document-only scroll, and horizontal-overflow checks, with exact measurements and hashes in the green result
+- Execution contract: exactly 180 seconds / 6 beats / 19 shots / 20 subtitles / 6 narration segments / 3 thumbnail directions / 14 deduplicated generic asset requirements; all 19 shots reference one or more requirements
+- Timing contract: B1/B3/B4/B6 are `proxy_headroom_confirmed` with 3–5 seconds of human-proxy slack and derived ranges 15–17 / 25–27 / 20–22 / 20–22 seconds; B2/B5 are `existing_pass_unmeasured`
+- Voice contract: `voice_mode=synthetic`, `human_articulation_check_required=false`, `engine_selected=false`, `voice_selected=false`, `audio_generated=false`, `engine_calibration_pending=true`
+- Asset/rights contract: all requirements are `asset_status=unselected`, `rights_status=not_reviewed`, `provenance_required=true`; no URL, vendor, paid asset, external catalog entry, or filename is selected
+- Read-only validation: `node tools/fff-state.mjs validate-production-execution-pack artifacts/production-execution-pack-result.json`
+- Intentional regeneration only: `node tools/fff-state.mjs smoke-production-execution-pack artifacts/production-execution-pack-result.json artifacts/production-execution-pack-result.json`; it may write only the nine package files and its result
+- Protected sources: `fff-operator-production-brief-typography-balance-001`, `fff-operator-production-brief-001`, `fff-content-production-blueprint-001`, `fff-editorial-derivative-preview-001`, `fff-editorial-revision-roundtrip-001`, and `fff-bridge-editorial-handoff-pack-001`
+- H0 evidence: `passed=true`, `failures=[]`, 20/20 probes fail closed without mutation, 34 protected source files and 68 historical results are unchanged, and print navigation/hash utilities are hidden
+- Next gate: H1 human execution-readiness review; actual TTS-engine calibration is H2 and is not started
+- Preserved Typography Balance artifact: `fff-operator-production-brief-typography-balance-001`
 - Preserved source artifact: `fff-operator-production-brief-001`
-- Implementation base: synced `89197c9 Add operator production brief`; the final commit/push identity must be taken from Git after this slice is published
+- Typography implementation base: synced `89197c9 Add operator production brief`
 - Review UI: `public/review/index.html`
 - Focused Operator Production Brief mode: `public/review/index.html?mode=blueprint`
 - Typography balance doc/result: `docs/review/operator-production-brief-typography-balance.md`, `artifacts/operator-production-brief-typography-balance-result.json`
 - Typography balance screenshots: `artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png`, `artifacts/review-screens/operator-production-brief-typography-balance-1280x900.png`
 - Typography balance validation: `node tools/fff-state.mjs validate-operator-production-brief-typography-balance artifacts/operator-production-brief-typography-balance-result.json`
-- Human judgment: H1 comprehension passed judgment A; the title-only responsive hierarchy repair is complete, narration read-aloud remains advisory, and H2 asset/shot work requires separate authorization
+- Preserved human judgment: H1 comprehension passed judgment A and the title-only hierarchy repair is complete; the later Execution Pack owns proxy timing and generic shot/asset requirements
 - Operator Brief package: `artifacts/operator-production-brief/` (6 files)
 - Operator Brief doc/result: `docs/review/operator-production-brief.md`, `artifacts/operator-production-brief-result.json`
 - Operator Brief screenshots: `artifacts/review-screens/operator-production-brief-900x1200.png`, `artifacts/review-screens/operator-production-brief-1280x900.png`
@@ -160,7 +175,9 @@ Preserved platform boundary:
 
 ## What Exists Now
 
-- The active checkpoint is `fff-operator-production-brief-typography-balance-001`. It preserves the accepted Operator Brief's wording, four-section structure, six beats, counts, completion conditions, and packages, and changes only the Blueprint-scoped responsive hierarchy around the main story title. `fff-operator-production-brief-001` remains the human-facing source and `fff-content-production-blueprint-001` remains the quantitative audit source.
+- The active checkpoint is `fff-production-execution-pack-001`. Its nine portable files give another creator one ordered path through package boundaries, six-beat run, synthetic narration timing, all 19 shots, 14 reusable generic requirements, three thumbnail directions, and completion/transfer instructions. It adds no app mode; the accepted Blueprint route gains one compact link to the standalone HTML.
+- The package overlays execution state without altering source semantics. B1/B3/B4/B6 carry honest human-proxy headroom, B2/B5 carry no fabricated measurement, and every generic requirement stays unselected with rights not reviewed. Actual engine/voice/audio, media sourcing, rights clearance, provider/API, generation, render, upload, publication, database, production approval, and canon remain closed.
+- `fff-operator-production-brief-typography-balance-001` is now the preserved accepted human-facing source. It retains the Operator Brief's wording, four-section structure, six beats, counts, completion conditions, and balanced title hierarchy; `fff-content-production-blueprint-001` remains the quantitative audit source.
 - The preserved source checkpoint is `fff-operator-production-brief-001`. `public/review/index.html?mode=blueprint` presents one human-facing reading path: a compact Focus Shell, exactly four primary sections, a continuous six-beat spine with one expanded detail, 19 plain-language shot summaries, 11 visual-grammar diagrams, five human completion conditions, and one closed `Audit & Files` area. At both required viewports the document owns the only primary scroll, global counters and broad navigation stay hidden, and the underlying content/timing contract is unchanged.
 - `artifacts/operator-production-brief/` contains the six-file instruction package and `artifacts/operator-production-brief-result.json` records the 18/18 targeted readback plus 22/22 deterministic fail-closed probes. `artifacts/production-blueprint/` remains the byte-protected eight-file technical source: its controlled vocabularies, numeric budgets, 19-shot model, subtitle timing, and acceptance matrix remain valid but no longer control the human first screen.
 - `fff-editorial-derivative-preview-001` remains the provisional wording source at `mode=derivative`. Its current derived wording stays primary, while exactly one collapsed Change History owns provenance and exactly one collapsed Files / Export utility owns package inventory and downloads. Exactly three safe wording changes remain applied to a copy; source application is `not_applied`, rollback is `discard_derived_package`, and the package bytes remain protected.
@@ -261,6 +278,10 @@ Preserved platform boundary:
 
 ## What Was Verified
 
+- Production Execution Pack verification is intentionally result-driven. `artifacts/production-execution-pack-result.json` is green and is the source of truth for final package hashes, `passed=true` / `failures=[]`, 20 fail-closed probes, protected-source pre/post identity, scriptless HTML, Blueprint-link cardinality, 900x1200 and 1280x900 overflow/scroll measurements, and print-media behavior.
+- The protected source baseline covers 34 files with aggregate SHA256 `396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95`. Normal execution-pack validation must leave those files, historical results, and all tracked artifacts byte-identical.
+- Targeted validation order is Execution Pack, Typography Balance, Operator Brief, Content Production Blueprint, Editorial Derivative, Revision, and Handoff. Only the Execution Pack smoke command is allowed to regenerate the nine new package files and its result.
+
 - Responsive hierarchy passed at both accepted viewports:
 
 | Viewport | Title | Body / title ratio | Metric / section | First-view bottom | First-view integrity |
@@ -339,6 +360,9 @@ Preserved platform boundary:
 
 | Guard area | Purpose | Current readback |
 | --- | --- | --- |
+| Execution-pack source protection | Keep the portable handoff from rewriting accepted content | 34 protected package files retain the expected aggregate fingerprint; final pre/post identity is owned by the execution-pack result |
+| Synthetic narration honesty | Separate text-density headroom from engine timing | B1/B3/B4/B6 proxy only; B2/B5 unmeasured; engine/voice/audio unselected; calibration pending; human articulation check false |
+| Generic asset boundary | Describe preparation without selecting release media | 14 deduplicated requirements target 19 shots; all assets unselected, rights not reviewed, provenance required, and no external URL/vendor/catalog/filename |
 | Conflict detection | Make contradiction explicit without deciding truth | 2 claim candidates; 1 reciprocal `contradictsClaimIds` pair |
 | Human review hold | Keep both sides reversible and author-owned | 2 held conflicting claims; 0 adopted/provisional conflicting claims |
 | Auto-canon block | Prevent generated conflict from becoming canon | `autoCanonPromotion=false`; `autoChronologyPromotion=false`; `worldTruthStatus=uncertain` |
@@ -365,26 +389,30 @@ Preserved platform boundary:
 
 ## What Remains Missing
 
+- H1 execution-readiness review is the next gate now that H0 is validated. The useful question is whether a reviewer can explain what to prepare and assemble from the standalone pack without opening technical audit files; this is a transfer-comprehension check, not a repeat of the completed Operator Brief comprehension review.
+- Actual synthetic-engine selection and calibration remain H2. Engine, voice, pronunciation dictionary, pause/prosody behavior, and generated audio timing have not been selected or measured, and B2/B5 deliberately have no proxy duration.
+- Real asset sourcing, provenance review, license/rights review, image/video/audio production, rendering, and external creator work remain unstarted. The 14 rows are generic requirements only and do not imply that any media is available or cleared.
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
-- H1 Human Comprehension Review is complete with judgment A. Narration read-aloud is an advisory check only; asset/shot brief generation, actual asset selection, production, rights clearance, and canon remain deferred or blocked until separately authorized.
+- The prior Operator Brief Human Comprehension Review is complete with judgment A. Its four narration-density warnings are superseded in the new pack by human-proxy headroom; no narration rewrite or TTS verification follows from that transition.
 - Remaining workflow expansion is now post-Profile: Timeline / Story Seed / Canon decision authorization, actual rollback, broader translated memo coverage, or very broad source-span fixture shape. The held claim preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, Claim Ledger one-claim production adoption, Claim Ledger rollback rehearsal, downstream target authorization packet, and Profile adoption mutation one-claim define candidate status, accepted-status meaning, rollback, mutation boundaries, a non-mutating ledger row, one fixture-only sandbox adoption row, one sandbox-only rollback rehearsal row, one production authorization packet, one Claim Ledger production adoption row, one non-destructive rollback rehearsal, one Profile-first downstream target choice surface, and one Profile-only non-canon annotation. Timeline, Story Seed, canon, provider/API/credential, publishing, additional-claim adoption, and actual production rollback remain unimplemented without separate authorization. The translated memo axis has a two-row minimum fixture, so only add more translated rows if they reduce a concrete coverage gap beyond `multi-x-object-brass-moth-key` and `multi-x-placeholder-translation-boundary`. Very broad source-span shape has been audited but not implemented because current broad rows are already resolved and no concrete source-output gap requires another fixture.
 - Actual model/API extraction adapter, provider choice, credential flow, provider endpoint, transport behavior, external call permission, timeout value, and retry count remain blocked until explicit authorization.
 - Durable project database, YouTube publishing, automated upload, AI video generation, complete world chronology, and final canon decisions remain out of scope.
 
 ## Review Debt
 
-- Four narration-rate warnings remain visible rather than rewriting provisional content to force a pass. Broader Brief cleanup, stale-shelf excision, actual asset art, multi-format export, ZIP bundling, provider work, and production tooling remain non-blocking Review Debt outside this slice; the accepted title hierarchy itself is no longer debt.
+- The four prior narration-rate warnings may remain visible in protected source surfaces, but the execution-pack overlay closes them as `proxy_headroom_confirmed`; preserving old source bytes is not current timing debt. The real remaining narration debt is engine-specific calibration plus B2/B5's intentionally unmeasured proxy state. Actual asset art, provenance and rights evidence, multi-format export, ZIP bundling, provider work, rendering, and production tooling remain outside this slice.
 
 | Target | Current state | Next move |
 | --- | --- | --- |
-| Operator Brief Typography Balance | `fff-operator-production-brief-typography-balance-001` is active; H1 passed judgment A and the title-only responsive hierarchy repair passes both accepted viewports without content/package drift | Narration read-aloud is advisory; H2 asset/shot work or any production gate requires separate authorization |
+| Production Execution Pack | `fff-production-execution-pack-001` is H0 validated; nine files align six beats, 19 shots, 14 reusable requirements, and an engine-neutral timing envelope while preserving source truth, and validator/browser/print evidence is green | Run H1 execution-readiness review; keep H2 engine calibration separately gated |
+| Operator Brief Typography Balance | `fff-operator-production-brief-typography-balance-001` is preserved; H1 passed judgment A and the title-only responsive hierarchy repair passes both accepted viewports without content/package drift | Use as the human-facing source and compact launcher for the standalone execution pack |
 | Operator Production Brief | `fff-operator-production-brief-001` is preserved; four normal-flow sections translate the protected six-beat / 19-shot / 20-subtitle contract into one non-specialist instruction path | Reopen only if new content or viewport evidence produces a measured hierarchy regression |
 | Content Production Blueprint | `fff-content-production-blueprint-001` is the preserved quantitative source with controlled vocabularies and machine-readable acceptance | Use through `Audit & Files` for technical verification; reopen only if the source contract itself is separately authorized to change |
 | Editorial Derivative Preview | `fff-editorial-derivative-preview-001` is preserved; exactly three accepted safe edits remain in a complete derived copy, with one secondary Change History owner and one Files / Export owner | Use as the provisional wording source; a real human pilot and canonical application require separate input and authorization |
 | Editorial Revision Roundtrip | `fff-editorial-revision-roundtrip-001` is preserved; local request import, fail-closed guard classification, before/after diff, decisions, and an unapplied safe-only patch preserve the source Handoff hashes | Use as the structured patch source; keep canonical application, timing/order, truth, assets, rights, provider, production, and canon closed |
 | Bridge Editorial Handoff Pack | `fff-bridge-editorial-handoff-pack-001` is the preserved immutable source; a focused Handoff route and six portable files align the exact 180-second baseline, narration, 20 subtitle cues, 19 shot cues, truth/rights guards, and SHA256 integrity metadata | Use locally for manual writing/subtitle/video editing; keep timing changes explicit and keep final narration, assets, rights, provider, production, and canon closed |
 | Bridge Storyboard Flow | `fff-bridge-storyboard-flow-001` is preserved as the exact source baseline; exactly six planning beats share one rail and active canvas, while old Bridge consoles/refinement/details remain preserved under one collapsed supporting-evidence section | Reopen only when an explicit later decision changes the order or timing; keep narration performance, assets, rights, production, and canon closed |
-| Apply Decision Shell Guard Diet | Covered by `fff-apply-decision-shell-guard-diet-001`; `brief` starts with the applied Shell, model-driven choices, Dock Governor, compact safety summary, Guard drawer, non-gate whitelist, and preserved `bridge` / `layout-lab` routes | Treat as preserved source-shell and regression evidence; `OPERATOR_FIRST` is closed and H1 Operator Brief comprehension is the active review |
+| Apply Decision Shell Guard Diet | Covered by `fff-apply-decision-shell-guard-diet-001`; `brief` starts with the applied Shell, model-driven choices, Dock Governor, compact safety summary, Guard drawer, non-gate whitelist, and preserved `bridge` / `layout-lab` routes | Treat as preserved source-shell and regression evidence; `OPERATOR_FIRST` and Operator Brief comprehension are closed, while H1 execution-readiness review is next |
 | Layout Lab Visual Audit | Covered by `fff-layout-lab-visual-audit-001`; the contact sheet and four screenshots show the Layout Lab, Split-pane Decision Shell, preserved `brief`, and preserved `bridge` routes | Use as source evidence only if the applied Shell needs a layout revision |
 | Layout Research Decision Shell | Covered by `fff-layout-research-decision-shell-001`; `public/review/index.html?mode=layout-lab` compares four wireframes, recommends split-pane Decision Shell, shows a heuristic score matrix, and renders choices from `decisionFlowModel` | Treat as design source, not the active route |
 | Low-text Decision Console | Preserved by `fff-low-text-decision-console-001`; its one route question, five choices, one Bridge action, six-step rail, and compact context pattern are now absorbed into the applied Shell | Keep as prior readback and regression evidence |
@@ -423,6 +451,14 @@ Preserved platform boundary:
 | Model/API adapter | Not started | Keep blocked until explicit authorization for provider choice, credentials, endpoint, transport behavior, and all local guards remain passing |
 
 ## How To Open The Review UI
+
+Open the current standalone execution handoff directly:
+
+```powershell
+Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
+```
+
+The accepted Blueprint route contains one compact `制作実行パックを開く` link to the same file. The older review surfaces remain available from the repo root:
 
 From the repo root, run:
 
@@ -467,4 +503,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-Use review memory before asking for another review: H1 already passed judgment A. The next non-redundant entry is an advisory narration read-aloud for delivery rhythm, or a separately authorized H2 asset/shot brief. Separate-creator testing, old-branch audit, Stale Shelf Excision, final canon, timing/order or truth changes, asset selection, rights clearance, provider, generation, render, upload, publication, database, and additional adoption remain deferred or require separate authorization.
+The execution-pack validator and both viewport checks are green. Run H1 Human Execution-Readiness Review as a freeform transfer check: ask the reviewer to explain the six-beat preparation order, what the 19 shots need, which of the 14 requirements are reusable, and which choices remain closed without opening Blueprint audit files. If that passes, the next technically meaningful lane is a separately authorized H2 calibration of one local synthetic voice engine against unchanged text. Actual asset selection, rights review, external creator/media work, old-branch audit, Stale Shelf Excision, final canon, timing/order or truth changes, provider, generation, render, upload, publication, database, and additional adoption remain deferred or require separate authorization.

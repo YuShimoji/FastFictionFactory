@@ -1,0 +1,7 @@
+beat_number,beat_id,title_ja,start_time,end_time,duration_seconds,purpose_ja,narration_state,subtitle_count,shot_count,completion_statement_ja
+1,bridge-storyboard-beat-1-bellless-tower,鐘のない塔,00:00,00:20,20,空の鐘枠を証拠として見せ、原因を問いのまま残す。,proxy_headroom_confirmed,3,3,空の鐘枠、撤去記録、『何が鳴る？』の順で読め、原因を確定しない。
+2,bridge-storyboard-beat-2-brass-moth,真鍮の蛾,00:20,00:50,30,主人公の文脈と個人的な手掛かりを置き、蛾の複数候補を開く。,existing_pass_unmeasured,3,3,仕事場、メモと蛾、9:17を示し、蛾の機能やトーマの生死を決めない。
+3,bridge-storyboard-beat-3-erased-names,消された名前,00:50,01:20,30,調査対象を具体化しながら、手掛かりへの疑いを広げる。,proxy_headroom_confirmed,3,3,台帳、名前と分、薄れる輪郭を示し、真正性や消失を事実化しない。
+4,bridge-storyboard-beat-4-council-shadow,評議会の影,01:20,01:45,25,制度的な圧力を加え、告発説と偽記録説を同じ重みで保つ。,proxy_headroom_confirmed,3,3,制度側、二つの説、動機不明を渡し、単純な悪役にしない。
+5,bridge-storyboard-beat-5-held-answers,答えを保留,01:45,02:35,50,三つの主要疑問を明示的に保留し、答えの自動確定を防ぐ。,existing_pass_unmeasured,5,4,三組の候補を見せ、どの生死・機能・動機も採用しない。
+6,bridge-storyboard-beat-6-time-or-names,時間か、名前か,02:35,03:00,25,二択を提示し、冒頭の鐘枠へ戻して問いのまま終える。,proxy_headroom_confirmed,3,3,二択、空欄の台帳、空の鐘枠を示し、最終選択や回復を描かない。

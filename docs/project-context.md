@@ -2,15 +2,25 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-operator-production-brief-typography-balance-001`, served at `public/review/index.html?mode=blueprint`. It preserves `fff-operator-production-brief-001` and its six-file human-facing package, while the same route preserves `fff-content-production-blueprint-001` as its eight-file machine/audit source. H1 comprehension passed judgment A; the only repair was a responsive reduction and rebalance of the main story title. Counts, wording, structure, timing, three accepted wording changes, truth, rights, and all package bytes under Operator, Handoff, Revision, Derivative, and Production Blueprint remain unchanged. The Brief is local planning evidence only: it is not canonical, production-approved, rights-cleared, rendered, or asset-selected.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-production-execution-pack-001`: a standalone, print-friendly nine-file handoff under `artifacts/production-execution-pack/`. It aligns the accepted 180-second / 6-beat / 19-shot / 20-subtitle / 6-narration / 3-thumbnail contract with 14 deduplicated generic asset requirements and an engine-neutral synthetic-narration timing envelope. `fff-operator-production-brief-typography-balance-001`, Operator Brief, Blueprint, Derivative, Revision, and Handoff are protected sources; their wording, timing, order, truth, rights, canon state, and package bytes do not change.
 
 ## Current Lane
 
-Keep the MVP repeatedly editable while translating machine-valid production constraints into one non-specialist reading path without mutating the source chain. The current lane is `OPERATOR_PRODUCTION_BRIEF`: preserve the accepted content purpose and scale, one continuous six-beat spine, Japanese visual grammar, one-level shot disclosure, five human-observable completion conditions, and a balanced responsive first-view hierarchy. Technical fields remain in one closed `Audit & Files`. Source content, timing/order, story truth, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload, publication, and database persistence remain closed.
+Keep the MVP repeatedly editable while handing a coherent production plan to another creator without forcing reconstruction from multiple review routes. The current lane is `PRODUCTION_EXECUTION_PACK`: preserve the accepted source chain, expose one portable six-beat run sheet and complete 19-shot preparation matrix, deduplicate reusable generic requirements, and record narration headroom without claiming engine calibration. Actual assets, rights clearance, engine, voice, provider/API, credentials, external calls, audio or media generation, render, upload, publication, database persistence, production approval, and final canon remain closed.
 
 ## Current Slice
 
-The active slice is the responsive typography balance wrapper over the accepted Operator Production Brief:
+The active slice is the portable Production Execution Pack:
+
+- Standalone entry: `artifacts/production-execution-pack/production-execution-pack.html`; Blueprint exposes exactly one compact `制作実行パックを開く` link without adding an app mode
+- Package: nine files covering identity/boundaries, six-beat run, narration timing, 19-shot execution, 14 generic asset requirements, three thumbnail directions, checklist/transfer, and integrity metadata
+- Timing overlay: B1/B3/B4/B6 are `proxy_headroom_confirmed` with 3–5 seconds of human-proxy slack and derived spoken ranges 15–17 / 25–27 / 20–22 / 20–22 seconds; B2/B5 remain `existing_pass_unmeasured`
+- Voice flags: `voice_mode=synthetic`, `human_articulation_check_required=false`, `engine_selected=false`, `voice_selected=false`, `audio_generated=false`, `engine_calibration_pending=true`
+- Asset flags: all 14 reusable requirements remain `asset_status=unselected`, `rights_status=not_reviewed`, and `provenance_required=true`; every one of the 19 shots references a valid requirement
+- Review evidence: `docs/review/production-execution-pack.md`, `artifacts/production-execution-pack-result.json`, `artifacts/review-screens/production-execution-pack-900x1200.png`, `artifacts/review-screens/production-execution-pack-1280x900.png`
+- Validation contract: `validate-production-execution-pack` is read-only; `smoke-production-execution-pack` may regenerate only the nine new package files and its result. The validator result is the source of truth for final pass/failure, hashes, 20 negative probes, viewport/print evidence, and protected-source immutability.
+
+Preserved responsive typography balance over the accepted Operator Production Brief:
 
 - Typography balance doc/result/screenshots: `docs/review/operator-production-brief-typography-balance.md`, `artifacts/operator-production-brief-typography-balance-result.json`, `artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png`, `artifacts/review-screens/operator-production-brief-typography-balance-1280x900.png`
 - Human judgment: H1 comprehension passed judgment A; the main story title was the only observed imbalance and its title-only hierarchy repair is complete
@@ -123,11 +133,19 @@ Preserved quantitative Blueprint source:
 
 ## Verification Snapshot
 
+Production Execution Pack checkpoint, 2026-07-13 JST:
+
+- `fff-production-execution-pack-001` starts from public base HEAD `97a3ec2 Balance operator brief typography` and preserves all 34 files in Operator, Production Blueprint, Editorial Derivative, Revision, and Handoff; their accepted aggregate SHA256 remains `396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95`.
+- The deterministic package contains 9 files, 6 beats, 180 seconds, 19 shots, 20 subtitle cues, 6 narration segments, 3 thumbnail directions, and 14 deduplicated generic asset requirements with complete shot references.
+- The B1/B3/B4/B6 human readings close prior density warnings as proxy evidence only. B2/B5 remain unmeasured and actual synthetic engine, voice, pronunciation, prosody, and audio timing calibration remain pending.
+- `artifacts/production-execution-pack-result.json` reports `passed=true` and `failures=[]`; it records final hashes, both browser/print measurements, 20/20 fail-closed probes, a passing root validation chain, 34 protected source files unchanged, and 68 historical results unchanged.
+- H1 is now an execution-readiness review: a reviewer should explain what must be prepared and assembled without opening technical audit files. H2 engine calibration is not authorized by this checkpoint.
+
 Operator Production Brief Typography Balance checkpoint, 2026-07-13 JST:
 
 - `fff-operator-production-brief-typography-balance-001` started from synced base HEAD `89197c9 Add operator production brief` and changes only Blueprint-scoped responsive typography and spacing; final commit/push identity is established by Git after publication.
 - Primary visible-text SHA256 `8dd887dcfbb6d68cddb7ae00d46a94878b90ba73f6390f05f1247b6e849c60e8` and primary HTML SHA256 `0c977a8ab17857e151218ea72f6700d34cbf49311c38b496247a027b373e93d1` preserve content identity. Protected-package aggregate SHA256 `396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95` and historical-result aggregate SHA256 `372a0088c16af8cd4c11748c568932e558911ec89e03cfc9df31480a9106183b` preserve the accepted evidence chain.
-- H1 is complete with judgment A. Narration read-aloud remains advisory; H2 asset/shot work requires separate authorization.
+- Operator Brief H1 is complete with judgment A. The later Production Execution Pack owns the human-proxy timing evidence and generic shot/asset mapping; engine calibration, real assets, and production remain separately gated.
 
 Editorial Derivative Preview checkpoint, 2026-07-12 JST:
 
@@ -281,7 +299,7 @@ Result summary:
 
 ## Boundaries
 
-Do not treat local review state as final canon. Do not add model/API behavior, provider credentials, publishing, upload credentials, AI video generation, production sync, database persistence, Timeline / Story Seed adoption behavior, additional Claim Ledger adoption, Canon decision mutation, actual production rollback, contradictory claim truth decisions, or final decisions for Toma, the brass moth, or the Council unless explicitly requested. The current production adoption readbacks are the single Claim Ledger row for `multi-claim-moth-key-label` and one Profile-only non-canon annotation for that same claim. The only current rollback work is a non-destructive Claim Ledger rehearsal plus a Profile annotation rollback descriptor; Timeline, Story Seed, Canon decision, provider/API, credential, publishing, production generation, actual rollback, and additional-claim work remain unauthorized.
+Do not treat the execution pack or local review state as production approval or final canon. The pack's 14 rows are generic requirements, not selected media; `not_reviewed` is not rights clearance; the 3–5 second human observations are text-density proxies, not TTS-engine measurements. Do not select an engine, voice, provider, credential, URL, vendor, paid asset, or file; do not generate audio, image, or video; do not render, upload, publish, persist database state, mutate Timeline / Story Seed / Canon, perform actual rollback, or decide Toma, the brass moth, or the Council unless a later request explicitly opens that gate.
 
 ## Restart Path
 
@@ -309,10 +327,10 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: use `public/review/index.html?mode=blueprint` for an advisory narration read-aloud, or seek separate authorization before H2 asset/shot work. H1 comprehension already passed judgment A and should not be repeated without new evidence. `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain preserved context. The source patch remains unapplied and the derivative remains non-canonical. Asset briefs, actual asset selection, canonical application, timing/order changes, story truth, rights clearance, provider work, generation, render, upload, publication, and database persistence remain deferred or blocked until separately authorized.
+First next move: open `artifacts/production-execution-pack/production-execution-pack.html`, run the root manifest's read-only validation chain, and use `docs/review/production-execution-pack.md` for H1 execution-readiness review. `public/review/index.html?mode=blueprint` is the preserved source route with one compact pack link; `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain protected context. Actual asset selection, rights clearance, local synthetic-engine choice/calibration, audio or media generation, provider work, render, upload, publication, database persistence, timing/order changes, truth, and canon remain deferred until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current repository handoff names `fff-operator-production-brief-typography-balance-001` as active, `fff-operator-production-brief-001` as its preserved human-facing source, and `fff-content-production-blueprint-001` as the protected technical source. Operator, Handoff, Revision, Derivative, and Production Blueprint package bytes remain immutable. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count HEAD...@{u}` to establish the exact published head and parity, then run the manifest's read-only validation command before opening the Operator Brief route.
+The current repository handoff names `fff-production-execution-pack-001` as active and the Typography Balance / Operator / Blueprint / Derivative / Revision / Handoff chain as protected sources. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count HEAD...@{u}` to establish the exact published head and parity, then run the root manifest's read-only validation command before opening the standalone execution pack. The validator result owns final package hashes, browser/print evidence, negative-probe outcomes, and proof that protected package bytes remain immutable.

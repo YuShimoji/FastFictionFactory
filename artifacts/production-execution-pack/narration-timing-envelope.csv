@@ -1,0 +1,7 @@
+beat_number,beat_id,segment_id,window_seconds,source_metric_status,timing_state,observed_slack_min_seconds,observed_slack_max_seconds,proxy_spoken_duration_min_seconds,proxy_spoken_duration_max_seconds,evidence_kind,engine_timing_verified,punctuation_pause_opportunity_count
+1,bridge-storyboard-beat-1-bellless-tower,narration-b01,20,warn,proxy_headroom_confirmed,3,5,15,17,human_read_aloud_text_density_proxy,false,8
+2,bridge-storyboard-beat-2-brass-moth,narration-b02,30,pass,existing_pass_unmeasured,,,,,existing_blueprint_metric_pass_unmeasured,false,10
+3,bridge-storyboard-beat-3-erased-names,narration-b03,30,warn,proxy_headroom_confirmed,3,5,25,27,human_read_aloud_text_density_proxy,false,9
+4,bridge-storyboard-beat-4-council-shadow,narration-b04,25,warn,proxy_headroom_confirmed,3,5,20,22,human_read_aloud_text_density_proxy,false,11
+5,bridge-storyboard-beat-5-held-answers,narration-b05,50,pass,existing_pass_unmeasured,,,,,existing_blueprint_metric_pass_unmeasured,false,16
+6,bridge-storyboard-beat-6-time-or-names,narration-b06,25,warn,proxy_headroom_confirmed,3,5,20,22,human_read_aloud_text_density_proxy,false,10

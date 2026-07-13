@@ -7,6 +7,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 | Question | Primary document | What it answers |
 | --- | --- | --- |
 | What is the current artifact and review state? | [`review/current-status.md`](review/current-status.md) | Active artifact, implemented features, verified behavior, missing work, and next recommended slice. |
+| What can another creator execute now? | [`review/production-execution-pack.md`](review/production-execution-pack.md) | The six-beat run, 19 shots, 14 generic asset requirements, synthetic timing evidence, closed boundaries, and H1 handoff question. |
 | What has been implemented by slice? | [`local-view/artifacts.md`](local-view/artifacts.md) | Artifact-by-artifact inventory with purpose, paths, screenshots, smoke evidence, and review status. |
 | What does each implementation slice contain? | [`review/*.md`](review/current-status.md) | Per-slice review notes with implemented items, preserved product truth, validation notes, known limitations, and next slice. |
 | What is the product supposed to be? | [`product-brief.md`](product-brief.md) | MVP purpose, user path, scope, out-of-scope boundaries, and review standard. |
@@ -18,7 +19,8 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 
 | Slice | Current state | Main review location | Quick visual evidence |
 | --- | --- | --- | --- |
-| Operator Brief Typography Balance | Active; H1 judgment A is preserved and the title-only responsive hierarchy repair is complete | [`review/operator-production-brief-typography-balance.md`](review/operator-production-brief-typography-balance.md) | `artifacts/operator-production-brief-typography-balance-result.json`, two balanced viewport screenshots, `public/review/index.html?mode=blueprint` |
+| Production Execution Pack | H0 validated; portable execution handoff is ready for H1 execution-readiness review | [`review/production-execution-pack.md`](review/production-execution-pack.md) | `artifacts/production-execution-pack/`, green `artifacts/production-execution-pack-result.json`, two measured viewport screenshots |
+| Operator Brief Typography Balance | Preserved accepted human-facing source; H1 judgment A and title-only repair remain complete | [`review/operator-production-brief-typography-balance.md`](review/operator-production-brief-typography-balance.md) | `artifacts/operator-production-brief-typography-balance-result.json`, two balanced viewport screenshots, `public/review/index.html?mode=blueprint` |
 | Operator Production Brief | Preserved human-facing one-scroll production instruction | [`review/operator-production-brief.md`](review/operator-production-brief.md) | `artifacts/operator-production-brief-result.json`, `artifacts/operator-production-brief/`, source screenshots, shared `mode=blueprint` |
 | Content Production Blueprint | Preserved quantitative machine/audit source | [`review/content-production-blueprint.md`](review/content-production-blueprint.md) | `artifacts/content-production-blueprint-result.json`, `artifacts/production-blueprint/`, shared `mode=blueprint` Audit & Files |
 | Editorial Derivative Preview | Preserved provisional source baseline | [`review/editorial-derivative-preview.md`](review/editorial-derivative-preview.md) | `artifacts/editorial-derivative-preview-result.json`, `artifacts/editorial-derivative/`, `public/review/index.html?mode=derivative` |
@@ -62,6 +64,8 @@ The current quick visual review files are stored under `artifacts/`:
 
 | File | Use |
 | --- | --- |
+| `artifacts/review-screens/production-execution-pack-900x1200.png` | Standalone execution pack evidence at 900x1200; result JSON owns the measured overflow, scroll, counts, and print assertions. |
+| `artifacts/review-screens/production-execution-pack-1280x900.png` | Standalone execution pack evidence at 1280x900; result JSON owns the measured overflow, scroll, counts, and print assertions. |
 | `artifacts/review-screens/operator-production-brief-typography-balance-900x1200.png` | Final 900x1200 evidence: 40px two-line title, 837.640625px first-view bottom, all five completion conditions visible, and no overflow, nested scroll, overlap, clipping, or orphan line. |
 | `artifacts/review-screens/operator-production-brief-typography-balance-1280x900.png` | Final 1280x900 evidence: 48px two-line title, 803.359375px first-view bottom, all five completion conditions visible, and no overflow, nested scroll, overlap, clipping, or orphan line. |
 | `artifacts/review-screens/content-production-blueprint.png` | 885x1180 content capture from a 900x1200 browser viewport for the focused quantitative Blueprint route; 133623 bytes, SHA256 `2694f69af62466e5612e9021a6308c3bee8aca8aa133606a0c8c0a9f802afec9`. |
@@ -106,20 +110,27 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Narration read-aloud advisory or separately authorized H2 asset/shot brief | H1 comprehension already passed judgment A and the title hierarchy is balanced at both accepted viewports. | The reviewer can test delivery rhythm without changing wording, or explicitly authorize asset/shot work without reopening the technical source. |
+| Next 1 turn | H1 execution-readiness review | A reviewer can explain the six-beat preparation, 19-shot assembly, reusable generic requirements, and remaining gates without opening technical audit files. | Transfer ambiguities can be repaired without selecting real assets, rights, an engine, or media. |
+| Following 1 turn after authorization | H2 local synthetic-engine calibration | One selected local engine is timed against unchanged narration; pronunciation, pause, and prosody findings are recorded honestly. | Actual audio timing can replace the human-proxy envelope without rewriting the accepted text. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |
 
 ## Current Local Review Entry
 
-The active UI remains:
+The active deliverable is the standalone static pack:
+
+```powershell
+Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
+```
+
+The accepted Blueprint retains one compact access link to this file. Its no-query review UI remains available as a preserved source surface:
 
 ```powershell
 Invoke-Item .\public\review\index.html
 ```
 
-No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The active product readback is `fff-operator-production-brief-typography-balance-001` at `public/review/index.html?mode=blueprint`; the accepted Operator Brief and quantitative Blueprint remain preserved below it, with the provisional Derivative at `?mode=derivative`, Revision at `?mode=revision`, immutable Handoff at `?mode=handoff`, and six-beat Storyboard Flow at `?mode=bridge`.
+No-query access still defaults to the preserved role-contracted Review Workbench / Review Brief. The current artifact is `fff-production-execution-pack-001`; `public/review/index.html?mode=blueprint` remains its accepted source route and compact launcher. Typography Balance, Operator Brief, quantitative Blueprint, provisional Derivative, Revision, immutable Handoff, and six-beat Storyboard Flow are preserved inputs rather than competing active deliverables.
 
 Mode-specific Content Production Blueprint route:
 
@@ -193,4 +204,4 @@ Then open `http://127.0.0.1:8000/`, start from this page, and open the active re
 Invoke-Item .\public\review\index.html
 ```
 
-The accepted Operator Brief now has a completed title-only responsive hierarchy repair. H1 comprehension passed judgment A; narration read-aloud remains an advisory next check, while any asset/shot brief, actual asset selection, provider work, generation, render, upload, database persistence, rights clearance, or canon work still needs separate authorization.
+The Production Execution Pack converts the accepted source chain into a validated 9-file, 6-beat, 19-shot handoff with 14 generic unselected asset requirements. Four human readings close text-density warnings as proxy headroom only; B2/B5 stay unmeasured and actual synthetic-engine calibration remains gated. H0 validator, viewport, and print evidence are green, so H1 is now an execution-readiness explanation check; asset selection, rights review, engine/voice choice, audio or media generation, provider work, render, upload, database persistence, and canon still need separate authorization.

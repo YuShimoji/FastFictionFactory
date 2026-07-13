@@ -1,5 +1,22 @@
 # Artifacts
 
+## fff-production-execution-pack-001
+
+- Title: Fast Fiction Factory Production Execution Pack
+- Purpose: Put the accepted 180-second / six-beat / 19-shot contract, generic reusable asset requirements, and engine-neutral synthetic-narration timing state into one portable handoff for another creator.
+- Primary file: `artifacts/production-execution-pack/production-execution-pack.html` (standalone, print-friendly, document-only scrolling)
+- Package directory: `artifacts/production-execution-pack/`
+- Package files: `README_PRODUCTION_EXECUTION.md`, `production-execution-pack.html`, `production-execution-pack.json`, `beat-run-sheet.csv`, `shot-execution-sheet.csv`, `asset-requirements.csv`, `narration-timing-envelope.csv`, `thumbnail-requirements.md`, `production-execution-manifest.json`
+- Review doc/result: `docs/review/production-execution-pack.md`, `artifacts/production-execution-pack-result.json`
+- Visual evidence: `artifacts/review-screens/production-execution-pack-900x1200.png`, `artifacts/review-screens/production-execution-pack-1280x900.png`; both measured viewports have no horizontal overflow, no nested scroll owner, and a complete first-view contract. Exact measurements and hashes are authoritative in the result and root manifest.
+- Source chain: `fff-operator-production-brief-typography-balance-001`, `fff-operator-production-brief-001`, `fff-content-production-blueprint-001`, `fff-editorial-derivative-preview-001`, `fff-editorial-revision-roundtrip-001`, `fff-bridge-editorial-handoff-pack-001` (all preserved below).
+- Execution contract: exactly 180 seconds / 6 beats / 19 shots / 20 subtitle cues / 6 narration segments / 3 thumbnail directions; 14 deduplicated generic asset requirements; every shot references at least one requirement.
+- Narration timing: intended `voice_mode=synthetic`; B1, B3, B4, and B6 are `proxy_headroom_confirmed` with 3–5 seconds of observed human-proxy slack and derived ranges 15–17, 25–27, 20–22, and 20–22 seconds; B2 and B5 remain `existing_pass_unmeasured`.
+- Closed choices: `engine_selected=false`, `voice_selected=false`, `audio_generated=false`, `human_articulation_check_required=false`, and `engine_calibration_pending=true`; generic requirements remain `unselected` / `not_reviewed` with provenance required, while protected source-shot rights remain `not_cleared`.
+- Read-only validation: `node tools/fff-state.mjs validate-production-execution-pack artifacts/production-execution-pack-result.json`
+- Intentional regeneration only: `node tools/fff-state.mjs smoke-production-execution-pack artifacts/production-execution-pack-result.json artifacts/production-execution-pack-result.json`; it may write only the nine new package files and its result.
+- State: H0 validated. The read-only result is green with 20/20 fail-closed probes, 34 protected package files and 68 historical results unchanged, both required viewports measured, and print utilities hidden. H1 is now a human execution-readiness review; actual engine calibration, real asset sourcing, rights review, media production, provider/API, render, upload, publication, database, and canon remain gated.
+
 ## fff-operator-production-brief-typography-balance-001
 
 - Title: Fast Fiction Factory Operator Production Brief Typography Balance
@@ -14,7 +31,7 @@
 - Content/package integrity: primary visible-text SHA256 `8dd887dcfbb6d68cddb7ae00d46a94878b90ba73f6390f05f1247b6e849c60e8`; primary HTML SHA256 `0c977a8ab17857e151218ea72f6700d34cbf49311c38b496247a027b373e93d1`; protected-package aggregate SHA256 `396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95`; historical-result aggregate SHA256 `372a0088c16af8cd4c11748c568932e558911ec89e03cfc9df31480a9106183b`.
 - Read-only validation: `node tools/fff-state.mjs validate-operator-production-brief-typography-balance artifacts/operator-production-brief-typography-balance-result.json`
 - Intentional result regeneration only: `node tools/fff-state.mjs smoke-operator-production-brief-typography-balance artifacts/operator-production-brief-typography-balance-result.json artifacts/operator-production-brief-typography-balance-result.json`
-- State: Typography-only repair complete from base HEAD `89197c9`; narration read-aloud remains advisory and asset/shot work requires separate authorization. No production, rights, provider, generation, render, upload, publication, database, canon, content, order, or package boundary was opened.
+- State: Typography-only repair complete from base HEAD `89197c9` and preserved as a source for `fff-production-execution-pack-001`. The later pack records the four human readings as proxy headroom and adds generic execution requirements without selecting assets or opening production, rights, provider, generation, render, upload, publication, database, canon, content, order, or source-package boundaries.
 
 ## fff-operator-production-brief-001
 
@@ -28,7 +45,7 @@
 - Information architecture: compact Blueprint-only Focus Shell; exactly four primary sections; one browser document scroll; six-beat continuous spine; one expanded beat; five shot-scale and six camera-motion explanations with 11 inline SVG diagrams; 19 human-readable shot summaries; five observable completion conditions; one closed Audit & Files.
 - Read-only validation: `node tools/fff-state.mjs validate-operator-production-brief artifacts/operator-production-brief-result.json`
 - Intentional regeneration: `node tools/fff-state.mjs smoke-operator-production-brief artifacts/operator-production-brief-result.json artifacts/operator-production-brief-result.json`
-- State: Preserved human-facing source for `fff-operator-production-brief-typography-balance-001`. H0 is complete and H1 comprehension passed judgment A; narration read-aloud is advisory, while asset/shot work, rights, provider, generation, render, upload, publication, database, final canon, and old workflow branch work remain deferred or closed.
+- State: Preserved human-facing source for Typography Balance and `fff-production-execution-pack-001`. H1 comprehension passed judgment A; the later execution overlay closes the four density warnings as human-proxy headroom and maps generic asset needs, while real asset selection, rights, provider, generation, render, upload, publication, database, final canon, and old workflow branch work remain deferred or closed.
 
 ## fff-content-production-blueprint-001
 

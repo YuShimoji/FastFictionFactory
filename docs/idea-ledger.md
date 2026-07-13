@@ -2,14 +2,23 @@
 
 ## Residual Work
 
+### Production Execution Pack
+
+- Purpose: Let another creator identify the exact six-beat schedule, all 19 shots, reusable generic production needs, and narration calibration state from one portable package rather than reconstructing them from protected review sources.
+- Effect: `fff-production-execution-pack-001` aligns 180 seconds, 6 beats, 19 shots, 20 subtitle cues, 6 narration segments, 3 thumbnail directions, 14 deduplicated asset requirements, and an engine-neutral synthetic timing envelope in nine static Markdown/CSV/JSON/HTML files.
+- Requirements: Preserve all Operator, Blueprint, Derivative, Revision, and Handoff package bytes and wording; every shot must reference a generic unselected requirement whose rights state is `not_reviewed`; retain protected source-shot rights as `not_cleared`; treat B1/B3/B4/B6's 3–5 second headroom as human-proxy evidence only; do not invent B2/B5 measurements or select/generate an engine, voice, asset, audio, image, or video.
+- State: H0 validated. `voice_mode=synthetic`, four beats `proxy_headroom_confirmed`, two beats `existing_pass_unmeasured`, and engine calibration pending are fixed in the package. The read-only result passes with both viewport/print evidence, 20/20 negative probes, and unchanged protected sources.
+- Owner: Product implementer owns deterministic generation, cross-file integrity, print/readability evidence, and source protection; a human reviewer owns H1 execution-readiness; voice and rights owners remain outside this lane.
+- Next move: Run H1 as a freeform explanation check: the reviewer should be able to state what to prepare and assemble without opening technical audit files. H2 local synthetic-engine selection and calibration requires separate authorization.
+
 ### Operator Brief Typography Balance
 
 - Purpose: Preserve the accepted H1 reading path while correcting the one observed visual imbalance: an oversized main story title.
 - Effect: `fff-operator-production-brief-typography-balance-001` gives the Blueprint-scoped first view a responsive title/body/metric/section hierarchy at 900x1200 and 1280x900, keeps all five completion conditions visible, and preserves print readability without changing content or structure.
 - Requirements: Keep the Operator, Blueprint, Derivative, Revision, and Handoff packages byte-identical; preserve visible wording, order, timing, truth, rights, asset state, and production boundaries; normal validation must stay read-only.
 - State: Complete from base HEAD `89197c9`. H1 comprehension passed judgment A; both viewports show a two-line title, first-view bottoms of 837.640625px and 803.359375px, five visible completion conditions, and zero overflow, nested scroll, overlap, clipping, or orphan single-character lines.
-- Owner: Product implementer owns the completed responsive hierarchy and validator; a human may run narration read-aloud as advisory; asset/shot work requires separate authorization.
-- Next move: Use narration read-aloud only to assess delivery rhythm, or explicitly authorize H2 asset/shot work. Reopen typography only if a new viewport or content change produces measured hierarchy regression.
+- Owner: Product implementer owns the completed responsive hierarchy and its preservation; the Production Execution Pack owns the later timing proxy and generic asset/shot mapping; real media and production gates remain separately authorized.
+- Next move: Use it as the preserved human-facing source for the Production Execution Pack. Reopen typography only if a new viewport or content change produces measured hierarchy regression.
 
 ### Operator Production Brief
 
@@ -18,7 +27,7 @@
 - Requirements: Preserve all Handoff, Revision, Derivative, and Production Blueprint bytes; keep timing, order, wording, truth, rights, assets, provider, generation, production, publication, database, canon, and old workflow branch unchanged or closed.
 - State: Preserved as `fff-operator-production-brief-001`; H1 comprehension passed judgment A and its sole title-size concern is resolved by `fff-operator-production-brief-typography-balance-001`.
 - Owner: Product implementer for UI/package/validator preservation; production and rights owners remain outside this lane.
-- Next move: Use narration read-aloud as an advisory check or seek separate authorization for asset/shot work; do not repeat H1 or reopen the package contract without new evidence.
+- Next move: Use it as the preserved story/visual-language source linked to the standalone Production Execution Pack; do not repeat its completed comprehension review or reopen the package contract without new evidence.
 
 ### Content Production Blueprint
 
@@ -27,7 +36,7 @@
 - Requirements: Preserve every Handoff, Revision, and Derivative package byte; keep the three wording edits provisional; keep six-beat order, exact 180-second timing, truth, rights, assets, provider, credentials, generation, render, upload, publication, database, and canon boundaries closed; normal validation must remain read-only.
 - State: Implemented and preserved as the machine/audit source for `fff-operator-production-brief-001`. It does not authorize production, asset selection, rights clearance, or canon promotion.
 - Owner: Product implementer for deterministic package and validator maintenance; human review now starts from the Operator Brief.
-- Next move: Reopen only when the quantitative contract changes under separate authority; do not use its former nested UI as the human review entrance.
+- Next move: Use its quantitative fields as protected source inputs for the Production Execution Pack; reopen only when the technical contract changes under separate authority.
 
 ### Editorial Derivative Preview
 

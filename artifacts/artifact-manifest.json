@@ -1,18 +1,28 @@
 {
-  "artifact_id": "fff-operator-production-brief-typography-balance-001",
+  "artifact_id": "fff-production-execution-pack-001",
   "preserved_source_span_artifact_id": "fff-source-span-routing-review-pack-001",
   "preserved_model_api_boundary_artifact_id": "fff-model-api-boundary-spec-001",
   "preserved_adapter_expansion_artifact_id": "fff-local-extraction-adapter-expansion-001",
   "preserved_adapter_artifact_id": "fff-local-extraction-adapter-spike-001",
   "preserved_artifact_id": "fff-extraction-validator-hardening-001",
   "preserved_contract_artifact_id": "fff-extraction-contract-001",
-  "title": "Fast Fiction Factory Operator Production Brief Typography Balance",
-  "purpose": "Reduce the accepted Operator Production Brief title's visual dominance through one Blueprint-scoped responsive type system while preserving every visible word, first-view instruction, package byte, and production boundary.",
-  "repo_relative_path": "public/review/index.html",
-  "open_command": ".\\scripts\\operator\\open_review.ps1 -Mode blueprint",
+  "title": "Fast Fiction Factory Production Execution Pack",
+  "purpose": "Provide one portable execution surface for the exact six-beat, 180-second, 19-shot story plan, with 14 generic unselected asset requirements and synthetic-narration timing envelopes while keeping canon, rights, provider, generation, render, and publication boundaries closed.",
+  "repo_relative_path": "artifacts/production-execution-pack/production-execution-pack.html",
+  "open_command": "Invoke-Item .\\artifacts\\production-execution-pack\\production-execution-pack.html",
   "repo_local_launcher": "scripts/operator/open_review.ps1",
-  "review_doc_path": "docs/review/operator-production-brief-typography-balance.md",
-  "smoke_result_path": "artifacts/operator-production-brief-typography-balance-result.json",
+  "review_doc_path": "docs/review/production-execution-pack.md",
+  "smoke_result_path": "artifacts/production-execution-pack-result.json",
+  "production_execution_pack_dir": "artifacts/production-execution-pack",
+  "production_execution_pack_result_path": "artifacts/production-execution-pack-result.json",
+  "production_execution_pack_doc_path": "docs/review/production-execution-pack.md",
+  "production_execution_pack_route": "artifacts/production-execution-pack/production-execution-pack.html",
+  "production_execution_pack_screenshot_900_path": "artifacts/review-screens/production-execution-pack-900x1200.png",
+  "production_execution_pack_screenshot_1280_path": "artifacts/review-screens/production-execution-pack-1280x900.png",
+  "production_execution_pack_screenshot_900_size": 1408180,
+  "production_execution_pack_screenshot_900_sha256": "e5608bce00830e8e8b1c821a32fc08b8832e6f86b252fe8e46d102651d0d648a",
+  "production_execution_pack_screenshot_1280_size": 1382829,
+  "production_execution_pack_screenshot_1280_sha256": "d3acdc7d1c0fda53318fc95885479654174b20be03eabf273fc399adda14642c",
   "operator_production_brief_typography_balance_doc_path": "docs/review/operator-production-brief-typography-balance.md",
   "operator_production_brief_typography_balance_result_path": "artifacts/operator-production-brief-typography-balance-result.json",
   "operator_production_brief_typography_balance_route": "public/review/index.html?mode=blueprint",
@@ -97,6 +107,8 @@
   "bridge_storyboard_flow_screenshot_path": "artifacts/review-screens/bridge-storyboard-flow.png",
   "contact_sheet_path": "artifacts/layout-lab-visual-audit-contact-sheet.png",
   "preserves": [
+    "fff-operator-production-brief-typography-balance-001",
+    "fff-operator-production-brief-001",
     "fff-content-production-blueprint-001",
     "fff-editorial-derivative-preview-001",
     "fff-editorial-revision-roundtrip-001",
@@ -373,24 +385,40 @@
     "artifacts/production-blueprint/visual-system.md",
     "artifacts/production-blueprint/acceptance-matrix.csv",
     "artifacts/production-blueprint/blueprint-package-manifest.json",
-    "public/review/index.html?mode=blueprint"
+    "public/review/index.html?mode=blueprint",
+    "Worker slice: fff-production-execution-pack-001",
+    "Human proxy evidence: Beats 1, 3, 4, and 6 finished 3-5 seconds early; Beats 2 and 5 remain existing-pass unmeasured",
+    "artifacts/production-execution-pack/README_PRODUCTION_EXECUTION.md",
+    "artifacts/production-execution-pack/production-execution-pack.html",
+    "artifacts/production-execution-pack/production-execution-pack.json",
+    "artifacts/production-execution-pack/beat-run-sheet.csv",
+    "artifacts/production-execution-pack/shot-execution-sheet.csv",
+    "artifacts/production-execution-pack/asset-requirements.csv",
+    "artifacts/production-execution-pack/narration-timing-envelope.csv",
+    "artifacts/production-execution-pack/thumbnail-requirements.md",
+    "artifacts/production-execution-pack/production-execution-manifest.json",
+    "docs/review/production-execution-pack.md",
+    "artifacts/production-execution-pack-result.json",
+    "artifacts/review-screens/production-execution-pack-900x1200.png",
+    "artifacts/review-screens/production-execution-pack-1280x900.png",
+    "public/review/index.html Blueprint Audit & Files link: data-production-execution-pack-link=true"
   ],
   "created_at": "2026-06-23T14:06:00+09:00",
   "editorial_handoff_line_ending_policy": "LF enforced by .gitattributes for portable byte-size and SHA256 verification",
   "editorial_handoff_portability_validation_result": "passed 6/6 filtered checkout files; LF-only bytes, working-tree hashes, and package-manifest hashes matched with core.autocrlf=true on 2026-07-12",
-  "validation_command": "& { node --check tools/fff-state.mjs; if ($LASTEXITCODE -ne 0) { throw 'State tool syntax failed' }; node tools/fff-state.mjs validate-operator-production-brief-typography-balance artifacts/operator-production-brief-typography-balance-result.json; if ($LASTEXITCODE -ne 0) { throw 'Operator Production Brief typography balance validation failed' }; node tools/fff-state.mjs validate-operator-production-brief artifacts/operator-production-brief-result.json; if ($LASTEXITCODE -ne 0) { throw 'Operator Production Brief validation failed' }; node tools/fff-state.mjs validate-content-production-blueprint artifacts/content-production-blueprint-result.json; if ($LASTEXITCODE -ne 0) { throw 'Content Production Blueprint validation failed' }; node tools/fff-state.mjs validate-editorial-derivative-preview artifacts/editorial-derivative-preview-result.json; if ($LASTEXITCODE -ne 0) { throw 'Editorial Derivative Preview validation failed' }; node tools/fff-state.mjs validate-editorial-revision-roundtrip artifacts/editorial-revision-roundtrip-result.json; if ($LASTEXITCODE -ne 0) { throw 'Editorial Revision Roundtrip validation failed' }; node tools/fff-state.mjs validate-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json; if ($LASTEXITCODE -ne 0) { throw 'Bridge Editorial Handoff Pack validation failed' }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; if ($manifest.artifact_id -ne 'fff-operator-production-brief-typography-balance-001' -or $manifest.default_review_mode -ne 'brief' -or $manifest.review_input_mode -ne 'freeform') { throw 'Manifest active typography balance mismatch' }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; @('operator-production-brief-typography-balance:v1', 'data-operator-production-brief-root=\"true\"', 'data-operator-focus-shell=\"true\"', 'data-operator-primary-flow=\"true\"', 'data-operator-audit-files=\"true\"', 'data-mode-panel=\"derivative\"', 'data-mode-panel=\"revision\"', 'data-mode-panel=\"handoff\"', 'data-bridge-storyboard-flow=\"true\"', 'data-review-workbench-canvas=\"true\"') | ForEach-Object { if (-not $html.Contains($_)) { throw ('Missing Operator Production Brief typography marker: ' + $_) } }; Write-Output 'Operator Production Brief typography balance read-only validation passed' }",
-  "validation_result": "passed 2026-07-13 JST: node syntax, strict read-only typography validation, 16/16 fail-closed probes, Operator/Blueprint/Derivative/Revision/Handoff regression chain, 900x1200 and 1280x900 browser hierarchy/first-view checks, print/dark/focus/console checks, exact 34-file package and 67-result history aggregates, inline script compile, Blueprint print-only URI, strict MkDocs, JSON parse, and git diff check",
+  "validation_command": "& { node --check tools/fff-state.mjs; if ($LASTEXITCODE -ne 0) { throw 'State tool syntax failed' }; node tools/fff-state.mjs validate-production-execution-pack artifacts/production-execution-pack-result.json; if ($LASTEXITCODE -ne 0) { throw 'Production Execution Pack validation failed' }; node tools/fff-state.mjs validate-operator-production-brief-typography-balance artifacts/operator-production-brief-typography-balance-result.json; if ($LASTEXITCODE -ne 0) { throw 'Operator Production Brief typography balance validation failed' }; node tools/fff-state.mjs validate-operator-production-brief artifacts/operator-production-brief-result.json; if ($LASTEXITCODE -ne 0) { throw 'Operator Production Brief validation failed' }; node tools/fff-state.mjs validate-content-production-blueprint artifacts/content-production-blueprint-result.json; if ($LASTEXITCODE -ne 0) { throw 'Content Production Blueprint validation failed' }; node tools/fff-state.mjs validate-editorial-derivative-preview artifacts/editorial-derivative-preview-result.json; if ($LASTEXITCODE -ne 0) { throw 'Editorial Derivative Preview validation failed' }; node tools/fff-state.mjs validate-editorial-revision-roundtrip artifacts/editorial-revision-roundtrip-result.json; if ($LASTEXITCODE -ne 0) { throw 'Editorial Revision Roundtrip validation failed' }; node tools/fff-state.mjs validate-bridge-editorial-handoff-pack artifacts/bridge-editorial-handoff-pack-result.json; if ($LASTEXITCODE -ne 0) { throw 'Bridge Editorial Handoff Pack validation failed' }; $manifest = Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json; $entry = $manifest.production_execution_pack; if ($manifest.artifact_id -ne 'fff-production-execution-pack-001' -or $manifest.repo_relative_path -ne 'artifacts/production-execution-pack/production-execution-pack.html' -or $manifest.default_review_mode -ne 'brief' -or $manifest.review_input_mode -ne 'freeform' -or $entry.artifact_id -ne 'fff-production-execution-pack-001' -or $entry.package_root -ne 'artifacts/production-execution-pack') { throw 'Manifest active Production Execution Pack mismatch' }; $html = Get-Content public/review/index.html -Raw -Encoding UTF8; $markerCount = ([regex]::Matches($html, 'data-production-execution-pack-link=\"true\"')).Count; if ($markerCount -ne 1 -or -not $html.Contains('href=\"../../artifacts/production-execution-pack/production-execution-pack.html\"') -or -not $html.Contains('制作実行パックを開く')) { throw 'Blueprint Production Execution Pack link mismatch' }; if (-not (Test-Path -LiteralPath 'artifacts/production-execution-pack/production-execution-pack.html' -PathType Leaf)) { throw 'Production Execution Pack route missing' }; Write-Output 'Production Execution Pack read-only validation passed' }",
+  "validation_result": "Production Execution Pack is the active validated artifact on 2026-07-13 JST; the final strict read-only gate covers node syntax, the 20 fail-closed execution-pack probes, Typography/Operator/Blueprint/Derivative/Revision/Handoff regressions, exact 34-file protected-source and 68-result historical aggregates, nine-file manifest integrity, Blueprint link identity, two browser viewports, print behavior, JSON parse, strict MkDocs, and git diff checks.",
   "scope_lock_validation_result": "passed 2026-06-23T18:00:28+09:00; fff-downstream-adoption-gate-scope-lock-001 parsed and confirmed readback-only, no adoption implementation, no Profile/Claim/Timeline mutation, no canon promotion, no DB persistence, no model/API/provider execution, no production sync, contradictory claims held, and pre-adoption source/routing/hold checks preserved over the latest downstream gate readback.",
-  "review_status": "typography_balance_validated",
+  "review_status": "production_execution_pack_validated",
   "review_input_mode": "freeform",
-  "review_prompt_hint": "Open public/review/index.html?mode=blueprint only if a visual readback is useful; Human Comprehension already passed judgment A and this slice changes no wording or structure.",
-  "next_action": "Typography balance is complete. Narration Read-Aloud remains advisory; Asset / Shot Brief, assets, rights, provider, generation, render, publication, database, and canon require separate authorization.",
+  "review_prompt_hint": "Open the portable Production Execution Pack and review whether its six-beat run sheet, 19-shot execution sheet, 14 generic asset requirements, and synthetic timing envelope are sufficient to begin local production preparation.",
+  "next_action": "H1 human execution-readiness review of the portable Production Execution Pack; asset selection, rights clearance, TTS engine or voice selection, audio generation, production render, publication, database, and canon remain separately gated.",
   "context_synced_at": "2026-07-13T00:00:00+09:00",
-  "handoff_remote_head": "4fb9d56e6264545acda5b8194cf6bbcb85204d57",
-  "handoff_remote_head_short": "4fb9d56e",
+  "handoff_remote_head": "97a3ec2b57934e35073562bee8475f324a880a0f",
+  "handoff_remote_head_short": "97a3ec2b",
   "handoff_remote_branch": "origin/master",
   "handoff_remote_parity": "0 0",
-  "handoff_remote_sync_note": "This records the synced 4fb9d56 baseline after Editorial Derivative Preview and before the 2026-07-13 Content Production Blueprint implementation. After pulling the published Blueprint commit, use git log -1 --oneline --decorate for the exact final commit.",
+  "handoff_remote_sync_note": "This records the exact synced origin/master baseline 97a3ec2b57934e35073562bee8475f324a880a0f from which the Production Execution Pack was derived; the six protected source packages remain byte-identical.",
   "preserved_review_hub_ia_mode_split_artifact_id": "fff-review-hub-ia-mode-split-001",
   "repo_local_shell_launcher": "scripts/operator/open_review.sh",
   "review_hub_ia_mode_split_doc_path": "docs/review/review-hub-ia-mode-split.md",
@@ -407,6 +435,31 @@
   "review_procedure_doc_path": "docs/review/review-procedure.md",
   "review_procedure_smoke_result_path": "artifacts/review-procedure-lock-smoke-result.json",
   "review_memory": [
+    {
+      "artifact_id": "fff-production-execution-pack-001",
+      "axis": "production_execution_pack",
+      "prior_review_count": 0,
+      "human_observation": "Proxy read evidence confirms 3-5 seconds of headroom for Beats 1, 3, 4, and 6; Beats 2 and 5 retain their prior pass state without fabricated timing measurements.",
+      "accepted_scope": [
+        "one portable nine-file production execution package",
+        "the exact six-beat, 180-second, 19-shot source plan",
+        "14 deduplicated generic asset requirements with every asset unselected",
+        "synthetic narration timing envelopes without engine, voice, or audio generation",
+        "a compact Blueprint Audit & Files access link"
+      ],
+      "not_accepted_scope": [
+        "asset or vendor selection",
+        "rights-clearance claim",
+        "TTS engine or voice selection",
+        "audio or AI video generation",
+        "production render or publication",
+        "database persistence",
+        "final canon decision"
+      ],
+      "review_card_emitted": false,
+      "repeated_general_review_request_emitted": false,
+      "next_review": "H1 human execution-readiness review of whether the run sheet, shot sheet, asset requirements, and synthetic timing envelope are sufficient to begin local production preparation."
+    },
     {
       "artifact_id": "fff-operator-production-brief-typography-balance-001",
       "axis": "operator_production_brief_typography_balance",
@@ -2931,6 +2984,149 @@
     },
     "next_review": "Preserved as the immutable Handoff source for the active Editorial Derivative Preview."
   },
+  "production_execution_pack": {
+    "artifact_id": "fff-production-execution-pack-001",
+    "schemaVersion": "fff.productionExecutionPack.v1",
+    "package_root": "artifacts/production-execution-pack",
+    "result_path": "artifacts/production-execution-pack-result.json",
+    "review_doc_path": "docs/review/production-execution-pack.md",
+    "access_route": "artifacts/production-execution-pack/production-execution-pack.html",
+    "source_artifact_ids": [
+      "fff-operator-production-brief-typography-balance-001",
+      "fff-operator-production-brief-001",
+      "fff-content-production-blueprint-001",
+      "fff-editorial-derivative-preview-001",
+      "fff-editorial-revision-roundtrip-001",
+      "fff-bridge-editorial-handoff-pack-001"
+    ],
+    "source_fingerprints": {
+      "operator_typography_result_sha256": "4096ed9aaa5c1138991bd1e13ded527853d4ba2c3abbefce2b8b3a4a5d688c77",
+      "operator_production_brief_sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6",
+      "operator_brief_manifest_sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40",
+      "production_blueprint_sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d",
+      "blueprint_package_manifest_sha256": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245",
+      "derivative_editorial_handoff_sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+      "derivative_package_manifest_sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577",
+      "revision_package_manifest_sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d",
+      "handoff_package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971",
+      "protected_package_aggregate_sha256": "396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95"
+    },
+    "files": [
+      {
+        "relative_path": "README_PRODUCTION_EXECUTION.md",
+        "path": "artifacts/production-execution-pack/README_PRODUCTION_EXECUTION.md",
+        "byte_size": 1094,
+        "sha256": "963d162bfb9f11807e1dc7f1d65a1d83cfc47cdcb586953d462bcc7b89be59b6"
+      },
+      {
+        "relative_path": "production-execution-pack.html",
+        "path": "artifacts/production-execution-pack/production-execution-pack.html",
+        "byte_size": 35720,
+        "sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c"
+      },
+      {
+        "relative_path": "production-execution-pack.json",
+        "path": "artifacts/production-execution-pack/production-execution-pack.json",
+        "byte_size": 47347,
+        "sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb"
+      },
+      {
+        "relative_path": "beat-run-sheet.csv",
+        "path": "artifacts/production-execution-pack/beat-run-sheet.csv",
+        "byte_size": 1770,
+        "sha256": "98287106f8da8851f28f4f48494ea0b646515a0a68e4c69b67ab5013a528de03"
+      },
+      {
+        "relative_path": "shot-execution-sheet.csv",
+        "path": "artifacts/production-execution-pack/shot-execution-sheet.csv",
+        "byte_size": 10277,
+        "sha256": "f6d9e6692f770d5d8fb591542a5bcd270ad551fe502a211002090a245ce56eee"
+      },
+      {
+        "relative_path": "asset-requirements.csv",
+        "path": "artifacts/production-execution-pack/asset-requirements.csv",
+        "byte_size": 4143,
+        "sha256": "caa71679693005d643b6bd8346a30ecc38dd6a5d43e2b43d7a526e776f7a58d1"
+      },
+      {
+        "relative_path": "narration-timing-envelope.csv",
+        "path": "artifacts/production-execution-pack/narration-timing-envelope.csv",
+        "byte_size": 1128,
+        "sha256": "82ed47ab2c24c8b7be082f3e9fb547c2978a3d718eb71a5f28bdf8bcfc57e847"
+      },
+      {
+        "relative_path": "thumbnail-requirements.md",
+        "path": "artifacts/production-execution-pack/thumbnail-requirements.md",
+        "byte_size": 1294,
+        "sha256": "6a3a769c7a95e0d8e86cd8350e1a2d05e9d86ab3526b662ea416c2926e1ddbd7"
+      },
+      {
+        "relative_path": "production-execution-manifest.json",
+        "path": "artifacts/production-execution-pack/production-execution-manifest.json",
+        "byte_size": 3554,
+        "sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7"
+      }
+    ],
+    "screenshots": {
+      "900x1200": {
+        "path": "artifacts/review-screens/production-execution-pack-900x1200.png",
+        "byte_size": 1408180,
+        "sha256": "e5608bce00830e8e8b1c821a32fc08b8832e6f86b252fe8e46d102651d0d648a"
+      },
+      "1280x900": {
+        "path": "artifacts/review-screens/production-execution-pack-1280x900.png",
+        "byte_size": 1382829,
+        "sha256": "d3acdc7d1c0fda53318fc95885479654174b20be03eabf273fc399adda14642c"
+      }
+    },
+    "counts": {
+      "total_duration_seconds": 180,
+      "beats": 6,
+      "shots": 19,
+      "subtitle_cues": 20,
+      "narration_segments": 6,
+      "thumbnail_directions": 3,
+      "asset_requirements": 14,
+      "shots_with_asset_requirements": 19
+    },
+    "narration_timing": {
+      "proxy_headroom_beat_count": 4,
+      "proxy_slack_min_seconds": 3,
+      "proxy_slack_max_seconds": 5,
+      "unmeasured_pass_beat_count": 2
+    },
+    "voice": {
+      "voice_mode": "synthetic",
+      "human_articulation_check_required": false,
+      "engine_selected": false,
+      "voice_selected": false,
+      "engine_calibration_pending": true,
+      "audio_generated": false
+    },
+    "package_fingerprint_sha256": "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+    "protected_package_aggregate_sha256": "396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95",
+    "historical_result_count": 68,
+    "historical_results_aggregate_sha256": "aeed2265c5ac26b2b084f967cbd50c4dcb8730f75bfcec294742988635da4f61",
+    "canonical": false,
+    "production_approved": false,
+    "boundaries": {
+      "local_only": true,
+      "external_call": false,
+      "provider_configured": false,
+      "credentials_touched": false,
+      "assets_selected": false,
+      "rights_cleared_claim": false,
+      "tts_engine_selected": false,
+      "voice_selected": false,
+      "audio_generated": false,
+      "public_upload": false,
+      "ai_video_generation": false,
+      "production_render": false,
+      "database_persistence": false,
+      "final_canon_decision": false
+    },
+    "next_review": "H1 human execution-readiness review of the portable run sheet, shot sheet, generic asset requirements, and synthetic timing envelope."
+  },
   "operator_production_brief_typography_balance": {
     "artifact_id": "fff-operator-production-brief-typography-balance-001",
     "schemaVersion": "fff.operatorProductionBriefTypographyBalance.v1",
@@ -2990,7 +3186,7 @@
       "database_persistence": false,
       "final_canon_decision": false
     },
-    "next_review": "Typography balance is complete; Narration Read-Aloud remains advisory and Asset / Shot Brief still requires separate authorization."
+    "next_review": "Preserved as the immutable typography source and Blueprint access surface for the active Production Execution Pack."
   },
   "operator_production_brief": {
     "artifact_id": "fff-operator-production-brief-001",
@@ -3041,7 +3237,7 @@
       "database_persistence": false,
       "final_canon_decision": false
     },
-    "next_review": "H1 Human Comprehension passed judgment A. The active typography-balance wrapper preserves this source; narration rehearsal remains advisory and asset / shot work still requires separate authorization."
+    "next_review": "Preserved as the immutable operator-brief source for the active Production Execution Pack; the new pack overlays proxy timing evidence without rewriting this package."
   },
   "content_production_blueprint": {
     "artifact_id": "fff-content-production-blueprint-001",

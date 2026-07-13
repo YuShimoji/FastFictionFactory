@@ -1,0 +1,694 @@
+{
+  "schemaVersion": "fff.productionExecutionPackResult.v1",
+  "artifact_id": "fff-production-execution-pack-001",
+  "source_artifact_ids": [
+    "fff-operator-production-brief-typography-balance-001",
+    "fff-operator-production-brief-001",
+    "fff-content-production-blueprint-001",
+    "fff-editorial-derivative-preview-001",
+    "fff-editorial-revision-roundtrip-001",
+    "fff-bridge-editorial-handoff-pack-001"
+  ],
+  "source_fingerprints": {
+    "operator_typography_result_sha256": "4096ed9aaa5c1138991bd1e13ded527853d4ba2c3abbefce2b8b3a4a5d688c77",
+    "operator_production_brief_sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6",
+    "operator_brief_manifest_sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40",
+    "production_blueprint_sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d",
+    "blueprint_package_manifest_sha256": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245",
+    "derivative_editorial_handoff_sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+    "derivative_package_manifest_sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577",
+    "revision_package_manifest_sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d",
+    "handoff_package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971",
+    "protected_package_aggregate_sha256": "396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95"
+  },
+  "package_files": [
+    {
+      "relative_path": "README_PRODUCTION_EXECUTION.md",
+      "path": "artifacts/production-execution-pack/README_PRODUCTION_EXECUTION.md",
+      "byte_size": 1094,
+      "sha256": "963d162bfb9f11807e1dc7f1d65a1d83cfc47cdcb586953d462bcc7b89be59b6"
+    },
+    {
+      "relative_path": "production-execution-pack.html",
+      "path": "artifacts/production-execution-pack/production-execution-pack.html",
+      "byte_size": 35720,
+      "sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c"
+    },
+    {
+      "relative_path": "production-execution-pack.json",
+      "path": "artifacts/production-execution-pack/production-execution-pack.json",
+      "byte_size": 47347,
+      "sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb"
+    },
+    {
+      "relative_path": "beat-run-sheet.csv",
+      "path": "artifacts/production-execution-pack/beat-run-sheet.csv",
+      "byte_size": 1770,
+      "sha256": "98287106f8da8851f28f4f48494ea0b646515a0a68e4c69b67ab5013a528de03"
+    },
+    {
+      "relative_path": "shot-execution-sheet.csv",
+      "path": "artifacts/production-execution-pack/shot-execution-sheet.csv",
+      "byte_size": 10277,
+      "sha256": "f6d9e6692f770d5d8fb591542a5bcd270ad551fe502a211002090a245ce56eee"
+    },
+    {
+      "relative_path": "asset-requirements.csv",
+      "path": "artifacts/production-execution-pack/asset-requirements.csv",
+      "byte_size": 4143,
+      "sha256": "caa71679693005d643b6bd8346a30ecc38dd6a5d43e2b43d7a526e776f7a58d1"
+    },
+    {
+      "relative_path": "narration-timing-envelope.csv",
+      "path": "artifacts/production-execution-pack/narration-timing-envelope.csv",
+      "byte_size": 1128,
+      "sha256": "82ed47ab2c24c8b7be082f3e9fb547c2978a3d718eb71a5f28bdf8bcfc57e847"
+    },
+    {
+      "relative_path": "thumbnail-requirements.md",
+      "path": "artifacts/production-execution-pack/thumbnail-requirements.md",
+      "byte_size": 1294,
+      "sha256": "6a3a769c7a95e0d8e86cd8350e1a2d05e9d86ab3526b662ea416c2926e1ddbd7"
+    },
+    {
+      "relative_path": "production-execution-manifest.json",
+      "path": "artifacts/production-execution-pack/production-execution-manifest.json",
+      "byte_size": 3554,
+      "sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7"
+    }
+  ],
+  "package_fingerprint_sha256": "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+  "beat_count": 6,
+  "total_duration_seconds": 180,
+  "shot_count": 19,
+  "subtitle_count": 20,
+  "narration_segment_count": 6,
+  "asset_requirement_count": 14,
+  "shots_with_asset_requirements": 19,
+  "proxy_headroom_beat_count": 4,
+  "proxy_slack_min_seconds": 3,
+  "proxy_slack_max_seconds": 5,
+  "unmeasured_pass_beat_count": 2,
+  "voice_mode": "synthetic",
+  "human_articulation_check_required": false,
+  "engine_selected": false,
+  "voice_selected": false,
+  "engine_calibration_pending": true,
+  "audio_generated": false,
+  "assets_selected": false,
+  "rights_cleared_claim": false,
+  "source_package_pre_hashes": {
+    "artifacts/editorial-derivative/README_DERIVATIVE.md": {
+      "exists": true,
+      "byte_size": 1919,
+      "sha256": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe"
+    },
+    "artifacts/editorial-derivative/applied-revision-patch.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-derivative/derivative-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2134,
+      "sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+    },
+    "artifacts/editorial-derivative/derivative-provenance.json": {
+      "exists": true,
+      "byte_size": 5841,
+      "sha256": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd"
+    },
+    "artifacts/editorial-derivative/editorial-handoff.derived.json": {
+      "exists": true,
+      "byte_size": 37134,
+      "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+    },
+    "artifacts/editorial-derivative/narration-script.derived.md": {
+      "exists": true,
+      "byte_size": 4774,
+      "sha256": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6"
+    },
+    "artifacts/editorial-derivative/shot-list.derived.csv": {
+      "exists": true,
+      "byte_size": 7009,
+      "sha256": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4"
+    },
+    "artifacts/editorial-derivative/subtitle-cues.derived.csv": {
+      "exists": true,
+      "byte_size": 3615,
+      "sha256": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe"
+    },
+    "artifacts/editorial-handoff/README_DELIVERY.md": {
+      "exists": true,
+      "byte_size": 4390,
+      "sha256": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2"
+    },
+    "artifacts/editorial-handoff/editorial-handoff.json": {
+      "exists": true,
+      "byte_size": 31907,
+      "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+    },
+    "artifacts/editorial-handoff/narration-script.md": {
+      "exists": true,
+      "byte_size": 4992,
+      "sha256": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081"
+    },
+    "artifacts/editorial-handoff/package-manifest.json": {
+      "exists": true,
+      "byte_size": 1081,
+      "sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+    },
+    "artifacts/editorial-handoff/shot-list.csv": {
+      "exists": true,
+      "byte_size": 7366,
+      "sha256": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676"
+    },
+    "artifacts/editorial-handoff/subtitle-cues.csv": {
+      "exists": true,
+      "byte_size": 3945,
+      "sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+    },
+    "artifacts/editorial-revision/README_REVISION.md": {
+      "exists": true,
+      "byte_size": 4975,
+      "sha256": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4"
+    },
+    "artifacts/editorial-revision/revision-decision.example.json": {
+      "exists": true,
+      "byte_size": 2585,
+      "sha256": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d"
+    },
+    "artifacts/editorial-revision/revision-patch.example.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-revision/revision-request-template.json": {
+      "exists": true,
+      "byte_size": 1831,
+      "sha256": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd"
+    },
+    "artifacts/editorial-revision/revision-request.example.json": {
+      "exists": true,
+      "byte_size": 5685,
+      "sha256": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1"
+    },
+    "artifacts/editorial-revision/revision-roundtrip-manifest.json": {
+      "exists": true,
+      "byte_size": 1405,
+      "sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+    },
+    "artifacts/operator-production-brief/README_OPERATOR_BRIEF.md": {
+      "exists": true,
+      "byte_size": 699,
+      "sha256": "4202f04f6fa9ece43d654938379ad698af54544a61a5d93b1ab8ab7bfdd58484"
+    },
+    "artifacts/operator-production-brief/beat-story-map.csv": {
+      "exists": true,
+      "byte_size": 2327,
+      "sha256": "9dc744c60db073a89f0bf280f4f50026a990fd5fb0dbd84ad9dad6a419a8fff7"
+    },
+    "artifacts/operator-production-brief/operator-brief-manifest.json": {
+      "exists": true,
+      "byte_size": 1365,
+      "sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40"
+    },
+    "artifacts/operator-production-brief/operator-completion-checklist.md": {
+      "exists": true,
+      "byte_size": 441,
+      "sha256": "0e49c81efe375349af0911fe57255031ad94e8aef5e7490a487ffd1acf36ef13"
+    },
+    "artifacts/operator-production-brief/operator-production-brief.json": {
+      "exists": true,
+      "byte_size": 27229,
+      "sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6"
+    },
+    "artifacts/operator-production-brief/visual-grammar-guide.md": {
+      "exists": true,
+      "byte_size": 1810,
+      "sha256": "d4752baf826e4a3ed776c70573d018197b8fb2e6dbc841248ee20d9b3b185dcd"
+    },
+    "artifacts/production-blueprint/README_BLUEPRINT.md": {
+      "exists": true,
+      "byte_size": 2569,
+      "sha256": "c018bfb033c290fd3693be5176df397983dfae902145a3fbc91ab7229776d40b"
+    },
+    "artifacts/production-blueprint/acceptance-matrix.csv": {
+      "exists": true,
+      "byte_size": 12686,
+      "sha256": "65b319b7528ba202acda464dd18c3b25403a5be95a94422bf5d9347552ff46f4"
+    },
+    "artifacts/production-blueprint/beat-specs.csv": {
+      "exists": true,
+      "byte_size": 3600,
+      "sha256": "6de66391518c3084d6369e5af5d34818e09d3d75186633328c386d29393ec0bb"
+    },
+    "artifacts/production-blueprint/blueprint-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2843,
+      "sha256": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245"
+    },
+    "artifacts/production-blueprint/production-blueprint.json": {
+      "exists": true,
+      "byte_size": 202005,
+      "sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d"
+    },
+    "artifacts/production-blueprint/shot-specs.csv": {
+      "exists": true,
+      "byte_size": 7268,
+      "sha256": "f36b413da40a4bf53d7a96a5408df41f77381310f089ae3e1784a8899d427914"
+    },
+    "artifacts/production-blueprint/subtitle-metrics.csv": {
+      "exists": true,
+      "byte_size": 2818,
+      "sha256": "ed3ac3491120e433cac6dccc0960d94e7931ff5c566d3beb511384f514e8d816"
+    },
+    "artifacts/production-blueprint/visual-system.md": {
+      "exists": true,
+      "byte_size": 2316,
+      "sha256": "1784b672c36551562437c274c1b6a49db0c214dc58cef5f059631c8066d77392"
+    }
+  },
+  "source_package_post_hashes": {
+    "artifacts/editorial-derivative/README_DERIVATIVE.md": {
+      "exists": true,
+      "byte_size": 1919,
+      "sha256": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe"
+    },
+    "artifacts/editorial-derivative/applied-revision-patch.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-derivative/derivative-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2134,
+      "sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+    },
+    "artifacts/editorial-derivative/derivative-provenance.json": {
+      "exists": true,
+      "byte_size": 5841,
+      "sha256": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd"
+    },
+    "artifacts/editorial-derivative/editorial-handoff.derived.json": {
+      "exists": true,
+      "byte_size": 37134,
+      "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+    },
+    "artifacts/editorial-derivative/narration-script.derived.md": {
+      "exists": true,
+      "byte_size": 4774,
+      "sha256": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6"
+    },
+    "artifacts/editorial-derivative/shot-list.derived.csv": {
+      "exists": true,
+      "byte_size": 7009,
+      "sha256": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4"
+    },
+    "artifacts/editorial-derivative/subtitle-cues.derived.csv": {
+      "exists": true,
+      "byte_size": 3615,
+      "sha256": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe"
+    },
+    "artifacts/editorial-handoff/README_DELIVERY.md": {
+      "exists": true,
+      "byte_size": 4390,
+      "sha256": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2"
+    },
+    "artifacts/editorial-handoff/editorial-handoff.json": {
+      "exists": true,
+      "byte_size": 31907,
+      "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+    },
+    "artifacts/editorial-handoff/narration-script.md": {
+      "exists": true,
+      "byte_size": 4992,
+      "sha256": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081"
+    },
+    "artifacts/editorial-handoff/package-manifest.json": {
+      "exists": true,
+      "byte_size": 1081,
+      "sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+    },
+    "artifacts/editorial-handoff/shot-list.csv": {
+      "exists": true,
+      "byte_size": 7366,
+      "sha256": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676"
+    },
+    "artifacts/editorial-handoff/subtitle-cues.csv": {
+      "exists": true,
+      "byte_size": 3945,
+      "sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+    },
+    "artifacts/editorial-revision/README_REVISION.md": {
+      "exists": true,
+      "byte_size": 4975,
+      "sha256": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4"
+    },
+    "artifacts/editorial-revision/revision-decision.example.json": {
+      "exists": true,
+      "byte_size": 2585,
+      "sha256": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d"
+    },
+    "artifacts/editorial-revision/revision-patch.example.json": {
+      "exists": true,
+      "byte_size": 3178,
+      "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+    },
+    "artifacts/editorial-revision/revision-request-template.json": {
+      "exists": true,
+      "byte_size": 1831,
+      "sha256": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd"
+    },
+    "artifacts/editorial-revision/revision-request.example.json": {
+      "exists": true,
+      "byte_size": 5685,
+      "sha256": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1"
+    },
+    "artifacts/editorial-revision/revision-roundtrip-manifest.json": {
+      "exists": true,
+      "byte_size": 1405,
+      "sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+    },
+    "artifacts/operator-production-brief/README_OPERATOR_BRIEF.md": {
+      "exists": true,
+      "byte_size": 699,
+      "sha256": "4202f04f6fa9ece43d654938379ad698af54544a61a5d93b1ab8ab7bfdd58484"
+    },
+    "artifacts/operator-production-brief/beat-story-map.csv": {
+      "exists": true,
+      "byte_size": 2327,
+      "sha256": "9dc744c60db073a89f0bf280f4f50026a990fd5fb0dbd84ad9dad6a419a8fff7"
+    },
+    "artifacts/operator-production-brief/operator-brief-manifest.json": {
+      "exists": true,
+      "byte_size": 1365,
+      "sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40"
+    },
+    "artifacts/operator-production-brief/operator-completion-checklist.md": {
+      "exists": true,
+      "byte_size": 441,
+      "sha256": "0e49c81efe375349af0911fe57255031ad94e8aef5e7490a487ffd1acf36ef13"
+    },
+    "artifacts/operator-production-brief/operator-production-brief.json": {
+      "exists": true,
+      "byte_size": 27229,
+      "sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6"
+    },
+    "artifacts/operator-production-brief/visual-grammar-guide.md": {
+      "exists": true,
+      "byte_size": 1810,
+      "sha256": "d4752baf826e4a3ed776c70573d018197b8fb2e6dbc841248ee20d9b3b185dcd"
+    },
+    "artifacts/production-blueprint/README_BLUEPRINT.md": {
+      "exists": true,
+      "byte_size": 2569,
+      "sha256": "c018bfb033c290fd3693be5176df397983dfae902145a3fbc91ab7229776d40b"
+    },
+    "artifacts/production-blueprint/acceptance-matrix.csv": {
+      "exists": true,
+      "byte_size": 12686,
+      "sha256": "65b319b7528ba202acda464dd18c3b25403a5be95a94422bf5d9347552ff46f4"
+    },
+    "artifacts/production-blueprint/beat-specs.csv": {
+      "exists": true,
+      "byte_size": 3600,
+      "sha256": "6de66391518c3084d6369e5af5d34818e09d3d75186633328c386d29393ec0bb"
+    },
+    "artifacts/production-blueprint/blueprint-package-manifest.json": {
+      "exists": true,
+      "byte_size": 2843,
+      "sha256": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245"
+    },
+    "artifacts/production-blueprint/production-blueprint.json": {
+      "exists": true,
+      "byte_size": 202005,
+      "sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d"
+    },
+    "artifacts/production-blueprint/shot-specs.csv": {
+      "exists": true,
+      "byte_size": 7268,
+      "sha256": "f36b413da40a4bf53d7a96a5408df41f77381310f089ae3e1784a8899d427914"
+    },
+    "artifacts/production-blueprint/subtitle-metrics.csv": {
+      "exists": true,
+      "byte_size": 2818,
+      "sha256": "ed3ac3491120e433cac6dccc0960d94e7931ff5c566d3beb511384f514e8d816"
+    },
+    "artifacts/production-blueprint/visual-system.md": {
+      "exists": true,
+      "byte_size": 2316,
+      "sha256": "1784b672c36551562437c274c1b6a49db0c214dc58cef5f059631c8066d77392"
+    }
+  },
+  "source_packages_unchanged": true,
+  "canonical": false,
+  "production_approved": false,
+  "local_only": true,
+  "external_call": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "public_upload": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "browser_evidence": {
+    "900x1200": {
+      "viewport_width": 900,
+      "viewport_height": 1200,
+      "document_scroll_width": 900,
+      "document_scroll_height": 7554,
+      "client_width": 900,
+      "horizontal_overflow": false,
+      "nested_scroll_container_count": 0,
+      "first_view_contract_met": true,
+      "screenshot_path": "artifacts/review-screens/production-execution-pack-900x1200.png",
+      "screenshot_byte_size": 1408180,
+      "screenshot_sha256": "e5608bce00830e8e8b1c821a32fc08b8832e6f86b252fe8e46d102651d0d648a",
+      "document_only_vertical_scroll": true,
+      "hero_bottom_css_px": 502.265625,
+      "beat_row_count": 6,
+      "shot_row_count": 19,
+      "asset_row_count": 14
+    },
+    "1280x900": {
+      "viewport_width": 1280,
+      "viewport_height": 900,
+      "document_scroll_width": 1280,
+      "document_scroll_height": 6515,
+      "client_width": 1280,
+      "horizontal_overflow": false,
+      "nested_scroll_container_count": 0,
+      "first_view_contract_met": true,
+      "screenshot_path": "artifacts/review-screens/production-execution-pack-1280x900.png",
+      "screenshot_byte_size": 1382829,
+      "screenshot_sha256": "d3acdc7d1c0fda53318fc95885479654174b20be03eabf273fc399adda14642c",
+      "document_only_vertical_scroll": true,
+      "hero_bottom_css_px": 518.46875,
+      "beat_row_count": 6,
+      "shot_row_count": 19,
+      "asset_row_count": 14
+    }
+  },
+  "print_evidence": {
+    "media": "print",
+    "navigation_hidden": true,
+    "hashes_hidden": true,
+    "no_horizontal_overflow": true,
+    "css_page_size": "A4 portrait",
+    "body_background": "rgb(255, 255, 255)"
+  },
+  "browser_evidence_complete": true,
+  "manifest_size_hash_integrity": true,
+  "validation_read_only": true,
+  "negative_probes": {
+    "source_fingerprint_mismatch": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "exact source fingerprint rejected"
+    },
+    "missing_beat": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "six-beat inventory rejected the removal"
+    },
+    "missing_shot": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "19-shot inventory rejected the removal"
+    },
+    "altered_narration": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "source narration wording drift rejected"
+    },
+    "altered_shot_wording": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "source shot wording drift rejected"
+    },
+    "changed_timing": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "source timing drift rejected"
+    },
+    "duplicate_asset_requirement": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "duplicate semantic asset requirement rejected"
+    },
+    "shot_without_asset_requirement": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "shot without a generic requirement rejected"
+    },
+    "selected_asset": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "selected asset state rejected"
+    },
+    "rights_cleared_claim": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "rights-cleared claim rejected"
+    },
+    "external_asset_url": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "external asset URL rejected"
+    },
+    "selected_tts_engine": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "selected TTS engine rejected"
+    },
+    "selected_voice": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "selected voice rejected"
+    },
+    "generated_audio": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "generated audio state rejected"
+    },
+    "fabricated_unmeasured_proxy_timing": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "fabricated Beat 2/5 proxy timing rejected"
+    },
+    "proxy_slack_outside_observed_range": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "proxy slack outside 3–5 seconds rejected"
+    },
+    "human_articulation_required": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "human articulation requirement rejected"
+    },
+    "canon_promotion": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "canon promotion rejected"
+    },
+    "missing_package_file": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "exact nine-file inventory rejected the removal"
+    },
+    "manifest_hash_mismatch": {
+      "passed": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "detail": "payload manifest hash mismatch rejected"
+    }
+  },
+  "checks": {
+    "result_contract": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "canonical_package_candidate": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "source_fingerprints_and_bytes": {
+      "passed": true,
+      "detail": "files=34; aggregate=396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95"
+    },
+    "historical_results_unchanged": {
+      "passed": true,
+      "detail": "files=68; aggregate=aeed2265c5ac26b2b084f967cbd50c4dcb8730f75bfcec294742988635da4f61"
+    },
+    "package_paths_hashes_and_manifest": {
+      "passed": true,
+      "detail": "files=9; fingerprint=a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca"
+    },
+    "shot_asset_coverage_and_deduplication": {
+      "passed": true,
+      "detail": "19 shots / 14 deduplicated requirements"
+    },
+    "synthetic_narration_timing": {
+      "passed": true,
+      "detail": "four proxy / two unmeasured"
+    },
+    "blueprint_compact_link": {
+      "passed": true,
+      "detail": "markerCount=1"
+    },
+    "root_manifest_registered": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "review_doc_registered": {
+      "passed": true,
+      "detail": "ok"
+    },
+    "browser_and_screenshot_evidence": {
+      "passed": true,
+      "detail": "complete=true"
+    },
+    "print_evidence": {
+      "passed": true,
+      "detail": "complete=true"
+    },
+    "negative_probes_fail_closed": {
+      "passed": true,
+      "detail": "count=20"
+    },
+    "prior_negative_probe_readback": {
+      "passed": true,
+      "detail": "generatedSeed=true"
+    },
+    "normal_validation_read_only": {
+      "passed": true,
+      "detail": "readOnly=true"
+    }
+  },
+  "failures": [],
+  "passed": true,
+  "historical_result_count": 68,
+  "historical_results_aggregate_sha256": "aeed2265c5ac26b2b084f967cbd50c4dcb8730f75bfcec294742988635da4f61",
+  "historical_results_unchanged": true
+}

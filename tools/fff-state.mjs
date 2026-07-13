@@ -63,6 +63,9 @@ const OPERATOR_PRODUCTION_BRIEF_SCHEMA_VERSION = "fff.operatorProductionBrief.v1
 const OPERATOR_PRODUCTION_BRIEF_RESULT_SCHEMA_VERSION = "fff.operatorProductionBriefResult.v1";
 const OPERATOR_PRODUCTION_BRIEF_MANIFEST_SCHEMA_VERSION = "fff.operatorProductionBriefManifest.v1";
 const OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCHEMA_VERSION = "fff.operatorProductionBriefTypographyBalance.v1";
+const PRODUCTION_EXECUTION_PACK_SCHEMA_VERSION = "fff.productionExecutionPack.v1";
+const PRODUCTION_EXECUTION_PACK_RESULT_SCHEMA_VERSION = "fff.productionExecutionPackResult.v1";
+const PRODUCTION_EXECUTION_PACK_MANIFEST_SCHEMA_VERSION = "fff.productionExecutionPackManifest.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -110,6 +113,7 @@ const DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT = "artifacts/editorial-derivat
 const DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT = "artifacts/content-production-blueprint-result.json";
 const DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT = "artifacts/operator-production-brief-result.json";
 const DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT = "artifacts/operator-production-brief-typography-balance-result.json";
+const DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT = "artifacts/production-execution-pack-result.json";
 const EDITORIAL_HANDOFF_PACKAGE_ROOT = "artifacts/editorial-handoff";
 const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/package-manifest.json`;
 const EDITORIAL_HANDOFF_PACKAGE_FILES = [
@@ -254,6 +258,215 @@ const OPERATOR_PRODUCTION_BRIEF_RUNTIME_VISIBLE_TEXT_SHA256 = "8c61321ad73f991a0
 const OPERATOR_PRODUCTION_BRIEF_RUNTIME_ALL_BEATS_SHA256 = "ccd25c3a452a7ed45f54f830c2deb041c26e556fd50f9290ac2272a41b0273ab";
 const OPERATOR_PRODUCTION_BRIEF_PROTECTED_PACKAGE_AGGREGATE_SHA256 = "396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95";
 const OPERATOR_PRODUCTION_BRIEF_HISTORICAL_RESULTS_AGGREGATE_SHA256 = "372a0088c16af8cd4c11748c568932e558911ec89e03cfc9df31480a9106183b";
+const PRODUCTION_EXECUTION_PACK_ARTIFACT_ID = "fff-production-execution-pack-001";
+const PRODUCTION_EXECUTION_PACK_GENERATED_AT = "2026-07-13T18:00:00+09:00";
+const PRODUCTION_EXECUTION_PACK_ROOT = "artifacts/production-execution-pack";
+const PRODUCTION_EXECUTION_PACK_HTML_PATH = `${PRODUCTION_EXECUTION_PACK_ROOT}/production-execution-pack.html`;
+const PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH = "docs/review/production-execution-pack.md";
+const PRODUCTION_EXECUTION_PACK_ROUTE = PRODUCTION_EXECUTION_PACK_HTML_PATH;
+const PRODUCTION_EXECUTION_PACK_LINK_HREF = "../../artifacts/production-execution-pack/production-execution-pack.html";
+const PRODUCTION_EXECUTION_PACK_LINK_TEXT = "制作実行パックを開く";
+const PRODUCTION_EXECUTION_PACK_FILES = [
+  "README_PRODUCTION_EXECUTION.md",
+  "production-execution-pack.html",
+  "production-execution-pack.json",
+  "beat-run-sheet.csv",
+  "shot-execution-sheet.csv",
+  "asset-requirements.csv",
+  "narration-timing-envelope.csv",
+  "thumbnail-requirements.md"
+];
+const PRODUCTION_EXECUTION_PACK_REQUIRED_FILES = [
+  ...PRODUCTION_EXECUTION_PACK_FILES,
+  "production-execution-manifest.json"
+];
+const PRODUCTION_EXECUTION_PACK_SCREENSHOTS = Object.freeze({
+  "900x1200": "artifacts/review-screens/production-execution-pack-900x1200.png",
+  "1280x900": "artifacts/review-screens/production-execution-pack-1280x900.png"
+});
+const PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS = Object.freeze({
+  operator_typography_result_sha256: "4096ed9aaa5c1138991bd1e13ded527853d4ba2c3abbefce2b8b3a4a5d688c77",
+  operator_production_brief_sha256: "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6",
+  operator_brief_manifest_sha256: "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40",
+  production_blueprint_sha256: "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d",
+  blueprint_package_manifest_sha256: "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245",
+  derivative_editorial_handoff_sha256: "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+  derivative_package_manifest_sha256: "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577",
+  revision_package_manifest_sha256: "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d",
+  handoff_package_manifest_sha256: "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971",
+  protected_package_aggregate_sha256: OPERATOR_PRODUCTION_BRIEF_PROTECTED_PACKAGE_AGGREGATE_SHA256
+});
+const PRODUCTION_EXECUTION_HISTORICAL_RESULTS_AGGREGATE_SHA256 = "aeed2265c5ac26b2b084f967cbd50c4dcb8730f75bfcec294742988635da4f61";
+const PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS = Object.freeze([
+  OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID,
+  OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID,
+  CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+  EDITORIAL_DERIVATIVE_ARTIFACT_ID,
+  EDITORIAL_REVISION_ARTIFACT_ID,
+  EDITORIAL_REVISION_SOURCE_ARTIFACT_ID
+]);
+const PRODUCTION_EXECUTION_NARRATION_TIMING = Object.freeze({
+  1: { timing_state: "proxy_headroom_confirmed", observed_slack_min_seconds: 3, observed_slack_max_seconds: 5, proxy_spoken_duration_min_seconds: 15, proxy_spoken_duration_max_seconds: 17 },
+  2: { timing_state: "existing_pass_unmeasured", observed_slack_min_seconds: null, observed_slack_max_seconds: null, proxy_spoken_duration_min_seconds: null, proxy_spoken_duration_max_seconds: null },
+  3: { timing_state: "proxy_headroom_confirmed", observed_slack_min_seconds: 3, observed_slack_max_seconds: 5, proxy_spoken_duration_min_seconds: 25, proxy_spoken_duration_max_seconds: 27 },
+  4: { timing_state: "proxy_headroom_confirmed", observed_slack_min_seconds: 3, observed_slack_max_seconds: 5, proxy_spoken_duration_min_seconds: 20, proxy_spoken_duration_max_seconds: 22 },
+  5: { timing_state: "existing_pass_unmeasured", observed_slack_min_seconds: null, observed_slack_max_seconds: null, proxy_spoken_duration_min_seconds: null, proxy_spoken_duration_max_seconds: null },
+  6: { timing_state: "proxy_headroom_confirmed", observed_slack_min_seconds: 3, observed_slack_max_seconds: 5, proxy_spoken_duration_min_seconds: 20, proxy_spoken_duration_max_seconds: 22 }
+});
+const PRODUCTION_EXECUTION_SHOT_ASSET_MAP = Object.freeze({
+  "shot-b01-01": ["AR-ENV-01", "AR-AUDIO-01"],
+  "shot-b01-02": ["AR-ENV-01", "AR-AUDIO-01"],
+  "shot-b01-03": ["AR-ENV-01", "AR-TYPE-01", "AR-AUDIO-01"],
+  "shot-b02-01": ["AR-CHAR-01", "AR-PROP-01", "AR-AUDIO-01"],
+  "shot-b02-02": ["AR-PROP-02", "AR-PROP-03", "AR-AUDIO-01"],
+  "shot-b02-03": ["AR-PROP-01", "AR-PROP-02", "AR-AUDIO-01"],
+  "shot-b03-01": ["AR-CHAR-01", "AR-DOC-01", "AR-AUDIO-01"],
+  "shot-b03-02": ["AR-DOC-01", "AR-TYPE-01", "AR-AUDIO-01"],
+  "shot-b03-03": ["AR-ABS-01", "AR-AUDIO-01"],
+  "shot-b04-01": ["AR-ENV-02", "AR-CHAR-02", "AR-AUDIO-01"],
+  "shot-b04-02": ["AR-DOC-02", "AR-TYPE-01", "AR-AUDIO-01"],
+  "shot-b04-03": ["AR-ENV-02", "AR-DOC-01", "AR-TYPE-01", "AR-AUDIO-01"],
+  "shot-b05-01": ["AR-CHAR-03", "AR-DOC-02", "AR-AUDIO-01"],
+  "shot-b05-02": ["AR-PROP-02", "AR-DOC-02", "AR-AUDIO-01"],
+  "shot-b05-03": ["AR-ENV-02", "AR-DOC-02", "AR-AUDIO-01"],
+  "shot-b05-04": ["AR-DOC-02", "AR-TYPE-01", "AR-AUDIO-01"],
+  "shot-b06-01": ["AR-ABS-02", "AR-TYPE-01", "AR-AUDIO-01"],
+  "shot-b06-02": ["AR-DOC-01", "AR-AUDIO-01"],
+  "shot-b06-03": ["AR-ENV-01", "AR-TYPE-01", "AR-AUDIO-01"]
+});
+const PRODUCTION_EXECUTION_ASSET_REQUIREMENTS = Object.freeze([
+  {
+    requirement_id: "AR-ENV-01",
+    asset_class: "environment",
+    generic_description_ja: "鐘のない天文台と空の鐘枠を、遠景・内部寄り・終幕回帰で再利用できる汎用セット。",
+    quantity: 1,
+    quantity_unit: "reusable_set",
+    shot_usage: ["shot-b01-01", "shot-b01-02", "shot-b01-03", "shot-b06-03"],
+    visual_constraints_ja: "鐘そのものや鳴動原因を描かず、実在駅・施設・ロゴを特定しない。"
+  },
+  {
+    requirement_id: "AR-ENV-02",
+    asset_class: "environment",
+    generic_description_ja: "半透明仕切りを含む中立的な制度空間。評議会場・台帳の影・制度候補面へ再利用する。",
+    quantity: 1,
+    quantity_unit: "reusable_set",
+    shot_usage: ["shot-b04-01", "shot-b04-03", "shot-b05-03"],
+    visual_constraints_ja: "有罪演技、悪役記号、実在組織の紋章や施設意匠を避ける。"
+  },
+  {
+    requirement_id: "AR-CHAR-01",
+    asset_class: "character_silhouette",
+    generic_description_ja: "人物を特定しない手元insert。時計修理と台帳を開く動作で共有する。",
+    quantity: 1,
+    quantity_unit: "insert_set",
+    shot_usage: ["shot-b02-01", "shot-b03-01"],
+    visual_constraints_ja: "顔、固有衣装、身体的特徴、演者を確定しない。"
+  },
+  {
+    requirement_id: "AR-CHAR-02",
+    asset_class: "character_silhouette",
+    generic_description_ja: "匿名の評議会構成員を示す中立的なシルエット。",
+    quantity: 3,
+    quantity_unit: "silhouettes",
+    shot_usage: ["shot-b04-01"],
+    visual_constraints_ja: "個人特定、威圧的悪役化、顔や衣装のfinal designを行わない。"
+  },
+  {
+    requirement_id: "AR-CHAR-03",
+    asset_class: "character_silhouette",
+    generic_description_ja: "トーマの複数の運命候補を保持する未確定シルエット。",
+    quantity: 1,
+    quantity_unit: "silhouette",
+    shot_usage: ["shot-b05-01"],
+    visual_constraints_ja: "生存・死亡・消失・潜伏のどれも確定させない。"
+  },
+  {
+    requirement_id: "AR-PROP-01",
+    asset_class: "prop",
+    generic_description_ja: "時計修理台と9:17の時計面を同じ造形系で使えるモジュール。",
+    quantity: 1,
+    quantity_unit: "modular_set",
+    shot_usage: ["shot-b02-01", "shot-b02-03"],
+    visual_constraints_ja: "9:17は閉店時刻motifに留め、時計停止の確定事実にしない。"
+  },
+  {
+    requirement_id: "AR-PROP-02",
+    asset_class: "prop",
+    generic_description_ja: "静止した真鍮の蛾。手掛かり、時計面、機能候補の三用途で再利用する。",
+    quantity: 1,
+    quantity_unit: "prop",
+    shot_usage: ["shot-b02-02", "shot-b02-03", "shot-b05-02"],
+    visual_constraints_ja: "作動、正解機能、既存キャラクター類似を描かない。"
+  },
+  {
+    requirement_id: "AR-PROP-03",
+    asset_class: "prop",
+    generic_description_ja: "トーマが残したとされる汎用メモ。",
+    quantity: 1,
+    quantity_unit: "prop",
+    shot_usage: ["shot-b02-02"],
+    visual_constraints_ja: "筆跡、由来、真正性、生死を証明する文面にしない。"
+  },
+  {
+    requirement_id: "AR-DOC-01",
+    asset_class: "document_graphic",
+    generic_description_ja: "架空の台帳、名前欄、『分』欄、未記入欄を持つ再利用可能な文書variant群。",
+    quantity: 1,
+    quantity_unit: "variant_set",
+    shot_usage: ["shot-b03-01", "shot-b03-02", "shot-b04-03", "shot-b06-02"],
+    visual_constraints_ja: "実在公文書、紋章、scan、既存紙面を使わず、真正性や因果を確定しない。"
+  },
+  {
+    requirement_id: "AR-DOC-02",
+    asset_class: "document_graphic",
+    generic_description_ja: "仮説、運命、機能、動機、HOLDを同じ重みで並べる図版システム。",
+    quantity: 1,
+    quantity_unit: "graphic_system",
+    shot_usage: ["shot-b04-02", "shot-b05-01", "shot-b05-02", "shot-b05-03", "shot-b05-04"],
+    visual_constraints_ja: "候補間に勝敗・採用・canon上の優先順位を付けない。"
+  },
+  {
+    requirement_id: "AR-ABS-01",
+    asset_class: "abstract_graphic",
+    generic_description_ja: "名前の輪郭が薄れる感覚を示す抽象モーショングラフィック。",
+    quantity: 1,
+    quantity_unit: "graphic",
+    shot_usage: ["shot-b03-03"],
+    visual_constraints_ja: "literal erasureの証拠や既存animationの流用にしない。"
+  },
+  {
+    requirement_id: "AR-ABS-02",
+    asset_class: "abstract_graphic",
+    generic_description_ja: "時間と名前を同じ重みで並べ、中央を未決定のまま空ける分割図版。",
+    quantity: 2,
+    quantity_unit: "panels",
+    shot_usage: ["shot-b06-01"],
+    visual_constraints_ja: "ミラの選択、時間返還、名前回復を成立済みに見せない。"
+  },
+  {
+    requirement_id: "AR-TYPE-01",
+    asset_class: "typography",
+    generic_description_ja: "字幕と短いlabelを統一する日本語firstの文字システム。font自体は未選定。",
+    quantity: 1,
+    quantity_unit: "type_system",
+    shot_usage: ["shot-b01-03", "shot-b03-02", "shot-b04-02", "shot-b04-03", "shot-b05-04", "shot-b06-01", "shot-b06-03"],
+    visual_constraints_ja: "最大2行・1行18字の既存allowanceを守り、既存書体のlicenseを主張しない。"
+  },
+  {
+    requirement_id: "AR-AUDIO-01",
+    asset_class: "audio_cue",
+    generic_description_ja: "六幕それぞれの音設計位置を示すcue placeholder。音声fileや素材は含めない。",
+    quantity: 6,
+    quantity_unit: "beat_cue_placeholders",
+    shot_usage: Object.keys(PRODUCTION_EXECUTION_SHOT_ASSET_MAP),
+    visual_constraints_ja: "engine、voice、music、SFX、performer、licenseを選定せず、実audioを生成しない。"
+  }
+].map((item) => Object.freeze({
+  ...item,
+  asset_status: "unselected",
+  rights_status: "not_reviewed",
+  provenance_required: true
+})));
 const CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES = Object.freeze({
   composition_class: [
     "environment_establishing",
@@ -1295,6 +1508,64 @@ async function main() {
     if (command === "smoke-review-workbench-component-contract" || outputPath) {
       console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
+    return;
+  }
+
+  if (command === "validate-production-execution-pack") {
+    if (outputPath) {
+      fail("validate-production-execution-pack is strictly read-only and does not accept an output path; use smoke-production-execution-pack for intentional execution-pack and result regeneration.");
+    }
+    const source = inputPath || DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT;
+    const readback = await readJson(source);
+    const result = await validateProductionExecutionPack(readback, source);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) {
+      fail(`Production Execution Pack failed: ${result.failures.join("; ")}`);
+    }
+    return;
+  }
+
+  if (command === "smoke-production-execution-pack") {
+    const target = toRepoPath(outputPath || DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT);
+    if (target !== DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT) {
+      fail(`smoke-production-execution-pack may write only the nine files under ${PRODUCTION_EXECUTION_PACK_ROOT}/ and ${DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT}.`);
+    }
+    const protectedBefore = await snapshotProductionExecutionPackProtectedFiles();
+    const historicalBefore = await snapshotProductionExecutionPackHistoricalResults();
+    const built = await buildProductionExecutionPackArtifacts();
+    if (!built.valid) {
+      fail(`Production Execution Pack generation failed before write: ${built.errors.join("; ")}`);
+    }
+    await writeProductionExecutionPackArtifacts(built.files);
+    const protectedAfter = await snapshotProductionExecutionPackProtectedFiles();
+    if (!contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter)) {
+      fail("Production Execution Pack smoke crossed a protected source-package write boundary.");
+    }
+    const historicalAfterPackageWrite = await snapshotProductionExecutionPackHistoricalResults();
+    if (!contentProductionBlueprintSnapshotMapsEqual(historicalBefore, historicalAfterPackageWrite)) {
+      fail("Production Execution Pack smoke mutated a historical result while writing its package.");
+    }
+    const prior = await readProductionExecutionPackSmokeEvidence(inputPath);
+    const seed = buildProductionExecutionPackResultSeed(built, protectedBefore, protectedAfter, prior);
+    const result = await validateProductionExecutionPack(seed, target, {
+      generated_seed: true,
+      protected_before: protectedBefore,
+      protected_after: protectedAfter
+    });
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    const finalProtected = await snapshotProductionExecutionPackProtectedFiles();
+    const finalHistorical = await snapshotProductionExecutionPackHistoricalResults();
+    if (!contentProductionBlueprintSnapshotMapsEqual(protectedBefore, finalProtected)) {
+      fail("Production Execution Pack smoke mutated a protected source package while writing its result.");
+    }
+    if (!contentProductionBlueprintSnapshotMapsEqual(historicalBefore, finalHistorical)) {
+      fail("Production Execution Pack smoke mutated a historical result while writing its result.");
+    }
+    if (!result.passed) {
+      fail(`Production Execution Pack failed: ${result.failures.join("; ")}`);
+    }
+    console.log(`production execution pack passed ${inputPath || "generated-seed"} -> ${target}`);
     return;
   }
 
@@ -12165,7 +12436,12 @@ async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
       artifactManifest.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
       artifactManifest.editorial_derivative_preview?.source_handoff_artifact_id === expectedArtifactId &&
       Array.isArray(artifactManifest.preserves) &&
-      artifactManifest.preserves.includes(expectedArtifactId));
+      artifactManifest.preserves.includes(expectedArtifactId)) ||
+    (productionExecutionRootPreserves(artifactManifest, expectedArtifactId) &&
+      artifactManifest.operator_production_brief_typography_balance?.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+      artifactManifest.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      artifactManifest.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      artifactManifest.editorial_derivative_preview?.source_handoff_artifact_id === expectedArtifactId);
   const rootManifestRegistered = rootManifestRead.error === null &&
     handoffActiveOrPreserved &&
     artifactManifest.bridge_editorial_handoff_pack_result_path === DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT &&
@@ -14367,14 +14643,22 @@ async function validateContentProductionBlueprint(readback, readbackPath, option
     `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${relativePath}`
   );
   const rootValidationCommand = String(rootManifest.validation_command || "");
+  const executionValidatorIndex = rootValidationCommand.indexOf(`node tools/fff-state.mjs validate-production-execution-pack ${DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT}`);
   const typographyValidatorIndex = rootValidationCommand.indexOf(`node tools/fff-state.mjs validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`);
   const operatorValidatorIndex = rootValidationCommand.indexOf(`node tools/fff-state.mjs validate-operator-production-brief ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT}`);
   const blueprintValidatorIndex = rootValidationCommand.indexOf(`node tools/fff-state.mjs validate-content-production-blueprint ${DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT}`);
   const derivativeValidatorIndex = rootValidationCommand.indexOf(`node tools/fff-state.mjs validate-editorial-derivative-preview ${DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT}`);
   const rootOperator = rootManifest.operator_production_brief || {};
+  const rootActiveWrapperValid =
+    (rootManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
+      rootManifest.operator_production_brief_typography_balance?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID) ||
+    (productionExecutionRootPreserves(rootManifest, CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID) &&
+      rootManifest.operator_production_brief_typography_balance?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID);
+  const rootValidatorOrderValid = rootManifest.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID
+    ? executionValidatorIndex >= 0 && typographyValidatorIndex > executionValidatorIndex && operatorValidatorIndex > typographyValidatorIndex && blueprintValidatorIndex > operatorValidatorIndex && derivativeValidatorIndex > blueprintValidatorIndex
+    : typographyValidatorIndex >= 0 && operatorValidatorIndex > typographyValidatorIndex && blueprintValidatorIndex > operatorValidatorIndex && derivativeValidatorIndex > blueprintValidatorIndex;
   const rootManifestValid = rootManifestSnapshot.error === null &&
-    rootManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
-    rootManifest.operator_production_brief_typography_balance?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
+    rootActiveWrapperValid &&
     rootOperator.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
     rootOperator.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
     rootOperator.access_route === CONTENT_PRODUCTION_BLUEPRINT_ROUTE &&
@@ -14395,7 +14679,8 @@ async function validateContentProductionBlueprint(readback, readbackPath, option
     arrayEqualsExact(rootBlueprint.package_files, expectedRootPackageFiles) &&
     rootBlueprint.canonical === false && rootBlueprint.production_approved === false &&
     rootBlueprint.assets_selected === false && rootBlueprint.rights_cleared_claim === false &&
-    typographyValidatorIndex >= 0 && operatorValidatorIndex > typographyValidatorIndex && blueprintValidatorIndex > operatorValidatorIndex && derivativeValidatorIndex > blueprintValidatorIndex &&
+    rootValidatorOrderValid &&
+    !rootValidationCommand.includes("smoke-production-execution-pack") &&
     !rootValidationCommand.includes("smoke-operator-production-brief-typography-balance") &&
     !rootValidationCommand.includes("smoke-content-production-blueprint");
   const reviewDoc = reviewDocSnapshot.text || "";
@@ -14584,6 +14869,917 @@ async function validateContentProductionBlueprint(readback, readbackPath, option
     passed: failures.length === 0
   };
   return result;
+}
+
+function productionExecutionPackSourcePaths() {
+  return {
+    operator_typography_result_sha256: DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT,
+    operator_production_brief_sha256: `${OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT}/operator-production-brief.json`,
+    operator_brief_manifest_sha256: `${OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT}/operator-brief-manifest.json`,
+    production_blueprint_sha256: `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/production-blueprint.json`,
+    blueprint_package_manifest_sha256: CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_PATH,
+    derivative_editorial_handoff_sha256: `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/editorial-handoff.derived.json`,
+    derivative_package_manifest_sha256: EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_PATH,
+    revision_package_manifest_sha256: EDITORIAL_REVISION_PACKAGE_MANIFEST_PATH,
+    handoff_package_manifest_sha256: EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH
+  };
+}
+
+function productionExecutionClone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function productionExecutionHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/\"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+function productionExecutionArrayExact(left, right) {
+  return Array.isArray(left) && Array.isArray(right) && left.length === right.length && left.every((value, index) => value === right[index]);
+}
+
+function productionExecutionRootPreserves(manifest, artifactId) {
+  return manifest?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID &&
+    manifest?.production_execution_pack?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID &&
+    Array.isArray(manifest?.production_execution_pack?.source_artifact_ids) &&
+    manifest.production_execution_pack.source_artifact_ids.includes(artifactId) &&
+    Array.isArray(manifest?.preserves) && manifest.preserves.includes(artifactId);
+}
+
+async function readProductionExecutionPackSources() {
+  const pathMap = productionExecutionPackSourcePaths();
+  const entries = await Promise.all(Object.entries(pathMap).map(async ([key, filePath]) => [key, await readJsonFileSnapshot(filePath)]));
+  const snapshots = Object.fromEntries(entries);
+  const errors = [];
+  for (const [key, snapshot] of Object.entries(snapshots)) {
+    if (snapshot.error) errors.push(`${key}: ${snapshot.error}`);
+    if (snapshot.sha256 !== PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS[key]) {
+      errors.push(`${key}: source fingerprint mismatch (${snapshot.sha256 || "missing"})`);
+    }
+  }
+  const protectedSnapshots = await snapshotProductionExecutionPackProtectedFiles();
+  const protectedAggregate = operatorProductionBriefTypographySnapshotAggregate(protectedSnapshots);
+  if (Object.keys(protectedSnapshots).length !== 34 || Object.values(protectedSnapshots).some((item) => !item.exists)) {
+    errors.push(`protected package inventory mismatch (${Object.keys(protectedSnapshots).length}/34)`);
+  }
+  if (protectedAggregate !== PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS.protected_package_aggregate_sha256) {
+    errors.push(`protected package aggregate mismatch (${protectedAggregate})`);
+  }
+  return {
+    valid: errors.length === 0,
+    errors,
+    snapshots,
+    protected_snapshots: protectedSnapshots,
+    protected_aggregate_sha256: protectedAggregate,
+    operator: snapshots.operator_production_brief_sha256?.value,
+    blueprint: snapshots.production_blueprint_sha256?.value,
+    derivative: snapshots.derivative_editorial_handoff_sha256?.value
+  };
+}
+
+function productionExecutionPauseOpportunityCount(text) {
+  return (String(text || "").match(/[、。？！]/g) || []).length;
+}
+
+async function buildProductionExecutionPackModel() {
+  const source = await readProductionExecutionPackSources();
+  if (!source.valid) throw new Error(source.errors.join("; "));
+  const operator = source.operator || {};
+  const blueprint = source.blueprint || {};
+  const derivative = source.derivative || {};
+  const operatorShots = (operator.beats || []).flatMap((beat) => beat.shots || []);
+  const blueprintShots = blueprint.shots || [];
+  const derivativeShots = derivative.shot_cues || [];
+  const operatorShotMap = new Map(operatorShots.map((shot) => [shot.shot_id, shot]));
+  const blueprintShotMap = new Map(blueprintShots.map((shot) => [shot.shot_id, shot]));
+  const derivativeShotMap = new Map(derivativeShots.map((shot) => [shot.shot_id, shot]));
+  const narrationMap = new Map((derivative.narration_segments || []).map((segment) => [segment.beat_id, segment]));
+  const subtitleCounts = new Map();
+  for (const cue of derivative.subtitle_cues || []) subtitleCounts.set(cue.beat_id, (subtitleCounts.get(cue.beat_id) || 0) + 1);
+  const sourceOrder = blueprintShots.map((shot) => shot.shot_id);
+  const mappedOrder = Object.keys(PRODUCTION_EXECUTION_SHOT_ASSET_MAP);
+  if (!productionExecutionArrayExact(sourceOrder, mappedOrder) || operatorShots.length !== 19 || derivativeShots.length !== 19) {
+    throw new Error("Production Execution Pack source shot order or 19-shot inventory mismatch.");
+  }
+  const beats = (operator.beats || []).map((operatorBeat) => {
+    const blueprintBeat = (blueprint.beats || []).find((item) => item.beat_id === operatorBeat.beat_id);
+    const narration = narrationMap.get(operatorBeat.beat_id);
+    const timing = PRODUCTION_EXECUTION_NARRATION_TIMING[operatorBeat.beat_number];
+    if (!blueprintBeat || !narration || blueprintBeat.narration_text !== narration.text ||
+        blueprintBeat.start_time !== operatorBeat.start_time || blueprintBeat.end_time !== operatorBeat.end_time) {
+      throw new Error(`Beat source merge mismatch: ${operatorBeat.beat_id}`);
+    }
+    return {
+      beat_id: operatorBeat.beat_id,
+      beat_number: operatorBeat.beat_number,
+      title_ja: operatorBeat.title_ja,
+      start_time: operatorBeat.start_time,
+      end_time: operatorBeat.end_time,
+      duration_seconds: operatorBeat.duration_seconds,
+      purpose_ja: operatorBeat.narrative_purpose,
+      viewer_takeaway_ja: operatorBeat.viewer_takeaway,
+      narration: {
+        segment_id: narration.segment_id,
+        text: narration.text,
+        source_metric_status: blueprintBeat.narration_metric_status,
+        timing_state: timing.timing_state,
+        observed_slack_min_seconds: timing.observed_slack_min_seconds,
+        observed_slack_max_seconds: timing.observed_slack_max_seconds,
+        proxy_spoken_duration_min_seconds: timing.proxy_spoken_duration_min_seconds,
+        proxy_spoken_duration_max_seconds: timing.proxy_spoken_duration_max_seconds,
+        evidence_kind: timing.timing_state === "proxy_headroom_confirmed" ? "human_read_aloud_text_density_proxy" : "existing_blueprint_metric_pass_unmeasured",
+        engine_timing_verified: false,
+        punctuation_pause_opportunity_count: productionExecutionPauseOpportunityCount(narration.text),
+        punctuation_note: "句読点からpause候補を数えたのみ。原文変更・SSML化・engine計測はしていない。"
+      },
+      subtitle_count: subtitleCounts.get(operatorBeat.beat_id) || 0,
+      shot_count: operatorBeat.shot_count,
+      shot_ids: operatorBeat.shots.map((shot) => shot.shot_id),
+      completion_statement_ja: operatorBeat.plain_completion_statement,
+      truth_boundary: blueprintBeat.truth_boundary
+    };
+  });
+  if (beats.length !== 6 || (derivative.narration_segments || []).length !== 6 || (derivative.subtitle_cues || []).length !== 20) {
+    throw new Error("Production Execution Pack source beat, narration, or subtitle inventory mismatch.");
+  }
+  const shots = mappedOrder.map((shotId) => {
+    const operatorShot = operatorShotMap.get(shotId);
+    const blueprintShot = blueprintShotMap.get(shotId);
+    const derivativeShot = derivativeShotMap.get(shotId);
+    if (!operatorShot || !blueprintShot || !derivativeShot ||
+        operatorShot.visual_direction !== blueprintShot.current_visual_direction ||
+        operatorShot.visual_direction !== derivativeShot.visual_direction ||
+        operatorShot.why_it_exists !== derivativeShot.shot_purpose ||
+        operatorShot.start_time !== blueprintShot.start_time || operatorShot.end_time !== blueprintShot.end_time) {
+      throw new Error(`Shot source merge mismatch: ${shotId}`);
+    }
+    return {
+      shot_id: shotId,
+      beat_id: operatorShot.beat_id,
+      start_time: operatorShot.start_time,
+      end_time: operatorShot.end_time,
+      duration_seconds: operatorShot.duration_seconds,
+      plain_language_purpose_ja: operatorShot.why_it_exists,
+      visual_direction: operatorShot.visual_direction,
+      scale: blueprintShot.shot_scale,
+      motion: blueprintShot.camera_motion,
+      transition: blueprintShot.transition,
+      text_allowance_ja: operatorShot.text_allowance_ja,
+      asset_requirement_ids: productionExecutionClone(PRODUCTION_EXECUTION_SHOT_ASSET_MAP[shotId]),
+      source_required_asset_count: blueprintShot.required_asset_count,
+      source_asset_status: operatorShot.asset_status,
+      source_rights_status: operatorShot.rights_status,
+      requirement_asset_status: "unselected",
+      requirement_rights_status: "not_reviewed",
+      requirement_provenance_required: true,
+      truth_boundary: blueprintShot.truth_boundary,
+      done_when: operatorShot.done_when
+    };
+  });
+  const assets = productionExecutionClone(PRODUCTION_EXECUTION_ASSET_REQUIREMENTS);
+  const thumbnails = (derivative.thumbnail_directions || []).map((item) => ({
+    direction_id: item.direction_id,
+    title_ja: item.title_ja,
+    direction: item.direction,
+    truth_boundary: item.truth_boundary_note,
+    asset_status: "unselected",
+    rights_status: "not_reviewed",
+    provenance_required: true
+  }));
+  return {
+    schemaVersion: PRODUCTION_EXECUTION_PACK_SCHEMA_VERSION,
+    artifact_id: PRODUCTION_EXECUTION_PACK_ARTIFACT_ID,
+    title: "Fast Fiction Factory Production Execution Pack",
+    generatedAt: PRODUCTION_EXECUTION_PACK_GENERATED_AT,
+    status: "portable_execution_planning_pack",
+    route: PRODUCTION_EXECUTION_PACK_ROUTE,
+    source: {
+      artifact_ids: productionExecutionClone(PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS),
+      fingerprints: productionExecutionClone(PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS),
+      merge_rule: "Operatorの日本語制作指示、Blueprintの尺度・motion・transition、Derivativeのnarration/subtitle/thumbnailをsource bytesのまま参照する。"
+    },
+    counts: {
+      total_duration_seconds: 180,
+      beat_count: 6,
+      shot_count: 19,
+      subtitle_count: 20,
+      narration_segment_count: 6,
+      thumbnail_direction_count: 3,
+      asset_requirement_count: assets.length
+    },
+    voice_planning: {
+      voice_mode: "synthetic",
+      human_articulation_check_required: false,
+      engine_selected: false,
+      voice_selected: false,
+      audio_generated: false,
+      engine_calibration_pending: true,
+      actual_engine_timing_measured: false,
+      provenance_note: "3–5秒の余白は人の読み上げによるtext-density proxyであり、synthetic voice engineの実測ではない。"
+    },
+    beats,
+    shots,
+    asset_requirements: assets,
+    thumbnail_requirements: thumbnails,
+    completion_checklist: [
+      "六幕の開始・終了と合計180秒が一致する",
+      "19ショットすべてに汎用asset requirementが一つ以上紐づく",
+      "narration、subtitle、shot wording、truth boundaryを変更していない",
+      "assetとvoiceは未選定、rightsは未審査のまま引き渡す",
+      "実制作へ進む前にengine calibration、asset sourcing、rights reviewを別承認する"
+    ],
+    transfer_instructions: [
+      "最初に六幕run sheetで尺と目的を確認する。",
+      "次にshot sheetとasset matrixを突合し、必要な汎用素材群を準備単位で見積もる。",
+      "narration timingはproxyと未計測を区別し、engine実測として扱わない。",
+      "このpackだけでasset、voice、rights、render、publication、canonを承認しない。"
+    ],
+    boundaries: {
+      canonical: false,
+      production_approved: false,
+      assets_selected: false,
+      rights_cleared_claim: false,
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      ai_video_generation: false,
+      production_render: false,
+      public_upload: false,
+      database_persistence: false,
+      final_canon_decision: false
+    }
+  };
+}
+
+function renderProductionExecutionBeatCsv(model) {
+  const rows = model.beats.map((beat) => ({
+    beat_number: beat.beat_number,
+    beat_id: beat.beat_id,
+    title_ja: beat.title_ja,
+    start_time: beat.start_time,
+    end_time: beat.end_time,
+    duration_seconds: beat.duration_seconds,
+    purpose_ja: beat.purpose_ja,
+    narration_state: beat.narration.timing_state,
+    subtitle_count: beat.subtitle_count,
+    shot_count: beat.shot_count,
+    completion_statement_ja: beat.completion_statement_ja
+  }));
+  return renderEditorialDerivativeCsv(rows, Object.keys(rows[0]));
+}
+
+function renderProductionExecutionShotCsv(model) {
+  const rows = model.shots.map((shot) => ({
+    shot_id: shot.shot_id,
+    beat_id: shot.beat_id,
+    start_time: shot.start_time,
+    end_time: shot.end_time,
+    duration_seconds: shot.duration_seconds,
+    plain_language_purpose_ja: shot.plain_language_purpose_ja,
+    visual_direction: shot.visual_direction,
+    scale: shot.scale,
+    motion: shot.motion,
+    transition: shot.transition,
+    text_allowance_ja: shot.text_allowance_ja,
+    asset_requirement_ids: shot.asset_requirement_ids.join("|"),
+    source_required_asset_count: shot.source_required_asset_count,
+    source_asset_status: shot.source_asset_status,
+    source_rights_status: shot.source_rights_status,
+    requirement_asset_status: shot.requirement_asset_status,
+    requirement_rights_status: shot.requirement_rights_status,
+    truth_boundary: shot.truth_boundary,
+    done_when: shot.done_when
+  }));
+  return renderEditorialDerivativeCsv(rows, Object.keys(rows[0]));
+}
+
+function renderProductionExecutionAssetCsv(model) {
+  const rows = model.asset_requirements.map((asset) => ({
+    requirement_id: asset.requirement_id,
+    asset_class: asset.asset_class,
+    generic_description_ja: asset.generic_description_ja,
+    quantity: asset.quantity,
+    quantity_unit: asset.quantity_unit,
+    shot_usage: asset.shot_usage.join("|"),
+    visual_constraints_ja: asset.visual_constraints_ja,
+    asset_status: asset.asset_status,
+    provenance_required: asset.provenance_required,
+    rights_status: asset.rights_status
+  }));
+  return renderEditorialDerivativeCsv(rows, Object.keys(rows[0]));
+}
+
+function renderProductionExecutionNarrationCsv(model) {
+  const rows = model.beats.map((beat) => ({
+    beat_number: beat.beat_number,
+    beat_id: beat.beat_id,
+    segment_id: beat.narration.segment_id,
+    window_seconds: beat.duration_seconds,
+    source_metric_status: beat.narration.source_metric_status,
+    timing_state: beat.narration.timing_state,
+    observed_slack_min_seconds: beat.narration.observed_slack_min_seconds,
+    observed_slack_max_seconds: beat.narration.observed_slack_max_seconds,
+    proxy_spoken_duration_min_seconds: beat.narration.proxy_spoken_duration_min_seconds,
+    proxy_spoken_duration_max_seconds: beat.narration.proxy_spoken_duration_max_seconds,
+    evidence_kind: beat.narration.evidence_kind,
+    engine_timing_verified: beat.narration.engine_timing_verified,
+    punctuation_pause_opportunity_count: beat.narration.punctuation_pause_opportunity_count
+  }));
+  return renderEditorialDerivativeCsv(rows, Object.keys(rows[0]));
+}
+
+function renderProductionExecutionReadme(model) {
+  return `# Production Execution Pack\n\nこのpackageは、承認済みの六幕・19ショット・汎用asset requirement・synthetic narration timing envelopeを一か所で引き渡すローカル制作計画です。\n\n- Artifact: \`${model.artifact_id}\`\n- Status: portable planning / not canonical / not production-approved\n- Scale: 180 seconds / 6 beats / 19 shots / 20 subtitles / ${model.counts.asset_requirement_count} generic asset requirements\n- Voice planning: synthetic / engine unselected / voice unselected / audio not generated\n\n## 読む順番\n\n1. \`production-execution-pack.html\` で全体を一巡する\n2. \`beat-run-sheet.csv\` と \`narration-timing-envelope.csv\` で尺を確認する\n3. \`shot-execution-sheet.csv\` と \`asset-requirements.csv\` をIDで突合する\n4. \`thumbnail-requirements.md\` と完成checklistを確認する\n\n3–5秒の余白は人の読み上げによるtext-density proxyです。TTS engine、voice、pronunciation、prosody、audio timingの実測ではありません。asset選定、rights review、provider、generation、render、upload、database、canonは閉じています。\n`;
+}
+
+function renderProductionExecutionThumbnailMarkdown(model) {
+  const sections = model.thumbnail_requirements.map((item) => `## ${item.title_ja}\n\n- direction_id: \`${item.direction_id}\`\n- Direction: ${item.direction}\n- Truth boundary: ${item.truth_boundary}\n- Asset: \`${item.asset_status}\`\n- Rights: \`${item.rights_status}\`\n- Provenance required: \`${item.provenance_required}\``).join("\n\n");
+  return `# サムネイル要件 / Thumbnail Requirements\n\n三方向は制作要件であり、artwork、素材、font、人物、rightsは未選定です。\n\n${sections}\n`;
+}
+
+function renderProductionExecutionHtml(model) {
+  const beatRows = model.beats.map((beat) => `<tr id="beat-${beat.beat_number}"><td><strong>${beat.beat_number}. ${productionExecutionHtml(beat.title_ja)}</strong><small>${productionExecutionHtml(beat.beat_id)}</small></td><td>${beat.start_time}–${beat.end_time}<small>${beat.duration_seconds}秒</small></td><td>${productionExecutionHtml(beat.purpose_ja)}</td><td><code>${productionExecutionHtml(beat.narration.timing_state)}</code><small>${beat.subtitle_count}字幕 / ${beat.shot_count}shots</small></td><td>${productionExecutionHtml(beat.completion_statement_ja)}</td></tr>`).join("");
+  const narrationRows = model.beats.map((beat) => {
+    const proxy = beat.narration.timing_state === "proxy_headroom_confirmed"
+      ? `余白 ${beat.narration.observed_slack_min_seconds}–${beat.narration.observed_slack_max_seconds}秒 / proxy読了 ${beat.narration.proxy_spoken_duration_min_seconds}–${beat.narration.proxy_spoken_duration_max_seconds}秒`
+      : "既存pass・人による余白計測なし";
+    return `<article class="narration-row"><header><strong>Beat ${beat.beat_number} · ${productionExecutionHtml(beat.title_ja)}</strong><span>${productionExecutionHtml(beat.narration.timing_state)}</span></header><p>${productionExecutionHtml(beat.narration.text)}</p><footer>${proxy}。engine timing未計測。</footer></article>`;
+  }).join("");
+  const shotRows = model.shots.map((shot) => `<tr><td><strong>${productionExecutionHtml(shot.shot_id)}</strong><small>${shot.start_time}–${shot.end_time} / ${shot.duration_seconds}秒</small></td><td>${productionExecutionHtml(shot.plain_language_purpose_ja)}<small>${productionExecutionHtml(shot.visual_direction)}</small></td><td>${productionExecutionHtml(shot.scale)} / ${productionExecutionHtml(shot.motion)} / ${productionExecutionHtml(shot.transition)}<small>${productionExecutionHtml(shot.text_allowance_ja)} / source required_asset_count=${shot.source_required_asset_count}</small></td><td>${shot.asset_requirement_ids.map((id) => `<code>${productionExecutionHtml(id)}</code>`).join(" ")}<small>generic: unselected / not_reviewed</small></td><td>${productionExecutionHtml(shot.truth_boundary)}<small>source: ${productionExecutionHtml(shot.source_asset_status)} / ${productionExecutionHtml(shot.source_rights_status)} · 完了: ${productionExecutionHtml(shot.done_when)}</small></td></tr>`).join("");
+  const assetRows = model.asset_requirements.map((asset) => `<tr><td><strong>${productionExecutionHtml(asset.requirement_id)}</strong><small>${productionExecutionHtml(asset.asset_class)}</small></td><td>${productionExecutionHtml(asset.generic_description_ja)}</td><td>${asset.quantity} ${productionExecutionHtml(asset.quantity_unit)}</td><td>${asset.shot_usage.map((id) => `<code>${productionExecutionHtml(id)}</code>`).join(" ")}</td><td>${productionExecutionHtml(asset.visual_constraints_ja)}<small>unselected / not_reviewed / provenance required</small></td></tr>`).join("");
+  const thumbRows = model.thumbnail_requirements.map((item) => `<tr><td><strong>${productionExecutionHtml(item.title_ja)}</strong><small>${productionExecutionHtml(item.direction_id)}</small></td><td>${productionExecutionHtml(item.direction)}</td><td>${productionExecutionHtml(item.truth_boundary)}<small>unselected / not_reviewed</small></td></tr>`).join("");
+  const checklist = model.completion_checklist.map((item) => `<li>□ ${productionExecutionHtml(item)}</li>`).join("");
+  const transfer = model.transfer_instructions.map((item, index) => `<li><strong>${index + 1}</strong>${productionExecutionHtml(item)}</li>`).join("");
+  return `<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Production Execution Pack</title>
+<style>
+:root{color-scheme:light;--ink:#172026;--muted:#58666e;--line:#cbd3d7;--paper:#f6f3ec;--panel:#fff;--accent:#835b20;--cool:#315d6a}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Yu Gothic UI","Hiragino Kaku Gothic ProN",sans-serif;font-size:16px;line-height:1.65}main{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:34px 0 80px}.utility{position:sticky;top:0;z-index:3;display:flex;gap:8px;flex-wrap:wrap;padding:10px 20px;background:rgba(246,243,236,.96);border-bottom:1px solid var(--line)}.utility a{color:var(--cool);font-size:13px;text-decoration:none}.hero{padding:30px 0 28px;border-bottom:3px solid var(--ink)}.eyebrow{margin:0 0 7px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.hero h1{max-width:22ch;margin:0;font-family:Georgia,"Yu Mincho",serif;font-size:clamp(38px,5vw,60px);line-height:1.08;letter-spacing:-.025em}.lede{max-width:70ch;margin:15px 0;color:var(--muted);font-size:18px}.status-line{display:flex;gap:9px;flex-wrap:wrap}.status-line span{padding:4px 9px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-size:12px;font-weight:700}.metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin-top:20px}.metric{padding:12px;border-left:3px solid var(--accent);background:var(--panel)}.metric strong{display:block;font-size:25px;line-height:1}.metric small,td small{display:block;margin-top:5px;color:var(--muted);font-size:11px;line-height:1.4}.boundary{margin:18px 0 0;padding:10px 13px;background:#ece6d8;border-left:4px solid var(--accent);font-size:13px}section{padding:34px 0 8px;border-bottom:1px solid var(--line)}h2{margin:0 0 8px;font-family:Georgia,"Yu Mincho",serif;font-size:29px;line-height:1.2}h2+p{margin-top:0;color:var(--muted)}table{width:100%;border-collapse:collapse;table-layout:fixed;background:var(--panel);font-size:13px}th,td{padding:10px;vertical-align:top;border:1px solid var(--line);overflow-wrap:anywhere}th{background:#e9e5dc;text-align:left;font-size:11px;letter-spacing:.05em}code{display:inline-block;margin:1px;padding:1px 4px;border-radius:3px;background:#edf1f2;color:#294650;font:11px/1.4 ui-monospace,monospace;overflow-wrap:anywhere}.narration-row{padding:14px 0;border-top:1px solid var(--line)}.narration-row header{display:flex;justify-content:space-between;gap:12px}.narration-row header span{color:var(--accent);font:12px ui-monospace,monospace}.narration-row p{margin:8px 0}.narration-row footer{color:var(--muted);font-size:12px}.checklist,.transfer{padding:0;list-style:none}.checklist li{padding:7px 0;border-bottom:1px solid var(--line)}.transfer{counter-reset:item}.transfer li{display:grid;grid-template-columns:30px 1fr;gap:8px;padding:8px 0}.transfer strong{display:grid;width:24px;height:24px;place-items:center;border-radius:50%;background:var(--ink);color:#fff;font-size:12px}.hash{color:var(--muted);font-family:ui-monospace,monospace}@media(max-width:760px){main{width:min(100% - 24px,1180px);padding-top:20px}.hero h1{font-size:38px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}body{font-size:15px}table{font-size:11px}th,td{padding:7px}.utility{padding-inline:12px}}@media print{@page{size:A4 portrait;margin:12mm}.utility,.hash{display:none!important}body{background:#fff;color:#000;font-size:9.5pt}main{width:100%;padding:0}.hero{padding-top:0}.hero h1{font-size:28pt}.metrics{grid-template-columns:repeat(5,1fr)}section{break-before:auto}table{font-size:7.7pt}tr{break-inside:avoid}.narration-row{break-inside:avoid}a{color:#000;text-decoration:none}}
+</style>
+</head>
+<body data-production-execution-pack="true">
+<nav class="utility" aria-label="資料内リンク"><a href="#beats">六幕</a><a href="#narration">ナレーション</a><a href="#shots">19ショット</a><a href="#assets">14素材要件</a><a href="#thumbnails">サムネイル</a><a href="#completion">完了と移管</a></nav>
+<main>
+<header class="hero">
+<p class="eyebrow">Production Execution Pack · local planning only</p>
+<h1>六幕を、そのまま制作へ渡す。</h1>
+<p class="lede">承認済みの文言とtruth boundaryを変えず、19ショット、汎用asset requirements、synthetic narration timingの状態を一つの手引きにまとめた。</p>
+<div class="status-line"><span>portable execution planning</span><span>not canonical</span><span>not production-approved</span><span>assets unselected</span><span>generic rights not reviewed</span></div>
+<div class="metrics" data-first-view-contract="true"><div class="metric"><strong>180秒</strong><small>総尺</small></div><div class="metric"><strong>6</strong><small>beats</small></div><div class="metric"><strong>19</strong><small>shots</small></div><div class="metric"><strong>${model.counts.asset_requirement_count}</strong><small>汎用asset requirements</small></div><div class="metric"><strong>synthetic</strong><small>engine / voice未選定</small></div></div>
+<p class="boundary">人の読み上げによる3–5秒の余白はtext-density proxy。実TTS timingではない。source shot rightsはnot_cleared、generic requirement rightsはnot_reviewed。asset・engine・voice・audio・render・publication・database・canonは閉じたまま。</p>
+</header>
+<section id="beats"><h2>六幕 Run Sheet</h2><p>各幕のschedule、目的、narration state、subtitle・shot数、完了条件。</p><table><thead><tr><th style="width:18%">幕</th><th style="width:11%">時間</th><th style="width:24%">目的</th><th style="width:17%">Narration</th><th>完了</th></tr></thead><tbody>${beatRows}</tbody></table></section>
+<section id="narration"><h2>合成ナレーション Timing Envelope</h2><p>voice_mode=synthetic。engine・voice未選定、audio未生成、calibration pending。人のarticulation acceptanceは不要。</p>${narrationRows}</section>
+<section id="shots"><h2>19ショット 制作実行表</h2><p>source wording、尺度、動き、transition、text allowance、asset requirement、truthとdone-whenを同じ行で読む。</p><table><thead><tr><th style="width:13%">Shot / 時間</th><th style="width:25%">目的 / direction</th><th style="width:16%">尺度 / motion</th><th style="width:18%">素材要件ID</th><th>Truth / 完了</th></tr></thead><tbody>${shotRows}</tbody></table></section>
+<section id="assets"><h2>汎用素材要件 Matrix</h2><p>繰り返し使う制作要件を14件へdeduplicateした。すべてunselected / not_reviewed / provenance required。</p><table><thead><tr><th style="width:13%">ID / class</th><th style="width:24%">汎用要件</th><th style="width:9%">数量</th><th style="width:24%">使用shots</th><th>制約</th></tr></thead><tbody>${assetRows}</tbody></table></section>
+<section id="thumbnails"><h2>サムネイル要件</h2><p>三方向はいずれも要件のみ。artworkや素材を選んでいない。</p><table><thead><tr><th style="width:18%">方向</th><th>構成</th><th style="width:28%">Boundary</th></tr></thead><tbody>${thumbRows}</tbody></table></section>
+<section id="completion"><h2>完了確認と移管</h2><ul class="checklist">${checklist}</ul><ol class="transfer">${transfer}</ol></section>
+</main>
+</body>
+</html>
+`;
+}
+
+function productionExecutionPackageFingerprint(fileEntries) {
+  const material = fileEntries.map((entry) => `${entry.relative_path}|${entry.byte_size}|${entry.sha256}`).join("\n");
+  return editorialDerivativeBufferHash(Buffer.from(material, "utf8"));
+}
+
+function buildProductionExecutionPackManifest(files, model) {
+  const inventory = PRODUCTION_EXECUTION_PACK_FILES.map((relativePath) => ({
+    relative_path: relativePath,
+    byte_size: files[relativePath].byteLength,
+    sha256: editorialDerivativeBufferHash(files[relativePath])
+  }));
+  return {
+    schemaVersion: PRODUCTION_EXECUTION_PACK_MANIFEST_SCHEMA_VERSION,
+    artifact_id: PRODUCTION_EXECUTION_PACK_ARTIFACT_ID,
+    generatedAt: PRODUCTION_EXECUTION_PACK_GENERATED_AT,
+    package_root: PRODUCTION_EXECUTION_PACK_ROOT,
+    source_artifact_ids: productionExecutionClone(PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS),
+    source_fingerprints: productionExecutionClone(PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS),
+    files: inventory,
+    package_fingerprint_sha256: productionExecutionPackageFingerprint(inventory),
+    counts: productionExecutionClone(model.counts),
+    canonical: false,
+    production_approved: false,
+    assets_selected: false,
+    rights_cleared_claim: false,
+    local_only: true,
+    passed: true,
+    failures: []
+  };
+}
+
+function renderProductionExecutionPackFiles(model) {
+  const files = {
+    "README_PRODUCTION_EXECUTION.md": editorialDerivativeUtf8(renderProductionExecutionReadme(model)),
+    "production-execution-pack.html": editorialDerivativeUtf8(renderProductionExecutionHtml(model)),
+    "production-execution-pack.json": editorialDerivativeJsonBuffer(model),
+    "beat-run-sheet.csv": editorialDerivativeUtf8(renderProductionExecutionBeatCsv(model)),
+    "shot-execution-sheet.csv": editorialDerivativeUtf8(renderProductionExecutionShotCsv(model)),
+    "asset-requirements.csv": editorialDerivativeUtf8(renderProductionExecutionAssetCsv(model)),
+    "narration-timing-envelope.csv": editorialDerivativeUtf8(renderProductionExecutionNarrationCsv(model)),
+    "thumbnail-requirements.md": editorialDerivativeUtf8(renderProductionExecutionThumbnailMarkdown(model))
+  };
+  files["production-execution-manifest.json"] = editorialDerivativeJsonBuffer(buildProductionExecutionPackManifest(files, model));
+  return files;
+}
+
+async function buildProductionExecutionPackArtifacts() {
+  try {
+    const model = await buildProductionExecutionPackModel();
+    const modelValidation = validateProductionExecutionPackModel(model, model);
+    if (!modelValidation.valid) return { valid: false, errors: modelValidation.errors, files: {}, model: null };
+    const files = renderProductionExecutionPackFiles(model);
+    const candidateValidation = validateProductionExecutionPackCandidate(files, files, model);
+    return { valid: candidateValidation.valid, errors: candidateValidation.errors, files, model };
+  } catch (error) {
+    return { valid: false, errors: [error.message], files: {}, model: null };
+  }
+}
+
+async function writeProductionExecutionPackArtifacts(files) {
+  const actual = Object.keys(files || {}).sort();
+  const allowed = [...PRODUCTION_EXECUTION_PACK_REQUIRED_FILES].sort();
+  if (!arrayEqualsExact(actual, allowed)) fail(`Refusing Production Execution Pack write outside exact package set: ${actual.join(",")}`);
+  await mkdir(PRODUCTION_EXECUTION_PACK_ROOT, { recursive: true });
+  for (const relativePath of PRODUCTION_EXECUTION_PACK_REQUIRED_FILES) {
+    await writeFile(`${PRODUCTION_EXECUTION_PACK_ROOT}/${relativePath}`, files[relativePath]);
+  }
+}
+
+async function snapshotProductionExecutionPackProtectedFiles() {
+  return snapshotOperatorProductionBriefTypographyPaths([
+    ...EDITORIAL_HANDOFF_REQUIRED_FILES.map((name) => `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${name}`),
+    ...EDITORIAL_REVISION_REQUIRED_FILES.map((name) => `${EDITORIAL_REVISION_PACKAGE_ROOT}/${name}`),
+    ...EDITORIAL_DERIVATIVE_REQUIRED_FILES.map((name) => `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${name}`),
+    ...CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.map((name) => `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${name}`),
+    ...OPERATOR_PRODUCTION_BRIEF_REQUIRED_FILES.map((name) => `${OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT}/${name}`)
+  ]);
+}
+
+async function snapshotProductionExecutionPackHistoricalResults() {
+  const names = (await readdir("artifacts"))
+    .filter((name) => name.endsWith("-result.json") && name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT));
+  return snapshotOperatorProductionBriefTypographyPaths(names.map((name) => `artifacts/${name}`));
+}
+
+async function snapshotProductionExecutionPackFiles() {
+  const entries = await Promise.all(PRODUCTION_EXECUTION_PACK_REQUIRED_FILES.map(async (relativePath) => {
+    const snapshot = await readFileSnapshot(`${PRODUCTION_EXECUTION_PACK_ROOT}/${relativePath}`);
+    return [relativePath, snapshot];
+  }));
+  return Object.fromEntries(entries);
+}
+
+function validateProductionExecutionPackModel(model, expectedModel = null) {
+  const errors = [];
+  const add = (condition, message) => { if (!condition) errors.push(message); };
+  const beats = Array.isArray(model?.beats) ? model.beats : [];
+  const shots = Array.isArray(model?.shots) ? model.shots : [];
+  const assets = Array.isArray(model?.asset_requirements) ? model.asset_requirements : [];
+  const beatIds = beats.map((beat) => beat.beat_id);
+  const shotIds = shots.map((shot) => shot.shot_id);
+  const requirementIds = assets.map((asset) => asset.requirement_id);
+  const expectedShotIds = Object.keys(PRODUCTION_EXECUTION_SHOT_ASSET_MAP);
+  const expectedRequirementIds = PRODUCTION_EXECUTION_ASSET_REQUIREMENTS.map((asset) => asset.requirement_id);
+  add(model?.schemaVersion === PRODUCTION_EXECUTION_PACK_SCHEMA_VERSION && model?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID, "execution pack identity mismatch");
+  add(model?.route === PRODUCTION_EXECUTION_PACK_ROUTE && model?.status === "portable_execution_planning_pack", "execution pack route or status mismatch");
+  add(productionExecutionArrayExact(model?.source?.artifact_ids, PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS), "source artifact IDs changed");
+  add(JSON.stringify(model?.source?.fingerprints || {}) === JSON.stringify(PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS), "source fingerprints changed");
+  add(model?.counts?.total_duration_seconds === 180 && model?.counts?.beat_count === 6 && model?.counts?.shot_count === 19 && model?.counts?.subtitle_count === 20 && model?.counts?.narration_segment_count === 6 && model?.counts?.thumbnail_direction_count === 3 && model?.counts?.asset_requirement_count === 14, "execution counts mismatch");
+  add(beats.length === 6 && new Set(beatIds).size === 6 && beats.reduce((sum, beat) => sum + Number(beat.duration_seconds || 0), 0) === 180, "six-beat schedule mismatch");
+  add(productionExecutionArrayExact(shotIds, expectedShotIds) && new Set(shotIds).size === 19, "19-shot order or coverage mismatch");
+  add(productionExecutionArrayExact(requirementIds, expectedRequirementIds) && new Set(requirementIds).size === 14, "asset requirement identity or deduplication mismatch");
+  add(new Set(assets.map((asset) => `${asset.asset_class}\u0000${asset.generic_description_ja}`)).size === assets.length, "duplicate semantic asset requirement");
+  add(JSON.stringify(assets) === JSON.stringify(PRODUCTION_EXECUTION_ASSET_REQUIREMENTS), "generic asset requirements changed");
+  add(shots.every((shot) => productionExecutionArrayExact(shot.asset_requirement_ids, PRODUCTION_EXECUTION_SHOT_ASSET_MAP[shot.shot_id])), "shot-to-asset mapping changed");
+  add(shots.every((shot) => Array.isArray(shot.asset_requirement_ids) && shot.asset_requirement_ids.length > 0 && shot.asset_requirement_ids.every((id) => requirementIds.includes(id))), "shot has missing or invalid asset requirement");
+  for (const asset of assets) {
+    const inverse = shots.filter((shot) => shot.asset_requirement_ids.includes(asset.requirement_id)).map((shot) => shot.shot_id);
+    add(productionExecutionArrayExact(asset.shot_usage, inverse), `asset shot usage mismatch: ${asset.requirement_id}`);
+    add(asset.asset_status === "unselected" && asset.rights_status === "not_reviewed" && asset.provenance_required === true, `asset boundary changed: ${asset.requirement_id}`);
+    add(Number.isInteger(asset.quantity) && asset.quantity > 0 && Boolean(asset.quantity_unit) && Boolean(asset.visual_constraints_ja), `asset requirement incomplete: ${asset.requirement_id}`);
+  }
+  const sourceMetricStatuses = ["warn", "pass", "warn", "warn", "pass", "warn"];
+  for (const beat of beats) {
+    const timing = PRODUCTION_EXECUTION_NARRATION_TIMING[beat.beat_number];
+    add(Boolean(timing), `unknown beat timing: ${beat.beat_number}`);
+    if (!timing) continue;
+    add(beat.narration?.source_metric_status === sourceMetricStatuses[beat.beat_number - 1], `source narration metric changed: beat ${beat.beat_number}`);
+    add(beat.narration?.timing_state === timing.timing_state, `narration timing state changed: beat ${beat.beat_number}`);
+    add(beat.narration?.observed_slack_min_seconds === timing.observed_slack_min_seconds && beat.narration?.observed_slack_max_seconds === timing.observed_slack_max_seconds, `proxy slack changed: beat ${beat.beat_number}`);
+    add(beat.narration?.proxy_spoken_duration_min_seconds === timing.proxy_spoken_duration_min_seconds && beat.narration?.proxy_spoken_duration_max_seconds === timing.proxy_spoken_duration_max_seconds, `proxy spoken-duration range changed: beat ${beat.beat_number}`);
+    add(beat.narration?.engine_timing_verified === false && Boolean(beat.narration?.text), `narration text or engine provenance invalid: beat ${beat.beat_number}`);
+    if (timing.timing_state === "proxy_headroom_confirmed") {
+      add(beat.duration_seconds - timing.observed_slack_max_seconds === timing.proxy_spoken_duration_min_seconds && beat.duration_seconds - timing.observed_slack_min_seconds === timing.proxy_spoken_duration_max_seconds, `proxy duration derivation mismatch: beat ${beat.beat_number}`);
+      add(beat.narration?.evidence_kind === "human_read_aloud_text_density_proxy", `proxy evidence provenance changed: beat ${beat.beat_number}`);
+    } else {
+      add([beat.narration?.observed_slack_min_seconds, beat.narration?.observed_slack_max_seconds, beat.narration?.proxy_spoken_duration_min_seconds, beat.narration?.proxy_spoken_duration_max_seconds].every((value) => value === null), `unmeasured beat fabricated timing: beat ${beat.beat_number}`);
+    }
+    add(beat.shot_count === beat.shot_ids?.length && beat.subtitle_count > 0 && Boolean(beat.completion_statement_ja), `beat execution fields incomplete: beat ${beat.beat_number}`);
+  }
+  add(model?.voice_planning?.voice_mode === "synthetic" && model?.voice_planning?.human_articulation_check_required === false && model?.voice_planning?.engine_selected === false && model?.voice_planning?.voice_selected === false && model?.voice_planning?.audio_generated === false && model?.voice_planning?.engine_calibration_pending === true && model?.voice_planning?.actual_engine_timing_measured === false, "synthetic narration boundary changed");
+  add(shots.every((shot) => ["plain_language_purpose_ja", "visual_direction", "scale", "motion", "transition", "text_allowance_ja", "truth_boundary", "done_when"].every((field) => shot[field] !== undefined && shot[field] !== "")), "shot execution field missing");
+  add(shots.every((shot) => shot.source_asset_status === "unselected" && shot.source_rights_status === "not_cleared" && Number.isInteger(shot.source_required_asset_count) && shot.source_required_asset_count > 0), "source shot asset, rights, or quantity state changed");
+  add(shots.every((shot) => shot.requirement_asset_status === "unselected" && shot.requirement_rights_status === "not_reviewed" && shot.requirement_provenance_required === true), "generic requirement reference state changed");
+  add(model?.thumbnail_requirements?.length === 3 && model.thumbnail_requirements.every((item) => item.asset_status === "unselected" && item.rights_status === "not_reviewed" && item.provenance_required === true), "thumbnail boundary changed");
+  add(model?.boundaries?.local_only === true && Object.entries(model?.boundaries || {}).every(([key, value]) => key === "local_only" ? value === true : value === false), "production, rights, external, or canon boundary opened");
+  add(!/https?:\/\/|www\./i.test(JSON.stringify(model)), "external URL entered execution pack");
+  if (expectedModel) add(JSON.stringify(model) === JSON.stringify(expectedModel), "canonical execution model drift");
+  return { valid: errors.length === 0, errors };
+}
+
+function validateProductionExecutionPackCandidate(filesInput, expectedFiles, expectedModel) {
+  const errors = [];
+  const add = (condition, message) => { if (!condition) errors.push(message); };
+  const files = filesInput || {};
+  add(arrayEqualsExact(Object.keys(files).sort(), [...PRODUCTION_EXECUTION_PACK_REQUIRED_FILES].sort()), "package file inventory mismatch");
+  for (const relativePath of PRODUCTION_EXECUTION_PACK_REQUIRED_FILES) {
+    add(Buffer.isBuffer(files[relativePath]), `missing package file: ${relativePath}`);
+    if (Buffer.isBuffer(files[relativePath]) && Buffer.isBuffer(expectedFiles?.[relativePath])) {
+      add(files[relativePath].equals(expectedFiles[relativePath]), `package byte drift: ${relativePath}`);
+    }
+  }
+  let model = null;
+  let manifest = null;
+  try { model = JSON.parse(files["production-execution-pack.json"]?.toString("utf8") || "null"); } catch (error) { errors.push(`execution JSON parse failed: ${error.message}`); }
+  try { manifest = JSON.parse(files["production-execution-manifest.json"]?.toString("utf8") || "null"); } catch (error) { errors.push(`execution manifest parse failed: ${error.message}`); }
+  const modelValidation = validateProductionExecutionPackModel(model, expectedModel);
+  errors.push(...modelValidation.errors);
+  add(manifest?.schemaVersion === PRODUCTION_EXECUTION_PACK_MANIFEST_SCHEMA_VERSION && manifest?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID && manifest?.package_root === PRODUCTION_EXECUTION_PACK_ROOT, "package manifest identity mismatch");
+  add(productionExecutionArrayExact(manifest?.source_artifact_ids, PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS) && JSON.stringify(manifest?.source_fingerprints || {}) === JSON.stringify(PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS), "package manifest source provenance mismatch");
+  add(manifest?.files?.length === PRODUCTION_EXECUTION_PACK_FILES.length && productionExecutionArrayExact((manifest?.files || []).map((item) => item.relative_path), PRODUCTION_EXECUTION_PACK_FILES), "package manifest inventory mismatch");
+  for (const entry of manifest?.files || []) {
+    const file = files[entry.relative_path];
+    add(Buffer.isBuffer(file) && entry.byte_size === file.byteLength && entry.sha256 === editorialDerivativeBufferHash(file), `package manifest size/hash mismatch: ${entry.relative_path}`);
+  }
+  add(manifest?.package_fingerprint_sha256 === productionExecutionPackageFingerprint(manifest?.files || []), "package manifest aggregate fingerprint mismatch");
+  add(manifest?.canonical === false && manifest?.production_approved === false && manifest?.assets_selected === false && manifest?.rights_cleared_claim === false && manifest?.local_only === true && manifest?.passed === true && Array.isArray(manifest?.failures) && manifest.failures.length === 0, "package manifest boundary or pass state changed");
+  const html = files["production-execution-pack.html"]?.toString("utf8") || "";
+  add(/^<!doctype html>/i.test(html) && html.includes('data-production-execution-pack="true"'), "standalone HTML identity missing");
+  add(!/<script\b/i.test(html) && !/<link\b[^>]*rel=["']stylesheet/i.test(html) && !/https?:\/\//i.test(html), "standalone HTML must be scriptless and external-resource-free");
+  add(html.includes("@media print") && html.includes(".utility,.hash{display:none!important}") && !/overflow-[xy]\s*:\s*(?:auto|scroll)/i.test(html), "HTML print or document-only scroll contract missing");
+  const sectionOrder = ["beats", "narration", "shots", "assets", "thumbnails", "completion"].map((id) => html.indexOf(`id="${id}"`));
+  add(sectionOrder.every((index) => index >= 0) && sectionOrder.every((index, position) => position === 0 || index > sectionOrder[position - 1]), "HTML execution hierarchy mismatch");
+  const csvExpectations = {
+    "beat-run-sheet.csv": 6,
+    "shot-execution-sheet.csv": 19,
+    "asset-requirements.csv": 14,
+    "narration-timing-envelope.csv": 6
+  };
+  for (const [relativePath, count] of Object.entries(csvExpectations)) {
+    try {
+      const parsed = parseCsvText(files[relativePath]?.toString("utf8") || "");
+      add(parsed.records.length === count, `${relativePath} row count mismatch`);
+    } catch (error) {
+      errors.push(`${relativePath} parse failed: ${error.message}`);
+    }
+  }
+  return { valid: errors.length === 0, errors, model, manifest };
+}
+
+function runProductionExecutionPackNegativeProbes(built) {
+  const outcome = (closed, detail) => ({ passed: Boolean(closed), fail_closed: Boolean(closed), artifact_mutation: false, detail });
+  const canonicalFiles = built.files;
+  const canonicalModel = built.model;
+  const probeModel = (mutate, detail) => {
+    const candidateModel = productionExecutionClone(canonicalModel);
+    mutate(candidateModel);
+    const candidateFiles = renderProductionExecutionPackFiles(candidateModel);
+    const rejected = !validateProductionExecutionPackCandidate(candidateFiles, canonicalFiles, canonicalModel).valid;
+    return outcome(rejected, detail);
+  };
+  const missingFileCandidate = { ...canonicalFiles };
+  delete missingFileCandidate["thumbnail-requirements.md"];
+  const manifestMismatchCandidate = { ...canonicalFiles };
+  const manifestMismatch = JSON.parse(canonicalFiles["production-execution-manifest.json"].toString("utf8"));
+  manifestMismatch.files[0].sha256 = "0".repeat(64);
+  manifestMismatch.package_fingerprint_sha256 = productionExecutionPackageFingerprint(manifestMismatch.files);
+  manifestMismatchCandidate["production-execution-manifest.json"] = editorialDerivativeJsonBuffer(manifestMismatch);
+  return {
+    source_fingerprint_mismatch: probeModel((model) => { model.source.fingerprints.production_blueprint_sha256 = "0".repeat(64); }, "exact source fingerprint rejected"),
+    missing_beat: probeModel((model) => { model.beats.pop(); }, "six-beat inventory rejected the removal"),
+    missing_shot: probeModel((model) => { model.shots.pop(); }, "19-shot inventory rejected the removal"),
+    altered_narration: probeModel((model) => { model.beats[0].narration.text += "変更"; }, "source narration wording drift rejected"),
+    altered_shot_wording: probeModel((model) => { model.shots[0].visual_direction += "変更"; }, "source shot wording drift rejected"),
+    changed_timing: probeModel((model) => { model.shots[0].end_time = "00:08"; model.shots[0].duration_seconds = 8; }, "source timing drift rejected"),
+    duplicate_asset_requirement: probeModel((model) => { model.asset_requirements.push(productionExecutionClone(model.asset_requirements[0])); }, "duplicate semantic asset requirement rejected"),
+    shot_without_asset_requirement: probeModel((model) => { model.shots[0].asset_requirement_ids = []; }, "shot without a generic requirement rejected"),
+    selected_asset: probeModel((model) => { model.asset_requirements[0].asset_status = "selected"; }, "selected asset state rejected"),
+    rights_cleared_claim: probeModel((model) => { model.asset_requirements[0].rights_status = "cleared"; model.boundaries.rights_cleared_claim = true; }, "rights-cleared claim rejected"),
+    external_asset_url: probeModel((model) => { model.asset_requirements[0].external_url = "https://example.invalid/asset"; }, "external asset URL rejected"),
+    selected_tts_engine: probeModel((model) => { model.voice_planning.engine_selected = true; model.voice_planning.engine_id = "engine-x"; }, "selected TTS engine rejected"),
+    selected_voice: probeModel((model) => { model.voice_planning.voice_selected = true; model.voice_planning.voice_id = "voice-x"; }, "selected voice rejected"),
+    generated_audio: probeModel((model) => { model.voice_planning.audio_generated = true; }, "generated audio state rejected"),
+    fabricated_unmeasured_proxy_timing: probeModel((model) => { for (const beatIndex of [1, 4]) { const narration = model.beats[beatIndex].narration; narration.timing_state = "proxy_headroom_confirmed"; narration.observed_slack_min_seconds = 3; narration.observed_slack_max_seconds = 5; narration.proxy_spoken_duration_min_seconds = model.beats[beatIndex].duration_seconds - 5; narration.proxy_spoken_duration_max_seconds = model.beats[beatIndex].duration_seconds - 3; } }, "fabricated Beat 2/5 proxy timing rejected"),
+    proxy_slack_outside_observed_range: probeModel((model) => { model.beats[0].narration.observed_slack_min_seconds = 2; }, "proxy slack outside 3–5 seconds rejected"),
+    human_articulation_required: probeModel((model) => { model.voice_planning.human_articulation_check_required = true; }, "human articulation requirement rejected"),
+    canon_promotion: probeModel((model) => { model.boundaries.canonical = true; model.boundaries.final_canon_decision = true; }, "canon promotion rejected"),
+    missing_package_file: outcome(!validateProductionExecutionPackCandidate(missingFileCandidate, canonicalFiles, canonicalModel).valid, "exact nine-file inventory rejected the removal"),
+    manifest_hash_mismatch: outcome(!validateProductionExecutionPackCandidate(manifestMismatchCandidate, canonicalFiles, canonicalModel).valid, "payload manifest hash mismatch rejected")
+  };
+}
+
+function productionExecutionPackageFileEntries(files) {
+  return PRODUCTION_EXECUTION_PACK_REQUIRED_FILES.map((relativePath) => ({
+    relative_path: relativePath,
+    path: `${PRODUCTION_EXECUTION_PACK_ROOT}/${relativePath}`,
+    byte_size: files[relativePath].byteLength,
+    sha256: editorialDerivativeBufferHash(files[relativePath])
+  }));
+}
+
+async function readProductionExecutionPackSmokeEvidence(inputPath) {
+  const candidates = [...new Set([inputPath, DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT].filter(Boolean).map(toRepoPath))];
+  for (const candidate of candidates) {
+    const snapshot = await readJsonFileSnapshot(candidate);
+    if (!snapshot.error && snapshot.value?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID) {
+      return {
+        browser_evidence: productionExecutionClone(snapshot.value.browser_evidence || {}),
+        print_evidence: productionExecutionClone(snapshot.value.print_evidence || {})
+      };
+    }
+  }
+  return { browser_evidence: {}, print_evidence: {} };
+}
+
+function productionExecutionDefaultBrowserEvidence(prior = {}) {
+  const output = {};
+  for (const [viewport, dimensions] of Object.entries({ "900x1200": [900, 1200], "1280x900": [1280, 900] })) {
+    output[viewport] = {
+      viewport_width: dimensions[0],
+      viewport_height: dimensions[1],
+      document_scroll_width: null,
+      document_scroll_height: null,
+      client_width: null,
+      horizontal_overflow: null,
+      nested_scroll_container_count: null,
+      first_view_contract_met: null,
+      screenshot_path: PRODUCTION_EXECUTION_PACK_SCREENSHOTS[viewport],
+      screenshot_byte_size: null,
+      screenshot_sha256: null,
+      ...(prior?.[viewport] || {})
+    };
+  }
+  return output;
+}
+
+function productionExecutionDefaultPrintEvidence(prior = {}) {
+  return {
+    media: "print",
+    navigation_hidden: null,
+    hashes_hidden: null,
+    no_horizontal_overflow: null,
+    ...prior
+  };
+}
+
+function buildProductionExecutionPackResultSeed(built, protectedBefore, protectedAfter, prior = {}) {
+  return {
+    schemaVersion: PRODUCTION_EXECUTION_PACK_RESULT_SCHEMA_VERSION,
+    artifact_id: PRODUCTION_EXECUTION_PACK_ARTIFACT_ID,
+    source_artifact_ids: productionExecutionClone(PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS),
+    source_fingerprints: productionExecutionClone(PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS),
+    package_files: productionExecutionPackageFileEntries(built.files),
+    package_fingerprint_sha256: built.model && JSON.parse(built.files["production-execution-manifest.json"].toString("utf8")).package_fingerprint_sha256,
+    beat_count: 6,
+    total_duration_seconds: 180,
+    shot_count: 19,
+    subtitle_count: 20,
+    narration_segment_count: 6,
+    asset_requirement_count: 14,
+    shots_with_asset_requirements: 19,
+    proxy_headroom_beat_count: 4,
+    proxy_slack_min_seconds: 3,
+    proxy_slack_max_seconds: 5,
+    unmeasured_pass_beat_count: 2,
+    voice_mode: "synthetic",
+    human_articulation_check_required: false,
+    engine_selected: false,
+    voice_selected: false,
+    engine_calibration_pending: true,
+    audio_generated: false,
+    assets_selected: false,
+    rights_cleared_claim: false,
+    source_package_pre_hashes: productionExecutionClone(protectedBefore),
+    source_package_post_hashes: productionExecutionClone(protectedAfter),
+    source_packages_unchanged: contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter),
+    canonical: false,
+    production_approved: false,
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    ai_video_generation: false,
+    production_render: false,
+    public_upload: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    browser_evidence: productionExecutionDefaultBrowserEvidence(prior.browser_evidence),
+    print_evidence: productionExecutionDefaultPrintEvidence(prior.print_evidence),
+    browser_evidence_complete: false,
+    manifest_size_hash_integrity: true,
+    validation_read_only: true,
+    negative_probes: {},
+    checks: {},
+    failures: [],
+    passed: true
+  };
+}
+
+function productionExecutionBrowserEvidenceValid(browserEvidence, screenshotSnapshots = {}) {
+  for (const [viewport, dimensions] of Object.entries({ "900x1200": [900, 1200], "1280x900": [1280, 900] })) {
+    const evidence = browserEvidence?.[viewport] || {};
+    const screenshot = screenshotSnapshots?.[viewport];
+    if (evidence.viewport_width !== dimensions[0] || evidence.viewport_height !== dimensions[1] ||
+        !Number.isFinite(evidence.document_scroll_width) || !Number.isFinite(evidence.document_scroll_height) ||
+        !Number.isFinite(evidence.client_width) || evidence.document_scroll_height < dimensions[1] ||
+        evidence.document_scroll_width > evidence.client_width + 1 || evidence.horizontal_overflow !== false ||
+        evidence.nested_scroll_container_count !== 0 || evidence.first_view_contract_met !== true ||
+        evidence.screenshot_path !== PRODUCTION_EXECUTION_PACK_SCREENSHOTS[viewport] ||
+        !Number.isInteger(evidence.screenshot_byte_size) || evidence.screenshot_byte_size <= 0 ||
+        !/^[0-9a-f]{64}$/.test(String(evidence.screenshot_sha256 || ""))) return false;
+    if (screenshot && (!screenshot.exists || screenshot.byteSize !== evidence.screenshot_byte_size || screenshot.sha256 !== evidence.screenshot_sha256)) return false;
+  }
+  return true;
+}
+
+function productionExecutionPrintEvidenceValid(printEvidence) {
+  return printEvidence?.media === "print" && printEvidence?.navigation_hidden === true && printEvidence?.hashes_hidden === true && printEvidence?.no_horizontal_overflow === true;
+}
+
+function validateProductionExecutionPackResultCandidate(candidate, options = {}) {
+  const errors = [];
+  const add = (condition, message) => { if (!condition) errors.push(message); };
+  const allowBootstrapEvidence = options.allow_bootstrap_evidence === true;
+  add(candidate?.schemaVersion === PRODUCTION_EXECUTION_PACK_RESULT_SCHEMA_VERSION && candidate?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID, "result identity mismatch");
+  add(productionExecutionArrayExact(candidate?.source_artifact_ids, PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS), "result source artifact IDs changed");
+  add(JSON.stringify(candidate?.source_fingerprints || {}) === JSON.stringify(PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS), "result source fingerprints changed");
+  add(candidate?.package_files?.length === 9 && productionExecutionArrayExact(candidate.package_files.map((entry) => entry.relative_path), PRODUCTION_EXECUTION_PACK_REQUIRED_FILES) && candidate.package_files.every((entry) => entry.path === `${PRODUCTION_EXECUTION_PACK_ROOT}/${entry.relative_path}` && Number.isInteger(entry.byte_size) && entry.byte_size > 0 && /^[0-9a-f]{64}$/.test(String(entry.sha256 || ""))), "result package paths or hashes invalid");
+  add(/^[0-9a-f]{64}$/.test(String(candidate?.package_fingerprint_sha256 || "")) && candidate?.manifest_size_hash_integrity === true, "result package fingerprint or manifest integrity invalid");
+  add(candidate?.beat_count === 6 && candidate?.total_duration_seconds === 180 && candidate?.shot_count === 19 && candidate?.subtitle_count === 20 && candidate?.narration_segment_count === 6 && candidate?.asset_requirement_count === 14 && candidate?.shots_with_asset_requirements === 19, "result count contract mismatch");
+  add(candidate?.proxy_headroom_beat_count === 4 && candidate?.proxy_slack_min_seconds === 3 && candidate?.proxy_slack_max_seconds === 5 && candidate?.unmeasured_pass_beat_count === 2, "result proxy timing summary mismatch");
+  add(candidate?.voice_mode === "synthetic" && candidate?.human_articulation_check_required === false && candidate?.engine_selected === false && candidate?.voice_selected === false && candidate?.engine_calibration_pending === true && candidate?.audio_generated === false, "result synthetic voice boundary changed");
+  add(candidate?.source_packages_unchanged === true && candidate?.assets_selected === false && candidate?.rights_cleared_claim === false, "result source, asset, or rights boundary changed");
+  add(candidate?.canonical === false && candidate?.production_approved === false && candidate?.local_only === true && candidate?.external_call === false && candidate?.provider_configured === false && candidate?.credentials_touched === false && candidate?.ai_video_generation === false && candidate?.production_render === false && candidate?.public_upload === false && candidate?.database_persistence === false && candidate?.final_canon_decision === false, "result external, production, or canon boundary opened");
+  const browserValid = productionExecutionBrowserEvidenceValid(candidate?.browser_evidence || {});
+  const printValid = productionExecutionPrintEvidenceValid(candidate?.print_evidence || {});
+  add(allowBootstrapEvidence || (candidate?.browser_evidence_complete === true && browserValid), "result browser evidence incomplete");
+  add(allowBootstrapEvidence || printValid, "result print evidence incomplete");
+  add(Array.isArray(candidate?.failures) && candidate.failures.length === 0 && candidate?.passed === true, "result pass contract is not clean");
+  return { valid: errors.length === 0, errors };
+}
+
+async function snapshotProductionExecutionPackValidationScope(readbackPath) {
+  const protectedPackages = await snapshotProductionExecutionPackProtectedFiles();
+  const historicalResults = await snapshotProductionExecutionPackHistoricalResults();
+  return snapshotOperatorProductionBriefTypographyPaths([
+    ...Object.keys(protectedPackages),
+    ...Object.keys(historicalResults),
+    ...PRODUCTION_EXECUTION_PACK_REQUIRED_FILES.map((name) => `${PRODUCTION_EXECUTION_PACK_ROOT}/${name}`),
+    "public/review/index.html",
+    "artifacts/artifact-manifest.json",
+    PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH,
+    ...Object.values(PRODUCTION_EXECUTION_PACK_SCREENSHOTS),
+    readbackPath
+  ].filter(Boolean));
+}
+
+function validateProductionExecutionPackRootManifest(manifest, packageSnapshots, screenshotSnapshots, options = {}) {
+  const errors = [];
+  const add = (condition, message) => { if (!condition) errors.push(message); };
+  const allowBootstrapEvidence = options.allow_bootstrap_evidence === true;
+  const entry = manifest?.production_execution_pack || {};
+  const files = entry.files || entry.package_files || [];
+  add(manifest?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID, "root active execution-pack artifact mismatch");
+  add(manifest?.review_doc_path === PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH && manifest?.smoke_result_path === DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT, "root execution-pack doc or result path mismatch");
+  add(manifest?.production_execution_pack_dir === PRODUCTION_EXECUTION_PACK_ROOT && manifest?.production_execution_pack_result_path === DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT && manifest?.production_execution_pack_doc_path === PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH && manifest?.production_execution_pack_route === PRODUCTION_EXECUTION_PACK_ROUTE, "root execution-pack registration mismatch");
+  add(entry.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID && entry.schemaVersion === PRODUCTION_EXECUTION_PACK_SCHEMA_VERSION && entry.package_root === PRODUCTION_EXECUTION_PACK_ROOT && entry.result_path === DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT && entry.review_doc_path === PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH && entry.access_route === PRODUCTION_EXECUTION_PACK_ROUTE, "nested execution-pack registration mismatch");
+  add(productionExecutionArrayExact(entry.source_artifact_ids, PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS), "nested source artifact IDs mismatch");
+  add(files.length === 9 && productionExecutionArrayExact(files.map((item) => item.relative_path), PRODUCTION_EXECUTION_PACK_REQUIRED_FILES), "nested package inventory mismatch");
+  for (const file of files) {
+    const snapshot = packageSnapshots[file.relative_path] || {};
+    add(snapshot.exists && snapshot.byteSize === file.byte_size && snapshot.sha256 === file.sha256, `nested package hash mismatch: ${file.relative_path}`);
+  }
+  for (const [viewport, screenshotPath] of Object.entries(PRODUCTION_EXECUTION_PACK_SCREENSHOTS)) {
+    const screenshot = screenshotSnapshots[viewport] || {};
+    const evidence = entry?.screenshots?.[viewport] || {};
+    add(allowBootstrapEvidence || (screenshot.exists && evidence.path === screenshotPath && evidence.byte_size === screenshot.byteSize && evidence.sha256 === screenshot.sha256), `nested screenshot hash mismatch: ${viewport}`);
+  }
+  const validationCommand = String(manifest?.validation_command || "");
+  const exactExecution = `node tools/fff-state.mjs validate-production-execution-pack ${DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT}`;
+  const exactTypography = `node tools/fff-state.mjs validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`;
+  const exactOperator = `node tools/fff-state.mjs validate-operator-production-brief ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT}`;
+  const exactBlueprint = `node tools/fff-state.mjs validate-content-production-blueprint ${DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT}`;
+  const executionIndex = validationCommand.indexOf(exactExecution);
+  const typographyIndex = validationCommand.indexOf(exactTypography);
+  const operatorIndex = validationCommand.indexOf(exactOperator);
+  const blueprintIndex = validationCommand.indexOf(exactBlueprint);
+  add(executionIndex >= 0 && typographyIndex > executionIndex && operatorIndex > typographyIndex && blueprintIndex > operatorIndex && !validationCommand.includes("smoke-production-execution-pack"), "root read-only validation command order mismatch");
+  add(entry.canonical === false && entry.production_approved === false && entry.boundaries?.local_only === true && Object.entries(entry.boundaries || {}).every(([key, value]) => key === "local_only" ? value === true : value === false), "nested execution-pack boundary opened");
+  return { valid: errors.length === 0, errors };
+}
+
+async function validateProductionExecutionPack(readback, readbackPath, options = {}) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) failures.push(`${name}: ${detail}`);
+  };
+  const generatedSeed = options.generated_seed === true;
+  const validationScopeBefore = await snapshotProductionExecutionPackValidationScope(readbackPath);
+  const protectedBefore = options.protected_before || await snapshotProductionExecutionPackProtectedFiles();
+  const historicalBefore = await snapshotProductionExecutionPackHistoricalResults();
+  const built = await buildProductionExecutionPackArtifacts();
+  const packageSnapshots = await snapshotProductionExecutionPackFiles();
+  const diskFiles = Object.fromEntries(Object.entries(packageSnapshots).filter(([, snapshot]) => snapshot.exists).map(([name, snapshot]) => [name, snapshot.buffer]));
+  const packageValidation = built.valid ? validateProductionExecutionPackCandidate(diskFiles, built.files, built.model) : { valid: false, errors: built.errors };
+  const [rootManifestSnapshot, publicHtmlSnapshot, reviewDocSnapshot] = await Promise.all([
+    readJsonFileSnapshot("artifacts/artifact-manifest.json"),
+    readFileSnapshot("public/review/index.html"),
+    readFileSnapshot(PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH)
+  ]);
+  const screenshotEntries = await Promise.all(Object.entries(PRODUCTION_EXECUTION_PACK_SCREENSHOTS).map(async ([viewport, filePath]) => [viewport, await readFileSnapshot(filePath)]));
+  const screenshotSnapshots = Object.fromEntries(screenshotEntries);
+  const rootManifestValidation = validateProductionExecutionPackRootManifest(rootManifestSnapshot.value || {}, packageSnapshots, screenshotSnapshots, { allow_bootstrap_evidence: generatedSeed });
+  const resultValidation = validateProductionExecutionPackResultCandidate(readback, { allow_bootstrap_evidence: generatedSeed });
+  const packageFileEntries = built.valid ? productionExecutionPackageFileEntries(built.files) : [];
+  const packageHashesMatchResult = JSON.stringify(readback?.package_files || []) === JSON.stringify(packageFileEntries);
+  const packageManifest = packageValidation.manifest || {};
+  const packageFingerprintMatches = readback?.package_fingerprint_sha256 === packageManifest.package_fingerprint_sha256;
+  const protectedAggregate = operatorProductionBriefTypographySnapshotAggregate(protectedBefore);
+  const sourceExact = Object.keys(protectedBefore).length === 34 && Object.values(protectedBefore).every((item) => item.exists) && protectedAggregate === PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS.protected_package_aggregate_sha256;
+  const publicHtml = publicHtmlSnapshot.text || "";
+  const linkMarkerCount = (publicHtml.match(/data-production-execution-pack-link=["']true["']/g) || []).length;
+  const blueprintLinkValid = linkMarkerCount === 1 && publicHtml.includes(`href="${PRODUCTION_EXECUTION_PACK_LINK_HREF}"`) && publicHtml.includes(PRODUCTION_EXECUTION_PACK_LINK_TEXT);
+  const reviewDocValid = reviewDocSnapshot.exists && [
+    PRODUCTION_EXECUTION_PACK_ARTIFACT_ID,
+    "validate-production-execution-pack",
+    "smoke-production-execution-pack",
+    ...PRODUCTION_EXECUTION_PACK_REQUIRED_FILES,
+    "proxy_headroom_confirmed",
+    "existing_pass_unmeasured",
+    "AR-AUDIO-01"
+  ].every((text) => reviewDocSnapshot.text.includes(text));
+  const browserEvidenceValid = productionExecutionBrowserEvidenceValid(readback?.browser_evidence || {}, screenshotSnapshots);
+  const printEvidenceValid = productionExecutionPrintEvidenceValid(readback?.print_evidence || {});
+  const negativeProbes = built.valid ? runProductionExecutionPackNegativeProbes(built) : {};
+  const priorNegativeProbesValid = generatedSeed || (readback?.negative_probes && Object.keys(readback.negative_probes).length === 20 && Object.values(readback.negative_probes).every((probe) => probe.passed === true && probe.fail_closed === true && probe.artifact_mutation === false));
+  const protectedAfter = options.protected_after || await snapshotProductionExecutionPackProtectedFiles();
+  const historicalAfter = await snapshotProductionExecutionPackHistoricalResults();
+  const validationScopeAfter = await snapshotProductionExecutionPackValidationScope(readbackPath);
+  const validationReadOnly = contentProductionBlueprintSnapshotMapsEqual(validationScopeBefore, validationScopeAfter) && contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter) && contentProductionBlueprintSnapshotMapsEqual(historicalBefore, historicalAfter);
+  for (const probe of Object.values(negativeProbes)) probe.artifact_mutation = !validationReadOnly;
+  const sourcePackagesUnchanged = sourceExact && contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter);
+  const historicalAggregate = operatorProductionBriefTypographySnapshotAggregate(historicalBefore);
+  const historicalResultsUnchanged = Object.keys(historicalBefore).length === 68 && historicalAggregate === PRODUCTION_EXECUTION_HISTORICAL_RESULTS_AGGREGATE_SHA256 && contentProductionBlueprintSnapshotMapsEqual(historicalBefore, historicalAfter);
+  check("result_contract", resultValidation.valid, resultValidation.errors.join(" | ") || "ok");
+  check("canonical_package_candidate", built.valid && packageValidation.valid, [...(built.errors || []), ...(packageValidation.errors || [])].join(" | ") || "ok");
+  check("source_fingerprints_and_bytes", sourcePackagesUnchanged, `files=${Object.keys(protectedBefore).length}; aggregate=${protectedAggregate}`);
+  check("historical_results_unchanged", historicalResultsUnchanged, `files=${Object.keys(historicalBefore).length}; aggregate=${historicalAggregate}`);
+  check("package_paths_hashes_and_manifest", packageHashesMatchResult && packageFingerprintMatches, `files=${packageFileEntries.length}; fingerprint=${packageManifest.package_fingerprint_sha256 || "missing"}`);
+  check("shot_asset_coverage_and_deduplication", built.valid && built.model.shots.length === 19 && built.model.asset_requirements.length === 14 && built.model.shots.every((shot) => shot.asset_requirement_ids.length > 0), "19 shots / 14 deduplicated requirements");
+  check("synthetic_narration_timing", built.valid && built.model.beats.filter((beat) => beat.narration.timing_state === "proxy_headroom_confirmed").length === 4 && built.model.beats.filter((beat) => beat.narration.timing_state === "existing_pass_unmeasured").length === 2, "four proxy / two unmeasured");
+  check("blueprint_compact_link", blueprintLinkValid, `markerCount=${linkMarkerCount}`);
+  check("root_manifest_registered", rootManifestValidation.valid, rootManifestValidation.errors.join(" | ") || "ok");
+  check("review_doc_registered", reviewDocValid, reviewDocSnapshot.error || "ok");
+  check("browser_and_screenshot_evidence", generatedSeed || browserEvidenceValid, generatedSeed && !browserEvidenceValid ? "bootstrap pending" : `complete=${browserEvidenceValid}`);
+  check("print_evidence", generatedSeed || printEvidenceValid, generatedSeed && !printEvidenceValid ? "bootstrap pending" : `complete=${printEvidenceValid}`);
+  check("negative_probes_fail_closed", Object.keys(negativeProbes).length === 20 && Object.values(negativeProbes).every((probe) => probe.passed && probe.fail_closed && !probe.artifact_mutation), `count=${Object.keys(negativeProbes).length}`);
+  check("prior_negative_probe_readback", priorNegativeProbesValid, `generatedSeed=${generatedSeed}`);
+  check("normal_validation_read_only", validationReadOnly, `readOnly=${validationReadOnly}`);
+  return {
+    ...readback,
+    source_artifact_ids: productionExecutionClone(PRODUCTION_EXECUTION_SOURCE_ARTIFACT_IDS),
+    source_fingerprints: productionExecutionClone(PRODUCTION_EXECUTION_SOURCE_FINGERPRINTS),
+    package_files: packageFileEntries,
+    package_fingerprint_sha256: packageManifest.package_fingerprint_sha256 || readback?.package_fingerprint_sha256 || null,
+    source_package_pre_hashes: protectedBefore,
+    source_package_post_hashes: protectedAfter,
+    source_packages_unchanged: sourcePackagesUnchanged,
+    historical_result_count: Object.keys(historicalBefore).length,
+    historical_results_aggregate_sha256: historicalAggregate,
+    historical_results_unchanged: historicalResultsUnchanged,
+    browser_evidence_complete: browserEvidenceValid && printEvidenceValid,
+    manifest_size_hash_integrity: packageValidation.valid === true,
+    validation_read_only: validationReadOnly,
+    negative_probes: negativeProbes,
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
 }
 
 function operatorProductionBriefGuides() {
@@ -15152,7 +16348,9 @@ async function snapshotOperatorProductionBriefTypographyProtectedPackages() {
 
 async function snapshotOperatorProductionBriefHistoricalResults() {
   const names = (await readdir("artifacts"))
-    .filter((name) => name.endsWith("-result.json") && name !== path.basename(DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT));
+    .filter((name) => name.endsWith("-result.json") &&
+      name !== path.basename(DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT) &&
+      name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT));
   return snapshotOperatorProductionBriefTypographyPaths(names.map((name) => `artifacts/${name}`));
 }
 
@@ -15182,14 +16380,18 @@ function validateOperatorProductionBriefTypographyManifest(manifest, screenshotS
   const add = (condition, message) => { if (!condition) errors.push(message); };
   const entry = manifest?.operator_production_brief_typography_balance || {};
   const exactTypographyCommand = `node tools/fff-state.mjs validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`;
+  const exactExecutionCommand = `node tools/fff-state.mjs validate-production-execution-pack ${DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT}`;
   const exactOperatorCommand = `node tools/fff-state.mjs validate-operator-production-brief ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT}`;
   const exactBlueprintCommand = `node tools/fff-state.mjs validate-content-production-blueprint ${DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT}`;
   const validationCommand = String(manifest?.validation_command || "");
+  const executionIndex = validationCommand.indexOf(exactExecutionCommand);
   const typographyIndex = validationCommand.indexOf(exactTypographyCommand);
   const operatorIndex = validationCommand.indexOf(exactOperatorCommand);
   const blueprintIndex = validationCommand.indexOf(exactBlueprintCommand);
-  add(manifest?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID, "root active typography artifact mismatch");
-  add(manifest?.review_doc_path === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_DOC_PATH && manifest?.smoke_result_path === DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT, "root typography doc or result path mismatch");
+  const typographyActive = manifest?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID;
+  const executionWrapped = productionExecutionRootPreserves(manifest, OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID);
+  add(typographyActive || executionWrapped, "root active typography wrapper mismatch");
+  add(executionWrapped || (manifest?.review_doc_path === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_DOC_PATH && manifest?.smoke_result_path === DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT), "root typography doc or result path mismatch");
   add(manifest?.operator_production_brief_typography_balance_doc_path === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_DOC_PATH && manifest?.operator_production_brief_typography_balance_result_path === DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT && manifest?.operator_production_brief_typography_balance_route === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ROUTE, "root typography route registration mismatch");
   add(entry.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID && entry.schemaVersion === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_SCHEMA_VERSION && entry.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID && entry.access_route === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ROUTE, "nested typography registration mismatch");
   add(entry.primary_visible_text_sha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_TEXT_SHA256 && entry.primary_html_sha256 === OPERATOR_PRODUCTION_BRIEF_PRIMARY_HTML_SHA256 && entry.operator_model_sha256 === OPERATOR_PRODUCTION_BRIEF_MODEL_SHA256 && entry.operator_manifest_sha256 === OPERATOR_PRODUCTION_BRIEF_MANIFEST_SHA256, "nested content fingerprints mismatch");
@@ -15200,7 +16402,7 @@ function validateOperatorProductionBriefTypographyManifest(manifest, screenshotS
     add(snapshot.exists && manifest?.[`operator_production_brief_typography_balance_screenshot_${topSuffix}_path`] === screenshotPath && manifest?.[`operator_production_brief_typography_balance_screenshot_${topSuffix}_size`] === snapshot.byteSize && String(manifest?.[`operator_production_brief_typography_balance_screenshot_${topSuffix}_sha256`] || "").toLowerCase() === snapshot.sha256, `${viewport} top screenshot hash mismatch`);
     add(entry?.screenshots?.[viewport]?.path === screenshotPath && entry?.screenshots?.[viewport]?.byte_size === snapshot.byteSize && String(entry?.screenshots?.[viewport]?.sha256 || "").toLowerCase() === snapshot.sha256, `${viewport} nested screenshot hash mismatch`);
   }
-  add(typographyIndex >= 0 && operatorIndex > typographyIndex && blueprintIndex > operatorIndex && !validationCommand.includes("smoke-operator-production-brief-typography-balance"), "read-only validation command order mismatch");
+  add((executionWrapped ? executionIndex >= 0 && typographyIndex > executionIndex : typographyIndex >= 0) && operatorIndex > typographyIndex && blueprintIndex > operatorIndex && !validationCommand.includes("smoke-production-execution-pack") && !validationCommand.includes("smoke-operator-production-brief-typography-balance"), "read-only validation command order mismatch");
   add(entry.canonical === false && entry.production_approved === false && entry.boundaries?.local_only === true && Object.entries(entry.boundaries || {}).every(([key, value]) => key === "local_only" ? value === true : value === false), "nested typography boundary opened");
   return { valid: errors.length === 0, errors };
 }
@@ -15385,13 +16587,17 @@ async function validateOperatorProductionBrief(readback, readbackPath, options =
   const handoffAuthorityValid = handoff.includes(OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID) && handoff.includes("OPERATOR_PRODUCTION_BRIEF") && handoff.includes("Deferred") && !handoff.includes("**Audit — stale branch intent**");
   const manifest = manifestSnapshot.value || {};
   const rootValidation = String(manifest.validation_command || "");
+  const exactExecutionValidation = `node tools/fff-state.mjs validate-production-execution-pack ${DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT}`;
   const exactTypographyValidation = `node tools/fff-state.mjs validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`;
   const exactOperatorValidation = `node tools/fff-state.mjs validate-operator-production-brief ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT}`;
-  const manifestValid = manifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
+  const manifestWrapperValid = (manifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID || productionExecutionRootPreserves(manifest, OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID)) &&
     manifest.operator_production_brief_typography_balance?.artifact_id === OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_ARTIFACT_ID &&
-    manifest.operator_production_brief?.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
-    rootValidation.indexOf(exactTypographyValidation) >= 0 &&
-    rootValidation.indexOf(exactOperatorValidation) > rootValidation.indexOf(exactTypographyValidation) &&
+    manifest.operator_production_brief?.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID;
+  const manifestOrderValid = manifest.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID
+    ? rootValidation.indexOf(exactExecutionValidation) >= 0 && rootValidation.indexOf(exactTypographyValidation) > rootValidation.indexOf(exactExecutionValidation) && rootValidation.indexOf(exactOperatorValidation) > rootValidation.indexOf(exactTypographyValidation)
+    : rootValidation.indexOf(exactTypographyValidation) >= 0 && rootValidation.indexOf(exactOperatorValidation) > rootValidation.indexOf(exactTypographyValidation);
+  const manifestValid = manifestWrapperValid && manifestOrderValid &&
+    !rootValidation.includes("smoke-production-execution-pack") &&
     !rootValidation.includes("smoke-operator-production-brief-typography-balance") &&
     !rootValidation.includes("smoke-operator-production-brief ");
   const browserMeasurements = Array.isArray(readback?.browser_measurements) ? readback.browser_measurements : [];
@@ -15768,7 +16974,10 @@ async function validateEditorialDerivativePreview(readback, readbackPath, option
       rootManifest.operator_production_brief_typography_balance?.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
       rootManifest.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
       Array.isArray(rootManifest.preserves) &&
-      rootManifest.preserves.includes(EDITORIAL_DERIVATIVE_ARTIFACT_ID));
+      rootManifest.preserves.includes(EDITORIAL_DERIVATIVE_ARTIFACT_ID)) ||
+    (productionExecutionRootPreserves(rootManifest, EDITORIAL_DERIVATIVE_ARTIFACT_ID) &&
+      rootManifest.operator_production_brief_typography_balance?.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+      rootManifest.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID);
   const rootManifestRegistered =
     rootManifestRead.error === null &&
     derivativeActiveOrPreserved &&
@@ -16548,7 +17757,12 @@ async function validateEditorialRevisionRoundtrip(readback, readbackPath) {
       rootManifest?.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
       rootManifest?.editorial_derivative_preview?.source_revision_artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
       Array.isArray(rootManifest?.preserves) &&
-      rootManifest.preserves.includes(EDITORIAL_REVISION_ARTIFACT_ID));
+      rootManifest.preserves.includes(EDITORIAL_REVISION_ARTIFACT_ID)) ||
+    (productionExecutionRootPreserves(rootManifest, EDITORIAL_REVISION_ARTIFACT_ID) &&
+      rootManifest?.operator_production_brief_typography_balance?.source_artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+      rootManifest?.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      rootManifest?.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      rootManifest?.editorial_derivative_preview?.source_revision_artifact_id === EDITORIAL_REVISION_ARTIFACT_ID);
   const rootManifestRegistered =
     rootManifestRead.error === null &&
     revisionActiveOrPreserved &&
@@ -20734,6 +21948,8 @@ Usage:
   node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json> [output.json]
   node tools/fff-state.mjs validate-review-workbench-component-contract <review-workbench-component-contract-result.json>
   node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
+  node tools/fff-state.mjs validate-production-execution-pack <production-execution-pack-result.json>
+  node tools/fff-state.mjs smoke-production-execution-pack <production-execution-pack-result.json> [artifacts/production-execution-pack-result.json]
   node tools/fff-state.mjs validate-operator-production-brief-typography-balance <operator-production-brief-typography-balance-result.json>
   node tools/fff-state.mjs smoke-operator-production-brief-typography-balance <operator-production-brief-typography-balance-result.json> [artifacts/operator-production-brief-typography-balance-result.json]
   node tools/fff-state.mjs validate-operator-production-brief <operator-production-brief-result.json>
@@ -20796,6 +22012,9 @@ Default apply decision shell guard diet output:
 
 Default review workbench component contract output:
   ${DEFAULT_REVIEW_WORKBENCH_COMPONENT_CONTRACT_OUTPUT}
+
+Default production execution pack output:
+  ${DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT}
 
 Default editorial revision roundtrip output:
   ${DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT}

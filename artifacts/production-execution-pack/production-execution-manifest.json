@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "fff.productionExecutionPackManifest.v1",
+  "artifact_id": "fff-production-execution-pack-001",
+  "generatedAt": "2026-07-13T18:00:00+09:00",
+  "package_root": "artifacts/production-execution-pack",
+  "source_artifact_ids": [
+    "fff-operator-production-brief-typography-balance-001",
+    "fff-operator-production-brief-001",
+    "fff-content-production-blueprint-001",
+    "fff-editorial-derivative-preview-001",
+    "fff-editorial-revision-roundtrip-001",
+    "fff-bridge-editorial-handoff-pack-001"
+  ],
+  "source_fingerprints": {
+    "operator_typography_result_sha256": "4096ed9aaa5c1138991bd1e13ded527853d4ba2c3abbefce2b8b3a4a5d688c77",
+    "operator_production_brief_sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6",
+    "operator_brief_manifest_sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40",
+    "production_blueprint_sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d",
+    "blueprint_package_manifest_sha256": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245",
+    "derivative_editorial_handoff_sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c",
+    "derivative_package_manifest_sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577",
+    "revision_package_manifest_sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d",
+    "handoff_package_manifest_sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971",
+    "protected_package_aggregate_sha256": "396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95"
+  },
+  "files": [
+    {
+      "relative_path": "README_PRODUCTION_EXECUTION.md",
+      "byte_size": 1094,
+      "sha256": "963d162bfb9f11807e1dc7f1d65a1d83cfc47cdcb586953d462bcc7b89be59b6"
+    },
+    {
+      "relative_path": "production-execution-pack.html",
+      "byte_size": 35720,
+      "sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c"
+    },
+    {
+      "relative_path": "production-execution-pack.json",
+      "byte_size": 47347,
+      "sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb"
+    },
+    {
+      "relative_path": "beat-run-sheet.csv",
+      "byte_size": 1770,
+      "sha256": "98287106f8da8851f28f4f48494ea0b646515a0a68e4c69b67ab5013a528de03"
+    },
+    {
+      "relative_path": "shot-execution-sheet.csv",
+      "byte_size": 10277,
+      "sha256": "f6d9e6692f770d5d8fb591542a5bcd270ad551fe502a211002090a245ce56eee"
+    },
+    {
+      "relative_path": "asset-requirements.csv",
+      "byte_size": 4143,
+      "sha256": "caa71679693005d643b6bd8346a30ecc38dd6a5d43e2b43d7a526e776f7a58d1"
+    },
+    {
+      "relative_path": "narration-timing-envelope.csv",
+      "byte_size": 1128,
+      "sha256": "82ed47ab2c24c8b7be082f3e9fb547c2978a3d718eb71a5f28bdf8bcfc57e847"
+    },
+    {
+      "relative_path": "thumbnail-requirements.md",
+      "byte_size": 1294,
+      "sha256": "6a3a769c7a95e0d8e86cd8350e1a2d05e9d86ab3526b662ea416c2926e1ddbd7"
+    }
+  ],
+  "package_fingerprint_sha256": "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+  "counts": {
+    "total_duration_seconds": 180,
+    "beat_count": 6,
+    "shot_count": 19,
+    "subtitle_count": 20,
+    "narration_segment_count": 6,
+    "thumbnail_direction_count": 3,
+    "asset_requirement_count": 14
+  },
+  "canonical": false,
+  "production_approved": false,
+  "assets_selected": false,
+  "rights_cleared_claim": false,
+  "local_only": true,
+  "passed": true,
+  "failures": []
+}
