@@ -2,25 +2,31 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-production-storyboard-brief-001`: a standalone, print-friendly seven-file human-comprehension handoff under `artifacts/production-storyboard-brief/`. It translates the preserved 180-second / 6-beat / 19-shot story plan into six overview sentences, a complete core glossary, and 19 low-fidelity 16:9 planning frames without changing the Production Execution Pack or any protected source wording, timing, IDs, truth, rights, asset, or canon state.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-beat2-visual-treatment-pilot-001`: a standalone, reference-only visual-treatment pilot for Beat 2, **真鍮の蛾** (`00:20–00:50`). It gives the exact three-shot source sequence six real licensed local raster references—one primary and one supporting image per shot—without changing the preserved Storyboard Brief, Production Execution Pack, wording, timing, IDs, truth, rights, selection, or canon state.
 
 ## Current Lane
 
-Keep the precise Production Execution Pack as operational and audit authority while giving another creator one context-complete visual reading surface. The current lane is `PRODUCTION_STORYBOARD_BRIEF`: make premise, terms, six-beat progression, focal intent, positive success condition, and negative truth guard understandable in one document. The 14 generic requirements remain an initially closed operational appendix. Actual assets, rights clearance, engine, voice, provider/API, credentials, external calls, audio or media generation, render, upload, publication, database persistence, production approval, and final canon remain closed.
+Keep the Storyboard Brief as the complete 19-shot planning source and the Production Execution Pack as operational/audit authority while testing one narrow visual-treatment pattern with real references. The current lane is `VISUAL_TREATMENT_PILOT`: make Beat 2's handwork, letter/moth material contrast, 9:17 motif, lighting, composition, and held questions understandable in one vertical look-development page. The six images are references, not selected production assets. Rights clearance, image generation, full-story asset work, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, and final canon remain closed.
 
 ## Current Slice
 
-The active slice is the Production Storyboard Brief:
+The active slice is the Beat 2 Visual Treatment Pilot:
 
-- Standalone entry: `artifacts/production-storyboard-brief/production-storyboard-brief.html`; Blueprint exposes exactly one compact `絵コンテ版を開く` link without adding an app mode
-- Package: seven files covering identity/boundaries, the canonical brief model, 19-shot map, 25-term glossary, 14 one-line asset operations, standalone HTML, and integrity metadata
-- Reading order: 作品の概略 → 用語の地図 → 六幕の流れ → 19ショット絵コンテ → 完成の見方 → 制作準備付録
-- Storyboard contract: exactly 6 beat groups / 19 frames in 3/3/3/3/4/3 grouping; every frame has a planning-only 16:9 inline SVG, focal label, motion notation, `ねらい`, `成立させること`, and `描かないこと`
-- Theme/access contract: Auto is the persisted default; Light and Dark are explicit; title is restrained and responsive; one document owns scrolling; the 48px operational disclosure is initially closed and keyboard accessible
-- Asset/rights contract: all 14 requirements remain `unselected` / `not_reviewed` and appear only as one-line operational entries; no asset, URL, vendor, voice, engine, font, or final art is selected
-- Review evidence: `docs/review/production-storyboard-brief.md`, `artifacts/production-storyboard-brief-result.json`, `artifacts/review-screens/production-storyboard-brief-900x1200-dark.png`, `artifacts/review-screens/production-storyboard-brief-1280x900-light.png`
-- Validation contract: `validate-production-storyboard-brief` is read-only; `smoke-production-storyboard-brief` may regenerate only the seven new package files and its result. The result owns exact counts, hashes, 18 fail-closed probes, source immutability, browser/theme/keyboard evidence, and print evidence
-- Human boundary: H0 is machine-validated; comprehension improvement is inferred until H1 freeform review. H2 asset/rights preparation and every production gate require separate authorization.
+- Standalone entry: `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html`; Blueprint exposes one compact `Beat 2 ビジュアル参照` link without adding an app mode
+- Package: 13 files—README, standalone HTML, JSON model, source/license CSV, shot map CSV, six normalized local JPEGs, contact sheet, and integrity manifest
+- Reading order: 真鍮の蛾 → 人物・場所・手がかり → ビジュアル方針 → ショット構成 → 保留事項 → 出典
+- Shot contract: exactly 3 sequential strips / 30 seconds; every strip has one >=55% desktop primary image, one supporting image, and adjacent `画面`, `意図`, `尺`, `カメラ`, `成立条件`
+- Theme/access contract: Auto is the default; Light and Dark are explicit; the title is one line at 34px/38px in the measured viewports; one document owns scrolling; print forces a light document
+- Reference/rights contract: exactly 6 locally stored licensed rasters, 2 per shot; every entry records creator, source page, media URL, license, license URL, dimensions, retrieval date, and SHA256; all remain reference-only, unselected, and without a rights-clearance claim
+- Review evidence: `docs/review/beat2-visual-treatment-pilot.md`, `artifacts/beat2-visual-treatment-pilot-result.json`, `artifacts/review-screens/beat2-visual-treatment-900x1200-dark.png`, `artifacts/review-screens/beat2-visual-treatment-1280x900-light.png`
+- Validation contract: `validate-beat2-visual-treatment-pilot` is read-only; `smoke-beat2-visual-treatment-pilot` may regenerate only the five textual package payloads, manifest, and result while reading the six reference images and contact sheet. The result owns exact counts, hashes, 24 fail-closed probes, source immutability, browser/theme/layout evidence, and print-style evidence
+- Human boundary: H0 is machine-validated; visual-treatment effectiveness remains inferred until H1 freeform review. H2 production selection/rights review and every production gate require separate authorization.
+
+Preserved Production Storyboard Brief source:
+
+- Source artifact: `fff-production-storyboard-brief-001` at `artifacts/production-storyboard-brief/`
+- Immutability: all seven source files remain byte-identical; its complete 6-beat / 19-shot narrative map remains the planning authority
+- Human-observation status: the full brief did not yet provide enough concrete visual treatment for a separate creator, which motivated this isolated Beat 2 pilot rather than mutation of the accepted package
 
 Preserved Production Execution Pack source:
 

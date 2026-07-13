@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "fff.beat2VisualTreatmentPilotManifest.v1",
+  "artifact_id": "fff-beat2-visual-treatment-pilot-001",
+  "generated_at": "2026-07-14T18:00:00+09:00",
+  "package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+  "file_count": 13,
+  "payload_file_count": 12,
+  "files": [
+    {
+      "path": "README_VISUAL_TREATMENT.md",
+      "byte_size": 641,
+      "sha256": "3ec4b648bbf26a386078002815bf0c8cd056e8905435c0777f26c6c4cb417a80"
+    },
+    {
+      "path": "beat2-visual-treatment.html",
+      "byte_size": 15162,
+      "sha256": "0edea3485f45a26dbc1537e9ccf6dee88560fab40c1a1e7c9c4299b80512ff21"
+    },
+    {
+      "path": "beat2-visual-treatment.json",
+      "byte_size": 14880,
+      "sha256": "13d7b9871e178507e5057c34cf5bb8614b1f918f99e6f29dfd00b6626dc47559"
+    },
+    {
+      "path": "reference-sources.csv",
+      "byte_size": 3772,
+      "sha256": "76df141c82167e8e84f9bbf0704965ed18d1b311009783bbdd918a56a57f6415"
+    },
+    {
+      "path": "shot-reference-map.csv",
+      "byte_size": 1481,
+      "sha256": "246ecd05ab285c049addcfd371be0eafa3315187eb951d1e701e3bdae76dd5c1"
+    },
+    {
+      "path": "references/ref-b02-s01-precision-handwork.jpg",
+      "byte_size": 432635,
+      "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33"
+    },
+    {
+      "path": "references/ref-b02-s01-watch-repair-workbench.jpg",
+      "byte_size": 422572,
+      "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258"
+    },
+    {
+      "path": "references/ref-b02-s02-aged-handwritten-letter.jpg",
+      "byte_size": 376293,
+      "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b"
+    },
+    {
+      "path": "references/ref-b02-s02-metal-butterfly-brooch.jpg",
+      "byte_size": 194726,
+      "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9"
+    },
+    {
+      "path": "references/ref-b02-s03-vintage-watch-0915.jpg",
+      "byte_size": 292584,
+      "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082"
+    },
+    {
+      "path": "references/ref-b02-s03-brass-clock-dial.jpg",
+      "byte_size": 362668,
+      "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3"
+    },
+    {
+      "path": "beat2-visual-treatment-contact-sheet.jpg",
+      "byte_size": 537393,
+      "sha256": "43545188f5c88d576c70fd2f09212dd4e86ac14aca8f9c1d7588cb54a386fd66"
+    }
+  ],
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "production_approved": false
+  }
+}

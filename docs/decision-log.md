@@ -1,5 +1,23 @@
 # Decision Log
 
+## 2026-07-14
+
+- Decision: Add a standalone Beat 2 visual-treatment pilot instead of revising the accepted Storyboard Brief.
+  - Reason: Human observation found that the complete planning brief still did not communicate a concrete enough visual treatment to a separate creator; changing the accepted 19-shot package would confound source stability with reference-quality learning.
+  - Effect: `fff-beat2-visual-treatment-pilot-001` isolates three exact source shots and adds six licensed local raster references, while the Storyboard Brief and Production Execution Pack remain byte-identical.
+
+- Decision: Treat every acquired image as reference-only, even when its Commons license permits reuse.
+  - Reason: License metadata and file provenance are necessary for review, but they do not constitute project-specific rights clearance or production selection.
+  - Effect: Every reference records creator/source/license/dimensions/hash and remains `selected_for_production=false` and `rights_cleared_claim=false`; H2 stays closed.
+
+- Decision: Keep the 9:15 vintage watch as an explicitly labelled near-time reference, not as a false 9:17 depiction.
+  - Reason: It is the strongest licensed close-up for the intended era/material treatment, but changing or misdescribing its visible time would make the evidence dishonest.
+  - Effect: The shot strip states that 9:17 is the production display requirement and that the reference itself is approximate.
+
+- Decision: Add only one compact Beat 2 link to the accepted Blueprint utility area and no new application mode.
+  - Reason: The pilot is a standalone review artifact, not a new permanent product workflow.
+  - Effect: `data-beat2-visual-treatment-link=true` opens the local HTML while the existing Storyboard Brief link and Blueprint structure remain intact.
+
 ## 2026-06-15
 
 - Decision: Keep Fast Fiction Factory local-first for the current MVP.

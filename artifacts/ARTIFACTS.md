@@ -1,5 +1,19 @@
 # Artifacts
 
+## fff-beat2-visual-treatment-pilot-001
+
+- Title: Fast Fiction Factory Beat 2 Visual Treatment Pilot
+- Purpose: Test whether six real licensed local raster references make the exact three-shot Beat 2 visual treatment concrete enough for a separate creator without changing accepted planning or execution sources.
+- Primary file: `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html`
+- Package directory: `artifacts/beat2-visual-treatment-pilot/` (13 files including six references and one contact sheet)
+- Source artifacts: `fff-production-storyboard-brief-001`, `fff-production-execution-pack-001`, `fff-editorial-derivative-preview-001`
+- Review doc/result: `docs/review/beat2-visual-treatment-pilot.md`, `artifacts/beat2-visual-treatment-pilot-result.json`
+- Visual evidence: `artifacts/review-screens/beat2-visual-treatment-900x1200-dark.png`, `artifacts/review-screens/beat2-visual-treatment-1280x900-light.png`, `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment-contact-sheet.jpg`
+- Reference contract: exactly 3 shots, 6 local licensed rasters, 2 references per shot; full creator/source/license/dimension/hash provenance; all reference-only, unselected, and without a rights-clearance claim.
+- Read-only validation: `node tools/fff-state.mjs validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json`
+- Intentional regeneration: `node tools/fff-state.mjs smoke-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json`
+- State: H0 validated with 24/24 fail-closed probes, exact source preservation, two browser viewports, Auto/theme/layout evidence, print-style evidence, and manifest integrity. H1 human visual-treatment review is next; production selection and rights clearance remain closed.
+
 ## fff-production-execution-pack-001
 
 - Title: Fast Fiction Factory Production Execution Pack

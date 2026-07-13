@@ -1430,7 +1430,10 @@ function validateRootManifest(manifest, packageSnapshots, screenshotSnapshots, o
   const add = function (condition, message) { if (!condition) errors.push(message); };
   const allowBootstrap = options && options.allow_bootstrap_evidence === true;
   const entry = manifest && manifest.production_storyboard_brief || {};
-  add(manifest && manifest.artifact_id === ARTIFACT_ID && manifest.repo_relative_path === HTML_PATH && manifest.review_doc_path === REVIEW_DOC_PATH && manifest.smoke_result_path === RESULT_PATH, "root active Storyboard Brief registration mismatch");
+  const pilotWrapped = manifest && manifest.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
+    manifest.beat2_visual_treatment_pilot && manifest.beat2_visual_treatment_pilot.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
+    Array.isArray(manifest.beat2_visual_treatment_pilot.source_artifact_ids) && manifest.beat2_visual_treatment_pilot.source_artifact_ids.includes(ARTIFACT_ID);
+  add(pilotWrapped || (manifest && manifest.artifact_id === ARTIFACT_ID && manifest.repo_relative_path === HTML_PATH && manifest.review_doc_path === REVIEW_DOC_PATH && manifest.smoke_result_path === RESULT_PATH), "root active Storyboard Brief registration mismatch");
   add(manifest && manifest.production_storyboard_brief_dir === ROOT && manifest.production_storyboard_brief_result_path === RESULT_PATH && manifest.production_storyboard_brief_doc_path === REVIEW_DOC_PATH && manifest.production_storyboard_brief_route === HTML_PATH, "root flat Storyboard Brief registration mismatch");
   add(entry.artifact_id === ARTIFACT_ID && entry.schemaVersion === SCHEMA_VERSION && entry.package_root === ROOT && entry.result_path === RESULT_PATH && entry.review_doc_path === REVIEW_DOC_PATH && entry.access_route === HTML_PATH, "nested Storyboard Brief registration mismatch");
   add(entry.source_artifact_id === SOURCE_ARTIFACT_ID && JSON.stringify(entry.source_fingerprints) === JSON.stringify(SOURCE_FINGERPRINTS), "nested Storyboard Brief source provenance mismatch");

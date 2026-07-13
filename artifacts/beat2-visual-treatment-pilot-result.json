@@ -1,0 +1,454 @@
+{
+  "schemaVersion": "fff.beat2VisualTreatmentPilotResult.v1",
+  "artifact_id": "fff-beat2-visual-treatment-pilot-001",
+  "generated_at": "2026-07-14T18:00:00+09:00",
+  "command": "smoke-beat2-visual-treatment-pilot",
+  "source_artifact_ids": [
+    "fff-production-storyboard-brief-001",
+    "fff-production-execution-pack-001",
+    "fff-editorial-derivative-preview-001"
+  ],
+  "source_fingerprints": {
+    "storyboard_json_sha256": "50cd787d1643d8b5e1d5138d3c81c38befb33bd107914b21a0696c09e611d4cf",
+    "storyboard_manifest_sha256": "71642f7fd18b838cd7b34af2563e03b4739faa20a6f19ba8198fe7a04d93441d",
+    "storyboard_package_fingerprint_sha256": "400d01a3abaa935103e1080b2f42b2f9e20553e225e13e90aec7a740e7ed3861",
+    "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+    "execution_json_sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb",
+    "execution_manifest_sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7",
+    "execution_package_fingerprint_sha256": "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+    "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+  },
+  "beat_number": 2,
+  "beat_title": "真鍮の蛾",
+  "beat_window": "00:20–00:50",
+  "shot_count": 3,
+  "reference_image_count": 6,
+  "references_per_shot": {
+    "shot-b02-01": 2,
+    "shot-b02-02": 2,
+    "shot-b02-03": 2
+  },
+  "unique_source_count": 6,
+  "license_class_counts": {
+    "CC BY-SA 4.0": 1,
+    "CC0 1.0": 3,
+    "CC BY 2.0": 1,
+    "CC BY-SA 2.0": 1
+  },
+  "missing_metadata_count": 0,
+  "hotlink_count": 0,
+  "banned_primary_phrase_count": 0,
+  "primary_generic_svg_count": 0,
+  "title_measurements": {
+    "900x1200-dark": {
+      "font_size": 34,
+      "height": 39.765625,
+      "lines": 1,
+      "viewport_share": 0.03313802083333333
+    },
+    "1280x900-light": {
+      "font_size": 38,
+      "height": 44.453125,
+      "lines": 1,
+      "viewport_share": 0.04939236111111111
+    }
+  },
+  "theme_modes": 3,
+  "source_packages_unchanged": true,
+  "reference_only": true,
+  "selected_for_production": false,
+  "rights_cleared_claim": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "external_model_call": false,
+  "ai_image_generation": false,
+  "audio_generated": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "public_upload": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "passed": true,
+  "failures": [],
+  "warnings": [],
+  "counts": {
+    "shots": 3,
+    "references": 6,
+    "references_per_shot": {
+      "shot-b02-01": 2,
+      "shot-b02-02": 2,
+      "shot-b02-03": 2
+    },
+    "negative_probes_passed": 24,
+    "negative_probes_total": 24,
+    "package_files": 13
+  },
+  "source_protection": {
+    "expected": {
+      "storyboard_json_sha256": "50cd787d1643d8b5e1d5138d3c81c38befb33bd107914b21a0696c09e611d4cf",
+      "storyboard_manifest_sha256": "71642f7fd18b838cd7b34af2563e03b4739faa20a6f19ba8198fe7a04d93441d",
+      "storyboard_package_fingerprint_sha256": "400d01a3abaa935103e1080b2f42b2f9e20553e225e13e90aec7a740e7ed3861",
+      "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+      "execution_json_sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb",
+      "execution_manifest_sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7",
+      "execution_package_fingerprint_sha256": "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+      "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+    },
+    "observed": {
+      "storyboard_json_sha256": "50cd787d1643d8b5e1d5138d3c81c38befb33bd107914b21a0696c09e611d4cf",
+      "storyboard_manifest_sha256": "71642f7fd18b838cd7b34af2563e03b4739faa20a6f19ba8198fe7a04d93441d",
+      "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+      "execution_json_sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb",
+      "execution_manifest_sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7",
+      "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+    },
+    "storyboard_unchanged": true,
+    "execution_unchanged": true
+  },
+  "package_integrity": {
+    "manifest_path": "artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment-manifest.json",
+    "package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+    "payload_file_count": 12
+  },
+  "reference_audit": [
+    {
+      "reference_id": "ref-b02-s01-precision-handwork",
+      "shot_id": "shot-b02-01",
+      "role": "primary",
+      "local_path": "references/ref-b02-s01-precision-handwork.jpg",
+      "byte_size": 432635,
+      "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33",
+      "dimensions": {
+        "height": 1600,
+        "width": 1200
+      },
+      "exif_present": false,
+      "creator": "giridibyaranjan",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Watchmaking_skills.jpg",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s01-watch-repair-workbench",
+      "shot_id": "shot-b02-01",
+      "role": "supporting",
+      "local_path": "references/ref-b02-s01-watch-repair-workbench.jpg",
+      "byte_size": 422572,
+      "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258",
+      "dimensions": {
+        "height": 900,
+        "width": 1600
+      },
+      "exif_present": false,
+      "creator": "SerChevalerie",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Traditional_watch_repairer_at_work_in_Goa.jpg",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s02-aged-handwritten-letter",
+      "shot_id": "shot-b02-02",
+      "role": "primary",
+      "local_path": "references/ref-b02-s02-aged-handwritten-letter.jpg",
+      "byte_size": 376293,
+      "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b",
+      "dimensions": {
+        "height": 1600,
+        "width": 1049
+      },
+      "exif_present": false,
+      "creator": "Lainey Powell",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Old_Letter.jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s02-metal-butterfly-brooch",
+      "shot_id": "shot-b02-02",
+      "role": "supporting",
+      "local_path": "references/ref-b02-s02-metal-butterfly-brooch.jpg",
+      "byte_size": 194726,
+      "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9",
+      "dimensions": {
+        "height": 1200,
+        "width": 1600
+      },
+      "exif_present": false,
+      "creator": "Jane023 (photographer/uploader; own work)",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Butterfly_brooch.jpg",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s03-vintage-watch-0915",
+      "shot_id": "shot-b02-03",
+      "role": "primary",
+      "local_path": "references/ref-b02-s03-vintage-watch-0915.jpg",
+      "byte_size": 292584,
+      "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082",
+      "dimensions": {
+        "height": 1200,
+        "width": 1600
+      },
+      "exif_present": false,
+      "creator": "Joe Haupt",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Vintage_Bulova_Men%27s_Swiss-Made_Manual-Wind_Wrist_Watch_(8505636506).jpg",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s03-brass-clock-dial",
+      "shot_id": "shot-b02-03",
+      "role": "supporting",
+      "local_path": "references/ref-b02-s03-brass-clock-dial.jpg",
+      "byte_size": 362668,
+      "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3",
+      "dimensions": {
+        "height": 1600,
+        "width": 1067
+      },
+      "exif_present": false,
+      "creator": "Brooke Campbell / bcampbell",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Antique_clock_dial_(Unsplash).jpg",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    }
+  ],
+  "negative_probes": [
+    {
+      "name": "source_fingerprint_mismatch",
+      "passed": true
+    },
+    {
+      "name": "missing_shot",
+      "passed": true
+    },
+    {
+      "name": "fourth_shot",
+      "passed": true
+    },
+    {
+      "name": "fewer_than_two_references",
+      "passed": true
+    },
+    {
+      "name": "missing_creator",
+      "passed": true
+    },
+    {
+      "name": "missing_source_page",
+      "passed": true
+    },
+    {
+      "name": "missing_license",
+      "passed": true
+    },
+    {
+      "name": "missing_license_url",
+      "passed": true
+    },
+    {
+      "name": "disallowed_license",
+      "passed": true
+    },
+    {
+      "name": "search_result_screenshot",
+      "passed": true
+    },
+    {
+      "name": "remote_hotlink",
+      "passed": true
+    },
+    {
+      "name": "duplicate_sha256",
+      "passed": true
+    },
+    {
+      "name": "same_source_crop",
+      "passed": true
+    },
+    {
+      "name": "missing_local_image",
+      "passed": true
+    },
+    {
+      "name": "image_below_minimum",
+      "passed": true
+    },
+    {
+      "name": "banned_rhetorical_heading",
+      "passed": true
+    },
+    {
+      "name": "process_phrase_in_primary",
+      "passed": true
+    },
+    {
+      "name": "generic_svg_primary",
+      "passed": true
+    },
+    {
+      "name": "title_oversized",
+      "passed": true
+    },
+    {
+      "name": "theme_missing",
+      "passed": true
+    },
+    {
+      "name": "selected_production_asset",
+      "passed": true
+    },
+    {
+      "name": "rights_cleared_claim",
+      "passed": true
+    },
+    {
+      "name": "content_timing_mutation",
+      "passed": true
+    },
+    {
+      "name": "manifest_hash_mismatch",
+      "passed": true
+    }
+  ],
+  "browser_evidence": {
+    "status": "captured",
+    "captured_at": "2026-07-14T18:00:00+09:00",
+    "url": "http://127.0.0.1:4173/artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html",
+    "screenshots": {
+      "900x1200-dark": {
+        "path": "artifacts/review-screens/beat2-visual-treatment-900x1200-dark.png",
+        "byte_size": 261324,
+        "sha256": "79dacd60a674f3284c77e1eb2f08a618e8b970d1f65a370145c47f404a44a933",
+        "viewport": {
+          "width": 900,
+          "height": 1200
+        },
+        "resolved_theme": "dark",
+        "capture_normalization": "15px right and 20px bottom canvas padding only"
+      },
+      "1280x900-light": {
+        "path": "artifacts/review-screens/beat2-visual-treatment-1280x900-light.png",
+        "byte_size": 201809,
+        "sha256": "8531a9fb5df9ece2acbbeea6d3c6bfa63025f2128310cb2066d5d0a419ed91d4",
+        "viewport": {
+          "width": 1280,
+          "height": 900
+        },
+        "resolved_theme": "light"
+      }
+    },
+    "theme": {
+      "auto_default": true,
+      "auto_resolved": "dark",
+      "dark_resolved": "dark",
+      "light_resolved": "light",
+      "explicit_controls": [
+        "Light",
+        "Dark",
+        "Auto"
+      ]
+    },
+    "layout": {
+      "shot_count": 3,
+      "primary_image_min_share": 0.6799918831168831,
+      "horizontal_overflow": false,
+      "title_900x1200": {
+        "font_size": 34,
+        "height": 39.765625,
+        "lines": 1,
+        "viewport_share": 0.03313802083333333
+      },
+      "title_1280x900": {
+        "font_size": 38,
+        "height": 44.453125,
+        "lines": 1,
+        "viewport_share": 0.04939236111111111
+      }
+    },
+    "print": {
+      "forced_light": true,
+      "evidence_kind": "print_stylesheet_contract_audit",
+      "utility_static": true,
+      "shot_break_avoid": true,
+      "pagination": "not_claimed"
+    }
+  },
+  "theme_evidence": {
+    "auto_default": true,
+    "auto_resolved": "dark",
+    "dark_resolved": "dark",
+    "light_resolved": "light",
+    "explicit_controls": [
+      "Light",
+      "Dark",
+      "Auto"
+    ]
+  },
+  "print_evidence": {
+    "forced_light": true,
+    "evidence_kind": "print_stylesheet_contract_audit",
+    "utility_static": true,
+    "shot_break_avoid": true,
+    "pagination": "not_claimed"
+  },
+  "screenshots": {
+    "900x1200-dark": {
+      "path": "artifacts/review-screens/beat2-visual-treatment-900x1200-dark.png",
+      "exists": true,
+      "byte_size": 261324,
+      "sha256": "79dacd60a674f3284c77e1eb2f08a618e8b970d1f65a370145c47f404a44a933",
+      "dimensions": {
+        "width": 900,
+        "height": 1200
+      }
+    },
+    "1280x900-light": {
+      "path": "artifacts/review-screens/beat2-visual-treatment-1280x900-light.png",
+      "exists": true,
+      "byte_size": 201809,
+      "sha256": "8531a9fb5df9ece2acbbeea6d3c6bfa63025f2128310cb2066d5d0a419ed91d4",
+      "dimensions": {
+        "width": 1280,
+        "height": 900
+      }
+    }
+  },
+  "review_status": {
+    "h0_machine": "pass",
+    "h1_human": "not_started",
+    "h2_asset_rights": "closed"
+  },
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "image_generation": false,
+    "production_approved": false,
+    "content_changed": false,
+    "timing_changed": false,
+    "final_canon_decision": false
+  },
+  "validation_command": "node tools/fff-state.mjs validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json",
+  "smoke_command": "node tools/fff-state.mjs smoke-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json"
+}

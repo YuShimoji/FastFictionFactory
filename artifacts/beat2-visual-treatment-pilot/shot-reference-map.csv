@@ -1,0 +1,4 @@
+shot_id,sequence,start_time,end_time,duration_seconds,title_ja,screen_ja,intent_ja,camera_ja,success_ja,source_truth_boundary,primary_reference_id,supporting_reference_id
+shot-b02-01,1,00:20,00:30,10,時計修理台の手元,時計を直す手、ピンセット、細かな部品。顔と全身は画角外に置く。,ミラの職能と、触れれば壊れそうな精密さを最初に見せる。,Close / Slow pan,手元と修理台へ最初に視線が集まる。,final character designではない。,ref-b02-s01-precision-handwork,ref-b02-s01-watch-repair-workbench
+shot-b02-02,2,00:30,00:40,10,メモと静止した真鍮の蛾,折り目の残る手書きメモを大きく置き、金属の蛾を隣接させる。,私的な記録と冷たい金属の質感を並べ、二つを一つの手がかりとして読む。,Close / Locked,メモと動かない蛾を同時に把握できる。,蛾を作動させず、機能を示さない。,ref-b02-s02-aged-handwritten-letter,ref-b02-s02-metal-butterfly-brooch
+shot-b02-03,3,00:40,00:50,10,9:17の時計面,9:17の時計面を極端な寄りで捉え、真鍮色の反射を別の焦点に重ねる。,時刻と蛾を反復モチーフとして並べ、因果は作らない。,Extreme close / Controlled parallax,9:17の表示と真鍮の蛾を別の焦点として読める。,9:17は閉店時刻のmotifであり、時計停止の確定事実にはしない。,ref-b02-s03-vintage-watch-0915,ref-b02-s03-brass-clock-dial

@@ -1552,6 +1552,18 @@ async function main() {
     return;
   }
 
+  if (command === "validate-beat2-visual-treatment-pilot") {
+    const { runBeat2VisualTreatmentCommand } = await import("./fff-beat2-visual-treatment-pilot.mjs");
+    await runBeat2VisualTreatmentCommand({ command, inputPath, outputPath });
+    return;
+  }
+
+  if (command === "smoke-beat2-visual-treatment-pilot") {
+    const { runBeat2VisualTreatmentCommand } = await import("./fff-beat2-visual-treatment-pilot.mjs");
+    await runBeat2VisualTreatmentCommand({ command, inputPath, outputPath });
+    return;
+  }
+
   if (command === "smoke-production-storyboard-brief") {
     const { runProductionStoryboardBriefCommand } = await import("./fff-production-storyboard-brief.mjs");
     await runProductionStoryboardBriefCommand({ command, inputPath, outputPath });
@@ -14954,7 +14966,11 @@ function productionExecutionRootPreserves(manifest, artifactId) {
   const storyboardWrapsExecution = manifest?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
     manifest?.production_storyboard_brief?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
     manifest?.production_storyboard_brief?.source_artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID;
-  return (executionActive || storyboardWrapsExecution) &&
+  const pilotWrapsExecution = manifest?.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
+    manifest?.beat2_visual_treatment_pilot?.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
+    manifest?.beat2_visual_treatment_pilot?.source_artifact_ids?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID) &&
+    manifest?.beat2_visual_treatment_pilot?.source_artifact_ids?.includes(PRODUCTION_EXECUTION_PACK_ARTIFACT_ID);
+  return (executionActive || storyboardWrapsExecution || pilotWrapsExecution) &&
     manifest?.production_execution_pack?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID &&
     Array.isArray(manifest?.production_execution_pack?.source_artifact_ids) &&
     manifest.production_execution_pack.source_artifact_ids.includes(artifactId) &&
@@ -15383,7 +15399,8 @@ async function snapshotProductionExecutionPackHistoricalResults() {
   const names = (await readdir("artifacts"))
     .filter((name) => name.endsWith("-result.json") &&
       name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT) &&
-      name !== path.basename(DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT));
+      name !== path.basename(DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT) &&
+      name !== "beat2-visual-treatment-pilot-result.json");
   return snapshotOperatorProductionBriefTypographyPaths(names.map((name) => `artifacts/${name}`));
 }
 
@@ -15715,9 +15732,12 @@ function validateProductionExecutionPackRootManifest(manifest, packageSnapshots,
   const allowBootstrapEvidence = options.allow_bootstrap_evidence === true;
   const entry = manifest?.production_execution_pack || {};
   const files = entry.files || entry.package_files || [];
-  const storyboardWrapped = manifest?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
+  const pilotWrapped = manifest?.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
+    manifest?.beat2_visual_treatment_pilot?.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
+    manifest?.beat2_visual_treatment_pilot?.source_artifact_ids?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID);
+  const storyboardWrapped = pilotWrapped || (manifest?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
     manifest?.production_storyboard_brief?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
-    manifest?.production_storyboard_brief?.source_artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID;
+    manifest?.production_storyboard_brief?.source_artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID);
   add(manifest?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID || storyboardWrapped, "root active execution-pack artifact mismatch");
   add(storyboardWrapped || (manifest?.review_doc_path === PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH && manifest?.smoke_result_path === DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT), "root execution-pack doc or result path mismatch");
   add(manifest?.production_execution_pack_dir === PRODUCTION_EXECUTION_PACK_ROOT && manifest?.production_execution_pack_result_path === DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT && manifest?.production_execution_pack_doc_path === PRODUCTION_EXECUTION_PACK_REVIEW_DOC_PATH && manifest?.production_execution_pack_route === PRODUCTION_EXECUTION_PACK_ROUTE, "root execution-pack registration mismatch");
@@ -16409,7 +16429,8 @@ async function snapshotOperatorProductionBriefHistoricalResults() {
     .filter((name) => name.endsWith("-result.json") &&
       name !== path.basename(DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT) &&
       name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT) &&
-      name !== path.basename(DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT));
+      name !== path.basename(DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT) &&
+      name !== "beat2-visual-treatment-pilot-result.json");
   return snapshotOperatorProductionBriefTypographyPaths(names.map((name) => `artifacts/${name}`));
 }
 

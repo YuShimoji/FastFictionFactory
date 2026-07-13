@@ -1,5 +1,29 @@
 # Current Status Packet
 
+## Current Beat 2 Visual Treatment Update
+
+- Active artifact: `fff-beat2-visual-treatment-pilot-001`
+- Active lane: `VISUAL_TREATMENT_PILOT`
+- Development base: synced `master` at `4d4c98ca188556509965d6dc1ed429c7b2acdf82` with initial upstream parity `0 0` and a clean index/worktree
+- Standalone entry: `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html`
+- Package: `artifacts/beat2-visual-treatment-pilot/` with 13 files; result and review authority are `artifacts/beat2-visual-treatment-pilot-result.json` and `docs/review/beat2-visual-treatment-pilot.md`
+- Sources: `fff-production-storyboard-brief-001`, `fff-production-execution-pack-001`, and `fff-editorial-derivative-preview-001`; Storyboard seven-file and Execution nine-file aggregates remain byte-identical
+- Human surface: Beat 2 / 00:20–00:50 / exactly 3 sequential shots, six local licensed raster references, one primary and one supporting reference per shot, concise visual direction, four held questions, and source credits
+- Reference provenance: 6/6 include creator, file page, original media URL, license name/URL, original/local dimensions, retrieval date, local SHA256, and `reference_only=true`; no search-result screenshot, hotlink, duplicate hash, source crop, remote image, or EXIF remains
+- Theme/layout: Light / Dark / Auto; Auto default; one document scroll; primary desktop image share about 68%; title 34px at 900x1200 and 38px at 1280x900; no horizontal overflow; print forces light styling
+- Browser evidence: `artifacts/review-screens/beat2-visual-treatment-900x1200-dark.png` and `artifacts/review-screens/beat2-visual-treatment-1280x900-light.png`; exact measurements and hashes are in the green result
+- Machine gate: H0 is green with `passed=true`, `failures=[]`, 24/24 fail-closed probes, exact image dimensions/hashes, manifest integrity, source immutability, provenance, theme/layout/viewport evidence, and predecessor validator compatibility
+- Human gate: H1 is not started. Visual-treatment effectiveness remains an inference until a separate creator can explain the material/light language, three-shot sequence, reference roles, and held questions from this page alone
+- Closed gates: production asset selection, rights clearance, full-story asset sourcing, image/audio/video generation, engine/voice, provider/API, credentials, render, upload, publication, database persistence, production approval, and final canon
+- Read-only validation: `node tools/fff-state.mjs validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json`
+- Intentional regeneration only: `node tools/fff-state.mjs smoke-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json`
+- Publication: required commit subject is `Add Beat 2 visual treatment pilot`; after publication, Git is the authority for the exact commit and upstream parity
+- Supervisor report: `docs/review/supervisor-current-report.md`
+
+## Next Gate
+
+Run one H1 freeform review from the standalone Beat 2 page only. Pass means a reviewer can explain what dominates each shot, how the two references divide roles, the intended material/light language, and why the moth function, Toma's fate, 9:17 meaning, and Mira's final design remain unresolved. If H1 reports friction, repair only evidenced Beat 2 composition, reference choice, or wording; do not expand to the full 19-shot asset package or open H2.
+
 ## Current Storyboard Brief Update
 
 - Active artifact: `fff-production-storyboard-brief-001`
@@ -21,9 +45,9 @@
 - Publication: preferred commit subject is `Add production storyboard brief`; after publication, Git is the authority for the exact commit and upstream parity
 - Supervisor report: `docs/review/supervisor-current-report.md`
 
-## Next Gate
+## Preserved Storyboard Brief Gate
 
-Run one H1 freeform review from the standalone Storyboard Brief only. Pass means a reviewer can state the premise, central unresolved question, six-beat progression, representative shot purpose/success/guard distinction, and core glossary meanings without opening the Execution Pack. If H1 reports friction, allow only a bounded wording, grouping, or low-fidelity-diagram clarification; do not select assets, resolve story truth, or begin H2.
+The broader Storyboard Brief H1 is superseded by the narrower Beat 2 treatment review for the current lane. Its prior contract remains recorded here; do not mutate or promote it while the pilot is being judged.
 
 ## Preserved Execution Pack Baseline
 

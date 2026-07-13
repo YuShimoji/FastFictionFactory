@@ -2,7 +2,56 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-## 監修AI向け Production Storyboard Brief 引き継ぎ（2026-07-14 JST）
+## 監修AI向け Beat 2 Visual Treatment Pilot 引き継ぎ（2026-07-14 JST）
+
+現在の active artifact は `fff-beat2-visual-treatment-pilot-001`、lane は `VISUAL_TREATMENT_PILOT` です。同期済み `master` の `4d4c98ca188556509965d6dc1ed429c7b2acdf82` を開始点に、受け入れ済み Storyboard Brief と Production Execution Pack を byte 単位で保護したまま、Beat 2「真鍮の蛾」だけを実ライセンス参照画像で具体化する独立 package を追加しました。最終公開 commit と parity は Git を正本とします。
+
+### Start Here
+
+1. clean worktree で `git fetch --prune origin` と `git pull --ff-only origin master` を行う。
+2. `git rev-list --left-right --count "HEAD...@{u}"` が `0 0`、`git status --short` が空であることを確認する。
+3. 次をこの順に読む。
+
+```text
+AGENTS.md
+docs/project-context.md
+docs/review/current-status.md
+docs/review/next-terminal-handoff.md
+docs/review/supervisor-current-report.md
+artifacts/artifact-manifest.json
+docs/review/beat2-visual-treatment-pilot.md
+artifacts/beat2-visual-treatment-pilot-result.json
+artifacts/beat2-visual-treatment-pilot/README_VISUAL_TREATMENT.md
+```
+
+4. Visual Treatment Pilot を単体で開く。
+
+```powershell
+Invoke-Item .\artifacts\beat2-visual-treatment-pilot\beat2-visual-treatment.html
+```
+
+5. 通常の機械確認は read-only validator を使う。
+
+```powershell
+node tools/fff-state.mjs validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json
+```
+
+### Current Contract
+
+| 対象 | 現在の状態 | 次の判断 |
+| --- | --- | --- |
+| Beat 2 page | 00:20–00:50、3 shots、6 local rasters、2 refs/shot、Light/Dark/Auto、印刷対応 | H1 freeform visual-treatment review |
+| Shot treatment | 各shotに大きな主参照、小さな補助参照、画面/意図/尺/カメラ/成立条件 | 別制作者が優先度と構図を説明できるか |
+| Provenance | 6/6にcreator/source/license/dimensions/hash、reference-only | license metadataをclearanceと誤認しないか |
+| Held truth | moth function、Toma fate、9:17 meaning、final character designを未解決で保持 | 因果や正解を勝手に決めていないか |
+| Protected sources | Storyboard Brief七ファイルとExecution Pack九ファイルをbyte保護 | planning/audit sourceとしてのみ使用 |
+| Production gates | selection/rights/generation/render/publication/database/canonはclosed | 別承認なしに開かない |
+
+H0 は green です。`artifacts/beat2-visual-treatment-pilot-result.json` が、24/24 negative probes、source immutability、6画像のprovenance/dimension/hash、900x1200 Dark、1280x900 Light、Auto、layout、print-style、manifest integrity の source of truth です。視覚伝達が改善したという判定だけは推測であり、H1 は未実施です。
+
+次の正規作業は H1 だけです。レビュー者はこの HTML だけを見て、三つのショットで最初に見るもの、主参照と補助参照の役割、光と材質、成立条件、保留事項を自由文で説明します。失敗時の修正範囲は Beat 2 の reference choice / composition / wording だけです。full-story asset package、production selection、rights clearance、generation、render、release は自動では開きません。
+
+## 保存された Production Storyboard Brief 引き継ぎ（2026-07-14 JST）
 
 現在の active artifact は `fff-production-storyboard-brief-001`、lane は `PRODUCTION_STORYBOARD_BRIEF` です。同期済み `master` の `04c554c923ae8860fc39047fec515b6b16c195d0` を開始点に、受け入れ済み Production Execution Pack を一切変更せず、別の制作者が作品の前提・用語・六幕・19ショットの意図を一つのページから理解するための独立した七ファイル package を追加しました。最終公開 commit と parity は Git を正本とします。
 
