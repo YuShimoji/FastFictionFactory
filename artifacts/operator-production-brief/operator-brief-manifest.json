@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "fff.operatorProductionBriefManifest.v1",
+  "artifact_id": "fff-operator-production-brief-001",
+  "generatedAt": "2026-07-13T12:00:00+09:00",
+  "package_root": "artifacts/operator-production-brief",
+  "source_technical_artifact_id": "fff-content-production-blueprint-001",
+  "source_blueprint_sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d",
+  "files": [
+    {
+      "relative_path": "README_OPERATOR_BRIEF.md",
+      "byte_size": 699,
+      "sha256": "4202f04f6fa9ece43d654938379ad698af54544a61a5d93b1ab8ab7bfdd58484"
+    },
+    {
+      "relative_path": "operator-production-brief.json",
+      "byte_size": 27229,
+      "sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6"
+    },
+    {
+      "relative_path": "beat-story-map.csv",
+      "byte_size": 2327,
+      "sha256": "9dc744c60db073a89f0bf280f4f50026a990fd5fb0dbd84ad9dad6a419a8fff7"
+    },
+    {
+      "relative_path": "visual-grammar-guide.md",
+      "byte_size": 1810,
+      "sha256": "d4752baf826e4a3ed776c70573d018197b8fb2e6dbc841248ee20d9b3b185dcd"
+    },
+    {
+      "relative_path": "operator-completion-checklist.md",
+      "byte_size": 441,
+      "sha256": "0e49c81efe375349af0911fe57255031ad94e8aef5e7490a487ffd1acf36ef13"
+    }
+  ],
+  "canonical": false,
+  "production_approved": false,
+  "passed": true,
+  "failures": []
+}

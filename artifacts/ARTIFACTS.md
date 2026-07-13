@@ -1,5 +1,19 @@
 # Artifacts
 
+## fff-operator-production-brief-001
+
+- Title: Fast Fiction Factory Operator Production Brief
+- Purpose: Translate the protected quantitative Blueprint into a plain-language, single-scroll production instruction for a non-specialist.
+- Primary route: `public/review/index.html?mode=blueprint` (reused; no new mode)
+- Source artifact/package: `fff-content-production-blueprint-001`, `artifacts/production-blueprint/` (all eight files byte-protected)
+- Human package: `artifacts/operator-production-brief/` with `README_OPERATOR_BRIEF.md`, `operator-production-brief.json`, `beat-story-map.csv`, `visual-grammar-guide.md`, `operator-completion-checklist.md`, `operator-brief-manifest.json`
+- Review doc/result: `docs/review/operator-production-brief.md`, `artifacts/operator-production-brief-result.json`
+- Visual evidence: `artifacts/review-screens/operator-production-brief-900x1200.png`, `artifacts/review-screens/operator-production-brief-1280x900.png`
+- Information architecture: compact Blueprint-only Focus Shell; exactly four primary sections; one browser document scroll; six-beat continuous spine; one expanded beat; five shot-scale and six camera-motion explanations with 11 inline SVG diagrams; 19 human-readable shot summaries; five observable completion conditions; one closed Audit & Files.
+- Read-only validation: `node tools/fff-state.mjs validate-operator-production-brief artifacts/operator-production-brief-result.json`
+- Intentional regeneration: `node tools/fff-state.mjs smoke-operator-production-brief artifacts/operator-production-brief-result.json artifacts/operator-production-brief-result.json`
+- State: H0 complete, H1 comprehension review not run. Narration rehearsal, assets, rights, provider, generation, render, upload, publication, database, final canon, and old workflow branch work remain deferred or closed.
+
 ## fff-content-production-blueprint-001
 
 - Title: Fast Fiction Factory Content Production Blueprint

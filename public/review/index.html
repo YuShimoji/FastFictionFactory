@@ -1803,6 +1803,10 @@
       display: none;
     }
 
+    body[data-review-mode="blueprint"] .topbar {
+      display: none;
+    }
+
     .bridge-storyboard-flow {
       display: grid;
       gap: 12px;
@@ -4205,6 +4209,668 @@
       }
     }
 
+    body[data-review-mode="blueprint"] .review-hub {
+      padding-block: 0;
+      background:
+        radial-gradient(circle at 8% 4%, color-mix(in srgb, var(--blue) 10%, transparent), transparent 28%),
+        var(--bg);
+    }
+
+    body[data-review-mode="blueprint"] .hub-inner {
+      width: min(100%, 1180px);
+      padding-inline: clamp(14px, 3vw, 36px);
+    }
+
+    .operator-brief-shell {
+      display: grid;
+      gap: 0;
+      min-width: 0;
+      padding-bottom: 48px;
+      color: var(--ink);
+    }
+
+    .operator-focus-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 10px 18px;
+      align-items: center;
+      margin-inline: calc(clamp(14px, 3vw, 36px) * -1);
+      padding: 12px clamp(14px, 3vw, 36px);
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 94%, transparent);
+    }
+
+    .operator-focus-brand,
+    .operator-focus-actions {
+      display: flex;
+      min-width: 0;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .operator-focus-actions {
+      justify-content: flex-end;
+    }
+
+    .operator-wordmark {
+      color: var(--ink);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+    }
+
+    .operator-status {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 999px;
+      padding: 4px 9px;
+      background: var(--gold-soft);
+      color: var(--gold-ink);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .technical-meta {
+      color: var(--muted);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+      font-size: 10px;
+      letter-spacing: 0.02em;
+      overflow-wrap: anywhere;
+    }
+
+    .operator-audit-files {
+      grid-column: 1 / -1;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--surface-muted);
+    }
+
+    .operator-audit-files > summary {
+      display: flex;
+      min-height: 38px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 7px 10px;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .operator-audit-files > summary span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .operator-audit-body {
+      display: grid;
+      gap: 12px;
+      padding: 12px;
+      border-top: 1px solid var(--line);
+    }
+
+    .operator-audit-subsection {
+      border-top: 1px solid var(--line);
+      padding-top: 8px;
+    }
+
+    .operator-reading-flow {
+      display: grid;
+      gap: clamp(44px, 7vw, 84px);
+      padding-top: clamp(32px, 6vw, 68px);
+    }
+
+    .operator-primary-section {
+      display: grid;
+      gap: 22px;
+      min-width: 0;
+      scroll-margin-top: 20px;
+    }
+
+    .operator-primary-section + .operator-primary-section {
+      border-top: 1px solid var(--line);
+      padding-top: clamp(36px, 6vw, 68px);
+    }
+
+    .operator-glance {
+      max-width: 980px;
+    }
+
+    .operator-glance h1 {
+      max-width: 18ch;
+      margin: 0;
+      font-size: clamp(36px, 7vw, 72px);
+      line-height: 1.06;
+      letter-spacing: -0.045em;
+    }
+
+    .operator-promise {
+      max-width: 48em;
+      margin: 0;
+      color: var(--muted-strong);
+      font-size: clamp(17px, 2.2vw, 23px);
+      line-height: 1.65;
+    }
+
+    .operator-first-view-status {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .operator-scale-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-block: 1px solid var(--line);
+    }
+
+    .operator-scale-strip > div {
+      display: grid;
+      gap: 2px;
+      padding: 14px 12px;
+      border-right: 1px solid var(--line);
+    }
+
+    .operator-scale-strip > div:last-child {
+      border-right: 0;
+    }
+
+    .operator-scale-strip strong {
+      font-size: clamp(24px, 4vw, 38px);
+      line-height: 1;
+    }
+
+    .operator-scale-strip span,
+    .operator-question-line span,
+    .operator-experience-line > span {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .operator-question-line,
+    .operator-experience-line {
+      display: grid;
+      gap: 7px;
+      max-width: 780px;
+    }
+
+    .operator-question-line strong {
+      color: var(--blue);
+      font-size: clamp(22px, 4vw, 36px);
+      line-height: 1.35;
+    }
+
+    .operator-experience-line p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .operator-first-done {
+      display: grid;
+      gap: 8px;
+      max-width: 850px;
+      border-left: 4px solid var(--blue);
+      padding: 14px 18px;
+      background: var(--blue-soft);
+    }
+
+    .operator-first-done ol {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px 24px;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .operator-first-done li {
+      line-height: 1.55;
+    }
+
+    .operator-read-later {
+      display: flex;
+      max-width: 850px;
+      align-items: flex-start;
+      gap: 12px;
+      border-top: 1px dashed var(--line-strong);
+      padding-top: 12px;
+      color: var(--muted-strong);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .operator-read-later strong {
+      flex: 0 0 auto;
+      color: var(--gold-ink);
+    }
+
+    .operator-section-heading {
+      display: grid;
+      gap: 8px;
+      max-width: 760px;
+    }
+
+    .operator-section-heading h2 {
+      margin: 0;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+    }
+
+    .operator-section-heading p {
+      margin: 0;
+      color: var(--muted-strong);
+      line-height: 1.7;
+    }
+
+    .operator-story-spine {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+      border-block: 1px solid var(--line);
+    }
+
+    .operator-story-spine .blueprint-beat-tab {
+      display: grid;
+      grid-template-columns: minmax(150px, 0.62fr) minmax(220px, 1.1fr) minmax(220px, 1fr) auto;
+      gap: 12px 22px;
+      min-height: 0;
+      align-items: center;
+      border: 0;
+      border-bottom: 1px solid var(--line);
+      border-radius: 0;
+      padding: 16px 6px;
+      background: transparent;
+      color: var(--ink);
+      text-align: left;
+    }
+
+    .operator-story-spine .blueprint-beat-tab:last-child {
+      border-bottom: 0;
+    }
+
+    .operator-story-spine .blueprint-beat-tab:hover,
+    .operator-story-spine .blueprint-beat-tab[aria-selected="true"] {
+      background: var(--blue-soft);
+    }
+
+    .operator-story-spine .blueprint-beat-tab[aria-selected="true"] {
+      box-shadow: inset 4px 0 0 var(--blue);
+    }
+
+    .operator-beat-index {
+      display: grid;
+      gap: 3px;
+    }
+
+    .operator-beat-index strong {
+      font-size: 17px;
+    }
+
+    .operator-beat-index span,
+    .operator-beat-summary small {
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .operator-beat-summary {
+      display: grid;
+      gap: 4px;
+      line-height: 1.55;
+    }
+
+    .operator-beat-summary strong {
+      color: var(--muted-strong);
+      font-size: 11px;
+    }
+
+    .operator-beat-open {
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .operator-beat-detail.blueprint-active-canvas {
+      display: grid;
+      gap: 22px;
+      height: auto;
+      min-height: 0;
+      overflow: visible;
+      overscroll-behavior: auto;
+      scroll-behavior: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: clamp(16px, 3vw, 28px);
+      background: var(--paper);
+      box-shadow: none;
+    }
+
+    .operator-beat-detail-head {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .operator-beat-detail-head h3 {
+      flex-basis: 100%;
+      margin: 0;
+      font-size: clamp(24px, 4vw, 38px);
+    }
+
+    .operator-beat-overview {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .operator-beat-overview > div {
+      display: grid;
+      gap: 5px;
+      border-top: 1px solid var(--line);
+      padding-top: 10px;
+      line-height: 1.6;
+    }
+
+    .operator-beat-overview strong,
+    .operator-shot-field dt {
+      color: var(--muted);
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+
+    .operator-shot-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .operator-shot-summary {
+      display: grid;
+      gap: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+    }
+
+    .operator-shot-summary:first-child {
+      border-top: 0;
+    }
+
+    .operator-shot-summary h4 {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .operator-shot-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 20px;
+      margin: 0;
+    }
+
+    .operator-shot-field {
+      display: grid;
+      gap: 3px;
+    }
+
+    .operator-shot-field.wide {
+      grid-column: 1 / -1;
+    }
+
+    .operator-shot-field dd {
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .operator-visual-primer > h3 {
+      margin: 12px 0 0;
+      font-size: 20px;
+    }
+
+    .operator-grammar-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-block: 1px solid var(--line);
+    }
+
+    .operator-grammar-list article {
+      display: grid;
+      grid-template-columns: 178px minmax(0, 1fr);
+      gap: 20px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding: 16px 0;
+    }
+
+    .operator-grammar-list article:last-child {
+      border-bottom: 0;
+    }
+
+    .operator-grammar-list svg {
+      width: 100%;
+      max-width: 178px;
+      border-radius: 6px;
+      background: var(--surface-muted);
+      fill: none;
+      stroke: var(--muted-strong);
+      stroke-width: 2;
+    }
+
+    .operator-grammar-list svg .subject {
+      fill: color-mix(in srgb, var(--blue) 30%, transparent);
+      stroke: var(--blue);
+    }
+
+    .operator-grammar-list svg .graphic {
+      stroke: var(--blue);
+      stroke-width: 4;
+    }
+
+    .operator-grammar-list svg .dissolve {
+      fill: color-mix(in srgb, var(--gold) 22%, transparent);
+      stroke: var(--gold-ink);
+      stroke-dasharray: 4 4;
+    }
+
+    .operator-grammar-list h4,
+    .operator-grammar-list p {
+      margin: 0;
+    }
+
+    .operator-grammar-list h4 {
+      font-size: 20px;
+    }
+
+    .operator-grammar-list article > div {
+      display: grid;
+      gap: 6px;
+      line-height: 1.55;
+    }
+
+    .operator-completion-list {
+      display: grid;
+      gap: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: operator-done;
+    }
+
+    .operator-completion-list li {
+      display: grid;
+      grid-template-columns: minmax(180px, 0.45fr) minmax(0, 1fr);
+      gap: 20px;
+      border-top: 1px solid var(--line);
+      padding: 18px 0;
+      counter-increment: operator-done;
+    }
+
+    .operator-completion-list strong::before {
+      content: "0" counter(operator-done) " ";
+      color: var(--blue);
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    .operator-completion-list span {
+      line-height: 1.65;
+    }
+
+    .operator-boundary-note {
+      max-width: 780px;
+      border-left: 4px solid var(--gold);
+      padding: 12px 16px;
+      background: var(--gold-soft);
+      line-height: 1.65;
+    }
+
+    .operator-brief-footer {
+      display: grid;
+      gap: 6px;
+      margin-top: 72px;
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      color: var(--muted-strong);
+    }
+
+    @media (max-width: 760px) {
+      .operator-focus-shell {
+        grid-template-columns: 1fr;
+      }
+
+      .operator-focus-actions {
+        justify-content: flex-start;
+      }
+
+      .operator-scale-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .operator-scale-strip > div:nth-child(2) {
+        border-right: 0;
+      }
+
+      .operator-scale-strip > div:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .operator-first-done ol,
+      .operator-beat-overview,
+      .operator-shot-fields,
+      .operator-completion-list li {
+        grid-template-columns: 1fr;
+      }
+
+      .operator-story-spine .blueprint-beat-tab {
+        grid-template-columns: 1fr;
+        gap: 7px;
+      }
+
+      .operator-grammar-list article {
+        grid-template-columns: 112px minmax(0, 1fr);
+        gap: 14px;
+      }
+    }
+
+    @media (min-width: 1000px) and (max-height: 950px) {
+      .operator-reading-flow {
+        padding-top: 28px;
+      }
+
+      .operator-glance {
+        gap: 12px;
+      }
+
+      .operator-glance h1 {
+        max-width: 22ch;
+        font-size: clamp(44px, 4.4vw, 56px);
+      }
+
+      .operator-promise {
+        font-size: 17px;
+        line-height: 1.5;
+      }
+
+      .operator-scale-strip > div {
+        padding-block: 9px;
+      }
+
+      .operator-scale-strip strong {
+        font-size: 28px;
+      }
+
+      .operator-question-line strong {
+        font-size: 28px;
+      }
+
+      .operator-experience-line p,
+      .operator-first-done li {
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .operator-first-done {
+        padding-block: 10px;
+      }
+
+      .operator-read-later {
+        padding-top: 8px;
+        font-size: 12px;
+      }
+    }
+
+    @media print {
+      :root {
+        color-scheme: light;
+      }
+
+      body[data-review-mode="blueprint"] {
+        background: #fff;
+        color: #111;
+      }
+
+      body[data-review-mode="blueprint"] .operator-focus-shell,
+      body[data-review-mode="blueprint"] .operator-audit-files,
+      body[data-review-mode="blueprint"] .technical-meta,
+      body[data-review-mode="blueprint"] .theme-toggle,
+      body[data-review-mode="blueprint"] .operator-brief-footer {
+        display: none !important;
+      }
+
+      body[data-review-mode="blueprint"] .operator-reading-flow {
+        gap: 32px;
+        padding: 0;
+      }
+
+      body[data-review-mode="blueprint"] .operator-primary-section {
+        break-inside: avoid;
+      }
+
+      body[data-review-mode="blueprint"] .operator-glance h1 {
+        font-size: 40px;
+      }
+
+      body[data-review-mode="blueprint"] .operator-story-spine .blueprint-beat-tab,
+      body[data-review-mode="blueprint"] .operator-beat-detail.blueprint-active-canvas {
+        border-color: #bbb;
+        background: #fff;
+        color: #111;
+        box-shadow: none;
+      }
+
+      body[data-review-mode="blueprint"] .operator-story-spine .blueprint-beat-tab {
+        grid-template-columns: 130px 1fr 1fr auto;
+      }
+
+      body[data-review-mode="blueprint"] .operator-grammar-list svg {
+        background: #fff;
+        stroke: #333;
+      }
+    }
+
     @media (prefers-reduced-motion: reduce) {
       .bridge-storyboard-flow,
       .editorial-handoff-shell,
@@ -5814,140 +6480,162 @@
           </section>
         </section>
 
-        <section class="content-production-blueprint-panel" id="content-production-blueprint-root" data-mode-panel="blueprint" data-content-production-blueprint-root="true" aria-labelledby="content-production-blueprint-title">
-          <section class="content-production-blueprint-shell" data-blueprint-review-only="true" data-blueprint-production-approved="false">
-            <header class="blueprint-header">
-              <div>
-                <p class="hub-eyebrow">Content Production Blueprint / 定量制作設計</p>
-                <h2 id="content-production-blueprint-title">『鐘のない塔』を、判断可能な制作仕様として読む</h2>
-                <p class="lede">3件の採用済み文言を暫定基準に、180秒・6拍・19ショット・20字幕を測定可能な制約へ変換したローカル設計です。生成・素材選定・権利許諾・canon・production approval は行いません。</p>
-                <div class="blueprint-identity-row" aria-label="Blueprint identity and status">
-                  <span class="tag blue">fff-content-production-blueprint-001</span>
-                  <span class="tag gold">PROVISIONAL PRODUCTION BLUEPRINT</span>
-                  <span class="tag red">NOT APPROVED / NOT CANONICAL</span>
-                  <span class="tag" data-blueprint-data-source>embedded read-only fallback</span>
-                </div>
+        <section class="content-production-blueprint-panel operator-production-brief" id="content-production-blueprint-root" data-mode-panel="blueprint" data-content-production-blueprint-root="true" data-operator-production-brief-root="true" aria-labelledby="content-production-blueprint-title">
+          <section class="content-production-blueprint-shell operator-brief-shell" data-blueprint-review-only="true" data-blueprint-production-approved="false" data-operator-primary-scroll-owner="document">
+            <header class="operator-focus-shell" data-operator-focus-shell="true">
+              <div class="operator-focus-brand">
+                <a class="operator-wordmark" href="?mode=brief">Fast Fiction Factory</a>
+                <span class="operator-status">暫定制作指示 · 未承認</span>
+                <span class="technical-meta">fff-operator-production-brief-001</span>
               </div>
-              <nav class="handoff-route-actions" aria-label="Blueprint source routes">
-                <a class="handoff-route-link" href="?mode=derivative">Derivativeへ戻る</a>
-                <a class="handoff-route-link" href="?mode=handoff">Handoff</a>
-                <a class="handoff-route-link" href="?mode=brief">Brief</a>
-              </nav>
-            </header>
-
-            <section class="blueprint-section" data-blueprint-content-contract="true" aria-labelledby="blueprint-content-contract-title">
-              <header class="blueprint-section-head">
-                <div>
-                  <p class="hub-eyebrow">1 / Content Contract</p>
-                  <h3 id="blueprint-content-contract-title">何を約束し、何を未解決のまま残すか</h3>
+              <div class="operator-focus-actions">
+                <div class="theme-toggle" role="group" aria-label="Theme">
+                  <span>表示</span>
+                  <button class="theme-button" type="button" data-theme-target="light" aria-pressed="false">Light</button>
+                  <button class="theme-button" type="button" data-theme-target="dark" aria-pressed="false">Dark</button>
+                  <button class="theme-button" type="button" data-theme-target="auto" aria-pressed="true">Auto</button>
                 </div>
-                <span class="tag gold" data-blueprint-profile-status>provisional_review_profile</span>
-              </header>
-              <div class="blueprint-contract-grid">
-                <div class="blueprint-contract-metric"><strong data-blueprint-duration>180s</strong><span>total runtime</span></div>
-                <div class="blueprint-contract-metric"><strong data-blueprint-beat-count>6</strong><span>beats</span></div>
-                <div class="blueprint-contract-metric"><strong data-blueprint-shot-count>19</strong><span>shots</span></div>
-                <div class="blueprint-contract-metric"><strong data-blueprint-subtitle-count>20</strong><span>subtitles</span></div>
-                <div class="blueprint-contract-metric"><strong data-blueprint-narration-count>6</strong><span>narrations</span></div>
-                <div class="blueprint-contract-metric"><strong data-blueprint-thumbnail-count>3</strong><span>thumbnails</span></div>
-                <div class="blueprint-contract-metric"><strong>1920×1080</strong><span>16:9 · 30fps planning</span></div>
-                <div class="blueprint-contract-metric"><strong data-blueprint-acceptance-status>P/W/F</strong><span>acceptance</span></div>
-                <div class="blueprint-dod-summary" data-blueprint-global-dod>
-                  <strong>Definition of Done</strong>
-                  <span>global + 6 beats + 19 shots + 20 subtitles を全件検査</span>
-                  <span>unknown vocabulary=fail</span>
-                  <span>failures=0 / warningsは明示</span>
-                  <span>review-only; render=false</span>
-                </div>
+                <a class="handoff-route-link" href="?mode=brief">Briefへ戻る</a>
               </div>
-              <div class="blueprint-contract-copy-grid" aria-label="Content promise and unresolved boundary">
-                <article><strong>Content promise</strong><span data-blueprint-content-promise>鐘のない塔から未解決の選択へ進む3分の調査導線。</span></article>
-                <article><strong>Presented question</strong><span data-blueprint-presented-question>時間を戻すか、名前を戻すか。</span></article>
-                <article><strong>Deliberately unresolved</strong><span data-blueprint-unresolved>Toma / brass moth / Council / ending truth。</span></article>
-              </div>
-            </section>
-
-            <section class="blueprint-section" data-blueprint-constraint-envelope="true" aria-labelledby="blueprint-constraint-envelope-title">
-              <header class="blueprint-section-head">
-                <div>
-                  <p class="hub-eyebrow">2 / Constraint Envelope</p>
-                  <h3 id="blueprint-constraint-envelope-title">LOCKED / BOUNDED / FREE</h3>
-                </div>
-                <p class="section-note">FREEは非意味的な微差のみ。各ショットは列挙値と数値範囲で制御。</p>
-              </header>
-              <div class="blueprint-constraint-grid">
-                <article class="blueprint-constraint-column"><h4>LOCKED · 変更不可</h4><ul data-blueprint-locked-list><li>6拍順序・180秒・IDs・3件の文言</li></ul></article>
-                <article class="blueprint-constraint-column"><h4>BOUNDED · 列挙 / 数値</h4><ul data-blueprint-bounded-list><li>composition / scale / motion / transition / occupancy</li></ul></article>
-                <article class="blueprint-constraint-column"><h4>FREE · 低リスク微差</h4><ul data-blueprint-free-list><li>texture nuance / decorative variation / minor easing / prop wear</li></ul></article>
-              </div>
-              <p class="section-note" data-blueprint-vocabulary-summary>controlled vocabulary: composition 8 · scale 5 · motion 6 · transition 5 · palette 6 · asset 7 · information 7</p>
-            </section>
-
-            <section class="blueprint-section" data-blueprint-runway="true" aria-labelledby="blueprint-runway-title">
-              <header class="blueprint-section-head">
-                <div>
-                  <p class="hub-eyebrow">3 / Six-beat Runway</p>
-                  <h3 id="blueprint-runway-title">時間・shot・subtitleを固定して拍を切り替える</h3>
-                </div>
-                <p class="section-note">Arrow / Home / End · utility anchorは全拍で固定</p>
-              </header>
-              <div class="blueprint-runway" role="tablist" aria-label="Content Production Blueprint six-beat runway" aria-orientation="horizontal" data-blueprint-beat-tabs></div>
-            </section>
-
-            <section class="blueprint-active-canvas" id="content-production-blueprint-active-canvas" role="tabpanel" tabindex="0" aria-live="polite" data-blueprint-active-canvas="true">
-              <header class="blueprint-active-header">
-                <div>
-                  <p class="hub-eyebrow" data-blueprint-active-position>4 / ACTIVE BEAT · BEAT 1 / 6</p>
-                  <h3 data-blueprint-active-title>読み込み中</h3>
-                  <p class="section-note" data-blueprint-active-time>00:00-00:20 · 20s</p>
-                </div>
-                <div class="tag-row">
-                  <span class="tag blue" data-blueprint-active-scale>3 shots</span>
-                  <span class="tag gold" data-blueprint-active-dod-count>DoD pending</span>
-                </div>
-              </header>
-              <div class="blueprint-active-body" data-blueprint-active-body>
-                <p class="empty-state">定量仕様を読み込んでいます。</p>
-              </div>
-            </section>
-
-            <section class="blueprint-utility-region" data-blueprint-utility-anchor="true" aria-label="Blueprint utility drawers">
-              <p class="hub-eyebrow">5 / Utility Drawers · beat非依存領域</p>
-              <details data-blueprint-change-history-owner="true">
-                <summary>Change History / 変更履歴（3件・既定で閉じる）</summary>
-                <div class="blueprint-utility-body">
-                  <p class="section-note">Before / After と provenance はこの棚だけが所有し、Active Beatには重複表示しません。</p>
-                  <ol class="blueprint-history-list" data-blueprint-change-history-list></ol>
-                </div>
-              </details>
-              <details data-blueprint-files-export-owner="true">
-                <summary>Files / Export（Blueprint 8ファイル・既定で閉じる）</summary>
-                <div class="blueprint-utility-body">
-                  <p class="section-note">静的パッケージは監査・手動移送用です。ファイルの存在は制作、素材選定、権利許諾を意味しません。</p>
+              <details class="operator-audit-files blueprint-utility-region" data-operator-audit-files="true" data-blueprint-utility-anchor="true" data-blueprint-change-history-owner="true" data-blueprint-files-export-owner="true" data-blueprint-guards-owner="true">
+                <summary>Audit &amp; Files <span>技術監査とファイル</span></summary>
+                <div class="operator-audit-body">
+                  <p>以下は監査用です。制作内容、素材選定、権利許諾、render、公開を承認するものではありません。</p>
                   <div class="blueprint-file-grid" data-blueprint-package-files>
-                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/README_BLUEPRINT.md"><strong>README_BLUEPRINT.md</strong><span>operator guide</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/README_BLUEPRINT.md"><strong>README_BLUEPRINT.md</strong><span>technical guide</span></a>
                     <a class="handoff-file-link" href="../../artifacts/production-blueprint/production-blueprint.json"><strong>production-blueprint.json</strong><span>machine authority</span></a>
                     <a class="handoff-file-link" href="../../artifacts/production-blueprint/beat-specs.csv"><strong>beat-specs.csv</strong><span>6 beat rows</span></a>
                     <a class="handoff-file-link" href="../../artifacts/production-blueprint/shot-specs.csv"><strong>shot-specs.csv</strong><span>19 shot rows</span></a>
                     <a class="handoff-file-link" href="../../artifacts/production-blueprint/subtitle-metrics.csv"><strong>subtitle-metrics.csv</strong><span>20 cue rows</span></a>
-                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/visual-system.md"><strong>visual-system.md</strong><span>tokens / grammar</span></a>
-                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/acceptance-matrix.csv"><strong>acceptance-matrix.csv</strong><span>pass / warn / fail</span></a>
-                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/blueprint-package-manifest.json"><strong>blueprint-package-manifest.json</strong><span>bytes / SHA256</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/visual-system.md"><strong>visual-system.md</strong><span>technical grammar</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/acceptance-matrix.csv"><strong>acceptance-matrix.csv</strong><span>machine checks</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/production-blueprint/blueprint-package-manifest.json"><strong>blueprint-package-manifest.json</strong><span>source hashes</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/operator-production-brief/README_OPERATOR_BRIEF.md"><strong>README_OPERATOR_BRIEF.md</strong><span>human guide</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/operator-production-brief/operator-production-brief.json"><strong>operator-production-brief.json</strong><span>human-facing model</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/operator-production-brief/beat-story-map.csv"><strong>beat-story-map.csv</strong><span>continuous spine</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/operator-production-brief/visual-grammar-guide.md"><strong>visual-grammar-guide.md</strong><span>scale and motion</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/operator-production-brief/operator-completion-checklist.md"><strong>operator-completion-checklist.md</strong><span>human completion</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/operator-production-brief/operator-brief-manifest.json"><strong>operator-brief-manifest.json</strong><span>package hashes</span></a>
+                    <a class="handoff-file-link" href="../../artifacts/operator-production-brief-result.json"><strong>operator-production-brief-result.json</strong><span>read-only result</span></a>
+                    <a class="handoff-file-link" href="../../docs/review/next-terminal-handoff.md"><strong>next-terminal-handoff.md</strong><span>environment report</span></a>
                   </div>
+                  <details class="operator-audit-subsection">
+                    <summary>採用済み文言の履歴（3件）</summary>
+                    <ol class="blueprint-history-list" data-blueprint-change-history-list></ol>
+                  </details>
+                  <details class="operator-audit-subsection">
+                    <summary>閉じている境界</summary>
+                    <ul class="blueprint-guard-list" data-blueprint-guard-list></ul>
+                  </details>
                 </div>
               </details>
-              <details data-blueprint-guards-owner="true">
-                <summary>Guards / 制作・真実・権利境界（既定で閉じる）</summary>
-                <div class="blueprint-utility-body">
-                  <p class="section-note">provider/API、credentials、generation、render、upload、publication、database、asset selection、rights clearance、final canon は閉鎖。</p>
-                  <ul class="blueprint-guard-list" data-blueprint-guard-list></ul>
-                </div>
-              </details>
-            </section>
+            </header>
 
-            <footer class="revision-footer">
-              <p class="section-note">status=<strong>provisional_production_blueprint</strong> · canonical=<strong>false</strong> · production_approved=<strong>false</strong></p>
-              <p class="section-note">asset_status=<strong>unselected</strong> · rights_status=<strong>not_cleared</strong> · render_authorized=<strong>false</strong></p>
+            <main class="operator-reading-flow" data-operator-primary-flow="true">
+              <section class="operator-primary-section operator-glance" data-operator-primary-section="glance" data-blueprint-content-contract="true" data-blueprint-constraint-envelope="true" aria-labelledby="content-production-blueprint-title">
+                <p class="hub-eyebrow">制作指示書 / Operator Production Brief</p>
+                <h1 id="content-production-blueprint-title">鐘のない塔から、時間か名前かという未解決の選択へ</h1>
+                <p class="operator-promise" data-blueprint-content-promise>鐘のない塔が鳴る矛盾を入口に、手がかりを一つずつ見せながら、最後まで答えを断定しない3分のミステリー／ロア映像をつくります。</p>
+                <div class="operator-first-view-status">
+                  <span class="tag gold" data-blueprint-profile-status>暫定レビュー用</span>
+                  <span class="tag red">最終版ではありません</span>
+                  <span class="tag" data-blueprint-data-source>read-only source loading</span>
+                </div>
+                <div class="operator-scale-strip" aria-label="制作規模">
+                  <div><strong data-blueprint-duration>180秒</strong><span>全体</span></div>
+                  <div><strong data-blueprint-beat-count>6幕</strong><span>物語の進行</span></div>
+                  <div><strong data-blueprint-shot-count>19</strong><span>ショット</span></div>
+                  <div><strong data-blueprint-subtitle-count>20</strong><span>字幕</span></div>
+                </div>
+                <div class="operator-question-line">
+                  <span>観客に残す問い</span>
+                  <strong data-blueprint-presented-question>時間を戻すのか、消えた名前を返すのか。</strong>
+                </div>
+                <div class="operator-experience-line">
+                  <span>見終えたときの感覚</span>
+                  <p>証拠らしいものを追ったのに、どの説明も決め手にならない。自分なら何を取り戻すかを考えたくなる。</p>
+                </div>
+                <div class="operator-first-done" data-blueprint-global-dod>
+                  <p class="hub-eyebrow">この5つが揃えば完成</p>
+                  <ol>
+                    <li>3分間を通して中心の問いが理解できる</li>
+                    <li>各幕が一つの主な考えを前へ進める</li>
+                    <li>各ショットで最初に見る対象が一つに絞られている</li>
+                    <li>字幕が主役の映像と競合しない</li>
+                    <li>未解決の真実を未解決のまま保つ</li>
+                  </ol>
+                </div>
+                <aside class="operator-read-later" data-operator-narration-debt-count="4">
+                  <strong>後で読む</strong>
+                  <span>幕1・3・4・6は、仕上げ前に声に出して間と読みやすさを確認します。ここでは失敗扱いにせず、文言や尺も変えません。</span>
+                </aside>
+              </section>
+
+              <section class="operator-primary-section operator-story-section" data-operator-primary-section="story-spine" data-blueprint-runway="true" aria-labelledby="blueprint-runway-title">
+                <header class="operator-section-heading">
+                  <p class="hub-eyebrow">六幕の流れ / Six-beat Story Spine</p>
+                  <h2 id="blueprint-runway-title">問いを深める順番を、一続きで読む</h2>
+                  <p>六幕は同時に見渡せます。選ぶと、その幕のショットだけが下へ開きます。開く詳細は常に一つです。</p>
+                </header>
+                <div class="blueprint-runway operator-story-spine" role="tablist" aria-label="六幕の流れ" aria-orientation="vertical" data-blueprint-beat-tabs></div>
+                <section class="blueprint-active-canvas operator-beat-detail" id="content-production-blueprint-active-canvas" role="tabpanel" tabindex="0" aria-live="polite" data-blueprint-active-canvas="true" data-operator-normal-flow-detail="true">
+                  <header class="operator-beat-detail-head">
+                    <p class="hub-eyebrow" data-blueprint-active-position>選択した幕</p>
+                    <h3 data-blueprint-active-title>読み込み中</h3>
+                    <p data-blueprint-active-time>00:00–00:20</p>
+                    <span class="tag blue" data-blueprint-active-scale>3ショット</span>
+                    <span class="technical-meta" data-blueprint-active-dod-count>human completion</span>
+                  </header>
+                  <div class="blueprint-active-body" data-blueprint-active-body>
+                    <p class="empty-state">制作指示を読み込んでいます。</p>
+                  </div>
+                </section>
+              </section>
+
+              <section class="operator-primary-section operator-visual-primer" data-operator-primary-section="visual-grammar" aria-labelledby="operator-visual-primer-title">
+                <header class="operator-section-heading">
+                  <p class="hub-eyebrow">画面の文法 / Visual Grammar Primer</p>
+                  <h2 id="operator-visual-primer-title">大きさと動きを、専門語なしで揃える</h2>
+                  <p>大きさは「どこまで見せるか」、動きは「何へ注意を向けるか」を決めます。英語名は監査用の小さな補助情報です。</p>
+                </header>
+                <h3>画面の大きさ</h3>
+                <div class="operator-grammar-list" data-operator-shot-scale-primer="true">
+                  <article data-operator-shot-scale="wide"><svg viewBox="0 0 160 90" role="img" aria-label="全景の図"><rect x="4" y="4" width="152" height="82" rx="5"/><rect x="68" y="31" width="24" height="31" class="subject"/></svg><div><h4>全景</h4><p>場所全体と人物・物の関係を一度に見せます。</p><p><strong>使う時:</strong> 塔や駅など、まず状況を理解させたい時。</p><small class="technical-meta">wide</small></div></article>
+                  <article data-operator-shot-scale="medium"><svg viewBox="0 0 160 90" role="img" aria-label="中景の図"><rect x="4" y="4" width="152" height="82" rx="5"/><rect x="52" y="20" width="56" height="55" class="subject"/></svg><div><h4>中景</h4><p>人物や対象と、その周辺の状況を一緒に読ませます。</p><p><strong>使う時:</strong> 行動と背景の意味を同時に見せたい時。</p><small class="technical-meta">medium</small></div></article>
+                  <article data-operator-shot-scale="close"><svg viewBox="0 0 160 90" role="img" aria-label="寄りの図"><rect x="4" y="4" width="152" height="82" rx="5"/><rect x="36" y="12" width="88" height="68" class="subject"/></svg><div><h4>寄り</h4><p>手がかりや表情など、一つの対象へ注意を集めます。</p><p><strong>使う時:</strong> 観客に見落としてほしくない情報がある時。</p><small class="technical-meta">close</small></div></article>
+                  <article data-operator-shot-scale="extreme_close"><svg viewBox="0 0 160 90" role="img" aria-label="極端な寄りの図"><rect x="4" y="4" width="152" height="82" rx="5"/><rect x="17" y="7" width="126" height="76" class="subject"/></svg><div><h4>極端な寄り</h4><p>小さな刻印や異常を画面いっぱいにして強調します。</p><p><strong>使う時:</strong> 一瞬で重要な細部を記憶させたい時。多用しません。</p><small class="technical-meta">extreme_close</small></div></article>
+                  <article data-operator-shot-scale="graphic_fullframe"><svg viewBox="0 0 160 90" role="img" aria-label="図版全画面の図"><rect x="4" y="4" width="152" height="82" rx="5"/><path d="M24 24h112M24 43h80M24 62h98" class="graphic"/></svg><div><h4>図版全画面</h4><p>台帳、仮説、選択肢を図版として画面全体で読ませます。</p><p><strong>使う時:</strong> 情報の比較や文字の意味が映像より重要な時。</p><small class="technical-meta">graphic_fullframe</small></div></article>
+                </div>
+                <h3>カメラの動き</h3>
+                <div class="operator-grammar-list" data-operator-camera-motion-primer="true">
+                  <article data-operator-camera-motion="locked"><svg viewBox="0 0 160 90" role="img" aria-label="固定の図"><rect x="31" y="19" width="98" height="52" rx="4"/><path d="M45 10v16M115 10v16"/></svg><div><h4>固定</h4><p>画面を動かさず、事実や違和感を落ち着いて見せます。</p><p><strong>例:</strong> 空の鐘枠を静止して見せる。</p><small class="technical-meta">locked</small></div></article>
+                  <article data-operator-camera-motion="slow_push"><svg viewBox="0 0 160 90" role="img" aria-label="ゆっくり寄る図"><rect x="55" y="23" width="50" height="44" rx="4"/><path d="M18 45h27M38 36l9 9-9 9M142 45h-27M122 36l-9 9 9 9"/></svg><div><h4>ゆっくり寄る</h4><p>時間をかけて一つの手がかりへ注意を集めます。</p><p><strong>例:</strong> 真鍮の蛾の刻印へ近づく。</p><small class="technical-meta">slow_push</small></div></article>
+                  <article data-operator-camera-motion="slow_pull"><svg viewBox="0 0 160 90" role="img" aria-label="ゆっくり引く図"><rect x="55" y="23" width="50" height="44" rx="4"/><path d="M47 45H18M25 36l-9 9 9 9M113 45h29M135 36l9 9-9 9"/></svg><div><h4>ゆっくり引く</h4><p>対象から距離を取り、孤立や未解決感を残します。</p><p><strong>例:</strong> 最後に空の鐘枠から離れる。</p><small class="technical-meta">slow_pull</small></div></article>
+                  <article data-operator-camera-motion="slow_pan"><svg viewBox="0 0 160 90" role="img" aria-label="横へ振る図"><rect x="16" y="23" width="42" height="44" rx="4"/><rect x="102" y="23" width="42" height="44" rx="4"/><path d="M62 45h34M88 36l10 9-10 9"/></svg><div><h4>横へ振る</h4><p>同じ空間の中で、視線を一つの対象から次へ移します。</p><p><strong>例:</strong> 台帳の行から消えた名前へ移る。</p><small class="technical-meta">slow_pan</small></div></article>
+                  <article data-operator-camera-motion="controlled_parallax"><svg viewBox="0 0 160 90" role="img" aria-label="奥行き差を動かす図"><rect x="22" y="18" width="42" height="56" rx="4"/><rect x="86" y="27" width="52" height="38" rx="4"/><path d="M17 80h62M83 74h64"/></svg><div><h4>奥行き差を動かす</h4><p>前景と背景を少しずらし、平面素材に静かな奥行きをつくります。</p><p><strong>例:</strong> 評議会の影と台帳を別の層で動かす。</p><small class="technical-meta">controlled_parallax</small></div></article>
+                  <article data-operator-camera-motion="graphic_dissolve"><svg viewBox="0 0 160 90" role="img" aria-label="図版を溶かしてつなぐ図"><rect x="14" y="20" width="52" height="50" rx="4"/><rect x="94" y="20" width="52" height="50" rx="4"/><circle cx="80" cy="45" r="19" class="dissolve"/></svg><div><h4>図版を溶かしてつなぐ</h4><p>二つの図版を重ねながら切り替え、連想をつなぎます。</p><p><strong>例:</strong> 複数の仮説札を答えにせず入れ替える。</p><small class="technical-meta">graphic_dissolve</small></div></article>
+                </div>
+              </section>
+
+              <section class="operator-primary-section operator-completion" data-operator-primary-section="definition-of-done" aria-labelledby="operator-completion-title">
+                <header class="operator-section-heading">
+                  <p class="hub-eyebrow">完成とみなす条件 / Definition of Done</p>
+                  <h2 id="operator-completion-title">機械の合格ではなく、観客が見て判断できる状態で終える</h2>
+                </header>
+                <ol class="operator-completion-list" data-operator-global-completion-conditions="5">
+                  <li><strong>中心の問いが通る</strong><span>鐘の矛盾から「時間か、名前か」まで、3分の一本の問いとして追える。</span></li>
+                  <li><strong>各幕が一歩だけ進む</strong><span>場所、手がかり、圧力、仮説、選択の順で、同じ説明を繰り返さない。</span></li>
+                  <li><strong>視線の主役が一つ</strong><span>どのショットも、最初に見る対象を迷わず指させる。</span></li>
+                  <li><strong>字幕と映像が競合しない</strong><span>文字を読む瞬間にも、重要な手がかりが隠れたり二重に主張したりしない。</span></li>
+                  <li><strong>未解決を守る</strong><span>トーマ、真鍮の蛾、評議会、最後の選択を事実として確定しない。</span></li>
+                </ol>
+                <p class="operator-boundary-note" data-blueprint-unresolved>素材は未選定、権利は未確認、生成・render・公開・final canon は未承認です。</p>
+              </section>
+            </main>
+
+            <footer class="operator-brief-footer">
+              <p>制作判断に必要な説明だけを本文に置き、数値監査と package は上部の Audit &amp; Files に保持しています。</p>
+              <span class="technical-meta">source: fff-content-production-blueprint-001 · canonical=false · production_approved=false</span>
             </footer>
           </section>
         </section>
@@ -7598,6 +8286,66 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       overlay_text_mode: ["none", "subtitle_only", "single_label", "subtitle_plus_single_label"],
       audio_role: ["ambient_bed", "mechanical_detail", "tension_pulse", "silence_hold", "closing_resonance"],
       motif: ["bellless_frame", "brass_moth_and_9_17", "fading_name_contours", "translucent_divider", "hold_labels", "time_or_names_split"]
+    });
+    const OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID = "fff-operator-production-brief-001";
+    const OPERATOR_SHOT_SCALE_LABELS = Object.freeze({
+      wide: "全景",
+      medium: "中景",
+      close: "寄り",
+      extreme_close: "極端な寄り",
+      graphic_fullframe: "図版全画面"
+    });
+    const OPERATOR_CAMERA_MOTION_LABELS = Object.freeze({
+      locked: "固定",
+      slow_push: "ゆっくり寄る",
+      slow_pull: "ゆっくり引く",
+      slow_pan: "横へ振る",
+      controlled_parallax: "奥行き差を動かす",
+      graphic_dissolve: "図版を溶かしてつなぐ"
+    });
+    const OPERATOR_OVERLAY_LABELS = Object.freeze({
+      none: "画面文字なし",
+      subtitle_only: "字幕のみ（最大2行・1行18字）",
+      single_label: "短いラベル一つ",
+      subtitle_plus_single_label: "字幕と短いラベル（全体で最大2行・1行18字）"
+    });
+    const OPERATOR_BEAT_GUIDE = Object.freeze({
+      "bridge-storyboard-beat-1-bellless-tower": {
+        viewer_takeaway: "鐘がない塔から正午に鐘音がする矛盾が、調査の入口になる。",
+        narrative_purpose: "空の鐘枠を証拠として見せ、原因を問いのまま残す。",
+        visual_anchor: "空の鐘枠",
+        done_when: "空の鐘枠、撤去記録、『何が鳴る？』の順で読め、原因を確定しない。"
+      },
+      "bridge-storyboard-beat-2-brass-moth": {
+        viewer_takeaway: "ミラ、兄トーマのメモ、正体不明の真鍮の蛾が結び付く。",
+        narrative_purpose: "主人公の文脈と個人的な手掛かりを置き、蛾の複数候補を開く。",
+        visual_anchor: "真鍮の蛾と9:17",
+        done_when: "仕事場、メモと蛾、9:17を示し、蛾の機能やトーマの生死を決めない。"
+      },
+      "bridge-storyboard-beat-3-erased-names": {
+        viewer_takeaway: "『分』と名前が並ぶ台帳は、証拠にも偽記録にも見える。",
+        narrative_purpose: "調査対象を具体化しながら、手掛かりへの疑いを広げる。",
+        visual_anchor: "薄れる名前の輪郭",
+        done_when: "台帳、名前と分、薄れる輪郭を示し、真正性や消失を事実化しない。"
+      },
+      "bridge-storyboard-beat-4-council-shadow": {
+        viewer_takeaway: "評議会への告発はあるが、動機も台帳との関係も確定しない。",
+        narrative_purpose: "制度的な圧力を加え、告発説と偽記録説を同じ重みで保つ。",
+        visual_anchor: "透過仕切りと匿名シルエット",
+        done_when: "制度側、二つの説、動機不明を渡し、単純な悪役にしない。"
+      },
+      "bridge-storyboard-beat-5-held-answers": {
+        viewer_takeaway: "トーマ、蛾、評議会には複数説があり、どれもまだ真実ではない。",
+        narrative_purpose: "三つの主要疑問を明示的に保留し、答えの自動確定を防ぐ。",
+        visual_anchor: "候補札とHOLD表示",
+        done_when: "三組の候補を見せ、どの生死・機能・動機も採用しない。"
+      },
+      "bridge-storyboard-beat-6-time-or-names": {
+        viewer_takeaway: "結末の問いは『失われた時間か、消えた名前か』。選択は未定。",
+        narrative_purpose: "二択を提示し、冒頭の鐘枠へ戻して問いのまま終える。",
+        visual_anchor: "時間と名前の分割",
+        done_when: "二択、空欄の台帳、空の鐘枠を示し、最終選択や回復を描かない。"
+      }
     });
     const editorialDerivativeSamplePatch = {
       schemaVersion: EDITORIAL_REVISION_PATCH_SCHEMA,
@@ -10614,10 +11362,6 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       }
       activeContentProductionBlueprintBeatIndex = Math.max(0, Math.min(Number.isFinite(index) ? index : 0, beats.length - 1));
       renderContentProductionBlueprint();
-      const canvas = roots.contentProductionBlueprint?.querySelector("[data-blueprint-active-canvas]");
-      if (canvas) {
-        canvas.scrollTop = 0;
-      }
       if (focusSelectedBeat) {
         roots.contentProductionBlueprint?.querySelector(`[data-blueprint-beat-index="${activeContentProductionBlueprintBeatIndex}"]`)?.focus();
       }
@@ -10632,10 +11376,10 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       activeContentProductionBlueprintBeatIndex = Math.max(0, Math.min(activeContentProductionBlueprintBeatIndex, model.beats.length - 1));
       const beat = model.beats[activeContentProductionBlueprintBeatIndex];
       const shots = (model.shots || []).filter((shot) => shot.beat_id === beat.beat_id);
-      const subtitles = (model.subtitle_metrics || []).filter((cue) => cue.beat_id === beat.beat_id);
       const contract = model.content_contract || {};
 
       root.setAttribute("data-blueprint-artifact-id", model.artifact_id);
+      root.setAttribute("data-operator-artifact-id", OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID);
       root.setAttribute("data-blueprint-status", model.status);
       root.setAttribute("data-blueprint-canonical", String(model.canonical));
       root.setAttribute("data-blueprint-production-approved", String(model.production_approved));
@@ -10643,40 +11387,34 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       root.setAttribute("data-blueprint-shot-count", String(model.shots?.length || 0));
       root.setAttribute("data-blueprint-subtitle-count", String(model.subtitle_metrics?.length || 0));
       root.setAttribute("data-blueprint-load-state", contentProductionBlueprintLoadState);
+      root.setAttribute("data-operator-primary-section-count", "4");
+      root.setAttribute("data-operator-nested-primary-scroll-owner-count", "0");
+      root.setAttribute("data-operator-maximum-expanded-beats", "1");
       root.querySelector("[data-blueprint-utility-anchor]")?.setAttribute("data-blueprint-active-beat-id", beat.beat_id);
 
       setEditorialDerivativeText(root, "[data-blueprint-data-source]", contentProductionBlueprintLoadState === "static_package_authority" ? "static package authority · contract validated" : contentProductionBlueprintLoadState === "embedded_fallback_validated" ? "embedded read-only fallback · self-validated exact plan" : "FALLBACK BLOCKED");
-      setEditorialDerivativeText(root, "[data-blueprint-profile-status]", model.profile?.status || contract.target_profile_status || "provisional_review_profile");
-      setEditorialDerivativeText(root, "[data-blueprint-duration]", `${contract.total_duration_seconds || 180}s`);
-      setEditorialDerivativeText(root, "[data-blueprint-beat-count]", contract.beat_count ?? model.beats.length);
+      setEditorialDerivativeText(root, "[data-blueprint-profile-status]", "暫定レビュー用");
+      setEditorialDerivativeText(root, "[data-blueprint-duration]", `${contract.total_duration_seconds || 180}秒`);
+      setEditorialDerivativeText(root, "[data-blueprint-beat-count]", `${contract.beat_count ?? model.beats.length}幕`);
       setEditorialDerivativeText(root, "[data-blueprint-shot-count]", contract.shot_count ?? model.shots?.length ?? 0);
       setEditorialDerivativeText(root, "[data-blueprint-subtitle-count]", contract.subtitle_cue_count ?? model.subtitle_metrics?.length ?? 0);
-      setEditorialDerivativeText(root, "[data-blueprint-narration-count]", contract.narration_segment_count ?? 6);
-      setEditorialDerivativeText(root, "[data-blueprint-thumbnail-count]", contract.thumbnail_direction_count ?? 3);
-      const acceptanceRows = Array.isArray(model.acceptance_matrix) ? model.acceptance_matrix : [];
-      const acceptanceCounts = ["pass", "warn", "fail"].map((status) => acceptanceRows.filter((row) => row.status === status).length);
-      setEditorialDerivativeText(root, "[data-blueprint-acceptance-status]", acceptanceCounts.join("/"));
-      setEditorialDerivativeText(root, "[data-blueprint-content-promise]", contract.content_promise_ja || "3分の調査導線");
+      setEditorialDerivativeText(root, "[data-blueprint-content-promise]", `${contract.content_promise_ja || "3分の調査導線"} 答えは断定しません。`);
       setEditorialDerivativeText(root, "[data-blueprint-presented-question]", contract.presented_question_ja || "時間を戻すか、名前を戻すか。");
-      setEditorialDerivativeText(root, "[data-blueprint-unresolved]", Array.isArray(contract.deliberately_unresolved_ja) ? contract.deliberately_unresolved_ja.join(" / ") : contract.deliberately_unresolved_ja || "Toma / brass moth / Council / ending truth");
-
-      renderBlueprintEnvelopeList(root.querySelector("[data-blueprint-locked-list]"), model.constraint_envelope?.LOCKED);
-      renderBlueprintEnvelopeList(root.querySelector("[data-blueprint-bounded-list]"), model.constraint_envelope?.BOUNDED);
-      renderBlueprintEnvelopeList(root.querySelector("[data-blueprint-free-list]"), model.constraint_envelope?.FREE);
+      setEditorialDerivativeText(root, "[data-blueprint-unresolved]", "素材は未選定、権利は未確認、生成・render・公開・final canon は未承認です。");
       renderContentProductionBlueprintRunway(root, model.beats);
 
       const activeCanvas = root.querySelector("[data-blueprint-active-canvas]");
       activeCanvas?.setAttribute("aria-labelledby", `content-production-blueprint-beat-tab-${beat.beat_number}`);
       activeCanvas?.setAttribute("data-blueprint-active-beat-id", beat.beat_id);
-      setEditorialDerivativeText(root, "[data-blueprint-active-position]", `4 / ACTIVE BEAT · BEAT ${beat.beat_number} / ${model.beats.length}`);
-      setEditorialDerivativeText(root, "[data-blueprint-active-title]", `${beat.title_ja} · ${beat.beat_id}`);
-      setEditorialDerivativeText(root, "[data-blueprint-active-time]", `${beat.start_time}-${beat.end_time} · ${beat.duration_seconds}s`);
-      setEditorialDerivativeText(root, "[data-blueprint-active-scale]", `${shots.length} shots · ${subtitles.length} subtitles`);
-      setEditorialDerivativeText(root, "[data-blueprint-active-dod-count]", `DoD ${beat.acceptance_checks?.length || 0} checks`);
+      setEditorialDerivativeText(root, "[data-blueprint-active-position]", `幕 ${beat.beat_number} / ${model.beats.length}`);
+      setEditorialDerivativeText(root, "[data-blueprint-active-title]", beat.title_ja);
+      setEditorialDerivativeText(root, "[data-blueprint-active-time]", `${beat.start_time}–${beat.end_time} · ${beat.duration_seconds}秒`);
+      setEditorialDerivativeText(root, "[data-blueprint-active-scale]", `${shots.length}ショット`);
+      setEditorialDerivativeText(root, "[data-blueprint-active-dod-count]", beat.beat_id);
 
       const activeBody = root.querySelector("[data-blueprint-active-body]");
       if (activeBody) {
-        activeBody.innerHTML = renderContentProductionBlueprintBeat(beat, shots, subtitles, model);
+        activeBody.innerHTML = renderContentProductionBlueprintBeat(beat, shots);
       }
       renderBlueprintChangeHistory(root.querySelector("[data-blueprint-change-history-list]"), model.change_history || []);
       renderBlueprintGuards(root.querySelector("[data-blueprint-guard-list]"), model.boundaries || {});
@@ -10689,92 +11427,51 @@ Possible ending: Mira refuses to restore the city's stolen time and instead give
       }
       runway.innerHTML = beats.map((beat, index) => {
         const selected = index === activeContentProductionBlueprintBeatIndex;
+        const guide = OPERATOR_BEAT_GUIDE[beat.beat_id] || {};
         return `
           <button class="blueprint-beat-tab" type="button" id="content-production-blueprint-beat-tab-${escapeHtml(beat.beat_number)}" role="tab" aria-selected="${selected}" aria-controls="content-production-blueprint-active-canvas" tabindex="${selected ? "0" : "-1"}" data-blueprint-beat-select="true" data-blueprint-beat-index="${index}" data-blueprint-beat-id="${escapeHtml(beat.beat_id)}">
-            <strong>BEAT ${escapeHtml(beat.beat_number)} · ${escapeHtml(beat.title_ja)}</strong>
-            <span>${escapeHtml(beat.start_time)}-${escapeHtml(beat.end_time)} · ${escapeHtml(beat.duration_seconds)}s</span>
-            <span>${escapeHtml(beat.shot_count)} shots · ${escapeHtml(beat.subtitle_count)} subtitles</span>
+            <span class="operator-beat-index"><strong>${escapeHtml(beat.beat_number)} · ${escapeHtml(beat.title_ja)}</strong><span>${escapeHtml(beat.start_time)}–${escapeHtml(beat.end_time)} · ${escapeHtml(beat.duration_seconds)}秒 · ${escapeHtml(beat.shot_count)}ショット</span></span>
+            <span class="operator-beat-summary"><strong>観客が受け取ること</strong>${escapeHtml(guide.viewer_takeaway || "この幕の主な考えを一つ前へ進める。")}</span>
+            <span class="operator-beat-summary"><strong>画面の軸</strong>${escapeHtml(guide.visual_anchor || beat.title_ja)}<small>${escapeHtml(guide.done_when || "未解決の境界を守る。")}</small></span>
+            <span class="operator-beat-open">${selected ? "詳細を表示中" : "ショットを見る"}</span>
           </button>`;
       }).join("");
     }
 
-    function renderContentProductionBlueprintBeat(beat, shots, subtitles, model) {
-      const beatChecks = Array.isArray(beat.acceptance_checks) ? beat.acceptance_checks : [];
-      const supportingGoals = Array.isArray(beat.supporting_information_goals) ? beat.supporting_information_goals : [];
+    function renderContentProductionBlueprintBeat(beat, shots) {
+      const guide = OPERATOR_BEAT_GUIDE[beat.beat_id] || {};
       return `
-        <div class="blueprint-beat-facts" aria-label="Active beat scale">
-          ${blueprintFact(`${beat.duration_seconds}s`, "duration")}
-          ${blueprintFact(beat.shot_count, "shot count")}
-          ${blueprintFact(beat.subtitle_count, "subtitle count")}
-          ${blueprintFact(`${blueprintNumber(beat.narration_character_count)}字`, "narration volume")}
-          ${blueprintFact(`${blueprintNumber(beat.narration_characters_per_second)}字/s`, "narration cps")}
-          ${blueprintFact(`${blueprintNumber(beat.motif_budget)}`, "motif budget")}
-        </div>
-        <div class="blueprint-active-dod">
-          <strong>Beat Definition of Done<br>${beatChecks.length} checks</strong>
-          <ul class="blueprint-acceptance-list">${beatChecks.map((item) => `<li>${escapeHtml(blueprintFormatItem(item))}</li>`).join("")}</ul>
-        </div>
-        <div class="blueprint-spec-grid">
-          <article class="blueprint-spec-card">
-            <p class="hub-eyebrow">Information contract</p>
-            <h4>${escapeHtml(beat.primary_information_goal)}</h4>
-            <p class="section-note"><strong>supporting limit:</strong> ${escapeHtml(supportingGoals.slice(0, 2).join(" / ") || "none")}</p>
-            <p class="section-note"><strong>information_role:</strong> ${escapeHtml((beat.information_roles || []).join(" / "))}</p>
-          </article>
-          <article class="blueprint-spec-card">
-            <p class="hub-eyebrow">Visual grammar</p>
-            <h4>${escapeHtml(beat.recurring_motif)} · budget ${escapeHtml(beat.motif_budget)}</h4>
-            <p class="section-note"><strong>palette_role:</strong> ${escapeHtml((beat.palette_roles || []).join(" / "))}</p>
-            <p class="section-note"><strong>asset_class:</strong> ${escapeHtml((beat.asset_classes || []).join(" / "))}</p>
-          </article>
-          <article class="blueprint-spec-card">
-            <p class="hub-eyebrow">Narration · ${escapeHtml(beat.narration_segment_id)}</p>
-            <p>${escapeHtml(beat.narration_text)}</p>
-          </article>
-          <article class="blueprint-spec-card">
-            <p class="hub-eyebrow">Truth / rights boundary</p>
-            <p><strong>truth:</strong> ${escapeHtml(beat.truth_boundary)}</p>
-            <p class="section-note"><strong>rights:</strong> ${escapeHtml(beat.rights_boundary)}</p>
-          </article>
+        <div class="operator-beat-overview" aria-label="この幕の制作意図">
+          <div><strong>観客が受け取ること</strong><span>${escapeHtml(guide.viewer_takeaway || beat.title_ja)}</span></div>
+          <div><strong>物語上の役割</strong><span>${escapeHtml(guide.narrative_purpose || "主な考えを一つ前へ進める。")}</span></div>
+          <div><strong>画面の軸</strong><span>${escapeHtml(guide.visual_anchor || beat.title_ja)}</span></div>
+          <div><strong>この幕の完成</strong><span>${escapeHtml(guide.done_when || "未解決の境界を守る。")}</span></div>
         </div>
         <section aria-labelledby="blueprint-active-shots-title">
-          <div class="blueprint-section-head"><h3 id="blueprint-active-shots-title">Shot Production Specs · ${shots.length}</h3><p class="section-note">各shotは1 composition / 1 scale / 0-1 motion / 1 transition</p></div>
-          <div class="blueprint-shot-list">${shots.map(renderContentProductionBlueprintShot).join("")}</div>
-        </section>
-        <section aria-labelledby="blueprint-active-subtitles-title">
-          <div class="blueprint-section-head"><h3 id="blueprint-active-subtitles-title">Subtitle Metrics · ${subtitles.length}</h3><p class="section-note">duration / chars / CPS / line budget / pass-warn</p></div>
-          <div class="blueprint-subtitle-list">${subtitles.map(renderContentProductionBlueprintSubtitle).join("")}</div>
+          <div class="operator-section-heading"><h3 id="blueprint-active-shots-title">この幕の${shots.length}ショット</h3><p>何を見せ、なぜ置き、どこまで仕上げればよいかを同じ順序で読みます。</p></div>
+          <div class="operator-shot-list">${shots.map(renderContentProductionBlueprintShot).join("")}</div>
         </section>`;
     }
 
     function renderContentProductionBlueprintShot(shot) {
       const overlay = shot.overlay_text_allowance || {};
+      const scaleLabel = OPERATOR_SHOT_SCALE_LABELS[shot.shot_scale] || shot.shot_scale;
+      const motionLabel = OPERATOR_CAMERA_MOTION_LABELS[shot.camera_motion] || shot.camera_motion;
+      const textAllowance = OPERATOR_OVERLAY_LABELS[overlay.mode] || "字幕は主役の映像と競合させない";
+      const doneWhen = `「${shot.focal_subject}」へ最初に視線が集まり、${shot.truth_boundary}`;
       return `
-        <article class="blueprint-shot-card" data-blueprint-shot-spec="${escapeHtml(shot.shot_id)}">
-          <div class="blueprint-section-head">
-            <h4>${escapeHtml(shot.shot_id)} · ${escapeHtml(shot.start_time)}-${escapeHtml(shot.end_time)} · ${escapeHtml(shot.duration_seconds)}s</h4>
-            <span class="tag gold">${escapeHtml(shot.asset_status)} / ${escapeHtml(shot.rights_status)}</span>
-          </div>
-          <p><strong>${escapeHtml(shot.shot_function)}</strong></p>
-          <p class="section-note">${escapeHtml(shot.current_visual_direction)}</p>
-          <p class="section-note" data-blueprint-field-control-readback="${escapeHtml(shot.shot_id)}"><strong>field control:</strong> LOCKED ${escapeHtml(shot.field_control_summary?.LOCKED)} / BOUNDED ${escapeHtml(shot.field_control_summary?.BOUNDED)} / FREE ${escapeHtml(shot.field_control_summary?.FREE)} · focal_subject=${escapeHtml(shot.focal_subject_control)}</p>
-          <div class="blueprint-data-grid">
-            ${blueprintDataCell(shot.composition_class, "composition_class")}
-            ${blueprintDataCell(shot.shot_scale, "shot_scale")}
-            ${blueprintDataCell(`${shot.subject_occupancy_percent_min}-${shot.subject_occupancy_percent_max}%`, "subject_occupancy")}
-            ${blueprintDataCell(shot.focal_zone, "focal_zone")}
-            ${blueprintDataCell(shot.camera_motion, "camera_motion")}
-            ${blueprintDataCell(shot.transition, "transition")}
-            ${blueprintDataCell(shot.palette_role, "palette_role")}
-            ${blueprintDataCell(`${shot.asset_class} × ${shot.required_asset_count}`, "asset_class / quantity")}
-            ${blueprintDataCell(`${overlay.mode || "none"} · ${overlay.max_lines ?? 0}L × ${overlay.max_characters_per_line ?? 0}ch`, "overlay_allowance")}
-            ${blueprintDataCell(shot.information_role, "information_role")}
-            ${blueprintDataCell(shot.audio_role, "audio_role")}
-            ${blueprintDataCell(shot.focal_subject, "focal_subject")}
-          </div>
-          <p class="section-note"><strong>truth:</strong> ${escapeHtml(shot.truth_boundary)}</p>
-          <p class="section-note"><strong>rights:</strong> ${escapeHtml(shot.rights_note)}</p>
-          <ul class="blueprint-acceptance-list">${(shot.acceptance_checks || []).map((item) => `<li>${escapeHtml(blueprintFormatItem(item))}</li>`).join("")}</ul>
+        <article class="operator-shot-summary" data-operator-shot-summary="${escapeHtml(shot.shot_id)}">
+          <h4>${escapeHtml(shot.current_visual_direction)}</h4>
+          <dl class="operator-shot-fields">
+            <div class="operator-shot-field wide"><dt>観客が見るもの</dt><dd>${escapeHtml(shot.focal_subject)}</dd></div>
+            <div class="operator-shot-field wide"><dt>このショットの役割</dt><dd>${escapeHtml(shot.shot_function)}</dd></div>
+            <div class="operator-shot-field"><dt>画面の大きさ</dt><dd>${escapeHtml(scaleLabel)} <small class="technical-meta">${escapeHtml(shot.shot_scale)}</small></dd></div>
+            <div class="operator-shot-field"><dt>カメラの動き</dt><dd>${escapeHtml(motionLabel)} <small class="technical-meta">${escapeHtml(shot.camera_motion)}</small></dd></div>
+            <div class="operator-shot-field"><dt>秒数</dt><dd>${escapeHtml(shot.duration_seconds)}秒（${escapeHtml(shot.start_time)}–${escapeHtml(shot.end_time)}）</dd></div>
+            <div class="operator-shot-field"><dt>画面文字</dt><dd>${escapeHtml(textAllowance)}</dd></div>
+            <div class="operator-shot-field wide"><dt>完成条件</dt><dd>${escapeHtml(doneWhen)}</dd></div>
+          </dl>
+          <small class="technical-meta">技術状態: 素材未選定・権利未確認（ID は Audit & Files の source package に保持）</small>
         </article>`;
     }
 

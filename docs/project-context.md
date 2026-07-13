@@ -2,15 +2,23 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-content-production-blueprint-001`, served at `public/review/index.html?mode=blueprint` with an eight-file quantitative package under `artifacts/production-blueprint/`. It treats the three accepted safe wording changes in `fff-editorial-derivative-preview-001` as a provisional working baseline and constrains the unchanged six-beat / 180-second structure through measurable beat, shot, subtitle, visual-system, and Definition of Done contracts. Handoff, Revision, and Derivative package bytes remain protected. The Blueprint is local planning evidence only: it is not canonical, production-approved, rights-cleared, rendered, or asset-selected.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-operator-production-brief-001`, served at `public/review/index.html?mode=blueprint` with a six-file human-facing package under `artifacts/operator-production-brief/`. The same route preserves `fff-content-production-blueprint-001` as its eight-file machine/audit source. Counts, timing, three accepted wording changes, truth, rights, and all bytes under Handoff, Revision, Derivative, and Production Blueprint remain unchanged. The Brief is local planning evidence only: it is not canonical, production-approved, rights-cleared, rendered, or asset-selected.
 
 ## Current Lane
 
-Keep the MVP repeatedly editable while converting the provisional derivative into an operator-readable specification without mutating its source chain. The current lane is `CONTENT_PRODUCTION_BLUEPRINT`: expose content identity and scale, LOCKED / BOUNDED / FREE constraints, controlled production vocabularies, quantitative beat/shot/subtitle metrics, and machine-readable acceptance criteria on a separate focused route. Source content, timing/order, story truth, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload, publication, and database persistence remain closed.
+Keep the MVP repeatedly editable while translating machine-valid production constraints into one non-specialist reading path without mutating the source chain. The current lane is `OPERATOR_PRODUCTION_BRIEF`: expose content purpose and scale, one continuous six-beat spine, Japanese visual grammar with diagrams, one-level shot disclosure, and five human-observable completion conditions. Technical fields remain in one closed `Audit & Files`. Source content, timing/order, story truth, canon, rights, assets, provider/API, credentials, external calls, generation, render, upload, publication, and database persistence remain closed.
 
 ## Current Slice
 
-The active slice is the quantitative Blueprint review package:
+The active slice is the human-facing Operator Production Brief:
+
+- Operator Brief doc/result/screenshots: `docs/review/operator-production-brief.md`, `artifacts/operator-production-brief-result.json`, `artifacts/review-screens/operator-production-brief-900x1200.png`, `artifacts/review-screens/operator-production-brief-1280x900.png`
+- Portable Operator package: `artifacts/operator-production-brief/README_OPERATOR_BRIEF.md`, `operator-production-brief.json`, `beat-story-map.csv`, `visual-grammar-guide.md`, `operator-completion-checklist.md`, `operator-brief-manifest.json`
+- Focused route: `public/review/index.html?mode=blueprint`; one document scroll, four primary sections, one expanded beat, and one closed Audit & Files
+- Visual grammar: 5 Japanese shot-scale entries and 6 Japanese camera-motion entries with 11 inline SVG diagrams; English enums are secondary metadata
+- Validation contract: `validate-operator-production-brief` is read-only; `smoke-operator-production-brief` may write only the six Operator package files and its result
+
+Preserved quantitative Blueprint source:
 
 - Content Production Blueprint doc/result/screenshot: `docs/review/content-production-blueprint.md`, `artifacts/content-production-blueprint-result.json`, `artifacts/review-screens/content-production-blueprint.png` (885x1180 content capture from a 900x1200 viewport, 133623 bytes, SHA256 `2694f69af62466e5612e9021a6308c3bee8aca8aa133606a0c8c0a9f802afec9`)
 - Portable Blueprint package: `artifacts/production-blueprint/README_BLUEPRINT.md`, `production-blueprint.json`, `beat-specs.csv`, `shot-specs.csv`, `subtitle-metrics.csv`, `visual-system.md`, `acceptance-matrix.csv`, `blueprint-package-manifest.json`
@@ -286,10 +294,10 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: open `public/review/index.html?mode=blueprint` and review whether the quantitative scope, shot grammar, visual system, and acceptance conditions are sufficient for a separate creator to prepare a proposal. `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain preserved context. The source patch remains unapplied and the derivative remains non-canonical. Asset briefs, actual asset selection, canonical application, timing/order changes, story truth, rights clearance, provider work, generation, render, upload, publication, and database persistence remain blocked until separately authorized.
+First next move: open `public/review/index.html?mode=blueprint` and perform H1 Human Comprehension Review against the plain-language purpose, scale, six-part progression, visual grammar, and observable completion conditions. `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain preserved context. The source patch remains unapplied and the derivative remains non-canonical. Narration rehearsal, asset briefs, actual asset selection, canonical application, timing/order changes, story truth, rights clearance, provider work, generation, render, upload, publication, and database persistence remain deferred or blocked until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current published product checkpoint is synced `4b9b22e Add content production blueprint` on 2026-07-13 JST. The subsequent handoff refresh preserves the local Serena-generated `.serena/project.yml` configuration-schema update in Git for cross-terminal parity without changing product behavior. `fff-content-production-blueprint-001` remains active, and the Handoff, Revision, and Derivative packages remain immutable. After pulling, `git log -1 --oneline --decorate` shows the exact published head; run the manifest's read-only validation command before opening the Blueprint route.
+The current repository handoff names `fff-operator-production-brief-001` as active and `fff-content-production-blueprint-001` as its protected technical source. Handoff, Revision, Derivative, and Production Blueprint package bytes remain immutable. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count HEAD...@{u}` to establish the exact published head and parity, then run the manifest's read-only validation command before opening the Operator Brief route.

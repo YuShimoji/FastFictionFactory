@@ -2,14 +2,23 @@
 
 ## Residual Work
 
+### Operator Production Brief
+
+- Purpose: Let a non-specialist understand and reproduce the Blueprint direction without reading nested machine checks or specialist enums.
+- Effect: Reuses `mode=blueprint` for one document scroll with a compact Focus Shell, four primary sections, six-beat story spine, one-level shot disclosure, 11 visual-grammar diagrams, 19 plain-language shot summaries, five completion conditions, and one closed Audit & Files.
+- Requirements: Preserve all Handoff, Revision, Derivative, and Production Blueprint bytes; keep timing, order, wording, truth, rights, assets, provider, generation, production, publication, database, canon, and old workflow branch unchanged or closed.
+- State: H0 implemented as `fff-operator-production-brief-001`; H1 comprehension review has not run.
+- Owner: Product implementer for UI/package/validator; human reviewer for H1; production and rights owners remain outside this lane.
+- Next move: Open `public/review/index.html?mode=blueprint` once and answer the five plain-language production questions. Narration rehearsal, asset/shot brief, old-branch audit, and separate-creator test are deferred.
+
 ### Content Production Blueprint
 
 - Purpose: Convert the provisional editorial derivative into a quantitative, operator-readable planning contract before any asset, image, audio, video, render, or publication work.
 - Effect: Adds `fff-content-production-blueprint-001`, `public/review/index.html?mode=blueprint`, an eight-file package under `artifacts/production-blueprint/`, exact beat/shot/subtitle metrics, controlled production vocabularies, LOCKED / BOUNDED / FREE constraints, a provisional 1920x1080 / 30fps profile, a machine-readable acceptance matrix, and stable secondary utility drawers.
 - Requirements: Preserve every Handoff, Revision, and Derivative package byte; keep the three wording edits provisional; keep six-beat order, exact 180-second timing, truth, rights, assets, provider, credentials, generation, render, upload, publication, database, and canon boundaries closed; normal validation must remain read-only.
-- State: Implemented in the active bounded slice. The Blueprint is a local planning specification and does not authorize production, asset selection, rights clearance, or canon promotion.
-- Owner: Product implementer for deterministic package and UI maintenance; human reviewer for the H1 production-readiness judgment; a separate creator only after later explicit authorization.
-- Next move: Open `public/review/index.html?mode=blueprint` and provide freeform review of scope, shot grammar, visual constraints, and Definition of Done. Asset briefs, shot boards, generation, and H1 implementation remain blocked until that review and separate authorization.
+- State: Implemented and preserved as the machine/audit source for `fff-operator-production-brief-001`. It does not authorize production, asset selection, rights clearance, or canon promotion.
+- Owner: Product implementer for deterministic package and validator maintenance; human review now starts from the Operator Brief.
+- Next move: Reopen only when the quantitative contract changes under separate authority; do not use its former nested UI as the human review entrance.
 
 ### Editorial Derivative Preview
 

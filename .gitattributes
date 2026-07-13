@@ -9,4 +9,7 @@ artifacts/editorial-derivative/*.json text eol=lf
 artifacts/production-blueprint/*.md text eol=lf
 artifacts/production-blueprint/*.csv text eol=lf
 artifacts/production-blueprint/*.json text eol=lf
+artifacts/operator-production-brief/*.md text eol=lf
+artifacts/operator-production-brief/*.csv text eol=lf
+artifacts/operator-production-brief/*.json text eol=lf
 scripts/operator/*.sh text eol=lf

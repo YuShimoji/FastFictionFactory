@@ -18,7 +18,8 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 
 | Slice | Current state | Main review location | Quick visual evidence |
 | --- | --- | --- | --- |
-| Content Production Blueprint | Active; quantitative local planning review | [`review/content-production-blueprint.md`](review/content-production-blueprint.md) | `artifacts/content-production-blueprint-result.json`, `artifacts/production-blueprint/`, `public/review/index.html?mode=blueprint` |
+| Operator Production Brief | Active; human-facing one-scroll production instruction | [`review/operator-production-brief.md`](review/operator-production-brief.md) | `artifacts/operator-production-brief-result.json`, `artifacts/operator-production-brief/`, two viewport screenshots, `public/review/index.html?mode=blueprint` |
+| Content Production Blueprint | Preserved quantitative machine/audit source | [`review/content-production-blueprint.md`](review/content-production-blueprint.md) | `artifacts/content-production-blueprint-result.json`, `artifacts/production-blueprint/`, shared `mode=blueprint` Audit & Files |
 | Editorial Derivative Preview | Preserved provisional source baseline | [`review/editorial-derivative-preview.md`](review/editorial-derivative-preview.md) | `artifacts/editorial-derivative-preview-result.json`, `artifacts/editorial-derivative/`, `public/review/index.html?mode=derivative` |
 | Editorial Revision Roundtrip | Preserved safe-patch source | [`review/editorial-revision-roundtrip.md`](review/editorial-revision-roundtrip.md) | `artifacts/editorial-revision-roundtrip-result.json`, `artifacts/editorial-revision/`, `public/review/index.html?mode=revision` |
 | Bridge Editorial Handoff Pack | Preserved immutable source; ready for local manual delivery | [`review/bridge-editorial-handoff-pack.md`](review/bridge-editorial-handoff-pack.md) | `artifacts/bridge-editorial-handoff-pack-result.json`, `artifacts/editorial-handoff/`, `public/review/index.html?mode=handoff` |
@@ -102,7 +103,7 @@ This plan is turn-count based, not date based. One turn means one bounded implem
 
 | Turn window | Focus | Expected result | Opens the door to |
 | --- | --- | --- | --- |
-| Next 1 turn | Human Blueprint production-readiness review | A reviewer judges whether quantitative scope, shot grammar, visual constraints, and acceptance conditions are sufficient for a separate creator. | A separately authorized Blueprint-constrained asset brief and shot board can be considered. |
+| Next 1 turn | H1 Operator Brief comprehension review | A reviewer explains the intended piece, scale, six-part progression, visual language, and observable completion state after one pass through the human-facing route. | A separately authorized narration rehearsal or Blueprint-constrained asset/shot brief can be considered without reopening the technical source. |
 | Following 1 turn | Contract QA hardening | Edge-case payloads for unknown fields, low confidence, rejected source refs, source-span mismatch, timeout/failure readback, and freeform review override handling. | Later extractor work gets stricter safety rails. |
 | Following 1-2 turns | Durable storage decision spike | A scoped choice between file-backed, SQLite, or browser-storage expansion. | Persistence implementation with migration and backup expectations visible. |
 | Held until review gates are accepted | Publishing and video generation | No implementation in the current lane. | Future production planning only after rights, credentials, and human release decisions are explicit. |

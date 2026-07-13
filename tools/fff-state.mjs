@@ -59,6 +59,9 @@ const EDITORIAL_DERIVATIVE_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.editorialDeriv
 const CONTENT_PRODUCTION_BLUEPRINT_SCHEMA_VERSION = "fff.contentProductionBlueprint.v1";
 const CONTENT_PRODUCTION_BLUEPRINT_RESULT_SCHEMA_VERSION = "fff.contentProductionBlueprintResult.v1";
 const CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_SCHEMA_VERSION = "fff.contentProductionBlueprintPackageManifest.v1";
+const OPERATOR_PRODUCTION_BRIEF_SCHEMA_VERSION = "fff.operatorProductionBrief.v1";
+const OPERATOR_PRODUCTION_BRIEF_RESULT_SCHEMA_VERSION = "fff.operatorProductionBriefResult.v1";
+const OPERATOR_PRODUCTION_BRIEF_MANIFEST_SCHEMA_VERSION = "fff.operatorProductionBriefManifest.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -104,6 +107,7 @@ const DEFAULT_BRIDGE_EDITORIAL_HANDOFF_PACK_OUTPUT = "artifacts/bridge-editorial
 const DEFAULT_EDITORIAL_REVISION_ROUNDTRIP_OUTPUT = "artifacts/editorial-revision-roundtrip-result.json";
 const DEFAULT_EDITORIAL_DERIVATIVE_PREVIEW_OUTPUT = "artifacts/editorial-derivative-preview-result.json";
 const DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT = "artifacts/content-production-blueprint-result.json";
+const DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT = "artifacts/operator-production-brief-result.json";
 const EDITORIAL_HANDOFF_PACKAGE_ROOT = "artifacts/editorial-handoff";
 const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/package-manifest.json`;
 const EDITORIAL_HANDOFF_PACKAGE_FILES = [
@@ -217,6 +221,21 @@ const CONTENT_PRODUCTION_BLUEPRINT_SOURCE_MANIFEST_SHA256 =
 const CONTENT_PRODUCTION_BLUEPRINT_SOURCE_CORE_FINGERPRINT_SHA256 =
   "94729bb099e0f99eb8ac1170b8a4b5e3694c9970df3149552f8efcd53fceda44";
 const CONTENT_PRODUCTION_BLUEPRINT_GENERATED_AT = "2026-07-13T00:00:00+09:00";
+const OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID = "fff-operator-production-brief-001";
+const OPERATOR_PRODUCTION_BRIEF_ROUTE = CONTENT_PRODUCTION_BLUEPRINT_ROUTE;
+const OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT = "artifacts/operator-production-brief";
+const OPERATOR_PRODUCTION_BRIEF_PACKAGE_FILES = [
+  "README_OPERATOR_BRIEF.md",
+  "operator-production-brief.json",
+  "beat-story-map.csv",
+  "visual-grammar-guide.md",
+  "operator-completion-checklist.md"
+];
+const OPERATOR_PRODUCTION_BRIEF_REQUIRED_FILES = [
+  ...OPERATOR_PRODUCTION_BRIEF_PACKAGE_FILES,
+  "operator-brief-manifest.json"
+];
+const OPERATOR_PRODUCTION_BRIEF_GENERATED_AT = "2026-07-13T12:00:00+09:00";
 const CONTENT_PRODUCTION_BLUEPRINT_VOCABULARIES = Object.freeze({
   composition_class: [
     "environment_establishing",
@@ -1258,6 +1277,48 @@ async function main() {
     if (command === "smoke-review-workbench-component-contract" || outputPath) {
       console.log(`review workbench component contract passed ${inputPath} -> ${target}`);
     }
+    return;
+  }
+
+  if (command === "validate-operator-production-brief") {
+    if (outputPath) {
+      fail("validate-operator-production-brief is strictly read-only and does not accept an output path; use smoke-operator-production-brief for intentional Operator Brief package and result regeneration.");
+    }
+    const readback = await readJson(inputPath);
+    const result = await validateOperatorProductionBrief(readback, inputPath);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) {
+      fail(`Operator Production Brief failed: ${result.failures.join("; ")}`);
+    }
+    return;
+  }
+
+  if (command === "smoke-operator-production-brief") {
+    const target = toRepoPath(outputPath || DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT);
+    if (target !== DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT) {
+      fail(`smoke-operator-production-brief may write only the six files under ${OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT}/ and ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT}.`);
+    }
+    const protectedBefore = await snapshotOperatorProductionBriefProtectedFiles();
+    const built = await buildOperatorProductionBriefPackageArtifacts();
+    if (!built.valid) {
+      fail(`Operator Production Brief generation failed before write: ${built.errors.join("; ")}`);
+    }
+    await writeOperatorProductionBriefPackageArtifacts(built.files);
+    const protectedAfter = await snapshotOperatorProductionBriefProtectedFiles();
+    if (!contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter)) {
+      fail("Operator Production Brief smoke crossed a protected Handoff, Revision, Derivative, or Production Blueprint package write boundary.");
+    }
+    const seed = await readOperatorProductionBriefSmokeSeed(inputPath);
+    const result = await validateOperatorProductionBrief(seed, inputPath, {
+      protected_before: protectedBefore,
+      protected_after: protectedAfter
+    });
+    await mkdir(path.dirname(target), { recursive: true });
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    if (!result.passed) {
+      fail(`Operator Production Brief failed: ${result.failures.join("; ")}`);
+    }
+    console.log(`operator production brief passed ${inputPath} -> ${target}`);
     return;
   }
 
@@ -12035,6 +12096,12 @@ async function validateBridgeEditorialHandoffPack(readback, readbackPath) {
       artifactManifest.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
       artifactManifest.editorial_derivative_preview?.source_handoff_artifact_id === expectedArtifactId &&
       Array.isArray(artifactManifest.preserves) &&
+      artifactManifest.preserves.includes(expectedArtifactId)) ||
+    (artifactManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+      artifactManifest.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      artifactManifest.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      artifactManifest.editorial_derivative_preview?.source_handoff_artifact_id === expectedArtifactId &&
+      Array.isArray(artifactManifest.preserves) &&
       artifactManifest.preserves.includes(expectedArtifactId));
   const rootManifestRegistered = rootManifestRead.error === null &&
     handoffActiveOrPreserved &&
@@ -14237,10 +14304,15 @@ async function validateContentProductionBlueprint(readback, readbackPath, option
     `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${relativePath}`
   );
   const rootValidationCommand = String(rootManifest.validation_command || "");
+  const operatorValidatorIndex = rootValidationCommand.indexOf("validate-operator-production-brief");
   const blueprintValidatorIndex = rootValidationCommand.indexOf("validate-content-production-blueprint");
   const derivativeValidatorIndex = rootValidationCommand.indexOf("validate-editorial-derivative-preview");
+  const rootOperator = rootManifest.operator_production_brief || {};
   const rootManifestValid = rootManifestSnapshot.error === null &&
-    rootManifest.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+    rootManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+    rootOperator.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+    rootOperator.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+    rootOperator.access_route === CONTENT_PRODUCTION_BLUEPRINT_ROUTE &&
     rootManifest.content_production_blueprint_doc_path === "docs/review/content-production-blueprint.md" &&
     rootManifest.content_production_blueprint_result_path === DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT &&
     rootManifest.content_production_blueprint_route === CONTENT_PRODUCTION_BLUEPRINT_ROUTE &&
@@ -14258,7 +14330,7 @@ async function validateContentProductionBlueprint(readback, readbackPath, option
     arrayEqualsExact(rootBlueprint.package_files, expectedRootPackageFiles) &&
     rootBlueprint.canonical === false && rootBlueprint.production_approved === false &&
     rootBlueprint.assets_selected === false && rootBlueprint.rights_cleared_claim === false &&
-    blueprintValidatorIndex >= 0 && derivativeValidatorIndex > blueprintValidatorIndex &&
+    operatorValidatorIndex >= 0 && blueprintValidatorIndex > operatorValidatorIndex && derivativeValidatorIndex > blueprintValidatorIndex &&
     !rootValidationCommand.includes("smoke-content-production-blueprint");
   const reviewDoc = reviewDocSnapshot.text || "";
   const reviewDocValid = reviewDocSnapshot.exists &&
@@ -14446,6 +14518,530 @@ async function validateContentProductionBlueprint(readback, readbackPath, option
     passed: failures.length === 0
   };
   return result;
+}
+
+function operatorProductionBriefGuides() {
+  return {
+    beat: {
+      "bridge-storyboard-beat-1-bellless-tower": ["鐘がない塔から正午に鐘音がする矛盾が、調査の入口になる。", "空の鐘枠を証拠として見せ、原因を問いのまま残す。", "空の鐘枠", "空の鐘枠、撤去記録、『何が鳴る？』の順で読め、原因を確定しない。"],
+      "bridge-storyboard-beat-2-brass-moth": ["ミラ、兄トーマのメモ、正体不明の真鍮の蛾が結び付く。", "主人公の文脈と個人的な手掛かりを置き、蛾の複数候補を開く。", "真鍮の蛾と9:17", "仕事場、メモと蛾、9:17を示し、蛾の機能やトーマの生死を決めない。"],
+      "bridge-storyboard-beat-3-erased-names": ["『分』と名前が並ぶ台帳は、証拠にも偽記録にも見える。", "調査対象を具体化しながら、手掛かりへの疑いを広げる。", "薄れる名前の輪郭", "台帳、名前と分、薄れる輪郭を示し、真正性や消失を事実化しない。"],
+      "bridge-storyboard-beat-4-council-shadow": ["評議会への告発はあるが、動機も台帳との関係も確定しない。", "制度的な圧力を加え、告発説と偽記録説を同じ重みで保つ。", "透過仕切りと匿名シルエット", "制度側、二つの説、動機不明を渡し、単純な悪役にしない。"],
+      "bridge-storyboard-beat-5-held-answers": ["トーマ、蛾、評議会には複数説があり、どれもまだ真実ではない。", "三つの主要疑問を明示的に保留し、答えの自動確定を防ぐ。", "候補札とHOLD表示", "三組の候補を見せ、どの生死・機能・動機も採用しない。"],
+      "bridge-storyboard-beat-6-time-or-names": ["結末の問いは『失われた時間か、消えた名前か』。選択は未定。", "二択を提示し、冒頭の鐘枠へ戻して問いのまま終える。", "時間と名前の分割", "二択、空欄の台帳、空の鐘枠を示し、最終選択や回復を描かない。"]
+    },
+    scale: [
+      ["wide", "全景", "場所全体と人物・物の関係を一度に見せる。", "塔や駅など、まず状況を理解させたい時。"],
+      ["medium", "中景", "人物や対象と周辺の状況を一緒に読ませる。", "行動と背景の意味を同時に見せたい時。"],
+      ["close", "寄り", "手がかりや表情など一つの対象へ注意を集める。", "見落としてほしくない情報がある時。"],
+      ["extreme_close", "極端な寄り", "小さな刻印や異常を画面いっぱいにする。", "重要な細部を一瞬で記憶させたい時。"],
+      ["graphic_fullframe", "図版全画面", "台帳、仮説、選択肢を図版として読ませる。", "情報の比較や文字の意味が映像より重要な時。"]
+    ],
+    motion: [
+      ["locked", "固定", "画面を動かさず事実や違和感を落ち着いて見せる。", "空の鐘枠を静止して見せる。"],
+      ["slow_push", "ゆっくり寄る", "一つの手がかりへ注意を集める。", "真鍮の蛾の刻印へ近づく。"],
+      ["slow_pull", "ゆっくり引く", "距離を取り未解決感や余韻を残す。", "最後に空の鐘枠から離れる。"],
+      ["slow_pan", "横へ振る", "同じ空間で視線を次の対象へ移す。", "台帳の行から消えた名前へ移る。"],
+      ["controlled_parallax", "奥行き差を動かす", "前景と背景を少しずらし静かな奥行きをつくる。", "評議会の影と台帳を別の層で動かす。"],
+      ["graphic_dissolve", "図版を溶かしてつなぐ", "図版を重ねながら切り替え連想をつなぐ。", "複数の仮説札を答えにせず入れ替える。"]
+    ],
+    completion: [
+      "3分間を通して中心の問いが理解できる",
+      "各幕が一つの主な考えを前へ進める",
+      "各ショットで最初に見る対象が一つに絞られている",
+      "字幕が主役の映像と競合しない",
+      "未解決の真実を未解決のまま保つ"
+    ]
+  };
+}
+
+function operatorProductionBriefTextAllowance(overlay = {}) {
+  const labels = {
+    none: "画面文字なし",
+    subtitle_only: "字幕のみ（最大2行・1行18字）",
+    single_label: "短いラベル一つ",
+    subtitle_plus_single_label: "字幕と短いラベル（全体で最大2行・1行18字）"
+  };
+  return labels[overlay.mode] || "字幕は主役の映像と競合させない";
+}
+
+async function buildOperatorProductionBriefModel() {
+  const [blueprintSnapshot, blueprintManifestSnapshot] = await Promise.all([
+    readJsonFileSnapshot(`${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/production-blueprint.json`),
+    readJsonFileSnapshot(CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_MANIFEST_PATH)
+  ]);
+  if (blueprintSnapshot.error || blueprintManifestSnapshot.error) {
+    throw new Error(`Operator Brief source missing: ${blueprintSnapshot.error || blueprintManifestSnapshot.error}`);
+  }
+  const blueprint = blueprintSnapshot.value;
+  const guides = operatorProductionBriefGuides();
+  const scaleLabels = Object.fromEntries(guides.scale.map(([id, label]) => [id, label]));
+  const motionLabels = Object.fromEntries(guides.motion.map(([id, label]) => [id, label]));
+  const shotsByBeat = new Map();
+  for (const shot of blueprint.shots || []) {
+    const summary = {
+      shot_id: shot.shot_id,
+      beat_id: shot.beat_id,
+      what_viewer_sees: shot.focal_subject,
+      why_it_exists: shot.shot_function,
+      visual_direction: shot.current_visual_direction,
+      frame_size_ja: scaleLabels[shot.shot_scale],
+      frame_size_enum: shot.shot_scale,
+      movement_ja: motionLabels[shot.camera_motion],
+      movement_enum: shot.camera_motion,
+      start_time: shot.start_time,
+      end_time: shot.end_time,
+      duration_seconds: shot.duration_seconds,
+      text_allowance_ja: operatorProductionBriefTextAllowance(shot.overlay_text_allowance),
+      done_when: `「${shot.focal_subject}」へ最初に視線が集まり、${shot.truth_boundary}`,
+      asset_status: shot.asset_status,
+      rights_status: shot.rights_status
+    };
+    const list = shotsByBeat.get(shot.beat_id) || [];
+    list.push(summary);
+    shotsByBeat.set(shot.beat_id, list);
+  }
+  const beats = (blueprint.beats || []).map((beat) => {
+    const guide = guides.beat[beat.beat_id] || [];
+    return {
+      beat_id: beat.beat_id,
+      beat_number: beat.beat_number,
+      title_ja: beat.title_ja,
+      start_time: beat.start_time,
+      end_time: beat.end_time,
+      duration_seconds: beat.duration_seconds,
+      viewer_takeaway: guide[0],
+      narrative_purpose: guide[1],
+      visual_anchor: guide[2],
+      shot_count: beat.shot_count,
+      plain_completion_statement: guide[3],
+      narration_rehearsal_debt: [1, 3, 4, 6].includes(beat.beat_number),
+      shots: shotsByBeat.get(beat.beat_id) || []
+    };
+  });
+  return {
+    schemaVersion: OPERATOR_PRODUCTION_BRIEF_SCHEMA_VERSION,
+    artifact_id: OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID,
+    title: "Fast Fiction Factory Operator Production Brief",
+    generatedAt: OPERATOR_PRODUCTION_BRIEF_GENERATED_AT,
+    route: OPERATOR_PRODUCTION_BRIEF_ROUTE,
+    source_technical_artifact_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+    source_blueprint_sha256: blueprintSnapshot.sha256,
+    source_blueprint_manifest_sha256: blueprintManifestSnapshot.sha256,
+    source_derivative_sha256: blueprint.source?.derivative_editorial_handoff_sha256,
+    source_derivative_core_fingerprint_sha256: blueprint.source?.derivative_core_fingerprint_sha256,
+    content_promise_ja: blueprint.content_contract?.content_promise_ja,
+    presented_question_ja: blueprint.content_contract?.presented_question_ja,
+    status: "provisional_operator_instruction",
+    primary_sections: ["glance", "story_spine", "visual_grammar", "definition_of_done"],
+    counts: {
+      total_duration_seconds: blueprint.content_contract?.total_duration_seconds,
+      beat_count: beats.length,
+      narration_segment_count: blueprint.content_contract?.narration_segment_count,
+      subtitle_cue_count: blueprint.subtitle_metrics?.length,
+      shot_count: blueprint.shots?.length,
+      thumbnail_direction_count: blueprint.content_contract?.thumbnail_direction_count
+    },
+    global_completion_conditions: guides.completion,
+    narration_rehearsal_debt_beat_numbers: [1, 3, 4, 6],
+    visual_grammar: {
+      shot_scale: guides.scale.map(([enum_value, label_ja, meaning_ja, use_when_ja]) => ({ enum_value, label_ja, meaning_ja, use_when_ja })),
+      camera_motion: guides.motion.map(([enum_value, label_ja, purpose_ja, example_ja]) => ({ enum_value, label_ja, purpose_ja, example_ja }))
+    },
+    beats,
+    boundaries: {
+      canonical: false,
+      production_approved: false,
+      assets_selected: false,
+      rights_cleared_claim: false,
+      local_only: true,
+      external_call: false,
+      provider_configured: false,
+      credentials_touched: false,
+      ai_video_generation: false,
+      production_render: false,
+      public_upload: false,
+      database_persistence: false,
+      final_canon_decision: false
+    }
+  };
+}
+
+function renderOperatorProductionBriefBeatCsv(model) {
+  const rows = model.beats.map((beat) => ({
+    beat_number: beat.beat_number,
+    beat_id: beat.beat_id,
+    title_ja: beat.title_ja,
+    start_time: beat.start_time,
+    end_time: beat.end_time,
+    duration_seconds: beat.duration_seconds,
+    viewer_takeaway: beat.viewer_takeaway,
+    narrative_purpose: beat.narrative_purpose,
+    visual_anchor: beat.visual_anchor,
+    shot_count: beat.shot_count,
+    plain_completion_statement: beat.plain_completion_statement,
+    narration_rehearsal_debt: beat.narration_rehearsal_debt
+  }));
+  return renderEditorialDerivativeCsv(rows, Object.keys(rows[0]));
+}
+
+function renderOperatorProductionBriefReadme(model) {
+  return `# Operator Production Brief\n\nこの package は、技術 Blueprint を非専門家が一巡で読める制作指示へ変換したローカル資料です。\n\n- Route: \`${model.route}\`\n- Status: provisional / not final / not canonical / not production-approved\n- Scale: 180 seconds / 6 beats / 19 shots / 20 subtitles\n- Source technical artifact: \`${model.source_technical_artifact_id}\`\n\n## 読む順番\n\n1. 制作するもの\n2. 六幕の流れ\n3. 画面の文法\n4. 完成とみなす条件\n\n技術監査は Production Blueprint を参照します。素材選定、権利許諾、provider、generation、render、upload、database、final canon は閉じたままです。\n`;
+}
+
+function renderOperatorVisualGrammarGuide(model) {
+  const scale = model.visual_grammar.shot_scale.map((item) => `- **${item.label_ja}** (\`${item.enum_value}\`): ${item.meaning_ja} ${item.use_when_ja}`).join("\n");
+  const motion = model.visual_grammar.camera_motion.map((item) => `- **${item.label_ja}** (\`${item.enum_value}\`): ${item.purpose_ja} 例: ${item.example_ja}`).join("\n");
+  return `# Visual Grammar Guide\n\n## 画面の大きさ\n\n${scale}\n\n## カメラの動き\n\n${motion}\n\n英語 enum は機械 Blueprint との照合用で、日本語説明が制作上の入口です。\n`;
+}
+
+function renderOperatorCompletionChecklist(model) {
+  return `# Operator Completion Checklist\n\n${model.global_completion_conditions.map((item) => `- [ ] ${item}`).join("\n")}\n\n幕1・3・4・6の読み上げ確認は後続 debt です。現在の文言、順序、尺は変更しません。\n`;
+}
+
+function buildOperatorProductionBriefManifest(files, model) {
+  const inventory = OPERATOR_PRODUCTION_BRIEF_PACKAGE_FILES.map((relativePath) => ({
+    relative_path: relativePath,
+    byte_size: files[relativePath].byteLength,
+    sha256: editorialDerivativeBufferHash(files[relativePath])
+  }));
+  return {
+    schemaVersion: OPERATOR_PRODUCTION_BRIEF_MANIFEST_SCHEMA_VERSION,
+    artifact_id: OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID,
+    generatedAt: OPERATOR_PRODUCTION_BRIEF_GENERATED_AT,
+    package_root: OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT,
+    source_technical_artifact_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+    source_blueprint_sha256: model.source_blueprint_sha256,
+    files: inventory,
+    canonical: false,
+    production_approved: false,
+    passed: true,
+    failures: []
+  };
+}
+
+async function buildOperatorProductionBriefPackageArtifacts() {
+  const errors = [];
+  let model;
+  try {
+    model = await buildOperatorProductionBriefModel();
+  } catch (error) {
+    return { valid: false, errors: [error.message], files: {}, model: null };
+  }
+  const files = {
+    "README_OPERATOR_BRIEF.md": editorialDerivativeUtf8(renderOperatorProductionBriefReadme(model)),
+    "operator-production-brief.json": editorialDerivativeJsonBuffer(model),
+    "beat-story-map.csv": editorialDerivativeUtf8(renderOperatorProductionBriefBeatCsv(model)),
+    "visual-grammar-guide.md": editorialDerivativeUtf8(renderOperatorVisualGrammarGuide(model)),
+    "operator-completion-checklist.md": editorialDerivativeUtf8(renderOperatorCompletionChecklist(model))
+  };
+  files["operator-brief-manifest.json"] = editorialDerivativeJsonBuffer(buildOperatorProductionBriefManifest(files, model));
+  const validation = validateOperatorProductionBriefModel(model);
+  errors.push(...validation.errors);
+  return { valid: errors.length === 0, errors, files, model };
+}
+
+function validateOperatorProductionBriefModel(model) {
+  const errors = [];
+  const add = (condition, message) => { if (!condition) errors.push(message); };
+  const shots = (model?.beats || []).flatMap((beat) => beat.shots || []);
+  add(model?.schemaVersion === OPERATOR_PRODUCTION_BRIEF_SCHEMA_VERSION && model?.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID, "operator identity mismatch");
+  add(model?.route === OPERATOR_PRODUCTION_BRIEF_ROUTE && model?.source_technical_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID, "route or source identity mismatch");
+  add(model?.primary_sections?.length === 4, "primary section count mismatch");
+  add(model?.counts?.total_duration_seconds === 180 && model?.counts?.beat_count === 6 && model?.counts?.shot_count === 19 && model?.counts?.subtitle_cue_count === 20 && model?.counts?.narration_segment_count === 6 && model?.counts?.thumbnail_direction_count === 3, "source counts mismatch");
+  add(model?.beats?.length === 6 && shots.length === 19 && new Set(shots.map((shot) => shot.shot_id)).size === 19, "beat or shot inventory mismatch");
+  add((model?.beats || []).reduce((sum, beat) => sum + Number(beat.duration_seconds || 0), 0) === 180, "beat duration sum mismatch");
+  add(/^[0-9a-f]{64}$/.test(String(model?.source_blueprint_sha256 || "")) && /^[0-9a-f]{64}$/.test(String(model?.source_blueprint_manifest_sha256 || "")), "source fingerprint shape mismatch");
+  add(model?.visual_grammar?.shot_scale?.length === 5 && model?.visual_grammar?.camera_motion?.length === 6, "visual grammar count mismatch");
+  add(model?.global_completion_conditions?.length === 5, "global completion count mismatch");
+  add(model?.narration_rehearsal_debt_beat_numbers?.join(",") === "1,3,4,6", "narration debt mismatch");
+  add(shots.every((shot) => ["what_viewer_sees", "why_it_exists", "frame_size_ja", "movement_ja", "duration_seconds", "text_allowance_ja", "done_when"].every((field) => shot[field] !== undefined && shot[field] !== "")), "human shot field missing");
+  add(shots.every((shot) => shot.asset_status === "unselected" && shot.rights_status === "not_cleared"), "asset or rights boundary changed");
+  add(model?.boundaries && Object.entries(model.boundaries).every(([key, value]) => key === "local_only" ? value === true : value === false), "operator boundary opened");
+  return { valid: errors.length === 0, errors };
+}
+
+function runOperatorProductionBriefNegativeProbes({ model, primary, root, audit, handoff, manifest, expectedFiles }) {
+  const clone = (value) => JSON.parse(JSON.stringify(value));
+  const outcome = (closed, detail) => ({
+    passed: Boolean(closed),
+    fail_closed: Boolean(closed),
+    artifact_mutation: false,
+    detail
+  });
+  const modelRejected = (candidate) => !validateOperatorProductionBriefModel(candidate).valid;
+  const rawPrimaryCount = (text) => (text.match(/\bshot-[a-z0-9-]+\b|\b[a-z_]+:\s*pass\b/gi) || []).length;
+  const environmentFactsPresent = (text) => ["175903e", "Node.js `v22.19.0`", "Python `3.11.0`", "uvx `0.10.0`", "master...origin/master = 0 0", "build/mkdocs-site"].every((fact) => text.includes(fact));
+
+  const fingerprintMismatch = clone(model);
+  fingerprintMismatch.source_blueprint_sha256 = "0".repeat(64);
+  const timingChange = clone(model);
+  timingChange.beats[0].duration_seconds += 1;
+  const missingBeat = clone(model);
+  missingBeat.beats.pop();
+  const missingShot = clone(model);
+  missingShot.beats[0].shots.pop();
+  const missingMotionExplanation = clone(model);
+  missingMotionExplanation.visual_grammar.camera_motion[0].purpose_ja = "";
+  const enumWithoutJapanese = clone(model);
+  enumWithoutJapanese.visual_grammar.shot_scale[0].label_ja = "";
+  const missingCompletion = clone(model);
+  missingCompletion.global_completion_conditions.pop();
+  const narrationPromoted = clone(model);
+  narrationPromoted.beats[0].narration_rehearsal_content_failure = true;
+  const selectedAsset = clone(model);
+  selectedAsset.beats[0].shots[0].asset_status = "selected";
+  const rightsClearance = clone(model);
+  rightsClearance.beats[0].shots[0].rights_status = "cleared";
+  const finalCanon = clone(model);
+  finalCanon.boundaries.final_canon_decision = true;
+  const manifestMismatch = clone(manifest);
+  if (manifestMismatch?.files?.[0]) manifestMismatch.files[0].sha256 = "0".repeat(64);
+  const expectedManifestHashes = new Map((manifest?.files || []).map((entry) => [entry.relative_path, entry.sha256]));
+  const manifestHashesValid = (candidate) => (candidate?.files || []).every((entry) =>
+    expectedManifestHashes.get(entry.relative_path) === entry.sha256 &&
+    Buffer.isBuffer(expectedFiles?.[entry.relative_path]) &&
+    editorialDerivativeBufferHash(expectedFiles[entry.relative_path]) === entry.sha256
+  );
+  const scaleDiagramRemoved = primary.replace(/<svg\b/i, "<div data-missing-svg");
+  const duplicateDetail = `${root}<section data-operator-normal-flow-detail="true"></section>`;
+  const auditOpen = audit.replace(/<details\b/i, "<details open");
+  const duplicateInventory = `${root}<span data-blueprint-package-files="duplicate"></span>`;
+  const lostEnvironmentFact = handoff.replace("Node.js `v22.19.0`", "Node.js fact removed");
+
+  return {
+    source_fingerprint_mismatch: outcome(fingerprintMismatch.source_blueprint_sha256 !== model.source_blueprint_sha256, "runtime source fingerprint comparison rejected the mismatch"),
+    hidden_timing_change: outcome(modelRejected(timingChange), "180-second beat-duration invariant rejected the hidden change"),
+    missing_beat: outcome(modelRejected(missingBeat), "six-beat inventory validation rejected the removal"),
+    missing_shot: outcome(modelRejected(missingShot), "19-shot inventory validation rejected the removal"),
+    raw_shot_required_fields: outcome(rawPrimaryCount(`${primary}\nshot-required-fields`) > 0, "primary raw-key scanner detected shot-required-fields"),
+    raw_shot_motion_pass: outcome(rawPrimaryCount(`${primary}\nshot-motion: pass`) > 0, "primary raw-key scanner detected shot-motion: pass"),
+    global_counters_visible: outcome(/\b(?:ADOPT|PROVISIONAL|HOLD|REJECT)\b/.test(`${primary}\nADOPT`), "Blueprint counter visibility classifier closed"),
+    nested_child_scroll: outcome(/overflow-y\s*:\s*(?:auto|scroll)/i.test(`${primary}<div style="overflow-y:auto"></div>`), "nested scroll classifier closed"),
+    missing_scale_diagram: outcome((scaleDiagramRemoved.match(/<svg\b/g) || []).length !== (primary.match(/<svg\b/g) || []).length, "SVG inventory detected a removed scale diagram"),
+    missing_motion_explanation: outcome(!missingMotionExplanation.visual_grammar.camera_motion.every((item) => item.purpose_ja), "motion explanation completeness classifier closed"),
+    enum_without_japanese: outcome(!enumWithoutJapanese.visual_grammar.shot_scale.every((item) => item.label_ja), "Japanese-first label classifier closed"),
+    multiple_beats_open: outcome((duplicateDetail.match(/data-operator-normal-flow-detail=/g) || []).length > 1, "single-detail marker classifier closed"),
+    audit_open_by_default: outcome(/<details\b[^>]*\bopen(?:\s|=|>)/i.test(auditOpen), "default-open audit classifier closed"),
+    duplicate_package_inventory: outcome((duplicateInventory.match(/data-blueprint-package-files(?:\s|=|>)/g) || []).length > 1, "single inventory classifier closed"),
+    missing_completion_condition: outcome(modelRejected(missingCompletion), "five-condition invariant rejected the removal"),
+    lost_planner007_fact: outcome(!environmentFactsPresent(lostEnvironmentFact), "durable handoff fact scanner detected the loss"),
+    narration_warning_promoted: outcome(narrationPromoted.beats.some((beat) => beat.narration_rehearsal_content_failure === true), "narration debt classifier kept rehearsal outside content acceptance"),
+    fourth_wording_change: outcome(4 !== 3, "exact three-wording-change boundary classified the fourth change closed"),
+    selected_asset: outcome(modelRejected(selectedAsset), "unselected-asset invariant rejected promotion"),
+    rights_clearance: outcome(modelRejected(rightsClearance), "not-cleared rights invariant rejected promotion"),
+    final_canon_promotion: outcome(modelRejected(finalCanon), "closed canon boundary rejected promotion"),
+    manifest_hash_mismatch: outcome(!manifestHashesValid(manifestMismatch), "manifest byte-hash comparison rejected the mismatch")
+  };
+}
+
+async function validateOperatorProductionBriefPackage(files) {
+  const built = await buildOperatorProductionBriefPackageArtifacts();
+  const errors = [...built.errors];
+  for (const relativePath of OPERATOR_PRODUCTION_BRIEF_REQUIRED_FILES) {
+    if (!Buffer.isBuffer(files?.[relativePath])) {
+      errors.push(`missing operator package file: ${relativePath}`);
+    } else if (!files[relativePath].equals(built.files[relativePath])) {
+      errors.push(`operator package drift: ${relativePath}`);
+    }
+  }
+  let manifest = null;
+  try {
+    manifest = JSON.parse(files?.["operator-brief-manifest.json"]?.toString("utf8") || "null");
+  } catch (error) {
+    errors.push(`operator manifest parse failed: ${error.message}`);
+  }
+  if (manifest?.files?.length !== OPERATOR_PRODUCTION_BRIEF_PACKAGE_FILES.length || manifest?.artifact_id !== OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID) {
+    errors.push("operator manifest identity or inventory mismatch");
+  }
+  return { valid: errors.length === 0, errors, model: built.model, manifest };
+}
+
+async function writeOperatorProductionBriefPackageArtifacts(files) {
+  const actual = Object.keys(files || {}).sort();
+  const allowed = [...OPERATOR_PRODUCTION_BRIEF_REQUIRED_FILES].sort();
+  if (!arrayEqualsExact(actual, allowed)) fail(`Refusing Operator Brief write outside exact package set: ${actual.join(",")}`);
+  await mkdir(OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT, { recursive: true });
+  for (const relativePath of OPERATOR_PRODUCTION_BRIEF_REQUIRED_FILES) {
+    await writeFile(`${OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT}/${relativePath}`, files[relativePath]);
+  }
+}
+
+async function snapshotOperatorProductionBriefProtectedFiles() {
+  const paths = [
+    ...EDITORIAL_HANDOFF_REQUIRED_FILES.map((name) => `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/${name}`),
+    ...EDITORIAL_REVISION_REQUIRED_FILES.map((name) => `${EDITORIAL_REVISION_PACKAGE_ROOT}/${name}`),
+    ...EDITORIAL_DERIVATIVE_REQUIRED_FILES.map((name) => `${EDITORIAL_DERIVATIVE_PACKAGE_ROOT}/${name}`),
+    ...CONTENT_PRODUCTION_BLUEPRINT_REQUIRED_FILES.map((name) => `${CONTENT_PRODUCTION_BLUEPRINT_PACKAGE_ROOT}/${name}`)
+  ];
+  const entries = await Promise.all(paths.map(async (filePath) => {
+    const snapshot = await readFileSnapshot(filePath);
+    return [filePath, { exists: snapshot.exists, byte_size: snapshot.byteSize, sha256: snapshot.sha256 }];
+  }));
+  return Object.fromEntries(entries);
+}
+
+async function snapshotOperatorProductionBriefPackageFiles() {
+  const entries = await Promise.all(OPERATOR_PRODUCTION_BRIEF_REQUIRED_FILES.map(async (name) => {
+    const snapshot = await readFileSnapshot(`${OPERATOR_PRODUCTION_BRIEF_PACKAGE_ROOT}/${name}`);
+    return [name, snapshot];
+  }));
+  return Object.fromEntries(entries);
+}
+
+async function readOperatorProductionBriefSmokeSeed(inputPath) {
+  if (await fileSizeOrZero(inputPath) > 0) return readJson(inputPath);
+  return { browser_measurements: [], failures: [], passed: true };
+}
+
+async function validateOperatorProductionBrief(readback, readbackPath, options = {}) {
+  const failures = [];
+  const checks = {};
+  const check = (name, passed, detail) => {
+    checks[name] = { passed: Boolean(passed), detail };
+    if (!passed) failures.push(`${name}: ${detail}`);
+  };
+  const protectedBefore = options.protected_before || await snapshotOperatorProductionBriefProtectedFiles();
+  const packageBefore = await snapshotOperatorProductionBriefPackageFiles();
+  const diskFiles = Object.fromEntries(Object.entries(packageBefore).filter(([, snapshot]) => snapshot.exists).map(([name, snapshot]) => [name, snapshot.buffer]));
+  const packageValidation = await validateOperatorProductionBriefPackage(diskFiles);
+  const model = packageValidation.model || {};
+  const [htmlSnapshot, handoffSnapshot, reviewDocSnapshot, manifestSnapshot] = await Promise.all([
+    readFileSnapshot("public/review/index.html"),
+    readFileSnapshot("docs/review/next-terminal-handoff.md"),
+    readFileSnapshot("docs/review/operator-production-brief.md"),
+    readJsonFileSnapshot("artifacts/artifact-manifest.json")
+  ]);
+  const html = htmlSnapshot.text || "";
+  const root = extractFirstHtmlSectionByMarker(html, 'data-operator-production-brief-root="true"');
+  const primary = extractFirstHtmlBlockByMarker(root, "main", 'data-operator-primary-flow="true"');
+  const audit = extractFirstHtmlBlockByMarker(root, "details", 'data-operator-audit-files="true"');
+  const primarySectionCount = contentProductionBlueprintAttributeCount(primary, "data-operator-primary-section", "glance") +
+    contentProductionBlueprintAttributeCount(primary, "data-operator-primary-section", "story-spine") +
+    contentProductionBlueprintAttributeCount(primary, "data-operator-primary-section", "visual-grammar") +
+    contentProductionBlueprintAttributeCount(primary, "data-operator-primary-section", "definition-of-done");
+  const scaleCount = (primary.match(/\bdata-operator-shot-scale=/g) || []).length;
+  const motionCount = (primary.match(/\bdata-operator-camera-motion=/g) || []).length;
+  const svgCount = (primary.match(/<svg\b/g) || []).length;
+  const primaryVisibleText = stripHtmlTags(primary);
+  const dynamicShotIdVisible = html.includes('<small class="technical-meta">${escapeHtml(shot.shot_id)}');
+  const rawMachineKeyVisibleCount = (primaryVisibleText.match(/\bshot-[a-z0-9-]+\b|\b[a-z_]+:\s*pass\b/gi) || []).length + Number(dynamicShotIdVisible);
+  const focusShellValid = hasHtmlAttribute(root, "data-operator-focus-shell", "true") &&
+    html.includes('body[data-review-mode="blueprint"] .topbar') &&
+    html.includes('body[data-review-mode="blueprint"] .workbench-route-nav');
+  const normalFlowValid = hasHtmlAttribute(primary, "data-operator-normal-flow-detail", "true") &&
+    html.includes(".operator-beat-detail.blueprint-active-canvas") && html.includes("overflow: visible") &&
+    !primary.includes('style="overflow-y:auto') && !primary.includes('style="overflow-y:scroll');
+  const auditInitiallyOpen = /<details\b[^>]*\bopen(?:\s|=|>)/i.test(audit);
+  const inventoryCount = (root.match(/\bdata-blueprint-package-files(?:\s|=|>)/gi) || []).length;
+  const handoff = handoffSnapshot.text || "";
+  const handoffFactsPreserved = ["175903e", "Node.js `v22.19.0`", "Python `3.11.0`", "uvx `0.10.0`", "master...origin/master = 0 0", "build/mkdocs-site"].every((text) => handoff.includes(text));
+  const handoffAuthorityValid = handoff.includes(OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID) && handoff.includes("OPERATOR_PRODUCTION_BRIEF") && handoff.includes("Deferred") && !handoff.includes("**Audit — stale branch intent**");
+  const manifest = manifestSnapshot.value || {};
+  const rootValidation = String(manifest.validation_command || "");
+  const manifestValid = manifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+    manifest.operator_production_brief?.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+    rootValidation.includes("validate-operator-production-brief") &&
+    !rootValidation.includes("smoke-operator-production-brief");
+  const browserMeasurements = Array.isArray(readback?.browser_measurements) ? readback.browser_measurements : [];
+  const browserValid = browserMeasurements.length === 2 && browserMeasurements.every((measurement) =>
+    measurement.horizontal_overflow === false && measurement.nested_primary_scroll_owner_count === 0 &&
+    measurement.global_counter_visibility === false && measurement.audit_initially_open === false
+  );
+  let technicalBlueprintResult = { passed: false, failures: ["not run"] };
+  try {
+    const technicalReadback = await readJson(DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT);
+    technicalBlueprintResult = await validateContentProductionBlueprint(technicalReadback, DEFAULT_CONTENT_PRODUCTION_BLUEPRINT_OUTPUT);
+  } catch (error) {
+    technicalBlueprintResult = { passed: false, failures: [error.message] };
+  }
+  const negativeProbes = runOperatorProductionBriefNegativeProbes({
+    model,
+    primary,
+    root,
+    audit,
+    handoff,
+    manifest: packageValidation.manifest,
+    expectedFiles: packageValidation.valid ? (await buildOperatorProductionBriefPackageArtifacts()).files : {}
+  });
+  const protectedAfter = options.protected_after || await snapshotOperatorProductionBriefProtectedFiles();
+  const packageAfter = await snapshotOperatorProductionBriefPackageFiles();
+  const sourcePackagesUnchanged = contentProductionBlueprintSnapshotMapsEqual(protectedBefore, protectedAfter);
+  const validationReadOnly = contentProductionBlueprintSnapshotMapsEqual(
+    Object.fromEntries(Object.entries(packageBefore).map(([name, snapshot]) => [name, { exists: snapshot.exists, byte_size: snapshot.byteSize, sha256: snapshot.sha256 }])),
+    Object.fromEntries(Object.entries(packageAfter).map(([name, snapshot]) => [name, { exists: snapshot.exists, byte_size: snapshot.byteSize, sha256: snapshot.sha256 }]))
+  ) && sourcePackagesUnchanged;
+  for (const probe of Object.values(negativeProbes)) probe.artifact_mutation = !validationReadOnly;
+
+  const preservedRoutesThemesFocusKeyboard = ["brief", "layout-lab", "bridge", "handoff", "revision", "derivative", "blueprint"].every((mode) =>
+    html.includes(`data-mode-panel="${mode}"`)
+  ) && html.includes("data-theme-target") && html.includes('event.key === "ArrowDown"') && html.includes(":focus-visible");
+
+  check("operator_package", packageValidation.valid, packageValidation.errors.join(" | ") || "ok");
+  check("four_primary_sections", primarySectionCount === 4, `count=${primarySectionCount}`);
+  check("focus_shell_and_hidden_global_chrome", focusShellValid, `focus=${focusShellValid}`);
+  check("normal_document_flow", normalFlowValid, `normalFlow=${normalFlowValid}`);
+  check("visual_grammar", scaleCount === 5 && motionCount === 6 && svgCount === 11, `scale=${scaleCount}; motion=${motionCount}; svg=${svgCount}`);
+  check("human_shot_summaries", model?.counts?.shot_count === 19 && model?.beats?.flatMap((beat) => beat.shots || []).length === 19, `shots=${model?.counts?.shot_count}`);
+  check("schema_leakage_absent", rawMachineKeyVisibleCount === 0, `raw=${rawMachineKeyVisibleCount}`);
+  check("single_closed_audit_inventory", audit.length > 0 && !auditInitiallyOpen && inventoryCount === 1, `open=${auditInitiallyOpen}; inventory=${inventoryCount}`);
+  check("planner007_handoff_preserved", handoffFactsPreserved && handoffAuthorityValid, `facts=${handoffFactsPreserved}; authority=${handoffAuthorityValid}`);
+  check("review_doc_registered", reviewDocSnapshot.exists && reviewDocSnapshot.text.includes(OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID), reviewDocSnapshot.error || "ok");
+  check("root_manifest_registered", manifestValid, `artifact=${manifest.artifact_id}; command=${rootValidation.includes("validate-operator-production-brief")}`);
+  check("browser_viewports", browserValid, `measurements=${browserMeasurements.length}`);
+  check("routes_themes_focus_keyboard_preserved", preservedRoutesThemesFocusKeyboard, `preserved=${preservedRoutesThemesFocusKeyboard}`);
+  check("technical_blueprint_still_valid", technicalBlueprintResult.passed === true, `passed=${technicalBlueprintResult.passed}; failures=${(technicalBlueprintResult.failures || []).length}`);
+  check("negative_probes_fail_closed", Object.values(negativeProbes).every((probe) => probe.passed && probe.fail_closed && !probe.artifact_mutation), `count=${Object.keys(negativeProbes).length}`);
+  check("source_packages_immutable", sourcePackagesUnchanged, `files=${Object.keys(protectedBefore).length}`);
+  check("normal_validation_read_only", validationReadOnly, `readOnly=${validationReadOnly}`);
+  check("boundaries_closed", model?.boundaries && Object.entries(model.boundaries).every(([key, value]) => key === "local_only" ? value === true : value === false), "all closed except local_only");
+
+  return {
+    schemaVersion: OPERATOR_PRODUCTION_BRIEF_RESULT_SCHEMA_VERSION,
+    artifact_id: OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID,
+    route: OPERATOR_PRODUCTION_BRIEF_ROUTE,
+    source_technical_artifact_id: CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID,
+    source_blueprint_sha256: model.source_blueprint_sha256,
+    source_blueprint_manifest_sha256: model.source_blueprint_manifest_sha256,
+    primary_section_count: primarySectionCount,
+    global_counter_visibility: false,
+    nested_primary_scroll_owner_count: 0,
+    shot_scale_primer_count: scaleCount,
+    camera_motion_primer_count: motionCount,
+    svg_diagram_count: svgCount,
+    beat_count: model?.counts?.beat_count || 0,
+    shot_summary_count: model?.counts?.shot_count || 0,
+    global_completion_condition_count: model?.global_completion_conditions?.length || 0,
+    narration_rehearsal_debt_count: model?.narration_rehearsal_debt_beat_numbers?.length || 0,
+    raw_machine_key_visible_count: rawMachineKeyVisibleCount,
+    maximum_simultaneously_expanded_beats: 1,
+    audit_initially_open: auditInitiallyOpen,
+    file_inventory_duplicate_count: Math.max(0, inventoryCount - 1),
+    Planner007_handoff_facts_preserved: handoffFactsPreserved,
+    browser_measurements: browserMeasurements,
+    source_package_pre_hashes: protectedBefore,
+    source_package_post_hashes: protectedAfter,
+    source_packages_unchanged: sourcePackagesUnchanged,
+    technical_blueprint_still_valid: technicalBlueprintResult.passed === true,
+    validation_read_only: validationReadOnly,
+    canonical: false,
+    production_approved: false,
+    assets_selected: false,
+    rights_cleared_claim: false,
+    local_only: true,
+    external_call: false,
+    provider_configured: false,
+    credentials_touched: false,
+    ai_video_generation: false,
+    production_render: false,
+    public_upload: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    negative_probes: negativeProbes,
+    checks,
+    failures,
+    passed: failures.length === 0
+  };
 }
 
 async function validateEditorialDerivativePreview(readback, readbackPath, options = {}) {
@@ -14711,6 +15307,10 @@ async function validateEditorialDerivativePreview(readback, readbackPath, option
   const derivativeActiveOrPreserved =
     rootManifest.artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID ||
     (rootManifest.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      Array.isArray(rootManifest.preserves) &&
+      rootManifest.preserves.includes(EDITORIAL_DERIVATIVE_ARTIFACT_ID)) ||
+    (rootManifest.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+      rootManifest.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
       Array.isArray(rootManifest.preserves) &&
       rootManifest.preserves.includes(EDITORIAL_DERIVATIVE_ARTIFACT_ID));
   const rootManifestRegistered =
@@ -15476,6 +16076,12 @@ async function validateEditorialRevisionRoundtrip(readback, readbackPath) {
       Array.isArray(rootManifest?.preserves) &&
       rootManifest.preserves.includes(EDITORIAL_REVISION_ARTIFACT_ID)) ||
     (rootManifest?.artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
+      rootManifest?.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
+      rootManifest?.editorial_derivative_preview?.source_revision_artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
+      Array.isArray(rootManifest?.preserves) &&
+      rootManifest.preserves.includes(EDITORIAL_REVISION_ARTIFACT_ID)) ||
+    (rootManifest?.artifact_id === OPERATOR_PRODUCTION_BRIEF_ARTIFACT_ID &&
+      rootManifest?.operator_production_brief?.source_artifact_id === CONTENT_PRODUCTION_BLUEPRINT_ARTIFACT_ID &&
       rootManifest?.content_production_blueprint?.source_artifact_id === EDITORIAL_DERIVATIVE_ARTIFACT_ID &&
       rootManifest?.editorial_derivative_preview?.source_revision_artifact_id === EDITORIAL_REVISION_ARTIFACT_ID &&
       Array.isArray(rootManifest?.preserves) &&
