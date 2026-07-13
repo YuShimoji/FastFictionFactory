@@ -101,6 +101,24 @@ root manifest の `validation_command` は Execution Pack を先頭に、Typogra
 | `artifacts/editorial-derivative/narration-script.derived.md` | `c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6` |
 | 34 protected package files aggregate | `396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95` |
 
+## 公開・別端末再開チェックポイント
+
+製品実装は `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack` として `origin/master` へ公開済みです。公開直後にlocal HEAD、tracking ref、live remote `master`の一致、clean worktree、parity `0 0`、root manifestのread-only validation chainを確認しました。この文書を更新するhandoff-only successorがpull後のHEADになる場合も、製品差分のcheckpointは `fc897af` です。
+
+別端末では次の順で再開します。
+
+```powershell
+git fetch --prune origin
+git pull --ff-only origin master
+git status --short --branch
+git rev-list --left-right --count "HEAD...@{u}"
+$command = (Get-Content artifacts/artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json).validation_command
+Invoke-Expression $command
+Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
+```
+
+期待状態は `master...origin/master`、parity `0 0`、validator exit 0です。次の判断はH1 execution-readiness reviewであり、engine、voice、asset、rights、provider、generation、render、publication、database、canonを開く操作ではありません。
+
 ## このパックで開かないもの
 
 | 残る作業 | 現在の状態 | 開始条件 | 次に可能になること |

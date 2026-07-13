@@ -177,7 +177,7 @@ public/review/index.html?mode=draft
 The local docs view remains:
 
 ```powershell
-python -m mkdocs serve -a 127.0.0.1:8000
+uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 ```
 
 ## Resume From Another Terminal
@@ -185,9 +185,9 @@ python -m mkdocs serve -a 127.0.0.1:8000
 For an existing clone:
 
 ```powershell
-git pull origin master
-python -m pip install mkdocs-material
-python -m mkdocs serve -a 127.0.0.1:8000
+git fetch --prune origin
+git pull --ff-only origin master
+uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 ```
 
 For a fresh clone:
@@ -198,10 +198,10 @@ cd .\FastFictionFactory
 uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 ```
 
-Then open `http://127.0.0.1:8000/`, start from this page, and open the active review UI with:
+Then open `http://127.0.0.1:8000/` for the durable docs and open the active standalone handoff with:
 
 ```powershell
-Invoke-Item .\public\review\index.html
+Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
 ```
 
 The Production Execution Pack converts the accepted source chain into a validated 9-file, 6-beat, 19-shot handoff with 14 generic unselected asset requirements. Four human readings close text-density warnings as proxy headroom only; B2/B5 stay unmeasured and actual synthetic-engine calibration remains gated. H0 validator, viewport, and print evidence are green, so H1 is now an execution-readiness explanation check; asset selection, rights review, engine/voice choice, audio or media generation, provider work, render, upload, database persistence, and canon still need separate authorization.

@@ -3,7 +3,8 @@
 ## Active Artifact
 
 - Artifact id: `fff-production-execution-pack-001`
-- Implementation base: public `97a3ec2 Balance operator brief typography`; the final commit/push identity must be taken from Git after this slice is published
+- Published implementation: `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack`; push to `origin/master`, clean worktree, and parity `0 0` were verified on 2026-07-13 JST before the successor restart-context commit
+- Implementation base: public `97a3ec2 Balance operator brief typography`
 - Standalone entry: `artifacts/production-execution-pack/production-execution-pack.html`
 - Package directory: `artifacts/production-execution-pack/` (9 files)
 - Review doc/result: `docs/review/production-execution-pack.md`, `artifacts/production-execution-pack-result.json`
@@ -302,6 +303,7 @@ Preserved platform boundary:
 - The 900x1200 screenshot `artifacts/review-screens/bridge-storyboard-flow.png` is 185233 bytes with SHA256 `64626FD09CE077AEFBE9D0A42212197247CE464CEC9925E2D337BF1C481614AC`. Browser readback measured no horizontal overflow, verified Light/Dark readability, Arrow/Home/End and button navigation, visible focus, reduced-motion behavior, and no console/page errors.
 - The normal manifest health command stays read-only. `smoke-bridge-storyboard-flow` was used once to intentionally create the tracked normalized result and is not part of restart validation.
 
+- The Production Execution Pack implementation was committed as `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack`, pushed to `origin/master`, and revalidated with a clean worktree and parity `0 0`. A later restart-context-only commit may be the pulled HEAD; `fc897af` remains the product implementation checkpoint.
 - The previous restart-readiness refresh pulled `af4a376 Record operator-first handoff`, confirmed parity, preserved `.serena/project.yml`, and established the read-only validation rule before this product slice.
 - The manifest at that checkpoint ran three targeted read-only validators: Bridge Storyboard Flow, preserved Review Workbench, and preserved Draft-to-Video Bridge. That validator also checked the passed Contradictory Claim Guard readback. The chain passed with nine result/readback hashes unchanged; a supplied output path was rejected with nonzero exit and no file creation.
 - Repo-sync handoff refresh on 2026-07-07 JST started after `917cae4 Add review workbench component contract` was already pushed to `origin/master`; `git status --short --branch --untracked-files=all` reported clean `master...origin/master`, and no product behavior change was added in the handoff-only pass.

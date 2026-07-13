@@ -4,7 +4,7 @@ This packet preserves the current working context inside the repository so anoth
 
 ## 監修AI向け制作実行パック同期報告（2026-07-13 JST）
 
-現在の active artifact は `fff-production-execution-pack-001`、lane は `PRODUCTION_EXECUTION_PACK` です。公開ベース `97a3ec2 Balance operator brief typography` から、受け入れ済みの 180 秒 / 6 ビート / 19 ショット / 20 字幕 / 6 narration / 3 thumbnail directions を、別の制作者が一つの静的資料から準備できる九ファイル package へ移します。Typography Balance、Operator Brief、Blueprint、Derivative、Revision、Handoff の package は source として byte 保護します。
+現在の active artifact は `fff-production-execution-pack-001`、lane は `PRODUCTION_EXECUTION_PACK` です。製品実装 `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack` で、受け入れ済みの 180 秒 / 6 ビート / 19 ショット / 20 字幕 / 6 narration / 3 thumbnail directions を、別の制作者が一つの静的資料から準備できる九ファイル package へ移行済みです。Typography Balance、Operator Brief、Blueprint、Derivative、Revision、Handoff の package は source として byte 保護されています。
 
 新しい overlay は narration を変更しません。B1/B3/B4/B6 は人の読み上げで 3–5 秒早く終わったという text-density proxy から `proxy_headroom_confirmed`、B2/B5 は値を補わず `existing_pass_unmeasured` です。意図する delivery は synthetic ですが、engine / voice / audio は未選択・未生成、engine calibration は pending、human articulation check は false です。14 件の asset requirements はすべて generic、`unselected`、`not_reviewed`、provenance required で、実素材や URL を指しません。
 
@@ -141,9 +141,10 @@ Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
 
 - Branch: `master`
 - Active artifact: `fff-production-execution-pack-001`; Typography Balance, Operator Brief, Blueprint, Derivative, Revision, and Handoff are preserved sources
-- Remote parity before this implementation: clean `master...origin/master`; `HEAD...origin/master` reported `0 0`
-- Published implementation base before this slice: `97a3ec2 Balance operator brief typography`; do not infer the final execution-pack commit before `git log -1` confirms it
-- Worktree state before this handoff refresh: product tree synced; `.serena/project.yml` contained a local Serena-generated configuration-schema refresh, now preserved in Git for cross-terminal parity without changing product behavior
+- Published product implementation: `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack`
+- Product base: `97a3ec2b57934e35073562bee8475f324a880a0f Balance operator brief typography`
+- Remote verification before this restart-context successor: local HEAD, tracking `origin/master`, and live remote `master` all resolved to `fc897afbb6b91a3b76766db98d86e2aedc448017`; worktree was clean and parity was `0 0`
+- Handoff publication rule: the commit containing this refreshed context is expected to be a successor of `fc897af`; after pulling, use Git for the exact context-only HEAD while retaining `fc897af` as the product implementation checkpoint
 - Validation contract: `artifacts/artifact-manifest.json` now runs read-only `validate-*` commands; `smoke-*` commands remain artifact-regeneration commands and should be used only when tracked result JSON is intentionally refreshed
 - User-side review evidence now: `artifacts/production-execution-pack/production-execution-pack.html`, `docs/review/production-execution-pack.md`, `artifacts/production-execution-pack-result.json`, and 900x1200 / 1280x900 execution-pack screenshots
 - Preserved prelude route: `public/review/index.html?mode=brief`
@@ -155,7 +156,8 @@ Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
 1. Pull the latest remote state:
 
 ```powershell
-git pull --ff-only
+git fetch --prune origin
+git pull --ff-only origin master
 ```
 
 2. Confirm Git parity:
@@ -166,7 +168,7 @@ git rev-list --left-right --count "HEAD...@{u}"
 git log -5 --oneline --decorate
 ```
 
-Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The exact pushed product commit is whatever `git log -1 --oneline --decorate` reports after pulling. Local transport-residue files outside this product scope should not be treated as product work.
+Expected after this handoff is published: `master` is synced with `origin/master`, with `HEAD...@{u}` reporting `0 0`. The pulled top commit may be this context-only successor; the implemented product checkpoint remains `fc897afbb6b91a3b76766db98d86e2aedc448017`. Local transport-residue files outside this product scope should not be treated as product work.
 
 The 2026-07-13 Production Execution Pack slice preserves the accepted source chain
 while adding one nine-file standalone handoff, one compact Blueprint link, one
@@ -333,19 +335,19 @@ docs/idea-ledger.md
 docs/decision-log.md
 ```
 
-4. Open the active local review artifact:
+4. Open the active standalone handoff:
 
 ```powershell
-.\scripts\operator\open_review.ps1
+Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
 ```
 
-or:
+The operator launchers remain available when protected source or audit routes need inspection:
 
-```sh
-./scripts/operator/open_review.sh
+```powershell
+.\scripts\operator\open_review.ps1 -Mode blueprint
 ```
 
-No-query access still defaults to the Review Brief route, now with the applied Decision Shell first. The active quantitative route is `public/review/index.html?mode=blueprint`. The focused manual-delivery route is `public/review/index.html?mode=handoff`. The preserved research route is
+No-query access still defaults to the preserved Review Brief route, now with the applied Decision Shell first. The protected quantitative source route is `public/review/index.html?mode=blueprint`, and its closed `Audit & Files` owns the single compact link to the active standalone pack. The focused manual-delivery source route is `public/review/index.html?mode=handoff`. The preserved research route is
 `public/review/index.html?mode=layout-lab`; the operator path is
 `public/review/index.html?mode=brief`, then
 `public/review/index.html?mode=bridge`, then `public/review/index.html?mode=handoff`, then `public/review/index.html?mode=revision`, then `public/review/index.html?mode=derivative`, then `public/review/index.html?mode=blueprint`; the preserved compatibility and detail routes

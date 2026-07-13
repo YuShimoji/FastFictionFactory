@@ -8,6 +8,8 @@
 - Package directory: `artifacts/production-execution-pack/`
 - Package files: `README_PRODUCTION_EXECUTION.md`, `production-execution-pack.html`, `production-execution-pack.json`, `beat-run-sheet.csv`, `shot-execution-sheet.csv`, `asset-requirements.csv`, `narration-timing-envelope.csv`, `thumbnail-requirements.md`, `production-execution-manifest.json`
 - Review doc/result: `docs/review/production-execution-pack.md`, `artifacts/production-execution-pack-result.json`
+- Published product commit: `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack`; pushed to `origin/master` with clean parity `0 0` before the successor restart-context commit
+- Cross-terminal restart: pull `origin/master`, read `docs/review/next-terminal-handoff.md`, run the root manifest's read-only validation command, then open the standalone primary file
 - Visual evidence: `artifacts/review-screens/production-execution-pack-900x1200.png`, `artifacts/review-screens/production-execution-pack-1280x900.png`; both measured viewports have no horizontal overflow, no nested scroll owner, and a complete first-view contract. Exact measurements and hashes are authoritative in the result and root manifest.
 - Source chain: `fff-operator-production-brief-typography-balance-001`, `fff-operator-production-brief-001`, `fff-content-production-blueprint-001`, `fff-editorial-derivative-preview-001`, `fff-editorial-revision-roundtrip-001`, `fff-bridge-editorial-handoff-pack-001` (all preserved below).
 - Execution contract: exactly 180 seconds / 6 beats / 19 shots / 20 subtitle cues / 6 narration segments / 3 thumbnail directions; 14 deduplicated generic asset requirements; every shot references at least one requirement.
