@@ -16,9 +16,11 @@ H0 の機械検証は green です。十三ファイル package、3 shots / 6 re
 | --- | --- |
 | Repository | `C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory` |
 | Branch | `master` |
-| 同期済み開始点 | `4d4c98ca188556509965d6dc1ed429c7b2acdf82` |
+| 実装開始点 | `4d4c98ca188556509965d6dc1ed429c7b2acdf82` |
 | 開始時 parity | `HEAD...origin/master = 0 0`、index/worktree clean |
-| 公開 state | この slice の最終 commit / push / parity は Git を正本とし、chat や固定記述から推測しない |
+| 公開済み product checkpoint | `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` |
+| Handoff refresh開始時 | local HEAD / tracking `origin/master` / live remote `master` が `72df19b`、parity `0 0`、index/worktree clean |
+| Context successor | この報告を含むhandoff-only successorの正確なHEADはpull後のGitを正本とし、`72df19b`をproduct implementation checkpointとして保持 |
 | Runtime | Node.js `v24.13.0`、npm `11.6.2`、uvx `0.10.7` |
 | Active entry | `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html` |
 | Read-only health | `node tools/fff-state.mjs validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json` |

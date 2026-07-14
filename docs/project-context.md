@@ -148,6 +148,13 @@ Preserved quantitative Blueprint source:
 
 ## Verification Snapshot
 
+Beat 2 Visual Treatment Pilot checkpoint, 2026-07-14 JST:
+
+- `fff-beat2-visual-treatment-pilot-001` was published to `origin/master` as product commit `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` from implementation base `4d4c98ca188556509965d6dc1ed429c7b2acdf82`.
+- At the start of the context-only handoff refresh, local HEAD, tracking `origin/master`, and live remote `master` matched `72df19b`; the worktree was clean and parity was `0 0`. After pulling, Git owns the exact handoff successor HEAD while `72df19b` remains the product checkpoint.
+- `artifacts/beat2-visual-treatment-pilot-result.json` reports `passed=true`, `failures=[]`, 3 shots, 6 reference-only images, 24/24 fail-closed probes, both viewport/theme checks, print-style evidence, manifest integrity, and unchanged Storyboard/Execution source files.
+- H1 human visual-treatment comprehension is not started. H2 production selection/rights, full-story expansion, engine/voice, provider/API, generation, render, publication, persistence, and canon remain closed.
+
 Production Execution Pack checkpoint, 2026-07-13 JST:
 
 - `fff-production-execution-pack-001` was published in product commit `fc897afbb6b91a3b76766db98d86e2aedc448017 Add production execution pack` from public base `97a3ec2 Balance operator brief typography`. It preserves all 34 files in Operator, Production Blueprint, Editorial Derivative, Revision, and Handoff; their accepted aggregate SHA256 remains `396736ea631f1964edd317b922ce985cbe6cde80240d98801eaab96d464d7b95`.
@@ -342,10 +349,10 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: open `artifacts/production-execution-pack/production-execution-pack.html`, run the root manifest's read-only validation chain, and use `docs/review/production-execution-pack.md` for H1 execution-readiness review. `public/review/index.html?mode=blueprint` is the preserved source route with one compact pack link; `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain protected context. Actual asset selection, rights clearance, local synthetic-engine choice/calibration, audio or media generation, provider work, render, upload, publication, database persistence, timing/order changes, truth, and canon remain deferred until separately authorized.
+First next move: open `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html`, run the root manifest's read-only validation chain, and use `docs/review/beat2-visual-treatment-pilot.md` for H1 visual-treatment review. `public/review/index.html?mode=blueprint` is the preserved source route with one compact Beat 2 link; `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain protected context. Actual asset selection, rights clearance, full-story expansion, local synthetic-engine choice/calibration, audio or media generation, provider work, render, upload, publication, database persistence, timing/order changes, truth, and canon remain deferred until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current repository handoff names `fff-production-execution-pack-001` as active and the Typography Balance / Operator / Blueprint / Derivative / Revision / Handoff chain as protected sources. Product implementation commit `fc897afbb6b91a3b76766db98d86e2aedc448017` is immutable context; a later handoff-only successor may be the current remote HEAD. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count HEAD...@{u}` to establish the exact context head and parity, then run the root manifest's read-only validation command before opening the standalone execution pack. The validator result owns final package hashes, browser/print evidence, negative-probe outcomes, and proof that protected package bytes remain immutable.
+The current repository handoff names `fff-beat2-visual-treatment-pilot-001` as active and the Storyboard Brief / Production Execution Pack / Typography Balance / Operator / Blueprint / Derivative / Revision / Handoff chain as protected sources. Product implementation commit `72df19b33fd77b047170046db1a99620d1455976` is immutable context; the handoff-only successor containing the latest restart packet may be the current remote HEAD. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count "HEAD...@{u}"` to establish the exact context head and parity, then run the root manifest's read-only validation command before opening the standalone Beat 2 pilot. The validator result owns final package hashes, browser/print evidence, negative-probe outcomes, provenance, and proof that protected package bytes remain immutable.

@@ -4,7 +4,15 @@ This packet preserves the current working context inside the repository so anoth
 
 ## 監修AI向け Beat 2 Visual Treatment Pilot 引き継ぎ（2026-07-14 JST）
 
-現在の active artifact は `fff-beat2-visual-treatment-pilot-001`、lane は `VISUAL_TREATMENT_PILOT` です。同期済み `master` の `4d4c98ca188556509965d6dc1ed429c7b2acdf82` を開始点に、受け入れ済み Storyboard Brief と Production Execution Pack を byte 単位で保護したまま、Beat 2「真鍮の蛾」だけを実ライセンス参照画像で具体化する独立 package を追加しました。最終公開 commit と parity は Git を正本とします。
+現在の active artifact は `fff-beat2-visual-treatment-pilot-001`、lane は `VISUAL_TREATMENT_PILOT` です。実装は同期済み `master` の `4d4c98ca188556509965d6dc1ed429c7b2acdf82` から始まり、`72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` として `origin/master` へ公開済みです。このhandoff refresh開始時点でlocal HEAD、tracking branch、live remote `master` は同commit、parityは `0 0`、index/worktreeはcleanでした。このpacketを含むcontext-only successorの正確なHEADはpull後のGitを正本とします。
+
+### Stopping Edge
+
+- Finished: Beat 2 standalone package、six-reference provenance、two viewport/theme captures、print evidence、24/24 fail-closed probes、protected-source immutability、product commit/push。
+- Remains: H1 freeform visual-treatment comprehension only; H0 cannot decide whether another creator actually understands the treatment.
+- Intentionally untouched: Storyboard/Execution source bytes、other 16 shots、production asset selection、rights clearance、engine/voice、provider/API、generation、render、publication、database、canon。
+- First checks: pull latest `master`, confirm `0 0` parity and clean status, run the root manifest's read-only validation, then open the standalone Beat 2 HTML.
+- Unresolved design question: whether each primary/supporting pair makes shot dominance, material/light language, and held truth understandable without verbal explanation.
 
 ### Start Here
 
@@ -728,15 +736,16 @@ When review is needed, accept natural freeform review text instead of fixed phra
 
 Before emitting a Review Card, check the review memory. Do not ask the same target/evidence/axis again unless target, axis, evidence, decision value, or an explicit user request changed.
 
-No general Review Hub, Workbench, or repeated Operator Brief comprehension review is needed. That review passed judgment A and the title hierarchy repair is complete. The new H1 question is different: can another creator explain preparation and assembly from the Execution Pack without technical audit files? The quantitative Blueprint, non-canonical Derivative, Revision, immutable Handoff package, and six-beat Bridge Flow remain the protected evidence chain.
+No general Review Hub, Workbench, or repeated Operator Brief comprehension review is needed. That review passed judgment A and the title hierarchy repair is complete. The active H1 question is now narrower: can another creator explain Beat 2's three-shot hierarchy, primary/supporting reference roles, material/light language, completion conditions, and held questions from the standalone treatment alone? The Storyboard Brief, Execution Pack, quantitative Blueprint, non-canonical Derivative, Revision, immutable Handoff package, and six-beat Bridge Flow remain the protected evidence chain.
 
 ## Preserved Entrance and Deferred Reference Paths
 
-H1 Operator Brief comprehension is complete. The current entrance is H1 Production Execution readiness after H0 validator evidence; the remaining rows are preserved reference paths or separately authorized later lanes, not competing next-step recommendations.
+H1 Operator Brief comprehension is complete. The current entrance is H1 Beat 2 Visual Treatment review after H0 validator evidence; Production Execution readiness and the remaining rows are preserved reference paths or separately authorized later lanes, not competing next-step recommendations.
 
 | Entrance | Why it helps | What becomes possible |
 | --- | --- | --- |
-| Review: Production Execution readiness | Starts from `artifacts/production-execution-pack/production-execution-pack.html` after its result is green; asks the reviewer to explain preparation, reuse, assembly, and closed choices without audit files | Transfer friction can be repaired before real assets, rights, engine calibration, or media work starts |
+| Review: Beat 2 Visual Treatment | Starts from `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html` after its result is green; asks the reviewer to explain three-shot dominance, reference roles, material/light, completion conditions, and held questions | Observed Beat 2 reference/composition/wording friction can be repaired without changing protected planning sources or widening to full-story assets |
+| Preserved review: Production Execution readiness | Starts from `artifacts/production-execution-pack/production-execution-pack.html` after its result is green; asks the reviewer to explain preparation, reuse, assembly, and closed choices without audit files | Transfer friction remains reviewable later without opening real assets, rights, engine calibration, or media work |
 | Verify: synthetic timing envelope | Compares four `proxy_headroom_confirmed` rows with B2/B5 `existing_pass_unmeasured` and confirms all engine/voice/audio selections remain false | H2 engine calibration can later replace proxy evidence without rewriting narration |
 | Review: Editorial Derivative Preview | Starts from `public/review/index.html?mode=derivative` and the eight portable files in `artifacts/editorial-derivative/` | Human reviewer can inspect exactly three safe edits in full package context and discard the derivative without touching source |
 | Review: Editorial Revision Roundtrip | Starts from `public/review/index.html?mode=revision` and the local package in `artifacts/editorial-revision/` | Human editorial changes can be classified, compared, decided, and exported as an unapplied safe-only patch without mutating the Handoff source |
@@ -759,6 +768,7 @@ H1 Operator Brief comprehension is complete. The current entrance is H1 Producti
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
+| Beat 2 Visual Treatment Pilot | Give a separate creator one concrete, reference-led three-shot treatment without changing protected planning sources | `fff-beat2-visual-treatment-pilot-001` is published at product checkpoint `72df19b`; H0 is green for 3 shots, 6 references, 24/24 probes, both viewports, provenance, print style, and source immutability | Run H1 freeform visual-treatment review from the standalone page only; if it fails, repair only observed Beat 2 reference choice, composition hierarchy, or wording |
 | Production Execution Pack | Give another creator one portable preparation and assembly contract | `fff-production-execution-pack-001` is H0 validated; nine files cover 6 beats, 19 shots, 14 generic requirements, and an engine-neutral timing overlay; the result is green | Run H1 execution-readiness review |
 | Operator Brief Typography Balance | Preserve accepted comprehension while fixing the oversized title | `fff-operator-production-brief-typography-balance-001` is preserved; H1 passed A and both accepted viewports pass hierarchy, first-view, and immutability checks | Use as source context and launcher; reopen only for measured regression |
 | Operator Production Brief | Make the validated Blueprint understandable to a non-specialist in one reading path | `fff-operator-production-brief-001` is preserved; four sections, normal document flow, visual diagrams, one-level shot detail, and closed Audit & Files preserve the technical source | Reopen only for measured regression or separately authorized content/structure work |

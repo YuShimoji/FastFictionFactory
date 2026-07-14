@@ -5,6 +5,7 @@
 - Active artifact: `fff-beat2-visual-treatment-pilot-001`
 - Active lane: `VISUAL_TREATMENT_PILOT`
 - Development base: synced `master` at `4d4c98ca188556509965d6dc1ed429c7b2acdf82` with initial upstream parity `0 0` and a clean index/worktree
+- Published product checkpoint: `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot`; push to `origin/master`, live remote equality, clean worktree, and parity `0 0` were verified before the context-only handoff refresh
 - Standalone entry: `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html`
 - Package: `artifacts/beat2-visual-treatment-pilot/` with 13 files; result and review authority are `artifacts/beat2-visual-treatment-pilot-result.json` and `docs/review/beat2-visual-treatment-pilot.md`
 - Sources: `fff-production-storyboard-brief-001`, `fff-production-execution-pack-001`, and `fff-editorial-derivative-preview-001`; Storyboard seven-file and Execution nine-file aggregates remain byte-identical
@@ -17,7 +18,7 @@
 - Closed gates: production asset selection, rights clearance, full-story asset sourcing, image/audio/video generation, engine/voice, provider/API, credentials, render, upload, publication, database persistence, production approval, and final canon
 - Read-only validation: `node tools/fff-state.mjs validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json`
 - Intentional regeneration only: `node tools/fff-state.mjs smoke-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json`
-- Publication: required commit subject is `Add Beat 2 visual treatment pilot`; after publication, Git is the authority for the exact commit and upstream parity
+- Publication: complete at `72df19b33fd77b047170046db1a99620d1455976`; the later handoff-only successor is not a new product revision, and Git after pull owns its exact identity
 - Supervisor report: `docs/review/supervisor-current-report.md`
 
 ## Next Gate
@@ -450,9 +451,9 @@ Preserved platform boundary:
 
 ## What Remains Missing
 
-- H1 execution-readiness review is the next gate now that H0 is validated. The useful question is whether a reviewer can explain what to prepare and assemble from the standalone pack without opening technical audit files; this is a transfer-comprehension check, not a repeat of the completed Operator Brief comprehension review.
-- Actual synthetic-engine selection and calibration remain H2. Engine, voice, pronunciation dictionary, pause/prosody behavior, and generated audio timing have not been selected or measured, and B2/B5 deliberately have no proxy duration.
-- Real asset sourcing, provenance review, license/rights review, image/video/audio production, rendering, and external creator work remain unstarted. The 14 rows are generic requirements only and do not imply that any media is available or cleared.
+- H1 Beat 2 visual-treatment review is the next active gate now that H0 is validated. The useful question is whether a separate creator can explain each shot's dominant image, primary/supporting reference roles, material/light language, completion condition, and held questions from the standalone page alone.
+- The six references have provenance and reusable-license metadata, but production selection and project-specific rights clearance remain H2 and are not implied. Full-story sourcing for the other 16 shots is not started.
+- Actual synthetic-engine selection and calibration remain a separately authorized later gate. Engine, voice, pronunciation dictionary, pause/prosody behavior, generated audio timing, image/audio/video generation, rendering, and external creator work remain unstarted.
 - Human freeform review of final contradictory-claim truth remains optional and is not requested by this slice.
 - The prior Operator Brief Human Comprehension Review is complete with judgment A. Its four narration-density warnings are superseded in the new pack by human-proxy headroom; no narration rewrite or TTS verification follows from that transition.
 - Remaining workflow expansion is now post-Profile: Timeline / Story Seed / Canon decision authorization, actual rollback, broader translated memo coverage, or very broad source-span fixture shape. The held claim preflight, downstream adoption semantics design, adoption candidate ledger dry-run, sandbox adoption mutation one-claim, sandbox adoption rollback rehearsal, production adoption authorization packet, Claim Ledger one-claim production adoption, Claim Ledger rollback rehearsal, downstream target authorization packet, and Profile adoption mutation one-claim define candidate status, accepted-status meaning, rollback, mutation boundaries, a non-mutating ledger row, one fixture-only sandbox adoption row, one sandbox-only rollback rehearsal row, one production authorization packet, one Claim Ledger production adoption row, one non-destructive rollback rehearsal, one Profile-first downstream target choice surface, and one Profile-only non-canon annotation. Timeline, Story Seed, canon, provider/API/credential, publishing, additional-claim adoption, and actual production rollback remain unimplemented without separate authorization. The translated memo axis has a two-row minimum fixture, so only add more translated rows if they reduce a concrete coverage gap beyond `multi-x-object-brass-moth-key` and `multi-x-placeholder-translation-boundary`. Very broad source-span shape has been audited but not implemented because current broad rows are already resolved and no concrete source-output gap requires another fixture.
@@ -461,10 +462,11 @@ Preserved platform boundary:
 
 ## Review Debt
 
-- The four prior narration-rate warnings may remain visible in protected source surfaces, but the execution-pack overlay closes them as `proxy_headroom_confirmed`; preserving old source bytes is not current timing debt. The real remaining narration debt is engine-specific calibration plus B2/B5's intentionally unmeasured proxy state. Actual asset art, provenance and rights evidence, multi-format export, ZIP bundling, provider work, rendering, and production tooling remain outside this slice.
+- The active review debt is H1 human comprehension of the Beat 2 visual treatment; H0 evidence cannot establish that judgment. The four prior narration-rate warnings may remain visible in protected source surfaces, but the execution-pack overlay closes them as `proxy_headroom_confirmed`; preserving old source bytes is not current timing debt. Engine-specific calibration, production asset art, rights clearance, multi-format export, ZIP bundling, provider work, rendering, and production tooling remain outside this slice.
 
 | Target | Current state | Next move |
 | --- | --- | --- |
+| Beat 2 Visual Treatment Pilot | `fff-beat2-visual-treatment-pilot-001` is published at product checkpoint `72df19b`; H0 is green for 3 shots, 6 reference-only rasters, 24/24 probes, both measured viewports, provenance, print style, and protected-source identity | Run H1 freeform review from the standalone page; repair only observed Beat 2 reference choice, composition hierarchy, or wording friction |
 | Production Execution Pack | `fff-production-execution-pack-001` is H0 validated; nine files align six beats, 19 shots, 14 reusable requirements, and an engine-neutral timing envelope while preserving source truth, and validator/browser/print evidence is green | Run H1 execution-readiness review; keep H2 engine calibration separately gated |
 | Operator Brief Typography Balance | `fff-operator-production-brief-typography-balance-001` is preserved; H1 passed judgment A and the title-only responsive hierarchy repair passes both accepted viewports without content/package drift | Use as the human-facing source and compact launcher for the standalone execution pack |
 | Operator Production Brief | `fff-operator-production-brief-001` is preserved; four normal-flow sections translate the protected six-beat / 19-shot / 20-subtitle contract into one non-specialist instruction path | Reopen only if new content or viewport evidence produces a measured hierarchy regression |
@@ -513,13 +515,13 @@ Preserved platform boundary:
 
 ## How To Open The Review UI
 
-Open the current standalone execution handoff directly:
+Open the current standalone Beat 2 Visual Treatment Pilot directly:
 
 ```powershell
-Invoke-Item .\artifacts\production-execution-pack\production-execution-pack.html
+Invoke-Item .\artifacts\beat2-visual-treatment-pilot\beat2-visual-treatment.html
 ```
 
-The accepted Blueprint route contains one compact `制作実行パックを開く` link to the same file. The older review surfaces remain available from the repo root:
+The accepted Blueprint route contains one compact `Beat 2 ビジュアル参照` link to the same file. The older review surfaces remain available from the repo root:
 
 From the repo root, run:
 
@@ -564,4 +566,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-The execution-pack validator and both viewport checks are green. Run H1 Human Execution-Readiness Review as a freeform transfer check: ask the reviewer to explain the six-beat preparation order, what the 19 shots need, which of the 14 requirements are reusable, and which choices remain closed without opening Blueprint audit files. If that passes, the next technically meaningful lane is a separately authorized H2 calibration of one local synthetic voice engine against unchanged text. Actual asset selection, rights review, external creator/media work, old-branch audit, Stale Shelf Excision, final canon, timing/order or truth changes, provider, generation, render, upload, publication, database, and additional adoption remain deferred or require separate authorization.
+The Beat 2 pilot validator and both viewport checks are green. Run H1 Human Visual-Treatment Review as a freeform transfer check: ask a separate creator to explain the three-shot sequence, dominant image in each shot, primary/supporting reference roles, material/light language, completion conditions, and held questions from the standalone page alone. If it fails, revise only evidenced Beat 2 reference choice, composition hierarchy, or wording; if it passes, close this pilot and request a separate decision before H2 rights/asset work, full-story expansion, or voice calibration. Actual asset selection, rights clearance, external creator/media work, old-branch audit, Stale Shelf Excision, final canon, timing/order or truth changes, provider, generation, render, upload, publication, database, and additional adoption remain deferred or require separate authorization.

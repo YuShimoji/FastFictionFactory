@@ -18,6 +18,10 @@
   - Reason: The pilot is a standalone review artifact, not a new permanent product workflow.
   - Effect: `data-beat2-visual-treatment-link=true` opens the local HTML while the existing Storyboard Brief link and Blueprint structure remain intact.
 
+- Decision: Treat `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` as the immutable product checkpoint and keep its successor handoff-only.
+  - Reason: Another terminal needs an exact published product boundary plus durable restart context without confusing later documentation maintenance with a new visual-treatment revision.
+  - Effect: `origin/master` publication, clean parity, active H1 review, closed H2/production gates, and the first restart commands are recorded in the project; after pulling, Git remains the authority for the exact context-only successor HEAD.
+
 ## 2026-06-15
 
 - Decision: Keep Fast Fiction Factory local-first for the current MVP.
