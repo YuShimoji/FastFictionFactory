@@ -1,0 +1,302 @@
+{
+  "schemaVersion": "fff.beat2CompositionBoard.v1",
+  "artifact_id": "fff-beat2-composition-board-001",
+  "generated_at": "2026-07-15T12:00:00+09:00",
+  "status": "reference_only_composition_board",
+  "title_ja": "真鍮の蛾",
+  "subtitle_ja": "Beat 2 / 00:20–00:50 / 3 shots",
+  "source_artifact_ids": [
+    "fff-beat2-visual-treatment-pilot-001",
+    "fff-production-storyboard-brief-001",
+    "fff-production-execution-pack-001"
+  ],
+  "source_fingerprints": {
+    "visual_treatment_manifest_sha256": "fd417ce41b0df4d9a78fe2d56b2a864eede26aed9a44cf7ea18f3b22ae997a91",
+    "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+    "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+    "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+    "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+  },
+  "overview_ja": [
+    "時計修理台の手元から、トーマのメモと静止した真鍮の蛾へ視線を移す。",
+    "9:17と蛾を別々の反復モチーフとして残し、三つの画面を近景の密度でつなぐ。"
+  ],
+  "elements": [
+    { "name_ja": "ミラ", "role_ja": "時計修理師" },
+    { "name_ja": "時計修理台", "role_ja": "精密作業面" },
+    { "name_ja": "トーマのメモ", "role_ja": "手書きの手がかり" },
+    { "name_ja": "真鍮の蛾", "role_ja": "静止した金属物" },
+    { "name_ja": "9:17", "role_ja": "反復時刻" }
+  ],
+  "shots": [
+    {
+      "shot_id": "shot-b02-01",
+      "sequence": 1,
+      "start_time": "00:20",
+      "end_time": "00:30",
+      "duration_seconds": 10,
+      "title_ja": "時計修理台の手元",
+      "source_story": {
+        "purpose_ja": "ミラの仕事と手元を置く",
+        "visual_direction_ja": "時計修理台の手元だけを見せ、顔、衣装、身体的特徴は確定しない。",
+        "truth_boundary_ja": "final character designではない。",
+        "done_when_ja": "ミラの手元と時計修理台へ最初に視線が集まる。"
+      },
+      "main_image_id": "ref-b02-s01-precision-handwork",
+      "supporting_image_ids": ["ref-b02-s01-watch-repair-workbench"],
+      "composition": {
+        "rough_type": "image_based_overlay",
+        "frame": "16:9",
+        "crop_percent": { "left": 12, "top": 28, "width": 70, "height": 58 },
+        "object_position": "48% 68%",
+        "focal_points": [
+          { "label_ja": "主焦点・ピンセットと指先", "x_percent": 45, "y_percent": 62 },
+          { "label_ja": "副焦点・時計部品", "x_percent": 67, "y_percent": 72 }
+        ],
+        "eye_path_ja": "左上の暗部から指先へ落とし、工具の先で止める。",
+        "layers_ja": {
+          "foreground": "指と工具",
+          "midground": "時計部品と作業面",
+          "background": "暗い修理台"
+        },
+        "screen_ja": "画面の約3分の2を手元で満たし、顔と全身を切る。右奥の作業灯と部品は環境の密度だけを補う。",
+        "intent_ja": "精密作業の緊張と、ミラの職能を人物デザインより先に置く。",
+        "camera_ja": "Close / Slow pan / 手元の高さ",
+        "success_ja": "最初の一秒で指先と工具へ視線が集まり、人物の顔が主題にならない。"
+      },
+      "reference_usage_ja": [
+        "主参照の指先、ピンセット、強い明暗差を採用。",
+        "補助参照の暖色灯、工具密度、作業台の奥行きを採用。"
+      ]
+    },
+    {
+      "shot_id": "shot-b02-02",
+      "sequence": 2,
+      "start_time": "00:30",
+      "end_time": "00:40",
+      "duration_seconds": 10,
+      "title_ja": "メモと静止した蛾",
+      "source_story": {
+        "purpose_ja": "個人的な手がかりを並べる",
+        "visual_direction_ja": "引き出し内のメモと静止した真鍮の蛾をflat-layの汎用構図で見せる。",
+        "truth_boundary_ja": "蛾を作動させず、機能を示さない。",
+        "done_when_ja": "メモと静止した真鍮の蛾へ最初に視線が集まる。"
+      },
+      "main_image_id": "ref-b02-s02-aged-handwritten-letter",
+      "supporting_image_ids": ["ref-b02-s02-metal-butterfly-brooch"],
+      "composition": {
+        "rough_type": "image_based_overlay",
+        "frame": "16:9",
+        "crop_percent": { "left": 8, "top": 9, "width": 84, "height": 80 },
+        "object_position": "50% 45%",
+        "focal_points": [
+          { "label_ja": "主焦点・筆跡と折り目", "x_percent": 37, "y_percent": 43 },
+          { "label_ja": "副焦点・静止した蛾", "x_percent": 76, "y_percent": 62 }
+        ],
+        "eye_path_ja": "左上の筆跡から折り目を横切り、右下の蛾へ斜めに送る。",
+        "layers_ja": {
+          "foreground": "引き出し縁の薄い影",
+          "midground": "メモと真鍮の蛾",
+          "background": "暗い木面"
+        },
+        "screen_ja": "メモを左側約3分の2、蛾を右下約3分の1に置く俯瞰。二つの間に指一本分の暗い余白を残す。",
+        "intent_ja": "紙と金属を一対の手がかりとして並べ、蛾を静止物のまま扱う。",
+        "camera_ja": "Close / Locked / 真上から5度以内",
+        "success_ja": "メモと蛾を同時に把握でき、発光、羽ばたき、作動の印象がない。"
+      },
+      "reference_usage_ja": [
+        "主参照の黄変、折り目、筆跡密度を採用。",
+        "補助参照の翅の輪郭と金属光沢を採用し、背景色は採用しない。"
+      ]
+    },
+    {
+      "shot_id": "shot-b02-03",
+      "sequence": 3,
+      "start_time": "00:40",
+      "end_time": "00:50",
+      "duration_seconds": 10,
+      "title_ja": "9:17と蛾の反復",
+      "source_story": {
+        "purpose_ja": "9:17のmotifと蛾を分けて示す",
+        "visual_direction_ja": "9:17の時計面と蛾を別焦点に置き、因果を作らない。",
+        "truth_boundary_ja": "9:17は閉店時刻のmotifであり、時計停止の確定事実にはしない。",
+        "done_when_ja": "9:17の時計面と真鍮の蛾を別の焦点として読める。"
+      },
+      "main_image_id": "ref-b02-s03-vintage-watch-0915",
+      "supporting_image_ids": [
+        "ref-b02-s02-metal-butterfly-brooch",
+        "ref-b02-s03-brass-clock-dial"
+      ],
+      "composition": {
+        "rough_type": "image_based_overlay",
+        "frame": "16:9",
+        "crop_percent": { "left": 20, "top": 10, "width": 62, "height": 82 },
+        "object_position": "52% 49%",
+        "focal_points": [
+          { "label_ja": "主焦点・表示指定9:17", "x_percent": 48, "y_percent": 46 },
+          { "label_ja": "副焦点・蛾の翅", "x_percent": 79, "y_percent": 70 }
+        ],
+        "eye_path_ja": "文字盤中央で一度止め、右下の蛾、背面の真鍮反射へ二段で送る。",
+        "layers_ja": {
+          "foreground": "時計面の極端な寄り",
+          "midground": "蛾の翅の一部",
+          "background": "真鍮文字盤の反射"
+        },
+        "screen_ja": "時計面を画面外まで拡大し、右下に蛾の翅、背面に真鍮の反射を薄く重ねる。表示指定は9:17、主参照の針は9:15。",
+        "intent_ja": "時刻と蛾を二つの反復モチーフとして分離し、因果や時計停止を示さない。",
+        "camera_ja": "Extreme close / Controlled parallax / 二段焦点",
+        "success_ja": "9:17と蛾が別焦点に見え、時計が止まった事実や蛾の機能を断定しない。"
+      },
+      "reference_usage_ja": [
+        "主参照の時計面と古い金色の縁を採用し、針位置は近似と明示。",
+        "蛾参照はShot 2と同じ一枚を反復し、翅の一部だけを採用。",
+        "真鍮文字盤参照の反射と彫りの密度を背景層に採用。"
+      ]
+    }
+  ],
+  "held_questions": [
+    { "subject_ja": "トーマの所在・生死", "state_ja": "未決" },
+    { "subject_ja": "真鍮の蛾の機能", "state_ja": "未決" },
+    { "subject_ja": "9:17の意味", "state_ja": "未決" },
+    { "subject_ja": "ミラの最終デザイン", "state_ja": "未決" }
+  ],
+  "references": [
+    {
+      "reference_id": "ref-b02-s01-precision-handwork",
+      "used_by_shot_ids": ["shot-b02-01"],
+      "roles_by_shot": { "shot-b02-01": "main" },
+      "local_path": "composition-assets/ref-b02-s01-precision-handwork.jpg",
+      "source_title": "Watchmaking skills.jpg",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Watchmaking_skills.jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Watchmaking_skills.jpg",
+      "creator": "giridibyaranjan",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "retrieved_at": "2026-07-14",
+      "original_width": 3024,
+      "original_height": 4032,
+      "local_width": 1200,
+      "local_height": 1600,
+      "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s01-watch-repair-workbench",
+      "used_by_shot_ids": ["shot-b02-01"],
+      "roles_by_shot": { "shot-b02-01": "supporting" },
+      "local_path": "composition-assets/ref-b02-s01-watch-repair-workbench.jpg",
+      "source_title": "Traditional watch repairer at work in Goa.jpg",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Traditional_watch_repairer_at_work_in_Goa.jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Traditional_watch_repairer_at_work_in_Goa.jpg",
+      "creator": "SerChevalerie",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrieved_at": "2026-07-14",
+      "original_width": 4032,
+      "original_height": 2268,
+      "local_width": 1600,
+      "local_height": 900,
+      "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s02-aged-handwritten-letter",
+      "used_by_shot_ids": ["shot-b02-02"],
+      "roles_by_shot": { "shot-b02-02": "main" },
+      "local_path": "composition-assets/ref-b02-s02-aged-handwritten-letter.jpg",
+      "source_title": "Old Letter.jpg",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Old_Letter.jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Old_Letter.jpg",
+      "creator": "Lainey Powell",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "retrieved_at": "2026-07-14",
+      "original_width": 1597,
+      "original_height": 2437,
+      "local_width": 1049,
+      "local_height": 1600,
+      "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s02-metal-butterfly-brooch",
+      "used_by_shot_ids": ["shot-b02-02", "shot-b02-03"],
+      "roles_by_shot": { "shot-b02-02": "supporting", "shot-b02-03": "supporting" },
+      "local_path": "composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
+      "source_title": "Butterfly brooch.jpg",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Butterfly_brooch.jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Butterfly_brooch.jpg",
+      "creator": "Jane023 (photographer/uploader; own work)",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrieved_at": "2026-07-14",
+      "original_width": 4032,
+      "original_height": 3024,
+      "local_width": 1600,
+      "local_height": 1200,
+      "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s03-vintage-watch-0915",
+      "used_by_shot_ids": ["shot-b02-03"],
+      "roles_by_shot": { "shot-b02-03": "main" },
+      "local_path": "composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
+      "source_title": "Vintage Bulova Men's Swiss-Made Manual-Wind Wrist Watch (8505636506).jpg",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Vintage_Bulova_Men%27s_Swiss-Made_Manual-Wind_Wrist_Watch_(8505636506).jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Vintage_Bulova_Men%27s_Swiss-Made_Manual-Wind_Wrist_Watch_%288505636506%29.jpg",
+      "creator": "Joe Haupt",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "retrieved_at": "2026-07-14",
+      "original_width": 4608,
+      "original_height": 3456,
+      "local_width": 1600,
+      "local_height": 1200,
+      "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s03-brass-clock-dial",
+      "used_by_shot_ids": ["shot-b02-03"],
+      "roles_by_shot": { "shot-b02-03": "supporting" },
+      "local_path": "composition-assets/ref-b02-s03-brass-clock-dial.jpg",
+      "source_title": "Antique clock dial (Unsplash).jpg",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Antique_clock_dial_(Unsplash).jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Antique_clock_dial_%28Unsplash%29.jpg",
+      "creator": "Brooke Campbell / bcampbell",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrieved_at": "2026-07-14",
+      "original_width": 3648,
+      "original_height": 5472,
+      "local_width": 1067,
+      "local_height": 1600,
+      "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    }
+  ],
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "image_generation": false,
+    "production_approved": false,
+    "content_changed": false,
+    "timing_changed": false,
+    "final_canon_decision": false
+  }
+}

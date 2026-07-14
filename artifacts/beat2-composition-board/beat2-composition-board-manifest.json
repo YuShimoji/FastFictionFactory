@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "fff.beat2CompositionBoardManifest.v1",
+  "artifact_id": "fff-beat2-composition-board-001",
+  "generated_at": "2026-07-15T12:00:00+09:00",
+  "package_fingerprint_sha256": "4c44089a140626d56fd67f8341a4765e60f310ff65555c8ff8a0eef3eff7f3b0",
+  "file_count": 13,
+  "payload_file_count": 12,
+  "files": [
+    {
+      "path": "README_COMPOSITION_BOARD.md",
+      "byte_size": 1206,
+      "sha256": "7771a5b14c4f4a2a795ef1731282b374a34d9f9844eefb25db796de93cb1221c"
+    },
+    {
+      "path": "beat2-composition-board.html",
+      "byte_size": 27605,
+      "sha256": "4b9ba5b743108c30af3120a80b2b7aad04d9ed5ad53b039a1a31797352740e67"
+    },
+    {
+      "path": "beat2-composition-board.json",
+      "byte_size": 14942,
+      "sha256": "87e3cf5038e76a100cf489759b648817c12acd35f2a51f930984d8e18f00dea0"
+    },
+    {
+      "path": "reference-sources.csv",
+      "byte_size": 3399,
+      "sha256": "8dbff9f61af2722b454ee6a7dcda71794ff6646caeea71765a40db6de93ca7b5"
+    },
+    {
+      "path": "shot-composition-map.csv",
+      "byte_size": 2262,
+      "sha256": "61fc3704aabd851af4ff0a402de28acf6ca60ae9106be222157073bc208edce1"
+    },
+    {
+      "path": "composition-assets/ref-b02-s01-precision-handwork.jpg",
+      "byte_size": 432635,
+      "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33"
+    },
+    {
+      "path": "composition-assets/ref-b02-s01-watch-repair-workbench.jpg",
+      "byte_size": 422572,
+      "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258"
+    },
+    {
+      "path": "composition-assets/ref-b02-s02-aged-handwritten-letter.jpg",
+      "byte_size": 376293,
+      "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b"
+    },
+    {
+      "path": "composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
+      "byte_size": 194726,
+      "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9"
+    },
+    {
+      "path": "composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
+      "byte_size": 292584,
+      "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082"
+    },
+    {
+      "path": "composition-assets/ref-b02-s03-brass-clock-dial.jpg",
+      "byte_size": 362668,
+      "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3"
+    },
+    {
+      "path": "beat2-composition-board-contact-sheet.jpg",
+      "byte_size": 537393,
+      "sha256": "43545188f5c88d576c70fd2f09212dd4e86ac14aca8f9c1d7588cb54a386fd66"
+    }
+  ],
+  "source_fingerprints": {
+    "visual_treatment_manifest_sha256": "fd417ce41b0df4d9a78fe2d56b2a864eede26aed9a44cf7ea18f3b22ae997a91",
+    "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+    "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+    "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+    "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+  },
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "image_generation": false,
+    "production_approved": false
+  }
+}

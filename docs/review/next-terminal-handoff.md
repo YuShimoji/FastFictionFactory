@@ -2,9 +2,57 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-## 監修AI向け Beat 2 Visual Treatment Pilot 引き継ぎ（2026-07-14 JST）
+## 監修AI向け Beat 2 Composition Board 引き継ぎ（2026-07-15 JST）
 
-現在の active artifact は `fff-beat2-visual-treatment-pilot-001`、lane は `VISUAL_TREATMENT_PILOT` です。実装は同期済み `master` の `4d4c98ca188556509965d6dc1ed429c7b2acdf82` から始まり、`72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` として `origin/master` へ公開済みです。このhandoff refresh開始時点でlocal HEAD、tracking branch、live remote `master` は同commit、parityは `0 0`、index/worktreeはcleanでした。このpacketを含むcontext-only successorの正確なHEADはpull後のGitを正本とします。
+現在の active artifact は `fff-beat2-composition-board-001`、lane は `COMPOSITION_BOARD` です。同期済み `master` の `46f127acacdb0f285c3835efb0962c466fbf570f Record Beat 2 restart handoff` から、既存 Visual Treatment Pilot を変更せず、Beat 2 の同じ3 shotsだけを実画像ベースのcrop/focus/depth/placementへ具体化しました。predecessor implementation checkpoint は `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` です。
+
+### Stopping Edge
+
+- Finished: 3-shot standalone Composition Board、6 distinct references / 7 assignments、image-based overlays、two viewport/theme captures、print evidence、22 fail-closed probes、three protected package aggregates。
+- Remains: H1 freeform composition transfer review only; H0 cannot decide whether a separate creator can actually stage the three screens.
+- Intentionally untouched: Visual Treatment Pilot 13 files、Storyboard 7 files、Execution 9 files、other 16 shots、production selection、rights clearance、provider/API、generation、render、publication、database、canon。
+- First checks: pull latest `master`, confirm parity/clean state, run the root read-only validation, then open the standalone Composition Board.
+- Stop rule: if two or more shots remain no easier to stage than the Pilot, record `COMPOSITION_SPECIFICITY_BLOCKER` and do not start image generation.
+
+### Start Here
+
+```text
+AGENTS.md
+docs/project-context.md
+docs/review/current-status.md
+docs/review/next-terminal-handoff.md
+docs/review/supervisor-current-report.md
+artifacts/artifact-manifest.json
+docs/review/beat2-composition-board.md
+artifacts/beat2-composition-board-result.json
+artifacts/beat2-composition-board/README_COMPOSITION_BOARD.md
+```
+
+```powershell
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count "HEAD...@{u}"
+git status --short --branch
+
+$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+Invoke-Item .\artifacts\beat2-composition-board\beat2-composition-board.html
+```
+
+### Current Contract
+
+| 対象 | 現在の状態 | 次の判断 |
+| --- | --- | --- |
+| Composition Board | `00:20–00:50`、3 shots、6 distinct local rasters、7 assignments | H1 freeform composition review |
+| Shot 1 | handwork / working height / narrow light pool | face/full bodyより指先が先に見えるか |
+| Shot 2 | memo 2/3 + static moth 1/3 / near-overhead | activationを示さず二つを並置できるか |
+| Shot 3 | extreme-close watch + moth wing + brass reflection | `9:17`と蛾を別焦点にし時計停止を断定しないか |
+| Protected sources | Pilot 13 / Storyboard 7 / Execution 9 files byte-identical | sourceとしてのみ使用 |
+| Production gates | selection/rights/generation/render/publication/database/canon closed | 別承認なしに開かない |
+
+## 保存された Beat 2 Visual Treatment Pilot 引き継ぎ（2026-07-14 JST）
+
+保存された source artifact は `fff-beat2-visual-treatment-pilot-001`、lane は `VISUAL_TREATMENT_PILOT` です。実装は同期済み `master` の `4d4c98ca188556509965d6dc1ed429c7b2acdf82` から始まり、`72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` として `origin/master` へ公開済みです。H1 observation `A寄りのB` が現在の Composition Board slice の入力であり、Pilot package自体はbyte-identicalで保持します。
 
 ### Stopping Edge
 

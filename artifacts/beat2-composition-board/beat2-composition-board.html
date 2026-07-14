@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="ja" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>真鍮の蛾 — Beat 2 Composition Board</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #eee9df;
+      --panel: #f9f5ec;
+      --panel-strong: #fffaf0;
+      --ink: #211d19;
+      --muted: #6b6257;
+      --line: #c8baa4;
+      --gold: #946524;
+      --gold-bright: #e4b765;
+      --black: #0d0c0b;
+      --overlay: #fff1c7;
+      --overlay-dark: #1a1207d9;
+      --shadow: 0 18px 50px #2f1d0a1f;
+    }
+    html[data-resolved-theme="dark"] {
+      color-scheme: dark;
+      --bg: #0f0e0d;
+      --panel: #1a1815;
+      --panel-strong: #211d19;
+      --ink: #f3eadb;
+      --muted: #b8aa98;
+      --line: #4b4034;
+      --gold: #d0a45d;
+      --gold-bright: #f0c778;
+      --overlay: #fff0bc;
+      --overlay-dark: #0d0904d9;
+      --shadow: 0 18px 50px #0009;
+    }
+    html[data-resolved-theme="light"] { color-scheme: light; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+      line-height: 1.65;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: var(--gold); }
+    button, a { font: inherit; }
+    :focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+    .utility {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      min-height: 56px;
+      padding: 8px clamp(16px, 4vw, 52px);
+      border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(14px);
+    }
+    .utility-name,
+    .kicker,
+    .shot-no,
+    .shot-time,
+    .composition-tag,
+    .micro-label {
+      font: 800 11px/1.3 ui-monospace, "Cascadia Mono", monospace;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .utility-name, .kicker, .shot-no, .shot-time { color: var(--gold); }
+    .themes { display: flex; gap: 5px; }
+    .themes button {
+      min-height: 38px;
+      padding: 0 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--panel);
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .themes button[aria-pressed="true"] {
+      border-color: var(--gold);
+      box-shadow: inset 0 0 0 1px var(--gold);
+    }
+    main, footer {
+      width: min(1180px, calc(100% - 32px));
+      margin-inline: auto;
+    }
+    .doc-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: end;
+      gap: 24px;
+      padding: clamp(34px, 6vw, 70px) 0 30px;
+      border-bottom: 1px solid var(--line);
+    }
+    h1 {
+      margin: 0;
+      font: 600 clamp(34px, 4.2vw, 44px)/1.12 Georgia, "Yu Mincho", serif;
+      letter-spacing: .035em;
+    }
+    .kicker { margin: 12px 0 0; }
+    .doc-type {
+      margin: 0 0 5px;
+      color: var(--muted);
+      font-weight: 700;
+      letter-spacing: .04em;
+    }
+    section { padding: 30px 0; border-bottom: 1px solid var(--line); }
+    h2 {
+      margin: 0 0 18px;
+      font: 600 clamp(23px, 2.8vw, 30px)/1.25 Georgia, "Yu Mincho", serif;
+      letter-spacing: .02em;
+    }
+    .overview {
+      display: grid;
+      grid-template-columns: minmax(140px, .32fr) minmax(0, 1.68fr);
+      gap: 30px;
+      align-items: start;
+    }
+    .overview h2 { margin: 0; }
+    .overview-copy { display: grid; gap: 6px; font-size: clamp(16px, 1.8vw, 19px); }
+    .overview-copy p { margin: 0; }
+    .elements {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .elements li {
+      min-height: 84px;
+      padding: 13px 14px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .elements strong { display: block; color: var(--gold); }
+    .elements span { color: var(--muted); font-size: 13px; }
+    .shots { padding-bottom: 10px; }
+    .shot-strip {
+      margin: 0 0 30px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .shot-head {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: baseline;
+      gap: 16px;
+      padding: 14px 17px;
+      border-bottom: 1px solid var(--line);
+    }
+    .shot-head h3 {
+      margin: 0;
+      font: 600 clamp(20px, 2.2vw, 26px)/1.25 Georgia, "Yu Mincho", serif;
+    }
+    .shot-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 62%) minmax(0, 38%);
+      align-items: stretch;
+      min-height: 570px;
+    }
+    .composition-panel {
+      position: relative;
+      min-width: 0;
+      min-height: 570px;
+      isolation: isolate;
+      background: var(--black);
+    }
+    .composition-panel > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.86) contrast(1.03) brightness(.84);
+    }
+    [data-shot-id="shot-b02-01"] .composition-panel > img { object-position: 48% 68%; filter: grayscale(.92) contrast(1.12) brightness(.78); }
+    [data-shot-id="shot-b02-02"] .composition-panel > img { object-position: 50% 45%; filter: sepia(.12) saturate(.82) contrast(1.04) brightness(.76); }
+    [data-shot-id="shot-b02-03"] .composition-panel > img { object-position: 52% 49%; filter: sepia(.18) saturate(.82) contrast(1.14) brightness(.7); transform: scale(1.18); }
+    .composition-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: linear-gradient(135deg, #0008 0%, transparent 38%, #0004 100%);
+      pointer-events: none;
+    }
+    .composition-tag {
+      position: absolute;
+      z-index: 8;
+      top: 14px;
+      left: 14px;
+      padding: 7px 9px;
+      border: 1px solid #fff7;
+      background: var(--overlay-dark);
+      color: var(--overlay);
+    }
+    .crop-frame {
+      position: absolute;
+      z-index: 4;
+      border: 2px solid var(--overlay);
+      box-shadow: 0 0 0 999px #0002;
+    }
+    .crop-frame::before,
+    .crop-frame::after {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-color: var(--gold-bright);
+    }
+    .crop-frame::before { top: -2px; left: -2px; border-top: 4px solid; border-left: 4px solid; }
+    .crop-frame::after { right: -2px; bottom: -2px; border-right: 4px solid; border-bottom: 4px solid; }
+    .focus {
+      position: absolute;
+      z-index: 7;
+      width: 22px;
+      height: 22px;
+      margin: -11px 0 0 -11px;
+      border: 2px solid var(--overlay);
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px #0007;
+    }
+    .focus::after { content: ""; position: absolute; inset: 7px; border-radius: 50%; background: var(--gold-bright); }
+    .focus-label,
+    .zone,
+    .time-spec {
+      position: absolute;
+      z-index: 7;
+      padding: 4px 7px;
+      background: var(--overlay-dark);
+      color: var(--overlay);
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+    .eye-vector {
+      position: absolute;
+      z-index: 6;
+      height: 2px;
+      background: var(--gold-bright);
+      transform-origin: left center;
+      box-shadow: 0 0 0 1px #0004;
+    }
+    .eye-vector::after {
+      content: "";
+      position: absolute;
+      right: -1px;
+      top: -4px;
+      width: 8px;
+      height: 8px;
+      border-top: 2px solid var(--gold-bright);
+      border-right: 2px solid var(--gold-bright);
+      transform: rotate(45deg);
+    }
+    .shot-one .crop-frame { left: 12%; top: 28%; width: 70%; height: 58%; }
+    .shot-one .focus-a { left: 45%; top: 62%; }
+    .shot-one .focus-b { left: 67%; top: 72%; }
+    .shot-one .label-a { left: 18%; top: 56%; }
+    .shot-one .label-b { left: 69%; top: 73%; }
+    .shot-one .vector-a { left: 21%; top: 29%; width: 35%; transform: rotate(42deg); }
+    .shot-one .zone-fg { left: 14%; bottom: 12%; }
+    .shot-one .zone-mg { left: 51%; bottom: 12%; }
+    .shot-one .zone-bg { right: 4%; top: 15%; }
+    .shot-two .crop-frame { left: 8%; top: 9%; width: 84%; height: 80%; }
+    .shot-two .focus-a { left: 37%; top: 43%; }
+    .shot-two .focus-b { left: 76%; top: 62%; }
+    .shot-two .label-a { left: 13%; top: 37%; }
+    .shot-two .label-b { right: 8%; top: 65%; }
+    .shot-two .vector-a { left: 37%; top: 45%; width: 39%; transform: rotate(25deg); }
+    .shot-two .zone-fg { left: 3%; bottom: 4%; }
+    .shot-two .zone-mg { left: 43%; bottom: 4%; }
+    .shot-two .zone-bg { right: 3%; top: 4%; }
+    .shot-three .crop-frame { left: 20%; top: 10%; width: 62%; height: 82%; }
+    .shot-three .focus-a { left: 48%; top: 46%; }
+    .shot-three .focus-b { left: 79%; top: 70%; }
+    .shot-three .label-a { left: 24%; top: 38%; }
+    .shot-three .label-b { right: 3%; top: 73%; }
+    .shot-three .vector-a { left: 49%; top: 48%; width: 36%; transform: rotate(34deg); }
+    .shot-three .time-spec { left: 34%; top: 54%; border: 1px solid var(--gold-bright); }
+    .shot-three .zone-fg { left: 4%; bottom: 4%; }
+    .shot-three .zone-mg { left: 42%; bottom: 4%; }
+    .shot-three .zone-bg { right: 3%; top: 4%; }
+    .shot-side {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid var(--line);
+      background: var(--panel-strong);
+    }
+    .support-grid {
+      display: grid;
+      grid-template-columns: repeat(var(--support-count, 1), minmax(0, 1fr));
+      min-height: 174px;
+      border-bottom: 1px solid var(--line);
+      background: var(--black);
+    }
+    .support-grid figure { position: relative; min-width: 0; margin: 0; }
+    .support-grid figure + figure { border-left: 2px solid var(--panel-strong); }
+    .support-grid img { width: 100%; height: 174px; object-fit: cover; filter: saturate(.82) contrast(1.04) brightness(.82); }
+    .support-grid figcaption {
+      position: absolute;
+      left: 7px;
+      right: 7px;
+      bottom: 7px;
+      padding: 5px 6px;
+      background: #0a0807d9;
+      color: #fff3df;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    .reference-use { padding: 12px 14px 4px; }
+    .reference-use .micro-label { color: var(--gold); }
+    .reference-use ul { margin: 6px 0 0; padding-left: 1.2em; color: var(--muted); font-size: 12px; }
+    .reference-use li { margin: 3px 0; }
+    .shot-facts { display: grid; grid-template-columns: 1fr 1fr; margin: auto 0 0; padding: 8px 14px 14px; }
+    .shot-facts div { padding: 8px 9px; border-top: 1px solid var(--line); }
+    .shot-facts div:nth-child(even) { border-left: 1px solid var(--line); }
+    .shot-facts .wide { grid-column: 1 / -1; border-left: 0; }
+    .shot-facts dt { color: var(--gold); font-size: 11px; font-weight: 800; }
+    .shot-facts dd { margin: 3px 0 0; font-size: 12px; line-height: 1.5; }
+    .held-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .held-list li { padding: 13px 14px; border-left: 3px solid var(--gold); background: var(--panel); }
+    .held-list strong { display: block; }
+    .held-list span { color: var(--muted); font-size: 12px; }
+    .credits { color: var(--muted); }
+    .credit-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .credit-card { padding: 11px 12px; border: 1px solid var(--line); background: var(--panel); font-size: 12px; }
+    .credit-card strong { display: block; color: var(--ink); }
+    .credit-card a { overflow-wrap: anywhere; }
+    .credit-note { margin: 14px 0 0; font-size: 12px; }
+    footer { padding: 22px 0 38px; color: var(--muted); font-size: 12px; text-align: center; }
+    @media (max-width: 920px) {
+      .doc-head { grid-template-columns: 1fr; gap: 5px; }
+      .doc-type { grid-row: 1; }
+      .elements { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+      .shot-layout { grid-template-columns: minmax(0, 61%) minmax(0, 39%); min-height: 620px; }
+      .composition-panel { min-height: 620px; }
+      .support-grid img { height: 154px; }
+      .shot-facts { grid-template-columns: 1fr; }
+      .shot-facts .wide { grid-column: auto; }
+      .shot-facts div:nth-child(even) { border-left: 0; }
+      .held-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .credit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 720px) {
+      .utility { align-items: flex-start; }
+      .utility-name { max-width: 18ch; }
+      main, footer { width: min(100% - 22px, 680px); }
+      .overview { grid-template-columns: 1fr; gap: 6px; }
+      .elements { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .shot-head { grid-template-columns: 1fr; gap: 3px; }
+      .shot-layout { grid-template-columns: 1fr; min-height: 0; }
+      .composition-panel { min-height: 68vw; }
+      .shot-side { border-left: 0; border-top: 1px solid var(--line); }
+      .support-grid img { height: 42vw; min-height: 150px; max-height: 230px; }
+      .shot-facts { grid-template-columns: 1fr 1fr; }
+      .shot-facts .wide { grid-column: 1 / -1; }
+      .shot-facts div:nth-child(even) { border-left: 1px solid var(--line); }
+      .credit-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 470px) {
+      .themes button { min-height: 36px; padding-inline: 9px; }
+      .elements, .held-list, .shot-facts { grid-template-columns: 1fr; }
+      .shot-facts .wide { grid-column: auto; }
+      .shot-facts div:nth-child(even) { border-left: 0; }
+      .focus-label { display: none; }
+    }
+    @media print {
+      :root, html[data-resolved-theme="dark"], html[data-resolved-theme="light"] {
+        color-scheme: light !important;
+        --bg: #fff !important;
+        --panel: #fff !important;
+        --panel-strong: #fff !important;
+        --ink: #111 !important;
+        --muted: #444 !important;
+        --line: #aaa !important;
+        --gold: #694611 !important;
+        --shadow: none !important;
+      }
+      .utility { position: static; background: #fff; backdrop-filter: none; }
+      .shot-strip { break-inside: avoid; box-shadow: none; }
+      .shot-layout { grid-template-columns: 62% 38%; min-height: 500px; }
+      .composition-panel { min-height: 500px; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .support-grid img { height: 148px; }
+      .credit-card a { color: #111; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="utility" aria-label="表示設定">
+    <span class="utility-name">Beat 2 · Composition Board</span>
+    <div class="themes" role="group" aria-label="テーマ">
+      <button type="button" data-theme="light">Light</button>
+      <button type="button" data-theme="dark">Dark</button>
+      <button type="button" data-theme="auto" aria-pressed="true">Auto</button>
+    </div>
+  </nav>
+  <main id="composition-board">
+    <header class="doc-head">
+      <div>
+        <h1>真鍮の蛾</h1>
+        <p class="kicker">Beat 2 / 00:20–00:50 / 3 shots</p>
+      </div>
+      <p class="doc-type">Composition Board</p>
+    </header>
+
+    <section class="overview" aria-labelledby="overview-heading">
+      <h2 id="overview-heading">概要</h2>
+      <div class="overview-copy">
+        <p>時計修理台の手元から、トーマのメモと静止した真鍮の蛾へ視線を移す。</p>
+        <p>9:17と蛾を別々の反復モチーフとして残し、三つの画面を近景の密度でつなぐ。</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="elements-heading">
+      <h2 id="elements-heading">主要要素</h2>
+      <ul class="elements">
+        <li><strong>ミラ</strong><span>時計修理師</span></li>
+        <li><strong>時計修理台</strong><span>精密作業面</span></li>
+        <li><strong>トーマのメモ</strong><span>手書きの手がかり</span></li>
+        <li><strong>真鍮の蛾</strong><span>静止した金属物</span></li>
+        <li><strong>9:17</strong><span>反復時刻</span></li>
+      </ul>
+    </section>
+
+    <section class="shots" aria-labelledby="shots-heading">
+      <h2 id="shots-heading">ショット構成</h2>
+
+      <article class="shot-strip shot-one" data-shot-id="shot-b02-01">
+        <header class="shot-head">
+          <span class="shot-no">Shot 01</span>
+          <h3>時計修理台の手元</h3>
+          <span class="shot-time">00:20–00:30</span>
+        </header>
+        <div class="shot-layout">
+          <div class="composition-panel" data-composition-markup="image-overlay">
+            <img data-primary-image="true" src="composition-assets/ref-b02-s01-precision-handwork.jpg" alt="時計を修理する指先と工具の主参照">
+            <span class="composition-tag">構図ラフ</span>
+            <span class="crop-frame" aria-hidden="true"></span>
+            <span class="focus focus-a" aria-hidden="true"></span><span class="focus-label label-a">主焦点・指先</span>
+            <span class="focus focus-b" aria-hidden="true"></span><span class="focus-label label-b">副焦点・部品</span>
+            <span class="eye-vector vector-a" aria-hidden="true"></span>
+            <span class="zone zone-fg">前景・指と工具</span><span class="zone zone-mg">中景・作業面</span><span class="zone zone-bg">背景・暗い修理台</span>
+          </div>
+          <aside class="shot-side">
+            <div class="support-grid" style="--support-count:1">
+              <figure><img data-supporting-image="true" src="composition-assets/ref-b02-s01-watch-repair-workbench.jpg" alt="暖色の作業灯と密度のある修理台の補助参照"><figcaption>補助参照・作業灯／工具密度／奥行き</figcaption></figure>
+            </div>
+            <div class="reference-use"><span class="micro-label">参照範囲</span><ul><li>主参照の指先、ピンセット、強い明暗差</li><li>補助参照の暖色灯、工具密度、作業台の奥行き</li></ul></div>
+            <dl class="shot-facts">
+              <div><dt>画面</dt><dd>画面の約3分の2を手元で満たし、顔と全身を切る。</dd></div>
+              <div><dt>意図</dt><dd>精密作業の緊張とミラの職能を先に置く。</dd></div>
+              <div><dt>尺</dt><dd>10秒</dd></div>
+              <div><dt>カメラ</dt><dd>Close / Slow pan / 手元の高さ</dd></div>
+              <div class="wide"><dt>成立条件</dt><dd>最初の一秒で指先と工具へ視線が集まり、人物の顔が主題にならない。</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </article>
+
+      <article class="shot-strip shot-two" data-shot-id="shot-b02-02">
+        <header class="shot-head">
+          <span class="shot-no">Shot 02</span>
+          <h3>メモと静止した蛾</h3>
+          <span class="shot-time">00:30–00:40</span>
+        </header>
+        <div class="shot-layout">
+          <div class="composition-panel" data-composition-markup="image-overlay">
+            <img data-primary-image="true" src="composition-assets/ref-b02-s02-aged-handwritten-letter.jpg" alt="黄変した手書きメモの主参照">
+            <span class="composition-tag">構図ラフ</span>
+            <span class="crop-frame" aria-hidden="true"></span>
+            <span class="focus focus-a" aria-hidden="true"></span><span class="focus-label label-a">主焦点・筆跡</span>
+            <span class="focus focus-b" aria-hidden="true"></span><span class="focus-label label-b">副焦点・蛾</span>
+            <span class="eye-vector vector-a" aria-hidden="true"></span>
+            <span class="zone zone-fg">前景・引き出し縁</span><span class="zone zone-mg">中景・メモと蛾</span><span class="zone zone-bg">背景・暗い木面</span>
+          </div>
+          <aside class="shot-side">
+            <div class="support-grid" style="--support-count:1">
+              <figure><img data-supporting-image="true" src="composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg" alt="静止した金属の蛾の補助参照"><figcaption>補助参照・翅の輪郭／金属光沢</figcaption></figure>
+            </div>
+            <div class="reference-use"><span class="micro-label">参照範囲</span><ul><li>主参照の黄変、折り目、筆跡密度</li><li>補助参照の翅の輪郭と金属光沢。青い背景は除外</li></ul></div>
+            <dl class="shot-facts">
+              <div><dt>画面</dt><dd>メモを左側約3分の2、蛾を右下約3分の1に置く俯瞰。</dd></div>
+              <div><dt>意図</dt><dd>紙と金属を一対の手がかりとして並べる。</dd></div>
+              <div><dt>尺</dt><dd>10秒</dd></div>
+              <div><dt>カメラ</dt><dd>Close / Locked / 真上から5度以内</dd></div>
+              <div class="wide"><dt>成立条件</dt><dd>二つを同時に把握でき、発光、羽ばたき、作動の印象がない。</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </article>
+
+      <article class="shot-strip shot-three" data-shot-id="shot-b02-03">
+        <header class="shot-head">
+          <span class="shot-no">Shot 03</span>
+          <h3>9:17と蛾の反復</h3>
+          <span class="shot-time">00:40–00:50</span>
+        </header>
+        <div class="shot-layout">
+          <div class="composition-panel" data-composition-markup="image-overlay">
+            <img data-primary-image="true" src="composition-assets/ref-b02-s03-vintage-watch-0915.jpg" alt="古い時計面の極端な寄りの主参照">
+            <span class="composition-tag">構図ラフ</span>
+            <span class="crop-frame" aria-hidden="true"></span>
+            <span class="focus focus-a" aria-hidden="true"></span><span class="focus-label label-a">主焦点・時刻</span>
+            <span class="focus focus-b" aria-hidden="true"></span><span class="focus-label label-b">副焦点・蛾</span>
+            <span class="eye-vector vector-a" aria-hidden="true"></span>
+            <span class="time-spec">表示指定 9:17 / 参照写真 9:15</span>
+            <span class="zone zone-fg">前景・時計面</span><span class="zone zone-mg">中景・蛾の翅</span><span class="zone zone-bg">背景・真鍮反射</span>
+          </div>
+          <aside class="shot-side">
+            <div class="support-grid" style="--support-count:2">
+              <figure><img data-supporting-image="true" src="composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg" alt="Shot 2と反復する蛾の翅の補助参照"><figcaption>補助参照・蛾の翅の一部</figcaption></figure>
+              <figure><img data-supporting-image="true" src="composition-assets/ref-b02-s03-brass-clock-dial.jpg" alt="真鍮文字盤の反射と彫りの補助参照"><figcaption>補助参照・真鍮反射／彫り</figcaption></figure>
+            </div>
+            <div class="reference-use"><span class="micro-label">参照範囲</span><ul><li>主参照の時計面と古い金色の縁。針位置は近似</li><li>蛾は同一参照の翅だけを反復し、真鍮反射を背面層へ</li></ul></div>
+            <dl class="shot-facts">
+              <div><dt>画面</dt><dd>時計面を画面外まで拡大し、蛾の翅と真鍮の反射を二層に置く。</dd></div>
+              <div><dt>意図</dt><dd>時刻と蛾を別々の反復モチーフとして分離する。</dd></div>
+              <div><dt>尺</dt><dd>10秒</dd></div>
+              <div><dt>カメラ</dt><dd>Extreme close / Controlled parallax</dd></div>
+              <div class="wide"><dt>成立条件</dt><dd>9:17と蛾が別焦点に見え、時計停止や蛾の機能を断定しない。</dd></div>
+            </dl>
+          </aside>
+        </div>
+      </article>
+    </section>
+
+    <section aria-labelledby="held-heading">
+      <h2 id="held-heading">保留事項</h2>
+      <ul class="held-list">
+        <li><strong>トーマの所在・生死</strong><span>未決</span></li>
+        <li><strong>真鍮の蛾の機能</strong><span>未決</span></li>
+        <li><strong>9:17の意味</strong><span>未決</span></li>
+        <li><strong>ミラの最終デザイン</strong><span>未決</span></li>
+      </ul>
+    </section>
+
+    <section class="credits" aria-labelledby="credits-heading">
+      <h2 id="credits-heading">出典</h2>
+      <div class="credit-grid">
+        <div class="credit-card"><strong>Watchmaking skills.jpg</strong>giridibyaranjan / <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> / <a href="https://commons.wikimedia.org/wiki/File:Watchmaking_skills.jpg">Wikimedia Commons</a></div>
+        <div class="credit-card"><strong>Traditional watch repairer at work in Goa.jpg</strong>SerChevalerie / <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a> / <a href="https://commons.wikimedia.org/wiki/File:Traditional_watch_repairer_at_work_in_Goa.jpg">Wikimedia Commons</a></div>
+        <div class="credit-card"><strong>Old Letter.jpg</strong>Lainey Powell / <a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a> / <a href="https://commons.wikimedia.org/wiki/File:Old_Letter.jpg">Wikimedia Commons</a></div>
+        <div class="credit-card"><strong>Butterfly brooch.jpg</strong>Jane023 / <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a> / <a href="https://commons.wikimedia.org/wiki/File:Butterfly_brooch.jpg">Wikimedia Commons</a></div>
+        <div class="credit-card"><strong>Vintage Bulova Men's Swiss-Made Manual-Wind Wrist Watch</strong>Joe Haupt / <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a> / <a href="https://commons.wikimedia.org/wiki/File:Vintage_Bulova_Men%27s_Swiss-Made_Manual-Wind_Wrist_Watch_(8505636506).jpg">Wikimedia Commons</a></div>
+        <div class="credit-card"><strong>Antique clock dial (Unsplash).jpg</strong>Brooke Campbell / <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a> / <a href="https://commons.wikimedia.org/wiki/File:Antique_clock_dial_(Unsplash).jpg">Wikimedia Commons</a></div>
+      </div>
+      <p class="credit-note">全画像は参照専用。制作素材として未選定であり、個別案件の権利処理済みとは扱わない。</p>
+    </section>
+  </main>
+  <footer>Fast Fiction Factory · Beat 2 · Composition Board</footer>
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const media = matchMedia("(prefers-color-scheme: dark)");
+      const buttons = [...document.querySelectorAll("[data-theme]")];
+      const stored = localStorage.getItem("fff-beat2-composition-theme") || "auto";
+      function apply(theme) {
+        const resolved = theme === "auto" ? (media.matches ? "dark" : "light") : theme;
+        root.dataset.theme = theme;
+        root.dataset.resolvedTheme = resolved;
+        buttons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.theme === theme)));
+      }
+      buttons.forEach((button) => button.addEventListener("click", () => {
+        localStorage.setItem("fff-beat2-composition-theme", button.dataset.theme);
+        apply(button.dataset.theme);
+      }));
+      media.addEventListener?.("change", () => { if (root.dataset.theme === "auto") apply("auto"); });
+      apply(["light", "dark", "auto"].includes(stored) ? stored : "auto");
+    })();
+  </script>
+</body>
+</html>

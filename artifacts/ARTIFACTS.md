@@ -1,5 +1,20 @@
 # Artifacts
 
+## fff-beat2-composition-board-001
+
+- Title: Fast Fiction Factory Beat 2 Composition Board
+- Purpose: Move the exact three-shot Beat 2 slice from atmosphere references to concrete, image-based crop/focus/depth/placement decisions without opening generation or production gates.
+- Primary file: `artifacts/beat2-composition-board/beat2-composition-board.html`
+- Package directory: `artifacts/beat2-composition-board/` (13 files including six normalized image copies and one contact sheet)
+- Source artifacts: `fff-beat2-visual-treatment-pilot-001`, `fff-production-storyboard-brief-001`, `fff-production-execution-pack-001` (all byte-identical)
+- Review doc/result: `docs/review/beat2-composition-board.md`, `artifacts/beat2-composition-board-result.json`
+- Visual evidence: `artifacts/review-screens/beat2-composition-board-900x1200-dark.png`, `artifacts/review-screens/beat2-composition-board-1280x900-light.png`, `artifacts/beat2-composition-board/beat2-composition-board-contact-sheet.jpg`
+- Composition contract: exactly 3 shots; one main and one or two supporting images per shot; crop frame, two focal points, eye path, foreground/midground/background, and five required execution fields per shot.
+- Reference contract: 6 distinct locally stored licensed rasters / 7 shot assignments. The moth reference recurs across Shot 2/3 under one ID and is not counted as a new distinct asset.
+- Read-only validation: `node tools/fff-state.mjs validate-beat2-composition-board artifacts/beat2-composition-board-result.json`
+- Intentional regeneration: `node tools/fff-state.mjs smoke-beat2-composition-board artifacts/beat2-composition-board-result.json` regenerates the package manifest and result after validating the fixed board and binary copies.
+- State: H0 green only with 22/22 fail-closed probes, two measured viewports, main-image visual share above 50%, equal-height columns, no nested/horizontal overflow, light print evidence, complete provenance, and source immutability. H1 composition transfer review is next; 19-shot expansion, selection, rights, generation, render, publication, database, and canon remain closed.
+
 ## fff-beat2-visual-treatment-pilot-001
 
 - Title: Fast Fiction Factory Beat 2 Visual Treatment Pilot

@@ -1,0 +1,412 @@
+{
+  "schemaVersion": "fff.beat2CompositionBoardResult.v1",
+  "artifact_id": "fff-beat2-composition-board-001",
+  "generated_at": "2026-07-15T12:00:00+09:00",
+  "command": "smoke-beat2-composition-board",
+  "passed": true,
+  "failures": [],
+  "warnings": [],
+  "source_artifact_ids": [
+    "fff-beat2-visual-treatment-pilot-001",
+    "fff-production-storyboard-brief-001",
+    "fff-production-execution-pack-001"
+  ],
+  "source_fingerprints": {
+    "visual_treatment_manifest_sha256": "fd417ce41b0df4d9a78fe2d56b2a864eede26aed9a44cf7ea18f3b22ae997a91",
+    "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+    "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+    "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+    "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+  },
+  "source_protection": {
+    "expected": {
+      "visual_treatment_manifest_sha256": "fd417ce41b0df4d9a78fe2d56b2a864eede26aed9a44cf7ea18f3b22ae997a91",
+      "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+      "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+      "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+      "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+    },
+    "observed": {
+      "visual_treatment_manifest_sha256": "fd417ce41b0df4d9a78fe2d56b2a864eede26aed9a44cf7ea18f3b22ae997a91",
+      "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+      "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+      "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+      "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+    },
+    "visual_treatment_unchanged": true,
+    "storyboard_unchanged": true,
+    "execution_unchanged": true
+  },
+  "beat_number": 2,
+  "beat_title": "真鍮の蛾",
+  "beat_window": "00:20–00:50",
+  "counts": {
+    "shots": 3,
+    "distinct_references": 6,
+    "image_assignments": 7,
+    "main_images": 3,
+    "supporting_images_min": 1,
+    "supporting_images_max": 2,
+    "composition_roughs": 3,
+    "negative_probes_passed": 22,
+    "negative_probes_total": 22,
+    "package_files": 13
+  },
+  "audits": {
+    "missing_metadata_count": 0,
+    "hotlink_count": 0,
+    "banned_primary_phrase_count": 0,
+    "primary_generic_svg_count": 0,
+    "distinct_main_compositions": 3,
+    "machine_specificity_pass_count": 3,
+    "human_comprehension_inference": true
+  },
+  "reference_audit": [
+    {
+      "reference_id": "ref-b02-s01-precision-handwork",
+      "used_by_shot_ids": [
+        "shot-b02-01"
+      ],
+      "local_path": "composition-assets/ref-b02-s01-precision-handwork.jpg",
+      "creator": "giridibyaranjan",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Watchmaking_skills.jpg",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s01-watch-repair-workbench",
+      "used_by_shot_ids": [
+        "shot-b02-01"
+      ],
+      "local_path": "composition-assets/ref-b02-s01-watch-repair-workbench.jpg",
+      "creator": "SerChevalerie",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Traditional_watch_repairer_at_work_in_Goa.jpg",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s02-aged-handwritten-letter",
+      "used_by_shot_ids": [
+        "shot-b02-02"
+      ],
+      "local_path": "composition-assets/ref-b02-s02-aged-handwritten-letter.jpg",
+      "creator": "Lainey Powell",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Old_Letter.jpg",
+      "license_name": "CC BY 2.0",
+      "license_url": "https://creativecommons.org/licenses/by/2.0/",
+      "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s02-metal-butterfly-brooch",
+      "used_by_shot_ids": [
+        "shot-b02-02",
+        "shot-b02-03"
+      ],
+      "local_path": "composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
+      "creator": "Jane023 (photographer/uploader; own work)",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Butterfly_brooch.jpg",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s03-vintage-watch-0915",
+      "used_by_shot_ids": [
+        "shot-b02-03"
+      ],
+      "local_path": "composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
+      "creator": "Joe Haupt",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Vintage_Bulova_Men%27s_Swiss-Made_Manual-Wind_Wrist_Watch_(8505636506).jpg",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b02-s03-brass-clock-dial",
+      "used_by_shot_ids": [
+        "shot-b02-03"
+      ],
+      "local_path": "composition-assets/ref-b02-s03-brass-clock-dial.jpg",
+      "creator": "Brooke Campbell / bcampbell",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Antique_clock_dial_(Unsplash).jpg",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    }
+  ],
+  "package_integrity": {
+    "manifest_path": "artifacts/beat2-composition-board/beat2-composition-board-manifest.json",
+    "package_fingerprint_sha256": "4c44089a140626d56fd67f8341a4765e60f310ff65555c8ff8a0eef3eff7f3b0",
+    "payload_file_count": 12
+  },
+  "negative_probes": [
+    {
+      "name": "missing_shot",
+      "passed": true
+    },
+    {
+      "name": "fourth_shot_added",
+      "passed": true
+    },
+    {
+      "name": "missing_main_image",
+      "passed": true
+    },
+    {
+      "name": "no_supporting_image",
+      "passed": true
+    },
+    {
+      "name": "no_composition_markup",
+      "passed": true
+    },
+    {
+      "name": "banned_conversational_heading",
+      "passed": true
+    },
+    {
+      "name": "process_governance_phrase_in_primary",
+      "passed": true
+    },
+    {
+      "name": "reused_symbolic_storyboard_frame",
+      "passed": true
+    },
+    {
+      "name": "missing_creator",
+      "passed": true
+    },
+    {
+      "name": "missing_source_page",
+      "passed": true
+    },
+    {
+      "name": "missing_license",
+      "passed": true
+    },
+    {
+      "name": "missing_license_url",
+      "passed": true
+    },
+    {
+      "name": "ambiguous_license",
+      "passed": true
+    },
+    {
+      "name": "duplicate_or_near_duplicate_support",
+      "passed": true
+    },
+    {
+      "name": "hotlink_in_html",
+      "passed": true
+    },
+    {
+      "name": "source_package_mutation",
+      "passed": true
+    },
+    {
+      "name": "selected_asset_flag_true",
+      "passed": true
+    },
+    {
+      "name": "rights_cleared_true",
+      "passed": true
+    },
+    {
+      "name": "title_oversize",
+      "passed": true
+    },
+    {
+      "name": "theme_missing",
+      "passed": true
+    },
+    {
+      "name": "nested_scroll",
+      "passed": true
+    },
+    {
+      "name": "horizontal_overflow",
+      "passed": true
+    }
+  ],
+  "browser_evidence": {
+    "status": "captured",
+    "captured_at": "2026-07-15T12:00:00+09:00",
+    "viewports": {
+      "900x1200-dark": {
+        "width": 900,
+        "height": 1200,
+        "initial": {
+          "theme": "auto",
+          "resolved": "dark"
+        },
+        "theme": "dark",
+        "resolved_theme": "dark",
+        "primary_image_shares": [
+          0.8633080961822854,
+          0.8633080961822854,
+          0.8984416427589144
+        ],
+        "equal_height_deltas_px": [
+          0,
+          0,
+          0
+        ],
+        "horizontal_overflow": false,
+        "nested_scroll_owners": 0,
+        "document_height_px": 3476,
+        "print": {
+          "rootBackground": "#fff",
+          "utilityPosition": "static",
+          "shotBreak": "avoid"
+        }
+      },
+      "1280x900-light": {
+        "width": 1280,
+        "height": 900,
+        "initial": {
+          "theme": "auto",
+          "resolved": "light"
+        },
+        "theme": "light",
+        "resolved_theme": "light",
+        "primary_image_shares": [
+          0.8426923433837724,
+          0.8426923433837724,
+          0.8822503874256052
+        ],
+        "equal_height_deltas_px": [
+          0,
+          0,
+          0
+        ],
+        "horizontal_overflow": false,
+        "nested_scroll_owners": 0,
+        "document_height_px": 3210,
+        "print": {
+          "rootBackground": "#fff",
+          "utilityPosition": "static",
+          "shotBreak": "avoid"
+        }
+      }
+    },
+    "theme": {
+      "auto_default": true,
+      "dark_resolved": "dark",
+      "light_resolved": "light"
+    },
+    "layout": {
+      "shot_count": 3,
+      "primary_image_min_share": 0.8426923433837724,
+      "horizontal_overflow": false,
+      "nested_scroll_owners": 0,
+      "equal_height_max_delta_px": 0,
+      "title_900x1200": {
+        "font_size_px": 37.8,
+        "line_height_px": 42.336,
+        "width_px": 868,
+        "height_px": 42.328125,
+        "top_px": 146.390625,
+        "bottom_px": 188.71875
+      },
+      "title_1280x900": {
+        "font_size_px": 44,
+        "line_height_px": 49.28,
+        "width_px": 1004.796875,
+        "height_px": 49.265625,
+        "top_px": 126,
+        "bottom_px": 175.265625
+      }
+    },
+    "print": {
+      "forced_light": true,
+      "utility_static": true,
+      "shot_break_avoid": true
+    }
+  },
+  "screenshots": {
+    "900x1200-dark": {
+      "path": "artifacts/review-screens/beat2-composition-board-900x1200-dark.png",
+      "exists": true,
+      "byte_size": 407977,
+      "sha256": "00f9c488ed1850cd8160fd1622c43977e459a350ca4b0e2219cb3d55c69c6d2b",
+      "dimensions": {
+        "width": 900,
+        "height": 1200
+      }
+    },
+    "1280x900-light": {
+      "path": "artifacts/review-screens/beat2-composition-board-1280x900-light.png",
+      "exists": true,
+      "byte_size": 355804,
+      "sha256": "e223965b3a4a9820d3fb13aabd7ae1e767800dcc9b868821b51e7b1331fe2e50",
+      "dimensions": {
+        "width": 1280,
+        "height": 900
+      }
+    }
+  },
+  "theme_evidence": {
+    "auto_default": true,
+    "dark_resolved": "dark",
+    "light_resolved": "light"
+  },
+  "print_evidence": {
+    "forced_light": true,
+    "utility_static": true,
+    "shot_break_avoid": true
+  },
+  "source_packages_unchanged": true,
+  "reference_only": true,
+  "selected_for_production": false,
+  "rights_cleared_claim": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "external_model_call": false,
+  "ai_image_generation": false,
+  "audio_generated": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "public_upload": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "review_status": {
+    "predecessor_visual_treatment_h1": "A寄りのB",
+    "h0_machine": "pass",
+    "h1_human": "not_started",
+    "h2_asset_rights": "closed"
+  },
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "image_generation": false,
+    "production_approved": false,
+    "content_changed": false,
+    "timing_changed": false,
+    "final_canon_decision": false
+  },
+  "validation_command": "node tools/fff-state.mjs validate-beat2-composition-board artifacts/beat2-composition-board-result.json",
+  "smoke_command": "node tools/fff-state.mjs smoke-beat2-composition-board artifacts/beat2-composition-board-result.json"
+}

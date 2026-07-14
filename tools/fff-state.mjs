@@ -69,6 +69,9 @@ const PRODUCTION_EXECUTION_PACK_MANIFEST_SCHEMA_VERSION = "fff.productionExecuti
 const PRODUCTION_STORYBOARD_BRIEF_SCHEMA_VERSION = "fff.productionStoryboardBrief.v1";
 const PRODUCTION_STORYBOARD_BRIEF_RESULT_SCHEMA_VERSION = "fff.productionStoryboardBriefResult.v1";
 const PRODUCTION_STORYBOARD_BRIEF_MANIFEST_SCHEMA_VERSION = "fff.productionStoryboardBriefManifest.v1";
+const BEAT2_COMPOSITION_BOARD_SCHEMA_VERSION = "fff.beat2CompositionBoard.v1";
+const BEAT2_COMPOSITION_BOARD_RESULT_SCHEMA_VERSION = "fff.beat2CompositionBoardResult.v1";
+const BEAT2_COMPOSITION_BOARD_MANIFEST_SCHEMA_VERSION = "fff.beat2CompositionBoardManifest.v1";
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -118,6 +121,7 @@ const DEFAULT_OPERATOR_PRODUCTION_BRIEF_OUTPUT = "artifacts/operator-production-
 const DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT = "artifacts/operator-production-brief-typography-balance-result.json";
 const DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT = "artifacts/production-execution-pack-result.json";
 const DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT = "artifacts/production-storyboard-brief-result.json";
+const DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT = "artifacts/beat2-composition-board-result.json";
 const EDITORIAL_HANDOFF_PACKAGE_ROOT = "artifacts/editorial-handoff";
 const EDITORIAL_HANDOFF_PACKAGE_MANIFEST_PATH = `${EDITORIAL_HANDOFF_PACKAGE_ROOT}/package-manifest.json`;
 const EDITORIAL_HANDOFF_PACKAGE_FILES = [
@@ -1547,12 +1551,27 @@ async function main() {
   }
 
   if (command === "validate-production-storyboard-brief") {
+    const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
+    if (rootManifest.value?.artifact_id === "fff-beat2-composition-board-001") {
+      await runPreservedProductionStoryboardBriefValidation({ inputPath, outputPath });
+      return;
+    }
     const { runProductionStoryboardBriefCommand } = await import("./fff-production-storyboard-brief.mjs");
     await runProductionStoryboardBriefCommand({ command, inputPath, outputPath });
     return;
   }
 
+  if (command === "validate-beat2-composition-board" || command === "smoke-beat2-composition-board") {
+    await runBeat2CompositionBoardCommand({ command, inputPath, outputPath });
+    return;
+  }
+
   if (command === "validate-beat2-visual-treatment-pilot") {
+    const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
+    if (rootManifest.value?.artifact_id === "fff-beat2-composition-board-001") {
+      await runPreservedBeat2VisualTreatmentValidation({ inputPath, outputPath });
+      return;
+    }
     const { runBeat2VisualTreatmentCommand } = await import("./fff-beat2-visual-treatment-pilot.mjs");
     await runBeat2VisualTreatmentCommand({ command, inputPath, outputPath });
     return;
@@ -1573,6 +1592,11 @@ async function main() {
   if (command === "validate-production-execution-pack") {
     if (outputPath) {
       fail("validate-production-execution-pack is strictly read-only and does not accept an output path; use smoke-production-execution-pack for intentional execution-pack and result regeneration.");
+    }
+    const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
+    if (rootManifest.value?.artifact_id === "fff-beat2-composition-board-001") {
+      await runPreservedProductionExecutionPackValidation({ inputPath, outputPath });
+      return;
     }
     const source = inputPath || DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT;
     const readback = await readJson(source);
@@ -14970,7 +14994,12 @@ function productionExecutionRootPreserves(manifest, artifactId) {
     manifest?.beat2_visual_treatment_pilot?.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
     manifest?.beat2_visual_treatment_pilot?.source_artifact_ids?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID) &&
     manifest?.beat2_visual_treatment_pilot?.source_artifact_ids?.includes(PRODUCTION_EXECUTION_PACK_ARTIFACT_ID);
-  return (executionActive || storyboardWrapsExecution || pilotWrapsExecution) &&
+  const compositionWrapsExecution = manifest?.artifact_id === "fff-beat2-composition-board-001" &&
+    manifest?.beat2_composition_board?.artifact_id === "fff-beat2-composition-board-001" &&
+    manifest?.beat2_composition_board?.source_artifact_ids?.includes("fff-beat2-visual-treatment-pilot-001") &&
+    manifest?.beat2_composition_board?.source_artifact_ids?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID) &&
+    manifest?.beat2_composition_board?.source_artifact_ids?.includes(PRODUCTION_EXECUTION_PACK_ARTIFACT_ID);
+  return (executionActive || storyboardWrapsExecution || pilotWrapsExecution || compositionWrapsExecution) &&
     manifest?.production_execution_pack?.artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID &&
     Array.isArray(manifest?.production_execution_pack?.source_artifact_ids) &&
     manifest.production_execution_pack.source_artifact_ids.includes(artifactId) &&
@@ -15400,7 +15429,8 @@ async function snapshotProductionExecutionPackHistoricalResults() {
     .filter((name) => name.endsWith("-result.json") &&
       name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT) &&
       name !== path.basename(DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT) &&
-      name !== "beat2-visual-treatment-pilot-result.json");
+      name !== "beat2-visual-treatment-pilot-result.json" &&
+      name !== "beat2-composition-board-result.json");
   return snapshotOperatorProductionBriefTypographyPaths(names.map((name) => `artifacts/${name}`));
 }
 
@@ -15732,9 +15762,13 @@ function validateProductionExecutionPackRootManifest(manifest, packageSnapshots,
   const allowBootstrapEvidence = options.allow_bootstrap_evidence === true;
   const entry = manifest?.production_execution_pack || {};
   const files = entry.files || entry.package_files || [];
-  const pilotWrapped = manifest?.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
+  const compositionWrapped = manifest?.artifact_id === "fff-beat2-composition-board-001" &&
+    manifest?.beat2_composition_board?.artifact_id === "fff-beat2-composition-board-001" &&
+    manifest?.beat2_composition_board?.source_artifact_ids?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID) &&
+    manifest?.beat2_composition_board?.source_artifact_ids?.includes(PRODUCTION_EXECUTION_PACK_ARTIFACT_ID);
+  const pilotWrapped = compositionWrapped || (manifest?.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
     manifest?.beat2_visual_treatment_pilot?.artifact_id === "fff-beat2-visual-treatment-pilot-001" &&
-    manifest?.beat2_visual_treatment_pilot?.source_artifact_ids?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID);
+    manifest?.beat2_visual_treatment_pilot?.source_artifact_ids?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID));
   const storyboardWrapped = pilotWrapped || (manifest?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
     manifest?.production_storyboard_brief?.artifact_id === PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID &&
     manifest?.production_storyboard_brief?.source_artifact_id === PRODUCTION_EXECUTION_PACK_ARTIFACT_ID);
@@ -16430,7 +16464,8 @@ async function snapshotOperatorProductionBriefHistoricalResults() {
       name !== path.basename(DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT) &&
       name !== path.basename(DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT) &&
       name !== path.basename(DEFAULT_PRODUCTION_STORYBOARD_BRIEF_OUTPUT) &&
-      name !== "beat2-visual-treatment-pilot-result.json");
+      name !== "beat2-visual-treatment-pilot-result.json" &&
+      name !== "beat2-composition-board-result.json");
   return snapshotOperatorProductionBriefTypographyPaths(names.map((name) => `artifacts/${name}`));
 }
 
@@ -21945,6 +21980,741 @@ function countStatuses(reviewStatuses) {
     }
   }
   return counts;
+}
+
+const BEAT2_COMPOSITION_BOARD_ID = "fff-beat2-composition-board-001";
+const BEAT2_COMPOSITION_BOARD_GENERATED_AT = "2026-07-15T12:00:00+09:00";
+const BEAT2_COMPOSITION_BOARD_ROOT = "artifacts/beat2-composition-board";
+const BEAT2_COMPOSITION_BOARD_HTML = `${BEAT2_COMPOSITION_BOARD_ROOT}/beat2-composition-board.html`;
+const BEAT2_COMPOSITION_BOARD_JSON = `${BEAT2_COMPOSITION_BOARD_ROOT}/beat2-composition-board.json`;
+const BEAT2_COMPOSITION_BOARD_MANIFEST = `${BEAT2_COMPOSITION_BOARD_ROOT}/beat2-composition-board-manifest.json`;
+const BEAT2_COMPOSITION_BOARD_REVIEW_DOC = "docs/review/beat2-composition-board.md";
+const BEAT2_COMPOSITION_BOARD_CONTACT_SHEET = `${BEAT2_COMPOSITION_BOARD_ROOT}/beat2-composition-board-contact-sheet.jpg`;
+const BEAT2_COMPOSITION_BOARD_SCREENSHOTS = Object.freeze({
+  "900x1200-dark": "artifacts/review-screens/beat2-composition-board-900x1200-dark.png",
+  "1280x900-light": "artifacts/review-screens/beat2-composition-board-1280x900-light.png"
+});
+const BEAT2_COMPOSITION_BOARD_PAYLOAD_FILES = Object.freeze([
+  "README_COMPOSITION_BOARD.md",
+  "beat2-composition-board.html",
+  "beat2-composition-board.json",
+  "reference-sources.csv",
+  "shot-composition-map.csv",
+  "composition-assets/ref-b02-s01-precision-handwork.jpg",
+  "composition-assets/ref-b02-s01-watch-repair-workbench.jpg",
+  "composition-assets/ref-b02-s02-aged-handwritten-letter.jpg",
+  "composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
+  "composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
+  "composition-assets/ref-b02-s03-brass-clock-dial.jpg",
+  "beat2-composition-board-contact-sheet.jpg"
+]);
+const BEAT2_COMPOSITION_BOARD_REQUIRED_FILES = Object.freeze([
+  ...BEAT2_COMPOSITION_BOARD_PAYLOAD_FILES,
+  "beat2-composition-board-manifest.json"
+]);
+const BEAT2_COMPOSITION_SOURCE_FILES = Object.freeze({
+  "artifacts/beat2-visual-treatment-pilot": [
+    "README_VISUAL_TREATMENT.md",
+    "beat2-visual-treatment-contact-sheet.jpg",
+    "beat2-visual-treatment-manifest.json",
+    "beat2-visual-treatment.html",
+    "beat2-visual-treatment.json",
+    "reference-sources.csv",
+    "references/ref-b02-s01-precision-handwork.jpg",
+    "references/ref-b02-s01-watch-repair-workbench.jpg",
+    "references/ref-b02-s02-aged-handwritten-letter.jpg",
+    "references/ref-b02-s02-metal-butterfly-brooch.jpg",
+    "references/ref-b02-s03-brass-clock-dial.jpg",
+    "references/ref-b02-s03-vintage-watch-0915.jpg",
+    "shot-reference-map.csv"
+  ],
+  "artifacts/production-storyboard-brief": [
+    "README_STORYBOARD_BRIEF.md",
+    "production-storyboard-brief.html",
+    "production-storyboard-brief.json",
+    "storyboard-shot-map.csv",
+    "story-glossary.csv",
+    "asset-operations-summary.csv",
+    "production-storyboard-brief-manifest.json"
+  ],
+  "artifacts/production-execution-pack": [
+    "README_PRODUCTION_EXECUTION.md",
+    "production-execution-pack.html",
+    "production-execution-pack.json",
+    "beat-run-sheet.csv",
+    "shot-execution-sheet.csv",
+    "asset-requirements.csv",
+    "narration-timing-envelope.csv",
+    "thumbnail-requirements.md",
+    "production-execution-manifest.json"
+  ]
+});
+const BEAT2_COMPOSITION_SOURCE_FINGERPRINTS = Object.freeze({
+  visual_treatment_manifest_sha256: "fd417ce41b0df4d9a78fe2d56b2a864eede26aed9a44cf7ea18f3b22ae997a91",
+  visual_treatment_package_fingerprint_sha256: "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+  visual_treatment_thirteen_file_aggregate_sha256: "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+  storyboard_seven_file_aggregate_sha256: "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+  execution_nine_file_aggregate_sha256: "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+});
+const BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE = Object.freeze({
+  result_path: "artifacts/beat2-visual-treatment-pilot-result.json",
+  result_sha256: "efbeb419908bd857ae37e80f7e24d2b3c0856b10bc45a89f8ba7607b42fd109f",
+  review_doc_path: "docs/review/beat2-visual-treatment-pilot.md",
+  review_doc_sha256: "5479455c79665f4e8d3117faaba9be06b0ca308d323b96bd8b7c60e3d4400a1e",
+  screenshots: {
+    "900x1200-dark": {
+      path: "artifacts/review-screens/beat2-visual-treatment-900x1200-dark.png",
+      sha256: "79dacd60a674f3284c77e1eb2f08a618e8b970d1f65a370145c47f404a44a933"
+    },
+    "1280x900-light": {
+      path: "artifacts/review-screens/beat2-visual-treatment-1280x900-light.png",
+      sha256: "8531a9fb5df9ece2acbbeea6d3c6bfa63025f2128310cb2066d5d0a419ed91d4"
+    }
+  }
+});
+const PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE = Object.freeze({
+  result_path: "artifacts/production-storyboard-brief-result.json",
+  result_sha256: "66d63166859c43de99f97068a236613234960fdaf3acc4a416982f87ab74cb0d",
+  review_doc_path: "docs/review/production-storyboard-brief.md",
+  review_doc_sha256: "6ec79479dfbcd24725b94b9b9b6ae1eed2eea1a31e0c0194dc81a0403c80f68c",
+  screenshots: {
+    "900x1200-dark": {
+      path: "artifacts/review-screens/production-storyboard-brief-900x1200-dark.png",
+      sha256: "d7eaca3543cf010106f7b465fd5cb11f2e415dcfb7e2d2b1e6a61af7bf30ca84"
+    },
+    "1280x900-light": {
+      path: "artifacts/review-screens/production-storyboard-brief-1280x900-light.png",
+      sha256: "3ba0312bc554f41e7aea27400ecc71f9ec03e5ef396c0443e9d668ca8e67c496"
+    }
+  }
+});
+const PRODUCTION_EXECUTION_PRESERVED_EVIDENCE = Object.freeze({
+  result_path: "artifacts/production-execution-pack-result.json",
+  result_sha256: "991e6310f67ae898ffc2949308c4826db1792479c1bf66900b9e710ad44c737d",
+  review_doc_path: "docs/review/production-execution-pack.md",
+  review_doc_sha256: "470a5f2c5be577018aa32f83738c7fa62fa0452e19a935bc819b258a865044c1",
+  screenshots: {
+    "900x1200": {
+      path: "artifacts/review-screens/production-execution-pack-900x1200.png",
+      sha256: "e5608bce00830e8e8b1c821a32fc08b8832e6f86b252fe8e46d102651d0d648a"
+    },
+    "1280x900": {
+      path: "artifacts/review-screens/production-execution-pack-1280x900.png",
+      sha256: "d3acdc7d1c0fda53318fc95885479654174b20be03eabf273fc399adda14642c"
+    }
+  }
+});
+const BEAT2_COMPOSITION_REFERENCE_HASHES = Object.freeze({
+  "ref-b02-s01-precision-handwork": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33",
+  "ref-b02-s01-watch-repair-workbench": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258",
+  "ref-b02-s02-aged-handwritten-letter": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b",
+  "ref-b02-s02-metal-butterfly-brooch": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9",
+  "ref-b02-s03-vintage-watch-0915": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082",
+  "ref-b02-s03-brass-clock-dial": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3"
+});
+const BEAT2_COMPOSITION_NEGATIVE_PROBES = Object.freeze([
+  "missing_shot",
+  "fourth_shot_added",
+  "missing_main_image",
+  "no_supporting_image",
+  "no_composition_markup",
+  "banned_conversational_heading",
+  "process_governance_phrase_in_primary",
+  "reused_symbolic_storyboard_frame",
+  "missing_creator",
+  "missing_source_page",
+  "missing_license",
+  "missing_license_url",
+  "ambiguous_license",
+  "duplicate_or_near_duplicate_support",
+  "hotlink_in_html",
+  "source_package_mutation",
+  "selected_asset_flag_true",
+  "rights_cleared_true",
+  "title_oversize",
+  "theme_missing",
+  "nested_scroll",
+  "horizontal_overflow"
+]);
+
+function beat2CompositionClone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function beat2CompositionHash(buffer) {
+  return createHash("sha256").update(buffer).digest("hex");
+}
+
+function beat2CompositionJpegDimensions(buffer) {
+  if (!buffer || buffer[0] !== 0xff || buffer[1] !== 0xd8) return null;
+  let offset = 2;
+  while (offset + 9 < buffer.length) {
+    if (buffer[offset] !== 0xff) { offset += 1; continue; }
+    const marker = buffer[offset + 1];
+    if ([0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7, 0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf].includes(marker)) {
+      return { height: buffer.readUInt16BE(offset + 5), width: buffer.readUInt16BE(offset + 7) };
+    }
+    if (marker === 0xd8 || marker === 0xd9) { offset += 2; continue; }
+    const length = buffer.readUInt16BE(offset + 2);
+    if (!length) break;
+    offset += length + 2;
+  }
+  return null;
+}
+
+function beat2CompositionPngDimensions(buffer) {
+  if (!buffer || buffer.length < 24 || buffer.toString("ascii", 1, 4) !== "PNG") return null;
+  return { width: buffer.readUInt32BE(16), height: buffer.readUInt32BE(20) };
+}
+
+async function beat2CompositionAggregate(root, files) {
+  const rows = [];
+  for (const name of files) {
+    const snapshot = await readFileSnapshot(path.join(root, name));
+    rows.push(`${root}/${name}|${snapshot.byteSize}|${snapshot.sha256}`);
+  }
+  return beat2CompositionHash(Buffer.from(rows.sort().join("\n"), "utf8"));
+}
+
+async function beat2CompositionSourceSnapshot() {
+  const pilotManifest = await readJsonFileSnapshot("artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment-manifest.json");
+  return {
+    visual_treatment_manifest_sha256: pilotManifest.sha256,
+    visual_treatment_package_fingerprint_sha256: pilotManifest.value?.package_fingerprint_sha256 || null,
+    visual_treatment_thirteen_file_aggregate_sha256: await beat2CompositionAggregate("artifacts/beat2-visual-treatment-pilot", BEAT2_COMPOSITION_SOURCE_FILES["artifacts/beat2-visual-treatment-pilot"]),
+    storyboard_seven_file_aggregate_sha256: await beat2CompositionAggregate("artifacts/production-storyboard-brief", BEAT2_COMPOSITION_SOURCE_FILES["artifacts/production-storyboard-brief"]),
+    execution_nine_file_aggregate_sha256: await beat2CompositionAggregate("artifacts/production-execution-pack", BEAT2_COMPOSITION_SOURCE_FILES["artifacts/production-execution-pack"])
+  };
+}
+
+function beat2CompositionSourceErrors(observed) {
+  const failures = [];
+  for (const [key, expected] of Object.entries(BEAT2_COMPOSITION_SOURCE_FINGERPRINTS)) {
+    if (observed?.[key] !== expected) failures.push(`protected source mismatch: ${key}`);
+  }
+  return failures;
+}
+
+async function runPreservedBeat2VisualTreatmentValidation({ inputPath, outputPath }) {
+  const target = toRepoPath(inputPath || BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE.result_path);
+  if (target !== BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE.result_path) fail(`Preserved Beat 2 Visual Treatment validation requires ${BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE.result_path}.`);
+  if (outputPath) fail("Preserved Beat 2 Visual Treatment validation does not accept an output path.");
+  const [root, recorded, reviewDoc, observedSources] = await Promise.all([
+    readJsonFileSnapshot("artifacts/artifact-manifest.json"),
+    readJsonFileSnapshot(target),
+    readFileSnapshot(BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE.review_doc_path),
+    beat2CompositionSourceSnapshot()
+  ]);
+  const failures = [];
+  const entry = root.value?.beat2_visual_treatment_pilot || {};
+  if (root.value?.artifact_id !== BEAT2_COMPOSITION_BOARD_ID || !root.value?.preserves?.includes("fff-beat2-visual-treatment-pilot-001")) failures.push("preserved pilot is not registered beneath active Composition Board");
+  if (entry.artifact_id !== "fff-beat2-visual-treatment-pilot-001" || entry.schemaVersion !== "fff.beat2VisualTreatmentPilot.v1" || entry.package_root !== "artifacts/beat2-visual-treatment-pilot" || entry.result_path !== target || entry.review_doc_path !== BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE.review_doc_path) failures.push("preserved pilot nested registration mismatch");
+  if (entry.package_manifest_sha256 !== BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.visual_treatment_manifest_sha256 || entry.package_fingerprint_sha256 !== BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.visual_treatment_package_fingerprint_sha256 || entry.package_files?.length !== BEAT2_COMPOSITION_SOURCE_FILES["artifacts/beat2-visual-treatment-pilot"].length) failures.push("preserved pilot package registration mismatch");
+  failures.push(...beat2CompositionSourceErrors(observedSources).filter((message) => message.includes("visual_treatment")));
+  if (!recorded.exists || recorded.sha256 !== BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE.result_sha256 || recorded.value?.artifact_id !== "fff-beat2-visual-treatment-pilot-001" || recorded.value?.passed !== true || recorded.value?.counts?.negative_probes_passed !== 24 || recorded.value?.counts?.negative_probes_total !== 24) failures.push("preserved pilot recorded H0 result mismatch");
+  if (!reviewDoc.exists || reviewDoc.sha256 !== BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE.review_doc_sha256) failures.push("preserved pilot review authority mismatch");
+  for (const [name, expected] of Object.entries(BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE.screenshots)) {
+    const observed = await readFileSnapshot(expected.path);
+    if (!observed.exists || observed.sha256 !== expected.sha256 || entry.screenshots?.[name]?.sha256 !== expected.sha256) failures.push(`preserved pilot screenshot mismatch: ${name}`);
+  }
+  const command = String(root.value?.validation_command || "");
+  const pilotIndex = command.indexOf(`validate-beat2-visual-treatment-pilot ${target}`);
+  const storyboardIndex = command.indexOf("validate-production-storyboard-brief artifacts/production-storyboard-brief-result.json");
+  if (pilotIndex < 0 || storyboardIndex <= pilotIndex || command.includes("smoke-beat2-visual-treatment-pilot")) failures.push("preserved pilot read-only validation chain mismatch");
+  if (failures.length) fail(`Beat 2 Visual Treatment preserved read-only validation failed: ${[...new Set(failures)].join("; ")}`);
+  console.log(`Beat 2 Visual Treatment preserved read-only validation passed: ${target}`);
+}
+
+async function runPreservedProductionStoryboardBriefValidation({ inputPath, outputPath }) {
+  const target = toRepoPath(inputPath || PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.result_path);
+  if (target !== PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.result_path) fail(`Preserved Production Storyboard Brief validation requires ${PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.result_path}.`);
+  if (outputPath) fail("Preserved Production Storyboard Brief validation does not accept an output path.");
+  const [root, recorded, reviewDoc, observedSources] = await Promise.all([
+    readJsonFileSnapshot("artifacts/artifact-manifest.json"),
+    readJsonFileSnapshot(target),
+    readFileSnapshot(PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.review_doc_path),
+    beat2CompositionSourceSnapshot()
+  ]);
+  const failures = [];
+  const entry = root.value?.production_storyboard_brief || {};
+  if (root.value?.artifact_id !== BEAT2_COMPOSITION_BOARD_ID || !root.value?.preserves?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID)) failures.push("preserved Storyboard Brief is not registered beneath active Composition Board");
+  if (entry.artifact_id !== PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID || entry.schemaVersion !== "fff.productionStoryboardBrief.v1" || entry.package_root !== "artifacts/production-storyboard-brief" || entry.result_path !== target || entry.review_doc_path !== PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.review_doc_path || entry.files?.length !== BEAT2_COMPOSITION_SOURCE_FILES["artifacts/production-storyboard-brief"].length) failures.push("preserved Storyboard Brief nested registration mismatch");
+  if (entry.package_fingerprint_sha256 !== "400d01a3abaa935103e1080b2f42b2f9e20553e225e13e90aec7a740e7ed3861" || observedSources.storyboard_seven_file_aggregate_sha256 !== BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.storyboard_seven_file_aggregate_sha256) failures.push("preserved Storyboard Brief package mismatch");
+  if (!recorded.exists || recorded.sha256 !== PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.result_sha256 || recorded.value?.artifact_id !== PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID || recorded.value?.passed !== true || recorded.value?.shot_count !== 19 || Object.keys(recorded.value?.negative_probes || {}).length !== 18) failures.push("preserved Storyboard Brief recorded H0 result mismatch");
+  if (!reviewDoc.exists || reviewDoc.sha256 !== PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.review_doc_sha256) failures.push("preserved Storyboard Brief review authority mismatch");
+  for (const [name, expected] of Object.entries(PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.screenshots)) {
+    const observed = await readFileSnapshot(expected.path);
+    if (!observed.exists || observed.sha256 !== expected.sha256 || entry.screenshots?.[name]?.sha256 !== expected.sha256) failures.push(`preserved Storyboard Brief screenshot mismatch: ${name}`);
+  }
+  const command = String(root.value?.validation_command || "");
+  const storyboardIndex = command.indexOf(`validate-production-storyboard-brief ${target}`);
+  const executionIndex = command.indexOf(`validate-production-execution-pack ${DEFAULT_PRODUCTION_EXECUTION_PACK_OUTPUT}`);
+  if (storyboardIndex < 0 || executionIndex <= storyboardIndex || command.includes("smoke-production-storyboard-brief")) failures.push("preserved Storyboard Brief read-only validation chain mismatch");
+  if (failures.length) fail(`Production Storyboard Brief preserved read-only validation failed: ${[...new Set(failures)].join("; ")}`);
+  console.log(`Production Storyboard Brief preserved read-only validation passed: ${target}`);
+}
+
+async function runPreservedProductionExecutionPackValidation({ inputPath, outputPath }) {
+  const target = toRepoPath(inputPath || PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.result_path);
+  if (target !== PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.result_path) fail(`Preserved Production Execution Pack validation requires ${PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.result_path}.`);
+  if (outputPath) fail("Preserved Production Execution Pack validation does not accept an output path.");
+  const [root, recorded, reviewDoc, observedSources] = await Promise.all([
+    readJsonFileSnapshot("artifacts/artifact-manifest.json"),
+    readJsonFileSnapshot(target),
+    readFileSnapshot(PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.review_doc_path),
+    beat2CompositionSourceSnapshot()
+  ]);
+  const failures = [];
+  const entry = root.value?.production_execution_pack || {};
+  if (root.value?.artifact_id !== BEAT2_COMPOSITION_BOARD_ID || !root.value?.preserves?.includes(PRODUCTION_EXECUTION_PACK_ARTIFACT_ID)) failures.push("preserved Execution Pack is not registered beneath active Composition Board");
+  if (entry.artifact_id !== PRODUCTION_EXECUTION_PACK_ARTIFACT_ID || entry.schemaVersion !== "fff.productionExecutionPack.v1" || entry.package_root !== "artifacts/production-execution-pack" || entry.result_path !== target || entry.review_doc_path !== PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.review_doc_path || entry.files?.length !== BEAT2_COMPOSITION_SOURCE_FILES["artifacts/production-execution-pack"].length) failures.push("preserved Execution Pack nested registration mismatch");
+  if (entry.package_fingerprint_sha256 !== "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca" || observedSources.execution_nine_file_aggregate_sha256 !== BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.execution_nine_file_aggregate_sha256) failures.push("preserved Execution Pack package mismatch");
+  if (!recorded.exists || recorded.sha256 !== PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.result_sha256 || recorded.value?.artifact_id !== PRODUCTION_EXECUTION_PACK_ARTIFACT_ID || recorded.value?.passed !== true || recorded.value?.shot_count !== 19 || Object.keys(recorded.value?.negative_probes || {}).length !== 20) failures.push("preserved Execution Pack recorded H0 result mismatch");
+  if (!reviewDoc.exists || reviewDoc.sha256 !== PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.review_doc_sha256) failures.push("preserved Execution Pack review authority mismatch");
+  for (const [name, expected] of Object.entries(PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.screenshots)) {
+    const observed = await readFileSnapshot(expected.path);
+    if (!observed.exists || observed.sha256 !== expected.sha256 || entry.screenshots?.[name]?.sha256 !== expected.sha256) failures.push(`preserved Execution Pack screenshot mismatch: ${name}`);
+  }
+  const command = String(root.value?.validation_command || "");
+  const executionIndex = command.indexOf(`validate-production-execution-pack ${target}`);
+  const typographyIndex = command.indexOf(`validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`);
+  if (executionIndex < 0 || typographyIndex <= executionIndex || command.includes("smoke-production-execution-pack")) failures.push("preserved Execution Pack read-only validation chain mismatch");
+  if (failures.length) fail(`Production Execution Pack preserved read-only validation failed: ${[...new Set(failures)].join("; ")}`);
+  console.log(`Production Execution Pack preserved read-only validation passed: ${target}`);
+}
+
+function beat2CompositionModelErrors(model) {
+  const failures = [];
+  if (!model || model.schemaVersion !== BEAT2_COMPOSITION_BOARD_SCHEMA_VERSION || model.artifact_id !== BEAT2_COMPOSITION_BOARD_ID) failures.push("composition model identity mismatch");
+  if (model?.title_ja !== "真鍮の蛾" || model?.subtitle_ja !== "Beat 2 / 00:20–00:50 / 3 shots") failures.push("composition title contract mismatch");
+  if (!Array.isArray(model?.overview_ja) || model.overview_ja.length !== 2) failures.push("overview must contain exactly two sentences");
+  if ((model?.elements || []).map((item) => item.name_ja).join("|") !== "ミラ|時計修理台|トーマのメモ|真鍮の蛾|9:17") failures.push("required element sequence mismatch");
+  for (const [key, expected] of Object.entries(BEAT2_COMPOSITION_SOURCE_FINGERPRINTS)) {
+    if (model?.source_fingerprints?.[key] !== expected) failures.push(`model source fingerprint mismatch: ${key}`);
+  }
+  const shots = model?.shots || [];
+  if (shots.length !== 3) failures.push("exactly three shots required");
+  if (shots.map((shot) => shot.shot_id).join("|") !== "shot-b02-01|shot-b02-02|shot-b02-03") failures.push("shot ID/order mismatch");
+  const expectedWindows = ["00:20|00:30|10", "00:30|00:40|10", "00:40|00:50|10"];
+  if (shots.map((shot) => `${shot.start_time}|${shot.end_time}|${shot.duration_seconds}`).join("~") !== expectedWindows.join("~")) failures.push("shot timing contract mismatch");
+  if (shots.reduce((sum, shot) => sum + Number(shot.duration_seconds || 0), 0) !== 30) failures.push("shot duration total mismatch");
+  const references = model?.references || [];
+  const referenceMap = new Map(references.map((reference) => [reference.reference_id, reference]));
+  if (references.length !== 6) failures.push("exactly six distinct reference records required");
+  for (const shot of shots) {
+    if (!shot.main_image_id || !referenceMap.has(shot.main_image_id)) failures.push(`${shot.shot_id} main image missing`);
+    if (!Array.isArray(shot.supporting_image_ids) || shot.supporting_image_ids.length < 1 || shot.supporting_image_ids.length > 2) failures.push(`${shot.shot_id} supporting image count must be 1-2`);
+    if ((shot.supporting_image_ids || []).some((id) => !referenceMap.has(id))) failures.push(`${shot.shot_id} supporting image reference missing`);
+    if (new Set([shot.main_image_id, ...(shot.supporting_image_ids || [])]).size !== 1 + (shot.supporting_image_ids || []).length) failures.push(`${shot.shot_id} duplicate image assignment`);
+    const composition = shot.composition || {};
+    if (composition.rough_type !== "image_based_overlay" || composition.frame !== "16:9") failures.push(`${shot.shot_id} composition markup contract mismatch`);
+    if (!["left", "top", "width", "height"].every((key) => Number.isFinite(composition.crop_percent?.[key]))) failures.push(`${shot.shot_id} crop contract missing`);
+    if (!composition.object_position || !Array.isArray(composition.focal_points) || composition.focal_points.length < 2 || !composition.eye_path_ja) failures.push(`${shot.shot_id} focus/eye-path contract missing`);
+    if (!composition.layers_ja?.foreground || !composition.layers_ja?.midground || !composition.layers_ja?.background) failures.push(`${shot.shot_id} depth-layer contract missing`);
+    for (const field of ["screen_ja", "intent_ja", "camera_ja", "success_ja"]) if (!composition[field]) failures.push(`${shot.shot_id} ${field} missing`);
+    if (!Array.isArray(shot.reference_usage_ja) || shot.reference_usage_ja.length < 2) failures.push(`${shot.shot_id} reference usage detail missing`);
+  }
+  if (new Set(shots.map((shot) => shot.main_image_id)).size !== 3 || new Set(shots.map((shot) => shot.composition?.object_position)).size !== 3 || new Set(shots.map((shot) => shot.composition?.screen_ja)).size !== 3) failures.push("three-shot composition differentiation mismatch");
+  if ((shots[2]?.supporting_image_ids || []).join("|") !== "ref-b02-s02-metal-butterfly-brooch|ref-b02-s03-brass-clock-dial") failures.push("Shot 3 two-layer motif references mismatch");
+  const allowedLicenses = new Set(["CC BY-SA 4.0", "CC BY 2.0", "CC0 1.0", "CC BY-SA 2.0"]);
+  for (const reference of references) {
+    const required = ["reference_id", "local_path", "source_title", "source_page_url", "original_media_url", "creator", "license_name", "license_url", "retrieved_at", "sha256"];
+    if (required.some((field) => !reference?.[field])) failures.push(`${reference?.reference_id || "reference"} missing provenance`);
+    if (!allowedLicenses.has(reference?.license_name)) failures.push(`${reference?.reference_id || "reference"} ambiguous or disallowed license`);
+    if (!String(reference?.source_page_url || "").startsWith("https://commons.wikimedia.org/wiki/File:")) failures.push(`${reference?.reference_id || "reference"} source page mismatch`);
+    if (!String(reference?.local_path || "").startsWith("composition-assets/") || /^https?:/i.test(String(reference?.local_path || ""))) failures.push(`${reference?.reference_id || "reference"} normalized local path mismatch`);
+    if (!Number.isInteger(reference?.original_width) || !Number.isInteger(reference?.original_height) || !Number.isInteger(reference?.local_width) || !Number.isInteger(reference?.local_height)) failures.push(`${reference?.reference_id || "reference"} dimension metadata missing`);
+    if (reference?.reference_only !== true || reference?.selected_for_production !== false || reference?.rights_cleared_claim !== false) failures.push(`${reference?.reference_id || "reference"} rights/selection boundary mismatch`);
+    if (BEAT2_COMPOSITION_REFERENCE_HASHES[reference?.reference_id] !== reference?.sha256) failures.push(`${reference?.reference_id || "reference"} known reference hash mismatch`);
+  }
+  if (new Set(references.map((reference) => reference.sha256)).size !== references.length) failures.push("duplicate or near-duplicate reference counted as distinct support");
+  if (new Set(references.map((reference) => reference.source_page_url)).size !== references.length) failures.push("duplicate source page counted as distinct support");
+  for (const shot of shots) {
+    for (const id of [shot.main_image_id, ...(shot.supporting_image_ids || [])]) {
+      const reference = referenceMap.get(id);
+      if (!reference?.used_by_shot_ids?.includes(shot.shot_id) || !reference?.roles_by_shot?.[shot.shot_id]) failures.push(`${id} shot usage metadata mismatch`);
+    }
+  }
+  if ((model?.held_questions || []).map((item) => `${item.subject_ja}:${item.state_ja}`).join("|") !== "トーマの所在・生死:未決|真鍮の蛾の機能:未決|9:17の意味:未決|ミラの最終デザイン:未決") failures.push("held-question boundary mismatch");
+  const boundaries = model?.boundaries || {};
+  if (boundaries.local_only !== true || boundaries.reference_only !== true) failures.push("local/reference boundary mismatch");
+  for (const key of ["selected_for_production", "rights_cleared_claim", "image_generation", "production_approved", "content_changed", "timing_changed", "final_canon_decision"]) if (boundaries[key] !== false) failures.push(`opened model boundary: ${key}`);
+  return failures;
+}
+
+function beat2CompositionVisibleText(fragment) {
+  return String(fragment || "")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&(?:nbsp|amp|lt|gt|quot|#39);/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function beat2CompositionHtmlErrors(html) {
+  const failures = [];
+  const main = String(html || "").match(/<main id="composition-board">([\s\S]*?)<\/main>/i)?.[1] || "";
+  const visible = beat2CompositionVisibleText(main);
+  if (!/<h1>真鍮の蛾<\/h1>/.test(main) || !/Beat 2 \/ 00:20–00:50 \/ 3 shots/.test(main)) failures.push("document title/subtitle mismatch");
+  const h2 = [...main.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/g)].map((match) => beat2CompositionVisibleText(match[1]));
+  if (h2.join("|") !== "概要|主要要素|ショット構成|保留事項|出典") failures.push("primary reading order mismatch");
+  const overview = main.match(/<section class="overview"[\s\S]*?<\/section>/)?.[0] || "";
+  if ((overview.match(/<p>/g) || []).length !== 2) failures.push("overview sentence count mismatch");
+  const shotIds = [...main.matchAll(/data-shot-id="([^"]+)"/g)].map((match) => match[1]);
+  if (shotIds.join("|") !== "shot-b02-01|shot-b02-02|shot-b02-03") failures.push("HTML shot count/order mismatch");
+  if ((main.match(/data-primary-image="true"/g) || []).length !== 3) failures.push("HTML main image count mismatch");
+  if ((main.match(/data-supporting-image="true"/g) || []).length !== 4) failures.push("HTML supporting assignment count mismatch");
+  const localImagePaths = [...main.matchAll(/<img[^>]+src="([^"]+)"/g)].map((match) => match[1]);
+  if (new Set(localImagePaths).size !== 6) failures.push("HTML distinct image pool mismatch");
+  if (localImagePaths.some((value) => /^https?:/i.test(value))) failures.push("hotlink in HTML");
+  for (const shotId of ["shot-b02-01", "shot-b02-02", "shot-b02-03"]) {
+    const fragment = main.match(new RegExp(`<article class="shot-strip[^"]*" data-shot-id="${shotId}">([\\s\\S]*?)<\\/article>`))?.[1] || "";
+    if (!fragment.includes('data-composition-markup="image-overlay"') || !fragment.includes("構図ラフ") || !fragment.includes("crop-frame") || !fragment.includes("eye-vector") || !fragment.includes("zone-fg") || !fragment.includes("zone-mg") || !fragment.includes("zone-bg")) failures.push(`${shotId} image-based composition markup missing`);
+    for (const label of ["画面", "意図", "尺", "カメラ", "成立条件"]) if (!fragment.includes(`<dt>${label}</dt>`)) failures.push(`${shotId} required field missing: ${label}`);
+  }
+  if (/<svg\b/i.test(main) || /storyboard-frame|symbolic-storyboard|generic-svg/i.test(main)) failures.push("symbolic storyboard frame reused as primary visual");
+  const banned = [/読む/, /先に知っておく/, /中心に残る問い/, /planning only/i, /provisional/i, /\bsource\b/i, /fallback/i, /validated/i, /\bhold\b/i, /\bcanon\b/i, /\bguard\b/i, /直しました/, /検証済み/, /\breview\b/i, /governance/i, /process/i];
+  if (banned.some((pattern) => pattern.test(visible))) failures.push("banned primary phrase found");
+  const headings = [...main.matchAll(/<h[1-3][^>]*>([\s\S]*?)<\/h[1-3]>/g)].map((match) => beat2CompositionVisibleText(match[1])).join(" ");
+  if (/読む|先に知っておく|中心に残る問い|なぜ|どうして|でしょう/.test(headings)) failures.push("banned conversational heading found");
+  if (/工程|進捗|ガバナンス|ワークフロー/.test(visible)) failures.push("process/governance phrase found in primary page");
+  if (!/font:\s*600 clamp\(34px, 4\.2vw, 44px\)/.test(html) || /clamp\((?:5[0-9]|[6-9][0-9])px/i.test(html)) failures.push("title sizing contract mismatch");
+  if (!/<html lang="ja" data-theme="auto">/.test(html) || !['data-theme="light"', 'data-theme="dark"', 'data-theme="auto"'].every((marker) => html.includes(marker)) || !html.includes("fff-beat2-composition-theme")) failures.push("Light/Dark/Auto theme contract mismatch");
+  if (!/grid-template-columns:\s*minmax\(0, 62%\) minmax\(0, 38%\)/.test(html) || !/align-items:\s*stretch/.test(html)) failures.push("desktop equal-height/main-share layout contract mismatch");
+  if (/overflow-y\s*:\s*(?:auto|scroll)/i.test(html)) failures.push("nested scroll contract violated");
+  if (/overflow-x\s*:\s*(?:hidden|clip|auto|scroll)/i.test(html)) failures.push("horizontal overflow masked or introduced");
+  if (/width\s*:\s*(?:1[2-9][0-9]vw|1[2-9][0-9]%)/i.test(html)) failures.push("horizontal overflow contract violated");
+  if (!/@media print/.test(html) || !/color-scheme:\s*light !important/.test(html) || !/\.utility \{ position: static;/.test(html) || !/break-inside:\s*avoid/.test(html)) failures.push("print light/layout contract mismatch");
+  const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1] || "";
+  try { new Function(script); } catch (error) { failures.push(`HTML script compilation failed: ${error.message}`); }
+  return failures;
+}
+
+async function beat2CompositionBuildManifest() {
+  const files = [];
+  for (const name of BEAT2_COMPOSITION_BOARD_PAYLOAD_FILES) {
+    const snapshot = await readFileSnapshot(path.join(BEAT2_COMPOSITION_BOARD_ROOT, name));
+    files.push({ path: name, byte_size: snapshot.byteSize, sha256: snapshot.sha256 });
+  }
+  const packageFingerprint = beat2CompositionHash(Buffer.from(files.map((item) => `${item.path}|${item.byte_size}|${item.sha256}`).sort().join("\n"), "utf8"));
+  return {
+    schemaVersion: BEAT2_COMPOSITION_BOARD_MANIFEST_SCHEMA_VERSION,
+    artifact_id: BEAT2_COMPOSITION_BOARD_ID,
+    generated_at: BEAT2_COMPOSITION_BOARD_GENERATED_AT,
+    package_fingerprint_sha256: packageFingerprint,
+    file_count: files.length + 1,
+    payload_file_count: files.length,
+    files,
+    source_fingerprints: BEAT2_COMPOSITION_SOURCE_FINGERPRINTS,
+    boundaries: {
+      local_only: true,
+      reference_only: true,
+      selected_for_production: false,
+      rights_cleared_claim: false,
+      image_generation: false,
+      production_approved: false
+    }
+  };
+}
+
+async function beat2CompositionFileErrors(model, manifest) {
+  const failures = [];
+  const references = model?.references || [];
+  for (const reference of references) {
+    const snapshot = await readFileSnapshot(path.join(BEAT2_COMPOSITION_BOARD_ROOT, reference.local_path || ""));
+    const dimensions = beat2CompositionJpegDimensions(snapshot.buffer);
+    if (!snapshot.exists) { failures.push(`${reference.reference_id} local composition asset missing`); continue; }
+    if (snapshot.sha256 !== reference.sha256 || snapshot.sha256 !== BEAT2_COMPOSITION_REFERENCE_HASHES[reference.reference_id]) failures.push(`${reference.reference_id} local composition asset hash mismatch`);
+    if (dimensions?.width !== reference.local_width || dimensions?.height !== reference.local_height) failures.push(`${reference.reference_id} local composition asset dimensions mismatch`);
+    const pilotCopy = await readFileSnapshot(path.join("artifacts/beat2-visual-treatment-pilot/references", path.basename(reference.local_path || "")));
+    if (!pilotCopy.exists || pilotCopy.sha256 !== snapshot.sha256 || pilotCopy.byteSize !== snapshot.byteSize) failures.push(`${reference.reference_id} normalized copy is not byte-identical to pilot reference`);
+  }
+  const contact = await readFileSnapshot(BEAT2_COMPOSITION_BOARD_CONTACT_SHEET);
+  const pilotContact = await readFileSnapshot("artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment-contact-sheet.jpg");
+  const contactDimensions = beat2CompositionJpegDimensions(contact.buffer);
+  if (!contact.exists || contactDimensions?.width !== 1600 || contactDimensions?.height !== 1350 || contact.sha256 !== pilotContact.sha256 || contact.byteSize !== pilotContact.byteSize) failures.push("composition contact sheet mismatch");
+  const referenceCsv = parseCsvSnapshot(await readFileSnapshot(`${BEAT2_COMPOSITION_BOARD_ROOT}/reference-sources.csv`));
+  const shotCsv = parseCsvSnapshot(await readFileSnapshot(`${BEAT2_COMPOSITION_BOARD_ROOT}/shot-composition-map.csv`));
+  if (referenceCsv.error || referenceCsv.records.length !== 6 || referenceCsv.records.map((row) => row.reference_id).join("|") !== references.map((reference) => reference.reference_id).join("|")) failures.push("reference-sources CSV mismatch");
+  const requiredReferenceHeaders = ["reference_id", "used_by_shot_ids", "roles_by_shot", "local_normalized_path", "source_page_url", "creator", "license_name", "license_url", "retrieval_date", "original_width", "original_height", "local_width", "local_height", "sha256", "reference_only", "selected_for_production", "rights_cleared_claim"];
+  if (requiredReferenceHeaders.some((header) => !referenceCsv.headers.includes(header))) failures.push("reference-sources CSV metadata columns incomplete");
+  if (referenceCsv.records.some((row) => requiredReferenceHeaders.some((header) => row[header] === ""))) failures.push("reference-sources CSV metadata value missing");
+  if (shotCsv.error || shotCsv.records.length !== 3 || shotCsv.records.map((row) => row.shot_id).join("|") !== "shot-b02-01|shot-b02-02|shot-b02-03") failures.push("shot-composition-map CSV mismatch");
+  const requiredShotHeaders = ["shot_id", "sequence", "start_time", "end_time", "duration_seconds", "main_image_id", "supporting_image_ids", "composition_rough", "crop_percent", "object_position", "focal_points", "eye_path_ja", "foreground_ja", "midground_ja", "background_ja", "screen_ja", "intent_ja", "camera_ja", "success_ja", "truth_boundary_ja"];
+  if (requiredShotHeaders.some((header) => !shotCsv.headers.includes(header))) failures.push("shot-composition-map CSV columns incomplete");
+  if (!manifest || manifest.schemaVersion !== BEAT2_COMPOSITION_BOARD_MANIFEST_SCHEMA_VERSION || manifest.artifact_id !== BEAT2_COMPOSITION_BOARD_ID || manifest.payload_file_count !== BEAT2_COMPOSITION_BOARD_PAYLOAD_FILES.length || manifest.file_count !== BEAT2_COMPOSITION_BOARD_REQUIRED_FILES.length) failures.push("composition package manifest identity/inventory mismatch");
+  if ((manifest?.files || []).map((item) => item.path).join("|") !== BEAT2_COMPOSITION_BOARD_PAYLOAD_FILES.join("|")) failures.push("composition package manifest path order mismatch");
+  for (const item of manifest?.files || []) {
+    const snapshot = await readFileSnapshot(path.join(BEAT2_COMPOSITION_BOARD_ROOT, item.path));
+    if (!snapshot.exists || snapshot.byteSize !== item.byte_size || snapshot.sha256 !== item.sha256) failures.push(`composition package manifest hash mismatch: ${item.path}`);
+  }
+  const expectedFingerprint = beat2CompositionHash(Buffer.from((manifest?.files || []).map((item) => `${item.path}|${item.byte_size}|${item.sha256}`).sort().join("\n"), "utf8"));
+  if (manifest?.package_fingerprint_sha256 !== expectedFingerprint) failures.push("composition package fingerprint mismatch");
+  for (const [key, expected] of Object.entries(BEAT2_COMPOSITION_SOURCE_FINGERPRINTS)) if (manifest?.source_fingerprints?.[key] !== expected) failures.push(`composition manifest source fingerprint mismatch: ${key}`);
+  return failures;
+}
+
+async function beat2CompositionRegistrationErrors() {
+  const failures = [];
+  const root = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
+  const entry = root.value?.beat2_composition_board || {};
+  if (root.value?.artifact_id !== BEAT2_COMPOSITION_BOARD_ID || root.value?.repo_relative_path !== BEAT2_COMPOSITION_BOARD_HTML || root.value?.review_doc_path !== BEAT2_COMPOSITION_BOARD_REVIEW_DOC || root.value?.smoke_result_path !== DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT) failures.push("root active composition board registration mismatch");
+  if (root.value?.beat2_composition_board_dir !== BEAT2_COMPOSITION_BOARD_ROOT || root.value?.beat2_composition_board_result_path !== DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT || root.value?.beat2_composition_board_doc_path !== BEAT2_COMPOSITION_BOARD_REVIEW_DOC || root.value?.beat2_composition_board_route !== BEAT2_COMPOSITION_BOARD_HTML) failures.push("root flat composition board registration mismatch");
+  if (entry.artifact_id !== BEAT2_COMPOSITION_BOARD_ID || entry.schemaVersion !== BEAT2_COMPOSITION_BOARD_SCHEMA_VERSION || entry.package_root !== BEAT2_COMPOSITION_BOARD_ROOT || entry.result_path !== DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT || entry.review_doc_path !== BEAT2_COMPOSITION_BOARD_REVIEW_DOC || entry.access_route !== BEAT2_COMPOSITION_BOARD_HTML) failures.push("root nested composition board registration mismatch");
+  if (!Array.isArray(entry.package_files) || entry.package_files.length !== BEAT2_COMPOSITION_BOARD_REQUIRED_FILES.length || !entry.package_files.every((item) => item.startsWith(`${BEAT2_COMPOSITION_BOARD_ROOT}/`))) failures.push("root nested composition package inventory mismatch");
+  if (entry.counts?.shots !== 3 || entry.counts?.distinct_references !== 6 || entry.counts?.image_assignments !== 7 || entry.counts?.negative_probes !== BEAT2_COMPOSITION_NEGATIVE_PROBES.length || entry.counts?.total_duration_seconds !== 30) failures.push("root nested composition counts mismatch");
+  if (entry.boundaries?.local_only !== true || entry.boundaries?.reference_only !== true) failures.push("root nested composition local/reference boundary mismatch");
+  for (const key of ["selected_for_production", "rights_cleared_claim", "image_generation", "production_approved", "production_render", "public_upload", "database_persistence", "final_canon_decision"]) if (entry.boundaries?.[key] !== false) failures.push(`root nested composition boundary opened: ${key}`);
+  const preserves = root.value?.preserves || [];
+  for (const id of ["fff-beat2-visual-treatment-pilot-001", "fff-production-storyboard-brief-001", "fff-production-execution-pack-001"]) if (!preserves.includes(id)) failures.push(`root preservation registration missing: ${id}`);
+  const command = String(root.value?.validation_command || "");
+  const compositionIndex = command.indexOf(`validate-beat2-composition-board ${DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT}`);
+  const pilotIndex = command.indexOf("validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json");
+  if (compositionIndex < 0 || pilotIndex <= compositionIndex || command.includes("smoke-beat2-composition-board")) failures.push("root read-only composition validation chain mismatch");
+  const files = await Promise.all([
+    readFileSnapshot(BEAT2_COMPOSITION_BOARD_REVIEW_DOC),
+    readFileSnapshot("docs/review/current-status.md"),
+    readFileSnapshot("docs/project-context.md"),
+    readFileSnapshot("docs/review/next-terminal-handoff.md"),
+    readFileSnapshot("artifacts/ARTIFACTS.md"),
+    readFileSnapshot("mkdocs.yml")
+  ]);
+  if (!files[0].exists) failures.push("composition review doc missing");
+  for (const [index, label] of [[1, "current status"], [2, "project context"], [3, "next-terminal handoff"], [4, "artifact index"]]) if (!files[index].text.includes(BEAT2_COMPOSITION_BOARD_ID)) failures.push(`${label} active composition registration missing`);
+  if (!files[5].text.includes("review/beat2-composition-board.md")) failures.push("MkDocs composition review navigation missing");
+  return failures;
+}
+
+async function beat2CompositionScreenshotEvidence() {
+  const screenshots = {};
+  for (const [key, filePath] of Object.entries(BEAT2_COMPOSITION_BOARD_SCREENSHOTS)) {
+    const snapshot = await readFileSnapshot(filePath);
+    screenshots[key] = {
+      path: filePath,
+      exists: snapshot.exists,
+      byte_size: snapshot.byteSize,
+      sha256: snapshot.sha256,
+      dimensions: beat2CompositionPngDimensions(snapshot.buffer)
+    };
+  }
+  return screenshots;
+}
+
+function beat2CompositionBrowserErrors(browserEvidence, screenshots) {
+  const failures = [];
+  const expected = { "900x1200-dark": [900, 1200], "1280x900-light": [1280, 900] };
+  for (const [key, dimensions] of Object.entries(expected)) {
+    const screenshot = screenshots[key];
+    const viewport = browserEvidence?.viewports?.[key];
+    if (!screenshot?.exists || screenshot?.dimensions?.width !== dimensions[0] || screenshot?.dimensions?.height !== dimensions[1]) failures.push(`${key} screenshot missing or wrong dimensions`);
+    if (viewport?.width !== dimensions[0] || viewport?.height !== dimensions[1] || viewport?.horizontal_overflow !== false || viewport?.nested_scroll_owners !== 0) failures.push(`${key} viewport layout evidence mismatch`);
+    if (!Array.isArray(viewport?.primary_image_shares) || viewport.primary_image_shares.length !== 3 || Math.min(...viewport.primary_image_shares) < 0.5) failures.push(`${key} primary image visual share below 50%`);
+    if (!Array.isArray(viewport?.equal_height_deltas_px) || viewport.equal_height_deltas_px.length !== 3 || Math.max(...viewport.equal_height_deltas_px) > 1) failures.push(`${key} equal-height column evidence mismatch`);
+    if (viewport?.initial?.theme !== "auto") failures.push(`${key} Auto default evidence mismatch`);
+  }
+  if (browserEvidence?.status !== "captured" || browserEvidence?.theme?.auto_default !== true || browserEvidence?.theme?.dark_resolved !== "dark" || browserEvidence?.theme?.light_resolved !== "light") failures.push("browser theme evidence mismatch");
+  if (browserEvidence?.layout?.shot_count !== 3 || browserEvidence?.layout?.primary_image_min_share < 0.5 || browserEvidence?.layout?.horizontal_overflow !== false || browserEvidence?.layout?.nested_scroll_owners !== 0 || browserEvidence?.layout?.equal_height_max_delta_px > 1) failures.push("browser aggregate layout evidence mismatch");
+  if (!browserEvidence?.layout?.title_900x1200 || !browserEvidence?.layout?.title_1280x900 || browserEvidence.layout.title_900x1200.font_size_px > 44 || browserEvidence.layout.title_1280x900.font_size_px > 44) failures.push("browser title measurement mismatch");
+  if (browserEvidence?.print?.forced_light !== true || browserEvidence?.print?.utility_static !== true || browserEvidence?.print?.shot_break_avoid !== true) failures.push("browser print evidence mismatch");
+  return failures;
+}
+
+function beat2CompositionRunNegativeProbes(model, html, observedSources) {
+  const probes = [];
+  const add = (name, passed) => probes.push({ name, passed: passed === true });
+  let bad = beat2CompositionClone(model); bad.shots.pop(); add("missing_shot", beat2CompositionModelErrors(bad).length > 0);
+  bad = beat2CompositionClone(model); bad.shots.push(beat2CompositionClone(bad.shots[0])); add("fourth_shot_added", beat2CompositionModelErrors(bad).length > 0);
+  bad = beat2CompositionClone(model); bad.shots[0].main_image_id = ""; add("missing_main_image", beat2CompositionModelErrors(bad).length > 0);
+  bad = beat2CompositionClone(model); bad.shots[0].supporting_image_ids = []; add("no_supporting_image", beat2CompositionModelErrors(bad).length > 0);
+  add("no_composition_markup", beat2CompositionHtmlErrors(html.replace('data-composition-markup="image-overlay"', 'data-composition-markup="none"')).length > 0);
+  add("banned_conversational_heading", beat2CompositionHtmlErrors(html.replace("<h2 id=\"credits-heading\">出典</h2>", "<h2 id=\"credits-heading\">先に知っておく出典</h2>")).length > 0);
+  add("process_governance_phrase_in_primary", beat2CompositionHtmlErrors(html.replace("<h2 id=\"credits-heading\">出典</h2>", "<p>review governance process</p><h2 id=\"credits-heading\">出典</h2>")).length > 0);
+  add("reused_symbolic_storyboard_frame", beat2CompositionHtmlErrors(html.replace("<h2 id=\"shots-heading\">ショット構成</h2>", "<h2 id=\"shots-heading\">ショット構成</h2><svg class=\"storyboard-frame\"></svg>")).length > 0);
+  for (const [name, field] of [["missing_creator", "creator"], ["missing_source_page", "source_page_url"], ["missing_license", "license_name"], ["missing_license_url", "license_url"]]) { bad = beat2CompositionClone(model); bad.references[0][field] = ""; add(name, beat2CompositionModelErrors(bad).length > 0); }
+  bad = beat2CompositionClone(model); bad.references[0].license_name = "Reusable, terms unclear"; add("ambiguous_license", beat2CompositionModelErrors(bad).length > 0);
+  bad = beat2CompositionClone(model); bad.references[1].sha256 = bad.references[0].sha256; add("duplicate_or_near_duplicate_support", beat2CompositionModelErrors(bad).length > 0);
+  add("hotlink_in_html", beat2CompositionHtmlErrors(html.replace('src="composition-assets/', 'src="https://example.com/')).length > 0);
+  const mutatedSources = { ...observedSources, visual_treatment_thirteen_file_aggregate_sha256: "0".repeat(64) };
+  add("source_package_mutation", beat2CompositionSourceErrors(mutatedSources).length > 0);
+  bad = beat2CompositionClone(model); bad.references[0].selected_for_production = true; add("selected_asset_flag_true", beat2CompositionModelErrors(bad).length > 0);
+  bad = beat2CompositionClone(model); bad.references[0].rights_cleared_claim = true; add("rights_cleared_true", beat2CompositionModelErrors(bad).length > 0);
+  add("title_oversize", beat2CompositionHtmlErrors(html.replace("clamp(34px, 4.2vw, 44px)", "clamp(64px, 8vw, 88px)")).length > 0);
+  add("theme_missing", beat2CompositionHtmlErrors(html.replace('<html lang="ja" data-theme="auto">', '<html lang="ja">')).length > 0);
+  add("nested_scroll", beat2CompositionHtmlErrors(html.replace(".shot-side {", ".shot-side { overflow-y: auto; max-height: 120px;")).length > 0);
+  add("horizontal_overflow", beat2CompositionHtmlErrors(html.replace(".shot-layout {", ".shot-layout { width: 130vw;")).length > 0);
+  return BEAT2_COMPOSITION_NEGATIVE_PROBES.map((name) => probes.find((probe) => probe.name === name) || { name, passed: false });
+}
+
+async function beat2CompositionInspect(browserEvidence) {
+  const modelSnapshot = await readJsonFileSnapshot(BEAT2_COMPOSITION_BOARD_JSON);
+  const manifestSnapshot = await readJsonFileSnapshot(BEAT2_COMPOSITION_BOARD_MANIFEST);
+  const htmlSnapshot = await readFileSnapshot(BEAT2_COMPOSITION_BOARD_HTML);
+  const observedSources = await beat2CompositionSourceSnapshot();
+  const screenshots = await beat2CompositionScreenshotEvidence();
+  const failures = [
+    ...beat2CompositionSourceErrors(observedSources),
+    ...(modelSnapshot.value ? beat2CompositionModelErrors(modelSnapshot.value) : [modelSnapshot.error || "composition model missing"]),
+    ...(htmlSnapshot.exists ? beat2CompositionHtmlErrors(htmlSnapshot.text) : ["composition HTML missing"]),
+    ...(modelSnapshot.value ? await beat2CompositionFileErrors(modelSnapshot.value, manifestSnapshot.value) : []),
+    ...(await beat2CompositionRegistrationErrors()),
+    ...beat2CompositionBrowserErrors(browserEvidence, screenshots)
+  ];
+  const negativeProbes = modelSnapshot.value && htmlSnapshot.exists ? beat2CompositionRunNegativeProbes(modelSnapshot.value, htmlSnapshot.text, observedSources) : [];
+  if (negativeProbes.length !== BEAT2_COMPOSITION_NEGATIVE_PROBES.length || negativeProbes.some((probe) => !probe.passed)) {
+    const failedProbeNames = negativeProbes.filter((probe) => !probe.passed).map((probe) => probe.name).join(", ") || "count mismatch";
+    failures.push(`composition negative probe contract failed: ${failedProbeNames}`);
+  }
+  return {
+    failures: [...new Set(failures)],
+    model: modelSnapshot.value,
+    manifest: manifestSnapshot.value,
+    observedSources,
+    screenshots,
+    negativeProbes
+  };
+}
+
+function beat2CompositionCreateResult(inspection, browserEvidence, command) {
+  const model = inspection.model || {};
+  const references = model.references || [];
+  const assignments = (model.shots || []).reduce((sum, shot) => sum + 1 + (shot.supporting_image_ids || []).length, 0);
+  return {
+    schemaVersion: BEAT2_COMPOSITION_BOARD_RESULT_SCHEMA_VERSION,
+    artifact_id: BEAT2_COMPOSITION_BOARD_ID,
+    generated_at: BEAT2_COMPOSITION_BOARD_GENERATED_AT,
+    command,
+    passed: inspection.failures.length === 0,
+    failures: inspection.failures,
+    warnings: [],
+    source_artifact_ids: model.source_artifact_ids || [],
+    source_fingerprints: BEAT2_COMPOSITION_SOURCE_FINGERPRINTS,
+    source_protection: {
+      expected: BEAT2_COMPOSITION_SOURCE_FINGERPRINTS,
+      observed: inspection.observedSources,
+      visual_treatment_unchanged: inspection.observedSources.visual_treatment_thirteen_file_aggregate_sha256 === BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.visual_treatment_thirteen_file_aggregate_sha256,
+      storyboard_unchanged: inspection.observedSources.storyboard_seven_file_aggregate_sha256 === BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.storyboard_seven_file_aggregate_sha256,
+      execution_unchanged: inspection.observedSources.execution_nine_file_aggregate_sha256 === BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.execution_nine_file_aggregate_sha256
+    },
+    beat_number: 2,
+    beat_title: "真鍮の蛾",
+    beat_window: "00:20–00:50",
+    counts: {
+      shots: (model.shots || []).length,
+      distinct_references: references.length,
+      image_assignments: assignments,
+      main_images: (model.shots || []).length,
+      supporting_images_min: Math.min(...(model.shots || []).map((shot) => (shot.supporting_image_ids || []).length)),
+      supporting_images_max: Math.max(...(model.shots || []).map((shot) => (shot.supporting_image_ids || []).length)),
+      composition_roughs: (model.shots || []).filter((shot) => shot.composition?.rough_type === "image_based_overlay").length,
+      negative_probes_passed: inspection.negativeProbes.filter((probe) => probe.passed).length,
+      negative_probes_total: inspection.negativeProbes.length,
+      package_files: BEAT2_COMPOSITION_BOARD_REQUIRED_FILES.length
+    },
+    audits: {
+      missing_metadata_count: references.filter((reference) => ["creator", "source_page_url", "license_name", "license_url", "retrieved_at"].some((field) => !reference[field])).length,
+      hotlink_count: 0,
+      banned_primary_phrase_count: 0,
+      primary_generic_svg_count: 0,
+      distinct_main_compositions: new Set((model.shots || []).map((shot) => `${shot.main_image_id}|${shot.composition?.object_position}|${shot.composition?.screen_ja}`)).size,
+      machine_specificity_pass_count: (model.shots || []).filter((shot) => shot.composition?.rough_type === "image_based_overlay" && shot.composition?.focal_points?.length >= 2 && shot.composition?.layers_ja?.foreground && shot.composition?.layers_ja?.midground && shot.composition?.layers_ja?.background).length,
+      human_comprehension_inference: true
+    },
+    reference_audit: references.map((reference) => ({
+      reference_id: reference.reference_id,
+      used_by_shot_ids: reference.used_by_shot_ids,
+      local_path: reference.local_path,
+      creator: reference.creator,
+      source_page_url: reference.source_page_url,
+      license_name: reference.license_name,
+      license_url: reference.license_url,
+      sha256: reference.sha256,
+      reference_only: reference.reference_only,
+      selected_for_production: reference.selected_for_production,
+      rights_cleared_claim: reference.rights_cleared_claim
+    })),
+    package_integrity: {
+      manifest_path: BEAT2_COMPOSITION_BOARD_MANIFEST,
+      package_fingerprint_sha256: inspection.manifest?.package_fingerprint_sha256 || null,
+      payload_file_count: inspection.manifest?.payload_file_count || 0
+    },
+    negative_probes: inspection.negativeProbes,
+    browser_evidence: browserEvidence,
+    screenshots: inspection.screenshots,
+    theme_evidence: browserEvidence?.theme || null,
+    print_evidence: browserEvidence?.print || null,
+    source_packages_unchanged: inspection.observedSources.visual_treatment_thirteen_file_aggregate_sha256 === BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.visual_treatment_thirteen_file_aggregate_sha256 && inspection.observedSources.storyboard_seven_file_aggregate_sha256 === BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.storyboard_seven_file_aggregate_sha256 && inspection.observedSources.execution_nine_file_aggregate_sha256 === BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.execution_nine_file_aggregate_sha256,
+    reference_only: true,
+    selected_for_production: false,
+    rights_cleared_claim: false,
+    provider_configured: false,
+    credentials_touched: false,
+    external_model_call: false,
+    ai_image_generation: false,
+    audio_generated: false,
+    ai_video_generation: false,
+    production_render: false,
+    public_upload: false,
+    database_persistence: false,
+    final_canon_decision: false,
+    review_status: {
+      predecessor_visual_treatment_h1: "A寄りのB",
+      h0_machine: inspection.failures.length === 0 ? "pass" : "fail",
+      h1_human: "not_started",
+      h2_asset_rights: "closed"
+    },
+    boundaries: model.boundaries || {},
+    validation_command: `node tools/fff-state.mjs validate-beat2-composition-board ${DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT}`,
+    smoke_command: `node tools/fff-state.mjs smoke-beat2-composition-board ${DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT}`
+  };
+}
+
+function beat2CompositionRecordedResultErrors(recorded, inspection) {
+  const failures = [];
+  if (!recorded || recorded.schemaVersion !== BEAT2_COMPOSITION_BOARD_RESULT_SCHEMA_VERSION || recorded.artifact_id !== BEAT2_COMPOSITION_BOARD_ID) failures.push("recorded composition result identity mismatch");
+  if (recorded?.passed !== true || (recorded?.failures || []).length !== 0) failures.push("recorded composition result is not green");
+  if (recorded?.beat_number !== 2 || recorded?.beat_title !== "真鍮の蛾" || recorded?.beat_window !== "00:20–00:50") failures.push("recorded composition Beat 2 identity mismatch");
+  if (recorded?.counts?.shots !== 3 || recorded?.counts?.distinct_references !== 6 || recorded?.counts?.image_assignments !== 7 || recorded?.counts?.main_images !== 3 || recorded?.counts?.supporting_images_min !== 1 || recorded?.counts?.supporting_images_max !== 2 || recorded?.counts?.composition_roughs !== 3 || recorded?.counts?.negative_probes_total !== BEAT2_COMPOSITION_NEGATIVE_PROBES.length || recorded?.counts?.negative_probes_passed !== BEAT2_COMPOSITION_NEGATIVE_PROBES.length) failures.push("recorded composition counts mismatch");
+  if (recorded?.audits?.missing_metadata_count !== 0 || recorded?.audits?.hotlink_count !== 0 || recorded?.audits?.banned_primary_phrase_count !== 0 || recorded?.audits?.primary_generic_svg_count !== 0 || recorded?.audits?.distinct_main_compositions !== 3 || recorded?.audits?.machine_specificity_pass_count !== 3) failures.push("recorded composition audit mismatch");
+  if (recorded?.source_packages_unchanged !== true || recorded?.source_protection?.visual_treatment_unchanged !== true || recorded?.source_protection?.storyboard_unchanged !== true || recorded?.source_protection?.execution_unchanged !== true) failures.push("recorded source immutability mismatch");
+  if ((recorded?.negative_probes || []).length !== BEAT2_COMPOSITION_NEGATIVE_PROBES.length || recorded.negative_probes.some((probe) => probe.passed !== true)) failures.push("recorded negative probes mismatch");
+  for (const key of ["selected_for_production", "rights_cleared_claim", "provider_configured", "credentials_touched", "external_model_call", "ai_image_generation", "audio_generated", "ai_video_generation", "production_render", "public_upload", "database_persistence", "final_canon_decision"]) if (recorded?.[key] !== false) failures.push(`recorded closed boundary mismatch: ${key}`);
+  if (recorded?.reference_only !== true || recorded?.review_status?.h0_machine !== "pass" || recorded?.review_status?.h1_human !== "not_started" || recorded?.review_status?.h2_asset_rights !== "closed") failures.push("recorded review boundary mismatch");
+  for (const [key, screenshot] of Object.entries(inspection.screenshots || {})) {
+    const candidate = recorded?.screenshots?.[key];
+    if (!candidate || candidate.path !== screenshot.path || candidate.byte_size !== screenshot.byte_size || candidate.sha256 !== screenshot.sha256 || candidate.dimensions?.width !== screenshot.dimensions?.width || candidate.dimensions?.height !== screenshot.dimensions?.height) failures.push(`recorded screenshot mismatch: ${key}`);
+  }
+  if (recorded?.package_integrity?.package_fingerprint_sha256 !== inspection.manifest?.package_fingerprint_sha256 || recorded?.package_integrity?.payload_file_count !== BEAT2_COMPOSITION_BOARD_PAYLOAD_FILES.length) failures.push("recorded package integrity mismatch");
+  return failures;
+}
+
+async function runBeat2CompositionBoardCommand({ command, inputPath, outputPath }) {
+  const target = toRepoPath(inputPath || DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT);
+  if (target !== DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT) fail(`Beat 2 Composition Board commands require ${DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT}.`);
+  if (outputPath) fail("Beat 2 Composition Board commands do not accept a second output path.");
+  if (command === "smoke-beat2-composition-board") {
+    const previous = await readJsonFileSnapshot(target);
+    const browserEvidence = previous.value?.browser_evidence?.status === "captured" ? previous.value.browser_evidence : null;
+    const manifest = await beat2CompositionBuildManifest();
+    await writeFile(BEAT2_COMPOSITION_BOARD_MANIFEST, `${JSON.stringify(manifest, null, 2)}\n`, "utf8");
+    const inspection = await beat2CompositionInspect(browserEvidence);
+    const result = beat2CompositionCreateResult(inspection, browserEvidence, command);
+    await writeFile(target, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+    if (!result.passed) fail(`Beat 2 Composition Board smoke failed: ${result.failures.join("; ")}`);
+    console.log(`Beat 2 Composition Board intentional manifest/result regeneration passed: ${target}`);
+    return;
+  }
+  if (command === "validate-beat2-composition-board") {
+    const recorded = await readJsonFileSnapshot(target);
+    const browserEvidence = recorded.value?.browser_evidence?.status === "captured" ? recorded.value.browser_evidence : null;
+    const inspection = await beat2CompositionInspect(browserEvidence);
+    inspection.failures.push(...beat2CompositionRecordedResultErrors(recorded.value, inspection));
+    inspection.failures = [...new Set(inspection.failures)];
+    if (inspection.failures.length) fail(`Beat 2 Composition Board read-only validation failed: ${inspection.failures.join("; ")}`);
+    console.log(`Beat 2 Composition Board read-only validation passed: ${target}`);
+    return;
+  }
+  fail(`Unknown Beat 2 Composition Board command: ${command}`);
 }
 
 function printHelp() {

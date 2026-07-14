@@ -2,25 +2,32 @@
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-beat2-visual-treatment-pilot-001`: a standalone, reference-only visual-treatment pilot for Beat 2, **真鍮の蛾** (`00:20–00:50`). It gives the exact three-shot source sequence six real licensed local raster references—one primary and one supporting image per shot—without changing the preserved Storyboard Brief, Production Execution Pack, wording, timing, IDs, truth, rights, selection, or canon state.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint is `fff-beat2-composition-board-001`: a standalone, reference-only Composition Board for Beat 2, **真鍮の蛾** (`00:20–00:50`). It preserves the exact three-shot sequence and the six licensed local raster references from `fff-beat2-visual-treatment-pilot-001`, then adds crop, focal point, eye path, foreground/midground/background, and relative-placement markup without changing Storyboard, Execution, Pilot, wording, timing, IDs, truth, rights, selection, or canon state.
 
 ## Current Lane
 
-Keep the Storyboard Brief as the complete 19-shot planning source and the Production Execution Pack as operational/audit authority while testing one narrow visual-treatment pattern with real references. The current lane is `VISUAL_TREATMENT_PILOT`: make Beat 2's handwork, letter/moth material contrast, 9:17 motif, lighting, composition, and held questions understandable in one vertical look-development page. The six images are references, not selected production assets. Rights clearance, image generation, full-story asset work, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, and final canon remain closed.
+Keep the Storyboard Brief as the complete 19-shot planning source, the Production Execution Pack as operational/audit authority, and the Visual Treatment Pilot as the unchanged atmosphere/reference source while testing one narrower staging pattern. The current lane is `COMPOSITION_BOARD`: make Beat 2's handwork, letter/moth pairing, and 9:17/moth repetition judgeable as three distinct screens using real-image overlays rather than symbolic frames. The six images remain references, not selected production assets. Rights clearance, image generation, full-story asset work, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, and final canon remain closed.
 
 ## Current Slice
 
-The active slice is the Beat 2 Visual Treatment Pilot:
+The active slice is the Beat 2 Composition Board:
 
-- Standalone entry: `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html`; Blueprint exposes one compact `Beat 2 ビジュアル参照` link without adding an app mode
-- Package: 13 files—README, standalone HTML, JSON model, source/license CSV, shot map CSV, six normalized local JPEGs, contact sheet, and integrity manifest
-- Reading order: 真鍮の蛾 → 人物・場所・手がかり → ビジュアル方針 → ショット構成 → 保留事項 → 出典
-- Shot contract: exactly 3 sequential strips / 30 seconds; every strip has one >=55% desktop primary image, one supporting image, and adjacent `画面`, `意図`, `尺`, `カメラ`, `成立条件`
-- Theme/access contract: Auto is the default; Light and Dark are explicit; the title is one line at 34px/38px in the measured viewports; one document owns scrolling; print forces a light document
-- Reference/rights contract: exactly 6 locally stored licensed rasters, 2 per shot; every entry records creator, source page, media URL, license, license URL, dimensions, retrieval date, and SHA256; all remain reference-only, unselected, and without a rights-clearance claim
-- Review evidence: `docs/review/beat2-visual-treatment-pilot.md`, `artifacts/beat2-visual-treatment-pilot-result.json`, `artifacts/review-screens/beat2-visual-treatment-900x1200-dark.png`, `artifacts/review-screens/beat2-visual-treatment-1280x900-light.png`
-- Validation contract: `validate-beat2-visual-treatment-pilot` is read-only; `smoke-beat2-visual-treatment-pilot` may regenerate only the five textual package payloads, manifest, and result while reading the six reference images and contact sheet. The result owns exact counts, hashes, 24 fail-closed probes, source immutability, browser/theme/layout evidence, and print-style evidence
-- Human boundary: H0 is machine-validated; visual-treatment effectiveness remains inferred until H1 freeform review. H2 production selection/rights review and every production gate require separate authorization.
+- Standalone entry: `artifacts/beat2-composition-board/beat2-composition-board.html`
+- Package: 13 files—README, standalone HTML, canonical JSON, source/license CSV, shot composition CSV, six byte-identical normalized JPEG copies, contact sheet, and integrity manifest
+- Reading order: 真鍮の蛾 → 概要 → 主要要素 → ショット構成 → 保留事項 → 出典
+- Shot contract: exactly 3 sequential full-width strips / 30 seconds; every strip has one main image, one or two supporting images, image-based `構図ラフ`, crop, two focal points, eye path, three depth layers, and adjacent `画面`, `意図`, `尺`, `カメラ`, `成立条件`
+- Differentiation: Shot 1 is working-height hand detail; Shot 2 is a locked near-overhead memo/moth pairing; Shot 3 is an extreme-close watch face with moth/brass two-layer repetition. The moth reference is one shared ID across Shot 2/3, not a duplicated distinct asset
+- Theme/access contract: Auto is default; Light and Dark are explicit; one document owns scrolling; print forces light; both required viewports have no horizontal overflow, no nested scroll, equal-height columns, and main-image visual share above 50%
+- Reference/rights contract: exactly 6 distinct locally stored licensed rasters and 7 shot assignments; every entry records creator, source page, media URL, license, license URL, dimensions, retrieval date, normalized path, and SHA256; all remain reference-only, unselected, and without a rights-clearance claim
+- Review evidence: `docs/review/beat2-composition-board.md`, `artifacts/beat2-composition-board-result.json`, `artifacts/review-screens/beat2-composition-board-900x1200-dark.png`, `artifacts/review-screens/beat2-composition-board-1280x900-light.png`
+- Validation contract: `validate-beat2-composition-board` is read-only; `smoke-beat2-composition-board` intentionally regenerates only the package manifest and result after validating the fixed composition board and binary copies. The result owns hashes, 22 fail-closed probes, source immutability, browser/theme/layout evidence, and print evidence
+- Human boundary: H0 is machine-validated; improved staging comprehension remains inferred until H1 freeform review. H2 production selection/rights review and every production gate require separate authorization.
+
+Preserved Beat 2 Visual Treatment Pilot source:
+
+- Source artifact: `fff-beat2-visual-treatment-pilot-001` at `artifacts/beat2-visual-treatment-pilot/`
+- Human observation: H1 was `A寄りのB`; real references improved atmosphere comprehension, but actual screen composition needed a separate method
+- Immutability: all 13 files remain byte-identical; its six references are copied into the new package without altering the source
 
 Preserved Production Storyboard Brief source:
 
@@ -349,10 +356,10 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: open `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html`, run the root manifest's read-only validation chain, and use `docs/review/beat2-visual-treatment-pilot.md` for H1 visual-treatment review. `public/review/index.html?mode=blueprint` is the preserved source route with one compact Beat 2 link; `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain protected context. Actual asset selection, rights clearance, full-story expansion, local synthetic-engine choice/calibration, audio or media generation, provider work, render, upload, publication, database persistence, timing/order changes, truth, and canon remain deferred until separately authorized.
+First next move: open `artifacts/beat2-composition-board/beat2-composition-board.html`, run the root manifest's read-only validation chain, and use `docs/review/beat2-composition-board.md` for the H1 composition-transfer review. The Visual Treatment Pilot remains the immutable atmosphere/reference source; `public/review/index.html?mode=blueprint`, `?mode=derivative`, `?mode=revision`, `?mode=handoff`, `?mode=bridge`, `?mode=brief`, and `?mode=layout-lab` remain protected context. If two or more shots are not easier to stage than the Pilot, stop as `COMPOSITION_SPECIFICITY_BLOCKER`. Actual asset selection, rights clearance, full-story expansion, local synthetic-engine choice/calibration, audio or media generation, provider work, render, upload, publication, database persistence, timing/order changes, truth, and canon remain deferred until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current repository handoff names `fff-beat2-visual-treatment-pilot-001` as active and the Storyboard Brief / Production Execution Pack / Typography Balance / Operator / Blueprint / Derivative / Revision / Handoff chain as protected sources. Product implementation commit `72df19b33fd77b047170046db1a99620d1455976` is immutable context; the handoff-only successor containing the latest restart packet may be the current remote HEAD. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count "HEAD...@{u}"` to establish the exact context head and parity, then run the root manifest's read-only validation command before opening the standalone Beat 2 pilot. The validator result owns final package hashes, browser/print evidence, negative-probe outcomes, provenance, and proof that protected package bytes remain immutable.
+The current repository handoff names `fff-beat2-composition-board-001` as active and the Visual Treatment Pilot / Storyboard Brief / Production Execution Pack / Typography Balance / Operator / Blueprint / Derivative / Revision / Handoff chain as protected sources. Product implementation commit `72df19b33fd77b047170046db1a99620d1455976` remains immutable predecessor context; the exact Composition Board checkpoint is established by the current remote HEAD after this slice is published. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count "HEAD...@{u}"` to establish the exact context head and parity, then run the root manifest's read-only validation command before opening the standalone Composition Board. The validator result owns final package hashes, browser/print evidence, negative-probe outcomes, provenance, and proof that protected package bytes remain immutable.
