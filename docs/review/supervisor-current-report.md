@@ -19,8 +19,8 @@ H0 の機械検証は green です。13-file package、3 shots、6 distinct refe
 | Repository | `C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory` |
 | Branch | `master` |
 | Remote | `origin` → `https://github.com/YuShimoji/FastFictionFactory.git` |
-| Synced HEAD | `46f127acacdb0f285c3835efb0962c466fbf570f` `Record Beat 2 restart handoff` |
-| Product checkpoint | `72df19b33fd77b047170046db1a99620d1455976` `Add Beat 2 visual treatment pilot` |
+| Synced product HEAD | `6ef134b2af6c52e38cf674168686886d41f4c087` `Add Beat 2 composition board` |
+| Predecessor checkpoint | `72df19b33fd77b047170046db1a99620d1455976` `Add Beat 2 visual treatment pilot` |
 | Sync operation | `git fetch --prune origin` と `git pull --ff-only origin master` を実行、`Already up to date` |
 | Remote parity | `HEAD...origin/master = 0 0` |
 | Baseline worktree | Composition slice開始前は `docs/review/supervisor-current-report.md` にuser-owned未commit差分が1件。内容を保持してactive sectionのみ統合 |

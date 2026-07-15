@@ -461,7 +461,16 @@
   "next_action": "H1 human composition-transfer review of Beat 2 only; if two or more shots remain no easier to stage, record COMPOSITION_SPECIFICITY_BLOCKER. Production selection, rights, generation, render, publication, database, and canon remain separately gated.",
   "context_synced_at": "2026-07-15T12:00:00+09:00",
   "implementation_base_head": "46f127acacdb0f285c3835efb0962c466fbf570f",
-  "published_implementation_head": null,
+  "published_implementation_head": "6ef134b2af6c52e38cf674168686886d41f4c087",
+  "handoff_synced_at": "2026-07-15T10:16:35+09:00",
+  "git_sync": {
+    "branch": "master",
+    "remote": "origin",
+    "published_product_head": "6ef134b2af6c52e38cf674168686886d41f4c087",
+    "pre_handoff_parity": "0 0",
+    "pre_handoff_worktree_clean": true,
+    "handoff_successor_authority": "current remote HEAD after pull"
+  },
   "published_implementation_subject": "Add Beat 2 composition board",
   "handoff_remote_head": "46f127acacdb0f285c3835efb0962c466fbf570f",
   "handoff_remote_head_short": "46f127a",

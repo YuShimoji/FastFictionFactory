@@ -155,6 +155,13 @@ Preserved quantitative Blueprint source:
 
 ## Verification Snapshot
 
+Beat 2 Composition Board checkpoint, 2026-07-15 JST:
+
+- `fff-beat2-composition-board-001` was published to `origin/master` as product commit `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board` from implementation base `46f127acacdb0f285c3835efb0962c466fbf570f`.
+- Before this documentation-only handoff refresh, `master`, tracking `origin/master`, and live remote `master` matched `6ef134b`; the worktree was clean and parity was `0 0`. After pulling, Git owns the exact handoff successor HEAD while `6ef134b` remains the product checkpoint.
+- `artifacts/beat2-composition-board-result.json` reports `passed=true`, `failures=[]`, 3 shots, 6 distinct local references / 7 assignments, 22/22 fail-closed probes, 3/3 machine specificity, both viewport/theme checks, print evidence, package integrity, and unchanged Pilot / Storyboard / Execution sources.
+- H1 human composition transfer is not started. Two or more shots failing to improve staging specificity triggers `COMPOSITION_SPECIFICITY_BLOCKER`; H2 selection/rights, full-story expansion, generation, engine/voice, provider/API, render, publication, persistence, and canon remain closed.
+
 Beat 2 Visual Treatment Pilot checkpoint, 2026-07-14 JST:
 
 - `fff-beat2-visual-treatment-pilot-001` was published to `origin/master` as product commit `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` from implementation base `4d4c98ca188556509965d6dc1ed429c7b2acdf82`.
@@ -362,4 +369,4 @@ First next move: open `artifacts/beat2-composition-board/beat2-composition-board
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current repository handoff names `fff-beat2-composition-board-001` as active and the Visual Treatment Pilot / Storyboard Brief / Production Execution Pack / Typography Balance / Operator / Blueprint / Derivative / Revision / Handoff chain as protected sources. Product implementation commit `72df19b33fd77b047170046db1a99620d1455976` remains immutable predecessor context; the exact Composition Board checkpoint is established by the current remote HEAD after this slice is published. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count "HEAD...@{u}"` to establish the exact context head and parity, then run the root manifest's read-only validation command before opening the standalone Composition Board. The validator result owns final package hashes, browser/print evidence, negative-probe outcomes, provenance, and proof that protected package bytes remain immutable.
+The current repository handoff names `fff-beat2-composition-board-001` as active and the Visual Treatment Pilot / Storyboard Brief / Production Execution Pack / Typography Balance / Operator / Blueprint / Derivative / Revision / Handoff chain as protected sources. Product implementation commit `6ef134b2af6c52e38cf674168686886d41f4c087` is the immutable Composition Board checkpoint; `72df19b33fd77b047170046db1a99620d1455976` remains its immutable Pilot predecessor. After pulling, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count "HEAD...@{u}"` to establish the exact documentation-successor HEAD and parity, then run the root manifest's read-only validation command before opening the standalone Composition Board. The validator result owns final package hashes, browser/print evidence, negative-probe outcomes, provenance, and proof that protected package bytes remain immutable.

@@ -2,6 +2,15 @@
 
 ## Residual Work
 
+### Beat 2 Composition Board
+
+- Purpose: Determine whether a separate creator can stage Beat 2's three screens from explicit crop, focal order, eye path, depth, placement, and borrowed-reference instructions rather than atmosphere references alone.
+- Effect: `fff-beat2-composition-board-001` provides one standalone Light/Dark/Auto page with 3 exact shots, 6 reused licensed local rasters / 7 assignments, one main plus one or two supporting references per shot, and image-based composition overlays without changing the predecessor packages.
+- Requirements: Use the standalone Board without audit coaching; preserve the Pilot 13-file, Storyboard 7-file, and Execution 9-file aggregates; keep wording, IDs, order, `00:20–00:50` timing, truth, rights, selection, and canon unchanged; do not open generation or the other 16 shots.
+- State: Published to `origin/master` as product checkpoint `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board`. H0 is green with 22/22 fail-closed probes, complete provenance, two measured viewports, theme/layout/print evidence, 3/3 machine specificity, and unchanged sources. Human composition transfer remains inferred.
+- Owner: Product implementer owns deterministic packaging and bounded repair; a human supervisor or delegated creator owns H1; asset, rights, production, release, and canon owners remain outside the lane.
+- Next move: Run one H1 freeform composition-transfer review from the standalone Board. If two or more shots are not easier to stage than the Pilot, record `COMPOSITION_SPECIFICITY_BLOCKER`; otherwise repair only the evidenced weak shot(s) once.
+
 ### Beat 2 Visual Treatment Pilot
 
 - Purpose: Determine whether a separate creator can understand and stage Beat 2 from a concrete reference-led visual treatment rather than planning-only diagrams.
@@ -139,12 +148,12 @@
 
 ### Repo Sync / Next Terminal Handoff
 
-- Purpose: Keep the latest Content Production Blueprint context durable in repository files so another terminal can resume from `master` without chat history.
-- Effect: Updates the handoff/current-status/project-context docs with the current active artifact, protected Handoff / Revision / Derivative chain, baseline commit, clean remote parity, first review route, preserved routes, validation readback, and local boundary gates.
-- Requirements: Do not change product UI behavior; preserve the Serena-generated configuration update only as restart infrastructure; keep provider/API/video/render/upload/final-canon/database/rights boundaries closed.
-- State: The handoff refresh starts from synced published product commit `4b9b22e Add content production blueprint`, with `master...origin/master` at `0 0` before edits. The Blueprint manifest validation chain remains read-only, and the local `.serena/project.yml` schema refresh is included so another checkout receives the same project configuration.
+- Purpose: Keep the latest Beat 2 Composition Board context durable in repository files so another terminal can resume from `master` without chat history.
+- Effect: Records the exact product checkpoint, active artifact/lane, protected source chain, H0 readback, H1 owner and stop rule, first commands, and closed production boundaries in the authority, status, supervisor, handoff, decision, idea, and manifest surfaces.
+- Requirements: Do not change product UI or artifact bytes; preserve the Composition Board product commit and all predecessor package aggregates; keep provider/API/generation/render/upload/final-canon/database/rights boundaries closed.
+- State: The handoff refresh starts from synced published product commit `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board`, with `HEAD...origin/master = 0 0` and a clean worktree before documentation edits. The root validation chain remains read-only.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
-- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `public/review/index.html?mode=blueprint` and `artifacts/production-blueprint/README_BLUEPRINT.md` for local production-readiness review.
+- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the root read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `artifacts/beat2-composition-board/beat2-composition-board.html` for H1 freeform composition review.
 
 ### Layout Research Decision Shell
 

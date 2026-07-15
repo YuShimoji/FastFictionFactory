@@ -4,11 +4,11 @@ This packet preserves the current working context inside the repository so anoth
 
 ## 監修AI向け Beat 2 Composition Board 引き継ぎ（2026-07-15 JST）
 
-現在の active artifact は `fff-beat2-composition-board-001`、lane は `COMPOSITION_BOARD` です。同期済み `master` の `46f127acacdb0f285c3835efb0962c466fbf570f Record Beat 2 restart handoff` から、既存 Visual Treatment Pilot を変更せず、Beat 2 の同じ3 shotsだけを実画像ベースのcrop/focus/depth/placementへ具体化しました。predecessor implementation checkpoint は `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` です。
+現在の active artifact は `fff-beat2-composition-board-001`、lane は `COMPOSITION_BOARD` です。製品実装は `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board` として `origin/master` へ公開済みです。実装baseは `46f127acacdb0f285c3835efb0962c466fbf570f Record Beat 2 restart handoff`、predecessor checkpoint は `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` です。現在のdocumentation-only successorは、pull後のremote HEADをGit authorityとして扱います。
 
 ### Stopping Edge
 
-- Finished: 3-shot standalone Composition Board、6 distinct references / 7 assignments、image-based overlays、two viewport/theme captures、print evidence、22 fail-closed probes、three protected package aggregates。
+- Finished: 3-shot standalone Composition Board、6 distinct references / 7 assignments、image-based overlays、two viewport/theme captures、print evidence、22 fail-closed probes、three protected package aggregates、product commit/push/post-push validation。
 - Remains: H1 freeform composition transfer review only; H0 cannot decide whether a separate creator can actually stage the three screens.
 - Intentionally untouched: Visual Treatment Pilot 13 files、Storyboard 7 files、Execution 9 files、other 16 shots、production selection、rights clearance、provider/API、generation、render、publication、database、canon。
 - First checks: pull latest `master`, confirm parity/clean state, run the root read-only validation, then open the standalone Composition Board.
@@ -49,6 +49,13 @@ Invoke-Item .\artifacts\beat2-composition-board\beat2-composition-board.html
 | Shot 3 | extreme-close watch + moth wing + brass reflection | `9:17`と蛾を別焦点にし時計停止を断定しないか |
 | Protected sources | Pilot 13 / Storyboard 7 / Execution 9 files byte-identical | sourceとしてのみ使用 |
 | Production gates | selection/rights/generation/render/publication/database/canon closed | 別承認なしに開かない |
+
+### Active Residual Work
+
+| Work | Purpose | Effect | Requirements | State | Owner | Next move |
+| --- | --- | --- | --- | --- | --- | --- |
+| Beat 2 H1 composition transfer | 別制作者への構図伝達を実測 | Boardをaccept、bounded repair、またはblockへ進める | standalone Boardのみ、freeform、no audit coaching、2/3改善基準 | ready / not started | human supervisorまたはdelegated creator | crop、focal order、eye path、depth、placement、borrowed portions、三画面の差を説明 |
+| Conditional weak-shot repair | H1で観測された局所摩擦だけを除去 | protected sourcesを壊さずtransfer qualityを閉じる | 弱いshotが1件のみ。2件以上なら`COMPOSITION_SPECIFICITY_BLOCKER`で停止 | conditional | product implementer + H1 reviewer | 非blocker時だけ一回修正して再レビュー |
 
 ## 保存された Beat 2 Visual Treatment Pilot 引き継ぎ（2026-07-14 JST）
 
@@ -816,6 +823,7 @@ H1 Operator Brief comprehension is complete. The current entrance is H1 Beat 2 V
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
+| Beat 2 Composition Board | Make the exact three-shot Beat 2 slice stageable through explicit image-based crop, focus, eye path, depth, placement, and reference-portion decisions | `fff-beat2-composition-board-001` is published at product checkpoint `6ef134b`; H0 is green for 3 shots, 6 references / 7 assignments, 22/22 probes, both viewports, print, provenance, and three-source immutability | Run H1 freeform composition transfer from the standalone Board; stop as `COMPOSITION_SPECIFICITY_BLOCKER` if two or more shots are not easier to stage |
 | Beat 2 Visual Treatment Pilot | Give a separate creator one concrete, reference-led three-shot treatment without changing protected planning sources | `fff-beat2-visual-treatment-pilot-001` is published at product checkpoint `72df19b`; H0 is green for 3 shots, 6 references, 24/24 probes, both viewports, provenance, print style, and source immutability | Run H1 freeform visual-treatment review from the standalone page only; if it fails, repair only observed Beat 2 reference choice, composition hierarchy, or wording |
 | Production Execution Pack | Give another creator one portable preparation and assembly contract | `fff-production-execution-pack-001` is H0 validated; nine files cover 6 beats, 19 shots, 14 generic requirements, and an engine-neutral timing overlay; the result is green | Run H1 execution-readiness review |
 | Operator Brief Typography Balance | Preserve accepted comprehension while fixing the oversized title | `fff-operator-production-brief-typography-balance-001` is preserved; H1 passed A and both accepted viewports pass hierarchy, first-view, and immutability checks | Use as source context and launcher; reopen only for measured regression |

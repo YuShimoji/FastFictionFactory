@@ -1,5 +1,19 @@
 # Decision Log
 
+## 2026-07-15
+
+- Decision: Publish `fff-beat2-composition-board-001` as the active bounded Beat 2 composition artifact while preserving the Visual Treatment Pilot, Storyboard Brief, and Production Execution Pack as immutable sources.
+  - Reason: The Pilot's real-image references improved atmosphere comprehension, but the next uncertainty was crop, focal order, eye path, depth, and relative placement rather than another change to source wording or a 19-shot expansion.
+  - Effect: Product commit `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board` adds exactly three image-based composition strips, six reused licensed local rasters / seven assignments, 22 fail-closed probes, two viewport captures, print evidence, and preserved-mode predecessor validation. No source package, story wording, timing, order, truth, rights, selection, production, or canon state changes.
+
+- Decision: Make H1 freeform composition transfer the only active successor gate.
+  - Reason: H0 proves deterministic structure, provenance, layout, and source immutability but cannot prove that a separate creator can stage the three screens without coaching.
+  - Effect: If two or more shots are not easier to stage than the Pilot, the lane stops as `COMPOSITION_SPECIFICITY_BLOCKER`; otherwise only evidenced weak shots may receive one bounded repair. AI image generation, H2 asset/rights work, 19-shot expansion, render, publication, database, and canon remain closed.
+
+- Decision: Treat `6ef134b2af6c52e38cf674168686886d41f4c087` as the immutable Composition Board product checkpoint and keep the next documentation-only successor as restart infrastructure.
+  - Reason: Another terminal needs an exact product boundary plus current Git parity, first commands, H1 ownership, and stop rules without mistaking handoff maintenance for a product revision.
+  - Effect: `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/next-terminal-handoff.md`, `docs/review/supervisor-current-report.md`, the decision/idea ledgers, and the root manifest carry the re-entry packet; after pull, Git owns the exact handoff successor HEAD.
+
 ## 2026-07-14
 
 - Decision: Add a standalone Beat 2 visual-treatment pilot instead of revising the accepted Storyboard Brief.
