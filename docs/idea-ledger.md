@@ -7,9 +7,9 @@
 - Purpose: Determine whether a separate creator can stage Beat 2's three screens from explicit crop, focal order, eye path, depth, placement, and borrowed-reference instructions rather than atmosphere references alone.
 - Effect: `fff-beat2-composition-board-001` provides one standalone Light/Dark/Auto page with 3 exact shots, 6 reused licensed local rasters / 7 assignments, one main plus one or two supporting references per shot, and image-based composition overlays without changing the predecessor packages.
 - Requirements: Use the standalone Board without audit coaching; preserve the Pilot 13-file, Storyboard 7-file, and Execution 9-file aggregates; keep wording, IDs, order, `00:20–00:50` timing, truth, rights, selection, and canon unchanged; do not open generation or the other 16 shots.
-- State: Published to `origin/master` as product checkpoint `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board`. H0 is green with 22/22 fail-closed probes, complete provenance, two measured viewports, theme/layout/print evidence, 3/3 machine specificity, and unchanged sources. Human composition transfer remains inferred.
-- Owner: Product implementer owns deterministic packaging and bounded repair; a human supervisor or delegated creator owns H1; asset, rights, production, release, and canon owners remain outside the lane.
-- Next move: Run one H1 freeform composition-transfer review from the standalone Board. If two or more shots are not easier to stage than the Pilot, record `COMPOSITION_SPECIFICITY_BLOCKER`; otherwise repair only the evidenced weak shot(s) once.
+- State: Published as product checkpoint `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board`. H0 remains green. Independent H1 completed on 2026-07-17 with `3/3 = 1.0 (100%)`, classification `H1_COMPOSITION_TRANSFER_PASS`, no weak shot, and no systemic composition ambiguity requiring repair.
+- Owner: The independent reviewer owns the H1 judgment; the human supervisor owns authorization of any successor. Asset, rights, production, release, and canon owners remain outside the lane.
+- Next move: Preserve the accepted Board. If separately authorized, test one different Beat as a bounded counterexample before any 19-shot expansion; do not repeat Beat 2 H1 or perform a no-evidence repair.
 
 ### Beat 2 Visual Treatment Pilot
 
@@ -148,12 +148,12 @@
 
 ### Repo Sync / Next Terminal Handoff
 
-- Purpose: Keep the latest Beat 2 Composition Board context durable in repository files so another terminal can resume from `master` without chat history.
-- Effect: Records the exact product checkpoint, active artifact/lane, protected source chain, H0 readback, H1 owner and stop rule, first commands, and closed production boundaries in the authority, status, supervisor, handoff, decision, idea, and manifest surfaces.
+- Purpose: Keep the completed Beat 2 H1 transfer result and its Git/GitHub restart context durable so another terminal can resume without chat history.
+- Effect: Records the exact product checkpoint, H1 `3/3` matrix and verdict, protected source chain, next authorized boundary, first commands, and closed production gates in the authority, status, supervisor, handoff, decision, idea, and manifest surfaces.
 - Requirements: Do not change product UI or artifact bytes; preserve the Composition Board product commit and all predecessor package aggregates; keep provider/API/generation/render/upload/final-canon/database/rights boundaries closed.
-- State: The handoff refresh starts from synced published product commit `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board`, with `HEAD...origin/master = 0 0` and a clean worktree before documentation edits. The root validation chain remains read-only.
+- State: The H1 handoff refresh starts from synced remote base `ba9ad3ffcf5fe4698483f17bfcaa47af0136d488` with `master...origin/master = 0 0`. The pre-existing supervisor-report update is intentionally integrated; product artifact bytes remain untouched and the root validation chain remains read-only.
 - Owner: Agent for repo-local context durability; next worker for pulling latest remote and continuing from the handoff packet.
-- Next move: Pull latest `master`, confirm `HEAD...@{u}` is `0 0`, run the root read-only manifest validation, read `docs/review/next-terminal-handoff.md`, then open `artifacts/beat2-composition-board/beat2-composition-board.html` for H1 freeform composition review.
+- Next move: Fetch and switch to the published handoff branch, confirm upstream parity, run the root read-only manifest validation, then read `docs/review/next-terminal-handoff.md` and the completed H1 section in `docs/review/beat2-composition-board.md`. Await explicit H2 authorization before selecting a different Beat.
 
 ### Layout Research Decision Shell
 

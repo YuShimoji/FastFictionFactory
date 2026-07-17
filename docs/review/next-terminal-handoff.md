@@ -2,17 +2,17 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-## 監修AI向け Beat 2 Composition Board 引き継ぎ（2026-07-15 JST）
+## 監修AI向け Beat 2 H1 完了引き継ぎ（2026-07-17 JST）
 
-現在の active artifact は `fff-beat2-composition-board-001`、lane は `COMPOSITION_BOARD` です。製品実装は `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board` として `origin/master` へ公開済みです。実装baseは `46f127acacdb0f285c3835efb0962c466fbf570f Record Beat 2 restart handoff`、predecessor checkpoint は `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` です。現在のdocumentation-only successorは、pull後のremote HEADをGit authorityとして扱います。
+現在の accepted product artifact は `fff-beat2-composition-board-001` です。製品実装 `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board` と predecessor `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` は不変です。lane `COMPOSITION_REVIEW` の独立H1は完了し、thread `fff-beat2-composition-transfer-h1-01`、slice `beat2-composition-transfer-review-v0` で全3 production shotをレビューした結果、`3/3 = 1.0 (100%)`、classification `H1_COMPOSITION_TRANSFER_PASS` でした。handoff publication base は synced `master` の `ba9ad3ffcf5fe4698483f17bfcaa47af0136d488`、remote handoff branch は `codex/beat2-h1-handoff` です。
 
 ### Stopping Edge
 
-- Finished: 3-shot standalone Composition Board、6 distinct references / 7 assignments、image-based overlays、two viewport/theme captures、print evidence、22 fail-closed probes、three protected package aggregates、product commit/push/post-push validation。
-- Remains: H1 freeform composition transfer review only; H0 cannot decide whether a separate creator can actually stage the three screens.
+- Finished: 3-shot standalone Composition Board、H0 green、独立H1 blind pass、authority/Pilot比較、3/3 improved-and-executable、H1 PASS、repo-local evidence preservation。
+- Remains: H1の再実施やBoard repairではない。別承認がある場合だけ、異なるBeatを一つ使うbounded H2 counterexample。
 - Intentionally untouched: Visual Treatment Pilot 13 files、Storyboard 7 files、Execution 9 files、other 16 shots、production selection、rights clearance、provider/API、generation、render、publication、database、canon。
-- First checks: pull latest `master`, confirm parity/clean state, run the root read-only validation, then open the standalone Composition Board.
-- Stop rule: if two or more shots remain no easier to stage than the Pilot, record `COMPOSITION_SPECIFICITY_BLOCKER` and do not start image generation.
+- First checks: fetch remote、`codex/beat2-h1-handoff`へswitch、upstream parity/clean stateを確認、root read-only validationを実行、H1記録を読む。
+- Stop rule: H2は自動開始しない。production selection、rights、generation、19-shot expansion、canonへ広げず、監修者の明示承認を待つ。
 
 ### Start Here
 
@@ -30,23 +30,26 @@ artifacts/beat2-composition-board/README_COMPOSITION_BOARD.md
 
 ```powershell
 git fetch --prune origin
-git pull --ff-only origin master
+git switch codex/beat2-h1-handoff
+git pull --ff-only
 git rev-list --left-right --count "HEAD...@{u}"
 git status --short --branch
 
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
-Invoke-Item .\artifacts\beat2-composition-board\beat2-composition-board.html
+Select-String -Path .\docs\review\beat2-composition-board.md -Pattern "H1 independent transfer result" -Context 0,40
 ```
+
+新規cloneでlocal branchがまだ無い場合は、`git switch --track origin/codex/beat2-h1-handoff` を使用します。PR merge後に`master`へ取り込まれている場合は、通常どおり`master`をpullし、Gitの最新remote stateを正本とします。
 
 ### Current Contract
 
 | 対象 | 現在の状態 | 次の判断 |
 | --- | --- | --- |
-| Composition Board | `00:20–00:50`、3 shots、6 distinct local rasters、7 assignments | H1 freeform composition review |
-| Shot 1 | handwork / working height / narrow light pool | face/full bodyより指先が先に見えるか |
-| Shot 2 | memo 2/3 + static moth 1/3 / near-overhead | activationを示さず二つを並置できるか |
-| Shot 3 | extreme-close watch + moth wing + brass reflection | `9:17`と蛾を別焦点にし時計停止を断定しないか |
+| Composition Board | `00:20–00:50`、3 shots、6 distinct local rasters、7 assignments、H1 `3/3 = 1.0` | accepted Beat 2 checkpointとして保持 |
+| Shot 1 | handwork / working height / narrow light pool | intended一致、legacyよりcrop/focal/depth仮定が減少、blockerなし |
+| Shot 2 | memo 2/3 + static moth 1/3 / near-overhead | intended一致、左右/比率/eye path/depthが明確、blockerなし |
+| Shot 3 | extreme-close watch + moth wing + brass reflection | intended一致、moth continuity/三層/9:17が明確、blockerなし |
 | Protected sources | Pilot 13 / Storyboard 7 / Execution 9 files byte-identical | sourceとしてのみ使用 |
 | Production gates | selection/rights/generation/render/publication/database/canon closed | 別承認なしに開かない |
 
@@ -54,8 +57,8 @@ Invoke-Item .\artifacts\beat2-composition-board\beat2-composition-board.html
 
 | Work | Purpose | Effect | Requirements | State | Owner | Next move |
 | --- | --- | --- | --- | --- | --- | --- |
-| Beat 2 H1 composition transfer | 別制作者への構図伝達を実測 | Boardをaccept、bounded repair、またはblockへ進める | standalone Boardのみ、freeform、no audit coaching、2/3改善基準 | ready / not started | human supervisorまたはdelegated creator | crop、focal order、eye path、depth、placement、borrowed portions、三画面の差を説明 |
-| Conditional weak-shot repair | H1で観測された局所摩擦だけを除去 | protected sourcesを壊さずtransfer qualityを閉じる | 弱いshotが1件のみ。2件以上なら`COMPOSITION_SPECIFICITY_BLOCKER`で停止 | conditional | product implementer + H1 reviewer | 非blocker時だけ一回修正して再レビュー |
+| Beat 2 H1 composition transfer | 別制作者への構図伝達を実測 | Boardのtransfer qualityを根拠付きでclose | standalone Board blind pass、全3shot、authority/Pilot比較 | complete / PASS `3/3` | independent reviewer | 再実施しない。`docs/review/beat2-composition-board.md`を正本として保持 |
+| Different-Beat counterexample | Beat 2固有のoverfitを反証 | 19-shot展開前にpatternの一般化可能性を確認 | 監修者の明示承認、異なるBeat一つ、同じblind protocol、source不変 | proposed / not authorized | human supervisor + future reviewer | 承認後のみ対象Beatを一つ選び、bounded H2として開始 |
 
 ## 保存された Beat 2 Visual Treatment Pilot 引き継ぎ（2026-07-14 JST）
 
@@ -823,7 +826,7 @@ H1 Operator Brief comprehension is complete. The current entrance is H1 Beat 2 V
 
 | Work | Purpose | Current state | Next move |
 | --- | --- | --- | --- |
-| Beat 2 Composition Board | Make the exact three-shot Beat 2 slice stageable through explicit image-based crop, focus, eye path, depth, placement, and reference-portion decisions | `fff-beat2-composition-board-001` is published at product checkpoint `6ef134b`; H0 is green for 3 shots, 6 references / 7 assignments, 22/22 probes, both viewports, print, provenance, and three-source immutability | Run H1 freeform composition transfer from the standalone Board; stop as `COMPOSITION_SPECIFICITY_BLOCKER` if two or more shots are not easier to stage |
+| Beat 2 Composition Board | Make the exact three-shot Beat 2 slice stageable through explicit image-based crop, focus, eye path, depth, placement, and reference-portion decisions | `fff-beat2-composition-board-001` is published at product checkpoint `6ef134b`; H0 is green and independent H1 passed `3/3 = 1.0` with no repair target | Preserve the accepted Board; if explicitly authorized, run one different-Beat counterexample before any 19-shot expansion |
 | Beat 2 Visual Treatment Pilot | Give a separate creator one concrete, reference-led three-shot treatment without changing protected planning sources | `fff-beat2-visual-treatment-pilot-001` is published at product checkpoint `72df19b`; H0 is green for 3 shots, 6 references, 24/24 probes, both viewports, provenance, print style, and source immutability | Run H1 freeform visual-treatment review from the standalone page only; if it fails, repair only observed Beat 2 reference choice, composition hierarchy, or wording |
 | Production Execution Pack | Give another creator one portable preparation and assembly contract | `fff-production-execution-pack-001` is H0 validated; nine files cover 6 beats, 19 shots, 14 generic requirements, and an engine-neutral timing overlay; the result is green | Run H1 execution-readiness review |
 | Operator Brief Typography Balance | Preserve accepted comprehension while fixing the oversized title | `fff-operator-production-brief-typography-balance-001` is preserved; H1 passed A and both accepted viewports pass hierarchy, first-view, and immutability checks | Use as source context and launcher; reopen only for measured regression |

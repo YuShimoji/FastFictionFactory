@@ -65,6 +65,28 @@ Ask the reviewer to explain in freeform language:
 
 Pass requires at least two of three shots to be described more specifically than the predecessor Visual Treatment, with no invented moth activation, stopped-clock fact, Toma fate, or final Mira design. If two or more shots remain no easier to stage, record `COMPOSITION_SPECIFICITY_BLOCKER` and name the weak shots; do not start image generation.
 
+## H1 independent transfer result — 2026-07-17 JST
+
+The bounded independent review ran as route `SUPERVISOR->WORKER`, thread `fff-beat2-composition-transfer-h1-01`, lane `COMPOSITION_REVIEW`, slice `beat2-composition-transfer-review-v0`. The reviewer first used only the canonical standalone Board and existing Board screenshots/contact sheet, froze a blind interpretation of every production shot, and only then compared it with `beat2-composition-board.json`, `shot-composition-map.csv`, this review authority, and the predecessor `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html`.
+
+The denominator is every intended Beat 2 production shot present in the canonical Board: `shot-b02-01`, `shot-b02-02`, and `shot-b02-03`. No favorable sampling was used.
+
+At review time Git was on `master` at `ba9ad3ffcf5fe4698483f17bfcaa47af0136d488`, tracking `origin/master` with `0 0` parity. The only worktree change was the user-owned `docs/review/supervisor-current-report.md` update (`git hash-object` `6b8abf46f551bb59b49e6960e6adb2670a997f9c` before this handoff integration); it was not modified during the bounded read-only review.
+
+| Shot | Blind creator reconstruction | Intended comparison | Legacy comparison | Blocking / optional | Result |
+| --- | --- | --- | --- | --- | --- |
+| `shot-b02-01` | Close, slow pan, working-height view. One implied person, Mira, appears as hands only; fingers/tweezers dominate about two thirds, with the part lower-right and face/body outside frame. Eye path is dark upper-left → fingers → tool tip. Fingers/tools, part/work surface, and dark bench form foreground/midground/background. | Principal subject, scale, crop, focal order, action, depth, and transition into the clue pairing all matched. No critical misread or material omission. | The Pilot supplied hands/tools/parts and `Close / Slow pan`, but not screen share, focal order, depth, crop discipline, or the supporting environment's subordinate role. | No blocker. Exact pan vector and tool shape remain optional. | `improved_and_executable=true`, high confidence |
+| `shot-b02-02` | Close, locked, within about 5° of overhead. Zero people and two principal clue objects: memo on the left two thirds and static moth at lower-right one third, separated by a dark gap. Eye path is handwriting → fold → moth. Drawer-edge shadow, memo/moth, and dark wood form the three depth layers. | Left/right relationship, scale, angle, eye path, static action, depth, and moth continuity into Shot 3 matched. No critical misread. The blind wording did not quantify the gap as one finger, but this did not alter construction. | The Pilot said to place a large memo next to the moth, but left/right placement, proportions, overhead angle, gap, eye path, and depth remained assumptions. | No blocker. Exact memo copy, moth rotation, and drawer-edge thickness remain optional. | `improved_and_executable=true`, high confidence |
+| `shot-b02-03` | Extreme close, controlled parallax, two-stage focus. Zero people and three visual layers: oversized clock face, partial moth wing at lower right, and rear brass reflection. Eye path is `9:17` → moth → reflection; the visible `9:15` reference is not mistaken for the production target. | Subject identity, out-of-frame scale, time target, layer order, focal sequence, and the Shot 2 moth recurrence matched. No critical misread or material omission. | The Pilot supplied the extreme watch view and brass reflection but did not give the moth its visual reference assignment, lower-right placement, three-layer relationship, or full focal sequence. | No blocker. Exact parallax direction and amplitude remain optional. | `improved_and_executable=true`, medium-high confidence |
+
+The exact result is `3 / 3 = 1.0 (100%)`, above the `2/3` threshold. No repeated systemic composition ambiguity affects more than one third of the shots. Pan/parallax direction and amplitude remain free in two shots, but they are non-blocking motion styling choices because subject placement, focal order, depth, and continuity are already fixed.
+
+Primary classification: `H1_COMPOSITION_TRANSFER_PASS`.
+
+Verified evidence covers Git state at review time, canonical/comparator paths, the complete three-shot denominator, source files, and the calculated ratio. Observed evidence covers what the independent reviewer reconstructed from the Board. Easier production transfer is an inference; actual constructed frames, art polish, and final motion tuning remain unknown. A live browser session could not initialize in the review runtime, so the visual pass used the existing tracked viewport captures/contact sheet plus the canonical HTML; no new render or screenshot was produced.
+
+The H1 review itself made no file changes, commits, pushes, or generated media. This repository update only preserves that completed review and its restart context. The only recommended successor is one bounded counterexample on a different Beat before any 19-shot expansion; it is not authorized or executed by this result.
+
 ## Boundaries
 
 - `reference_only=true`
@@ -80,6 +102,6 @@ Pass requires at least two of three shots to be described more specifically than
 - Purpose: determine whether the three image-based composition strips transfer concrete staging intent to another creator.
 - Effect: closes or falsifies the non-generated composition approach before any broader visual work.
 - Requirements: standalone H1 review, preserved source bytes, and no closed-gate expansion.
-- State: H0 implementation/evidence complete; H1 human review not started.
-- Owner: human supervisor or delegated creator for H1; product implementer for bounded repair if evidence identifies one.
-- Next move: open the standalone HTML and record one freeform H1 judgment; either close the slice or repair only the weak shot(s).
+- State: H0 implementation/evidence complete; H1 passed `3/3 = 1.0` as `H1_COMPOSITION_TRANSFER_PASS`; no Board repair is indicated.
+- Owner: the independent reviewer owns the recorded H1 judgment; a human supervisor owns any authorization to open the different-Beat counterexample.
+- Next move: preserve the Board as the accepted Beat 2 composition checkpoint. If separately authorized, run one bounded different-Beat counterexample before any 19-shot expansion.

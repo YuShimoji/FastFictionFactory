@@ -1,5 +1,15 @@
 # Decision Log
 
+## 2026-07-17
+
+- Decision: Accept the Beat 2 Composition Board's independent H1 transfer result as `H1_COMPOSITION_TRANSFER_PASS` with an exact `3/3 = 1.0 (100%)` improved-and-executable ratio.
+  - Reason: A second-creator blind pass reconstructed every canonical production shot without blocking clarification, then matched the intended camera/framing, subjects, spatial relationships, action, depth, focal order, and continuity after authority was opened. Each shot required materially fewer assumptions than the immutable Visual Treatment Pilot.
+  - Effect: The Board needs no specificity repair and the `COMPOSITION_SPECIFICITY_BLOCKER` path is closed for this evidence set. The result does not approve media selection, rights, generation, 19-shot expansion, production, or canon.
+
+- Decision: Keep one different-Beat counterexample as the only recommended H2 successor, pending separate human authorization.
+  - Reason: A `3/3` result proves transfer for this bounded Beat 2 pattern but does not prove that the same composition specification generalizes to a different visual problem.
+  - Effect: The next worker starts from the persisted H1 report and does not repeat Beat 2 review, repair the Board, or open all 19 shots. If authorized, H2 remains one bounded falsification test with the same blind-review discipline.
+
 ## 2026-07-15
 
 - Decision: Publish `fff-beat2-composition-board-001` as the active bounded Beat 2 composition artifact while preserving the Visual Treatment Pilot, Storyboard Brief, and Production Execution Pack as immutable sources.

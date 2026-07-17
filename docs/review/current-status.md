@@ -3,8 +3,8 @@
 ## Current Beat 2 Composition Board Update
 
 - Active artifact: `fff-beat2-composition-board-001`
-- Active lane: `COMPOSITION_BOARD`
-- Implementation base: synced `master` at `46f127acacdb0f285c3835efb0962c466fbf570f`; one pre-existing user-owned change in `docs/review/supervisor-current-report.md` was preserved and integrated
+- Active lane: `COMPOSITION_REVIEW` completed; no implementation lane is open
+- Handoff base: synced `master` at `ba9ad3ffcf5fe4698483f17bfcaa47af0136d488`; the pre-existing user-owned update in `docs/review/supervisor-current-report.md` was preserved and integrated into this context publication
 - Published Composition Board checkpoint: `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board`; push to `origin/master`, post-push root validation, clean worktree, and `HEAD...origin/master = 0 0` were verified before this handoff-only refresh
 - Predecessor product checkpoint: `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot`
 - Standalone entry: `artifacts/beat2-composition-board/beat2-composition-board.html`
@@ -16,8 +16,9 @@
 - Theme/layout: Light / Dark / Auto, Auto default, one document scroll, equal-height shot columns, no horizontal overflow, no nested scroll, print-forced light, and minimum measured main-image share above 84% of image area at both required viewports
 - Browser evidence: `artifacts/review-screens/beat2-composition-board-900x1200-dark.png` and `artifacts/review-screens/beat2-composition-board-1280x900-light.png`
 - Machine gate: H0 is green only when `passed=true`, `failures=[]`, 22/22 fail-closed probes, complete provenance/dimensions/hash, package integrity, source immutability, theme/layout/viewport evidence, and print evidence all agree
-- Human gate: H1 is not started. Composition specificity remains an inference until a separate creator can explain the crop, focal order, depth layers, reference portions, and shot differentiation from this page alone
-- Stop rule: if two or more shots are not easier to stage than the predecessor, record `COMPOSITION_SPECIFICITY_BLOCKER`; do not start image generation
+- Human gate: H1 completed on 2026-07-17 under `fff-beat2-composition-transfer-h1-01`. Every canonical production shot was reviewed; `3/3 = 1.0 (100%)` were `improved_and_executable`, yielding `H1_COMPOSITION_TRANSFER_PASS`
+- H1 evidence: no blocking question, critical intended-composition misread, material omission, or repeated systemic composition ambiguity was found. Exact pan/parallax vectors remain optional motion styling, not a construction blocker
+- Comparison: the Board materially reduces assumptions versus the immutable Pilot for crop/scale, spatial relationship, focal order, depth, reference portions, and Shot 2→3 moth continuity
 - Closed gates: 19-shot expansion, production asset selection, rights clearance, image/audio/video generation, engine/voice, provider/API, credentials, render, upload, publication, database persistence, production approval, and final canon
 - Read-only validation: `node tools/fff-state.mjs validate-beat2-composition-board artifacts/beat2-composition-board-result.json`
 - Intentional regeneration: `node tools/fff-state.mjs smoke-beat2-composition-board artifacts/beat2-composition-board-result.json`
@@ -45,7 +46,7 @@
 
 ## Next Gate
 
-Run one H1 freeform review from the standalone Composition Board only. Pass means a reviewer can explain foreground/midground/background, first and second focal points, borrowed portions of each reference, and why the three shots are distinct screens while preserving the unresolved moth function, Toma fate, 9:17 meaning, and Mira design. If two or more shots remain no easier to stage than the predecessor Pilot, stop as `COMPOSITION_SPECIFICITY_BLOCKER`; otherwise repair only the evidenced weak shot(s). Do not expand to 19 shots or open H2.
+H1 is complete and the Board needs no specificity repair. The only recommended next gate is one bounded different-Beat counterexample using the same blind Board-first transfer procedure before any 19-shot expansion. This H2 successor is not authorized or started. Do not treat the pass as production selection, rights clearance, generation approval, canon approval, or evidence that final frames have been constructed.
 
 ## Current Storyboard Brief Update
 
@@ -484,11 +485,11 @@ Preserved platform boundary:
 
 ## Review Debt
 
-- The active review debt is H1 human composition-transfer comprehension of the Beat 2 Composition Board; H0 evidence cannot establish that judgment. The four prior narration-rate warnings may remain visible in protected source surfaces, but the execution-pack overlay closes them as `proxy_headroom_confirmed`; preserving old source bytes is not current timing debt. Engine-specific calibration, production asset art, rights clearance, multi-format export, ZIP bundling, provider work, rendering, and production tooling remain outside this slice.
+- Beat 2 H1 composition-transfer debt is closed by the independent `3/3 = 1.0` pass. Remaining visual uncertainty is generalization beyond Beat 2, not specificity of these three shots. The four prior narration-rate warnings may remain visible in protected source surfaces, but the execution-pack overlay closes them as `proxy_headroom_confirmed`; preserving old source bytes is not current timing debt. Engine-specific calibration, production asset art, rights clearance, multi-format export, ZIP bundling, provider work, rendering, and production tooling remain outside this slice.
 
 | Target | Current state | Next move |
 | --- | --- | --- |
-| Beat 2 Composition Board | `fff-beat2-composition-board-001` is active; H0 is green for 3 image-based compositions, 6 reference-only rasters / 7 assignments, 22/22 probes, both measured viewports, provenance, print style, and three protected-source identities | Run H1 freeform composition-transfer review from the Board alone; stop as `COMPOSITION_SPECIFICITY_BLOCKER` if fewer than 2/3 shots are easier to stage, otherwise repair only evidenced weak shots |
+| Beat 2 Composition Board | `fff-beat2-composition-board-001` is accepted; H0 is green and H1 passed `3/3 = 1.0` with no blocking shot, critical misread, systemic composition ambiguity, or repair target | Preserve the Board and completed evidence. Await explicit authorization for one different-Beat counterexample before any wider expansion |
 | Beat 2 Visual Treatment Pilot | `fff-beat2-visual-treatment-pilot-001` remains byte-identical at product checkpoint `72df19b`; its H0 remains green for 3 shots, 6 reference-only rasters, 24/24 probes, both measured viewports, provenance, print style, and protected-source identity | Preserve as the predecessor atmosphere/reference source; do not reopen its H1 lane while the Composition Board is active |
 | Production Execution Pack | `fff-production-execution-pack-001` is H0 validated; nine files align six beats, 19 shots, 14 reusable requirements, and an engine-neutral timing envelope while preserving source truth, and validator/browser/print evidence is green | Run H1 execution-readiness review; keep H2 engine calibration separately gated |
 | Operator Brief Typography Balance | `fff-operator-production-brief-typography-balance-001` is preserved; H1 passed judgment A and the title-only responsive hierarchy repair passes both accepted viewports without content/package drift | Use as the human-facing source and compact launcher for the standalone execution pack |
@@ -589,4 +590,4 @@ public/review/index.html?mode=artifacts
 
 ## Next Recommended Slice
 
-The Beat 2 Composition Board validator and both viewport checks are green. Run H1 freeform composition-transfer review from the standalone Board only: ask a separate creator to explain each shot's crop, first and second focal points, eye path, foreground/midground/background, relative placement, borrowed portions of each reference, and why the three shots are distinct screens. If two or more shots remain no easier to stage than the preserved Visual Treatment Pilot, stop as `COMPOSITION_SPECIFICITY_BLOCKER`; otherwise repair only the evidenced weak shot(s). Do not open H2 rights/asset work, full-story expansion, voice calibration, or AI image generation. Actual asset selection, rights clearance, external creator/media work, old-branch audit, Stale Shelf Excision, final canon, timing/order or truth changes, provider, generation, render, upload, publication, database, and additional adoption remain deferred or require separate authorization.
+The Beat 2 Composition Board validator and both viewport checks are green, and independent H1 composition transfer passed all three canonical shots. Do not repeat H1 or make an evidence-free Board repair. The next recommended slice is one bounded different-Beat counterexample using the same blind review procedure, but it requires explicit human authorization and does not open H2 rights/asset work, full-story expansion, voice calibration, or AI image generation. Actual asset selection, rights clearance, external creator/media work, old-branch audit, Stale Shelf Excision, final canon, timing/order or truth changes, provider, generation, render, upload, publication, database, and additional adoption remain deferred or require separate authorization.
