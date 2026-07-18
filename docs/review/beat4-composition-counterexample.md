@@ -75,7 +75,7 @@ node tools/fff-state.mjs smoke-beat4-composition-counterexample artifacts/beat4-
 
 - Result: `passed=true`, `failures=[]`, fail-closed probes `30/30`
 - Package: 13 payload files + manifest; fingerprint `2f0e0032b30725dc678d27e31169f6fda1a7bf8c4586735a8d0fc6f73b6d6805`
-- Read-only proof: normal validationの前後でBeat 4対象集約署名 `17b63c9dfee4269dfdee3fcf41a3c36f1080eef301cfca02b8fb9ecc86b8860a` が一致し、Git statusも一致
+- Read-only proof: normal validationの前後でBeat 4対象集約署名 `1fd6ec789f366b7af4fdd6bf48e72afd9b75006333898b2bc0d652a64385225a` が一致し、Git statusも一致
 - 900×1200 Dark: document width 900px、horizontal overflow false、nested scroll 0、main share最小 `0.7292`、列高差最大 `0px`
 - 1280×900 Light: document width 1280px、horizontal overflow false、nested scroll 0、main share最小 `0.75`、列高差最大 `0px`
 - Shot 2 measured: panel幅 `349.70px / 349.70px`、差 `0px`、headline `22px / 22px`、同色、同filter、測定contrast ratio `10.79`
