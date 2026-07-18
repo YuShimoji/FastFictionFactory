@@ -1,5 +1,19 @@
 # Current Status Packet
 
+## Current Beat 4 Composition Counterexample Update
+
+- Active artifact: `fff-beat4-composition-counterexample-001`
+- Active lane: `COMPOSITION_GENERALIZATION`; H0 is the active bounded slice and H1 remains unperformed
+- Scope: Beat 4「評議会の影」`01:20–01:45` / exactly 3 shots / 25 seconds
+- Standalone entry: `artifacts/beat4-composition-counterexample/beat4-composition-counterexample.html`
+- Package/result/review: `artifacts/beat4-composition-counterexample/`, `artifacts/beat4-composition-counterexample-result.json`, `docs/review/beat4-composition-counterexample.md`
+- Composition classes: anonymous institutional depth / equal-weight abstract comparison / environment-plus-document tension
+- References: 6 distinct local licensed or institutionally reusable JPEGs / 7 shot assignments; all reference-only, unselected, and without rights-clearance claims
+- H1: `H1_TRANSFER_REVIEW.md` exists and is intentionally unfilled; no classification, pass, bounded repair, blocker, or automatic expansion has been decided
+- Protected sources: Beat 2 Board, Visual Treatment, Storyboard, and Execution packages remain governed by their exact expected fingerprints
+- Read-only validation: `node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json`
+- Closed gates: global 19-shot generalization, production asset selection, rights clearance, image/audio/video generation, final motion, render, upload, publication, database persistence, production approval, and canon
+
 ## Current Beat 2 Composition Board Update
 
 - Active artifact: `fff-beat2-composition-board-001`

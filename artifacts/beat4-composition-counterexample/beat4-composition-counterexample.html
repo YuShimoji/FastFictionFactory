@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="ja" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>評議会の影 — Beat 4 構図反例</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #eee9df;
+      --paper-soft: #e4ded2;
+      --ink: #1b1c1d;
+      --muted: #60605b;
+      --line: rgba(27, 28, 29, 0.22);
+      --panel: rgba(255, 255, 255, 0.58);
+      --panel-solid: #f6f1e8;
+      --accent: #765f43;
+      --accent-soft: rgba(118, 95, 67, 0.14);
+      --hypothesis-neutral: #d4c7b4;
+      --focus: #a14b31;
+      --shadow: 0 20px 56px rgba(31, 28, 23, 0.14);
+      --radius: 18px;
+    }
+
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --paper: #151718;
+      --paper-soft: #1d2021;
+      --ink: #eeebe4;
+      --muted: #b7b3aa;
+      --line: rgba(238, 235, 228, 0.18);
+      --panel: rgba(29, 32, 33, 0.84);
+      --panel-solid: #202324;
+      --accent: #c2a77e;
+      --accent-soft: rgba(194, 167, 126, 0.12);
+      --hypothesis-neutral: #8c7b64;
+      --focus: #f0a27c;
+      --shadow: 0 22px 62px rgba(0, 0, 0, 0.34);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html[data-theme="auto"] {
+        color-scheme: dark;
+        --paper: #151718;
+        --paper-soft: #1d2021;
+        --ink: #eeebe4;
+        --muted: #b7b3aa;
+        --line: rgba(238, 235, 228, 0.18);
+        --panel: rgba(29, 32, 33, 0.84);
+        --panel-solid: #202324;
+        --accent: #c2a77e;
+        --accent-soft: rgba(194, 167, 126, 0.12);
+        --hypothesis-neutral: #8c7b64;
+        --focus: #f0a27c;
+        --shadow: 0 22px 62px rgba(0, 0, 0, 0.34);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      background: var(--paper);
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-width: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 0%, var(--accent-soft), transparent 32rem),
+        linear-gradient(180deg, var(--paper), var(--paper-soft));
+      font-family: "Yu Gothic UI", "Hiragino Sans", "Noto Sans JP", system-ui, sans-serif;
+      line-height: 1.75;
+    }
+
+    a { color: inherit; text-underline-offset: 0.18em; }
+    figure { margin: 0; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    button:focus-visible, a:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+
+    .page-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 22px 0 80px;
+    }
+
+    .utility {
+      position: sticky;
+      top: 12px;
+      z-index: 20;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 28px;
+      pointer-events: none;
+    }
+
+    .theme-switcher {
+      display: inline-flex;
+      gap: 4px;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--panel-solid) 88%, transparent);
+      box-shadow: var(--shadow);
+      pointer-events: auto;
+      backdrop-filter: blur(14px);
+    }
+
+    .theme-switcher button {
+      min-height: 34px;
+      padding: 6px 12px;
+      border: 0;
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .theme-switcher button[aria-pressed="true"] {
+      color: var(--ink);
+      background: var(--accent-soft);
+    }
+
+    .hero {
+      display: grid;
+      gap: 16px;
+      padding: clamp(18px, 4vw, 48px) 0 54px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .kicker, .timecode, .eyebrow {
+      margin: 0;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(34px, 4.2vw, 44px);
+      font-weight: 600;
+      line-height: 1.16;
+      letter-spacing: 0.04em;
+    }
+
+    .synopsis {
+      max-width: 52rem;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(16px, 1.8vw, 19px);
+    }
+
+    .content-section {
+      padding: 52px 0 0;
+    }
+
+    h2 {
+      margin: 0 0 22px;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+    }
+
+    .premise-grid, .continuity-grid, .pending-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .premise-card, .continuity-card, .pending-card {
+      min-width: 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--panel);
+    }
+
+    .premise-card strong, .continuity-card strong, .pending-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
+
+    .premise-card p, .continuity-card p, .pending-card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .shot-stack { display: grid; gap: 28px; }
+
+    .shot-strip {
+      min-width: 0;
+      padding: clamp(14px, 2.2vw, 24px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      break-inside: avoid;
+    }
+
+    .shot-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 16px;
+    }
+
+    .shot-name {
+      margin: 2px 0 0;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(20px, 2.5vw, 28px);
+      font-weight: 600;
+      line-height: 1.25;
+    }
+
+    .shot-tags { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 6px; }
+    .shot-tags span {
+      padding: 4px 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .shot-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(220px, 1fr);
+      gap: 14px;
+      align-items: stretch;
+      min-width: 0;
+    }
+
+    .main-frame, .support-panel {
+      min-width: 0;
+      height: 100%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0d0f10;
+    }
+
+    .main-frame {
+      position: relative;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      isolation: isolate;
+    }
+
+    .main-frame > img.main-image {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .support-panel {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      min-height: 100%;
+      color: #f0ede6;
+    }
+
+    .support-panel img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+    }
+
+    .support-caption {
+      padding: 10px 12px;
+      color: #d8d3ca;
+      background: #17191a;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .institutional-frame .main-image { filter: contrast(1.08) brightness(0.72); }
+    .institutional-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        linear-gradient(90deg, rgba(220, 228, 226, 0.18) 0 32%, rgba(255,255,255,0.42) 32% 34%, rgba(213, 221, 219, 0.16) 34% 66%, rgba(255,255,255,0.38) 66% 68%, rgba(210, 220, 218, 0.12) 68%),
+        url("composition-assets/ref-b04-s01-frosted-partition.jpg") center / cover;
+      background-blend-mode: screen;
+      opacity: 0.38;
+      pointer-events: none;
+    }
+
+    .institutional-frame::after {
+      content: "仕切り越しの匿名影　→　制度空間の奥行き";
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      z-index: 3;
+      max-width: calc(100% - 36px);
+      padding: 8px 11px;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 8px;
+      color: #f5f3ed;
+      background: rgba(10, 12, 13, 0.7);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .comparison-frame .main-image { filter: grayscale(0.82) brightness(0.42); }
+    .hypothesis-grid {
+      position: absolute;
+      inset: 8%;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.42);
+      border-radius: 12px;
+      background: rgba(18, 19, 20, 0.72);
+    }
+
+    .hypothesis-panel {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-width: 0;
+      padding: clamp(10px, 1.8vw, 18px);
+      color: #f1eee7;
+      background: rgba(22, 23, 24, 0.72);
+    }
+
+    .hypothesis-panel + .hypothesis-panel { border-left: 1px solid rgba(255,255,255,0.42); }
+    .hypothesis-title {
+      margin: 0 0 10px;
+      min-height: 1.5em;
+      color: var(--hypothesis-neutral);
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.25;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    .hypothesis-panel img {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: cover;
+      filter: grayscale(0.45) contrast(0.92) brightness(0.8);
+      opacity: 0.78;
+    }
+
+    .comparison-supports {
+      display: grid;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      height: 100%;
+      min-width: 0;
+      min-height: 0;
+    }
+
+    .comparison-supports .support-panel { min-height: 0; }
+
+    .environment-frame .main-image { filter: grayscale(0.85) contrast(1.08) brightness(0.72); }
+    .ledger-shadow {
+      position: absolute;
+      left: -5%;
+      bottom: -22%;
+      z-index: 2;
+      width: 48%;
+      height: 92%;
+      object-fit: cover;
+      object-position: 45% 42%;
+      opacity: 0.36;
+      filter: grayscale(1) contrast(1.4) brightness(0.42);
+      transform: rotate(-7deg);
+      transform-origin: bottom left;
+      mix-blend-mode: multiply;
+    }
+
+    .unknown-label {
+      position: absolute;
+      right: 18px;
+      bottom: 16px;
+      z-index: 3;
+      padding: 5px 8px;
+      border: 1px solid rgba(255,255,255,0.34);
+      color: rgba(255,255,255,0.78);
+      background: rgba(12,14,15,0.58);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+    }
+
+    .composition-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 14px 0 0;
+    }
+
+    .note-card {
+      min-width: 0;
+      padding: 12px 14px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: color-mix(in srgb, var(--panel-solid) 72%, transparent);
+    }
+
+    .note-card dt { margin: 0 0 3px; color: var(--accent); font-size: 12px; font-weight: 700; }
+    .note-card dd { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+    .continuity-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .pending-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+    .sources {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .source-card {
+      min-width: 0;
+      padding: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .source-card strong { display: block; color: var(--ink); font-size: 13px; }
+    .source-card a { overflow-wrap: anywhere; }
+
+    .rights-note {
+      margin: 18px 0 0;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--muted);
+      background: var(--panel);
+      font-size: 13px;
+    }
+
+    @media (max-width: 860px) {
+      .premise-grid, .pending-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .shot-layout { grid-template-columns: 1fr; }
+      .support-panel { min-height: 220px; }
+      .comparison-supports { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: 1fr; }
+      .composition-notes, .continuity-grid, .sources { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 560px) {
+      .page-shell { width: min(100% - 20px, 1180px); padding-top: 10px; }
+      .utility { top: 8px; margin-bottom: 12px; }
+      .theme-switcher button { padding-inline: 9px; }
+      .shot-header { align-items: flex-start; flex-direction: column; }
+      .shot-tags { justify-content: flex-start; }
+      .premise-grid, .pending-grid { grid-template-columns: 1fr; }
+      .hypothesis-grid { inset: 5%; }
+      .hypothesis-title { font-size: 15px; }
+      .comparison-supports { grid-template-columns: 1fr; grid-template-rows: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media print {
+      :root, html[data-theme="dark"], html[data-theme="auto"] {
+        color-scheme: light;
+        --paper: #ffffff;
+        --paper-soft: #ffffff;
+        --ink: #111111;
+        --muted: #444444;
+        --line: rgba(0, 0, 0, 0.2);
+        --panel: #ffffff;
+        --panel-solid: #ffffff;
+        --accent: #604a34;
+        --accent-soft: rgba(96, 74, 52, 0.08);
+        --shadow: none;
+      }
+
+      html, body { background: #ffffff !important; overflow: visible !important; }
+      .page-shell { width: 100%; padding: 0; }
+      .utility { position: static; display: none; }
+      .hero { padding-top: 0; }
+      .shot-strip, .premise-card, .continuity-card, .pending-card, .source-card { break-inside: avoid; box-shadow: none; }
+      .content-section { break-before: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <div class="utility" aria-label="表示設定">
+      <div class="theme-switcher" role="group" aria-label="表示テーマ">
+        <button type="button" data-set-theme="auto" aria-pressed="true">Auto</button>
+        <button type="button" data-set-theme="light" aria-pressed="false">Light</button>
+        <button type="button" data-set-theme="dark" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+
+    <main id="primary-content">
+      <header class="hero">
+        <p class="kicker">Beat 4 / 01:20–01:45 / 3 shots</p>
+        <h1>評議会の影</h1>
+        <p class="synopsis">匿名の制度空間を示し、二つの仮説を同じ重さで並べる。最後は閉じた部屋と台帳の影を残し、動機と責任を確定しない。</p>
+      </header>
+
+      <section class="content-section" aria-labelledby="premise-heading">
+        <h2 id="premise-heading">構図の前提</h2>
+        <div class="premise-grid">
+          <article class="premise-card"><strong>制度空間</strong><p>wideの奥行きを使い、個人ではなく仕切りと空間を主題にする。</p></article>
+          <article class="premise-card"><strong>匿名性</strong><p>顔、役職、実在人物との対応、感情の断定を画面から外す。</p></article>
+          <article class="premise-card"><strong>二つの仮説</strong><p>面積、見出し、色、コントラストを同じにし、勝者を作らない。</p></article>
+          <article class="premise-card"><strong>台帳の影</strong><p>資料は部分層として残し、犯罪や責任の証拠にはしない。</p></article>
+          <article class="premise-card"><strong>動機未定</strong><p>最後まで動機、責任、台帳の真正を保留する。</p></article>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="shots-heading">
+        <h2 id="shots-heading">ショット構成</h2>
+        <div class="shot-stack">
+          <article class="shot-strip" data-shot-id="shot-b04-01" data-composition-class="anonymous_institutional_depth" data-main-image="ref-b04-s01-conference-backs" data-support-count="1">
+            <div class="shot-header">
+              <div><p class="eyebrow">shot-b04-01 · 01:20–01:28 · 8s</p><p class="shot-name">仕切りの向こう</p></div>
+              <div class="shot-tags"><span>wide</span><span>slow_push</span><span>hard_cut</span></div>
+            </div>
+            <div class="shot-layout" data-composition-markup="institutional-depth">
+              <figure class="main-frame institutional-frame" aria-label="曇りガラス越しの匿名シルエットを示す構図">
+                <img class="main-image" src="composition-assets/ref-b04-s01-conference-backs.jpg" alt="暗く匿名化された二つの背面シルエットと窓の奥行き">
+              </figure>
+              <figure class="support-panel">
+                <img src="composition-assets/ref-b04-s01-frosted-partition.jpg" alt="仕切り層に使う曇りガラスのテクスチャ">
+                <figcaption class="support-caption">補助参照：不均一な透過と曇りの粒子だけを借りる。</figcaption>
+              </figure>
+            </div>
+            <dl class="composition-notes">
+              <div class="note-card"><dt>焦点と視線</dt><dd>二つの匿名影 → 仕切りの縦線 → 右奥の空間。</dd></div>
+              <div class="note-card"><dt>前景・中景・背景</dt><dd>曇りの仕切り / 背面シルエット / 窓と無人空間。</dd></div>
+              <div class="note-card"><dt>成立条件</dt><dd>個人、役職、表情、加害性を特定できず、制度の存在だけが読める。</dd></div>
+            </dl>
+          </article>
+
+          <article class="shot-strip" data-shot-id="shot-b04-02" data-composition-class="equal_weight_abstract_comparison" data-main-image="ref-b04-s02-card-catalogue" data-support-count="2">
+            <div class="shot-header">
+              <div><p class="eyebrow">shot-b04-02 · 01:28–01:36 · 8s</p><p class="shot-name">同じ重さの二説</p></div>
+              <div class="shot-tags"><span>graphic_fullframe</span><span>locked</span><span>graphic_match</span></div>
+            </div>
+            <div class="shot-layout" data-composition-markup="equal-weight-split">
+              <figure class="main-frame comparison-frame" aria-label="二つの仮説を同じ重さで並べる構図">
+                <img class="main-image" src="composition-assets/ref-b04-s02-card-catalogue.jpg" alt="共通背景となるカード目録の反復">
+                <div class="hypothesis-grid" data-left-share="50" data-right-share="50">
+                  <div class="hypothesis-panel" data-hypothesis-side="left" data-area-share="50" data-headline-size="22" data-privileged="false">
+                    <p class="hypothesis-title">時間販売の告発？</p>
+                    <img src="composition-assets/ref-b04-s02-time-recorder.jpg" alt="左側に置くタイムレコーダーの文字面">
+                  </div>
+                  <div class="hypothesis-panel" data-hypothesis-side="right" data-area-share="50" data-headline-size="22" data-privileged="false">
+                    <p class="hypothesis-title">偽の記録？</p>
+                    <img src="composition-assets/ref-b04-shared-general-ledger.jpg" alt="右側に置く一般台帳の筆記面">
+                  </div>
+                </div>
+              </figure>
+              <div class="comparison-supports" aria-label="二つの補助参照">
+                <figure class="support-panel"><img src="composition-assets/ref-b04-s02-time-recorder.jpg" alt="タイムレコーダー参照"><figcaption class="support-caption">左：文字面と時間記録の材質。</figcaption></figure>
+                <figure class="support-panel"><img src="composition-assets/ref-b04-shared-general-ledger.jpg" alt="一般台帳参照"><figcaption class="support-caption">右：筆記密度と紙の余白。</figcaption></figure>
+              </div>
+            </div>
+            <dl class="composition-notes">
+              <div class="note-card"><dt>焦点と視線</dt><dd>中央の等分線で一組と認識し、左右へ同じ距離で往復する。</dd></div>
+              <div class="note-card"><dt>前景・中景・背景</dt><dd>同寸ラベル / 二つの資料面 / カード目録の共通反復。</dd></div>
+              <div class="note-card"><dt>成立条件</dt><dd>左右50%ずつ、見出し22px、同色・同コントラストで、どちらも勝たない。</dd></div>
+            </dl>
+          </article>
+
+          <article class="shot-strip" data-shot-id="shot-b04-03" data-composition-class="environment_plus_document_tension" data-main-image="ref-b04-s03-closed-meeting-room" data-support-count="1">
+            <div class="shot-header">
+              <div><p class="eyebrow">shot-b04-03 · 01:36–01:45 · 9s</p><p class="shot-name">閉じた部屋と台帳</p></div>
+              <div class="shot-tags"><span>medium</span><span>slow_pull</span><span>held_fade</span></div>
+            </div>
+            <div class="shot-layout" data-composition-markup="environment-document-tension">
+              <figure class="main-frame environment-frame" aria-label="閉じた会議室と台帳の影を重ねた構図">
+                <img class="main-image" src="composition-assets/ref-b04-s03-closed-meeting-room.jpg" alt="無人の机と閉じた壁面を持つ会議室">
+                <img class="ledger-shadow" src="composition-assets/ref-b04-shared-general-ledger.jpg" alt="左下から差し込む台帳の影">
+                <span class="unknown-label">MOTIVE UNKNOWN</span>
+              </figure>
+              <figure class="support-panel">
+                <img src="composition-assets/ref-b04-shared-general-ledger.jpg" alt="前ショットから同じIDで引き継ぐ一般台帳">
+                <figcaption class="support-caption">補助参照：ページ端、筆記密度、紙の影だけを借りる。</figcaption>
+              </figure>
+            </div>
+            <dl class="composition-notes">
+              <div class="note-card"><dt>焦点と視線</dt><dd>左下の台帳の影 → 机の直線 → 右奥の閉じた壁面。</dd></div>
+              <div class="note-card"><dt>前景・中景・背景</dt><dd>台帳の端 / 机と境界 / 無人の制度空間。</dd></div>
+              <div class="note-card"><dt>成立条件</dt><dd>環境と資料が別層に見え、動機、責任、記録の真正が未定のまま残る。</dd></div>
+            </dl>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="continuity-heading">
+        <h2 id="continuity-heading">連続性</h2>
+        <div class="continuity-grid">
+          <article class="continuity-card"><strong>制度の存在</strong><p>人物の顔や肩書ではなく、仕切りと奥行きから制度を示す。</p></article>
+          <article class="continuity-card"><strong>競合する説明</strong><p>人物を消し、二つの説明を同寸の抽象資料へ置き換える。</p></article>
+          <article class="continuity-card"><strong>環境と台帳</strong><p>台帳だけを環境層へ引き継ぐが、説明の勝敗や責任は確定しない。</p></article>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="pending-heading">
+        <h2 id="pending-heading">保留事項</h2>
+        <div class="pending-grid">
+          <article class="pending-card"><strong>評議会の動機</strong><p>未決</p></article>
+          <article class="pending-card"><strong>責任の範囲</strong><p>未決</p></article>
+          <article class="pending-card"><strong>台帳の真正</strong><p>未決</p></article>
+          <article class="pending-card"><strong>実在人物との対応</strong><p>対応なし</p></article>
+          <article class="pending-card"><strong>単純な悪役像</strong><p>確定しない</p></article>
+        </div>
+      </section>
+
+      <section class="content-section" aria-labelledby="credits-heading">
+        <h2 id="credits-heading">出典</h2>
+        <div class="sources">
+          <article class="source-card"><strong>Wikimedia Chapters Conference 089</strong>Manuel Schneider · <a href="https://commons.wikimedia.org/wiki/File:Wikimedia_Chapters_Conference_089.JPG">source</a> · <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></article>
+          <article class="source-card"><strong>Frosted Glass</strong>Timo Newton-Syms · <a href="https://www.flickr.com/photos/timo_w2s/32996257861/">source</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></article>
+          <article class="source-card"><strong>Archive / Card catalogue drawers</strong>Carolina Prysyazhnyuk · <a href="https://www.flickr.com/photos/129657698@N02/16159019626/">source</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></article>
+          <article class="source-card"><strong>IBM / Antique time clock at Redpath</strong>Loozrboy · <a href="https://www.flickr.com/photos/30624156@N00/4664852355/">source</a> · <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></article>
+          <article class="source-card"><strong>General Ledger, 1600–1608</strong>Plantijnse Drukkerij · <a href="https://www.loc.gov/item/2021667934/">source</a> · free to use and reuse</article>
+          <article class="source-card"><strong>Meeting Room Interior</strong>Het Nieuwe Instituut · photographer unknown · <a href="https://www.flickr.com/photos/nai_collection/5260603510/">source</a> · no known copyright restrictions</article>
+        </div>
+        <p class="rights-note">6点は構図検討の参照だけに使用する。制作素材としての選定や権利確認済みとは扱わず、実在の人物・組織・資料を物語上の責任や動機の根拠にしない。</p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    (() => {
+      const root = document.documentElement;
+      const buttons = [...document.querySelectorAll("[data-set-theme]")];
+      const applyTheme = (theme) => {
+        if (!["auto", "light", "dark"].includes(theme)) return;
+        root.dataset.theme = theme;
+        buttons.forEach((button) => button.setAttribute("aria-pressed", String(button.dataset.setTheme === theme)));
+      };
+      buttons.forEach((button) => button.addEventListener("click", () => applyTheme(button.dataset.setTheme)));
+      applyTheme("auto");
+    })();
+  </script>
+</body>
+</html>

@@ -316,3 +316,30 @@
 - State: Review Home Map implemented in `fff-review-home-map-meters-001` and Draft-to-Video Planning Bridge implemented in `fff-draft-to-video-planning-bridge-001`; actual publishing, upload, AI video generation, production render, rights clearance, and final canon remain out of scope for the current MVP.
 - Owner: Human product owner plus production implementer.
 - Next move: Do not start until review workflow and source/canon gates are accepted.
+
+## Beat 4 H1 blind transfer review
+
+- Purpose: Determine whether the three Beat 4 composition classes are reconstructable and executable by a separate creator.
+- Effect: Supplies the second heterogeneous-beat evidence point needed before any generalization decision.
+- Requirements: Phase A from HTML only; Phase B after canonical/source comparison; per-shot classification; critical semantic misread count; explicit blocking question.
+- State: Not started. The guide is intentionally unfilled.
+- Owner: Supervising AI or designated independent human reviewer.
+- Next move: Run as a separate authorized slice after accepting the H0 package.
+
+## Conditional one-shot repair
+
+- Purpose: Repair one weak Beat 4 shot without widening scope.
+- Effect: Allows one evidence-driven correction while preserving the counterexample value.
+- Requirements: Exactly one weak H1 shot; one bounded repair candidate; no source-package mutation; repeat H1 only for the repaired shot as authorized.
+- State: Conditional, not authorized.
+- Owner: Future implementation worker after supervisor decision.
+- Next move: Propose only if H1 returns exactly one weak shot; two weak shots instead produce `COMPOSITION_GENERALIZATION_BLOCKER`.
+
+## Remaining-Beat expansion decision
+
+- Purpose: Decide whether to extend composition work beyond Beat 2 and Beat 4.
+- Effect: Could authorize another thin slice or stop generalization.
+- Requirements: Completed H1 evidence from both heterogeneous beats, zero unresolved critical misread, explicit owner decision, preserved production/rights/canon gates.
+- State: Deferred.
+- Owner: Supervisor and human product owner.
+- Next move: Do not begin automatically from H0 or from a single-beat pass.

@@ -1,6 +1,40 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-17 JST
+更新日: 2026-07-19 JST
+
+## Beat 4 H0 最新差分
+
+現在の active product artifact は `fff-beat4-composition-counterexample-001` です。Beat 2 Composition Board の H1 pass を全編へ一般化せず、異質な Beat 4「評議会の影」3ショットだけで反例を探せる H0 パッケージへ進みました。匿名の制度的奥行き、同じ重さの二説、環境と文書の緊張を別々の画面文法で実装し、6点のローカル参照画像に出典・ライセンス・寸法・SHA-256を持たせています。
+
+監修判断はまだ行っていません。`H1_TRANSFER_REVIEW.md` は未記入で、別レビュアーがHTMLだけを見るPhase Aを終えた後に比較する契約です。2/3以上 `improved_and_executable` かつ critical semantic misread 0 が将来のpass条件ですが、本報告はその結果を主張しません。global 19-shot generalization、production selection、rights clearance、generation、final motion、render、publication、canonはclosedです。
+
+### H0実測
+
+| Evidence | Result |
+| --- | --- |
+| Machine result | `passed=true`, `failures=[]`, negative probes `30/30` |
+| Package | 13 payload + manifest; fingerprint `2f0e0032b30725dc678d27e31169f6fda1a7bf8c4586735a8d0fc6f73b6d6805` |
+| 900×1200 Dark | overflow false / nested scroll 0 / main share 0.7292以上 / equal-height delta 0px |
+| 1280×900 Light | overflow false / nested scroll 0 / main share 0.75以上 / equal-height delta 0px |
+| Shot 2 | 349.70px / 349.70px、差0px、22px / 22px、同色、同filter、contrast 10.79 |
+| Theme/access | Auto default、Dark/Light解決、keyboard focus outline 3px + offset 4px |
+| Print | white paper、utility hidden、shot break avoid |
+| Read-only proof | validate前後のBeat 4集約署名一致、Git status一致 |
+| Root chain | Beat 4、Beat 2、Visual、Storyboard、Executionが順にpass |
+| Documentation | strict MkDocs build pass |
+
+### Source and repair summary
+
+参照domainは `commons.wikimedia.org` / `upload.wikimedia.org`、`flickr.com` / `live.staticflickr.com`、`loc.gov` / `tile.loc.gov` です。creatorは Manuel Schneider、Timo Newton-Syms、Carolina Prysyazhnyuk、Loozrboy、Plantijnse Drukkerij、Het Nieuwe Instituut - Architecture Collection（photographer unknown）です。取得候補のうち、dramatic pose、宗教的意味、実在official/scandalへの誤帰属、低解像度、曖昧ライセンスは棄却しました。
+
+実装中の主要repairは、実画像幅の1px差への偶数crop、Shot 1の背面匿名化、Shot 2 gridのintrinsic-size overflow除去、figure margin由来の32px列高差除去、browser evidenceのoverflow/nested-scroll真偽修正です。最終H0ではmust-fixは残っていません。
+
+### 監修後の最遠安全目標
+
+1. 別レビュアーがH1 Phase AをHTMLだけで記入し、Phase Bで3ショットを分類する。
+2. `2/3 improved_and_executable` かつ critical semantic misread 0 なら、Beat 2 + Beat 4の異質2点を使ってgeneralization decision packetを作る。ただし19ショット展開はそのpacketでも自動実行しない。
+3. weak shotが1件だけなら、1回のbounded repair候補を監修判断へ戻す。2件なら `COMPOSITION_GENERALIZATION_BLOCKER` として停止する。
+4. 構図generalizationが別途承認された後も、production asset selectionとrights clearanceは独立した人間所有gateとして維持する。
 
 ## 結論
 

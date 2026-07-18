@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "fff.beat4CompositionCounterexampleManifest.v1",
+  "artifact_id": "fff-beat4-composition-counterexample-001",
+  "generated_at": "2026-07-19T18:00:00+09:00",
+  "package_fingerprint_sha256": "2f0e0032b30725dc678d27e31169f6fda1a7bf8c4586735a8d0fc6f73b6d6805",
+  "file_count": 14,
+  "payload_file_count": 13,
+  "files": [
+    {
+      "path": "README.md",
+      "byte_size": 3609,
+      "sha256": "3276fcbed548f75cad8f86e6ea8c9d88ad681cfdeb27e1fac2ed3e92eada319c"
+    },
+    {
+      "path": "beat4-composition-counterexample.html",
+      "byte_size": 26269,
+      "sha256": "b245264806b14767c750a3323a1ec40a1e27b6bf63a3f9a83f4fb4c005d9b70f"
+    },
+    {
+      "path": "beat4-composition-counterexample.json",
+      "byte_size": 20071,
+      "sha256": "6d0f886178ed18b841a96f87fe54e3f03c3ad19236fd5ab6b37bb5676fb71a2d"
+    },
+    {
+      "path": "reference-sources.csv",
+      "byte_size": 4406,
+      "sha256": "291c41e189651a29193d2577b456fc3ab1ea333c09e95b11ed13b0ad84bb1615"
+    },
+    {
+      "path": "shot-composition-map.csv",
+      "byte_size": 3630,
+      "sha256": "ab98ce8df7661b430a0bb5ac3fac34a38c7c03ec21418977671664fe807124c7"
+    },
+    {
+      "path": "H1_TRANSFER_REVIEW.md",
+      "byte_size": 2827,
+      "sha256": "52c8b5dddefab970e96104317bdeb411f5e514fcdb0725f7ce1fe6edb70aee00"
+    },
+    {
+      "path": "beat4-composition-counterexample-contact-sheet.jpg",
+      "byte_size": 212529,
+      "sha256": "d00864086eed61cf8e80e8a52c043c9b5a6b33968f5d3bb649c2280ad3a58608"
+    },
+    {
+      "path": "composition-assets/ref-b04-s01-conference-backs.jpg",
+      "byte_size": 25423,
+      "sha256": "79e17d1982c6d217063d34d1479606f8a586c6e4b8b001167e3647ce2d4b1962"
+    },
+    {
+      "path": "composition-assets/ref-b04-s01-frosted-partition.jpg",
+      "byte_size": 334788,
+      "sha256": "f55ecaa635f09cd4b203fc97775ef049f42bb3a0004a24ab1c2385438685fffb"
+    },
+    {
+      "path": "composition-assets/ref-b04-s02-card-catalogue.jpg",
+      "byte_size": 155801,
+      "sha256": "23aaf60edcd0880b63e5c98eed29a2ea46fddf0c5e3e8ab17c3e948cfcae5822"
+    },
+    {
+      "path": "composition-assets/ref-b04-s02-time-recorder.jpg",
+      "byte_size": 237345,
+      "sha256": "ea2732ff8205541eed60050129020ba94c6202d868d77eca90972d6792411127"
+    },
+    {
+      "path": "composition-assets/ref-b04-shared-general-ledger.jpg",
+      "byte_size": 453492,
+      "sha256": "74d83e8fbad303bf4a08c86e72c02746c678a95e56c0f69814c6c853dd7feaab"
+    },
+    {
+      "path": "composition-assets/ref-b04-s03-closed-meeting-room.jpg",
+      "byte_size": 86531,
+      "sha256": "e6f06540dba924ccd3c5aaa38fa3f676f489335762b61dd7ecbcca69da196ca9"
+    }
+  ],
+  "source_fingerprints": {
+    "beat2_composition_board_package_fingerprint_sha256": "4c44089a140626d56fd67f8341a4765e60f310ff65555c8ff8a0eef3eff7f3b0",
+    "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+    "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+    "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+    "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+  },
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "image_generation": false,
+    "production_approved": false,
+    "full_story_expansion": false
+  }
+}

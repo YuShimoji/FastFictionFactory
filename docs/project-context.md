@@ -1,5 +1,11 @@
 # Project Context
 
+## Active Beat 4 Counterexample Axis
+
+The active artifact is `fff-beat4-composition-counterexample-001`, a standalone H0 reference-only Composition Counterexample for Beat 4「評議会の影」(`01:20–01:45`). It contains exactly three source-authorized shots and tests three different composition classes: anonymous institutional depth, equal-weight abstract comparison, and environment-plus-document tension. Six local raster references carry creator/source/media/license/dimension/hash provenance; none is selected for production and no rights-clearance claim is made.
+
+The preceding `fff-beat2-composition-board-001` H1 pass remains evidence for Beat 2 only. The Beat 4 H1 guide is present but unperformed and unfilled. This H0 does not establish global 19-shot generalization, final motion quality, render readiness, production approval, rights clearance, or canon. Beat 2 Board, Visual Treatment, Storyboard, and Execution packages remain byte-protected sources.
+
 ## Current Axis
 
 Fast Fiction Factory is a local-first fiction production workbench. The current product checkpoint remains `fff-beat2-composition-board-001`: a standalone, reference-only Composition Board for Beat 2, **真鍮の蛾** (`00:20–00:50`). Its independent H1 transfer review is complete: all three production shots were reconstructed without blocking clarification, matched intended composition, required materially fewer assumptions than `fff-beat2-visual-treatment-pilot-001`, and passed `3/3 = 1.0` as `H1_COMPOSITION_TRANSFER_PASS`. Storyboard, Execution, Pilot, wording, timing, IDs, truth, rights, selection, canon, and product artifact bytes remain unchanged.

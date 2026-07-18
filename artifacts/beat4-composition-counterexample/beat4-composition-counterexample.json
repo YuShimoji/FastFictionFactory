@@ -1,0 +1,466 @@
+{
+  "schemaVersion": "fff.beat4CompositionCounterexample.v1",
+  "artifact_id": "fff-beat4-composition-counterexample-001",
+  "generated_at": "2026-07-19T18:00:00+09:00",
+  "status": "h0_reference_only_counterexample",
+  "title_ja": "評議会の影",
+  "subtitle_ja": "Beat 4 / 01:20–01:45 / 3 shots",
+  "source_artifact_ids": [
+    "fff-beat2-composition-board-001",
+    "fff-beat2-visual-treatment-pilot-001",
+    "fff-production-storyboard-brief-001",
+    "fff-production-execution-pack-001"
+  ],
+  "source_fingerprints": {
+    "beat2_composition_board_package_fingerprint_sha256": "4c44089a140626d56fd67f8341a4765e60f310ff65555c8ff8a0eef3eff7f3b0",
+    "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+    "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+    "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+    "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+  },
+  "overview_ja": [
+    "匿名の制度空間を示し、二つの仮説を同じ重さで並べる。",
+    "最後は閉じた部屋と台帳の影を残し、動機と責任を確定しない。"
+  ],
+  "composition_classes": [
+    "anonymous_institutional_depth",
+    "equal_weight_abstract_comparison",
+    "environment_plus_document_tension"
+  ],
+  "shots": [
+    {
+      "shot_id": "shot-b04-01",
+      "sequence": 1,
+      "start_time": "01:20",
+      "end_time": "01:28",
+      "duration_seconds": 8,
+      "title_ja": "仕切りの向こう",
+      "purpose_ja": "制度側の存在だけを示す",
+      "visual_direction_ja": "半透明の仕切り越しに中立的な匿名シルエットを置く。",
+      "scale": "wide",
+      "motion": "slow_push",
+      "transition": "hard_cut",
+      "truth_boundary_ja": "有罪の演技、個人特定、単純な悪役化を避ける。",
+      "main_image_id": "ref-b04-s01-conference-backs",
+      "supporting_image_ids": [
+        "ref-b04-s01-frosted-partition"
+      ],
+      "composition": {
+        "composition_class": "anonymous_institutional_depth",
+        "rough_type": "image_based_institutional_depth",
+        "frame": "16:9",
+        "crop_percent": {
+          "left": 25,
+          "top": 18,
+          "width": 66,
+          "height": 64
+        },
+        "placement_ja": "匿名化した背面2名を中央左と中央に置き、右側の空いた窓面を制度空間の奥行きとして残す。",
+        "focal_points": [
+          {
+            "order": 1,
+            "label_ja": "仕切り越しの二つの影",
+            "x_percent": 43,
+            "y_percent": 54
+          },
+          {
+            "order": 2,
+            "label_ja": "右奥の空いた制度空間",
+            "x_percent": 76,
+            "y_percent": 42
+          }
+        ],
+        "eye_path_ja": "中央左の二つの影から、仕切りの縦線を経て右奥の空間へ送る。",
+        "layers_ja": {
+          "foreground": "半透明の仕切りと曇りの粒子",
+          "midground": "顔を読めない二つの背面シルエット",
+          "background": "窓と無人の会議空間"
+        },
+        "borrowed_portions_ja": {
+          "main": "会議写真の背面人物2名と窓の反復だけを採用し、顔、名札、会議名、画面内文字は採用しない。",
+          "supporting": "曇りガラス参照の不均一な透過と細かな霜状テクスチャだけを仕切り層に採用する。"
+        },
+        "motion_direction_class": "slow_push_toward_partition",
+        "continuity_ja": "制度の存在を先に置き、次のショットでは人物を消して二つの説明へ切り替える。",
+        "positive_condition_ja": "最初に二つの匿名影が読め、個人、役職、感情、加害性を特定できない。",
+        "truth_safe_guard_ja": "実在の会議参加者を物語上の評議会員として扱わず、仕草や表情から有罪を示さない。",
+        "institutional_anonymity": {
+          "translucent_partition": true,
+          "silhouette_count_min": 2,
+          "identifiable_face": false,
+          "identifiable_official": false,
+          "guilt_cue": false,
+          "villain_coding": false
+        }
+      }
+    },
+    {
+      "shot_id": "shot-b04-02",
+      "sequence": 2,
+      "start_time": "01:28",
+      "end_time": "01:36",
+      "duration_seconds": 8,
+      "title_ja": "同じ重さの二説",
+      "purpose_ja": "矛盾する二説を並置する",
+      "visual_direction_ja": "「時間販売の告発？」と「偽の記録？」を同じ重さで並べる。",
+      "scale": "graphic_fullframe",
+      "motion": "locked",
+      "transition": "graphic_match",
+      "truth_boundary_ja": "どちらの仮説も勝たせない。",
+      "main_image_id": "ref-b04-s02-card-catalogue",
+      "supporting_image_ids": [
+        "ref-b04-s02-time-recorder",
+        "ref-b04-shared-general-ledger"
+      ],
+      "composition": {
+        "composition_class": "equal_weight_abstract_comparison",
+        "rough_type": "image_based_equal_split",
+        "frame": "16:9",
+        "crop_percent": {
+          "left": 0,
+          "top": 8,
+          "width": 100,
+          "height": 84
+        },
+        "placement_ja": "カード目録を共通背景にし、左と右へ同寸の参照領域と同一書式の見出しを置く。",
+        "focal_points": [
+          {
+            "order": 1,
+            "label_ja": "中央の等分線と二つの見出し",
+            "x_percent": 50,
+            "y_percent": 27
+          },
+          {
+            "order": 2,
+            "label_ja": "左右の資料面を往復する視線",
+            "x_percent": 50,
+            "y_percent": 62
+          }
+        ],
+        "eye_path_ja": "中央の等分線で二説を一組として認識し、左右どちらからでも同じ距離で往復できる。",
+        "layers_ja": {
+          "foreground": "同寸の二つの仮説ラベル",
+          "midground": "タイムレコーダー面と台帳面",
+          "background": "左右をまたぐカード目録の反復"
+        },
+        "borrowed_portions_ja": {
+          "main": "カード目録の反復、木部、取っ手の等間隔だけを共通背景に採用する。",
+          "supporting": "左はタイムレコーダーの文字面、右は台帳の筆記密度と余白を同寸で採用する。"
+        },
+        "motion_direction_class": "locked_equal_scan",
+        "continuity_ja": "前ショットの人物を抽象資料へ置換し、次ショットで右側の台帳だけを環境層へ残す。",
+        "positive_condition_ja": "二つの見出しと参照面が同じ面積、文字サイズ、色、コントラストで見え、勝者を示さない。",
+        "truth_safe_guard_ja": "二つは未確定の仮説であり、実在資料を告発や偽造の証拠として扱わない。",
+        "hypothesis_balance": {
+          "left_label_ja": "時間販売の告発？",
+          "right_label_ja": "偽の記録？",
+          "left_area_share_percent": 50,
+          "right_area_share_percent": 50,
+          "left_headline_px": 22,
+          "right_headline_px": 22,
+          "headline_size_difference_percent": 0,
+          "shared_color_token": "hypothesis-neutral",
+          "winner_icon": false,
+          "privileged_color": false,
+          "one_sided_glow": false,
+          "one_sided_shadow": false,
+          "one_sided_saturation": false
+        }
+      }
+    },
+    {
+      "shot_id": "shot-b04-03",
+      "sequence": 3,
+      "start_time": "01:36",
+      "end_time": "01:45",
+      "duration_seconds": 9,
+      "title_ja": "閉じた部屋と台帳",
+      "purpose_ja": "動機不明のまま緊張を渡す",
+      "visual_direction_ja": "台帳の影と閉じた制度空間に「MOTIVE UNKNOWN」を小さく表示する。",
+      "scale": "medium",
+      "motion": "slow_pull",
+      "transition": "held_fade",
+      "truth_boundary_ja": "動機と責任範囲を未決定のまま保つ。",
+      "main_image_id": "ref-b04-s03-closed-meeting-room",
+      "supporting_image_ids": [
+        "ref-b04-shared-general-ledger"
+      ],
+      "composition": {
+        "composition_class": "environment_plus_document_tension",
+        "rough_type": "image_based_environment_document_layer",
+        "frame": "16:9",
+        "crop_percent": {
+          "left": 3,
+          "top": 2,
+          "width": 94,
+          "height": 94
+        },
+        "placement_ja": "閉じた会議室を全幅で置き、左下から台帳の影を差し込み、右奥の壁面を第二焦点にする。",
+        "focal_points": [
+          {
+            "order": 1,
+            "label_ja": "左下の台帳の影",
+            "x_percent": 29,
+            "y_percent": 70
+          },
+          {
+            "order": 2,
+            "label_ja": "右奥の閉じた壁面",
+            "x_percent": 72,
+            "y_percent": 43
+          }
+        ],
+        "eye_path_ja": "左下の台帳の影から机の直線をたどり、右奥の閉じた壁面へ引く。",
+        "layers_ja": {
+          "foreground": "台帳の端と半透明の文書影",
+          "midground": "机と閉じた建築的な境界",
+          "background": "無人の制度空間と暗い壁面"
+        },
+        "borrowed_portions_ja": {
+          "main": "会議室参照の無人の机、直線、閉じた壁面、深い影を採用する。",
+          "supporting": "Shot 2と同一IDの台帳から、ページ端、筆記密度、紙の影だけを部分層として採用する。"
+        },
+        "motion_direction_class": "slow_pull_away_from_ledger_shadow",
+        "continuity_ja": "前ショットの右側にあった台帳を環境の手前へ移し、二説の勝敗を決めずに距離を取る。",
+        "positive_condition_ja": "台帳の影と閉じた部屋が別の層として読め、小さな表示が動機未定を補助する。",
+        "truth_safe_guard_ja": "台帳を犯罪証拠にせず、評議会の動機、責任、記録の真正を確定しない。",
+        "motive_resolved": false,
+        "responsibility_resolved": false,
+        "ledger_authenticity_resolved": false,
+        "label": "MOTIVE UNKNOWN",
+        "label_scale": "small_neutral"
+      }
+    }
+  ],
+  "continuity_ja": [
+    "匿名の制度空間から人物を消し、二つの説明を同じ重さで置く。",
+    "二説のうち台帳だけを次の環境へ引き継ぐが、証拠や結論には昇格させない。",
+    "wide → graphic_fullframe → medium と画面の問題を変え、Beat 2の近接3連続を複製しない。"
+  ],
+  "held_questions": [
+    {
+      "subject_ja": "評議会の動機",
+      "state_ja": "未決"
+    },
+    {
+      "subject_ja": "責任の範囲",
+      "state_ja": "未決"
+    },
+    {
+      "subject_ja": "台帳の真正",
+      "state_ja": "未決"
+    },
+    {
+      "subject_ja": "実在人物との対応",
+      "state_ja": "対応なし"
+    },
+    {
+      "subject_ja": "単純な悪役像",
+      "state_ja": "確定しない"
+    }
+  ],
+  "references": [
+    {
+      "reference_id": "ref-b04-s01-conference-backs",
+      "source_title": "Wikimedia Chapters Conference 089",
+      "creator": "Manuel Schneider",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Wikimedia_Chapters_Conference_089.JPG",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Wikimedia_Chapters_Conference_089.JPG",
+      "acquisition_media_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Wikimedia_Chapters_Conference_089.JPG/1280px-Wikimedia_Chapters_Conference_089.JPG",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 2816,
+      "original_height": 2112,
+      "acquired_width": 1280,
+      "acquired_height": 960,
+      "local_width": 960,
+      "local_height": 540,
+      "local_path": "composition-assets/ref-b04-s01-conference-backs.jpg",
+      "sha256": "79e17d1982c6d217063d34d1479606f8a586c6e4b8b001167e3647ce2d4b1962",
+      "normalization_ja": "背面2名だけをcropし、白黒化、暗部強調、軽いぼかし、EXIF除去。",
+      "used_by_shot_ids": [
+        "shot-b04-01"
+      ],
+      "roles_by_shot": {
+        "shot-b04-01": "main"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-s01-frosted-partition",
+      "source_title": "Frosted Glass",
+      "creator": "Timo Newton-Syms",
+      "source_page_url": "https://www.flickr.com/photos/timo_w2s/32996257861/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Frosted_Glass_%2832996257861%29.jpg",
+      "acquisition_media_url": "https://live.staticflickr.com/2894/32996257861_3aeab19b3e_b.jpg",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 3776,
+      "original_height": 2520,
+      "acquired_width": 1024,
+      "acquired_height": 683,
+      "local_width": 1024,
+      "local_height": 576,
+      "local_path": "composition-assets/ref-b04-s01-frosted-partition.jpg",
+      "sha256": "f55ecaa635f09cd4b203fc97775ef049f42bb3a0004a24ab1c2385438685fffb",
+      "normalization_ja": "中央の曇りテクスチャを16:9 cropし、EXIF除去。",
+      "used_by_shot_ids": [
+        "shot-b04-01"
+      ],
+      "roles_by_shot": {
+        "shot-b04-01": "supporting"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-s02-card-catalogue",
+      "source_title": "Archive / Card catalogue drawers",
+      "creator": "Carolina Prysyazhnyuk",
+      "source_page_url": "https://www.flickr.com/photos/129657698@N02/16159019626/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Card_catalogue_drawers.jpg",
+      "acquisition_media_url": "https://live.staticflickr.com/7513/16159019626_ec86e8e50f_b.jpg",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 3872,
+      "original_height": 2592,
+      "acquired_width": 1023,
+      "acquired_height": 685,
+      "local_width": 1022,
+      "local_height": 574,
+      "local_path": "composition-assets/ref-b04-s02-card-catalogue.jpg",
+      "sha256": "23aaf60edcd0880b63e5c98eed29a2ea46fddf0c5e3e8ab17c3e948cfcae5822",
+      "normalization_ja": "左右の反復を残す16:9 crop、EXIF除去。",
+      "used_by_shot_ids": [
+        "shot-b04-02"
+      ],
+      "roles_by_shot": {
+        "shot-b04-02": "main"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-s02-time-recorder",
+      "source_title": "IBM / Antique time clock at Redpath",
+      "creator": "Loozrboy",
+      "source_page_url": "https://www.flickr.com/photos/30624156@N00/4664852355/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Antique_time_clock_at_Redpath.jpg",
+      "acquisition_media_url": "https://live.staticflickr.com/4048/4664852355_60c70345d1_b.jpg",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 2500,
+      "original_height": 1875,
+      "acquired_width": 1024,
+      "acquired_height": 768,
+      "local_width": 1024,
+      "local_height": 576,
+      "local_path": "composition-assets/ref-b04-s02-time-recorder.jpg",
+      "sha256": "ea2732ff8205541eed60050129020ba94c6202d868d77eca90972d6792411127",
+      "normalization_ja": "文字面を中心に16:9 cropし、EXIF除去。",
+      "used_by_shot_ids": [
+        "shot-b04-02"
+      ],
+      "roles_by_shot": {
+        "shot-b04-02": "supporting"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-shared-general-ledger",
+      "source_title": "General Ledger, 1600–1608",
+      "creator": "Plantijnse Drukkerij",
+      "source_page_url": "https://www.loc.gov/item/2021667934/",
+      "original_media_url": "https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:11:73:3:wdl_11733:MPM_AR-PN-0127_00004/full/pct:100/0/default.jpg",
+      "acquisition_media_url": "https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:11:73:3:wdl_11733:MPM_AR-PN-0127_00004/full/pct:50/0/default.jpg",
+      "license_name": "No known copyright or other restrictions; free to use and reuse",
+      "license_url": "https://www.loc.gov/item/2021667934/#rights-and-access",
+      "retrieved_at": "2026-07-19",
+      "original_width": 3195,
+      "original_height": 4763,
+      "acquired_width": 1598,
+      "acquired_height": 2382,
+      "local_width": 1073,
+      "local_height": 1600,
+      "local_path": "composition-assets/ref-b04-shared-general-ledger.jpg",
+      "sha256": "74d83e8fbad303bf4a08c86e72c02746c678a95e56c0f69814c6c853dd7feaab",
+      "normalization_ja": "比率を保って長辺1600pxへ縮小し、EXIF除去。",
+      "used_by_shot_ids": [
+        "shot-b04-02",
+        "shot-b04-03"
+      ],
+      "roles_by_shot": {
+        "shot-b04-02": "supporting",
+        "shot-b04-03": "supporting"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-s03-closed-meeting-room",
+      "source_title": "Interieur vergaderzaal / Meeting Room Interior",
+      "creator": "Het Nieuwe Instituut - Architecture Collection; photographer unknown",
+      "source_page_url": "https://www.flickr.com/photos/nai_collection/5260603510/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Interieur_vergaderzaal_-_Meeting_Room_Interior_%285260603510%29.jpg",
+      "acquisition_media_url": "https://live.staticflickr.com/5282/5260603510_863575f37e_b.jpg",
+      "license_name": "No known copyright restrictions",
+      "license_url": "https://www.flickr.com/commons/usage/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 1280,
+      "original_height": 998,
+      "acquired_width": 1023,
+      "acquired_height": 798,
+      "local_width": 1022,
+      "local_height": 574,
+      "local_path": "composition-assets/ref-b04-s03-closed-meeting-room.jpg",
+      "sha256": "e6f06540dba924ccd3c5aaa38fa3f676f489335762b61dd7ecbcca69da196ca9",
+      "normalization_ja": "無人の机と閉じた壁面を残す16:9 crop、EXIF除去。",
+      "used_by_shot_ids": [
+        "shot-b04-03"
+      ],
+      "roles_by_shot": {
+        "shot-b04-03": "main"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    }
+  ],
+  "h1_review": {
+    "performed": false,
+    "phase_a_completed": false,
+    "phase_b_completed": false,
+    "per_shot_classifications": {
+      "shot-b04-01": "",
+      "shot-b04-02": "",
+      "shot-b04-03": ""
+    },
+    "critical_semantic_misread": "",
+    "overall_classification": "",
+    "automatic_full_story_expansion": false
+  },
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "image_generation": false,
+    "production_approved": false,
+    "content_changed": false,
+    "timing_changed": false,
+    "final_canon_decision": false,
+    "full_story_expansion": false,
+    "automatic_full_story_expansion": false
+  }
+}

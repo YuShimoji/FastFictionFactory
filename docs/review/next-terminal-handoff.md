@@ -2,6 +2,38 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
+## 監修AI向け Beat 4 H0 引き継ぎ（2026-07-19 JST）
+
+Active artifact は `fff-beat4-composition-counterexample-001`、lane は `COMPOSITION_GENERALIZATION` です。Beat 4「評議会の影」`01:20–01:45` の正確な3ショットに対し、6点のローカル参照画像と3つの異なる構図クラスを持つ H0 Composition Counterexample を用意しました。H1は未実施で、`H1_TRANSFER_REVIEW.md` の回答欄・分類欄・合否欄は空です。
+
+### Start here
+
+```text
+AGENTS.md
+docs/project-context.md
+docs/review/current-status.md
+docs/review/beat4-composition-counterexample.md
+artifacts/beat4-composition-counterexample/README.md
+artifacts/beat4-composition-counterexample/beat4-composition-counterexample.html
+artifacts/beat4-composition-counterexample-result.json
+artifacts/artifact-manifest.json
+```
+
+```powershell
+git fetch --prune origin
+git pull --ff-only
+git status --short --branch
+node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json
+node tools/fff-state.mjs validate-beat2-composition-board artifacts/beat2-composition-board-result.json
+```
+
+### Stopping edge
+
+- Finished in H0: exact 3-shot package, 6 provenance-bearing local references, three structural composition classes, equal-weight Shot 2, institutional anonymity guard, unresolved Shot 3, unfilled H1 kit, machine validation and browser evidence.
+- Next owned gate: a separate reviewer performs Phase A blind reconstruction from the HTML, then Phase B comparison and per-shot classification.
+- Stop: do not prefill H1, automatically repair, expand to 19 shots, select assets, claim rights clearance, generate media, render, publish, or resolve canon.
+- Source protection: Beat 2 Board package fingerprint `4c44089a…`, Visual 13-file aggregate `bea1514a…`, Storyboard 7-file aggregate `bb9d4fce…`, Execution 9-file aggregate `10d36757…` must remain exact.
+
 ## 監修AI向け Beat 2 H1 完了引き継ぎ（2026-07-17 JST）
 
 現在の accepted product artifact は `fff-beat2-composition-board-001` です。製品実装 `6ef134b2af6c52e38cf674168686886d41f4c087 Add Beat 2 composition board` と predecessor `72df19b33fd77b047170046db1a99620d1455976 Add Beat 2 visual treatment pilot` は不変です。lane `COMPOSITION_REVIEW` の独立H1は完了し、thread `fff-beat2-composition-transfer-h1-01`、slice `beat2-composition-transfer-review-v0` で全3 production shotをレビューした結果、`3/3 = 1.0 (100%)`、classification `H1_COMPOSITION_TRANSFER_PASS` でした。handoff publication base は synced `master` の `ba9ad3ffcf5fe4698483f17bfcaa47af0136d488`、remote handoff branch は `codex/beat2-h1-handoff` です。

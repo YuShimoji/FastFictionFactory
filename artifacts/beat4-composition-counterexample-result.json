@@ -1,0 +1,469 @@
+{
+  "schemaVersion": "fff.beat4CompositionCounterexampleResult.v1",
+  "artifact_id": "fff-beat4-composition-counterexample-001",
+  "generated_at": "2026-07-19T18:00:00+09:00",
+  "command": "smoke-beat4-composition-counterexample",
+  "passed": true,
+  "failures": [],
+  "warnings": [],
+  "source_artifact_ids": [
+    "fff-beat2-composition-board-001",
+    "fff-beat2-visual-treatment-pilot-001",
+    "fff-production-storyboard-brief-001",
+    "fff-production-execution-pack-001"
+  ],
+  "source_fingerprints": {
+    "beat2_composition_board_package_fingerprint_sha256": "4c44089a140626d56fd67f8341a4765e60f310ff65555c8ff8a0eef3eff7f3b0",
+    "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+    "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+    "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+    "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+  },
+  "source_protection": {
+    "expected": {
+      "beat2_composition_board_package_fingerprint_sha256": "4c44089a140626d56fd67f8341a4765e60f310ff65555c8ff8a0eef3eff7f3b0",
+      "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+      "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+      "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+      "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+    },
+    "observed": {
+      "beat2_composition_board_package_fingerprint_sha256": "4c44089a140626d56fd67f8341a4765e60f310ff65555c8ff8a0eef3eff7f3b0",
+      "visual_treatment_package_fingerprint_sha256": "8867f6265099f4dffbfc090d7a988c195644949acbca0c104a0f7c6911205c63",
+      "visual_treatment_thirteen_file_aggregate_sha256": "bea1514a2a497ac38f475b640e00c0ed1bb2657f62ac4d81c806d362e50d532b",
+      "storyboard_seven_file_aggregate_sha256": "bb9d4fce3ed5ac328b49f0ac691e0ab9b6ca671d0318ef4e60522dca7a6fabb8",
+      "execution_nine_file_aggregate_sha256": "10d3675723c3282cba0fdd516654640a7c16749fef80279b7223b4e5dc436345"
+    },
+    "beat2_board_unchanged": true,
+    "visual_treatment_unchanged": true,
+    "storyboard_unchanged": true,
+    "execution_unchanged": true
+  },
+  "beat_number": 4,
+  "beat_title": "評議会の影",
+  "beat_window": "01:20–01:45",
+  "counts": {
+    "shots": 3,
+    "distinct_references": 6,
+    "image_assignments": 7,
+    "composition_classes": 3,
+    "total_duration_seconds": 25,
+    "negative_probes_passed": 30,
+    "negative_probes_total": 30,
+    "package_files": 14
+  },
+  "audits": {
+    "missing_metadata_count": 0,
+    "hotlink_count": 0,
+    "duplicate_hash_count": 0,
+    "duplicate_source_count": 0,
+    "composition_specificity_pass_count": 3,
+    "shot2_equal_weight_pass": true,
+    "institutional_anonymity_pass": true,
+    "human_comprehension_inference": false
+  },
+  "reference_audit": [
+    {
+      "reference_id": "ref-b04-s01-conference-backs",
+      "creator": "Manuel Schneider",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Wikimedia_Chapters_Conference_089.JPG",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Wikimedia_Chapters_Conference_089.JPG",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "local_path": "composition-assets/ref-b04-s01-conference-backs.jpg",
+      "sha256": "79e17d1982c6d217063d34d1479606f8a586c6e4b8b001167e3647ce2d4b1962",
+      "used_by_shot_ids": [
+        "shot-b04-01"
+      ],
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-s01-frosted-partition",
+      "creator": "Timo Newton-Syms",
+      "source_page_url": "https://www.flickr.com/photos/timo_w2s/32996257861/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Frosted_Glass_%2832996257861%29.jpg",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "local_path": "composition-assets/ref-b04-s01-frosted-partition.jpg",
+      "sha256": "f55ecaa635f09cd4b203fc97775ef049f42bb3a0004a24ab1c2385438685fffb",
+      "used_by_shot_ids": [
+        "shot-b04-01"
+      ],
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-s02-card-catalogue",
+      "creator": "Carolina Prysyazhnyuk",
+      "source_page_url": "https://www.flickr.com/photos/129657698@N02/16159019626/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Card_catalogue_drawers.jpg",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "local_path": "composition-assets/ref-b04-s02-card-catalogue.jpg",
+      "sha256": "23aaf60edcd0880b63e5c98eed29a2ea46fddf0c5e3e8ab17c3e948cfcae5822",
+      "used_by_shot_ids": [
+        "shot-b04-02"
+      ],
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-s02-time-recorder",
+      "creator": "Loozrboy",
+      "source_page_url": "https://www.flickr.com/photos/30624156@N00/4664852355/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Antique_time_clock_at_Redpath.jpg",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "local_path": "composition-assets/ref-b04-s02-time-recorder.jpg",
+      "sha256": "ea2732ff8205541eed60050129020ba94c6202d868d77eca90972d6792411127",
+      "used_by_shot_ids": [
+        "shot-b04-02"
+      ],
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-shared-general-ledger",
+      "creator": "Plantijnse Drukkerij",
+      "source_page_url": "https://www.loc.gov/item/2021667934/",
+      "original_media_url": "https://tile.loc.gov/image-services/iiif/service:gdc:gdcwdl:wd:l_:11:73:3:wdl_11733:MPM_AR-PN-0127_00004/full/pct:100/0/default.jpg",
+      "license_name": "No known copyright or other restrictions; free to use and reuse",
+      "license_url": "https://www.loc.gov/item/2021667934/#rights-and-access",
+      "local_path": "composition-assets/ref-b04-shared-general-ledger.jpg",
+      "sha256": "74d83e8fbad303bf4a08c86e72c02746c678a95e56c0f69814c6c853dd7feaab",
+      "used_by_shot_ids": [
+        "shot-b04-02",
+        "shot-b04-03"
+      ],
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "reference_id": "ref-b04-s03-closed-meeting-room",
+      "creator": "Het Nieuwe Instituut - Architecture Collection; photographer unknown",
+      "source_page_url": "https://www.flickr.com/photos/nai_collection/5260603510/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Interieur_vergaderzaal_-_Meeting_Room_Interior_%285260603510%29.jpg",
+      "license_name": "No known copyright restrictions",
+      "license_url": "https://www.flickr.com/commons/usage/",
+      "local_path": "composition-assets/ref-b04-s03-closed-meeting-room.jpg",
+      "sha256": "e6f06540dba924ccd3c5aaa38fa3f676f489335762b61dd7ecbcca69da196ca9",
+      "used_by_shot_ids": [
+        "shot-b04-03"
+      ],
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false
+    }
+  ],
+  "package_integrity": {
+    "manifest_path": "artifacts/beat4-composition-counterexample/manifest.json",
+    "package_fingerprint_sha256": "2f0e0032b30725dc678d27e31169f6fda1a7bf8c4586735a8d0fc6f73b6d6805",
+    "payload_file_count": 13
+  },
+  "negative_probes": [
+    {
+      "name": "source fingerprint mismatch",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "missing shot",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "fourth shot added",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "incorrect timing",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "fewer than two references for a shot",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "missing creator",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "missing source page",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "missing original media URL",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "missing license",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "missing license URL",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "ambiguous license",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "hotlink",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "duplicate image counted twice",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "near-duplicate crop counted as distinct",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "low-resolution source",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "generic symbolic board used as primary",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "Shot 1 identifiable official",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "Shot 1 villain coding",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "Shot 2 60/40 or stronger imbalance",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "Shot 2 winner icon",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "Shot 2 privileged color or contrast",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "Shot 3 motive resolved",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "missing depth layer",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "missing eye path",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "missing continuity note",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "H1 review pre-filled",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "selected asset",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "rights-cleared claim",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "predecessor mutation",
+      "passed": true,
+      "mutation": false
+    },
+    {
+      "name": "manifest hash mismatch",
+      "passed": true,
+      "mutation": false
+    }
+  ],
+  "browser_evidence": {
+    "status": "captured",
+    "captured_at": "2026-07-18T16:56:10.740Z",
+    "viewports": {
+      "900x1200-dark": {
+        "width": 900,
+        "height": 1200,
+        "initial_theme": "auto",
+        "resolved_theme": "dark",
+        "shot_count": 3,
+        "horizontal_overflow": false,
+        "document_scroll_width": 900,
+        "inner_width": 900,
+        "nested_scroll_owners": 0,
+        "primary_image_min_share": 0.7292,
+        "primary_image_shares": [
+          0.7292,
+          0.7292,
+          0.7292
+        ],
+        "equal_height_max_delta_px": 0,
+        "equal_height_deltas_px": [
+          0,
+          0,
+          0
+        ]
+      },
+      "1280x900-light": {
+        "width": 1280,
+        "height": 900,
+        "initial_theme": "auto",
+        "resolved_theme": "light",
+        "shot_count": 3,
+        "horizontal_overflow": false,
+        "document_scroll_width": 1280,
+        "inner_width": 1280,
+        "nested_scroll_owners": 0,
+        "primary_image_min_share": 0.75,
+        "primary_image_shares": [
+          0.75,
+          0.75,
+          0.75
+        ],
+        "equal_height_max_delta_px": 0,
+        "equal_height_deltas_px": [
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "theme": {
+      "auto_default": true,
+      "dark_resolved": "dark",
+      "light_resolved": "light"
+    },
+    "focus": {
+      "visible": true,
+      "outline_style": "solid",
+      "outline_width_px": 3,
+      "outline_offset_px": 4
+    },
+    "shot2": {
+      "left_area_percent": 50,
+      "right_area_percent": 50,
+      "grid_width_px": 701.41,
+      "main_width_px": 837,
+      "left_width_px": 349.7,
+      "right_width_px": 349.7,
+      "area_delta_px": 0,
+      "left_headline_px": 22,
+      "right_headline_px": 22,
+      "left_color": "rgb(212, 199, 180)",
+      "right_color": "rgb(212, 199, 180)",
+      "panel_background": "rgba(22, 23, 24, 0.72)",
+      "same_color": true,
+      "left_filter": "grayscale(0.45) contrast(0.92) brightness(0.8)",
+      "right_filter": "grayscale(0.45) contrast(0.92) brightness(0.8)",
+      "same_filter": true,
+      "contrast_ratio": 10.79
+    },
+    "print": {
+      "forced_light": true,
+      "body_background": "rgb(255, 255, 255)",
+      "utility_hidden": true,
+      "utility_position": "static",
+      "shot_break_avoid": true
+    }
+  },
+  "screenshots": {
+    "900x1200-dark": {
+      "path": "artifacts/review-screens/beat4-composition-counterexample-900x1200-dark.png",
+      "exists": true,
+      "byte_size": 707248,
+      "sha256": "78b50e471e23c5f57a32ce0c4602df4569ea2f0eb8ee55b9a2ad4cbf03f509c3",
+      "dimensions": {
+        "width": 900,
+        "height": 1200
+      }
+    },
+    "1280x900-light": {
+      "path": "artifacts/review-screens/beat4-composition-counterexample-1280x900-light.png",
+      "exists": true,
+      "byte_size": 419746,
+      "sha256": "350999e70c01792c3b5f17e96da4cc6af4b30018fcdbd5f121ee4b6d54bee960",
+      "dimensions": {
+        "width": 1280,
+        "height": 900
+      }
+    }
+  },
+  "h1_review": {
+    "status": "not_started",
+    "performed": false,
+    "prefilled": false,
+    "automatic_full_story_expansion": false,
+    "guide_path": "artifacts/beat4-composition-counterexample/H1_TRANSFER_REVIEW.md"
+  },
+  "source_packages_unchanged": true,
+  "reference_only": true,
+  "selected_for_production": false,
+  "rights_cleared_claim": false,
+  "provider_configured": false,
+  "credentials_touched": false,
+  "external_model_call": false,
+  "ai_image_generation": false,
+  "audio_generated": false,
+  "ai_video_generation": false,
+  "production_render": false,
+  "public_upload": false,
+  "database_persistence": false,
+  "final_canon_decision": false,
+  "full_story_expansion": false,
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "image_generation": false,
+    "production_approved": false,
+    "content_changed": false,
+    "timing_changed": false,
+    "final_canon_decision": false,
+    "full_story_expansion": false,
+    "automatic_full_story_expansion": false
+  },
+  "validation_command": "node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json",
+  "smoke_command": "node tools/fff-state.mjs smoke-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json"
+}

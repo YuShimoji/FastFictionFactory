@@ -1,5 +1,20 @@
 # Artifacts
 
+## fff-beat4-composition-counterexample-001
+
+- Title: Fast Fiction Factory Beat 4 Composition Counterexample
+- Purpose: Test Beat 2 composition-transfer evidence against the exact three-shot Beat 4 slice without claiming full-story generalization.
+- Primary file: `artifacts/beat4-composition-counterexample/beat4-composition-counterexample.html`
+- Package directory: `artifacts/beat4-composition-counterexample/` (14 files including manifest, six local JPEG references, contact sheet, and unfilled H1 guide)
+- Source artifacts: `fff-beat2-composition-board-001`, `fff-beat2-visual-treatment-pilot-001`, `fff-production-storyboard-brief-001`, `fff-production-execution-pack-001` (byte-protected)
+- Review doc/result: `docs/review/beat4-composition-counterexample.md`, `artifacts/beat4-composition-counterexample-result.json`
+- Visual evidence: `artifacts/review-screens/beat4-composition-counterexample-900x1200-dark.png`, `artifacts/review-screens/beat4-composition-counterexample-1280x900-light.png`, `artifacts/beat4-composition-counterexample/beat4-composition-counterexample-contact-sheet.jpg`
+- Composition contract: exactly 3 shots / 25 seconds / three distinct classes; Shot 2 is 50/50 with equal 22px headings, Shot 1 identifies no official and implies no guilt, Shot 3 resolves no motive or responsibility.
+- Reference contract: 6 distinct local rasters / 7 assignments with full creator/source/media/license/dimension/hash metadata; all reference-only, unselected, and without a rights-clearance claim.
+- Read-only validation: `node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json`
+- Intentional regeneration: `node tools/fff-state.mjs smoke-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json`
+- State: H0 package implemented; H1 guide unperformed/unfilled. Full-story expansion, selection, rights, generation, render, publication, database, approval, and canon remain closed.
+
 ## fff-beat2-composition-board-001
 
 - Title: Fast Fiction Factory Beat 2 Composition Board
