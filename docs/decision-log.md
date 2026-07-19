@@ -1,5 +1,19 @@
 # Decision Log
 
+## 2026-07-19
+
+- Decision: Record Beat 4 as `OWNER_REVIEW_PASS` with observation「大きな破綻はなさそう」and authorize composition expansion without requiring another per-Beat external or blind review.
+  - Reason: The owner accepted the direction as free of major breakdowns and explicitly changed the forward review policy. This is directional product-owner acceptance, not independent transfer proof.
+  - Effect: Per-Beat blind review is discontinued, Beat 4 repair is not required, Wave 1 has no human review gate, and the next human review occurs only after complete 19-shot visual integration. External reproducibility remains unclaimed.
+
+- Decision: Publish `fff-composition-expansion-wave1-001` as the active local/reference-only H0 artifact for exactly Beats 1 and 3.
+  - Reason: Beat 1 and Beat 3 were the authorized next six source shots and could be made concrete with twelve explicit-license local rasters and six distinct composition classes without mutating story or predecessor authority.
+  - Effect: Beats 1–4 now have 12/19 concrete shot compositions. Beats 5/6, final integration, production selection, rights clearance, generation, render, publication, database, approval, canon, and external reproducibility remain closed.
+
+- Decision: Make a separately authorized Wave 2 contract for the remaining seven Beat 5/6 shots the farthest immediate successor, followed by integrated 19-shot review.
+  - Reason: The current Worker contract prohibits Beats 5/6 and final integration, while the owner policy defers human judgment until a complete integrated visual package exists.
+  - Effect: Wave 2 remains data-only until authorized. Integrated human review, production/rights, asset construction, render, and release remain sequential independent gates.
+
 ## 2026-07-17
 
 - Decision: Accept the Beat 2 Composition Board's independent H1 transfer result as `H1_COMPOSITION_TRANSFER_PASS` with an exact `3/3 = 1.0 (100%)` improved-and-executable ratio.

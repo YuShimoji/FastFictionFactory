@@ -1,18 +1,19 @@
 # Current Status Packet
 
-## Current Beat 4 Composition Counterexample Update
+## Current Composition Expansion Wave 1 Update
 
-- Active artifact: `fff-beat4-composition-counterexample-001`
-- Active lane: `COMPOSITION_GENERALIZATION`; H0 is the active bounded slice and H1 remains unperformed
-- Scope: Beat 4「評議会の影」`01:20–01:45` / exactly 3 shots / 25 seconds
-- Standalone entry: `artifacts/beat4-composition-counterexample/beat4-composition-counterexample.html`
-- Package/result/review: `artifacts/beat4-composition-counterexample/`, `artifacts/beat4-composition-counterexample-result.json`, `docs/review/beat4-composition-counterexample.md`
-- Composition classes: anonymous institutional depth / equal-weight abstract comparison / environment-plus-document tension
-- References: 6 distinct local licensed or institutionally reusable JPEGs / 7 shot assignments; all reference-only, unselected, and without rights-clearance claims
-- H1: `H1_TRANSFER_REVIEW.md` exists and is intentionally unfilled; no classification, pass, bounded repair, blocker, or automatic expansion has been decided
-- Protected sources: Beat 2 Board, Visual Treatment, Storyboard, and Execution packages remain governed by their exact expected fingerprints
-- Read-only validation: `node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json`
-- Closed gates: global 19-shot generalization, production asset selection, rights clearance, image/audio/video generation, final motion, render, upload, publication, database persistence, production approval, and canon
+- Active artifact: `fff-composition-expansion-wave1-001`
+- Active lane: `COMPOSITION_EXPANSION`; Wave 1 is the bounded H0 slice
+- Scope: exactly Beat 1「鐘のない塔」and Beat 3「消された名前」/ exactly 6 source shots / 50 seconds
+- Standalone entry: `artifacts/composition-expansion-wave1/composition-expansion-wave1.html`
+- Package/result/review: `artifacts/composition-expansion-wave1/`, `artifacts/composition-expansion-wave1-result.json`, `docs/review/composition-expansion-wave1.md`
+- Coverage: Beats 1–4 now have concrete composition material for 12 of 19 source shots; Beats 5/6 are untouched
+- References: 12 distinct licensed local JPEGs / 12 assignments / 6 unique main images / 6 materially distinct composition classes
+- Owner Review policy: Beat 4 `OWNER_REVIEW_PASS`; observation「大きな破綻はなさそう」; composition expansion authorized; directional owner acceptance is not independent transfer proof
+- Human review policy: per-Beat external reviewer not required; per-Beat blind review discontinued; Wave 1 human review none; next human review only after integrated 19-shot visual package
+- Protected sources: Beat 2 Board, Beat 4 Counterexample, Visual Treatment, Storyboard, Execution, Operator, Blueprint, Derivative, Revision, and Handoff packages remain governed by exact directory fingerprints
+- Read-only validation: `node tools/fff-state.mjs validate-composition-expansion-wave1 artifacts/composition-expansion-wave1-result.json`
+- Closed gates: Beats 5/6 work, final 19-shot integration, production selection, rights clearance, image/audio/video generation, provider/API, credentials, final motion, render, upload, publication, database persistence, production approval, final canon, and external reproducibility
 
 ## Current Beat 2 Composition Board Update
 
@@ -60,7 +61,7 @@
 
 ## Next Gate
 
-H1 is complete and the Board needs no specificity repair. The only recommended next gate is one bounded different-Beat counterexample using the same blind Board-first transfer procedure before any 19-shot expansion. This H2 successor is not authorized or started. Do not treat the pass as production selection, rights clearance, generation approval, canon approval, or evidence that final frames have been constructed.
+Wave 1 ends without human review. The farthest safe successor is a separately authorized, data-only Wave 2 proposal for the remaining seven Beat 5/6 shots, followed by one integrated 19-shot visual package. Human review resumes only after integration. Production selection, rights clearance, generation, render, publication, database, approval, canon, and external reproducibility remain independent later gates.
 
 ## Current Storyboard Brief Update
 

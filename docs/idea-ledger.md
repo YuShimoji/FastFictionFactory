@@ -2,6 +2,33 @@
 
 ## Residual Work
 
+### Composition Expansion Wave 1
+
+- Purpose: Make the exact Beat 1 and Beat 3 source shots concrete with image-specific crop, focus, depth, eye-path, reference borrowing, continuity, staging, and truth-safe guards.
+- Effect: `fff-composition-expansion-wave1-001` adds six distinct composition strips, twelve licensed local rasters, twelve assignments, complete provenance, two browser captures, and a strict read-only validator while bringing Beats 1–4 to 12/19 concrete shots.
+- Requirements: Preserve all source wording, IDs, timing, narration, subtitles, truth, rights, selection, canon, and ten predecessor directory fingerprints; keep every reference local/reference-only/unselected/not-cleared; keep Wave 1 free of a human gate.
+- State: Implemented and machine-evidenced in the active Worker slice. Product publication and final parity are the remaining same-slice postconditions.
+- Owner: Worker owns implementation/validation/publication; product owner owns policy and future scope; rights/production/release owners remain outside this lane.
+- Next move: Complete the one authorized commit/push, then preserve Wave 1 unchanged.
+
+### Composition Expansion Wave 2 proposal
+
+- Purpose: Define the remaining seven Beat 5/6 compositions without silently widening the current slice.
+- Effect: Creates the missing input needed before a complete 19-shot visual integration can exist.
+- Requirements: Explicit owner authorization, exact seven source rows, proportional licensed-reference budget, unique main compositions, Beat continuity, predecessor immutability, closed production/rights/generation/canon boundaries, and no immediate human gate.
+- State: Proposed as data only; not authorized or implemented.
+- Owner: Supervisor and product owner for authorization; future worker for implementation.
+- Next move: Review and issue a dedicated Worker execution contract after Wave 1 publication.
+
+### Integrated 19-shot visual package and review
+
+- Purpose: Put all concrete shot compositions into one sequence so whole-story continuity can be judged once.
+- Effect: Enables the next human review without reverting to repeated per-Beat blind checkpoints.
+- Requirements: Wave 2 H0 acceptance; exact artifact/hash; duplicate-template, main-image, Beat/shot order, cross-Beat eye-path, density, subtitle allowance, truth, and rights-boundary audits.
+- State: Future and gated; not authorized in Wave 1.
+- Owner: Future worker for integration; human owner or supervising AI for one integrated review.
+- Next move: Begin only after Wave 2 is accepted. Production selection and rights review remain separate even after integrated acceptance.
+
 ### Beat 2 Composition Board
 
 - Purpose: Determine whether a separate creator can stage Beat 2's three screens from explicit crop, focal order, eye path, depth, placement, and borrowed-reference instructions rather than atmosphere references alone.

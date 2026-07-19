@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "fff.compositionExpansionWave1Manifest.v1",
+  "artifact_id": "fff-composition-expansion-wave1-001",
+  "generated_at": "2026-07-19T22:30:00+09:00",
+  "payload_file_count": 18,
+  "file_count": 19,
+  "package_fingerprint_sha256": "403202568e99060937ed3ce36d16117b8564292f21baa3d72e8b290acd38ccb9",
+  "files": [
+    {
+      "relative_path": "README_COMPOSITION_EXPANSION_WAVE1.md",
+      "byte_size": 2194,
+      "sha256": "fa8c9a3e914caef10f7ba6f3a7dc9db7ddff32ce488b2ab33bf08b435f905bc8"
+    },
+    {
+      "relative_path": "composition-expansion-wave1.html",
+      "byte_size": 38174,
+      "sha256": "7911f2158d4fb9a4628e059e81cff06e5cca52497ac620fc7cfdc25ac3ad920b"
+    },
+    {
+      "relative_path": "composition-expansion-wave1.json",
+      "byte_size": 34555,
+      "sha256": "02bf53c039611f2faa2712fa69c8ef6885d1fcf2da408283be0b04aba7c122a7"
+    },
+    {
+      "relative_path": "reference-sources.csv",
+      "byte_size": 6187,
+      "sha256": "f9d338e0864877e767e2c8f436566157023b96194ac70d6d4e3c670e7c29fc59"
+    },
+    {
+      "relative_path": "shot-composition-map.csv",
+      "byte_size": 5844,
+      "sha256": "3bda68312bdc7cf4e3028fd513d0a3ab63964fe3aa598eec911ec0f32e5c142e"
+    },
+    {
+      "relative_path": "composition-expansion-wave1-contact-sheet.jpg",
+      "byte_size": 184914,
+      "sha256": "ec57d886fe031d06f8e166c7581e220faee84e9813a8dacb8be4fa2aafb368f9"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b01-s01-harvard-observatory.jpg",
+      "byte_size": 610181,
+      "sha256": "6e1376fa2b4fa4bfffae778f1e86364b1c3baf5fe2925cd242337d76f7b33e84"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b01-s01-kreiensen-station.jpg",
+      "byte_size": 201158,
+      "sha256": "49b3136c701d7e149194e74cac2a1c5c6dc688d6502340fce4915cec656da134"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b01-s02-beam-junction.jpg",
+      "byte_size": 280446,
+      "sha256": "05aacc6386c240e2174bd717e90342fec23e1b5fbdf092965495109d00f81e56"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b01-s02-wood-joints.jpg",
+      "byte_size": 270490,
+      "sha256": "3258615d9b6b28e22ed5d0510f74f135e78953557735d0d6d42e47d122ddf2de"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b01-s03-belfry-interior-art.jpg",
+      "byte_size": 373265,
+      "sha256": "39602c0536b46c3f0868e2f4b9661c5e1bb1a4d67f70ca1fcdfecb9355c5d91b"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b01-s03-noon-mark.jpg",
+      "byte_size": 473440,
+      "sha256": "1c68f99c68f85869e461a832498d6485994c94a28c04effefaf47964b1447f62"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b03-s01-book-in-hand.jpg",
+      "byte_size": 184191,
+      "sha256": "6fc36da6028effe9a402f18efabeeef970e6511f4023156994aa5dcf5aad681a"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b03-s01-page-turning.jpg",
+      "byte_size": 179795,
+      "sha256": "d846f48b836c604cbbf913ad7b37700926a362bc657dc7a4df8b1b204dfb9f13"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b03-s02-blank-book.jpg",
+      "byte_size": 180344,
+      "sha256": "312ac0465762b21dd1d67504d7dcaee074c94f73d7281f5adeb16fed618343a4"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b03-s02-ledger-geometry.jpg",
+      "byte_size": 223339,
+      "sha256": "ccbb058ad17576dd5d69329b67137947a3dfcc218672394d97f1bc4234e6ff88"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b03-s03-ink-stains.jpg",
+      "byte_size": 135980,
+      "sha256": "96350f03a1bc118e3108284ca43edc84a01e83f23686707f58854ffe939bc0a4"
+    },
+    {
+      "relative_path": "composition-assets/ref-w1-b03-s03-old-paper.jpg",
+      "byte_size": 187962,
+      "sha256": "de3156d47386e17242543e6292093ac0eeba4b6079fb735b0da51423fa9b3624"
+    }
+  ]
+}

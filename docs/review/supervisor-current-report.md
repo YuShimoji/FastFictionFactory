@@ -2,388 +2,205 @@
 
 更新日: 2026-07-19 JST
 
-## Beat 4 H0 最新差分
-
-現在の active product artifact は `fff-beat4-composition-counterexample-001` です。Beat 2 Composition Board の H1 pass を全編へ一般化せず、異質な Beat 4「評議会の影」3ショットだけで反例を探せる H0 パッケージへ進みました。匿名の制度的奥行き、同じ重さの二説、環境と文書の緊張を別々の画面文法で実装し、6点のローカル参照画像に出典・ライセンス・寸法・SHA-256を持たせています。
-
-監修判断はまだ行っていません。`H1_TRANSFER_REVIEW.md` は未記入で、別レビュアーがHTMLだけを見るPhase Aを終えた後に比較する契約です。2/3以上 `improved_and_executable` かつ critical semantic misread 0 が将来のpass条件ですが、本報告はその結果を主張しません。global 19-shot generalization、production selection、rights clearance、generation、final motion、render、publication、canonはclosedです。
-
-### H0実測
-
-| Evidence | Result |
-| --- | --- |
-| Machine result | `passed=true`, `failures=[]`, negative probes `30/30` |
-| Package | 13 payload + manifest; fingerprint `2f0e0032b30725dc678d27e31169f6fda1a7bf8c4586735a8d0fc6f73b6d6805` |
-| 900×1200 Dark | overflow false / nested scroll 0 / main share 0.7292以上 / equal-height delta 0px |
-| 1280×900 Light | overflow false / nested scroll 0 / main share 0.75以上 / equal-height delta 0px |
-| Shot 2 | 349.70px / 349.70px、差0px、22px / 22px、同色、同filter、contrast 10.79 |
-| Theme/access | Auto default、Dark/Light解決、keyboard focus outline 3px + offset 4px |
-| Print | white paper、utility hidden、shot break avoid |
-| Read-only proof | validate前後のBeat 4集約署名一致、Git status一致 |
-| Root chain | Beat 4、Beat 2、Visual、Storyboard、Executionが順にpass |
-| Documentation | strict MkDocs build pass |
-
-### Source and repair summary
-
-参照domainは `commons.wikimedia.org` / `upload.wikimedia.org`、`flickr.com` / `live.staticflickr.com`、`loc.gov` / `tile.loc.gov` です。creatorは Manuel Schneider、Timo Newton-Syms、Carolina Prysyazhnyuk、Loozrboy、Plantijnse Drukkerij、Het Nieuwe Instituut - Architecture Collection（photographer unknown）です。取得候補のうち、dramatic pose、宗教的意味、実在official/scandalへの誤帰属、低解像度、曖昧ライセンスは棄却しました。
-
-実装中の主要repairは、実画像幅の1px差への偶数crop、Shot 1の背面匿名化、Shot 2 gridのintrinsic-size overflow除去、figure margin由来の32px列高差除去、browser evidenceのoverflow/nested-scroll真偽修正です。最終H0ではmust-fixは残っていません。
-
-### 監修後の最遠安全目標
-
-1. 別レビュアーがH1 Phase AをHTMLだけで記入し、Phase Bで3ショットを分類する。
-2. `2/3 improved_and_executable` かつ critical semantic misread 0 なら、Beat 2 + Beat 4の異質2点を使ってgeneralization decision packetを作る。ただし19ショット展開はそのpacketでも自動実行しない。
-3. weak shotが1件だけなら、1回のbounded repair候補を監修判断へ戻す。2件なら `COMPOSITION_GENERALIZATION_BLOCKER` として停止する。
-4. 構図generalizationが別途承認された後も、production asset selectionとrights clearanceは独立した人間所有gateとして維持する。
-
 ## 結論
 
-Fast Fiction Factory は、ローカル優先の fiction production workbench として、原稿候補の抽出・人間レビュー・編集差分・制作設計・制作引き渡しを、source / truth / rights / canon の境界を保ちながら一作品分つなげた状態です。現在の accepted product artifact は `fff-beat2-composition-board-001` です。lane `COMPOSITION_REVIEW` の独立H1は完了し、次のimplementation laneはまだ開いていません。
+Fast Fiction Factory の active product artifact は `fff-composition-expansion-wave1-001` です。Beat 1「鐘のない塔」3 shots と Beat 3「消された名前」3 shotsを、12点のライセンス明示済みローカル参照画像で構図レベルまで具体化しました。既存のBeat 2 Composition BoardとBeat 4 Counterexampleを合わせ、Beats 1–4の12/19 source shotsが具体化済みです。
 
-Beat 2「真鍮の蛾」`00:20–00:50` の三つの source shot を、雰囲気参照から実際のcrop / focal order / depth / placement判断へ一段具体化し、プロジェクト外の制作者へ転送できるかという直近目的は達成しました。thread `fff-beat2-composition-transfer-h1-01` で全3shotをblindに復元し、authorityとPilotを後から比較した結果、3件すべてが `improved_and_executable`、比率 `3/3 = 1.0 (100%)`、primary classification `H1_COMPOSITION_TRANSFER_PASS` です。
-
-H0 の機械検証は green です。13-file package、3 shots、6 distinct references / 7 assignments、1 main + 1–2 supporting per shot、22/22 fail-closed probes、6/6 provenance / dimensions / SHA256、Light / Dark / Auto、900x1200 Dark、1280x900 Light、equal-height columns、main-image share 84%以上、print contract、three-package source immutability を検証します。
-
-H1で検証したのは構図仕様の転送可能性であり、完成画の品質や実制作済みであることではありません。critical misread、blocking question、systemic composition ambiguity、修正対象shotはありません。唯一推奨する次のgateは `Beat 4 Composition Counterexample` ですが、これは未承認・未実施です。production asset selection、rights clearance、full-story expansion、engine / voice、provider/API、credentials、external calls、art/audio/video generation、render、upload、publication、database persistence、production approval、final canon は引き続き closed です。
+本Waveはreference-only H0です。制作採用、権利処理完了、画像生成、完成画、render readiness、production approval、外部再現性、canonを示しません。Beat 5/6と最終19-shot統合は実施していません。次の人手reviewはWave 1直後ではなく、19-shot visual package統合後だけです。
 
 ## ライブ同期と開発可能性
 
-| 項目 | 2026-07-17 JST の確認結果 |
+| 項目 | 確認結果 |
 | --- | --- |
 | Repository | `C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory` |
-| Branch | `codex/beat2-h1-handoff`（`origin/codex/beat2-h1-handoff` を追跡） |
+| Branch | `master` |
 | Remote | `origin` → `https://github.com/YuShimoji/FastFictionFactory.git` |
-| Current handoff HEAD | `419db2000ba1e9a2c6b9baadd4d53b3281b5aeab` `Record Beat 2 H1 handoff` |
-| Handoff base HEAD | `ba9ad3ffcf5fe4698483f17bfcaa47af0136d488` `Record Composition Board restart handoff` |
-| Active product checkpoint | `6ef134b2af6c52e38cf674168686886d41f4c087` `Add Beat 2 composition board` |
-| Predecessor checkpoint | `72df19b33fd77b047170046db1a99620d1455976` `Add Beat 2 visual treatment pilot` |
-| Sync operation | `master` で `git fetch --prune origin` と `git pull --ff-only origin master` を実行し `Already up to date` を確認。その後 `git switch --track origin/codex/beat2-h1-handoff` で最新H1 handoffへ切替 |
-| Remote parity | `HEAD...@{u} = 0 0`。`origin/master...HEAD = 0 1` で、現branchはdefault branchの直系1commit先 |
-| Diverged remote lane | `origin/codex/workflow-control-plane-reset` は `5e5f627`（2026-07-10）で、`origin/master...branch = 18 1`。current authorityより古い分岐のため取り込まず、active product laneに昇格させない |
-| Worktree ownership | branch切替とread-only検証後はclean。本報告の現マシン実測補正だけが今回の意図したlocal documentation差分で、product artifact bytesは変更しない |
-| Runtime | Node.js `v24.13.0`、npm `11.6.2`、uvx `0.10.7` |
-| Dependency posture | root `package.json` / install step は不要。Node tools は repository-local、MkDocs は `uvx --with mkdocs-material` で隔離実行 |
-| Active entry | `artifacts/beat2-composition-board/beat2-composition-board.html` |
-| Current authority | `docs/project-context.md` → `docs/review/current-status.md` → 本報告 → `docs/review/beat2-composition-board.md` H1 result → machine result |
+| Worker base | `a2f61c72680b2a7d9220f4a2d8f05c2e79ac5189` |
+| Start parity | `HEAD = origin/master = base`, `HEAD...origin/master = 0 0` |
+| Start worktree | clean index / clean tracked worktree / no untracked product files |
+| Runtime | Node.js `v24.13.0`, npm `11.6.2`, uvx `0.10.7` |
+| Dependency posture | root install不要。validatorはrepository-local Node、browser evidenceはCodex同梱Playwright、docsは`uvx --with mkdocs-material` |
+| Primary access | `artifacts/composition-expansion-wave1/composition-expansion-wave1.html` |
+| Authority order | `AGENTS.md` → `docs/project-context.md` → `docs/review/current-status.md` → 本報告 → Wave 1 review doc/result → preserved source packages |
 
-`README.md` と `docs/spec-index.json` は存在しません。repo-local instruction に従い stale reference として扱い、開発 blocker にはしていません。実際の入口は `AGENTS.md`、上記 authority chain、`artifacts/artifact-manifest.json` です。
+開始時に `git fetch --prune origin`、branch/HEAD/origin/upstream/parity/statusを確認し、remote advanceも未報告worktree changeもありませんでした。製品commit/push後の正確なHEAD、remote equality、parity、clean stateはWorkerの最終AGENT_REPORTを正本とします。
 
-### 今回通過した検証
+## Intended State Transition
 
-| Gate | Result |
-| --- | --- |
-| Root manifest read-only validation | exit 0。Composition → Visual Treatment → Storyboard → Execution → Typography → Operator → Blueprint → Derivative → Revision → Handoff の順で実行 |
-| Beat 2 Composition validator | `passed=true`、`failures=[]`、22/22 probes を完了条件とする |
-| H1 independent transfer | 全3 production shot、`3/3 = 1.0`、`H1_COMPOSITION_TRANSFER_PASS`。Board repairなし |
-| Tool syntax | pass。root manifest 内で `fff-state.mjs`、Beat 2 Visual Treatment generator、Storyboard generator を確認 |
-| MkDocs | `uvx --with mkdocs-material mkdocs build --strict` exit 0。build output は `%TEMP%\fff-mkdocs-build-21b03da8ed324e88923e4eb05a20768c` へ隔離 |
-| Launcher | `open_review.ps1 -Mode blueprint -PrintUri` exit 0。`file:///C:/Users/thank/Storage/Media%20Contents%20Projects/FastFictionFactory/public/review/index.html?mode=blueprint` を返却 |
-| Patch hygiene | `git diff --check` pass |
-| Read-only property | root validation / MkDocs / launcher は新しいtracked / untracked product artifact changeを追加しなかった |
-
-MkDocs は nav 未掲載の review pages を INFO として列挙しますが、strict build 自体は exit 0 です。Material for MkDocs が将来の MkDocs 2.0 非互換警告を表示していますが、現行 build の failure ではありません。
-
-## 現在の authority と成果物
-
-### Active: Beat 2 Composition Board
-
-- Artifact: `fff-beat2-composition-board-001`
-- Lane: `COMPOSITION_BOARD`
-- Standalone page: `artifacts/beat2-composition-board/beat2-composition-board.html`
-- Canonical model: `artifacts/beat2-composition-board/beat2-composition-board.json`
-- Provenance: `reference-sources.csv`
-- Shot mapping: `shot-composition-map.csv`
-- Local references: `composition-assets/` の six JPEGs、7 shot assignments
-- Contact sheet: `beat2-composition-board-contact-sheet.jpg`
-- Integrity: `beat2-composition-board-manifest.json`
-- Human review authority: `docs/review/beat2-composition-board.md`
-- H0 authority: `artifacts/beat2-composition-board-result.json`
-- Screenshots: 900x1200 Dark と 1280x900 Light の二点
-
-### Preserved: Beat 2 Visual Treatment Pilot
-
-- Artifact: `fff-beat2-visual-treatment-pilot-001`
-- Lane: `VISUAL_TREATMENT_PILOT`
-- Standalone page: `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html`
-- Canonical model: `artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.json`
-- Provenance: `reference-sources.csv`
-- Shot mapping: `shot-reference-map.csv`
-- Local references: `references/` の six JPEGs
-- Contact sheet: `beat2-visual-treatment-contact-sheet.jpg`
-- Integrity: `beat2-visual-treatment-manifest.json`
-- Human review authority: `docs/review/beat2-visual-treatment-pilot.md`
-- H0 authority: `artifacts/beat2-visual-treatment-pilot-result.json`
-- Screenshots: 900x1200 Dark と 1280x900 Light の二点
-
-Blueprint route には compact な `Beat 2 ビジュアル参照` link が一つだけあります。pilot は permanent application mode ではありません。
-
-### Protected planning and execution sources
-
-| Source | Role | Current state |
+| Before | Transition | After |
 | --- | --- | --- |
-| `fff-production-storyboard-brief-001` | Complete 6-beat / 19-shot planning authority | 7 source files byte-identical。H1全体再レビューは現在の入口ではない |
-| `fff-production-execution-pack-001` | Operational / audit authority | 9 files、180s、19 shots、20 subtitles、6 narration、14 requirements を保持 |
-| `fff-operator-production-brief-typography-balance-001` | Accepted human-facing production brief | H1 judgment A 済み。title-only hierarchy repair complete |
-| `fff-content-production-blueprint-001` | Quantitative machine/audit source | 1920x1080 / 16:9 / 30fps provisional profile、LOCKED / BOUNDED / FREE を保持 |
-| `fff-editorial-derivative-preview-001` | Three accepted wording changesのreversible copy | source not applied、derived copy only |
-| Revision / Handoff / Bridge chain | Manual editorial transfer and source history | immutable baselineとして保持 |
+| Beat 2とBeat 4の6 shotsが具体化済み | Beat 1/3の6 shotsに実画像ベースのcrop/focus/depth/continuityを追加 | Beats 1–4の12/19 shotsが具体化済み |
+| Beat 4の別reviewが次gateという旧forward policy | Owner Review結果をcurrent authorityへ反映 | per-Beat reviewer/blind reviewを終了、次reviewを19-shot統合後へ移動 |
+| Active artifact `fff-beat4-composition-counterexample-001` | predecessorをbyte-preservedのままsuccessor登録 | Active artifact `fff-composition-expansion-wave1-001` |
+| Beat 1/3はplanning framesとsource rowsのみ | 12 local licensed rasters、12 assignments、6 distinct classes | standalone composition review surfaceとmachine evidenceを獲得 |
 
-Production Execution Pack の四つの `proxy_headroom_confirmed` は人間の読み上げによる text-density proxy です。synthetic engine timing の実測ではありません。B2/B5 は `existing_pass_unmeasured` のままです。
+## Owner Review policy
 
-## Active H0 evidence
+- Beat 4 review: `OWNER_REVIEW_PASS`
+- User observation: 「大きな破綻はなさそう」
+- Disposition: composition expansion authorized
+- Evidence boundary: product-owner directional acceptanceであり、independent transfer proofではない
+- Per-Beat external review required: false
+- Per-Beat blind review: discontinued
+- Wave 1 human review: none
+- Next human review: complete integrated 19-shot visual packageの後
+- External reproducibility: not yet claimed
+- Beat 4 repair: not required
 
-| Evidence | Current readback |
-| --- | --- |
-| Package | 13 files、12 manifest payloads、fingerprintは `artifacts/beat2-composition-board-result.json` を正本とする |
-| Story window | Beat 2 / `00:20–00:50` / exactly 3 sequential shots |
-| Reference structure | 6 distinct local rasters、7 assignments、main 3 / supporting 4 |
-| Provenance | creator、source page、media URL、license name/URL、dimensions、retrieval date、local SHA256 |
-| Rights honesty | 6/6 `reference_only=true`、`selected_for_production=false`、`rights_cleared_claim=false` |
-| Image hygiene | hotlink 0、distinct-image duplicate hash 0、remote image 0。蛾1枚はsame IDでShot 2/3に反復 |
-| Layout | desktop main-image minimum share `0.8426923433837724`、equal-height max delta 0px、horizontal overflow false、nested scroll 0 |
-| 900x1200 Dark | title 37.8px / 1 line、screenshot SHA256 `00f9c488ed1850cd8160fd1622c43977e459a350ca4b0e2219cb3d55c69c6d2b` |
-| 1280x900 Light | title 44px / 1 line、screenshot SHA256 `e223965b3a4a9820d3fb13aabd7ae1e767800dcc9b868821b51e7b1331fe2e50` |
-| Theme | Auto default、explicit Light/Dark、system resolution evidenceあり |
-| Print | light forced、utilities static、shot break avoidance。pagination successはclaimしない |
-| Negative probes | 22/22 pass and fail closed |
-| Source protection | Visual Treatment 13 / Storyboard 7 / Execution 9 files unchanged |
-| Result | `passed=true`、`failures=[]`、warnings 0 |
+Historical evidenceの旧review用語は書き換えていません。current authorityとforward planだけを新policyへ更新しています。
 
-H0 が証明するのは package integrity、provenance、layout、source protection、closed boundaries です。H0 単独では、reference choice が創作的に適切か、三つのshotが説明なしで伝わるか、別制作者が再現できるかを証明しません。今回のH1はこのうちBeat 2三shotの転送可能性を `3/3` で補いましたが、完成画の品質、実制作コスト、motion polish、別Beatへの一般化はまだ証明していません。
+## Wave 1 deliverable
 
-## Acceptance ladder
+### Scope
 
-| Level | Meaning | Current state | Authority |
+- Beat 1 `00:00–00:20`: `shot-b01-01`, `shot-b01-02`, `shot-b01-03`
+- Beat 3 `00:50–01:20`: `shot-b03-01`, `shot-b03-02`, `shot-b03-03`
+- Exact total: 2 Beats / 6 shots / 50 seconds
+- References: 12 distinct local JPEGs / 12 assignments / one unique main and one support per shot
+- Composition classes: 6 distinct
+
+### Primary package
+
+- `artifacts/composition-expansion-wave1/README_COMPOSITION_EXPANSION_WAVE1.md`
+- `artifacts/composition-expansion-wave1/composition-expansion-wave1.html`
+- `artifacts/composition-expansion-wave1/composition-expansion-wave1.json`
+- `artifacts/composition-expansion-wave1/reference-sources.csv`
+- `artifacts/composition-expansion-wave1/shot-composition-map.csv`
+- `artifacts/composition-expansion-wave1/composition-expansion-wave1-manifest.json`
+- `artifacts/composition-expansion-wave1/composition-expansion-wave1-contact-sheet.jpg`
+- `artifacts/composition-expansion-wave1/composition-assets/` の正規化JPEG 12点
+
+### Evidence
+
+- `docs/review/composition-expansion-wave1.md`
+- `artifacts/composition-expansion-wave1-result.json`
+- `artifacts/review-screens/composition-expansion-wave1-900x1200-dark.png`
+- `artifacts/review-screens/composition-expansion-wave1-1280x900-light.png`
+
+## Six-shot composition audit
+
+| Shot | Composition class | Main visual purpose | Truth-safe stop |
 | --- | --- | --- | --- |
-| H0 | Deterministic package / integrity / layout / boundary checks | pass | repository validators and result JSON |
-| H1 | Beat 2 human composition-transfer comprehension | pass `3/3 = 1.0` | independent transfer record in `docs/review/beat2-composition-board.md` |
-| H2a | Beat 4 Composition Counterexample | proposed / not authorized / not started | human supervisor + future independent reviewer |
-| H2b | Production choice: assets, rights, voice, engine | closed | explicit owners and separate authorization |
-| H3 | Offline assembly / production candidate | not started | production implementer + human editor |
-| H4 | Release approval / publication | closed | human product, rights, canon, and release owners |
+| b01-01 | station/tower establishing depth | 駅の奥行きから遠景の空枠へ視線を上げる | 鐘、機械、人物を原因として示さない |
+| b01-02 | empty mount architectural detail | 木組み・接合部の不在をcloseで確認する | 撤去理由やwinter curfewを証明しない |
+| b01-03 | unresolved frame/noon hold | 空枠と正午標を固定保持して問いを残す | 魔法・機械・人物の答えを置かない |
+| b03-01 | anonymous ledger opening insert | 匿名の手と開かれる本で調査対象を置く | 所有者、真正性、有罪を確定しない |
+| b03-02 | fictional ledger relation graphic | blank bookとぼかしたcolumn geometryから架空挿入を制作 | 実在台帳、実在名、証拠文書として見せない |
+| b03-03 | staged record-fade metaphor | 紙とインクの段階的減衰を比喩として示す | literal erasure、人物消失、超自然的主体を証明しない |
 
-## 完成度の見立て
+Beat 1 continuityは location → absence → unresolved noon hold、Beat 3 continuityは ledger encountered → relationship inspected → absence visualized です。Shot 2 structured graphicとShot 3 dissolve metaphorを同じtemplateへ畳まず、Wave 1の各main compositionも一意です。
 
-これは承認率ではなく、残作業量と dependency depth の planning estimate です。
+## Reference and license audit
 
-- Beat 2 Composition Board: `[██████████] 100%` as the accepted bounded Beat 2 checkpoint
-  - H0、13-file package、provenance、browser、print、22 probes、three-package source protection、H1 `3/3` は完了
-  - weak shot、repair target、`COMPOSITION_SPECIFICITY_BLOCKER` はなし。別Beatへの一般化は別slice
-- Beat 2 Visual Treatment Pilot: `[██████████] 100%` as preserved predecessor
-  - package bytes と validation authority を変更せず Composition Board の source として保持
-- Visual-treatment pattern for all 19 shots: `[██░░░░░░░░] 20%`
-  - 3/19 shots だけが実referenceで具体化済み
-  - Beat 2 固有の成功を全体 template の成功とはまだ見なせない
-- Local-first review / editorial / planning MVP: `[████████░░] 82%`
-  - extraction guards、review、revision、handoff、blueprint、execution、storyboard が接続済み
-  - real provider、durable state、production assembly は未実装
-- First reproducible offline candidate: `[████░░░░░░] 40%`
-  - 180-second plan とpackage contractはある
-  - selected/cleared media、calibrated voice、assembly recipe、render evidence がない
-- End-to-end publishable fiction factory: `[███░░░░░░░] 30%`
-  - releaseに必要なplanning evidenceはある
-  - rights、canon、production approval、publishing controls、operational feedback loop は未開始
+12 referencesすべてにreference ID、creator、source page、original media URL、license name/URL、retrieval date、original/normalized dimensions、local path、SHA256、used shot、role、boundary flagsがあります。許可classはCC0、CC BY、CC BY-SA、author-dedicated public domainだけです。original useful longest edgeは900px以上、normalized longest edgeは1600px以下、aspect ratio維持、upscaleなし、metadata除去済みです。
 
-## 最大の delivery gap
+検索結果screenshot、hotlink、曖昧license、watermark、account gate、actual personal recordのfictional evidence化、identifiable wrongdoer、低解像度upscaleを使用していません。実鐘を写すtower、機構やweightを写すtower、RGB filterの擬似ink、AI生成old paper、実project ledger、鐘が見えるexterior belfryは棄却しました。
 
-最大のgapは、機械検証の不足ではなく「一つの成功した planning/reference slice を、再現可能な全作品 production system へ変換する途中」であることです。
+## Validation and evidence
 
-1. Beat 2 page の human transfer quality は判定済みだが、別Beatへ一般化できるかは未判定。
-2. concrete visual treatment は 3/19 shots に限定。
-3. reference は production selection / rights clearance ではない。
-4. synthetic narration は engine-neutral proxy のみ。
-5. 180秒 offline assembly と reproducible render がない。
-6. final truth / canon / release authority は人間に保持されたまま。
-7. provider-backed extraction、durable state、job orchestration、publishing adapter は別laneで未実装。
+Targeted V3 pathは次を対象にします。
 
-## Residual Work
+1. modified/new Node tool syntax
+2. Wave 1 normal read-only validator
+3. preserved Beat 2 Board validator
+4. preserved Beat 4 Counterexample validator
+5. preserved Visual Treatment validator
+6. preserved Storyboard validator
+7. preserved Execution validator
+8. ten predecessor pre/post directory hashes
+9. provenance/license/duplicate/near-duplicate audit
+10. six composition classes and two Beat continuity chains
+11. 40 fail-closed non-mutating negative probes
+12. root manifest registration and read-only chain
+13. proof that normal validation changes no tracked artifact
+14. HTML inline-script compilation
+15. 900x1200 Dark and 1280x900 Light browser captures
+16. Auto default, explicit Light/Dark, visible keyboard focus
+17. document-only vertical scroll, no horizontal overflow, no nested scroll
+18. print-forced light, theme controls hidden, shot break avoidance
+19. strict MkDocs build
+20. diff/staged-path/push/parity checks
 
-各行は Purpose / Effect / Requirements / State / Owner / Next move を保持します。
+Full historical suiteは実行しません。通常validatorはread-onlyです。Smokeが書けるのは新Wave 1 manifest/resultだけで、取得済みreference bytesは書き換えません。
+
+## Source immutability
+
+Wave 1 model/resultは、次の10 directoryについてfile-level inventoryとaggregate SHA256を保持します。
+
+- `artifacts/beat2-composition-board` — 13 files
+- `artifacts/beat2-visual-treatment-pilot` — 13 files
+- `artifacts/beat4-composition-counterexample` — 14 files
+- `artifacts/production-storyboard-brief` — 7 files
+- `artifacts/production-execution-pack` — 9 files
+- `artifacts/operator-production-brief` — 6 files
+- `artifacts/production-blueprint` — 8 files
+- `artifacts/editorial-derivative` — 8 files
+- `artifacts/editorial-revision` — 6 files
+- `artifacts/editorial-handoff` — 6 files
+
+Wave 1 validationはmodelに固定した期待値とlive directory bytesを比較します。historical result artifacts、`public/review/index.html`、既存route、predecessor packagesは変更しません。
+
+## Closed boundaries
+
+- `local_only=true`
+- `reference_only=true`
+- `selected_for_production=false`
+- `rights_cleared_claim=false`
+- `image_generation=false`
+- `production_approved=false`
+- `render_ready=false`
+- `content_changed=false`
+- `timing_changed=false`
+- `final_canon_decision=false`
+- `full_story_expansion=false`
+- `beats_5_6_touched=false`
+- `external_reproducibility_claimed=false`
+
+## 最遠安全目標
+
+### G0 — Wave 1 publication and parity
+
+Wave 1 package、result、current authorityを一つの指定product commitで`origin/master`へ公開し、remote equality、parity `0 0`、clean worktreeを確認する。これは本Workerの最終postconditionです。
+
+### G1 — Wave 2 execution contract approval
+
+残り7 source shots（Beats 5/6）だけを対象とするexecution contractをowner/supervisorが承認する。必要条件はexact source rows、licensed local raster policy、distinct composition classes、continuity plan、immutable predecessor contract、truth/rights/canon closed flagsです。未承認の間はdata-only proposalに留めます。
+
+### G2 — Wave 2 H0 implementation
+
+G1承認後、Beats 5/6をreal local raster referencesで具体化し、9–14等のreference数は新contractでshot数に比例して再定義します。Wave 1やpredecessorを変更せず、同じread-only/negative/browser/print evidenceを作ります。人手reviewはまだ行いません。
+
+### G3 — Integrated 19-shot visual package
+
+Wave 1、Beat 2、Beat 4、Wave 2のconcrete compositionを一つの19-shot reading flowへ統合します。重複template、主画像重複、Beat間eye path、visual density、color/material continuity、subtitle allowance、truth boundaryを全編で監査します。この統合物は制作採用ではありません。
+
+### G4 — Integrated human review
+
+exact integrated artifact/hashを固定し、人間ownerまたは監修AIが全19 shotsを一度だけreviewします。判定対象はcomposition intelligibility、Beat内/Beat間continuity、material difference、critical semantic misread、blocking questionsです。rights、production、release acceptanceと混同しません。
+
+### G5 — Production candidate and rights gate
+
+G4 acceptance後も別権限で、各shotのproduction candidate選定、license attribution/compatibility、人物/施設risk、derivative obligations、replacement needsを判断します。reference acceptanceはrights clearanceを意味しません。
+
+### G6 — Asset construction proof
+
+選定と権利gateが通ったshotだけで、local deterministic compositingまたは別途承認されたgeneration workflowを実施し、actual construction effort、motion feasibility、subtitle-safe areas、render costを測ります。provider/API、credentials、external callは明示承認なしに開始しません。
+
+### G7 — Render/release readiness
+
+engine/voice/audio、final motion、render profile、quality control、upload/publication、database/canon、release acceptanceはそれぞれ独立gateにします。G0–G6のpassだけで自動的に開きません。
+
+## Active residual work
 
 | Work | Purpose | Effect | Requirements | State | Owner | Next move |
 | --- | --- | --- | --- | --- | --- | --- |
-| Beat 2 H1 review | 別制作者への構図伝達を実測 | Boardのtransfer qualityを根拠付きでclose | standalone Board blind pass、全3shot、authority/Pilotは解釈freeze後に比較 | complete / PASS `3/3` | independent reviewer | H1を再実施せず、evidence matrixを正本として保持 |
-| Beat 2 closeout | 根拠のないmicro-tuningを防ぐ | accepted bounded checkpointを固定 | weak shot 0、repair target 0、product artifact bytes不変 | complete / no-op | product implementer + H1 reviewer | Boardを保持し、矛盾する新証拠がない限り修正しない |
-| Pattern generalization | Beat 2固有のdesignを汎用contractと誤認しない | full-story expansion前にtemplateのtransferabilityを検証 | 監修者の明示承認、Beat 4だけ、同じblind acceptance contract、source不変 | proposed / not authorized / not started | human supervisor + visual direction owner + implementer | G2 Beat 4 Composition Counterexampleを一回だけ承認するか判断 |
-| Full 19-shot treatment | 全体のvisual treatmentを一貫化 | offline assembly前のshot-level directionが揃う | pattern pass、all references remain reference-only、source timing immutable | 3/19 shots concrete | visual director + asset curator | pattern承認後にbeat単位でexpand |
-| Asset / rights intake | generic requirementsをproduction candidatesへ変える | shotへreal mediaを割り当て可能 | separate H2 authorization、provenance、license/use review、replacement path | 14/14 unselected / not_reviewed | producer + rights reviewer | one requirement sandboxから開始 |
-| Synthetic voice calibration | proxy timingをengine evidenceへ置換 | pronunciation / pause / prosody / actual durationを計測 | one authorized local engine/voice、unchanged narration、non-release label | not started | voice implementer + human listener | calibration packetを先に定義 |
-| Offline assembly | 180秒timelineを一度組む | missing assets、timing conflict、subtitle readability、render costを実測 | selected sandbox media、voice evidence、local render authorization、watermark | not started | production implementer + editor | low-resolution no-publish rehearsal |
-| Canon decisions | 最小限のstory truthを人間が確定 | ending-sensitive production choiceが可能 | explicit packet、affected artifacts、rollback、no silent promotion | Toma / moth / Council / ending held | human author | offline candidateが要求する最小decisionだけを提示 |
-| Provider adapter | deterministic extractionをreal providerで補完 | candidate throughputとcoverageを向上 | provider/model/endpoint/credentials/transport/timeout/retry/external-call approval | no-call boundary only | product owner + AI/security implementers | record/replay interfaceをcredentialsなしで先行設計 |
-| Durable state | browser/local JSONをversioned storageへ移行 | recovery、migration、backup、multi-session audit | storage choice、schema version、migration、backup、no silent canon | not started | product implementer | isolated SQLite/file-backed spikeを比較 |
-| Production orchestration | workflowをresumable job graph化 | partial rerun、cache、failure recovery、provenance | stable assembly/provider/state contracts、idempotency、human checkpoints | not started | pipeline implementer | one-project no-publish graphを定義 |
-| Release controls | productionと公開判断を分離 | dry-run、metadata preview、approval、rollbackが監査可能 | rights/canon/production approval、credential isolation、platform policy | explicitly closed | release owner + publishing implementer | no-call publication envelopeを設計 |
+| Wave 2 proposal | 残り7 shotsの次sliceを安全に定義 | 19/19へ向かう欠落を可視化 | exact scope、source authority、reference budget、closed boundaries | data only / not authorized | supervisor + product owner | G0後にproposalをreview |
+| Wave 2 implementation | Beats 5/6を構図具体化 | 19-shot integrationの入力を完成 | G1 explicit authorization | blocked by authority, not technical failure | future worker | 許可後だけ開始 |
+| 19-shot integration | 全編continuityを一つのartifactへ集約 | integrated human reviewが可能 | Wave 2 H0 accepted | future | future worker | G2後に実装 |
+| Integrated human review | 全編のtransfer/intelligibilityを判定 | production候補gateの根拠 | exact artifact/hash、review protocol | owner gate | human owner / supervising AI | G3後だけ実施 |
+| Production selection and rights | 実制作に使うassetを決める | reference-only境界を越える可能性 | explicit selection and rights authority | closed | human owner / rights owner | G4後も別承認 |
+| Generation/render/release | 完成媒体を作り公開する | product delivery | provider/credential/render/release authorization | closed | production and release owners | 前gateが通っても自動開始しない |
 
-## Goal Horizon
+## 監修AIへの判断依頼
 
-### G0 — Beat 2 Human Composition-Transfer Review
-
-- Purpose: Boardだけで三つのshotのcrop、focal order、depth、placement、referenceの借用範囲が伝わるか確認する。
-- Effect: 現在唯一のblocking product uncertaintyを解消する。
-- Requirements: project docsや口頭補足を見せず、自由文で説明してもらう。
-- State: complete; H0 green、H1 `3/3 = 1.0`、`H1_COMPOSITION_TRANSFER_PASS`。
-- Owner: independent reviewerが判定を記録済み。human supervisorはsuccessor authorizationを所有。
-- Next move: H1を再実施せず、`docs/review/beat2-composition-board.md`のevidence matrixを正本として保持。
-
-### G1 — Close the Composition Board with Evidence-Bounded Repair
-
-- Purpose: H1結果をdurable acceptanceへ変換する。
-- Effect: Composition Boardを終わらせ、無限のvisual micro-tuningを防ぐ。
-- Requirements: passならno-op closeout、非blocker failなら観測された弱いshotだけを一回修正、blockerならAI generationを開かず停止。
-- State: complete as no-op closeout; weak shot 0、Board repair 0。
-- Owner: product implementer + H1 reviewer。
-- Next move: Boardをaccepted Beat 2 checkpointとして保持し、根拠なしのmicro-tuningを行わない。
-
-### G2 — Beat 4 Composition Counterexample
-
-- Purpose: Beat 2向けpatternがBeat 4の異なるvisual problemでも成立するか反証テストする。
-- Effect: 19shot全展開前にoverfitを検出できる。
-- Requirements: Beat 4だけ、同じprovenance/role/layout/H1 contract、source不変。19-shot展開や画像探索を同時に始めない。
-- State: recommended from H1 pass; not authorized or started。
-- Owner: visual direction owner + product implementer。
-- Next move: 監修者が明示承認した後だけ、Beat 4のbounded counterexampleを別sessionで開始する。
-
-### G3 — Full 19-Shot Visual Treatment Contract
-
-- Purpose: complete storyboardをconcrete reference-led directionへ変える。
-- Effect: 別制作者が全180秒を一貫したvisual systemとして準備できる。
-- Requirements: G0–G2、beat-level batching、reference-only honesty、held truth、rights非承認。
-- State: 3/19 shotsのみ具体化。
-- Owner: visual director + implementer + asset curator。
-- Next move: template acceptance matrixとper-beat stopping ruleを定義。
-
-### G4 — Asset and Rights Readiness Sandbox
-
-- Purpose: referenceとproduction candidateの間を安全につなぐ。
-- Effect: selectedとrights-clearedを混同せずreal media intakeを検証できる。
-- Requirements: separate H2 authorization、creator/source/license/use/attribution記録、reject/replace/rollback。
-- State: closed; 14/14 requirements unselected / not_reviewed。
-- Owner: producer / asset curator / rights reviewer。
-- Next move: one requirementだけをsandbox intake。
-
-### G5 — Local Synthetic Voice Calibration
-
-- Purpose: engine-neutral text-density proxyを実engine measurementへ置換する。
-- Effect: pronunciation、pause、prosody、B1–B6 duration/headroomが分かる。
-- Requirements: one engine/voice authorization、unchanged narration、local-only、non-release audio。
-- State: closed; engine/voice/audio unselected。
-- Owner: voice implementer + human listener。
-- Next move: one-engine calibration packetとpass/fail thresholdsを定義。
-
-### G6 — Offline 180-Second Assembly Rehearsal
-
-- Purpose: publishせずvoice、subtitles、19 shotsを一度組む。
-- Effect: timeline conflict、edit cost、missing media、subtitle readability、render reproducibilityを実測する。
-- Requirements: G3–G5 evidence、local render authorization、watermark、deterministic manifest。
-- State: not started。
-- Owner: production implementer + human editor。
-- Next move: low-resolution no-publish candidateをacceptance targetにする。
-
-### G7 — First Production-Ready Local Candidate
-
-- Purpose: story、editorial、visual、voice、rights evidence、render recipeを一候補へ束ねる。
-- Effect: planning completeからreproducible pre-release candidateへ進む。
-- Requirements: G0–G6、production approvalとrelease approvalの分離、rollback/provenance manifest。
-- State: not started。
-- Owner: human product owner + production implementer。
-- Next move: candidate acceptance matrixを実装前に確定。
-
-### G8 — Minimum Human Canon Gate
-
-- Purpose: candidateが本当に必要とするstory truthだけを人間が決める。
-- Effect: 制作仮説とcanonを混同せず、不要なpremature decisionを避ける。
-- Requirements: explicit decision、before/after evidence、affected artifacts、rollback、no silent promotion。
-- State: Toma fate、brass moth truth/function、Council motive、ending truth held。
-- Owner: human author / canon owner。
-- Next move: G7が要求する最小decision packetだけを作る。
-
-### G9 — Guarded Provider-Backed Extraction
-
-- Purpose: local deterministic extractionをsource-tracked provider outputで補完する。
-- Effect: candidate throughputを上げながらhuman authorityとfail-closed guardを維持する。
-- Requirements: provider/model/endpoint/credential/transport/timeout/retry/external-call authorization、record/replay fixtures、existing source-span/conflict gates。
-- State: interfaces and no-call readiness exist; live adapter not started。
-- Owner: product owner + AI implementer + security owner。
-- Next move: credentialsを触らないadapter interfaceとreplay contractを先行。
-
-### G10 — Durable Versioned Project State
-
-- Purpose: browser storageとmanual JSONを越えてproject stateを保持する。
-- Effect: backup、migration、recovery、multi-session auditが可能になる。
-- Requirements: file-backed / SQLite / browser expansionの比較、schema version、migration、backup/export、write concurrency、no silent canon。
-- State: not started。
-- Owner: product implementer。
-- Next move: provider/publishingと分離したlocal storage spike。
-
-### G11 — Reproducible Production Orchestration
-
-- Purpose: extraction、review、revision、asset intake、voice、renderをresumable job graphにする。
-- Effect: partial rerun、failure recovery、cache、artifact provenance、cost/time observationが可能になる。
-- Requirements: G7/G9/G10 stable contracts、idempotency、job state、human checkpoints。
-- State: not started。
-- Owner: pipeline implementer + product owner。
-- Next move: one project / no publish / one render candidate限定のgraphを定義。
-
-### G12 — Publishing Staging and Release Gate
-
-- Purpose: upload操作と公開判断をproduction pipelineから分離する。
-- Effect: metadata preview、private/unlisted staging、release approval、rollbackを監査可能にする。
-- Requirements: credential isolation、rights clearance、canon/production approval、platform policy、dry-run、human release decision。
-- State: explicitly closed。
-- Owner: human release owner + publishing implementer。
-- Next move: API callなしのpublication envelopeを先に作る。
-
-### G13 — First Human-Approved Release
-
-- Purpose: 一作品をstory authority、rights、production、publicationの全gateを通して公開する。
-- Effect: Fast Fiction Factoryのend-to-end valueと実運用costを検証する。
-- Requirements: G7/G8/G11/G12、final approvals、release evidence、rollback/retention plan。
-- State: not started。
-- Owner: human author / product owner / release operator。
-- Next move: release前acceptance reportとapproval owner一覧を生成。
-
-### G14 — Multi-Project / Series Learning Loop
-
-- Purpose: 一作品の結果を複数作品・seriesへ安全に拡張する。
-- Effect: style reuse、series canon、asset reuse、review latency、production cost、release qualityを継続改善できる。
-- Requirements: project isolation、series canon hierarchy、credential separation、metrics taxonomy、override、retention/privacy policy。
-- State: long-term horizon。
-- Owner: product owner + platform/editorial/production leads。
-- Next move: G13後の実測bottleneckだけをKPI化し、先回りしたplatform化を避ける。
-
-## 推奨クリティカルパス
-
-`G0 Beat 2 H1（完了）→ G1 pilot close（完了）→ G2 Beat 4 Composition Counterexample（次の承認候補、未開始）→ G3 full 19-shot treatment → [G4 asset/rights + G5 voice] → G6 offline assembly → G7 local candidate → G8 minimum canon → G11 orchestration → G12 release gate → G13 first release → G14 learning loop`
-
-G9 provider extraction と G10 durable state は platform lane として G1 後に並行設計できます。ただし、現作品の G2–G7 を provider や database 待ちにする必要はありません。反対に、provider/db の存在をproduction readinessやcanon acceptanceの証拠にしてはいけません。
-
-## 監修 AI に求める判断
-
-1. 完了した G0 Beat 2 H1を再実施せず、`3/3`のevidence recordを保持すること。
-2. full 19-shot expansionへ直行せず、G2 Beat 4 Composition Counterexampleを一回だけ承認するか判断すること。推奨は承認する。
-3. G2 pass後、G3全体展開とG4 one-requirement rights sandboxの順序を承認すること。
-4. G5 voice calibrationをG4と並行するか、visual package完了後にするか判断すること。
-5. G8 human-owned truthをG7候補が要求する最小範囲までheldに保つこと。
-6. G9/G10をproduction laneから分離し、credential、provider、databaseがcurrent deliveryを乗っ取らないようにすること。
-
-推奨は、完了したBeat 2 H1をcloseし、次sessionでBeat 4だけを使ってpatternを反証テストする経路です。これにより、Beat 2固有の成功を19shot全体へ早まって一般化せず、source contractとrights/canon boundariesを保ったまま、offline assemblyへ最短距離で進めます。本authority-integration sessionではBeat 4を開始しません。
-
-## Restart commands
-
-```powershell
-git fetch --prune origin
-git switch codex/beat2-h1-handoff
-git pull --ff-only
-git rev-list --left-right --count "HEAD...@{u}"
-git status --short --branch
-
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
-Invoke-Expression $manifest.validation_command
-
-uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"
-.\scripts\operator\open_review.ps1 -Mode blueprint -PrintUri
-Select-String -Path .\docs\review\beat2-composition-board.md -Pattern "H1 independent transfer result" -Context 0,40
-```
-
-H1 completed record は `docs/review/beat2-composition-board.md`、live H0 result は `artifacts/beat2-composition-board-result.json` を正本とします。Visual Treatment Pilot は immutable predecessor です。通常のhealth checkでは `smoke-*` regenerationを使わず、root manifestのread-only validationを使います。新規cloneでlocal branchがない場合は `git switch --track origin/codex/beat2-h1-handoff` を使います。
+現時点で新たな人手reviewや修正判断は不要です。まずWave 1のpublished Git stateとmachine evidenceを受領してください。その後、G1のWave 2 execution contractを発行するか、data-only proposalを先に精査するかを決めてください。Beat 5/6実装、19-shot統合、production/rights/generation/render/releaseへは、対応するowner authorityなしに進めないでください。

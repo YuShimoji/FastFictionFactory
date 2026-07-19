@@ -1,5 +1,21 @@
 # Artifacts
 
+## fff-composition-expansion-wave1-001
+
+- Title: Fast Fiction Factory Composition Expansion Wave 1
+- Purpose: Make the exact Beat 1 and Beat 3 source shots concrete with licensed local raster references while preserving source story, timing, truth, rights, selection, and canon states.
+- Primary file: `artifacts/composition-expansion-wave1/composition-expansion-wave1.html`
+- Package directory: `artifacts/composition-expansion-wave1/` (19 files including manifest, twelve normalized local JPEG references, and contact sheet)
+- Source artifacts: Beat 2 Board, Beat 4 Counterexample, Visual Treatment, Storyboard, Execution, Operator Brief, Blueprint, Derivative, Revision, and Handoff packages remain byte-identical.
+- Review doc/result: `docs/review/composition-expansion-wave1.md`, `artifacts/composition-expansion-wave1-result.json`
+- Visual evidence: `artifacts/review-screens/composition-expansion-wave1-900x1200-dark.png`, `artifacts/review-screens/composition-expansion-wave1-1280x900-light.png`, `artifacts/composition-expansion-wave1/composition-expansion-wave1-contact-sheet.jpg`
+- Composition contract: exactly Beats 1 and 3 / six source shots / 50 seconds / six distinct composition classes / one unique main plus one support per shot / twelve total assignments.
+- Reference contract: 12 distinct local rasters with complete creator, source page, original media, license, retrieval date, original/normalized dimensions, path, SHA256, and use metadata; all reference-only, unselected, not rights-cleared, and not AI-generated.
+- Owner policy: Beat 4 is `OWNER_REVIEW_PASS` with observation「大きな破綻はなさそう」; expansion is authorized, per-Beat blind review is discontinued, Wave 1 has no human gate, and the next human review follows complete 19-shot integration.
+- Read-only validation: `node tools/fff-state.mjs validate-composition-expansion-wave1 artifacts/composition-expansion-wave1-result.json`
+- Intentional regeneration: `node tools/fff-state.mjs smoke-composition-expansion-wave1 artifacts/composition-expansion-wave1-result.json` writes only the new manifest and result; it does not rewrite acquired JPEGs.
+- State: Local/reference-only H0. Beats 1–4 now have 12/19 concrete compositions. Beats 5/6, final integration, production selection, rights clearance, generation, render, publication, database, production approval, canon, and external reproducibility remain closed.
+
 ## fff-beat4-composition-counterexample-001
 
 - Title: Fast Fiction Factory Beat 4 Composition Counterexample

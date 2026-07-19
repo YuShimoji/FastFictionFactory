@@ -1,33 +1,33 @@
 # Project Context
 
-## Active Beat 4 Counterexample Axis
+## Active Composition Expansion Wave 1 Axis
 
-The active artifact is `fff-beat4-composition-counterexample-001`, a standalone H0 reference-only Composition Counterexample for Beat 4「評議会の影」(`01:20–01:45`). It contains exactly three source-authorized shots and tests three different composition classes: anonymous institutional depth, equal-weight abstract comparison, and environment-plus-document tension. Six local raster references carry creator/source/media/license/dimension/hash provenance; none is selected for production and no rights-clearance claim is made.
+The active artifact is `fff-composition-expansion-wave1-001`, a standalone local/reference-only H0 composition package for Beat 1「鐘のない塔」(`00:00–00:20`) and Beat 3「消された名前」(`00:50–01:20`). It represents exactly six source-authorized shots with twelve licensed local raster references, twelve assignments, six unique main images, and six materially distinct composition classes. Together with the preserved Beat 2 and Beat 4 packages, concrete composition coverage is now 12 of 19 source shots across Beats 1–4.
 
-The preceding `fff-beat2-composition-board-001` H1 pass remains evidence for Beat 2 only. The Beat 4 H1 guide is present but unperformed and unfilled. This H0 does not establish global 19-shot generalization, final motion quality, render readiness, production approval, rights clearance, or canon. Beat 2 Board, Visual Treatment, Storyboard, and Execution packages remain byte-protected sources.
+Owner Review records Beat 4 as `OWNER_REVIEW_PASS` with the observation「大きな破綻はなさそう」and authorizes composition expansion. This is directional product-owner acceptance, not independent transfer proof. Per-Beat external review is no longer required, per-Beat blind review is discontinued, Wave 1 has no human review gate, and the next human review occurs only after a complete integrated 19-shot visual package exists. External reproducibility is not yet claimed and Beat 4 repair is not required.
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current product checkpoint remains `fff-beat2-composition-board-001`: a standalone, reference-only Composition Board for Beat 2, **真鍮の蛾** (`00:20–00:50`). Its independent H1 transfer review is complete: all three production shots were reconstructed without blocking clarification, matched intended composition, required materially fewer assumptions than `fff-beat2-visual-treatment-pilot-001`, and passed `3/3 = 1.0` as `H1_COMPOSITION_TRANSFER_PASS`. Storyboard, Execution, Pilot, wording, timing, IDs, truth, rights, selection, canon, and product artifact bytes remain unchanged.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint advances composition planning without changing the 180-second story, 19 source-shot IDs, timing, narration, subtitles, truth boundaries, asset states, rights states, or canon state. The standalone Wave 1 page makes Beat 1 and Beat 3 crop, placement, focal order, eye path, depth, reference borrowing, motion continuity, staging condition, truth-safe guard, and asset summary operationally visible.
 
 ## Current Lane
 
-Keep the Storyboard Brief as the complete 19-shot planning source, the Production Execution Pack as operational/audit authority, and the Visual Treatment Pilot as the unchanged atmosphere/reference source. The `COMPOSITION_REVIEW` lane has completed H1 for the Board and found no specificity repair. The only recommended successor is one bounded different-Beat counterexample before broader expansion, but that H2 work is not authorized or started. The six images remain references, not selected production assets. Rights clearance, image generation, full-story asset work, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, and final canon remain closed.
+Keep the Storyboard Brief as the complete 19-shot planning source and the Production Execution Pack as operational/audit authority. Beat 2 Board, Beat 4 Counterexample, Visual Treatment, and all editorial/production predecessors remain immutable evidence. The active lane is `COMPOSITION_EXPANSION`; this Wave covers only Beats 1 and 3. Beats 5 and 6, the final integrated 19-shot package, production selection, rights clearance, image generation, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, final canon, and external reproducibility remain closed.
 
 ## Current Slice
 
-The accepted bounded slice is the Beat 2 Composition Board; there is no active product implementation slice:
+The accepted bounded slice is Composition Expansion Wave 1:
 
-- Standalone entry: `artifacts/beat2-composition-board/beat2-composition-board.html`
-- Package: 13 files—README, standalone HTML, canonical JSON, source/license CSV, shot composition CSV, six byte-identical normalized JPEG copies, contact sheet, and integrity manifest
-- Reading order: 真鍮の蛾 → 概要 → 主要要素 → ショット構成 → 保留事項 → 出典
-- Shot contract: exactly 3 sequential full-width strips / 30 seconds; every strip has one main image, one or two supporting images, image-based `構図ラフ`, crop, two focal points, eye path, three depth layers, and adjacent `画面`, `意図`, `尺`, `カメラ`, `成立条件`
-- Differentiation: Shot 1 is working-height hand detail; Shot 2 is a locked near-overhead memo/moth pairing; Shot 3 is an extreme-close watch face with moth/brass two-layer repetition. The moth reference is one shared ID across Shot 2/3, not a duplicated distinct asset
-- Theme/access contract: Auto is default; Light and Dark are explicit; one document owns scrolling; print forces light; both required viewports have no horizontal overflow, no nested scroll, equal-height columns, and main-image visual share above 50%
-- Reference/rights contract: exactly 6 distinct locally stored licensed rasters and 7 shot assignments; every entry records creator, source page, media URL, license, license URL, dimensions, retrieval date, normalized path, and SHA256; all remain reference-only, unselected, and without a rights-clearance claim
-- Review evidence: `docs/review/beat2-composition-board.md`, `artifacts/beat2-composition-board-result.json`, `artifacts/review-screens/beat2-composition-board-900x1200-dark.png`, `artifacts/review-screens/beat2-composition-board-1280x900-light.png`
-- Validation contract: `validate-beat2-composition-board` is read-only; `smoke-beat2-composition-board` intentionally regenerates only the package manifest and result after validating the fixed composition board and binary copies. The result owns hashes, 22 fail-closed probes, source immutability, browser/theme/layout evidence, and print evidence
-- Human boundary: H0 is machine-validated and H1 transfer passed `3/3 = 1.0`. Production ease remains inferred until actual construction; H2 counterexample work, production selection/rights review, and every production gate require separate authorization.
+- Standalone entry: `artifacts/composition-expansion-wave1/composition-expansion-wave1.html`
+- Package: 19 files—README, standalone HTML, canonical JSON, source/license CSV, shot-composition CSV, twelve normalized JPEGs, contact sheet, and integrity manifest
+- Reading order: 鐘のない塔 → 消された名前 → Beat内の連続性 → 出典
+- Shot contract: exactly 6 sequential source shots across Beats 1 and 3; each strip has one unique main image, one supporting image, image-specific crop/focus/depth markup, and all composition-transfer fields
+- Distinct classes: station/tower establishing depth; empty mount detail; unresolved noon hold; anonymous ledger opening; fictional relationship graphic; staged record-fade metaphor
+- Theme/access contract: Auto default, explicit Light/Dark, visible keyboard focus, one document scroll, no horizontal overflow, no nested scroll, image-first narrow layout, and print-forced light
+- Reference/rights contract: exactly 12 distinct locally stored licensed rasters and 12 assignments; every entry records full provenance, dimensions, path, use, and SHA256; all remain reference-only, unselected, not rights-cleared, and not AI-generated
+- Review evidence: `docs/review/composition-expansion-wave1.md`, `artifacts/composition-expansion-wave1-result.json`, and the two required viewport screenshots
+- Validation contract: `validate-composition-expansion-wave1` is strictly read-only; smoke regenerates only the new Wave 1 manifest and result, never acquired source bytes
+- Human boundary: there is no Wave 1 human review. The next human review is deferred until the complete 19-shot visual package is integrated.
 
 Preserved Beat 2 Visual Treatment Pilot source:
 

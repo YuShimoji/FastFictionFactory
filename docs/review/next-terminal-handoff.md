@@ -2,9 +2,9 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-## 監修AI向け Beat 4 H0 引き継ぎ（2026-07-19 JST）
+## 監修AI向け Composition Expansion Wave 1 引き継ぎ（2026-07-19 JST）
 
-Active artifact は `fff-beat4-composition-counterexample-001`、lane は `COMPOSITION_GENERALIZATION` です。Beat 4「評議会の影」`01:20–01:45` の正確な3ショットに対し、6点のローカル参照画像と3つの異なる構図クラスを持つ H0 Composition Counterexample を用意しました。H1は未実施で、`H1_TRANSFER_REVIEW.md` の回答欄・分類欄・合否欄は空です。
+Active artifact は `fff-composition-expansion-wave1-001`、lane は `COMPOSITION_EXPANSION`、実装baseは `a2f61c72680b2a7d9220f4a2d8f05c2e79ac5189` です。Beat 1「鐘のない塔」とBeat 3「消された名前」の正確な6 source shotを、12点のライセンス明示済みローカル参照画像、12 assignments、6 unique mains、6 composition classesで具体化しました。既存のBeat 2/4と合わせ、Beats 1–4の12/19 shotsが具体化済みです。
 
 ### Start here
 
@@ -12,10 +12,10 @@ Active artifact は `fff-beat4-composition-counterexample-001`、lane は `COMPO
 AGENTS.md
 docs/project-context.md
 docs/review/current-status.md
-docs/review/beat4-composition-counterexample.md
-artifacts/beat4-composition-counterexample/README.md
-artifacts/beat4-composition-counterexample/beat4-composition-counterexample.html
-artifacts/beat4-composition-counterexample-result.json
+docs/review/composition-expansion-wave1.md
+artifacts/composition-expansion-wave1/README_COMPOSITION_EXPANSION_WAVE1.md
+artifacts/composition-expansion-wave1/composition-expansion-wave1.html
+artifacts/composition-expansion-wave1-result.json
 artifacts/artifact-manifest.json
 ```
 
@@ -23,16 +23,39 @@ artifacts/artifact-manifest.json
 git fetch --prune origin
 git pull --ff-only
 git status --short --branch
-node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json
+node tools/fff-state.mjs validate-composition-expansion-wave1 artifacts/composition-expansion-wave1-result.json
 node tools/fff-state.mjs validate-beat2-composition-board artifacts/beat2-composition-board-result.json
+node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json
 ```
+
+### Owner Review policy
+
+- Beat 4: `OWNER_REVIEW_PASS`
+- User observation: 「大きな破綻はなさそう」
+- Effect: composition expansion authorized
+- Evidence boundary: owner directional acceptance; independent transfer proofではない
+- Per-Beat external reviewer: required=false
+- Per-Beat blind review: discontinued
+- Wave 1 human review: none
+- Next human review: complete integrated 19-shot visual packageの後だけ
+- External reproducibility: not claimed
+- Beat 4 repair: not required
 
 ### Stopping edge
 
-- Finished in H0: exact 3-shot package, 6 provenance-bearing local references, three structural composition classes, equal-weight Shot 2, institutional anonymity guard, unresolved Shot 3, unfilled H1 kit, machine validation and browser evidence.
-- Next owned gate: a separate reviewer performs Phase A blind reconstruction from the HTML, then Phase B comparison and per-shot classification.
-- Stop: do not prefill H1, automatically repair, expand to 19 shots, select assets, claim rights clearance, generate media, render, publish, or resolve canon.
-- Source protection: Beat 2 Board package fingerprint `4c44089a…`, Visual 13-file aggregate `bea1514a…`, Storyboard 7-file aggregate `bb9d4fce…`, Execution 9-file aggregate `10d36757…` must remain exact.
+- Finished: exactly Beats 1/3 and six shots, 12 provenance-bearing local references, six structural composition classes, Beat continuity, machine validation, browser/theme/focus/print evidence, and immutable predecessor evidence.
+- Next owned gate: owner/supervisorが別途許可した場合のみ、残り7件のBeat 5/6 compositionをdata-only Wave 2として定義し、その後19-shot visual packageへ統合する。
+- Stop: Wave 1直後の人手reviewを要求しない。Beat 5/6、19-shot統合、production selection、rights clearance、generation、render、publish、database、canonへ自動進行しない。
+- Source protection: result内の10 predecessor directory inventory（file count・各file SHA256・aggregate SHA256）を正本とし、post-validationでも一致させる。
+
+### Active residual work
+
+| Work | Purpose | Effect | Requirements | State | Owner | Next move |
+| --- | --- | --- | --- | --- | --- | --- |
+| Wave 2 proposal | 残り7 shotsを具体化する安全な境界を定義 | 19/19統合前の欠落を閉じる | 別承認、Beat 5/6のみ、licensed local references、同じtruth/rights guards | proposed / not authorized | product owner + supervisor | 承認時だけexecution contractを発行 |
+| Integrated 19-shot visual package | 全shotを一つの連続したreview面に統合 | 初めて全編の視覚的連続性を人が判断可能 | Wave 2完了、source immutability、重複/continuity audit | future / gated | future worker | Wave 2 acceptance後のみ実装 |
+| Integrated human review | 全編の構図と連続性を人手判定 | 次のproduction candidate gateへの根拠を作る | exact integrated artifact/hash、review protocol、truth/rights separation | future / owner gate | human owner or supervising AI | 19-shot integration完成後だけ実施 |
+| Production/rights work | 実制作候補と利用条件を確定 | reference-onlyからproduction candidateへ移す可能性 | explicit selection、rights review、provenance acceptance | closed | human owner / rights owner | integrated human acceptance後も別承認 |
 
 ## 監修AI向け Beat 2 H1 完了引き継ぎ（2026-07-17 JST）
 

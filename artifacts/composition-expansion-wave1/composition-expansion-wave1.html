@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="ja" data-theme="auto">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>構図展開 Wave 1 — 鐘のない塔／消された名前</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --bg: #e9e6de;
+      --paper: #f8f4ea;
+      --ink: #1d2328;
+      --muted: #66685f;
+      --line: #c9c1ae;
+      --accent: #8a4b2c;
+      --accent-2: #b5965b;
+      --frame: rgba(255, 243, 189, .92);
+      --shadow: 0 16px 46px rgba(31, 27, 21, .13);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --bg: #101315;
+      --paper: #1a1e20;
+      --ink: #edf0e9;
+      --muted: #aeb4ab;
+      --line: #3a4140;
+      --accent: #e49b72;
+      --accent-2: #d6bc78;
+      --frame: rgba(255, 225, 131, .9);
+      --shadow: 0 18px 54px rgba(0, 0, 0, .3);
+    }
+    @media (prefers-color-scheme: dark) {
+      html[data-theme="auto"] {
+        color-scheme: dark;
+        --bg: #101315;
+        --paper: #1a1e20;
+        --ink: #edf0e9;
+        --muted: #aeb4ab;
+        --line: #3a4140;
+        --accent: #e49b72;
+        --accent-2: #d6bc78;
+        --frame: rgba(255, 225, 131, .9);
+        --shadow: 0 18px 54px rgba(0, 0, 0, .3);
+      }
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--bg); scroll-behavior: smooth; }
+    body { margin: 0; min-width: 0; color: var(--ink); background: var(--bg); font-family: "Yu Gothic UI", "Hiragino Kaku Gothic ProN", system-ui, sans-serif; line-height: 1.68; }
+    main { width: min(1320px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 100px; }
+    .masthead { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: start; padding: 0 0 42px; border-bottom: 1px solid var(--line); }
+    .eyebrow { margin: 0 0 9px; color: var(--accent); font-weight: 800; letter-spacing: .12em; font-size: .78rem; text-transform: uppercase; }
+    h1 { margin: 0; font-family: Georgia, "Yu Mincho", serif; font-weight: 600; font-size: clamp(2.3rem, 6vw, 5.4rem); line-height: .98; letter-spacing: -.04em; }
+    .lead { max-width: 760px; margin: 22px 0 0; color: var(--muted); font-size: 1.02rem; }
+    .themes { display: flex; gap: 4px; padding: 4px; border: 1px solid var(--line); border-radius: 999px; background: var(--paper); }
+    .themes button { border: 0; border-radius: 999px; padding: 7px 11px; color: var(--muted); background: transparent; font: inherit; font-size: .76rem; cursor: pointer; }
+    .themes button[aria-pressed="true"] { color: var(--paper); background: var(--ink); }
+    .themes button:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+    .beat { padding: 72px 0 30px; }
+    .beat-heading { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 540px); gap: 48px; align-items: end; margin-bottom: 32px; }
+    .beat-number { color: var(--accent); font-weight: 800; letter-spacing: .16em; font-size: .74rem; }
+    h2 { margin: 5px 0 0; font-family: Georgia, "Yu Mincho", serif; font-size: clamp(2rem, 4vw, 4rem); font-weight: 600; line-height: 1.06; }
+    .beat-copy { color: var(--muted); margin: 0; }
+    .shot { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(300px, .9fr); gap: 0; margin: 0 0 32px; border: 1px solid var(--line); border-radius: 20px; overflow: clip; background: var(--paper); box-shadow: var(--shadow); }
+    .visual { min-width: 0; padding: 16px; background: #0a0d0f; }
+    .main-image { position: relative; min-height: 500px; aspect-ratio: 16 / 9; overflow: hidden; background: #151819; }
+    .main-image > img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.72) contrast(1.04); }
+    .main-image::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,.24)); pointer-events: none; }
+    .crop { position: absolute; z-index: 3; left: var(--crop-l); top: var(--crop-t); width: var(--crop-w); height: var(--crop-h); border: 2px solid var(--frame); box-shadow: 0 0 0 999px rgba(5,8,9,.16); }
+    .crop::before { content: "CROP"; position: absolute; left: -2px; top: -25px; padding: 3px 7px; color: #101315; background: var(--frame); font-size: .64rem; font-weight: 900; letter-spacing: .12em; }
+    .focus { position: absolute; z-index: 4; left: var(--x); top: var(--y); width: 31px; height: 31px; transform: translate(-50%, -50%); display: grid; place-items: center; border-radius: 50%; color: #111; background: var(--frame); border: 2px solid white; font-weight: 900; font-size: .76rem; box-shadow: 0 4px 16px rgba(0,0,0,.35); }
+    .depth { position: absolute; z-index: 2; left: 8px; bottom: 8px; display: flex; gap: 4px; }
+    .depth span { padding: 4px 7px; color: white; background: rgba(10,12,13,.72); border: 1px solid rgba(255,255,255,.26); font-size: .62rem; letter-spacing: .06em; }
+    .support-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; margin-top: 8px; }
+    .support { position: relative; min-height: 150px; overflow: hidden; background: #111; }
+    .support img { width: 100%; height: 100%; max-height: 210px; object-fit: cover; display: block; opacity: .9; }
+    .support b { position: absolute; left: 8px; bottom: 8px; padding: 4px 7px; color: white; background: rgba(0,0,0,.72); font-size: .68rem; }
+    .support-note { padding: 14px; color: #cfd4ce; border: 1px solid #323738; font-size: .79rem; }
+    .copy { min-width: 0; padding: clamp(24px, 3.5vw, 48px); display: flex; flex-direction: column; }
+    .shot-id { color: var(--accent); font-size: .75rem; font-weight: 900; letter-spacing: .12em; }
+    h3 { margin: 7px 0 20px; font-family: Georgia, "Yu Mincho", serif; font-size: clamp(1.55rem, 2.6vw, 2.55rem); font-weight: 600; line-height: 1.14; }
+    dl { margin: 0; }
+    .fact { display: grid; grid-template-columns: 6em minmax(0, 1fr); gap: 12px; padding: 11px 0; border-top: 1px solid var(--line); }
+    dt { color: var(--muted); font-size: .75rem; font-weight: 900; letter-spacing: .06em; }
+    dd { margin: 0; font-size: .9rem; }
+    .guard { color: var(--accent); font-weight: 700; }
+    .asset { margin: auto 0 0; padding-top: 22px; color: var(--muted); font-size: .76rem; }
+    .ledger-overlay { position: absolute; z-index: 2; inset: 10% 8%; display: grid; grid-template-columns: 1fr 1fr; gap: 8%; padding: 5% 6%; color: #211b14; background: rgba(238,221,176,.88); border: 1px solid rgba(70,45,24,.5); transform: rotate(-1.5deg); box-shadow: 0 12px 32px rgba(0,0,0,.25); }
+    .ledger-column { border-top: 2px solid #594832; }
+    .ledger-column h4 { margin: 8px 0 10px; font-size: .82rem; letter-spacing: .18em; }
+    .ledger-row { display: flex; justify-content: space-between; gap: 12px; padding: 8px 4px; border-top: 1px solid rgba(68,49,28,.28); font-family: Georgia, serif; font-size: clamp(.68rem, 1.4vw, 1rem); }
+    .fiction-label { position: absolute; z-index: 5; right: 14px; top: 14px; padding: 6px 9px; color: #20180e; background: #f0cf71; font-weight: 900; font-size: .68rem; letter-spacing: .08em; }
+    .fade-overlay { position: absolute; z-index: 3; inset: 11% 6%; display: grid; grid-template-columns: repeat(3, 1fr); gap: 3%; }
+    .fade-stage { display: grid; place-items: center; padding: 8%; color: #2c231a; background: rgba(239,218,169,.78); border: 1px solid rgba(65,45,27,.45); font-family: Georgia, "Yu Mincho", serif; }
+    .fade-stage strong { font-size: clamp(1.1rem, 2.5vw, 2.2rem); letter-spacing: .12em; }
+    .fade-stage:nth-child(2) strong { opacity: .48; filter: blur(.4px); }
+    .fade-stage:nth-child(3) strong { opacity: .18; clip-path: polygon(0 0, 55% 0, 55% 28%, 83% 28%, 83% 54%, 42% 54%, 42% 82%, 0 82%); }
+    .continuity { margin: 58px 0 0; padding: clamp(28px, 5vw, 64px); color: var(--paper); background: var(--ink); border-radius: 20px; }
+    .continuity h2 { color: var(--paper); }
+    .continuity-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 28px; }
+    .continuity h3 { color: var(--accent-2); font-size: 1.35rem; }
+    .continuity p { color: color-mix(in srgb, var(--paper) 72%, transparent); }
+    .sources { padding: 72px 0 0; }
+    .sources > p { max-width: 820px; color: var(--muted); }
+    .source-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+    .source-card { min-width: 0; padding: 16px; border: 1px solid var(--line); background: var(--paper); }
+    .source-card b, .source-card a { overflow-wrap: anywhere; }
+    .source-card small { display: block; margin-top: 8px; color: var(--muted); }
+    .provenance-ledger { margin-top: 28px; padding: 18px; border: 1px solid var(--line); color: var(--muted); background: color-mix(in srgb, var(--paper) 78%, transparent); font-size: .72rem; }
+    .provenance-ledger h3 { margin-top: 0; color: var(--ink); font-size: .9rem; }
+    .provenance-ledger details { padding: 8px 0; border-top: 1px solid var(--line); }
+    .provenance-ledger summary { width: fit-content; cursor: pointer; color: var(--ink); font-weight: 700; }
+    .provenance-ledger p { margin: 7px 0 0; line-height: 1.55; overflow-wrap: anywhere; }
+    a { color: var(--accent); }
+    @media (max-width: 920px) {
+      main { width: min(100% - 20px, 760px); padding-top: 24px; }
+      .masthead, .beat-heading, .shot { grid-template-columns: 1fr; }
+      .themes { justify-self: start; grid-row: 1; }
+      .visual { order: 1; }
+      .copy { order: 2; }
+      .main-image { min-height: 0; }
+      .continuity-grid, .source-list { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 540px) {
+      .support-row { grid-template-columns: 1fr; }
+      .support-note { display: none; }
+      .fact { grid-template-columns: 1fr; gap: 2px; }
+      .fade-overlay { gap: 1%; }
+    }
+    @media print {
+      :root, html[data-theme="dark"], html[data-theme="auto"] { color-scheme: light; --bg: #fff; --paper: #fff; --ink: #111; --muted: #555; --line: #aaa; --accent: #7a321f; --shadow: none; }
+      body { background: white; }
+      main { width: 100%; padding: 0; }
+      .themes { display: none; }
+      .shot { break-inside: avoid; box-shadow: none; }
+      .visual { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      .continuity { break-inside: avoid; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      a { color: #111; text-decoration: none; }
+    }
+  </style>
+</head>
+<body data-artifact-id="fff-composition-expansion-wave1-001" data-single-scroll-owner="document">
+<main>
+  <header class="masthead">
+    <div>
+      <p class="eyebrow">Composition Expansion · Wave 1</p>
+      <h1>鐘のない塔<br>消された名前</h1>
+      <p class="lead">Beat 1 と Beat 3、計6ショットの構図権威。画像は参照専用で、選定・権利クリア・制作承認ではありません。具体化済み範囲は Beat 1–4 の 12/19 ショットです。</p>
+    </div>
+    <div class="themes" aria-label="配色テーマ">
+      <button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button>
+      <button type="button" data-theme-choice="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button>
+    </div>
+  </header>
+
+  <section class="beat" data-beat="1">
+    <div class="beat-heading">
+      <div><span class="beat-number">BEAT 1 · 00:00–00:20</span><h2>鐘のない塔</h2></div>
+      <p class="beat-copy">駅と古い天文台を遠景で結び、空の鐘枠、取付部、正午標の順に近づく。原因は示さず、観察の空白を残す。</p>
+    </div>
+
+    <article class="shot" data-shot-id="shot-b01-01" data-composition-class="station_tower_establishing_depth">
+      <div class="visual">
+        <div class="main-image" style="--crop-l:7%;--crop-t:10%;--crop-w:86%;--crop-h:70%">
+          <img src="composition-assets/ref-w1-b01-s01-kreiensen-station.jpg" alt="雪の駅ホームと屋根の遠近。構図参照。" style="object-position:48% 48%">
+          <span class="crop"></span><span class="focus" style="--x:72%;--y:29%">1</span><span class="focus" style="--x:46%;--y:58%">2</span>
+          <div class="depth"><span>FG 屋根・線路際</span><span>MG 駅建築</span><span>BG 塔・空枠</span></div>
+        </div>
+        <div class="support-row">
+          <div class="support"><img src="composition-assets/ref-w1-b01-s01-harvard-observatory.jpg" alt="丸屋根の天文台塔。塔身比率の補助参照。" style="object-position:50% 36%"><b>SUPPORT · 塔身の比率</b></div>
+          <div class="support-note">視線順：空の鐘枠 → 塔と駅の距離関係<br>借りる：ホームの奥行き、丸屋根と塔身<br>借りない：駅名、施設名、人物の物語役割</div>
+        </div>
+      </div>
+      <div class="copy"><span class="shot-id">SHOT-B01-01 · 00:00–00:07</span><h3>駅から塔へ</h3><dl>
+        <div class="fact"><dt>画面</dt><dd>駅屋根とレール際を前景に、駅建築、古い塔、空の鐘枠を三層で結ぶ。</dd></div>
+        <div class="fact"><dt>意図</dt><dd>矛盾の舞台を置く。最初に空枠、次に駅と塔の関係を読む。</dd></div>
+        <div class="fact"><dt>尺</dt><dd>7秒</dd></div>
+        <div class="fact"><dt>カメラ</dt><dd>wide · slow_push · hard_cut</dd></div>
+        <div class="fact"><dt>成立条件</dt><dd>左下の屋根・線路際から中央の駅を経て右上の空枠へ上がる。</dd></div>
+        <div class="fact"><dt>描かないこと</dt><dd class="guard">鐘、発光、作動機械、原因を示す人物、鳴動の説明。</dd></div>
+      </dl><p class="asset">ASSET · 駅の広い奥行き＋天文台塔の縦方向シルエット。場所特定には使わない。</p></div>
+    </article>
+
+    <article class="shot" data-shot-id="shot-b01-02" data-composition-class="empty_mount_architectural_detail">
+      <div class="visual">
+        <div class="main-image" style="--crop-l:17%;--crop-t:7%;--crop-w:69%;--crop-h:78%">
+          <img src="composition-assets/ref-w1-b01-s02-wood-joints.jpg" alt="赤い木組みの接合部。空いた取付面の構図参照。" style="object-position:55% 45%">
+          <span class="crop"></span><span class="focus" style="--x:62%;--y:48%">1</span><span class="focus" style="--x:38%;--y:61%">2</span>
+          <div class="depth"><span>FG 梁・遮蔽</span><span>MG 空いた面・仕口</span><span>BG 昼光</span></div>
+        </div>
+        <div class="support-row">
+          <div class="support"><img src="composition-assets/ref-w1-b01-s02-beam-junction.jpg" alt="古い梁と黒い接合金具。摩耗の補助参照。" style="object-position:56% 58%"><b>SUPPORT · 梁と金具</b></div>
+          <div class="support-note">視線順：空いた取付面 → 木肌と金具の摩耗<br>借りる：仕口、木肌、締結比率<br>借りない：展示文字、用途、撤去履歴</div>
+        </div>
+      </div>
+      <div class="copy"><span class="shot-id">SHOT-B01-02 · 00:07–00:14</span><h3>空いた取付点</h3><dl>
+        <div class="fact"><dt>画面</dt><dd>梁と柱の交点、空いた取付面、金具跡、昼光だけを近接で組む。</dd></div>
+        <div class="fact"><dt>意図</dt><dd>鐘がないことを確認する。原因ではなく、不在と経年だけを読む。</dd></div>
+        <div class="fact"><dt>尺</dt><dd>7秒</dd></div>
+        <div class="fact"><dt>カメラ</dt><dd>close · locked · short_dissolve</dd></div>
+        <div class="fact"><dt>成立条件</dt><dd>空いた面を主焦点にし、摩耗は二次情報へ留める。</dd></div>
+        <div class="fact"><dt>描かないこと</dt><dd class="guard">撤去された鐘、工具、撤去理由の証明、winter curfewの再現。</dd></div>
+      </dl><p class="asset">ASSET · 木組み接合の空き面＋古い梁と金具の摩耗。実在用途の証拠にはしない。</p></div>
+    </article>
+
+    <article class="shot" data-shot-id="shot-b01-03" data-composition-class="unresolved_frame_noon_hold">
+      <div class="visual">
+        <div class="main-image" style="--crop-l:14%;--crop-t:10%;--crop-w:72%;--crop-h:74%">
+          <img src="composition-assets/ref-w1-b01-s03-belfry-interior-art.jpg" alt="鐘のない内部と空の開口を描いた作品。空枠の構図参照。" style="object-position:50% 52%">
+          <span class="crop"></span><span class="focus" style="--x:43%;--y:47%">1</span><span class="focus" style="--x:78%;--y:72%">2</span>
+          <div class="depth"><span>FG アーチ・柵</span><span>MG 空の開口</span><span>BG 昼光・正午標</span></div>
+        </div>
+        <div class="support-row">
+          <div class="support"><img src="composition-assets/ref-w1-b01-s03-noon-mark.jpg" alt="石造建築の小さな正午標。大きさの補助参照。" style="object-position:50% 45%"><b>SUPPORT · 小さな正午標</b></div>
+          <div class="support-note">視線順：空のフレーム → 小さな正午標<br>借りる：開口の静けさ、時刻標の小面積<br>借りない：音源、装置、建物の同定</div>
+        </div>
+      </div>
+      <div class="copy"><span class="shot-id">SHOT-B01-03 · 00:14–00:20</span><h3>空枠と正午標</h3><dl>
+        <div class="fact"><dt>画面</dt><dd>空のフレームを大きく保持し、正午標だけを右下に小さく添える。</dd></div>
+        <div class="fact"><dt>意図</dt><dd>未解決の問いへ止める。説明文や問いかけ見出しは置かない。</dd></div>
+        <div class="fact"><dt>尺</dt><dd>6秒</dd></div>
+        <div class="fact"><dt>カメラ</dt><dd>medium · locked · held_fade</dd></div>
+        <div class="fact"><dt>成立条件</dt><dd>空白を長く保持した後、正午標へ一度だけ視線を落とす。</dd></div>
+        <div class="fact"><dt>描かないこと</dt><dd class="guard">音源、幽霊、機械、ロープ、操作者、エネルギー。</dd></div>
+      </dl><p class="asset">ASSET · 鐘のない内部画の開口＋建築に付いた小さな正午標。</p></div>
+    </article>
+  </section>
+
+  <section class="beat" data-beat="3">
+    <div class="beat-heading">
+      <div><span class="beat-number">BEAT 3 · 00:50–01:20</span><h2>消された名前</h2></div>
+      <p class="beat-copy">物理的な本から、制作物と明示した架空の二列挿入、最後に紙とインクの抽象的な減衰へ移る。文書の真正性も消失事実も確定しない。</p>
+    </div>
+
+    <article class="shot" data-shot-id="shot-b03-01" data-composition-class="anonymous_ledger_opening_insert">
+      <div class="visual">
+        <div class="main-image" style="--crop-l:9%;--crop-t:17%;--crop-w:83%;--crop-h:64%">
+          <img src="composition-assets/ref-w1-b03-s01-page-turning.jpg" alt="めくられる古い本のページ。台帳を開く動きの参照。" style="object-position:52% 55%">
+          <span class="crop"></span><span class="focus" style="--x:51%;--y:49%">1</span><span class="focus" style="--x:68%;--y:42%">2</span>
+          <div class="depth"><span>FG 手・ページ端</span><span>MG 開く台帳</span><span>BG 中立な机面</span></div>
+        </div>
+        <div class="support-row">
+          <div class="support"><img src="composition-assets/ref-w1-b03-s01-book-in-hand.jpg" alt="本を支える匿名の手。手と本の高さの補助参照。" style="object-position:50% 70%"><b>SUPPORT · 匿名の手</b></div>
+          <div class="support-note">視線順：開かれる台帳 → 未同定の列<br>借りる：ページの稜線、手と本の高さ<br>借りない：印刷内容、書名、所有者像</div>
+        </div>
+      </div>
+      <div class="copy"><span class="shot-id">SHOT-B03-01 · 00:50–01:00</span><h3>台帳を開く手元</h3><dl>
+        <div class="fact"><dt>画面</dt><dd>顔や所属のない手、めくられる紙、机面だけで台帳を開く。</dd></div>
+        <div class="fact"><dt>意図</dt><dd>調査対象を置く。列の内容はまだ判読させない。</dd></div>
+        <div class="fact"><dt>尺</dt><dd>10秒</dd></div>
+        <div class="fact"><dt>カメラ</dt><dd>close · slow_push · hard_cut</dd></div>
+        <div class="fact"><dt>成立条件</dt><dd>台帳を先に読み、手は下端の一部、列は未同定に留める。</dd></div>
+        <div class="fact"><dt>描かないこと</dt><dd class="guard">評議会印の証明、歴史的真正性、所有者、有罪、実在記録の内容。</dd></div>
+      </dl><p class="asset">ASSET · ページ送りの動き＋匿名の手の高さ。文書の真正性には使わない。</p></div>
+    </article>
+
+    <article class="shot" data-shot-id="shot-b03-02" data-composition-class="fictional_ledger_relation_graphic">
+      <div class="visual">
+        <div class="main-image" style="--crop-l:8%;--crop-t:7%;--crop-w:84%;--crop-h:84%">
+          <img src="composition-assets/ref-w1-b03-s02-blank-book.jpg" alt="白紙の本。架空台帳挿入の中立な面参照。" style="object-position:50% 48%">
+          <div class="ledger-overlay" aria-label="制作した架空の台帳挿入">
+            <div class="ledger-column"><h4>名前</h4><div class="ledger-row"><span>ミナ・ロ</span><span>···</span></div><div class="ledger-row"><span>ソラ・ケ</span><span>···</span></div><div class="ledger-row"><span>ユイ・ナ</span><span>···</span></div></div>
+            <div class="ledger-column"><h4>分</h4><div class="ledger-row"><span>···</span><span>07</span></div><div class="ledger-row"><span>···</span><span>12</span></div><div class="ledger-row"><span>···</span><span>04</span></div></div>
+          </div>
+          <span class="fiction-label">制作した架空挿入</span><span class="crop"></span><span class="focus" style="--x:28%;--y:43%">1</span><span class="focus" style="--x:72%;--y:43%">2</span>
+          <div class="depth"><span>FG 架空文字・罫線</span><span>MG 平坦な紙面</span><span>BG 紙の皺</span></div>
+        </div>
+        <div class="support-row">
+          <div class="support"><img src="composition-assets/ref-w1-b03-s02-ledger-geometry.jpg" alt="1828年の台帳。列間隔と紙面密度だけの補助参照。" style="object-position:52% 52%;filter:blur(1.5px) saturate(.2)"><b>SUPPORT · 列間隔のみ</b></div>
+          <div class="support-note">視線順：名前の列 → 分の列<br>借りる：列幅、行間、紙面密度<br>借りない：元画像の氏名、日付、手書き内容</div>
+        </div>
+      </div>
+      <div class="copy"><span class="shot-id">SHOT-B03-02 · 01:00–01:10</span><h3>架空の二列台帳</h3><dl>
+        <div class="fact"><dt>画面</dt><dd>本パッケージが制作した架空の名前列と分列を同じ重さで置く。</dd></div>
+        <div class="fact"><dt>意図</dt><dd>名前と分の関係を可視化する。並置は示唆であり、因果の主張ではない。</dd></div>
+        <div class="fact"><dt>尺</dt><dd>10秒</dd></div>
+        <div class="fact"><dt>カメラ</dt><dd>graphic_fullframe · locked · graphic_match</dd></div>
+        <div class="fact"><dt>成立条件</dt><dd>左列→中央の空白→右列。制作物ラベルを常時見せる。</dd></div>
+        <div class="fact"><dt>描かないこと</dt><dd class="guard">実名、実在記録、チェック、判決、証拠印、紋章、確認済み因果矢印。</dd></div>
+      </dl><p class="asset">ASSET · 白紙帳面＋列間隔。文字と罫線は新規制作した架空挿入。</p></div>
+    </article>
+
+    <article class="shot" data-shot-id="shot-b03-03" data-composition-class="staged_record_fade_metaphor">
+      <div class="visual">
+        <div class="main-image" style="--crop-l:4%;--crop-t:8%;--crop-w:92%;--crop-h:80%">
+          <img src="composition-assets/ref-w1-b03-s03-old-paper.jpg" alt="文字のない古い紙面。架空輪郭の背景参照。" style="object-position:50% 50%">
+          <div class="fade-overlay" aria-label="制作した架空輪郭の三段階"><div class="fade-stage"><strong>ミナ・ロ</strong></div><div class="fade-stage"><strong>ミナ・ロ</strong></div><div class="fade-stage"><strong>ミナ・ロ</strong></div></div>
+          <span class="fiction-label">制作した比喩 · 100% → 48% → 18%</span><span class="crop"></span><span class="focus" style="--x:20%;--y:49%">1</span><span class="focus" style="--x:78%;--y:49%">2</span>
+          <div class="depth"><span>FG 三段階の輪郭</span><span>MG 紙の繊維</span><span>BG 意味のない紙面</span></div>
+        </div>
+        <div class="support-row">
+          <div class="support"><img src="composition-assets/ref-w1-b03-s03-ink-stains.jpg" alt="紙面上のインク染み。不規則な縁だけの補助参照。" style="object-position:48% 58%;filter:grayscale(1) contrast(1.4)"><b>SUPPORT · 染みの縁</b></div>
+          <div class="support-note">視線順：完全な輪郭 → 薄れ・欠け<br>借りる：紙の色むら、染みの不規則な縁<br>借りない：元の赤線、罫線、人物や文書の意味</div>
+        </div>
+      </div>
+      <div class="copy"><span class="shot-id">SHOT-B03-03 · 01:10–01:20</span><h3>輪郭が薄れる三段階</h3><dl>
+        <div class="fact"><dt>画面</dt><dd>同じ架空輪郭を100%、48%、18%の濃度と欠けで三面に並べる。</dd></div>
+        <div class="fact"><dt>意図</dt><dd>記録欠落の感覚を作る。Shot 2の二列台帳とは異なる抽象比喩。</dd></div>
+        <div class="fact"><dt>尺</dt><dd>10秒</dd></div>
+        <div class="fact"><dt>カメラ</dt><dd>graphic_fullframe · graphic_dissolve · short_dissolve</dd></div>
+        <div class="fact"><dt>成立条件</dt><dd>完全→薄い→欠けた輪郭の2–3段階を水平に読む。</dd></div>
+        <div class="fact"><dt>描かないこと</dt><dd class="guard">超自然的行為者、人物の消失、literalな台帳改竄の証明、実在人物名。</dd></div>
+      </dl><p class="asset">ASSET · 文字のない紙面＋インク染み。透明度と欠けは決定論的に制作。</p></div>
+    </article>
+  </section>
+
+  <section class="continuity" data-section="continuity">
+    <span class="beat-number">BEAT CONTINUITY</span><h2>Beat内の連続性</h2>
+    <div class="continuity-grid">
+      <div><h3>Beat 1 · 距離を縮め、原因を増やさない</h3><p>駅と塔の関係 → 空いた取付点 → 空枠と正午標。遠景から細部へ入り、最後に空枠へ戻る。各段階で観察対象は具体化するが、鐘、操作者、機構、winter curfewの再現は追加しない。</p></div>
+      <div><h3>Beat 3 · 実在らしさを段階的に弱める</h3><p>物理的な本 → 制作した架空の二列 → 紙とインクの抽象的な減衰。最初から最後へ進むほど文書の真正性から離れ、名前と分の因果や人物消失を証明しない。</p></div>
+    </div>
+  </section>
+
+  <section class="sources" data-section="sources">
+    <span class="beat-number">SECONDARY</span><h2>出典</h2>
+    <p>12点すべてローカル保存済みの参照画像です。ライセンス情報は取得時点の原典ページに基づきますが、プロジェクト固有の権利クリアや制作選定を主張しません。</p>
+    <div class="source-list">
+      <div class="source-card"><b>Kreiensen station</b><small>Michael Gäbler · CC BY 3.0</small><a href="https://commons.wikimedia.org/wiki/File:Railway_station_Kreiensen_1963.JPG">source</a></div>
+      <div class="source-card"><b>Sears Tower, Harvard Observatory</b><small>Daderot · Public domain</small><a href="https://commons.wikimedia.org/wiki/File:Sears_Tower-Harvard_Observatory_-_60_Garden_Street,_Cambridge,_MA_-_IMG_4028.JPG">source</a></div>
+      <div class="source-card"><b>Wood joints</b><small>Shyamal · CC0</small><a href="https://commons.wikimedia.org/wiki/File:Wood_joints_20220730_154836.jpg">source</a></div>
+      <div class="source-card"><b>Wooden beams and trusses</b><small>shankar s. · CC BY 2.0</small><a href="https://commons.wikimedia.org/wiki/File:Love_those_wooden_beams_and_trusses_(20743508752).jpg">source</a></div>
+      <div class="source-card"><b>Interior of the Belfry</b><small>William Henry Hunt · CC0</small><a href="https://commons.wikimedia.org/wiki/File:William_Henry_Hunt_-_Interior_of_the_Belfry,_Bushey_Church_-_B1975.3.1039_-_Yale_Center_for_British_Art.jpg">source</a></div>
+      <div class="source-card"><b>Noon Mark</b><small>Poulpy · CC BY-SA 3.0</small><a href="https://commons.wikimedia.org/wiki/File:Gray_-_Basilique_Notre-Dame_-_Noon_Mark.jpg">source</a></div>
+      <div class="source-card"><b>Antique book page turning</b><small>Pics_Pd · CC0</small><a href="https://commons.wikimedia.org/wiki/File:Antique_book_page_turning.jpg">source</a></div>
+      <div class="source-card"><b>Book in hand</b><small>AgustinaCC · CC0</small><a href="https://commons.wikimedia.org/wiki/File:Book_in_hand_(Emma).jpg">source</a></div>
+      <div class="source-card"><b>Blank book on a table</b><small>Trey Jones · CC0</small><a href="https://commons.wikimedia.org/wiki/File:Blank_book_on_a_table.jpg">source</a></div>
+      <div class="source-card"><b>German ledger 1828</b><small>RaphaelQS · CC0 · 列間隔のみ参照</small><a href="https://commons.wikimedia.org/wiki/File:Ledger.png">source</a></div>
+      <div class="source-card"><b>Oldpapertexture01</b><small>Smartscrutiny · CC BY-SA 4.0</small><a href="https://commons.wikimedia.org/wiki/File:Oldpapertexture01.jpg">source</a></div>
+      <div class="source-card"><b>Inkstains</b><small>Menetekel · Public domain</small><a href="https://commons.wikimedia.org/wiki/File:Inkstains.png">source</a></div>
+    </div>
+    <div class="provenance-ledger" aria-label="Complete reference provenance">
+      <h3>参照メタデータ</h3>
+      <details><summary>ref-w1-b01-s01-kreiensen-station</summary><p>Michael Gäbler · <a href="https://commons.wikimedia.org/wiki/File:Railway_station_Kreiensen_1963.JPG">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/5/56/Railway_station_Kreiensen_1963.JPG">original media</a> · CC BY 3.0 · <a href="https://creativecommons.org/licenses/by/3.0">license</a><br>retrieved 2026-07-19 · 1969×1194 → 1600×970 · composition-assets/ref-w1-b01-s01-kreiensen-station.jpg · shot-b01-01 main · SHA256 49b3136c701d7e149194e74cac2a1c5c6dc688d6502340fce4915cec656da134</p></details>
+      <details><summary>ref-w1-b01-s01-harvard-observatory</summary><p>Daderot · <a href="https://commons.wikimedia.org/wiki/File:Sears_Tower-Harvard_Observatory_-_60_Garden_Street,_Cambridge,_MA_-_IMG_4028.JPG">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/0/08/Sears_Tower-Harvard_Observatory_-_60_Garden_Street%2C_Cambridge%2C_MA_-_IMG_4028.JPG">original media</a> · Public domain (author dedication) · <a href="https://commons.wikimedia.org/wiki/Template:PD-self">license</a><br>retrieved 2026-07-19 · 2448×3264 → 1200×1600 · composition-assets/ref-w1-b01-s01-harvard-observatory.jpg · shot-b01-01 support · SHA256 6e1376fa2b4fa4bfffae778f1e86364b1c3baf5fe2925cd242337d76f7b33e84</p></details>
+      <details><summary>ref-w1-b01-s02-wood-joints</summary><p>Shyamal · <a href="https://commons.wikimedia.org/wiki/File:Wood_joints_20220730_154836.jpg">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/9/9c/Wood_joints_20220730_154836.jpg">original media</a> · CC0 · <a href="https://creativecommons.org/publicdomain/zero/1.0/">license</a><br>retrieved 2026-07-19 · 3000×3000 → 1600×1600 · composition-assets/ref-w1-b01-s02-wood-joints.jpg · shot-b01-02 main · SHA256 3258615d9b6b28e22ed5d0510f74f135e78953557735d0d6d42e47d122ddf2de</p></details>
+      <details><summary>ref-w1-b01-s02-beam-junction</summary><p>shankar s. · <a href="https://commons.wikimedia.org/wiki/File:Love_those_wooden_beams_and_trusses_(20743508752).jpg">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/e/e8/Love_those_wooden_beams_and_trusses_%2820743508752%29.jpg">original media</a> · CC BY 2.0 · <a href="https://creativecommons.org/licenses/by/2.0">license</a><br>retrieved 2026-07-19 · 4288×2848 → 1600×1062 · composition-assets/ref-w1-b01-s02-beam-junction.jpg · shot-b01-02 support · SHA256 05aacc6386c240e2174bd717e90342fec23e1b5fbdf092965495109d00f81e56</p></details>
+      <details><summary>ref-w1-b01-s03-belfry-interior-art</summary><p>William Henry Hunt · <a href="https://commons.wikimedia.org/wiki/File:William_Henry_Hunt_-_Interior_of_the_Belfry,_Bushey_Church_-_B1975.3.1039_-_Yale_Center_for_British_Art.jpg">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/3/3f/William_Henry_Hunt_-_Interior_of_the_Belfry%2C_Bushey_Church_-_B1975.3.1039_-_Yale_Center_for_British_Art.jpg">original media</a> · CC0 · <a href="https://creativecommons.org/publicdomain/zero/1.0/">license</a><br>retrieved 2026-07-19 · 1394×1920 → 1162×1600 · composition-assets/ref-w1-b01-s03-belfry-interior-art.jpg · shot-b01-03 main · SHA256 39602c0536b46c3f0868e2f4b9661c5e1bb1a4d67f70ca1fcdfecb9355c5d91b</p></details>
+      <details><summary>ref-w1-b01-s03-noon-mark</summary><p>Poulpy · <a href="https://commons.wikimedia.org/wiki/File:Gray_-_Basilique_Notre-Dame_-_Noon_Mark.jpg">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/5/51/Gray_-_Basilique_Notre-Dame_-_Noon_Mark.jpg">original media</a> · CC BY-SA 3.0 · <a href="https://creativecommons.org/licenses/by-sa/3.0">license</a><br>retrieved 2026-07-19 · 3013×4547 → 1060×1600 · composition-assets/ref-w1-b01-s03-noon-mark.jpg · shot-b01-03 support · SHA256 1c68f99c68f85869e461a832498d6485994c94a28c04effefaf47964b1447f62</p></details>
+      <details><summary>ref-w1-b03-s01-page-turning</summary><p>Pics_Pd · <a href="https://commons.wikimedia.org/wiki/File:Antique_book_page_turning.jpg">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/b/b0/Antique_book_page_turning.jpg">original media</a> · CC0 · <a href="https://creativecommons.org/publicdomain/zero/1.0/">license</a><br>retrieved 2026-07-19 · 4681×3100 → 1600×1060 · composition-assets/ref-w1-b03-s01-page-turning.jpg · shot-b03-01 main · SHA256 d846f48b836c604cbbf913ad7b37700926a362bc657dc7a4df8b1b204dfb9f13</p></details>
+      <details><summary>ref-w1-b03-s01-book-in-hand</summary><p>AgustinaCC · <a href="https://commons.wikimedia.org/wiki/File:Book_in_hand_(Emma).jpg">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/c/cd/Book_in_hand_%28Emma%29.jpg">original media</a> · CC0 · <a href="https://creativecommons.org/publicdomain/zero/1.0/">license</a><br>retrieved 2026-07-19 · 2619×1964 → 1600×1200 · composition-assets/ref-w1-b03-s01-book-in-hand.jpg · shot-b03-01 support · SHA256 6fc36da6028effe9a402f18efabeeef970e6511f4023156994aa5dcf5aad681a</p></details>
+      <details><summary>ref-w1-b03-s02-blank-book</summary><p>Trey Jones · <a href="https://commons.wikimedia.org/wiki/File:Blank_book_on_a_table.jpg">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/2/21/Blank_book_on_a_table.jpg">original media</a> · CC0 · <a href="https://creativecommons.org/publicdomain/zero/1.0/">license</a><br>retrieved 2026-07-19 · 1200×1200 → 1200×1200 · composition-assets/ref-w1-b03-s02-blank-book.jpg · shot-b03-02 main · SHA256 312ac0465762b21dd1d67504d7dcaee074c94f73d7281f5adeb16fed618343a4</p></details>
+      <details><summary>ref-w1-b03-s02-ledger-geometry</summary><p>RaphaelQS · <a href="https://commons.wikimedia.org/wiki/File:Ledger.png">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/e/e6/Ledger.png">original media</a> · CC0 · <a href="https://creativecommons.org/publicdomain/zero/1.0/">license</a><br>retrieved 2026-07-19 · 1706×896 → 1600×840 · composition-assets/ref-w1-b03-s02-ledger-geometry.jpg · shot-b03-02 support · SHA256 ccbb058ad17576dd5d69329b67137947a3dfcc218672394d97f1bc4234e6ff88</p></details>
+      <details><summary>ref-w1-b03-s03-old-paper</summary><p>Smartscrutiny · <a href="https://commons.wikimedia.org/wiki/File:Oldpapertexture01.jpg">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/4/43/Oldpapertexture01.jpg">original media</a> · CC BY-SA 4.0 · <a href="https://creativecommons.org/licenses/by-sa/4.0">license</a><br>retrieved 2026-07-19 · 3840×2169 → 1600×904 · composition-assets/ref-w1-b03-s03-old-paper.jpg · shot-b03-03 main · SHA256 de3156d47386e17242543e6292093ac0eeba4b6079fb735b0da51423fa9b3624</p></details>
+      <details><summary>ref-w1-b03-s03-ink-stains</summary><p>Menetekel · <a href="https://commons.wikimedia.org/wiki/File:Inkstains.png">source page</a> · <a href="https://upload.wikimedia.org/wikipedia/commons/b/bc/Inkstains.png">original media</a> · Public domain (author dedication) · <a href="https://commons.wikimedia.org/wiki/Template:PD-self">license</a><br>retrieved 2026-07-19 · 997×1323 → 996×1322 · composition-assets/ref-w1-b03-s03-ink-stains.jpg · shot-b03-03 support · SHA256 96350f03a1bc118e3108284ca43edc84a01e83f23686707f58854ffe939bc0a4</p></details>
+    </div>
+  </section>
+</main>
+<script>
+  const root = document.documentElement;
+  const buttons = [...document.querySelectorAll('[data-theme-choice]')];
+  function setTheme(theme) {
+    root.dataset.theme = theme;
+    buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.themeChoice === theme)));
+    try { localStorage.setItem('fff-wave1-theme', theme); } catch {}
+  }
+  buttons.forEach((button) => button.addEventListener('click', () => setTheme(button.dataset.themeChoice)));
+  try { setTheme(localStorage.getItem('fff-wave1-theme') || 'auto'); } catch { setTheme('auto'); }
+</script>
+</body>
+</html>

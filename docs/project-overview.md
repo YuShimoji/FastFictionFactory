@@ -20,6 +20,7 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 
 | Slice | Current state | Main review location | Quick visual evidence |
 | --- | --- | --- | --- |
+| Composition Expansion Wave 1 | Active H0; Beats 1 and 3 are concrete, bringing Beats 1–4 to 12/19 concrete source shots; no post-Wave-1 human gate | [`review/composition-expansion-wave1.md`](review/composition-expansion-wave1.md) | `artifacts/composition-expansion-wave1/`, green result, 900x1200 Dark and 1280x900 Light screenshots |
 | Production Storyboard Brief | H0 validated; standalone human-comprehension surface is ready for H1 freeform review | [`review/production-storyboard-brief.md`](review/production-storyboard-brief.md) | `artifacts/production-storyboard-brief/`, green `artifacts/production-storyboard-brief-result.json`, 900x1200 Dark and 1280x900 Light screenshots |
 | Production Execution Pack | Preserved byte-identical operational/audit source after its H1 transfer-comprehension failure | [`review/production-execution-pack.md`](review/production-execution-pack.md) | `artifacts/production-execution-pack/`, preserved green result, two source viewport screenshots |
 | Operator Brief Typography Balance | Preserved accepted human-facing source; H1 judgment A and title-only repair remain complete | [`review/operator-production-brief-typography-balance.md`](review/operator-production-brief-typography-balance.md) | `artifacts/operator-production-brief-typography-balance-result.json`, two balanced viewport screenshots, `public/review/index.html?mode=blueprint` |
