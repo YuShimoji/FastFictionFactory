@@ -1,12 +1,22 @@
 # Project Context
 
-## Active Composition Expansion Wave 2 Axis
+## Active Integrated Visual Production Package Axis
 
-The active artifact is `fff-composition-expansion-wave2-001`, the standalone local/reference-only H0 composition package for Beat 5「保留された答え」(`01:45–02:35`) and Beat 6「時刻か、名前か」(`02:35–03:00`). It covers exactly seven source-authorized shots with four newly acquired licensed local rasters, eight inherited references verified by identity, sixteen image assignments, and seven distinct composition classes. With Wave 1, Beat 2 Board, and Beat 4 Counterexample preserved beneath it, concrete composition material now exists for 19 of 19 source shots across separate packages.
+The active artifact is `fff-integrated-visual-production-package-001`, the standalone local/reference-only H0 integration of the exact six-Beat, nineteen-shot, 180-second visual sequence. It binds Beat 1/3 to Wave 1, Beat 2 to the Composition Board, Beat 4 to the Counterexample, and Beat 5/6 to Wave 2. The canonical union contains twenty-eight unique SHA256 reference identities, thirty-six retained source aliases, forty-two shot/reference assignments, nineteen chronological thumbnails, nineteen full shot strips, and five cross-Beat lineages. No predecessor raster is copied into the integration directory.
 
-The active lane remains `COMPOSITION_EXPANSION`. The source story, 180-second timing, nineteen shot IDs, narration, subtitles, truth state, rights state, selection state, and canon state are unchanged. There is no Wave 2 human review and no post-Wave-2 human gate; per-Beat blind review remains discontinued. The next human review is `after_integrated_19_shot_visual_package`, but that integrated package has not been created.
+The active lane is `VISUAL_INTEGRATION`. Production Execution Pack chronology and Production Blueprint secondary metadata are transcribed without changing source shot IDs, order, timing, narration, subtitles, concrete composition classes, crops, focal/depth fields, truth boundaries, rights state, asset state, or canon state. Wave 2 equal-candidate structures and Beat 4's equal hypothesis split remain visually unselected.
 
-Wave 2 is not production selection, rights clearance, generation, render readiness, production approval, external reproducibility, or final canon. The farthest safe successor is a separately authorized data-only integration of the exact nineteen concrete compositions into one review object.
+Integration human review is `none`; per-Beat review is `discontinued`; the Product Owner is the formal reviewer; the next human action is `owner_whole_story_composition_review`. That whole-story review has not been performed. Production selection, rights clearance, generation, voice/engine choice, render, upload/publication, database persistence, production approval, final canon, and external reproducibility remain closed.
+
+Primary access is `artifacts/integrated-visual-production-package/integrated-visual-production-package.html`. The read-only gate is `node tools/fff-state.mjs validate-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json`. The result records all twelve protected predecessor inventories before/after, fifty-six non-mutating fail-closed probes, exact reference/path/hash evidence, browser measurements at 900×1200 Dark and 1280×900 Light, 720px layout, focus, themes, and print-light behavior.
+
+## Preserved Composition Expansion Wave 2 Axis
+
+The preserved predecessor artifact is `fff-composition-expansion-wave2-001`, the standalone local/reference-only H0 composition package for Beat 5「保留された答え」(`01:45–02:35`) and Beat 6「時刻か、名前か」(`02:35–03:00`). It covers exactly seven source-authorized shots with four newly acquired licensed local rasters, eight inherited references verified by identity, sixteen image assignments, and seven distinct composition classes. With Wave 1, Beat 2 Board, and Beat 4 Counterexample, it completed concrete separate-package material for 19 of 19 source shots before the active integration.
+
+The historical Wave 2 lane was `COMPOSITION_EXPANSION`. That lane is closed and the source story, 180-second timing, nineteen shot IDs, narration, subtitles, truth state, rights state, selection state, and canon state remain unchanged. There was no Wave 2 human review and no post-Wave-2 human gate; per-Beat blind review remains discontinued. The integrated package now exists, and the pending human action is the active whole-story Owner review.
+
+Wave 2 is not production selection, rights clearance, generation, render readiness, production approval, external reproducibility, or final canon. Its former data-only integration successor has been completed as the active package above.
 
 ## Preserved Composition Expansion Wave 1 Axis
 
@@ -16,26 +26,25 @@ Owner Review records Beat 4 as `OWNER_REVIEW_PASS` with the observation「大き
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint advances composition planning without changing the 180-second story, 19 source-shot IDs, timing, narration, subtitles, truth boundaries, asset states, rights states, or canon state. The standalone Wave 1 page makes Beat 1 and Beat 3 crop, placement, focal order, eye path, depth, reference borrowing, motion continuity, staging condition, truth-safe guard, and asset summary operationally visible.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint exposes the complete 180-second story as one exact 19-shot composition sequence without changing shot IDs, timing, narration, subtitles, truth boundaries, asset states, rights states, or canon state. The standalone integrated page makes every Beat, source composition, reference recurrence, callback lineage, candidate balance, and truth-safe stop inspectable in chronological order.
 
 ## Current Lane
 
-Keep the Storyboard Brief as the complete 19-shot planning source and the Production Execution Pack as operational/audit authority. Beat 2 Board, Beat 4 Counterexample, Visual Treatment, and all editorial/production predecessors remain immutable evidence. The active lane is `COMPOSITION_EXPANSION`; this Wave covers only Beats 1 and 3. Beats 5 and 6, the final integrated 19-shot package, production selection, rights clearance, image generation, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, final canon, and external reproducibility remain closed.
+Keep the Storyboard Brief as the complete planning source and the Production Execution Pack as chronology authority. Wave 1, Wave 2, Beat 2 Board, Beat 4 Counterexample, Visual Treatment, and all editorial/production predecessors remain immutable evidence. The active lane is `VISUAL_INTEGRATION`; its H0 machine gate is complete and stops at `owner_whole_story_composition_review`. Production selection, rights clearance, image generation, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, final canon, and external reproducibility remain closed.
 
 ## Current Slice
 
-The accepted bounded slice is Composition Expansion Wave 1:
+The accepted bounded slice is Integrated Visual Production Package v0:
 
-- Standalone entry: `artifacts/composition-expansion-wave1/composition-expansion-wave1.html`
-- Package: 19 files—README, standalone HTML, canonical JSON, source/license CSV, shot-composition CSV, twelve normalized JPEGs, contact sheet, and integrity manifest
-- Reading order: 鐘のない塔 → 消された名前 → Beat内の連続性 → 出典
-- Shot contract: exactly 6 sequential source shots across Beats 1 and 3; each strip has one unique main image, one supporting image, image-specific crop/focus/depth markup, and all composition-transfer fields
-- Distinct classes: station/tower establishing depth; empty mount detail; unresolved noon hold; anonymous ledger opening; fictional relationship graphic; staged record-fade metaphor
-- Theme/access contract: Auto default, explicit Light/Dark, visible keyboard focus, one document scroll, no horizontal overflow, no nested scroll, image-first narrow layout, and print-forced light
-- Reference/rights contract: exactly 12 distinct locally stored licensed rasters and 12 assignments; every entry records full provenance, dimensions, path, use, and SHA256; all remain reference-only, unselected, not rights-cleared, and not AI-generated
-- Review evidence: `docs/review/composition-expansion-wave1.md`, `artifacts/composition-expansion-wave1-result.json`, and the two required viewport screenshots
-- Validation contract: `validate-composition-expansion-wave1` is strictly read-only; smoke regenerates only the new Wave 1 manifest and result, never acquired source bytes
-- Human boundary: there is no Wave 1 human review. The next human review is deferred until the complete 19-shot visual package is integrated.
+- Standalone entry: `artifacts/integrated-visual-production-package/integrated-visual-production-package.html`
+- Package: nine files—README, standalone HTML, canonical JSON, four audit CSVs, nineteen-cell contact sheet, and integrity manifest; no predecessor image copies
+- Reading order: full chronology overview → six Beat sections → nineteen shot strips → five motif/callback lineages → visually secondary source/license index
+- Shot contract: exactly 19 sequential source shots across all six Beats; each retains owning source ID/hash, exact timing, main/supporting visuals, composition fields, source snapshot, and truth boundary
+- Theme/access contract: Auto default, explicit Light/Dark, visible keyboard focus, one document scroll, no horizontal overflow, no nested scroll, responsive narrow layout, and print-forced light
+- Reference/rights contract: 28 unique local SHA256 identities, 36 aliases, and 42 assignments; every entry remains reference-only, unselected, not rights-cleared, and not AI-generated
+- Review evidence: `docs/review/integrated-visual-production-package.md`, `artifacts/integrated-visual-production-package-result.json`, and the two required viewport screenshots
+- Validation contract: `validate-integrated-visual-production-package` is strictly read-only; smoke regenerates integration-owned files only and preserves all twelve predecessor directories
+- Human boundary: no integration review was performed. The next and only open human gate is one Product Owner whole-story composition review.
 
 Preserved Beat 2 Visual Treatment Pilot source:
 

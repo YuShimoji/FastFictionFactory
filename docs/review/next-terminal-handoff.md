@@ -2,7 +2,35 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-## 監修AI向け Composition Expansion Wave 2 引き継ぎ（2026-07-19 JST）
+## 監修AI向け Integrated Visual Production Package 引き継ぎ（2026-07-19 JST）
+
+Active artifact は `fff-integrated-visual-production-package-001`、lane は `VISUAL_INTEGRATION`、実装baseは `b2ef9e214799e973e63543fbdf7118542bd583bf` です。別packageで存在した6幕・19 shots・180秒の具体構図を、一つのstandalone whole-story objectへ統合しました。参照unionは28 SHA256 identities、36 aliases、42 assignmentsです。19 thumbnails、19 full shot strips、5 lineagesを持ち、source raster copyは0です。
+
+### Start here now
+
+```text
+AGENTS.md
+docs/project-context.md
+docs/review/current-status.md
+docs/review/integrated-visual-production-package.md
+artifacts/integrated-visual-production-package/README_INTEGRATED_VISUAL_PACKAGE.md
+artifacts/integrated-visual-production-package/integrated-visual-production-package.html
+artifacts/integrated-visual-production-package-result.json
+artifacts/artifact-manifest.json
+```
+
+```powershell
+git fetch --prune origin
+git pull --ff-only
+git rev-list --left-right --count "HEAD...@{u}"
+git status --short --branch --untracked-files=all
+node tools/fff-state.mjs validate-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json
+Invoke-Item .\artifacts\integrated-visual-production-package\integrated-visual-production-package.html
+```
+
+次のhuman actionは、Product Ownerによるexact integrated artifact全体の `owner_whole_story_composition_review` です。per-Beat reviewは再開しません。この引き継ぎ時点ではwhole-story reviewを実施していません。Owner observationが来るまで、shot repair、candidate選択、asset selection、rights clearance、generation、render、publication、database、production approval、canonへ進めないでください。
+
+## 保存記録: Composition Expansion Wave 2 引き継ぎ（2026-07-19 JST）
 
 Active artifact は `fff-composition-expansion-wave2-001`、lane は `COMPOSITION_EXPANSION`、実装baseは `b3312a2a4a8d5993d7091de36af2ad291b766aa0` です。Beat 5/6の正確な7 source shotsを、4点の新規licensed local referencesと8点のidentity検証済みinherited references、16 assignments、7 composition classesで具体化しました。既存のWave 1、Beat 2、Beat 4と合わせ、別package上の具体化は19/19 shotsです。統合19-shot packageはまだ作成していません。
 

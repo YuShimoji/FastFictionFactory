@@ -1,5 +1,23 @@
 # Idea Ledger
 
+## Owner Whole-Story Composition Review
+
+- Purpose: Judge whether the exact integrated six-Beat, nineteen-shot visual sequence reads coherently as one story before any production or rights work.
+- Effect: Can accept the composition sequence, identify bounded integration/shot repair evidence, or return the package without conflating H0 integrity with production approval.
+- Requirements: Use `fff-integrated-visual-production-package-001` and its exact package fingerprint; Product Owner observation; all 19 shots reviewed as one sequence; candidate balance and unresolved truth retained; no per-Beat review restart.
+- State: Pending true human gate. The integrated H0 package is complete and green; no Owner Review has been performed.
+- Owner: Product Owner as formal reviewer. Supervising AI may record and route the observation but must not invent it.
+- Next move: Open `artifacts/integrated-visual-production-package/integrated-visual-production-package.html` and record one whole-story observation. Stop before repair, production selection, rights clearance, generation, render, publication, database, approval, or canon unless separately authorized.
+
+## Conditional Integrated-Sequence Repair
+
+- Purpose: Correct only a concrete weakness found by the Product Owner in the exact whole-story composition review.
+- Effect: Allows a bounded successor without reopening all source packages or silently altering accepted shot identities.
+- Requirements: Exact weak shot or lineage named in Owner evidence; source owner identified; no predecessor mutation; no new reference acquisition or media generation; candidate/truth/timing boundaries preserved; separate authorization.
+- State: Conditional and not authorized.
+- Owner: Future implementation worker after supervising AI and Product Owner scope the evidence-backed repair.
+- Next move: Do not start unless the Owner Review returns a specific repair need. A general preference or production request is not sufficient repair evidence.
+
 ## Composition Expansion Wave 2 residual work
 
 ### Integrated 19-shot visual package
@@ -7,9 +25,9 @@
 - Purpose: Combine the exact nineteen already-concrete compositions into one whole-story review object.
 - Effect: Makes cross-beat rhythm, repetition, callbacks, and candidate neutrality reviewable without reconstructing four separate package histories.
 - Requirements: Separate authorization; exact artifact/hash binding; no source-story, timing, narration, subtitle, truth, rights, selection, or canon mutation; preserve Wave 2, Wave 1, Beat 2, Beat 4, Visual, Storyboard, and Execution bytes; keep normal validation read-only.
-- State: Proposed as data only; not authorized; not created. Wave 2 human review is none and the next human review remains `after_integrated_19_shot_visual_package`.
-- Owner: Product owner and supervisor authorize scope; implementer owns deterministic packaging; product owner owns the later whole-story review.
-- Next move: Issue a bounded integration execution contract with no production or rights authority.
+- State: Completed as `fff-integrated-visual-production-package-001`; H0 is green and the next human gate is `owner_whole_story_composition_review`.
+- Owner: Integration worker completed deterministic packaging; Product Owner owns the pending whole-story review.
+- Next move: Preserve this item as completed history and use the active Owner Whole-Story Composition Review item above.
 
 ### Production asset selection and rights review
 

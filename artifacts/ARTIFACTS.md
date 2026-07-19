@@ -1,5 +1,21 @@
 # Artifacts
 
+## fff-integrated-visual-production-package-001
+
+- Title: Fast Fiction Factory Integrated Visual Production Package
+- Purpose: Integrate the exact accepted composition identity for all six Beats and nineteen source shots into one local whole-story reference object without changing or copying predecessor source rasters.
+- Primary file: `artifacts/integrated-visual-production-package/integrated-visual-production-package.html`
+- Package directory: `artifacts/integrated-visual-production-package/` (README, standalone HTML, canonical JSON, four CSV exports, nineteen-cell contact sheet, and integrity manifest)
+- Review doc/result: `docs/review/integrated-visual-production-package.md`, `artifacts/integrated-visual-production-package-result.json`
+- Visual evidence: `artifacts/review-screens/integrated-visual-production-package-900x1200-dark.png`, `artifacts/review-screens/integrated-visual-production-package-1280x900-light.png`, `artifacts/integrated-visual-production-package/integrated-visual-production-package-contact-sheet.jpg`
+- Sequence contract: exactly 6 Beats / 19 shots / 180 seconds / grouping `3 / 3 / 3 / 3 / 4 / 3`; exact source timing, ownership, main/support visuals, composition fields, and truth boundaries.
+- Reference contract: 28 unique SHA256 identities / 36 aliases / 42 assignments / 0 missing / 0 mismatch / 0 copied predecessor rasters / 0 selected assets / 0 rights-clearance claims.
+- Continuity contract: five exact lineages for bellless tower, brass moth, Council, ledger, and time, with no new story conclusion.
+- Human policy: Product Owner formal reviewer; integration review none; next review `owner_whole_story_composition_review`; per-Beat review discontinued; no human review performed in this slice.
+- Read-only validation: `node tools/fff-state.mjs validate-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json`
+- Intentional regeneration: `node tools/fff-state.mjs smoke-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json` writes integration-owned text/HTML/CSV/JSON/manifest/result only and preserves the existing contact sheet unless it is absent.
+- State: Local/reference-only H0. Production selection, rights clearance, provider/API, generation, engine/voice, render, upload/publication, database, production approval, final canon, and external reproducibility remain closed.
+
 ## fff-composition-expansion-wave2-001
 
 - Title: Fast Fiction Factory Composition Expansion Wave 2
@@ -13,7 +29,7 @@
 - Owner policy: Wave 2 human review none; no post-Wave-2 human gate; per-Beat blind review discontinued; next human review is `after_integrated_19_shot_visual_package`.
 - Read-only validation: `node tools/fff-state.mjs validate-composition-expansion-wave2 artifacts/composition-expansion-wave2-result.json`
 - Intentional regeneration: `node tools/fff-state.mjs smoke-composition-expansion-wave2 artifacts/composition-expansion-wave2-result.json` writes only the Wave 2 manifest and result; acquired JPEGs and predecessor files remain immutable.
-- State: Local/reference-only H0. Separate-package concrete coverage is 19/19, but an integrated 19-shot visual package is not created. Production selection, rights clearance, generation, render, publication, database, production approval, canon, and external reproducibility remain closed.
+- State: Preserved local/reference-only H0 source beneath `fff-integrated-visual-production-package-001`. Production selection, rights clearance, generation, render, publication, database, production approval, canon, and external reproducibility remain closed.
 
 ## fff-composition-expansion-wave1-001
 

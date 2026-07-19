@@ -1,0 +1,2367 @@
+{
+  "schemaVersion": "fff.integratedVisualProductionPackageResult.v1",
+  "artifact_id": "fff-integrated-visual-production-package-001",
+  "generated_at": "2026-07-19T23:59:00+09:00",
+  "passed": true,
+  "failures": [],
+  "counts": {
+    "beats": 6,
+    "shots": 19,
+    "duration_seconds": 180,
+    "unique_source_references": 28,
+    "source_reference_assignments": 42,
+    "copied_source_image_count": 0,
+    "sequence_thumbnails": 19,
+    "full_shot_strips": 19
+  },
+  "source_fingerprints": {
+    "fff-composition-expansion-wave1-001": "403202568e99060937ed3ce36d16117b8564292f21baa3d72e8b290acd38ccb9",
+    "fff-beat2-composition-board-001": "4c44089a140626d56fd67f8341a4765e60f310ff65555c8ff8a0eef3eff7f3b0",
+    "fff-beat4-composition-counterexample-001": "2f0e0032b30725dc678d27e31169f6fda1a7bf8c4586735a8d0fc6f73b6d6805",
+    "fff-composition-expansion-wave2-001": "62d5379f6bf36495230a60e7fbd1de540a82aa4d5aaefae400ee1e0f773dc432"
+  },
+  "chronology": {
+    "start_time": "00:00",
+    "end_time": "03:00",
+    "gap_count": 0,
+    "overlap_count": 0,
+    "grouping": [
+      3,
+      3,
+      3,
+      3,
+      4,
+      3
+    ]
+  },
+  "reference_union": {
+    "unique_sha256_count": 28,
+    "assignment_count": 42,
+    "alias_count": 36,
+    "missing_local_file_count": 0,
+    "hash_mismatch_count": 0,
+    "copied_source_image_count": 0,
+    "hotlink_count": 0
+  },
+  "lineage": [
+    {
+      "lineage_id": "lineage-bellless-tower",
+      "label_ja": "鐘のない塔",
+      "source_shot_ids": [
+        "shot-b01-01",
+        "shot-b01-03"
+      ],
+      "successor_shot_ids": [
+        "shot-b06-03"
+      ],
+      "shared_reference_ids": [
+        "ref-w1-b01-s01-kreiensen-station",
+        "ref-w1-b01-s01-harvard-observatory"
+      ],
+      "continuity_purpose": "冒頭の空の塔枠と駅の奥行きを終幕へ戻す。",
+      "truth_boundary_preserved": true
+    },
+    {
+      "lineage_id": "lineage-brass-moth",
+      "label_ja": "真鍮の蛾",
+      "source_shot_ids": [
+        "shot-b02-02",
+        "shot-b02-03"
+      ],
+      "successor_shot_ids": [
+        "shot-b05-02",
+        "shot-b05-04"
+      ],
+      "shared_reference_ids": [
+        "ref-b02-s02-metal-butterfly-brooch"
+      ],
+      "continuity_purpose": "静止した真鍮の蛾を機能候補と三対象の反復へ継ぐ。",
+      "truth_boundary_preserved": true
+    },
+    {
+      "lineage_id": "lineage-council",
+      "label_ja": "評議会",
+      "source_shot_ids": [
+        "shot-b04-01",
+        "shot-b04-02",
+        "shot-b04-03"
+      ],
+      "successor_shot_ids": [
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "shared_reference_ids": [
+        "ref-b04-s02-card-catalogue",
+        "ref-b04-s03-closed-meeting-room"
+      ],
+      "continuity_purpose": "制度の反復と無人空間を動機候補へ継ぐ。",
+      "truth_boundary_preserved": true
+    },
+    {
+      "lineage_id": "lineage-ledger",
+      "label_ja": "台帳",
+      "source_shot_ids": [
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b03-03"
+      ],
+      "successor_shot_ids": [
+        "shot-b06-01",
+        "shot-b06-02"
+      ],
+      "shared_reference_ids": [
+        "ref-w1-b03-s02-blank-book",
+        "ref-w1-b03-s02-ledger-geometry"
+      ],
+      "continuity_purpose": "空欄と列の形を終幕の名前欄と閉じた本へ継ぐ。",
+      "truth_boundary_preserved": true
+    },
+    {
+      "lineage_id": "lineage-time",
+      "label_ja": "時間",
+      "source_shot_ids": [
+        "shot-b02-03"
+      ],
+      "successor_shot_ids": [
+        "shot-b06-01"
+      ],
+      "shared_reference_ids": [
+        "ref-b02-s03-vintage-watch-0915"
+      ],
+      "continuity_purpose": "時計面を時間と名前の等分画面へ継ぐ。",
+      "truth_boundary_preserved": true
+    }
+  ],
+  "candidate_balance": {
+    "preserved": true,
+    "winner_cue_count": 0
+  },
+  "whole_story_visual_audit": {
+    "shot_scale_distribution": {
+      "close": 6,
+      "extreme_close": 1,
+      "graphic_fullframe": 6,
+      "medium": 3,
+      "wide": 3
+    },
+    "motion_distribution": {
+      "controlled_parallax": 2,
+      "graphic_dissolve": 2,
+      "locked": 7,
+      "slow_pan": 2,
+      "slow_pull": 3,
+      "slow_push": 3
+    },
+    "transition_distribution": {
+      "graphic_match": 5,
+      "hard_cut": 6,
+      "held_fade": 4,
+      "match_cut": 2,
+      "short_dissolve": 2
+    },
+    "composition_class_distribution": {
+      "anonymous_institutional_depth": 1,
+      "anonymous_ledger_opening_insert": 1,
+      "bellless_tower_closing_callback": 1,
+      "blank_ledger_closure": 1,
+      "empty_mount_architectural_detail": 1,
+      "environment_plus_document_tension": 1,
+      "equal_weight_abstract_comparison": 1,
+      "fictional_ledger_relation_graphic": 1,
+      "image_based_overlay": 3,
+      "institutional_motive_quadrant": 1,
+      "staged_record_fade_metaphor": 1,
+      "static_object_function_triad": 1,
+      "station_tower_establishing_depth": 1,
+      "three_question_unresolved_return": 1,
+      "time_vs_name_equal_split": 1,
+      "uncertain_person_fate_matrix": 1,
+      "unresolved_frame_noon_hold": 1
+    },
+    "repeated_main_reference_count": 3,
+    "repeated_main_references": [
+      "ref-b04-s02-card-catalogue",
+      "ref-w2-b05-s01-horizon-silhouette",
+      "ref-b02-s03-vintage-watch-0915"
+    ],
+    "callback_count": 5,
+    "consecutive_source_image_duplication_count": 0,
+    "candidate_balance_preserved": true,
+    "six_beat_visual_progression": [
+      {
+        "beat_id": "bridge-storyboard-beat-1-bellless-tower",
+        "progression_ja": "駅と塔の距離から、空の取付点と正午の余白へ近づく。"
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-2-brass-moth",
+        "progression_ja": "修理の手元から静止した蛾へ移り、時計面へ視線を寄せる。"
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-3-erased-names",
+        "progression_ja": "台帳を開き、空欄と薄れる記録の層を順に追う。"
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-4-council-shadow",
+        "progression_ja": "匿名の制度空間から二つの仮説を経て、閉じた会議室へ退く。"
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-5-held-answers",
+        "progression_ja": "人物、蛾、制度の候補を同じ重さで並べ、一画面へ戻す。"
+      },
+      {
+        "beat_id": "bridge-storyboard-beat-6-time-or-names",
+        "progression_ja": "時間と名前を等分し、未記入の本から冒頭の空の塔へ戻る。"
+      }
+    ]
+  },
+  "owner_review_policy": {
+    "product_owner_is_formal_reviewer": true,
+    "integration_human_review": "none",
+    "next_human_review": "owner_whole_story_composition_review",
+    "per_beat_review": "discontinued",
+    "external_reproducibility_claimed": false
+  },
+  "acceptance": [
+    {
+      "acceptance_id": "AS-01",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-02",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-03",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-04",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-05",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-06",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-07",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-08",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-09",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-10",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-11",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-12",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-13",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-14",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-15",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-16",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-17",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-18",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-19",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-20",
+      "state": "passed",
+      "passed": true
+    },
+    {
+      "acceptance_id": "AS-21",
+      "state": "post_push_condition",
+      "passed": null
+    }
+  ],
+  "negative_probes": {
+    "wave1_fingerprint_mismatch": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "fff-composition-expansion-wave1-001 fingerprint mismatch"
+      ]
+    },
+    "beat2_fingerprint_mismatch": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "fff-beat2-composition-board-001 fingerprint mismatch"
+      ]
+    },
+    "beat4_fingerprint_mismatch": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "fff-beat4-composition-counterexample-001 fingerprint mismatch"
+      ]
+    },
+    "wave2_fingerprint_mismatch": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "fff-composition-expansion-wave2-001 fingerprint mismatch"
+      ]
+    },
+    "missing_beat": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "Beat count mismatch",
+        "Beat grouping mismatch",
+        "narration or subtitle changed"
+      ]
+    },
+    "extra_beat": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "Beat count mismatch",
+        "Beat grouping mismatch",
+        "narration or subtitle changed"
+      ]
+    },
+    "missing_shot": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot count mismatch",
+        "shot order mismatch: shot-b06-03",
+        "shot sequence index mismatch: shot-b06-03"
+      ]
+    },
+    "extra_shot": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot count mismatch",
+        "sequence endpoints mismatch",
+        "sequence gap or overlap at shot-b01-01"
+      ]
+    },
+    "duplicate_shot_id": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot order mismatch: shot-b01-02",
+        "duplicate shot ID"
+      ]
+    },
+    "wrong_shot_order": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot order mismatch: shot-b01-01",
+        "shot sequence index mismatch: shot-b01-01",
+        "shot timing mismatch: shot-b01-01"
+      ]
+    },
+    "incorrect_timing": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot timing mismatch: shot-b01-02",
+        "sequence gap or overlap at shot-b01-02"
+      ]
+    },
+    "sequence_gap": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot timing mismatch: shot-b01-02",
+        "sequence gap or overlap at shot-b01-02"
+      ]
+    },
+    "sequence_overlap": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot timing mismatch: shot-b01-02",
+        "sequence gap or overlap at shot-b01-02"
+      ]
+    },
+    "wrong_beat_grouping": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "Beat grouping mismatch"
+      ]
+    },
+    "wrong_source_artifact_ownership": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "source ownership mismatch: shot-b01-01"
+      ]
+    },
+    "unique_reference_count_mismatch": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "reference union identity/path/hash changed",
+        "unique-reference count mismatch"
+      ]
+    },
+    "assignment_count_mismatch": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "assignment count mismatch"
+      ]
+    },
+    "unresolved_local_reference_path": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "reference union identity/path/hash changed"
+      ]
+    },
+    "reference_hash_mismatch": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "reference union identity/path/hash changed"
+      ]
+    },
+    "copied_source_raster_inside_integration_package": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "copied source raster detected"
+      ]
+    },
+    "fake_new_identity_for_inherited_reference": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "reference union identity/path/hash changed"
+      ]
+    },
+    "missing_main_visual": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "visual assignment missing: shot-b01-01"
+      ]
+    },
+    "missing_supporting_visual": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "visual assignment missing: shot-b01-01"
+      ]
+    },
+    "missing_sequence_thumbnail": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "UI contract changed"
+      ]
+    },
+    "duplicated_sequence_thumbnail": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "shot sequence index mismatch: shot-b01-02"
+      ]
+    },
+    "contact_sheet_order_mismatch": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "package contract changed"
+      ]
+    },
+    "bellless_tower_callback_missing": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "motif/callback lineage changed",
+        "motif lineage mismatch"
+      ]
+    },
+    "moth_lineage_missing": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "motif/callback lineage changed",
+        "motif lineage mismatch"
+      ]
+    },
+    "council_lineage_missing": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "motif/callback lineage changed",
+        "motif lineage mismatch"
+      ]
+    },
+    "ledger_lineage_missing": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "motif/callback lineage changed",
+        "motif lineage mismatch"
+      ]
+    },
+    "time_motif_lineage_missing": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "motif/callback lineage changed",
+        "motif lineage mismatch"
+      ]
+    },
+    "callback_uses_new_fake_image_identity": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "motif/callback lineage changed"
+      ]
+    },
+    "candidate_balance_changed": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "candidate balance changed: shot-b04-02",
+        "candidate balance changed"
+      ]
+    },
+    "winner_cue_introduced": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "candidate balance changed: shot-b04-02",
+        "candidate balance changed"
+      ]
+    },
+    "source_crop_changed": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "source content changed: shot-b01-01"
+      ]
+    },
+    "source_composition_class_changed": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "source composition class changed: shot-b01-01"
+      ]
+    },
+    "source_truth_boundary_changed": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "source truth boundary changed: shot-b01-01"
+      ]
+    },
+    "narration_or_subtitle_changed": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "narration or subtitle changed"
+      ]
+    },
+    "governance_term_visible_in_primary_content": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "UI contract changed"
+      ]
+    },
+    "slogan_or_rhetorical_heading": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "UI contract changed"
+      ]
+    },
+    "title_oversized": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "UI contract changed"
+      ]
+    },
+    "theme_missing": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "UI contract changed",
+        "theme contract mismatch"
+      ]
+    },
+    "nested_scroll": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "UI contract changed"
+      ]
+    },
+    "horizontal_overflow": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "UI contract changed"
+      ]
+    },
+    "review_form_added": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "UI contract changed"
+      ]
+    },
+    "per_beat_review_reintroduced": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "owner review policy mismatch"
+      ]
+    },
+    "selected_production_asset": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "closed boundary opened"
+      ]
+    },
+    "rights_cleared_claim": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "closed boundary opened"
+      ]
+    },
+    "ai_generation_flag": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "closed boundary opened"
+      ]
+    },
+    "provider_configured": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "closed boundary opened"
+      ]
+    },
+    "render_or_publication_flag": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "closed boundary opened"
+      ]
+    },
+    "final_canon_promotion": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "closed boundary opened"
+      ]
+    },
+    "predecessor_mutation": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "predecessor inventory evidence changed"
+      ]
+    },
+    "historical_result_mutation": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "source model/result evidence changed"
+      ]
+    },
+    "manifest_mismatch": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "package contract changed"
+      ]
+    },
+    "normal_validation_artifact_mutation": {
+      "passed": true,
+      "detected": true,
+      "fail_closed": true,
+      "artifact_mutation": false,
+      "validation_errors": [
+        "package contract changed",
+        "normal validation mutation allowed"
+      ]
+    }
+  },
+  "predecessor_immutability": {
+    "before": [
+      {
+        "directory": "artifacts/composition-expansion-wave1",
+        "file_count": 19,
+        "total_bytes": 3576288,
+        "aggregate_sha256": "25bbad8e05d57293dbc724a4d3df6aa5fec7ca3b3b1f4a50e404cecddf793926",
+        "inventory": [
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-harvard-observatory.jpg",
+            "byte_size": 610181,
+            "sha256": "6e1376fa2b4fa4bfffae778f1e86364b1c3baf5fe2925cd242337d76f7b33e84"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-kreiensen-station.jpg",
+            "byte_size": 201158,
+            "sha256": "49b3136c701d7e149194e74cac2a1c5c6dc688d6502340fce4915cec656da134"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-beam-junction.jpg",
+            "byte_size": 280446,
+            "sha256": "05aacc6386c240e2174bd717e90342fec23e1b5fbdf092965495109d00f81e56"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-wood-joints.jpg",
+            "byte_size": 270490,
+            "sha256": "3258615d9b6b28e22ed5d0510f74f135e78953557735d0d6d42e47d122ddf2de"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-belfry-interior-art.jpg",
+            "byte_size": 373265,
+            "sha256": "39602c0536b46c3f0868e2f4b9661c5e1bb1a4d67f70ca1fcdfecb9355c5d91b"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-noon-mark.jpg",
+            "byte_size": 473440,
+            "sha256": "1c68f99c68f85869e461a832498d6485994c94a28c04effefaf47964b1447f62"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-book-in-hand.jpg",
+            "byte_size": 184191,
+            "sha256": "6fc36da6028effe9a402f18efabeeef970e6511f4023156994aa5dcf5aad681a"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-page-turning.jpg",
+            "byte_size": 179795,
+            "sha256": "d846f48b836c604cbbf913ad7b37700926a362bc657dc7a4df8b1b204dfb9f13"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-blank-book.jpg",
+            "byte_size": 180344,
+            "sha256": "312ac0465762b21dd1d67504d7dcaee074c94f73d7281f5adeb16fed618343a4"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-ledger-geometry.jpg",
+            "byte_size": 223339,
+            "sha256": "ccbb058ad17576dd5d69329b67137947a3dfcc218672394d97f1bc4234e6ff88"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-ink-stains.jpg",
+            "byte_size": 135980,
+            "sha256": "96350f03a1bc118e3108284ca43edc84a01e83f23686707f58854ffe939bc0a4"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-old-paper.jpg",
+            "byte_size": 187962,
+            "sha256": "de3156d47386e17242543e6292093ac0eeba4b6079fb735b0da51423fa9b3624"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-expansion-wave1-contact-sheet.jpg",
+            "byte_size": 184914,
+            "sha256": "ec57d886fe031d06f8e166c7581e220faee84e9813a8dacb8be4fa2aafb368f9"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-expansion-wave1-manifest.json",
+            "byte_size": 3829,
+            "sha256": "37f1b09c932ed410eb096ef597d006e87483eecdd4b89f929e66f162f939ea9b"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-expansion-wave1.html",
+            "byte_size": 38174,
+            "sha256": "7911f2158d4fb9a4628e059e81cff06e5cca52497ac620fc7cfdc25ac3ad920b"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-expansion-wave1.json",
+            "byte_size": 34555,
+            "sha256": "02bf53c039611f2faa2712fa69c8ef6885d1fcf2da408283be0b04aba7c122a7"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/README_COMPOSITION_EXPANSION_WAVE1.md",
+            "byte_size": 2194,
+            "sha256": "fa8c9a3e914caef10f7ba6f3a7dc9db7ddff32ce488b2ab33bf08b435f905bc8"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/reference-sources.csv",
+            "byte_size": 6187,
+            "sha256": "f9d338e0864877e767e2c8f436566157023b96194ac70d6d4e3c670e7c29fc59"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/shot-composition-map.csv",
+            "byte_size": 5844,
+            "sha256": "3bda68312bdc7cf4e3028fd513d0a3ab63964fe3aa598eec911ec0f32e5c142e"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/beat2-composition-board",
+        "file_count": 13,
+        "total_bytes": 2671612,
+        "aggregate_sha256": "adac4c76dade92f0eadafaa8f3aea651ad53decd545d19bcdf3a487981a817ff",
+        "inventory": [
+          {
+            "path": "artifacts/beat2-composition-board/beat2-composition-board-contact-sheet.jpg",
+            "byte_size": 537393,
+            "sha256": "43545188f5c88d576c70fd2f09212dd4e86ac14aca8f9c1d7588cb54a386fd66"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/beat2-composition-board-manifest.json",
+            "byte_size": 3327,
+            "sha256": "8072ef6e6cf1215a5e2f0e535ca784e50d591e9b9897cd741f0a6e242b3d8209"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/beat2-composition-board.html",
+            "byte_size": 27605,
+            "sha256": "4b9ba5b743108c30af3120a80b2b7aad04d9ed5ad53b039a1a31797352740e67"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/beat2-composition-board.json",
+            "byte_size": 14942,
+            "sha256": "87e3cf5038e76a100cf489759b648817c12acd35f2a51f930984d8e18f00dea0"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s01-precision-handwork.jpg",
+            "byte_size": 432635,
+            "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s01-watch-repair-workbench.jpg",
+            "byte_size": 422572,
+            "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s02-aged-handwritten-letter.jpg",
+            "byte_size": 376293,
+            "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
+            "byte_size": 194726,
+            "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s03-brass-clock-dial.jpg",
+            "byte_size": 362668,
+            "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
+            "byte_size": 292584,
+            "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/README_COMPOSITION_BOARD.md",
+            "byte_size": 1206,
+            "sha256": "7771a5b14c4f4a2a795ef1731282b374a34d9f9844eefb25db796de93cb1221c"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/reference-sources.csv",
+            "byte_size": 3399,
+            "sha256": "8dbff9f61af2722b454ee6a7dcda71794ff6646caeea71765a40db6de93ca7b5"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/shot-composition-map.csv",
+            "byte_size": 2262,
+            "sha256": "61fc3704aabd851af4ff0a402de28acf6ca60ae9106be222157073bc208edce1"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/beat2-visual-treatment-pilot",
+        "file_count": 13,
+        "total_bytes": 2657450,
+        "aggregate_sha256": "bd305a7b177fa36bda5b2bfe737d6dfab2cb1ecb7c07a58e070b131bb85160e5",
+        "inventory": [
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment-contact-sheet.jpg",
+            "byte_size": 537393,
+            "sha256": "43545188f5c88d576c70fd2f09212dd4e86ac14aca8f9c1d7588cb54a386fd66"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment-manifest.json",
+            "byte_size": 2643,
+            "sha256": "fd417ce41b0df4d9a78fe2d56b2a864eede26aed9a44cf7ea18f3b22ae997a91"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html",
+            "byte_size": 15162,
+            "sha256": "0edea3485f45a26dbc1537e9ccf6dee88560fab40c1a1e7c9c4299b80512ff21"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.json",
+            "byte_size": 14880,
+            "sha256": "13d7b9871e178507e5057c34cf5bb8614b1f918f99e6f29dfd00b6626dc47559"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/README_VISUAL_TREATMENT.md",
+            "byte_size": 641,
+            "sha256": "3ec4b648bbf26a386078002815bf0c8cd056e8905435c0777f26c6c4cb417a80"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/reference-sources.csv",
+            "byte_size": 3772,
+            "sha256": "76df141c82167e8e84f9bbf0704965ed18d1b311009783bbdd918a56a57f6415"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s01-precision-handwork.jpg",
+            "byte_size": 432635,
+            "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s01-watch-repair-workbench.jpg",
+            "byte_size": 422572,
+            "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s02-aged-handwritten-letter.jpg",
+            "byte_size": 376293,
+            "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s02-metal-butterfly-brooch.jpg",
+            "byte_size": 194726,
+            "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s03-brass-clock-dial.jpg",
+            "byte_size": 362668,
+            "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s03-vintage-watch-0915.jpg",
+            "byte_size": 292584,
+            "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/shot-reference-map.csv",
+            "byte_size": 1481,
+            "sha256": "246ecd05ab285c049addcfd371be0eafa3315187eb951d1e701e3bdae76dd5c1"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/beat4-composition-counterexample",
+        "file_count": 14,
+        "total_bytes": 1570263,
+        "aggregate_sha256": "7c4da4bb663af67bc003848813c86f56ba984a83663823d1601ee159a6b2750c",
+        "inventory": [
+          {
+            "path": "artifacts/beat4-composition-counterexample/beat4-composition-counterexample-contact-sheet.jpg",
+            "byte_size": 212529,
+            "sha256": "d00864086eed61cf8e80e8a52c043c9b5a6b33968f5d3bb649c2280ad3a58608"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/beat4-composition-counterexample.html",
+            "byte_size": 26269,
+            "sha256": "b245264806b14767c750a3323a1ec40a1e27b6bf63a3f9a83f4fb4c005d9b70f"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/beat4-composition-counterexample.json",
+            "byte_size": 20071,
+            "sha256": "6d0f886178ed18b841a96f87fe54e3f03c3ad19236fd5ab6b37bb5676fb71a2d"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-conference-backs.jpg",
+            "byte_size": 25423,
+            "sha256": "79e17d1982c6d217063d34d1479606f8a586c6e4b8b001167e3647ce2d4b1962"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-frosted-partition.jpg",
+            "byte_size": 334788,
+            "sha256": "f55ecaa635f09cd4b203fc97775ef049f42bb3a0004a24ab1c2385438685fffb"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-card-catalogue.jpg",
+            "byte_size": 155801,
+            "sha256": "23aaf60edcd0880b63e5c98eed29a2ea46fddf0c5e3e8ab17c3e948cfcae5822"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-time-recorder.jpg",
+            "byte_size": 237345,
+            "sha256": "ea2732ff8205541eed60050129020ba94c6202d868d77eca90972d6792411127"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s03-closed-meeting-room.jpg",
+            "byte_size": 86531,
+            "sha256": "e6f06540dba924ccd3c5aaa38fa3f676f489335762b61dd7ecbcca69da196ca9"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-shared-general-ledger.jpg",
+            "byte_size": 453492,
+            "sha256": "74d83e8fbad303bf4a08c86e72c02746c678a95e56c0f69814c6c853dd7feaab"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/H1_TRANSFER_REVIEW.md",
+            "byte_size": 2827,
+            "sha256": "52c8b5dddefab970e96104317bdeb411f5e514fcdb0725f7ce1fe6edb70aee00"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/manifest.json",
+            "byte_size": 3542,
+            "sha256": "28be65595282dde9a79f72535ce589b6eec6ab6c25087d85e4e2859550f77943"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/README.md",
+            "byte_size": 3609,
+            "sha256": "3276fcbed548f75cad8f86e6ea8c9d88ad681cfdeb27e1fac2ed3e92eada319c"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/reference-sources.csv",
+            "byte_size": 4406,
+            "sha256": "291c41e189651a29193d2577b456fc3ab1ea333c09e95b11ed13b0ad84bb1615"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/shot-composition-map.csv",
+            "byte_size": 3630,
+            "sha256": "ab98ce8df7661b430a0bb5ac3fac34a38c7c03ec21418977671664fe807124c7"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/composition-expansion-wave2",
+        "file_count": 11,
+        "total_bytes": 1095458,
+        "aggregate_sha256": "4a5307eba4da8b97083dd92c5305a7971c829770ec2336a31551d3f1346e5b12",
+        "inventory": [
+          {
+            "path": "artifacts/composition-expansion-wave2/composition-expansion-wave2-contact-sheet.jpg",
+            "byte_size": 409605,
+            "sha256": "c76682a3dd02f42a9774efcc0cd7e2c2af546eee354e2acb8207775c7cfdcb6f"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/composition-expansion-wave2-manifest.json",
+            "byte_size": 2211,
+            "sha256": "5d1aeb25a508d8f5e582046f3678eea0a27cccc9900e287895fbc38f4243c35b"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/composition-expansion-wave2.html",
+            "byte_size": 30946,
+            "sha256": "bdbfc4bb652c86236bb3968f8252a06cae65da6b3d690572d3486b591372ed9e"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/composition-expansion-wave2.json",
+            "byte_size": 64144,
+            "sha256": "eb53fd8400bc19eee99ccd70bf6d250be9b92248d209a0135bf7a6d743d9a23c"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/README_COMPOSITION_EXPANSION_WAVE2.md",
+            "byte_size": 1065,
+            "sha256": "fc34fc6cdbebe326c26af040a68beea4daf9dab20a9bf2028c4cfe6c7b99d773"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-fate-blank-card.jpg",
+            "byte_size": 117395,
+            "sha256": "c970d41f104ddb5a7ebcda6348cd1018dc979101329d51cb5f303c64a49ce802"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s01-horizon-silhouette.jpg",
+            "byte_size": 58706,
+            "sha256": "2f5cbd4befae47efb0b44a35a901221dfc101ff2b027daee1b9c92575f4492a7"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s02-brass-plate.jpg",
+            "byte_size": 205883,
+            "sha256": "d9d8146351e2db5b42dc7c39c4609399aa8039cfa68387722f591f833369ae39"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b06-s02-closed-book.jpg",
+            "byte_size": 188939,
+            "sha256": "e69f1a06db297bb537d57684cf4989615e0426eb4500c6c8cc5d7aa6bddca2ab"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-sources.csv",
+            "byte_size": 8210,
+            "sha256": "91eb994bbb79037a473b80ab2feb51b7a506b9acd4ad9e6f24be157daedc0a85"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/shot-composition-map.csv",
+            "byte_size": 8354,
+            "sha256": "05bd9bec9b46a7600d4a16d69b60aeb22060a14d1dd84925adecbf68aba6f829"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/production-storyboard-brief",
+        "file_count": 7,
+        "total_bytes": 204151,
+        "aggregate_sha256": "f71959bd2fe5a845d99b2ceead72837de34b00848e9a7b49e603fa773007b5bf",
+        "inventory": [
+          {
+            "path": "artifacts/production-storyboard-brief/asset-operations-summary.csv",
+            "byte_size": 5978,
+            "sha256": "23b83f9bb0a014c4c2ac408e0654f7dd041b72b5b6fa9732ebfecf32ef5c3e7a"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/production-storyboard-brief-manifest.json",
+            "byte_size": 2607,
+            "sha256": "71642f7fd18b838cd7b34af2563e03b4739faa20a6f19ba8198fe7a04d93441d"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/production-storyboard-brief.html",
+            "byte_size": 104219,
+            "sha256": "03adf435908922de11e280abc3cf9f6c440a06ddda1f25b87dee0665ebe3255f"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/production-storyboard-brief.json",
+            "byte_size": 74741,
+            "sha256": "50cd787d1643d8b5e1d5138d3c81c38befb33bd107914b21a0696c09e611d4cf"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/README_STORYBOARD_BRIEF.md",
+            "byte_size": 1320,
+            "sha256": "c3638abd5131664104f778cbdcc3b6585788b1f6502859fe6f401173a0535e81"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/story-glossary.csv",
+            "byte_size": 3833,
+            "sha256": "083de3dd228521699561912c051770b3aa60024c3c3203729f80e13726e52520"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/storyboard-shot-map.csv",
+            "byte_size": 11453,
+            "sha256": "b4ba1bbe2b5975959a41827751ad6017735bf6099d592b9576fc4926a30666c3"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/production-execution-pack",
+        "file_count": 9,
+        "total_bytes": 106327,
+        "aggregate_sha256": "8628ee4583b67a1b6276904a323ae792a62729a2c03f9e1e6ff509e4c777757f",
+        "inventory": [
+          {
+            "path": "artifacts/production-execution-pack/asset-requirements.csv",
+            "byte_size": 4143,
+            "sha256": "caa71679693005d643b6bd8346a30ecc38dd6a5d43e2b43d7a526e776f7a58d1"
+          },
+          {
+            "path": "artifacts/production-execution-pack/beat-run-sheet.csv",
+            "byte_size": 1770,
+            "sha256": "98287106f8da8851f28f4f48494ea0b646515a0a68e4c69b67ab5013a528de03"
+          },
+          {
+            "path": "artifacts/production-execution-pack/narration-timing-envelope.csv",
+            "byte_size": 1128,
+            "sha256": "82ed47ab2c24c8b7be082f3e9fb547c2978a3d718eb71a5f28bdf8bcfc57e847"
+          },
+          {
+            "path": "artifacts/production-execution-pack/production-execution-manifest.json",
+            "byte_size": 3554,
+            "sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7"
+          },
+          {
+            "path": "artifacts/production-execution-pack/production-execution-pack.html",
+            "byte_size": 35720,
+            "sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c"
+          },
+          {
+            "path": "artifacts/production-execution-pack/production-execution-pack.json",
+            "byte_size": 47347,
+            "sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb"
+          },
+          {
+            "path": "artifacts/production-execution-pack/README_PRODUCTION_EXECUTION.md",
+            "byte_size": 1094,
+            "sha256": "963d162bfb9f11807e1dc7f1d65a1d83cfc47cdcb586953d462bcc7b89be59b6"
+          },
+          {
+            "path": "artifacts/production-execution-pack/shot-execution-sheet.csv",
+            "byte_size": 10277,
+            "sha256": "f6d9e6692f770d5d8fb591542a5bcd270ad551fe502a211002090a245ce56eee"
+          },
+          {
+            "path": "artifacts/production-execution-pack/thumbnail-requirements.md",
+            "byte_size": 1294,
+            "sha256": "6a3a769c7a95e0d8e86cd8350e1a2d05e9d86ab3526b662ea416c2926e1ddbd7"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/operator-production-brief",
+        "file_count": 6,
+        "total_bytes": 33871,
+        "aggregate_sha256": "85d152570545b29209d09ef27a546630a44d14b4cf51232339b5632d6ebc4212",
+        "inventory": [
+          {
+            "path": "artifacts/operator-production-brief/beat-story-map.csv",
+            "byte_size": 2327,
+            "sha256": "9dc744c60db073a89f0bf280f4f50026a990fd5fb0dbd84ad9dad6a419a8fff7"
+          },
+          {
+            "path": "artifacts/operator-production-brief/operator-brief-manifest.json",
+            "byte_size": 1365,
+            "sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40"
+          },
+          {
+            "path": "artifacts/operator-production-brief/operator-completion-checklist.md",
+            "byte_size": 441,
+            "sha256": "0e49c81efe375349af0911fe57255031ad94e8aef5e7490a487ffd1acf36ef13"
+          },
+          {
+            "path": "artifacts/operator-production-brief/operator-production-brief.json",
+            "byte_size": 27229,
+            "sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6"
+          },
+          {
+            "path": "artifacts/operator-production-brief/README_OPERATOR_BRIEF.md",
+            "byte_size": 699,
+            "sha256": "4202f04f6fa9ece43d654938379ad698af54544a61a5d93b1ab8ab7bfdd58484"
+          },
+          {
+            "path": "artifacts/operator-production-brief/visual-grammar-guide.md",
+            "byte_size": 1810,
+            "sha256": "d4752baf826e4a3ed776c70573d018197b8fb2e6dbc841248ee20d9b3b185dcd"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/production-blueprint",
+        "file_count": 8,
+        "total_bytes": 236105,
+        "aggregate_sha256": "2bdab898f7924ef6b2c3b732fd26e0c6a757b1db2490baeff255769b12bb09b3",
+        "inventory": [
+          {
+            "path": "artifacts/production-blueprint/acceptance-matrix.csv",
+            "byte_size": 12686,
+            "sha256": "65b319b7528ba202acda464dd18c3b25403a5be95a94422bf5d9347552ff46f4"
+          },
+          {
+            "path": "artifacts/production-blueprint/beat-specs.csv",
+            "byte_size": 3600,
+            "sha256": "6de66391518c3084d6369e5af5d34818e09d3d75186633328c386d29393ec0bb"
+          },
+          {
+            "path": "artifacts/production-blueprint/blueprint-package-manifest.json",
+            "byte_size": 2843,
+            "sha256": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245"
+          },
+          {
+            "path": "artifacts/production-blueprint/production-blueprint.json",
+            "byte_size": 202005,
+            "sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d"
+          },
+          {
+            "path": "artifacts/production-blueprint/README_BLUEPRINT.md",
+            "byte_size": 2569,
+            "sha256": "c018bfb033c290fd3693be5176df397983dfae902145a3fbc91ab7229776d40b"
+          },
+          {
+            "path": "artifacts/production-blueprint/shot-specs.csv",
+            "byte_size": 7268,
+            "sha256": "f36b413da40a4bf53d7a96a5408df41f77381310f089ae3e1784a8899d427914"
+          },
+          {
+            "path": "artifacts/production-blueprint/subtitle-metrics.csv",
+            "byte_size": 2818,
+            "sha256": "ed3ac3491120e433cac6dccc0960d94e7931ff5c566d3beb511384f514e8d816"
+          },
+          {
+            "path": "artifacts/production-blueprint/visual-system.md",
+            "byte_size": 2316,
+            "sha256": "1784b672c36551562437c274c1b6a49db0c214dc58cef5f059631c8066d77392"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/editorial-derivative",
+        "file_count": 8,
+        "total_bytes": 65604,
+        "aggregate_sha256": "910d699380998f4259a00730acb6bb70e65b65d284f9969656cc919ecb9cc4be",
+        "inventory": [
+          {
+            "path": "artifacts/editorial-derivative/applied-revision-patch.json",
+            "byte_size": 3178,
+            "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+          },
+          {
+            "path": "artifacts/editorial-derivative/derivative-package-manifest.json",
+            "byte_size": 2134,
+            "sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+          },
+          {
+            "path": "artifacts/editorial-derivative/derivative-provenance.json",
+            "byte_size": 5841,
+            "sha256": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd"
+          },
+          {
+            "path": "artifacts/editorial-derivative/editorial-handoff.derived.json",
+            "byte_size": 37134,
+            "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+          },
+          {
+            "path": "artifacts/editorial-derivative/narration-script.derived.md",
+            "byte_size": 4774,
+            "sha256": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6"
+          },
+          {
+            "path": "artifacts/editorial-derivative/README_DERIVATIVE.md",
+            "byte_size": 1919,
+            "sha256": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe"
+          },
+          {
+            "path": "artifacts/editorial-derivative/shot-list.derived.csv",
+            "byte_size": 7009,
+            "sha256": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4"
+          },
+          {
+            "path": "artifacts/editorial-derivative/subtitle-cues.derived.csv",
+            "byte_size": 3615,
+            "sha256": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/editorial-revision",
+        "file_count": 6,
+        "total_bytes": 19659,
+        "aggregate_sha256": "d701763938f97869ef8fe6748db0fb80890b8f470f2874a03bd14da4191a0b78",
+        "inventory": [
+          {
+            "path": "artifacts/editorial-revision/README_REVISION.md",
+            "byte_size": 4975,
+            "sha256": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-decision.example.json",
+            "byte_size": 2585,
+            "sha256": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-patch.example.json",
+            "byte_size": 3178,
+            "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-request-template.json",
+            "byte_size": 1831,
+            "sha256": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-request.example.json",
+            "byte_size": 5685,
+            "sha256": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-roundtrip-manifest.json",
+            "byte_size": 1405,
+            "sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/editorial-handoff",
+        "file_count": 6,
+        "total_bytes": 53681,
+        "aggregate_sha256": "7474a44e84b7072830170be6c8540040b2406ae53b66179dbdbb97011b2ec3e0",
+        "inventory": [
+          {
+            "path": "artifacts/editorial-handoff/editorial-handoff.json",
+            "byte_size": 31907,
+            "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+          },
+          {
+            "path": "artifacts/editorial-handoff/narration-script.md",
+            "byte_size": 4992,
+            "sha256": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081"
+          },
+          {
+            "path": "artifacts/editorial-handoff/package-manifest.json",
+            "byte_size": 1081,
+            "sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+          },
+          {
+            "path": "artifacts/editorial-handoff/README_DELIVERY.md",
+            "byte_size": 4390,
+            "sha256": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2"
+          },
+          {
+            "path": "artifacts/editorial-handoff/shot-list.csv",
+            "byte_size": 7366,
+            "sha256": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676"
+          },
+          {
+            "path": "artifacts/editorial-handoff/subtitle-cues.csv",
+            "byte_size": 3945,
+            "sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+          }
+        ]
+      }
+    ],
+    "after": [
+      {
+        "directory": "artifacts/composition-expansion-wave1",
+        "file_count": 19,
+        "total_bytes": 3576288,
+        "aggregate_sha256": "25bbad8e05d57293dbc724a4d3df6aa5fec7ca3b3b1f4a50e404cecddf793926",
+        "inventory": [
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-harvard-observatory.jpg",
+            "byte_size": 610181,
+            "sha256": "6e1376fa2b4fa4bfffae778f1e86364b1c3baf5fe2925cd242337d76f7b33e84"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-kreiensen-station.jpg",
+            "byte_size": 201158,
+            "sha256": "49b3136c701d7e149194e74cac2a1c5c6dc688d6502340fce4915cec656da134"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-beam-junction.jpg",
+            "byte_size": 280446,
+            "sha256": "05aacc6386c240e2174bd717e90342fec23e1b5fbdf092965495109d00f81e56"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-wood-joints.jpg",
+            "byte_size": 270490,
+            "sha256": "3258615d9b6b28e22ed5d0510f74f135e78953557735d0d6d42e47d122ddf2de"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-belfry-interior-art.jpg",
+            "byte_size": 373265,
+            "sha256": "39602c0536b46c3f0868e2f4b9661c5e1bb1a4d67f70ca1fcdfecb9355c5d91b"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-noon-mark.jpg",
+            "byte_size": 473440,
+            "sha256": "1c68f99c68f85869e461a832498d6485994c94a28c04effefaf47964b1447f62"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-book-in-hand.jpg",
+            "byte_size": 184191,
+            "sha256": "6fc36da6028effe9a402f18efabeeef970e6511f4023156994aa5dcf5aad681a"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-page-turning.jpg",
+            "byte_size": 179795,
+            "sha256": "d846f48b836c604cbbf913ad7b37700926a362bc657dc7a4df8b1b204dfb9f13"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-blank-book.jpg",
+            "byte_size": 180344,
+            "sha256": "312ac0465762b21dd1d67504d7dcaee074c94f73d7281f5adeb16fed618343a4"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-ledger-geometry.jpg",
+            "byte_size": 223339,
+            "sha256": "ccbb058ad17576dd5d69329b67137947a3dfcc218672394d97f1bc4234e6ff88"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-ink-stains.jpg",
+            "byte_size": 135980,
+            "sha256": "96350f03a1bc118e3108284ca43edc84a01e83f23686707f58854ffe939bc0a4"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-old-paper.jpg",
+            "byte_size": 187962,
+            "sha256": "de3156d47386e17242543e6292093ac0eeba4b6079fb735b0da51423fa9b3624"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-expansion-wave1-contact-sheet.jpg",
+            "byte_size": 184914,
+            "sha256": "ec57d886fe031d06f8e166c7581e220faee84e9813a8dacb8be4fa2aafb368f9"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-expansion-wave1-manifest.json",
+            "byte_size": 3829,
+            "sha256": "37f1b09c932ed410eb096ef597d006e87483eecdd4b89f929e66f162f939ea9b"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-expansion-wave1.html",
+            "byte_size": 38174,
+            "sha256": "7911f2158d4fb9a4628e059e81cff06e5cca52497ac620fc7cfdc25ac3ad920b"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/composition-expansion-wave1.json",
+            "byte_size": 34555,
+            "sha256": "02bf53c039611f2faa2712fa69c8ef6885d1fcf2da408283be0b04aba7c122a7"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/README_COMPOSITION_EXPANSION_WAVE1.md",
+            "byte_size": 2194,
+            "sha256": "fa8c9a3e914caef10f7ba6f3a7dc9db7ddff32ce488b2ab33bf08b435f905bc8"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/reference-sources.csv",
+            "byte_size": 6187,
+            "sha256": "f9d338e0864877e767e2c8f436566157023b96194ac70d6d4e3c670e7c29fc59"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave1/shot-composition-map.csv",
+            "byte_size": 5844,
+            "sha256": "3bda68312bdc7cf4e3028fd513d0a3ab63964fe3aa598eec911ec0f32e5c142e"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/beat2-composition-board",
+        "file_count": 13,
+        "total_bytes": 2671612,
+        "aggregate_sha256": "adac4c76dade92f0eadafaa8f3aea651ad53decd545d19bcdf3a487981a817ff",
+        "inventory": [
+          {
+            "path": "artifacts/beat2-composition-board/beat2-composition-board-contact-sheet.jpg",
+            "byte_size": 537393,
+            "sha256": "43545188f5c88d576c70fd2f09212dd4e86ac14aca8f9c1d7588cb54a386fd66"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/beat2-composition-board-manifest.json",
+            "byte_size": 3327,
+            "sha256": "8072ef6e6cf1215a5e2f0e535ca784e50d591e9b9897cd741f0a6e242b3d8209"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/beat2-composition-board.html",
+            "byte_size": 27605,
+            "sha256": "4b9ba5b743108c30af3120a80b2b7aad04d9ed5ad53b039a1a31797352740e67"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/beat2-composition-board.json",
+            "byte_size": 14942,
+            "sha256": "87e3cf5038e76a100cf489759b648817c12acd35f2a51f930984d8e18f00dea0"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s01-precision-handwork.jpg",
+            "byte_size": 432635,
+            "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s01-watch-repair-workbench.jpg",
+            "byte_size": 422572,
+            "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s02-aged-handwritten-letter.jpg",
+            "byte_size": 376293,
+            "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
+            "byte_size": 194726,
+            "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s03-brass-clock-dial.jpg",
+            "byte_size": 362668,
+            "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
+            "byte_size": 292584,
+            "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/README_COMPOSITION_BOARD.md",
+            "byte_size": 1206,
+            "sha256": "7771a5b14c4f4a2a795ef1731282b374a34d9f9844eefb25db796de93cb1221c"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/reference-sources.csv",
+            "byte_size": 3399,
+            "sha256": "8dbff9f61af2722b454ee6a7dcda71794ff6646caeea71765a40db6de93ca7b5"
+          },
+          {
+            "path": "artifacts/beat2-composition-board/shot-composition-map.csv",
+            "byte_size": 2262,
+            "sha256": "61fc3704aabd851af4ff0a402de28acf6ca60ae9106be222157073bc208edce1"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/beat2-visual-treatment-pilot",
+        "file_count": 13,
+        "total_bytes": 2657450,
+        "aggregate_sha256": "bd305a7b177fa36bda5b2bfe737d6dfab2cb1ecb7c07a58e070b131bb85160e5",
+        "inventory": [
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment-contact-sheet.jpg",
+            "byte_size": 537393,
+            "sha256": "43545188f5c88d576c70fd2f09212dd4e86ac14aca8f9c1d7588cb54a386fd66"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment-manifest.json",
+            "byte_size": 2643,
+            "sha256": "fd417ce41b0df4d9a78fe2d56b2a864eede26aed9a44cf7ea18f3b22ae997a91"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.html",
+            "byte_size": 15162,
+            "sha256": "0edea3485f45a26dbc1537e9ccf6dee88560fab40c1a1e7c9c4299b80512ff21"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment.json",
+            "byte_size": 14880,
+            "sha256": "13d7b9871e178507e5057c34cf5bb8614b1f918f99e6f29dfd00b6626dc47559"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/README_VISUAL_TREATMENT.md",
+            "byte_size": 641,
+            "sha256": "3ec4b648bbf26a386078002815bf0c8cd056e8905435c0777f26c6c4cb417a80"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/reference-sources.csv",
+            "byte_size": 3772,
+            "sha256": "76df141c82167e8e84f9bbf0704965ed18d1b311009783bbdd918a56a57f6415"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s01-precision-handwork.jpg",
+            "byte_size": 432635,
+            "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s01-watch-repair-workbench.jpg",
+            "byte_size": 422572,
+            "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s02-aged-handwritten-letter.jpg",
+            "byte_size": 376293,
+            "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s02-metal-butterfly-brooch.jpg",
+            "byte_size": 194726,
+            "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s03-brass-clock-dial.jpg",
+            "byte_size": 362668,
+            "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/references/ref-b02-s03-vintage-watch-0915.jpg",
+            "byte_size": 292584,
+            "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082"
+          },
+          {
+            "path": "artifacts/beat2-visual-treatment-pilot/shot-reference-map.csv",
+            "byte_size": 1481,
+            "sha256": "246ecd05ab285c049addcfd371be0eafa3315187eb951d1e701e3bdae76dd5c1"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/beat4-composition-counterexample",
+        "file_count": 14,
+        "total_bytes": 1570263,
+        "aggregate_sha256": "7c4da4bb663af67bc003848813c86f56ba984a83663823d1601ee159a6b2750c",
+        "inventory": [
+          {
+            "path": "artifacts/beat4-composition-counterexample/beat4-composition-counterexample-contact-sheet.jpg",
+            "byte_size": 212529,
+            "sha256": "d00864086eed61cf8e80e8a52c043c9b5a6b33968f5d3bb649c2280ad3a58608"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/beat4-composition-counterexample.html",
+            "byte_size": 26269,
+            "sha256": "b245264806b14767c750a3323a1ec40a1e27b6bf63a3f9a83f4fb4c005d9b70f"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/beat4-composition-counterexample.json",
+            "byte_size": 20071,
+            "sha256": "6d0f886178ed18b841a96f87fe54e3f03c3ad19236fd5ab6b37bb5676fb71a2d"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-conference-backs.jpg",
+            "byte_size": 25423,
+            "sha256": "79e17d1982c6d217063d34d1479606f8a586c6e4b8b001167e3647ce2d4b1962"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-frosted-partition.jpg",
+            "byte_size": 334788,
+            "sha256": "f55ecaa635f09cd4b203fc97775ef049f42bb3a0004a24ab1c2385438685fffb"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-card-catalogue.jpg",
+            "byte_size": 155801,
+            "sha256": "23aaf60edcd0880b63e5c98eed29a2ea46fddf0c5e3e8ab17c3e948cfcae5822"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-time-recorder.jpg",
+            "byte_size": 237345,
+            "sha256": "ea2732ff8205541eed60050129020ba94c6202d868d77eca90972d6792411127"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s03-closed-meeting-room.jpg",
+            "byte_size": 86531,
+            "sha256": "e6f06540dba924ccd3c5aaa38fa3f676f489335762b61dd7ecbcca69da196ca9"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-shared-general-ledger.jpg",
+            "byte_size": 453492,
+            "sha256": "74d83e8fbad303bf4a08c86e72c02746c678a95e56c0f69814c6c853dd7feaab"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/H1_TRANSFER_REVIEW.md",
+            "byte_size": 2827,
+            "sha256": "52c8b5dddefab970e96104317bdeb411f5e514fcdb0725f7ce1fe6edb70aee00"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/manifest.json",
+            "byte_size": 3542,
+            "sha256": "28be65595282dde9a79f72535ce589b6eec6ab6c25087d85e4e2859550f77943"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/README.md",
+            "byte_size": 3609,
+            "sha256": "3276fcbed548f75cad8f86e6ea8c9d88ad681cfdeb27e1fac2ed3e92eada319c"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/reference-sources.csv",
+            "byte_size": 4406,
+            "sha256": "291c41e189651a29193d2577b456fc3ab1ea333c09e95b11ed13b0ad84bb1615"
+          },
+          {
+            "path": "artifacts/beat4-composition-counterexample/shot-composition-map.csv",
+            "byte_size": 3630,
+            "sha256": "ab98ce8df7661b430a0bb5ac3fac34a38c7c03ec21418977671664fe807124c7"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/composition-expansion-wave2",
+        "file_count": 11,
+        "total_bytes": 1095458,
+        "aggregate_sha256": "4a5307eba4da8b97083dd92c5305a7971c829770ec2336a31551d3f1346e5b12",
+        "inventory": [
+          {
+            "path": "artifacts/composition-expansion-wave2/composition-expansion-wave2-contact-sheet.jpg",
+            "byte_size": 409605,
+            "sha256": "c76682a3dd02f42a9774efcc0cd7e2c2af546eee354e2acb8207775c7cfdcb6f"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/composition-expansion-wave2-manifest.json",
+            "byte_size": 2211,
+            "sha256": "5d1aeb25a508d8f5e582046f3678eea0a27cccc9900e287895fbc38f4243c35b"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/composition-expansion-wave2.html",
+            "byte_size": 30946,
+            "sha256": "bdbfc4bb652c86236bb3968f8252a06cae65da6b3d690572d3486b591372ed9e"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/composition-expansion-wave2.json",
+            "byte_size": 64144,
+            "sha256": "eb53fd8400bc19eee99ccd70bf6d250be9b92248d209a0135bf7a6d743d9a23c"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/README_COMPOSITION_EXPANSION_WAVE2.md",
+            "byte_size": 1065,
+            "sha256": "fc34fc6cdbebe326c26af040a68beea4daf9dab20a9bf2028c4cfe6c7b99d773"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-fate-blank-card.jpg",
+            "byte_size": 117395,
+            "sha256": "c970d41f104ddb5a7ebcda6348cd1018dc979101329d51cb5f303c64a49ce802"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s01-horizon-silhouette.jpg",
+            "byte_size": 58706,
+            "sha256": "2f5cbd4befae47efb0b44a35a901221dfc101ff2b027daee1b9c92575f4492a7"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s02-brass-plate.jpg",
+            "byte_size": 205883,
+            "sha256": "d9d8146351e2db5b42dc7c39c4609399aa8039cfa68387722f591f833369ae39"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b06-s02-closed-book.jpg",
+            "byte_size": 188939,
+            "sha256": "e69f1a06db297bb537d57684cf4989615e0426eb4500c6c8cc5d7aa6bddca2ab"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/reference-sources.csv",
+            "byte_size": 8210,
+            "sha256": "91eb994bbb79037a473b80ab2feb51b7a506b9acd4ad9e6f24be157daedc0a85"
+          },
+          {
+            "path": "artifacts/composition-expansion-wave2/shot-composition-map.csv",
+            "byte_size": 8354,
+            "sha256": "05bd9bec9b46a7600d4a16d69b60aeb22060a14d1dd84925adecbf68aba6f829"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/production-storyboard-brief",
+        "file_count": 7,
+        "total_bytes": 204151,
+        "aggregate_sha256": "f71959bd2fe5a845d99b2ceead72837de34b00848e9a7b49e603fa773007b5bf",
+        "inventory": [
+          {
+            "path": "artifacts/production-storyboard-brief/asset-operations-summary.csv",
+            "byte_size": 5978,
+            "sha256": "23b83f9bb0a014c4c2ac408e0654f7dd041b72b5b6fa9732ebfecf32ef5c3e7a"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/production-storyboard-brief-manifest.json",
+            "byte_size": 2607,
+            "sha256": "71642f7fd18b838cd7b34af2563e03b4739faa20a6f19ba8198fe7a04d93441d"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/production-storyboard-brief.html",
+            "byte_size": 104219,
+            "sha256": "03adf435908922de11e280abc3cf9f6c440a06ddda1f25b87dee0665ebe3255f"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/production-storyboard-brief.json",
+            "byte_size": 74741,
+            "sha256": "50cd787d1643d8b5e1d5138d3c81c38befb33bd107914b21a0696c09e611d4cf"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/README_STORYBOARD_BRIEF.md",
+            "byte_size": 1320,
+            "sha256": "c3638abd5131664104f778cbdcc3b6585788b1f6502859fe6f401173a0535e81"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/story-glossary.csv",
+            "byte_size": 3833,
+            "sha256": "083de3dd228521699561912c051770b3aa60024c3c3203729f80e13726e52520"
+          },
+          {
+            "path": "artifacts/production-storyboard-brief/storyboard-shot-map.csv",
+            "byte_size": 11453,
+            "sha256": "b4ba1bbe2b5975959a41827751ad6017735bf6099d592b9576fc4926a30666c3"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/production-execution-pack",
+        "file_count": 9,
+        "total_bytes": 106327,
+        "aggregate_sha256": "8628ee4583b67a1b6276904a323ae792a62729a2c03f9e1e6ff509e4c777757f",
+        "inventory": [
+          {
+            "path": "artifacts/production-execution-pack/asset-requirements.csv",
+            "byte_size": 4143,
+            "sha256": "caa71679693005d643b6bd8346a30ecc38dd6a5d43e2b43d7a526e776f7a58d1"
+          },
+          {
+            "path": "artifacts/production-execution-pack/beat-run-sheet.csv",
+            "byte_size": 1770,
+            "sha256": "98287106f8da8851f28f4f48494ea0b646515a0a68e4c69b67ab5013a528de03"
+          },
+          {
+            "path": "artifacts/production-execution-pack/narration-timing-envelope.csv",
+            "byte_size": 1128,
+            "sha256": "82ed47ab2c24c8b7be082f3e9fb547c2978a3d718eb71a5f28bdf8bcfc57e847"
+          },
+          {
+            "path": "artifacts/production-execution-pack/production-execution-manifest.json",
+            "byte_size": 3554,
+            "sha256": "f3a6bccef8809d8060c7a809522c09a546617b82179d2d5f97fe7e3fe20a60f7"
+          },
+          {
+            "path": "artifacts/production-execution-pack/production-execution-pack.html",
+            "byte_size": 35720,
+            "sha256": "f892d2935d42b62150a58f18da3ed29394435a4e4c2579f4d6321f1ce637338c"
+          },
+          {
+            "path": "artifacts/production-execution-pack/production-execution-pack.json",
+            "byte_size": 47347,
+            "sha256": "24237829ad4d886b79397eb1626ca3efb7a92a8b0f29923ff092f5679d037ceb"
+          },
+          {
+            "path": "artifacts/production-execution-pack/README_PRODUCTION_EXECUTION.md",
+            "byte_size": 1094,
+            "sha256": "963d162bfb9f11807e1dc7f1d65a1d83cfc47cdcb586953d462bcc7b89be59b6"
+          },
+          {
+            "path": "artifacts/production-execution-pack/shot-execution-sheet.csv",
+            "byte_size": 10277,
+            "sha256": "f6d9e6692f770d5d8fb591542a5bcd270ad551fe502a211002090a245ce56eee"
+          },
+          {
+            "path": "artifacts/production-execution-pack/thumbnail-requirements.md",
+            "byte_size": 1294,
+            "sha256": "6a3a769c7a95e0d8e86cd8350e1a2d05e9d86ab3526b662ea416c2926e1ddbd7"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/operator-production-brief",
+        "file_count": 6,
+        "total_bytes": 33871,
+        "aggregate_sha256": "85d152570545b29209d09ef27a546630a44d14b4cf51232339b5632d6ebc4212",
+        "inventory": [
+          {
+            "path": "artifacts/operator-production-brief/beat-story-map.csv",
+            "byte_size": 2327,
+            "sha256": "9dc744c60db073a89f0bf280f4f50026a990fd5fb0dbd84ad9dad6a419a8fff7"
+          },
+          {
+            "path": "artifacts/operator-production-brief/operator-brief-manifest.json",
+            "byte_size": 1365,
+            "sha256": "05ca4f255018b3a67abfba558cfbd265e8206af3c99ee383b0c3adb5893d2d40"
+          },
+          {
+            "path": "artifacts/operator-production-brief/operator-completion-checklist.md",
+            "byte_size": 441,
+            "sha256": "0e49c81efe375349af0911fe57255031ad94e8aef5e7490a487ffd1acf36ef13"
+          },
+          {
+            "path": "artifacts/operator-production-brief/operator-production-brief.json",
+            "byte_size": 27229,
+            "sha256": "25d4cb98e988bc5faffee6f3f422103aa410806e057079153d3b434799e268e6"
+          },
+          {
+            "path": "artifacts/operator-production-brief/README_OPERATOR_BRIEF.md",
+            "byte_size": 699,
+            "sha256": "4202f04f6fa9ece43d654938379ad698af54544a61a5d93b1ab8ab7bfdd58484"
+          },
+          {
+            "path": "artifacts/operator-production-brief/visual-grammar-guide.md",
+            "byte_size": 1810,
+            "sha256": "d4752baf826e4a3ed776c70573d018197b8fb2e6dbc841248ee20d9b3b185dcd"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/production-blueprint",
+        "file_count": 8,
+        "total_bytes": 236105,
+        "aggregate_sha256": "2bdab898f7924ef6b2c3b732fd26e0c6a757b1db2490baeff255769b12bb09b3",
+        "inventory": [
+          {
+            "path": "artifacts/production-blueprint/acceptance-matrix.csv",
+            "byte_size": 12686,
+            "sha256": "65b319b7528ba202acda464dd18c3b25403a5be95a94422bf5d9347552ff46f4"
+          },
+          {
+            "path": "artifacts/production-blueprint/beat-specs.csv",
+            "byte_size": 3600,
+            "sha256": "6de66391518c3084d6369e5af5d34818e09d3d75186633328c386d29393ec0bb"
+          },
+          {
+            "path": "artifacts/production-blueprint/blueprint-package-manifest.json",
+            "byte_size": 2843,
+            "sha256": "5b11bc29b86c6d2f546001f1d028419007d3975df930551478ce4b5f34020245"
+          },
+          {
+            "path": "artifacts/production-blueprint/production-blueprint.json",
+            "byte_size": 202005,
+            "sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d"
+          },
+          {
+            "path": "artifacts/production-blueprint/README_BLUEPRINT.md",
+            "byte_size": 2569,
+            "sha256": "c018bfb033c290fd3693be5176df397983dfae902145a3fbc91ab7229776d40b"
+          },
+          {
+            "path": "artifacts/production-blueprint/shot-specs.csv",
+            "byte_size": 7268,
+            "sha256": "f36b413da40a4bf53d7a96a5408df41f77381310f089ae3e1784a8899d427914"
+          },
+          {
+            "path": "artifacts/production-blueprint/subtitle-metrics.csv",
+            "byte_size": 2818,
+            "sha256": "ed3ac3491120e433cac6dccc0960d94e7931ff5c566d3beb511384f514e8d816"
+          },
+          {
+            "path": "artifacts/production-blueprint/visual-system.md",
+            "byte_size": 2316,
+            "sha256": "1784b672c36551562437c274c1b6a49db0c214dc58cef5f059631c8066d77392"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/editorial-derivative",
+        "file_count": 8,
+        "total_bytes": 65604,
+        "aggregate_sha256": "910d699380998f4259a00730acb6bb70e65b65d284f9969656cc919ecb9cc4be",
+        "inventory": [
+          {
+            "path": "artifacts/editorial-derivative/applied-revision-patch.json",
+            "byte_size": 3178,
+            "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+          },
+          {
+            "path": "artifacts/editorial-derivative/derivative-package-manifest.json",
+            "byte_size": 2134,
+            "sha256": "7232b87bc3f091a8d4aa4e89c218a9c28dfe1c9b324e434a21f18b4c85105577"
+          },
+          {
+            "path": "artifacts/editorial-derivative/derivative-provenance.json",
+            "byte_size": 5841,
+            "sha256": "f54ac6cd3a40b7957f7e7befa7cc7e0dec8eaff8828d46280c44b4256633c3cd"
+          },
+          {
+            "path": "artifacts/editorial-derivative/editorial-handoff.derived.json",
+            "byte_size": 37134,
+            "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+          },
+          {
+            "path": "artifacts/editorial-derivative/narration-script.derived.md",
+            "byte_size": 4774,
+            "sha256": "c33b43fd83dd05a4437256076a3054e52a35bfcd514506c4be75376c224840b6"
+          },
+          {
+            "path": "artifacts/editorial-derivative/README_DERIVATIVE.md",
+            "byte_size": 1919,
+            "sha256": "fc36fb4e6f1500f9e7d1dad235f4c17ef43585f93518bac0a461a8de76fc7fbe"
+          },
+          {
+            "path": "artifacts/editorial-derivative/shot-list.derived.csv",
+            "byte_size": 7009,
+            "sha256": "cc0af0cf354afe35d735565a688ebb6928f5259cfd2b0b640ea07b442353b8d4"
+          },
+          {
+            "path": "artifacts/editorial-derivative/subtitle-cues.derived.csv",
+            "byte_size": 3615,
+            "sha256": "db82b976d78f3323ff96ad48d416a286989a75bfacc915b31384e3d99bbeedfe"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/editorial-revision",
+        "file_count": 6,
+        "total_bytes": 19659,
+        "aggregate_sha256": "d701763938f97869ef8fe6748db0fb80890b8f470f2874a03bd14da4191a0b78",
+        "inventory": [
+          {
+            "path": "artifacts/editorial-revision/README_REVISION.md",
+            "byte_size": 4975,
+            "sha256": "ed25e196c51cce9a4c73a6009ce0f24f076c4560bd0927e3ceb534188c1cbfb4"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-decision.example.json",
+            "byte_size": 2585,
+            "sha256": "2ce92835fe989512e8ff2351a764847ed41eee16347ffaf7acd5b2a0c95b885d"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-patch.example.json",
+            "byte_size": 3178,
+            "sha256": "ded0174232dabf9d78d645836e24455152bd418eff2e49b6f4f2509066478885"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-request-template.json",
+            "byte_size": 1831,
+            "sha256": "cf770a0b399bc67b37a596f77af75234d399611fab6840604f9517595afa3cdd"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-request.example.json",
+            "byte_size": 5685,
+            "sha256": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1"
+          },
+          {
+            "path": "artifacts/editorial-revision/revision-roundtrip-manifest.json",
+            "byte_size": 1405,
+            "sha256": "e473d0cb41f0b4ff7319314ed0996404e57380738b212289e04e1c2a71b1883d"
+          }
+        ]
+      },
+      {
+        "directory": "artifacts/editorial-handoff",
+        "file_count": 6,
+        "total_bytes": 53681,
+        "aggregate_sha256": "7474a44e84b7072830170be6c8540040b2406ae53b66179dbdbb97011b2ec3e0",
+        "inventory": [
+          {
+            "path": "artifacts/editorial-handoff/editorial-handoff.json",
+            "byte_size": 31907,
+            "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+          },
+          {
+            "path": "artifacts/editorial-handoff/narration-script.md",
+            "byte_size": 4992,
+            "sha256": "6305426bb4ad8b860898ed721d0ff3fdcf25aa6e320b881d58b85c054b622081"
+          },
+          {
+            "path": "artifacts/editorial-handoff/package-manifest.json",
+            "byte_size": 1081,
+            "sha256": "ffad571ed4abeb46e7d2b5f61f33f3fa4703173b3f8da2318e5d1c7248772971"
+          },
+          {
+            "path": "artifacts/editorial-handoff/README_DELIVERY.md",
+            "byte_size": 4390,
+            "sha256": "dee7359f93720270a6d72fa77ee8ae0e201d09489beac27859c73d8c060c5cb2"
+          },
+          {
+            "path": "artifacts/editorial-handoff/shot-list.csv",
+            "byte_size": 7366,
+            "sha256": "d300f6d8bcadb9e6233f6fd7405f0270df533ea266baae2fe39d68445f1a3676"
+          },
+          {
+            "path": "artifacts/editorial-handoff/subtitle-cues.csv",
+            "byte_size": 3945,
+            "sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+          }
+        ]
+      }
+    ],
+    "unchanged": true
+  },
+  "package": {
+    "manifest_path": "artifacts/integrated-visual-production-package/integrated-visual-production-package-manifest.json",
+    "file_count": 9,
+    "payload_file_count": 8,
+    "package_fingerprint_sha256": "78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb"
+  },
+  "browser_evidence": {
+    "status": "captured",
+    "engine": "Microsoft Edge via Playwright",
+    "viewports": {
+      "900x1200-dark": {
+        "width": 900,
+        "height": 1200,
+        "requested_theme": "dark",
+        "resolved_theme": "dark",
+        "title_font_px": 34,
+        "title_lines": 1,
+        "title_height_px": 38.75,
+        "title_height_ratio": 0.03229166666666667,
+        "sequence_thumbnail_count": 19,
+        "shot_strip_count": 19,
+        "horizontal_overflow": false,
+        "nested_scroll_owners": 0
+      },
+      "1280x900-light": {
+        "width": 1280,
+        "height": 900,
+        "requested_theme": "light",
+        "resolved_theme": "light",
+        "title_font_px": 38,
+        "title_lines": 1,
+        "title_height_px": 43.3125,
+        "title_height_ratio": 0.048125,
+        "sequence_thumbnail_count": 19,
+        "shot_strip_count": 19,
+        "horizontal_overflow": false,
+        "nested_scroll_owners": 0
+      }
+    },
+    "narrow_720": {
+      "width": 720,
+      "height": 900,
+      "requested_theme": "auto",
+      "resolved_theme": "light",
+      "title_font_px": 34,
+      "title_lines": 1,
+      "title_height_px": 38.75,
+      "title_height_ratio": 0.043055555555555555,
+      "sequence_thumbnail_count": 19,
+      "shot_strip_count": 19,
+      "horizontal_overflow": false,
+      "nested_scroll_owners": 0
+    },
+    "theme": {
+      "auto_default": true,
+      "dark_resolved": "dark",
+      "light_resolved": "light",
+      "focus_visible": true
+    },
+    "print": {
+      "forced_light": true,
+      "theme_controls_hidden": true,
+      "shot_break_avoid": true
+    }
+  },
+  "screenshots": {
+    "900x1200-dark": {
+      "path": "artifacts/review-screens/integrated-visual-production-package-900x1200-dark.png",
+      "exists": true,
+      "byte_size": 1156052,
+      "sha256": "f0a0720ed8aa5be686477e14ecfe1f6636183b7f0254fa7695b92287e737a599",
+      "dimensions": {
+        "width": 900,
+        "height": 1200
+      }
+    },
+    "1280x900-light": {
+      "path": "artifacts/review-screens/integrated-visual-production-package-1280x900-light.png",
+      "exists": true,
+      "byte_size": 998447,
+      "sha256": "886ff416fd31a52990f2b4b50e64e82c7cdd5c12fb7dd7f86b1d63cbf48b8f12",
+      "dimensions": {
+        "width": 1280,
+        "height": 900
+      }
+    }
+  },
+  "normal_validation_read_only": true,
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "external_model_call": false,
+    "image_generation": false,
+    "audio_generation": false,
+    "video_generation": false,
+    "production_render": false,
+    "upload_or_publication": false,
+    "database_persistence": false,
+    "production_approved": false,
+    "final_canon_decision": false,
+    "human_review_performed": false,
+    "external_reproducibility_claimed": false
+  }
+}

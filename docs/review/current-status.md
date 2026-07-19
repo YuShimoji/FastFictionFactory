@@ -1,8 +1,25 @@
 # Current Status Packet
 
-## Current Composition Expansion Wave 2 Update
+## Current Integrated Visual Production Package Update
 
-- Active artifact: `fff-composition-expansion-wave2-001`
+- Active artifact: `fff-integrated-visual-production-package-001`
+- Lane/base: `VISUAL_INTEGRATION`; exact base `b2ef9e214799e973e63543fbdf7118542bd583bf`
+- Scope: exactly 6 Beats / 19 shots / 180 seconds / grouping `3 / 3 / 3 / 3 / 4 / 3`
+- Standalone entry: `artifacts/integrated-visual-production-package/integrated-visual-production-package.html`
+- Package/result/review: `artifacts/integrated-visual-production-package/`, `artifacts/integrated-visual-production-package-result.json`, `docs/review/integrated-visual-production-package.md`
+- Sources: Beat 1/3 = Wave 1; Beat 2 = Composition Board; Beat 4 = Counterexample; Beat 5/6 = Wave 2
+- References: 28 unique SHA256 identities / 36 source aliases / 42 assignments / 0 missing / 0 hash mismatch / 0 copied predecessor rasters
+- Continuity: exactly five lineages—tower B1→B6, moth B2→B5, Council B4→B5, ledger B3→B6, time B2→B6
+- Candidate state: Wave 2 Toma/moth/Council/three-subject/time-name groups and Beat 4's two hypotheses retain exact equal balance; winner cue count 0
+- Browser: 900×1200 Dark title 34px/1 line, 1280×900 Light title 38px/1 line, 720px narrow clean; no horizontal overflow or nested scroll; Auto default, visible focus, print light
+- Integrity: 12 protected directories unchanged by file count, byte size, per-file SHA256, and aggregate SHA256; 56/56 negative probes fail closed without mutation
+- Human policy: `integration_human_review=none`; `next_human_review=owner_whole_story_composition_review`; `per_beat_review=discontinued`; Product Owner formal reviewer; whole-story review not yet performed
+- Read-only validation: `node tools/fff-state.mjs validate-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json`
+- Closed gates: production selection, rights clearance, provider/API, credentials, image/audio/video generation, engine/voice choice, render, upload/publication, database persistence, production approval, final canon, and external reproducibility
+
+## Preserved Composition Expansion Wave 2 Update
+
+- Preserved artifact: `fff-composition-expansion-wave2-001`
 - Lane/base: `COMPOSITION_EXPANSION`; implemented from exact base `b3312a2a4a8d5993d7091de36af2ad291b766aa0`
 - Scope: exactly Beat 5「保留された答え」and Beat 6「時刻か、名前か」/ exactly 7 source shots / 75 seconds
 - Standalone entry: `artifacts/composition-expansion-wave2/composition-expansion-wave2.html`
@@ -12,7 +29,7 @@
 - Structure: seven materially distinct composition classes; candidate-bearing shots preserve equal share, equal headings/emphasis, and no winner or selection indicator
 - Continuity: Beat 5 is 人物の運命 → 対象物の機能 → 制度の動機 → 三つの未解決事項; Beat 6 is 二つの候補 → 未記入の記録 → 冒頭の空枠
 - Human review policy: Wave 2 human review none; no immediate human gate; per-Beat blind review discontinued; next human review is `after_integrated_19_shot_visual_package`
-- Integration boundary: concrete coverage is 19/19, but an integrated 19-shot visual package does not exist
+- Integration successor: concrete separate-package coverage is preserved beneath active `fff-integrated-visual-production-package-001`
 - Read-only validation: `node tools/fff-state.mjs validate-composition-expansion-wave2 artifacts/composition-expansion-wave2-result.json`
 - Closed gates: production selection, rights clearance, image/audio/video generation, provider/API, credentials, final motion/render, upload/publication, database persistence, production approval, final canon, and external reproducibility
 

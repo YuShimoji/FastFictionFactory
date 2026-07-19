@@ -1,0 +1,6 @@
+lineage_id,label_ja,source_shot_ids,successor_shot_ids,shared_reference_ids,continuity_purpose,truth_boundary_preserved
+lineage-bellless-tower,鐘のない塔,"[""shot-b01-01"",""shot-b01-03""]","[""shot-b06-03""]","[""ref-w1-b01-s01-kreiensen-station"",""ref-w1-b01-s01-harvard-observatory""]",冒頭の空の塔枠と駅の奥行きを終幕へ戻す。,true
+lineage-brass-moth,真鍮の蛾,"[""shot-b02-02"",""shot-b02-03""]","[""shot-b05-02"",""shot-b05-04""]","[""ref-b02-s02-metal-butterfly-brooch""]",静止した真鍮の蛾を機能候補と三対象の反復へ継ぐ。,true
+lineage-council,評議会,"[""shot-b04-01"",""shot-b04-02"",""shot-b04-03""]","[""shot-b05-03"",""shot-b05-04""]","[""ref-b04-s02-card-catalogue"",""ref-b04-s03-closed-meeting-room""]",制度の反復と無人空間を動機候補へ継ぐ。,true
+lineage-ledger,台帳,"[""shot-b03-01"",""shot-b03-02"",""shot-b03-03""]","[""shot-b06-01"",""shot-b06-02""]","[""ref-w1-b03-s02-blank-book"",""ref-w1-b03-s02-ledger-geometry""]",空欄と列の形を終幕の名前欄と閉じた本へ継ぐ。,true
+lineage-time,時間,"[""shot-b02-03""]","[""shot-b06-01""]","[""ref-b02-s03-vintage-watch-0915""]",時計面を時間と名前の等分画面へ継ぐ。,true

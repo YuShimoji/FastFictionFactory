@@ -1,5 +1,14 @@
 # Decision Log
 
+## 2026-07-19 — Integrated 19-shot visual package becomes the active H0 artifact
+
+- Decision: Publish `fff-integrated-visual-production-package-001` as the active `VISUAL_INTEGRATION` artifact over the exact four accepted composition sources.
+- Evidence: exact 6 Beats / 19 shots / 180 seconds / `3 / 3 / 3 / 3 / 4 / 3`; 28 unique SHA256 identities; 36 source aliases; 42 assignments; 19 chronological thumbnails and full strips; 5 callback lineages; 0 copied source rasters; 0 missing files or hash mismatches; 12 protected directory inventories unchanged; 56 fail-closed non-mutating probes; browser/theme/focus/narrow/print evidence.
+- Consequence: Separate-package 19/19 coverage is now one coherent whole-story review object. Source packages and result evidence remain immutable.
+- Human policy: Product Owner is the formal reviewer; integration human review is none; next human review is `owner_whole_story_composition_review`; per-Beat review remains discontinued. No Owner Review is performed by this implementation.
+- Boundary: H0 integration is not asset selection, rights clearance, generation, engine/voice selection, render readiness, production approval, public delivery, final canon, or external reproducibility.
+- Next decision gate: obtain one Product Owner whole-story composition observation against the exact integrated artifact. Any repair or production/rights successor requires separate evidence and authority.
+
 ## 2026-07-19 — Composition Expansion Wave 2 completes separate-package 19/19 coverage without opening integration or production
 
 - Decision: `fff-composition-expansion-wave2-001` is the active H0 artifact for exactly Beat 5/6 and seven shots.

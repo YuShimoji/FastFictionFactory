@@ -1,0 +1,57 @@
+{
+  "schemaVersion": "fff.integratedVisualProductionPackageManifest.v1",
+  "artifact_id": "fff-integrated-visual-production-package-001",
+  "generated_at": "2026-07-19T23:59:00+09:00",
+  "payload_file_count": 8,
+  "file_count": 9,
+  "package_fingerprint_sha256": "78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb",
+  "source_package_fingerprints": {
+    "fff-composition-expansion-wave1-001": "403202568e99060937ed3ce36d16117b8564292f21baa3d72e8b290acd38ccb9",
+    "fff-beat2-composition-board-001": "4c44089a140626d56fd67f8341a4765e60f310ff65555c8ff8a0eef3eff7f3b0",
+    "fff-beat4-composition-counterexample-001": "2f0e0032b30725dc678d27e31169f6fda1a7bf8c4586735a8d0fc6f73b6d6805",
+    "fff-composition-expansion-wave2-001": "62d5379f6bf36495230a60e7fbd1de540a82aa4d5aaefae400ee1e0f773dc432"
+  },
+  "copied_source_image_count": 0,
+  "files": [
+    {
+      "relative_path": "README_INTEGRATED_VISUAL_PACKAGE.md",
+      "byte_size": 821,
+      "sha256": "9077e5139f1ab62b32c494fa5f3c914e2cfe62fa8eb6f541ad5c1969389b566e"
+    },
+    {
+      "relative_path": "integrated-visual-production-package.html",
+      "byte_size": 61457,
+      "sha256": "27eaa9cb03cd060b0ec18cf039080e4f06f7d0177f5855114d228841d5fbee3f"
+    },
+    {
+      "relative_path": "integrated-visual-production-package.json",
+      "byte_size": 380315,
+      "sha256": "7f9d165904726d09da145b20eb88af0c1fe20d28f5b192baea07a3b7d9abaf48"
+    },
+    {
+      "relative_path": "beat-sequence.csv",
+      "byte_size": 3811,
+      "sha256": "0e85017493c49267837c232f3fc9ce4b085d3a5d6f8f86ca20f5d4278c1902e0"
+    },
+    {
+      "relative_path": "shot-sequence.csv",
+      "byte_size": 22322,
+      "sha256": "4b59ea1b1e34a121e951d5f31a3c7c3f59135ac09a164770f5c6df2654b64ec1"
+    },
+    {
+      "relative_path": "reference-lineage.csv",
+      "byte_size": 1244,
+      "sha256": "064517d9baf9e1bf76e80e099f4590e381033523b7ab09d69abd3f473c4c9b3e"
+    },
+    {
+      "relative_path": "source-dependency-index.csv",
+      "byte_size": 21136,
+      "sha256": "24ec0c6b5d798422d93c706c3bff67f2a7056c153ae6a4e312836d757cae1bb6"
+    },
+    {
+      "relative_path": "integrated-visual-production-package-contact-sheet.jpg",
+      "byte_size": 340898,
+      "sha256": "317969924f3b5f56b5dd5530244d41366c29e7a70036efdb28ae0ff6c6e2c832"
+    }
+  ]
+}
