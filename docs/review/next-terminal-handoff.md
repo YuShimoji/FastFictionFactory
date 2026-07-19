@@ -2,7 +2,52 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-## 監修AI向け Composition Expansion Wave 1 引き継ぎ（2026-07-19 JST）
+## 監修AI向け Composition Expansion Wave 2 引き継ぎ（2026-07-19 JST）
+
+Active artifact は `fff-composition-expansion-wave2-001`、lane は `COMPOSITION_EXPANSION`、実装baseは `b3312a2a4a8d5993d7091de36af2ad291b766aa0` です。Beat 5/6の正確な7 source shotsを、4点の新規licensed local referencesと8点のidentity検証済みinherited references、16 assignments、7 composition classesで具体化しました。既存のWave 1、Beat 2、Beat 4と合わせ、別package上の具体化は19/19 shotsです。統合19-shot packageはまだ作成していません。
+
+### Start here
+
+```text
+AGENTS.md
+docs/project-context.md
+docs/review/current-status.md
+docs/review/composition-expansion-wave2.md
+artifacts/composition-expansion-wave2/README_COMPOSITION_EXPANSION_WAVE2.md
+artifacts/composition-expansion-wave2/composition-expansion-wave2.html
+artifacts/composition-expansion-wave2-result.json
+artifacts/artifact-manifest.json
+```
+
+```powershell
+git fetch --prune origin
+git pull --ff-only
+git status --short --branch
+node tools/fff-state.mjs validate-composition-expansion-wave2 artifacts/composition-expansion-wave2-result.json
+node tools/fff-state.mjs validate-composition-expansion-wave1 artifacts/composition-expansion-wave1-result.json
+node tools/fff-state.mjs validate-beat2-composition-board artifacts/beat2-composition-board-result.json
+node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json
+node tools/fff-state.mjs validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json
+node tools/fff-state.mjs validate-production-storyboard-brief artifacts/production-storyboard-brief-result.json
+node tools/fff-state.mjs validate-production-execution-pack artifacts/production-execution-pack-result.json
+```
+
+### Policy and stopping edge
+
+- Wave 2 human review: none; post-Wave-2 human gate: false.
+- Next human review: `after_integrated_19_shot_visual_package` only.
+- Finished: exactly Beats 5/6 and seven shots; four new + eight inherited references; sixteen assignments; candidate balance; continuity; browser/theme/focus/print evidence; 56 negative probes; predecessor immutability.
+- Farthest safe successor: a separately authorized data-only integrated 19-shot visual package that reuses the exact existing composition identities.
+- Stop: do not infer production selection, rights clearance, generation, render, publication, database, production approval, canon, or external reproducibility.
+
+### Active residual work
+
+| Work | Purpose | Effect | Requirements | State | Owner | Next move |
+| --- | --- | --- | --- | --- | --- | --- |
+| Integrated 19-shot review object | 全shotを一つのreview surfaceへ束ねる | deferred whole-story composition reviewを開く | 別承認、exact package/hash binding、source/predecessor不変、production/rights非含有 | proposed / data only / not created | product owner + supervisor | bounded integration contractを発行 |
+| Whole-story human review | 統合後の一貫性を判定 | composition acceptanceまたは限定修正要求 | integrated artifact完成後のみ | blocked on integration by policy | product owner | 統合artifact単位で実施 |
+
+## 保存記録: Composition Expansion Wave 1 引き継ぎ（2026-07-19 JST）
 
 Active artifact は `fff-composition-expansion-wave1-001`、lane は `COMPOSITION_EXPANSION`、実装baseは `a2f61c72680b2a7d9220f4a2d8f05c2e79ac5189` です。Beat 1「鐘のない塔」とBeat 3「消された名前」の正確な6 source shotを、12点のライセンス明示済みローカル参照画像、12 assignments、6 unique mains、6 composition classesで具体化しました。既存のBeat 2/4と合わせ、Beats 1–4の12/19 shotsが具体化済みです。
 

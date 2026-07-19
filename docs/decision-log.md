@@ -1,5 +1,14 @@
 # Decision Log
 
+## 2026-07-19 — Composition Expansion Wave 2 completes separate-package 19/19 coverage without opening integration or production
+
+- Decision: `fff-composition-expansion-wave2-001` is the active H0 artifact for exactly Beat 5/6 and seven shots.
+- Evidence: four newly acquired licensed local rasters, eight inherited references verified by exact identity, sixteen assignments, seven distinct composition classes, exact source-row/narration/subtitle transcription, browser/theme/focus/print evidence, and 56 fail-closed probes.
+- Consequence: Wave 1 + Beat 2 + Beat 4 + Wave 2 provide concrete composition material for 19/19 shots across separate packages.
+- Human policy: Wave 2 review is none; no immediate human gate; next review is `after_integrated_19_shot_visual_package`.
+- Boundary: no integrated package, production selection, rights-clearance claim, generation, render, publication, database, production approval, canon, or external reproducibility claim is created.
+- Next decision gate: authorize or reject a bounded data-only 19-shot integration contract. Do not conflate integration acceptance with asset rights or production acceptance.
+
 ## 2026-07-19
 
 - Decision: Record Beat 4 as `OWNER_REVIEW_PASS` with observation「大きな破綻はなさそう」and authorize composition expansion without requiring another per-Beat external or blind review.

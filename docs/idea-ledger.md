@@ -1,5 +1,25 @@
 # Idea Ledger
 
+## Composition Expansion Wave 2 residual work
+
+### Integrated 19-shot visual package
+
+- Purpose: Combine the exact nineteen already-concrete compositions into one whole-story review object.
+- Effect: Makes cross-beat rhythm, repetition, callbacks, and candidate neutrality reviewable without reconstructing four separate package histories.
+- Requirements: Separate authorization; exact artifact/hash binding; no source-story, timing, narration, subtitle, truth, rights, selection, or canon mutation; preserve Wave 2, Wave 1, Beat 2, Beat 4, Visual, Storyboard, and Execution bytes; keep normal validation read-only.
+- State: Proposed as data only; not authorized; not created. Wave 2 human review is none and the next human review remains `after_integrated_19_shot_visual_package`.
+- Owner: Product owner and supervisor authorize scope; implementer owns deterministic packaging; product owner owns the later whole-story review.
+- Next move: Issue a bounded integration execution contract with no production or rights authority.
+
+### Production asset selection and rights review
+
+- Purpose: Replace reference-only planning material with authorized production candidates if the integrated composition is later accepted.
+- Effect: Could establish an asset-by-asset path toward production readiness.
+- Requirements: New authority, production asset criteria, provenance, license compatibility review, rights-owner decision, replacement policy, and exact acceptance artifact.
+- State: Closed and not authorized; Wave 2 provides no rights-clearance or production-selection evidence.
+- Owner: Rights owner and production owner.
+- Next move: Do not start until integrated composition review passes and a separate rights/production contract is issued.
+
 ## Residual Work
 
 ### Composition Expansion Wave 1

@@ -1,18 +1,29 @@
 {
-  "artifact_id": "fff-composition-expansion-wave1-001",
+  "artifact_id": "fff-composition-expansion-wave2-001",
   "preserved_source_span_artifact_id": "fff-source-span-routing-review-pack-001",
   "preserved_model_api_boundary_artifact_id": "fff-model-api-boundary-spec-001",
   "preserved_adapter_expansion_artifact_id": "fff-local-extraction-adapter-expansion-001",
   "preserved_adapter_artifact_id": "fff-local-extraction-adapter-spike-001",
   "preserved_artifact_id": "fff-extraction-validator-hardening-001",
   "preserved_contract_artifact_id": "fff-extraction-contract-001",
-  "title": "Fast Fiction Factory Composition Expansion Wave 1",
-  "purpose": "Make the exact six Beat 1 and Beat 3 source shots compositionally concrete with twelve licensed local raster references and six distinct image-based composition classes, preserving all predecessor packages byte-for-byte and keeping production selection, rights clearance, generation, render, publication, database, canon, Beats 5/6, and full-story integration closed.",
-  "repo_relative_path": "artifacts/composition-expansion-wave1/composition-expansion-wave1.html",
-  "open_command": "Invoke-Item .\\artifacts\\composition-expansion-wave1\\composition-expansion-wave1.html",
+  "title": "Fast Fiction Factory Composition Expansion Wave 2",
+  "purpose": "Make the exact seven Beat 5 and Beat 6 source shots compositionally concrete with four newly acquired licensed local rasters, eight inherited exact-identity references, sixteen assignments, and seven distinct image-based composition classes while preserving every predecessor and keeping integrated-package, production, rights, generation, render, publication, database, approval, canon, and external-reproducibility gates closed.",
+  "repo_relative_path": "artifacts/composition-expansion-wave2/composition-expansion-wave2.html",
+  "open_command": "Invoke-Item .\\artifacts\\composition-expansion-wave2\\composition-expansion-wave2.html",
   "repo_local_launcher": "scripts/operator/open_review.ps1",
-  "review_doc_path": "docs/review/composition-expansion-wave1.md",
-  "smoke_result_path": "artifacts/composition-expansion-wave1-result.json",
+  "review_doc_path": "docs/review/composition-expansion-wave2.md",
+  "smoke_result_path": "artifacts/composition-expansion-wave2-result.json",
+  "composition_expansion_wave2_dir": "artifacts/composition-expansion-wave2",
+  "composition_expansion_wave2_result_path": "artifacts/composition-expansion-wave2-result.json",
+  "composition_expansion_wave2_doc_path": "docs/review/composition-expansion-wave2.md",
+  "composition_expansion_wave2_route": "artifacts/composition-expansion-wave2/composition-expansion-wave2.html",
+  "composition_expansion_wave2_contact_sheet_path": "artifacts/composition-expansion-wave2/composition-expansion-wave2-contact-sheet.jpg",
+  "composition_expansion_wave2_screenshot_900_path": "artifacts/review-screens/composition-expansion-wave2-900x1200-dark.png",
+  "composition_expansion_wave2_screenshot_1280_path": "artifacts/review-screens/composition-expansion-wave2-1280x900-light.png",
+  "composition_expansion_wave2_screenshot_900_size": 241810,
+  "composition_expansion_wave2_screenshot_900_sha256": "a70c94ba04b22b4dd05f78f70c0e666776d6aa9ed350f75219842c521259deb8",
+  "composition_expansion_wave2_screenshot_1280_size": 231347,
+  "composition_expansion_wave2_screenshot_1280_sha256": "638692974943f980ff0ffae884e1301f86b38e36e24545b1aae6a8d9412f9fcb",
   "composition_expansion_wave1_dir": "artifacts/composition-expansion-wave1",
   "composition_expansion_wave1_result_path": "artifacts/composition-expansion-wave1-result.json",
   "composition_expansion_wave1_doc_path": "docs/review/composition-expansion-wave1.md",
@@ -161,6 +172,7 @@
   "bridge_storyboard_flow_screenshot_path": "artifacts/review-screens/bridge-storyboard-flow.png",
   "contact_sheet_path": "artifacts/layout-lab-visual-audit-contact-sheet.png",
   "preserves": [
+    "fff-composition-expansion-wave1-001",
     "fff-beat4-composition-counterexample-001",
     "fff-beat2-composition-board-001",
     "fff-beat2-visual-treatment-pilot-001",
@@ -487,18 +499,28 @@
     "artifacts/beat4-composition-counterexample/H1_TRANSFER_REVIEW.md",
     "docs/review/beat4-composition-counterexample.md",
     "artifacts/beat4-composition-counterexample-result.json",
-    "public/review/index.html low-salience link: Beat 4 構図反例"
+    "public/review/index.html low-salience link: Beat 4 構図反例",
+    "Worker slice: fff-composition-expansion-wave2-001",
+    "artifacts/composition-expansion-wave2/README_COMPOSITION_EXPANSION_WAVE2.md",
+    "artifacts/composition-expansion-wave2/composition-expansion-wave2.html",
+    "artifacts/composition-expansion-wave2/composition-expansion-wave2.json",
+    "artifacts/composition-expansion-wave2/reference-sources.csv",
+    "artifacts/composition-expansion-wave2/shot-composition-map.csv",
+    "artifacts/composition-expansion-wave2/composition-expansion-wave2-manifest.json",
+    "artifacts/composition-expansion-wave2/composition-expansion-wave2-contact-sheet.jpg",
+    "docs/review/composition-expansion-wave2.md",
+    "artifacts/composition-expansion-wave2-result.json"
   ],
   "created_at": "2026-06-23T14:06:00+09:00",
   "editorial_handoff_line_ending_policy": "LF enforced by .gitattributes for portable byte-size and SHA256 verification",
   "editorial_handoff_portability_validation_result": "passed 6/6 filtered checkout files; LF-only bytes, working-tree hashes, and package-manifest hashes matched with core.autocrlf=true on 2026-07-12",
-  "validation_command": "& { node --check tools/fff-state.mjs; if ($LASTEXITCODE -ne 0) { throw 'State tool syntax failed' }; node --check tools/fff-composition-expansion-wave1.mjs; if ($LASTEXITCODE -ne 0) { throw 'Composition Expansion Wave 1 tool syntax failed' }; node tools/fff-state.mjs validate-composition-expansion-wave1 artifacts/composition-expansion-wave1-result.json; if ($LASTEXITCODE -ne 0) { throw 'Composition Expansion Wave 1 validation failed' }; node tools/fff-state.mjs validate-beat2-composition-board artifacts/beat2-composition-board-result.json; if ($LASTEXITCODE -ne 0) { throw 'Beat 2 Composition Board validation failed' }; node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json; if ($LASTEXITCODE -ne 0) { throw 'Beat 4 Composition Counterexample validation failed' }; node tools/fff-state.mjs validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json; if ($LASTEXITCODE -ne 0) { throw 'Beat 2 Visual Treatment validation failed' }; node tools/fff-state.mjs validate-production-storyboard-brief artifacts/production-storyboard-brief-result.json; if ($LASTEXITCODE -ne 0) { throw 'Production Storyboard Brief validation failed' }; node tools/fff-state.mjs validate-production-execution-pack artifacts/production-execution-pack-result.json; if ($LASTEXITCODE -ne 0) { throw 'Production Execution Pack validation failed' }; Write-Output 'Composition Expansion Wave 1 read-only validation chain passed' }",
-  "validation_result": "Composition Expansion Wave 1 is the active local/reference-only H0 artifact on 2026-07-19 JST; the targeted read-only gate covers modified tool syntax, 40 fail-closed non-mutating probes, Beat 2 / Beat 4 / Visual Treatment / Storyboard / Execution preserved validators, exact six-shot source authority, ten predecessor directory fingerprints, 19-file package integrity, twelve licensed local raster references and assignments, six distinct composition classes, Beat 1 and Beat 3 continuity, closed truth and rights boundaries, theme-specific browser viewports, Auto/focus behavior, no horizontal or nested scrolling, print-light behavior, HTML script compilation, strict MkDocs, and git diff checks.",
+  "validation_command": "& { node --check tools/fff-state.mjs; if ($LASTEXITCODE -ne 0) { throw 'State tool syntax failed' }; node --check tools/fff-composition-expansion-wave2.mjs; if ($LASTEXITCODE -ne 0) { throw 'Composition Expansion Wave 2 tool syntax failed' }; node tools/fff-state.mjs validate-composition-expansion-wave2 artifacts/composition-expansion-wave2-result.json; if ($LASTEXITCODE -ne 0) { throw 'Composition Expansion Wave 2 validation failed' }; node tools/fff-state.mjs validate-composition-expansion-wave1 artifacts/composition-expansion-wave1-result.json; if ($LASTEXITCODE -ne 0) { throw 'Composition Expansion Wave 1 preservation failed' }; node tools/fff-state.mjs validate-beat2-composition-board artifacts/beat2-composition-board-result.json; if ($LASTEXITCODE -ne 0) { throw 'Beat 2 Composition Board validation failed' }; node tools/fff-state.mjs validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json; if ($LASTEXITCODE -ne 0) { throw 'Beat 4 Composition Counterexample validation failed' }; node tools/fff-state.mjs validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json; if ($LASTEXITCODE -ne 0) { throw 'Beat 2 Visual Treatment validation failed' }; node tools/fff-state.mjs validate-production-storyboard-brief artifacts/production-storyboard-brief-result.json; if ($LASTEXITCODE -ne 0) { throw 'Production Storyboard Brief validation failed' }; node tools/fff-state.mjs validate-production-execution-pack artifacts/production-execution-pack-result.json; if ($LASTEXITCODE -ne 0) { throw 'Production Execution Pack validation failed' }; Write-Output 'Composition Expansion Wave 2 read-only validation chain passed' }",
+  "validation_result": "Composition Expansion Wave 2 is the active local/reference-only H0 artifact on 2026-07-19 JST; the read-only gate covers Wave 2 and state-tool syntax, 56 fail-closed non-mutating probes, exact Beat 5/6 source authority, ten predecessor directory fingerprints, eleven-file package integrity, four new licensed rasters, eight inherited exact-identity references, sixteen assignments, seven distinct composition classes, candidate balance, Beat continuity and callback lineage, closed truth/rights/integration/production boundaries, two browser viewports, Auto/Light/Dark/focus/narrow/print behavior, and the preserved Wave 1 / Beat 2 / Beat 4 / Visual Treatment / Storyboard / Execution chain.",
   "scope_lock_validation_result": "passed 2026-06-23T18:00:28+09:00; fff-downstream-adoption-gate-scope-lock-001 parsed and confirmed readback-only, no adoption implementation, no Profile/Claim/Timeline mutation, no canon promotion, no DB persistence, no model/API/provider execution, no production sync, contradictory claims held, and pre-adoption source/routing/hold checks preserved over the latest downstream gate readback.",
-  "review_status": "composition_expansion_wave1_h0_passed_owner_policy_recorded",
+  "review_status": "composition_expansion_wave2_h0_passed_deferred_integration_review",
   "review_input_mode": "deferred_until_integrated_19_shot_visual_package",
-  "review_prompt_hint": "No per-Beat or post-Wave-1 human review is requested. Owner Review recorded Beat 4 as OWNER_REVIEW_PASS with observation 大きな破綻はなさそう; this authorizes composition expansion but is not independent transfer proof.",
-  "next_action": "Prepare the bounded data-only successor for the remaining seven Beat 5/6 shots, then integrate all 19 concrete shot compositions before the next human review. Production selection, rights clearance, generation, render, publication, database, and final canon remain separately gated.",
+  "review_prompt_hint": "No per-Beat or post-Wave-2 human review is requested. The next human review occurs only after a separately authorized integrated 19-shot visual package exists.",
+  "next_action": "Propose a bounded data-only successor that integrates the exact nineteen concrete compositions into one review object. Do not open production selection, rights clearance, generation, render, publication, database, production approval, final canon, or external reproducibility.",
   "beat2_composition_transfer_h1": {
     "route": "SUPERVISOR->WORKER",
     "thread_id": "fff-beat2-composition-transfer-h1-01",
@@ -3116,6 +3138,129 @@
       "rights_cleared_claim": false
     },
     "next_review": "Preserved as the immutable Handoff source for the active Editorial Derivative Preview."
+  },
+  "composition_expansion_wave2": {
+    "artifact_id": "fff-composition-expansion-wave2-001",
+    "schemaVersion": "fff.compositionExpansionWave2.v1",
+    "package_root": "artifacts/composition-expansion-wave2",
+    "canonical_model_path": "artifacts/composition-expansion-wave2/composition-expansion-wave2.json",
+    "result_path": "artifacts/composition-expansion-wave2-result.json",
+    "review_doc_path": "docs/review/composition-expansion-wave2.md",
+    "access_route": "artifacts/composition-expansion-wave2/composition-expansion-wave2.html",
+    "package_manifest_path": "artifacts/composition-expansion-wave2/composition-expansion-wave2-manifest.json",
+    "package_manifest_sha256": "5d1aeb25a508d8f5e582046f3678eea0a27cccc9900e287895fbc38f4243c35b",
+    "package_fingerprint_sha256": "62d5379f6bf36495230a60e7fbd1de540a82aa4d5aaefae400ee1e0f773dc432",
+    "result_sha256": "389d20e13cf38ecc7ab18358ae3e1337613823a590177a4ff1ee6de17f857fc8",
+    "payload_file_count": 10,
+    "file_count": 11,
+    "files": [
+      {
+        "relative_path": "README_COMPOSITION_EXPANSION_WAVE2.md",
+        "byte_size": 1065,
+        "sha256": "fc34fc6cdbebe326c26af040a68beea4daf9dab20a9bf2028c4cfe6c7b99d773"
+      },
+      {
+        "relative_path": "composition-expansion-wave2.html",
+        "byte_size": 30946,
+        "sha256": "bdbfc4bb652c86236bb3968f8252a06cae65da6b3d690572d3486b591372ed9e"
+      },
+      {
+        "relative_path": "composition-expansion-wave2.json",
+        "byte_size": 64144,
+        "sha256": "eb53fd8400bc19eee99ccd70bf6d250be9b92248d209a0135bf7a6d743d9a23c"
+      },
+      {
+        "relative_path": "reference-sources.csv",
+        "byte_size": 8210,
+        "sha256": "91eb994bbb79037a473b80ab2feb51b7a506b9acd4ad9e6f24be157daedc0a85"
+      },
+      {
+        "relative_path": "shot-composition-map.csv",
+        "byte_size": 8354,
+        "sha256": "05bd9bec9b46a7600d4a16d69b60aeb22060a14d1dd84925adecbf68aba6f829"
+      },
+      {
+        "relative_path": "composition-expansion-wave2-contact-sheet.jpg",
+        "byte_size": 409605,
+        "sha256": "c76682a3dd02f42a9774efcc0cd7e2c2af546eee354e2acb8207775c7cfdcb6f"
+      },
+      {
+        "relative_path": "reference-assets/ref-w2-b05-s01-horizon-silhouette.jpg",
+        "byte_size": 58706,
+        "sha256": "2f5cbd4befae47efb0b44a35a901221dfc101ff2b027daee1b9c92575f4492a7"
+      },
+      {
+        "relative_path": "reference-assets/ref-w2-b05-fate-blank-card.jpg",
+        "byte_size": 117395,
+        "sha256": "c970d41f104ddb5a7ebcda6348cd1018dc979101329d51cb5f303c64a49ce802"
+      },
+      {
+        "relative_path": "reference-assets/ref-w2-b05-s02-brass-plate.jpg",
+        "byte_size": 205883,
+        "sha256": "d9d8146351e2db5b42dc7c39c4609399aa8039cfa68387722f591f833369ae39"
+      },
+      {
+        "relative_path": "reference-assets/ref-w2-b06-s02-closed-book.jpg",
+        "byte_size": 188939,
+        "sha256": "e69f1a06db297bb537d57684cf4989615e0426eb4500c6c8cc5d7aa6bddca2ab"
+      }
+    ],
+    "counts": {
+      "beats": 2,
+      "shots": 7,
+      "new_references": 4,
+      "inherited_references": 8,
+      "distinct_references": 12,
+      "image_assignments": 16,
+      "composition_classes": 7,
+      "negative_probes": 56,
+      "total_duration_seconds": 75,
+      "concrete_shots_after_wave2": 19,
+      "total_story_shots": 19,
+      "integrated_19_shot_package_created": false
+    },
+    "owner_review_policy": {
+      "product_owner_is_formal_reviewer": true,
+      "wave2_human_review": "none",
+      "per_beat_external_review_required": false,
+      "per_beat_blind_review_discontinued": true,
+      "next_human_review": "after_integrated_19_shot_visual_package",
+      "human_gate_after_wave2": false,
+      "external_reproducibility_claimed": false
+    },
+    "screenshots": {
+      "900x1200-dark": {
+        "path": "artifacts/review-screens/composition-expansion-wave2-900x1200-dark.png",
+        "byte_size": 241810,
+        "sha256": "a70c94ba04b22b4dd05f78f70c0e666776d6aa9ed350f75219842c521259deb8"
+      },
+      "1280x900-light": {
+        "path": "artifacts/review-screens/composition-expansion-wave2-1280x900-light.png",
+        "byte_size": 231347,
+        "sha256": "638692974943f980ff0ffae884e1301f86b38e36e24545b1aae6a8d9412f9fcb"
+      }
+    },
+    "boundaries": {
+      "local_only": true,
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "provider_configured": false,
+      "credentials_touched": false,
+      "external_model_call": false,
+      "image_generation": false,
+      "audio_generation": false,
+      "video_generation": false,
+      "production_render": false,
+      "upload_or_publication": false,
+      "database_persistence": false,
+      "production_approved": false,
+      "final_canon_decision": false,
+      "final_19_shot_integration": false,
+      "human_review_requested": false,
+      "external_reproducibility_claimed": false
+    },
+    "next_review": "No Wave 2 human gate. Review only after a separately authorized integrated 19-shot visual package exists."
   },
   "composition_expansion_wave1": {
     "artifact_id": "fff-composition-expansion-wave1-001",

@@ -1,5 +1,20 @@
 # Artifacts
 
+## fff-composition-expansion-wave2-001
+
+- Title: Fast Fiction Factory Composition Expansion Wave 2
+- Purpose: Make the exact Beat 5 and Beat 6 source shots concrete with licensed local raster references while preserving source story, timing, truth, rights, selection, and canon states.
+- Primary file: `artifacts/composition-expansion-wave2/composition-expansion-wave2.html`
+- Package directory: `artifacts/composition-expansion-wave2/` (README, standalone HTML, canonical JSON, two CSV inventories, four normalized new JPEG references, contact sheet, and integrity manifest)
+- Review doc/result: `docs/review/composition-expansion-wave2.md`, `artifacts/composition-expansion-wave2-result.json`
+- Visual evidence: `artifacts/review-screens/composition-expansion-wave2-900x1200-dark.png`, `artifacts/review-screens/composition-expansion-wave2-1280x900-light.png`, `artifacts/composition-expansion-wave2/composition-expansion-wave2-contact-sheet.jpg`
+- Composition contract: exactly Beats 5/6 / seven source shots / 75 seconds / seven distinct composition classes / 2–3 images per shot / sixteen total assignments.
+- Reference contract: four newly acquired licensed local rasters plus eight inherited exact-identity references; twelve total references; full provenance/dimension/hash/borrowing-boundary metadata; all reference-only, unselected, not rights-cleared, and not AI-generated.
+- Owner policy: Wave 2 human review none; no post-Wave-2 human gate; per-Beat blind review discontinued; next human review is `after_integrated_19_shot_visual_package`.
+- Read-only validation: `node tools/fff-state.mjs validate-composition-expansion-wave2 artifacts/composition-expansion-wave2-result.json`
+- Intentional regeneration: `node tools/fff-state.mjs smoke-composition-expansion-wave2 artifacts/composition-expansion-wave2-result.json` writes only the Wave 2 manifest and result; acquired JPEGs and predecessor files remain immutable.
+- State: Local/reference-only H0. Separate-package concrete coverage is 19/19, but an integrated 19-shot visual package is not created. Production selection, rights clearance, generation, render, publication, database, production approval, canon, and external reproducibility remain closed.
+
 ## fff-composition-expansion-wave1-001
 
 - Title: Fast Fiction Factory Composition Expansion Wave 1

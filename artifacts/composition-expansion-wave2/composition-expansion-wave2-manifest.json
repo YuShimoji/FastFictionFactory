@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "fff.compositionExpansionWave2Manifest.v1",
+  "artifact_id": "fff-composition-expansion-wave2-001",
+  "generated_at": "2026-07-19T23:40:00+09:00",
+  "payload_file_count": 10,
+  "file_count": 11,
+  "package_fingerprint_sha256": "62d5379f6bf36495230a60e7fbd1de540a82aa4d5aaefae400ee1e0f773dc432",
+  "files": [
+    {
+      "relative_path": "README_COMPOSITION_EXPANSION_WAVE2.md",
+      "byte_size": 1065,
+      "sha256": "fc34fc6cdbebe326c26af040a68beea4daf9dab20a9bf2028c4cfe6c7b99d773"
+    },
+    {
+      "relative_path": "composition-expansion-wave2.html",
+      "byte_size": 30946,
+      "sha256": "bdbfc4bb652c86236bb3968f8252a06cae65da6b3d690572d3486b591372ed9e"
+    },
+    {
+      "relative_path": "composition-expansion-wave2.json",
+      "byte_size": 64144,
+      "sha256": "eb53fd8400bc19eee99ccd70bf6d250be9b92248d209a0135bf7a6d743d9a23c"
+    },
+    {
+      "relative_path": "reference-sources.csv",
+      "byte_size": 8210,
+      "sha256": "91eb994bbb79037a473b80ab2feb51b7a506b9acd4ad9e6f24be157daedc0a85"
+    },
+    {
+      "relative_path": "shot-composition-map.csv",
+      "byte_size": 8354,
+      "sha256": "05bd9bec9b46a7600d4a16d69b60aeb22060a14d1dd84925adecbf68aba6f829"
+    },
+    {
+      "relative_path": "composition-expansion-wave2-contact-sheet.jpg",
+      "byte_size": 409605,
+      "sha256": "c76682a3dd02f42a9774efcc0cd7e2c2af546eee354e2acb8207775c7cfdcb6f"
+    },
+    {
+      "relative_path": "reference-assets/ref-w2-b05-s01-horizon-silhouette.jpg",
+      "byte_size": 58706,
+      "sha256": "2f5cbd4befae47efb0b44a35a901221dfc101ff2b027daee1b9c92575f4492a7"
+    },
+    {
+      "relative_path": "reference-assets/ref-w2-b05-fate-blank-card.jpg",
+      "byte_size": 117395,
+      "sha256": "c970d41f104ddb5a7ebcda6348cd1018dc979101329d51cb5f303c64a49ce802"
+    },
+    {
+      "relative_path": "reference-assets/ref-w2-b05-s02-brass-plate.jpg",
+      "byte_size": 205883,
+      "sha256": "d9d8146351e2db5b42dc7c39c4609399aa8039cfa68387722f591f833369ae39"
+    },
+    {
+      "relative_path": "reference-assets/ref-w2-b06-s02-closed-book.jpg",
+      "byte_size": 188939,
+      "sha256": "e69f1a06db297bb537d57684cf4989615e0426eb4500c6c8cc5d7aa6bddca2ab"
+    }
+  ]
+}

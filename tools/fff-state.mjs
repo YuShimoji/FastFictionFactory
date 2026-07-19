@@ -1552,7 +1552,7 @@ async function main() {
 
   if (command === "validate-production-storyboard-brief") {
     const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
-    if (["fff-beat2-composition-board-001", "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001"].includes(rootManifest.value?.artifact_id)) {
+    if (["fff-beat2-composition-board-001", "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001", "fff-composition-expansion-wave2-001"].includes(rootManifest.value?.artifact_id)) {
       await runPreservedProductionStoryboardBriefValidation({ inputPath, outputPath });
       return;
     }
@@ -1568,7 +1568,7 @@ async function main() {
 
   if (command === "validate-beat4-composition-counterexample" || command === "smoke-beat4-composition-counterexample") {
     const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
-    if (command === "validate-beat4-composition-counterexample" && rootManifest.value?.artifact_id === "fff-composition-expansion-wave1-001") {
+    if (command === "validate-beat4-composition-counterexample" && ["fff-composition-expansion-wave1-001", "fff-composition-expansion-wave2-001"].includes(rootManifest.value?.artifact_id)) {
       await runPreservedBeat4CompositionCounterexampleValidation({ inputPath, outputPath });
       return;
     }
@@ -1579,7 +1579,7 @@ async function main() {
 
   if (command === "validate-beat2-visual-treatment-pilot") {
     const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
-    if (["fff-beat2-composition-board-001", "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001"].includes(rootManifest.value?.artifact_id)) {
+    if (["fff-beat2-composition-board-001", "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001", "fff-composition-expansion-wave2-001"].includes(rootManifest.value?.artifact_id)) {
       await runPreservedBeat2VisualTreatmentValidation({ inputPath, outputPath });
       return;
     }
@@ -1605,7 +1605,7 @@ async function main() {
       fail("validate-production-execution-pack is strictly read-only and does not accept an output path; use smoke-production-execution-pack for intentional execution-pack and result regeneration.");
     }
     const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
-    if (["fff-beat2-composition-board-001", "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001"].includes(rootManifest.value?.artifact_id)) {
+    if (["fff-beat2-composition-board-001", "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001", "fff-composition-expansion-wave2-001"].includes(rootManifest.value?.artifact_id)) {
       await runPreservedProductionExecutionPackValidation({ inputPath, outputPath });
       return;
     }
@@ -1620,8 +1620,20 @@ async function main() {
   }
 
   if (command === "validate-composition-expansion-wave1" || command === "smoke-composition-expansion-wave1") {
+    const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
+    if (command === "validate-composition-expansion-wave1" && rootManifest.value?.artifact_id === "fff-composition-expansion-wave2-001") {
+      const { validatePreservedCompositionExpansionWave1 } = await import("./fff-composition-expansion-wave2.mjs");
+      await validatePreservedCompositionExpansionWave1({ inputPath, outputPath });
+      return;
+    }
     const { runCompositionExpansionWave1Command } = await import("./fff-composition-expansion-wave1.mjs");
     await runCompositionExpansionWave1Command({ command, inputPath, outputPath });
+    return;
+  }
+
+  if (command === "validate-composition-expansion-wave2" || command === "smoke-composition-expansion-wave2") {
+    const { runCompositionExpansionWave2Command } = await import("./fff-composition-expansion-wave2.mjs");
+    await runCompositionExpansionWave2Command({ command, inputPath, outputPath });
     return;
   }
 
@@ -22224,7 +22236,7 @@ async function runPreservedBeat4CompositionCounterexampleValidation({ inputPath,
   ]);
   const failures = [];
   const entry = root.value?.beat4_composition_counterexample || {};
-  if (root.value?.artifact_id !== "fff-composition-expansion-wave1-001" || !root.value?.preserves?.includes("fff-beat4-composition-counterexample-001")) failures.push("preserved Beat 4 is not registered beneath active Wave 1");
+  if (!["fff-composition-expansion-wave1-001", "fff-composition-expansion-wave2-001"].includes(root.value?.artifact_id) || !root.value?.preserves?.includes("fff-beat4-composition-counterexample-001")) failures.push("preserved Beat 4 is not registered beneath an active composition expansion wave");
   if (entry.artifact_id !== "fff-beat4-composition-counterexample-001" || entry.package_root !== "artifacts/beat4-composition-counterexample" || entry.result_path !== target || entry.review_doc_path !== "docs/review/beat4-composition-counterexample.md") failures.push("preserved Beat 4 nested registration mismatch");
   if (!recorded.exists || recorded.sha256 !== "437c342b03aa5b81ad09f2e0f1965e77d92db721ee3ed4a01007ad4664f39db9" || recorded.value?.artifact_id !== "fff-beat4-composition-counterexample-001" || recorded.value?.passed !== true || !Array.isArray(recorded.value?.negative_probes) || recorded.value.negative_probes.length !== 30 || recorded.value.negative_probes.some((probe) => probe.passed !== true || probe.mutation !== false)) failures.push("preserved Beat 4 recorded H0 result mismatch");
   if (!manifest.exists || manifest.sha256 !== "28be65595282dde9a79f72535ce589b6eec6ab6c25087d85e4e2859550f77943" || manifest.value?.artifact_id !== "fff-beat4-composition-counterexample-001" || manifest.value?.file_count !== 14 || manifest.value?.payload_file_count !== 13) failures.push("preserved Beat 4 manifest mismatch");
@@ -22256,7 +22268,7 @@ async function runPreservedBeat2VisualTreatmentValidation({ inputPath, outputPat
   ]);
   const failures = [];
   const entry = root.value?.beat2_visual_treatment_pilot || {};
-  if (![BEAT2_COMPOSITION_BOARD_ID, "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001"].includes(root.value?.artifact_id) || !root.value?.preserves?.includes("fff-beat2-visual-treatment-pilot-001")) failures.push("preserved pilot is not registered beneath the active composition artifact");
+  if (![BEAT2_COMPOSITION_BOARD_ID, "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001", "fff-composition-expansion-wave2-001"].includes(root.value?.artifact_id) || !root.value?.preserves?.includes("fff-beat2-visual-treatment-pilot-001")) failures.push("preserved pilot is not registered beneath the active composition artifact");
   if (entry.artifact_id !== "fff-beat2-visual-treatment-pilot-001" || entry.schemaVersion !== "fff.beat2VisualTreatmentPilot.v1" || entry.package_root !== "artifacts/beat2-visual-treatment-pilot" || entry.result_path !== target || entry.review_doc_path !== BEAT2_VISUAL_TREATMENT_PRESERVED_EVIDENCE.review_doc_path) failures.push("preserved pilot nested registration mismatch");
   if (entry.package_manifest_sha256 !== BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.visual_treatment_manifest_sha256 || entry.package_fingerprint_sha256 !== BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.visual_treatment_package_fingerprint_sha256 || entry.package_files?.length !== BEAT2_COMPOSITION_SOURCE_FILES["artifacts/beat2-visual-treatment-pilot"].length) failures.push("preserved pilot package registration mismatch");
   failures.push(...beat2CompositionSourceErrors(observedSources).filter((message) => message.includes("visual_treatment")));
@@ -22286,7 +22298,7 @@ async function runPreservedProductionStoryboardBriefValidation({ inputPath, outp
   ]);
   const failures = [];
   const entry = root.value?.production_storyboard_brief || {};
-  if (![BEAT2_COMPOSITION_BOARD_ID, "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001"].includes(root.value?.artifact_id) || !root.value?.preserves?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID)) failures.push("preserved Storyboard Brief is not registered beneath the active composition artifact");
+  if (![BEAT2_COMPOSITION_BOARD_ID, "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001", "fff-composition-expansion-wave2-001"].includes(root.value?.artifact_id) || !root.value?.preserves?.includes(PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID)) failures.push("preserved Storyboard Brief is not registered beneath the active composition artifact");
   if (entry.artifact_id !== PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID || entry.schemaVersion !== "fff.productionStoryboardBrief.v1" || entry.package_root !== "artifacts/production-storyboard-brief" || entry.result_path !== target || entry.review_doc_path !== PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.review_doc_path || entry.files?.length !== BEAT2_COMPOSITION_SOURCE_FILES["artifacts/production-storyboard-brief"].length) failures.push("preserved Storyboard Brief nested registration mismatch");
   if (entry.package_fingerprint_sha256 !== "400d01a3abaa935103e1080b2f42b2f9e20553e225e13e90aec7a740e7ed3861" || observedSources.storyboard_seven_file_aggregate_sha256 !== BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.storyboard_seven_file_aggregate_sha256) failures.push("preserved Storyboard Brief package mismatch");
   if (!recorded.exists || recorded.sha256 !== PRODUCTION_STORYBOARD_PRESERVED_EVIDENCE.result_sha256 || recorded.value?.artifact_id !== PRODUCTION_STORYBOARD_BRIEF_ARTIFACT_ID || recorded.value?.passed !== true || recorded.value?.shot_count !== 19 || Object.keys(recorded.value?.negative_probes || {}).length !== 18) failures.push("preserved Storyboard Brief recorded H0 result mismatch");
@@ -22315,7 +22327,7 @@ async function runPreservedProductionExecutionPackValidation({ inputPath, output
   ]);
   const failures = [];
   const entry = root.value?.production_execution_pack || {};
-  if (![BEAT2_COMPOSITION_BOARD_ID, "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001"].includes(root.value?.artifact_id) || !root.value?.preserves?.includes(PRODUCTION_EXECUTION_PACK_ARTIFACT_ID)) failures.push("preserved Execution Pack is not registered beneath the active composition artifact");
+  if (![BEAT2_COMPOSITION_BOARD_ID, "fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001", "fff-composition-expansion-wave2-001"].includes(root.value?.artifact_id) || !root.value?.preserves?.includes(PRODUCTION_EXECUTION_PACK_ARTIFACT_ID)) failures.push("preserved Execution Pack is not registered beneath the active composition artifact");
   if (entry.artifact_id !== PRODUCTION_EXECUTION_PACK_ARTIFACT_ID || entry.schemaVersion !== "fff.productionExecutionPack.v1" || entry.package_root !== "artifacts/production-execution-pack" || entry.result_path !== target || entry.review_doc_path !== PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.review_doc_path || entry.files?.length !== BEAT2_COMPOSITION_SOURCE_FILES["artifacts/production-execution-pack"].length) failures.push("preserved Execution Pack nested registration mismatch");
   if (entry.package_fingerprint_sha256 !== "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca" || observedSources.execution_nine_file_aggregate_sha256 !== BEAT2_COMPOSITION_SOURCE_FINGERPRINTS.execution_nine_file_aggregate_sha256) failures.push("preserved Execution Pack package mismatch");
   if (!recorded.exists || recorded.sha256 !== PRODUCTION_EXECUTION_PRESERVED_EVIDENCE.result_sha256 || recorded.value?.artifact_id !== PRODUCTION_EXECUTION_PACK_ARTIFACT_ID || recorded.value?.passed !== true || recorded.value?.shot_count !== 19 || Object.keys(recorded.value?.negative_probes || {}).length !== 20) failures.push("preserved Execution Pack recorded H0 result mismatch");
@@ -22327,7 +22339,7 @@ async function runPreservedProductionExecutionPackValidation({ inputPath, output
   const command = String(root.value?.validation_command || "");
   const executionIndex = command.indexOf(`validate-production-execution-pack ${target}`);
   const typographyIndex = command.indexOf(`validate-operator-production-brief-typography-balance ${DEFAULT_OPERATOR_PRODUCTION_BRIEF_TYPOGRAPHY_BALANCE_OUTPUT}`);
-  const activeCompositionSuccessor = ["fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001"].includes(root.value?.artifact_id);
+  const activeCompositionSuccessor = ["fff-beat4-composition-counterexample-001", "fff-composition-expansion-wave1-001", "fff-composition-expansion-wave2-001"].includes(root.value?.artifact_id);
   if (executionIndex < 0 || (!activeCompositionSuccessor && typographyIndex <= executionIndex) || command.includes("smoke-production-execution-pack")) failures.push("preserved Execution Pack read-only validation chain mismatch");
   if (failures.length) fail(`Production Execution Pack preserved read-only validation failed: ${[...new Set(failures)].join("; ")}`);
   console.log(`Production Execution Pack preserved read-only validation passed: ${target}`);
@@ -22512,9 +22524,10 @@ async function beat2CompositionRegistrationErrors() {
   const activeBeat2 = root.value?.artifact_id === BEAT2_COMPOSITION_BOARD_ID;
   const activeBeat4 = root.value?.artifact_id === "fff-beat4-composition-counterexample-001";
   const activeWave1 = root.value?.artifact_id === "fff-composition-expansion-wave1-001";
-  if (!activeBeat2 && !activeBeat4 && !activeWave1) failures.push("root active composition artifact mismatch");
+  const activeWave2 = root.value?.artifact_id === "fff-composition-expansion-wave2-001";
+  if (!activeBeat2 && !activeBeat4 && !activeWave1 && !activeWave2) failures.push("root active composition artifact mismatch");
   if (activeBeat2 && (root.value?.repo_relative_path !== BEAT2_COMPOSITION_BOARD_HTML || root.value?.review_doc_path !== BEAT2_COMPOSITION_BOARD_REVIEW_DOC || root.value?.smoke_result_path !== DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT)) failures.push("root active composition board registration mismatch");
-  if ((activeBeat4 || activeWave1) && !root.value?.preserves?.includes(BEAT2_COMPOSITION_BOARD_ID)) failures.push("active composition successor does not preserve Beat 2 Composition Board");
+  if ((activeBeat4 || activeWave1 || activeWave2) && !root.value?.preserves?.includes(BEAT2_COMPOSITION_BOARD_ID)) failures.push("active composition successor does not preserve Beat 2 Composition Board");
   if (root.value?.beat2_composition_board_dir !== BEAT2_COMPOSITION_BOARD_ROOT || root.value?.beat2_composition_board_result_path !== DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT || root.value?.beat2_composition_board_doc_path !== BEAT2_COMPOSITION_BOARD_REVIEW_DOC || root.value?.beat2_composition_board_route !== BEAT2_COMPOSITION_BOARD_HTML) failures.push("root flat composition board registration mismatch");
   if (entry.artifact_id !== BEAT2_COMPOSITION_BOARD_ID || entry.schemaVersion !== BEAT2_COMPOSITION_BOARD_SCHEMA_VERSION || entry.package_root !== BEAT2_COMPOSITION_BOARD_ROOT || entry.result_path !== DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT || entry.review_doc_path !== BEAT2_COMPOSITION_BOARD_REVIEW_DOC || entry.access_route !== BEAT2_COMPOSITION_BOARD_HTML) failures.push("root nested composition board registration mismatch");
   if (!Array.isArray(entry.package_files) || entry.package_files.length !== BEAT2_COMPOSITION_BOARD_REQUIRED_FILES.length || !entry.package_files.every((item) => item.startsWith(`${BEAT2_COMPOSITION_BOARD_ROOT}/`))) failures.push("root nested composition package inventory mismatch");
@@ -22524,11 +22537,12 @@ async function beat2CompositionRegistrationErrors() {
   const preserves = root.value?.preserves || [];
   for (const id of ["fff-beat2-visual-treatment-pilot-001", "fff-production-storyboard-brief-001", "fff-production-execution-pack-001"]) if (!preserves.includes(id)) failures.push(`root preservation registration missing: ${id}`);
   const command = String(root.value?.validation_command || "");
+  const wave2Index = command.indexOf("validate-composition-expansion-wave2 artifacts/composition-expansion-wave2-result.json");
   const wave1Index = command.indexOf("validate-composition-expansion-wave1 artifacts/composition-expansion-wave1-result.json");
   const beat4Index = command.indexOf("validate-beat4-composition-counterexample artifacts/beat4-composition-counterexample-result.json");
   const compositionIndex = command.indexOf(`validate-beat2-composition-board ${DEFAULT_BEAT2_COMPOSITION_BOARD_OUTPUT}`);
   const pilotIndex = command.indexOf("validate-beat2-visual-treatment-pilot artifacts/beat2-visual-treatment-pilot-result.json");
-  if (compositionIndex < 0 || pilotIndex <= compositionIndex || (activeBeat4 && (beat4Index < 0 || compositionIndex <= beat4Index)) || (activeWave1 && (wave1Index < 0 || compositionIndex <= wave1Index || beat4Index <= compositionIndex || pilotIndex <= beat4Index)) || command.includes("smoke-beat2-composition-board")) failures.push("root read-only composition validation chain mismatch");
+  if (compositionIndex < 0 || pilotIndex <= compositionIndex || (activeBeat4 && (beat4Index < 0 || compositionIndex <= beat4Index)) || (activeWave1 && (wave1Index < 0 || compositionIndex <= wave1Index || beat4Index <= compositionIndex || pilotIndex <= beat4Index)) || (activeWave2 && (wave2Index < 0 || wave1Index <= wave2Index || compositionIndex <= wave1Index || beat4Index <= compositionIndex || pilotIndex <= beat4Index)) || command.includes("smoke-beat2-composition-board")) failures.push("root read-only composition validation chain mismatch");
   const files = await Promise.all([
     readFileSnapshot(BEAT2_COMPOSITION_BOARD_REVIEW_DOC),
     readFileSnapshot("docs/review/current-status.md"),
@@ -22855,6 +22869,8 @@ Usage:
   node tools/fff-state.mjs smoke-apply-decision-shell-guard-diet <apply-decision-shell-guard-diet-result.json> [output.json]
   node tools/fff-state.mjs validate-review-workbench-component-contract <review-workbench-component-contract-result.json>
   node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
+  node tools/fff-state.mjs validate-composition-expansion-wave2 <composition-expansion-wave2-result.json>
+  node tools/fff-state.mjs smoke-composition-expansion-wave2 <composition-expansion-wave2-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave1 <composition-expansion-wave1-result.json>
   node tools/fff-state.mjs smoke-composition-expansion-wave1 <composition-expansion-wave1-result.json>
   node tools/fff-state.mjs validate-beat4-composition-counterexample <beat4-composition-counterexample-result.json>

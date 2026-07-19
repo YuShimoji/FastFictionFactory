@@ -2,9 +2,17 @@
 
 更新日: 2026-07-19 JST
 
-## 結論
+## Composition Expansion Wave 2 追補
 
-Fast Fiction Factory の active product artifact は `fff-composition-expansion-wave1-001` です。Beat 1「鐘のない塔」3 shots と Beat 3「消された名前」3 shotsを、12点のライセンス明示済みローカル参照画像で構図レベルまで具体化しました。既存のBeat 2 Composition BoardとBeat 4 Counterexampleを合わせ、Beats 1–4の12/19 source shotsが具体化済みです。
+Active product artifact は `fff-composition-expansion-wave2-001` です。Beat 5/6の7 source shotsを、4点の新規licensed local references、8点のexact-identity inherited references、16 assignments、7 distinct composition classesで具体化しました。Wave 1、Beat 2 Board、Beat 4 Counterexampleと合わせ、別package上では19/19 shotsが具体化済みです。
+
+この状態は統合完成ではありません。統合19-shot visual packageは未作成で、Wave 2 human reviewはnone、直後のhuman gateもfalseです。次の人手reviewは `after_integrated_19_shot_visual_package` のみです。制作採用、rights clearance、generation、render readiness、production approval、external reproducibility、canonは引き続き閉じています。
+
+次の最遠安全目標は、別承認されたdata-only successorとして、既存4 packageのexact composition identityを一つの19-shot review objectに統合することです。その後に限り、product ownerがwhole-story composition coherenceをreviewします。production/rights laneはさらに別の権限とasset-by-asset reviewを要します。
+
+## Wave 1 完了時点の保存記録
+
+この保存セクションは Wave 1 完了時点を記録します。当時の product artifact は `fff-composition-expansion-wave1-001` でした。Beat 1「鐘のない塔」3 shots と Beat 3「消された名前」3 shotsを、12点のライセンス明示済みローカル参照画像で構図レベルまで具体化し、Beat 2 Composition BoardとBeat 4 Counterexampleを合わせてBeats 1–4の12/19 source shotsを具体化していました。現在のactive truthは冒頭のWave 2追補です。
 
 本Waveはreference-only H0です。制作採用、権利処理完了、画像生成、完成画、render readiness、production approval、外部再現性、canonを示しません。Beat 5/6と最終19-shot統合は実施していません。次の人手reviewはWave 1直後ではなく、19-shot visual package統合後だけです。
 

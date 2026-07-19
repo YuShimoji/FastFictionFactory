@@ -1,0 +1,1466 @@
+{
+  "schemaVersion": "fff.compositionExpansionWave2.v1",
+  "artifact_id": "fff-composition-expansion-wave2-001",
+  "generated_at": "2026-07-19T23:40:00+09:00",
+  "base_revision": "b3312a2a4a8d5993d7091de36af2ad291b766aa0",
+  "status": "h0_reference_only_wave2",
+  "title_ja": "構図展開 Wave 2",
+  "subtitle_ja": "Beat 5–6 / 01:45–03:00 / 7 shots",
+  "predecessor_contract": [
+    {
+      "directory": "artifacts/composition-expansion-wave1",
+      "file_count": 19,
+      "aggregate_sha256": "25bbad8e05d57293dbc724a4d3df6aa5fec7ca3b3b1f4a50e404cecddf793926"
+    },
+    {
+      "directory": "artifacts/beat2-composition-board",
+      "file_count": 13,
+      "aggregate_sha256": "adac4c76dade92f0eadafaa8f3aea651ad53decd545d19bcdf3a487981a817ff"
+    },
+    {
+      "directory": "artifacts/beat2-visual-treatment-pilot",
+      "file_count": 13,
+      "aggregate_sha256": "bd305a7b177fa36bda5b2bfe737d6dfab2cb1ecb7c07a58e070b131bb85160e5"
+    },
+    {
+      "directory": "artifacts/beat4-composition-counterexample",
+      "file_count": 14,
+      "aggregate_sha256": "7c4da4bb663af67bc003848813c86f56ba984a83663823d1601ee159a6b2750c"
+    },
+    {
+      "directory": "artifacts/production-storyboard-brief",
+      "file_count": 7,
+      "aggregate_sha256": "f71959bd2fe5a845d99b2ceead72837de34b00848e9a7b49e603fa773007b5bf"
+    },
+    {
+      "directory": "artifacts/production-execution-pack",
+      "file_count": 9,
+      "aggregate_sha256": "8628ee4583b67a1b6276904a323ae792a62729a2c03f9e1e6ff509e4c777757f"
+    },
+    {
+      "directory": "artifacts/operator-production-brief",
+      "file_count": 6,
+      "aggregate_sha256": "85d152570545b29209d09ef27a546630a44d14b4cf51232339b5632d6ebc4212"
+    },
+    {
+      "directory": "artifacts/production-blueprint",
+      "file_count": 8,
+      "aggregate_sha256": "2bdab898f7924ef6b2c3b732fd26e0c6a757b1db2490baeff255769b12bb09b3"
+    },
+    {
+      "directory": "artifacts/editorial-derivative",
+      "file_count": 8,
+      "aggregate_sha256": "910d699380998f4259a00730acb6bb70e65b65d284f9969656cc919ecb9cc4be"
+    },
+    {
+      "directory": "artifacts/editorial-revision",
+      "file_count": 6,
+      "aggregate_sha256": "d701763938f97869ef8fe6748db0fb80890b8f470f2874a03bd14da4191a0b78"
+    },
+    {
+      "directory": "artifacts/editorial-handoff",
+      "file_count": 6,
+      "aggregate_sha256": "7474a44e84b7072830170be6c8540040b2406ae53b66179dbdbb97011b2ec3e0"
+    }
+  ],
+  "source_fingerprints": {
+    "execution_sha256": "f6d9e6692f770d5d8fb591542a5bcd270ad551fe502a211002090a245ce56eee",
+    "storyboard_sha256": "50cd787d1643d8b5e1d5138d3c81c38befb33bd107914b21a0696c09e611d4cf",
+    "subtitle_sha256": "b1860e6ade45802fe1f640e53804daae8cb648a23df7afdf86cf5809b9fae069"
+  },
+  "beats": [
+    {
+      "beat_number": 5,
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "title_ja": "答えを保留",
+      "start_time": "01:45",
+      "end_time": "02:35",
+      "duration_seconds": 50,
+      "purpose_ja": "三つの主要疑問を明示的に保留し、答えの自動確定を防ぐ。",
+      "viewer_takeaway_ja": "トーマ、蛾、評議会には複数説があり、どれもまだ真実ではない。",
+      "narration": {
+        "segment_id": "narration-b05",
+        "text": "ここで、答えを一つに絞ることはできません。トーマは生きているのか、死んだのか、記録から消されたのか、それとも自ら姿を隠したのか。真鍮の蛾は扉を開く鍵か、誰かの目となる装置か、記憶を預ける器か。評議会も、利益のために時間を奪う敵か、追い詰められて危険な取引を選んだ者たちか、意見の割れた組織かもしれません。どの説も手がかりにはなります。けれど、どれもまだ物語の真実ではありません。",
+        "source_metric_status": "pass",
+        "timing_state": "existing_pass_unmeasured",
+        "observed_slack_min_seconds": null,
+        "observed_slack_max_seconds": null,
+        "proxy_spoken_duration_min_seconds": null,
+        "proxy_spoken_duration_max_seconds": null,
+        "evidence_kind": "existing_blueprint_metric_pass_unmeasured",
+        "engine_timing_verified": false,
+        "punctuation_pause_opportunity_count": 16,
+        "punctuation_note": "句読点からpause候補を数えたのみ。原文変更・SSML化・engine計測はしていない。"
+      },
+      "shot_ids": [
+        "shot-b05-01",
+        "shot-b05-02",
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "subtitle_cues": [
+        {
+          "cue_id": "sub-b05-01",
+          "beat_id": "bridge-storyboard-beat-5-held-answers",
+          "start_time": "01:46",
+          "end_time": "01:55",
+          "text_ja": "トーマの運命：未解決",
+          "line_break_hint": "トーマの運命：｜未解決",
+          "status": "provisional_editorial_draft",
+          "truth_risk_marker": "high"
+        },
+        {
+          "cue_id": "sub-b05-02",
+          "beat_id": "bridge-storyboard-beat-5-held-answers",
+          "start_time": "01:56",
+          "end_time": "02:05",
+          "text_ja": "真鍮の蛾の機能：未解決",
+          "line_break_hint": "真鍮の蛾の機能：｜未解決",
+          "status": "provisional_editorial_draft",
+          "truth_risk_marker": "high"
+        },
+        {
+          "cue_id": "sub-b05-03",
+          "beat_id": "bridge-storyboard-beat-5-held-answers",
+          "start_time": "02:06",
+          "end_time": "02:15",
+          "text_ja": "評議会の動機：未解決",
+          "line_break_hint": "評議会の動機：｜未解決",
+          "status": "provisional_editorial_draft",
+          "truth_risk_marker": "high"
+        },
+        {
+          "cue_id": "sub-b05-04",
+          "beat_id": "bridge-storyboard-beat-5-held-answers",
+          "start_time": "02:16",
+          "end_time": "02:24",
+          "text_ja": "複数の説が残っている。",
+          "line_break_hint": "複数の説が｜残っている。",
+          "status": "provisional_editorial_draft",
+          "truth_risk_marker": "high"
+        },
+        {
+          "cue_id": "sub-b05-05",
+          "beat_id": "bridge-storyboard-beat-5-held-answers",
+          "start_time": "02:25",
+          "end_time": "02:34",
+          "text_ja": "どれも、まだ物語の真実ではない。",
+          "line_break_hint": "どれも、まだ｜物語の真実ではない。",
+          "status": "provisional_editorial_draft",
+          "truth_risk_marker": "high"
+        }
+      ],
+      "continuity_ja": "人物の運命 → 対象物の機能 → 制度の動機 → 三つの未解決事項"
+    },
+    {
+      "beat_number": 6,
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "title_ja": "時間か、名前か",
+      "start_time": "02:35",
+      "end_time": "03:00",
+      "duration_seconds": 25,
+      "purpose_ja": "二択を提示し、冒頭の鐘枠へ戻して問いのまま終える。",
+      "viewer_takeaway_ja": "結末の問いは『失われた時間か、消えた名前か』。選択は未定。",
+      "narration": {
+        "segment_id": "narration-b06",
+        "text": "ミラが選ぶ結末も、まだ決まっていません。失われた時間を戻すのでしょうか。それとも、記録から消えたとされる人々へ名前を返すのでしょうか。一人に一時間を返す案も、今は結末候補にすぎません。空の鐘枠に音だけが残ります。時間か、名前か。",
+        "source_metric_status": "warn",
+        "timing_state": "proxy_headroom_confirmed",
+        "observed_slack_min_seconds": 3,
+        "observed_slack_max_seconds": 5,
+        "proxy_spoken_duration_min_seconds": 20,
+        "proxy_spoken_duration_max_seconds": 22,
+        "evidence_kind": "human_read_aloud_text_density_proxy",
+        "engine_timing_verified": false,
+        "punctuation_pause_opportunity_count": 10,
+        "punctuation_note": "句読点からpause候補を数えたのみ。原文変更・SSML化・engine計測はしていない。"
+      },
+      "shot_ids": [
+        "shot-b06-01",
+        "shot-b06-02",
+        "shot-b06-03"
+      ],
+      "subtitle_cues": [
+        {
+          "cue_id": "sub-b06-01",
+          "beat_id": "bridge-storyboard-beat-6-time-or-names",
+          "start_time": "02:36",
+          "end_time": "02:43",
+          "text_ja": "失われた時間を戻す？",
+          "line_break_hint": "失われた時間を｜戻す？",
+          "status": "provisional_editorial_draft",
+          "truth_risk_marker": "high"
+        },
+        {
+          "cue_id": "sub-b06-02",
+          "beat_id": "bridge-storyboard-beat-6-time-or-names",
+          "start_time": "02:44",
+          "end_time": "02:51",
+          "text_ja": "それとも、消えた名前を返す？",
+          "line_break_hint": "それとも、消えた｜名前を返す？",
+          "status": "provisional_editorial_draft",
+          "truth_risk_marker": "high"
+        },
+        {
+          "cue_id": "sub-b06-03",
+          "beat_id": "bridge-storyboard-beat-6-time-or-names",
+          "start_time": "02:52",
+          "end_time": "02:59",
+          "text_ja": "結末候補：時間か、名前か。",
+          "line_break_hint": "結末候補：｜時間か、名前か。",
+          "status": "provisional_editorial_draft",
+          "truth_risk_marker": "high"
+        }
+      ],
+      "continuity_ja": "二つの候補 → 未記入の記録 → 冒頭の空枠"
+    }
+  ],
+  "shots": [
+    {
+      "shot_id": "shot-b05-01",
+      "sequence": 13,
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "01:45",
+      "end_time": "01:58",
+      "duration_seconds": 13,
+      "scale": "medium",
+      "motion": "slow_pan",
+      "transition": "hard_cut",
+      "display_title_ja": "未確定のトーマ候補",
+      "source_story": {
+        "what_is_seen_ja": "未確定のトーマ候補",
+        "purpose_ja": "トーマの複数の運命を保留する",
+        "visual_direction": "未確定シルエットと複数のfate札を並べ、どれも選択しない。",
+        "positive_condition_ja": "「未確定のトーマ候補」へ最初に視線が集まること。",
+        "negative_guard_ja": "生存、死亡、消失、潜伏のいずれも採用しない。",
+        "source_done_when": "「未確定のトーマ候補」へ最初に視線が集まり、生存、死亡、消失、潜伏のいずれも採用しない。",
+        "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+        "asset_summary_ja": "未確定のトーマsilhouette＋仮説／HOLD graphic＋6幕のaudio cue placeholder",
+        "asset_requirement_ids": [
+          "AR-CHAR-03",
+          "AR-DOC-02",
+          "AR-AUDIO-01"
+        ],
+        "source_required_asset_count": 1,
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared",
+        "requirement_asset_status": "unselected",
+        "requirement_rights_status": "not_reviewed"
+      },
+      "execution_source": {
+        "plain_language_purpose_ja": "トーマの複数の運命を保留する",
+        "visual_direction": "未確定シルエットと複数のfate札を並べ、どれも選択しない。",
+        "truth_boundary": "生存、死亡、消失、潜伏のいずれも採用しない。",
+        "done_when": "「未確定のトーマ候補」へ最初に視線が集まり、生存、死亡、消失、潜伏のいずれも採用しない。",
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared"
+      },
+      "main_image_id": "ref-w2-b05-s01-horizon-silhouette",
+      "supporting_image_ids": [
+        "ref-w2-b05-fate-blank-card"
+      ],
+      "primary_visual_type": "licensed_image_composite",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "composition": {
+        "principal_subject_ja": "候補領域の外に置いた匿名シルエット",
+        "crop_boundary_ja": "人物は遠景の輪郭だけを残し、顔・服・年齢・体格を読める範囲を切る。",
+        "placement_ja": "左30%に人物、右70%に四つの同寸候補面を2×2で置く。",
+        "first_focal_point_ja": "候補領域から分離した未確定の人物",
+        "second_focal_or_equal_scan_rule_ja": "生存→死亡→記録から消失→潜伏を同距離で巡回し、最後の候補へ停止しない。",
+        "eye_path_ja": "左の人物から右の2×2候補へ入り、四辺を一周して中央の余白へ戻る。",
+        "layers_ja": {
+          "foreground": "四つの同寸ラベル",
+          "midground": "白札面の均等反復",
+          "background": "人物を特定できない水平線とシルエット"
+        },
+        "borrowed_reference_portions_ja": {
+          "main": "人物輪郭と無地の空",
+          "support": "カードの無記入面のみ"
+        },
+        "motion_direction_class": "slow_pan_equal_candidate_loop",
+        "transition_continuity_ja": "前Beatの距離を切り、人物の運命を最初の未解決集合として提示する。",
+        "positive_staging_condition_ja": "人物と四候補が一組に見え、人物がどの候補内にも入らない。",
+        "truth_safe_guard_ja": "生死・消失・潜伏の証拠、最終人物デザイン、選択表示を置かない。",
+        "asset_summary_ja": "匿名シルエット1点と同寸の無記入候補札4面。",
+        "crop_percent": {
+          "left": 0,
+          "top": 6,
+          "width": 100,
+          "height": 88
+        },
+        "layout_signature": "30_70_person_outside_2x2",
+        "candidates": [
+          "生存",
+          "死亡",
+          "記録から消失",
+          "潜伏"
+        ],
+        "candidate_balance": {
+          "area_share_percent": [
+            25,
+            25,
+            25,
+            25
+          ],
+          "headline_px": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "contrast_token": "candidate-neutral",
+          "saturation_token": "candidate-neutral",
+          "border_px": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "image_prominence": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "winner_indicator_count": 0,
+          "selected_candidate": null
+        },
+        "identifiable_real_person": false,
+        "final_toma_design_asserted": false,
+        "composition_class": "uncertain_person_fate_matrix"
+      }
+    },
+    {
+      "shot_id": "shot-b05-02",
+      "sequence": 14,
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "01:58",
+      "end_time": "02:11",
+      "duration_seconds": 13,
+      "scale": "close",
+      "motion": "controlled_parallax",
+      "transition": "match_cut",
+      "display_title_ja": "真鍮の蛾と機能候補",
+      "source_story": {
+        "what_is_seen_ja": "真鍮の蛾と機能候補",
+        "purpose_ja": "蛾の機能候補を分離する",
+        "visual_direction": "真鍮の蛾と『key / spy / memory』の候補語を別々に表示する。",
+        "positive_condition_ja": "「真鍮の蛾と機能候補」へ最初に視線が集まること。",
+        "negative_guard_ja": "activationや正解表示を行わない。",
+        "source_done_when": "「真鍮の蛾と機能候補」へ最初に視線が集まり、activationや正解表示を行わない。",
+        "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+        "asset_summary_ja": "静止した真鍮の蛾＋仮説／HOLD graphic＋6幕のaudio cue placeholder",
+        "asset_requirement_ids": [
+          "AR-PROP-02",
+          "AR-DOC-02",
+          "AR-AUDIO-01"
+        ],
+        "source_required_asset_count": 1,
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared",
+        "requirement_asset_status": "unselected",
+        "requirement_rights_status": "not_reviewed"
+      },
+      "execution_source": {
+        "plain_language_purpose_ja": "蛾の機能候補を分離する",
+        "visual_direction": "真鍮の蛾と『key / spy / memory』の候補語を別々に表示する。",
+        "truth_boundary": "activationや正解表示を行わない。",
+        "done_when": "「真鍮の蛾と機能候補」へ最初に視線が集まり、activationや正解表示を行わない。",
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared"
+      },
+      "main_image_id": "ref-b02-s02-metal-butterfly-brooch",
+      "supporting_image_ids": [
+        "ref-w2-b05-s02-brass-plate"
+      ],
+      "primary_visual_type": "licensed_image_composite",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "composition": {
+        "principal_subject_ja": "中央で静止する真鍮色の蛾",
+        "crop_boundary_ja": "翅全体と留め具だけを残し、背景物や用途を示す部分を切る。",
+        "placement_ja": "蛾を中央の独立円に置き、鍵・監視・記憶を下段の同寸三面へ置く。",
+        "first_focal_point_ja": "静止した蛾",
+        "second_focal_or_equal_scan_rule_ja": "鍵・監視・記憶を左から右へ等間隔で往復する。",
+        "eye_path_ja": "中央の蛾から下段中央へ落ち、左右へ同距離で開く。",
+        "layers_ja": {
+          "foreground": "三つの同寸機能ラベル",
+          "midground": "静止した蛾",
+          "background": "非作動の真鍮表面"
+        },
+        "borrowed_reference_portions_ja": {
+          "main": "翅の輪郭と金属光沢",
+          "support": "暗い真鍮面と不均一な反射"
+        },
+        "motion_direction_class": "controlled_parallax_three_planes",
+        "transition_continuity_ja": "人物の四択から対象物の三択へ数を変え、未解決状態だけを継ぐ。",
+        "positive_staging_condition_ja": "蛾と三候補が別レイヤーに見え、接続線がない。",
+        "truth_safe_guard_ja": "羽ばたき、発光、開口、鍵穴、監視レンズ、記憶投影、正解表示を置かない。",
+        "asset_summary_ja": "Beat 2の静止した蛾と非作動の真鍮面、同寸の三候補。",
+        "crop_percent": {
+          "left": 12,
+          "top": 8,
+          "width": 76,
+          "height": 84
+        },
+        "layout_signature": "center_object_over_three_equal_tabs",
+        "candidates": [
+          "鍵",
+          "監視",
+          "記憶"
+        ],
+        "candidate_balance": {
+          "area_share_percent": [
+            33.33,
+            33.33,
+            33.33
+          ],
+          "headline_px": [
+            20,
+            20,
+            20
+          ],
+          "contrast_token": "candidate-neutral",
+          "winner_indicator_count": 0,
+          "selected_candidate": null
+        },
+        "moth_activated": false,
+        "composition_class": "static_object_function_triad"
+      }
+    },
+    {
+      "shot_id": "shot-b05-03",
+      "sequence": 15,
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "02:11",
+      "end_time": "02:23",
+      "duration_seconds": 12,
+      "scale": "graphic_fullframe",
+      "motion": "locked",
+      "transition": "graphic_match",
+      "display_title_ja": "評議会の動機候補",
+      "source_story": {
+        "what_is_seen_ja": "評議会の動機候補",
+        "purpose_ja": "評議会の動機候補を保留する",
+        "visual_direction": "中立的な制度像と『villainous / desperate / divided / misled』の候補札を並べる。",
+        "positive_condition_ja": "「評議会の動機候補」へ最初に視線が集まること。",
+        "negative_guard_ja": "いずれもderived possibilityであり事実ではない。",
+        "source_done_when": "「評議会の動機候補」へ最初に視線が集まり、いずれもderived possibilityであり事実ではない。",
+        "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+        "asset_summary_ja": "中立的な制度空間＋仮説／HOLD graphic＋6幕のaudio cue placeholder",
+        "asset_requirement_ids": [
+          "AR-ENV-02",
+          "AR-DOC-02",
+          "AR-AUDIO-01"
+        ],
+        "source_required_asset_count": 1,
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared",
+        "requirement_asset_status": "unselected",
+        "requirement_rights_status": "not_reviewed"
+      },
+      "execution_source": {
+        "plain_language_purpose_ja": "評議会の動機候補を保留する",
+        "visual_direction": "中立的な制度像と『villainous / desperate / divided / misled』の候補札を並べる。",
+        "truth_boundary": "いずれもderived possibilityであり事実ではない。",
+        "done_when": "「評議会の動機候補」へ最初に視線が集まり、いずれもderived possibilityであり事実ではない。",
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared"
+      },
+      "main_image_id": "ref-b04-s02-card-catalogue",
+      "supporting_image_ids": [
+        "ref-b04-s03-closed-meeting-room"
+      ],
+      "primary_visual_type": "licensed_image_composite",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "composition": {
+        "principal_subject_ja": "中立的な制度背景に重なる四つの可能性",
+        "crop_boundary_ja": "人物・名札・組織名を切り、棚の反復と無人室だけを残す。",
+        "placement_ja": "制度像を低コントラスト背景にし、四候補を同寸2×2で前面配置する。",
+        "first_focal_point_ja": "四つの同じ面積の見出し",
+        "second_focal_or_equal_scan_rule_ja": "悪意・追い詰め・分裂・誤認を時計回りに同じ速度で読む。",
+        "eye_path_ja": "左上から四面を一周し、背景の制度反復へ退く。",
+        "layers_ja": {
+          "foreground": "四つの同寸動機面",
+          "midground": "カード目録の反復",
+          "background": "無人の会議空間"
+        },
+        "borrowed_reference_portions_ja": {
+          "main": "引き出しの反復と木部",
+          "support": "無人の机と閉じた壁面"
+        },
+        "motion_direction_class": "locked_quadrant_scan",
+        "transition_continuity_ja": "三候補の横列を四象限へ組み替え、対象を制度へ移す。",
+        "positive_staging_condition_ja": "四面の面積・見出し・コントラスト・彩度・枠・画像量が等しい。",
+        "truth_safe_guard_ja": "実在の役職者、有罪、逮捕、裁判、不祥事、悪役照明を置かない。",
+        "asset_summary_ja": "Beat 4の中立制度像2点と均等な四動機面。",
+        "crop_percent": {
+          "left": 0,
+          "top": 0,
+          "width": 100,
+          "height": 100
+        },
+        "layout_signature": "neutral_institution_2x2_overlay",
+        "candidates": [
+          "悪意",
+          "追い詰め",
+          "分裂",
+          "誤認"
+        ],
+        "candidate_balance": {
+          "area_share_percent": [
+            25,
+            25,
+            25,
+            25
+          ],
+          "headline_px": [
+            20,
+            20,
+            20,
+            20
+          ],
+          "headline_size_difference_percent": 0,
+          "contrast_token": "candidate-neutral",
+          "saturation_token": "candidate-neutral",
+          "filter_token": "institution-neutral",
+          "border_px": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "image_prominence": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "winner_indicator_count": 0,
+          "selected_candidate": null
+        },
+        "identifiable_official": false,
+        "guilt_imagery": false,
+        "composition_class": "institutional_motive_quadrant"
+      }
+    },
+    {
+      "shot_id": "shot-b05-04",
+      "sequence": 16,
+      "beat_id": "bridge-storyboard-beat-5-held-answers",
+      "start_time": "02:23",
+      "end_time": "02:35",
+      "duration_seconds": 12,
+      "scale": "graphic_fullframe",
+      "motion": "graphic_dissolve",
+      "transition": "held_fade",
+      "display_title_ja": "三つの未解決事項",
+      "source_story": {
+        "what_is_seen_ja": "Toma / moth / Council HOLD面",
+        "purpose_ja": "三つの問いをHOLDへ戻す",
+        "visual_direction": "Toma / moth / Councilを一つのHOLD面に戻して編集上の境界を示す。",
+        "positive_condition_ja": "「Toma / moth / Council HOLD面」へ最初に視線が集まること。",
+        "negative_guard_ja": "物語世界の表示やcanon上の事実ではない。",
+        "source_done_when": "「Toma / moth / Council HOLD面」へ最初に視線が集まり、物語世界の表示やcanon上の事実ではない。",
+        "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+        "asset_summary_ja": "仮説／HOLD graphic＋日本語中心のtype system＋6幕のaudio cue placeholder",
+        "asset_requirement_ids": [
+          "AR-DOC-02",
+          "AR-TYPE-01",
+          "AR-AUDIO-01"
+        ],
+        "source_required_asset_count": 1,
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared",
+        "requirement_asset_status": "unselected",
+        "requirement_rights_status": "not_reviewed"
+      },
+      "execution_source": {
+        "plain_language_purpose_ja": "三つの問いをHOLDへ戻す",
+        "visual_direction": "Toma / moth / Councilを一つのHOLD面に戻して編集上の境界を示す。",
+        "truth_boundary": "物語世界の表示やcanon上の事実ではない。",
+        "done_when": "「Toma / moth / Council HOLD面」へ最初に視線が集まり、物語世界の表示やcanon上の事実ではない。",
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared"
+      },
+      "main_image_id": "ref-w2-b05-s01-horizon-silhouette",
+      "supporting_image_ids": [
+        "ref-b02-s02-metal-butterfly-brooch",
+        "ref-b04-s03-closed-meeting-room"
+      ],
+      "primary_visual_type": "licensed_image_composite",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "composition": {
+        "principal_subject_ja": "トーマ・真鍮の蛾・評議会の三つの同寸cluster",
+        "crop_boundary_ja": "各参照から匿名輪郭、静止物、無人制度空間だけを同じ比率で切る。",
+        "placement_ja": "三clusterを横一列に同寸配置し、中央clusterを拡大しない。",
+        "first_focal_point_ja": "三つを一組として読む外枠",
+        "second_focal_or_equal_scan_rule_ja": "三clusterを左右どちらからも等距離で走査する。",
+        "eye_path_ja": "外枠から三面を往復し、面間の余白で停止する。",
+        "layers_ja": {
+          "foreground": "トーマ・真鍮の蛾・評議会の同一書式名",
+          "midground": "三つの同寸画像cluster",
+          "background": "結論を置かない暗い共通面"
+        },
+        "borrowed_reference_portions_ja": {
+          "main": "匿名シルエット",
+          "support": "静止した蛾と無人会議室"
+        },
+        "motion_direction_class": "graphic_dissolve_equal_clusters",
+        "transition_continuity_ja": "前3shotの対象を一面へ戻し、どの問いも中心解答にしない。",
+        "positive_staging_condition_ja": "三clusterの面積と強調差が許容範囲内で、静止終端が中立。",
+        "truth_safe_guard_ja": "解決語、選択状態、物語上の判決、内部運用語を表示しない。",
+        "asset_summary_ja": "人物・蛾・制度像を同じ大きさで戻す三cluster。",
+        "crop_percent": {
+          "left": 0,
+          "top": 9,
+          "width": 100,
+          "height": 82
+        },
+        "layout_signature": "three_equal_return_clusters",
+        "candidates": [
+          "トーマ",
+          "真鍮の蛾",
+          "評議会"
+        ],
+        "candidate_balance": {
+          "area_share_percent": [
+            33.33,
+            33.33,
+            33.33
+          ],
+          "visual_emphasis": [
+            1,
+            1,
+            1
+          ],
+          "emphasis_delta_percent": 0,
+          "resolved_state_indicator_count": 0,
+          "selected_candidate": null
+        },
+        "composition_class": "three_question_unresolved_return"
+      }
+    },
+    {
+      "shot_id": "shot-b06-01",
+      "sequence": 17,
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:35",
+      "end_time": "02:44",
+      "duration_seconds": 9,
+      "scale": "graphic_fullframe",
+      "motion": "locked",
+      "transition": "hard_cut",
+      "display_title_ja": "時間と名前",
+      "source_story": {
+        "what_is_seen_ja": "時計面と空欄の名前欄",
+        "purpose_ja": "終幕の二択を置く",
+        "visual_direction": "時計面と空欄の名前欄を左右に並べ、中央は空ける。",
+        "positive_condition_ja": "「時計面と空欄の名前欄」へ最初に視線が集まること。",
+        "negative_guard_ja": "ミラの選択を示さない。",
+        "source_done_when": "「時計面と空欄の名前欄」へ最初に視線が集まり、ミラの選択を示さない。",
+        "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+        "asset_summary_ja": "時間／名前の二択panel＋日本語中心のtype system＋6幕のaudio cue placeholder",
+        "asset_requirement_ids": [
+          "AR-ABS-02",
+          "AR-TYPE-01",
+          "AR-AUDIO-01"
+        ],
+        "source_required_asset_count": 2,
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared",
+        "requirement_asset_status": "unselected",
+        "requirement_rights_status": "not_reviewed"
+      },
+      "execution_source": {
+        "plain_language_purpose_ja": "終幕の二択を置く",
+        "visual_direction": "時計面と空欄の名前欄を左右に並べ、中央は空ける。",
+        "truth_boundary": "ミラの選択を示さない。",
+        "done_when": "「時計面と空欄の名前欄」へ最初に視線が集まり、ミラの選択を示さない。",
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared"
+      },
+      "main_image_id": "ref-b02-s03-vintage-watch-0915",
+      "supporting_image_ids": [
+        "ref-w1-b03-s02-blank-book"
+      ],
+      "primary_visual_type": "licensed_image_composite",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "composition": {
+        "principal_subject_ja": "時計面と空欄の名前欄",
+        "crop_boundary_ja": "左は時計面、右は無記入ページだけを同じ高さで切る。",
+        "placement_ja": "左右を50:50にし、中央8%を意図的な空白として除外する。",
+        "first_focal_point_ja": "左右の対と空いた中央",
+        "second_focal_or_equal_scan_rule_ja": "時間と名前を同じ距離で往復し、中央の空白へ戻る。",
+        "eye_path_ja": "中央空白から左右へ同時に開き、どちらにも止まらない。",
+        "layers_ja": {
+          "foreground": "時間・名前の同寸見出し",
+          "midground": "時計面と無記入ページ",
+          "background": "二面を分ける空の中央"
+        },
+        "borrowed_reference_portions_ja": {
+          "main": "時計面と古い金色の縁",
+          "support": "文字のない白い見開き"
+        },
+        "motion_direction_class": "locked_equal_split",
+        "transition_continuity_ja": "三つの問いから二つの終幕候補へ絞るが、選択は行わない。",
+        "positive_staging_condition_ja": "左右面積と見出しが等しく、中央に明確な無地gapがある。",
+        "truth_safe_guard_ja": "人物、指針、手、強調枠、片側への移動を置かない。",
+        "asset_summary_ja": "Beat 2の時計とWave 1の空欄本を中央余白で等分。",
+        "crop_percent": {
+          "left": 0,
+          "top": 4,
+          "width": 100,
+          "height": 92
+        },
+        "layout_signature": "45_gap_45_equal_split",
+        "candidates": [
+          "時間",
+          "名前"
+        ],
+        "candidate_balance": {
+          "area_share_percent": [
+            50,
+            50
+          ],
+          "headline_px": [
+            22,
+            22
+          ],
+          "headline_size_difference_percent": 0,
+          "center_gap_percent": 8,
+          "visual_emphasis_winner": false,
+          "selected_candidate": null
+        },
+        "composition_class": "time_vs_name_equal_split"
+      }
+    },
+    {
+      "shot_id": "shot-b06-02",
+      "sequence": 18,
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:44",
+      "end_time": "02:52",
+      "duration_seconds": 8,
+      "scale": "close",
+      "motion": "slow_pull",
+      "transition": "graphic_match",
+      "display_title_ja": "未記入欄を残す台帳",
+      "source_story": {
+        "what_is_seen_ja": "未記入欄を残す台帳",
+        "purpose_ja": "結論を書かずに台帳を閉じる",
+        "visual_direction": "未記入欄を残したまま汎用の台帳が閉じる。",
+        "positive_condition_ja": "「未記入欄を残す台帳」へ最初に視線が集まること。",
+        "negative_guard_ja": "消された人々や回復を確定しない。",
+        "source_done_when": "「未記入欄を残す台帳」へ最初に視線が集まり、消された人々や回復を確定しない。",
+        "text_allowance_ja": "字幕のみ（最大2行・1行18字）",
+        "asset_summary_ja": "架空の台帳variants＋6幕のaudio cue placeholder",
+        "asset_requirement_ids": [
+          "AR-DOC-01",
+          "AR-AUDIO-01"
+        ],
+        "source_required_asset_count": 1,
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared",
+        "requirement_asset_status": "unselected",
+        "requirement_rights_status": "not_reviewed"
+      },
+      "execution_source": {
+        "plain_language_purpose_ja": "結論を書かずに台帳を閉じる",
+        "visual_direction": "未記入欄を残したまま汎用の台帳が閉じる。",
+        "truth_boundary": "消された人々や回復を確定しない。",
+        "done_when": "「未記入欄を残す台帳」へ最初に視線が集まり、消された人々や回復を確定しない。",
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared"
+      },
+      "main_image_id": "ref-w2-b06-s02-closed-book",
+      "supporting_image_ids": [
+        "ref-w1-b03-s02-blank-book",
+        "ref-w1-b03-s02-ledger-geometry"
+      ],
+      "primary_visual_type": "licensed_image_composite",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "composition": {
+        "principal_subject_ja": "無記入ページから閉じた本の端へ移る二段面",
+        "crop_boundary_ja": "読める実在文字を切り、空白、列間隔、ページ端だけを残す。",
+        "placement_ja": "左上の空欄本を第一焦点、右下の閉じたページ端を第二焦点として斜めに重ねる。",
+        "first_focal_point_ja": "書かれていない欄",
+        "second_focal_or_equal_scan_rule_ja": "閉じる表紙とページ端へ一方向に退く。",
+        "eye_path_ja": "左上の空欄から列の余白を通り、右下のページ端へ下がる。",
+        "layers_ja": {
+          "foreground": "閉じた本のページ端",
+          "midground": "無記入の見開き",
+          "background": "判読不能にした列geometry"
+        },
+        "borrowed_reference_portions_ja": {
+          "main": "閉じた本のページ端",
+          "support": "無記入ページと列間隔だけ"
+        },
+        "motion_direction_class": "slow_pull_diagonal_closure",
+        "transition_continuity_ja": "前shotの名前側にあった空欄を引き継ぎ、何も書かず距離を取る。",
+        "positive_staging_condition_ja": "最初に空欄、次にページ端が読め、文字内容が読めない。",
+        "truth_safe_guard_ja": "実名、公文書、記入済み回答、回復名簿、消失証拠を置かない。",
+        "asset_summary_ja": "空欄本、列geometry、閉じたページ端の三層。",
+        "crop_percent": {
+          "left": 7,
+          "top": 8,
+          "width": 86,
+          "height": 84
+        },
+        "layout_signature": "diagonal_open_blank_to_closed_edge",
+        "answer_written": false,
+        "real_personal_record": false,
+        "composition_class": "blank_ledger_closure"
+      }
+    },
+    {
+      "shot_id": "shot-b06-03",
+      "sequence": 19,
+      "beat_id": "bridge-storyboard-beat-6-time-or-names",
+      "start_time": "02:52",
+      "end_time": "03:00",
+      "duration_seconds": 8,
+      "scale": "wide",
+      "motion": "slow_pull",
+      "transition": "held_fade",
+      "display_title_ja": "空の鐘枠へ戻る",
+      "source_story": {
+        "what_is_seen_ja": "空の鐘枠と終幕の問い",
+        "purpose_ja": "問いのまま冒頭像へ戻る",
+        "visual_direction": "空の鐘枠へ戻り、『時間か、名前か』で静止する。",
+        "positive_condition_ja": "「空の鐘枠と終幕の問い」へ最初に視線が集まること。",
+        "negative_guard_ja": "ending candidateの問いで閉じ、解決を描かない。",
+        "source_done_when": "「空の鐘枠と終幕の問い」へ最初に視線が集まり、ending candidateの問いで閉じ、解決を描かない。",
+        "text_allowance_ja": "字幕と短いラベル（全体で最大2行・1行18字）",
+        "asset_summary_ja": "空の天文台環境＋日本語中心のtype system＋6幕のaudio cue placeholder",
+        "asset_requirement_ids": [
+          "AR-ENV-01",
+          "AR-TYPE-01",
+          "AR-AUDIO-01"
+        ],
+        "source_required_asset_count": 1,
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared",
+        "requirement_asset_status": "unselected",
+        "requirement_rights_status": "not_reviewed"
+      },
+      "execution_source": {
+        "plain_language_purpose_ja": "問いのまま冒頭像へ戻る",
+        "visual_direction": "空の鐘枠へ戻り、『時間か、名前か』で静止する。",
+        "truth_boundary": "ending candidateの問いで閉じ、解決を描かない。",
+        "done_when": "「空の鐘枠と終幕の問い」へ最初に視線が集まり、ending candidateの問いで閉じ、解決を描かない。",
+        "source_asset_status": "unselected",
+        "source_rights_status": "not_cleared"
+      },
+      "main_image_id": "ref-w1-b01-s01-harvard-observatory",
+      "supporting_image_ids": [
+        "ref-w1-b01-s01-kreiensen-station"
+      ],
+      "primary_visual_type": "licensed_image_callback",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "composition": {
+        "principal_subject_ja": "冒頭と同じ空の塔枠",
+        "crop_boundary_ja": "塔の縦線と空を残し、実鐘・機構・人物を切る。",
+        "placement_ja": "塔枠を中央上、駅の奥行きを低い補助層に置き、画面下部へ終幕語を置く。",
+        "first_focal_point_ja": "空の塔枠",
+        "second_focal_or_equal_scan_rule_ja": "駅の奥行きから遠ざかり、終幕語へ静止する。",
+        "eye_path_ja": "低い駅面から塔へ上がり、余白を経て下部の言葉へ戻る。",
+        "layers_ja": {
+          "foreground": "小さな終幕語",
+          "midground": "駅の遠近線",
+          "background": "空の塔枠と広い空"
+        },
+        "borrowed_reference_portions_ja": {
+          "main": "Beat 1と同一の塔参照ID・hash",
+          "support": "Beat 1と同一の駅参照ID・hash"
+        },
+        "motion_direction_class": "slow_pull_opening_callback",
+        "transition_continuity_ja": "未記入の本から距離を取り、冒頭の空枠へ戻る。",
+        "positive_staging_condition_ja": "空枠と『時間か、名前か』が読み取れ、鐘や回答がない。",
+        "truth_safe_guard_ja": "鐘、鳴動原因、選択済み結末、回復した時間、返された名前を置かない。",
+        "asset_summary_ja": "Beat 1の塔と駅を同一IDで再使用する終幕callback。",
+        "crop_percent": {
+          "left": 11,
+          "top": 4,
+          "width": 78,
+          "height": 90
+        },
+        "layout_signature": "wide_vertical_tower_callback_pullback",
+        "callback_of": "shot-b01-01",
+        "callback_reference_ids": [
+          "ref-w1-b01-s01-harvard-observatory",
+          "ref-w1-b01-s01-kreiensen-station"
+        ],
+        "bell_visible": false,
+        "ringing_cause_visible": false,
+        "ending_resolved": false,
+        "composition_class": "bellless_tower_closing_callback"
+      }
+    }
+  ],
+  "references": [
+    {
+      "reference_id": "ref-w2-b05-s01-horizon-silhouette",
+      "source_kind": "new_reference",
+      "source_title": "Horizon person silhouette (Unsplash)",
+      "creator": "Chris Roe",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Horizon_person_silhouette_(Unsplash).jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Horizon_person_silhouette_%28Unsplash%29.jpg",
+      "acquisition_media_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/Horizon_person_silhouette_%28Unsplash%29.jpg",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 4896,
+      "original_height": 2760,
+      "acquired_width": 4896,
+      "acquired_height": 2760,
+      "normalized_width": 1600,
+      "normalized_height": 902,
+      "local_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s01-horizon-silhouette.jpg",
+      "sha256": "2f5cbd4befae47efb0b44a35a901221dfc101ff2b027daee1b9c92575f4492a7",
+      "perceptual_dhash": "4f4f070f00840203",
+      "borrowed_portion_ja": "遠景の小さな匿名シルエットと人物を特定できない逆光だけ。柵、場所、服装は物語設定に採用しない。",
+      "wave2_used_by_shot_ids": [
+        "shot-b05-01",
+        "shot-b05-04"
+      ],
+      "roles_by_shot": {
+        "shot-b05-01": "main",
+        "shot-b05-04": "main"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false
+    },
+    {
+      "reference_id": "ref-w2-b05-fate-blank-card",
+      "source_kind": "new_reference",
+      "source_title": "Blank Card",
+      "creator": "Corn cheese",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Blank_Card.jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Blank_Card.jpg",
+      "acquisition_media_url": "https://upload.wikimedia.org/wikipedia/commons/3/34/Blank_Card.jpg",
+      "license_name": "CC BY-SA 4.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 1280,
+      "original_height": 720,
+      "acquired_width": 1280,
+      "acquired_height": 720,
+      "normalized_width": 1280,
+      "normalized_height": 720,
+      "local_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-fate-blank-card.jpg",
+      "sha256": "c970d41f104ddb5a7ebcda6348cd1018dc979101329d51cb5f303c64a49ce802",
+      "perceptual_dhash": "3f39393f3e26765e",
+      "borrowed_portion_ja": "無記入カード面だけを四領域へ同寸反復する。手、背景光、単独保持の意味は採用しない。",
+      "wave2_used_by_shot_ids": [
+        "shot-b05-01"
+      ],
+      "roles_by_shot": {
+        "shot-b05-01": "support"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false
+    },
+    {
+      "reference_id": "ref-w2-b05-s02-brass-plate",
+      "source_kind": "new_reference",
+      "source_title": "Brass plate (16911864106)",
+      "creator": "U.S. Army Corps of Engineers Savannah District; photo by Jim Jobling",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Brass_plate_(16911864106).jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/Brass_plate_%2816911864106%29.jpg",
+      "acquisition_media_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Brass_plate_%2816911864106%29.jpg/1280px-Brass_plate_%2816911864106%29.jpg",
+      "license_name": "Public Domain (U.S. federal government work)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-USGov-Military-Army",
+      "retrieved_at": "2026-07-19",
+      "original_width": 4608,
+      "original_height": 3456,
+      "acquired_width": 1280,
+      "acquired_height": 960,
+      "normalized_width": 1280,
+      "normalized_height": 960,
+      "local_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s02-brass-plate.jpg",
+      "sha256": "d9d8146351e2db5b42dc7c39c4609399aa8039cfa68387722f591f833369ae39",
+      "perceptual_dhash": "22d98ccad4e87122",
+      "borrowed_portion_ja": "非作動の暗い真鍮表面と不均一な反射だけ。付着物、来歴、用途候補は物語設定に採用しない。",
+      "wave2_used_by_shot_ids": [
+        "shot-b05-02"
+      ],
+      "roles_by_shot": {
+        "shot-b05-02": "support"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false
+    },
+    {
+      "reference_id": "ref-w2-b06-s02-closed-book",
+      "source_kind": "new_reference",
+      "source_title": "Closed book",
+      "creator": "J.Dncsn",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Closed_book.jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Closed_book.jpg",
+      "acquisition_media_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Closed_book.jpg/1280px-Closed_book.jpg",
+      "license_name": "CC BY-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 3318,
+      "original_height": 2315,
+      "acquired_width": 1280,
+      "acquired_height": 893,
+      "normalized_width": 1280,
+      "normalized_height": 893,
+      "local_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b06-s02-closed-book.jpg",
+      "sha256": "e69f1a06db297bb537d57684cf4989615e0426eb4500c6c8cc5d7aa6bddca2ab",
+      "perceptual_dhash": "0f0f0f0f0f070707",
+      "borrowed_portion_ja": "閉じた本のページ端と表紙境界だけ。実在の題名、記録、所有者は採用しない。",
+      "wave2_used_by_shot_ids": [
+        "shot-b06-02"
+      ],
+      "roles_by_shot": {
+        "shot-b06-02": "main"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false
+    },
+    {
+      "reference_id": "ref-b02-s02-metal-butterfly-brooch",
+      "used_by_shot_ids": [
+        "shot-b02-02",
+        "shot-b02-03"
+      ],
+      "roles_by_shot": {
+        "shot-b05-02": "main",
+        "shot-b05-04": "support"
+      },
+      "local_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
+      "source_title": "Butterfly brooch.jpg",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Butterfly_brooch.jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Butterfly_brooch.jpg",
+      "creator": "Jane023 (photographer/uploader; own work)",
+      "license_name": "CC0 1.0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrieved_at": "2026-07-14",
+      "original_width": 4032,
+      "original_height": 3024,
+      "local_width": 1600,
+      "local_height": 1200,
+      "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "source_kind": "inherited_reference",
+      "predecessor_local_path": "composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
+      "normalized_width": 1600,
+      "normalized_height": 1200,
+      "predecessor_used_by_shot_ids": [
+        "shot-b02-02",
+        "shot-b02-03"
+      ],
+      "wave2_used_by_shot_ids": [
+        "shot-b05-02",
+        "shot-b05-04"
+      ],
+      "ai_generated": false
+    },
+    {
+      "reference_id": "ref-b02-s03-vintage-watch-0915",
+      "used_by_shot_ids": [
+        "shot-b02-03"
+      ],
+      "roles_by_shot": {
+        "shot-b06-01": "main"
+      },
+      "local_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
+      "source_title": "Vintage Bulova Men's Swiss-Made Manual-Wind Wrist Watch (8505636506).jpg",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Vintage_Bulova_Men%27s_Swiss-Made_Manual-Wind_Wrist_Watch_(8505636506).jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Vintage_Bulova_Men%27s_Swiss-Made_Manual-Wind_Wrist_Watch_%288505636506%29.jpg",
+      "creator": "Joe Haupt",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "retrieved_at": "2026-07-14",
+      "original_width": 4608,
+      "original_height": 3456,
+      "local_width": 1600,
+      "local_height": 1200,
+      "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082",
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "source_kind": "inherited_reference",
+      "predecessor_local_path": "composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
+      "normalized_width": 1600,
+      "normalized_height": 1200,
+      "predecessor_used_by_shot_ids": [
+        "shot-b02-03"
+      ],
+      "wave2_used_by_shot_ids": [
+        "shot-b06-01"
+      ],
+      "ai_generated": false
+    },
+    {
+      "reference_id": "ref-b04-s02-card-catalogue",
+      "source_title": "Archive / Card catalogue drawers",
+      "creator": "Carolina Prysyazhnyuk",
+      "source_page_url": "https://www.flickr.com/photos/129657698@N02/16159019626/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/d/da/Card_catalogue_drawers.jpg",
+      "acquisition_media_url": "https://live.staticflickr.com/7513/16159019626_ec86e8e50f_b.jpg",
+      "license_name": "CC BY-SA 2.0",
+      "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 3872,
+      "original_height": 2592,
+      "acquired_width": 1023,
+      "acquired_height": 685,
+      "local_width": 1022,
+      "local_height": 574,
+      "local_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-card-catalogue.jpg",
+      "sha256": "23aaf60edcd0880b63e5c98eed29a2ea46fddf0c5e3e8ab17c3e948cfcae5822",
+      "normalization_ja": "左右の反復を残す16:9 crop、EXIF除去。",
+      "used_by_shot_ids": [
+        "shot-b04-02"
+      ],
+      "roles_by_shot": {
+        "shot-b05-03": "main"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "source_kind": "inherited_reference",
+      "predecessor_local_path": "composition-assets/ref-b04-s02-card-catalogue.jpg",
+      "normalized_width": 1022,
+      "normalized_height": 574,
+      "predecessor_used_by_shot_ids": [
+        "shot-b04-02"
+      ],
+      "wave2_used_by_shot_ids": [
+        "shot-b05-03"
+      ],
+      "ai_generated": false
+    },
+    {
+      "reference_id": "ref-b04-s03-closed-meeting-room",
+      "source_title": "Interieur vergaderzaal / Meeting Room Interior",
+      "creator": "Het Nieuwe Instituut - Architecture Collection; photographer unknown",
+      "source_page_url": "https://www.flickr.com/photos/nai_collection/5260603510/",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Interieur_vergaderzaal_-_Meeting_Room_Interior_%285260603510%29.jpg",
+      "acquisition_media_url": "https://live.staticflickr.com/5282/5260603510_863575f37e_b.jpg",
+      "license_name": "No known copyright restrictions",
+      "license_url": "https://www.flickr.com/commons/usage/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 1280,
+      "original_height": 998,
+      "acquired_width": 1023,
+      "acquired_height": 798,
+      "local_width": 1022,
+      "local_height": 574,
+      "local_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s03-closed-meeting-room.jpg",
+      "sha256": "e6f06540dba924ccd3c5aaa38fa3f676f489335762b61dd7ecbcca69da196ca9",
+      "normalization_ja": "無人の机と閉じた壁面を残す16:9 crop、EXIF除去。",
+      "used_by_shot_ids": [
+        "shot-b04-03"
+      ],
+      "roles_by_shot": {
+        "shot-b05-03": "support",
+        "shot-b05-04": "support"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "source_kind": "inherited_reference",
+      "predecessor_local_path": "composition-assets/ref-b04-s03-closed-meeting-room.jpg",
+      "normalized_width": 1022,
+      "normalized_height": 574,
+      "predecessor_used_by_shot_ids": [
+        "shot-b04-03"
+      ],
+      "wave2_used_by_shot_ids": [
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "ai_generated": false
+    },
+    {
+      "reference_id": "ref-w1-b03-s02-blank-book",
+      "source_title": "Blank book on a table",
+      "creator": "Trey Jones",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Blank_book_on_a_table.jpg",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Blank_book_on_a_table.jpg",
+      "license_name": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 1200,
+      "original_height": 1200,
+      "normalized_width": 1200,
+      "normalized_height": 1200,
+      "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-blank-book.jpg",
+      "sha256": "312ac0465762b21dd1d67504d7dcaee074c94f73d7281f5adeb16fed618343a4",
+      "used_by_shot_ids": [
+        "shot-b03-02"
+      ],
+      "roles_by_shot": {
+        "shot-b06-01": "support",
+        "shot-b06-02": "support"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "source_kind": "inherited_reference",
+      "predecessor_local_path": "composition-assets/ref-w1-b03-s02-blank-book.jpg",
+      "predecessor_used_by_shot_ids": [
+        "shot-b03-02"
+      ],
+      "wave2_used_by_shot_ids": [
+        "shot-b06-01",
+        "shot-b06-02"
+      ]
+    },
+    {
+      "reference_id": "ref-w1-b03-s02-ledger-geometry",
+      "source_title": "German ledger 1828",
+      "creator": "RaphaelQS",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Ledger.png",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Ledger.png",
+      "license_name": "CC0",
+      "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "retrieved_at": "2026-07-19",
+      "original_width": 1706,
+      "original_height": 896,
+      "normalized_width": 1600,
+      "normalized_height": 840,
+      "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-ledger-geometry.jpg",
+      "sha256": "ccbb058ad17576dd5d69329b67137947a3dfcc218672394d97f1bc4234e6ff88",
+      "used_by_shot_ids": [
+        "shot-b03-02"
+      ],
+      "roles_by_shot": {
+        "shot-b06-02": "support"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "content_boundary_ja": "元画像の手書き内容は使用・転記・判読せず、列間隔と紙面密度だけを参照する。架空挿入は別途新規制作する。",
+      "source_kind": "inherited_reference",
+      "predecessor_local_path": "composition-assets/ref-w1-b03-s02-ledger-geometry.jpg",
+      "predecessor_used_by_shot_ids": [
+        "shot-b03-02"
+      ],
+      "wave2_used_by_shot_ids": [
+        "shot-b06-02"
+      ]
+    },
+    {
+      "reference_id": "ref-w1-b01-s01-harvard-observatory",
+      "source_title": "Sears Tower, Harvard Observatory",
+      "creator": "Daderot",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Sears_Tower-Harvard_Observatory_-_60_Garden_Street,_Cambridge,_MA_-_IMG_4028.JPG",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Sears_Tower-Harvard_Observatory_-_60_Garden_Street%2C_Cambridge%2C_MA_-_IMG_4028.JPG",
+      "license_name": "Public domain (author dedication)",
+      "license_url": "https://commons.wikimedia.org/wiki/Template:PD-self",
+      "retrieved_at": "2026-07-19",
+      "original_width": 2448,
+      "original_height": 3264,
+      "normalized_width": 1200,
+      "normalized_height": 1600,
+      "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-harvard-observatory.jpg",
+      "sha256": "6e1376fa2b4fa4bfffae778f1e86364b1c3baf5fe2925cd242337d76f7b33e84",
+      "used_by_shot_ids": [
+        "shot-b01-01"
+      ],
+      "roles_by_shot": {
+        "shot-b06-03": "main"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "source_kind": "inherited_reference",
+      "predecessor_local_path": "composition-assets/ref-w1-b01-s01-harvard-observatory.jpg",
+      "predecessor_used_by_shot_ids": [
+        "shot-b01-01"
+      ],
+      "wave2_used_by_shot_ids": [
+        "shot-b06-03"
+      ]
+    },
+    {
+      "reference_id": "ref-w1-b01-s01-kreiensen-station",
+      "source_title": "Railway station Kreiensen 1963",
+      "creator": "Michael Gäbler",
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Railway_station_Kreiensen_1963.JPG",
+      "original_media_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/Railway_station_Kreiensen_1963.JPG",
+      "license_name": "CC BY 3.0",
+      "license_url": "https://creativecommons.org/licenses/by/3.0",
+      "retrieved_at": "2026-07-19",
+      "original_width": 1969,
+      "original_height": 1194,
+      "normalized_width": 1600,
+      "normalized_height": 970,
+      "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-kreiensen-station.jpg",
+      "sha256": "49b3136c701d7e149194e74cac2a1c5c6dc688d6502340fce4915cec656da134",
+      "used_by_shot_ids": [
+        "shot-b01-01"
+      ],
+      "roles_by_shot": {
+        "shot-b06-03": "support"
+      },
+      "reference_only": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "ai_generated": false,
+      "source_kind": "inherited_reference",
+      "predecessor_local_path": "composition-assets/ref-w1-b01-s01-kreiensen-station.jpg",
+      "predecessor_used_by_shot_ids": [
+        "shot-b01-01"
+      ],
+      "wave2_used_by_shot_ids": [
+        "shot-b06-03"
+      ]
+    }
+  ],
+  "rejected_references": [
+    {
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Cards-Blank.svg",
+      "reason": "vector placeholder rather than a photographic material reference"
+    },
+    {
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Index_cards_(tabbed,_showing_hole).png",
+      "reason": "406x299; below the 900px useful-edge minimum"
+    },
+    {
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Book_closed_template.png",
+      "reason": "48x48 icon; low resolution and symbolic"
+    },
+    {
+      "source_page_url": "https://commons.wikimedia.org/wiki/File:Bletchley_Park_Index_Cards.jpg",
+      "reason": "real historical intelligence records would create a misleading factual association"
+    }
+  ],
+  "lineage": [
+    {
+      "motif": "brass_moth",
+      "from_shot_id": "shot-b02-02",
+      "to_shot_ids": [
+        "shot-b05-02",
+        "shot-b05-04"
+      ],
+      "reference_ids": [
+        "ref-b02-s02-metal-butterfly-brooch"
+      ]
+    },
+    {
+      "motif": "council",
+      "from_shot_id": "shot-b04-02",
+      "to_shot_ids": [
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "reference_ids": [
+        "ref-b04-s02-card-catalogue",
+        "ref-b04-s03-closed-meeting-room"
+      ]
+    },
+    {
+      "motif": "ledger",
+      "from_shot_id": "shot-b03-02",
+      "to_shot_ids": [
+        "shot-b06-01",
+        "shot-b06-02"
+      ],
+      "reference_ids": [
+        "ref-w1-b03-s02-blank-book",
+        "ref-w1-b03-s02-ledger-geometry"
+      ]
+    },
+    {
+      "motif": "bellless_tower",
+      "from_shot_id": "shot-b01-01",
+      "to_shot_ids": [
+        "shot-b06-03"
+      ],
+      "reference_ids": [
+        "ref-w1-b01-s01-harvard-observatory",
+        "ref-w1-b01-s01-kreiensen-station"
+      ],
+      "callback_of": "shot-b01-01"
+    }
+  ],
+  "owner_review_policy": {
+    "product_owner_is_formal_reviewer": true,
+    "wave2_human_review": "none",
+    "per_beat_external_review_required": false,
+    "per_beat_blind_review_discontinued": true,
+    "next_human_review": "after_integrated_19_shot_visual_package",
+    "human_gate_after_wave2": false,
+    "external_reproducibility_claimed": false
+  },
+  "ui_contract": {
+    "themes": [
+      "auto",
+      "light",
+      "dark"
+    ],
+    "theme_default": "auto",
+    "document_only_vertical_scroll": true,
+    "nested_scroll": false,
+    "horizontal_overflow": false,
+    "narrow_image_before_copy": true,
+    "print_forced_light": true,
+    "section_order": [
+      "beat5",
+      "beat6",
+      "beat_continuity",
+      "existing_beat_connections",
+      "sources"
+    ]
+  },
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "provider_configured": false,
+    "credentials_touched": false,
+    "external_model_call": false,
+    "image_generation": false,
+    "audio_generation": false,
+    "video_generation": false,
+    "production_render": false,
+    "upload_or_publication": false,
+    "database_persistence": false,
+    "production_approved": false,
+    "final_canon_decision": false,
+    "final_19_shot_integration": false,
+    "human_review_requested": false,
+    "external_reproducibility_claimed": false
+  }
+}

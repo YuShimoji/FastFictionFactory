@@ -65,6 +65,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Composition Expansion Wave 2 (fff-composition-expansion-wave2-001): review/composition-expansion-wave2.md
       - Composition Expansion Wave 1: review/composition-expansion-wave1.md
       - Beat 4 Composition Counterexample: review/beat4-composition-counterexample.md
       - Beat 2 Composition Board: review/beat2-composition-board.md

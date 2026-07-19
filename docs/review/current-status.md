@@ -1,13 +1,29 @@
 # Current Status Packet
 
-## Current Composition Expansion Wave 1 Update
+## Current Composition Expansion Wave 2 Update
 
-- Active artifact: `fff-composition-expansion-wave1-001`
-- Active lane: `COMPOSITION_EXPANSION`; Wave 1 is the bounded H0 slice
+- Active artifact: `fff-composition-expansion-wave2-001`
+- Lane/base: `COMPOSITION_EXPANSION`; implemented from exact base `b3312a2a4a8d5993d7091de36af2ad291b766aa0`
+- Scope: exactly Beat 5「保留された答え」and Beat 6「時刻か、名前か」/ exactly 7 source shots / 75 seconds
+- Standalone entry: `artifacts/composition-expansion-wave2/composition-expansion-wave2.html`
+- Package/result/review: `artifacts/composition-expansion-wave2/`, `artifacts/composition-expansion-wave2-result.json`, `docs/review/composition-expansion-wave2.md`
+- Coverage: Wave 2 adds the remaining 7 shots; Wave 1 + Beat 2 + Beat 4 + Wave 2 now provide concrete composition material for 19/19 source shots across separate packages
+- References: 4 newly acquired licensed local JPEGs + 8 inherited exact-identity references = 12 references; 16 assignments; 2–3 images per shot
+- Structure: seven materially distinct composition classes; candidate-bearing shots preserve equal share, equal headings/emphasis, and no winner or selection indicator
+- Continuity: Beat 5 is 人物の運命 → 対象物の機能 → 制度の動機 → 三つの未解決事項; Beat 6 is 二つの候補 → 未記入の記録 → 冒頭の空枠
+- Human review policy: Wave 2 human review none; no immediate human gate; per-Beat blind review discontinued; next human review is `after_integrated_19_shot_visual_package`
+- Integration boundary: concrete coverage is 19/19, but an integrated 19-shot visual package does not exist
+- Read-only validation: `node tools/fff-state.mjs validate-composition-expansion-wave2 artifacts/composition-expansion-wave2-result.json`
+- Closed gates: production selection, rights clearance, image/audio/video generation, provider/API, credentials, final motion/render, upload/publication, database persistence, production approval, final canon, and external reproducibility
+
+## Preserved Composition Expansion Wave 1 Update
+
+- Preserved artifact: `fff-composition-expansion-wave1-001`
+- Historical lane state: `COMPOSITION_EXPANSION`; Wave 1 was the bounded H0 slice before Wave 2
 - Scope: exactly Beat 1「鐘のない塔」and Beat 3「消された名前」/ exactly 6 source shots / 50 seconds
 - Standalone entry: `artifacts/composition-expansion-wave1/composition-expansion-wave1.html`
 - Package/result/review: `artifacts/composition-expansion-wave1/`, `artifacts/composition-expansion-wave1-result.json`, `docs/review/composition-expansion-wave1.md`
-- Coverage: Beats 1–4 now have concrete composition material for 12 of 19 source shots; Beats 5/6 are untouched
+- Coverage at the Wave 1 checkpoint: Beats 1–4 had concrete composition material for 12 of 19 source shots; Wave 2 subsequently completed the remaining seven
 - References: 12 distinct licensed local JPEGs / 12 assignments / 6 unique main images / 6 materially distinct composition classes
 - Owner Review policy: Beat 4 `OWNER_REVIEW_PASS`; observation「大きな破綻はなさそう」; composition expansion authorized; directional owner acceptance is not independent transfer proof
 - Human review policy: per-Beat external reviewer not required; per-Beat blind review discontinued; Wave 1 human review none; next human review only after integrated 19-shot visual package

@@ -1,8 +1,16 @@
 # Project Context
 
-## Active Composition Expansion Wave 1 Axis
+## Active Composition Expansion Wave 2 Axis
 
-The active artifact is `fff-composition-expansion-wave1-001`, a standalone local/reference-only H0 composition package for Beat 1「鐘のない塔」(`00:00–00:20`) and Beat 3「消された名前」(`00:50–01:20`). It represents exactly six source-authorized shots with twelve licensed local raster references, twelve assignments, six unique main images, and six materially distinct composition classes. Together with the preserved Beat 2 and Beat 4 packages, concrete composition coverage is now 12 of 19 source shots across Beats 1–4.
+The active artifact is `fff-composition-expansion-wave2-001`, the standalone local/reference-only H0 composition package for Beat 5「保留された答え」(`01:45–02:35`) and Beat 6「時刻か、名前か」(`02:35–03:00`). It covers exactly seven source-authorized shots with four newly acquired licensed local rasters, eight inherited references verified by identity, sixteen image assignments, and seven distinct composition classes. With Wave 1, Beat 2 Board, and Beat 4 Counterexample preserved beneath it, concrete composition material now exists for 19 of 19 source shots across separate packages.
+
+The active lane remains `COMPOSITION_EXPANSION`. The source story, 180-second timing, nineteen shot IDs, narration, subtitles, truth state, rights state, selection state, and canon state are unchanged. There is no Wave 2 human review and no post-Wave-2 human gate; per-Beat blind review remains discontinued. The next human review is `after_integrated_19_shot_visual_package`, but that integrated package has not been created.
+
+Wave 2 is not production selection, rights clearance, generation, render readiness, production approval, external reproducibility, or final canon. The farthest safe successor is a separately authorized data-only integration of the exact nineteen concrete compositions into one review object.
+
+## Preserved Composition Expansion Wave 1 Axis
+
+The preserved predecessor artifact is `fff-composition-expansion-wave1-001`, a standalone local/reference-only H0 composition package for Beat 1「鐘のない塔」(`00:00–00:20`) and Beat 3「消された名前」(`00:50–01:20`). At its completion checkpoint it represented exactly six source-authorized shots with twelve licensed local raster references, twelve assignments, six unique main images, and six materially distinct composition classes. Together with the preserved Beat 2 and Beat 4 packages, it established the first 12 of 19 concrete source-shot compositions before Wave 2.
 
 Owner Review records Beat 4 as `OWNER_REVIEW_PASS` with the observation「大きな破綻はなさそう」and authorizes composition expansion. This is directional product-owner acceptance, not independent transfer proof. Per-Beat external review is no longer required, per-Beat blind review is discontinued, Wave 1 has no human review gate, and the next human review occurs only after a complete integrated 19-shot visual package exists. External reproducibility is not yet claimed and Beat 4 repair is not required.
 
