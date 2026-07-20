@@ -35,7 +35,7 @@ Primary accessは `artifacts/asset-rights-readiness-packet/asset-rights-readines
 | Asset classes | 7; environment 2, character_silhouette 3, prop 3, document_graphic 2, abstract_graphic 2, typography 1, audio_cue 1 |
 | Canonical references | 28/28 with canonical ID, aliases, owner artifact, path, SHA256, used shots, creator, source/original URLs, license record, dimensions, retrieval date, risk, and boundary flags |
 | Aliases / assignments | 36 / 42 |
-| Minimum local-assembly set | 14 requirement rows; 19/19 shot coverage |
+| Minimum local-assembly set | 14 requirement rows; 19/19 shot coverage; `future_audio_lane` and `future_voice_lane` remain separate and unauthorized |
 | Default plan | 14/14 requirements; 19/19 shots |
 | Owner selections | 0; all requirement and minimum-set decisions remain `unselected` |
 | Publication compatibility | 0 reviewed; all 14 remain `unreviewed` |
@@ -50,7 +50,9 @@ Creative fitは `strong_reference=7`, `usable_reference=6`, `no_reference=1` で
 - `retain_reference_only=1`: `AR-AUDIO-01`
 - Explicit exception requirement: `AR-PROP-02`
 
-初回の非公開組立てでは、架空文書、比較図、抽象図、文字、匿名シルエットを決定的に作成し、実在施設、人物、実記録に依存する参照は置換候補へ回します。真鍮の蛾だけをOwner検討用local proxy候補とし、audioはseparately authorized future laneに残します。次の人手判断は、A=推奨計画採用、B=例外requirement IDだけ指定、C=material strategy再構成の一つです。28 source pagesの個別質問票は作成していません。
+Disposition別shot coverageは、deterministic original 17/19、replacement candidate 9/19、Owner-may-consider local proxy 3/19、reference-only future audio 19/19です。同じshotが複数のrequirement familyを持つためcoverageは重複します。未到達の8 reference IDsは下記のevidence listに明示し、recurring motifは同じrequirement familyを全再登場shotで再利用する方針です。
+
+初回の非公開組立てでは、架空文書、比較図、抽象図、文字、匿名シルエットを決定的に作成し、実在施設、人物、実記録に依存する参照は置換候補へ回します。真鍮の蛾だけをOwner検討用local proxy候補とし、audio cueとvoice calibrationは相互にも別の、separately authorized future laneに残します。次の人手判断は、A=推奨計画採用、B=例外requirement IDだけ指定、C=material strategy再構成の一つです。28 source pagesの個別質問票は作成していません。
 
 ## Reference Evidence and Live Readback
 

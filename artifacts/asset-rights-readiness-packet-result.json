@@ -55,14 +55,111 @@
   "minimum_local_assembly_shot_coverage": 19,
   "default_plan_requirement_coverage": 14,
   "default_plan_shot_coverage": 19,
+  "default_plan_shot_coverage_by_disposition": {
+    "create_deterministic_original": {
+      "shot_count": 17,
+      "shot_ids": [
+        "shot-b01-03",
+        "shot-b02-01",
+        "shot-b02-02",
+        "shot-b02-03",
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b03-03",
+        "shot-b04-01",
+        "shot-b04-02",
+        "shot-b04-03",
+        "shot-b05-01",
+        "shot-b05-02",
+        "shot-b05-03",
+        "shot-b05-04",
+        "shot-b06-01",
+        "shot-b06-02",
+        "shot-b06-03"
+      ]
+    },
+    "owner_may_consider_local_proxy": {
+      "shot_count": 3,
+      "shot_ids": [
+        "shot-b02-02",
+        "shot-b02-03",
+        "shot-b05-02"
+      ]
+    },
+    "retain_reference_only": {
+      "shot_count": 19,
+      "shot_ids": [
+        "shot-b01-01",
+        "shot-b01-02",
+        "shot-b01-03",
+        "shot-b02-01",
+        "shot-b02-02",
+        "shot-b02-03",
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b03-03",
+        "shot-b04-01",
+        "shot-b04-02",
+        "shot-b04-03",
+        "shot-b05-01",
+        "shot-b05-02",
+        "shot-b05-03",
+        "shot-b05-04",
+        "shot-b06-01",
+        "shot-b06-02",
+        "shot-b06-03"
+      ]
+    },
+    "source_replacement_candidate": {
+      "shot_count": 9,
+      "shot_ids": [
+        "shot-b01-01",
+        "shot-b01-02",
+        "shot-b01-03",
+        "shot-b02-01",
+        "shot-b03-01",
+        "shot-b04-01",
+        "shot-b04-03",
+        "shot-b05-03",
+        "shot-b06-03"
+      ]
+    }
+  },
   "exception_requirement_ids": [
     "AR-PROP-02"
+  ],
+  "unresolved_evidence_reference_ids": [
+    "ref-b02-s01-watch-repair-workbench",
+    "ref-b04-s01-conference-backs",
+    "ref-b04-s01-frosted-partition",
+    "ref-b04-s02-card-catalogue",
+    "ref-b04-s02-time-recorder",
+    "ref-b04-s03-closed-meeting-room",
+    "ref-w1-b01-s03-belfry-interior-art",
+    "ref-w1-b01-s03-noon-mark"
+  ],
+  "minimum_local_assembly_future_lanes": [
+    {
+      "lane_id": "future_audio_lane",
+      "requirement_ids": [
+        "AR-AUDIO-01"
+      ],
+      "required_future_decision": "separately_authorized_future_audio_lane",
+      "owner_decision": "unselected"
+    },
+    {
+      "lane_id": "future_voice_lane",
+      "requirement_ids": [],
+      "required_future_decision": "separately_authorized_voice_calibration",
+      "owner_decision": "unselected"
+    }
   ],
   "owner_decision_selected_count": 0,
   "publication_compatibility_reviewed_count": 0,
   "selected_for_production_count": 0,
   "rights_cleared_claim_count": 0,
   "copied_source_image_count": 0,
+  "modified_source_image_count": 0,
   "newly_downloaded_asset_count": 0,
   "external_media_hotlink_count": 0,
   "legal_clearance_claim_count": 0,
@@ -1194,7 +1291,7 @@
   },
   "package_manifest": {
     "path": "artifacts/asset-rights-readiness-packet/asset-rights-readiness-manifest.json",
-    "fingerprint": "2465850068cce2360e456194466425d16cf341c4f97b674ca531d0d69b1a667b",
+    "fingerprint": "b3fd1760800a705193be544364e0892299deb318fc77383a472cd3614b8eef5d",
     "payload_file_count": 8
   },
   "negative_probes": {
@@ -1548,13 +1645,13 @@
     "screenshots": {
       "dark": {
         "relative_path": "artifacts/review-screens/asset-rights-readiness-packet-900x1200-dark.png",
-        "byte_size": 172274,
-        "sha256": "88b33d6cc0bf16bb7fed29353a779948051f9e1200f6801d46edc6222b76207c"
+        "byte_size": 177841,
+        "sha256": "bf94d30ddd66eccd0fa851820cc37af8b9d4b122c1bce619e63fdf56acc40918"
       },
       "light": {
         "relative_path": "artifacts/review-screens/asset-rights-readiness-packet-1280x900-light.png",
-        "byte_size": 124245,
-        "sha256": "bd8ee35b63f2807f0b6a527a2b5812754771ac17c19aa884af6144335eb40a1d"
+        "byte_size": 127960,
+        "sha256": "2c5fa9dc49f24a8ef289bdf261f5935c474c2266cc4e22f617535c8e0b749e3d"
       }
     }
   },

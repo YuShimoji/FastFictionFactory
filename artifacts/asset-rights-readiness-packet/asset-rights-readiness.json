@@ -499,8 +499,8 @@
         "contextual_misattribution"
       ],
       "recommended_disposition": "source_replacement_candidate",
-      "rationale_ja": "実在施設・人物・実記録または文脈誤認のriskを含むため、現参照は構図確認に留め置換候補を分離する。",
-      "replacement_or_creation_brief_ja": "鐘のない天文台と空の鐘枠を、遠景・内部寄り・終幕回帰で再利用できる汎用セット。を、特定可能な人物・施設・記録を含まない新規候補または中立placeholderとして後続laneで準備する。",
+      "rationale": "実在施設・人物・実記録または文脈誤認のriskを含むため、現参照は構図確認に留め置換候補を分離する。",
+      "replacement_or_creation_brief": "鐘のない天文台と空の鐘枠を、遠景・内部寄り・終幕回帰で再利用できる汎用セット。を、特定可能な人物・施設・記録を含まない新規候補または中立placeholderとして後続laneで準備する。",
       "minimum_local_assembly_role": "newly_sourced_candidate",
       "proposed_construction_method": "newly_sourced_candidate",
       "blocking_for_offline_assembly": true,
@@ -544,8 +544,8 @@
         "contextual_misattribution"
       ],
       "recommended_disposition": "source_replacement_candidate",
-      "rationale_ja": "実在施設・人物・実記録または文脈誤認のriskを含むため、現参照は構図確認に留め置換候補を分離する。",
-      "replacement_or_creation_brief_ja": "半透明仕切りを含む中立的な制度空間。評議会場・台帳の影・制度候補面へ再利用する。を、特定可能な人物・施設・記録を含まない新規候補または中立placeholderとして後続laneで準備する。",
+      "rationale": "実在施設・人物・実記録または文脈誤認のriskを含むため、現参照は構図確認に留め置換候補を分離する。",
+      "replacement_or_creation_brief": "半透明仕切りを含む中立的な制度空間。評議会場・台帳の影・制度候補面へ再利用する。を、特定可能な人物・施設・記録を含まない新規候補または中立placeholderとして後続laneで準備する。",
       "minimum_local_assembly_role": "newly_sourced_candidate",
       "proposed_construction_method": "newly_sourced_candidate",
       "blocking_for_offline_assembly": true,
@@ -586,8 +586,8 @@
         "identifiable_person"
       ],
       "recommended_disposition": "source_replacement_candidate",
-      "rationale_ja": "実在施設・人物・実記録または文脈誤認のriskを含むため、現参照は構図確認に留め置換候補を分離する。",
-      "replacement_or_creation_brief_ja": "人物を特定しない手元insert。時計修理と台帳を開く動作で共有する。を、特定可能な人物・施設・記録を含まない新規候補または中立placeholderとして後続laneで準備する。",
+      "rationale": "実在施設・人物・実記録または文脈誤認のriskを含むため、現参照は構図確認に留め置換候補を分離する。",
+      "replacement_or_creation_brief": "人物を特定しない手元insert。時計修理と台帳を開く動作で共有する。を、特定可能な人物・施設・記録を含まない新規候補または中立placeholderとして後続laneで準備する。",
       "minimum_local_assembly_role": "neutral_placeholder",
       "proposed_construction_method": "neutral_placeholder",
       "blocking_for_offline_assembly": true,
@@ -624,8 +624,8 @@
         "identifiable_person"
       ],
       "recommended_disposition": "create_deterministic_original",
-      "rationale_ja": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
-      "replacement_or_creation_brief_ja": "匿名の評議会構成員を示す中立的なシルエット。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
+      "rationale": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
+      "replacement_or_creation_brief": "匿名の評議会構成員を示す中立的なシルエット。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
       "minimum_local_assembly_role": "deterministic_original_graphic",
       "proposed_construction_method": "deterministic_original_graphic",
       "blocking_for_offline_assembly": true,
@@ -662,8 +662,8 @@
         "identifiable_person"
       ],
       "recommended_disposition": "create_deterministic_original",
-      "rationale_ja": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
-      "replacement_or_creation_brief_ja": "トーマの複数の運命候補を保持する未確定シルエット。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
+      "rationale": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
+      "replacement_or_creation_brief": "トーマの複数の運命候補を保持する未確定シルエット。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
       "minimum_local_assembly_role": "deterministic_original_graphic",
       "proposed_construction_method": "deterministic_original_graphic",
       "blocking_for_offline_assembly": true,
@@ -704,8 +704,8 @@
         "trademark_or_logo"
       ],
       "recommended_disposition": "create_deterministic_original",
-      "rationale_ja": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
-      "replacement_or_creation_brief_ja": "時計修理台と9:17の時計面を同じ造形系で使えるモジュール。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
+      "rationale": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
+      "replacement_or_creation_brief": "時計修理台と9:17の時計面を同じ造形系で使えるモジュール。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
       "minimum_local_assembly_role": "deterministic_original_graphic",
       "proposed_construction_method": "deterministic_original_graphic",
       "blocking_for_offline_assembly": true,
@@ -748,8 +748,8 @@
         "contextual_misattribution"
       ],
       "recommended_disposition": "owner_may_consider_local_proxy",
-      "rationale_ja": "既存参照は構図上有用だが利用判断を伴うため、非公開proxyとして扱うかをOwner例外判断に残す。",
-      "replacement_or_creation_brief_ja": "静止した真鍮の蛾。手掛かり、時計面、機能候補の三用途で再利用する。はOwnerが許可した場合だけ非公開proxy候補として扱い、置換可能性を保つ。",
+      "rationale": "既存参照は構図上有用だが利用判断を伴うため、非公開proxyとして扱うかをOwner例外判断に残す。",
+      "replacement_or_creation_brief": "静止した真鍮の蛾。手掛かり、時計面、機能候補の三用途で再利用する。はOwnerが許可した場合だけ非公開proxy候補として扱い、置換可能性を保つ。",
       "minimum_local_assembly_role": "owner_approved_local_proxy",
       "proposed_construction_method": "owner_approved_local_proxy",
       "blocking_for_offline_assembly": true,
@@ -787,8 +787,8 @@
         "contextual_misattribution"
       ],
       "recommended_disposition": "create_deterministic_original",
-      "rationale_ja": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
-      "replacement_or_creation_brief_ja": "トーマが残したとされる汎用メモ。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
+      "rationale": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
+      "replacement_or_creation_brief": "トーマが残したとされる汎用メモ。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
       "minimum_local_assembly_role": "deterministic_original_graphic",
       "proposed_construction_method": "deterministic_original_graphic",
       "blocking_for_offline_assembly": true,
@@ -836,8 +836,8 @@
         "contextual_misattribution"
       ],
       "recommended_disposition": "create_deterministic_original",
-      "rationale_ja": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
-      "replacement_or_creation_brief_ja": "架空の台帳、名前欄、『分』欄、未記入欄を持つ再利用可能な文書variant群。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
+      "rationale": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
+      "replacement_or_creation_brief": "架空の台帳、名前欄、『分』欄、未記入欄を持つ再利用可能な文書variant群。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
       "minimum_local_assembly_role": "deterministic_original_graphic",
       "proposed_construction_method": "deterministic_original_graphic",
       "blocking_for_offline_assembly": true,
@@ -887,8 +887,8 @@
         "contextual_misattribution"
       ],
       "recommended_disposition": "create_deterministic_original",
-      "rationale_ja": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
-      "replacement_or_creation_brief_ja": "仮説、運命、機能、動機、HOLDを同じ重みで並べる図版システム。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
+      "rationale": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
+      "replacement_or_creation_brief": "仮説、運命、機能、動機、HOLDを同じ重みで並べる図版システム。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
       "minimum_local_assembly_role": "deterministic_original_graphic",
       "proposed_construction_method": "deterministic_original_graphic",
       "blocking_for_offline_assembly": true,
@@ -926,8 +926,8 @@
         "contextual_misattribution"
       ],
       "recommended_disposition": "create_deterministic_original",
-      "rationale_ja": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
-      "replacement_or_creation_brief_ja": "名前の輪郭が薄れる感覚を示す抽象モーショングラフィック。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
+      "rationale": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
+      "replacement_or_creation_brief": "名前の輪郭が薄れる感覚を示す抽象モーショングラフィック。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
       "minimum_local_assembly_role": "deterministic_original_graphic",
       "proposed_construction_method": "deterministic_original_graphic",
       "blocking_for_offline_assembly": true,
@@ -966,8 +966,8 @@
         "contextual_misattribution"
       ],
       "recommended_disposition": "create_deterministic_original",
-      "rationale_ja": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
-      "replacement_or_creation_brief_ja": "時間と名前を同じ重みで並べ、中央を未決定のまま空ける分割図版。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
+      "rationale": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
+      "replacement_or_creation_brief": "時間と名前を同じ重みで並べ、中央を未決定のまま空ける分割図版。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
       "minimum_local_assembly_role": "deterministic_original_graphic",
       "proposed_construction_method": "deterministic_original_graphic",
       "blocking_for_offline_assembly": true,
@@ -1025,8 +1025,8 @@
         "other"
       ],
       "recommended_disposition": "create_deterministic_original",
-      "rationale_ja": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
-      "replacement_or_creation_brief_ja": "字幕と短いlabelを統一する日本語firstの文字システム。font自体は未選定。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
+      "rationale": "架空の記録・表示・抽象情報を同じ規則で再現し、実物参照による誤認を避けるため決定的な新規作成を推奨する。",
+      "replacement_or_creation_brief": "字幕と短いlabelを統一する日本語firstの文字システム。font自体は未選定。を、固定した寸法・配色・文字規則から再生成できるローカルgraphicとして後続laneで設計する。",
       "minimum_local_assembly_role": "deterministic_original_graphic",
       "proposed_construction_method": "deterministic_original_graphic",
       "blocking_for_offline_assembly": true,
@@ -1112,8 +1112,8 @@
         "none_observed"
       ],
       "recommended_disposition": "retain_reference_only",
-      "rationale_ja": "音素材は別laneで選定・校正するため、この計画では将来要件としてのみ保持する。",
-      "replacement_or_creation_brief_ja": "六幕それぞれの音設計位置を示すcue placeholder。音声fileや素材は含めない。は別承認のaudio laneで候補と無音時の扱いを定義する。",
+      "rationale": "音素材は別laneで選定・校正するため、この計画では将来要件としてのみ保持する。",
+      "replacement_or_creation_brief": "六幕それぞれの音設計位置を示すcue placeholder。音声fileや素材は含めない。は別承認のaudio laneで候補と無音時の扱いを定義する。",
       "minimum_local_assembly_role": "future_audio_lane",
       "proposed_construction_method": "future_audio_lane",
       "blocking_for_offline_assembly": true,
@@ -1129,6 +1129,7 @@
       "owning_source_artifact": "fff-beat2-composition-board-001",
       "source_package_path": "artifacts/beat2-composition-board",
       "local_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s01-precision-handwork.jpg",
+      "local_source_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s01-precision-handwork.jpg",
       "sha256": "42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33",
       "used_by_shot_ids": [
         "shot-b02-01"
@@ -1186,6 +1187,7 @@
       "owning_source_artifact": "fff-beat2-composition-board-001",
       "source_package_path": "artifacts/beat2-composition-board",
       "local_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s01-watch-repair-workbench.jpg",
+      "local_source_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s01-watch-repair-workbench.jpg",
       "sha256": "207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258",
       "used_by_shot_ids": [
         "shot-b02-01"
@@ -1243,6 +1245,7 @@
       "owning_source_artifact": "fff-beat2-composition-board-001",
       "source_package_path": "artifacts/beat2-composition-board",
       "local_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s02-aged-handwritten-letter.jpg",
+      "local_source_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s02-aged-handwritten-letter.jpg",
       "sha256": "6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b",
       "used_by_shot_ids": [
         "shot-b02-02"
@@ -1302,6 +1305,7 @@
       "owning_source_artifact": "fff-beat2-composition-board-001",
       "source_package_path": "artifacts/beat2-composition-board",
       "local_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
+      "local_source_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg",
       "sha256": "ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9",
       "used_by_shot_ids": [
         "shot-b02-02",
@@ -1365,6 +1369,7 @@
       "owning_source_artifact": "fff-beat2-composition-board-001",
       "source_package_path": "artifacts/beat2-composition-board",
       "local_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s03-brass-clock-dial.jpg",
+      "local_source_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s03-brass-clock-dial.jpg",
       "sha256": "acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3",
       "used_by_shot_ids": [
         "shot-b02-03"
@@ -1423,6 +1428,7 @@
       "owning_source_artifact": "fff-beat2-composition-board-001",
       "source_package_path": "artifacts/beat2-composition-board",
       "local_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
+      "local_source_path": "artifacts/beat2-composition-board/composition-assets/ref-b02-s03-vintage-watch-0915.jpg",
       "sha256": "80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082",
       "used_by_shot_ids": [
         "shot-b02-03",
@@ -1483,6 +1489,7 @@
       "owning_source_artifact": "fff-beat4-composition-counterexample-001",
       "source_package_path": "artifacts/beat4-composition-counterexample",
       "local_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-conference-backs.jpg",
+      "local_source_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-conference-backs.jpg",
       "sha256": "79e17d1982c6d217063d34d1479606f8a586c6e4b8b001167e3647ce2d4b1962",
       "used_by_shot_ids": [
         "shot-b04-01"
@@ -1542,6 +1549,7 @@
       "owning_source_artifact": "fff-beat4-composition-counterexample-001",
       "source_package_path": "artifacts/beat4-composition-counterexample",
       "local_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-frosted-partition.jpg",
+      "local_source_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-frosted-partition.jpg",
       "sha256": "f55ecaa635f09cd4b203fc97775ef049f42bb3a0004a24ab1c2385438685fffb",
       "used_by_shot_ids": [
         "shot-b04-01"
@@ -1600,6 +1608,7 @@
       "owning_source_artifact": "fff-beat4-composition-counterexample-001",
       "source_package_path": "artifacts/beat4-composition-counterexample",
       "local_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-card-catalogue.jpg",
+      "local_source_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-card-catalogue.jpg",
       "sha256": "23aaf60edcd0880b63e5c98eed29a2ea46fddf0c5e3e8ab17c3e948cfcae5822",
       "used_by_shot_ids": [
         "shot-b04-02",
@@ -1659,6 +1668,7 @@
       "owning_source_artifact": "fff-beat4-composition-counterexample-001",
       "source_package_path": "artifacts/beat4-composition-counterexample",
       "local_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-time-recorder.jpg",
+      "local_source_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-time-recorder.jpg",
       "sha256": "ea2732ff8205541eed60050129020ba94c6202d868d77eca90972d6792411127",
       "used_by_shot_ids": [
         "shot-b04-02"
@@ -1718,6 +1728,7 @@
       "owning_source_artifact": "fff-beat4-composition-counterexample-001",
       "source_package_path": "artifacts/beat4-composition-counterexample",
       "local_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s03-closed-meeting-room.jpg",
+      "local_source_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s03-closed-meeting-room.jpg",
       "sha256": "e6f06540dba924ccd3c5aaa38fa3f676f489335762b61dd7ecbcca69da196ca9",
       "used_by_shot_ids": [
         "shot-b04-03",
@@ -1780,6 +1791,7 @@
       "owning_source_artifact": "fff-beat4-composition-counterexample-001",
       "source_package_path": "artifacts/beat4-composition-counterexample",
       "local_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-shared-general-ledger.jpg",
+      "local_source_path": "artifacts/beat4-composition-counterexample/composition-assets/ref-b04-shared-general-ledger.jpg",
       "sha256": "74d83e8fbad303bf4a08c86e72c02746c678a95e56c0f69814c6c853dd7feaab",
       "used_by_shot_ids": [
         "shot-b04-02",
@@ -1842,6 +1854,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-harvard-observatory.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-harvard-observatory.jpg",
       "sha256": "6e1376fa2b4fa4bfffae778f1e86364b1c3baf5fe2925cd242337d76f7b33e84",
       "used_by_shot_ids": [
         "shot-b01-01",
@@ -1902,6 +1915,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-kreiensen-station.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-kreiensen-station.jpg",
       "sha256": "49b3136c701d7e149194e74cac2a1c5c6dc688d6502340fce4915cec656da134",
       "used_by_shot_ids": [
         "shot-b01-01",
@@ -1961,6 +1975,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-beam-junction.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-beam-junction.jpg",
       "sha256": "05aacc6386c240e2174bd717e90342fec23e1b5fbdf092965495109d00f81e56",
       "used_by_shot_ids": [
         "shot-b01-02"
@@ -2017,6 +2032,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-wood-joints.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-wood-joints.jpg",
       "sha256": "3258615d9b6b28e22ed5d0510f74f135e78953557735d0d6d42e47d122ddf2de",
       "used_by_shot_ids": [
         "shot-b01-02"
@@ -2073,6 +2089,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-belfry-interior-art.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-belfry-interior-art.jpg",
       "sha256": "39602c0536b46c3f0868e2f4b9661c5e1bb1a4d67f70ca1fcdfecb9355c5d91b",
       "used_by_shot_ids": [
         "shot-b01-03"
@@ -2130,6 +2147,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-noon-mark.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-noon-mark.jpg",
       "sha256": "1c68f99c68f85869e461a832498d6485994c94a28c04effefaf47964b1447f62",
       "used_by_shot_ids": [
         "shot-b01-03"
@@ -2187,6 +2205,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-book-in-hand.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-book-in-hand.jpg",
       "sha256": "6fc36da6028effe9a402f18efabeeef970e6511f4023156994aa5dcf5aad681a",
       "used_by_shot_ids": [
         "shot-b03-01"
@@ -2244,6 +2263,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-page-turning.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-page-turning.jpg",
       "sha256": "d846f48b836c604cbbf913ad7b37700926a362bc657dc7a4df8b1b204dfb9f13",
       "used_by_shot_ids": [
         "shot-b03-01"
@@ -2302,6 +2322,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-blank-book.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-blank-book.jpg",
       "sha256": "312ac0465762b21dd1d67504d7dcaee074c94f73d7281f5adeb16fed618343a4",
       "used_by_shot_ids": [
         "shot-b03-02",
@@ -2363,6 +2384,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-ledger-geometry.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-ledger-geometry.jpg",
       "sha256": "ccbb058ad17576dd5d69329b67137947a3dfcc218672394d97f1bc4234e6ff88",
       "used_by_shot_ids": [
         "shot-b03-02",
@@ -2422,6 +2444,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-ink-stains.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-ink-stains.jpg",
       "sha256": "96350f03a1bc118e3108284ca43edc84a01e83f23686707f58854ffe939bc0a4",
       "used_by_shot_ids": [
         "shot-b03-03"
@@ -2478,6 +2501,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave1-001",
       "source_package_path": "artifacts/composition-expansion-wave1",
       "local_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-old-paper.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-old-paper.jpg",
       "sha256": "de3156d47386e17242543e6292093ac0eeba4b6079fb735b0da51423fa9b3624",
       "used_by_shot_ids": [
         "shot-b03-03"
@@ -2534,6 +2558,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave2-001",
       "source_package_path": "artifacts/composition-expansion-wave2",
       "local_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-fate-blank-card.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-fate-blank-card.jpg",
       "sha256": "c970d41f104ddb5a7ebcda6348cd1018dc979101329d51cb5f303c64a49ce802",
       "used_by_shot_ids": [
         "shot-b05-01"
@@ -2591,6 +2616,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave2-001",
       "source_package_path": "artifacts/composition-expansion-wave2",
       "local_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s01-horizon-silhouette.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s01-horizon-silhouette.jpg",
       "sha256": "2f5cbd4befae47efb0b44a35a901221dfc101ff2b027daee1b9c92575f4492a7",
       "used_by_shot_ids": [
         "shot-b05-01",
@@ -2650,6 +2676,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave2-001",
       "source_package_path": "artifacts/composition-expansion-wave2",
       "local_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s02-brass-plate.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s02-brass-plate.jpg",
       "sha256": "d9d8146351e2db5b42dc7c39c4609399aa8039cfa68387722f591f833369ae39",
       "used_by_shot_ids": [
         "shot-b05-02"
@@ -2708,6 +2735,7 @@
       "owning_source_artifact": "fff-composition-expansion-wave2-001",
       "source_package_path": "artifacts/composition-expansion-wave2",
       "local_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b06-s02-closed-book.jpg",
+      "local_source_path": "artifacts/composition-expansion-wave2/reference-assets/ref-w2-b06-s02-closed-book.jpg",
       "sha256": "e69f1a06db297bb537d57684cf4989615e0426eb4500c6c8cc5d7aa6bddca2ab",
       "used_by_shot_ids": [
         "shot-b06-02"
@@ -3181,7 +3209,7 @@
   ],
   "default_plan": {
     "recommendation": "A",
-    "summary_ja": "初回の非公開組立てでは、架空文書・比較図・抽象図・文字要素を決定的に作成し、実在施設・人物・実記録を含む参照は置換候補へ回す。真鍮の蛾だけをOwner検討用ローカルproxy候補とし、音は将来laneに残す。",
+    "summary_ja": "初回の非公開組立てでは、架空文書・比較図・抽象図・文字要素を決定的に作成し、実在施設・人物・実記録を含む参照は置換候補へ回す。真鍮の蛾だけをOwner検討用ローカルproxy候補とし、audio cueとvoice calibrationは相互にも別の将来laneに残す。",
     "covered_requirement_ids": [
       "AR-ENV-01",
       "AR-ENV-02",
@@ -3225,11 +3253,130 @@
       "retain_reference_only": 1,
       "source_replacement_candidate": 3
     },
+    "requirements_by_disposition": {
+      "create_deterministic_original": [
+        "AR-CHAR-02",
+        "AR-CHAR-03",
+        "AR-PROP-01",
+        "AR-PROP-03",
+        "AR-DOC-01",
+        "AR-DOC-02",
+        "AR-ABS-01",
+        "AR-ABS-02",
+        "AR-TYPE-01"
+      ],
+      "owner_may_consider_local_proxy": [
+        "AR-PROP-02"
+      ],
+      "retain_reference_only": [
+        "AR-AUDIO-01"
+      ],
+      "source_replacement_candidate": [
+        "AR-ENV-01",
+        "AR-ENV-02",
+        "AR-CHAR-01"
+      ]
+    },
+    "shot_coverage_by_disposition": {
+      "create_deterministic_original": {
+        "shot_count": 17,
+        "shot_ids": [
+          "shot-b01-03",
+          "shot-b02-01",
+          "shot-b02-02",
+          "shot-b02-03",
+          "shot-b03-01",
+          "shot-b03-02",
+          "shot-b03-03",
+          "shot-b04-01",
+          "shot-b04-02",
+          "shot-b04-03",
+          "shot-b05-01",
+          "shot-b05-02",
+          "shot-b05-03",
+          "shot-b05-04",
+          "shot-b06-01",
+          "shot-b06-02",
+          "shot-b06-03"
+        ]
+      },
+      "owner_may_consider_local_proxy": {
+        "shot_count": 3,
+        "shot_ids": [
+          "shot-b02-02",
+          "shot-b02-03",
+          "shot-b05-02"
+        ]
+      },
+      "retain_reference_only": {
+        "shot_count": 19,
+        "shot_ids": [
+          "shot-b01-01",
+          "shot-b01-02",
+          "shot-b01-03",
+          "shot-b02-01",
+          "shot-b02-02",
+          "shot-b02-03",
+          "shot-b03-01",
+          "shot-b03-02",
+          "shot-b03-03",
+          "shot-b04-01",
+          "shot-b04-02",
+          "shot-b04-03",
+          "shot-b05-01",
+          "shot-b05-02",
+          "shot-b05-03",
+          "shot-b05-04",
+          "shot-b06-01",
+          "shot-b06-02",
+          "shot-b06-03"
+        ]
+      },
+      "source_replacement_candidate": {
+        "shot_count": 9,
+        "shot_ids": [
+          "shot-b01-01",
+          "shot-b01-02",
+          "shot-b01-03",
+          "shot-b02-01",
+          "shot-b03-01",
+          "shot-b04-01",
+          "shot-b04-03",
+          "shot-b05-03",
+          "shot-b06-03"
+        ]
+      }
+    },
+    "motif_continuity_strategy": "Reuse each requirement family across every mapped recurrence so observatory, clock, record, comparison, moth, and closing-book motifs retain one construction rule per family.",
     "exception_requirement_ids": [
       "AR-PROP-02"
     ],
     "exception_count": 1,
     "unresolved_evidence_count": 8,
+    "unresolved_evidence_reference_ids": [
+      "ref-b02-s01-watch-repair-workbench",
+      "ref-b04-s01-conference-backs",
+      "ref-b04-s01-frosted-partition",
+      "ref-b04-s02-card-catalogue",
+      "ref-b04-s02-time-recorder",
+      "ref-b04-s03-closed-meeting-room",
+      "ref-w1-b01-s03-belfry-interior-art",
+      "ref-w1-b01-s03-noon-mark"
+    ],
+    "separate_future_lanes": [
+      {
+        "lane_id": "future_audio_lane",
+        "requirement_ids": [
+          "AR-AUDIO-01"
+        ],
+        "authorized": false
+      },
+      {
+        "lane_id": "future_voice_lane",
+        "requirement_ids": [],
+        "authorized": false
+      }
+    ],
     "human_decision": {
       "options": [
         "A — recommended default planを採用",
@@ -3447,6 +3594,22 @@
       "current_reference_role": "none",
       "required_future_decision": "separately_authorized_future_audio_lane",
       "blocking_for_offline_assembly": true,
+      "owner_decision": "unselected"
+    }
+  ],
+  "minimum_local_assembly_future_lanes": [
+    {
+      "lane_id": "future_audio_lane",
+      "requirement_ids": [
+        "AR-AUDIO-01"
+      ],
+      "required_future_decision": "separately_authorized_future_audio_lane",
+      "owner_decision": "unselected"
+    },
+    {
+      "lane_id": "future_voice_lane",
+      "requirement_ids": [],
+      "required_future_decision": "separately_authorized_voice_calibration",
       "owner_decision": "unselected"
     }
   ],
@@ -4567,6 +4730,7 @@
   },
   "package_contract": {
     "copied_source_image_count": 0,
+    "modified_source_image_count": 0,
     "newly_downloaded_asset_count": 0,
     "external_media_hotlink_count": 0,
     "package_raster_count": 0,

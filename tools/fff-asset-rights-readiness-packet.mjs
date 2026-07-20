@@ -375,6 +375,7 @@ async function buildModel(authority, baselineIntegrity) {
       owning_source_artifact: reference.owning_source_artifact,
       source_package_path: reference.source_package_path,
       local_path: reference.local_path,
+      local_source_path: reference.local_path,
       sha256: reference.sha256,
       used_by_shot_ids: reference.used_by_shot_ids,
       mapped_requirement_ids: requirementIds,
@@ -455,8 +456,8 @@ async function buildModel(authority, baselineIntegrity) {
       publication_compatibility: "unreviewed",
       identity_or_sensitive_content_risk: config[6],
       recommended_disposition: disposition,
-      rationale_ja: dispositionRationale(disposition),
-      replacement_or_creation_brief_ja: replacementOrCreationBrief(requirement, disposition),
+      rationale: dispositionRationale(disposition),
+      replacement_or_creation_brief: replacementOrCreationBrief(requirement, disposition),
       minimum_local_assembly_role: config[5],
       proposed_construction_method: config[5],
       blocking_for_offline_assembly: true,
@@ -464,6 +465,12 @@ async function buildModel(authority, baselineIntegrity) {
     };
   });
   const dispositionCounts = Object.fromEntries([...new Set(requirementPlans.map((item) => item.recommended_disposition))].sort().map((value) => [value, requirementPlans.filter((item) => item.recommended_disposition === value).length]));
+  const requirementsByDisposition = Object.fromEntries(Object.keys(dispositionCounts).map((disposition) => [disposition, requirementPlans.filter((item) => item.recommended_disposition === disposition).map((item) => item.requirement_id)]));
+  const shotCoverageByDisposition = Object.fromEntries(Object.keys(dispositionCounts).map((disposition) => {
+    const shotIds = [...new Set(requirementPlans.filter((item) => item.recommended_disposition === disposition).flatMap((item) => item.shot_ids))].sort();
+    return [disposition, { shot_count: shotIds.length, shot_ids: shotIds }];
+  }));
+  const unresolvedEvidenceReferenceIds = references.filter((reference) => reference.live_source_check !== "confirmed").map((reference) => reference.canonical_reference_id).sort();
   const minimumSet = requirementPlans.map((requirement) => ({
     requirement_id: requirement.requirement_id,
     reusable_across_shots: requirement.shot_ids.length > 1,
@@ -512,13 +519,21 @@ async function buildModel(authority, baselineIntegrity) {
     reference_assignments: integrated.reference_assignments,
     default_plan: {
       recommendation: "A",
-      summary_ja: "初回の非公開組立てでは、架空文書・比較図・抽象図・文字要素を決定的に作成し、実在施設・人物・実記録を含む参照は置換候補へ回す。真鍮の蛾だけをOwner検討用ローカルproxy候補とし、音は将来laneに残す。",
+      summary_ja: "初回の非公開組立てでは、架空文書・比較図・抽象図・文字要素を決定的に作成し、実在施設・人物・実記録を含む参照は置換候補へ回す。真鍮の蛾だけをOwner検討用ローカルproxy候補とし、audio cueとvoice calibrationは相互にも別の将来laneに残す。",
       covered_requirement_ids: requirementPlans.map((requirement) => requirement.requirement_id),
       covered_shot_ids: shots.map((shot) => shot.shot_id),
       disposition_counts: dispositionCounts,
+      requirements_by_disposition: requirementsByDisposition,
+      shot_coverage_by_disposition: shotCoverageByDisposition,
+      motif_continuity_strategy: "Reuse each requirement family across every mapped recurrence so observatory, clock, record, comparison, moth, and closing-book motifs retain one construction rule per family.",
       exception_requirement_ids: ["AR-PROP-02"],
       exception_count: 1,
-      unresolved_evidence_count: references.filter((reference) => reference.live_source_check !== "confirmed").length,
+      unresolved_evidence_count: unresolvedEvidenceReferenceIds.length,
+      unresolved_evidence_reference_ids: unresolvedEvidenceReferenceIds,
+      separate_future_lanes: [
+        { lane_id: "future_audio_lane", requirement_ids: ["AR-AUDIO-01"], authorized: false },
+        { lane_id: "future_voice_lane", requirement_ids: [], authorized: false }
+      ],
       human_decision: {
         options: ["A — recommended default planを採用", "B — exception requirement IDsだけ指定", "C — material strategyを再構成"],
         per_reference_question_count: 0,
@@ -526,6 +541,10 @@ async function buildModel(authority, baselineIntegrity) {
       }
     },
     minimum_local_assembly_set: minimumSet,
+    minimum_local_assembly_future_lanes: [
+      { lane_id: "future_audio_lane", requirement_ids: ["AR-AUDIO-01"], required_future_decision: "separately_authorized_future_audio_lane", owner_decision: "unselected" },
+      { lane_id: "future_voice_lane", requirement_ids: [], required_future_decision: "separately_authorized_voice_calibration", owner_decision: "unselected" }
+    ],
     integrity: {
       ...baselineIntegrity,
       source_packages_unchanged: true,
@@ -533,6 +552,7 @@ async function buildModel(authority, baselineIntegrity) {
     },
     package_contract: {
       copied_source_image_count: 0,
+      modified_source_image_count: 0,
       newly_downloaded_asset_count: 0,
       external_media_hotlink_count: 0,
       package_raster_count: 0,
@@ -618,8 +638,8 @@ function validateCore(model, { probe = false } = {}) {
     for (const field of REQUIRED_SEPARATION_FIELDS) require(Object.hasOwn(requirement, field), `missing separation field ${field}: ${requirement.requirement_id}`);
     require(Array.isArray(requirement.owning_beats) && requirement.owning_beats.length > 0, `requirement missing owning Beat: ${requirement.requirement_id}`);
     require(requirement.reference_count === requirement.canonical_reference_ids.length, `requirement reference count mismatch: ${requirement.requirement_id}`);
-    require(Boolean(requirement.rationale_ja), `requirement rationale missing: ${requirement.requirement_id}`);
-    require(Boolean(requirement.replacement_or_creation_brief_ja), `requirement replacement/creation brief missing: ${requirement.requirement_id}`);
+    require(Boolean(requirement.rationale), `requirement rationale missing: ${requirement.requirement_id}`);
+    require(Boolean(requirement.replacement_or_creation_brief), `requirement replacement/creation brief missing: ${requirement.requirement_id}`);
     require(Boolean(requirement.minimum_local_assembly_role), `requirement minimum assembly role missing: ${requirement.requirement_id}`);
     require(requirement.blocking_for_offline_assembly === true, `requirement incorrectly marked assembly-ready: ${requirement.requirement_id}`);
     require(Boolean(requirement.recommended_disposition), `missing disposition: ${requirement.requirement_id}`);
@@ -636,6 +656,7 @@ function validateCore(model, { probe = false } = {}) {
     require(Array.isArray(reference.identity_or_sensitive_content_risk) && reference.identity_or_sensitive_content_risk.length > 0, `reference risk state missing: ${reference.canonical_reference_id}`);
     require(reference.stored_rights_flags?.reference_only === true && reference.stored_rights_flags?.selected_for_production === false && reference.stored_rights_flags?.rights_cleared_claim === false && reference.stored_rights_flags?.ai_generated === false, `stored rights flags mismatch: ${reference.canonical_reference_id}`);
     require(Boolean(reference.local_path), `reference missing local path: ${reference.canonical_reference_id}`);
+    require(reference.local_source_path === reference.local_path, `reference local source path mismatch: ${reference.canonical_reference_id}`);
     require(reference.local_hash_match === true, `reference hash mismatch: ${reference.canonical_reference_id}`);
     require(!(reference.provenance_evidence === "complete_stored_metadata" && reference.evidence_gap === true), `evidence gap treated complete: ${reference.canonical_reference_id}`);
     require(!(reference.live_source_check === "unavailable" && reference.live_confirmation_claimed === true), `unavailable source treated confirmed: ${reference.canonical_reference_id}`);
@@ -645,12 +666,20 @@ function validateCore(model, { probe = false } = {}) {
   }
   require(model.default_plan?.covered_requirement_ids?.length === 14 && model.default_plan.covered_requirement_ids.every((id) => requirementIds.has(id)), "default plan missing requirement");
   require(new Set(model.default_plan?.covered_shot_ids).size === 19, "default plan missing shot");
+  require(Object.values(model.default_plan?.requirements_by_disposition || {}).flat().length === 14, "default plan disposition requirement mapping incomplete");
+  require(Object.values(model.default_plan?.shot_coverage_by_disposition || {}).every((coverage) => coverage.shot_count === coverage.shot_ids.length && coverage.shot_count > 0), "default plan disposition shot coverage incomplete");
+  const unresolvedEvidenceIds = (model.references || []).filter((reference) => reference.live_source_check !== "confirmed").map((reference) => reference.canonical_reference_id).sort();
+  require(JSON.stringify(model.default_plan?.unresolved_evidence_reference_ids) === JSON.stringify(unresolvedEvidenceIds), "default plan unresolved evidence IDs mismatch");
+  require(Boolean(model.default_plan?.motif_continuity_strategy), "default plan motif continuity strategy missing");
+  require(model.default_plan?.separate_future_lanes?.map((lane) => lane.lane_id).join("|") === "future_audio_lane|future_voice_lane" && model.default_plan.separate_future_lanes.every((lane) => lane.authorized === false), "default plan future lanes are not separate and closed");
   require(model.default_plan?.human_decision?.per_reference_question_count === 0, "long per-reference questionnaire");
   const minimumCoverage = new Set((model.minimum_local_assembly_set || []).flatMap((item) => item.covered_shot_ids || []));
   require(model.minimum_local_assembly_set?.length === 14, "minimum set missing requirement");
   require(minimumCoverage.size === 19 && [...shotIds].every((id) => minimumCoverage.has(id)), "minimum set missing shot");
   require((model.minimum_local_assembly_set || []).every((item) => item.owner_decision === "unselected" && item.blocking_for_offline_assembly === true), "minimum set decision or blocker state invalid");
+  require(model.minimum_local_assembly_future_lanes?.map((lane) => lane.lane_id).join("|") === "future_audio_lane|future_voice_lane" && model.minimum_local_assembly_future_lanes.every((lane) => lane.owner_decision === "unselected"), "minimum set future lane separation missing");
   require(model.package_contract?.copied_source_image_count === 0, "copied predecessor raster");
+  require(model.package_contract?.modified_source_image_count === 0, "modified predecessor raster");
   require(model.package_contract?.newly_downloaded_asset_count === 0, "new media downloaded");
   require(model.package_contract?.external_media_hotlink_count === 0, "remote image hotlink");
   require(model.package_contract?.package_raster_count === 0, "package raster present");
@@ -800,13 +829,14 @@ function renderReadme(model) {
 
 function renderDefaultPlan(model) {
   const ids = (disposition) => model.requirements.filter((item) => item.recommended_disposition === disposition).map((item) => item.requirement_id).join(", ");
-  return `# Recommended Default Plan\n\n## Recommendation A\n\n${model.default_plan.summary_ja}\n\n- Deterministic originals: ${ids("create_deterministic_original")}\n- Replacement sourcing: ${ids("source_replacement_candidate")}\n- Owner-may-consider local proxy: ${ids("owner_may_consider_local_proxy")}\n- Reference-only / future lane: ${ids("retain_reference_only")}\n- Exception requirement IDs: ${model.default_plan.exception_requirement_ids.join(", ")}\n- Unresolved live-source evidence: ${model.default_plan.unresolved_evidence_count}\n- Coverage: ${model.default_plan.covered_requirement_ids.length}/14 requirements; ${model.default_plan.covered_shot_ids.length}/19 shots\n- Owner decision: unselected\n- Publication compatibility: unreviewed\n\n## Compressed Decision\n\n- A — recommended default planを採用\n- B — exception requirement IDsだけ指定\n- C — material strategyを再構成\n\nFull source and license evidence remains secondary in the HTML disclosure and \`reference-evidence.csv\`.\n`;
+  const shotCoverage = Object.entries(model.default_plan.shot_coverage_by_disposition).map(([disposition, coverage]) => `${disposition} ${coverage.shot_count}/19 (${coverage.shot_ids.join("|")})`).join("; ");
+  return `# Recommended Default Plan\n\n## Recommendation A\n\n${model.default_plan.summary_ja}\n\n- Deterministic originals: ${ids("create_deterministic_original")}\n- Replacement sourcing: ${ids("source_replacement_candidate")}\n- Owner-may-consider local proxy: ${ids("owner_may_consider_local_proxy")}\n- Reference-only / future lane: ${ids("retain_reference_only")}\n- Shot coverage by disposition: ${shotCoverage}\n- Motif continuity: ${model.default_plan.motif_continuity_strategy}\n- Separate future lanes: future_audio_lane (AR-AUDIO-01); future_voice_lane (no generic requirement ID)\n- Exception requirement IDs: ${model.default_plan.exception_requirement_ids.join(", ")}\n- Unresolved live-source evidence (${model.default_plan.unresolved_evidence_count}): ${model.default_plan.unresolved_evidence_reference_ids.join(", ")}\n- Coverage: ${model.default_plan.covered_requirement_ids.length}/14 requirements; ${model.default_plan.covered_shot_ids.length}/19 shots\n- Owner decision: unselected\n- Publication compatibility: unreviewed\n\n## Compressed Decision\n\n- A — recommended default planを採用\n- B — exception requirement IDsだけ指定\n- C — material strategyを再構成\n\nFull source and license evidence remains secondary in the HTML disclosure and \`reference-evidence.csv\`.\n`;
 }
 
 async function writePackage(model, existingBrowser = null, { validateAfter = true } = {}) {
   await mkdir(PACKAGE_ROOT, { recursive: true });
-  const requirementHeaders = ["requirement_id", "asset_class", "generic_description_ja", "quantity", "quantity_unit", "owning_beats", "shot_ids", "canonical_reference_ids", "reference_count", ...REQUIRED_SEPARATION_FIELDS, "rationale_ja", "replacement_or_creation_brief_ja", "minimum_local_assembly_role", "proposed_construction_method", "blocking_for_offline_assembly"];
-  const referenceHeaders = ["canonical_reference_id", "alias_ids", "owning_source_artifact", "source_package_path", "local_path", "sha256", "used_by_shot_ids", "mapped_requirement_ids", "creator", "source_title", "source_page_url", "original_media_url", "license_name", "license_url", "original_dimensions", "normalized_dimensions", "retrieval_date", "provenance_evidence", "evidence_gap", "license_evidence", "live_source_check", "live_source_readback_state", "live_checked_at", "live_check_note", "live_license_check", "license_live_checked_at", "license_check_note", "identity_or_sensitive_content_risk", "stored_rights_flags", "representative_only", "selected_for_production", "rights_cleared_claim"];
+  const requirementHeaders = ["requirement_id", "asset_class", "generic_description_ja", "quantity", "quantity_unit", "owning_beats", "shot_ids", "canonical_reference_ids", "reference_count", ...REQUIRED_SEPARATION_FIELDS, "rationale", "replacement_or_creation_brief", "minimum_local_assembly_role", "proposed_construction_method", "blocking_for_offline_assembly"];
+  const referenceHeaders = ["canonical_reference_id", "alias_ids", "owning_source_artifact", "source_package_path", "local_path", "local_source_path", "sha256", "used_by_shot_ids", "mapped_requirement_ids", "creator", "source_title", "source_page_url", "original_media_url", "license_name", "license_url", "original_dimensions", "normalized_dimensions", "retrieval_date", "provenance_evidence", "evidence_gap", "license_evidence", "live_source_check", "live_source_readback_state", "live_checked_at", "live_check_note", "live_license_check", "license_live_checked_at", "license_check_note", "identity_or_sensitive_content_risk", "stored_rights_flags", "representative_only", "selected_for_production", "rights_cleared_claim"];
   const shotHeaders = ["shot_id", "sequence", "beat_number", "title_ja", "start_time", "end_time", "duration_seconds", "requirement_ids", "canonical_reference_ids", "assignment_ids"];
   const minimumHeaders = ["requirement_id", "reusable_across_shots", "covered_shot_ids", "proposed_construction_method", "current_reference_role", "required_future_decision", "blocking_for_offline_assembly", "owner_decision"];
   const outputs = {
@@ -829,6 +859,7 @@ async function writePackage(model, existingBrowser = null, { validateAfter = tru
     file_count: payloadInventory.file_count + 1,
     package_fingerprint_sha256: payloadInventory.aggregate_sha256,
     copied_source_image_count: 0,
+    modified_source_image_count: 0,
     newly_downloaded_asset_count: 0,
     package_raster_count: 0,
     files: payloadInventory.files
@@ -884,12 +915,16 @@ function buildResult(model, manifest, browserEvidence) {
     minimum_local_assembly_shot_coverage: new Set(model.minimum_local_assembly_set.flatMap((item) => item.covered_shot_ids)).size,
     default_plan_requirement_coverage: model.default_plan.covered_requirement_ids.length,
     default_plan_shot_coverage: model.default_plan.covered_shot_ids.length,
+    default_plan_shot_coverage_by_disposition: model.default_plan.shot_coverage_by_disposition,
     exception_requirement_ids: model.default_plan.exception_requirement_ids,
+    unresolved_evidence_reference_ids: model.default_plan.unresolved_evidence_reference_ids,
+    minimum_local_assembly_future_lanes: model.minimum_local_assembly_future_lanes,
     owner_decision_selected_count: model.requirements.filter((requirement) => requirement.owner_decision !== "unselected").length,
     publication_compatibility_reviewed_count: model.requirements.filter((requirement) => requirement.publication_compatibility !== "unreviewed").length,
     selected_for_production_count: model.references.filter((reference) => reference.selected_for_production).length,
     rights_cleared_claim_count: model.references.filter((reference) => reference.rights_cleared_claim).length,
     copied_source_image_count: 0,
+    modified_source_image_count: 0,
     newly_downloaded_asset_count: 0,
     external_media_hotlink_count: 0,
     legal_clearance_claim_count: 0,
@@ -918,6 +953,7 @@ async function validateManifest(manifest) {
   const failures = [];
   if (manifest.artifact_id !== ARTIFACT_ID) failures.push("manifest artifact mismatch");
   if (manifest.payload_file_count !== 8 || manifest.file_count !== 9) failures.push("manifest file count mismatch");
+  if (manifest.copied_source_image_count !== 0 || manifest.modified_source_image_count !== 0 || manifest.newly_downloaded_asset_count !== 0 || manifest.package_raster_count !== 0) failures.push("manifest media mutation boundary mismatch");
   if (manifest.package_fingerprint_sha256 !== inventory.aggregate_sha256) failures.push("manifest fingerprint mismatch");
   if (JSON.stringify(manifest.files) !== JSON.stringify(inventory.files)) failures.push("manifest inventory mismatch");
   return failures;
@@ -950,7 +986,7 @@ async function validatePacket(inputPath = RESULT_PATH) {
   const minimumCsv = parseCsv(await readFile(`${PACKAGE_ROOT}/minimum-local-assembly-set.csv`, "utf8"));
   if (requirementCsv.length !== 14 || referenceCsv.length !== 28 || shotCsv.length !== 19 || minimumCsv.length !== 14) failures.push("CSV row count mismatch");
   const expectedResult = buildResult(model, manifest, result.browser_evidence);
-  for (const key of ["artifact_id", "source_artifact_id", "source_fingerprint", "owner_review", "composition_repair_required", "asset_preparation_planning_authorized", "production_asset_selection_authorized", "rights_clearance_authorized", "media_generation_authorized", "offline_assembly_authorized", "next_human_decision", "per_beat_review", "external_reproducibility_claimed", "shot_count", "requirement_count", "canonical_reference_count", "alias_count", "assignment_count", "asset_class_count", "evidence_gap_count", "live_source_confirmed_count", "live_source_unavailable_count", "identity_or_sensitive_risk_count", "deterministic_original_requirement_count", "replacement_candidate_requirement_count", "local_proxy_consideration_requirement_count", "reference_only_requirement_count", "minimum_local_assembly_requirement_count", "minimum_local_assembly_shot_coverage", "owner_decision_selected_count", "publication_compatibility_reviewed_count", "selected_for_production_count", "rights_cleared_claim_count", "copied_source_image_count", "newly_downloaded_asset_count", "external_media_hotlink_count", "legal_clearance_claim_count", "provider_configured", "credentials_touched", "image_generation", "audio_generation", "video_generation", "production_render", "public_upload", "database_persistence", "final_canon_decision", "source_packages_unchanged", "historical_results_unchanged"]) {
+  for (const key of ["artifact_id", "source_artifact_id", "source_fingerprint", "owner_review", "composition_repair_required", "asset_preparation_planning_authorized", "production_asset_selection_authorized", "rights_clearance_authorized", "media_generation_authorized", "offline_assembly_authorized", "next_human_decision", "per_beat_review", "external_reproducibility_claimed", "shot_count", "requirement_count", "canonical_reference_count", "alias_count", "assignment_count", "asset_class_count", "evidence_gap_count", "live_source_confirmed_count", "live_source_unavailable_count", "identity_or_sensitive_risk_count", "deterministic_original_requirement_count", "replacement_candidate_requirement_count", "local_proxy_consideration_requirement_count", "reference_only_requirement_count", "minimum_local_assembly_requirement_count", "minimum_local_assembly_shot_coverage", "default_plan_shot_coverage_by_disposition", "unresolved_evidence_reference_ids", "minimum_local_assembly_future_lanes", "owner_decision_selected_count", "publication_compatibility_reviewed_count", "selected_for_production_count", "rights_cleared_claim_count", "copied_source_image_count", "modified_source_image_count", "newly_downloaded_asset_count", "external_media_hotlink_count", "legal_clearance_claim_count", "provider_configured", "credentials_touched", "image_generation", "audio_generation", "video_generation", "production_render", "public_upload", "database_persistence", "final_canon_decision", "source_packages_unchanged", "historical_results_unchanged"]) {
     if (JSON.stringify(result[key]) !== JSON.stringify(expectedResult[key])) failures.push(`result contract mismatch ${key}`);
   }
   if (!result.browser_evidence?.passed) failures.push("browser evidence is not passed");
