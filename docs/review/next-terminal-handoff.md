@@ -4,13 +4,20 @@
 
 Start at `fff-private-previsualization-timeline-001`. The repository now contains a playable, silent, local 180-second preview with exact 6-Beat / 19-shot chronology, 19 canonical frames, 14 corrected readiness thumbnails, a 19-shot contact sheet, and a 960×540 H.264 MP4. The integrated source remains immutable and production selection, rights clearance, voice, final render, and publication remain closed.
 
+This restart packet was refreshed from clean synchronized `master` / `origin/master` at `81e9ad5929ba2e90fd7984583c7ae772ab5e93b2`. Product implementation checkpoint `e5ae7a11af3430c0a410948d8f5dc218de513b19` is immutable; after this docs-only publication, the current `origin/master` HEAD is the exact cross-terminal handoff authority.
+
 ```powershell
-git status --short --branch
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count "HEAD...origin/master"
+git status --short --branch --untracked-files=all
 node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json
+node tools/fff-state.mjs validate-asset-rights-readiness-packet artifacts/asset-rights-readiness-packet-result.json
+node tools/fff-state.mjs validate-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json
 Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
 ```
 
-Read in order: `AGENTS.md`, `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/supervisor-current-report.md`, `docs/review/private-previsualization-timeline.md`, then the result JSON. The next useful action is an experience review naming exact shot/cue/time evidence. Do not repeat source integration, re-download media, or treat private proxies as selected production assets.
+Read in order: `AGENTS.md`, `docs/project-context.md`, `docs/review/current-status.md`, this file, `docs/review/supervisor-current-report.md`, `docs/review/private-previsualization-timeline.md`, then the result JSON. The immediate action is an experience review naming exact shot/cue/time evidence. In parallel, the only material-strategy action is the separately human-owned `owner_asset_plan_decision` using A default / B exception requirement IDs / C reconstruction. Do not repeat source integration, re-download media, infer asset-plan acceptance from preview usefulness, or treat private proxies as selected production assets.
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 

@@ -1,5 +1,14 @@
 # Project Context
 
+## Cross-terminal Handoff Snapshot — 2026-07-21 JST
+
+- Remote authority: pull `origin/master`; this refresh began from clean, synchronized handoff HEAD `81e9ad5929ba2e90fd7984583c7ae772ab5e93b2`. The publication successor on `origin/master` is the re-entry authority after this docs-only refresh.
+- Active operational lane: `PRIVATE_PREVISUALIZATION_REVIEW`. Review `fff-private-previsualization-timeline-001` once for exact rhythm, shot legibility, subtitle timing, and callback clarity. A repair lane opens only when the reviewer names a shot ID, cue ID, or timestamp.
+- Parallel human lane: `ASSET_RIGHTS_READINESS` remains stopped at `owner_asset_plan_decision` with A = accept default, B = name exception requirement IDs, or C = reconstruct the strategy. Preview usefulness does not select assets or clear rights.
+- Finished edge: exact 6 Beats / 19 shots / 180 seconds; 19 canonical frames; 14 semantic readiness derivatives; one 19-shot contact sheet; silent 960×540 H.264 MP4; desktop/narrow/browser/media/read-only validation evidence; product checkpoint `e5ae7a11af3430c0a410948d8f5dc218de513b19`.
+- Immediate re-entry: read `AGENTS.md` → this file → `docs/review/current-status.md` → `docs/review/next-terminal-handoff.md` → `docs/review/supervisor-current-report.md`; then run the three read-only validators in the Restart Path below.
+- Intentionally untouched: integrated/predecessor packages, accepted chronology and wording, source files, production selection, rights decisions, voice/provider/credentials, new media, final render, public release, database state, production approval, and canon.
+
 ## Active Private Previsualization Axis
 
 The active artifact is `fff-private-previsualization-timeline-001`, lane `PRIVATE_PREVISUALIZATION`. It is a private, silent, playable interpretation of the accepted integrated package fingerprint `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb`. The chronology remains exact: `00:00–03:00`, six Beats, nineteen shots, 180 seconds, no gap, and no overlap. Six narration-text segments and twenty subtitle cues are transcribed from the accepted source; story wording, timing, shot identity, transition, motion, truth boundary, and canon have not changed.
@@ -48,15 +57,24 @@ Owner Review records Beat 4 as `OWNER_REVIEW_PASS` with the observation「大き
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint starts from the Product Owner-accepted 180-second / 19-shot composition and makes the next material-strategy decision reviewable. It does not change shot IDs, timing, narration, subtitles, compositions, truth boundaries, source asset states, or story authority.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint starts from the Product Owner-accepted 180-second / 19-shot composition and makes its actual private playback rhythm reviewable while preserving the separate material-strategy decision packet. It does not change shot IDs, timing, narration, subtitles, compositions, truth boundaries, source asset states, or story authority.
 
 ## Current Lane
 
-Keep the Integrated Visual Production Package as accepted composition authority, the Storyboard Brief as the complete planning source, and the Production Execution Pack as chronology/requirement authority. All composition, visual, editorial, and production predecessors remain immutable evidence. The active lane is `ASSET_RIGHTS_READINESS`; its H0 machine gate is complete and stops at `owner_asset_plan_decision`. Production selection, rights decision, material construction, image generation, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, final canon, and external reproducibility remain closed.
+Keep the Integrated Visual Production Package as accepted composition authority, the Storyboard Brief as the complete planning source, and the Production Execution Pack as chronology/requirement authority. All composition, visual, editorial, and production predecessors remain immutable evidence. The active operational lane is `PRIVATE_PREVISUALIZATION_REVIEW`; its machine/browser/media gates are complete and it stops at one supervising-AI/creator experience review. `ASSET_RIGHTS_READINESS` remains a parallel, independently human-owned lane stopped at `owner_asset_plan_decision`. Production selection, rights decision, material construction, image generation, engine, voice, provider/API, credentials, final render, public release, database persistence, production approval, final canon, and external reproducibility remain closed.
 
 ## Current Slice
 
-The accepted bounded slice is Asset / Rights Readiness Packet v0:
+The latest completed bounded slice is Private Previsualization Timeline v0:
+
+- Standalone entry: `artifacts/private-previsualization-timeline/private-previsualization-timeline.html`
+- Result/review: `artifacts/private-previsualization-timeline-result.json`, `docs/review/private-previsualization-timeline.md`
+- Product checkpoint: `e5ae7a11af3430c0a410948d8f5dc218de513b19 Add private previsualization timeline`
+- Contract: exact 180 seconds / 6 Beats / 19 shots / 18 clean boundaries / 6 narration-text segments / 20 subtitle cues
+- Canonical lineage: the same 19 unique frames drive playback, timeline thumbnails, shot inspector, contact sheet, and silent MP4; 14 requirement thumbnails are annotated derivatives of those frames
+- Human boundary: the next action is one exact-artifact experience review; preview acceptance does not imply material choice, rights clearance, production approval, release, or canon
+
+The parallel decision packet is Asset / Rights Readiness Packet v0:
 
 - Standalone entry: `artifacts/asset-rights-readiness-packet/asset-rights-readiness.html`
 - Package: nine text/HTML/JSON/CSV/Markdown files; no raster in the package
@@ -410,10 +428,23 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-First next move: pull the remote handoff state, run the root manifest's read-only validation chain, and read the completed H1 record in `docs/review/beat2-composition-board.md`. Do not repeat the Beat 2 H1 review or repair the Board without contradictory evidence. If a human supervisor explicitly authorizes H2, select one different Beat for a bounded counterexample using the same blind-transfer method; do not expand directly to all 19 shots. The Visual Treatment Pilot and all broader review routes remain protected context. Actual asset selection, rights clearance, full-story expansion, local synthetic-engine choice/calibration, audio or media generation, provider work, render, upload, publication, database persistence, timing/order changes, truth, and canon remain deferred until separately authorized.
+Pull the remote handoff state, verify parity, and run the current read-only gates:
+
+```powershell
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count "HEAD...origin/master"
+git status --short --branch --untracked-files=all
+node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json
+node tools/fff-state.mjs validate-asset-rights-readiness-packet artifacts/asset-rights-readiness-packet-result.json
+node tools/fff-state.mjs validate-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json
+Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+```
+
+First next move: review the exact private artifact once and report findings with shot ID, cue ID, or timestamp. If there is no material defect, preserve it and route the separate A/B/C `owner_asset_plan_decision`. If there is a defect, authorize only a bounded preview repair that regenerates the canonical frame lineage coherently. Do not repeat source integration or predecessor reviews. Actual asset selection, rights clearance, local synthetic-engine choice/calibration, audio or media generation, provider work, final render, public release, database persistence, timing/order changes, truth, and canon remain deferred until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current repository handoff names `fff-beat2-composition-board-001` as the accepted product artifact, records its completed H1 pass, and keeps the Visual Treatment Pilot / Storyboard Brief / Production Execution Pack / Typography Balance / Operator / Blueprint / Derivative / Revision / Handoff chain protected. Product implementation commit `6ef134b2af6c52e38cf674168686886d41f4c087` remains immutable; `72df19b33fd77b047170046db1a99620d1455976` remains its Pilot predecessor. After fetching the remote handoff branch, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count "HEAD...@{u}"` to establish the exact documentation-successor HEAD and parity, then run the root manifest's read-only validation. The validator owns H0 package evidence; `docs/review/beat2-composition-board.md` owns the independent H1 result.
+The current repository handoff names `fff-private-previsualization-timeline-001` as the latest product artifact and `e5ae7a11af3430c0a410948d8f5dc218de513b19` as its immutable implementation checkpoint. `fff-integrated-visual-production-package-001` remains accepted composition authority, while `fff-asset-rights-readiness-packet-001` remains the independent Owner material-plan decision surface. The full Visual Treatment / Composition Board / expansion / Storyboard / Production Execution / Operator / Blueprint / Derivative / Revision / Handoff chain stays protected historical evidence. After fetching `origin/master`, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count "HEAD...origin/master"` to establish the exact documentation-successor HEAD and parity, then run the three current read-only validators. Do not rely on prior chat history.

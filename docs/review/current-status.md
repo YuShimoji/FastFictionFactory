@@ -1,5 +1,13 @@
 # Current Status Packet
 
+## Restart Authority — 2026-07-21 JST
+
+- Pull `origin/master`; this handoff refresh started from clean synchronized HEAD `81e9ad5929ba2e90fd7984583c7ae772ab5e93b2`, and the docs-only publication successor on `origin/master` becomes the exact restart HEAD.
+- Operational next gate: one supervising-AI/creator experience review of `fff-private-previsualization-timeline-001`, with findings bound to shot ID, cue ID, or timestamp.
+- Parallel Owner gate: `owner_asset_plan_decision` on `fff-asset-rights-readiness-packet-001`; A accepts the default, B names exception requirement IDs, C requests strategy reconstruction.
+- Read order: `AGENTS.md` → `docs/project-context.md` → this packet → `docs/review/next-terminal-handoff.md` → `docs/review/supervisor-current-report.md`.
+- No open implementation authorization is implied by this checkpoint. Production assets, rights, provider/voice, new media, final render, public release, persistence, approval, and canon remain separate closed gates.
+
 ## Current Private Previsualization Timeline Update
 
 - Active artifact: `fff-private-previsualization-timeline-001`
@@ -133,7 +141,7 @@
 
 ## Next Gate
 
-Wave 1 ends without human review. The farthest safe successor is a separately authorized, data-only Wave 2 proposal for the remaining seven Beat 5/6 shots, followed by one integrated 19-shot visual package. Human review resumes only after integration. Production selection, rights clearance, generation, render, publication, database, approval, canon, and external reproducibility remain independent later gates.
+The immediate gate is one exact-artifact private-previsualization experience review. Accept and preserve the preview if its 180-second rhythm, shot legibility, subtitle timing, and callbacks work; otherwise name exact shot/cue/time evidence for one bounded repair. The separate next Product Owner gate is `owner_asset_plan_decision` using A default / B exception IDs / C strategy reconstruction. Neither gate authorizes production selection, rights clearance, generation, voice/provider work, final render, public release, database persistence, production approval, canon, or external reproducibility.
 
 ## Current Storyboard Brief Update
 

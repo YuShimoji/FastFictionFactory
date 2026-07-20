@@ -1,5 +1,13 @@
 # Decision Log
 
+## 2026-07-21 — Cross-terminal restart authority is the published project context
+
+- Decision: Keep decisive re-entry context in `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/next-terminal-handoff.md`, `docs/decision-log.md`, and `docs/idea-ledger.md`, then publish the docs-only successor to `origin/master`.
+- Starting evidence: clean synchronized `master` / `origin/master` at `81e9ad5929ba2e90fd7984583c7ae772ab5e93b2`; immutable private-previsualization product checkpoint `e5ae7a11af3430c0a410948d8f5dc218de513b19`.
+- Re-entry policy: current `origin/master` after fetch/pull is the exact restart HEAD; another terminal must establish parity and run the three current read-only validators before acting.
+- Lane policy: private-previsualization experience review is the active operational gate; `owner_asset_plan_decision` is a parallel independent human gate, not an implied consequence of preview acceptance.
+- Consequence: prior chat is optional history, not required authority. No implementation, production, rights, provider, render, release, persistence, approval, or canon gate is opened by this handoff.
+
 ## 2026-07-21 — Timeline-first private previsualization becomes the active artifact
 
 - Decision: Publish `fff-private-previsualization-timeline-001` as the active local/private playback surface over the immutable integrated visual source.

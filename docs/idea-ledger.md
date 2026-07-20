@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## Cross-terminal Restart Readiness
+
+- Purpose: Let another terminal resume from repository evidence without prior chat or machine-local recollection.
+- Effect: Makes the latest product checkpoint, current operational review, parallel Owner decision, validation commands, protected boundaries, and first next move one-pass readable.
+- Requirements: Current `origin/master`, clean parity, durable project/review/decision/idea/handoff docs, and read-only validation of the private preview, readiness packet, and integrated source.
+- State: Completed for this checkpoint; the publication successor on `origin/master` owns the exact restart identity.
+- Owner: Repository maintainer for context freshness; the next supervising AI for live readback.
+- Next move: Pull `origin/master`, verify `0 0` parity and a clean worktree, run the three current validators, then perform the private-preview experience review.
+
 ## Supervising-AI Private Previsualization Review
 
 - Purpose: Judge the actual 180-second rhythm, shot-to-shot comprehension, subtitle timing, and semantic legibility of the exact private playback artifact.
