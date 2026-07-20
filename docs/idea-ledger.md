@@ -1,13 +1,31 @@
 # Idea Ledger
 
+## Supervising-AI Private Previsualization Review
+
+- Purpose: Judge the actual 180-second rhythm, shot-to-shot comprehension, subtitle timing, and semantic legibility of the exact private playback artifact.
+- Effect: Either accepts the preview as a useful production-planning reference or yields timestamped, shot-bounded repair evidence.
+- Requirements: `fff-private-previsualization-timeline-001`, exact HTML/MP4 hashes, all 19 shots, no production/right/release inference.
+- State: Open next gate; machine playback and visual evidence are green, but no supervising-AI experience judgment is recorded by this implementation.
+- Owner: Supervising AI, followed by Product Owner/creator for private usefulness.
+- Next move: Review once and report exact shot/cue/time findings; avoid generic style requests without evidence.
+
+## Conditional Private Preview Repair
+
+- Purpose: Fix only a concrete playback, semantic, or responsive defect found in the exact preview.
+- Effect: Regenerates the canonical frame lineage and all dependent thumbnails/contact sheet/MP4 coherently.
+- Requirements: Named shot/cue/time, same source chronology and story truth, deterministic recipe, no new media acquisition, no production selection.
+- State: Conditional and not currently needed.
+- Owner: Future implementation Worker after supervising-AI evidence.
+- Next move: Do not start unless the review names a material defect.
+
 ## Owner Asset-Plan Decision
 
 - Purpose: Accept the 14-requirement default material strategy or identify only the requirements that need a different treatment.
 - Effect: Supplies the decision input for a separately authorized material-construction contract without asking the Owner to review 28 source pages.
 - Requirements: Exact `fff-asset-rights-readiness-packet-001`; choose A default, B exception requirement IDs, or C strategy reconstruction; keep production selection and rights decisions separate.
-- State: Pending true human gate. Recommended default and exception ID `AR-PROP-02` are prepared; all Owner decisions remain unselected.
+- State: Preserved independent gate. The current private preview was authorized without selecting production assets; recommended default and exception ID `AR-PROP-02` remain prepared and all Owner decisions remain unselected.
 - Owner: Product Owner.
-- Next move: Return one A/B/C decision. Do not start construction, source acquisition, voice calibration, assembly, render, or publication in the decision-recording slice.
+- Next move: Revisit after private-preview experience review if the project proceeds toward production materials. Do not infer acceptance from the preview.
 
 ## Conditional Material Construction
 

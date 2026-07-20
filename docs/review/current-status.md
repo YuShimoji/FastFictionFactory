@@ -1,5 +1,24 @@
 # Current Status Packet
 
+## Current Private Previsualization Timeline Update
+
+- Active artifact: `fff-private-previsualization-timeline-001`
+- Lane/base: `PRIVATE_PREVISUALIZATION`; exact implementation base `1f0b798623aa7f11a26ab00ed9c4c881e6c7835c`
+- Accepted source: immutable `fff-integrated-visual-production-package-001`; fingerprint `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb`
+- Exact chronology: 6 Beats / 19 shots / 180 seconds / 00:00–03:00 / 0 gaps / 0 overlaps / 18 passing boundary transitions
+- Primary access: `artifacts/private-previsualization-timeline/private-previsualization-timeline.html`
+- MP4: `artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4`; 960×540 H.264, 30 fps, silent, exactly 180.000 seconds, SHA256 `78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978`
+- Canonical frame system: 19 unique 1280×720 JPEG frames; playback, picture lane, shot inspector, contact sheet, and MP4 use the same frame identities
+- Timing lanes: 6 exact narration-text clips / 20 exact subtitle cues / 19 camera-motion clips / 19 transition markers / 6 Beat markers
+- Controls: play/pause, arbitrary scrub, previous/next shot, Beat jump, clip jump, Space, Home, End, left/right seek, visible keyboard focus, reduced-motion support
+- Readiness repair: 14 unique annotated requirement thumbnails; accidental duplicate count 0; `AR-PROP-02`, `AR-PROP-03`, `AR-ABS-01`, and `AR-ABS-02` now depict their requested semantics
+- Intentional reuse: brass-moth, three-unresolved-motifs, time/ledger, and opening-tower returns carry factual callback/shared-motif labels
+- Browser: 1440×1000 desktop and 390×844 narrow screenshots; required first-view controls visible; horizontal overflow 0; nested vertical scroll 0; console errors 0; headless true; muted true
+- Source boundary: 21 explicit-evidence/private-proxy references rendered; 2 ambiguous-license identities rendered 0 times; 28 source images hash-match and remain byte-identical; downloads 0
+- Closed state: selected-for-production 0; rights-cleared claims 0; audio/image generation false; production approval false; final render false; public upload/release false; final canon false
+- Read-only validation: `node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json`
+- Next meaningful gate: supervising-AI/creator experience review of rhythm, shot legibility, and subtitle timing against this exact private artifact; any repair must name exact shots or cues
+
 ## Current Asset / Rights Readiness Packet Update
 
 - Active artifact: `fff-asset-rights-readiness-packet-001`

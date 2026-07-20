@@ -4,7 +4,7 @@
   "generated_at": "2026-07-20T15:28:14+09:00",
   "payload_file_count": 8,
   "file_count": 9,
-  "package_fingerprint_sha256": "b3fd1760800a705193be544364e0892299deb318fc77383a472cd3614b8eef5d",
+  "package_fingerprint_sha256": "2e4e470866e834340c4f1f29490861711a6f257760519755547e7d9b821225c3",
   "copied_source_image_count": 0,
   "modified_source_image_count": 0,
   "newly_downloaded_asset_count": 0,
@@ -17,18 +17,18 @@
     },
     {
       "relative_path": "asset-requirement-plan.csv",
-      "byte_size": 14710,
-      "sha256": "484eca0cb7995143e86b87689fd81e09359673f6efbab2b5fc044fdd72fa2b95"
+      "byte_size": 17426,
+      "sha256": "4abb019dbedebc9c6299c0b6c21da67eebb017dffad8de0e6638ce87eb7b4490"
     },
     {
       "relative_path": "asset-rights-readiness.html",
-      "byte_size": 40029,
-      "sha256": "73ad7558241c427aafa0d98ae04a6f500c8106d856412622f6b75ccd954eaceb"
+      "byte_size": 41046,
+      "sha256": "b5f030cf8a8d004b6efac45f41913d5d9e3e10b80cc7374210a0184fe2cb5cf3"
     },
     {
       "relative_path": "asset-rights-readiness.json",
-      "byte_size": 210435,
-      "sha256": "677d212ecd2de132d2e85707899326c248032d6c56da7ff3a421fdb5b86d8a61"
+      "byte_size": 215670,
+      "sha256": "151cd94761468b0a85eb9985f61eae02ca0d446af74f0aaa908d96beb1af179c"
     },
     {
       "relative_path": "minimum-local-assembly-set.csv",

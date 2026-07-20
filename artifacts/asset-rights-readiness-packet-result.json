@@ -18,6 +18,26 @@
   "canonical_reference_count": 28,
   "alias_count": 36,
   "assignment_count": 42,
+  "semantically_mapped_thumbnail_count": 14,
+  "accidental_duplicate_thumbnail_count": 0,
+  "required_thumbnail_repairs": {
+    "AR-PROP-02": {
+      "representative_preview_shot_id": "shot-b05-02",
+      "thumbnail_semantics_ja": "静止した真鍮の蛾"
+    },
+    "AR-PROP-03": {
+      "representative_preview_shot_id": "shot-b02-02",
+      "thumbnail_semantics_ja": "手書きのメモ／written note"
+    },
+    "AR-ABS-01": {
+      "representative_preview_shot_id": "shot-b03-03",
+      "thumbnail_semantics_ja": "名前／文字輪郭が三段階で薄れる"
+    },
+    "AR-ABS-02": {
+      "representative_preview_shot_id": "shot-b06-01",
+      "thumbnail_semantics_ja": "時間と名前を46:8:46で等分"
+    }
+  },
   "asset_class_count": 7,
   "asset_class_counts": {
     "abstract_graphic": 2,
@@ -1291,7 +1311,7 @@
   },
   "package_manifest": {
     "path": "artifacts/asset-rights-readiness-packet/asset-rights-readiness-manifest.json",
-    "fingerprint": "b3fd1760800a705193be544364e0892299deb318fc77383a472cd3614b8eef5d",
+    "fingerprint": "2e4e470866e834340c4f1f29490861711a6f257760519755547e7d9b821225c3",
     "payload_file_count": 8
   },
   "negative_probes": {
@@ -1645,13 +1665,13 @@
     "screenshots": {
       "dark": {
         "relative_path": "artifacts/review-screens/asset-rights-readiness-packet-900x1200-dark.png",
-        "byte_size": 177841,
-        "sha256": "bf94d30ddd66eccd0fa851820cc37af8b9d4b122c1bce619e63fdf56acc40918"
+        "byte_size": 170541,
+        "sha256": "64ebb45f67f3d7dec130fe14207d3c385ce66057a74fdc0a84859f2657a385c8"
       },
       "light": {
         "relative_path": "artifacts/review-screens/asset-rights-readiness-packet-1280x900-light.png",
-        "byte_size": 127960,
-        "sha256": "2c5fa9dc49f24a8ef289bdf261f5935c474c2266cc4e22f617535c8e0b749e3d"
+        "byte_size": 127654,
+        "sha256": "fa3a15896833cc06b294986e1ab7c5cf2fceeac4fdfb17315a02856e2cd031e3"
       }
     }
   },

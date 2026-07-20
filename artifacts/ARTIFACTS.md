@@ -1,5 +1,20 @@
 # Artifacts
 
+## fff-private-previsualization-timeline-001
+
+- Title: Fast Fiction Factory Private Previsualization Timeline
+- Purpose: Make the accepted 180-second / six-Beat / nineteen-shot composition playable, scrubbable, and visually concrete while deriving all shot and readiness thumbnails from one canonical frame system.
+- Primary file: `artifacts/private-previsualization-timeline/private-previsualization-timeline.html`
+- Package: canonical JSON, HTML player, 19 frames, 14 requirement derivatives, two CSV maps, contact sheet, silent MP4, deterministic build script, and integrity manifest
+- Review doc/result: `docs/review/private-previsualization-timeline.md`, `artifacts/private-previsualization-timeline-result.json`
+- Visual evidence: `artifacts/review-screens/private-previsualization-timeline-1440x1000-desktop.png`, `artifacts/review-screens/private-previsualization-timeline-390x844-narrow.png`, `artifacts/private-previsualization-timeline/private-previsualization-contact-sheet.jpg`
+- Playback contract: exact 00:00–03:00 / 6 Beats / 19 shots / 0 gaps / 0 overlaps; play/pause/scrub/shot/Beat/keyboard/reduced-motion behavior; proportional picture/narration/subtitle/camera/transition lanes
+- Thumbnail contract: 19 unique canonical frames / 14 unique readiness derivatives / 0 accidental duplicates; intentional motif returns labeled
+- MP4: 960×540 H.264 / 30 fps / silent / 180.000 seconds / SHA256 `78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978`
+- Source/rights contract: 28 source image hashes unchanged; 21 explicit-evidence proxy references rendered; both ambiguous-evidence identities excluded; production selection and rights-cleared claims remain zero
+- Read-only validation: `node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json`
+- State: H0 green. Next gate is supervising-AI/creator experience review; production, rights, voice, final render, and publication stay closed.
+
 ## fff-asset-rights-readiness-packet-001
 
 - Title: Fast Fiction Factory Asset / Rights Readiness Packet

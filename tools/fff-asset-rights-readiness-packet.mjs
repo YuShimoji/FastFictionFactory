@@ -15,6 +15,10 @@ const MODEL_PATH = `${PACKAGE_ROOT}/asset-rights-readiness.json`;
 const HTML_PATH = `${PACKAGE_ROOT}/asset-rights-readiness.html`;
 const MANIFEST_PATH = `${PACKAGE_ROOT}/asset-rights-readiness-manifest.json`;
 const RESULT_PATH = "artifacts/asset-rights-readiness-packet-result.json";
+const DESCENDANT_RESULT_PATHS = new Set([
+  RESULT_PATH,
+  "artifacts/private-previsualization-timeline-result.json"
+]);
 const SCREENSHOTS = {
   dark: "artifacts/review-screens/asset-rights-readiness-packet-900x1200-dark.png",
   light: "artifacts/review-screens/asset-rights-readiness-packet-1280x900-light.png"
@@ -83,6 +87,23 @@ const DISPOSITION_CONFIG = {
   "AR-ABS-02": ["strong_reference", "complete", "requires_original_or_placeholder", "create_original", "create_deterministic_original", "deterministic_original_graphic", ["real_record", "trademark_or_logo", "contextual_misattribution"]],
   "AR-TYPE-01": ["usable_reference", "partial", "requires_original_or_placeholder", "create_original", "create_deterministic_original", "deterministic_original_graphic", ["other"]],
   "AR-AUDIO-01": ["no_reference", "absent", "unsuitable", "not_applicable", "retain_reference_only", "future_audio_lane", ["none_observed"]]
+};
+
+const PREVIS_THUMBNAIL_MAP = {
+  "AR-ENV-01": ["shot-b01-01", "鐘のない天文台と空の鐘枠"],
+  "AR-ENV-02": ["shot-b04-03", "半透明仕切りを含む中立的な制度空間"],
+  "AR-CHAR-01": ["shot-b03-01", "顔を特定しない台帳を開く手元"],
+  "AR-CHAR-02": ["shot-b04-01", "匿名の評議会シルエット"],
+  "AR-CHAR-03": ["shot-b05-01", "トーマの未確定シルエットと四候補"],
+  "AR-PROP-01": ["shot-b02-03", "時計面と9:17の時刻motif"],
+  "AR-PROP-02": ["shot-b05-02", "静止した真鍮の蛾"],
+  "AR-PROP-03": ["shot-b02-02", "手書きのメモ／written note"],
+  "AR-DOC-01": ["shot-b03-02", "架空台帳の名前欄と『分』欄"],
+  "AR-DOC-02": ["shot-b05-03", "同じ重みの候補図版システム"],
+  "AR-ABS-01": ["shot-b03-03", "名前／文字輪郭が三段階で薄れる"],
+  "AR-ABS-02": ["shot-b06-01", "時間と名前を46:8:46で等分"],
+  "AR-TYPE-01": ["shot-b05-04", "日本語firstの短いlabelとHOLD表示"],
+  "AR-AUDIO-01": ["shot-b01-03", "六幕のsilent cue位置。音声素材は含まない"]
 };
 
 const LIVE_UNAVAILABLE = new Set([
@@ -186,7 +207,7 @@ async function captureIntegrity() {
   }
   const allArtifactFiles = await readdir("artifacts", { withFileTypes: true });
   const resultFiles = allArtifactFiles
-    .filter((entry) => entry.isFile() && entry.name.endsWith("-result.json") && entry.name !== path.basename(RESULT_PATH))
+    .filter((entry) => entry.isFile() && entry.name.endsWith("-result.json") && !DESCENDANT_RESULT_PATHS.has(`artifacts/${entry.name}`))
     .map((entry) => `artifacts/${entry.name}`)
     .sort();
   return {
@@ -434,6 +455,8 @@ async function buildModel(authority, baselineIntegrity) {
     const mappedReferences = [...new Set(shotIds.flatMap((shotId) => shotMap.get(shotId)?.source_reference_ids || []))].map((id) => referenceById.get(id)).filter(Boolean);
     const liveStates = new Set(mappedReferences.map((reference) => reference.live_source_check));
     const disposition = config[4];
+    const [representativePreviewShotId, thumbnailSemanticsJa] = PREVIS_THUMBNAIL_MAP[requirement.requirement_id] || [];
+    if (!representativePreviewShotId) throw new Error(`Missing previsualization thumbnail mapping for ${requirement.requirement_id}`);
     return {
       requirement_id: requirement.requirement_id,
       asset_class: requirement.asset_class,
@@ -445,6 +468,11 @@ async function buildModel(authority, baselineIntegrity) {
       canonical_reference_ids: mappedReferences.map((reference) => reference.canonical_reference_id),
       reference_count: mappedReferences.length,
       representative_reference_id: requirement.asset_class === "audio_cue" ? null : (mappedReferences[0]?.canonical_reference_id || null),
+      representative_preview_shot_id: representativePreviewShotId,
+      representative_preview_thumbnail: `../private-previsualization-timeline/requirement-thumbnails/${requirement.requirement_id}.jpg`,
+      thumbnail_semantics_ja: thumbnailSemanticsJa,
+      thumbnail_lineage: "annotated_derivative_of_canonical_previsualization_frame",
+      thumbnail_reuse_label: null,
       visual_constraints_ja: requirement.visual_constraints_ja,
       creative_fit: config[0],
       reference_coverage: config[1],
@@ -643,6 +671,10 @@ function validateCore(model, { probe = false } = {}) {
     require(Boolean(requirement.minimum_local_assembly_role), `requirement minimum assembly role missing: ${requirement.requirement_id}`);
     require(requirement.blocking_for_offline_assembly === true, `requirement incorrectly marked assembly-ready: ${requirement.requirement_id}`);
     require(Boolean(requirement.recommended_disposition), `missing disposition: ${requirement.requirement_id}`);
+    require(Boolean(requirement.representative_preview_shot_id), `missing preview shot: ${requirement.requirement_id}`);
+    require(Boolean(requirement.representative_preview_thumbnail), `missing preview thumbnail: ${requirement.requirement_id}`);
+    require(Boolean(requirement.thumbnail_semantics_ja), `missing thumbnail semantics: ${requirement.requirement_id}`);
+    require(requirement.thumbnail_lineage === "annotated_derivative_of_canonical_previsualization_frame", `thumbnail lineage mismatch: ${requirement.requirement_id}`);
     require(requirement.owner_decision === "unselected", `owner decision selected: ${requirement.requirement_id}`);
     require(requirement.publication_compatibility === "unreviewed", `publication compatibility reviewed: ${requirement.requirement_id}`);
     require(!(requirement.provenance_evidence === "complete_stored_metadata" && requirement.evidence_gap === true), `evidence gap treated complete: ${requirement.requirement_id}`);
@@ -760,8 +792,8 @@ function runNegativeProbes(model) {
   });
 }
 
-function relativeThumbnail(reference) {
-  return reference ? `../${reference.local_path.replace(/^artifacts\//, "")}` : null;
+function relativeThumbnail(requirement, reference) {
+  return requirement?.representative_preview_thumbnail || (reference ? `../${reference.local_path.replace(/^artifacts\//, "")}` : null);
 }
 
 function primaryCopy(text) {
@@ -789,9 +821,9 @@ function renderHtml(model) {
     <h3 id="group-${assetClass}">${assetClassLabel(assetClass)}</h3>
     ${model.requirements.filter((requirement) => requirement.asset_class === assetClass).map((requirement) => {
       const reference = refById.get(requirement.representative_reference_id);
-      const thumbnail = relativeThumbnail(reference);
+      const thumbnail = relativeThumbnail(requirement, reference);
       return `<article class="requirement-row">
-        <div class="thumb">${thumbnail ? `<img src="${thumbnail}" alt="" loading="lazy"><span>構図参照</span>` : `<div class="no-thumb" aria-hidden="true">—</div><span>構図参照なし</span>`}</div>
+        <div class="thumb">${thumbnail ? `<img src="${thumbnail}" alt="${requirement.requirement_id}: ${requirement.thumbnail_semantics_ja}" loading="lazy"><span>${requirement.thumbnail_semantics_ja}</span>` : `<div class="no-thumb" aria-hidden="true">—</div><span>構図参照なし</span>`}</div>
         <div class="requirement-copy"><div class="row-top"><strong>${requirement.requirement_id}</strong><span class="status-pill">${dispositionLabel(requirement.recommended_disposition)}</span></div><p>${primaryCopy(requirement.generic_description_ja)}</p><div class="meta">${requirement.shot_ids.length} shots · ${requirement.canonical_reference_ids.length} references · Owner判断 未選択</div></div>
       </article>`;
     }).join("\n")}
@@ -835,7 +867,7 @@ function renderDefaultPlan(model) {
 
 async function writePackage(model, existingBrowser = null, { validateAfter = true } = {}) {
   await mkdir(PACKAGE_ROOT, { recursive: true });
-  const requirementHeaders = ["requirement_id", "asset_class", "generic_description_ja", "quantity", "quantity_unit", "owning_beats", "shot_ids", "canonical_reference_ids", "reference_count", ...REQUIRED_SEPARATION_FIELDS, "rationale", "replacement_or_creation_brief", "minimum_local_assembly_role", "proposed_construction_method", "blocking_for_offline_assembly"];
+  const requirementHeaders = ["requirement_id", "asset_class", "generic_description_ja", "quantity", "quantity_unit", "owning_beats", "shot_ids", "canonical_reference_ids", "reference_count", "representative_preview_shot_id", "representative_preview_thumbnail", "thumbnail_semantics_ja", "thumbnail_lineage", "thumbnail_reuse_label", ...REQUIRED_SEPARATION_FIELDS, "rationale", "replacement_or_creation_brief", "minimum_local_assembly_role", "proposed_construction_method", "blocking_for_offline_assembly"];
   const referenceHeaders = ["canonical_reference_id", "alias_ids", "owning_source_artifact", "source_package_path", "local_path", "local_source_path", "sha256", "used_by_shot_ids", "mapped_requirement_ids", "creator", "source_title", "source_page_url", "original_media_url", "license_name", "license_url", "original_dimensions", "normalized_dimensions", "retrieval_date", "provenance_evidence", "evidence_gap", "license_evidence", "live_source_check", "live_source_readback_state", "live_checked_at", "live_check_note", "live_license_check", "license_live_checked_at", "license_check_note", "identity_or_sensitive_content_risk", "stored_rights_flags", "representative_only", "selected_for_production", "rights_cleared_claim"];
   const shotHeaders = ["shot_id", "sequence", "beat_number", "title_ja", "start_time", "end_time", "duration_seconds", "requirement_ids", "canonical_reference_ids", "assignment_ids"];
   const minimumHeaders = ["requirement_id", "reusable_across_shots", "covered_shot_ids", "proposed_construction_method", "current_reference_role", "required_future_decision", "blocking_for_offline_assembly", "owner_decision"];
@@ -877,6 +909,7 @@ function buildResult(model, manifest, browserEvidence) {
   const liveCounts = countValues(model.references, "live_source_check");
   const riskCount = model.references.filter((reference) => reference.identity_or_sensitive_content_risk.some((risk) => risk !== "none_observed")).length;
   const browserPassed = Boolean(browserEvidence?.passed);
+  const thumbnailHashes = model.requirements.map((requirement) => requirement.representative_preview_thumbnail);
   return {
     schemaVersion: "fff.assetRightsReadinessPacketResult.v1",
     artifact_id: ARTIFACT_ID,
@@ -897,6 +930,12 @@ function buildResult(model, manifest, browserEvidence) {
     canonical_reference_count: model.counts.canonical_reference_count,
     alias_count: model.counts.alias_count,
     assignment_count: model.counts.assignment_count,
+    semantically_mapped_thumbnail_count: thumbnailHashes.length,
+    accidental_duplicate_thumbnail_count: thumbnailHashes.length - new Set(thumbnailHashes).size,
+    required_thumbnail_repairs: Object.fromEntries(["AR-PROP-02", "AR-PROP-03", "AR-ABS-01", "AR-ABS-02"].map((id) => {
+      const item = model.requirements.find((requirement) => requirement.requirement_id === id);
+      return [id, { representative_preview_shot_id: item.representative_preview_shot_id, thumbnail_semantics_ja: item.thumbnail_semantics_ja }];
+    })),
     asset_class_count: model.counts.asset_class_count,
     asset_class_counts: countValues(model.requirements, "asset_class"),
     creative_fit_counts: countValues(model.requirements, "creative_fit"),
@@ -977,7 +1016,12 @@ async function validatePacket(inputPath = RESULT_PATH) {
   if (/<img[^>]+src=["']https?:/i.test(html)) failures.push("remote image hotlink found");
   if (!/<details>\s*<summary>/i.test(html)) failures.push("full-width evidence disclosure missing");
   if (!/@media print/.test(html)) failures.push("print style missing");
-  if ((html.match(/<img\s/gi) || []).length > 13) failures.push("primary image wall detected");
+  if ((html.match(/<img\s/gi) || []).length > 14) failures.push("primary image wall detected");
+  for (const requirement of model.requirements) {
+    const thumbnailPath = path.resolve(PACKAGE_ROOT, requirement.representative_preview_thumbnail);
+    if (!existsSync(thumbnailPath)) failures.push(`missing previsualization thumbnail ${requirement.requirement_id}`);
+    if (!html.includes(requirement.thumbnail_semantics_ja)) failures.push(`thumbnail semantics missing from HTML ${requirement.requirement_id}`);
+  }
   const inlineScript = html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
   try { new Function(inlineScript || ""); } catch (error) { failures.push(`inline script syntax: ${error.message}`); }
   const requirementCsv = parseCsv(await readFile(`${PACKAGE_ROOT}/asset-requirement-plan.csv`, "utf8"));
@@ -986,7 +1030,7 @@ async function validatePacket(inputPath = RESULT_PATH) {
   const minimumCsv = parseCsv(await readFile(`${PACKAGE_ROOT}/minimum-local-assembly-set.csv`, "utf8"));
   if (requirementCsv.length !== 14 || referenceCsv.length !== 28 || shotCsv.length !== 19 || minimumCsv.length !== 14) failures.push("CSV row count mismatch");
   const expectedResult = buildResult(model, manifest, result.browser_evidence);
-  for (const key of ["artifact_id", "source_artifact_id", "source_fingerprint", "owner_review", "composition_repair_required", "asset_preparation_planning_authorized", "production_asset_selection_authorized", "rights_clearance_authorized", "media_generation_authorized", "offline_assembly_authorized", "next_human_decision", "per_beat_review", "external_reproducibility_claimed", "shot_count", "requirement_count", "canonical_reference_count", "alias_count", "assignment_count", "asset_class_count", "evidence_gap_count", "live_source_confirmed_count", "live_source_unavailable_count", "identity_or_sensitive_risk_count", "deterministic_original_requirement_count", "replacement_candidate_requirement_count", "local_proxy_consideration_requirement_count", "reference_only_requirement_count", "minimum_local_assembly_requirement_count", "minimum_local_assembly_shot_coverage", "default_plan_shot_coverage_by_disposition", "unresolved_evidence_reference_ids", "minimum_local_assembly_future_lanes", "owner_decision_selected_count", "publication_compatibility_reviewed_count", "selected_for_production_count", "rights_cleared_claim_count", "copied_source_image_count", "modified_source_image_count", "newly_downloaded_asset_count", "external_media_hotlink_count", "legal_clearance_claim_count", "provider_configured", "credentials_touched", "image_generation", "audio_generation", "video_generation", "production_render", "public_upload", "database_persistence", "final_canon_decision", "source_packages_unchanged", "historical_results_unchanged"]) {
+  for (const key of ["artifact_id", "source_artifact_id", "source_fingerprint", "owner_review", "composition_repair_required", "asset_preparation_planning_authorized", "production_asset_selection_authorized", "rights_clearance_authorized", "media_generation_authorized", "offline_assembly_authorized", "next_human_decision", "per_beat_review", "external_reproducibility_claimed", "shot_count", "requirement_count", "canonical_reference_count", "alias_count", "assignment_count", "semantically_mapped_thumbnail_count", "accidental_duplicate_thumbnail_count", "required_thumbnail_repairs", "asset_class_count", "evidence_gap_count", "live_source_confirmed_count", "live_source_unavailable_count", "identity_or_sensitive_risk_count", "deterministic_original_requirement_count", "replacement_candidate_requirement_count", "local_proxy_consideration_requirement_count", "reference_only_requirement_count", "minimum_local_assembly_requirement_count", "minimum_local_assembly_shot_coverage", "default_plan_shot_coverage_by_disposition", "unresolved_evidence_reference_ids", "minimum_local_assembly_future_lanes", "owner_decision_selected_count", "publication_compatibility_reviewed_count", "selected_for_production_count", "rights_cleared_claim_count", "copied_source_image_count", "modified_source_image_count", "newly_downloaded_asset_count", "external_media_hotlink_count", "legal_clearance_claim_count", "provider_configured", "credentials_touched", "image_generation", "audio_generation", "video_generation", "production_render", "public_upload", "database_persistence", "final_canon_decision", "source_packages_unchanged", "historical_results_unchanged"]) {
     if (JSON.stringify(result[key]) !== JSON.stringify(expectedResult[key])) failures.push(`result contract mismatch ${key}`);
   }
   if (!result.browser_evidence?.passed) failures.push("browser evidence is not passed");

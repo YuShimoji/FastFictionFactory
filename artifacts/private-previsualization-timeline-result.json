@@ -1,0 +1,312 @@
+{
+  "schemaVersion": "fff.privatePrevisualizationTimelineResult.v1",
+  "artifact_id": "fff-private-previsualization-timeline-001",
+  "source_artifact_id": "fff-integrated-visual-production-package-001",
+  "source_fingerprint": "78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb",
+  "readiness_artifact_id": "fff-asset-rights-readiness-packet-001",
+  "readiness_source_fingerprint_before": "b3fd1760800a705193be544364e0892299deb318fc77383a472cd3614b8eef5d",
+  "readiness_current_fingerprint": "2e4e470866e834340c4f1f29490861711a6f257760519755547e7d9b821225c3",
+  "readiness_thumbnail_correction_applied": true,
+  "duration_seconds": 180,
+  "beat_count": 6,
+  "shot_count": 19,
+  "narration_segment_count": 6,
+  "subtitle_cue_count": 20,
+  "gap_count": 0,
+  "overlap_count": 0,
+  "boundary_test_count": 18,
+  "boundary_tests_passed": true,
+  "canonical_frame_count": 19,
+  "canonical_frame_unique_hash_count": 19,
+  "accidental_duplicate_frame_count": 0,
+  "requirement_thumbnail_count": 14,
+  "requirement_thumbnail_unique_hash_count": 14,
+  "accidental_duplicate_requirement_thumbnail_count": 0,
+  "intentional_reuse_shot_ids": [
+    {
+      "shot_id": "shot-b02-03",
+      "label": "shared motif / brass moth"
+    },
+    {
+      "shot_id": "shot-b05-02",
+      "label": "callback / brass moth"
+    },
+    {
+      "shot_id": "shot-b05-04",
+      "label": "callback / three unresolved motifs"
+    },
+    {
+      "shot_id": "shot-b06-01",
+      "label": "shared motif / time and ledger"
+    },
+    {
+      "shot_id": "shot-b06-03",
+      "label": "callback / opening tower composition"
+    }
+  ],
+  "required_semantic_repairs": {
+    "AR-PROP-02": {
+      "representative_shot_id": "shot-b05-02",
+      "semantics_ja": "静止した真鍮の蛾",
+      "thumbnail_sha256": "d10eb19a49a348c8195732a0b0616f2c22b9720de95992b65ebbdbda1ab56626"
+    },
+    "AR-PROP-03": {
+      "representative_shot_id": "shot-b02-02",
+      "semantics_ja": "手書きのメモ／written note",
+      "thumbnail_sha256": "5b96aa8276f4b572cda14ada904c7c5a9f6578caf945de556f0e111191e4b541"
+    },
+    "AR-ABS-01": {
+      "representative_shot_id": "shot-b03-03",
+      "semantics_ja": "名前／文字輪郭が三段階で薄れる",
+      "thumbnail_sha256": "957385c3cf57ed05f3abb77fe4a9fe37b3007ebc438ad4bfe2c16b7646fe217c"
+    },
+    "AR-ABS-02": {
+      "representative_shot_id": "shot-b06-01",
+      "semantics_ja": "時間と名前を46:8:46で等分",
+      "thumbnail_sha256": "9eac88df2c3758c4c0f9039fd5d5dbc78de9336670e2402c3e6a83a39612d1a4"
+    }
+  },
+  "rendered_reference_count": 21,
+  "ambiguous_reference_ids": [
+    "ref-b04-s03-closed-meeting-room",
+    "ref-b04-shared-general-ledger"
+  ],
+  "ambiguous_reference_ids_rendered": [],
+  "source_image_bytes_modified": 0,
+  "newly_downloaded_media_count": 0,
+  "selected_for_production_count": 0,
+  "rights_cleared_claim_count": 0,
+  "audio_generated": false,
+  "image_generated": false,
+  "public_upload": false,
+  "production_approved": false,
+  "final_canon_decision": false,
+  "mp4": {
+    "path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4",
+    "byte_size": 1668241,
+    "sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978",
+    "duration_seconds": 180,
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec_name": "h264",
+    "width": 960,
+    "height": 540,
+    "avg_frame_rate": "30/1",
+    "audio_stream_count": 0
+  },
+  "package_manifest": {
+    "path": "artifacts/private-previsualization-timeline/private-previsualization-manifest.json",
+    "fingerprint": "7332fef5f9e1477a2bf6bd822bbbd00646ebc765eced2111c3d8ed56a58449cd",
+    "payload_file_count": 41
+  },
+  "browser_evidence": {
+    "passed": true,
+    "engine": "Microsoft Edge via bundled Playwright",
+    "headless": true,
+    "muted": true,
+    "desktop": {
+      "width": 1440,
+      "height": 1000,
+      "horizontal_overflow": false,
+      "nested_vertical_scroll_count": 0,
+      "first_view_required_visible": true,
+      "canvas_width": 1088,
+      "canvas_height": 611.125,
+      "audio_element_count": 0,
+      "video_element_count": 0
+    },
+    "narrow": {
+      "width": 390,
+      "height": 844,
+      "horizontal_overflow": false,
+      "nested_vertical_scroll_count": 0,
+      "first_view_required_visible": true
+    },
+    "arbitrary_scrub": {
+      "current": 93.2,
+      "playing": false,
+      "shot_id": "shot-b04-02",
+      "beat_number": 4,
+      "subtitle": "だが、台帳の真偽は未確定。",
+      "reduced_motion": false
+    },
+    "boundary_tests": [
+      {
+        "at_seconds": 7,
+        "before": "shot-b01-01",
+        "at": "shot-b01-02",
+        "expected_before": "shot-b01-01",
+        "expected_at": "shot-b01-02"
+      },
+      {
+        "at_seconds": 14,
+        "before": "shot-b01-02",
+        "at": "shot-b01-03",
+        "expected_before": "shot-b01-02",
+        "expected_at": "shot-b01-03"
+      },
+      {
+        "at_seconds": 20,
+        "before": "shot-b01-03",
+        "at": "shot-b02-01",
+        "expected_before": "shot-b01-03",
+        "expected_at": "shot-b02-01"
+      },
+      {
+        "at_seconds": 30,
+        "before": "shot-b02-01",
+        "at": "shot-b02-02",
+        "expected_before": "shot-b02-01",
+        "expected_at": "shot-b02-02"
+      },
+      {
+        "at_seconds": 40,
+        "before": "shot-b02-02",
+        "at": "shot-b02-03",
+        "expected_before": "shot-b02-02",
+        "expected_at": "shot-b02-03"
+      },
+      {
+        "at_seconds": 50,
+        "before": "shot-b02-03",
+        "at": "shot-b03-01",
+        "expected_before": "shot-b02-03",
+        "expected_at": "shot-b03-01"
+      },
+      {
+        "at_seconds": 60,
+        "before": "shot-b03-01",
+        "at": "shot-b03-02",
+        "expected_before": "shot-b03-01",
+        "expected_at": "shot-b03-02"
+      },
+      {
+        "at_seconds": 70,
+        "before": "shot-b03-02",
+        "at": "shot-b03-03",
+        "expected_before": "shot-b03-02",
+        "expected_at": "shot-b03-03"
+      },
+      {
+        "at_seconds": 80,
+        "before": "shot-b03-03",
+        "at": "shot-b04-01",
+        "expected_before": "shot-b03-03",
+        "expected_at": "shot-b04-01"
+      },
+      {
+        "at_seconds": 88,
+        "before": "shot-b04-01",
+        "at": "shot-b04-02",
+        "expected_before": "shot-b04-01",
+        "expected_at": "shot-b04-02"
+      },
+      {
+        "at_seconds": 96,
+        "before": "shot-b04-02",
+        "at": "shot-b04-03",
+        "expected_before": "shot-b04-02",
+        "expected_at": "shot-b04-03"
+      },
+      {
+        "at_seconds": 105,
+        "before": "shot-b04-03",
+        "at": "shot-b05-01",
+        "expected_before": "shot-b04-03",
+        "expected_at": "shot-b05-01"
+      },
+      {
+        "at_seconds": 118,
+        "before": "shot-b05-01",
+        "at": "shot-b05-02",
+        "expected_before": "shot-b05-01",
+        "expected_at": "shot-b05-02"
+      },
+      {
+        "at_seconds": 131,
+        "before": "shot-b05-02",
+        "at": "shot-b05-03",
+        "expected_before": "shot-b05-02",
+        "expected_at": "shot-b05-03"
+      },
+      {
+        "at_seconds": 143,
+        "before": "shot-b05-03",
+        "at": "shot-b05-04",
+        "expected_before": "shot-b05-03",
+        "expected_at": "shot-b05-04"
+      },
+      {
+        "at_seconds": 155,
+        "before": "shot-b05-04",
+        "at": "shot-b06-01",
+        "expected_before": "shot-b05-04",
+        "expected_at": "shot-b06-01"
+      },
+      {
+        "at_seconds": 164,
+        "before": "shot-b06-01",
+        "at": "shot-b06-02",
+        "expected_before": "shot-b06-01",
+        "expected_at": "shot-b06-02"
+      },
+      {
+        "at_seconds": 172,
+        "before": "shot-b06-02",
+        "at": "shot-b06-03",
+        "expected_before": "shot-b06-02",
+        "expected_at": "shot-b06-03"
+      }
+    ],
+    "keyboard": {
+      "home": {
+        "current": 0,
+        "playing": false,
+        "shot_id": "shot-b01-01",
+        "beat_number": 1,
+        "subtitle": "",
+        "reduced_motion": false
+      },
+      "arrow_right": {
+        "current": 1,
+        "playing": false,
+        "shot_id": "shot-b01-01",
+        "beat_number": 1,
+        "subtitle": "正午、鐘のない塔が鳴る。",
+        "reduced_motion": false
+      },
+      "end": {
+        "current": 180,
+        "playing": false,
+        "shot_id": "shot-b06-03",
+        "beat_number": 6,
+        "subtitle": "",
+        "reduced_motion": false
+      },
+      "space_play": {
+        "current": 0.23529999999999995,
+        "playing": true,
+        "shot_id": "shot-b01-01",
+        "beat_number": 1,
+        "subtitle": "",
+        "reduced_motion": false
+      },
+      "focus_visible": true
+    },
+    "reduced_motion": true,
+    "console_errors": [],
+    "screenshots": [
+      {
+        "relative_path": "artifacts/review-screens/private-previsualization-timeline-1440x1000-desktop.png",
+        "byte_size": 859630,
+        "sha256": "936c0650a07eedba4d9271cf9c6df19d24b601dd308df00a826b8c9070ae441b"
+      },
+      {
+        "relative_path": "artifacts/review-screens/private-previsualization-timeline-390x844-narrow.png",
+        "byte_size": 169715,
+        "sha256": "852c111e235108bfa9c5f710f90e6a3ca234558f1bb66e64e83f77fc5b1c1b8c"
+      }
+    ]
+  },
+  "failures": [],
+  "passed": true
+}

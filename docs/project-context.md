@@ -1,5 +1,17 @@
 # Project Context
 
+## Active Private Previsualization Axis
+
+The active artifact is `fff-private-previsualization-timeline-001`, lane `PRIVATE_PREVISUALIZATION`. It is a private, silent, playable interpretation of the accepted integrated package fingerprint `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb`. The chronology remains exact: `00:00–03:00`, six Beats, nineteen shots, 180 seconds, no gap, and no overlap. Six narration-text segments and twenty subtitle cues are transcribed from the accepted source; story wording, timing, shot identity, transition, motion, truth boundary, and canon have not changed.
+
+Primary access is `artifacts/private-previsualization-timeline/private-previsualization-timeline.html`. The first viewport is a working surface with a 16:9 canvas, timecode, playback controls, scrubber, Beat/Shot identity, and a compact 180-second ruler. Below it, duration-proportional picture, narration, subtitle, camera, and transition lanes share one playhead. Space, Home, End, arrow seeking, previous/next shot, arbitrary scrub, Beat jump, clip jump, and visible keyboard focus are implemented. Reduced-motion mode keeps playback functional while disabling camera drift.
+
+Nineteen unique 1280×720 canonical JPEG frames drive playback, picture-track thumbnails, the shot inspector, the nineteen-cell contact sheet, and the silent 960×540 H.264 MP4. Fourteen unique readiness thumbnails are annotated derivatives of those same frames. The explicit semantic repairs are `AR-PROP-02` = brass moth, `AR-PROP-03` = written memo, `AR-ABS-01` = staged fading name/letter contours, and `AR-ABS-02` = equal time-versus-name split with an 8% unresolved center. Exact duplicate frames and exact duplicate requirement thumbnails are both zero. Story motif returns are labeled `callback` or `shared motif`.
+
+Twenty-one references with explicit stored reuse terms or public-domain statements are used as private proxies. `ref-b04-s03-closed-meeting-room` and `ref-b04-shared-general-ledger` have ambiguous stored license evidence and are excluded from every rendered frame and the MP4; deterministic local institutional-room and fictional-ledger compositions replace them. All twenty-eight source files remain byte-identical. The readiness counts and policy remain 19 shots / 14 requirements / 28 references / 36 aliases / 42 assignments, Owner decision `unselected`, production selection 0, and rights-cleared claim 0.
+
+Read-only validation is `node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json`. Current browser evidence covers 1440×1000 and 390×844, all eighteen shot boundaries, arbitrary scrub, Home/End/Space/arrows, focus, reduced motion, no horizontal overflow, no nested vertical scroll, headless/muted operation, and zero console errors. This artifact is not a production asset choice, rights decision, final render, production approval, or release candidate.
+
 ## Active Asset / Rights Readiness Axis
 
 The active artifact is `fff-asset-rights-readiness-packet-001`, lane `ASSET_RIGHTS_READINESS`. It starts from accepted integrated package fingerprint `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb` and the exact 14 Production Execution asset requirements. Product Owner review is recorded as `OWNER_WHOLE_STORY_COMPOSITION_PASS` with observations「全編で大きな破綻はありません。」「素材準備と次工程へ進めてよいです。」Composition repair is not required; asset-preparation planning is authorized; per-Beat review remains discontinued.

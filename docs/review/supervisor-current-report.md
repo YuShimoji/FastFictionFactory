@@ -1,6 +1,122 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-20 JST
+更新日: 2026-07-21 JST
+
+## Private 180-second Previsualization 完了追補
+
+### 結果と利用者価値
+
+受理済みの6 Beat / 19 shot構造を、表や静的packageだけでなく、実際に3分間を再生・停止・scrub・shot移動・Beat jumpできる非公開previsualizationへ具体化しました。`artifacts/private-previsualization-timeline/private-previsualization-timeline.html` を開くと、最初のviewportに16:9 canvas、timecode、play/pause、scrubber、Beat/Shot identity、180秒overview rulerが現れます。その下のpicture / narration-text / subtitle / camera / transition laneは、同じplayheadとduration比例幅を共有します。
+
+accepted integrated compositionは変更していません。この成果物は、実際の視聴リズムとshot意味を監修できるprivate referenceであり、production asset選定、rights clearance、final render、production approval、public release、canon決定ではありません。
+
+### 成果物とアクセス
+
+- playable HTML: `artifacts/private-previsualization-timeline/private-previsualization-timeline.html`
+- canonical model: `artifacts/private-previsualization-timeline/private-previsualization-timeline.json`
+- shot chronology: `artifacts/private-previsualization-timeline/shot-timeline.csv`
+- thumbnail lineage: `artifacts/private-previsualization-timeline/thumbnail-map.csv`
+- 19 canonical frames: `artifacts/private-previsualization-timeline/frames/`
+- 14 readiness derivatives: `artifacts/private-previsualization-timeline/requirement-thumbnails/`
+- contact sheet: `artifacts/private-previsualization-timeline/private-previsualization-contact-sheet.jpg`
+- silent MP4: `artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4`
+- manifest/result: `artifacts/private-previsualization-timeline/private-previsualization-manifest.json`, `artifacts/private-previsualization-timeline-result.json`
+- review: `docs/review/private-previsualization-timeline.md`
+- screenshots: `artifacts/review-screens/private-previsualization-timeline-1440x1000-desktop.png`, `artifacts/review-screens/private-previsualization-timeline-390x844-narrow.png`
+
+```powershell
+Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+node .\tools\fff-state.mjs validate-private-previsualization-timeline .\artifacts\private-previsualization-timeline-result.json
+ffplay -autoexit -an .\artifacts\private-previsualization-timeline\private-previsualization-timeline.mp4
+```
+
+再構築は既存のCodex同梱PlaywrightとFFmpegだけを使い、serverやroot dependency installを必要としません。
+
+```powershell
+$env:FFF_NODE_MODULES='C:\Users\thank\.cache\codex-runtimes\codex-primary-runtime\dependencies\node\node_modules'
+node .\artifacts\private-previsualization-timeline\build-private-previsualization.mjs smoke
+```
+
+### 実測された再生・時系列
+
+- total `180.000s`; `00:00` start / `03:00` end
+- 6 Beats / 19 shots / grouping `3 / 3 / 3 / 3 / 4 / 3`
+- adjacent boundary tests `18/18 pass`; gap 0 / overlap 0
+- narration-text segments 6 / subtitle cues 20
+- arbitrary scrub `93.2s` → `shot-b04-02`
+- Home → 0s / End → 180s / ArrowRight → +1s / Space → playback
+- previous/next shot、6 Beat jump、全clip jump、visible focusを確認
+- reduced motionではsource motion markerを維持したままcanvas driftを無効化
+
+### MP4
+
+MP4は960×540、H.264、30fps、無音、180.000秒です。sizeは1,668,241 bytes、SHA256は `78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978`、audio stream countは0です。各canonical frameに `PREVIS / REFERENCE-ONLY / NOT FOR PUBLICATION` を焼き込んだため、exportでも透かしが失われません。
+
+### Thumbnail意味修正
+
+以前のreadiness pageはmapped referencesの先頭を代表画像にしていたため、requirementの説明と画像意味がずれる場合がありました。現在は1 requirement → 1 representative shot → 1 canonical frame → 1 annotated derivativeを明示しています。
+
+| Requirement | 修正前 | 修正後 |
+| --- | --- | --- |
+| `AR-PROP-02` | memo/先頭reference寄り | 中央に真鍮の蛾、下段に同寸3機能候補 |
+| `AR-PROP-03` | written note専用identityなし | 手書き面を大きく見せ `MEMO / written note` と明記 |
+| `AR-ABS-01` | 紙/textureの均一場に近い | 完全・薄い・欠けた名前/文字輪郭の3段階 |
+| `AR-ABS-02` | 時計/object参照だけ | time 46% / undecided 8% / names 46% の等分構造 |
+
+全14件にsemantic label、representative shot、source frame、derivative path、SHA256があります。14 hashesはすべてuniqueで、accidental duplicateは0です。19 canonical frame hashesもすべてuniqueです。物語上の反復は隠さず、brass moth、three HOLD motifs、time/ledger、opening tower returnを `callback` または `shared motif` と表示しています。
+
+### Browser / visual evidence
+
+- desktop 1440×1000: canvas 1088×611.125 CSS px、first-view controlsすべてvisible
+- narrow 390×844: canvas、inspector、controls、Beat jumps、overview rulerがfirst viewport内
+- horizontal overflow 0 / nested vertical scroll owner 0
+- focus outline 3px以上 / reduced-motion query true
+- console/page errors 0
+- Microsoft Edge via bundled Playwright / headless true / muted true
+- `<audio>` 0 / `<video>` 0 / server process 0
+- 19-shot contact sheetと、moth、memo、fading-name、equal-splitの主要frameを目視確認
+
+### Source / rights boundary
+
+integrated source fingerprintは `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb` のままです。stored reuse termsまたはpublic-domain statementが明示された21 identitiesだけをprivate proxyとしてrenderしました。ambiguousな `ref-b04-s03-closed-meeting-room` と `ref-b04-shared-general-ledger` はframe/MP4に0回で、deterministic local room、partition、fictional ledger、candidate structuresへ置換しました。
+
+全28 source imagesをstored SHA256と再照合し、missing 0 / mismatch 0 / modified 0 / download 0です。Readinessは19 shots / 14 requirements / 28 references / 36 aliases / 42 assignmentsを維持し、Owner decisionsは全件unselected、production selection 0、rights-cleared claim 0です。
+
+### Environment intrusion audit
+
+- global install 0
+- network media download 0
+- public deployment/upload 0
+- credentials / clipboard / database / provider configuration touch 0
+- audio output/generation 0
+- server startup 0
+- browserはlocal file URL、headless、mutedで、build/test終了時にclose
+- temporary outputはOS tempの `fff-private-previs-*` だけで、`finally` でexact pathを削除
+- predecessor rasterはread/hashのみでbytes不変
+
+### 可能な限り先の安全な目標
+
+1. `G1 — Supervising-AI experience review`: exact HTML/MP4を通し、rhythm、shot readability、transition comprehension、subtitle timing、misleading emphasisをshot/cue/time単位で評価する。
+2. `G2 — Bounded preview repair`: G1がmaterial defectを示した場合だけ、該当recipe/control/annotationを修正し、frame、thumbnail、contact sheet、MP4を同じlineageから再生成する。
+3. `G3 — Creator/private animatic acceptance`: 人間のcreatorが、この180秒経験がproduction planningに十分役立つかを判断する。production approvalではない。
+4. `G4A — Material strategy decision`: 14 requirementsのconstruction/replacement/proxy戦略を別gateで受理または修正する。
+5. `G4B — Voice calibration`: engine/voice/provider/credentialsを別承認し、6 narration envelopesを実測する。silent previewから自動で開かない。
+6. `G5 — Bounded material construction`: accepted requirement IDsだけにdeterministic originalsとreplacement candidatesを準備し、provenanceとOwner decisionを保存する。
+7. `G6 — No-publish assembly candidate`: material/voice前提と明示render authorityが揃った場合だけ、exact hashにbindingしたprivate candidateを作る。
+8. `G7 — Technical QA`: duration、sync、readability、audio levels、missing assets、identity/context risk、deterministic rebuildを検証し、repair対象を限定する。
+9. `G8 — Production selection / rights-owner decisions`: selection、attribution、license compatibility、replacement、identity handlingを別ownerが判断する。
+10. `G9 — Release / publication / final-story authority`: public upload、publication acceptance、production approval、database persistence、canonを独立gateのまま保つ。
+
+### Active residual work
+
+| Work | Purpose | Effect | Requirements | State | Owner | Next move |
+| --- | --- | --- | --- | --- | --- | --- |
+| Supervising-AI experience review | 実際の3分間の理解とtempoを判定 | exact repair evidenceまたはpreview acceptanceを得る | exact HTML/MP4、19 shots、timestamped observation | open next gate | supervising AI | shot/cue/time単位で一度review |
+| Bounded preview repair | evidenceのあるpreview defectだけ修正 | 共有frame lineageを一貫再生成 | named defect、same source chronology、no download | conditional | future Worker | G1がmaterial issueを示す場合だけ開始 |
+| Creator/private acceptance | production planning用途を確認 | material workへ進む価値を判断 | exact candidate、人間の通覧、rightsとの分離 | G1後pending | Product Owner / creator | concise observationを記録 |
+| Material strategy/construction | future production inputを準備 | proxyからowned/approved candidateへ進め得る | separate Owner decision、provenance | closed here | Product Owner + production worker | 別承認 |
+| Voice calibration | narration timingを実測 | audio timing evidenceを得る | provider/engine/voice/credential authority | closed / independent | voice owner | separate contract only |
+| Production/rights/release | 制作・利用・公開を判断 | external deliveryを開き得る | exact candidate、named owners、explicit approvals | closed | production/rights/release owners | previs成功から推定しない |
 
 ## Asset / Rights Readiness Packet 完了追補
 

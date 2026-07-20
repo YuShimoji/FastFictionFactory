@@ -1,5 +1,17 @@
 # Next Terminal Handoff
 
+## Active re-entry: Private Previsualization Timeline (2026-07-21 JST)
+
+Start at `fff-private-previsualization-timeline-001`. The repository now contains a playable, silent, local 180-second preview with exact 6-Beat / 19-shot chronology, 19 canonical frames, 14 corrected readiness thumbnails, a 19-shot contact sheet, and a 960×540 H.264 MP4. The integrated source remains immutable and production selection, rights clearance, voice, final render, and publication remain closed.
+
+```powershell
+git status --short --branch
+node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json
+Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+```
+
+Read in order: `AGENTS.md`, `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/supervisor-current-report.md`, `docs/review/private-previsualization-timeline.md`, then the result JSON. The next useful action is an experience review naming exact shot/cue/time evidence. Do not repeat source integration, re-download media, or treat private proxies as selected production assets.
+
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
 ## 監修AI向け Asset / Rights Readiness Packet 引き継ぎ（2026-07-20 JST）

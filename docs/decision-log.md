@@ -1,5 +1,15 @@
 # Decision Log
 
+## 2026-07-21 — Timeline-first private previsualization becomes the active artifact
+
+- Decision: Publish `fff-private-previsualization-timeline-001` as the active local/private playback surface over the immutable integrated visual source.
+- Evidence: exact 6 Beats / 19 shots / 180 seconds; 18/18 boundary checks; 6 narration segments; 20 subtitle cues; 19 unique canonical frames; 14 unique readiness thumbnails; silent 960×540 H.264 MP4; desktop/narrow/focus/keyboard/reduced-motion/overflow/console evidence.
+- Thumbnail policy: readiness thumbnails are annotated derivatives of canonical preview frames, never independently hand-picked reference images. `AR-PROP-02`, `AR-PROP-03`, `AR-ABS-01`, and `AR-ABS-02` receive explicit semantic mappings.
+- Rights policy: explicit stored reuse evidence permits private proxy use only. The two ambiguous-license references are excluded from render/MP4 and replaced by deterministic local compositions. This is not a rights-clearance decision.
+- Consequence: the three-minute rhythm and shot semantics are now directly reviewable. The readiness strategy/counts/Owner states remain preserved.
+- Next gate: supervising-AI/creator experience review against exact timestamps; only named defects may open a bounded preview repair.
+- Boundary: production selection, rights clearance, voice/provider work, final media, public release, production approval, and canon remain closed.
+
 ## 2026-07-20 — Whole-story composition passes and asset-readiness planning becomes active
 
 - Decision: Record the Product Owner observation「全編で大きな破綻はありません。」「素材準備と次工程へ進めてよいです。」as `OWNER_WHOLE_STORY_COMPOSITION_PASS`; no composition repair; authorize asset-preparation planning only.

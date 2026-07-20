@@ -1,5 +1,9 @@
 # Asset / Rights Readiness Packet
 
+## 2026-07-21 thumbnail-semantic correction
+
+The material strategy, counts, rights states, and Owner decisions are unchanged. The page now uses fourteen annotated derivatives of the private previsualization canonical frames instead of selecting the first mapped source reference as a representative image. All fourteen paths and semantic labels are explicit and unique. `AR-PROP-02` shows a brass moth, `AR-PROP-03` a written memo, `AR-ABS-01` three fading name/letter contours, and `AR-ABS-02` an equal time-versus-name split. Accidental duplicate requirement thumbnails are zero; production selection and rights-cleared claims remain zero.
+
 更新日: 2026-07-20 JST
 
 ## Outcome

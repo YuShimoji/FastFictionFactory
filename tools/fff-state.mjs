@@ -869,7 +869,7 @@ async function main() {
   ]);
   if (readinessPreservedValidationCommands.has(command)) {
     const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
-    if (rootManifest.value?.artifact_id === "fff-asset-rights-readiness-packet-001") {
+    if (["fff-asset-rights-readiness-packet-001", "fff-private-previsualization-timeline-001"].includes(rootManifest.value?.artifact_id)) {
       const { validateReadinessPreservedArtifact } = await import("./fff-asset-rights-readiness-packet.mjs");
       await validateReadinessPreservedArtifact({ command, inputPath, outputPath });
       return;
@@ -1671,6 +1671,12 @@ async function main() {
   if (command === "validate-asset-rights-readiness-packet" || command === "smoke-asset-rights-readiness-packet") {
     const { runAssetRightsReadinessPacketCommand } = await import("./fff-asset-rights-readiness-packet.mjs");
     await runAssetRightsReadinessPacketCommand({ command, inputPath, outputPath });
+    return;
+  }
+
+  if (command === "validate-private-previsualization-timeline" || command === "smoke-private-previsualization-timeline") {
+    const { runPrivatePrevisualizationTimelineCommand } = await import("./fff-private-previsualization-timeline.mjs");
+    await runPrivatePrevisualizationTimelineCommand({ command, inputPath, outputPath });
     return;
   }
 
@@ -22923,6 +22929,8 @@ Usage:
   node tools/fff-state.mjs smoke-integrated-visual-production-package <integrated-visual-production-package-result.json>
   node tools/fff-state.mjs validate-asset-rights-readiness-packet <asset-rights-readiness-packet-result.json>
   node tools/fff-state.mjs smoke-asset-rights-readiness-packet <asset-rights-readiness-packet-result.json>
+  node tools/fff-state.mjs validate-private-previsualization-timeline <private-previsualization-timeline-result.json>
+  node tools/fff-state.mjs smoke-private-previsualization-timeline <private-previsualization-timeline-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave2 <composition-expansion-wave2-result.json>
   node tools/fff-state.mjs smoke-composition-expansion-wave2 <composition-expansion-wave2-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave1 <composition-expansion-wave1-result.json>

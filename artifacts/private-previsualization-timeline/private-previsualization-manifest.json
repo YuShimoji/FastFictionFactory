@@ -1,0 +1,234 @@
+{
+  "schemaVersion": "fff.privatePrevisualizationManifest.v1",
+  "artifact_id": "fff-private-previsualization-timeline-001",
+  "generated_at": "2026-07-21T12:00:00+09:00",
+  "source_artifact_id": "fff-integrated-visual-production-package-001",
+  "source_fingerprint": "78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb",
+  "readiness_source_fingerprint_before": "b3fd1760800a705193be544364e0892299deb318fc77383a472cd3614b8eef5d",
+  "readiness_current_fingerprint": "2e4e470866e834340c4f1f29490861711a6f257760519755547e7d9b821225c3",
+  "payload_file_count": 41,
+  "file_count": 42,
+  "package_fingerprint_sha256": "7332fef5f9e1477a2bf6bd822bbbd00646ebc765eced2111c3d8ed56a58449cd",
+  "frame_count": 19,
+  "requirement_thumbnail_count": 14,
+  "contact_sheet_count": 1,
+  "mp4": {
+    "path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4",
+    "byte_size": 1668241,
+    "sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978",
+    "duration_seconds": 180,
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec_name": "h264",
+    "width": 960,
+    "height": 540,
+    "avg_frame_rate": "30/1",
+    "audio_stream_count": 0
+  },
+  "files": [
+    {
+      "relative_path": "README_PRIVATE_PREVIS.md",
+      "byte_size": 1305,
+      "sha256": "1bbbcb041f581fb4008bb5f865d2052adcd5a99dfa88047d5c9236778d36a033"
+    },
+    {
+      "relative_path": "build-private-previsualization.mjs",
+      "byte_size": 438,
+      "sha256": "81448daa8ca7c96a8eef3178deb1716b82495609366b1a062017cdb391fdf8e6"
+    },
+    {
+      "relative_path": "frames/shot-b01-01.jpg",
+      "byte_size": 173135,
+      "sha256": "a8b81d1177f3ac601851ca1cab042eefcc33f3e3593227f309ff0ad23818c8f4"
+    },
+    {
+      "relative_path": "frames/shot-b01-02.jpg",
+      "byte_size": 146439,
+      "sha256": "fd809f20daf2fb296c5d7499eb4fdd56017c62456ef1ac54d9ab106aa2ee5cde"
+    },
+    {
+      "relative_path": "frames/shot-b01-03.jpg",
+      "byte_size": 161728,
+      "sha256": "89ab50d51d6e9d96ac2f59478c336af9210fe3d3995f7b389abfff83dd292942"
+    },
+    {
+      "relative_path": "frames/shot-b02-01.jpg",
+      "byte_size": 214396,
+      "sha256": "1dd8dbf9967d597f1c9f30d37973d5f3eab7f05f344e7ab1a7a15383382a1768"
+    },
+    {
+      "relative_path": "frames/shot-b02-02.jpg",
+      "byte_size": 212130,
+      "sha256": "c1336f2a2ec2b1a9a43f6bffd20837a4983e654a44f162db3e11f70f738e5398"
+    },
+    {
+      "relative_path": "frames/shot-b02-03.jpg",
+      "byte_size": 167627,
+      "sha256": "eba535090d0956b331a99300356c6ccafb4fdae491bd7adcf52459527c7feb28"
+    },
+    {
+      "relative_path": "frames/shot-b03-01.jpg",
+      "byte_size": 151180,
+      "sha256": "1436c941a46eefa8e531290056d67049f5b07c8cfb32e778c9eccf8b7f959f2e"
+    },
+    {
+      "relative_path": "frames/shot-b03-02.jpg",
+      "byte_size": 104946,
+      "sha256": "6d78ed29bd84ad14804c482de911ee5be62a72fe6e6d22f330b2fbc652dcbfb8"
+    },
+    {
+      "relative_path": "frames/shot-b03-03.jpg",
+      "byte_size": 122345,
+      "sha256": "a0bbc8b81261c34b4d7d99a271bfdc9fa48fb45d34fe166c376eb220315d2a57"
+    },
+    {
+      "relative_path": "frames/shot-b04-01.jpg",
+      "byte_size": 63967,
+      "sha256": "357228d56b7276fdc71ba69fa4bf755707e18f64b58e370ae105cf2de06cea53"
+    },
+    {
+      "relative_path": "frames/shot-b04-02.jpg",
+      "byte_size": 102019,
+      "sha256": "26a317156cc606e3eebbb53ab72af1e102807f81c0baf9c24ec4431e9b7acb6c"
+    },
+    {
+      "relative_path": "frames/shot-b04-03.jpg",
+      "byte_size": 44296,
+      "sha256": "aa2b247ed080e7c63b81988d18ff0aafbf455dc1f1f4e7544e3a628b96ac68a9"
+    },
+    {
+      "relative_path": "frames/shot-b05-01.jpg",
+      "byte_size": 46499,
+      "sha256": "1cccb3416f0fdc16962291fc4aca59aabf73bbc14b7bd9628140120c1dced300"
+    },
+    {
+      "relative_path": "frames/shot-b05-02.jpg",
+      "byte_size": 114814,
+      "sha256": "145b65c041f70dfd696cecbb7479c90872e9c2152b2dd1a7e388dbf730dc68de"
+    },
+    {
+      "relative_path": "frames/shot-b05-03.jpg",
+      "byte_size": 81271,
+      "sha256": "c0d381d58288bc29a2579d1ff2af2939ea74ae34e2b67eb2890d6f728e8bf885"
+    },
+    {
+      "relative_path": "frames/shot-b05-04.jpg",
+      "byte_size": 57175,
+      "sha256": "7e91cdd4922d63ffbbc18e96cb708981148efc9cdb7a85fc340f5f00bd4e1f76"
+    },
+    {
+      "relative_path": "frames/shot-b06-01.jpg",
+      "byte_size": 144832,
+      "sha256": "f2c1d9e92479c8f68eeaaa015358f9e7d0d14346e6877c0a0ac2d4fe2a1dc696"
+    },
+    {
+      "relative_path": "frames/shot-b06-02.jpg",
+      "byte_size": 132107,
+      "sha256": "8db31be626f889e61a2c8758c3e817abee5994e783770fa5a5c88d548f34f978"
+    },
+    {
+      "relative_path": "frames/shot-b06-03.jpg",
+      "byte_size": 152039,
+      "sha256": "2dbf054989b70a377393eab8d43189939c68c7cee6bf3e5fe5069e922ec49f02"
+    },
+    {
+      "relative_path": "private-previsualization-contact-sheet.jpg",
+      "byte_size": 282476,
+      "sha256": "047d0bef6ca79ff4ef80f7fbf782f9900f34ce55d766b37ce1c0f9d5f25cecca"
+    },
+    {
+      "relative_path": "private-previsualization-timeline.html",
+      "byte_size": 121524,
+      "sha256": "f152ecfe35650eca87d5e56bcde8bc19d05f2a477773ea66d8ba14ab15dbe256"
+    },
+    {
+      "relative_path": "private-previsualization-timeline.json",
+      "byte_size": 105898,
+      "sha256": "1737053db9a5ee276d7f237fd22d739a7b48e4f36fad0df6c6ff0cb56f6e51f7"
+    },
+    {
+      "relative_path": "private-previsualization-timeline.mp4",
+      "byte_size": 1668241,
+      "sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-ABS-01.jpg",
+      "byte_size": 37522,
+      "sha256": "957385c3cf57ed05f3abb77fe4a9fe37b3007ebc438ad4bfe2c16b7646fe217c"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-ABS-02.jpg",
+      "byte_size": 46172,
+      "sha256": "9eac88df2c3758c4c0f9039fd5d5dbc78de9336670e2402c3e6a83a39612d1a4"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-AUDIO-01.jpg",
+      "byte_size": 53256,
+      "sha256": "3bf651d412a6b554e5f4c8c08e74ba0172a3a8dbc48fc90af63ec8af6887b678"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-CHAR-01.jpg",
+      "byte_size": 48815,
+      "sha256": "8eef730a427c16b253b90f7a046f83348049fa90c7db250ce583cb59d0c615e9"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-CHAR-02.jpg",
+      "byte_size": 30185,
+      "sha256": "ec8b3838457739d391fd6a99f6b7623d6249b3b1cf50fc0237fbed5fe8d44ab7"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-CHAR-03.jpg",
+      "byte_size": 28571,
+      "sha256": "28e43de843e0fdb2e34183b8c08a7c567e59a0d6e40eb1c6769767e0e1098fe8"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-DOC-01.jpg",
+      "byte_size": 42525,
+      "sha256": "0ee23e56252a09b7dd8d36f625a79b3025f05cf3a31eb5a2acaa997082819df6"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-DOC-02.jpg",
+      "byte_size": 34866,
+      "sha256": "a7b1284457342c099945dc40438d6c796a4bd87c510b7db651634dfcb7f01a80"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-ENV-01.jpg",
+      "byte_size": 53996,
+      "sha256": "eb0922b7ddea42e4ade4e8644be33514e15eb61a472f6a307ef55aa337483953"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-ENV-02.jpg",
+      "byte_size": 28586,
+      "sha256": "639dc6351860e4f10aac687d314a9d78d75fe8609034e9290888e3421858a7d9"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-PROP-01.jpg",
+      "byte_size": 53900,
+      "sha256": "2820fa27624693e4bd126c7eb7412dad1a8f30bc7b51957125f2447ec57a879b"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-PROP-02.jpg",
+      "byte_size": 42818,
+      "sha256": "d10eb19a49a348c8195732a0b0616f2c22b9720de95992b65ebbdbda1ab56626"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-PROP-03.jpg",
+      "byte_size": 66620,
+      "sha256": "5b96aa8276f4b572cda14ada904c7c5a9f6578caf945de556f0e111191e4b541"
+    },
+    {
+      "relative_path": "requirement-thumbnails/AR-TYPE-01.jpg",
+      "byte_size": 31891,
+      "sha256": "e2f3ca23e4e57bbaeb1ac60735c8025ff6bfe61beac47d871a1988ac9376879f"
+    },
+    {
+      "relative_path": "shot-timeline.csv",
+      "byte_size": 9832,
+      "sha256": "072130c721ccd30613ee0e55e6d45c0098fe249c110b35680a005fac9723295e"
+    },
+    {
+      "relative_path": "thumbnail-map.csv",
+      "byte_size": 11049,
+      "sha256": "22211f1a0cac7184e3c39f58577a2e068bdce7730849bcb80ba3ee8d43e8ef70"
+    }
+  ]
+}
