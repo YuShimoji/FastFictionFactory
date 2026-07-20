@@ -4,6 +4,7 @@
 
 - Active artifact: `fff-private-previsualization-timeline-001`
 - Lane/base: `PRIVATE_PREVISUALIZATION`; exact implementation base `1f0b798623aa7f11a26ab00ed9c4c881e6c7835c`
+- Product implementation checkpoint: `e5ae7a11af3430c0a410948d8f5dc218de513b19 Add private previsualization timeline`; the following handoff-only commit owns final `origin/master` parity
 - Accepted source: immutable `fff-integrated-visual-production-package-001`; fingerprint `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb`
 - Exact chronology: 6 Beats / 19 shots / 180 seconds / 00:00–03:00 / 0 gaps / 0 overlaps / 18 passing boundary transitions
 - Primary access: `artifacts/private-previsualization-timeline/private-previsualization-timeline.html`

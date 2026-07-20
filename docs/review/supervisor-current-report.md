@@ -2,6 +2,8 @@
 
 更新日: 2026-07-21 JST
 
+Git製品実装チェックポイント: `e5ae7a11af3430c0a410948d8f5dc218de513b19 Add private previsualization timeline`。このSHAは下記のplayable、MP4、canonical frames、readiness thumbnail修正、検証証跡を固定します。最終引継ぎcommitとremote parityは、このチェックポイントを記録した後続HEADが所有します。
+
 ## Private 180-second Previsualization 完了追補
 
 ### 結果と利用者価値
