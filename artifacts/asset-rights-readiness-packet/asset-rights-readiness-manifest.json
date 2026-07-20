@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "fff.assetRightsReadinessPacketManifest.v1",
+  "artifact_id": "fff-asset-rights-readiness-packet-001",
+  "generated_at": "2026-07-20T15:28:14+09:00",
+  "payload_file_count": 8,
+  "file_count": 9,
+  "package_fingerprint_sha256": "2465850068cce2360e456194466425d16cf341c4f97b674ca531d0d69b1a667b",
+  "copied_source_image_count": 0,
+  "newly_downloaded_asset_count": 0,
+  "package_raster_count": 0,
+  "files": [
+    {
+      "relative_path": "README_ASSET_RIGHTS_READINESS.md",
+      "byte_size": 747,
+      "sha256": "c08126717a4652ab00e15b7dbf624ff71775a33ed2df97dd7594ade865f3baaa"
+    },
+    {
+      "relative_path": "asset-requirement-plan.csv",
+      "byte_size": 14716,
+      "sha256": "853a41bf15270c3cd232c3a65676f5eb52eaecc95deee2b243c86a66fec91eec"
+    },
+    {
+      "relative_path": "asset-rights-readiness.html",
+      "byte_size": 39985,
+      "sha256": "69c4dca66244b5fd8e9d4488961df2d4a0902c31dc180b83a52353c6fc641a34"
+    },
+    {
+      "relative_path": "asset-rights-readiness.json",
+      "byte_size": 203524,
+      "sha256": "75b8d333d61d31bd80701bcf9c7ebade4f94d73bd9aa051ee60fafc6a334e33a"
+    },
+    {
+      "relative_path": "minimum-local-assembly-set.csv",
+      "byte_size": 2533,
+      "sha256": "986e50a5006c2fb69990c56adf18abd0400832f1708a324a5c3cf3f17d0eaadb"
+    },
+    {
+      "relative_path": "recommended-default-plan.md",
+      "byte_size": 1057,
+      "sha256": "6de27e8876b25a17f552218b43e7f62aa88837153f58f240a2872469ff0cb1a3"
+    },
+    {
+      "relative_path": "reference-evidence.csv",
+      "byte_size": 36584,
+      "sha256": "e41cdcfb2228a3f6505dc6d6409f089d272632ab0eb0c8829b05082b076b8c8a"
+    },
+    {
+      "relative_path": "shot-asset-coverage.csv",
+      "byte_size": 5087,
+      "sha256": "faf63d29ca2ef2c2dc57619aec8fabf79320b08f2da74eb41faacb9b58f4825d"
+    }
+  ]
+}

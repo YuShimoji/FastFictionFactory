@@ -1,5 +1,24 @@
 # Current Status Packet
 
+## Current Asset / Rights Readiness Packet Update
+
+- Active artifact: `fff-asset-rights-readiness-packet-001`
+- Lane/base: `ASSET_RIGHTS_READINESS`; exact base `eb0f31f7b6263a6e0a64749dfa2c14616382e469`
+- Source: accepted `fff-integrated-visual-production-package-001`; fingerprint `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb`
+- Owner review: `OWNER_WHOLE_STORY_COMPOSITION_PASS`;「全編で大きな破綻はありません。」「素材準備と次工程へ進めてよいです。」; composition repair false; planning authorized true
+- Exact scope: 19 shots / 14 requirements / 28 references / 36 aliases / 42 assignments / 7 asset classes
+- Primary access: `artifacts/asset-rights-readiness-packet/asset-rights-readiness.html`
+- Package/result/review: `artifacts/asset-rights-readiness-packet/`, `artifacts/asset-rights-readiness-packet-result.json`, `docs/review/asset-rights-readiness-packet.md`
+- Recommended dispositions: 9 deterministic originals / 3 replacement candidates / 1 Owner-may-consider local proxy / 1 reference-only future lane
+- Exception requirement IDs: `AR-PROP-02`; default-plan coverage 14/14 requirements and 19/19 shots
+- Minimum set: 14 requirement rows / 19-shot coverage / no filename selection / Owner decisions all unselected
+- Evidence: 28 complete stored metadata records; live source 20 confirmed / 8 unavailable; evidence gaps 0; identity/sensitive-risk identities 13
+- Browser: 900×1200 Dark and 1280×900 Light screenshots; 720px narrow clean; title contract, Auto default, visible focus, print light, no nested/horizontal overflow all passed
+- Integrity: 13 protected directories and 76 predecessor result files unchanged; 49/49 negative probes fail closed with no mutation
+- Read-only validation: `node tools/fff-state.mjs validate-asset-rights-readiness-packet artifacts/asset-rights-readiness-packet-result.json`
+- Next decision: `owner_asset_plan_decision`, compressed to A default / B exception IDs / C strategy reconstruction
+- Closed gates: production asset selection, rights decision, new media, material construction, engine/voice/provider, credentials, generation, render, upload/publication, database persistence, production approval, final story authority
+
 ## Current Integrated Visual Production Package Update
 
 - Active artifact: `fff-integrated-visual-production-package-001`
@@ -13,7 +32,7 @@
 - Candidate state: Wave 2 Toma/moth/Council/three-subject/time-name groups and Beat 4's two hypotheses retain exact equal balance; winner cue count 0
 - Browser: 900×1200 Dark title 34px/1 line, 1280×900 Light title 38px/1 line, 720px narrow clean; no horizontal overflow or nested scroll; Auto default, visible focus, print light
 - Integrity: 12 protected directories unchanged by file count, byte size, per-file SHA256, and aggregate SHA256; 56/56 negative probes fail closed without mutation
-- Human policy: `integration_human_review=none`; `next_human_review=owner_whole_story_composition_review`; `per_beat_review=discontinued`; Product Owner formal reviewer; whole-story review not yet performed
+- Human policy: Product Owner recorded `OWNER_WHOLE_STORY_COMPOSITION_PASS`; `per_beat_review=discontinued`; composition repair false; active successor is the separate Asset / Rights Readiness Packet
 - Read-only validation: `node tools/fff-state.mjs validate-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json`
 - Closed gates: production selection, rights clearance, provider/API, credentials, image/audio/video generation, engine/voice choice, render, upload/publication, database persistence, production approval, final canon, and external reproducibility
 

@@ -856,6 +856,26 @@ async function main() {
     fail("Missing input JSON path or fixture directory.");
   }
 
+  const readinessPreservedValidationCommands = new Set([
+    "validate-integrated-visual-production-package",
+    "validate-production-execution-pack",
+    "validate-content-production-blueprint",
+    "validate-composition-expansion-wave1",
+    "validate-beat2-composition-board",
+    "validate-beat2-visual-treatment-pilot",
+    "validate-beat4-composition-counterexample",
+    "validate-composition-expansion-wave2",
+    "validate-production-storyboard-brief"
+  ]);
+  if (readinessPreservedValidationCommands.has(command)) {
+    const rootManifest = await readJsonFileSnapshot("artifacts/artifact-manifest.json");
+    if (rootManifest.value?.artifact_id === "fff-asset-rights-readiness-packet-001") {
+      const { validateReadinessPreservedArtifact } = await import("./fff-asset-rights-readiness-packet.mjs");
+      await validateReadinessPreservedArtifact({ command, inputPath, outputPath });
+      return;
+    }
+  }
+
   if (command === "validate-extraction-fixtures" || command === "smoke-extraction-fixtures") {
     const matrix = await validateExtractionFixtures(inputPath);
     const target = outputPath || DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT;
@@ -1645,6 +1665,12 @@ async function main() {
     }
     const { runCompositionExpansionWave2Command } = await import("./fff-composition-expansion-wave2.mjs");
     await runCompositionExpansionWave2Command({ command, inputPath, outputPath });
+    return;
+  }
+
+  if (command === "validate-asset-rights-readiness-packet" || command === "smoke-asset-rights-readiness-packet") {
+    const { runAssetRightsReadinessPacketCommand } = await import("./fff-asset-rights-readiness-packet.mjs");
+    await runAssetRightsReadinessPacketCommand({ command, inputPath, outputPath });
     return;
   }
 
@@ -22895,6 +22921,8 @@ Usage:
   node tools/fff-state.mjs smoke-review-workbench-component-contract <review-workbench-component-contract-result.json> [output.json]
   node tools/fff-state.mjs validate-integrated-visual-production-package <integrated-visual-production-package-result.json>
   node tools/fff-state.mjs smoke-integrated-visual-production-package <integrated-visual-production-package-result.json>
+  node tools/fff-state.mjs validate-asset-rights-readiness-packet <asset-rights-readiness-packet-result.json>
+  node tools/fff-state.mjs smoke-asset-rights-readiness-packet <asset-rights-readiness-packet-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave2 <composition-expansion-wave2-result.json>
   node tools/fff-state.mjs smoke-composition-expansion-wave2 <composition-expansion-wave2-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave1 <composition-expansion-wave1-result.json>

@@ -1,12 +1,22 @@
 # Project Context
 
+## Active Asset / Rights Readiness Axis
+
+The active artifact is `fff-asset-rights-readiness-packet-001`, lane `ASSET_RIGHTS_READINESS`. It starts from accepted integrated package fingerprint `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb` and the exact 14 Production Execution asset requirements. Product Owner review is recorded as `OWNER_WHOLE_STORY_COMPOSITION_PASS` with observations「全編で大きな破綻はありません。」「素材準備と次工程へ進めてよいです。」Composition repair is not required; asset-preparation planning is authorized; per-Beat review remains discontinued.
+
+The packet cross-maps 19/19 shots, 14/14 requirements, 28 canonical references, 36 aliases, and 42 assignments. Recommended dispositions are nine deterministic originals, three replacement-source candidates, one Owner-may-consider local proxy, and one reference-only future lane. The only compressed exception requirement is `AR-PROP-02`. All Owner decisions remain `unselected`; every publication compatibility field remains `unreviewed`.
+
+Primary access is `artifacts/asset-rights-readiness-packet/asset-rights-readiness.html`. The read-only gate is `node tools/fff-state.mjs validate-asset-rights-readiness-packet artifacts/asset-rights-readiness-packet-result.json`. Stored evidence is complete for 28 references; bounded acquisition-time source readback is 20 confirmed / 8 unavailable. The unavailable state is not converted into a rights conclusion. All 13 predecessor packages and 76 historical result files are fingerprint-protected.
+
+The next human action is one `owner_asset_plan_decision`: A accepts the default plan, B names exception requirement IDs only, or C requests material-strategy reconstruction. Production media selection, rights decision, construction, voice calibration, render, publication, database persistence, and final story authority remain closed and need separate authority.
+
 ## Active Integrated Visual Production Package Axis
 
 The active artifact is `fff-integrated-visual-production-package-001`, the standalone local/reference-only H0 integration of the exact six-Beat, nineteen-shot, 180-second visual sequence. It binds Beat 1/3 to Wave 1, Beat 2 to the Composition Board, Beat 4 to the Counterexample, and Beat 5/6 to Wave 2. The canonical union contains twenty-eight unique SHA256 reference identities, thirty-six retained source aliases, forty-two shot/reference assignments, nineteen chronological thumbnails, nineteen full shot strips, and five cross-Beat lineages. No predecessor raster is copied into the integration directory.
 
 The active lane is `VISUAL_INTEGRATION`. Production Execution Pack chronology and Production Blueprint secondary metadata are transcribed without changing source shot IDs, order, timing, narration, subtitles, concrete composition classes, crops, focal/depth fields, truth boundaries, rights state, asset state, or canon state. Wave 2 equal-candidate structures and Beat 4's equal hypothesis split remain visually unselected.
 
-Integration human review is `none`; per-Beat review is `discontinued`; the Product Owner is the formal reviewer; the next human action is `owner_whole_story_composition_review`. That whole-story review has not been performed. Production selection, rights clearance, generation, voice/engine choice, render, upload/publication, database persistence, production approval, final canon, and external reproducibility remain closed.
+Integration human review is now recorded as `OWNER_WHOLE_STORY_COMPOSITION_PASS`; per-Beat review is `discontinued`; the Product Owner is the formal reviewer. The active successor above converts that accepted direction into an asset-readiness plan without changing this protected integration package. Production selection, rights decision, generation, voice/engine choice, render, upload/publication, database persistence, production approval, final canon, and external reproducibility remain closed.
 
 Primary access is `artifacts/integrated-visual-production-package/integrated-visual-production-package.html`. The read-only gate is `node tools/fff-state.mjs validate-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json`. The result records all twelve protected predecessor inventories before/after, fifty-six non-mutating fail-closed probes, exact reference/path/hash evidence, browser measurements at 900×1200 Dark and 1280×900 Light, 720px layout, focus, themes, and print-light behavior.
 
@@ -26,25 +36,26 @@ Owner Review records Beat 4 as `OWNER_REVIEW_PASS` with the observation「大き
 
 ## Current Axis
 
-Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint exposes the complete 180-second story as one exact 19-shot composition sequence without changing shot IDs, timing, narration, subtitles, truth boundaries, asset states, rights states, or canon state. The standalone integrated page makes every Beat, source composition, reference recurrence, callback lineage, candidate balance, and truth-safe stop inspectable in chronological order.
+Fast Fiction Factory is a local-first fiction production workbench. The current checkpoint starts from the Product Owner-accepted 180-second / 19-shot composition and makes the next material-strategy decision reviewable. It does not change shot IDs, timing, narration, subtitles, compositions, truth boundaries, source asset states, or story authority.
 
 ## Current Lane
 
-Keep the Storyboard Brief as the complete planning source and the Production Execution Pack as chronology authority. Wave 1, Wave 2, Beat 2 Board, Beat 4 Counterexample, Visual Treatment, and all editorial/production predecessors remain immutable evidence. The active lane is `VISUAL_INTEGRATION`; its H0 machine gate is complete and stops at `owner_whole_story_composition_review`. Production selection, rights clearance, image generation, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, final canon, and external reproducibility remain closed.
+Keep the Integrated Visual Production Package as accepted composition authority, the Storyboard Brief as the complete planning source, and the Production Execution Pack as chronology/requirement authority. All composition, visual, editorial, and production predecessors remain immutable evidence. The active lane is `ASSET_RIGHTS_READINESS`; its H0 machine gate is complete and stops at `owner_asset_plan_decision`. Production selection, rights decision, material construction, image generation, engine, voice, provider/API, credentials, render, upload, publication, database persistence, production approval, final canon, and external reproducibility remain closed.
 
 ## Current Slice
 
-The accepted bounded slice is Integrated Visual Production Package v0:
+The accepted bounded slice is Asset / Rights Readiness Packet v0:
 
-- Standalone entry: `artifacts/integrated-visual-production-package/integrated-visual-production-package.html`
-- Package: nine files—README, standalone HTML, canonical JSON, four audit CSVs, nineteen-cell contact sheet, and integrity manifest; no predecessor image copies
-- Reading order: full chronology overview → six Beat sections → nineteen shot strips → five motif/callback lineages → visually secondary source/license index
-- Shot contract: exactly 19 sequential source shots across all six Beats; each retains owning source ID/hash, exact timing, main/supporting visuals, composition fields, source snapshot, and truth boundary
-- Theme/access contract: Auto default, explicit Light/Dark, visible keyboard focus, one document scroll, no horizontal overflow, no nested scroll, responsive narrow layout, and print-forced light
-- Reference/rights contract: 28 unique local SHA256 identities, 36 aliases, and 42 assignments; every entry remains reference-only, unselected, not rights-cleared, and not AI-generated
-- Review evidence: `docs/review/integrated-visual-production-package.md`, `artifacts/integrated-visual-production-package-result.json`, and the two required viewport screenshots
-- Validation contract: `validate-integrated-visual-production-package` is strictly read-only; smoke regenerates integration-owned files only and preserves all twelve predecessor directories
-- Human boundary: no integration review was performed. The next and only open human gate is one Product Owner whole-story composition review.
+- Standalone entry: `artifacts/asset-rights-readiness-packet/asset-rights-readiness.html`
+- Package: nine text/HTML/JSON/CSV/Markdown files; no raster in the package
+- Reading order: 素材準備 → 推奨初期計画 → 素材分類 → 置換・新規作成 → 権利証拠 → closed detailed evidence
+- Mapping contract: exactly 19 shots, 14 requirements, 28 canonical references, 36 aliases, and 42 assignments
+- Separation contract: creative fit, reference coverage, local proxy readiness, provenance, live readback, license evidence, publication compatibility, suitability, risk, disposition, and Owner decision stay independent
+- Theme/access contract: Auto default, explicit Light/Dark, visible keyboard focus, one document scroll, no horizontal overflow, no nested scroll, responsive 720px layout, and print-forced light
+- Integrity contract: no copied/downloaded/hotlinked media; all 13 predecessor directories and 76 historical results fingerprint-protected
+- Review evidence: `docs/review/asset-rights-readiness-packet.md`, `artifacts/asset-rights-readiness-packet-result.json`, and the two required viewport screenshots
+- Validation contract: `validate-asset-rights-readiness-packet` is strictly read-only; smoke regenerates packet-owned text artifacts only and performs no live source check
+- Human boundary: all material decisions remain unselected. The next and only open human gate is one compressed Owner asset-plan decision.
 
 Preserved Beat 2 Visual Treatment Pilot source:
 

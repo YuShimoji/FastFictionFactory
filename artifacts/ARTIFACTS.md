@@ -1,5 +1,20 @@
 # Artifacts
 
+## fff-asset-rights-readiness-packet-001
+
+- Title: Fast Fiction Factory Asset / Rights Readiness Packet
+- Purpose: Convert the Product Owner-accepted 19-shot composition into one requirement-level material plan while separating creative fit, stored provenance, live source readback, license evidence, future suitability, risk, and Owner decision.
+- Primary file: `artifacts/asset-rights-readiness-packet/asset-rights-readiness.html`
+- Package directory: `artifacts/asset-rights-readiness-packet/` (9 files; no raster)
+- Review doc/result: `docs/review/asset-rights-readiness-packet.md`, `artifacts/asset-rights-readiness-packet-result.json`
+- Visual evidence: `artifacts/review-screens/asset-rights-readiness-packet-900x1200-dark.png`, `artifacts/review-screens/asset-rights-readiness-packet-1280x900-light.png`
+- Scope: 19 shots / 14 requirements / 28 canonical references / 36 aliases / 42 assignments / 7 asset classes.
+- Recommended plan: 9 deterministic originals / 3 replacement candidates / 1 Owner-may-consider local proxy / 1 reference-only future lane; exception `AR-PROP-02`.
+- Evidence: 28 complete stored metadata records; 20 confirmed / 8 unavailable bounded source readbacks; unavailable is not a rights conclusion.
+- Read-only validation: `node tools/fff-state.mjs validate-asset-rights-readiness-packet artifacts/asset-rights-readiness-packet-result.json`
+- Intentional regeneration: `node tools/fff-state.mjs smoke-asset-rights-readiness-packet artifacts/asset-rights-readiness-packet-result.json`; no live source checks or screenshot capture.
+- State: H0 green; Owner material decisions unselected; production selection, rights decision, construction, generation, render, publication, database, and final story authority remain closed.
+
 ## fff-integrated-visual-production-package-001
 
 - Title: Fast Fiction Factory Integrated Visual Production Package

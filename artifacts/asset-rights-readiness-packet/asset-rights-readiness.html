@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="ja" data-theme="auto"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>素材準備</title>
+<style>
+:root{color-scheme:light dark;--bg:#f3f1ec;--panel:#fff;--text:#1a2528;--muted:#607074;--line:#d7d8d3;--accent:#176d68;--accent-soft:#dff0ed;--focus:#db6d2e;--shadow:0 8px 24px rgba(28,43,45,.08)}
+:root[data-resolved-theme="dark"]{--bg:#101719;--panel:#182225;--text:#edf3f1;--muted:#aebbb8;--line:#344245;--accent:#79d4ca;--accent-soft:#203b39;--focus:#ffad70;--shadow:none}
+*{box-sizing:border-box}html,body{margin:0;min-width:0;overflow-x:hidden}body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif;line-height:1.65}a{color:var(--accent);overflow-wrap:anywhere}button,summary{font:inherit}button:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--focus);outline-offset:3px}.page{width:min(1120px,calc(100% - 32px));margin:0 auto;padding:22px 0 72px}.theme-control{display:flex;justify-content:flex-end;gap:6px;margin-bottom:16px}.theme-control button{min-height:44px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:var(--panel);color:var(--text);cursor:pointer}.theme-control button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}.hero,.panel,.asset-group,.evidence-item,details{background:var(--panel);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}.hero{padding:28px clamp(20px,4vw,46px);display:grid;grid-template-columns:1fr auto;align-items:end;gap:24px}.eyebrow{margin:0 0 6px;color:var(--accent);font-weight:760;letter-spacing:.08em}.hero h1{margin:0;font-size:clamp(34px,4vw,40px);line-height:1.12;max-width:12ch}.hero .secondary{margin:10px 0 0;color:var(--muted);font-size:15px}.hero-status{align-self:start;padding:9px 14px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:760;white-space:nowrap}main>section,.evidence-section{margin-top:22px}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:0 4px 10px}.section-heading h2{margin:0;font-size:clamp(23px,3vw,30px);line-height:1.25}.section-heading p{margin:0;color:var(--muted);font-size:14px}.panel{padding:22px}.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.metric{padding:14px;border:1px solid var(--line);border-radius:14px}.metric strong{display:block;font-size:25px;line-height:1.1}.metric span{font-size:13px;color:var(--muted)}.plan-copy{margin:18px 0 0;max-width:78ch}.decision{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}.decision div{padding:14px;border-radius:12px;background:var(--accent-soft)}.decision strong{display:block;color:var(--accent)}.asset-grid{display:grid;gap:14px}.asset-group{padding:18px}.asset-group h3{margin:0 0 12px;font-size:19px}.requirement-row{display:grid;grid-template-columns:132px minmax(0,1fr);gap:16px;padding:14px 0;border-top:1px solid var(--line)}.requirement-row:first-of-type{border-top:0;padding-top:0}.thumb{position:relative;min-width:0}.thumb img,.no-thumb{display:block;width:132px;height:78px;object-fit:cover;border-radius:10px;background:var(--bg);border:1px solid var(--line)}.thumb span{display:block;margin-top:4px;color:var(--muted);font-size:11px}.no-thumb{display:grid;place-items:center;font-size:24px}.row-top{display:flex;align-items:center;justify-content:space-between;gap:12px}.status-pill{padding:4px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-size:12px;white-space:nowrap}.requirement-copy p{margin:7px 0}.meta{font-size:12px;color:var(--muted)}.replace-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.replace-grid article{padding:16px;border:1px solid var(--line);border-radius:14px}.replace-grid h3{margin:0 0 8px;font-size:16px}.replace-grid p{margin:0;color:var(--muted)}.notice{border-left:5px solid var(--accent);padding-left:15px}.evidence-summary{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.evidence-summary span{padding:6px 10px;border:1px solid var(--line);border-radius:999px}details{margin-top:22px}summary{min-height:52px;display:flex;align-items:center;padding:14px 20px;cursor:pointer;font-weight:760;list-style:none}summary::-webkit-details-marker{display:none}.details-body{padding:0 18px 20px;display:grid;gap:10px}.evidence-item{padding:14px;box-shadow:none}.evidence-item h3{margin:0 0 8px;font-size:15px;overflow-wrap:anywhere}.evidence-item dl{margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 16px}.evidence-item dl div{min-width:0}.evidence-item dt{font-size:11px;color:var(--muted)}.evidence-item dd{margin:0;font-size:12px;overflow-wrap:anywhere}.evidence-item code{font-size:10px}.footnote{margin:18px 4px 0;color:var(--muted);font-size:12px}
+@media(max-width:820px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.decision,.replace-grid{grid-template-columns:1fr}.hero{grid-template-columns:1fr}.hero-status{justify-self:start}.evidence-item dl{grid-template-columns:1fr}}
+@media(max-width:560px){.page{width:min(100% - 20px,1120px);padding-top:12px}.theme-control{justify-content:flex-start}.hero{padding:22px 18px}.hero h1{font-size:30px}.metric-grid{grid-template-columns:1fr 1fr}.requirement-row{grid-template-columns:92px minmax(0,1fr);gap:12px}.thumb img,.no-thumb{width:92px;height:62px}.row-top{align-items:flex-start;flex-direction:column;gap:5px}.status-pill{white-space:normal}.panel,.asset-group{padding:15px}}
+@media print{:root,:root[data-resolved-theme="dark"]{color-scheme:light;--bg:#fff;--panel:#fff;--text:#111;--muted:#444;--line:#bbb;--accent:#155e59;--accent-soft:#eef7f5;--shadow:none}.theme-control{display:none}.page{width:100%;padding:0}.hero,.panel,.asset-group,.requirement-row,.replace-grid article,.evidence-item{break-inside:avoid}details{display:block}details>.details-body{display:grid}summary{display:none}a{color:#111;text-decoration:none}}
+</style></head><body><div class="page">
+<div class="theme-control" role="group" aria-label="Theme"><button type="button" data-theme-choice="light" aria-pressed="false">Light</button><button type="button" data-theme-choice="dark" aria-pressed="false">Dark</button><button type="button" data-theme-choice="auto" aria-pressed="true">Auto</button></div>
+<header class="hero"><div><p class="eyebrow">素材準備</p><h1>素材準備</h1><p class="secondary">19 shots / 14 requirements / 28 references</p></div><div class="hero-status">推奨計画</div></header>
+<main>
+<section aria-labelledby="recommended"><div class="section-heading"><h2 id="recommended">推奨初期計画</h2><p>Owner判断は未選択</p></div><div class="panel"><div class="metric-grid"><div class="metric"><strong>9</strong><span>決定的に新規作成</span></div><div class="metric"><strong>3</strong><span>置換候補</span></div><div class="metric"><strong>1</strong><span>proxy検討</span></div><div class="metric"><strong>1</strong><span>参照のみ</span></div></div><p class="plan-copy">初回の非公開組立てでは、架空文書・比較図・抽象図・文字要素を決定的に作成し、実在施設・人物・実記録を含む参照は置換候補へ回す。真鍮の蛾だけをOwner検討用ローカルproxy候補とし、音は将来laneに残す。</p><p class="plan-copy"><strong>最小セット:</strong> 14 requirementsで19 shotsを覆います。例外候補は <code>AR-PROP-02</code>、未到達のsource確認は 8 件です。</p><div class="decision"><div><strong>A</strong>推奨計画を採用</div><div><strong>B</strong>例外requirement IDだけ指定</div><div><strong>C</strong>material strategyを再構成</div></div></div></section>
+<section aria-labelledby="classification"><div class="section-heading"><h2 id="classification">素材分類</h2><p>7 classes · 1 row / requirement</p></div><div class="asset-grid"><section class="asset-group" aria-labelledby="group-environment">
+    <h3 id="group-environment">環境</h3>
+    <article class="requirement-row">
+        <div class="thumb"><img src="../composition-expansion-wave1/composition-assets/ref-w1-b01-s01-kreiensen-station.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-ENV-01</strong><span class="status-pill">置換候補を準備</span></div><p>鐘のない天文台と空の鐘枠を、遠景・内部寄り・終幕回帰で再利用できる汎用セット。</p><div class="meta">4 shots · 6 references · Owner判断 未選択</div></div>
+      </article>
+<article class="requirement-row">
+        <div class="thumb"><img src="../beat4-composition-counterexample/composition-assets/ref-b04-s01-conference-backs.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-ENV-02</strong><span class="status-pill">置換候補を準備</span></div><p>半透明仕切りを含む中立的な制度空間。評議会場・台帳の影・制度候補面へ再利用する。</p><div class="meta">3 shots · 5 references · Owner判断 未選択</div></div>
+      </article>
+  </section>
+<section class="asset-group" aria-labelledby="group-character_silhouette">
+    <h3 id="group-character_silhouette">人物シルエット</h3>
+    <article class="requirement-row">
+        <div class="thumb"><img src="../beat2-composition-board/composition-assets/ref-b02-s01-precision-handwork.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-CHAR-01</strong><span class="status-pill">置換候補を準備</span></div><p>人物を特定しない手元insert。時計修理と台帳を開く動作で共有する。</p><div class="meta">2 shots · 4 references · Owner判断 未選択</div></div>
+      </article>
+<article class="requirement-row">
+        <div class="thumb"><img src="../beat4-composition-counterexample/composition-assets/ref-b04-s01-conference-backs.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-CHAR-02</strong><span class="status-pill">決定的に新規作成</span></div><p>匿名の評議会構成員を示す中立的なシルエット。</p><div class="meta">1 shots · 2 references · Owner判断 未選択</div></div>
+      </article>
+<article class="requirement-row">
+        <div class="thumb"><img src="../composition-expansion-wave2/reference-assets/ref-w2-b05-s01-horizon-silhouette.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-CHAR-03</strong><span class="status-pill">決定的に新規作成</span></div><p>トーマの複数の運命候補を保持する未確定シルエット。</p><div class="meta">1 shots · 2 references · Owner判断 未選択</div></div>
+      </article>
+  </section>
+<section class="asset-group" aria-labelledby="group-prop">
+    <h3 id="group-prop">小道具</h3>
+    <article class="requirement-row">
+        <div class="thumb"><img src="../beat2-composition-board/composition-assets/ref-b02-s01-precision-handwork.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-PROP-01</strong><span class="status-pill">決定的に新規作成</span></div><p>時計修理台と9:17の時計面を同じ造形系で使えるモジュール。</p><div class="meta">2 shots · 5 references · Owner判断 未選択</div></div>
+      </article>
+<article class="requirement-row">
+        <div class="thumb"><img src="../beat2-composition-board/composition-assets/ref-b02-s02-aged-handwritten-letter.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-PROP-02</strong><span class="status-pill">Owner検討用proxy</span></div><p>静止した真鍮の蛾。手掛かり、時計面、機能候補の三用途で再利用する。</p><div class="meta">3 shots · 5 references · Owner判断 未選択</div></div>
+      </article>
+<article class="requirement-row">
+        <div class="thumb"><img src="../beat2-composition-board/composition-assets/ref-b02-s02-aged-handwritten-letter.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-PROP-03</strong><span class="status-pill">決定的に新規作成</span></div><p>トーマが残したとされる汎用メモ。</p><div class="meta">1 shots · 2 references · Owner判断 未選択</div></div>
+      </article>
+  </section>
+<section class="asset-group" aria-labelledby="group-document_graphic">
+    <h3 id="group-document_graphic">文書図版</h3>
+    <article class="requirement-row">
+        <div class="thumb"><img src="../composition-expansion-wave1/composition-assets/ref-w1-b03-s01-page-turning.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-DOC-01</strong><span class="status-pill">決定的に新規作成</span></div><p>架空の台帳、名前欄、『分』欄、未記入欄を持つ再利用可能な文書variant群。</p><div class="meta">4 shots · 7 references · Owner判断 未選択</div></div>
+      </article>
+<article class="requirement-row">
+        <div class="thumb"><img src="../beat4-composition-counterexample/composition-assets/ref-b04-s02-card-catalogue.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-DOC-02</strong><span class="status-pill">決定的に新規作成</span></div><p>仮説、運命、機能、動機、保留を同じ重みで並べる図版システム。</p><div class="meta">5 shots · 8 references · Owner判断 未選択</div></div>
+      </article>
+  </section>
+<section class="asset-group" aria-labelledby="group-abstract_graphic">
+    <h3 id="group-abstract_graphic">抽象図版</h3>
+    <article class="requirement-row">
+        <div class="thumb"><img src="../composition-expansion-wave1/composition-assets/ref-w1-b03-s03-old-paper.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-ABS-01</strong><span class="status-pill">決定的に新規作成</span></div><p>名前の輪郭が薄れる感覚を示す抽象モーショングラフィック。</p><div class="meta">1 shots · 2 references · Owner判断 未選択</div></div>
+      </article>
+<article class="requirement-row">
+        <div class="thumb"><img src="../beat2-composition-board/composition-assets/ref-b02-s03-vintage-watch-0915.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-ABS-02</strong><span class="status-pill">決定的に新規作成</span></div><p>時間と名前を同じ重みで並べ、中央を未決定のまま空ける分割図版。</p><div class="meta">1 shots · 2 references · Owner判断 未選択</div></div>
+      </article>
+  </section>
+<section class="asset-group" aria-labelledby="group-typography">
+    <h3 id="group-typography">文字</h3>
+    <article class="requirement-row">
+        <div class="thumb"><img src="../composition-expansion-wave1/composition-assets/ref-w1-b01-s03-belfry-interior-art.jpg" alt="" loading="lazy"><span>構図参照</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-TYPE-01</strong><span class="status-pill">決定的に新規作成</span></div><p>字幕と短いlabelを統一する日本語firstの文字システム。font自体は未選定。</p><div class="meta">7 shots · 13 references · Owner判断 未選択</div></div>
+      </article>
+  </section>
+<section class="asset-group" aria-labelledby="group-audio_cue">
+    <h3 id="group-audio_cue">音cue</h3>
+    <article class="requirement-row">
+        <div class="thumb"><div class="no-thumb" aria-hidden="true">—</div><span>構図参照なし</span></div>
+        <div class="requirement-copy"><div class="row-top"><strong>AR-AUDIO-01</strong><span class="status-pill">参照のみ保持</span></div><p>六幕それぞれの音設計位置を示すcue placeholder。音声fileや素材は含めない。</p><div class="meta">19 shots · 28 references · Owner判断 未選択</div></div>
+      </article>
+  </section></div></section>
+<section aria-labelledby="replace"><div class="section-heading"><h2 id="replace">置換・新規作成</h2><p>非公開の初回組立て向け</p></div><div class="panel replace-grid"><article><h3>決定的に新規作成</h3><p>架空台帳、候補比較、抽象図、文字、匿名シルエットを同じ規則から再現できる形で準備します。</p></article><article><h3>置換候補</h3><p>実在施設、人物、実記録に依存する環境と手元は、新規source候補または中立placeholderへ分離します。</p></article><article><h3>identity / sensitive</h3><p>人物、実在施設、実記録、商標、文脈誤認のriskを個別記録し、制作候補の判断前に再確認します。</p></article></div></section>
+<section aria-labelledby="rights"><div class="section-heading"><h2 id="rights">権利証拠</h2><p>証拠と判断を分離</p></div><div class="panel"><p class="notice"><strong>権利判断は未実施</strong></p><p>28件はcreator、source、license、local path、hash、取得日を保存しています。通常のreadbackではsourceページを再取得しません。</p><div class="evidence-summary"><span>stored metadata 28</span><span>source confirmed 20</span><span>source unavailable 8</span><span>license page confirmed 28</span><span>publication 未確認 14</span></div></div></section>
+<details><summary>詳細証拠 — 28 reference records</summary><div class="details-body"><article class="evidence-item">
+    <h3>ref-b02-s01-precision-handwork</h3>
+    <dl><div><dt>Creator</dt><dd>giridibyaranjan</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Watchmaking_skills.jpg">Watchmaking skills.jpg</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat2-composition-board/composition-assets/ref-b02-s01-precision-handwork.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>42e1d3963eeab95679858889f85c4b60e348efaaa36ef4ca1c6fd103768b4a33</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b02-s01-watch-repair-workbench</h3>
+    <dl><div><dt>Creator</dt><dd>SerChevalerie</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Traditional_watch_repairer_at_work_in_Goa.jpg">Traditional watch repairer at work in Goa.jpg</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat2-composition-board/composition-assets/ref-b02-s01-watch-repair-workbench.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>207933084e53ee608c9d4f29de795ab2915f3d4cddc4612d99b1db452cf3e258</code></dd></div><div><dt>Live check</dt><dd>source unavailable / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b02-s02-aged-handwritten-letter</h3>
+    <dl><div><dt>Creator</dt><dd>Lainey Powell</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Old_Letter.jpg">Old Letter.jpg</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by/2.0/">CC BY 2.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat2-composition-board/composition-assets/ref-b02-s02-aged-handwritten-letter.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>6b98a5fa94c40acac31e266decd75d9ae31f3b7cf5a59802bcf7408abbd7671b</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b02-s02-metal-butterfly-brooch</h3>
+    <dl><div><dt>Creator</dt><dd>Jane023 (photographer/uploader; own work)</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Butterfly_brooch.jpg">Butterfly brooch.jpg</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat2-composition-board/composition-assets/ref-b02-s02-metal-butterfly-brooch.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>ac4df2e88ff0834f6a6695b3fa72737d75e5dbec78a177c9056c3b8a0e3376b9</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b02-s03-brass-clock-dial</h3>
+    <dl><div><dt>Creator</dt><dd>Brooke Campbell / bcampbell</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Antique_clock_dial_(Unsplash).jpg">Antique clock dial (Unsplash).jpg</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat2-composition-board/composition-assets/ref-b02-s03-brass-clock-dial.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>acc9849b02b769616e7218aba0d2740cabe6030ee1e7178f9d012bffa21d45a3</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b02-s03-vintage-watch-0915</h3>
+    <dl><div><dt>Creator</dt><dd>Joe Haupt</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Vintage_Bulova_Men%27s_Swiss-Made_Manual-Wind_Wrist_Watch_(8505636506).jpg">Vintage Bulova Men's Swiss-Made Manual-Wind Wrist Watch (8505636506).jpg</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat2-composition-board/composition-assets/ref-b02-s03-vintage-watch-0915.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>80abb1498c2e38ad6f5e0c3dc4b44b0b61729b5db4e68db0ddc050c70c7a2082</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b04-s01-conference-backs</h3>
+    <dl><div><dt>Creator</dt><dd>Manuel Schneider</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Wikimedia_Chapters_Conference_089.JPG">Wikimedia Chapters Conference 089</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-conference-backs.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>79e17d1982c6d217063d34d1479606f8a586c6e4b8b001167e3647ce2d4b1962</code></dd></div><div><dt>Live check</dt><dd>source unavailable / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b04-s01-frosted-partition</h3>
+    <dl><div><dt>Creator</dt><dd>Timo Newton-Syms</dd></div><div><dt>Source</dt><dd><a href="https://www.flickr.com/photos/timo_w2s/32996257861/">Frosted Glass</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s01-frosted-partition.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>f55ecaa635f09cd4b203fc97775ef049f42bb3a0004a24ab1c2385438685fffb</code></dd></div><div><dt>Live check</dt><dd>source unavailable / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b04-s02-card-catalogue</h3>
+    <dl><div><dt>Creator</dt><dd>Carolina Prysyazhnyuk</dd></div><div><dt>Source</dt><dd><a href="https://www.flickr.com/photos/129657698@N02/16159019626/">Archive / Card catalogue drawers</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-card-catalogue.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>23aaf60edcd0880b63e5c98eed29a2ea46fddf0c5e3e8ab17c3e948cfcae5822</code></dd></div><div><dt>Live check</dt><dd>source unavailable / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b04-s02-time-recorder</h3>
+    <dl><div><dt>Creator</dt><dd>Loozrboy</dd></div><div><dt>Source</dt><dd><a href="https://www.flickr.com/photos/30624156@N00/4664852355/">IBM / Antique time clock at Redpath</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/2.0/">CC BY-SA 2.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s02-time-recorder.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>ea2732ff8205541eed60050129020ba94c6202d868d77eca90972d6792411127</code></dd></div><div><dt>Live check</dt><dd>source unavailable / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b04-s03-closed-meeting-room</h3>
+    <dl><div><dt>Creator</dt><dd>Het Nieuwe Instituut - Architecture Collection; photographer unknown</dd></div><div><dt>Source</dt><dd><a href="https://www.flickr.com/photos/nai_collection/5260603510/">Interieur vergaderzaal / Meeting Room Interior</a></dd></div><div><dt>License record</dt><dd><a href="https://www.flickr.com/commons/usage/">No known copyright restrictions</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat4-composition-counterexample/composition-assets/ref-b04-s03-closed-meeting-room.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>e6f06540dba924ccd3c5aaa38fa3f676f489335762b61dd7ecbcca69da196ca9</code></dd></div><div><dt>Live check</dt><dd>source unavailable / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-b04-shared-general-ledger</h3>
+    <dl><div><dt>Creator</dt><dd>Plantijnse Drukkerij</dd></div><div><dt>Source</dt><dd><a href="https://www.loc.gov/item/2021667934/">General Ledger, 1600–1608</a></dd></div><div><dt>License record</dt><dd><a href="https://www.loc.gov/item/2021667934/#rights-and-access">No known copyright or other restrictions; free to use and reuse</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/beat4-composition-counterexample/composition-assets/ref-b04-shared-general-ledger.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>74d83e8fbad303bf4a08c86e72c02746c678a95e56c0f69814c6c853dd7feaab</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b01-s01-harvard-observatory</h3>
+    <dl><div><dt>Creator</dt><dd>Daderot</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Sears_Tower-Harvard_Observatory_-_60_Garden_Street,_Cambridge,_MA_-_IMG_4028.JPG">Sears Tower, Harvard Observatory</a></dd></div><div><dt>License record</dt><dd><a href="https://commons.wikimedia.org/wiki/Template:PD-self">Public domain (author dedication)</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-harvard-observatory.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>6e1376fa2b4fa4bfffae778f1e86364b1c3baf5fe2925cd242337d76f7b33e84</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b01-s01-kreiensen-station</h3>
+    <dl><div><dt>Creator</dt><dd>Michael Gäbler</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Railway_station_Kreiensen_1963.JPG">Railway station Kreiensen 1963</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s01-kreiensen-station.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>49b3136c701d7e149194e74cac2a1c5c6dc688d6502340fce4915cec656da134</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b01-s02-beam-junction</h3>
+    <dl><div><dt>Creator</dt><dd>shankar s.</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Love_those_wooden_beams_and_trusses_(20743508752).jpg">Love those wooden beams and trusses</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-beam-junction.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>05aacc6386c240e2174bd717e90342fec23e1b5fbdf092965495109d00f81e56</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b01-s02-wood-joints</h3>
+    <dl><div><dt>Creator</dt><dd>Shyamal</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Wood_joints_20220730_154836.jpg">Wood joints 20220730 154836</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s02-wood-joints.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>3258615d9b6b28e22ed5d0510f74f135e78953557735d0d6d42e47d122ddf2de</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b01-s03-belfry-interior-art</h3>
+    <dl><div><dt>Creator</dt><dd>William Henry Hunt</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:William_Henry_Hunt_-_Interior_of_the_Belfry,_Bushey_Church_-_B1975.3.1039_-_Yale_Center_for_British_Art.jpg">Interior of the Belfry, Bushey Church</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-belfry-interior-art.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>39602c0536b46c3f0868e2f4b9661c5e1bb1a4d67f70ca1fcdfecb9355c5d91b</code></dd></div><div><dt>Live check</dt><dd>source unavailable / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b01-s03-noon-mark</h3>
+    <dl><div><dt>Creator</dt><dd>Poulpy</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Gray_-_Basilique_Notre-Dame_-_Noon_Mark.jpg">Gray, Basilique Notre-Dame, Noon Mark</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b01-s03-noon-mark.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>1c68f99c68f85869e461a832498d6485994c94a28c04effefaf47964b1447f62</code></dd></div><div><dt>Live check</dt><dd>source unavailable / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b03-s01-book-in-hand</h3>
+    <dl><div><dt>Creator</dt><dd>AgustinaCC</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Book_in_hand_(Emma).jpg">Book in hand (Emma)</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-book-in-hand.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>6fc36da6028effe9a402f18efabeeef970e6511f4023156994aa5dcf5aad681a</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b03-s01-page-turning</h3>
+    <dl><div><dt>Creator</dt><dd>Pics_Pd</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Antique_book_page_turning.jpg">Antique book page turning</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s01-page-turning.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>d846f48b836c604cbbf913ad7b37700926a362bc657dc7a4df8b1b204dfb9f13</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b03-s02-blank-book</h3>
+    <dl><div><dt>Creator</dt><dd>Trey Jones</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Blank_book_on_a_table.jpg">Blank book on a table</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-blank-book.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>312ac0465762b21dd1d67504d7dcaee074c94f73d7281f5adeb16fed618343a4</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b03-s02-ledger-geometry</h3>
+    <dl><div><dt>Creator</dt><dd>RaphaelQS</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Ledger.png">German ledger 1828</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s02-ledger-geometry.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>ccbb058ad17576dd5d69329b67137947a3dfcc218672394d97f1bc4234e6ff88</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b03-s03-ink-stains</h3>
+    <dl><div><dt>Creator</dt><dd>Menetekel</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Inkstains.png">Inkstains</a></dd></div><div><dt>License record</dt><dd><a href="https://commons.wikimedia.org/wiki/Template:PD-self">Public domain (author dedication)</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-ink-stains.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>96350f03a1bc118e3108284ca43edc84a01e83f23686707f58854ffe939bc0a4</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w1-b03-s03-old-paper</h3>
+    <dl><div><dt>Creator</dt><dd>Smartscrutiny</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Oldpapertexture01.jpg">Oldpapertexture01</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave1/composition-assets/ref-w1-b03-s03-old-paper.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>de3156d47386e17242543e6292093ac0eeba4b6079fb735b0da51423fa9b3624</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w2-b05-fate-blank-card</h3>
+    <dl><div><dt>Creator</dt><dd>Corn cheese</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Blank_Card.jpg">Blank Card</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-fate-blank-card.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>c970d41f104ddb5a7ebcda6348cd1018dc979101329d51cb5f303c64a49ce802</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w2-b05-s01-horizon-silhouette</h3>
+    <dl><div><dt>Creator</dt><dd>Chris Roe</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Horizon_person_silhouette_(Unsplash).jpg">Horizon person silhouette (Unsplash)</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0 1.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s01-horizon-silhouette.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>2f5cbd4befae47efb0b44a35a901221dfc101ff2b027daee1b9c92575f4492a7</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w2-b05-s02-brass-plate</h3>
+    <dl><div><dt>Creator</dt><dd>U.S. Army Corps of Engineers Savannah District; photo by Jim Jobling</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Brass_plate_(16911864106).jpg">Brass plate (16911864106)</a></dd></div><div><dt>License record</dt><dd><a href="https://commons.wikimedia.org/wiki/Template:PD-USGov-Military-Army">Public Domain (U.S. federal government work)</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave2/reference-assets/ref-w2-b05-s02-brass-plate.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>d9d8146351e2db5b42dc7c39c4609399aa8039cfa68387722f591f833369ae39</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article>
+<article class="evidence-item">
+    <h3>ref-w2-b06-s02-closed-book</h3>
+    <dl><div><dt>Creator</dt><dd>J.Dncsn</dd></div><div><dt>Source</dt><dd><a href="https://commons.wikimedia.org/wiki/File:Closed_book.jpg">Closed book</a></dd></div><div><dt>License record</dt><dd><a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a></dd></div><div><dt>Local path</dt><dd><code>artifacts/composition-expansion-wave2/reference-assets/ref-w2-b06-s02-closed-book.jpg</code></dd></div><div><dt>SHA256</dt><dd><code>e69f1a06db297bb537d57684cf4989615e0426eb4500c6c8cc5d7aa6bddca2ab</code></dd></div><div><dt>Live check</dt><dd>source confirmed / license confirmed</dd></div></dl>
+  </article></div></details>
+</main><p class="footnote">参照は構図検討用です。制作素材の選定、公開適合性、利用判断を示しません。</p></div>
+<script>(()=>{const root=document.documentElement;const buttons=[...document.querySelectorAll('[data-theme-choice]')];const apply=(choice)=>{root.dataset.theme=choice;root.dataset.resolvedTheme=choice==='auto'?(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'):choice;for(const button of buttons)button.setAttribute('aria-pressed',String(button.dataset.themeChoice===choice));};for(const button of buttons)button.addEventListener('click',()=>apply(button.dataset.themeChoice));matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',()=>{if(root.dataset.theme==='auto')apply('auto')});apply('auto');})();</script></body></html>

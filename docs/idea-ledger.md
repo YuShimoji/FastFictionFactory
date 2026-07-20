@@ -1,13 +1,49 @@
 # Idea Ledger
 
+## Owner Asset-Plan Decision
+
+- Purpose: Accept the 14-requirement default material strategy or identify only the requirements that need a different treatment.
+- Effect: Supplies the decision input for a separately authorized material-construction contract without asking the Owner to review 28 source pages.
+- Requirements: Exact `fff-asset-rights-readiness-packet-001`; choose A default, B exception requirement IDs, or C strategy reconstruction; keep production selection and rights decisions separate.
+- State: Pending true human gate. Recommended default and exception ID `AR-PROP-02` are prepared; all Owner decisions remain unselected.
+- Owner: Product Owner.
+- Next move: Return one A/B/C decision. Do not start construction, source acquisition, voice calibration, assembly, render, or publication in the decision-recording slice.
+
+## Conditional Material Construction
+
+- Purpose: Turn an accepted requirement-level strategy into private local assembly inputs.
+- Effect: Creates or sources the minimum material families needed for a later no-publish 180-second assembly.
+- Requirements: Accepted Owner asset plan; exact requirement IDs; separate write/acquisition boundaries; identity-risk handling; no production selection claim; no render; source/license evidence updated for new candidates.
+- State: Deferred and unauthorized.
+- Owner: Future implementation worker for construction evidence; Product Owner for exceptions and candidate decisions; rights owner for later use decisions.
+- Next move: Propose one thin construction contract only after `owner_asset_plan_decision` is recorded.
+
+## Independent Voice Calibration
+
+- Purpose: Replace human-proxy timing with a measured synthetic-voice envelope.
+- Effect: Provides an audio timing input for later offline assembly without coupling it to visual-material construction.
+- Requirements: Explicit engine, voice, provider, credential, endpoint, transport, retry, and data-handling authority; separate calibration evidence; no publication.
+- State: Deferred and unauthorized.
+- Owner: Voice owner plus future implementation worker.
+- Next move: Keep separate from material construction; start only after an explicit voice-calibration contract.
+
+## No-Publish 180-Second Offline Assembly
+
+- Purpose: Combine accepted materials and calibrated voice into one private timing proof.
+- Effect: Makes integrated timing and material gaps observable before any release decision.
+- Requirements: Accepted material plan, completed material construction, completed voice calibration, and explicit render authorization.
+- State: H3 / closed.
+- Owner: Production owner.
+- Next move: Do not propose as executable work until all four prerequisites are evidenced.
+
 ## Owner Whole-Story Composition Review
 
 - Purpose: Judge whether the exact integrated six-Beat, nineteen-shot visual sequence reads coherently as one story before any production or rights work.
 - Effect: Can accept the composition sequence, identify bounded integration/shot repair evidence, or return the package without conflating H0 integrity with production approval.
 - Requirements: Use `fff-integrated-visual-production-package-001` and its exact package fingerprint; Product Owner observation; all 19 shots reviewed as one sequence; candidate balance and unresolved truth retained; no per-Beat review restart.
-- State: Pending true human gate. The integrated H0 package is complete and green; no Owner Review has been performed.
+- State: Completed as `OWNER_WHOLE_STORY_COMPOSITION_PASS`; composition repair is not required. The active successor is the Asset / Rights Readiness Packet.
 - Owner: Product Owner as formal reviewer. Supervising AI may record and route the observation but must not invent it.
-- Next move: Open `artifacts/integrated-visual-production-package/integrated-visual-production-package.html` and record one whole-story observation. Stop before repair, production selection, rights clearance, generation, render, publication, database, approval, or canon unless separately authorized.
+- Next move: Preserve the accepted integrated package; use the active readiness packet for the next Owner asset-plan decision.
 
 ## Conditional Integrated-Sequence Repair
 
@@ -25,9 +61,9 @@
 - Purpose: Combine the exact nineteen already-concrete compositions into one whole-story review object.
 - Effect: Makes cross-beat rhythm, repetition, callbacks, and candidate neutrality reviewable without reconstructing four separate package histories.
 - Requirements: Separate authorization; exact artifact/hash binding; no source-story, timing, narration, subtitle, truth, rights, selection, or canon mutation; preserve Wave 2, Wave 1, Beat 2, Beat 4, Visual, Storyboard, and Execution bytes; keep normal validation read-only.
-- State: Completed as `fff-integrated-visual-production-package-001`; H0 is green and the next human gate is `owner_whole_story_composition_review`.
-- Owner: Integration worker completed deterministic packaging; Product Owner owns the pending whole-story review.
-- Next move: Preserve this item as completed history and use the active Owner Whole-Story Composition Review item above.
+- State: Completed as `fff-integrated-visual-production-package-001`; H0 is green and Product Owner review passed. The active successor is `fff-asset-rights-readiness-packet-001`.
+- Owner: Integration worker completed deterministic packaging; Product Owner completed the whole-story review.
+- Next move: Preserve this item as completed history and use the active Owner Asset-Plan Decision item above.
 
 ### Production asset selection and rights review
 

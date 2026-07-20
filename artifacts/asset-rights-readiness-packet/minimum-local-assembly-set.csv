@@ -1,0 +1,15 @@
+requirement_id,reusable_across_shots,covered_shot_ids,proposed_construction_method,current_reference_role,required_future_decision,blocking_for_offline_assembly,owner_decision
+AR-ENV-01,true,shot-b01-01|shot-b01-02|shot-b01-03|shot-b06-03,newly_sourced_candidate,composition_reference_only,replacement_candidate_selection,true,unselected
+AR-ENV-02,true,shot-b04-01|shot-b04-03|shot-b05-03,newly_sourced_candidate,composition_reference_only,replacement_candidate_selection,true,unselected
+AR-CHAR-01,true,shot-b02-01|shot-b03-01,neutral_placeholder,composition_reference_only,replacement_candidate_selection,true,unselected
+AR-CHAR-02,false,shot-b04-01,deterministic_original_graphic,composition_reference_only,local_asset_construction_authorization,true,unselected
+AR-CHAR-03,false,shot-b05-01,deterministic_original_graphic,composition_reference_only,local_asset_construction_authorization,true,unselected
+AR-PROP-01,true,shot-b02-01|shot-b02-03,deterministic_original_graphic,composition_reference_only,local_asset_construction_authorization,true,unselected
+AR-PROP-02,true,shot-b02-02|shot-b02-03|shot-b05-02,owner_approved_local_proxy,composition_reference_only,owner_asset_plan_decision,true,unselected
+AR-PROP-03,false,shot-b02-02,deterministic_original_graphic,composition_reference_only,local_asset_construction_authorization,true,unselected
+AR-DOC-01,true,shot-b03-01|shot-b03-02|shot-b04-03|shot-b06-02,deterministic_original_graphic,composition_reference_only,local_asset_construction_authorization,true,unselected
+AR-DOC-02,true,shot-b04-02|shot-b05-01|shot-b05-02|shot-b05-03|shot-b05-04,deterministic_original_graphic,composition_reference_only,local_asset_construction_authorization,true,unselected
+AR-ABS-01,false,shot-b03-03,deterministic_original_graphic,composition_reference_only,local_asset_construction_authorization,true,unselected
+AR-ABS-02,false,shot-b06-01,deterministic_original_graphic,composition_reference_only,local_asset_construction_authorization,true,unselected
+AR-TYPE-01,true,shot-b01-03|shot-b03-02|shot-b04-02|shot-b04-03|shot-b05-04|shot-b06-01|shot-b06-03,deterministic_original_graphic,composition_reference_only,local_asset_construction_authorization,true,unselected
+AR-AUDIO-01,true,shot-b01-01|shot-b01-02|shot-b01-03|shot-b02-01|shot-b02-02|shot-b02-03|shot-b03-01|shot-b03-02|shot-b03-03|shot-b04-01|shot-b04-02|shot-b04-03|shot-b05-01|shot-b05-02|shot-b05-03|shot-b05-04|shot-b06-01|shot-b06-02|shot-b06-03,future_audio_lane,none,separately_authorized_future_audio_lane,true,unselected

@@ -2,7 +2,43 @@
 
 This packet preserves the current working context inside the repository so another terminal can continue without relying on prior chat history.
 
-## 監修AI向け Integrated Visual Production Package 引き継ぎ（2026-07-19 JST）
+## 監修AI向け Asset / Rights Readiness Packet 引き継ぎ（2026-07-20 JST）
+
+Active artifactは `fff-asset-rights-readiness-packet-001`、laneは `ASSET_RIGHTS_READINESS`、source fingerprintは `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb` です。Product Ownerのwhole-story reviewを `OWNER_WHOLE_STORY_COMPOSITION_PASS` として記録し、19 shots / 14 requirements / 28 references / 36 aliases / 42 assignmentsを一つの素材準備計画へcross-mapしました。
+
+### Start here now
+
+```text
+AGENTS.md
+docs/project-context.md
+docs/review/current-status.md
+docs/review/asset-rights-readiness-packet.md
+artifacts/asset-rights-readiness-packet/README_ASSET_RIGHTS_READINESS.md
+artifacts/asset-rights-readiness-packet/asset-rights-readiness.html
+artifacts/asset-rights-readiness-packet-result.json
+artifacts/artifact-manifest.json
+```
+
+```powershell
+git fetch --prune origin
+git pull --ff-only
+git rev-list --left-right --count "HEAD...@{u}"
+git status --short --branch --untracked-files=all
+node tools/fff-state.mjs validate-asset-rights-readiness-packet artifacts/asset-rights-readiness-packet-result.json
+Invoke-Item .\artifacts\asset-rights-readiness-packet\asset-rights-readiness.html
+```
+
+推奨計画は deterministic original 9 / replacement candidate 3 / Owner-may-consider local proxy 1 / reference-only future lane 1です。例外IDは `AR-PROP-02`、source readbackは20 confirmed / 8 unavailable、stored metadata gapは0です。unavailableはrights判断へ変換していません。次のtrue human gateは `owner_asset_plan_decision` で、A=default採用、B=例外requirement IDだけ指定、C=material strategy再構成の一つです。全14 requirementの個別回答や28 source pageの再reviewは求めません。
+
+### Stopping edge
+
+- Owner decisionsは全件 `unselected`、publication compatibilityは全件 `unreviewed`。
+- source/predecessor raster copy 0、download 0、hotlink 0、production selection 0、rights claim 0。
+- 13 protected directoriesと76 predecessor resultsはresult内のinventory/aggregateを正本として保持。
+- Material construction、new source acquisition、voice calibration、offline assembly、render、publication、database、final story authorityは開始しない。
+- OwnerがA/B/Cを返しても、constructionとvoiceは別contract、offline assemblyはさらにrender authorizationまで必要。
+
+## 保存記録: 監修AI向け Integrated Visual Production Package 引き継ぎ（2026-07-19 JST）
 
 Active artifact は `fff-integrated-visual-production-package-001`、lane は `VISUAL_INTEGRATION`、実装baseは `b2ef9e214799e973e63543fbdf7118542bd583bf` です。別packageで存在した6幕・19 shots・180秒の具体構図を、一つのstandalone whole-story objectへ統合しました。参照unionは28 SHA256 identities、36 aliases、42 assignmentsです。19 thumbnails、19 full shot strips、5 lineagesを持ち、source raster copyは0です。
 

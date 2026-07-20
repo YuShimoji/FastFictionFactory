@@ -1,5 +1,15 @@
 # Decision Log
 
+## 2026-07-20 — Whole-story composition passes and asset-readiness planning becomes active
+
+- Decision: Record the Product Owner observation「全編で大きな破綻はありません。」「素材準備と次工程へ進めてよいです。」as `OWNER_WHOLE_STORY_COMPOSITION_PASS`; no composition repair; authorize asset-preparation planning only.
+- Evidence: exact integrated fingerprint `78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb`; 19 shots; 14 requirements; 28 canonical references; 36 aliases; 42 assignments.
+- Plan: nine deterministic originals, three replacement-source candidates, one Owner-may-consider proxy (`AR-PROP-02`), and one reference-only future audio lane.
+- Evidence boundary: 28 stored metadata records are complete; acquisition-time source readback is 20 confirmed / 8 unavailable. Unavailable is not converted into a rights conclusion.
+- Consequence: active artifact becomes `fff-asset-rights-readiness-packet-001`; the integrated package and all predecessor packages/results remain immutable.
+- Human policy: all Owner material decisions remain unselected; the next decision is one A/B/C response or exception requirement IDs, not per-reference review.
+- Boundary: production selection, rights decision, media acquisition/generation, construction, voice calibration, render, publication, database, and final story authority remain closed.
+
 ## 2026-07-19 — Integrated 19-shot visual package becomes the active H0 artifact
 
 - Decision: Publish `fff-integrated-visual-production-package-001` as the active `VISUAL_INTEGRATION` artifact over the exact four accepted composition sources.
