@@ -1,5 +1,25 @@
 # Next Terminal Handoff
 
+## Start here — synchronized development handoff (2026-07-22 JST)
+
+The latest remote state was fetched and fast-forward pulled. Before this documentation refresh, `HEAD` and `origin/master` were both `48efb862cca5795bd8f1f8b24b05ff91815bbdbc`, parity was `0 / 0`, and the worktree was clean including untracked files. After publication, use current `origin/master` as the exact docs-successor restart authority rather than assuming that predecessor SHA.
+
+```powershell
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count "HEAD...origin/master"
+git status --short --branch --untracked-files=all
+$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+```
+
+The manifest validation chain passed on Git `2.53.0.windows.1`, Node `v24.13.0`, npm `11.6.2`, uvx `0.10.7`, and FFmpeg/ffprobe `8.0.1`; strict MkDocs build also passed. No repository dependency installation is required. The existing MkDocs notice about review pages absent from `nav` is non-blocking documentation debt.
+
+The only immediately executable product action is a supervising-AI/creator experience review of `fff-private-previsualization-timeline-001`. Record observations against an exact shot ID, subtitle cue ID, or timestamp. Preserve the artifact when no material defect is found; authorize only a bounded canonical-lineage repair when one is found. Separately, the Product Owner may answer `owner_asset_plan_decision` with A default, B exception requirement IDs, or C reconstruction. Do not select media, decide rights, configure a provider, generate assets, render, upload, persist state, approve production, release publicly, or decide canon from this handoff.
+
+For the detailed verified/pending/owner-owned roadmap, read `docs/review/supervisor-current-report.md` first after the validator.
+
 ## Active re-entry: Private Previsualization Timeline (2026-07-21 JST)
 
 Start at `fff-private-previsualization-timeline-001`. The repository now contains a playable, silent, local 180-second preview with exact 6-Beat / 19-shot chronology, 19 canonical frames, 14 corrected readiness thumbnails, a 19-shot contact sheet, and a 960×540 H.264 MP4. The integrated source remains immutable and production selection, rights clearance, voice, final render, and publication remain closed.

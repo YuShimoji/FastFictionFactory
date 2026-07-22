@@ -1,6 +1,79 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-21 JST
+更新日: 2026-07-22 JST
+
+## 2026-07-22 同期・開発可能性・監修引き継ぎ追補
+
+### 結論
+
+`master` は最新の `origin/master` を fast-forward 条件で取り込み済みです。本追補前の正確な同期点は `48efb862cca5795bd8f1f8b24b05ff91815bbdbc Refresh cross-terminal project handoff`、`HEAD = origin/master`、ahead/behind `0 / 0`、未追跡を含むworktree cleanでした。root manifestの読み取り専用validation chainとstrict MkDocs buildは成功しています。したがって、ローカルreview、validator保守、監修で具体的欠陥が見つかった場合の限定preview修正へは着手可能です。
+
+一方、production material、rights clearance、voice/provider、generation、render、publication、database、production approval、release acceptance、canonは開発可能性の「green」に含めません。これらは技術的未準備というより、必要な人間判断・権限・exact artifact bindingがまだ存在しないため閉じています。
+
+### ライブ証拠
+
+| 項目 | 2026-07-22 JSTの実測 |
+| --- | --- |
+| Repository / branch | `C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory`; `master` |
+| Remote | `origin` → `https://github.com/YuShimoji/FastFictionFactory.git` |
+| Pull | `git fetch --prune origin`; `git pull --ff-only origin master` → already up to date |
+| Pre-report parity | `HEAD = origin/master = 48efb862cca5795bd8f1f8b24b05ff91815bbdbc`; `0 / 0` |
+| Pre-report worktree | clean index / clean tracked tree / no untracked files |
+| Runtime | Git `2.53.0.windows.1`; Node `v24.13.0`; npm `11.6.2`; uvx `0.10.7`; FFmpeg/ffprobe `8.0.1` |
+| Dependency posture | root manifest/lock install不要。`npm install`未実施。repository-local Node toolsとephemeral `uvx`のみ |
+| Root read-only chain | State/Previs/Readiness tool syntax、Private Previsualization、Asset/Rights Readiness、Integrated Package、Execution Packがpass |
+| Docs | `uvx --with mkdocs-material mkdocs build --strict` pass。既存のnav未収載review pagesはwarningではなくINFOで、今回のbuild blockerではない |
+| Product bytes | 同期・検証では変更なし。今回のwrite scopeはhandoff docsのみ |
+
+### Recovery brief
+
+- Project thesis: local-firstの物語制作workbenchとして、人間の創作権限を残したまま、source → planning → composition → private timing proofを追跡可能にする。
+- Current axis: accepted 19-shot compositionを、exact 180-second private playbackとして監修できる状態にする。
+- Current lane: `PRIVATE_PREVISUALIZATION_REVIEW`。machine/browser/media evidenceはgreen、経験reviewのみ未記録。
+- Final deliverable image: rights・production・releaseがそれぞれ明示承認された、再現可能で監査可能な180秒完成候補。ただし現成果物はprivate/reference-onlyであり完成候補ではない。
+- Major delivery gap: exact previewの監修所見、Owner asset-plan decision、material construction、voice evidence、render authorization、rights/production/release decisionsが未完。
+- Decision/idea debt: preview acceptanceとasset-plan acceptanceを混同しないこと。MkDocs nav未収載は整理候補だがproduct gateではない。
+
+進捗の概算は、local reviewability `[██████████] 100%`、production/release path `[██░░░░░░░░] 約20%` です。後者は工程量の測定値ではなく、G0のみ完了しG1以降が権限付きgateとして残ることを示す計画上の目安です。
+
+### 現在の判断境界
+
+- Verified: remote同期、runtime、read-only chain、strict docs build、exact private preview、accepted integrated composition、readiness packet。
+- Pending but executable now: supervising AIによるexact previewの一度のexperience review。
+- Human-owned parallel decision: Product Ownerの `owner_asset_plan_decision`（A default / B exception requirement IDs / C reconstruction）。
+- Conditional implementation: reviewでmaterial defectが特定された場合だけ、shot/cue/timeに限定したpreview repair。
+- Closed until separately authorized: acquisition/construction、rights、provider/API/credential、voice、generation、render、upload/publication、database、production approval、release、canon。
+
+### 可能な限り先の目標設定
+
+| Gate | 目的 / 効果 | 必要条件 | 現在状態 | Owner | 次のmove |
+| --- | --- | --- | --- | --- | --- |
+| G0 Sync & read-only readiness | 再開点と技術healthを固定 | current remote、clean base、root chain、strict docs build | complete | Repository maintainer | docs-only successorのSHA/parityを最終確認 |
+| G1 Supervising-AI experience review | 180秒のrhythm、shot legibility、subtitle timing、callbackを判定 | exact HTML/MP4、19 shots、shot/cue/time付き所見 | open now | Supervising AI | 一度だけ全編reviewし、acceptまたは限定findingを記録 |
+| G2 Conditional preview repair | material defectだけを直す | G1の具体finding、same chronology/source、canonical lineage一括再生成 | conditional / closed until finding | Future implementation worker | findingなしならskip |
+| G3 Creator/private usefulness acceptance | production planningに使えるprivate referenceか判断 | exact post-G1 candidate、人間の通覧、rightsとの分離 | pending after G1 | Product Owner / creator | concise accept/revise/returnを記録 |
+| G4A Owner asset-plan decision | 14 requirementのdefault/exceptionを固定 | exact readiness packet、A/B/C、exceptionはIDのみ | pending / independent | Product Owner | preview結果と混同せず一回答を取得 |
+| G4B Voice authority & calibration | human proxyを実測voice envelopeへ置換 | engine/voice/provider/credential/endpoint/data policyの明示承認 | closed / independent | Voice owner | separate contractを発行した場合だけ開始 |
+| G5 Bounded material construction | accepted requirementだけをprivate assembly inputへ変換 | G4A、exact write/acquisition scope、provenance、no-render boundary | deferred / unauthorized | Production worker + rights owner | deterministic originalsとreplacement sourcingを分離して契約化 |
+| G6 Material evidence closure | 14/14 requirementsと19/19 shotsの入力・例外・hashを固定 | G5 outputs、Owner decisions、source lineage、未解決一覧 | future | Supervisor + Product Owner | render前の再監査 |
+| G7 No-publish offline assembly | timing/material/audio gapを私的に可視化 | G3、G4、G6、explicit render authority、exact profile | H3 / closed | Production owner | 前提が揃った場合だけprivate candidateを作成 |
+| G8 Technical QA & bounded repair | duration、sync、subtitle、audio、missing、risk、rebuildを検証 | exact G7 hash、QA profile、repair scope | future | QA / production worker | evidenceのあるshot/requirementだけ修正 |
+| G9 Production selection & rights decisions | candidate利用、attribution、compatibility、replacementを確定 | exact QA candidate、named production/right owners | closed | Production owner + rights owner | 個別の明示decisionを記録 |
+| G10 Release / publication / persistence / canon | external deliveryと最終物語権限を分離して開く | G9後もrelease ownerのexact-artifact承認 | closed | Release owner + human author | 自動進行せず、各gateを別承認 |
+
+### Active residual work
+
+| Work | Purpose | Effect | Requirements | State | Owner | Next move |
+| --- | --- | --- | --- | --- | --- | --- |
+| Exact preview review | 実視聴品質を判定 | acceptまたは再現可能なrepair evidence | HTML/MP4、shot/cue/time | open | Supervising AI | G1を一度実施 |
+| Preview repair | 観測済みdefectだけ解消 | canonical frame/thumbnail/contact sheet/MP4を整合 | G1 material finding | conditional | Future worker | findingなしなら実施しない |
+| Asset-plan choice | requirement strategyを固定 | material contractの入力を作る | packetとA/B/C | owner gate / pending | Product Owner | preview acceptanceから推定しない |
+| Material / voice / assembly | production入力とtiming proofを作る | private production candidateへ進み得る | separate authorities and evidence | deferred / closed | Named owners | 各thin contractを順次発行 |
+| Rights / production / release / canon | 利用・制作・公開・物語決定を確定 | external deliveryを開き得る | exact artifactとnamed approvals | closed | Human owners | 先行gate完了後も別判断 |
+
+### 監修AIへの最初の依頼
+
+`artifacts/private-previsualization-timeline/private-previsualization-timeline.html` または同MP4を正確に一度通覧し、(1) accept、または (2) shot ID / cue ID / timestamp付きのmaterial findingを返してください。一般的なstyle希望だけではrepair laneを開きません。同時にasset-plan、rights、voice、production、releaseを承認したとは扱わないでください。
 
 Git製品実装チェックポイント: `e5ae7a11af3430c0a410948d8f5dc218de513b19 Add private previsualization timeline`。このSHAは下記のplayable、MP4、canonical frames、readiness thumbnail修正、検証証跡を固定します。最終引継ぎcommitとremote parityは、このチェックポイントを記録した後続HEADが所有します。
 

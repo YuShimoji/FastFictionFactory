@@ -1,5 +1,15 @@
 # Project Context
 
+## Cross-terminal Sync & Development Readiness Snapshot — 2026-07-22 JST
+
+- Sync authority: clean `master` was fetched with prune and pulled with `--ff-only`; `HEAD = origin/master = 48efb862cca5795bd8f1f8b24b05ff91815bbdbc`, ahead/behind `0 / 0`, and no tracked or untracked work preceded this documentation refresh. The docs-only successor on `origin/master` becomes the exact restart HEAD after publication.
+- Verified local stack: Git `2.53.0.windows.1`, Node.js `v24.13.0`, npm `11.6.2`, uvx `0.10.7`, FFmpeg/ffprobe `8.0.1`. The repository has no root dependency manifest and requires no `npm install`; normal validation uses repository-local Node tools.
+- Green development surface: syntax plus read-only validation passed for the Private Previsualization Timeline, Asset / Rights Readiness Packet, Integrated Visual Production Package, and Production Execution Pack. Strict MkDocs build also passed; its existing unlisted-page notice is documentation-navigation debt, not a build failure.
+- Active operational lane remains `PRIVATE_PREVISUALIZATION_REVIEW`. The first next action is one supervising-AI/creator review of the exact HTML/MP4 with findings bound to shot ID, cue ID, or timestamp. No defect means preserve the artifact; a defect opens only one evidence-bounded preview repair.
+- Parallel human lane remains `owner_asset_plan_decision` on the exact readiness packet: A accepts the default, B names exception requirement IDs, or C requests strategy reconstruction. Preview usefulness does not answer this decision.
+- Closed boundaries remain unchanged: production selection, rights clearance, material acquisition/construction, provider/API/credentials, voice calibration, new generation, render, upload/publication, database persistence, production approval, release acceptance, and final canon require later explicit authority.
+- Re-entry order: `AGENTS.md` → this file → `docs/review/current-status.md` → `docs/review/next-terminal-handoff.md` → `docs/review/supervisor-current-report.md`; then run the root manifest's read-only validation command before changing product behavior.
+
 ## Cross-terminal Handoff Snapshot — 2026-07-21 JST
 
 - Remote authority: pull `origin/master`; this refresh began from clean, synchronized handoff HEAD `81e9ad5929ba2e90fd7984583c7ae772ab5e93b2`. The publication successor on `origin/master` is the re-entry authority after this docs-only refresh.

@@ -1,5 +1,13 @@
 # Decision Log
 
+## 2026-07-22 — Remote parity and read-only development readiness are re-established
+
+- Decision: Treat current `origin/master` after fetch/pull as restart authority, and publish a docs-only successor that records live sync, runtime, validator, documentation-build, and gate evidence without changing product artifacts.
+- Starting evidence: clean `master`; `HEAD = origin/master = 48efb862cca5795bd8f1f8b24b05ff91815bbdbc`; ahead/behind `0 / 0`; `git pull --ff-only origin master` already up to date.
+- Verification: root manifest syntax/read-only chain passed for Private Previsualization, Asset / Rights Readiness, Integrated Visual Production, and Production Execution; strict MkDocs build passed. No root dependency installation was needed.
+- Lane decision: keep `PRIVATE_PREVISUALIZATION_REVIEW` as the single operational next gate and `owner_asset_plan_decision` as a parallel, independent human gate. Do not convert either into production or rights authority.
+- Consequence: the repository is development-ready for local review, validator work, and a specifically evidenced preview repair. Material construction, acquisition, provider/voice, generation, render, public release, persistence, approval, and canon remain closed.
+
 ## 2026-07-21 — Cross-terminal restart authority is the published project context
 
 - Decision: Keep decisive re-entry context in `docs/project-context.md`, `docs/review/current-status.md`, `docs/review/next-terminal-handoff.md`, `docs/decision-log.md`, and `docs/idea-ledger.md`, then publish the docs-only successor to `origin/master`.

@@ -1,5 +1,22 @@
 # Current Status Packet
 
+## Live Sync / Development Readiness — 2026-07-22 JST
+
+| Item | Verified state |
+| --- | --- |
+| Branch / remote | `master` tracking `origin/master` |
+| Pulled authority | `48efb862cca5795bd8f1f8b24b05ff91815bbdbc Refresh cross-terminal project handoff` |
+| Sync evidence | `git fetch --prune origin`; `git pull --ff-only origin master` = already up to date; `HEAD...origin/master = 0 / 0` |
+| Starting worktree | Clean including untracked files before this docs-only refresh |
+| Runtime | Git `2.53.0.windows.1`; Node `v24.13.0`; npm `11.6.2`; uvx `0.10.7`; FFmpeg/ffprobe `8.0.1` |
+| Dependency posture | No root package/lock install; repository-local Node validators plus ephemeral `uvx` docs tooling |
+| Read-only health | Private preview, readiness packet, integrated package, and execution pack validation passed |
+| Docs health | `uvx --with mkdocs-material mkdocs build --strict` passed; existing pages omitted from `nav` remain a non-blocking documentation debt |
+| Product readiness | Local development, evidence review, and bounded preview repair preparation are ready |
+| Explicitly not ready | Production materials, rights clearance, voice/provider work, render, release, persistence, approval, and canon |
+
+The immediate gate is still one exact-artifact private-previsualization experience review. The separate Product Owner gate is still `owner_asset_plan_decision` (A default / B exception IDs / C reconstruction). Neither gate may be inferred from the other, and neither authorizes production or release work.
+
 ## Restart Authority — 2026-07-21 JST
 
 - Pull `origin/master`; this handoff refresh started from clean synchronized HEAD `81e9ad5929ba2e90fd7984583c7ae772ab5e93b2`, and the docs-only publication successor on `origin/master` becomes the exact restart HEAD.

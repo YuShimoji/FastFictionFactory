@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-22 Restart Readiness Refresh
+
+- Purpose: Give the next supervising AI a live, reproducible starting point instead of relying on the 2026-07-21 snapshot or prior chat.
+- Effect: Re-establishes remote parity, local tool readiness, current read-only artifact health, the one executable review gate, and the farthest safe gated roadmap.
+- Requirements: `origin/master` parity, clean pre-edit worktree, root manifest validation, strict MkDocs build, preserved product bytes, and explicit separation of preview, asset-plan, rights, production, and release authority.
+- State: Complete for the synchronized predecessor `48efb862cca5795bd8f1f8b24b05ff91815bbdbc`; the published docs-only successor owns the final restart SHA.
+- Owner: Repository maintainer for synchronization and evidence freshness; supervising AI for the next exact-artifact review; Product Owner for asset-plan choice; named production/rights/release owners for later gates.
+- Next move: Review `fff-private-previsualization-timeline-001` once and bind any finding to shot/cue/time. Do not begin a repair without a material finding and do not infer `owner_asset_plan_decision` from preview acceptance.
+
 ## Cross-terminal Restart Readiness
 
 - Purpose: Let another terminal resume from repository evidence without prior chat or machine-local recollection.
