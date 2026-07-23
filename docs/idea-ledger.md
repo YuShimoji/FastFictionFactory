@@ -1,13 +1,22 @@
 # Idea Ledger
 
-## 2026-07-23 Supervisor Handoff Refresh
+## 2026-07-23 Supervisor Handoff And Long-Range Goal Refresh
 
-- Purpose: Give the next supervising AI a current, reproducible entrypoint that distinguishes remote authority, preserved machine-local state, verified product health, and human-owned gates.
-- Effect: Updates the restart packet from `3c40262`, records four unchanged validation-result hashes, and makes the immediate review plus the farthest safe gated route one-pass readable.
-- Requirements: current `origin/master` parity, no product drift, preservation of `.serena/project.yml`, read-only root validation, strict MkDocs, and no inference across preview, asset-plan, rights, production, release, persistence, or canon gates.
-- State: Complete for the synchronized predecessor `3c40262cc6798b3c4b1a04676019c11a248cb4e3`; the published docs-only successor owns the final restart SHA.
-- Owner: Repository maintainer for evidence freshness; supervising AI for exact preview review; Product Owner for asset-plan/private-usefulness decisions; named voice, production, rights, release, and author owners for later gates.
-- Next move: Review the exact private preview once. Accept it unchanged when no material defect exists; otherwise return shot/cue/time-bounded findings. Keep `owner_asset_plan_decision` separate.
+- Purpose: Give the next supervising AI a live restart point, protect user-owned local tool state, and distinguish the current content-delivery path from the longer product-platform path.
+- Effect: Records `3c40262` parity, the preserved `.serena/project.yml` difference, four unchanged result hashes, green read-only/docs/launcher evidence, the exact preview-review gate, the independent Owner asset-plan gate, a G0–G12 content roadmap, and a P0–P6 product roadmap.
+- Requirements: Current `origin/master`, read-only result preservation, no product artifact writes, explicit owner/authority boundaries, and no inference from private-preview usefulness to production, rights, release, or canon.
+- State: Complete for the synchronized predecessor `3c40262cc6798b3c4b1a04676019c11a248cb4e3`; current `origin/master` owns the final restart SHA. Product artifacts remain unchanged.
+- Owner: Repository maintainer for sync/context; supervising AI for G1; Product Owner for G3/G4A; named voice/production/rights/release owners for later gates; product implementer for separately authorized P1–P6 work.
+- Next move: Use current `origin/master` as restart authority, then perform one exact-artifact supervising review. Skip repair if no material finding exists; request `owner_asset_plan_decision` independently.
+
+## Long-range Product Platform Proposal
+
+- Purpose: Move Fast Fiction Factory from a deeply evidenced single-story checkpoint toward a reusable multi-project production workbench.
+- Effect: Adds a planning horizon for durable state, provider-backed extraction, evaluation/regression, portability, production adapters, and operational rollback without treating those ideas as current implementation authority.
+- Requirements: First preserve the current golden path; require schema/migration/backup for persistence, explicit provider/credential/transport authority for external extraction, release-equivalent gates for adapters, and human ownership of canon and public delivery.
+- State: Proposed only. Foundations exist for extraction guards and review evidence; durable storage, real provider integration, multi-project proof, publishing adapters, and post-release operations are not started or remain closed.
+- Owner: Product lead for sequencing; Product/AI implementer for local platform slices; production/rights/release owners for external-delivery slices.
+- Next move: Revisit after the current preview experience review produces concrete golden-path learning. The recommended first platform decision is durable-store strategy, not provider or publishing activation.
 
 ## 2026-07-22 Restart Readiness Refresh
 

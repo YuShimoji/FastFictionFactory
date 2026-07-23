@@ -1,13 +1,13 @@
 # Decision Log
 
-## 2026-07-23 — Preserve local Serena state while refreshing synchronized supervisor authority
+## 2026-07-23 — Preserve local tool state while refreshing the remote-ready supervisor handoff
 
-- Decision: Treat current `origin/master` after fetch/pull as repository authority, preserve the pre-existing `.serena/project.yml` machine-local migration without staging it, and publish only the refreshed durable supervisor handoff.
-- Starting evidence: `HEAD = origin/master = 3c40262cc6798b3c4b1a04676019c11a248cb4e3`; ahead/behind `0 / 0`; `git pull --ff-only origin master` already up to date; no product/untracked drift.
-- Verification: root manifest syntax/read-only validation passed for Private Previsualization, Asset / Rights Readiness, Integrated Visual Production, and Production Execution. Four result hashes remained unchanged. Strict MkDocs passed.
-- Lane decision: keep `PRIVATE_PREVISUALIZATION_REVIEW` as the first operational gate and `owner_asset_plan_decision` as an independent Product Owner gate. A preview repair is conditional on exact shot/cue/time evidence.
-- Roadmap decision: plan as far as no-publish assembly, technical QA, production/right selection, and release/persistence/canon gates, but do not treat later gates as authorized merely because they are documented.
-- Consequence: the repo is development-ready for local evidence work and a bounded post-review repair. Material, rights, voice/provider, generation, render, publication, persistence, production approval, release, and canon remain closed.
+- Decision: Treat current `origin/master` after fetch/pull as restart authority, preserve the pre-existing `.serena/project.yml` modification as unstaged user-owned tool state, and publish only the current handoff/status/decision/idea documentation.
+- Starting evidence: `HEAD = origin/master = 3c40262cc6798b3c4b1a04676019c11a248cb4e3`; ahead/behind `0 / 0`; `git pull --ff-only origin master` already up to date; `.serena/project.yml` was the sole pre-existing difference.
+- Verification: root manifest syntax/read-only chain passed; four protected result hashes remained unchanged; strict MkDocs build and local launcher URI checks passed; no root dependency installation was needed.
+- Lane decision: keep `PRIVATE_PREVISUALIZATION_REVIEW` as the immediate executable gate and `owner_asset_plan_decision` as an independent Product Owner gate. Do not reopen stale Beat 2, Execution Pack, or integration next-move text retained in historical sections.
+- Roadmap decision: track the current 180-second release path separately from the long-range product-platform path (durable storage, provider-backed extraction, regression harness, multi-project portability, production adapters, operational rollback).
+- Consequence: local development and evidence review are ready. Production material, rights, provider/voice, generation, render, publication, persistence, approval, release, and canon remain separately closed.
 
 ## 2026-07-22 — Remote parity and read-only development readiness are re-established
 

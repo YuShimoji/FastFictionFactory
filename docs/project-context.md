@@ -2,15 +2,16 @@
 
 ## Cross-terminal Sync & Development Readiness Snapshot — 2026-07-23 JST
 
-- Live remote authority: `git fetch --prune origin` and `git pull --ff-only origin master` completed with `HEAD = origin/master = 3c40262cc6798b3c4b1a04676019c11a248cb4e3`, ahead/behind `0 / 0`.
-- Preserved local state: `.serena/project.yml` was already modified when this work block began. It is a tracked machine-local Serena schema migration (`languages` → `language_servers`) with comment relocation, not a product or evidence change. It was not reset, edited, staged, or included in validation claims. No other tracked or untracked product change preceded this documentation refresh.
-- Verified local stack: Git `2.53.0.windows.1`, Node.js `v24.13.0`, npm `11.6.2`, uvx `0.10.7`, FFmpeg/ffprobe `8.0.1`. There is still no root package/lock manifest, so no dependency install is required.
-- Read-only development health: the root manifest syntax and validation chain passed for `fff-private-previsualization-timeline-001`, `fff-asset-rights-readiness-packet-001`, `fff-integrated-visual-production-package-001`, and `fff-production-execution-pack-001`. Their four result SHA256 values were unchanged before/after validation.
-- Documentation health: `uvx --with mkdocs-material mkdocs build --strict` passed. Existing review pages absent from `mkdocs.yml` navigation remain non-blocking documentation debt.
-- Active operational lane remains `PRIVATE_PREVISUALIZATION_REVIEW`. The supervising AI must review the exact 180-second HTML/MP4 once and either accept it or bind every material finding to a shot ID, cue ID, or timestamp. No finding means no preview rewrite.
-- Parallel human lane remains `owner_asset_plan_decision`: A accepts the default, B names exception requirement IDs, or C requests strategy reconstruction. Preview acceptance cannot answer it.
-- Farthest safe route is gated: exact preview review → conditional preview repair → private-usefulness acceptance → independent asset-plan and voice authority → bounded material evidence → explicitly authorized no-publish assembly → technical QA → production/rights decisions → separately authorized release, publication, persistence, and canon.
-- Current authority rule: this 2026-07-23 section supersedes older next-gate wording below. Historical sections remain evidence, not active instructions.
+- Sync authority: `master` was fetched with prune and pulled from `origin/master` with `--ff-only`; `HEAD = origin/master = 3c40262cc6798b3c4b1a04676019c11a248cb4e3`, ahead/behind `0 / 0`, and Git reported `Already up to date`. After this documentation refresh is published, current `origin/master` is the exact restart authority.
+- Preserved local state: `.serena/project.yml` was already modified before synchronization. It is a user-owned local tool configuration update, was not overwritten, staged, or treated as product work, and remains the only worktree difference. Therefore remote parity is green while a fully clean worktree claim is intentionally false.
+- Verified local stack: Git `2.53.0.windows.1`, Node.js `v24.13.0`, npm `11.6.2`, uvx `0.10.7`, FFmpeg/ffprobe `8.0.1`. The repository still has no root dependency manifest or lockfile and requires no `npm install`.
+- Green development surface: the root manifest's syntax and read-only chain passed for Private Previsualization, Asset / Rights Readiness, Integrated Visual Production, and Production Execution. The four result JSON hashes remained unchanged across validation. The `brief` and `blueprint` launchers returned valid local file URIs.
+- Documentation health: strict MkDocs build passed to an OS temporary directory. Twenty-three existing review pages remain absent from `mkdocs.yml` navigation; this is discoverability debt, not a build or product blocker.
+- Current operational lane: `PRIVATE_PREVISUALIZATION_REVIEW`. The next supervising AI must review the exact HTML/MP4 once and either accept it or bind each material finding to a shot ID, cue ID, or timestamp. A repair lane opens only from that evidence.
+- Independent human lane: `owner_asset_plan_decision` remains A = accept default, B = name exception requirement IDs, or C = reconstruct strategy. Preview usefulness does not select production media or clear rights.
+- Closed boundaries: acquisition/construction, rights decisions, provider/API/credentials, voice calibration, media generation, render, upload/publication, database persistence, production approval, release acceptance, and final canon still require separate explicit authority.
+- Authority rule: this 2026-07-23 snapshot and the opening 2026-07-23 section of `docs/review/supervisor-current-report.md` own the forward plan. Lower dated sections are retained history and must not reopen superseded Beat 2, Execution Pack, or integration gates.
+- Re-entry order: `AGENTS.md` → this file → `docs/review/current-status.md` → `docs/review/next-terminal-handoff.md` → `docs/review/supervisor-current-report.md`; then run the root manifest's read-only validation before changing product behavior.
 
 ## Cross-terminal Sync & Development Readiness Snapshot — 2026-07-22 JST
 

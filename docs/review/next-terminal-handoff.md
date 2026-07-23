@@ -2,37 +2,24 @@
 
 ## Start here — synchronized development handoff (2026-07-23 JST)
 
-The current remote was fetched and fast-forward pulled. Before this documentation refresh:
-
-- `HEAD = origin/master = 3c40262cc6798b3c4b1a04676019c11a248cb4e3`
-- ahead/behind = `0 / 0`
-- the only worktree change was the pre-existing machine-local `.serena/project.yml` migration
-- no product, artifact, result, or review-doc change was present
-
-Do not reset or stage `.serena/project.yml` as part of product work. After this handoff is published, current `origin/master` is the exact restart authority.
+The latest remote state was fetched and fast-forward pulled. Before this documentation refresh, `HEAD` and `origin/master` were both `3c40262cc6798b3c4b1a04676019c11a248cb4e3`, parity was `0 / 0`, and Git reported `Already up to date`. A pre-existing `.serena/project.yml` tool-configuration modification remains unstaged and untouched; it is not a product change and means the worktree is intentionally not described as clean. After publication, current `origin/master` is the exact docs-successor restart authority.
 
 ```powershell
 git fetch --prune origin
 git pull --ff-only origin master
 git rev-list --left-right --count "HEAD...origin/master"
 git status --short --branch --untracked-files=all
-
 $manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
-
+.\scripts\operator\open_review.ps1 -Mode brief -PrintUri
 Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
 ```
 
-Expected validation result: syntax plus the Private Previsualization, Asset / Rights Readiness, Integrated Visual Production, and Production Execution read-only gates pass, with no result-hash drift. No `npm install` is required. Git `2.53.0.windows.1`, Node `v24.13.0`, npm `11.6.2`, uvx `0.10.7`, and FFmpeg/ffprobe `8.0.1` were verified live. Strict MkDocs also passed; review pages omitted from nav are known non-blocking debt.
+The root read-only chain passed on Git `2.53.0.windows.1`, Node `v24.13.0`, npm `11.6.2`, uvx `0.10.7`, and FFmpeg/ffprobe `8.0.1`; the four protected result hashes did not change. Strict MkDocs build passed to an OS temporary directory. No root dependency installation is required. Twenty-three existing review pages absent from `mkdocs.yml` navigation are documentation discoverability debt only.
 
-The first product action is not implementation. A supervising AI must review `fff-private-previsualization-timeline-001` once for rhythm, shot legibility, subtitle timing, transition comprehension, and callback clarity. Return either:
+Read `docs/review/supervisor-current-report.md` immediately after validation. The next product action is one supervising-AI/creator experience review of `fff-private-previsualization-timeline-001`, with each material observation bound to a shot ID, cue ID, or timestamp. Preserve the artifact if no defect is found; authorize only one bounded canonical-lineage repair if a defect is found.
 
-- `accept`: no material preview defect; preserve all preview bytes, or
-- `revise`: list each material finding with exact shot ID, cue ID, or timestamp and explain its effect on comprehension.
-
-Generic style preferences do not open a repair lane. Preview acceptance does not select assets, clear rights, authorize voice/provider use, authorize render, approve production, permit publication, persist project state, or decide canon.
-
-In parallel only, the Product Owner may answer `owner_asset_plan_decision`: A = accept default, B = name exception requirement IDs, C = reconstruct the strategy. Read `docs/review/supervisor-current-report.md` for the detailed verified/pending/owner-owned map and gated long-range goals.
+The parallel Product Owner action is still `owner_asset_plan_decision`: A accepts the default plan, B names exception requirement IDs, or C requests reconstruction. Do not infer this decision from preview acceptance. Media selection, rights clearance, acquisition/construction, provider/API/credentials, voice calibration, generation, render, upload/publication, database persistence, production approval, release acceptance, and final canon remain separately closed.
 
 ## Start here — synchronized development handoff (2026-07-22 JST)
 

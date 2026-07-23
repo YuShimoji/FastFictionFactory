@@ -57,7 +57,7 @@
 
 | Gate | 目的 / 効果 | 必要条件 | 現在状態 | Owner | 次のmove |
 | --- | --- | --- | --- | --- | --- |
-| G0 Remote sync & reproducible health | 正確な再開点と技術healthを固定 | current remote、product driftなし、root chain、strict docs | complete | Repository maintainer | docs-only successorをpushし最終parity確認 |
+| G0 Remote sync & reproducible health | 正確な再開点と技術healthを固定 | current remote、product driftなし、root chain、strict docs | complete | Repository maintainer | current `origin/master` を再開authorityとして維持し、次端末で再検証 |
 | G1 Supervising-AI exact preview review | rhythm、shot legibility、subtitle timing、transition、callbackを判定 | exact HTML/MP4、19 shots、shot/cue/time付き所見 | open now | Supervising AI | 一度だけ全編reviewしacceptまたは限定finding |
 | G2 Conditional preview repair | 実証されたpreview defectだけ解消 | G1 material finding、same chronology/source、canonical lineage一括再生成 | conditional / closed until finding | Future implementation worker | findingなしならskip |
 | G3 Creator/private usefulness acceptance | private production planning referenceとして十分か判断 | exact post-G1 candidate、人間の通覧、rightsとの分離 | pending after G1 | Product Owner / creator | accept / revise / returnを短く記録 |
@@ -73,6 +73,20 @@
 | G10 Release-candidate freeze | 公開判断対象のexact bytesとevidenceを固定 | G8/G9完了、rebuild proof、known-risk register | closed | Production owner | releaseとは別にcandidateをfreeze |
 | G11 Release / publication authorization | external deliveryを開く | exact G10 hash、destination、visibility、rollback、release owner承認 | closed | Release owner | 自動進行せず個別承認 |
 | G12 Persistence / canon authority | project databaseと最終物語決定を独立して開く | schema/migration/backup、human author decision、releaseとの非連動 | closed | Data owner + human author | publication成功から推定しない |
+
+### Fast Fiction Factory本体の長期product goal
+
+このlaneは将来提案であり、現在のG1やG4Aを飛び越える実装権限ではありません。
+
+| Product goal | 目的 / 効果 | 必要条件 | 現在状態 | Owner | 次のmove |
+| --- | --- | --- | --- | --- | --- |
+| P0 Golden-path retrospective | 現作品のsource→preview chainから再利用可能contractを抽出 | G1/G3所見、current hashes、historical/active分離 | future | Product lead + supervising AI | experience review後にgapを記録 |
+| P1 Durable project store | browser/local JSONをmigration可能な永続stateへ移す | schema、migration、backup/export、no auto-canon | not started | Product implementer | file-backed / SQLite / browser expansionをdecision |
+| P2 Provider-backed extraction adapter | deterministic mockからreal extractionへ進める | provider/credentials/endpoint/transport/timeout/retry承認、全guard pass | blocked by authority | Product/AI implementer | authorization packet後にone-provider thin slice |
+| P3 Evaluation and regression harness | source-span、routing、conflict、human holdを継続検証 | fixture versioning、golden cases、failure taxonomy | partial foundations exist | QA + Product/AI implementer | current 60-row/guard chainをrelease gate化 |
+| P4 Multi-project portability | 複数storyを同じcockpitとhandoff contractで扱う | P1、project identity、import/export、migration | future | Product implementer | second-project fixtureで境界検証 |
+| P5 Production adapter layer | rights-approved outputsをrender/publish toolへ接続 | G9–G11 equivalent gates、credential isolation、dry-run | closed | Production + release owners | no-publish adapter first |
+| P6 Operational feedback and rollback | release後のquality、failure、recoveryを次cycleへ戻す | exact release IDs、telemetry policy、rollback/export | future | Operations + human owners | public delivery後も別承認 |
 
 ### Active residual work
 

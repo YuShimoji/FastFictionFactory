@@ -4,23 +4,19 @@
 
 | Item | Verified state |
 | --- | --- |
-| Branch / remote | `master` tracking `origin/master`; remote `https://github.com/YuShimoji/FastFictionFactory.git` |
+| Branch / remote | `master` tracking `origin/master` |
 | Pulled authority | `3c40262cc6798b3c4b1a04676019c11a248cb4e3 Refresh synchronized supervisor handoff` |
 | Sync evidence | `git fetch --prune origin`; `git pull --ff-only origin master` = already up to date; `HEAD...origin/master = 0 / 0` |
-| Preserved local state | Pre-existing `.serena/project.yml` modification only; kept untouched and excluded from product staging/claims |
-| Product worktree at validation | No product, artifact, result, review-doc, or untracked product drift before this docs-only refresh |
+| Preserved local state | Pre-existing `.serena/project.yml` modification remains unstaged and untouched; no product artifact or handoff doc was dirty before this refresh |
 | Runtime | Git `2.53.0.windows.1`; Node `v24.13.0`; npm `11.6.2`; uvx `0.10.7`; FFmpeg/ffprobe `8.0.1` |
-| Dependency posture | No root package/lock manifest; no `npm install`; repository-local Node validators plus ephemeral `uvx` docs tooling |
-| Private preview result | pass; SHA256 `088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0` |
-| Asset/rights readiness result | pass; SHA256 `b188db9d0a36ca895af90041855efc55cdff0db6bdec17cbe1950bb0ac2611af` |
-| Integrated visual result | pass; SHA256 `e8f7f7fc50c5700d3a14f78b72ff33b6b142753f3dd2e2dfbf79311077301582` |
-| Production execution result | pass; SHA256 `991e6310f67ae898ffc2949308c4826db1792479c1bf66900b9e710ad44c737d` |
-| Mutation proof | All four result hashes unchanged across the root read-only validation chain |
-| Docs health | strict MkDocs build passed; nav omissions remain non-blocking debt |
-| Development-ready scope | Local review, validator maintenance, documentation, and an evidence-bounded preview repair after a material finding |
-| Explicitly not ready/authorized | Material acquisition/construction, rights clearance, provider/credentials, voice generation, render, publication, persistence, production approval, release, or canon |
+| Dependency posture | No root package/lock install; repository-local Node validators plus ephemeral `uvx` docs tooling |
+| Read-only health | Root manifest syntax/validation chain passed for Private Preview, Readiness Packet, Integrated Package, and Execution Pack; four result hashes stayed unchanged |
+| Local entry health | PowerShell launchers produced valid `brief` and `blueprint` file URIs without opening a browser |
+| Docs health | Strict MkDocs build passed; 23 review pages omitted from nav remain non-blocking discoverability debt |
+| Product readiness | Local development, evidence inspection, supervising review, validator maintenance, and an evidence-bounded preview repair are ready |
+| Explicitly not ready | Production materials, rights clearance, voice/provider work, generation, render, release, persistence, production approval, and canon |
 
-The current operating gate is one exact-artifact private-previsualization review. The independent Owner gate is `owner_asset_plan_decision` (A default / B exception requirement IDs / C reconstruction). The rest of this file contains extensive preserved history; when older “next” statements conflict, this section and `docs/review/supervisor-current-report.md` are authoritative.
+The immediate executable gate is one exact-artifact review of `fff-private-previsualization-timeline-001`. The independent Product Owner gate remains `owner_asset_plan_decision` (A default / B exception requirement IDs / C reconstruction). The current forward plan is the opening section of `docs/review/supervisor-current-report.md`; later sections in this packet that name Beat 2, Execution Pack, or integration as the next gate are preserved historical records, not the current queue.
 
 ## Live Sync / Development Readiness — 2026-07-22 JST
 
