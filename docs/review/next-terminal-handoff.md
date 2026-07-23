@@ -1,5 +1,39 @@
 # Next Terminal Handoff
 
+## Start here — synchronized development handoff (2026-07-23 JST)
+
+The current remote was fetched and fast-forward pulled. Before this documentation refresh:
+
+- `HEAD = origin/master = 3c40262cc6798b3c4b1a04676019c11a248cb4e3`
+- ahead/behind = `0 / 0`
+- the only worktree change was the pre-existing machine-local `.serena/project.yml` migration
+- no product, artifact, result, or review-doc change was present
+
+Do not reset or stage `.serena/project.yml` as part of product work. After this handoff is published, current `origin/master` is the exact restart authority.
+
+```powershell
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count "HEAD...origin/master"
+git status --short --branch --untracked-files=all
+
+$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+
+Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+```
+
+Expected validation result: syntax plus the Private Previsualization, Asset / Rights Readiness, Integrated Visual Production, and Production Execution read-only gates pass, with no result-hash drift. No `npm install` is required. Git `2.53.0.windows.1`, Node `v24.13.0`, npm `11.6.2`, uvx `0.10.7`, and FFmpeg/ffprobe `8.0.1` were verified live. Strict MkDocs also passed; review pages omitted from nav are known non-blocking debt.
+
+The first product action is not implementation. A supervising AI must review `fff-private-previsualization-timeline-001` once for rhythm, shot legibility, subtitle timing, transition comprehension, and callback clarity. Return either:
+
+- `accept`: no material preview defect; preserve all preview bytes, or
+- `revise`: list each material finding with exact shot ID, cue ID, or timestamp and explain its effect on comprehension.
+
+Generic style preferences do not open a repair lane. Preview acceptance does not select assets, clear rights, authorize voice/provider use, authorize render, approve production, permit publication, persist project state, or decide canon.
+
+In parallel only, the Product Owner may answer `owner_asset_plan_decision`: A = accept default, B = name exception requirement IDs, C = reconstruct the strategy. Read `docs/review/supervisor-current-report.md` for the detailed verified/pending/owner-owned map and gated long-range goals.
+
 ## Start here — synchronized development handoff (2026-07-22 JST)
 
 The latest remote state was fetched and fast-forward pulled. Before this documentation refresh, `HEAD` and `origin/master` were both `48efb862cca5795bd8f1f8b24b05ff91815bbdbc`, parity was `0 / 0`, and the worktree was clean including untracked files. After publication, use current `origin/master` as the exact docs-successor restart authority rather than assuming that predecessor SHA.

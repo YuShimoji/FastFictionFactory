@@ -1,5 +1,17 @@
 # Project Context
 
+## Cross-terminal Sync & Development Readiness Snapshot — 2026-07-23 JST
+
+- Live remote authority: `git fetch --prune origin` and `git pull --ff-only origin master` completed with `HEAD = origin/master = 3c40262cc6798b3c4b1a04676019c11a248cb4e3`, ahead/behind `0 / 0`.
+- Preserved local state: `.serena/project.yml` was already modified when this work block began. It is a tracked machine-local Serena schema migration (`languages` → `language_servers`) with comment relocation, not a product or evidence change. It was not reset, edited, staged, or included in validation claims. No other tracked or untracked product change preceded this documentation refresh.
+- Verified local stack: Git `2.53.0.windows.1`, Node.js `v24.13.0`, npm `11.6.2`, uvx `0.10.7`, FFmpeg/ffprobe `8.0.1`. There is still no root package/lock manifest, so no dependency install is required.
+- Read-only development health: the root manifest syntax and validation chain passed for `fff-private-previsualization-timeline-001`, `fff-asset-rights-readiness-packet-001`, `fff-integrated-visual-production-package-001`, and `fff-production-execution-pack-001`. Their four result SHA256 values were unchanged before/after validation.
+- Documentation health: `uvx --with mkdocs-material mkdocs build --strict` passed. Existing review pages absent from `mkdocs.yml` navigation remain non-blocking documentation debt.
+- Active operational lane remains `PRIVATE_PREVISUALIZATION_REVIEW`. The supervising AI must review the exact 180-second HTML/MP4 once and either accept it or bind every material finding to a shot ID, cue ID, or timestamp. No finding means no preview rewrite.
+- Parallel human lane remains `owner_asset_plan_decision`: A accepts the default, B names exception requirement IDs, or C requests strategy reconstruction. Preview acceptance cannot answer it.
+- Farthest safe route is gated: exact preview review → conditional preview repair → private-usefulness acceptance → independent asset-plan and voice authority → bounded material evidence → explicitly authorized no-publish assembly → technical QA → production/rights decisions → separately authorized release, publication, persistence, and canon.
+- Current authority rule: this 2026-07-23 section supersedes older next-gate wording below. Historical sections remain evidence, not active instructions.
+
 ## Cross-terminal Sync & Development Readiness Snapshot — 2026-07-22 JST
 
 - Sync authority: clean `master` was fetched with prune and pulled with `--ff-only`; `HEAD = origin/master = 48efb862cca5795bd8f1f8b24b05ff91815bbdbc`, ahead/behind `0 / 0`, and no tracked or untracked work preceded this documentation refresh. The docs-only successor on `origin/master` becomes the exact restart HEAD after publication.

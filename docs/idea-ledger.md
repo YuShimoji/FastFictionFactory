@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-23 Supervisor Handoff Refresh
+
+- Purpose: Give the next supervising AI a current, reproducible entrypoint that distinguishes remote authority, preserved machine-local state, verified product health, and human-owned gates.
+- Effect: Updates the restart packet from `3c40262`, records four unchanged validation-result hashes, and makes the immediate review plus the farthest safe gated route one-pass readable.
+- Requirements: current `origin/master` parity, no product drift, preservation of `.serena/project.yml`, read-only root validation, strict MkDocs, and no inference across preview, asset-plan, rights, production, release, persistence, or canon gates.
+- State: Complete for the synchronized predecessor `3c40262cc6798b3c4b1a04676019c11a248cb4e3`; the published docs-only successor owns the final restart SHA.
+- Owner: Repository maintainer for evidence freshness; supervising AI for exact preview review; Product Owner for asset-plan/private-usefulness decisions; named voice, production, rights, release, and author owners for later gates.
+- Next move: Review the exact private preview once. Accept it unchanged when no material defect exists; otherwise return shot/cue/time-bounded findings. Keep `owner_asset_plan_decision` separate.
+
 ## 2026-07-22 Restart Readiness Refresh
 
 - Purpose: Give the next supervising AI a live, reproducible starting point instead of relying on the 2026-07-21 snapshot or prior chat.
