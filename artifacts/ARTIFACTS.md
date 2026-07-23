@@ -1,5 +1,20 @@
 # Artifacts
 
+## fff-resumable-private-pipeline-001
+
+- Title: Fast Fiction Factory Resumable Private Pipeline
+- Purpose: Reconstruct the accepted nineteen-frame / 180-second silent private candidate through one stable external-run CLI without manually rebuilding the one-off preview implementation.
+- Consumer: solo creator resuming on another terminal
+- Entrypoint: `tools/fff-private-pipeline.mjs`
+- Commands: `dry-run`, `build`, `status`, `resume`, `verify`
+- Contract/result: `artifacts/resumable-private-pipeline/pipeline-contract.json`, `artifacts/resumable-private-pipeline-result.json`
+- Review doc: `docs/review/resumable-private-pipeline.md`
+- Run contract: external versioned directory with manifest, seven stage receipts, source fingerprints, toolchain versions, executed commands, run-local frames/timeline, silent MP4, media verification, and atomic final receipt
+- Resume contract: reuse the longest valid receipt prefix; restart the first missing/stale stage; refuse resume after canonical input identity changes
+- Byte identity rule: record actual MP4 SHA256 and FFmpeg version; require exact frame/timeline identity and media properties rather than cross-version MP4 byte identity
+- Read-only validation: `node tools/fff-state.mjs validate-resumable-private-pipeline artifacts/resumable-private-pipeline-result.json`
+- Boundaries: no story rewrite, material polish, sourcing, voice, generation, asset selection, rights clearance, production approval, publication, persistence, or canon decision
+
 ## fff-private-previsualization-timeline-001
 
 - Title: Fast Fiction Factory Private Previsualization Timeline

@@ -1,0 +1,159 @@
+{
+  "schemaVersion": "fff.resumablePrivatePipelineResult.v1",
+  "artifact_id": "fff-resumable-private-pipeline-001",
+  "generated_at": "2026-07-23T18:18:10.523Z",
+  "passed": true,
+  "failures": [],
+  "golden_run": {
+    "run_id": "fff-test-fresh",
+    "source_identity_sha256": "d4b3bc790062c1bba4f90c2faeeaf6b6dc828258cb900775c045504ccc90debb",
+    "protected_package_fingerprints": {
+      "private_preview": "7332fef5f9e1477a2bf6bd822bbbd00646ebc765eced2111c3d8ed56a58449cd",
+      "integrated_visual": "78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb",
+      "production_execution": "a19cf81f3322c17a49c597731372ea653f7fd3881cea84d1ddb8e2df3b7143ca",
+      "asset_rights_readiness": "2e4e470866e834340c4f1f29490861711a6f257760519755547e7d9b821225c3"
+    },
+    "exact_contract": {
+      "beats": 6,
+      "shots": 19,
+      "narration_segments": 6,
+      "subtitle_cues": 20,
+      "gaps": 0,
+      "overlaps": 0
+    },
+    "output": {
+      "path": "output/private-previsualization-timeline.mp4",
+      "byte_size": 1668241,
+      "sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978",
+      "duration_seconds": 180,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "video_stream_count": 1,
+      "audio_stream_count": 0,
+      "codec_name": "h264",
+      "width": 960,
+      "height": 540,
+      "avg_frame_rate": "30/1"
+    },
+    "watermark": {
+      "text": "PREVIS / REFERENCE-ONLY / NOT FOR PUBLICATION",
+      "renderer_marker_present": true,
+      "baked_frame_identity_preserved": true
+    },
+    "toolchain": {
+      "schemaVersion": "fff.privatePipelineToolchainVersions.v1",
+      "node": "v24.13.0",
+      "platform": "win32-x64",
+      "ffmpeg": "ffmpeg version 8.0.1-full_build-www.gyan.dev Copyright (c) 2000-2025 the FFmpeg developers",
+      "ffprobe": "ffprobe version 8.0.1-full_build-www.gyan.dev Copyright (c) 2007-2025 the FFmpeg developers",
+      "pipeline_tool_sha256": "0d971a483beec0ce4aeee6f42d7cc86f049b43e466cce33017db253307217af6"
+    },
+    "stage_count": 7,
+    "command_count": 14,
+    "mp4_byte_identity_policy": "MP4 bytes may differ across FFmpeg versions; canonical frame identity, timeline identity, media properties, watermark, and closed gates are authoritative."
+  },
+  "interruption_resume": {
+    "passed": true,
+    "run_id": "fff-test-resume",
+    "first_resumed_stage": "encode-silent-private-mp4",
+    "reused_stages": [
+      "validate-canonical-sources",
+      "resolve-canonical-frames",
+      "resolve-canonical-timeline",
+      "materialize-run-workspace"
+    ],
+    "completed_output_sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978"
+  },
+  "fail_closed": {
+    "required_fixture_count": 8,
+    "passed_fixture_count": 8,
+    "fixtures": [
+      {
+        "fixture": "corrupted-source-fingerprint",
+        "passed": true,
+        "detected_failures": [
+          "CORRUPTED_SOURCE_FINGERPRINT: source-fingerprints.json does not match canonical inputs",
+          "STALE_STAGE_RECEIPT validate-canonical-sources: RECORDED_FILE_MISMATCH: validate-canonical-sources output hash/size mismatch: source-fingerprints.json"
+        ]
+      },
+      {
+        "fixture": "missing-frame",
+        "passed": true,
+        "detected_failures": [
+          "STALE_STAGE_RECEIPT materialize-run-workspace: MISSING_RECORDED_FILE: materialize-run-workspace output missing: workspace/frames/shot-b03-02.jpg",
+          "MISSING_FRAME: missing run-local frame shot-b03-02"
+        ]
+      },
+      {
+        "fixture": "altered-shot-timing",
+        "passed": true,
+        "detected_failures": [
+          "STALE_STAGE_RECEIPT resolve-canonical-timeline: RECORDED_FILE_MISMATCH: resolve-canonical-timeline output hash/size mismatch: workspace/timeline.json",
+          "ALTERED_SHOT_TIMING: run-local shot timing or metadata changed"
+        ]
+      },
+      {
+        "fixture": "short-output",
+        "passed": true,
+        "detected_failures": [
+          "STALE_STAGE_RECEIPT encode-silent-private-mp4: RECORDED_FILE_MISMATCH: encode-silent-private-mp4 output hash/size mismatch: output/private-previsualization-timeline.mp4",
+          "OUTPUT_DURATION_MISMATCH: expected 180.000 seconds, got 179",
+          "OUTPUT_HASH_MEDIA_MISMATCH: final receipt SHA256 differs from current output",
+          "OUTPUT_HASH_MEDIA_MISMATCH: final receipt media metadata differs"
+        ]
+      },
+      {
+        "fixture": "unexpected-audio",
+        "passed": true,
+        "detected_failures": [
+          "STALE_STAGE_RECEIPT encode-silent-private-mp4: RECORDED_FILE_MISMATCH: encode-silent-private-mp4 output hash/size mismatch: output/private-previsualization-timeline.mp4",
+          "UNEXPECTED_AUDIO_STREAM: 1",
+          "OUTPUT_HASH_MEDIA_MISMATCH: final receipt SHA256 differs from current output",
+          "OUTPUT_HASH_MEDIA_MISMATCH: final receipt media metadata differs"
+        ]
+      },
+      {
+        "fixture": "missing-watermark",
+        "passed": true,
+        "detected_failures": [
+          "STALE_STAGE_RECEIPT write-atomic-run-receipt: RECORDED_FILE_MISMATCH: write-atomic-run-receipt output hash/size mismatch: run-receipt.json",
+          "MISSING_WATERMARK: final receipt watermark proof missing"
+        ]
+      },
+      {
+        "fixture": "stale-stage-receipt",
+        "passed": true,
+        "detected_failures": [
+          "STALE_STAGE_RECEIPT resolve-canonical-timeline: stage receipt source identity is stale"
+        ]
+      },
+      {
+        "fixture": "output-hash-media-mismatch",
+        "passed": true,
+        "detected_failures": [
+          "STALE_STAGE_RECEIPT write-atomic-run-receipt: RECORDED_FILE_MISMATCH: write-atomic-run-receipt output hash/size mismatch: run-receipt.json",
+          "OUTPUT_HASH_MEDIA_MISMATCH: final receipt SHA256 differs from current output"
+        ]
+      }
+    ]
+  },
+  "negative_guard_handling": {
+    "preserved_as_source_metadata": true,
+    "rewritten": false,
+    "promoted_to_primary_cli_output": false,
+    "metadata_sha256": "4300e6b93d6b4666aba3a3d2194cab1a2b20f513a5c709c594c4d0e37998a4a0"
+  },
+  "boundaries": {
+    "local_only": true,
+    "reference_only": true,
+    "silent": true,
+    "material_refinement": false,
+    "source_acquisition": false,
+    "voice_generation": false,
+    "media_generation": false,
+    "asset_selection": false,
+    "rights_clearance": false,
+    "production_approval": false,
+    "public_release": false,
+    "final_canon_decision": false
+  }
+}

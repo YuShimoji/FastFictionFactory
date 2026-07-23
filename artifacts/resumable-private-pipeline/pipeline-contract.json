@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "fff.resumablePrivatePipeline.v1",
+  "artifact_id": "fff-resumable-private-pipeline-001",
+  "title": "Fast Fiction Factory Resumable Private Pipeline",
+  "consumer": "solo creator resuming on another terminal",
+  "pipeline_version": 1,
+  "entrypoint": "tools/fff-private-pipeline.mjs",
+  "commands": {
+    "dry_run": "node tools/fff-private-pipeline.mjs dry-run --run-dir <external-run-directory>",
+    "build": "node tools/fff-private-pipeline.mjs build --run-dir <external-run-directory>",
+    "status": "node tools/fff-private-pipeline.mjs status --run-dir <external-run-directory>",
+    "resume": "node tools/fff-private-pipeline.mjs resume --run-dir <external-run-directory>",
+    "verify": "node tools/fff-private-pipeline.mjs verify --run-dir <external-run-directory>"
+  },
+  "stages": [
+    "validate-canonical-sources",
+    "resolve-canonical-frames",
+    "resolve-canonical-timeline",
+    "materialize-run-workspace",
+    "encode-silent-private-mp4",
+    "verify-private-candidate",
+    "write-atomic-run-receipt"
+  ],
+  "run_directory_contract": {
+    "location": "outside_repository",
+    "new_build_policy": "new_or_empty_only",
+    "completed_run_overwrite": false,
+    "canonical_input_change_resume": "refuse_and_require_explicit_new_run",
+    "required_files": [
+      "run-manifest.json",
+      "source-fingerprints.json",
+      "toolchain-versions.json",
+      "executed-commands.json",
+      "receipts/",
+      "workspace/frame-map.json",
+      "workspace/timeline.json",
+      "workspace/frames/",
+      "workspace/frames.ffconcat",
+      "workspace/media-probe.json",
+      "workspace/verification.json",
+      "output/private-previsualization-timeline.mp4",
+      "run-receipt.json"
+    ]
+  },
+  "receipt_contract": {
+    "stage_receipt_schema": "fff.privatePipelineStageReceipt.v1",
+    "run_receipt_schema": "fff.privatePipelineRunReceipt.v1",
+    "atomic_json_write": true,
+    "stage_reuse_requires": [
+      "matching canonical source identity",
+      "matching stage receipt schema and stage identity",
+      "matching output paths, byte sizes, and SHA256"
+    ],
+    "resume_policy": "reuse the longest valid stage prefix and restart the first missing or stale stage"
+  },
+  "exact_candidate_contract": {
+    "duration_seconds": 180,
+    "duration_tolerance_seconds": 0.05,
+    "beat_count": 6,
+    "shot_count": 19,
+    "gap_count": 0,
+    "overlap_count": 0,
+    "canonical_frame_count": 19,
+    "narration_metadata_segment_count": 6,
+    "subtitle_cue_count": 20,
+    "output_codec": "h264",
+    "output_width": 960,
+    "output_height": 540,
+    "output_fps": 30,
+    "audio_stream_count": 0,
+    "watermark": "PREVIS / REFERENCE-ONLY / NOT FOR PUBLICATION",
+    "mp4_byte_identity_required_across_ffmpeg_versions": false
+  },
+  "canonical_inputs": [
+    "artifacts/private-previsualization-timeline/private-previsualization-timeline.json",
+    "artifacts/private-previsualization-timeline/private-previsualization-manifest.json",
+    "artifacts/private-previsualization-timeline-result.json",
+    "artifacts/private-previsualization-timeline/frames/",
+    "tools/fff-private-previsualization-timeline.mjs",
+    "artifacts/integrated-visual-production-package/",
+    "artifacts/production-execution-pack/",
+    "artifacts/asset-rights-readiness-packet/"
+  ],
+  "claim_boundary": {
+    "private_local_only": true,
+    "reference_only": true,
+    "silent": true,
+    "story_rewrite": false,
+    "material_refinement": false,
+    "source_acquisition": false,
+    "asset_selection": false,
+    "rights_clearance": false,
+    "voice_generation": false,
+    "music_or_sfx": false,
+    "image_generation": false,
+    "video_generation": false,
+    "production_approval": false,
+    "public_release": false,
+    "final_canon_decision": false
+  },
+  "negative_guard_policy": {
+    "preserve_as_source_metadata": true,
+    "rewrite_or_remove": false,
+    "promote_to_primary_cli_output": false
+  }
+}

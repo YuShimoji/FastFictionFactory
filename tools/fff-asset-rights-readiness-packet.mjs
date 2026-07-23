@@ -17,7 +17,8 @@ const MANIFEST_PATH = `${PACKAGE_ROOT}/asset-rights-readiness-manifest.json`;
 const RESULT_PATH = "artifacts/asset-rights-readiness-packet-result.json";
 const DESCENDANT_RESULT_PATHS = new Set([
   RESULT_PATH,
-  "artifacts/private-previsualization-timeline-result.json"
+  "artifacts/private-previsualization-timeline-result.json",
+  "artifacts/resumable-private-pipeline-result.json"
 ]);
 const SCREENSHOTS = {
   dark: "artifacts/review-screens/asset-rights-readiness-packet-900x1200-dark.png",

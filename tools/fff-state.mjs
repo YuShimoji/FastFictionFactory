@@ -1674,6 +1674,12 @@ async function main() {
     return;
   }
 
+  if (command === "validate-resumable-private-pipeline") {
+    const { runDurablePipelineValidatorCommand } = await import("./fff-private-pipeline.mjs");
+    await runDurablePipelineValidatorCommand({ command, inputPath, outputPath });
+    return;
+  }
+
   if (command === "validate-private-previsualization-timeline" || command === "smoke-private-previsualization-timeline") {
     const { runPrivatePrevisualizationTimelineCommand } = await import("./fff-private-previsualization-timeline.mjs");
     await runPrivatePrevisualizationTimelineCommand({ command, inputPath, outputPath });
@@ -22929,6 +22935,7 @@ Usage:
   node tools/fff-state.mjs smoke-integrated-visual-production-package <integrated-visual-production-package-result.json>
   node tools/fff-state.mjs validate-asset-rights-readiness-packet <asset-rights-readiness-packet-result.json>
   node tools/fff-state.mjs smoke-asset-rights-readiness-packet <asset-rights-readiness-packet-result.json>
+  node tools/fff-state.mjs validate-resumable-private-pipeline <resumable-private-pipeline-result.json>
   node tools/fff-state.mjs validate-private-previsualization-timeline <private-previsualization-timeline-result.json>
   node tools/fff-state.mjs smoke-private-previsualization-timeline <private-previsualization-timeline-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave2 <composition-expansion-wave2-result.json>
