@@ -2,7 +2,79 @@
 
 更新日: 2026-07-24 JST
 
-## 2026-07-24 再開可能な private preview 引き継ぎ（現行正本）
+## 2026-07-24 PLANNER007端末での最新同期・再検証（現行ローカル追記）
+
+### 先に伝える結論
+
+この端末の `master` は、作業開始時の `48efb862cca5795bd8f1f8b24b05ff91815bbdbc` から、`origin/master` の最新 `f5fba013061263fe22c019e25754453998e62ab3 Record published handoff parity` まで6 commitを `--ff-only` で取り込みました。現在は `HEAD = origin/master`、ahead/behind `0 / 0` で、merge commit、rebase、強制更新、履歴改変はありません。
+
+開始時に存在した `docs/review/supervisor-current-report.md` のローカル編集は、`codex-preserve-supervisor-report-before-2026-07-24-sync` という専用stashへ退避してからpullしました。旧編集の有効な意図である「実測環境、検証結果、判断境界、遠い目標を監修者へ渡す」は本節へ更新して統合し、古い `48efb86` 同期主張や別時点の端末状態は再適用していません。stashは回復用として残っており、product stateではありません。
+
+リポジトリ直下にpackage manifestやlockfileはなく、依存追加もinstallも不要です。この端末の Git `2.50.1.windows.1`、Node.js `v22.19.0`、npm `10.9.3`、uvx `0.10.0`、FFmpeg/ffprobe `8.1.1` で、現行のread-only chain、再開可能pipelineの受け入れテスト、strict documentation build、local launcherをすべて通過しました。従来報告のNode 24 / FFmpeg 8.0.1とは異なるtoolchainでもcontractが成立したため、少なくともこの2環境間ではpipelineが意図したtoolchain差分の扱いを実証できています。ただし、これを未検証Node/FFmpeg全版の互換保証へ一般化しません。
+
+### 今回取り込んだ変更とworkflowへの効果
+
+| 変更群 | 取り込んだ内容 | workflow / decisionに効く点 | 現在状態 |
+| --- | --- | --- | --- |
+| `58049c9 Add resumable private preview pipeline` | 外部run directoryで動く `dry-run` / `build` / `status` / `resume` / `verify`、7 stage receipt、source fingerprint、atomic final receipt、専用受け入れテスト | 別端末がchat履歴や既存MP4だけに依存せず、受理済み19 frame / 180秒candidateを再構築・中断再開・検証できる | 実装済み、現端末で6/6 test pass |
+| `73fbb13 Refresh resumable private preview handoff` | project context、current status、next-terminal handoff、supervisor report、decision log、idea ledgerをpipeline前提へ更新 | 実装と監修判断の再開点をrepository内で一致させる | 受領済み |
+| `f5fba01 Record published handoff parity` | 公開済みhandoffのremote parityを固定 | 次の端末が実装commitとhandoff successorを区別できる | 現在のexact HEAD |
+| 既存private preview chain | accepted integration、19 canonical frames、14 readiness derivatives、silent MP4、asset/right packet | 体験監修、material-plan判断、rights判断を別gateとして扱える | machine evidence green、experience judgment未記録 |
+
+### この端末で再確認した開発可能性
+
+| 検証面 | 実測結果 | 意味 |
+| --- | --- | --- |
+| Git同期 | `HEAD = origin/master = f5fba013061263fe22c019e25754453998e62ab3`、ahead/behind `0 / 0` | 最新remoteを基点に開発でき、未解決の分岐がない |
+| Current project state | `node tools/fff-state.mjs validate artifacts/current-project-state.json` pass | local-first state schemaとhuman-authority境界を読み出せる |
+| Root read-only chain | Resumable Pipeline、Private Preview、Asset / Rights、Integrated Visual、Production Executionの5 validatorがpass | 現行authority chainをtracked artifact再生成なしで読める |
+| Pipeline受け入れ | `node --test tests/fff-private-pipeline.test.mjs` は6 tests pass、0 fail | fresh build、中断/resume、copied corruptionのfail-closed、stale/failed分類が現端末でも成立 |
+| Pipeline dry-run | source identity `d4b3bc790062c1bba4f90c2faeeaf6b6dc828258cb900775c045504ccc90debb`、6 Beats / 19 shots / 180秒 / 19 frames / 20 subtitle cuesを確認 | 実runを作る前にcanonical inputとclosed boundaryを検査可能 |
+| Protected result不変 | 5 resultの検証前後SHA256が一致。Pipeline `4175f2b3…`、Preview `088bd9b9…`、Readiness `b188db9d…`、Integrated `e8f7f7fc…`、Execution `991e6310…` | health checkがevidenceを時刻や端末差で書き換えていない |
+| Local access | `brief` と `blueprint` launcherが有効な `file:///C:/Users/PLANNER007/FastFictionFactory/...` URIを返却 | browserを勝手に開かず入口を検査できる |
+| Documentation | `uvx --with mkdocs-material mkdocs build --strict` pass | 監修資料をlocal docsとしてbuild可能 |
+| Hygiene | `git diff --check` pass。product/evidence treeに検証起因の差分はなく、現在のtracked差分は本報告だけ | whitespace errorやvalidator起因のproduct driftがない |
+
+MkDocsはstrict passですが、23件の既存review pageが `mkdocs.yml` のnavに未収載です。これはEvidence Vaultの発見性を下げるdocumentation debtであり、private preview監修やpipeline再開を止めるblockerではありません。実際のpipeline受け入れrunはOS temp配下で完結・cleanupされ、repository内へrun outputや依存物を追加していません。
+
+### 監修AIが受け取るべき現在地
+
+Fast Fiction Factoryは、人間の創作権限を維持しながら、source、判断、構成、private timing proof、将来のproduction evidenceを追跡可能にするlocal-first fiction production workbenchです。作品側では、6 Beats / 19 shots / 180秒の構成、19 canonical frames、14 readiness derivatives、silent H.264 MP4、asset/right planning packetまで揃っています。基盤側では、そのaccepted previewを別端末の外部runへ再構築し、中断・再開・破損検知できるところまで進みました。
+
+現在の実行可能な判断は `PRIVATE_PREVISUALIZATION_REVIEW` だけです。exact HTMLまたはMP4を一度通覧し、material defectがなければartifactを変更せず `accept`、ある場合だけshot ID / cue ID / timestampへ結びつけて `revise` とします。`owner_asset_plan_decision` は独立したProduct Owner gateで、A=default、B=exception requirement IDs、C=reconstruct strategyのいずれかです。preview acceptanceからasset選定やrights clearanceを推定しません。
+
+未確定なのは、主観的な180秒体験品質、private planning referenceとしての利用判断、14 requirementのOwner選択、production material、rights compatibility、voice/TTS実測、render authority、release、永続化、canonです。現在のgreen evidenceは、これらを「安全に次の判断へ渡せる」ことを示し、「production/release ready」を示しません。
+
+### 先へ進めるための二軸目標
+
+最遠目標は、単一作品の公開だけではなく、human authority、provenance、rights、rebuild、rollbackを保ったまま複数作品を扱えるproduction workbenchです。ただし、作品完成経路と製品基盤化経路を混ぜると、未承認のprovider・rights・release作業が技術改善の名目で開きます。次の順序を提案します。
+
+| Horizon | 目的と完了像 | 開始条件 / 証拠 | 現在 | 完了後に可能になること |
+| --- | --- | --- | --- | --- |
+| D0 Exact experience truth | 180秒previewをaccept、またはshot/cue/time付きfindingへ分解 | 現在のexact HTML/MP4、一度の全編通覧 | **今すぐ実行可能** | artifact保存、または1本の限定repair contract |
+| D1 Planning authority closure | private usefulnessとasset-plan A/B/Cを別々に記録 | D0結果、exact readiness packet、人間owner | pending | requirement ID単位のmaterial contract設計 |
+| D2 Production-input evidence | deterministic material、replacement候補、voice envelopeを別laneで揃える | D1、write/acquisition authority、voice/provider contract、provenance | closed / unauthorized | 19 shots / 14 requirements / 6 narrationの入力不足を定量化 |
+| D3 No-publish candidate | exact 180秒のprivate audiovisual candidateを再構築可能な形で固定 | D2 closure、render authority、run receipt | closed | sync、subtitle、audio、assetの統合QA |
+| D4 Production/right freeze | candidate bytes、attribution、compatibility、known risk、replacementをowner判断 | D3 QA、production owner、rights owner | closed | 公開判断に渡せるrelease candidate |
+| D5 Controlled release | destination、visibility、rollback、release ownerを伴う外部delivery | D4 exact hash、明示release authorization | closed | 公開後の運用・計測・rollback判断 |
+| P0 Golden-path extraction | D0–D3で本当に使われたcontractだけを再利用可能なproject modelへ抽出 | experience/repair/run evidence | future | 単一作品固有のhistoryと再利用基盤を分離 |
+| P1 Durable multi-project state | migration、backup/export、no-auto-canonを持つ永続store | schema decision、golden project、rollback plan | not started | 複数session / 複数storyの安全な継続 |
+| P2 Evaluated provider extraction | real provider出力を既存source-span / conflict / human-hold guardへ通す | provider・credential・endpoint・transport権限、fixture/eval gate | blocked by authority | mockから実抽出へ進みつつcanon誤昇格を防止 |
+| P3 Production adapter layer | rights-approved入力だけをno-publish render、次にrelease adapterへ接続 | D4相当gate、credential isolation、dry-run、rollback | closed | 手作業handoffを自動化してもrelease権限を保持 |
+| P4 Operational learning loop | release ID、quality signal、failure、repair、rollbackを次projectへ戻す | controlled release、telemetry/privacy policy | future | 再利用可能な品質改善と事故回復 |
+
+D0でmaterial defectがなければ、映像の作り直しではなくD1の二つの人間判断を取得するのが最短です。D0でdefectが出ればD1のmaterial constructionへ急がず、同一canonical lineageを保つ限定repairを先に閉じます。P1以降はD0の学びをgolden pathとして抽出してから始め、providerやpublishingを最初のplatform sliceにしないことを推奨します。
+
+### 監修AIへの委譲形式
+
+最初に `artifacts/private-previsualization-timeline/private-previsualization-timeline.html` または同directoryのMP4を一度だけ全編確認してください。
+
+1. `accept` の場合は、rhythm、shot readability、subtitle timing、transition、callbackにmaterial defectがないこと、artifact変更不要であることを記録します。
+2. `revise` の場合は、findingごとにshot ID / cue ID / timestamp、期待した理解、実際の誤読または摩擦、最小修正対象を記録します。
+
+一般的なstyle希望、production素材の好み、権利判断、voice/provider選択はこのreviewへ混ぜません。D0終了後に、Product Ownerへ別件として `owner_asset_plan_decision` のA/B/Cを一度だけ依頼してください。
+
+## 2026-07-24 再開可能な private preview 引き継ぎ（受領した公開正本）
 
 ### 結論
 
@@ -34,7 +106,7 @@ node .\tools\fff-private-pipeline.mjs verify --run-dir $run
 - Closed gates: material acquisition/construction、asset selection、rights clearance、provider/API/credentials、voice/TTS、generation、render、publication、database persistence、production approval、release acceptance、canon。
 - Publication scope: このhandoff更新は6つの文書（project context、current status、next-terminal handoff、supervisor report、decision log、idea ledger）だけで、`origin/master` へpush済みです。`.serena/project.yml` は端末固有設定として除外し、product artifact・result・tool・script・public UIは変更していません。
 
-本節が現行判断の入口です。後続の同日旧節および下部の履歴にある `793b70e` は、resumable pipeline追加前の記録であり、現在の再開基点ではありません。
+本節は `origin/master` から受領した公開正本として保持します。この端末での実測と次の判断は直前の「PLANNER007端末での最新同期・再検証」を優先します。後続の同日旧節および下部の履歴にある `793b70e` は、resumable pipeline追加前の記録であり、現在の再開基点ではありません。
 
 ## 2026-07-24 同期・開発可能性・監修引き継ぎ
 
