@@ -6,7 +6,7 @@
 
 ### 先に伝える結論
 
-この端末の `master` は、作業開始時の `48efb862cca5795bd8f1f8b24b05ff91815bbdbc` から、`origin/master` の最新 `f5fba013061263fe22c019e25754453998e62ab3 Record published handoff parity` まで6 commitを `--ff-only` で取り込みました。現在は `HEAD = origin/master`、ahead/behind `0 / 0` で、merge commit、rebase、強制更新、履歴改変はありません。
+この端末の `master` は、作業開始時の `48efb862cca5795bd8f1f8b24b05ff91815bbdbc` から、報告作成時のremote base `f5fba013061263fe22c019e25754453998e62ab3 Record published handoff parity` まで6 commitを `--ff-only` で取り込みました。本報告のpublication commit `b7703b4 Publish PLANNER007 supervisor handoff` とそのparity successorを含む正確な再開tipは `git log -1 --oneline --decorate` で取得し、`HEAD = origin/master`、ahead/behind `0 / 0` を確認してください。merge commit、rebase、強制更新、履歴改変はありません。
 
 開始時に存在した `docs/review/supervisor-current-report.md` のローカル編集は、`codex-preserve-supervisor-report-before-2026-07-24-sync` という専用stashへ退避してからpullしました。旧編集の有効な意図である「実測環境、検証結果、判断境界、遠い目標を監修者へ渡す」は本節へ更新して統合し、古い `48efb86` 同期主張や別時点の端末状態は再適用していません。stashは回復用として残っており、product stateではありません。
 
@@ -18,14 +18,14 @@
 | --- | --- | --- | --- |
 | `58049c9 Add resumable private preview pipeline` | 外部run directoryで動く `dry-run` / `build` / `status` / `resume` / `verify`、7 stage receipt、source fingerprint、atomic final receipt、専用受け入れテスト | 別端末がchat履歴や既存MP4だけに依存せず、受理済み19 frame / 180秒candidateを再構築・中断再開・検証できる | 実装済み、現端末で6/6 test pass |
 | `73fbb13 Refresh resumable private preview handoff` | project context、current status、next-terminal handoff、supervisor report、decision log、idea ledgerをpipeline前提へ更新 | 実装と監修判断の再開点をrepository内で一致させる | 受領済み |
-| `f5fba01 Record published handoff parity` | 公開済みhandoffのremote parityを固定 | 次の端末が実装commitとhandoff successorを区別できる | 現在のexact HEAD |
+| `f5fba01 Record published handoff parity` | 今回の同期開始時点までの公開handoff parityを固定 | 次の端末が実装commitとhandoff successorを区別できる | 本報告publication前のremote base |
 | 既存private preview chain | accepted integration、19 canonical frames、14 readiness derivatives、silent MP4、asset/right packet | 体験監修、material-plan判断、rights判断を別gateとして扱える | machine evidence green、experience judgment未記録 |
 
 ### この端末で再確認した開発可能性
 
 | 検証面 | 実測結果 | 意味 |
 | --- | --- | --- |
-| Git同期 | `HEAD = origin/master = f5fba013061263fe22c019e25754453998e62ab3`、ahead/behind `0 / 0` | 最新remoteを基点に開発でき、未解決の分岐がない |
+| Git同期 | pull base `f5fba013061263fe22c019e25754453998e62ab3`、report publication `b7703b4`。正確な現行tipは `git log -1`、parityは `git rev-list --left-right --count HEAD...origin/master` で確認 | 公開済みhandoffを基点に開発でき、未解決の分岐を検出できる |
 | Current project state | `node tools/fff-state.mjs validate artifacts/current-project-state.json` pass | local-first state schemaとhuman-authority境界を読み出せる |
 | Root read-only chain | Resumable Pipeline、Private Preview、Asset / Rights、Integrated Visual、Production Executionの5 validatorがpass | 現行authority chainをtracked artifact再生成なしで読める |
 | Pipeline受け入れ | `node --test tests/fff-private-pipeline.test.mjs` は6 tests pass、0 fail | fresh build、中断/resume、copied corruptionのfail-closed、stale/failed分類が現端末でも成立 |
