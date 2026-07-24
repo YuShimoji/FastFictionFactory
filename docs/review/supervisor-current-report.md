@@ -1,12 +1,158 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-23 JST
+更新日: 2026-07-24 JST
+
+## 2026-07-24 再開可能な private preview 引き継ぎ（現行正本）
+
+### 結論
+
+`master` は `origin/master` と一致しており、検証時点の正確な再開基点は `58049c9 Add resumable private preview pipeline`、ahead/behind `0 / 0` です。このリモート基点には、受理済みの private preview を別端末の外部 run directory へ再構成する `fff-resumable-private-pipeline-001` が含まれます。
+
+`dry-run`、`build`、`status`、`resume`、`verify` の5コマンド、7段階の stage receipt、canonical input fingerprint、toolchain記録、atomic final receiptを使います。`node --test tests/fff-private-pipeline.test.mjs` は6/6成功し、manifestの読み取り専用チェーン（resumable pipeline、private preview、asset/rights、integrated visual、production execution）も成功しました。strict MkDocs、`brief` / `blueprint` launcher URI、`git diff --check` も成功しています。
+
+### 別端末での復旧契約
+
+```powershell
+cd 'C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory'
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count 'HEAD...@{upstream}'
+$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+$run = 'C:\path\outside\FastFictionFactory\fff-private-run-001'
+node .\tools\fff-private-pipeline.mjs dry-run --run-dir $run
+node .\tools\fff-private-pipeline.mjs build --run-dir $run
+node .\tools\fff-private-pipeline.mjs verify --run-dir $run
+```
+
+`$run` は新規または空のリポジトリ外ディレクトリにしてください。中断時は `status` → `resume` → `verify`、canonical inputが変わった場合は同じrunを再利用せず新しいrun directoryを作ります。pipeline resultのSHA256は `4175f2b36413203bb352d3bd7d00970b2c6cfe07e8978a9a9eceae1a6ad1c9c6` です。MP4はFFmpeg版ごとのbyte一致を要求せず、実際のSHA256とtoolchainをrun receiptへ記録します。
+
+### 判断境界と次の一手
+
+- Current lane: `PRIVATE_PREVISUALIZATION_REVIEW`。exact HTML/MP4を一度通覧し、`accept` または shot ID / cue ID / timestamp付きの `revise` 所見を返します。
+- Independent owner lane: `owner_asset_plan_decision` は A=default、B=exception requirement IDs、C=reconstruct strategy のいずれかで、preview acceptanceから推定しません。
+- Closed gates: material acquisition/construction、asset selection、rights clearance、provider/API/credentials、voice/TTS、generation、render、publication、database persistence、production approval、release acceptance、canon。
+- Publication scope: このhandoff更新は6つの文書（project context、current status、next-terminal handoff、supervisor report、decision log、idea ledger）だけです。`.serena/project.yml` は端末固有設定として除外し、product artifact・result・tool・script・public UIは変更していません。
+
+本節が現行判断の入口です。後続の同日旧節および下部の履歴にある `793b70e` は、resumable pipeline追加前の記録であり、現在の再開基点ではありません。
+
+## 2026-07-24 同期・開発可能性・監修引き継ぎ
+
+### 結論
+
+`master` は最新の `origin/master` を fast-forward 条件で取り込み済みです。検証時点の正確な同期点は `793b70e3418aebbd17fcbfd45c6d03d1d7840584 Consolidate supervisor handoff roadmap`、`HEAD = origin/master`、ahead/behind `0 / 0` で、`git pull --ff-only origin master` は `Already up to date` でした。リモート側に未取得の新しい commit はありませんでした。
+
+root manifest の読み取り専用 validation chain、主要4 resultのbyte不変、strict MkDocs build、`brief` / `blueprint` launcher URI はすべてgreenです。root package manifest / lockfileは存在せず、`npm install` は不要・未実施です。したがって、local artifact review、validator/docs保守、監修で具体的欠陥が見つかった後の限定preview修正を開始できる状態です。
+
+ただしworktreeはcleanではありません。開始時点で `.serena/project.yml` と監修/handoff文書6件に既存差分がありました。これらはreset、stash、stage、上書きをせず保持しています。本節はそのlocal report差分に追記したもので、commit/push済みとは報告しません。今回product artifact、result、tool、script、public UIは変更していません。
+
+### ライブ証拠
+
+| 項目 | 2026-07-24 JSTの実測 |
+| --- | --- |
+| Repository / branch | `C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory`; `master` |
+| Remote | `origin` → `https://github.com/YuShimoji/FastFictionFactory.git` |
+| Pull | `git fetch --prune origin`; `git pull --ff-only origin master` → `Already up to date` |
+| Parity | `HEAD = origin/master = 793b70e3418aebbd17fcbfd45c6d03d1d7840584`; ahead/behind `0 / 0` |
+| Preserved local state | `.serena/project.yml` + 6 handoff/report docsが開始時点からmodified。reset/stash/stage/overwriteなし |
+| Report publication | 2026-07-24 blockはlocal。commit/push済みとは主張しない |
+| Runtime | Git `2.53.0.windows.1`; Node `v24.13.0`; npm `11.6.2`; uvx `0.10.7`; FFmpeg/ffprobe `8.0.1` |
+| Dependency posture | root package/lockなし。追加install不要・未実施 |
+| Private Previsualization result | pass; SHA256 `088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0` |
+| Asset / Rights result | pass; SHA256 `b188db9d0a36ca895af90041855efc55cdff0db6bdec17cbe1950bb0ac2611af` |
+| Integrated Visual result | pass; SHA256 `e8f7f7fc50c5700d3a14f78b72ff33b6b142753f3dd2e2dfbf79311077301582` |
+| Production Execution result | pass; SHA256 `991e6310f67ae898ffc2949308c4826db1792479c1bf66900b9e710ad44c737d` |
+| Read-only proof | 上記4 resultはvalidation後もGit差分なし、既知SHA256と一致 |
+| Docs | strict MkDocs pass。23 review pagesのnav未収載は非阻害discoverability debt |
+| Local routes | `brief` / `blueprint` が有効な `file:///` URIを返し、browserは起動していない |
+| Product bytes | 同期・検証では変更なし。今回のwrite scopeは6 handoff/report docsのみ |
+
+### Recovery brief
+
+- Project thesis: 人間の創作権限を保持したlocal-first fiction production workbenchとして、source、判断、構成、private timing proof、将来のproduction evidenceを追跡可能にする。
+- Current development axis: Product Owner受理済みの6 Beat / 19 shot / 180秒構成を、exact private playbackとして監修可能にする。
+- Current lane: `PRIVATE_PREVISUALIZATION_REVIEW`。machine/browser/media/read-only evidenceはgreenで、監修AI/creatorのexperience judgmentだけが未記録。
+- Current slice: `fff-private-previsualization-timeline-001`。19 canonical frames、14 readiness derivatives、contact sheet、silent 960×540 H.264 MP4を同じlineageで保持。
+- Final deliverable image: provenance、rights、material、voice、render、QA、production、releaseを別々に承認し、再構築可能かつ監査可能な180秒完成候補。現成果物はprivate/reference-onlyでrelease candidateではない。
+- Major delivery gap: exact preview監修、private usefulness判断、Owner asset-plan、material evidence、voice evidence、render authority、rights/production/release判断。
+- Decision debt: preview acceptance、asset-plan、rights、production、release、canonを一つの承認へ圧縮しない。
+- Documentation debt: `docs/spec-index.json` は存在せずstale referenceとして非阻害。MkDocs nav未収載23件は整理候補だがproduct gateではない。
+
+進捗概算は、local reviewability `[██████████] 100%`、private production-candidate path `[██░░░░░░░░] 約20%`、public release authority `[░░░░░░░░░░] 0%` です。後二つは工数の測定値ではなく、完了gateと未承認gateを区別する計画上の目安です。
+
+### 現在の成果物と判断境界
+
+- Verified now: remote同期、runtime、root read-only chain、4 result hash不変、strict docs build、local launcher、exact private preview、accepted integrated composition、asset/rights readiness packet。
+- Executable now: supervising AIによるexact HTML/MP4の一度のexperience review。
+- Conditional implementation: reviewでmaterial defectが特定された場合のみ、shot/cue/timeに限定したpreview repair。
+- Independent human decision: Product Ownerの `owner_asset_plan_decision`（A default / B exception requirement IDs / C reconstruction）。
+- Deferred pending prior gates: private usefulness acceptance、bounded material construction、voice calibration、no-publish assembly、technical QA。
+- Closed until separately authorized: acquisition/source selection、rights clearance、provider/API/credential、generation、render、upload/publication、database persistence、production approval、release acceptance、canon。
+
+### 可能な限り先の目標設定
+
+| Gate | 目的 / 効果 | 必要条件 | 現在状態 | Owner | 次のmove |
+| --- | --- | --- | --- | --- | --- |
+| G0 Remote sync & reproducible health | 正確な再開点と技術healthを固定 | current remote、product driftなし、root chain、strict docs | complete | Repository maintainer | `793b70e` parityとlocal report境界を維持 |
+| G1 Supervising-AI exact preview review | rhythm、shot legibility、subtitle timing、transition、callbackを判定 | exact HTML/MP4、shot/cue/time付き所見 | open now | Supervising AI | 一度だけ全編reviewしacceptまたは限定finding |
+| G2 Conditional preview repair | 実証されたpreview defectだけ解消 | G1 material finding、same chronology/source、canonical lineage再生成 | conditional / closed | Future implementation worker | findingなしならskip |
+| G3 Creator/private usefulness acceptance | planning referenceとして十分か判断 | exact post-G1 candidate、人間通覧、rightsとの分離 | pending after G1 | Product Owner / creator | accept / revise / returnを記録 |
+| G4A Owner asset-plan decision | 14 requirementのdefault/exceptionを固定 | exact readiness packet、A/B/C、exceptionはIDのみ | pending / independent | Product Owner | preview結果から推定せず回答取得 |
+| G4B Voice authority contract | 音声検証の権限・境界を固定 | engine、voice、provider、credential、endpoint、data/retry policy承認 | closed / independent | Voice owner | separate contract時のみ開始 |
+| G5A Deterministic material construction | accepted original-family requirementをprivate inputへ変換 | G4A、exact write scope、provenance、no-render | deferred / unauthorized | Production worker | requirement ID単位のthin contract |
+| G5B Replacement candidate sourcing | replacement-family候補とevidenceを作る | G4A、network/acquisition authority、license capture | deferred / unauthorized | Production worker + rights owner | G5Aと分離して承認 |
+| G5C Voice calibration | proxyを実測voice envelopeへ置換 | G4B、6 narration segments、no-publication | deferred / unauthorized | Voice worker | duration/prosody/pronunciation evidence |
+| G6 Material/voice evidence closure | 19 shots・14 requirements・6 narrationの入力と例外を固定 | G5 outputs、hash、Owner decisions、未解決一覧 | future | Supervisor + Product Owner | render前に再監査 |
+| G7 No-publish offline assembly | timing/material/audio gapを私的に可視化 | G3、G4、G6、explicit render authority | closed | Production owner | 前提が揃った場合だけcandidate生成 |
+| G8 Technical QA & bounded repair | duration、sync、subtitle、audio、missing、risk、rebuildを検証 | exact G7 hash、QA profile、repair budget | future | QA + production worker | evidenceのある対象だけ修正 |
+| G9 Production selection & rights decisions | 利用候補、attribution、compatibility、replacementを確定 | exact QA candidate、named owners | closed | Production owner + rights owner | 個別明示decisionを保存 |
+| G10 Release-candidate freeze | 公開判断対象のexact bytesとevidenceを固定 | G8/G9完了、rebuild proof、risk register | closed | Production owner | releaseと分離してfreeze |
+| G11 Release / publication authorization | external deliveryを開く | exact G10 hash、destination、visibility、rollback、release owner | closed | Release owner | 自動進行せず個別承認 |
+| G12 Persistence / canon authority | databaseと最終物語決定を独立して開く | schema/migration/backup、human author decision | closed | Data owner + human author | publication成功から推定しない |
+
+### Active residual work
+
+| Work | Purpose | Effect | Requirements | State | Owner | Next move |
+| --- | --- | --- | --- | --- | --- | --- |
+| Exact preview review | 実視聴品質を判定 | acceptまたは再現可能なrepair evidence | HTML/MP4、shot/cue/time | open | Supervising AI | G1を一度実施 |
+| Preview repair | 観測済みdefectだけ解消 | frame/thumbnail/contact sheet/MP4を同一lineageで整合 | G1 material finding | conditional | Future implementation worker | findingなしなら実施しない |
+| Private usefulness decision | planning referenceとしての価値を判断 | material workへ進む根拠を作る | accepted preview、人間通覧 | pending | Product Owner / creator | G1後に短いdecision |
+| Asset-plan choice | requirement strategyを固定 | material contractの入力を作る | readiness packet、A/B/C | owner gate / pending | Product Owner | preview acceptanceと分離 |
+| Material construction | approved candidate evidenceを作る | private assembly inputを準備 | accepted IDs、write/acquisition authority、provenance | deferred / closed | Production worker + rights owner | G4A後にthin contract |
+| Voice calibration | narration timingを実測 | audio timing evidenceを作る | provider/engine/voice/credential authority | deferred / closed | Voice owner | separate contract only |
+| Offline assembly / QA | 統合candidateとrepair evidenceを作る | production/right判断対象になり得る | G3–G6とrender authority | closed | Production + QA | 前提完了後のみ |
+| Rights / production / release / canon | 利用・制作・公開・物語決定を確定 | external deliveryを開き得る | exact artifact、named owners、separate approvals | closed | Human owners | 各gateを独立判断 |
+| MkDocs nav cleanup | review docsの発見性を改善 | documentation debtを減らす | nav policy、historical page整理 | optional / non-blocking | Docs maintainer | product gateと混同せず別slice |
+
+### 監修AIへの最初の依頼
+
+`artifacts/private-previsualization-timeline/private-previsualization-timeline.html` または同directoryのMP4を正確に一度通覧してください。返答は次のどちらかです。
+
+1. `accept`: rhythm、shot理解、subtitle timing、transition、callbackにmaterial defectなし。artifactを変更しない。
+2. `revise`: findingごとにexact shot ID / cue ID / timestamp、期待と実測の差、理解への影響、最小修正範囲を記録する。
+
+一般的なstyle希望だけではrepair laneを開きません。このreviewと同時にasset-plan、rights、voice、production、release、persistence、canonを承認したとは扱いません。
+
+### 別端末での最短再開
+
+```powershell
+cd 'C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory'
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count "HEAD...origin/master"
+git status --short --branch --untracked-files=all
+$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+```
+
+`.serena/project.yml` と既存report差分をproduct changeとしてreset/stageしません。以降の古い節は保存履歴であり、現行判断は本2026-07-24節を優先します。
 
 ## 2026-07-23 同期・開発可能性・監修引き継ぎ
 
 ### 結論
 
-`master` は最新の `origin/master` を fast-forward 条件で取り込み済みです。本報告更新前の同期点は `3c40262cc6798b3c4b1a04676019c11a248cb4e3 Refresh synchronized supervisor handoff`、`HEAD = origin/master`、ahead/behind `0 / 0` でした。root manifestの読み取り専用validation chain、主要4 resultの前後hash不変、strict MkDocs buildはすべて成功しました。追加dependency installは不要です。
+`master` は最新の `origin/master` を fast-forward 条件で取り込み済みです。本報告更新前の同期点は `793b70e3418aebbd17fcbfd45c6d03d1d7840584 Consolidate supervisor handoff roadmap`、`HEAD = origin/master`、ahead/behind `0 / 0` でした。root manifestの読み取り専用validation chain、主要4 resultの前後hash不変、strict MkDocs buildはすべて成功しました。追加dependency installは不要です。
 
 したがって、ローカルでの成果物確認、validator/docs保守、および監修で具体的欠陥が見つかった後の限定preview修正は開始可能です。ただし「開発可能」はproduction readyやrelease readyを意味しません。素材構築、権利判断、provider/credential、音声生成、render、publication、database、production approval、release acceptance、canonは、必要な人間権限とexact-artifact承認がないため閉じています。
 
@@ -19,8 +165,9 @@
 | Repository / branch | `C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory`; `master` |
 | Remote | `origin` → `https://github.com/YuShimoji/FastFictionFactory.git` |
 | Pull | `git fetch --prune origin`; `git pull --ff-only origin master` → already up to date |
-| Pre-report parity | `HEAD = origin/master = 3c40262cc6798b3c4b1a04676019c11a248cb4e3`; `0 / 0` |
+| Pre-report parity | `HEAD = origin/master = 793b70e3418aebbd17fcbfd45c6d03d1d7840584`; `0 / 0` |
 | Pre-report local state | `.serena/project.yml` modified before this block; preserved and excluded。その他product/untracked driftなし |
+| Report publication | 本blockのhandoff docs更新はlocal。commit/push済みとは報告しない |
 | Runtime | Git `2.53.0.windows.1`; Node `v24.13.0`; npm `11.6.2`; uvx `0.10.7`; FFmpeg/ffprobe `8.0.1` |
 | Dependency posture | root package/lockなし。`npm install`不要・未実施。repository-local Node toolsとephemeral `uvx`のみ |
 | Private Previsualization result | pass; SHA256 `088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0` |

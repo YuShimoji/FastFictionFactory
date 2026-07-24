@@ -1,5 +1,32 @@
 # Idea Ledger
 
+## 2026-07-24 Resumable Private Preview Cross-Terminal Handoff
+
+- Purpose: Make the accepted private preview reconstructible from another terminal through one external-run CLI with durable stage receipts and source fingerprints.
+- Effect: Publishes the `fff-resumable-private-pipeline-001` entrypoint and records the current base `58049c9`, five-validator read-only chain, 6/6 dedicated tests, and strict docs evidence.
+- Requirements: Use a new or empty run directory outside the repository; preserve canonical input identity; resume only the longest valid receipt prefix; verify before using the private MP4.
+- State: Pipeline implementation is remotely available; current handoff documentation is the intentional publication scope; `.serena/project.yml` remains terminal-local and excluded.
+- Owner: Repository maintainer for contract/evidence freshness; next-terminal creator for the external run; supervising AI for exact preview review; Product Owner and named rights/voice/production/release owners for later gates.
+- Next move: On the other terminal, run `dry-run`, `build`, and `verify` in a new external directory, then review the exact HTML/MP4 once. Keep asset-plan, rights, voice, production, release, persistence, and canon decisions independent.
+
+## 2026-07-24 Exact Preview Review Restart
+
+- Purpose: Give a supervising AI a live-verified restart point while retaining inherited local reporting and machine-tool state.
+- Effect: Records exact remote parity at `793b70e`, green read-only/docs/launcher evidence, immutable protected results, and the first actionable review request.
+- Requirements: Preserve `.serena/project.yml` and prior report edits; avoid artifact regeneration during health checks; keep preview usefulness separate from asset, rights, production, release, persistence, and canon authority.
+- State: Remote synchronization and development-readiness verification are complete. The refreshed handoff remains local and is not claimed as committed or pushed.
+- Owner: Repository maintainer for evidence freshness; supervising AI for exact preview review; Product Owner and named rights/voice/production/release owners for later independent gates.
+- Next move: Review the exact private previsualization once. Accept without artifact changes when no material defect exists, or bind each requested repair to a shot ID, cue ID, or timestamp. Obtain `owner_asset_plan_decision` separately.
+
+## 2026-07-23 Consolidated Remote Base Verification
+
+- Purpose: Give the next supervising AI an exact, live-verified base after the remote roadmap consolidation without overwriting user-owned local tooling state.
+- Effect: Records `793b70e` parity, unchanged protected result hashes, green read-only/docs/launcher evidence, the local-only report publication boundary, and the still-open exact-preview review gate.
+- Requirements: Preserve `.serena/project.yml`, avoid product/artifact mutation, keep normal health checks read-only, and keep preview usefulness separate from asset, rights, production, release, persistence, and canon authority.
+- State: Sync and development-readiness verification are complete on the exact remote base. Durable report edits are present locally and are not claimed as committed or pushed.
+- Owner: Repository maintainer for synchronization and evidence freshness; supervising AI for the exact preview review; Product Owner and named rights/voice/production/release owners for later gates.
+- Next move: Review the exact private previsualization once. Accept without artifact changes when no material defect exists, or bind every requested repair to a shot ID, cue ID, or timestamp. Obtain `owner_asset_plan_decision` independently.
+
 ## 2026-07-23 Supervisor Handoff And Long-Range Goal Refresh
 
 - Purpose: Give the next supervising AI a live restart point, protect user-owned local tool state, and distinguish the current content-delivery path from the longer product-platform path.

@@ -1,13 +1,37 @@
 # Current Status Packet
 
+## Live Sync / Development Readiness — 2026-07-24 JST
+
+| Item | Verified state |
+| --- | --- |
+| Branch / remote | `master` tracking `origin/master` |
+| Pulled authority | `58049c9 Add resumable private preview pipeline` |
+| Sync evidence | `git fetch --prune origin`; `git pull --ff-only origin master` = `Already up to date`; `HEAD...origin/master = 0 / 0` |
+| Preserved pre-existing state | `.serena/project.yml` and six handoff/report docs were already modified; all were preserved without reset, stash, stage, or overwrite |
+| Current report state | Six handoff/report docs are the intentional publication scope; terminal-local `.serena/project.yml` remains excluded |
+| Runtime | Git `2.53.0.windows.1`; Node `v24.13.0`; npm `11.6.2`; uvx `0.10.7`; FFmpeg/ffprobe `8.0.1` |
+| Dependency posture | No root package/lock install; repository-local Node validators plus ephemeral `uvx` docs tooling |
+| Read-only health | Root manifest syntax/validation chain passed for Resumable Pipeline, Private Preview, Readiness Packet, Integrated Package, and Execution Pack |
+| Pipeline test | `node --test tests/fff-private-pipeline.test.mjs`: 6 passed, 0 failed |
+| Result immutability | Four protected result files stayed unchanged; pipeline result SHA256 is `4175f2b3…` |
+| Local entry health | `brief` and `blueprint` launchers returned valid local file URIs without opening a browser |
+| Docs health | `uvx --with mkdocs-material mkdocs build --strict` passed; 23 review pages omitted from nav remain non-blocking discoverability debt |
+| Product readiness | Local artifact review, validator/docs maintenance, and an evidence-bounded preview repair are development-ready |
+| Explicitly not ready | Production materials, rights clearance, voice/provider work, generation, render, release, persistence, production approval, and canon |
+
+Immediate gate: review `fff-private-previsualization-timeline-001` once as an exact HTML/MP4 experience. Accept it without mutation when no material defect exists; otherwise identify every requested repair by shot ID, cue ID, or timestamp. The separate `owner_asset_plan_decision` remains Product Owner-owned and must not be inferred from preview acceptance.
+
+Cross-terminal build path: use `node tools/fff-private-pipeline.mjs build --run-dir <new-empty-directory-outside-repository>`, then `status`, `resume` after interruption, and `verify` before using the silent private candidate. The pipeline is reference-only and does not open asset, rights, voice, production, publication, persistence, or canon gates.
+
 ## Live Sync / Development Readiness — 2026-07-23 JST
 
 | Item | Verified state |
 | --- | --- |
 | Branch / remote | `master` tracking `origin/master` |
-| Pulled authority | `3c40262cc6798b3c4b1a04676019c11a248cb4e3 Refresh synchronized supervisor handoff` |
+| Pulled authority | `793b70e3418aebbd17fcbfd45c6d03d1d7840584 Consolidate supervisor handoff roadmap` |
 | Sync evidence | `git fetch --prune origin`; `git pull --ff-only origin master` = already up to date; `HEAD...origin/master = 0 / 0` |
 | Preserved local state | Pre-existing `.serena/project.yml` modification remains unstaged and untouched; no product artifact or handoff doc was dirty before this refresh |
+| Current report state | The synchronized remote base is unchanged; this block updates handoff docs locally and does not claim commit/push publication |
 | Runtime | Git `2.53.0.windows.1`; Node `v24.13.0`; npm `11.6.2`; uvx `0.10.7`; FFmpeg/ffprobe `8.0.1` |
 | Dependency posture | No root package/lock install; repository-local Node validators plus ephemeral `uvx` docs tooling |
 | Read-only health | Root manifest syntax/validation chain passed for Private Preview, Readiness Packet, Integrated Package, and Execution Pack; four result hashes stayed unchanged |

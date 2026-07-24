@@ -1,5 +1,29 @@
 # Decision Log
 
+## 2026-07-24 — Publish resumable private-preview handoff from the current remote base
+
+- Decision: Treat `58049c9` (`Add resumable private preview pipeline`) as the exact synchronized base and publish only the six handoff/report documents; preserve terminal-local `.serena/project.yml` outside the publication scope.
+- Starting evidence: `git fetch --prune origin` yielded `HEAD = origin/master = 58049c9`, ahead/behind `0 / 0`; the base provides `fff-resumable-private-pipeline-001` with `dry-run`, `build`, `status`, `resume`, and `verify` commands in an external run directory.
+- Verification: the manifest read-only chain passed for five validators; the dedicated pipeline acceptance test passed 6/6; strict MkDocs passed; both local launcher URIs resolved; `git diff --check` passed.
+- Handoff boundary: the pipeline reconstructs the accepted 19-frame / 180-second silent reference-only candidate and refuses stale canonical input, but does not open asset selection, rights, voice, production, publication, persistence, or canon gates.
+- Lane decision: keep `PRIVATE_PREVISUALIZATION_REVIEW` as the immediate human gate and `owner_asset_plan_decision` as an independent Product Owner gate.
+
+## 2026-07-24 — Preserve inherited local state and keep the exact-preview review as the next gate
+
+- Decision: Treat the then-current `793b70e3418aebbd17fcbfd45c6d03d1d7840584` (`Consolidate supervisor handoff roadmap`) as the exact synchronized base after `fetch --prune` and `pull --ff-only`, while preserving all seven pre-existing tracked modifications. This is retained as prior same-day history; the later `58049c9` base is authoritative.
+- Starting evidence: `HEAD = origin/master`, ahead/behind `0 / 0`, and Git reported `Already up to date`. The inherited differences were machine-local `.serena/project.yml` plus six handoff/report documents.
+- Verification: the root manifest read-only chain passed; four protected result SHA256 values remained unchanged; strict MkDocs passed with 23 non-blocking nav omissions; `brief` and `blueprint` launchers returned valid local file URIs.
+- Worktree boundary: do not claim a clean or remotely published worktree. No product artifact, result, tool, script, or public UI was changed by this readiness pass; the new writes are report-only additions on top of inherited local edits.
+- Lane decision: keep `PRIVATE_PREVISUALIZATION_REVIEW` as the first executable gate and `owner_asset_plan_decision` as an independent Product Owner gate. Production, rights, voice/provider, generation, render, release, persistence, approval, and canon remain separately closed.
+
+## 2026-07-23 — Use the consolidated remote handoff as the verified local base
+
+- Decision: Treat `793b70e3418aebbd17fcbfd45c6d03d1d7840584` (`Consolidate supervisor handoff roadmap`) as the exact synchronized base, preserve the pre-existing `.serena/project.yml` modification as user-owned local tool state, and refresh only durable handoff documentation.
+- Starting evidence: `git fetch --prune origin` and `git pull --ff-only origin master` completed with `HEAD = origin/master = 793b70e3418aebbd17fcbfd45c6d03d1d7840584`, ahead/behind `0 / 0`, and `Already up to date`.
+- Verification: the root manifest read-only chain passed; the four protected result SHA256 values remained unchanged; strict MkDocs build passed with 23 nav omissions recorded as non-blocking discoverability debt; `brief` and `blueprint` launchers returned valid local file URIs.
+- Worktree boundary: no product artifact was changed. `.serena/project.yml` remains unstaged and untouched. The current status/report/context edits are local handoff changes and are not represented as committed or pushed.
+- Lane decision: keep `PRIVATE_PREVISUALIZATION_REVIEW` as the immediate executable gate and `owner_asset_plan_decision` as an independent Product Owner gate. Production, rights, voice/provider, generation, render, release, persistence, approval, and canon remain separately closed.
+
 ## 2026-07-23 — Preserve local tool state while refreshing the remote-ready supervisor handoff
 
 - Decision: Treat current `origin/master` after fetch/pull as restart authority, preserve the pre-existing `.serena/project.yml` modification as unstaged user-owned tool state, and publish only the current handoff/status/decision/idea documentation.

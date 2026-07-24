@@ -1,8 +1,34 @@
 # Next Terminal Handoff
 
+## Start here — synchronized development handoff (2026-07-24 JST)
+
+`master` was fetched and is at `origin/master`. The verified restart base is `HEAD = origin/master = 58049c9` (`Add resumable private preview pipeline`), ahead/behind `0 / 0`. This base contains the resumable private pipeline for a creator continuing on another terminal.
+
+Synchronization began with machine-local `.serena/project.yml` and six handoff/report documents already modified. They were preserved without reset, stash, stage, or overwrite. The six documentation files are the intentional publication scope; `.serena/project.yml` remains terminal-local and excluded. Product artifacts, protected result JSON, tools, scripts, and public UI were not modified by this handoff refresh.
+
+```powershell
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count "HEAD...origin/master"
+git status --short --branch --untracked-files=all
+$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+node .\tools\fff-private-pipeline.mjs dry-run --run-dir 'C:\path\outside\FastFictionFactory\fff-private-run-001'
+node .\tools\fff-private-pipeline.mjs build --run-dir 'C:\path\outside\FastFictionFactory\fff-private-run-001'
+node .\tools\fff-private-pipeline.mjs verify --run-dir 'C:\path\outside\FastFictionFactory\fff-private-run-001'
+.\scripts\operator\open_review.ps1 -Mode brief -PrintUri
+Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+```
+
+Verified on 2026-07-24: the root read-only chain passed for five artifact validators, `node --test tests/fff-private-pipeline.test.mjs` passed 6/6, the four protected predecessor result SHA256 values stayed unchanged, strict MkDocs passed, and both `brief` and `blueprint` local routes resolved. No `npm install` is required because the repository has no root package manifest or lockfile.
+
+The next supervising action is one exact review of `fff-private-previsualization-timeline-001`, or a resumable external-run build followed by `verify` when the private MP4 must be reconstructed. Return either `accept` with no artifact mutation, or `revise` with each material finding bound to a shot ID, cue ID, or timestamp. `owner_asset_plan_decision` remains an independent Product Owner gate. Asset selection, rights, voice/provider/credentials, generation, render, publication, persistence, production approval, release, and canon remain separately closed.
+
+Read the opening 2026-07-24 sections first. Lower dated sections are preserved history.
+
 ## Start here — synchronized development handoff (2026-07-23 JST)
 
-The latest remote state was fetched and fast-forward pulled. Before this documentation refresh, `HEAD` and `origin/master` were both `3c40262cc6798b3c4b1a04676019c11a248cb4e3`, parity was `0 / 0`, and Git reported `Already up to date`. A pre-existing `.serena/project.yml` tool-configuration modification remains unstaged and untouched; it is not a product change and means the worktree is intentionally not described as clean. After publication, current `origin/master` is the exact docs-successor restart authority.
+The latest remote state was fetched and fast-forward pulled. Before this documentation refresh, `HEAD` and `origin/master` were both `793b70e3418aebbd17fcbfd45c6d03d1d7840584` (`Consolidate supervisor handoff roadmap`), parity was `0 / 0`, and Git reported `Already up to date`. A pre-existing `.serena/project.yml` tool-configuration modification remains unstaged and untouched; it is not a product change and means the worktree is intentionally not described as clean. This exact remote commit is the restart base; the current handoff edits remain local until separately committed and pushed.
 
 ```powershell
 git fetch --prune origin
