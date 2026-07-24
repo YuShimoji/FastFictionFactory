@@ -3,9 +3,9 @@
 ## 2026-07-24 Resumable Private Preview Cross-Terminal Handoff
 
 - Purpose: Make the accepted private preview reconstructible from another terminal through one external-run CLI with durable stage receipts and source fingerprints.
-- Effect: Publishes the `fff-resumable-private-pipeline-001` entrypoint and records the current base `58049c9`, five-validator read-only chain, 6/6 dedicated tests, and strict docs evidence.
+- Effect: Publishes the `fff-resumable-private-pipeline-001` entrypoint and records implementation base `58049c9`, published handoff tip `73fbb13`, five-validator read-only chain, 6/6 dedicated tests, and strict docs evidence.
 - Requirements: Use a new or empty run directory outside the repository; preserve canonical input identity; resume only the longest valid receipt prefix; verify before using the private MP4.
-- State: Pipeline implementation is remotely available; current handoff documentation is the intentional publication scope; `.serena/project.yml` remains terminal-local and excluded.
+- State: Pipeline implementation and the six-document handoff are remotely available at `73fbb13`; `.serena/project.yml` remains terminal-local and excluded.
 - Owner: Repository maintainer for contract/evidence freshness; next-terminal creator for the external run; supervising AI for exact preview review; Product Owner and named rights/voice/production/release owners for later gates.
 - Next move: On the other terminal, run `dry-run`, `build`, and `verify` in a new external directory, then review the exact HTML/MP4 once. Keep asset-plan, rights, voice, production, release, persistence, and canon decisions independent.
 

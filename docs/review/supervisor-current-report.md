@@ -6,7 +6,7 @@
 
 ### 結論
 
-`master` は `origin/master` と一致しており、検証時点の正確な再開基点は `58049c9 Add resumable private preview pipeline`、ahead/behind `0 / 0` です。このリモート基点には、受理済みの private preview を別端末の外部 run directory へ再構成する `fff-resumable-private-pipeline-001` が含まれます。
+`master` は `origin/master` と一致しており、検証時点の正確な再開先は `git log -1 --oneline --decorate` で取得できる現行tip、ahead/behind `0 / 0` です。実装親 `58049c9 Add resumable private preview pipeline` に、受理済みの private preview を別端末の外部 run directory へ再構成する `fff-resumable-private-pipeline-001` が含まれます。
 
 `dry-run`、`build`、`status`、`resume`、`verify` の5コマンド、7段階の stage receipt、canonical input fingerprint、toolchain記録、atomic final receiptを使います。`node --test tests/fff-private-pipeline.test.mjs` は6/6成功し、manifestの読み取り専用チェーン（resumable pipeline、private preview、asset/rights、integrated visual、production execution）も成功しました。strict MkDocs、`brief` / `blueprint` launcher URI、`git diff --check` も成功しています。
 
@@ -32,7 +32,7 @@ node .\tools\fff-private-pipeline.mjs verify --run-dir $run
 - Current lane: `PRIVATE_PREVISUALIZATION_REVIEW`。exact HTML/MP4を一度通覧し、`accept` または shot ID / cue ID / timestamp付きの `revise` 所見を返します。
 - Independent owner lane: `owner_asset_plan_decision` は A=default、B=exception requirement IDs、C=reconstruct strategy のいずれかで、preview acceptanceから推定しません。
 - Closed gates: material acquisition/construction、asset selection、rights clearance、provider/API/credentials、voice/TTS、generation、render、publication、database persistence、production approval、release acceptance、canon。
-- Publication scope: このhandoff更新は6つの文書（project context、current status、next-terminal handoff、supervisor report、decision log、idea ledger）だけです。`.serena/project.yml` は端末固有設定として除外し、product artifact・result・tool・script・public UIは変更していません。
+- Publication scope: このhandoff更新は6つの文書（project context、current status、next-terminal handoff、supervisor report、decision log、idea ledger）だけで、`origin/master` へpush済みです。`.serena/project.yml` は端末固有設定として除外し、product artifact・result・tool・script・public UIは変更していません。
 
 本節が現行判断の入口です。後続の同日旧節および下部の履歴にある `793b70e` は、resumable pipeline追加前の記録であり、現在の再開基点ではありません。
 

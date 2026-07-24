@@ -2,8 +2,8 @@
 
 ## 2026-07-24 — Publish resumable private-preview handoff from the current remote base
 
-- Decision: Treat `58049c9` (`Add resumable private preview pipeline`) as the exact synchronized base and publish only the six handoff/report documents; preserve terminal-local `.serena/project.yml` outside the publication scope.
-- Starting evidence: `git fetch --prune origin` yielded `HEAD = origin/master = 58049c9`, ahead/behind `0 / 0`; the base provides `fff-resumable-private-pipeline-001` with `dry-run`, `build`, `status`, `resume`, and `verify` commands in an external run directory.
+- Decision: Treat `73fbb13` (`Refresh resumable private preview handoff`) as the exact published restart tip, with implementation parent `58049c9` (`Add resumable private preview pipeline`), and publish only the six handoff/report documents; preserve terminal-local `.serena/project.yml` outside the publication scope.
+- Starting evidence: `git fetch --prune origin` yielded `HEAD = origin/master = 58049c9`, ahead/behind `0 / 0` before the docs commit; the base provides `fff-resumable-private-pipeline-001` with `dry-run`, `build`, `status`, `resume`, and `verify` commands in an external run directory.
 - Verification: the manifest read-only chain passed for five validators; the dedicated pipeline acceptance test passed 6/6; strict MkDocs passed; both local launcher URIs resolved; `git diff --check` passed.
 - Handoff boundary: the pipeline reconstructs the accepted 19-frame / 180-second silent reference-only candidate and refuses stale canonical input, but does not open asset selection, rights, voice, production, publication, persistence, or canon gates.
 - Lane decision: keep `PRIVATE_PREVISUALIZATION_REVIEW` as the immediate human gate and `owner_asset_plan_decision` as an independent Product Owner gate.

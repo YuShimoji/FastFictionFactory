@@ -2,9 +2,9 @@
 
 ## Start here — synchronized development handoff (2026-07-24 JST)
 
-`master` was fetched and is at `origin/master`. The verified restart base is `HEAD = origin/master = 58049c9` (`Add resumable private preview pipeline`), ahead/behind `0 / 0`. This base contains the resumable private pipeline for a creator continuing on another terminal.
+`master` was fetched and is at `origin/master`. The verified restart tip is the current `HEAD = origin/master` (run `git log -1 --oneline --decorate` for its exact SHA), ahead/behind `0 / 0`; implementation parent `58049c9` (`Add resumable private preview pipeline`) contains the resumable private pipeline for a creator continuing on another terminal.
 
-Synchronization began with machine-local `.serena/project.yml` and six handoff/report documents already modified. They were preserved without reset, stash, stage, or overwrite. The six documentation files are the intentional publication scope; `.serena/project.yml` remains terminal-local and excluded. Product artifacts, protected result JSON, tools, scripts, and public UI were not modified by this handoff refresh.
+Synchronization began with machine-local `.serena/project.yml` and six handoff/report documents already modified. They were preserved without reset, stash, stage, or overwrite. The six documentation files were published on `origin/master`; `.serena/project.yml` remains terminal-local and excluded. Product artifacts, protected result JSON, tools, scripts, and public UI were not modified by this handoff refresh.
 
 ```powershell
 git fetch --prune origin

@@ -5,10 +5,10 @@
 | Item | Verified state |
 | --- | --- |
 | Branch / remote | `master` tracking `origin/master` |
-| Pulled authority | `58049c9 Add resumable private preview pipeline` |
+| Pulled authority | current `origin/master` handoff successor; implementation parent `58049c9` |
 | Sync evidence | `git fetch --prune origin`; `git pull --ff-only origin master` = `Already up to date`; `HEAD...origin/master = 0 / 0` |
 | Preserved pre-existing state | `.serena/project.yml` and six handoff/report docs were already modified; all were preserved without reset, stash, stage, or overwrite |
-| Current report state | Six handoff/report docs are the intentional publication scope; terminal-local `.serena/project.yml` remains excluded |
+| Current report state | Six handoff/report docs are committed and pushed; terminal-local `.serena/project.yml` remains excluded |
 | Runtime | Git `2.53.0.windows.1`; Node `v24.13.0`; npm `11.6.2`; uvx `0.10.7`; FFmpeg/ffprobe `8.0.1` |
 | Dependency posture | No root package/lock install; repository-local Node validators plus ephemeral `uvx` docs tooling |
 | Read-only health | Root manifest syntax/validation chain passed for Resumable Pipeline, Private Preview, Readiness Packet, Integrated Package, and Execution Pack |
