@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-26 Private Full Raster Candidate
+
+- Purpose: Replace quarantined primary-imagery methods with one coherent, high-fidelity raster candidate spanning the exact six-Beat, nineteen-shot, 180-second story.
+- Effect: Adds `fff-private-full-raster-candidate-001`, a timeline-first standalone player, eleven accepted new base rasters, three exact accepted anchors, five deterministic derivatives, one chronological contact sheet, one silent watermarked H.264 MP4, full prompt/provenance/cost evidence, and a fail-closed read-only validator.
+- Requirements: Keep the active quarantine unchanged; keep accepted anchors byte-identical; preserve the old private preview as active/default; preserve the rejected motion package as archive-only; keep exact narration/subtitle/timing/truth identity; use no more than 24 calls or USD 6.00 API-equivalent planning cost; keep selection, rights, audio/voice, publication, release, and canon closed.
+- State: Technical package complete. Calibration passed 4/4; generation accepted 11/11 with no retries; nineteen unique final frames are 1600×900; the 180.000-second MP4 has 5400 H.264 frames, no audio, one Japanese subtitle track, and the required private watermark; focused validator, 8/8 smoke, 4/4 Node tests, browser evidence, and protected-input immutability passed. Product Owner whole-story review is pending.
+- Owner: Product implementer for package/evidence integrity; Product Owner for whole-story visual acceptance; separately named production, rights, voice, release, and canon owners for later gates.
+- Next move: Review `artifacts/private-full-raster-candidate/private-full-raster-candidate.html` once as a complete story. Accept the exact candidate or bind material findings to shot IDs, cue IDs, or timestamps. Do not infer final production selection, rights clearance, audio/voice authority, publication, release approval, or final canon from visual acceptance.
+
 ## 2026-07-24 Resumable Private Preview Cross-Terminal Handoff
 
 - Purpose: Make the accepted private preview reconstructible from another terminal through one external-run CLI with durable stage receipts and source fingerprints.

@@ -1,0 +1,233 @@
+{
+  "schemaVersion": "fff.privateFullRasterCandidateManifest.v1",
+  "artifact_id": "fff-private-full-raster-candidate-001",
+  "generated_at": "2026-07-26",
+  "style_contract_id": "fff-full-raster-style-contract-001",
+  "shot_count": 19,
+  "primary_frame_count": 19,
+  "generated_base_count": 11,
+  "accepted_anchor_count": 3,
+  "deterministic_derivative_count": 5,
+  "contact_sheet_count": 1,
+  "mp4": {
+    "path": "artifacts/private-full-raster-candidate/private-full-raster-candidate.mp4",
+    "byte_size": 17931278,
+    "sha256": "e58afd33df8cfe1ea8cefa9262ca57bf2352eb3bb3b4767cbae1432b21069a0e",
+    "duration_seconds": 180,
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec_name": "h264",
+    "width": 960,
+    "height": 540,
+    "avg_frame_rate": "30/1",
+    "frame_count": 5400,
+    "audio_stream_count": 0,
+    "subtitle_stream_count": 1,
+    "watermark_text": "FULL RASTER CANDIDATE / PRIVATE / NOT FOR PUBLICATION"
+  },
+  "screenshots": {
+    "desktop": {
+      "path": "artifacts/review-screens/private-full-raster-candidate-desktop.png",
+      "byte_size": 735136,
+      "sha256": "2629908b7339d7ff5ecf5a6a93e98c95442da4b33fe13d14ba5e5a64a55e18cc"
+    },
+    "narrow": {
+      "path": "artifacts/review-screens/private-full-raster-candidate-narrow.png",
+      "byte_size": 172997,
+      "sha256": "aae3e4fa5e812bb5fa2b9a9b45046bd982f979c3c7298b4e855c74a5a88a4485"
+    }
+  },
+  "package_fingerprint_sha256": "cb4e62c0e0048e88488caafc55a752743297fb0408a6eff7247c1796a86a712e",
+  "payload_file_count": 38,
+  "files": [
+    {
+      "relative_path": "generation-attempts-source.json",
+      "byte_size": 33587,
+      "sha256": "21cc4b81f46ff277084117d5555b539ab125997bbf7215554cc5e065edf84c07"
+    },
+    {
+      "relative_path": "generation-attempts.csv",
+      "byte_size": 28038,
+      "sha256": "c3cb44bc03c4268b8eab28f745e05dc53ba5f929fd88d1cb77a09302f192e0f5"
+    },
+    {
+      "relative_path": "image-lineage.csv",
+      "byte_size": 8180,
+      "sha256": "bde7811bb52980db53e708b54d87a6d6b4dece937371f8055d1591177c95ec8d"
+    },
+    {
+      "relative_path": "images/base/shot-b01-01.jpg",
+      "byte_size": 411213,
+      "sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e"
+    },
+    {
+      "relative_path": "images/base/shot-b01-02.jpg",
+      "byte_size": 423568,
+      "sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23"
+    },
+    {
+      "relative_path": "images/base/shot-b01-03.jpg",
+      "byte_size": 398192,
+      "sha256": "81908541e9eb844e7117aff49ae99839e3222336060d39b59801c41b71c9c0f5"
+    },
+    {
+      "relative_path": "images/base/shot-b02-01.jpg",
+      "byte_size": 357390,
+      "sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304"
+    },
+    {
+      "relative_path": "images/base/shot-b02-02.jpg",
+      "byte_size": 362497,
+      "sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09"
+    },
+    {
+      "relative_path": "images/base/shot-b03-01.jpg",
+      "byte_size": 365950,
+      "sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839"
+    },
+    {
+      "relative_path": "images/base/shot-b03-02.jpg",
+      "byte_size": 373790,
+      "sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460"
+    },
+    {
+      "relative_path": "images/base/shot-b04-02.jpg",
+      "byte_size": 284893,
+      "sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf"
+    },
+    {
+      "relative_path": "images/base/shot-b04-03.jpg",
+      "byte_size": 274759,
+      "sha256": "63bc3351fba0a7337e76b77ace8586a616d0bece4efed7de8ae26e5f82deaad0"
+    },
+    {
+      "relative_path": "images/base/shot-b05-01.jpg",
+      "byte_size": 297217,
+      "sha256": "94c0b90c57bbceeba4c59c669d73dc4598308a0c574516fc95478200fa04d54d"
+    },
+    {
+      "relative_path": "images/base/shot-b05-03.jpg",
+      "byte_size": 281195,
+      "sha256": "7d76b463f9594c35c73b99d43888d6c597cdfca7248aff91c387f0fc1a2cc2a0"
+    },
+    {
+      "relative_path": "images/final/shot-b03-03.jpg",
+      "byte_size": 367099,
+      "sha256": "d28f599fff868a5fbc5d5bf613a98c9f935eeb768fccf3b610b1a77631400d91"
+    },
+    {
+      "relative_path": "images/final/shot-b05-04.jpg",
+      "byte_size": 319219,
+      "sha256": "a4d85ac5df664d35a65f91593b6822aba898250f8cf855738993f1c5d8cd70d2"
+    },
+    {
+      "relative_path": "images/final/shot-b06-01.jpg",
+      "byte_size": 364483,
+      "sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed"
+    },
+    {
+      "relative_path": "images/final/shot-b06-02.jpg",
+      "byte_size": 232413,
+      "sha256": "f9e9f69e8123a135e3d2c838e5d75c466958093190f833164b3bc7e673ae6ef2"
+    },
+    {
+      "relative_path": "images/final/shot-b06-03.jpg",
+      "byte_size": 375079,
+      "sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b01-01-attempt-01.png",
+      "byte_size": 2197541,
+      "sha256": "b162b2a90297ae69dd4cffc6ef75005be1e8fb3afb8ba49300ac6084e59238f1"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b01-02-attempt-01.png",
+      "byte_size": 2204539,
+      "sha256": "55d56a4cf11df2a2fb4850c040ea7a58adc5f2309518928f00152185350aa860"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b01-03-attempt-01.png",
+      "byte_size": 2276297,
+      "sha256": "4542b5f635d228ee5c61cd081329be3639676bd88492b608fa9aa5bbe590b247"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b02-01-attempt-01.png",
+      "byte_size": 2050570,
+      "sha256": "b401ee8473580ade02262773f505d590c86eb89f6623ca398b4606afc0ada296"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b02-02-attempt-01.png",
+      "byte_size": 2105159,
+      "sha256": "d362f8b8402a2da4fc02319e988a98d26e95de4e001ff563c70a7df4918e4800"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b03-01-attempt-01.png",
+      "byte_size": 2210411,
+      "sha256": "75e4ddb52bd36ec055b57d17ec509f5409bb4b36a532df6c5b59410c3ad7293d"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b03-02-attempt-01.png",
+      "byte_size": 2259530,
+      "sha256": "94a7fcf85cf61364adb14d7e2f2b91a469d76819c7466555a5b48d11cceccac0"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b04-02-attempt-01.png",
+      "byte_size": 1895376,
+      "sha256": "cda3c9406e0b1c90a801ab7feda4ace53e6dfadd32ed0b99293e5680ff3aa9ab"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b04-03-attempt-01.png",
+      "byte_size": 1765330,
+      "sha256": "e6bfe365d4124f787d315bac8a5cd9b916edfc73bcc34951cbc5ac9fc8ba2fd4"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b05-01-attempt-01.png",
+      "byte_size": 1797794,
+      "sha256": "ad27d2ec6f7caf1407704672512615858c1138a86a3e3cb5e963a29180ae5d4d"
+    },
+    {
+      "relative_path": "images/generated-originals/shot-b05-03-attempt-01.png",
+      "byte_size": 1781187,
+      "sha256": "3641d150e065f5ff08edf755287962930b1d17877654b2b125528072fd926091"
+    },
+    {
+      "relative_path": "motion-transition-map.csv",
+      "byte_size": 2052,
+      "sha256": "fcead8feeca68c0815aa1f224140725b4774b2f60e8485600dffbddcb665a91c"
+    },
+    {
+      "relative_path": "private-full-raster-candidate-contact-sheet.jpg",
+      "byte_size": 309112,
+      "sha256": "543eb662194becf29a5e200d8b50cd34f7dfd256bfb28d20dd716e74efca3408"
+    },
+    {
+      "relative_path": "private-full-raster-candidate.html",
+      "byte_size": 110558,
+      "sha256": "7ffd7e4199bfd545ad816b434d595da1f86a0659c4cf51f89fadef3b66b1a9d7"
+    },
+    {
+      "relative_path": "private-full-raster-candidate.json",
+      "byte_size": 115313,
+      "sha256": "b6dab54eb9672720ee7968a103819d0df1e517b8c4a8cb8d1271c27fa81d9976"
+    },
+    {
+      "relative_path": "private-full-raster-candidate.mp4",
+      "byte_size": 17931278,
+      "sha256": "e58afd33df8cfe1ea8cefa9262ca57bf2352eb3bb3b4767cbae1432b21069a0e"
+    },
+    {
+      "relative_path": "README_PRIVATE_FULL_RASTER_CANDIDATE.md",
+      "byte_size": 1504,
+      "sha256": "d5a933c8dd744025fb39747af1bc35f09f4dd8ded2841353fcc86a50b8b13d8e"
+    },
+    {
+      "relative_path": "shot-image-map.csv",
+      "byte_size": 5646,
+      "sha256": "10c053f20f4f1b69227ccc51a1a094a754f7cb667f67a4f099c536e66043406d"
+    },
+    {
+      "relative_path": "visual-style-contract.json",
+      "byte_size": 5536,
+      "sha256": "3b3f5ab73d4a0b85b952e2e70b7142cfb53c23ec17bf3fbc532c4f2ab91d0156"
+    }
+  ]
+}

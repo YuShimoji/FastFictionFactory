@@ -65,6 +65,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Private Full Raster Candidate (fff-private-full-raster-candidate-001): review/private-full-raster-candidate.md
       - Primary Imagery Quarantine and Raster Pilot: review/primary-imagery-quarantine-and-raster-pilot.md
       - Resumable Private Pipeline (fff-resumable-private-pipeline-001): review/resumable-private-pipeline.md
       - Private Materialized Motion Previs (fff-private-materialized-motion-previs-001): review/private-materialized-motion-previs.md

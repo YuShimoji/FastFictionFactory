@@ -1,5 +1,31 @@
 # Current Status Packet
 
+## Private Full Raster Candidate — 2026-07-26 JST
+
+| Item | Verified state |
+| --- | --- |
+| Exact base | `origin/master = ef302f6e3dcb6ba4f01ba46d284c19d914d89662` before Mission writes |
+| Isolated lane | `codex/fff-private-full-raster-candidate-v1` in a repo-external worktree |
+| Original checkout | Older local `cfd645f` plus seven pre-existing modifications preserved byte-for-byte |
+| Candidate | `fff-private-full-raster-candidate-001`; private; default-off; successor candidate; Product Owner review pending |
+| Active default | `fff-private-previsualization-timeline-001` remains active/default |
+| Rejected visual package | `fff-private-materialized-motion-previs-001` remains rejected, archive-only, non-successor, and unused |
+| Product Owner-accepted anchors | `shot-b04-01`, `shot-b05-02`, `shot-b02-03`; byte-identical and immutable |
+| Visual style contract | `fff-full-raster-style-contract-001` v1.0.0 frozen before first new generation |
+| Calibration | 4/4 first-attempt pass: environment, hands, fictional document, unresolved human |
+| Image-generation evidence | 11 calls; 11 accepted; 0 rejected; 0 retries; model and seeds not observed |
+| Cost evidence | USD 2.75 API-equivalent planning estimate; actual monetary cost unknown |
+| Final image set | 19 unique 1600×900 primary frames; 11 new bases; 3 exact anchors; 5 deterministic derivatives; exact duplicate count 0 |
+| MP4 | H.264; 960×540; 180.000 seconds; 5400 frames; 0 audio streams; 1 Japanese subtitle track; private watermark burned in |
+| Browser | 1440×1000 and 390×844 passed; keyboard/focus/player/timeline checks; no external requests or horizontal overflow |
+| Read-only validation | `validate-private-full-raster-candidate`: PASS; 12 protected predecessor paths unchanged |
+| Negative smoke | 8/8; blocks selection, rights, default promotion, budget/calibration failure, forbidden source, and duplicate frame |
+| Dedicated tests | `node --test tests/fff-private-full-raster-candidate.test.mjs`: 4 passed, 0 failed |
+| Human gate | One Product Owner whole-story visual review against exact shot/cue/time evidence |
+| Explicitly closed | Final selection, rights clearance, audio/voice, public deployment, publication, release approval, final canon |
+
+Open `artifacts/private-full-raster-candidate/private-full-raster-candidate.html`. Review the exact 19-shot timeline and contact sheet as one story. Technical green does not count as Product Owner acceptance. If accepted, record that decision separately without inferring final production selection or rights; otherwise bind each material finding to a shot ID, cue ID, or timestamp.
+
 ## Live Sync / Development Readiness — 2026-07-24 JST
 
 | Item | Verified state |

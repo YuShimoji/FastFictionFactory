@@ -1692,6 +1692,12 @@ async function main() {
     return;
   }
 
+  if (command === "validate-private-full-raster-candidate" || command === "smoke-private-full-raster-candidate") {
+    const { runPrivateFullRasterCandidateCommand } = await import("./fff-private-full-raster-candidate.mjs");
+    await runPrivateFullRasterCandidateCommand({ command, inputPath, outputPath });
+    return;
+  }
+
   if (command === "validate-private-materialized-motion-previs" || command === "smoke-private-materialized-motion-previs") {
     const { runPrivateMaterializedMotionPrevisCommand } = await import("./fff-private-materialized-motion-previs.mjs");
     await runPrivateMaterializedMotionPrevisCommand({ command, inputPath, outputPath });
@@ -22952,6 +22958,8 @@ Usage:
   node tools/fff-state.mjs smoke-private-previsualization-timeline <private-previsualization-timeline-result.json>
   node tools/fff-state.mjs validate-primary-imagery-raster-pilot <high-fidelity-raster-pilot-result.json>
   node tools/fff-state.mjs smoke-primary-imagery-raster-pilot <high-fidelity-raster-pilot-result.json>
+  node tools/fff-state.mjs validate-private-full-raster-candidate <private-full-raster-candidate-result.json>
+  node tools/fff-state.mjs smoke-private-full-raster-candidate <private-full-raster-candidate-result.json>
   node tools/fff-state.mjs validate-private-materialized-motion-previs <private-materialized-motion-previs-result.json>
   node tools/fff-state.mjs smoke-private-materialized-motion-previs <private-materialized-motion-previs-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave2 <composition-expansion-wave2-result.json>

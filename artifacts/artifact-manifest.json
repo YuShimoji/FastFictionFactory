@@ -1,7 +1,7 @@
 {
   "artifact_id": "fff-private-previsualization-timeline-001",
   "active_default_artifact_id": "fff-private-previsualization-timeline-001",
-  "successor_candidate_artifact_id": null,
+  "successor_candidate_artifact_id": "fff-private-full-raster-candidate-001",
   "quarantined_candidate_artifact_id": "fff-private-materialized-motion-previs-001",
   "primary_imagery_quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
   "primary_imagery_quarantine_path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
@@ -28,6 +28,127 @@
           {
             "shot_id": "shot-b02-03",
             "source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          }
+        ]
+      },
+      {
+        "artifact_id": "fff-private-full-raster-candidate-001",
+        "active_default": false,
+        "successor_candidate": true,
+        "primary_frames": [
+          {
+            "shot_id": "shot-b01-01",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b01-02",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b01-03",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b02-01",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b02-02",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b02-03",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "accepted_generated_raster_anchor",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b03-01",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b03-02",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b03-03",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b04-01",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "accepted_generated_raster_anchor",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b04-02",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b04-03",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b05-01",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b05-02",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "accepted_generated_raster_anchor",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b05-03",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b05-04",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b06-01",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b06-02",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b06-03",
+            "source_kind": "generated_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
             "rasterized_forbidden_vector": false
           }
         ]
@@ -730,7 +851,7 @@
     ],
     "numerator": 3,
     "denominator": 3,
-    "exact_ratio": 1.0,
+    "exact_ratio": 1,
     "percentage": 100,
     "classification": "H1_COMPOSITION_TRANSFER_PASS",
     "blocking_shot_ids": [],
@@ -3347,14 +3468,46 @@
     "payload_file_count": 8,
     "file_count": 9,
     "files": [
-      { "relative_path": "README_INTEGRATED_VISUAL_PACKAGE.md", "byte_size": 821, "sha256": "9077e5139f1ab62b32c494fa5f3c914e2cfe62fa8eb6f541ad5c1969389b566e" },
-      { "relative_path": "integrated-visual-production-package.html", "byte_size": 61457, "sha256": "27eaa9cb03cd060b0ec18cf039080e4f06f7d0177f5855114d228841d5fbee3f" },
-      { "relative_path": "integrated-visual-production-package.json", "byte_size": 380315, "sha256": "7f9d165904726d09da145b20eb88af0c1fe20d28f5b192baea07a3b7d9abaf48" },
-      { "relative_path": "beat-sequence.csv", "byte_size": 3811, "sha256": "0e85017493c49267837c232f3fc9ce4b085d3a5d6f8f86ca20f5d4278c1902e0" },
-      { "relative_path": "shot-sequence.csv", "byte_size": 22322, "sha256": "4b59ea1b1e34a121e951d5f31a3c7c3f59135ac09a164770f5c6df2654b64ec1" },
-      { "relative_path": "reference-lineage.csv", "byte_size": 1244, "sha256": "064517d9baf9e1bf76e80e099f4590e381033523b7ab09d69abd3f473c4c9b3e" },
-      { "relative_path": "source-dependency-index.csv", "byte_size": 21136, "sha256": "24ec0c6b5d798422d93c706c3bff67f2a7056c153ae6a4e312836d757cae1bb6" },
-      { "relative_path": "integrated-visual-production-package-contact-sheet.jpg", "byte_size": 340898, "sha256": "317969924f3b5f56b5dd5530244d41366c29e7a70036efdb28ae0ff6c6e2c832" }
+      {
+        "relative_path": "README_INTEGRATED_VISUAL_PACKAGE.md",
+        "byte_size": 821,
+        "sha256": "9077e5139f1ab62b32c494fa5f3c914e2cfe62fa8eb6f541ad5c1969389b566e"
+      },
+      {
+        "relative_path": "integrated-visual-production-package.html",
+        "byte_size": 61457,
+        "sha256": "27eaa9cb03cd060b0ec18cf039080e4f06f7d0177f5855114d228841d5fbee3f"
+      },
+      {
+        "relative_path": "integrated-visual-production-package.json",
+        "byte_size": 380315,
+        "sha256": "7f9d165904726d09da145b20eb88af0c1fe20d28f5b192baea07a3b7d9abaf48"
+      },
+      {
+        "relative_path": "beat-sequence.csv",
+        "byte_size": 3811,
+        "sha256": "0e85017493c49267837c232f3fc9ce4b085d3a5d6f8f86ca20f5d4278c1902e0"
+      },
+      {
+        "relative_path": "shot-sequence.csv",
+        "byte_size": 22322,
+        "sha256": "4b59ea1b1e34a121e951d5f31a3c7c3f59135ac09a164770f5c6df2654b64ec1"
+      },
+      {
+        "relative_path": "reference-lineage.csv",
+        "byte_size": 1244,
+        "sha256": "064517d9baf9e1bf76e80e099f4590e381033523b7ab09d69abd3f473c4c9b3e"
+      },
+      {
+        "relative_path": "source-dependency-index.csv",
+        "byte_size": 21136,
+        "sha256": "24ec0c6b5d798422d93c706c3bff67f2a7056c153ae6a4e312836d757cae1bb6"
+      },
+      {
+        "relative_path": "integrated-visual-production-package-contact-sheet.jpg",
+        "byte_size": 340898,
+        "sha256": "317969924f3b5f56b5dd5530244d41366c29e7a70036efdb28ae0ff6c6e2c832"
+      }
     ],
     "source_package_fingerprints": {
       "fff-composition-expansion-wave1-001": "403202568e99060937ed3ce36d16117b8564292f21baa3d72e8b290acd38ccb9",
@@ -3382,8 +3535,16 @@
       "external_reproducibility_claimed": false
     },
     "screenshots": {
-      "900x1200-dark": { "path": "artifacts/review-screens/integrated-visual-production-package-900x1200-dark.png", "byte_size": 1156052, "sha256": "f0a0720ed8aa5be686477e14ecfe1f6636183b7f0254fa7695b92287e737a599" },
-      "1280x900-light": { "path": "artifacts/review-screens/integrated-visual-production-package-1280x900-light.png", "byte_size": 998447, "sha256": "886ff416fd31a52990f2b4b50e64e82c7cdd5c12fb7dd7f86b1d63cbf48b8f12" }
+      "900x1200-dark": {
+        "path": "artifacts/review-screens/integrated-visual-production-package-900x1200-dark.png",
+        "byte_size": 1156052,
+        "sha256": "f0a0720ed8aa5be686477e14ecfe1f6636183b7f0254fa7695b92287e737a599"
+      },
+      "1280x900-light": {
+        "path": "artifacts/review-screens/integrated-visual-production-package-1280x900-light.png",
+        "byte_size": 998447,
+        "sha256": "886ff416fd31a52990f2b4b50e64e82c7cdd5c12fb7dd7f86b1d63cbf48b8f12"
+      }
     },
     "boundaries": {
       "local_only": true,
@@ -3932,9 +4093,20 @@
       "asset_requirements": 14
     },
     "synthetic_voice_planning_preserved": true,
-    "beat_shot_grouping": [3, 3, 3, 3, 4, 3],
+    "beat_shot_grouping": [
+      3,
+      3,
+      3,
+      3,
+      4,
+      3
+    ],
     "default_theme": "auto",
-    "theme_modes": ["light", "dark", "auto"],
+    "theme_modes": [
+      "light",
+      "dark",
+      "auto"
+    ],
     "package_fingerprint_sha256": "400d01a3abaa935103e1080b2f42b2f9e20553e225e13e90aec7a740e7ed3861",
     "canonical": false,
     "production_approved": false,
@@ -4386,5 +4558,41 @@
       "rights_cleared_claim": false
     },
     "next_review": "Preserved as the guarded patch source for the active Editorial Derivative Preview; keep source application and all protected boundaries closed."
+  },
+  "private_full_raster_candidate_dir": "artifacts/private-full-raster-candidate",
+  "private_full_raster_candidate_result_path": "artifacts/private-full-raster-candidate-result.json",
+  "private_full_raster_candidate_doc_path": "docs/review/private-full-raster-candidate.md",
+  "private_full_raster_candidate_route": "artifacts/private-full-raster-candidate/private-full-raster-candidate.html",
+  "private_full_raster_candidate_manifest_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate-manifest.json",
+  "private_full_raster_candidate_contact_sheet_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate-contact-sheet.jpg",
+  "private_full_raster_candidate_mp4_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate.mp4",
+  "private_full_raster_candidate_package_fingerprint": "cb4e62c0e0048e88488caafc55a752743297fb0408a6eff7247c1796a86a712e",
+  "private_full_raster_candidate": {
+    "artifact_id": "fff-private-full-raster-candidate-001",
+    "schemaVersion": "fff.privateFullRasterCandidate.v1",
+    "package_root": "artifacts/private-full-raster-candidate",
+    "result_path": "artifacts/private-full-raster-candidate-result.json",
+    "review_doc_path": "docs/review/private-full-raster-candidate.md",
+    "access_route": "artifacts/private-full-raster-candidate/private-full-raster-candidate.html",
+    "source_artifact_id": "fff-private-previsualization-timeline-001",
+    "quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
+    "style_contract_id": "fff-full-raster-style-contract-001",
+    "package_fingerprint_sha256": "cb4e62c0e0048e88488caafc55a752743297fb0408a6eff7247c1796a86a712e",
+    "shot_count": 19,
+    "generated_base_count": 11,
+    "accepted_anchor_count": 3,
+    "deterministic_derivative_count": 5,
+    "private_local_only": true,
+    "default_active": false,
+    "active_default": false,
+    "successor_candidate": true,
+    "release_path_reachable": false,
+    "product_owner_whole_story_review": "pending",
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "public_release": false,
+    "audio": false,
+    "voice": false,
+    "final_canon": false
   }
 }

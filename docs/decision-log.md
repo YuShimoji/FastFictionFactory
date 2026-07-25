@@ -1,5 +1,15 @@
 # Decision Log
 
+## 2026-07-26 — Register one private full-raster successor candidate for whole-story review
+
+- Decision: Build `fff-private-full-raster-candidate-001` as the only new successor candidate while leaving `fff-private-previsualization-timeline-001` active/default and retaining `fff-private-materialized-motion-previs-001` as rejected archive-only history.
+- Anchor authority: record the Product Owner's acceptance of `shot-b04-01`, `shot-b05-02`, and `shot-b02-03` as coherent high-quality anchors eligible for production consideration. Preserve their exact bytes and hashes; do not convert acceptance into final production selection or rights clearance.
+- Style decision: freeze `fff-full-raster-style-contract-001` before the first new call. Continue cinematic/editorial photographic realism, restrained tension, muted slate/aged brass/paper-neutral/charcoal/cool-shadow color, real material wear, and separate deterministic Japanese overlays. Keep vector, primitive, generic-symbolic, near-blank, villain-lighting, and supernatural-glow primary imagery excluded.
+- Generation decision: use the built-in image-generation route without new credentials or payment setup. Stop only on the Mission ceilings or coherence blockers. The completed lane used 11/24 calls and USD 2.75/USD 6.00 API-equivalent planning cost; actual billing remains unknown.
+- Assembly decision: retain eleven accepted new base rasters, reuse the three immutable anchors by exact identity, and create five deterministic raster derivatives for intentional family callbacks. Do not re-encode an anchor under the same identity.
+- Review decision: technical validation may mark the package ready for one Product Owner whole-story review, but may not claim that review passed. The reviewer must judge material coherence and all unresolved truth boundaries on exact shot/cue/time evidence.
+- Closed consequence: final production selection, rights clearance, audio/voice, publication, public deployment, release approval, and final canon remain false.
+
 ## 2026-07-24 — Publish resumable private-preview handoff from the current remote base
 
 - Decision: Treat `73fbb13` (`Refresh resumable private preview handoff`) as the exact published restart tip, with implementation parent `58049c9` (`Add resumable private preview pipeline`), and publish only the six handoff/report documents; preserve terminal-local `.serena/project.yml` outside the publication scope.

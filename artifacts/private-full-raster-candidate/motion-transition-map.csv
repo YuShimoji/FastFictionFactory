@@ -1,0 +1,20 @@
+sequence,shot_id,start_seconds,end_seconds,duration_seconds,motion,transition,implementation,callback_family,watermark_required
+1,shot-b01-01,0,7,7,slow_push,hard_cut,slow_push via bounded FFmpeg 30fps raster transform,tower,true
+2,shot-b01-02,7,14,7,locked,short_dissolve,locked 960x540 raster,tower,true
+3,shot-b01-03,14,20,6,locked,held_fade,locked 960x540 raster,tower,true
+4,shot-b02-01,20,30,10,slow_pan,hard_cut,slow_pan via bounded FFmpeg 30fps raster transform,clock-repair,true
+5,shot-b02-02,30,40,10,locked,match_cut,locked 960x540 raster,clock-repair,true
+6,shot-b02-03,40,50,10,controlled_parallax,graphic_match,controlled_parallax via bounded FFmpeg 30fps raster transform,clock-repair,true
+7,shot-b03-01,50,60,10,slow_push,hard_cut,slow_push via bounded FFmpeg 30fps raster transform,ledger,true
+8,shot-b03-02,60,70,10,locked,graphic_match,locked 960x540 raster,ledger,true
+9,shot-b03-03,70,80,10,graphic_dissolve,short_dissolve,graphic_dissolve via bounded FFmpeg 30fps raster transform,ledger,true
+10,shot-b04-01,80,88,8,slow_push,hard_cut,slow_push via bounded FFmpeg 30fps raster transform,council,true
+11,shot-b04-02,88,96,8,locked,graphic_match,locked 960x540 raster,council,true
+12,shot-b04-03,96,105,9,slow_pull,held_fade,slow_pull via bounded FFmpeg 30fps raster transform,council,true
+13,shot-b05-01,105,118,13,slow_pan,hard_cut,slow_pan via bounded FFmpeg 30fps raster transform,toma,true
+14,shot-b05-02,118,131,13,controlled_parallax,match_cut,controlled_parallax via bounded FFmpeg 30fps raster transform,brass-moth,true
+15,shot-b05-03,131,143,12,locked,graphic_match,locked 960x540 raster,council,true
+16,shot-b05-04,143,155,12,graphic_dissolve,held_fade,graphic_dissolve via bounded FFmpeg 30fps raster transform,council,true
+17,shot-b06-01,155,164,9,locked,hard_cut,locked 960x540 raster,ledger,true
+18,shot-b06-02,164,172,8,slow_pull,graphic_match,slow_pull via bounded FFmpeg 30fps raster transform,ledger,true
+19,shot-b06-03,172,180,8,slow_pull,held_fade,slow_pull via bounded FFmpeg 30fps raster transform,tower,true

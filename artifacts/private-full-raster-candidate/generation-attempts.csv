@@ -1,0 +1,155 @@
+call_number,shot_id,attempt_number,calibration,accepted,rejection_reason,tool,observed_model,observed_seed,generated_original_path,workspace_source_path,width,height,source_sha256,planning_rate_usd,api_equivalent_cost_usd,actual_monetary_cost_usd,prompt
+1,shot-b01-01,1,true,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_lajjIpXk1GznciPaz5OKoHWI.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-01-attempt-01.png,1672,941,b162b2a90297ae69dd4cffc6ef75005be1e8fb3afb8ba49300ac6084e59238f1,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b01-01 calibration
+Input images: Image 1 is a style reference for neutral institutional daylight and architectural depth; Image 2 is a style reference for aged brass, paper, and restrained practical texture; Image 3 is a style reference for weathered clock materials, cool shadows, and photographic finish. Do not reproduce, edit, or collage the reference compositions.
+Primary request: a materially convincing exterior view from a modest old rail station approach toward a bellless observatory tower rising above a dense, timeless northern city
+Scene/backdrop: damp stone station platform and iron-and-glass canopy in the foreground, layered roofs and restrained industrial architecture in the middle distance, an old masonry observatory or clock tower beyond; the tower's upper bell frame is visibly empty but not theatrically emphasized
+Subject: the physical route from station to tower and the believable empty mounting structure; no focal character
+Style/medium: high-fidelity cinematic editorial photography, naturalistic realism, subtle film grain
+Composition/framing: wide 16:9 landscape, eye-level establishing view, strong real spatial depth, room for a slow push toward the tower
+Lighting/mood: overcast cool daylight with small aged-brass warmth, quiet investigative tension, neither ominous nor celebratory
+Color palette: muted slate, paper-neutral stone, charcoal iron, aged brass accents, cool shadow
+Materials/textures: wet stone, oxidized metal, old glass, soot-softened masonry, ordinary wear
+Constraints: no embedded text, no Japanese, no logos, no watermark, no visible bell, no supernatural effect, no explanation for any sound
+Avoid: vector art, SVG look, flat illustration, CSS shapes, Canvas primitives, generic geometric silhouettes, diagram UI, near-blank abstraction, fantasy architecture, villain lighting, magical glow, impossible structure, repeated cloned windows, stock-photo polish
+Output intent: one coherent photographic environment matching the three references' realism and palette while preserving the unresolved cause of the bell sound"
+2,shot-b02-01,1,true,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_w6bn3JOFFvrv8Ae6jpuiuKLa.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b02-01-attempt-01.png,1672,941,b401ee8473580ade02262773f505d590c86eb89f6623ca398b4606afc0ada296,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b02-01 calibration
+Input images: Image 1 is a style reference for neutral daylight and realistic human scale; Image 2 is a style reference for practical aged-brass and workbench texture; Image 3 is a style reference for clock material, glass, enamel, gears, and cool-shadow finish. Do not edit or reproduce the reference compositions.
+Primary request: close editorial photograph of a skilled clock repairer's two natural hands working at an old watchmaker bench inside a glass-roofed arcade
+Scene/backdrop: credible worn wooden repair bench with one open mechanical clock movement, loupe, tweezers, screws, folded charcoal cloth, and softly blurred arcade glass beyond
+Subject: anatomically correct adult hands with five fingers each, natural joints, ordinary skin detail, one hand stabilizing the clock movement and the other using a fine screwdriver; no face required
+Style/medium: high-fidelity cinematic editorial photography, practical documentary realism, subtle grain
+Composition/framing: wide 16:9 landscape, waist-level close view of hands and workbench, believable working posture, room for a slow horizontal pan
+Lighting/mood: cool diffused arcade daylight with restrained warm brass reflections, concentrated and quiet
+Color palette: aged brass, worn wood, paper neutral, charcoal textile, muted slate, cool shadows
+Materials/textures: realistic skin, nails, tool steel, patinated brass, scratched glass, worn wood, fabric fibers
+Constraints: exactly two plausible hands, no extra fingers or fused joints, no embedded text, no Japanese, no logo, no watermark, no final character identity, no clock time presented as a confirmed stopped time
+Avoid: deformed anatomy, extra hands, duplicated tools, impossible gears, floating parts, vector art, illustration, CSS shapes, UI, magical light, luxury advertisement polish
+Output intent: one materially grounded repair scene consistent with the accepted anchors and suitable as the human-hands calibration shot"
+3,shot-b03-02,1,true,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_6mLIcItonF4VJRBhXkFKKP0e.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b03-02-attempt-01.png,1672,941,94a7fcf85cf61364adb14d7e2f2b91a469d76819c7466555a5b48d11cceccac0,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b03-02 calibration
+Input images: Image 1 is a style reference for neutral institutional daylight and depth; Image 2 is a style reference for aged paper, worktable, brass, and restrained archival texture; Image 3 is a style reference for old object wear and cool-shadow photographic finish. Do not edit or reproduce the reference compositions.
+Primary request: top-down oblique editorial photograph of an open fictional municipal ledger prepared as a two-column evidence surface, materially real but carrying no readable story claim
+Scene/backdrop: archival table with an open hand-bound ledger, a second closed paper folder at the edge, one aged brass straightedge, charcoal cloth, and softly out-of-focus institutional shelving
+Subject: the open ledger dominates the frame; two broad ruled entry columns and several blank rows are unmistakable, with faint nonlinguistic registration marks only and generous empty areas for later deterministic overlays
+Style/medium: high-fidelity cinematic editorial photography, archival documentary realism, subtle film grain
+Composition/framing: wide 16:9 landscape, oblique top-down angle, real page curvature and binding depth, balanced empty two-column structure
+Lighting/mood: cool window light with restrained warm brass bounce, investigative and neutral
+Color palette: aged paper-neutral, charcoal, muted slate, faded ink gray, aged brass
+Materials/textures: deckled paper fibers, worn leather binding, dust, oxidized brass, soft cloth, believable page shadows
+Constraints: no readable words, no letters, no numerals, no Japanese, no logos, no watermark, no official seal, no real-world institution, no evidence that the ledger is authentic or owned by the Council
+Avoid: gibberish text, malformed handwriting, vector document, flat infographic, UI table, diagram cards, repeated geometric panels, near-blank abstraction, magical marks, villain lighting
+Output intent: one materially convincing fictional-document calibration image that supports later Japanese HTML/CSS or deterministic raster labels without embedding generated critical text"
+4,shot-b05-01,1,true,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_OsMEofjweAZOrrVc4o1IZiCk.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b05-01-attempt-01.png,1672,941,ad27d2ec6f7caf1407704672512615858c1138a86a3e3cb5e963a29180ae5d4d,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b05-01 calibration
+Input images: Image 1 is a style reference for anonymous human presence, neutral daylight, glass, and architectural depth; Image 2 is a style reference for aged brass, archival paper, and restrained tension; Image 3 is a style reference for cool shadows and photographic material wear. Do not edit or reproduce the reference compositions.
+Primary request: an unresolved human possibility study of an unidentified adult man who could be Toma, seen from behind through layered glass at the far end of an old covered arcade
+Scene/backdrop: timeless iron-and-glass shopping arcade at quiet blue-gray daylight, worn stone floor, closed repair stalls, subtle reflections and distance haze
+Subject: one ordinary adult man in a worn dark coat, natural anatomy and posture, face not visible, standing still near a branching passage; he performs no decisive action and carries no symbolic prop
+Style/medium: high-fidelity cinematic editorial photography, candid naturalism, subtle film grain
+Composition/framing: wide 16:9 landscape, medium-long rear view, human figure occupies a modest portion of frame, layered real reflections create several plausible readings without making clones
+Lighting/mood: diffuse cool daylight with restrained neutral warmth, unresolved and humane, not threatening or mournful
+Color palette: muted slate, charcoal fabric, paper-neutral stone, aged brass details, cool shadow
+Materials/textures: natural hair and fabric, worn stone, real glass reflections, oxidized iron, ordinary surface wear
+Constraints: one anatomically plausible person only, no visible face, no injury, no ghosting, no disappearance effect, no prison cues, no death cue, no proof of survival, no embedded text, no Japanese, no logo, no watermark
+Avoid: duplicated person, fused anatomy, dramatic silhouette, villain lighting, supernatural glow, apparition, fantasy, vector art, illustration, UI, symbolic verdict, cinematic hero pose, stock-photo polish
+Output intent: one coherent human calibration image that can support unresolved Toma possibilities without selecting survival, death, erasure, or concealment"
+5,shot-b01-02,1,false,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_UTfzvQvXZhc5R3S18Qe84XKq.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-02-attempt-01.png,1672,941,55d56a4cf11df2a2fb4850c040ea7a58adc5f2309518928f00152185350aa860,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b01-02
+Input images: Image 1 is the established tower-family environment reference; Image 2 is a style reference for neutral architectural daylight and real depth; Image 3 is a style reference for aged brass, glass, masonry wear, and cool shadows. Do not edit or reproduce any reference composition.
+Primary request: interior architectural close view of the bellless tower's upper chamber, centered on credible empty iron and brass mounting points where a bell assembly once could have been attached
+Scene/backdrop: old masonry tower chamber with weathered louvered openings, timber cross-bracing, dusty stone, oxidized fasteners, and cool daylight entering from outside
+Subject: an unmistakably empty but structurally plausible mount, worn bolt holes, bracket scars, and cut fastening points; no bell and no mechanism that explains sound
+Style/medium: high-fidelity cinematic editorial photography, architectural documentary realism, subtle grain
+Composition/framing: wide 16:9 landscape, medium architectural detail with real foreground-to-background depth, stable locked-camera composition
+Lighting/mood: soft cool daylight, restrained and investigative, no horror cue
+Color palette: muted slate, paper-neutral stone, aged brass, oxidized charcoal iron, cool shadow
+Materials/textures: chipped masonry, old timber grain, rust, dust, worn metal edges, real exterior haze
+Constraints: no embedded text, no Japanese, no logos, no watermark, no bell, no magical mechanism, no explanation of the bell sound, no winter-curfew proof
+Avoid: impossible architecture, floating mounts, fantasy ruin, villain lighting, supernatural glow, vector art, illustration, CSS shapes, diagram arrows, UI, near-blank field
+Output intent: a second coherent tower-family photograph that makes physical absence legible without resolving why the bell was removed or what now produces sound"
+6,shot-b01-03,1,false,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_kPn9s5ekQERJUf7ReZ6Ae5GO.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-03-attempt-01.png,1672,941,4542b5f635d228ee5c61cd081329be3639676bd88492b608fa9aa5bbe590b247,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b01-03
+Input images: Image 1 establishes the exterior tower family; Image 2 establishes the empty internal mount and masonry family; Image 3 establishes aged brass, old clock material, and cool-shadow finish. Use them only as environment and style references; do not edit or reproduce their compositions.
+Primary request: an intimate but physically plausible view outward through the tower's empty bell frame at local noon, showing absence, structure, and daylight without showing any source of sound
+Scene/backdrop: old timber-and-iron frame above the city, weathered opening, pale overcast sky and distant roofs, a narrow real brass noon mark fixed to the stone sill
+Subject: the vacant space inside the mounting frame and one simple physical noon index catching natural light; no bell, no moving mechanism, no person
+Style/medium: high-fidelity cinematic editorial photography, architectural realism, subtle grain
+Composition/framing: wide 16:9 landscape, locked symmetrical-but-imperfect framing, real depth from worn sill to empty frame to distant city
+Lighting/mood: quiet cool noon daylight with one restrained brass highlight, unresolved rather than supernatural
+Color palette: muted slate sky, paper-neutral stone, charcoal timber, oxidized iron, aged brass
+Materials/textures: chipped stone, timber splinters, worn fasteners, natural haze, scratched brass
+Constraints: no embedded text, no Japanese, no numerals, no logo, no watermark, no bell, no glow, no sound visualization, no cause or culprit
+Avoid: fantasy portal, magical rays, abstract empty field, vector frame, flat graphic symmetry, CSS shapes, diagram markers, UI, horror lighting
+Output intent: a third coherent tower-family image that closes Beat 1 on an unresolved physical absence and supports a held fade"
+7,shot-b02-02,1,false,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_ZqjkoVnzaqBV674qRlUA8Ovf.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b02-02-attempt-01.png,1672,941,d362f8b8402a2da4fc02319e988a98d26e95de4e001ff563c70a7df4918e4800,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b02-02
+Input images: Image 1 establishes the clock-repair bench family and cool arcade daylight; Image 2 is the immutable brass-moth material reference; Image 3 establishes clock, glass, enamel, brass, and cool-shadow continuity. Use these as style and material references only; do not edit or duplicate their exact compositions.
+Primary request: a quiet close editorial photograph of a folded private memo lying beside an inert brass moth-shaped mechanism on the same worn clock-repair bench
+Scene/backdrop: glass-roofed arcade workbench after the repair hands have moved out of frame, with a blurred clock movement and tools providing only practical context
+Subject: one folded aged-paper memo with its written side fully face down or concealed, and one materially plausible small brass moth object resting closed and inactive beside it
+Style/medium: high-fidelity cinematic editorial photography, practical prop realism, subtle grain
+Composition/framing: wide 16:9 landscape, locked close view, folded paper and brass moth form two distinct physical motifs with real table depth; suitable for a match cut to the clock-and-moth anchor
+Lighting/mood: cool diffused daylight with restrained warm brass highlights, investigative and still
+Color palette: paper-neutral, aged brass, charcoal cloth, worn brown wood, muted slate, cool shadows
+Materials/textures: paper fibers and folds, patinated engraved metal, scratched wood, tool steel, dust
+Constraints: no visible or readable text, no letters or numerals, no Japanese, no logo, no watermark; moth remains closed, inert, and non-glowing; no function, ownership, authorship, or authenticity is proven
+Avoid: gibberish writing, generated handwriting, open magical wings, keyhole, lens, projection, activation effect, vector moth, icon, flat illustration, UI cards, diagram arrows, supernatural glow
+Output intent: a coherent repair-family still that introduces the memo and moth as unresolved physical evidence without selecting what either means"
+8,shot-b04-02,1,false,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_3wM1p4Pumqs2MFDLF1UUu0qE.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b04-02-attempt-01.png,1672,941,cda3c9406e0b1c90a801ab7feda4ace53e6dfadd32ed0b99293e5680ff3aa9ab,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b04-02
+Input images: Image 1 establishes the anonymous Council architecture, daylight, glass, and human-scale style; Image 2 establishes the fictional ledger's paper, binding, and two-column family; Image 3 establishes aged-brass and archival worktable material fidelity. Use them as style and material references only; do not reproduce their compositions.
+Primary request: a physically real institutional evidence table that holds two equally plausible, equally lit interpretations of the ledger without selecting either
+Scene/backdrop: quiet records consultation room adjoining the neutral Council architecture, frosted glass and muted shelving behind, no people in the foreground
+Subject: one open fictional ledger at center and two ordinary archival evidence groupings on the same continuous table: one grouping contains a plain administrative folder and clock-repair receipt shape face down; the other contains an unmarked paper sleeve and worn envelope; both have equal visual weight and no readable text
+Style/medium: high-fidelity cinematic editorial photography, institutional documentary realism, subtle grain
+Composition/framing: wide 16:9 landscape, locked camera, one continuous real room and table with a natural left/right balance; not cards, panels, or an infographic
+Lighting/mood: the same neutral cool daylight falls equally on both physical groupings, restrained tension, no favored side
+Color palette: muted slate, paper-neutral, charcoal, aged brass accents, cool shadow
+Materials/textures: paper fibers, worn wood, frosted glass, cloth, oxidized fasteners, ordinary dust
+Constraints: no readable text, no letters or numerals, no Japanese, no logos, no watermark, no arrows, no checkmarks, no highlighted winner, no proof of ledger authenticity, bait, forgery, ownership, guilt, or Council motive
+Avoid: dashboard cards, split-screen UI, diagrams, repeated identical rectangles as pseudo-art, scales-of-justice symbolism, villain lighting, supernatural glow, vector art, flat illustration, near-blank abstraction
+Output intent: one coherent photographic institutional scene on which later equal-status Japanese overlays can name two hypotheses without the image selecting either"
+9,shot-b04-03,1,false,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_0tjd5upPVaCfYagMege4AeUa.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b04-03-attempt-01.png,1672,941,e6bfe365d4124f787d315bac8a5cd9b916edfc73bcc34951cbc5ac9fc8ba2fd4,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b04-03
+Input images: Image 1 establishes the accepted anonymous Council room, frosted glass, neutral daylight, and architectural depth; Image 2 establishes the equal-hypothesis records table in the same material family; Image 3 establishes the fictional ledger. Use them as style, space, and material references only; do not reproduce their exact compositions.
+Primary request: a restrained exterior view of a closed institutional meeting room after discussion, with the fictional ledger left shut on the far table and no conclusion visible
+Scene/backdrop: realistic corridor outside a muted glass-and-wood consultation room, ordinary closed door, chairs and table visible through partial frosting, daylight receding toward evening-neutral coolness
+Subject: the closed room and one shut worn ledger on the far end of the table; no visible writing, no abandoned drama, no evidence of what was decided
+Style/medium: high-fidelity cinematic editorial photography, institutional architectural realism, subtle grain
+Composition/framing: wide 16:9 landscape, corridor foreground and glass threshold create depth, room and shut ledger remain readable at a distance, suitable for a slow pull away
+Lighting/mood: neutral cool ambient light, restrained unresolved tension, no menace
+Color palette: muted slate, charcoal, paper-neutral wood and stone, small aged-brass accents, cool shadow
+Materials/textures: frosted and clear glass, wood grain, worn leather binding, fabric chairs, stone floor, ordinary fingerprints and wear
+Constraints: no embedded text, no Japanese, no logos, no watermark, no identifiable official, no guilty acting, no hostile gesture, no villain lighting, no proof of Council motive or responsibility, no proof of ledger ownership or authenticity
+Avoid: interrogation room, crime scene, dramatic evidence spotlight, red warning light, supernatural glow, vector art, flat illustration, UI, diagram framing, near-blank corridor
+Output intent: one coherent Council-family image that withdraws from the unresolved institutional scene without selecting motive, responsibility, or document truth"
+10,shot-b05-03,1,false,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_ZpWWhCBDHcl2xyby2xkwgNdz.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b05-03-attempt-01.png,1672,941,3641d150e065f5ff08edf755287962930b1d17877654b2b125528072fd926091,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b05-03
+Input images: Image 1 is the accepted Council anchor for anonymous people, neutral frosted glass, architectural depth, and daylight; Image 2 establishes the closed-room continuation; Image 3 establishes the equal-hypothesis evidence-table palette and paper material. Use them as style and family references only; do not reproduce their exact compositions.
+Primary request: a fresh side-angle editorial photograph of an anonymous institutional council in a restrained, inconclusive discussion, visually supporting several possible motives without identifying a winner
+Scene/backdrop: same plausible glass-and-wood public-institution meeting environment, continuous real table, frosted partition, modest archival folders and water glasses, no flags or official branding
+Subject: five anonymous adults of varied age and body shape seated naturally around the table; faces obscured by angle, partial reflection, or distance; no one dominates, points, threatens, celebrates, or appears guilty
+Style/medium: high-fidelity cinematic editorial photography, observational documentary realism, subtle grain
+Composition/framing: wide 16:9 landscape from a low side angle, layered table and glass depth, three natural regions of attention with equal visual weight for later overlay labels; not panels or split screens
+Lighting/mood: neutral cool daylight with restrained warm wood and brass, humane tension, unresolved
+Color palette: muted slate, charcoal fabric, paper neutral, natural skin, aged brass accent, cool shadow
+Materials/textures: real skin and hair, worn fabric, wood grain, glass reflections, paper fibers, ordinary table wear
+Constraints: anatomically plausible people, no duplicated bodies, no embedded text, no Japanese, no logo, no watermark, no recognizable official, no villain lighting, no guilty behavior, no proof of profit motive, coercive pressure, internal split, innocence, or responsibility
+Avoid: confrontation, accusation gesture, secret-society imagery, dramatic shadows, red light, supernatural glow, stock boardroom polish, vector silhouettes, UI cards, diagram arrows, repeated clones
+Output intent: one coherent Council-family raster still on which three equal-status motive candidates can be overlaid later while every motive and responsibility boundary remains unresolved"
+11,shot-b03-01,1,false,true,,OpenAI built-in image_gen tool (default built-in mode),,,C:\Users\thank\.codex\generated_images\019f9954-1ec2-73c0-8120-e99603762343\call_T4RcksB4ktld7UPFF38118Ew.png,artifacts/private-full-raster-candidate/images/generated-originals/shot-b03-01-attempt-01.png,1672,941,75e4ddb52bd36ec055b57d17ec509f5409bb4b36a532df6c5b59410c3ad7293d,0.25,0.25,,"Use case: photorealistic-natural
+Asset type: 16:9 cinematic review still for Fast Fiction Factory shot-b03-01
+Input images: Image 1 establishes the fictional ledger's exact paper, ruling, binding, and archival table family; Image 2 establishes anatomically plausible hands and natural working posture; Image 3 establishes aged-paper, brass, charcoal, and restrained practical texture. Use them as style, anatomy, and material references only; do not edit or reproduce their exact compositions.
+Primary request: close editorial photograph of two natural adult hands carefully opening the same kind of old fictional municipal ledger on an archival worktable
+Scene/backdrop: quiet records table with charcoal cloth, one aged brass straightedge, a closed paper folder at the edge, and softly blurred shelving
+Subject: exactly two anatomically correct hands with five fingers each, natural joints and ordinary skin detail, one lifting the heavy cover and the other holding the first blank ruled page; no jewelry or identifying feature
+Style/medium: high-fidelity cinematic editorial photography, archival documentary realism, subtle grain
+Composition/framing: wide 16:9 landscape, oblique close view, hands and ledger occupy the material center with believable page curvature, suitable for a slow push
+Lighting/mood: cool window light with restrained warm brass bounce, careful and investigative
+Color palette: aged paper-neutral, charcoal, muted slate, worn brown leather, aged brass, cool shadow
+Materials/textures: real skin and nails, deckled paper fibers, worn leather binding, cloth, wood, oxidized brass, dust
+Constraints: exactly two plausible hands, no extra fingers, no readable words, no letters or numerals, no Japanese, no logo, no watermark, no proof of owner, authenticity, guilt, or Council provenance
+Avoid: deformed anatomy, fused fingers, duplicated hands, gibberish writing, generated handwriting, evidence spotlight, vector document, UI table, illustration, supernatural marks
+Output intent: a dedicated ledger-family base image with credible human handling, preserving every document truth boundary"

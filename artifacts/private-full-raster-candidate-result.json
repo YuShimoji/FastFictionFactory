@@ -1,0 +1,407 @@
+{
+  "schemaVersion": "fff.privateFullRasterCandidateResult.v1",
+  "artifact_id": "fff-private-full-raster-candidate-001",
+  "passed": true,
+  "failures": [],
+  "shot_count": 19,
+  "beat_count": 6,
+  "duration_seconds": 180,
+  "subtitle_cue_count": 20,
+  "narration_segment_count": 6,
+  "primary_frame_count": 19,
+  "generated_base_count": 11,
+  "accepted_anchor_count": 3,
+  "deterministic_derivative_count": 5,
+  "accidental_exact_duplicate_count": 0,
+  "generation_evidence": {
+    "call_count": 11,
+    "accepted_count": 11,
+    "rejected_count": 0,
+    "retry_count": 0,
+    "calibration_call_count": 4,
+    "calibration_pass_count": 4,
+    "planning_rate_usd_per_high_quality_landscape": 0.25,
+    "api_equivalent_planning_cost_usd": 2.75,
+    "actual_monetary_cost_observed": false,
+    "actual_monetary_cost_usd": null,
+    "model_observed": false,
+    "seed_observed_count": 0
+  },
+  "calibration": {
+    "status": "PASS",
+    "call_count": 4,
+    "passed_count": 4,
+    "failed_count": 0,
+    "retry_count": 0,
+    "classes": [
+      "environment",
+      "hands",
+      "fictional_document",
+      "unresolved_human"
+    ]
+  },
+  "anchors": [
+    {
+      "shot_id": "shot-b02-03",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+      "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31",
+      "owner_visual_acceptance": true,
+      "immutable_visual_anchor": true,
+      "production_candidate_eligible": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b04-01",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+      "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1",
+      "owner_visual_acceptance": true,
+      "immutable_visual_anchor": true,
+      "production_candidate_eligible": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b05-02",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+      "sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac",
+      "owner_visual_acceptance": true,
+      "immutable_visual_anchor": true,
+      "production_candidate_eligible": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    }
+  ],
+  "coherence_audit": {
+    "status": "TECHNICAL_PASS_HUMAN_REVIEW_PENDING",
+    "primary_frame_count": 19,
+    "accepted_anchor_count": 3,
+    "generated_base_count": 11,
+    "deterministic_derivative_count": 5,
+    "accidental_exact_duplicate_count": 0,
+    "callbacks": [
+      {
+        "family": "tower",
+        "shots": [
+          "shot-b01-01",
+          "shot-b01-02",
+          "shot-b01-03",
+          "shot-b06-03"
+        ]
+      },
+      {
+        "family": "clock-repair",
+        "shots": [
+          "shot-b02-01",
+          "shot-b02-02",
+          "shot-b02-03"
+        ]
+      },
+      {
+        "family": "ledger",
+        "shots": [
+          "shot-b03-01",
+          "shot-b03-02",
+          "shot-b03-03",
+          "shot-b06-01",
+          "shot-b06-02"
+        ]
+      },
+      {
+        "family": "council",
+        "shots": [
+          "shot-b04-01",
+          "shot-b04-02",
+          "shot-b04-03",
+          "shot-b05-03",
+          "shot-b05-04"
+        ]
+      },
+      {
+        "family": "toma",
+        "shots": [
+          "shot-b05-01",
+          "shot-b05-04"
+        ]
+      },
+      {
+        "family": "brass-moth",
+        "shots": [
+          "shot-b02-02",
+          "shot-b02-03",
+          "shot-b05-02",
+          "shot-b05-04"
+        ]
+      }
+    ],
+    "no_human_acceptance_claim_for_whole_candidate": true
+  },
+  "mp4": {
+    "path": "artifacts/private-full-raster-candidate/private-full-raster-candidate.mp4",
+    "byte_size": 17931278,
+    "sha256": "e58afd33df8cfe1ea8cefa9262ca57bf2352eb3bb3b4767cbae1432b21069a0e",
+    "duration_seconds": 180,
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec_name": "h264",
+    "width": 960,
+    "height": 540,
+    "avg_frame_rate": "30/1",
+    "frame_count": 5400,
+    "audio_stream_count": 0,
+    "subtitle_stream_count": 1,
+    "watermark_text": "FULL RASTER CANDIDATE / PRIVATE / NOT FOR PUBLICATION"
+  },
+  "browser_evidence": {
+    "passed": true,
+    "engine": "playwright chromium",
+    "headless": true,
+    "console_errors": [],
+    "page_errors": [],
+    "external_requests": [],
+    "desktop": {
+      "document_width": 1440,
+      "viewport_width": 1440,
+      "horizontal_overflow_px": 0,
+      "nested_vertical_scroll_count": 0,
+      "video_duration": 180,
+      "video_muted": true,
+      "focus_outline_style": "solid",
+      "focus_outline_width": "3px",
+      "shot_button_count": 19,
+      "timeline_lane_count": 3,
+      "screenshot_path": "artifacts/review-screens/private-full-raster-candidate-desktop.png",
+      "screenshot_byte_size": 735136,
+      "screenshot_sha256": "2629908b7339d7ff5ecf5a6a93e98c95442da4b33fe13d14ba5e5a64a55e18cc"
+    },
+    "narrow": {
+      "document_width": 390,
+      "viewport_width": 390,
+      "horizontal_overflow_px": 0,
+      "nested_vertical_scroll_count": 0,
+      "video_duration": 180,
+      "video_muted": true,
+      "focus_outline_style": "solid",
+      "focus_outline_width": "3px",
+      "shot_button_count": 19,
+      "timeline_lane_count": 3,
+      "screenshot_path": "artifacts/review-screens/private-full-raster-candidate-narrow.png",
+      "screenshot_byte_size": 172997,
+      "screenshot_sha256": "aae3e4fa5e812bb5fa2b9a9b45046bd982f979c3c7298b4e855c74a5a88a4485"
+    }
+  },
+  "targeted_tests": {
+    "total": 8,
+    "passed": 8,
+    "all_passed": true,
+    "cases": [
+      {
+        "id": "accept-complete-candidate",
+        "passed": true,
+        "observed_failures": []
+      },
+      {
+        "id": "reject-production-selection",
+        "expected": "selection or rights claim escaped",
+        "observed_failures": [
+          "selection or rights claim escaped"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-rights-clearance",
+        "expected": "selection or rights claim escaped",
+        "observed_failures": [
+          "selection or rights claim escaped"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-default-promotion",
+        "expected": "candidate state mismatch",
+        "observed_failures": [
+          "candidate state mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-call-ceiling",
+        "expected": "image-generation call ceiling exceeded",
+        "observed_failures": [
+          "image-generation call ceiling exceeded"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-calibration-floor",
+        "expected": "calibration pass floor failed",
+        "observed_failures": [
+          "calibration pass floor failed"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-forbidden-source-kind",
+        "expected": "forbidden or missing source kind",
+        "observed_failures": [
+          "forbidden or missing source kind"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-exact-duplicate-primary",
+        "expected": "accidental exact duplicate primary frame",
+        "observed_failures": [
+          "accidental exact duplicate primary frame",
+          "coherence duplicate audit failed"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "protected_inputs": {
+    "passed": true,
+    "before": [
+      {
+        "relative_path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
+        "byte_size": 3114,
+        "sha256": "aab00065e9994b1dedc6d30d2b1b9f6eb1ef4a1893d7f8948c5564578dde542b"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot.json",
+        "byte_size": 13993,
+        "sha256": "778f4ea957d8375a2574916cb9b06dee991084186cbc9df35b76224b8da702b0"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot-result.json",
+        "byte_size": 7123,
+        "sha256": "8c773561aeca0ca6af3f37ac106479833fd5318c549e47c0c8940dbf09b54156"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+        "byte_size": 282514,
+        "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+        "byte_size": 392309,
+        "sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+        "byte_size": 467000,
+        "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.json",
+        "byte_size": 105898,
+        "sha256": "1737053db9a5ee276d7f237fd22d739a7b48e4f36fad0df6c6ff0cb56f6e51f7"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4",
+        "byte_size": 1668241,
+        "sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline-result.json",
+        "byte_size": 9375,
+        "sha256": "088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.json",
+        "byte_size": 160302,
+        "sha256": "816ee1996e48f1db6ebbe4774ebf40f76eecd50259a95488fd89ae75f892edda"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.mp4",
+        "byte_size": 9287840,
+        "sha256": "a543e14ed081296162b6209e56b01418e8ff4293f29ea8cdf00952f0eeaa2fb1"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs-result.json",
+        "byte_size": 14983,
+        "sha256": "164be517534d8ed3ccd2dabd23b084a692e35e49ffc56ebf1421362b717db9c3"
+      }
+    ],
+    "after": [
+      {
+        "relative_path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
+        "byte_size": 3114,
+        "sha256": "aab00065e9994b1dedc6d30d2b1b9f6eb1ef4a1893d7f8948c5564578dde542b"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot.json",
+        "byte_size": 13993,
+        "sha256": "778f4ea957d8375a2574916cb9b06dee991084186cbc9df35b76224b8da702b0"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot-result.json",
+        "byte_size": 7123,
+        "sha256": "8c773561aeca0ca6af3f37ac106479833fd5318c549e47c0c8940dbf09b54156"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+        "byte_size": 282514,
+        "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+        "byte_size": 392309,
+        "sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+        "byte_size": 467000,
+        "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.json",
+        "byte_size": 105898,
+        "sha256": "1737053db9a5ee276d7f237fd22d739a7b48e4f36fad0df6c6ff0cb56f6e51f7"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4",
+        "byte_size": 1668241,
+        "sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline-result.json",
+        "byte_size": 9375,
+        "sha256": "088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.json",
+        "byte_size": 160302,
+        "sha256": "816ee1996e48f1db6ebbe4774ebf40f76eecd50259a95488fd89ae75f892edda"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.mp4",
+        "byte_size": 9287840,
+        "sha256": "a543e14ed081296162b6209e56b01418e8ff4293f29ea8cdf00952f0eeaa2fb1"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs-result.json",
+        "byte_size": 14983,
+        "sha256": "164be517534d8ed3ccd2dabd23b084a692e35e49ffc56ebf1421362b717db9c3"
+      }
+    ]
+  },
+  "package_manifest": {
+    "path": "artifacts/private-full-raster-candidate/private-full-raster-candidate-manifest.json",
+    "fingerprint": "cb4e62c0e0048e88488caafc55a752743297fb0408a6eff7247c1796a86a712e",
+    "payload_file_count": 38
+  },
+  "boundaries": {
+    "private": true,
+    "default_active": false,
+    "successor_candidate": true,
+    "release_path_reachable": false,
+    "selected_for_final_production": false,
+    "rights_cleared_claim": false,
+    "public_release": false,
+    "publication": false,
+    "audio": false,
+    "voice": false,
+    "final_canon": false,
+    "product_owner_whole_story_review": "pending"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "schemaVersion": "fff.visualStyleContract.v1",
+  "contract_id": "fff-full-raster-style-contract-001",
+  "contract_version": "1.0.0",
+  "frozen_before_first_new_generation": true,
+  "recorded_at": "2026-07-26",
+  "authority": {
+    "launch_set_id": "fff-2026-07-25-full-raster-candidate",
+    "mission_id": "fff-private-full-raster-candidate-001",
+    "source": "Product Owner acceptance and continuation authority supplied in the attached mission prompt"
+  },
+  "intent": {
+    "realism": "high-fidelity photographic realism",
+    "visual_language": "cinematic editorial photography",
+    "material_fidelity": "real materials, plausible construction, lived wear, and credible spatial depth",
+    "dramatic_register": "restrained investigative tension",
+    "story_truth_policy": "render evidence and ambiguity without resolving held truths"
+  },
+  "palette": {
+    "primary": [
+      "muted slate",
+      "aged brass",
+      "paper-neutral",
+      "charcoal",
+      "cool shadow"
+    ],
+    "accent_policy": "Warm brass may guide attention; cool daylight or ambient fill preserves neutrality.",
+    "forbidden": [
+      "supernatural glow unless separately truth-authorized",
+      "villain-coded red or under-lighting",
+      "saturated fantasy color grading"
+    ]
+  },
+  "materials": [
+    "realistic architecture",
+    "plausible human anatomy",
+    "patinated metal",
+    "scratched or frosted glass",
+    "paper fibers and ink",
+    "worn fabric",
+    "wood grain",
+    "stone",
+    "dust and ordinary surface wear"
+  ],
+  "camera_and_finish": {
+    "aspect_ratio": "16:9 landscape",
+    "minimum_final_dimensions": {
+      "width": 1600,
+      "height": 900
+    },
+    "depth_of_field": "shallow to moderate according to shot class",
+    "grain": "subtle photographic or film grain",
+    "composition": "material subject and spatial depth first; labels remain separate overlays",
+    "source_text_policy": "no embedded Japanese and no generated critical story text",
+    "source_mark_policy": "no logos and no watermarks in source images"
+  },
+  "negative_constraints": [
+    "no SVG or vector primary story imagery",
+    "no rasterized vector primary imagery",
+    "no CSS-shape or Canvas-primitive pseudo-art",
+    "no generic geometric silhouettes",
+    "no diagram UI used as primary imagery",
+    "no near-blank abstraction",
+    "no named living artist imitation",
+    "no villain lighting",
+    "no supernatural glow unless truth-authorized",
+    "no generated critical Japanese text",
+    "no anatomy, hand, clock, or mechanism defects",
+    "no stock-photo discontinuity",
+    "no fantasy drift"
+  ],
+  "truth_boundaries": [
+    "Do not establish the cause of the bell sound.",
+    "Do not select Toma's fate.",
+    "Do not select the brass moth's function.",
+    "Do not establish the ledger's authenticity or ownership.",
+    "Do not select the Council's motive or responsibility.",
+    "Do not select time or names as the ending.",
+    "Keep the ending unresolved."
+  ],
+  "visual_anchors": [
+    {
+      "shot_id": "shot-b04-01",
+      "role": "institutional architecture, anonymous human presence, neutral daylight, frosted-glass depth",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+      "width": 1600,
+      "height": 900,
+      "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1",
+      "source_kind": "accepted_generated_raster_anchor",
+      "owner_visual_acceptance": true,
+      "immutable_visual_anchor": true,
+      "production_candidate_eligible": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b05-02",
+      "role": "aged brass material fidelity, archival workbench, unresolved practical object",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+      "width": 1600,
+      "height": 900,
+      "sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac",
+      "source_kind": "accepted_generated_raster_anchor",
+      "owner_visual_acceptance": true,
+      "immutable_visual_anchor": true,
+      "production_candidate_eligible": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b02-03",
+      "role": "clock and mechanism macro realism, aged enamel and brass, cool-shadow continuity",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+      "width": 1600,
+      "height": 900,
+      "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31",
+      "source_kind": "accepted_generated_raster_anchor",
+      "owner_visual_acceptance": true,
+      "immutable_visual_anchor": true,
+      "production_candidate_eligible": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    }
+  ],
+  "anchor_use_policy": {
+    "byte_identity_required": true,
+    "regeneration_allowed": false,
+    "overwrite_allowed": false,
+    "recolor_allowed": false,
+    "replacement_allowed": false,
+    "reencoding_under_same_identity_allowed": false,
+    "non_destructive_crop_or_animation_allowed": true,
+    "new_media_sha_is_new_review_identity": true
+  },
+  "candidate_boundaries": {
+    "private": true,
+    "default_active": false,
+    "successor_candidate": true,
+    "release_path_reachable": false,
+    "selected_for_final_production": false,
+    "rights_cleared_claim": false,
+    "public_deployment": false,
+    "audio": false,
+    "voice": false,
+    "final_canon": false
+  }
+}
