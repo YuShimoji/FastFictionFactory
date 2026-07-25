@@ -1,6 +1,43 @@
 {
   "artifact_id": "fff-private-previsualization-timeline-001",
-  "successor_candidate_artifact_id": "fff-private-materialized-motion-previs-001",
+  "active_default_artifact_id": "fff-private-previsualization-timeline-001",
+  "successor_candidate_artifact_id": null,
+  "quarantined_candidate_artifact_id": "fff-private-materialized-motion-previs-001",
+  "primary_imagery_quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
+  "primary_imagery_quarantine_path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
+  "primary_imagery_medium_gate": {
+    "active": true,
+    "quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
+    "grandfathered_default_artifact_id": "fff-private-previsualization-timeline-001",
+    "new_visual_candidates": [
+      {
+        "artifact_id": "fff-high-fidelity-raster-pilot-001",
+        "active_default": false,
+        "successor_candidate": false,
+        "primary_frames": [
+          {
+            "shot_id": "shot-b04-01",
+            "source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b05-02",
+            "source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b02-03",
+            "source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          }
+        ]
+      }
+    ]
+  },
+  "high_fidelity_raster_pilot_dir": "artifacts/high-fidelity-raster-pilot",
+  "high_fidelity_raster_pilot_result_path": "artifacts/high-fidelity-raster-pilot-result.json",
+  "high_fidelity_raster_pilot_doc_path": "docs/review/primary-imagery-quarantine-and-raster-pilot.md",
+  "high_fidelity_raster_pilot_route": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot.html",
   "preserved_source_span_artifact_id": "fff-source-span-routing-review-pack-001",
   "preserved_model_api_boundary_artifact_id": "fff-model-api-boundary-spec-001",
   "preserved_adapter_expansion_artifact_id": "fff-local-extraction-adapter-expansion-001",
@@ -47,6 +84,13 @@
     "frame_evidence_count": 57,
     "private_local_only": true,
     "silent": true,
+    "visual_verdict": "REJECTED_VISUAL_DIRECTION",
+    "archive_only": true,
+    "active_default": false,
+    "successor_candidate": false,
+    "release_path_reachable": false,
+    "shared_generator_allowed": false,
+    "further_variant_generation_allowed": false,
     "selected_for_production": false,
     "rights_cleared_claim": false,
     "public_release": false
@@ -77,6 +121,30 @@
     "source_artifact_id": "fff-integrated-visual-production-package-001",
     "source_fingerprint": "78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb",
     "private_local_only": true,
+    "active_default": true,
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "public_release": false
+  },
+  "high_fidelity_raster_pilot": {
+    "artifact_id": "fff-high-fidelity-raster-pilot-001",
+    "schemaVersion": "fff.highFidelityRasterPilot.v1",
+    "package_root": "artifacts/high-fidelity-raster-pilot",
+    "result_path": "artifacts/high-fidelity-raster-pilot-result.json",
+    "review_doc_path": "docs/review/primary-imagery-quarantine-and-raster-pilot.md",
+    "access_route": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot.html",
+    "source_artifact_id": "fff-private-previsualization-timeline-001",
+    "quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
+    "shot_count": 3,
+    "primary_raster_image_count": 3,
+    "source_kinds": [
+      "generated_raster"
+    ],
+    "private_local_only": true,
+    "default_active": false,
+    "active_default": false,
+    "successor_candidate": false,
+    "release_path_reachable": false,
     "selected_for_production": false,
     "rights_cleared_claim": false,
     "public_release": false

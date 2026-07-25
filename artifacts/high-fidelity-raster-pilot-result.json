@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "fff.highFidelityRasterPilotResult.v1",
+  "artifact_id": "fff-high-fidelity-raster-pilot-001",
+  "quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
+  "passed": true,
+  "failures": [],
+  "shot_count": 3,
+  "primary_raster_image_count": 3,
+  "primary_svg_scene_count": 0,
+  "rasterized_svg_primary_count": 0,
+  "css_shape_primary_count": 0,
+  "canvas_primitive_primary_count": 0,
+  "generic_symbolic_primary_count": 0,
+  "blank_abstract_primary_count": 0,
+  "generated_raster_count": 3,
+  "selected_for_production_count": 0,
+  "rights_cleared_claim_count": 0,
+  "default_active_count": 0,
+  "taste_used": false,
+  "taste_availability": "unavailable_no_taste_skill_present",
+  "image_generation": {
+    "used": true,
+    "facility": "built-in image_gen",
+    "observed_model": null,
+    "observed_seed_count": 0,
+    "paid_call_or_new_credentials": false
+  },
+  "active_default_artifact_id": "fff-private-previsualization-timeline-001",
+  "rejected_candidate": {
+    "artifact_id": "fff-private-materialized-motion-previs-001",
+    "visual_verdict": "REJECTED_VISUAL_DIRECTION",
+    "archive_only": true,
+    "active_default": false,
+    "successor_candidate": false,
+    "release_path_reachable": false,
+    "shared_generator_allowed": false,
+    "further_variant_generation_allowed": false
+  },
+  "release_path_reachable": false,
+  "targeted_tests": {
+    "total": 8,
+    "passed": 8,
+    "all_passed": true,
+    "cases": [
+      {
+        "id": "accept-three-generated-raster-primaries",
+        "passed": true,
+        "observed_failures": []
+      },
+      {
+        "id": "reject-forbidden-primary-source",
+        "expected_failure": "source_kind is missing or forbidden",
+        "passed": true,
+        "observed_failures": [
+          "shot-b04-01 source_kind is missing or forbidden",
+          "shot-b04-01 uses a forbidden primary source kind"
+        ]
+      },
+      {
+        "id": "reject-missing-primary-source-kind",
+        "expected_failure": "source_kind is missing or forbidden",
+        "passed": true,
+        "observed_failures": [
+          "shot-b04-01 source_kind is missing or forbidden"
+        ]
+      },
+      {
+        "id": "reject-rasterized-forbidden-vector",
+        "expected_failure": "rasterized forbidden-vector lineage",
+        "passed": true,
+        "observed_failures": [
+          "shot-b04-01 must explicitly disavow rasterized forbidden-vector lineage"
+        ]
+      },
+      {
+        "id": "reject-archived-candidate-promotion",
+        "expected_failure": "rejected candidate was promoted",
+        "passed": true,
+        "observed_failures": [
+          "fff-private-materialized-motion-previs-001.successor_candidate must be false",
+          "rejected candidate was promoted into successor selection",
+          "successor_candidate visual artifact fff-private-materialized-motion-previs-001 lacks Primary Imagery Medium Gate metadata"
+        ]
+      },
+      {
+        "id": "reject-active-default-forbidden-primary",
+        "expected_failure": "active/default frame uses forbidden primary source",
+        "passed": true,
+        "observed_failures": [
+          "fff-private-previsualization-timeline-001 must remain the active default",
+          "pilot must remain default-off",
+          "pilot gate registry state must remain default-off and non-successor",
+          "fff-high-fidelity-raster-pilot-001/shot-b04-01 active/default frame has missing or forbidden source_kind",
+          "fff-high-fidelity-raster-pilot-001/shot-b04-01 active/default frame uses forbidden primary source"
+        ]
+      },
+      {
+        "id": "reject-active-default-missing-primary-kind",
+        "expected_failure": "active/default frame has missing or forbidden source_kind",
+        "passed": true,
+        "observed_failures": [
+          "fff-private-previsualization-timeline-001 must remain the active default",
+          "pilot must remain default-off",
+          "pilot gate registry state must remain default-off and non-successor",
+          "fff-high-fidelity-raster-pilot-001/shot-b04-01 active/default frame has missing or forbidden source_kind"
+        ]
+      },
+      {
+        "id": "reject-missing-active-quarantine",
+        "expected_failure": "quarantine must be ACTIVE",
+        "passed": true,
+        "observed_failures": [
+          "quarantine must be ACTIVE"
+        ]
+      }
+    ]
+  },
+  "browser_evidence": {
+    "passed": true,
+    "engine": "playwright chromium",
+    "headless": true,
+    "console_errors": [],
+    "page_errors": [],
+    "external_requests": [],
+    "failures": [],
+    "desktop": {
+      "path": "artifacts/review-screens/high-fidelity-raster-pilot-desktop.png",
+      "byte_size": 2086565,
+      "sha256": "03c6e91fc934f42068257b80d083d03762341fb62422562c04335f6e3272a393",
+      "viewport_width": 1440,
+      "viewport_height": 1000,
+      "document_width": 1440,
+      "horizontal_overflow_px": 0,
+      "nested_vertical_scroll_count": 0,
+      "pilot_image_rendered_width": 857,
+      "anti_reference_rendered_width": 382,
+      "theme_control_count": 3,
+      "shot_count": 3,
+      "anti_reference_count": 3
+    },
+    "narrow": {
+      "path": "artifacts/review-screens/high-fidelity-raster-pilot-narrow.png",
+      "byte_size": 531628,
+      "sha256": "724d34c7f13a74e4009e2cc48254bc2b05ae80d06a15b00f81aeed07c30b6ad8",
+      "viewport_width": 390,
+      "viewport_height": 844,
+      "document_width": 390,
+      "horizontal_overflow_px": 0,
+      "nested_vertical_scroll_count": 0,
+      "pilot_image_rendered_width": 366,
+      "anti_reference_rendered_width": 116,
+      "theme_control_count": 3,
+      "shot_count": 3,
+      "anti_reference_count": 3
+    }
+  },
+  "package_manifest": {
+    "path": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot-manifest.json",
+    "file_count": 8,
+    "package_fingerprint_sha256": "981ab7e4109bc597d904d639c4127267ee79b307b1bc9f27a01f8f4b5ab9fbd0"
+  },
+  "primary_images": [
+    {
+      "shot_id": "shot-b04-01",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+      "width": 1600,
+      "height": 900,
+      "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1",
+      "source_kind": "generated_raster"
+    },
+    {
+      "shot_id": "shot-b05-02",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+      "width": 1600,
+      "height": 900,
+      "sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac",
+      "source_kind": "generated_raster"
+    },
+    {
+      "shot_id": "shot-b02-03",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+      "width": 1600,
+      "height": 900,
+      "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31",
+      "source_kind": "generated_raster"
+    }
+  ],
+  "boundaries": {
+    "default_off": true,
+    "archive_rejected_candidate_only": true,
+    "production_selection": false,
+    "rights_clearance": false,
+    "public_deployment": false,
+    "publication": false,
+    "voice_audio_video_generation": false,
+    "final_canon": false
+  }
+}

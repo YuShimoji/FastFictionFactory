@@ -10,6 +10,7 @@ Read these repo-local files before changing product behavior or review claims:
 - `docs/qa-gates.md`
 - `docs/decision-log.md`
 - `docs/idea-ledger.md`
+- `artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json` before any primary-imagery or visual-direction claim
 
 If a referenced file is missing, treat it as stale context, not as a blocker.
 

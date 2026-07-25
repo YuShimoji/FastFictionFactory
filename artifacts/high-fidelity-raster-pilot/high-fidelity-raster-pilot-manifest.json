@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "fff.highFidelityRasterPilotManifest.v1",
+  "artifact_id": "fff-high-fidelity-raster-pilot-001",
+  "quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
+  "file_count": 8,
+  "files": [
+    {
+      "path": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot.html",
+      "byte_size": 9911,
+      "sha256": "e290a6736f59900ddab322ca4a7bcc1e083055d561b450c9fe63e756f1b366f7"
+    },
+    {
+      "path": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot.json",
+      "byte_size": 13993,
+      "sha256": "778f4ea957d8375a2574916cb9b06dee991084186cbc9df35b76224b8da702b0"
+    },
+    {
+      "path": "artifacts/high-fidelity-raster-pilot/source-provenance.csv",
+      "byte_size": 2014,
+      "sha256": "1ac82bd87752d5227e7e882a5f0acc17de72ddc2261d8730878e3ffa70b855c2"
+    },
+    {
+      "path": "artifacts/high-fidelity-raster-pilot/prompt-or-composite-recipes.md",
+      "byte_size": 8688,
+      "sha256": "39cf4d9561fac169fd3c2cd16ad01e33ac69517e9b78b2ce0cc36a92fb78412d"
+    },
+    {
+      "path": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot-contact-sheet.jpg",
+      "byte_size": 321535,
+      "sha256": "46eb8215b91bc67c6985283adab9ca28c2d8f3a43bf09f68539b4d6b65634d17"
+    },
+    {
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+      "byte_size": 282514,
+      "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1"
+    },
+    {
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+      "byte_size": 392309,
+      "sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac"
+    },
+    {
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+      "byte_size": 467000,
+      "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31"
+    }
+  ],
+  "package_fingerprint_sha256": "981ab7e4109bc597d904d639c4127267ee79b307b1bc9f27a01f8f4b5ab9fbd0"
+}

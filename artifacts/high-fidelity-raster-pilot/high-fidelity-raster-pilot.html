@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>High-Fidelity Raster Pilot</title>
+  <style>
+    :root { --bg:#eef0ed; --paper:#faf9f5; --ink:#181b1c; --muted:#5f6666; --line:#c9cbc5; --accent:#8a5b23; --shadow:0 18px 48px #19222217; color-scheme:light dark; }
+    :root:has(input[value="dark"]:checked) { --bg:#111516; --paper:#191e1f; --ink:#f2f0e8; --muted:#aab0ad; --line:#394041; --accent:#d9a25d; --shadow:0 18px 56px #0008; color-scheme:dark; }
+    :root:has(input[value="light"]:checked) { --bg:#eef0ed; --paper:#faf9f5; --ink:#181b1c; --muted:#5f6666; --line:#c9cbc5; --accent:#8a5b23; --shadow:0 18px 48px #19222217; color-scheme:light; }
+    @media (prefers-color-scheme:dark) { :root { --bg:#111516; --paper:#191e1f; --ink:#f2f0e8; --muted:#aab0ad; --line:#394041; --accent:#d9a25d; --shadow:0 18px 56px #0008; } }
+    * { box-sizing:border-box; }
+    html { background:var(--bg); color:var(--ink); font-family:Inter, "Yu Gothic UI", "Hiragino Sans", system-ui, sans-serif; }
+    body { margin:0; min-width:0; }
+    img { display:block; max-width:100%; height:auto; }
+    .shell { width:min(1180px, calc(100% - 40px)); margin:0 auto; padding:26px 0 80px; }
+    .topbar { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; padding-bottom:24px; border-bottom:1px solid var(--line); }
+    .topbar h1 { font:700 clamp(1.15rem,2.2vw,1.55rem)/1.15 Georgia,serif; margin:.2rem 0 .35rem; }
+    .topbar p { margin:0; color:var(--muted); max-width:760px; }
+    .status { color:var(--accent); letter-spacing:.12em; font-size:.72rem; text-transform:uppercase; }
+    .theme { border:0; padding:0; margin:0; display:flex; gap:6px; flex:0 0 auto; }
+    .theme legend { position:absolute; width:1px; height:1px; clip:rect(0,0,0,0); overflow:hidden; }
+    .theme label { border:1px solid var(--line); border-radius:999px; padding:7px 10px; font-size:.72rem; cursor:pointer; }
+    .theme input { position:absolute; opacity:0; }
+    .theme label:has(input:checked) { border-color:var(--accent); color:var(--accent); }
+    .shots { display:grid; gap:56px; padding:48px 0; }
+    .shot { display:grid; grid-template-columns:minmax(210px,.34fr) minmax(0,1fr); gap:24px 32px; align-items:start; }
+    .shot header { position:sticky; top:20px; }
+    .eyebrow { color:var(--accent)!important; letter-spacing:.1em; font-size:.74rem; text-transform:uppercase; }
+    .shot h2 { font:700 clamp(1.45rem,3vw,2.1rem)/1.08 Georgia,serif; margin:.5rem 0 .75rem; }
+    .shot header p { color:var(--muted); line-height:1.7; }
+    .shot figure { margin:0; position:relative; box-shadow:var(--shadow); background:#000; }
+    .shot figure img { width:100%; aspect-ratio:16/9; object-fit:cover; }
+    .candidates { position:absolute; inset:auto 18px 18px 18px; display:flex; justify-content:flex-end; gap:8px; }
+    .candidates span { background:#121616cc; color:#f5efe4; border:1px solid #ffffff38; backdrop-filter:blur(8px); border-radius:999px; padding:7px 11px; font-size:.72rem; }
+    dl { grid-column:2; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1px; margin:0; background:var(--line); border:1px solid var(--line); }
+    dl div { background:var(--paper); padding:12px 14px; min-width:0; }
+    dt { color:var(--muted); font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; margin-bottom:4px; }
+    dd { margin:0; line-height:1.55; overflow-wrap:anywhere; }
+    .anti { border-top:1px solid var(--line); padding-top:32px; }
+    .anti-head { display:flex; justify-content:space-between; gap:20px; align-items:end; margin-bottom:18px; }
+    .anti h2 { font:700 1.25rem/1.2 Georgia,serif; margin:0; }
+    .anti-head p { margin:0; color:var(--muted); max-width:620px; }
+    .anti-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+    .anti figure { margin:0; border:1px solid var(--line); background:var(--paper); opacity:.72; }
+    .anti img { width:100%; aspect-ratio:16/9; object-fit:cover; filter:saturate(.45) contrast(.9); }
+    .anti figcaption { padding:10px 12px; color:var(--muted); font-size:.76rem; line-height:1.5; }
+    .anti strong { color:var(--ink); display:block; }
+    footer { margin-top:44px; border-top:1px solid var(--line); padding-top:18px; color:var(--muted); font-size:.78rem; line-height:1.6; }
+    @media (max-width:760px) {
+      .shell { width:min(100% - 24px, 620px); padding-top:14px; }
+      .topbar { display:grid; }
+      .shot { grid-template-columns:1fr; gap:14px; }
+      .shot header { position:static; }
+      dl { grid-column:1; grid-template-columns:1fr; }
+      .anti-head { display:grid; }
+      .anti-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+      .anti figcaption { padding:6px; font-size:.64rem; }
+    }
+    @media print { :root { --bg:#fff; --paper:#fff; --ink:#111; --muted:#555; --line:#bbb; } .theme { display:none; } .shot { break-inside:avoid; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="topbar">
+      <div>
+        <span class="status">Default off · candidate only · three shots</span>
+        <h1>High-Fidelity Raster Pilot</h1>
+        <p>一次画像の媒体を3ショットだけ検証する Product Owner 向けレビュー面。旧SVG方向は比較用の小さな anti-reference としてのみ表示します。</p>
+      </div>
+      <fieldset class="theme" aria-label="表示テーマ">
+    <legend>Theme</legend>
+    <label><input type="radio" name="theme" value="auto" checked>Auto</label>
+    <label><input type="radio" name="theme" value="light">Light</label>
+    <label><input type="radio" name="theme" value="dark">Dark</label>
+  </fieldset>
+    </section>
+    <section class="shots" aria-label="新しいラスター一次画像">
+      <article class="shot" id="shot-b04-01">
+    <header>
+      <p class="eyebrow">01 / shot-b04-01 · 01:20–01:28</p>
+      <h2>仕切りの向こう</h2>
+      <p>匿名の制度空間を、人間の身体性と建築的な奥行きで検証する。</p>
+    </header>
+    <figure>
+      <img src="./images/shot-b04-01.jpg" width="1600" height="900" alt="半透明の仕切り越しに、会議室で話し合う匿名の人々を捉えた写実的な室内写真">
+    </figure>
+    <dl>
+      <div><dt>Source</dt><dd>generated_raster</dd></div>
+      <div><dt>Timing</dt><dd>8秒 · slow_push · hard_cut</dd></div>
+      <div><dt>Truth boundary</dt><dd>有罪の演技、個人特定、単純な悪役化を避ける。</dd></div>
+      <div><dt>State</dt><dd>candidate-only · default-off · rights not cleared</dd></div>
+    </dl>
+  </article>
+<article class="shot" id="shot-b05-02">
+    <header>
+      <p class="eyebrow">02 / shot-b05-02 · 01:58–02:11</p>
+      <h2>真鍮の蛾と機能候補</h2>
+      <p>蛾を線画記号ではなく、用途未確定の物質的な小道具として検証する。</p>
+    </header>
+    <figure>
+      <img src="./images/shot-b05-02.jpg" width="1600" height="900" alt="古い作業台に置かれた、傷や酸化のある精密な真鍮製の蛾型機構">
+      <div class="candidates" aria-label="未解決の機能候補"><span>鍵？</span><span>監視？</span><span>記憶？</span></div>
+    </figure>
+    <dl>
+      <div><dt>Source</dt><dd>generated_raster</dd></div>
+      <div><dt>Timing</dt><dd>13秒 · controlled_parallax · match_cut</dd></div>
+      <div><dt>Truth boundary</dt><dd>羽ばたき、発光、開口、鍵穴、監視レンズ、記憶投影、正解表示を置かない。</dd></div>
+      <div><dt>State</dt><dd>candidate-only · default-off · rights not cleared</dd></div>
+    </dl>
+  </article>
+<article class="shot" id="shot-b02-03">
+    <header>
+      <p class="eyebrow">03 / shot-b02-03 · 00:40–00:50</p>
+      <h2>9:17と蛾の反復</h2>
+      <p>9:17を示す時計と蛾を、因果を確定しない二つの物質的モチーフとして検証する。</p>
+    </header>
+    <figure>
+      <img src="./images/shot-b02-03.jpg" width="1600" height="900" alt="9時17分を示す古い真鍮時計の接写と、その縁に置かれた真鍮の蛾">
+    </figure>
+    <dl>
+      <div><dt>Source</dt><dd>generated_raster</dd></div>
+      <div><dt>Timing</dt><dd>10秒 · controlled_parallax · graphic_match</dd></div>
+      <div><dt>Truth boundary</dt><dd>9:17は閉店時刻のmotifであり、時計停止の確定事実にはしない。</dd></div>
+      <div><dt>State</dt><dd>candidate-only · default-off · rights not cleared</dd></div>
+    </dl>
+  </article>
+    </section>
+    <section class="anti">
+      <div class="anti-head"><h2>Quarantined anti-reference</h2><p>以下は再利用・改稿・変種生成の対象ではありません。新しい3枚が避けるべき署名を確認するためだけの縮小比較です。</p></div>
+      <div class="anti-grid">
+        <figure><img src="../private-materialized-motion-previs/materials/AR-CHAR-02/council-neutral.png" alt=""><figcaption><strong>rounded silhouette</strong>人物を丸い記号へ縮約した方向</figcaption></figure>
+<figure><img src="../private-materialized-motion-previs/materials/AR-DOC-02/moth-functions.png" alt=""><figcaption><strong>line icon + cards</strong>線画の蛾と反復パネル</figcaption></figure>
+<figure><img src="../private-materialized-motion-previs/materials/AR-PROP-01/time-0917.png" alt=""><figcaption><strong>vector clock</strong>平坦な時計面を主画像にした方向</figcaption></figure>
+      </div>
+    </section>
+    <footer>Quarantine FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25 · fff-private-materialized-motion-previs-001 is archive-only · fff-private-previsualization-timeline-001 remains the active default. No production selection, rights clearance, release, or canon claim.</footer>
+  </main>
+</body>
+</html>

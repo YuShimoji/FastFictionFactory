@@ -1,9 +1,34 @@
 # Artifacts
 
+## FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25
+
+- Title: Primary Imagery Direction Quarantine
+- Purpose: Prevent the rejected SVG/vector-primary visual direction and equivalent primitive-based workarounds from returning as active/default story imagery.
+- Primary record: `artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json`
+- State: ACTIVE and append-only.
+- Demotion: `fff-private-materialized-motion-previs-001` is `REJECTED_VISUAL_DIRECTION`, archive-only, default-off, not a successor candidate, release-unreachable, unavailable as a shared generator, and closed to further variants.
+- Preserved default: `fff-private-previsualization-timeline-001` remains the active/default private preview.
+- Machine gate: `node tools/fff-state.mjs validate-primary-imagery-raster-pilot artifacts/high-fidelity-raster-pilot-result.json`
+- Boundaries: Utility SVG remains allowed for chrome/icons/masks/guides/labels/charts/semantic diagrams/logos. This quarantine does not select assets, clear rights, approve release, or resolve canon.
+
+## fff-high-fidelity-raster-pilot-001
+
+- Title: Fast Fiction Factory High-Fidelity Raster Pilot
+- Purpose: Test the newly required primary-imagery medium on exactly three source-bound shots before any nineteen-shot expansion.
+- Primary file: `artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot.html`
+- Package: canonical JSON, three 1600×900 generated-raster JPEG primaries, source-provenance CSV, complete observed prompts/post-process recipes, contact sheet, and integrity manifest.
+- Exact shots: `shot-b04-01`, `shot-b05-02`, `shot-b02-03`.
+- Review doc/result: `docs/review/primary-imagery-quarantine-and-raster-pilot.md`, `artifacts/high-fidelity-raster-pilot-result.json`
+- Visual evidence: `artifacts/review-screens/high-fidelity-raster-pilot-desktop.png`, `artifacts/review-screens/high-fidelity-raster-pilot-narrow.png`, `artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot-contact-sheet.jpg`
+- Medium contract: all three primaries declare `generated_raster`; forbidden primary counts are zero; generated originals, actual prompts, observed tool, unobserved model/seed state, final dimensions, and SHA256 are recorded.
+- Read-only validation: `node tools/fff-state.mjs validate-primary-imagery-raster-pilot artifacts/high-fidelity-raster-pilot-result.json`
+- Intentional regeneration: `node tools/fff-state.mjs smoke-primary-imagery-raster-pilot artifacts/high-fidelity-raster-pilot-result.json`
+- State: H0 machine-green, default-off, release-unreachable, and ready for one bounded Product Owner visual review. Production selection, rights clearance, nineteen-shot expansion, motion, release, and canon remain closed.
+
 ## fff-private-materialized-motion-previs-001
 
 - Title: Fast Fiction Factory Private Materialized Motion Previsualization
-- Purpose: Materialize the accepted exact 180-second / six-Beat / nineteen-shot private chronology with nine deterministic local-original semantic material families, visibly executed motion, and rendered shot-boundary transitions.
+- Purpose: Preserve historical technical motion evidence for the exact 180-second / six-Beat / nineteen-shot private chronology after rejection of its SVG/vector-primary visual direction.
 - Primary file: `artifacts/private-materialized-motion-previs/private-materialized-motion-previs.html`
 - Package: design-direction lock, canonical JSON, timeline-first HTML player, 26 material variants, 57 start/mid/end frames, two CSV maps, nineteen-shot contact sheet, silent MP4, README, and integrity manifest.
 - Review doc/result: `docs/review/private-materialized-motion-previs.md`, `artifacts/private-materialized-motion-previs-result.json`
@@ -12,8 +37,9 @@
 - Motion contract: all source motion and transition classes are preserved and rendered; sixteen targeted positive/fail-closed tests and all eighteen browser boundary probes pass.
 - MP4: 960×540 H.264 / 30 fps / 5400 frames / silent / 180.000 seconds / SHA256 `a543e14ed081296162b6209e56b01418e8ff4293f29ea8cdf00952f0eeaa2fb1`
 - Read-only validation: `node tools/fff-state.mjs validate-private-materialized-motion-previs artifacts/private-materialized-motion-previs-result.json`
-- Accepted source state: the private preview experience is accepted; no preview repair is required; readiness plan A is accepted without exception.
-- Boundaries: isolated private successor only. The accepted preview remains byte-identical. Environment/hand imagery remains replacement-pending, the brass moth remains a private reference proxy, audio and voice remain future/unselected, and production selection, rights clearance, publication, upload, and canon decisions remain closed.
+- Visual verdict: `REJECTED_VISUAL_DIRECTION`.
+- State: Archive-only; active/default false; successor candidate false; release path unreachable; shared generator and further variant generation disallowed.
+- Boundaries: Package bytes, MP4, technical motion evidence, and provenance remain preserved historical evidence. The accepted old preview remains active/default. Production selection, rights clearance, publication, upload, and canon decisions remain closed.
 
 ## fff-resumable-private-pipeline-001
 

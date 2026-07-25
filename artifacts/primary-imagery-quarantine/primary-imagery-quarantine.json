@@ -1,0 +1,87 @@
+{
+  "schemaVersion": "fff.primaryImageryQuarantine.v1",
+  "quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
+  "status": "ACTIVE",
+  "append_only": true,
+  "recorded_at": "2026-07-25",
+  "authority_id": "user-primary-imagery-direction-reset-2026-07-25",
+  "decision": "SVG-generated primary story imagery and equivalent primitive-based workarounds are rejected. Future primary story imagery must use allowed raster source kinds.",
+  "scope": [
+    "story-shot primary imagery",
+    "styleframes",
+    "thumbnails",
+    "animatic frames",
+    "character imagery",
+    "environment imagery",
+    "prop imagery",
+    "narrative abstract imagery"
+  ],
+  "quarantined_signatures": [
+    "SVG primary scene imagery",
+    "rasterized SVG primary imagery",
+    "CSS-shape or Canvas-primitive pseudo-art",
+    "generic geometric silhouettes",
+    "vector clocks, vector people, and vector props used as story imagery",
+    "near-blank abstract fields",
+    "repeated circle, rectangle, or arrow templates",
+    "diagram UI used as a substitute for cinematic or editorial imagery"
+  ],
+  "allowed_svg_uses": [
+    "UI chrome",
+    "icons",
+    "masks",
+    "safe-area or crop guides",
+    "subtitles and labels",
+    "charts",
+    "simple semantic diagrams",
+    "vector-native logos"
+  ],
+  "allowed_primary_source_kinds": [
+    "generated_raster",
+    "curated_free_asset",
+    "licensed_photocomposite",
+    "taste_approved_high_fidelity_raster",
+    "captured_real_media"
+  ],
+  "forbidden_primary_source_kinds": [
+    "svg_primary",
+    "rasterized_svg_primary",
+    "css_shape_primary",
+    "canvas_primitive_primary",
+    "generic_symbolic_primary",
+    "blank_abstract_primary"
+  ],
+  "rejected_candidate": {
+    "artifact_id": "fff-private-materialized-motion-previs-001",
+    "visual_verdict": "REJECTED_VISUAL_DIRECTION",
+    "archive_only": true,
+    "active_default": false,
+    "successor_candidate": false,
+    "release_path_reachable": false,
+    "shared_generator_allowed": false,
+    "further_variant_generation_allowed": false,
+    "historical_evidence_preserved": true,
+    "package_bytes_preserved": true,
+    "mp4_preserved": true,
+    "technical_motion_evidence_preserved": true,
+    "historical_provenance_preserved": true
+  },
+  "active_default": {
+    "artifact_id": "fff-private-previsualization-timeline-001",
+    "active_default": true,
+    "replaced": false
+  },
+  "enforcement": {
+    "tool_path": "tools/fff-primary-imagery-raster-pilot.mjs",
+    "state_dispatch_path": "tools/fff-state.mjs",
+    "validate_command": "node tools/fff-state.mjs validate-primary-imagery-raster-pilot artifacts/high-fidelity-raster-pilot-result.json",
+    "smoke_command": "node tools/fff-state.mjs smoke-primary-imagery-raster-pilot artifacts/high-fidelity-raster-pilot-result.json",
+    "fail_closed_conditions": [
+      "active or default candidate contains a forbidden primary source kind",
+      "primary source kind is missing",
+      "raster file is a rendering of a forbidden vector scene",
+      "archived rejected candidate is promoted",
+      "active quarantine metadata is missing"
+    ]
+  }
+}
