@@ -1,5 +1,16 @@
 # Decision Log
 
+## 2026-07-26 — Preserve accepted imagery while repairing transitions and story comprehension
+
+- Decision: register `fff-private-full-raster-clarity-candidate-001` as the sole new private, default-off successor candidate while keeping `fff-private-previsualization-timeline-001` active/default.
+- Product Owner authority: preserve all nineteen accepted primary image paths and SHA256 identities. This decision authorizes transition continuity and clarity text work only; image generation, image replacement, shot reorder, Beat reorder, duration changes, production selection, and rights claims remain closed.
+- Transition decision: use the terminal frame extracted from the actual rendered outgoing final clip as every non-hard transition input. The encoder may use the actual terminal tail and incoming rendered head inside the fixed incoming shot window; it may not reopen the raw outgoing image or conceal a crop reset.
+- Text decision: replace the uncertainty-heavy review copy with a supported causal spine, six subject–action–object narration segments, twenty declarative explanatory review captions, and a separate twenty-cue production subtitle draft marked provisional until voice calibration.
+- Impact decision: record the source cue audit as `L0=9 / L1=11 / L2=0 / L3=0`. Bind all forty-six revised narration/caption/subtitle units at L1, with zero L2 shots, zero L3 Beats, and no full reassembly.
+- Durable rule: `docs/production/NARRATIVE_VISUAL_BINDING_GUIDELINE.md` owns L0–L3 impact classification, the `NARRATIVE_CANON_DECISION_REQUIRED` pre-render stop, and the threshold for a full nineteen-shot reassembly. Subtitle revision never implies image regeneration.
+- Evidence: all eighteen boundary maps pass with reset 0, raw flash 0, gap 0, overlap 0, maximum normalized pixel difference `0.009810 < 0.02`; MP4 is exactly 180 seconds / 5400 frames; image hashes match 19/19; focused validation, 9/9 smoke, 6/6 dedicated tests, and desktop/narrow browser checks pass.
+- Human boundary: intended comprehension answers are recorded for later review. No human comprehension, final acceptance, production approval, rights clearance, voice choice, public release, or final canon claim is created.
+
 ## 2026-07-26 — Register one private full-raster successor candidate for whole-story review
 
 - Decision: Build `fff-private-full-raster-candidate-001` as the only new successor candidate while leaving `fff-private-previsualization-timeline-001` active/default and retaining `fff-private-materialized-motion-previs-001` as rejected archive-only history.

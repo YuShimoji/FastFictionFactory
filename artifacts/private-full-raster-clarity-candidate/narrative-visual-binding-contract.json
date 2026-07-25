@@ -1,0 +1,843 @@
+{
+  "schemaVersion": "fff.narrativeVisualBindingContract.v1",
+  "artifact_id": "fff-private-full-raster-clarity-candidate-001",
+  "current_text_impact_audit": {
+    "source_artifact_id": "fff-private-full-raster-candidate-001",
+    "cue_count": 20,
+    "binding_counts": {
+      "L0_caption_only": 9,
+      "L1_subject_bound": 11,
+      "L2_relation_bound": 0,
+      "L3_structure_bound": 0
+    },
+    "clarity_failure_confirmed": true,
+    "failure_signals": [
+      "unknowns repeated without adding a concrete finding",
+      "questions appear without a causal answer path",
+      "production-state wording substitutes for story information",
+      "consecutive uncertainty-only captions obscure the six-Beat causal chain"
+    ]
+  },
+  "revised_unit_count": 46,
+  "revised_binding_counts": {
+    "L0_caption_only": 0,
+    "L1_subject_bound": 46,
+    "L2_relation_bound": 0,
+    "L3_structure_bound": 0
+  },
+  "bindings": [
+    {
+      "semantic_unit_id": "clarity-cap-b01-01",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "observation",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "tower",
+        "bell-sound"
+      ],
+      "shot_ids": [
+        "shot-b01-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b01-02",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "fact",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "empty-bell-frame",
+        "removal-record"
+      ],
+      "shot_ids": [
+        "shot-b01-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b01-03",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "empty-bell-frame"
+      ],
+      "shot_ids": [
+        "shot-b01-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b02-01",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "fact",
+      "truth_status": "established",
+      "visual_subject_ids": [
+        "mira",
+        "clock-workbench"
+      ],
+      "shot_ids": [
+        "shot-b02-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b02-02",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "observation",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "mira",
+        "toma-memo",
+        "brass-moth"
+      ],
+      "shot_ids": [
+        "shot-b02-01",
+        "shot-b02-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b02-03",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "clock-0917",
+        "brass-moth"
+      ],
+      "shot_ids": [
+        "shot-b02-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b03-01",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "fact",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "toma-memo",
+        "ledger",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b03-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b03-02",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "ledger-minute-column",
+        "ledger-name-column"
+      ],
+      "shot_ids": [
+        "shot-b03-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b03-03",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "fading-record"
+      ],
+      "shot_ids": [
+        "shot-b03-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b04-01",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "allegation",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "toma-memo",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b04-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b04-02",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "ledger",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b04-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b04-03",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "inference",
+      "truth_status": "unresolved",
+      "visual_subject_ids": [
+        "council",
+        "ledger"
+      ],
+      "shot_ids": [
+        "shot-b04-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b05-01",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "observation",
+      "truth_status": "unresolved",
+      "visual_subject_ids": [
+        "toma"
+      ],
+      "shot_ids": [
+        "shot-b05-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b05-02",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "brass-moth"
+      ],
+      "shot_ids": [
+        "shot-b05-01",
+        "shot-b05-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b05-03",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "inference",
+      "truth_status": "unresolved",
+      "visual_subject_ids": [
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b05-02",
+        "shot-b05-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b05-04",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "toma",
+        "brass-moth",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b05-05",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "brass-moth",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b05-04"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b06-01",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "time-restoration",
+        "ledger"
+      ],
+      "shot_ids": [
+        "shot-b06-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b06-02",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "name-restoration",
+        "ledger"
+      ],
+      "shot_ids": [
+        "shot-b06-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-cap-b06-03",
+      "unit_type": "review_explanatory_caption",
+      "claim_type": "choice",
+      "truth_status": "unresolved",
+      "visual_subject_ids": [
+        "mira-choice",
+        "empty-bell-frame"
+      ],
+      "shot_ids": [
+        "shot-b06-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-01",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "observation",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "tower",
+        "bell-sound"
+      ],
+      "shot_ids": [
+        "shot-b01-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-02",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "fact",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "empty-bell-frame",
+        "removal-record"
+      ],
+      "shot_ids": [
+        "shot-b01-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-03",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "empty-bell-frame"
+      ],
+      "shot_ids": [
+        "shot-b01-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-04",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "fact",
+      "truth_status": "established",
+      "visual_subject_ids": [
+        "mira",
+        "clock-workbench"
+      ],
+      "shot_ids": [
+        "shot-b02-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-05",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "observation",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "mira",
+        "toma-memo",
+        "brass-moth"
+      ],
+      "shot_ids": [
+        "shot-b02-01",
+        "shot-b02-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-06",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "clock-0917",
+        "brass-moth"
+      ],
+      "shot_ids": [
+        "shot-b02-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-07",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "fact",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "toma-memo",
+        "ledger",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b03-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-08",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "ledger-minute-column",
+        "ledger-name-column"
+      ],
+      "shot_ids": [
+        "shot-b03-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-09",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "fading-record"
+      ],
+      "shot_ids": [
+        "shot-b03-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-10",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "allegation",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "toma-memo",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b04-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-11",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "ledger",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b04-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-12",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "inference",
+      "truth_status": "unresolved",
+      "visual_subject_ids": [
+        "council",
+        "ledger"
+      ],
+      "shot_ids": [
+        "shot-b04-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-13",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "observation",
+      "truth_status": "unresolved",
+      "visual_subject_ids": [
+        "toma"
+      ],
+      "shot_ids": [
+        "shot-b05-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-14",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "observation",
+      "truth_status": "observed",
+      "visual_subject_ids": [
+        "brass-moth"
+      ],
+      "shot_ids": [
+        "shot-b05-01",
+        "shot-b05-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-15",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "inference",
+      "truth_status": "unresolved",
+      "visual_subject_ids": [
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b05-02",
+        "shot-b05-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-16",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "toma",
+        "brass-moth",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-17",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "brass-moth",
+        "council"
+      ],
+      "shot_ids": [
+        "shot-b05-04"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-18",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "time-restoration",
+        "ledger"
+      ],
+      "shot_ids": [
+        "shot-b06-01"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-19",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "name-restoration",
+        "ledger"
+      ],
+      "shot_ids": [
+        "shot-b06-02"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "production-subtitle-20",
+      "unit_type": "production_subtitle_draft",
+      "claim_type": "choice",
+      "truth_status": "unresolved",
+      "visual_subject_ids": [
+        "mira-choice",
+        "empty-bell-frame"
+      ],
+      "shot_ids": [
+        "shot-b06-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-narration-b01",
+      "unit_type": "narration_segment",
+      "claim_type": "observation",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "tower",
+        "empty-bell-frame",
+        "noon-record"
+      ],
+      "shot_ids": [
+        "shot-b01-01",
+        "shot-b01-02",
+        "shot-b01-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-narration-b02",
+      "unit_type": "narration_segment",
+      "claim_type": "observation",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "mira",
+        "toma-memo",
+        "brass-moth",
+        "clock-0917"
+      ],
+      "shot_ids": [
+        "shot-b02-01",
+        "shot-b02-02",
+        "shot-b02-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-narration-b03",
+      "unit_type": "narration_segment",
+      "claim_type": "observation",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "toma-memo",
+        "ledger-minute-column",
+        "ledger-name-column",
+        "fading-record"
+      ],
+      "shot_ids": [
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b03-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-narration-b04",
+      "unit_type": "narration_segment",
+      "claim_type": "allegation",
+      "truth_status": "reported",
+      "visual_subject_ids": [
+        "council",
+        "toma-memo",
+        "ledger"
+      ],
+      "shot_ids": [
+        "shot-b04-01",
+        "shot-b04-02",
+        "shot-b04-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-narration-b05",
+      "unit_type": "narration_segment",
+      "claim_type": "inference",
+      "truth_status": "suspected",
+      "visual_subject_ids": [
+        "toma",
+        "brass-moth",
+        "council",
+        "clue-chain"
+      ],
+      "shot_ids": [
+        "shot-b05-01",
+        "shot-b05-02",
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    },
+    {
+      "semantic_unit_id": "clarity-narration-b06",
+      "unit_type": "narration_segment",
+      "claim_type": "choice",
+      "truth_status": "unresolved",
+      "visual_subject_ids": [
+        "time-restoration",
+        "name-restoration",
+        "mira-choice",
+        "empty-bell-frame"
+      ],
+      "shot_ids": [
+        "shot-b06-01",
+        "shot-b06-02",
+        "shot-b06-03"
+      ],
+      "binding_level": "L1_subject_bound",
+      "rewrite_without_visual_change": true,
+      "visual_change_required": "none",
+      "reason": "The accepted shot already contains the named subject; this clarity revision changes explanatory wording only."
+    }
+  ],
+  "l2_shot_ids": [],
+  "l3_beat_ids": [],
+  "full_reassembly_required": false,
+  "full_reassembly_avoided_reason": "No revised semantic unit changes the central objective, Beat order, primary event, or ending action; all 46 units remain subject-bound to accepted shots."
+}

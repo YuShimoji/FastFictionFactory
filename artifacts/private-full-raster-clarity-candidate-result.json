@@ -1,0 +1,1564 @@
+{
+  "schemaVersion": "fff.privateFullRasterClarityCandidateResult.v1",
+  "artifact_id": "fff-private-full-raster-clarity-candidate-001",
+  "passed": true,
+  "failures": [],
+  "shot_count": 19,
+  "beat_count": 6,
+  "duration_seconds": 180,
+  "subtitle_cue_count": 20,
+  "narration_segment_count": 6,
+  "production_subtitle_draft_count": 20,
+  "primary_frame_count": 19,
+  "owner_accepted_primary_frame_count": 19,
+  "primary_image_change_count": 0,
+  "image_generation_call_count": 0,
+  "accidental_exact_duplicate_count": 0,
+  "primary_image_identity": [
+    {
+      "shot_id": "shot-b01-01",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b01-01.jpg",
+      "source_sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e",
+      "candidate_sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b01-02",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b01-02.jpg",
+      "source_sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23",
+      "candidate_sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b01-03",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b01-03.jpg",
+      "source_sha256": "81908541e9eb844e7117aff49ae99839e3222336060d39b59801c41b71c9c0f5",
+      "candidate_sha256": "81908541e9eb844e7117aff49ae99839e3222336060d39b59801c41b71c9c0f5",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b02-01",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b02-01.jpg",
+      "source_sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304",
+      "candidate_sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b02-02",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b02-02.jpg",
+      "source_sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09",
+      "candidate_sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b02-03",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+      "source_sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31",
+      "candidate_sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b03-01",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b03-01.jpg",
+      "source_sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839",
+      "candidate_sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b03-02",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b03-02.jpg",
+      "source_sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460",
+      "candidate_sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b03-03",
+      "path": "artifacts/private-full-raster-candidate/images/final/shot-b03-03.jpg",
+      "source_sha256": "d28f599fff868a5fbc5d5bf613a98c9f935eeb768fccf3b610b1a77631400d91",
+      "candidate_sha256": "d28f599fff868a5fbc5d5bf613a98c9f935eeb768fccf3b610b1a77631400d91",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b04-01",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+      "source_sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1",
+      "candidate_sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b04-02",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b04-02.jpg",
+      "source_sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf",
+      "candidate_sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b04-03",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b04-03.jpg",
+      "source_sha256": "63bc3351fba0a7337e76b77ace8586a616d0bece4efed7de8ae26e5f82deaad0",
+      "candidate_sha256": "63bc3351fba0a7337e76b77ace8586a616d0bece4efed7de8ae26e5f82deaad0",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b05-01",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b05-01.jpg",
+      "source_sha256": "94c0b90c57bbceeba4c59c669d73dc4598308a0c574516fc95478200fa04d54d",
+      "candidate_sha256": "94c0b90c57bbceeba4c59c669d73dc4598308a0c574516fc95478200fa04d54d",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b05-02",
+      "path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+      "source_sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac",
+      "candidate_sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b05-03",
+      "path": "artifacts/private-full-raster-candidate/images/base/shot-b05-03.jpg",
+      "source_sha256": "7d76b463f9594c35c73b99d43888d6c597cdfca7248aff91c387f0fc1a2cc2a0",
+      "candidate_sha256": "7d76b463f9594c35c73b99d43888d6c597cdfca7248aff91c387f0fc1a2cc2a0",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b05-04",
+      "path": "artifacts/private-full-raster-candidate/images/final/shot-b05-04.jpg",
+      "source_sha256": "a4d85ac5df664d35a65f91593b6822aba898250f8cf855738993f1c5d8cd70d2",
+      "candidate_sha256": "a4d85ac5df664d35a65f91593b6822aba898250f8cf855738993f1c5d8cd70d2",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b06-01",
+      "path": "artifacts/private-full-raster-candidate/images/final/shot-b06-01.jpg",
+      "source_sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed",
+      "candidate_sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b06-02",
+      "path": "artifacts/private-full-raster-candidate/images/final/shot-b06-02.jpg",
+      "source_sha256": "f9e9f69e8123a135e3d2c838e5d75c466958093190f833164b3bc7e673ae6ef2",
+      "candidate_sha256": "f9e9f69e8123a135e3d2c838e5d75c466958093190f833164b3bc7e673ae6ef2",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    },
+    {
+      "shot_id": "shot-b06-03",
+      "path": "artifacts/private-full-raster-candidate/images/final/shot-b06-03.jpg",
+      "source_sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6",
+      "candidate_sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6",
+      "byte_identical": true,
+      "owner_primary_image_acceptance": true,
+      "selected_for_final_production": false,
+      "rights_cleared_claim": false
+    }
+  ],
+  "coherence_audit": {
+    "status": "TECHNICAL_PASS_HUMAN_COMPREHENSION_REVIEW_PENDING",
+    "primary_frame_count": 19,
+    "owner_accepted_primary_frame_count": 19,
+    "primary_image_change_count": 0,
+    "accidental_exact_duplicate_count": 0,
+    "callbacks": [
+      {
+        "family": "tower",
+        "shots": [
+          "shot-b01-01",
+          "shot-b01-02",
+          "shot-b01-03",
+          "shot-b06-03"
+        ]
+      },
+      {
+        "family": "clock-repair",
+        "shots": [
+          "shot-b02-01",
+          "shot-b02-02",
+          "shot-b02-03"
+        ]
+      },
+      {
+        "family": "ledger",
+        "shots": [
+          "shot-b03-01",
+          "shot-b03-02",
+          "shot-b03-03",
+          "shot-b06-01",
+          "shot-b06-02"
+        ]
+      },
+      {
+        "family": "council",
+        "shots": [
+          "shot-b04-01",
+          "shot-b04-02",
+          "shot-b04-03",
+          "shot-b05-03",
+          "shot-b05-04"
+        ]
+      },
+      {
+        "family": "toma",
+        "shots": [
+          "shot-b05-01",
+          "shot-b05-04"
+        ]
+      },
+      {
+        "family": "brass-moth",
+        "shots": [
+          "shot-b02-02",
+          "shot-b02-03",
+          "shot-b05-02",
+          "shot-b05-04"
+        ]
+      }
+    ],
+    "no_human_comprehension_claim": true,
+    "no_final_acceptance_claim": true
+  },
+  "transition_boundary_audit": {
+    "status": "PASS",
+    "boundary_count": 18,
+    "position_reset_count": 0,
+    "raw_source_flash_count": 0,
+    "gap_frame_count": 0,
+    "overlap_frame_count": 0,
+    "implementation_rule": "Every non-hard transition reads the actual terminal frame extracted from the rendered outgoing final clip; no raw previous shot image is reopened.",
+    "boundaries": [
+      {
+        "boundary_id": "boundary-01",
+        "outgoing_shot_id": "shot-b01-01",
+        "incoming_shot_id": "shot-b01-02",
+        "boundary_seconds": 7,
+        "transition_type": "short_dissolve",
+        "transition_duration_seconds": 0.45,
+        "outgoing_terminal_frame_sha256": "49bb58a8eb0c2ed11e2d69500807d7154b183a93d0e315cc95ffdbc676ad491c",
+        "first_transition_frame_sha256": "8b14dabcda38625b9df12c91ee37261600b9dad7a507f27be11655e6ef13c7c5",
+        "incoming_initial_frame_sha256": "0d95357db01244f6ed844bd62fd67bef59e1231717a4cae16d92c8f4e27d2f94",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.008438,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "駅から塔へ terminal framing → 空いた取付点 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 210,
+        "boundary_minus_2_sha256": "87e8fdac38968a1ca8e58f98241f0bb63ca9417d04ed5a8054f9eeaa43199f85",
+        "boundary_minus_1_sha256": "f156b61be5c66415384b9d3f866298e08ad6a3a33852951e08f75880d5cbc9e5",
+        "boundary_at_sha256": "9c8f87ab46d4795d77caf65b802fd9618a40b2b96df248f9a6cc85586dbed01b",
+        "boundary_plus_1_sha256": "3458dd8364f4bc8d13859678cfa9d6913b68f948707fffd9ded58204f8d18edb",
+        "transition_midpoint_frame": 216,
+        "transition_midpoint_sha256": "dea814fd2b6097f56ebd16e3e36424d0e7e6923c27fad7a39bd2c183519f4026"
+      },
+      {
+        "boundary_id": "boundary-02",
+        "outgoing_shot_id": "shot-b01-02",
+        "incoming_shot_id": "shot-b01-03",
+        "boundary_seconds": 14,
+        "transition_type": "held_fade",
+        "transition_duration_seconds": 0.55,
+        "outgoing_terminal_frame_sha256": "353d582ffe6c02fc0f24d33edc31762c5881fd1758c9397f4ad84beecb535d11",
+        "first_transition_frame_sha256": "4ddd61c25cfa48f491b461f9525d0c99d93a60a82c141c2d756f8f9ac75ec41f",
+        "incoming_initial_frame_sha256": "993c56ee6f189c2010a231e81bb2aa6a127b4bfbce93796eb14ab64d3a1329b3",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.00981,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "空いた取付点 terminal framing → 空枠と正午標 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 420,
+        "boundary_minus_2_sha256": "b4a2ac0c3aa3b981c33ae3309ee9f0b48e378a9b0c8da6f8f2a39c90e6adf17e",
+        "boundary_minus_1_sha256": "b4a2ac0c3aa3b981c33ae3309ee9f0b48e378a9b0c8da6f8f2a39c90e6adf17e",
+        "boundary_at_sha256": "e2bfd652697bd2a9213813c13c0f8ce727a1fe8e1145e8dbaaa8d3bfc1e40993",
+        "boundary_plus_1_sha256": "fbfe13fea6cab82433894d0ce9ef42fa7923c927f4caf83bdfe00afafc16eb86",
+        "transition_midpoint_frame": 428,
+        "transition_midpoint_sha256": "8e3848e23e3c12960f396edbc2f9ee8cb1780c1ab3d351582089c1920ce7eac8"
+      },
+      {
+        "boundary_id": "boundary-03",
+        "outgoing_shot_id": "shot-b01-03",
+        "incoming_shot_id": "shot-b02-01",
+        "boundary_seconds": 20,
+        "transition_type": "hard_cut",
+        "transition_duration_seconds": 0,
+        "outgoing_terminal_frame_sha256": "a03d093574eb6eb71801f230fbf18c9df45bba8e2ed3342918859f4086a56e14",
+        "first_transition_frame_sha256": "371f9e3106c017e3c1995d4a9c43a1a7a78d74950c1f2585f92abd92fe705baf",
+        "incoming_initial_frame_sha256": "371f9e3106c017e3c1995d4a9c43a1a7a78d74950c1f2585f92abd92fe705baf",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "hard_cut_starts_on_actual_incoming_head",
+        "continuity_subject": "空枠と正午標 terminal framing → 時計修理台の手元 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 600,
+        "boundary_minus_2_sha256": "834814c5cf27f021106f6bfcde262b74291a92b7b314a979a8603a1c0ec4f9f0",
+        "boundary_minus_1_sha256": "5ac5006f3ad546264566bfa6bdfb675e8f0f0e796013977377ac350958cc9243",
+        "boundary_at_sha256": "eaa9c1ec1eeba39c56babbe03770e728ca17ba66d431d7ba0aaf9ce790b755e5",
+        "boundary_plus_1_sha256": "d08823b51382d678579373defa60d6458cb334b7fb706a17e8ef26b15a985518",
+        "transition_midpoint_frame": 600,
+        "transition_midpoint_sha256": "eaa9c1ec1eeba39c56babbe03770e728ca17ba66d431d7ba0aaf9ce790b755e5"
+      },
+      {
+        "boundary_id": "boundary-04",
+        "outgoing_shot_id": "shot-b02-01",
+        "incoming_shot_id": "shot-b02-02",
+        "boundary_seconds": 30,
+        "transition_type": "match_cut",
+        "transition_duration_seconds": 0.22,
+        "outgoing_terminal_frame_sha256": "766c400077e0b1c32ae11477e4c6ec6bbbf7e751feed459f8dd8261ae145b546",
+        "first_transition_frame_sha256": "112e16ecfea15f70a4d2a9d2e94898017555d5a46128c7ba51e620670ea0757c",
+        "incoming_initial_frame_sha256": "d2b7642f567a1daee521d695f1faab1e5e54a2f5c548fbe03e7724f1d1402b4e",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.009475,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "時計修理台の手元 terminal framing → メモと静止した蛾 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 900,
+        "boundary_minus_2_sha256": "70c76920cc32143f4c9032ad03f43f0c495f39c24f0b322fb0a9d2cbbfbdfc01",
+        "boundary_minus_1_sha256": "70c76920cc32143f4c9032ad03f43f0c495f39c24f0b322fb0a9d2cbbfbdfc01",
+        "boundary_at_sha256": "ac11cf226a7683404b6b8e419ec87e440e2fc6dac14eb58645b914bdeaec115e",
+        "boundary_plus_1_sha256": "88d84b5e9f7bdba7c5f240beaabc7eac38bd1f845b5e6d4aeb38643761e817a1",
+        "transition_midpoint_frame": 903,
+        "transition_midpoint_sha256": "6fc4777c995d2bffe4e293ba83257c50068f1b7e0606ba4dbaede4fe13a57b7a"
+      },
+      {
+        "boundary_id": "boundary-05",
+        "outgoing_shot_id": "shot-b02-02",
+        "incoming_shot_id": "shot-b02-03",
+        "boundary_seconds": 40,
+        "transition_type": "graphic_match",
+        "transition_duration_seconds": 0.3,
+        "outgoing_terminal_frame_sha256": "19f077e4cff4767f6370653da2cb0576ef22ccdf38d23673e8f52a3d66f06e77",
+        "first_transition_frame_sha256": "f8d9ca928d3cc1dee1aa4824c2ae8e3d2cd52f276afd129b0eba4d09c55e153a",
+        "incoming_initial_frame_sha256": "c19fb6d6fb2e59ed5e2d150d34717507a3e2d106a70ace15c7afb9908cab3eef",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.008758,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "メモと静止した蛾 terminal framing → 9:17と蛾の反復 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 1200,
+        "boundary_minus_2_sha256": "6973a19fdac8dc25b9b12b094af9dad430e085160b5b645045cf8db660d5ccb6",
+        "boundary_minus_1_sha256": "6973a19fdac8dc25b9b12b094af9dad430e085160b5b645045cf8db660d5ccb6",
+        "boundary_at_sha256": "419ec40c40f378e7a8c96def630e8cb576ffea79b5ca4437f01acd130dca46a0",
+        "boundary_plus_1_sha256": "a7c57691d30acf603e96df78e0585a3aec0aba08be44d00b64e017ea5219e60e",
+        "transition_midpoint_frame": 1204,
+        "transition_midpoint_sha256": "a110f2873f3939090c8825951f867a2b2d84365b53cc8ea3a5a1ba206ba72d1f"
+      },
+      {
+        "boundary_id": "boundary-06",
+        "outgoing_shot_id": "shot-b02-03",
+        "incoming_shot_id": "shot-b03-01",
+        "boundary_seconds": 50,
+        "transition_type": "hard_cut",
+        "transition_duration_seconds": 0,
+        "outgoing_terminal_frame_sha256": "f0759fd057f7345ee35049218f2a6f8e8d6121ade864e508580bb81ccc60ba92",
+        "first_transition_frame_sha256": "2a3b27539286a4dc222a0427bfc4097e454b6194069bb0a630110b9376c80fec",
+        "incoming_initial_frame_sha256": "2a3b27539286a4dc222a0427bfc4097e454b6194069bb0a630110b9376c80fec",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "hard_cut_starts_on_actual_incoming_head",
+        "continuity_subject": "9:17と蛾の反復 terminal framing → 台帳を開く手元 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 1500,
+        "boundary_minus_2_sha256": "ed046e89238b0e31079be5fef6f8666ecd5ba0a0d3d06585a955a3b68d99c646",
+        "boundary_minus_1_sha256": "ed046e89238b0e31079be5fef6f8666ecd5ba0a0d3d06585a955a3b68d99c646",
+        "boundary_at_sha256": "3866f18bc1f0771b489ec16a0d95070ba2cefebe5dd53e14a37b77f0b8b3e104",
+        "boundary_plus_1_sha256": "0d9a4c0196ab5b6cb4207f603bec22064510ae1cc25ee039b9a686d8ded7911b",
+        "transition_midpoint_frame": 1500,
+        "transition_midpoint_sha256": "3866f18bc1f0771b489ec16a0d95070ba2cefebe5dd53e14a37b77f0b8b3e104"
+      },
+      {
+        "boundary_id": "boundary-07",
+        "outgoing_shot_id": "shot-b03-01",
+        "incoming_shot_id": "shot-b03-02",
+        "boundary_seconds": 60,
+        "transition_type": "graphic_match",
+        "transition_duration_seconds": 0.3,
+        "outgoing_terminal_frame_sha256": "515d72f7f7ad4df8b831f26dea0d2be8c28caa2a208a49c4692d6265f5fdeb54",
+        "first_transition_frame_sha256": "b75bbb541bb731cc5bc80092a352705c60ad5d0b7c667e377518918d0a34c051",
+        "incoming_initial_frame_sha256": "9250c7bcbcfcd574f585aa20b0a5ae80ba4bf48656f98e40176e6cdbf99788d9",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.008793,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "台帳を開く手元 terminal framing → 架空の二列台帳 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 1800,
+        "boundary_minus_2_sha256": "fefa8f4e02764b7f3b9ce5fbbad10c9576dacaea52be1e29404d232fe5e3647a",
+        "boundary_minus_1_sha256": "fefa8f4e02764b7f3b9ce5fbbad10c9576dacaea52be1e29404d232fe5e3647a",
+        "boundary_at_sha256": "4c8c8d7c03ebc1b7926e8b6611eb0c1bf8d00fbc0dcaf50f8eb764b476f2cd69",
+        "boundary_plus_1_sha256": "c03f5ef9e81ea13167a8b3133e75ea121d7727843730916d7ea5add23caf9509",
+        "transition_midpoint_frame": 1804,
+        "transition_midpoint_sha256": "b012d186a47c3a4f134cebf68c79e8919e41a12607368d60f3eff01f53950e79"
+      },
+      {
+        "boundary_id": "boundary-08",
+        "outgoing_shot_id": "shot-b03-02",
+        "incoming_shot_id": "shot-b03-03",
+        "boundary_seconds": 70,
+        "transition_type": "short_dissolve",
+        "transition_duration_seconds": 0.45,
+        "outgoing_terminal_frame_sha256": "82f82617b1914c9ffa01581af82d74090695b3e9276339eb8528b15ecc25c9aa",
+        "first_transition_frame_sha256": "448429323578f1d19f7d148bc7ce8d6bee33504e42df89c9b696f28acfc74809",
+        "incoming_initial_frame_sha256": "a991f05c0ee77f7542a65e1ec17180df7afadf1ccf1da46e32b37260bba0e0b6",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.007939,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "架空の二列台帳 terminal framing → 輪郭が薄れる三段階 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 2100,
+        "boundary_minus_2_sha256": "e286760ea6f6c29ee62706f0d7e1a364670959f139bb5f885cba8a2b354f3f2d",
+        "boundary_minus_1_sha256": "e286760ea6f6c29ee62706f0d7e1a364670959f139bb5f885cba8a2b354f3f2d",
+        "boundary_at_sha256": "99e6a0c4e15f2513ebc62118bbeb674cbd2a32da4079dd6c92b5eb6efb83f026",
+        "boundary_plus_1_sha256": "ceed84c8423448ce3b887f5452f52a912cbcf9a421206bcc0d4c3c8979e2a0fa",
+        "transition_midpoint_frame": 2106,
+        "transition_midpoint_sha256": "f02be4cfd301f5fc9ed87fa356d5f63ee58e9b19237d1b3afc40d030a25e78fb"
+      },
+      {
+        "boundary_id": "boundary-09",
+        "outgoing_shot_id": "shot-b03-03",
+        "incoming_shot_id": "shot-b04-01",
+        "boundary_seconds": 80,
+        "transition_type": "hard_cut",
+        "transition_duration_seconds": 0,
+        "outgoing_terminal_frame_sha256": "ed77e1e6742336f4265160e7794a0adc8a09af30fa245a6291b1b3330407fad3",
+        "first_transition_frame_sha256": "c80f6b444af4b88af69f16c32c70438b8c354d3f40bb634e45a4613ac3674f6a",
+        "incoming_initial_frame_sha256": "c80f6b444af4b88af69f16c32c70438b8c354d3f40bb634e45a4613ac3674f6a",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "hard_cut_starts_on_actual_incoming_head",
+        "continuity_subject": "輪郭が薄れる三段階 terminal framing → 仕切りの向こう initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 2400,
+        "boundary_minus_2_sha256": "bcef4ee21c9a40bbd259f464b71d9c28fcaeb1772bc28b97e8e3f9a24d8a15c0",
+        "boundary_minus_1_sha256": "4c6599cf2926cab56ccf5aa91e0d59175e5f622f3776b8bbaec7e5562e72d09f",
+        "boundary_at_sha256": "9ec5db323ed16777c57b8c7caa7d4004a1a80aca4e47b48e198754fef2705130",
+        "boundary_plus_1_sha256": "ec8b4f47c02c6bd01d2ae9a6d7060e5dfb41f1d586fe7a4abeced6b2e978f1e9",
+        "transition_midpoint_frame": 2400,
+        "transition_midpoint_sha256": "9ec5db323ed16777c57b8c7caa7d4004a1a80aca4e47b48e198754fef2705130"
+      },
+      {
+        "boundary_id": "boundary-10",
+        "outgoing_shot_id": "shot-b04-01",
+        "incoming_shot_id": "shot-b04-02",
+        "boundary_seconds": 88,
+        "transition_type": "graphic_match",
+        "transition_duration_seconds": 0.3,
+        "outgoing_terminal_frame_sha256": "430adf3bdf2f4166e6e56164571de59045e90301dc4306c776a8bdb028940e17",
+        "first_transition_frame_sha256": "b091e323673a3b4bb35a46773c666f23ff71fcdd43ac7044af0bf8c700e5a8cd",
+        "incoming_initial_frame_sha256": "684799ab965fe253b48da0d1e164f5c09f484cdbfb4f5cd47e796c34cd041a42",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.007443,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "仕切りの向こう terminal framing → 同じ重さの二説 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 2640,
+        "boundary_minus_2_sha256": "7a8a57e86338a29e0581966b13ef345d9d2367446455420c0ef8264b5d539c83",
+        "boundary_minus_1_sha256": "7a8a57e86338a29e0581966b13ef345d9d2367446455420c0ef8264b5d539c83",
+        "boundary_at_sha256": "4af57b9f164c7e4df7adf626f802ed5713dc8e978c01d644dabf95a4d3b681f1",
+        "boundary_plus_1_sha256": "5efe46c61c2b9f73c2efd3d4db0f044d03c5204e6e863a2d7a6cd534bc0105a1",
+        "transition_midpoint_frame": 2644,
+        "transition_midpoint_sha256": "4d253b47ca97123db48fa786fe40757d7c79ef94d0339f00cf08cb7d733d9e64"
+      },
+      {
+        "boundary_id": "boundary-11",
+        "outgoing_shot_id": "shot-b04-02",
+        "incoming_shot_id": "shot-b04-03",
+        "boundary_seconds": 96,
+        "transition_type": "held_fade",
+        "transition_duration_seconds": 0.55,
+        "outgoing_terminal_frame_sha256": "33c35bf816f4bdea6e96db33c181d467f8cf1d9464caa2d02f1ff77322f93065",
+        "first_transition_frame_sha256": "36f69338317ec87d60a53563d184b7b4ae8ddc7124d713e4304c03d6663b3c75",
+        "incoming_initial_frame_sha256": "667cf95c5acc9f02393f6f1805c576b5384f6277bf9ea2eb7078ae5352c9d6fe",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.007488,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "同じ重さの二説 terminal framing → 閉じた部屋と台帳 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 2880,
+        "boundary_minus_2_sha256": "308e486c448576376fe5ff51a2c769555025f58b2557e208cf3468a793964eed",
+        "boundary_minus_1_sha256": "308e486c448576376fe5ff51a2c769555025f58b2557e208cf3468a793964eed",
+        "boundary_at_sha256": "a9716e954f85f114da24a201676bc746f07396795ada812ed5276622e98d08eb",
+        "boundary_plus_1_sha256": "68f3c595c87bbc293aa6c1f1c5ab135404ab8046fa6088ec2343fda56a1d5489",
+        "transition_midpoint_frame": 2888,
+        "transition_midpoint_sha256": "0e88009f6cff18d19cf110a39a94e46a2951c89a59f55a1a007f34024850ff3f"
+      },
+      {
+        "boundary_id": "boundary-12",
+        "outgoing_shot_id": "shot-b04-03",
+        "incoming_shot_id": "shot-b05-01",
+        "boundary_seconds": 105,
+        "transition_type": "hard_cut",
+        "transition_duration_seconds": 0,
+        "outgoing_terminal_frame_sha256": "0371953848c5a242a421c34436a4e2046b3fe917b71bfc86ed9607e80fd16195",
+        "first_transition_frame_sha256": "93035fe8647fa74f73f8e3bb000a854ab6148eca034c2ef4d32bafac1deafb30",
+        "incoming_initial_frame_sha256": "93035fe8647fa74f73f8e3bb000a854ab6148eca034c2ef4d32bafac1deafb30",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "hard_cut_starts_on_actual_incoming_head",
+        "continuity_subject": "閉じた部屋と台帳 terminal framing → 未確定のトーマ候補 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 3150,
+        "boundary_minus_2_sha256": "3e303273b8ca82414f090fd1433eadb932738f8b664e7a7586e0ae2c0256a469",
+        "boundary_minus_1_sha256": "e6bb5a4b7de164e2408ed9e18ff1944a6f814b785fe6cb3ebb1117ed59df8354",
+        "boundary_at_sha256": "07ff9a7c3652032fd2b27da249d5929cd57420147a2cd34bcaca25e4bb02ab83",
+        "boundary_plus_1_sha256": "8a75daa29c68083b359086a12ba5f357092ffa634165a83130fd0dad0aa8cd66",
+        "transition_midpoint_frame": 3150,
+        "transition_midpoint_sha256": "07ff9a7c3652032fd2b27da249d5929cd57420147a2cd34bcaca25e4bb02ab83"
+      },
+      {
+        "boundary_id": "boundary-13",
+        "outgoing_shot_id": "shot-b05-01",
+        "incoming_shot_id": "shot-b05-02",
+        "boundary_seconds": 118,
+        "transition_type": "match_cut",
+        "transition_duration_seconds": 0.22,
+        "outgoing_terminal_frame_sha256": "78556e88900d09f81d8fee64078cd4979915514f0cbbb1d89c9ef9574ff8dd5e",
+        "first_transition_frame_sha256": "3e909a0be1a3bb2add2bde5703a016d953f4a3ea12bd0ecda9eefe36cafcf3c6",
+        "incoming_initial_frame_sha256": "38c73fdb6f41f07c1c3b6bc25f9f1b9c4a25ede5b772a4061de4903c899d86b6",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.007724,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "未確定のトーマ候補 terminal framing → 真鍮の蛾と機能候補 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 3540,
+        "boundary_minus_2_sha256": "5ebebf494dcdb64d379078d050f075a9485840d5fdc583262570d76a5eaf76a4",
+        "boundary_minus_1_sha256": "5ebebf494dcdb64d379078d050f075a9485840d5fdc583262570d76a5eaf76a4",
+        "boundary_at_sha256": "d366466503d555537d168fc969154fb4cb0a9b851c9466ca3d3b30303518366a",
+        "boundary_plus_1_sha256": "71f86d153b922ded611840889b1dbbf22feda1ea8bcfbc681717799b26884537",
+        "transition_midpoint_frame": 3543,
+        "transition_midpoint_sha256": "ee53860a9cd4e334efc1d9e7c04f2a0e2f03eaa4859044a19f584c9c3f038d4b"
+      },
+      {
+        "boundary_id": "boundary-14",
+        "outgoing_shot_id": "shot-b05-02",
+        "incoming_shot_id": "shot-b05-03",
+        "boundary_seconds": 131,
+        "transition_type": "graphic_match",
+        "transition_duration_seconds": 0.3,
+        "outgoing_terminal_frame_sha256": "4b129d4cf46e4a2613977a746a3065ad7ad945a14f5de4a49b478aeea72d6ae3",
+        "first_transition_frame_sha256": "587c63746135029570b88fceaa94409bb2bc26f21d929f9c0301f6c90f6f2825",
+        "incoming_initial_frame_sha256": "f73b9bfcfef095ddab460e6800b34f5285a61cc10eb1ccab032a01f6b2ff0e1d",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.008686,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "真鍮の蛾と機能候補 terminal framing → 評議会の動機候補 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 3930,
+        "boundary_minus_2_sha256": "e03f688f1eac9f55b9453e98bfd3e59729f9435804fddafe9976f9d5745c2c31",
+        "boundary_minus_1_sha256": "e03f688f1eac9f55b9453e98bfd3e59729f9435804fddafe9976f9d5745c2c31",
+        "boundary_at_sha256": "7e90d8415433d6ad86c700b740fe39ff7fe380bf8fa692b4364fcc98cb2d1987",
+        "boundary_plus_1_sha256": "08b0ee6ab1662945f2024cee91072b603a3f559cb6cefc0e2b8f8e0dc0218680",
+        "transition_midpoint_frame": 3934,
+        "transition_midpoint_sha256": "a09297f847658713362a3080f32c08981321eb50c0cf5fc206f15c89baa299ef"
+      },
+      {
+        "boundary_id": "boundary-15",
+        "outgoing_shot_id": "shot-b05-03",
+        "incoming_shot_id": "shot-b05-04",
+        "boundary_seconds": 143,
+        "transition_type": "held_fade",
+        "transition_duration_seconds": 0.55,
+        "outgoing_terminal_frame_sha256": "f6c3373b40afd478fbbf0d1220aede0d8613065aca9843eef95c5cc6393c1ffc",
+        "first_transition_frame_sha256": "95ab0f88a22c69f1f59df7dbb949584725e034a31cb3378f0bfb7faed5e80c7c",
+        "incoming_initial_frame_sha256": "2896f3d95fa6fee9b176642af46b6cffc9ab7018fd3180b059840177c79a9a73",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.007846,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "評議会の動機候補 terminal framing → 三つの未解決事項 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 4290,
+        "boundary_minus_2_sha256": "b0ce2dd7f179655f6c376913d68599e7d8a760d62e401521846ba76ea4444cee",
+        "boundary_minus_1_sha256": "be662c3c92e7acea04058cf9655e32628f4592bdb22784eff210197283349a6a",
+        "boundary_at_sha256": "8ec50fa93338eb041bbc953c8ffef0dc2d16d9c749451f0705205cd4da18f506",
+        "boundary_plus_1_sha256": "bda240242d17543628b90661777c1cfc387681d387275a054a173d0d234d4fc1",
+        "transition_midpoint_frame": 4298,
+        "transition_midpoint_sha256": "6f9193764a8616e01dcb00ef004e339f57cd3901ea8713d9f78c09c012822a25"
+      },
+      {
+        "boundary_id": "boundary-16",
+        "outgoing_shot_id": "shot-b05-04",
+        "incoming_shot_id": "shot-b06-01",
+        "boundary_seconds": 155,
+        "transition_type": "hard_cut",
+        "transition_duration_seconds": 0,
+        "outgoing_terminal_frame_sha256": "76a9b3448059b9d2c37e62089024b61c4f8b48c507fe4200dd550676f9f58504",
+        "first_transition_frame_sha256": "f90017d8bf1b1a4f4addef1a28c188fa06f01a23c7740a0ce546ad925f4a9124",
+        "incoming_initial_frame_sha256": "f90017d8bf1b1a4f4addef1a28c188fa06f01a23c7740a0ce546ad925f4a9124",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "hard_cut_starts_on_actual_incoming_head",
+        "continuity_subject": "三つの未解決事項 terminal framing → 時間と名前 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 4650,
+        "boundary_minus_2_sha256": "ae15905bed4dbb1612a614b332974f3233e4e506411c9e657e838325f877ddee",
+        "boundary_minus_1_sha256": "7b2c01c0f4f75e01119f34f0751efb1b99cb78f0eb910be5000b3c35dafa47a6",
+        "boundary_at_sha256": "71494f19666d6aa21c2a47f49faf9697ea960e6500f668ed01da43c9735879e3",
+        "boundary_plus_1_sha256": "e29a27405bcc860d8a430483a750d94883a801281a99bc54f5d11e2cc3175d14",
+        "transition_midpoint_frame": 4650,
+        "transition_midpoint_sha256": "71494f19666d6aa21c2a47f49faf9697ea960e6500f668ed01da43c9735879e3"
+      },
+      {
+        "boundary_id": "boundary-17",
+        "outgoing_shot_id": "shot-b06-01",
+        "incoming_shot_id": "shot-b06-02",
+        "boundary_seconds": 164,
+        "transition_type": "graphic_match",
+        "transition_duration_seconds": 0.3,
+        "outgoing_terminal_frame_sha256": "3df1407e20572b08bb1091e38acb7fde3e9108ac7848d2ba072ee74035d61d2e",
+        "first_transition_frame_sha256": "e2a30a0378450ab08c3abd4034af9386c31dd4ac67bcd41966bab606662231a2",
+        "incoming_initial_frame_sha256": "9b327422f62e9c6767a2248df0e8d1163fba4e393e5b27cbf51ad2b2c45527d3",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.008522,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "時間と名前 terminal framing → 未記入欄を残す台帳 initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 4920,
+        "boundary_minus_2_sha256": "c689856c82694067a82feb0e15e3fa9026494b15f65c03804386ed67abf9c6e3",
+        "boundary_minus_1_sha256": "c689856c82694067a82feb0e15e3fa9026494b15f65c03804386ed67abf9c6e3",
+        "boundary_at_sha256": "4464e8b62c4412ea48d1e1a6a6dc114b258da44b8cb9552e90776e9ba9a878d5",
+        "boundary_plus_1_sha256": "d8d57d520795f4feaecc1e611526e14a9fdd698238e1171d9f6f3d5c6a9f5429",
+        "transition_midpoint_frame": 4924,
+        "transition_midpoint_sha256": "45563cdd3b537a4638d145f5fdc4d48436473dad0a19b9e8406736c6d875cee4"
+      },
+      {
+        "boundary_id": "boundary-18",
+        "outgoing_shot_id": "shot-b06-02",
+        "incoming_shot_id": "shot-b06-03",
+        "boundary_seconds": 172,
+        "transition_type": "held_fade",
+        "transition_duration_seconds": 0.55,
+        "outgoing_terminal_frame_sha256": "300b6f809acecb41ab594f55846417dc9142bae34c024185336b9667b007e6cf",
+        "first_transition_frame_sha256": "4ab84b46d251117c1ff3f4be4463b85cc56a48a982953f9f3501b78043fa64a6",
+        "incoming_initial_frame_sha256": "c79d363dfb2335685e797bbb537cc3c69bf683c1138c3cf7d9f16b9899fdf17f",
+        "outgoing_terminal_source": "rendered_outgoing_final_clip_terminal_frame",
+        "incoming_initial_source": "rendered_incoming_base_clip_head",
+        "raw_previous_image_reopened": false,
+        "reset_allowed": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "normalized_pixel_difference": 0.007763,
+        "perceptual_equivalence_threshold": 0.02,
+        "transition_start_rule": "transition_starts_on_actual_outgoing_terminal_frame",
+        "continuity_subject": "未記入欄を残す台帳 terminal framing → 空の鐘枠へ戻る initial framing",
+        "exact_shot_window_preserved": true,
+        "gap_frames": 0,
+        "overlap_frames": 0,
+        "global_boundary_frame": 5160,
+        "boundary_minus_2_sha256": "b8913d52a56fc613901a01564d9e61adc00f7642ad0ea84619b39344de8a7402",
+        "boundary_minus_1_sha256": "f7a4d73db7eebba8cb99bf8224743e62a45145b7f57d7056d4b8329676465da1",
+        "boundary_at_sha256": "83d15ff772339fa8cab0b2f1a5c923e21703bb9f43754b9f7ecaf47f649922e8",
+        "boundary_plus_1_sha256": "3df34c13d1e2635171137f8cb043b38f787e33ab8cb12f2e9277594aa394bb41",
+        "transition_midpoint_frame": 5168,
+        "transition_midpoint_sha256": "4945a66710e8b2ee6a83d9404869b1915545df243c4aa26b4ae1d3d01377515c"
+      }
+    ]
+  },
+  "text_impact_audit": {
+    "source_artifact_id": "fff-private-full-raster-candidate-001",
+    "cue_count": 20,
+    "binding_counts": {
+      "L0_caption_only": 9,
+      "L1_subject_bound": 11,
+      "L2_relation_bound": 0,
+      "L3_structure_bound": 0
+    },
+    "clarity_failure_confirmed": true,
+    "failure_signals": [
+      "unknowns repeated without adding a concrete finding",
+      "questions appear without a causal answer path",
+      "production-state wording substitutes for story information",
+      "consecutive uncertainty-only captions obscure the six-Beat causal chain"
+    ]
+  },
+  "narrative_clarity_audit": {
+    "revised_binding_counts": {
+      "L0_caption_only": 0,
+      "L1_subject_bound": 46,
+      "L2_relation_bound": 0,
+      "L3_structure_bound": 0
+    },
+    "review_caption_count": 20,
+    "declarative_review_caption_count": 20,
+    "banned_review_caption_occurrence_count": 0,
+    "final_major_unresolved_question_count": 2,
+    "final_major_unresolved_questions": [
+      "真鍮の蛾の仕組みと評議会の実際の関与はどう結びつくか。",
+      "ミラは時間と名前のどちらを先に救うか。"
+    ],
+    "comprehension_intended_answers": {
+      "protagonist": "時計修理師ミラ・ヴェイル",
+      "initiating_anomaly": "正午、鐘を失った塔から鐘の音が響く",
+      "toma_0917_moth_link": "失踪した兄トーマのメモと真鍮の蛾がミラの引き出しにあり、9:17が閉店記録と時計面に反復する",
+      "ledger_contents": "『分』の欄と人の名前を記す欄",
+      "council_relevance": "トーマのメモの告発と、評議会に接点を持つ台帳があるため。ただし責任は証明されていない",
+      "closing_choice_and_stake": "ミラが失われた時間と記録から消えた名前のどちらを先に救うかを選ぶ"
+    },
+    "human_comprehension_review_performed": false,
+    "full_reassembly_required": false,
+    "l2_shot_ids": [],
+    "l3_beat_ids": []
+  },
+  "mp4": {
+    "path": "artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate.mp4",
+    "byte_size": 17881787,
+    "sha256": "9c646075c522c15599b2a6d42ad35e5fe89bb622ea6aaa6843c487656edc75cd",
+    "duration_seconds": 180,
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec_name": "h264",
+    "width": 960,
+    "height": 540,
+    "avg_frame_rate": "30/1",
+    "frame_count": 5400,
+    "audio_stream_count": 0,
+    "subtitle_stream_count": 1,
+    "watermark_text": "CLARITY CANDIDATE / PRIVATE / NOT FOR PUBLICATION"
+  },
+  "browser_evidence": {
+    "passed": true,
+    "engine": "playwright chromium",
+    "headless": true,
+    "console_errors": [],
+    "page_errors": [],
+    "external_requests": [],
+    "desktop": {
+      "document_width": 1440,
+      "viewport_width": 1440,
+      "horizontal_overflow_px": 0,
+      "nested_vertical_scroll_count": 0,
+      "video_duration": 180,
+      "video_muted": true,
+      "focus_outline_style": "solid",
+      "focus_outline_width": "3px",
+      "shot_button_count": 19,
+      "timeline_lane_count": 3,
+      "screenshot_path": "artifacts/review-screens/private-full-raster-clarity-candidate-desktop.png",
+      "screenshot_byte_size": 758729,
+      "screenshot_sha256": "11c1d73fea1afa1f9435ccb42f3c2ca735f2e3420fb31676fe544ee8ad0248d8"
+    },
+    "narrow": {
+      "document_width": 390,
+      "viewport_width": 390,
+      "horizontal_overflow_px": 0,
+      "nested_vertical_scroll_count": 0,
+      "video_duration": 180,
+      "video_muted": true,
+      "focus_outline_style": "solid",
+      "focus_outline_width": "3px",
+      "shot_button_count": 19,
+      "timeline_lane_count": 3,
+      "screenshot_path": "artifacts/review-screens/private-full-raster-clarity-candidate-narrow.png",
+      "screenshot_byte_size": 178261,
+      "screenshot_sha256": "1d7836975ac2e13a1d68ca819718f62b33a8a06e55ffc54f7d6708ed6428c5a9"
+    }
+  },
+  "targeted_tests": {
+    "total": 9,
+    "passed": 9,
+    "all_passed": true,
+    "cases": [
+      {
+        "id": "accept-complete-candidate",
+        "passed": true,
+        "observed_failures": []
+      },
+      {
+        "id": "reject-production-selection",
+        "expected": "selection or rights claim escaped",
+        "observed_failures": [
+          "selection or rights claim escaped"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-image-generation",
+        "expected": "image generation escaped",
+        "observed_failures": [
+          "image generation escaped"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-default-promotion",
+        "expected": "candidate state mismatch",
+        "observed_failures": [
+          "candidate state mismatch"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-banned-review-caption",
+        "expected": "banned review-caption wording",
+        "observed_failures": [
+          "banned review-caption wording"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-l3-reassembly",
+        "expected": "L2 or L3 clarity repair escaped",
+        "observed_failures": [
+          "clarity units are not fully L1-bound",
+          "L2 or L3 clarity repair escaped"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-transition-reset",
+        "expected": "transition position reset detected",
+        "observed_failures": [
+          "transition position reset detected"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-raw-source-flash",
+        "expected": "raw source flash detected",
+        "observed_failures": [
+          "raw source flash detected"
+        ],
+        "passed": true
+      },
+      {
+        "id": "reject-human-comprehension-claim",
+        "expected": "human comprehension claim escaped",
+        "observed_failures": [
+          "human comprehension claim escaped"
+        ],
+        "passed": true
+      }
+    ]
+  },
+  "protected_inputs": {
+    "passed": true,
+    "before": [
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot-result.json",
+        "byte_size": 7123,
+        "sha256": "8c773561aeca0ca6af3f37ac106479833fd5318c549e47c0c8940dbf09b54156"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot.json",
+        "byte_size": 13993,
+        "sha256": "778f4ea957d8375a2574916cb9b06dee991084186cbc9df35b76224b8da702b0"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+        "byte_size": 467000,
+        "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+        "byte_size": 282514,
+        "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+        "byte_size": 392309,
+        "sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac"
+      },
+      {
+        "relative_path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
+        "byte_size": 3114,
+        "sha256": "aab00065e9994b1dedc6d30d2b1b9f6eb1ef4a1893d7f8948c5564578dde542b"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate-result.json",
+        "byte_size": 13659,
+        "sha256": "4083ffe9f6644d2ca8a9185886af28fe1b3e8513c2c1ff253d9890d6389acb5a"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/generation-attempts-source.json",
+        "byte_size": 33587,
+        "sha256": "21cc4b81f46ff277084117d5555b539ab125997bbf7215554cc5e065edf84c07"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/generation-attempts.csv",
+        "byte_size": 28038,
+        "sha256": "c3cb44bc03c4268b8eab28f745e05dc53ba5f929fd88d1cb77a09302f192e0f5"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/image-lineage.csv",
+        "byte_size": 8180,
+        "sha256": "bde7811bb52980db53e708b54d87a6d6b4dece937371f8055d1591177c95ec8d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-01.jpg",
+        "byte_size": 411213,
+        "sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-02.jpg",
+        "byte_size": 423568,
+        "sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-03.jpg",
+        "byte_size": 398192,
+        "sha256": "81908541e9eb844e7117aff49ae99839e3222336060d39b59801c41b71c9c0f5"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-01.jpg",
+        "byte_size": 357390,
+        "sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-02.jpg",
+        "byte_size": 362497,
+        "sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-01.jpg",
+        "byte_size": 365950,
+        "sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-02.jpg",
+        "byte_size": 373790,
+        "sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b04-02.jpg",
+        "byte_size": 284893,
+        "sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b04-03.jpg",
+        "byte_size": 274759,
+        "sha256": "63bc3351fba0a7337e76b77ace8586a616d0bece4efed7de8ae26e5f82deaad0"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b05-01.jpg",
+        "byte_size": 297217,
+        "sha256": "94c0b90c57bbceeba4c59c669d73dc4598308a0c574516fc95478200fa04d54d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b05-03.jpg",
+        "byte_size": 281195,
+        "sha256": "7d76b463f9594c35c73b99d43888d6c597cdfca7248aff91c387f0fc1a2cc2a0"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b03-03.jpg",
+        "byte_size": 367099,
+        "sha256": "d28f599fff868a5fbc5d5bf613a98c9f935eeb768fccf3b610b1a77631400d91"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b05-04.jpg",
+        "byte_size": 319219,
+        "sha256": "a4d85ac5df664d35a65f91593b6822aba898250f8cf855738993f1c5d8cd70d2"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-01.jpg",
+        "byte_size": 364483,
+        "sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-02.jpg",
+        "byte_size": 232413,
+        "sha256": "f9e9f69e8123a135e3d2c838e5d75c466958093190f833164b3bc7e673ae6ef2"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-03.jpg",
+        "byte_size": 375079,
+        "sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-01-attempt-01.png",
+        "byte_size": 2197541,
+        "sha256": "b162b2a90297ae69dd4cffc6ef75005be1e8fb3afb8ba49300ac6084e59238f1"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-02-attempt-01.png",
+        "byte_size": 2204539,
+        "sha256": "55d56a4cf11df2a2fb4850c040ea7a58adc5f2309518928f00152185350aa860"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-03-attempt-01.png",
+        "byte_size": 2276297,
+        "sha256": "4542b5f635d228ee5c61cd081329be3639676bd88492b608fa9aa5bbe590b247"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b02-01-attempt-01.png",
+        "byte_size": 2050570,
+        "sha256": "b401ee8473580ade02262773f505d590c86eb89f6623ca398b4606afc0ada296"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b02-02-attempt-01.png",
+        "byte_size": 2105159,
+        "sha256": "d362f8b8402a2da4fc02319e988a98d26e95de4e001ff563c70a7df4918e4800"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b03-01-attempt-01.png",
+        "byte_size": 2210411,
+        "sha256": "75e4ddb52bd36ec055b57d17ec509f5409bb4b36a532df6c5b59410c3ad7293d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b03-02-attempt-01.png",
+        "byte_size": 2259530,
+        "sha256": "94a7fcf85cf61364adb14d7e2f2b91a469d76819c7466555a5b48d11cceccac0"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b04-02-attempt-01.png",
+        "byte_size": 1895376,
+        "sha256": "cda3c9406e0b1c90a801ab7feda4ace53e6dfadd32ed0b99293e5680ff3aa9ab"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b04-03-attempt-01.png",
+        "byte_size": 1765330,
+        "sha256": "e6bfe365d4124f787d315bac8a5cd9b916edfc73bcc34951cbc5ac9fc8ba2fd4"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b05-01-attempt-01.png",
+        "byte_size": 1797794,
+        "sha256": "ad27d2ec6f7caf1407704672512615858c1138a86a3e3cb5e963a29180ae5d4d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b05-03-attempt-01.png",
+        "byte_size": 1781187,
+        "sha256": "3641d150e065f5ff08edf755287962930b1d17877654b2b125528072fd926091"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/motion-transition-map.csv",
+        "byte_size": 2052,
+        "sha256": "fcead8feeca68c0815aa1f224140725b4774b2f60e8485600dffbddcb665a91c"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate-contact-sheet.jpg",
+        "byte_size": 309112,
+        "sha256": "543eb662194becf29a5e200d8b50cd34f7dfd256bfb28d20dd716e74efca3408"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate-manifest.json",
+        "byte_size": 8590,
+        "sha256": "74e53b2543d3f99dae72e6166cee52e8eaadba98710bd71c887cea8112e2ea7b"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate.html",
+        "byte_size": 110558,
+        "sha256": "7ffd7e4199bfd545ad816b434d595da1f86a0659c4cf51f89fadef3b66b1a9d7"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate.json",
+        "byte_size": 115313,
+        "sha256": "b6dab54eb9672720ee7968a103819d0df1e517b8c4a8cb8d1271c27fa81d9976"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate.mp4",
+        "byte_size": 17931278,
+        "sha256": "e58afd33df8cfe1ea8cefa9262ca57bf2352eb3bb3b4767cbae1432b21069a0e"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/README_PRIVATE_FULL_RASTER_CANDIDATE.md",
+        "byte_size": 1504,
+        "sha256": "d5a933c8dd744025fb39747af1bc35f09f4dd8ded2841353fcc86a50b8b13d8e"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/shot-image-map.csv",
+        "byte_size": 5646,
+        "sha256": "10c053f20f4f1b69227ccc51a1a094a754f7cb667f67a4f099c536e66043406d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/visual-style-contract.json",
+        "byte_size": 5536,
+        "sha256": "3b3f5ab73d4a0b85b952e2e70b7142cfb53c23ec17bf3fbc532c4f2ab91d0156"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs-result.json",
+        "byte_size": 14983,
+        "sha256": "164be517534d8ed3ccd2dabd23b084a692e35e49ffc56ebf1421362b717db9c3"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.json",
+        "byte_size": 160302,
+        "sha256": "816ee1996e48f1db6ebbe4774ebf40f76eecd50259a95488fd89ae75f892edda"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.mp4",
+        "byte_size": 9287840,
+        "sha256": "a543e14ed081296162b6209e56b01418e8ff4293f29ea8cdf00952f0eeaa2fb1"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline-result.json",
+        "byte_size": 9375,
+        "sha256": "088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.json",
+        "byte_size": 105898,
+        "sha256": "1737053db9a5ee276d7f237fd22d739a7b48e4f36fad0df6c6ff0cb56f6e51f7"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4",
+        "byte_size": 1668241,
+        "sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978"
+      }
+    ],
+    "after": [
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot-result.json",
+        "byte_size": 7123,
+        "sha256": "8c773561aeca0ca6af3f37ac106479833fd5318c549e47c0c8940dbf09b54156"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot.json",
+        "byte_size": 13993,
+        "sha256": "778f4ea957d8375a2574916cb9b06dee991084186cbc9df35b76224b8da702b0"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+        "byte_size": 467000,
+        "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+        "byte_size": 282514,
+        "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1"
+      },
+      {
+        "relative_path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+        "byte_size": 392309,
+        "sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac"
+      },
+      {
+        "relative_path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
+        "byte_size": 3114,
+        "sha256": "aab00065e9994b1dedc6d30d2b1b9f6eb1ef4a1893d7f8948c5564578dde542b"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate-result.json",
+        "byte_size": 13659,
+        "sha256": "4083ffe9f6644d2ca8a9185886af28fe1b3e8513c2c1ff253d9890d6389acb5a"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/generation-attempts-source.json",
+        "byte_size": 33587,
+        "sha256": "21cc4b81f46ff277084117d5555b539ab125997bbf7215554cc5e065edf84c07"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/generation-attempts.csv",
+        "byte_size": 28038,
+        "sha256": "c3cb44bc03c4268b8eab28f745e05dc53ba5f929fd88d1cb77a09302f192e0f5"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/image-lineage.csv",
+        "byte_size": 8180,
+        "sha256": "bde7811bb52980db53e708b54d87a6d6b4dece937371f8055d1591177c95ec8d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-01.jpg",
+        "byte_size": 411213,
+        "sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-02.jpg",
+        "byte_size": 423568,
+        "sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-03.jpg",
+        "byte_size": 398192,
+        "sha256": "81908541e9eb844e7117aff49ae99839e3222336060d39b59801c41b71c9c0f5"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-01.jpg",
+        "byte_size": 357390,
+        "sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-02.jpg",
+        "byte_size": 362497,
+        "sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-01.jpg",
+        "byte_size": 365950,
+        "sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-02.jpg",
+        "byte_size": 373790,
+        "sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b04-02.jpg",
+        "byte_size": 284893,
+        "sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b04-03.jpg",
+        "byte_size": 274759,
+        "sha256": "63bc3351fba0a7337e76b77ace8586a616d0bece4efed7de8ae26e5f82deaad0"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b05-01.jpg",
+        "byte_size": 297217,
+        "sha256": "94c0b90c57bbceeba4c59c669d73dc4598308a0c574516fc95478200fa04d54d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/base/shot-b05-03.jpg",
+        "byte_size": 281195,
+        "sha256": "7d76b463f9594c35c73b99d43888d6c597cdfca7248aff91c387f0fc1a2cc2a0"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b03-03.jpg",
+        "byte_size": 367099,
+        "sha256": "d28f599fff868a5fbc5d5bf613a98c9f935eeb768fccf3b610b1a77631400d91"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b05-04.jpg",
+        "byte_size": 319219,
+        "sha256": "a4d85ac5df664d35a65f91593b6822aba898250f8cf855738993f1c5d8cd70d2"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-01.jpg",
+        "byte_size": 364483,
+        "sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-02.jpg",
+        "byte_size": 232413,
+        "sha256": "f9e9f69e8123a135e3d2c838e5d75c466958093190f833164b3bc7e673ae6ef2"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-03.jpg",
+        "byte_size": 375079,
+        "sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-01-attempt-01.png",
+        "byte_size": 2197541,
+        "sha256": "b162b2a90297ae69dd4cffc6ef75005be1e8fb3afb8ba49300ac6084e59238f1"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-02-attempt-01.png",
+        "byte_size": 2204539,
+        "sha256": "55d56a4cf11df2a2fb4850c040ea7a58adc5f2309518928f00152185350aa860"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-03-attempt-01.png",
+        "byte_size": 2276297,
+        "sha256": "4542b5f635d228ee5c61cd081329be3639676bd88492b608fa9aa5bbe590b247"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b02-01-attempt-01.png",
+        "byte_size": 2050570,
+        "sha256": "b401ee8473580ade02262773f505d590c86eb89f6623ca398b4606afc0ada296"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b02-02-attempt-01.png",
+        "byte_size": 2105159,
+        "sha256": "d362f8b8402a2da4fc02319e988a98d26e95de4e001ff563c70a7df4918e4800"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b03-01-attempt-01.png",
+        "byte_size": 2210411,
+        "sha256": "75e4ddb52bd36ec055b57d17ec509f5409bb4b36a532df6c5b59410c3ad7293d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b03-02-attempt-01.png",
+        "byte_size": 2259530,
+        "sha256": "94a7fcf85cf61364adb14d7e2f2b91a469d76819c7466555a5b48d11cceccac0"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b04-02-attempt-01.png",
+        "byte_size": 1895376,
+        "sha256": "cda3c9406e0b1c90a801ab7feda4ace53e6dfadd32ed0b99293e5680ff3aa9ab"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b04-03-attempt-01.png",
+        "byte_size": 1765330,
+        "sha256": "e6bfe365d4124f787d315bac8a5cd9b916edfc73bcc34951cbc5ac9fc8ba2fd4"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b05-01-attempt-01.png",
+        "byte_size": 1797794,
+        "sha256": "ad27d2ec6f7caf1407704672512615858c1138a86a3e3cb5e963a29180ae5d4d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b05-03-attempt-01.png",
+        "byte_size": 1781187,
+        "sha256": "3641d150e065f5ff08edf755287962930b1d17877654b2b125528072fd926091"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/motion-transition-map.csv",
+        "byte_size": 2052,
+        "sha256": "fcead8feeca68c0815aa1f224140725b4774b2f60e8485600dffbddcb665a91c"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate-contact-sheet.jpg",
+        "byte_size": 309112,
+        "sha256": "543eb662194becf29a5e200d8b50cd34f7dfd256bfb28d20dd716e74efca3408"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate-manifest.json",
+        "byte_size": 8590,
+        "sha256": "74e53b2543d3f99dae72e6166cee52e8eaadba98710bd71c887cea8112e2ea7b"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate.html",
+        "byte_size": 110558,
+        "sha256": "7ffd7e4199bfd545ad816b434d595da1f86a0659c4cf51f89fadef3b66b1a9d7"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate.json",
+        "byte_size": 115313,
+        "sha256": "b6dab54eb9672720ee7968a103819d0df1e517b8c4a8cb8d1271c27fa81d9976"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/private-full-raster-candidate.mp4",
+        "byte_size": 17931278,
+        "sha256": "e58afd33df8cfe1ea8cefa9262ca57bf2352eb3bb3b4767cbae1432b21069a0e"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/README_PRIVATE_FULL_RASTER_CANDIDATE.md",
+        "byte_size": 1504,
+        "sha256": "d5a933c8dd744025fb39747af1bc35f09f4dd8ded2841353fcc86a50b8b13d8e"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/shot-image-map.csv",
+        "byte_size": 5646,
+        "sha256": "10c053f20f4f1b69227ccc51a1a094a754f7cb667f67a4f099c536e66043406d"
+      },
+      {
+        "relative_path": "artifacts/private-full-raster-candidate/visual-style-contract.json",
+        "byte_size": 5536,
+        "sha256": "3b3f5ab73d4a0b85b952e2e70b7142cfb53c23ec17bf3fbc532c4f2ab91d0156"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs-result.json",
+        "byte_size": 14983,
+        "sha256": "164be517534d8ed3ccd2dabd23b084a692e35e49ffc56ebf1421362b717db9c3"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.json",
+        "byte_size": 160302,
+        "sha256": "816ee1996e48f1db6ebbe4774ebf40f76eecd50259a95488fd89ae75f892edda"
+      },
+      {
+        "relative_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.mp4",
+        "byte_size": 9287840,
+        "sha256": "a543e14ed081296162b6209e56b01418e8ff4293f29ea8cdf00952f0eeaa2fb1"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline-result.json",
+        "byte_size": 9375,
+        "sha256": "088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.json",
+        "byte_size": 105898,
+        "sha256": "1737053db9a5ee276d7f237fd22d739a7b48e4f36fad0df6c6ff0cb56f6e51f7"
+      },
+      {
+        "relative_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4",
+        "byte_size": 1668241,
+        "sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978"
+      }
+    ]
+  },
+  "package_manifest": {
+    "path": "artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate-manifest.json",
+    "fingerprint": "a77e4bca3bd78f8907c48a1a6df888a180d0e7f7ec33068744ddd48c137c92af",
+    "payload_file_count": 12
+  },
+  "boundaries": {
+    "private": true,
+    "default_active": false,
+    "successor_candidate": true,
+    "release_path_reachable": false,
+    "selected_for_final_production": false,
+    "production_approved": false,
+    "rights_cleared_claim": false,
+    "public_release": false,
+    "publication": false,
+    "audio": false,
+    "voice": false,
+    "final_canon": false,
+    "human_comprehension_review": "not_performed"
+  }
+}

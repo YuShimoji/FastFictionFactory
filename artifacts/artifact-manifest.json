@@ -1,7 +1,7 @@
 {
   "artifact_id": "fff-private-previsualization-timeline-001",
   "active_default_artifact_id": "fff-private-previsualization-timeline-001",
-  "successor_candidate_artifact_id": "fff-private-full-raster-candidate-001",
+  "successor_candidate_artifact_id": "fff-private-full-raster-clarity-candidate-001",
   "quarantined_candidate_artifact_id": "fff-private-materialized-motion-previs-001",
   "primary_imagery_quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
   "primary_imagery_quarantine_path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
@@ -148,6 +148,127 @@
           {
             "shot_id": "shot-b06-03",
             "source_kind": "generated_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
+            "rasterized_forbidden_vector": false
+          }
+        ]
+      },
+      {
+        "artifact_id": "fff-private-full-raster-clarity-candidate-001",
+        "active_default": false,
+        "successor_candidate": true,
+        "primary_frames": [
+          {
+            "shot_id": "shot-b01-01",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b01-02",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b01-03",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b02-01",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b02-02",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b02-03",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "accepted_generated_raster_anchor",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b03-01",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b03-02",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b03-03",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b04-01",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "accepted_generated_raster_anchor",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b04-02",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b04-03",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b05-01",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b05-02",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "accepted_generated_raster_anchor",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b05-03",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "generated_raster",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b05-04",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b06-01",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b06-02",
+            "source_kind": "accepted_existing_raster",
+            "candidate_source_kind": "deterministic_raster_composite",
+            "rasterized_forbidden_vector": false
+          },
+          {
+            "shot_id": "shot-b06-03",
+            "source_kind": "accepted_existing_raster",
             "candidate_source_kind": "deterministic_raster_composite",
             "rasterized_forbidden_vector": false
           }
@@ -4588,6 +4709,48 @@
     "successor_candidate": true,
     "release_path_reachable": false,
     "product_owner_whole_story_review": "pending",
+    "selected_for_production": false,
+    "rights_cleared_claim": false,
+    "public_release": false,
+    "audio": false,
+    "voice": false,
+    "final_canon": false
+  },
+  "private_full_raster_clarity_candidate_dir": "artifacts/private-full-raster-clarity-candidate",
+  "private_full_raster_clarity_candidate_result_path": "artifacts/private-full-raster-clarity-candidate-result.json",
+  "private_full_raster_clarity_candidate_doc_path": "docs/review/private-full-raster-clarity-candidate.md",
+  "private_full_raster_clarity_candidate_route": "artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate.html",
+  "private_full_raster_clarity_candidate_manifest_path": "artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate-manifest.json",
+  "private_full_raster_clarity_candidate_mp4_path": "artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate.mp4",
+  "private_full_raster_clarity_candidate_package_fingerprint": "a77e4bca3bd78f8907c48a1a6df888a180d0e7f7ec33068744ddd48c137c92af",
+  "private_full_raster_clarity_candidate": {
+    "artifact_id": "fff-private-full-raster-clarity-candidate-001",
+    "schemaVersion": "fff.privateFullRasterClarityCandidate.v1",
+    "package_root": "artifacts/private-full-raster-clarity-candidate",
+    "result_path": "artifacts/private-full-raster-clarity-candidate-result.json",
+    "review_doc_path": "docs/review/private-full-raster-clarity-candidate.md",
+    "access_route": "artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate.html",
+    "source_artifact_id": "fff-private-full-raster-candidate-001",
+    "quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
+    "style_contract_id": "fff-full-raster-style-contract-001",
+    "package_fingerprint_sha256": "a77e4bca3bd78f8907c48a1a6df888a180d0e7f7ec33068744ddd48c137c92af",
+    "shot_count": 19,
+    "primary_image_change_count": 0,
+    "image_generation_call_count": 0,
+    "transition_boundary_count": 18,
+    "position_reset_count": 0,
+    "raw_source_flash_count": 0,
+    "narration_segment_count": 6,
+    "review_caption_count": 20,
+    "production_subtitle_draft_count": 20,
+    "private_local_only": true,
+    "default_active": false,
+    "active_default": false,
+    "successor_candidate": true,
+    "release_path_reachable": false,
+    "product_owner_primary_image_review": "accepted_19_of_19",
+    "human_comprehension_review": "not_performed",
+    "production_approved": false,
     "selected_for_production": false,
     "rights_cleared_claim": false,
     "public_release": false,

@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-26 Transition Continuity and Narrative Clarity Candidate
+
+- Purpose: Preserve the Product Owner-accepted nineteen-image raster sequence while removing boundary crop resets and making the silent three-minute story understandable without production-state copy.
+- Effect: Adds `fff-private-full-raster-clarity-candidate-001`, an exact-image successor with eighteen rendered-tail transition repairs, a six-Beat clarity spine, six narration segments, twenty explanatory review captions, twenty provisional production subtitle cues, forty-six L1 bindings, eighteen boundary evidence rows, a shot-impact map, and a durable binding guideline.
+- Requirements: Keep 19/19 primary image identities, 6 Beats, 19 shots, 180 seconds, 5400 frames, exact shot windows, active quarantine, prior packages/results, active/default preview, and all production/rights/voice/release/canon gates. Record reset, raw flash, gap, and overlap as zero before registration.
+- State: Technical package complete. Image changes and generation calls are zero; transition evidence passes 18/18 with maximum normalized pixel difference `0.009810`; review captions are 20/20 declarative with zero banned-term occurrences; revised bindings are `L1=46`, `L2=0`, `L3=0`; focused validation, 9/9 smoke, 6/6 dedicated tests, and desktop/narrow browser evidence pass.
+- Owner: Product implementer for encoder, package, and evidence integrity; narrative editor/Product Owner for human comprehension judgment; separately named production, rights, voice, release, and canon owners for later gates.
+- Next move: Review the exact private HTML/MP4 against the six intended comprehension answers and eighteen boundaries. Bind any human finding to semantic unit ID, shot ID, boundary ID, or timestamp. Preserve production approval, rights, voice calibration, public release, and final canon as separate decisions.
+
 ## 2026-07-26 Private Full Raster Candidate
 
 - Purpose: Replace quarantined primary-imagery methods with one coherent, high-fidelity raster candidate spanning the exact six-Beat, nineteen-shot, 180-second story.

@@ -1,5 +1,21 @@
 # Artifacts
 
+## fff-private-full-raster-clarity-candidate-001
+
+- Title: Fast Fiction Factory Private Full Raster Clarity Candidate
+- Purpose: Preserve all nineteen Product Owner-accepted primary rasters while repairing transition continuity and supplying a clarity-first silent-review text package.
+- Primary file: `artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate.html`
+- Package: canonical JSON, HTML player, silent watermarked MP4, six-Beat story spine, six-segment narration, twenty explanatory review captions, twenty provisional production subtitle cues, narrative–visual binding contract, cue/shot impact maps, eighteen-boundary evidence map, README, and integrity manifest.
+- Source identity: `fff-private-full-raster-candidate-001`; all 19 image paths, byte sizes, and SHA256 values remain exact; image generation and image changes are zero.
+- Transition contract: every non-hard boundary starts from the terminal frame extracted from the rendered outgoing final clip; all 18 rows include -2/-1/at/+1/midpoint hashes; reset, raw flash, gap, and overlap counts are zero.
+- Text contract: 6 narration segments / 20 declarative review captions / 20 provisional production subtitle cues / 46 L1 bindings / 0 L2 / 0 L3 / no full reassembly.
+- MP4: 960×540 H.264 / 30 fps / silent / 180.000 seconds / 5400 frames / SHA256 `9c646075c522c15599b2a6d42ad35e5fe89bb622ea6aaa6843c487656edc75cd`
+- Review doc/result: `docs/review/private-full-raster-clarity-candidate.md`, `artifacts/private-full-raster-clarity-candidate-result.json`
+- Visual evidence: `artifacts/review-screens/private-full-raster-clarity-candidate-desktop.png`, `artifacts/review-screens/private-full-raster-clarity-candidate-narrow.png`
+- Read-only validation: `node tools/fff-state.mjs validate-private-full-raster-clarity-candidate artifacts/private-full-raster-clarity-candidate-result.json`
+- State: machine-green, private, default-off, successor-candidate-only, human comprehension review not performed.
+- Boundaries: production approval, final selection, rights clearance, audio, voice/engine choice, public release, publication, release approval, and final canon remain closed.
+
 ## FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25
 
 - Title: Primary Imagery Direction Quarantine

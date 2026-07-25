@@ -1,5 +1,18 @@
 # Project Context
 
+## Transition Continuity and Narrative Clarity Candidate — 2026-07-26 JST
+
+- Restart authority: `git fetch origin --prune` confirmed exact `origin/master = 2716b4b0988ab103ff0ac16d038c1a28af37736e`. Work is isolated on `codex/fff-transition-continuity-narrative-clarity-v1`; the original checkout remains at `cfd645f` with the same seven pre-existing dirty paths and SHA256 identities.
+- Product Owner input: all nineteen primary raster images in `fff-private-full-raster-candidate-001` are accepted. Their paths, byte sizes, and SHA256 values remain exact in `fff-private-full-raster-clarity-candidate-001`; image-generation calls and primary-image changes are both zero.
+- Fixed defect: the prior encoder reopened `previousShot.image_path` during transition assembly and therefore discarded the outgoing motion crop. The new encoder extracts the terminal frame from the rendered outgoing final clip and begins every non-hard transition from that state. Eighteen boundary records include -2, -1, at, +1, and midpoint hashes; reset, raw-source flash, gap, and overlap counts are all zero. Maximum normalized pixel difference at the required equivalence checks is `0.009810` against threshold `0.02`.
+- Clarity track: the package carries a six-Beat causal spine, six narration segments, twenty silent-review explanatory captions, twenty separately marked provisional production subtitle cues, and forty-six narrative–visual bindings. Revised bindings are `L0=0 / L1=46 / L2=0 / L3=0`; no shot, image, order, duration, or Beat structure change was required.
+- Media and UI: the silent H.264 MP4 is 960×540, exactly 180.000 seconds and 5400 frames, with zero audio streams and one Japanese subtitle track. Desktop 1440×1000 and narrow 390×844 browser evidence passed without external requests, console/page errors, horizontal overflow, or nested scroll.
+- Green gates: focused validation passed with 52 protected files byte-stable; negative smoke passed 9/9; dedicated Node tests passed 6/6; package fingerprint is `a77e4bca3bd78f8907c48a1a6df888a180d0e7f7ec33068744ddd48c137c92af`; MP4 SHA256 is `9c646075c522c15599b2a6d42ad35e5fe89bb622ea6aaa6843c487656edc75cd`.
+- Active/default boundary: `fff-private-previsualization-timeline-001` remains active/default. The clarity package is private, default-off, and successor-candidate-only. The prior full-raster package and all earlier packages/results remain preserved.
+- Current human gate: review the six intended comprehension answers and the exact boundary behavior in `artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate.html`. No human comprehension or final acceptance is recorded by technical validation.
+- Closed boundaries: production approval, final media selection, rights clearance, audio, voice/engine selection, public deployment, publication, release approval, and final canon remain false.
+- Re-entry: read `AGENTS.md` → this section → `docs/review/current-status.md` → `docs/review/private-full-raster-clarity-candidate.md`; then run `node tools/fff-state.mjs validate-private-full-raster-clarity-candidate artifacts/private-full-raster-clarity-candidate-result.json`.
+
 ## Private Full Raster Candidate — 2026-07-26 JST
 
 - Restart authority: the Mission began after `git fetch --prune origin` confirmed `origin/master = ef302f6e3dcb6ba4f01ba46d284c19d914d89662`. Work was isolated on `codex/fff-private-full-raster-candidate-v1`; the original checkout remained at its older local `cfd645f` state with seven pre-existing tracked modifications preserved byte-for-byte.

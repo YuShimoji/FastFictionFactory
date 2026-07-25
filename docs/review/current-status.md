@@ -1,5 +1,32 @@
 # Current Status Packet
 
+## Transition Continuity and Narrative Clarity Candidate — 2026-07-26 JST
+
+| Item | Verified state |
+| --- | --- |
+| Exact base | `origin/master = 2716b4b0988ab103ff0ac16d038c1a28af37736e` before Mission writes |
+| Isolated lane | `codex/fff-transition-continuity-narrative-clarity-v1` in the specified repo-external worktree |
+| Original checkout | `cfd645f` plus the same seven pre-existing modifications preserved byte-for-byte |
+| Candidate | `fff-private-full-raster-clarity-candidate-001`; private; default-off; successor candidate |
+| Product Owner image decision | 19/19 primary images accepted; 19/19 source paths and hashes exact; regeneration 0 |
+| Transition root cause | Prior `applyTransition` reopened the outgoing raw still and lost the rendered motion crop |
+| Transition repair | Every non-hard boundary starts from the terminal frame extracted from the rendered outgoing final clip |
+| Boundary evidence | 18/18 records; -2/-1/at/+1/midpoint hashes complete; maximum normalized pixel difference `0.009810` at threshold `0.02` |
+| Reset / flash | Position reset 0; raw-source flash 0 |
+| Timeline | 180.000 seconds; 5400 frames; gap 0; overlap 0 |
+| Clarity text | 6 Beat spine entries; 6 narration segments; 20 declarative explanatory review captions; 20 provisional production subtitle cues |
+| Text impact | Source cues `L0=9 / L1=11 / L2=0 / L3=0`; revised semantic units `L0=0 / L1=46 / L2=0 / L3=0` |
+| Reassembly | L2 shots 0; L3 Beats 0; full 19-shot reassembly avoided |
+| MP4 | H.264; 960×540; 180.000 seconds; 5400 frames; 0 audio; 1 Japanese subtitle track; SHA256 `9c646075c522c15599b2a6d42ad35e5fe89bb622ea6aaa6843c487656edc75cd` |
+| Browser | 1440×1000 and 390×844 passed; no external requests, console/page errors, horizontal overflow, or nested scroll |
+| Read-only validation | `validate-private-full-raster-clarity-candidate`: PASS; 52 protected files unchanged |
+| Negative smoke | 9/9 |
+| Dedicated tests | `node --test tests/fff-transition-continuity-narrative-clarity.test.mjs`: 6 passed, 0 failed |
+| Human gate | Six-question comprehension review plus exact transition-boundary review; no result recorded yet |
+| Explicitly closed | Production approval, final selection, rights, audio/voice/engine, public release, publication, release approval, final canon |
+
+Open `artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate.html`. The reviewer identifies the protagonist, initiating anomaly, Toma/9:17/moth link, ledger contents, Council relevance, and closing choice/stake. Record the human result separately against exact cue/shot/time evidence.
+
 ## Private Full Raster Candidate — 2026-07-26 JST
 
 | Item | Verified state |
