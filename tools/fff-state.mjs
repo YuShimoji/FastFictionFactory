@@ -1686,6 +1686,12 @@ async function main() {
     return;
   }
 
+  if (command === "validate-private-materialized-motion-previs" || command === "smoke-private-materialized-motion-previs") {
+    const { runPrivateMaterializedMotionPrevisCommand } = await import("./fff-private-materialized-motion-previs.mjs");
+    await runPrivateMaterializedMotionPrevisCommand({ command, inputPath, outputPath });
+    return;
+  }
+
   if (command === "validate-integrated-visual-production-package" || command === "smoke-integrated-visual-production-package") {
     const { runIntegratedVisualProductionPackageCommand } = await import("./fff-integrated-visual-production-package.mjs");
     await runIntegratedVisualProductionPackageCommand({ command, inputPath, outputPath });
@@ -22938,6 +22944,8 @@ Usage:
   node tools/fff-state.mjs validate-resumable-private-pipeline <resumable-private-pipeline-result.json>
   node tools/fff-state.mjs validate-private-previsualization-timeline <private-previsualization-timeline-result.json>
   node tools/fff-state.mjs smoke-private-previsualization-timeline <private-previsualization-timeline-result.json>
+  node tools/fff-state.mjs validate-private-materialized-motion-previs <private-materialized-motion-previs-result.json>
+  node tools/fff-state.mjs smoke-private-materialized-motion-previs <private-materialized-motion-previs-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave2 <composition-expansion-wave2-result.json>
   node tools/fff-state.mjs smoke-composition-expansion-wave2 <composition-expansion-wave2-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave1 <composition-expansion-wave1-result.json>

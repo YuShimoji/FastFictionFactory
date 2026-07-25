@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "fff.privateMaterializedMotionPrevisDesignDirection.v1",
+  "artifact_id": "fff-private-materialized-motion-previs-001",
+  "mission_id": "fff-private-materialized-motion-previs-001",
+  "selected_candidate_signature": "diegetic_semantic_material_system",
+  "recorded_before_direction_generation": true,
+  "observable_contract": [
+    "documents look like specific fictional documents",
+    "comparisons contain equal candidate regions with literal labels",
+    "fading-name material contains changing letter contours",
+    "clock, memo, and ledger assets remain semantically distinct",
+    "silhouettes are neutral production elements",
+    "every visual element maps to a shot or requirement need"
+  ],
+  "quarantined_signatures": [
+    "repeated generic circles, rectangles, arrows, or one symbolic template for unrelated shots",
+    "nearly blank abstract color fields",
+    "generic pseudo-storyboard diagrams as primary imagery",
+    "unlabelled identical thumbnail reuse",
+    "slogan or reader-navigation headings",
+    "oversized display title displacing the working surface"
+  ],
+  "generic_symbolic_primary_allowed": false,
+  "near_blank_abstract_frame_allowed": false,
+  "new_media_acquisition_allowed": false,
+  "ai_generation_allowed": false,
+  "production_asset_selection_allowed": false,
+  "rights_clearance_claim_allowed": false
+}

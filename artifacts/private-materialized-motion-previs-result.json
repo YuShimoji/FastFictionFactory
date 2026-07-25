@@ -1,0 +1,438 @@
+{
+  "schemaVersion": "fff.privateMaterializedMotionPrevisResult.v1",
+  "artifact_id": "fff-private-materialized-motion-previs-001",
+  "mission_id": "fff-private-materialized-motion-previs-001",
+  "source_artifact_id": "fff-private-previsualization-timeline-001",
+  "source_mp4_sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978",
+  "source_integrated_fingerprint": "78438f153257b5559a06d1b2cc638aa152adf432c1d0a414febf83296e4eb5eb",
+  "source_readiness_fingerprint": "2e4e470866e834340c4f1f29490861711a6f257760519755547e7d9b821225c3",
+  "selected_candidate_signature": "diegetic_semantic_material_system",
+  "duration_seconds": 180,
+  "beat_count": 6,
+  "shot_count": 19,
+  "narration_segment_count": 6,
+  "subtitle_cue_count": 20,
+  "gap_count": 0,
+  "overlap_count": 0,
+  "material_family_count": 9,
+  "material_variant_count": 26,
+  "materialized_shot_count": 17,
+  "material_variant_unique_hash_count": 26,
+  "frame_evidence_count": 57,
+  "frame_evidence_unique_hash_count": 57,
+  "non_blank_frame_evidence_count": 57,
+  "current_candidate_frame_count": 19,
+  "current_candidate_unique_hash_count": 19,
+  "accidental_duplicate_current_candidate_frame_count": 0,
+  "boundary_test_count": 18,
+  "boundary_tests_passed": true,
+  "ambiguous_reference_ids_rendered": [],
+  "source_image_bytes_modified": 0,
+  "protected_predecessor_bytes_modified": 0,
+  "protected_dirty_file_bytes_modified": 0,
+  "newly_downloaded_media_count": 0,
+  "selected_for_production_count": 0,
+  "rights_cleared_claim_count": 0,
+  "audio_generated": false,
+  "voice_selected": false,
+  "voice_generated": false,
+  "image_generated": false,
+  "ai_video_generated": false,
+  "public_upload": false,
+  "production_approved": false,
+  "final_canon_decision": false,
+  "mp4": {
+    "path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.mp4",
+    "byte_size": 9287840,
+    "sha256": "a543e14ed081296162b6209e56b01418e8ff4293f29ea8cdf00952f0eeaa2fb1",
+    "duration_seconds": 180,
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec_name": "h264",
+    "width": 960,
+    "height": 540,
+    "avg_frame_rate": "30/1",
+    "frame_count": 5400,
+    "audio_stream_count": 0
+  },
+  "package_manifest": {
+    "path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs-manifest.json",
+    "fingerprint": "9b9bc9422178259c6e9aa628a8ec1334b269fdb8f4a4fa10b502a6adc793356b",
+    "payload_file_count": 92
+  },
+  "protected_input_evidence": {
+    "before": {
+      "dirty_file_hashes": {
+        ".serena/project.yml": "98337e11cbcd1fde6a0850cd26a2cb27d4b728e4b2ae85874d38f703e342872c",
+        "docs/decision-log.md": "441360cb43d9dec7455faeaf7c8a76aaac74ed3dee7dab15f53b65e2e9791b0f",
+        "docs/idea-ledger.md": "0675ea45ffb333ad6887aef1fd69aac08393ecd85435f7aa2c8d670c6da49325",
+        "docs/project-context.md": "f3bef6d4415cdc905fa7bad5139319612d3e373c4963b34c2e874a70f0a154f6",
+        "docs/review/current-status.md": "84e3ff5d9184d90ee269102133e5cdc44191d56f5dcb64ee891ea91c2943e9c4",
+        "docs/review/next-terminal-handoff.md": "c91a543db7cb5f99158e202ae56864a55be2617caa5777aa7ee05bd14d8fb889",
+        "docs/review/supervisor-current-report.md": "1d73e28629bcc047958b6d566889b9f13cd5604e62c2e10da79fcbf9dc985df1"
+      },
+      "result_hashes": {
+        "artifacts/private-previsualization-timeline-result.json": "088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0",
+        "artifacts/asset-rights-readiness-packet-result.json": "b188db9d0a36ca895af90041855efc55cdff0db6bdec17cbe1950bb0ac2611af",
+        "artifacts/integrated-visual-production-package-result.json": "e8f7f7fc50c5700d3a14f78b72ff33b6b142753f3dd2e2dfbf79311077301582"
+      },
+      "tree_hashes": {
+        "artifacts/private-previsualization-timeline": "09db8982c3c6f5f8c1ecc39c2663fa49a7c638396364f2d251d3f8b2c51f2a80",
+        "artifacts/integrated-visual-production-package": "e42fe724e53476ae7f5e4ed022b0e33c112ce0ec1d30e70c9bafc11637a18c15",
+        "artifacts/asset-rights-readiness-packet": "93eb1034948920e7738f7921ae6e7fd4e4573545434fa54260f5c405895a0e8b",
+        "artifacts/production-execution-pack": "f69737459194a88b00d839499ff4b808b0e1ed9632139fb6715cd381248c4397"
+      }
+    },
+    "after": {
+      "dirty_file_hashes": {
+        ".serena/project.yml": "98337e11cbcd1fde6a0850cd26a2cb27d4b728e4b2ae85874d38f703e342872c",
+        "docs/decision-log.md": "441360cb43d9dec7455faeaf7c8a76aaac74ed3dee7dab15f53b65e2e9791b0f",
+        "docs/idea-ledger.md": "0675ea45ffb333ad6887aef1fd69aac08393ecd85435f7aa2c8d670c6da49325",
+        "docs/project-context.md": "f3bef6d4415cdc905fa7bad5139319612d3e373c4963b34c2e874a70f0a154f6",
+        "docs/review/current-status.md": "84e3ff5d9184d90ee269102133e5cdc44191d56f5dcb64ee891ea91c2943e9c4",
+        "docs/review/next-terminal-handoff.md": "c91a543db7cb5f99158e202ae56864a55be2617caa5777aa7ee05bd14d8fb889",
+        "docs/review/supervisor-current-report.md": "1d73e28629bcc047958b6d566889b9f13cd5604e62c2e10da79fcbf9dc985df1"
+      },
+      "result_hashes": {
+        "artifacts/private-previsualization-timeline-result.json": "088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0",
+        "artifacts/asset-rights-readiness-packet-result.json": "b188db9d0a36ca895af90041855efc55cdff0db6bdec17cbe1950bb0ac2611af",
+        "artifacts/integrated-visual-production-package-result.json": "e8f7f7fc50c5700d3a14f78b72ff33b6b142753f3dd2e2dfbf79311077301582"
+      },
+      "tree_hashes": {
+        "artifacts/private-previsualization-timeline": "09db8982c3c6f5f8c1ecc39c2663fa49a7c638396364f2d251d3f8b2c51f2a80",
+        "artifacts/integrated-visual-production-package": "e42fe724e53476ae7f5e4ed022b0e33c112ce0ec1d30e70c9bafc11637a18c15",
+        "artifacts/asset-rights-readiness-packet": "93eb1034948920e7738f7921ae6e7fd4e4573545434fa54260f5c405895a0e8b",
+        "artifacts/production-execution-pack": "f69737459194a88b00d839499ff4b808b0e1ed9632139fb6715cd381248c4397"
+      }
+    }
+  },
+  "targeted_tests": {
+    "total": 16,
+    "passed": 16,
+    "all_passed": true,
+    "cases": [
+      {
+        "name": "positive_complete_model",
+        "passed": true,
+        "detail": "green"
+      },
+      {
+        "name": "reject_timeline_gap",
+        "passed": true,
+        "detail": "shot duration mismatch shot-b01-02"
+      },
+      {
+        "name": "reject_timeline_overlap",
+        "passed": true,
+        "detail": "shot duration mismatch shot-b01-02"
+      },
+      {
+        "name": "reject_wrong_endpoint",
+        "passed": true,
+        "detail": "timeline endpoints mismatch"
+      },
+      {
+        "name": "reject_missing_family",
+        "passed": true,
+        "detail": "material family count mismatch"
+      },
+      {
+        "name": "reject_family_mapping_drift",
+        "passed": true,
+        "detail": "family shot mapping mismatch AR-CHAR-02"
+      },
+      {
+        "name": "reject_shot_mapping_drift",
+        "passed": true,
+        "detail": "material mapping mismatch shot-b01-03"
+      },
+      {
+        "name": "reject_static_nonlocked_motion",
+        "passed": true,
+        "detail": "non-locked motion is static shot-b01-01"
+      },
+      {
+        "name": "reject_locked_motion_drift",
+        "passed": true,
+        "detail": "locked motion drift shot-b01-02"
+      },
+      {
+        "name": "reject_unknown_transition",
+        "passed": true,
+        "detail": "Unknown transition class: wipe"
+      },
+      {
+        "name": "reject_ambiguous_reference_render",
+        "passed": true,
+        "detail": "ambiguous reference rendered"
+      },
+      {
+        "name": "reject_voice_selection",
+        "passed": true,
+        "detail": "voice boundary changed"
+      },
+      {
+        "name": "reject_production_selection",
+        "passed": true,
+        "detail": "release gate changed"
+      },
+      {
+        "name": "reject_rights_claim",
+        "passed": true,
+        "detail": "release gate changed"
+      },
+      {
+        "name": "reject_design_signature_drift",
+        "passed": true,
+        "detail": "design signature mismatch"
+      },
+      {
+        "name": "reject_generic_symbolic_primary",
+        "passed": true,
+        "detail": "quarantine audit failed"
+      }
+    ]
+  },
+  "browser_evidence": {
+    "passed": true,
+    "engine": "Microsoft Edge via bundled Playwright",
+    "headless": true,
+    "muted": true,
+    "desktop": {
+      "width": 1440,
+      "height": 1000,
+      "horizontal_overflow": false,
+      "nested_vertical_scroll_count": 0,
+      "first_view_required_visible": true,
+      "capture_time_seconds": 43.2,
+      "capture_shot_id": "shot-b02-03"
+    },
+    "narrow": {
+      "width": 390,
+      "height": 844,
+      "horizontal_overflow": false,
+      "nested_vertical_scroll_count": 0,
+      "first_view_required_visible": true,
+      "capture_time_seconds": 74.5,
+      "capture_shot_id": "shot-b03-03"
+    },
+    "boundary_tests": [
+      {
+        "at_seconds": 7,
+        "before": "shot-b01-01",
+        "at": "shot-b01-02",
+        "expected_before": "shot-b01-01",
+        "expected_at": "shot-b01-02",
+        "transition": "short_dissolve"
+      },
+      {
+        "at_seconds": 14,
+        "before": "shot-b01-02",
+        "at": "shot-b01-03",
+        "expected_before": "shot-b01-02",
+        "expected_at": "shot-b01-03",
+        "transition": "held_fade"
+      },
+      {
+        "at_seconds": 20,
+        "before": "shot-b01-03",
+        "at": "shot-b02-01",
+        "expected_before": "shot-b01-03",
+        "expected_at": "shot-b02-01",
+        "transition": "hard_cut"
+      },
+      {
+        "at_seconds": 30,
+        "before": "shot-b02-01",
+        "at": "shot-b02-02",
+        "expected_before": "shot-b02-01",
+        "expected_at": "shot-b02-02",
+        "transition": "match_cut"
+      },
+      {
+        "at_seconds": 40,
+        "before": "shot-b02-02",
+        "at": "shot-b02-03",
+        "expected_before": "shot-b02-02",
+        "expected_at": "shot-b02-03",
+        "transition": "graphic_match"
+      },
+      {
+        "at_seconds": 50,
+        "before": "shot-b02-03",
+        "at": "shot-b03-01",
+        "expected_before": "shot-b02-03",
+        "expected_at": "shot-b03-01",
+        "transition": "hard_cut"
+      },
+      {
+        "at_seconds": 60,
+        "before": "shot-b03-01",
+        "at": "shot-b03-02",
+        "expected_before": "shot-b03-01",
+        "expected_at": "shot-b03-02",
+        "transition": "graphic_match"
+      },
+      {
+        "at_seconds": 70,
+        "before": "shot-b03-02",
+        "at": "shot-b03-03",
+        "expected_before": "shot-b03-02",
+        "expected_at": "shot-b03-03",
+        "transition": "short_dissolve"
+      },
+      {
+        "at_seconds": 80,
+        "before": "shot-b03-03",
+        "at": "shot-b04-01",
+        "expected_before": "shot-b03-03",
+        "expected_at": "shot-b04-01",
+        "transition": "hard_cut"
+      },
+      {
+        "at_seconds": 88,
+        "before": "shot-b04-01",
+        "at": "shot-b04-02",
+        "expected_before": "shot-b04-01",
+        "expected_at": "shot-b04-02",
+        "transition": "graphic_match"
+      },
+      {
+        "at_seconds": 96,
+        "before": "shot-b04-02",
+        "at": "shot-b04-03",
+        "expected_before": "shot-b04-02",
+        "expected_at": "shot-b04-03",
+        "transition": "held_fade"
+      },
+      {
+        "at_seconds": 105,
+        "before": "shot-b04-03",
+        "at": "shot-b05-01",
+        "expected_before": "shot-b04-03",
+        "expected_at": "shot-b05-01",
+        "transition": "hard_cut"
+      },
+      {
+        "at_seconds": 118,
+        "before": "shot-b05-01",
+        "at": "shot-b05-02",
+        "expected_before": "shot-b05-01",
+        "expected_at": "shot-b05-02",
+        "transition": "match_cut"
+      },
+      {
+        "at_seconds": 131,
+        "before": "shot-b05-02",
+        "at": "shot-b05-03",
+        "expected_before": "shot-b05-02",
+        "expected_at": "shot-b05-03",
+        "transition": "graphic_match"
+      },
+      {
+        "at_seconds": 143,
+        "before": "shot-b05-03",
+        "at": "shot-b05-04",
+        "expected_before": "shot-b05-03",
+        "expected_at": "shot-b05-04",
+        "transition": "held_fade"
+      },
+      {
+        "at_seconds": 155,
+        "before": "shot-b05-04",
+        "at": "shot-b06-01",
+        "expected_before": "shot-b05-04",
+        "expected_at": "shot-b06-01",
+        "transition": "hard_cut"
+      },
+      {
+        "at_seconds": 164,
+        "before": "shot-b06-01",
+        "at": "shot-b06-02",
+        "expected_before": "shot-b06-01",
+        "expected_at": "shot-b06-02",
+        "transition": "graphic_match"
+      },
+      {
+        "at_seconds": 172,
+        "before": "shot-b06-02",
+        "at": "shot-b06-03",
+        "expected_before": "shot-b06-02",
+        "expected_at": "shot-b06-03",
+        "transition": "held_fade"
+      }
+    ],
+    "keyboard": {
+      "home": {
+        "current": 0,
+        "playing": false,
+        "muted": true,
+        "ready_state": 1,
+        "shot_id": "shot-b01-01",
+        "beat_number": 1,
+        "subtitle": ""
+      },
+      "arrow_right": {
+        "current": 1,
+        "playing": false,
+        "muted": true,
+        "ready_state": 1,
+        "shot_id": "shot-b01-01",
+        "beat_number": 1,
+        "subtitle": "正午、鐘のない塔が鳴る。"
+      },
+      "end": {
+        "current": 180,
+        "playing": false,
+        "muted": true,
+        "ready_state": 1,
+        "shot_id": "shot-b06-03",
+        "beat_number": 6,
+        "subtitle": ""
+      },
+      "space_play": {
+        "current": 0.226845,
+        "playing": true,
+        "muted": true,
+        "ready_state": 4,
+        "shot_id": "shot-b01-01",
+        "beat_number": 1,
+        "subtitle": ""
+      },
+      "focus_visible": true
+    },
+    "console_errors": [],
+    "external_requests": [],
+    "screenshots": [
+      {
+        "relative_path": "artifacts/review-screens/private-materialized-motion-previs-desktop.png",
+        "byte_size": 590968,
+        "sha256": "7a215ef891edff238ca0ee8efe697075df2d33ad9aa0eb78a3df23915482a137"
+      },
+      {
+        "relative_path": "artifacts/review-screens/private-materialized-motion-previs-narrow.png",
+        "byte_size": 122563,
+        "sha256": "0fd86ccbbeb958bb676be588600e721f806359a3c975bbf2022d4d8101769559"
+      }
+    ],
+    "screenshot_audits": {
+      "artifacts/review-screens/private-materialized-motion-previs-desktop.png": {
+        "width": 1440,
+        "height": 1000,
+        "entropy": 5.192282,
+        "alpha_mean": 255,
+        "minimum_entropy": 1.1,
+        "non_blank": true
+      },
+      "artifacts/review-screens/private-materialized-motion-previs-narrow.png": {
+        "width": 390,
+        "height": 844,
+        "entropy": 4.450081,
+        "alpha_mean": 255,
+        "minimum_entropy": 1.1,
+        "non_blank": true
+      }
+    }
+  },
+  "failures": [],
+  "passed": true
+}

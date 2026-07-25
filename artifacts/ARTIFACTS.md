@@ -1,5 +1,20 @@
 # Artifacts
 
+## fff-private-materialized-motion-previs-001
+
+- Title: Fast Fiction Factory Private Materialized Motion Previsualization
+- Purpose: Materialize the accepted exact 180-second / six-Beat / nineteen-shot private chronology with nine deterministic local-original semantic material families, visibly executed motion, and rendered shot-boundary transitions.
+- Primary file: `artifacts/private-materialized-motion-previs/private-materialized-motion-previs.html`
+- Package: design-direction lock, canonical JSON, timeline-first HTML player, 26 material variants, 57 start/mid/end frames, two CSV maps, nineteen-shot contact sheet, silent MP4, README, and integrity manifest.
+- Review doc/result: `docs/review/private-materialized-motion-previs.md`, `artifacts/private-materialized-motion-previs-result.json`
+- Visual evidence: `artifacts/review-screens/private-materialized-motion-previs-desktop.png`, `artifacts/review-screens/private-materialized-motion-previs-narrow.png`, `artifacts/private-materialized-motion-previs/private-materialized-motion-previs-contact-sheet.jpg`
+- Material contract: exact nine families `AR-CHAR-02`, `AR-CHAR-03`, `AR-PROP-01`, `AR-PROP-03`, `AR-DOC-01`, `AR-DOC-02`, `AR-ABS-01`, `AR-ABS-02`, and `AR-TYPE-01`; exact readiness mapping covers 17/19 shots.
+- Motion contract: all source motion and transition classes are preserved and rendered; sixteen targeted positive/fail-closed tests and all eighteen browser boundary probes pass.
+- MP4: 960×540 H.264 / 30 fps / 5400 frames / silent / 180.000 seconds / SHA256 `a543e14ed081296162b6209e56b01418e8ff4293f29ea8cdf00952f0eeaa2fb1`
+- Read-only validation: `node tools/fff-state.mjs validate-private-materialized-motion-previs artifacts/private-materialized-motion-previs-result.json`
+- Accepted source state: the private preview experience is accepted; no preview repair is required; readiness plan A is accepted without exception.
+- Boundaries: isolated private successor only. The accepted preview remains byte-identical. Environment/hand imagery remains replacement-pending, the brass moth remains a private reference proxy, audio and voice remain future/unselected, and production selection, rights clearance, publication, upload, and canon decisions remain closed.
+
 ## fff-resumable-private-pipeline-001
 
 - Title: Fast Fiction Factory Resumable Private Pipeline

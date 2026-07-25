@@ -1,0 +1,601 @@
+{
+  "schemaVersion": "fff.privateMaterialFamilyIndex.v1",
+  "artifact_id": "fff-private-materialized-motion-previs-001",
+  "selected_candidate_signature": "diegetic_semantic_material_system",
+  "family_count": 9,
+  "families": [
+    {
+      "requirement_id": "AR-CHAR-02",
+      "family_name": "Anonymous Council silhouettes",
+      "deterministic_source_recipe": "diegetic_semantic_material_system/AR-CHAR-02",
+      "deterministic_local_original": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "regeneration_command": "node tools/fff-private-materialized-motion-previs.mjs render-family AR-CHAR-02",
+      "variants": [
+        {
+          "variant_id": "council-neutral",
+          "kind": "council-neutral",
+          "shot_ids": [
+            "shot-b04-01"
+          ],
+          "semantic_type": "neutral_institutional_silhouette",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-CHAR-02/council-neutral.png",
+          "byte_size": 165974,
+          "sha256": "9b993fde9a5a5961d4d1fe8de5e982c9c1484291c261fc549f5cf1a7bc27be33",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 5.154221,
+            "alpha_mean": 112.055197,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        }
+      ]
+    },
+    {
+      "requirement_id": "AR-CHAR-03",
+      "family_name": "Unresolved Toma silhouette",
+      "deterministic_source_recipe": "diegetic_semantic_material_system/AR-CHAR-03",
+      "deterministic_local_original": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "regeneration_command": "node tools/fff-private-materialized-motion-previs.mjs render-family AR-CHAR-03",
+      "variants": [
+        {
+          "variant_id": "toma-unresolved",
+          "kind": "toma-unresolved",
+          "shot_ids": [
+            "shot-b05-01"
+          ],
+          "semantic_type": "unresolved_character_silhouette",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-CHAR-03/toma-unresolved.png",
+          "byte_size": 96810,
+          "sha256": "4a49d11f6dfea93b381178dcc132c9e1f7630082765576289a77394726804cf6",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 3.161879,
+            "alpha_mean": 114.32495,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        }
+      ]
+    },
+    {
+      "requirement_id": "AR-PROP-01",
+      "family_name": "Clock repair and 9:17 module",
+      "deterministic_source_recipe": "diegetic_semantic_material_system/AR-PROP-01",
+      "deterministic_local_original": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "regeneration_command": "node tools/fff-private-materialized-motion-previs.mjs render-family AR-PROP-01",
+      "variants": [
+        {
+          "variant_id": "repair-module",
+          "kind": "repair-module",
+          "shot_ids": [
+            "shot-b02-01"
+          ],
+          "semantic_type": "clock_repair_work_surface",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-PROP-01/repair-module.png",
+          "byte_size": 117593,
+          "sha256": "af513f5d718ecbfdf44c20c3a6423042a4ca01d0f9804d447c0237f12a46cc2e",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 4.406597,
+            "alpha_mean": 167.596238,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "time-0917",
+          "kind": "time-0917",
+          "shot_ids": [
+            "shot-b02-03"
+          ],
+          "semantic_type": "specific_clock_face",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-PROP-01/time-0917.png",
+          "byte_size": 111883,
+          "sha256": "04803a4477d2abd3f1d9cd5b864b80c511f7b5d17b37ed58e7f88abf7332e8ba",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 2.052724,
+            "alpha_mean": 80.474838,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        }
+      ]
+    },
+    {
+      "requirement_id": "AR-PROP-03",
+      "family_name": "Toma memo",
+      "deterministic_source_recipe": "diegetic_semantic_material_system/AR-PROP-03",
+      "deterministic_local_original": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "regeneration_command": "node tools/fff-private-materialized-motion-previs.mjs render-family AR-PROP-03",
+      "variants": [
+        {
+          "variant_id": "memo-unverified",
+          "kind": "memo-unverified",
+          "shot_ids": [
+            "shot-b02-02"
+          ],
+          "semantic_type": "fictional_unverified_memo",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-PROP-03/memo-unverified.png",
+          "byte_size": 160043,
+          "sha256": "99b370f18339280f6979354ff541a34e4677857c758369c9b2da341b56634d87",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 3.340729,
+            "alpha_mean": 123.111146,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        }
+      ]
+    },
+    {
+      "requirement_id": "AR-DOC-01",
+      "family_name": "Fictional ledger variants",
+      "deterministic_source_recipe": "diegetic_semantic_material_system/AR-DOC-01",
+      "deterministic_local_original": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "regeneration_command": "node tools/fff-private-materialized-motion-previs.mjs render-family AR-DOC-01",
+      "variants": [
+        {
+          "variant_id": "ledger-opening",
+          "kind": "ledger-opening",
+          "shot_ids": [
+            "shot-b03-01"
+          ],
+          "semantic_type": "fictional_ledger_opening",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-01/ledger-opening.png",
+          "byte_size": 81641,
+          "sha256": "dfff0a1ed5516e4faa408e688e36ef387457a7a991f19ca9456e9c49956697d1",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 2.14188,
+            "alpha_mean": 166.527479,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "ledger-two-column",
+          "kind": "ledger-two-column",
+          "shot_ids": [
+            "shot-b03-02"
+          ],
+          "semantic_type": "fictional_two_column_ledger",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-01/ledger-two-column.png",
+          "byte_size": 29845,
+          "sha256": "ced932a7ee1b6558c84b8b3b2b1a488cbbaa39ee266001518b0e041a4f5d1cc9",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 1.684574,
+            "alpha_mean": 141.676188,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "ledger-institution-shadow",
+          "kind": "ledger-institution-shadow",
+          "shot_ids": [
+            "shot-b04-03"
+          ],
+          "semantic_type": "fictional_institution_ledger",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-01/ledger-institution-shadow.png",
+          "byte_size": 56160,
+          "sha256": "3767254260eba9b450a51366959e75cca7c06f6c21a9ff5a669b2014fa4578fd",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 2.428028,
+            "alpha_mean": 99.500957,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "ledger-blank-close",
+          "kind": "ledger-blank-close",
+          "shot_ids": [
+            "shot-b06-02"
+          ],
+          "semantic_type": "fictional_blank_ledger",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-01/ledger-blank-close.png",
+          "byte_size": 89277,
+          "sha256": "6ce6a00ba274eef99b6a450a6622958e1d3a9fee3f5558f4f239512fabaf67c6",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 3.14028,
+            "alpha_mean": 145.845272,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        }
+      ]
+    },
+    {
+      "requirement_id": "AR-DOC-02",
+      "family_name": "Equal-weight candidate system",
+      "deterministic_source_recipe": "diegetic_semantic_material_system/AR-DOC-02",
+      "deterministic_local_original": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "regeneration_command": "node tools/fff-private-materialized-motion-previs.mjs render-family AR-DOC-02",
+      "variants": [
+        {
+          "variant_id": "equal-hypotheses",
+          "kind": "equal-hypotheses",
+          "shot_ids": [
+            "shot-b04-02"
+          ],
+          "semantic_type": "equal_weight_hypotheses",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-02/equal-hypotheses.png",
+          "byte_size": 78562,
+          "sha256": "fa60e2755e631facd3fe59caa4d62b88c416a613ca0036454031b5e844f7e6d7",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 3.167851,
+            "alpha_mean": 107.696136,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "toma-fates",
+          "kind": "toma-fates",
+          "shot_ids": [
+            "shot-b05-01"
+          ],
+          "semantic_type": "equal_weight_fate_candidates",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-02/toma-fates.png",
+          "byte_size": 84933,
+          "sha256": "a0600ddca300e6622bed70750cf77601b0b2ee1e1c26fee4135c611745d7a9a8",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 3.303089,
+            "alpha_mean": 114.997151,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "moth-functions",
+          "kind": "moth-functions",
+          "shot_ids": [
+            "shot-b05-02"
+          ],
+          "semantic_type": "equal_weight_function_candidates",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-02/moth-functions.png",
+          "byte_size": 57905,
+          "sha256": "53b95aaae2c4eaae9841490298f793ad5ed4407746a8440f3fff5de168586cdd",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 2.508135,
+            "alpha_mean": 70.924877,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "council-motives",
+          "kind": "council-motives",
+          "shot_ids": [
+            "shot-b05-03"
+          ],
+          "semantic_type": "equal_weight_motive_candidates",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-02/council-motives.png",
+          "byte_size": 87880,
+          "sha256": "588835db213ae648f69eef45f936d1516d1d962938263229dce92e9bd033beff",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 3.316,
+            "alpha_mean": 114.872089,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "three-holds-open",
+          "kind": "three-holds-open",
+          "shot_ids": [
+            "shot-b05-04"
+          ],
+          "semantic_type": "three_unresolved_subjects",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-02/three-holds-open.png",
+          "byte_size": 22852,
+          "sha256": "101908546237cac493d2579862ef69a2d58028b5fc853e69e666267da7202c1e",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 1.439333,
+            "alpha_mean": 104.430523,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "three-holds-hold",
+          "kind": "three-holds-hold",
+          "shot_ids": [
+            "shot-b05-04"
+          ],
+          "semantic_type": "three_equal_hold_states",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-DOC-02/three-holds-hold.png",
+          "byte_size": 21286,
+          "sha256": "8eda3db83aaeadb3904ce1cf588b2e106ecdfd4e40275fd4d60fd26da399498c",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 1.477804,
+            "alpha_mean": 103.650245,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        }
+      ]
+    },
+    {
+      "requirement_id": "AR-ABS-01",
+      "family_name": "Fading-name treatment",
+      "deterministic_source_recipe": "diegetic_semantic_material_system/AR-ABS-01",
+      "deterministic_local_original": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "regeneration_command": "node tools/fff-private-materialized-motion-previs.mjs render-family AR-ABS-01",
+      "variants": [
+        {
+          "variant_id": "name-full",
+          "kind": "name-full",
+          "shot_ids": [
+            "shot-b03-03"
+          ],
+          "semantic_type": "full_letter_contour",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-ABS-01/name-full.png",
+          "byte_size": 124218,
+          "sha256": "05b3721a90820f4701769b169f18267a3a19c049c4188dab93edc05d353f5b00",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 3.485891,
+            "alpha_mean": 109.089068,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "name-fade",
+          "kind": "name-fade",
+          "shot_ids": [
+            "shot-b03-03"
+          ],
+          "semantic_type": "fading_letter_contour",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-ABS-01/name-fade.png",
+          "byte_size": 127324,
+          "sha256": "2fa98258387d85b2e69490112a8270873912b05337e6c5a52271420635bcf526",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 3.509747,
+            "alpha_mean": 108.975976,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "name-fragment",
+          "kind": "name-fragment",
+          "shot_ids": [
+            "shot-b03-03"
+          ],
+          "semantic_type": "fragmented_letter_contour",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-ABS-01/name-fragment.png",
+          "byte_size": 125175,
+          "sha256": "4c376a6c46719325168249047d175e8d7e4b3cf844438c2f88021b0e5ce9991d",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 3.476674,
+            "alpha_mean": 109.183841,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        }
+      ]
+    },
+    {
+      "requirement_id": "AR-ABS-02",
+      "family_name": "Equal time-versus-name split",
+      "deterministic_source_recipe": "diegetic_semantic_material_system/AR-ABS-02",
+      "deterministic_local_original": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "regeneration_command": "node tools/fff-private-materialized-motion-previs.mjs render-family AR-ABS-02",
+      "variants": [
+        {
+          "variant_id": "time-vs-names",
+          "kind": "time-vs-names",
+          "shot_ids": [
+            "shot-b06-01"
+          ],
+          "semantic_type": "equal_time_name_split",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-ABS-02/time-vs-names.png",
+          "byte_size": 29239,
+          "sha256": "670fe712c189bde3cabd651d57d9fca1f522f52a102cea35661ac1811362bd1f",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 1.892056,
+            "alpha_mean": 145.867405,
+            "minimum_entropy": 1.1,
+            "non_blank": true
+          }
+        }
+      ]
+    },
+    {
+      "requirement_id": "AR-TYPE-01",
+      "family_name": "Temporary Japanese-first text system",
+      "deterministic_source_recipe": "diegetic_semantic_material_system/AR-TYPE-01",
+      "deterministic_local_original": true,
+      "selected_for_production": false,
+      "rights_cleared_claim": false,
+      "regeneration_command": "node tools/fff-private-materialized-motion-previs.mjs render-family AR-TYPE-01",
+      "variants": [
+        {
+          "variant_id": "noon-marker",
+          "kind": "noon-marker",
+          "shot_ids": [
+            "shot-b01-03"
+          ],
+          "semantic_type": "japanese_noon_marker",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-TYPE-01/noon-marker.png",
+          "byte_size": 18422,
+          "sha256": "a1cad7cce705953d4048f46851d27323e09ca344420e867b4e77cf46e019b264",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 0.506864,
+            "alpha_mean": 18.081852,
+            "minimum_entropy": 0.4,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "ledger-labels",
+          "kind": "ledger-labels",
+          "shot_ids": [
+            "shot-b03-02"
+          ],
+          "semantic_type": "japanese_ledger_labels",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-TYPE-01/ledger-labels.png",
+          "byte_size": 17883,
+          "sha256": "3b76ca89dd718080de2dc99e5e82f6571beee59514e43a6279c96da115af5ed4",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 0.508808,
+            "alpha_mean": 18.233621,
+            "minimum_entropy": 0.4,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "hypothesis-labels",
+          "kind": "hypothesis-labels",
+          "shot_ids": [
+            "shot-b04-02"
+          ],
+          "semantic_type": "japanese_hypothesis_labels",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-TYPE-01/hypothesis-labels.png",
+          "byte_size": 19075,
+          "sha256": "5ffa10eec5b6ed01d80c13a60851b9df4d7b4d0dd113e289fa59e2c54a73ba84",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 0.526362,
+            "alpha_mean": 18.561132,
+            "minimum_entropy": 0.4,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "unknown-motive",
+          "kind": "unknown-motive",
+          "shot_ids": [
+            "shot-b04-03"
+          ],
+          "semantic_type": "japanese_unknown_label",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-TYPE-01/unknown-motive.png",
+          "byte_size": 23784,
+          "sha256": "be6b023cdaac9586c72bc83ed3ae16e8181932b8ca5cebd7531ab888453357f1",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 0.546737,
+            "alpha_mean": 18.375268,
+            "minimum_entropy": 0.4,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "hold-labels",
+          "kind": "hold-labels",
+          "shot_ids": [
+            "shot-b05-04"
+          ],
+          "semantic_type": "japanese_hold_labels",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-TYPE-01/hold-labels.png",
+          "byte_size": 23786,
+          "sha256": "7ca23871de80ac21b445d8de22f82d8d9004847ff28aaea214cc9c3fd14ef3dc",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 0.537175,
+            "alpha_mean": 18.134307,
+            "minimum_entropy": 0.4,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "time-name-labels",
+          "kind": "time-name-labels",
+          "shot_ids": [
+            "shot-b06-01"
+          ],
+          "semantic_type": "japanese_equal_choice_labels",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-TYPE-01/time-name-labels.png",
+          "byte_size": 19083,
+          "sha256": "b2d7c4ff02694bab18d1ff141f1a4267b36cfec9d1996f8faf7fb1aba73df4a5",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 0.522693,
+            "alpha_mean": 18.477135,
+            "minimum_entropy": 0.4,
+            "non_blank": true
+          }
+        },
+        {
+          "variant_id": "return-question",
+          "kind": "return-question",
+          "shot_ids": [
+            "shot-b06-03"
+          ],
+          "semantic_type": "japanese_return_question",
+          "output_path": "artifacts/private-materialized-motion-previs/materials/AR-TYPE-01/return-question.png",
+          "byte_size": 19954,
+          "sha256": "87c1a8a45f6d76ad669979e98a06721088fe8fb87c54115c0d0dd54c701193ff",
+          "image_audit": {
+            "width": 960,
+            "height": 540,
+            "entropy": 0.530995,
+            "alpha_mean": 18.419763,
+            "minimum_entropy": 0.4,
+            "non_blank": true
+          }
+        }
+      ]
+    }
+  ]
+}
