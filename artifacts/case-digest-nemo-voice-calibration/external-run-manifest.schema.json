@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fast-fiction-factory.local/schemas/case-digest-nemo-external-run.v1.json",
+  "title": "CASE_DIGEST Nemo external calibration run",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "mission_id",
+    "engine",
+    "candidates",
+    "recommendation",
+    "narration",
+    "muxed_mp4",
+    "video_stream_identity",
+    "review_html",
+    "offline_proof",
+    "boundaries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "fff.caseDigestNemoExternalRun.v1"
+    },
+    "mission_id": {
+      "const": "fff-case-digest-nemo-voice-calibration-001"
+    },
+    "engine": {
+      "type": "object",
+      "required": [
+        "base_uri",
+        "name",
+        "uuid",
+        "version",
+        "speaker_count",
+        "style_count"
+      ]
+    },
+    "candidates": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3
+    },
+    "recommendation": {
+      "type": "object",
+      "required": [
+        "calibration_recommended_style_id",
+        "recommendation_basis",
+        "final_voice_selected",
+        "production_voice_approved"
+      ]
+    },
+    "video_stream_identity": {
+      "type": "object",
+      "required": [
+        "source_sha256",
+        "output_sha256",
+        "match"
+      ]
+    },
+    "boundaries": {
+      "type": "object",
+      "required": [
+        "private_calibration_only",
+        "final_voice_selected",
+        "production_voice_approved",
+        "production_approved",
+        "rights_cleared_claim",
+        "product_release",
+        "public_release",
+        "final_canon"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

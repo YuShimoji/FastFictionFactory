@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "fff.caseDigestTtsPronunciationMap.v1",
+  "scope": "local_request_query_only",
+  "global_dictionary_mutated": false,
+  "case_digest_source_occurrence_count": 0,
+  "case_digest_spoken": false,
+  "entries": [
+    {
+      "source": "ミラ・ヴェイル",
+      "reading": "ミラ・ヴェイル",
+      "method": "explicit retained katakana reading"
+    },
+    {
+      "source": "9:17",
+      "reading": "9時17分",
+      "method": "TTS reading-layer substitution"
+    },
+    {
+      "source": "真鍮の蛾",
+      "reading": "しんちゅうのが",
+      "method": "TTS reading-layer substitution"
+    },
+    {
+      "source": "市の評議会",
+      "reading": "しのひょうぎかい",
+      "method": "TTS reading-layer substitution"
+    },
+    {
+      "source": "「分」の欄",
+      "reading": "「ふん」の欄",
+      "meaning": "minutes",
+      "method": "TTS reading-layer substitution"
+    }
+  ],
+  "pronunciation_check_text_ja": "ミラ・ヴェイル。9時17分。しんちゅうのが。しのひょうぎかい。「ふん」の欄。"
+}

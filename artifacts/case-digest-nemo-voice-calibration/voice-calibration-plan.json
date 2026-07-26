@@ -1,0 +1,163 @@
+{
+  "schemaVersion": "fff.caseDigestNemoVoiceCalibrationPlan.v1",
+  "artifact_id": "fff-case-digest-nemo-voice-calibration-001",
+  "source": {
+    "artifact_id": "fff-private-raster-case-digest-001",
+    "execution_base": "2e96bd380d47869024587eeb19b3f054064390af",
+    "package_fingerprint_sha256": "0f701e7cfa106dee19cf6e378eec1082920cd7f119f37be0f09696ac8020fbf2",
+    "mp4_relative_path": "artifacts/private-raster-case-digest/private-raster-case-digest.mp4",
+    "mp4_bytes": 16988212,
+    "mp4_sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1",
+    "duration_seconds": 180,
+    "frame_count": 5400,
+    "subtitle_cue_count": 11
+  },
+  "human_case_digest_review": "CASE_DIGEST_OWNER_COMPREHENSION_PASS",
+  "decision_id": "FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726",
+  "accepted_dimensions": [
+    "CASE_DIGEST format",
+    "five sections",
+    "eleven shots",
+    "narration semantics",
+    "caption wording",
+    "subtitle wrapping",
+    "Raster images",
+    "transition continuity"
+  ],
+  "reopened_dimension": "Nemo voice and delivery only",
+  "synthesis_defaults": {
+    "speedScale": 1,
+    "pitchScale": 0,
+    "intonationScale": 1,
+    "volumeScale": 1,
+    "maximum_speed_adjustment_count_per_style": 1,
+    "minimum_speedScale": 0.9,
+    "maximum_speedScale": 1.1,
+    "post_synthesis_time_stretch": false
+  },
+  "window_policy": {
+    "head_margin_seconds": 0.35,
+    "minimum_tail_margin_seconds": 0.5,
+    "overlap_allowed": false
+  },
+  "candidate_styles": [
+    {
+      "style_id": 10001,
+      "speaker_name": "男声1",
+      "style_name": "ノーマル",
+      "selection_reason": "Shortest common-check duration among all nine callable normal styles; selected as the fast endpoint of the measured timing envelope."
+    },
+    {
+      "style_id": 10000,
+      "speaker_name": "男声2",
+      "style_name": "ノーマル",
+      "selection_reason": "Median common-check duration among all nine callable normal styles; selected as the central timing reference."
+    },
+    {
+      "style_id": 10007,
+      "speaker_name": "女声2",
+      "style_name": "ノーマル",
+      "selection_reason": "Longest common-check duration among all nine callable normal styles; selected as the slow endpoint of the measured timing envelope."
+    }
+  ],
+  "sections": [
+    {
+      "section_id": 1,
+      "title_ja": "事件",
+      "start_seconds": 0,
+      "end_seconds": 24,
+      "source_text_ja": "正午、鐘のない塔から鐘の音が響いたと報告された。塔の取付枠は空で、音を生む鐘は見当たらない。確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。",
+      "tts_reading_text_ja": "正午、鐘のない塔から鐘の音が響いたと報告された。塔の取付枠は空で、音を生む鐘は見当たらない。確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。",
+      "semantic_equivalence": true,
+      "substitutions": [],
+      "punctuation_normalization": [],
+      "pronunciation_overrides": []
+    },
+    {
+      "section_id": 2,
+      "title_ja": "調査者と手掛かり",
+      "start_seconds": 24,
+      "end_seconds": 65,
+      "source_text_ja": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。",
+      "tts_reading_text_ja": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。作業台にはしんちゅうのががあり、時計と記録には9時17分が繰り返し現れる。メモ、蛾、9時17分は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。",
+      "semantic_equivalence": true,
+      "substitutions": [
+        "真鍮の蛾→しんちゅうのが",
+        "9:17→9時17分"
+      ],
+      "punctuation_normalization": [
+        "ASCII colon in 9:17 is expanded into spoken Japanese time."
+      ],
+      "pronunciation_overrides": [
+        "ミラ・ヴェイル",
+        "しんちゅうのが",
+        "9時17分"
+      ]
+    },
+    {
+      "section_id": 3,
+      "title_ja": "記録",
+      "start_seconds": 65,
+      "end_seconds": 97,
+      "source_text_ja": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。現在の画像から確認できるのは二種類の記録形式だけである。この台帳が時間を奪う、または人を消すという因果関係は証明されていない。",
+      "tts_reading_text_ja": "調査対象の台帳には、「ふん」を記す欄と、人の名前を記す欄が並ぶ。現在の画像から確認できるのは二種類の記録形式だけである。この台帳が時間を奪う、または人を消すという因果関係は証明されていない。",
+      "semantic_equivalence": true,
+      "substitutions": [
+        "「分」の読み→「ふん」"
+      ],
+      "punctuation_normalization": [],
+      "pronunciation_overrides": [
+        "「分」はminutesを意味する「ふん」"
+      ]
+    },
+    {
+      "section_id": 4,
+      "title_ja": "疑いと証拠限界",
+      "start_seconds": 97,
+      "end_seconds": 136,
+      "source_text_ja": "失踪した兄のメモは、市の評議会に調査の目を向けている。だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。",
+      "tts_reading_text_ja": "失踪した兄のメモは、しのひょうぎかいに調査の目を向けている。だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。",
+      "semantic_equivalence": true,
+      "substitutions": [
+        "市の評議会→しのひょうぎかい"
+      ],
+      "punctuation_normalization": [],
+      "pronunciation_overrides": [
+        "しのひょうぎかい"
+      ]
+    },
+    {
+      "section_id": 5,
+      "title_ja": "現在の事件状況",
+      "start_seconds": 136,
+      "end_seconds": 180,
+      "source_text_ja": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。時間と名前は台帳に記録された二つの損失区分として扱う。音源、兄の所在、評議会との関係は確認されていない。塔は現在も調査対象として残る。",
+      "tts_reading_text_ja": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、しんちゅうのが、9時17分、二列の台帳である。時間と名前は台帳に記録された二つの損失区分として扱う。音源、兄の所在、評議会との関係は確認されていない。塔は現在も調査対象として残る。",
+      "semantic_equivalence": true,
+      "substitutions": [
+        "真鍮の蛾→しんちゅうのが",
+        "9:17→9時17分"
+      ],
+      "punctuation_normalization": [
+        "ASCII colon in 9:17 is expanded into spoken Japanese time."
+      ],
+      "pronunciation_overrides": [
+        "しんちゅうのが",
+        "9時17分"
+      ]
+    }
+  ],
+  "boundaries": {
+    "source_rewritten": false,
+    "visible_caption_changed": false,
+    "subtitle_changed": false,
+    "case_digest_spoken": false,
+    "final_voice_selected": false,
+    "production_voice_approved": false,
+    "production_approved": false,
+    "rights_cleared_claim": false,
+    "product_release": false,
+    "public_release": false,
+    "final_canon": false
+  }
+}

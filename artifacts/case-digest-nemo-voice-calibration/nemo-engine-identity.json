@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "fff.nemoEngineIdentity.v1",
+  "identity_verified": true,
+  "verified_at_utc": "2026-07-26T16:58:44.6003385Z",
+  "name": "VOICEVOX Nemo Engine",
+  "brand_name": "VOICEVOX",
+  "uuid": "208cf94d-43d2-4cf5-abc0-9783cac36d29",
+  "version": "0.24.0",
+  "manifest_version": "0.13.1",
+  "default_sampling_rate": 24000,
+  "engine_executable_relative_path": "nemo-engine-0.24.0/run.exe",
+  "engine_executable_bytes": 7650920,
+  "engine_executable_sha256": "803514ab1772613400067b3fdbfe732ce12d81630d032bffd5a68f2f07e88cd6",
+  "loopback_host": "127.0.0.1",
+  "loopback_port": 50121,
+  "cpu_thread_limit": 4,
+  "gui_launched": false,
+  "speaker_playback_performed": false,
+  "regular_engine_uuid": "074fc39e-678b-4c13-8916-ffca8d505d1d",
+  "uuid_differs_from_regular_engine": true,
+  "speaker_count": 9,
+  "style_count": 9,
+  "short_synthesis": {
+    "style_id": 10005,
+    "external_relative_file": "verification/nemo-identity-style-10005.wav",
+    "duration_seconds": 4.426667,
+    "sample_rate": 24000,
+    "channels": 1,
+    "bytes": 212524,
+    "sha256": "e1048826fe18b6825095de6ea4ed8a6765778d8c2f6f7498befe870482c44b90",
+    "success": true
+  },
+  "offline_observation": {
+    "connection_samples": 120,
+    "external_connection_observation_count": 0,
+    "only_loopback_or_listener_connections_observed": true
+  }
+}

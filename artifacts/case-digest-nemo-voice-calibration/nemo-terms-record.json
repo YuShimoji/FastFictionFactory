@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "fff.nemoTermsRecord.v1",
+  "terms_url": "https://voicevox.hiroshiba.jp/nemo/term/",
+  "retrieved_at_utc": "2026-07-26T16:55:07.0379238Z",
+  "content_sha256": "f448c18efa38891613606a9a29d9bdd0346fd8ade4f09678ccad56c2f5008e6a",
+  "commercial_noncommercial_statement": "Credit is required; generated audio may be used for commercial or non-commercial purposes under the published Nemo terms.",
+  "credit_requirement": "Credit VOICEVOX Nemo when using generated audio.",
+  "machine_learning_use_restriction": "Machine-learning use is prohibited by the published Nemo terms.",
+  "private_calibration_only": true,
+  "publication_performed": false,
+  "publication_compatibility_claimed": false,
+  "legal_interpretation_claimed": false,
+  "rights_cleared_claim": false
+}

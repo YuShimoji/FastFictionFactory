@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "fff.nemoVvppAcquisitionRecord.v1",
+  "mission_id": "fff-case-digest-nemo-voice-calibration-001",
+  "attempt_id": 3,
+  "authority_id": "AUTH-FFF-VOICEVOX-NEMO-VVPP-ACQUIRE-CALIBRATE-20260727",
+  "repository": "VOICEVOX/voicevox_nemo_engine",
+  "release": {
+    "tag": "0.24.0",
+    "release_id": 228845145,
+    "target_commitish": "a7d6d533e8b9adadfed1d02f9e34f9e265cc4fcd",
+    "published_at": "2025-06-30T16:14:55Z",
+    "draft": false,
+    "prerelease": false
+  },
+  "asset": {
+    "asset_id": 268697767,
+    "name": "voicevox_engine-windows-cpu-0.24.0.vvpp",
+    "bytes": 140522153,
+    "sha256": "418c515ce567c1426b425bd2fe05eb0a62196bcec223829725e9ed4ff345b437",
+    "canonical_release_url": "https://github.com/VOICEVOX/voicevox_nemo_engine/releases/tag/0.24.0",
+    "external_relative_file": "downloads/nemo-engine-0.24.0/voicevox_engine-windows-cpu-0.24.0.vvpp"
+  },
+  "download": {
+    "attempt_count": 1,
+    "started_at_utc": "2026-07-26T16:55:44.0739557Z",
+    "completed_at_utc": "2026-07-26T16:56:48.7881057Z",
+    "partial_retained": false,
+    "size_verified": true,
+    "digest_verified": true,
+    "atomic_rename_completed": true
+  },
+  "extraction": {
+    "external_relative_root": "nemo-engine-0.24.0",
+    "entry_count": 276,
+    "file_count": 223,
+    "directory_count": 53,
+    "declared_uncompressed_bytes": 276082792,
+    "extracted_file_bytes": 276082792,
+    "absolute_path_count": 0,
+    "traversal_count": 0,
+    "symlink_entry_count": 0,
+    "reparse_point_count": 0,
+    "manifest_relative_path": "engine_manifest.json",
+    "engine_executable_relative_path": "run.exe",
+    "inventory_external_relative_file": "verification/extracted-tool-inventory.json"
+  },
+  "wrong_package_quarantine": {
+    "classification": "REGULAR_VOICEVOX_IDENTITY_MISMATCH_QUARANTINE",
+    "preserved": true,
+    "used_for_nemo_synthesis": false,
+    "altered": false,
+    "deleted": false,
+    "redistributed": false
+  }
+}

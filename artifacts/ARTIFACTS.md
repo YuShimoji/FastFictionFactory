@@ -1512,3 +1512,23 @@
 - Review input mode: `freeform`
 - State: Preserved auxiliary readback under `fff-contradictory-claim-guard-001`; no broad fixture, translated fixture, provider/API behavior, downstream adoption implementation, or canon promotion is added.
 - Next action: Move to provider adapter implementation only after explicit authorization, or add a translated/broad fixture only after policy or source-output evidence creates concrete decision value.
+
+## fff-case-digest-nemo-voice-calibration-001
+
+- Title: CASE_DIGEST VOICEVOX Nemo Voice Calibration
+- Purpose: Measure up to three official Nemo styles against the exact five accepted CASE_DIGEST narration sections without changing source semantics, visible captions, subtitles, images, shots, or transitions.
+- Source: `fff-private-raster-case-digest-001` at execution base `2e96bd380d47869024587eeb19b3f054064390af`.
+- Package: `artifacts/case-digest-nemo-voice-calibration/`
+- Acquisition record: `artifacts/case-digest-nemo-voice-calibration/nemo-vvpp-acquisition-record.json`
+- Engine identity: `artifacts/case-digest-nemo-voice-calibration/nemo-engine-identity.json`
+- Voice inventory: `artifacts/case-digest-nemo-voice-calibration/voice-inventory.json`
+- Reading plan: `artifacts/case-digest-nemo-voice-calibration/voice-calibration-plan.json`
+- Pronunciation map: `artifacts/case-digest-nemo-voice-calibration/tts-pronunciation-map.json`
+- Timing map: `artifacts/case-digest-nemo-voice-calibration/section-timing-map.csv`
+- Result: `artifacts/case-digest-nemo-voice-calibration/voice-calibration-result.json`
+- Regeneration tool: `tools/fff-case-digest-nemo-voice-calibration.ps1`
+- Test: `tests/fff-case-digest-nemo-voice-calibration.test.mjs`
+- Review doc: `docs/review/case-digest-nemo-voice-calibration.md`
+- External output: repository-external WAV, audio-inclusive MP4, local HTML, and run manifest; no media or binary bytes are tracked.
+- State: Technical calibration complete with one provisional objective recommendation. Final voice selection and production approval remain false.
+- Next action: Human voice-quality review may compare the local candidates and recommendation. Production, rights, release, publication, and canon require their own later decisions.
