@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fast-fiction-factory.local/schemas/case-digest-nemo-delivery-reflow-external-run.v1.json",
+  "title": "CASE_DIGEST Nemo delivery reflow external run",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "mission_id",
+    "source",
+    "engine",
+    "utterances",
+    "silence",
+    "diagnostics",
+    "narration",
+    "muxed_mp4",
+    "review_html",
+    "offline_proof",
+    "boundaries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "fff.caseDigestNemoDeliveryReflowExternalRun.v1"
+    },
+    "mission_id": {
+      "const": "fff-case-digest-nemo-delivery-reflow-001"
+    },
+    "engine": {
+      "type": "object",
+      "required": [
+        "name",
+        "uuid",
+        "version",
+        "style_id",
+        "speedScale",
+        "pitchScale",
+        "intonationScale",
+        "volumeScale"
+      ]
+    },
+    "utterances": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 22
+    },
+    "silence": {
+      "type": "object",
+      "required": [
+        "maximum_internal_gap_seconds",
+        "median_internal_gap_seconds",
+        "no_ten_second_gap",
+        "contract_pass"
+      ]
+    },
+    "video_stream_identity": {
+      "type": "object",
+      "required": [
+        "source_sha256",
+        "output_sha256",
+        "match"
+      ]
+    },
+    "subtitle_stream_identity": {
+      "type": "object",
+      "required": [
+        "source_sha256",
+        "output_sha256",
+        "match",
+        "cue_count"
+      ]
+    },
+    "boundaries": {
+      "type": "object",
+      "required": [
+        "final_voice_selected",
+        "production_voice_approved",
+        "rights_cleared_claim",
+        "public_release",
+        "final_canon"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

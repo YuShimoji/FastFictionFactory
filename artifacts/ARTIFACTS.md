@@ -1532,3 +1532,26 @@
 - External output: repository-external WAV, audio-inclusive MP4, local HTML, and run manifest; no media or binary bytes are tracked.
 - State: Technical calibration complete with one provisional objective recommendation. Final voice selection and production approval remain false.
 - Next action: Human voice-quality review may compare the local candidates and recommendation. Production, rights, release, publication, and canon require their own later decisions.
+
+## fff-case-digest-nemo-delivery-reflow-001
+
+- Title: CASE_DIGEST Nemo Style-10000 Delivery Reflow
+- Purpose: Apply the Product Owner's exact attempt-3 listening observation by replacing five section-block placements with 22 sentence/meaning-clause events across the unchanged eleven-shot CASE_DIGEST timeline.
+- Source: `fff-private-raster-case-digest-001` and attempt-3 calibration `fff-case-digest-nemo-voice-calibration-001`.
+- Package: `artifacts/case-digest-nemo-delivery-reflow/`
+- Owner observation: `artifacts/case-digest-nemo-delivery-reflow/owner-listening-observation.json`
+- Utterance map: `artifacts/case-digest-nemo-delivery-reflow/narration-utterance-map.csv`
+- Pronunciation map: `artifacts/case-digest-nemo-delivery-reflow/tts-pronunciation-map-v2.json`
+- Silence audit: `artifacts/case-digest-nemo-delivery-reflow/silence-gap-audit.csv`
+- Result: `artifacts/case-digest-nemo-delivery-reflow/voice-delivery-result.json`
+- Regeneration/validation tool: `tools/fff-case-digest-nemo-delivery-reflow.ps1`
+- Test: `tests/fff-case-digest-nemo-delivery-reflow.test.mjs`
+- Review doc: `docs/review/case-digest-nemo-delivery-reflow.md`
+- Exact result: style `10000`, 22 utterances, all 11 shots covered, maximum internal gap `5.000` seconds, median internal gap `4.926` seconds, section heads `0.250–0.426` seconds, section tails `3.398–5.500` seconds.
+- Audio result: external 180.000-second 48 kHz mono PCM WAV, `-19.15` LUFS, `-1.20` dBTP, clipping 0, SHA256 `e3db719f4f5aed766ca18b7c77af35f64693cf4a479298325f3f8fa017bd266c`.
+- MP4 result: external 180.000-second / 5400-frame H.264 copy with exactly one AAC narration stream and the unchanged one-stream/eleven-cue subtitle payload, SHA256 `cd245bec74df93bb8af98db966cb6835bc0ef9c504bf0a24e5cb692ee858ac4c`.
+- Brass-moth reading: visible `真鍮の蛾` is unchanged; the local TTS layer uses `しんちゅうでできた、ガ` and exposes a comparison sample without claiming perceptual acceptance.
+- Browser result: desktop 1440×1000 and narrow 390×844 passed with horizontal overflow 0, nested vertical scroll 0, console/page errors 0, all media paused, and visible keyboard focus.
+- External output: repository-external raw/normalized utterances, queries, diagnostic WAV, narration WAV, audio-inclusive MP4, review HTML, screenshots, and run manifest. Two rejected placement partials are preserved as non-candidates.
+- State: Technical candidate complete; Product Owner listening review remains open. Final voice selection, production approval, rights clearance, release, publication, and canon remain false.
+- Next action: Listen to the full style-10000 candidate and brass-moth comparison. Bind any human finding to utterance ID, shot ID, or timestamp; a later decision must explicitly select/reject the voice and separately open any production gate.

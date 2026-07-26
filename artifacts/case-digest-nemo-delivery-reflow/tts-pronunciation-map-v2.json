@@ -1,0 +1,41 @@
+{
+  "schemaVersion": "fff.caseDigestNemoPronunciationMap.v2",
+  "artifact_id": "fff-case-digest-nemo-delivery-reflow-001",
+  "scope": "TTS request and local audio query only",
+  "global_dictionary_mutated": false,
+  "visible_text_mutated": false,
+  "substitutions": [
+    {
+      "source": "真鍮の蛾",
+      "tts_reading": "しんちゅうでできた、ガ",
+      "reason": "Clarify the compound by construction while preserving the visible source text and meaning.",
+      "required": true
+    },
+    {
+      "source": "9:17",
+      "tts_reading": "9時17分",
+      "reason": "Expand the ASCII time notation for spoken Japanese.",
+      "required": true
+    },
+    {
+      "source": "市の評議会",
+      "tts_reading": "しのひょうぎかい",
+      "reason": "Keep the intended word boundary in the local TTS layer.",
+      "required": true
+    },
+    {
+      "source": "「分」",
+      "tts_reading": "「ふん」",
+      "reason": "Read the ledger heading as minutes.",
+      "required": true
+    }
+  ],
+  "diagnostic": {
+    "style_id": 10000,
+    "current_reading": "しんちゅうのが",
+    "revised_reading": "しんちゅうでできた、ガ",
+    "full_sentence_source": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。",
+    "full_sentence_tts": "作業台にはしんちゅうでできた、ガがあり、時計と記録には9時17分が繰り返し現れる。",
+    "perceptual_acceptance_claimed": false
+  }
+}

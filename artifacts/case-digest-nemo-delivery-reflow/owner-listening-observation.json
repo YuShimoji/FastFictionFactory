@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "fff.caseDigestNemoOwnerListeningObservation.v1",
+  "authority_id": "AUTH-FFF-NEMO-STYLE10000-DELIVERY-REFLOW-20260727",
+  "mission_id": "fff-case-digest-nemo-delivery-reflow-001",
+  "recorded_at": "2026-07-27",
+  "source_calibration": {
+    "artifact_id": "fff-case-digest-nemo-voice-calibration-001",
+    "attempt_id": 3,
+    "commit": "63fb60c505952377455536d9dd84cb164d3b3a0c",
+    "external_run_manifest_sha256": "0ccadf35986028174f3df847c5857f5301a1bc1ca9089b8d2462158eeb76e735",
+    "style_10007_full_candidate_sha256": "a68c39e7abb3de3548d04656c9a5a9907926451c03d8595db85ee815a50b84a1",
+    "style_10000_section_samples": [
+      {
+        "section_id": 1,
+        "raw_sha256": "7e9c7f3ce211af2eb9d430e8b16b7f296f94b0b5ddd2f858052cb62f5dd14649",
+        "normalized_sha256": "332f55563ddc2e3acbbde7f4b181c0d6c0ee1ab2e7cc770283c3285ae8de3399",
+        "query_sha256": "ff0c0ef62991acd538cbe3e382979420be8641c585a49e5c93faa1c6738eb1bf"
+      },
+      {
+        "section_id": 2,
+        "raw_sha256": "a642a0b13dd7d00b064980dc12d2f063fad6471e08ab614b45e0d66e44fbacbd",
+        "normalized_sha256": "0b9cbeba0ce53d4da90556c30e91ea9bfa5e28d45d0a00eb9e4e093d2c319642",
+        "query_sha256": "7aebb0ff076ab318a3c3148ced477ac9dff9c7fb420a0804c201e7a61aa84e2f"
+      },
+      {
+        "section_id": 3,
+        "raw_sha256": "ad4f6496935f729f26eda5b03f325659f7928d4ad8f2bc196271856e24117970",
+        "normalized_sha256": "7d90b62f8c7da39c869349efac016e335d2b501c09e02ce7592e504699e280cc",
+        "query_sha256": "0fb3a7382d3e28e51872f4da917e6ea010a2a9d8db59ce582653b919e08b623a"
+      },
+      {
+        "section_id": 4,
+        "raw_sha256": "1f7c0c99b07857c7b6ce02d054bc7036be5c3c9ccac4551bdbacac7fd56b132f",
+        "normalized_sha256": "0c7acb4683b20d9c8189a797850e28df44cf66f32794c7a7b5871ebf0bd49c39",
+        "query_sha256": "374377988b807026f9aca69f1349fe275923439af114615f6f995f0f3598c0b1"
+      },
+      {
+        "section_id": 5,
+        "raw_sha256": "b4963079f3dc8f120d3b94173422106fb3980f3c2acb15d9ed900c016047d010",
+        "normalized_sha256": "1b62036ec72c289cbc36c80bd529e5217d8658aa74fb9e24ed0d9152a5f89eb1",
+        "query_sha256": "cf6fb7285b64cba0ce37fe9aa47120f1c47a86d7425fc3025486866483c28fb7"
+      }
+    ]
+  },
+  "observations": [
+    {
+      "observation_id": "owner-listening-01",
+      "finding": "A large silent interval exists around 00:48–01:00."
+    },
+    {
+      "observation_id": "owner-listening-02",
+      "finding": "Another silence near two minutes approaches twenty seconds."
+    },
+    {
+      "observation_id": "owner-listening-03",
+      "finding": "Other section boundaries also leave at least ten seconds of silence."
+    },
+    {
+      "observation_id": "owner-listening-04",
+      "finding": "The phrase 真鍮の蛾 near forty seconds is difficult to understand."
+    },
+    {
+      "observation_id": "owner-listening-05",
+      "finding": "Style 10007 sometimes sounds as though the voice is trembling."
+    },
+    {
+      "observation_id": "owner-listening-06",
+      "finding": "Style 10000 sounds calmer and easier to hear."
+    },
+    {
+      "observation_id": "owner-listening-07",
+      "finding": "High female delivery and the higher male style 10001 amplify small intonation errors."
+    }
+  ],
+  "normalized_state": {
+    "owner_voice_delivery_preference": "style_10000",
+    "preferred_style_for_next_candidate": 10000,
+    "rejected_current_delivery_styles": [
+      10007,
+      10001
+    ],
+    "style_10007_current_candidate_status": "not_preferred",
+    "style_10001_current_candidate_status": "not_preferred",
+    "section_block_placement_status": "rejected",
+    "brass_moth_pronunciation_status": "revision_required",
+    "visual_candidate_status": "accepted_unchanged",
+    "case_digest_script_status": "accepted_unchanged",
+    "visible_subtitle_status": "accepted_unchanged",
+    "final_voice_selected": false,
+    "production_voice_approved": false
+  },
+  "scope_boundary": "These findings apply to the exact attempt-3 candidates and delivery. They do not reject every future use of styles 10007 or 10001."
+}
