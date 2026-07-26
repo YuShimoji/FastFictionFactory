@@ -3,7 +3,8 @@
 ## fff-private-raster-case-digest-001
 
 - Title: Fast Fiction Factory Private Raster CASE_DIGEST
-- State timepoint: forward-integration candidate ready on `refs/heads/codex/fff-case-digest-accepted-forward-integration-v1`; master integration has not occurred.
+- Candidate-generation snapshot: the package observed master at `701869936943f9babd7d4d5287008b646106188b`; master integration performed at that observation was `false`.
+- Current-state boundary: the artifact makes no live/current integration claim. Resolve current canonical integration from external read-only Git-ref reconciliation.
 - Lineage: single-parent candidate from M2 `701869936943f9babd7d4d5287008b646106188b`, restoring the exact coherent C2 payload at `2e96bd380d47869024587eeb19b3f054064390af`.
 - Human verdict: `FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726` records「事件ダイジェストとして理解できます。字幕改行にも問題ありません。次へ進めてよいです。」for CASE_DIGEST comprehension, review-caption wording/readability, and the unchanged existing visual sequence only.
 - Inheritance proof: review-caption wording/timings, shot order/timings, subtitle-layout evidence, source-image identities, and MP4 bytes remain exact C2. HTML visible markup, styling, playback, captions, and layout remain exact C2 apart from embedded state/decision metadata.
@@ -12,7 +13,7 @@
 - Registration: `successor_candidate_artifact_id=fff-private-raster-case-digest-001`; active/default remains `fff-private-previsualization-timeline-001`.
 - Preserved quarantine: `FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26` remains ACTIVE for the rejected six-beat narrative signature.
 - Product boundary: repository visibility is public and Git-history distribution is authorized. “Private” identifies an unreleased product candidate.
-- Closed gates: production subtitle selection, production acceptance, rights approval, product/public release, voice/audio work, final canon, and master integration remain false.
+- Closed gates: production subtitle selection, production acceptance, rights approval, product/public release, voice/audio work, and final canon remain false. Master integration is outside this artifact’s live-state authority.
 - Read-only validation: `node tools/fff-state.mjs validate-private-raster-case-digest artifacts/private-raster-case-digest-result.json`.
 
 ## fff-private-full-raster-clarity-candidate-001

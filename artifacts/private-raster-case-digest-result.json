@@ -369,16 +369,19 @@
     "human_case_digest_review": "accepted_scoped",
     "integration_candidate_id": "fff-case-digest-accepted-forward-integration-v1",
     "integration_target_ref": "refs/heads/codex/fff-case-digest-accepted-forward-integration-v1",
-    "integration_state": "feature_candidate_ready_master_integration_not_performed",
-    "integration_timepoint": "feature_branch_candidate_before_master_integration",
-    "main_integration_performed": false,
+    "candidate_generation_snapshot": {
+      "observed_master_commit": "701869936943f9babd7d4d5287008b646106188b",
+      "observation_phase": "candidate_generation_before_master_integration",
+      "master_integration_performed_at_observation": false,
+      "live_current_integration_state_claimed": false,
+      "current_state_source": "external_read_only_git_ref_reconciliation_not_package_generation"
+    },
     "release_path_reachable": false,
     "release_path_reachable_scope": "product_release_path",
     "private_identifier_meaning": "unreleased_product_candidate_not_repository_confidentiality"
   },
   "human_acceptance": {
     "decision_id": "FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726",
-    "authority_id": "AUTH-FFF-CASE-DIGEST-ACCEPTED-FORWARD-INTEGRATION-CANDIDATE-PUSH-20260726",
     "verdict": "ACCEPTED_SCOPED",
     "observation_ja": "事件ダイジェストとして理解できます。字幕改行にも問題ありません。次へ進めてよいです。",
     "accepted_dimensions": [
@@ -407,7 +410,13 @@
       "target_ref": "refs/heads/codex/fff-case-digest-accepted-forward-integration-v1",
       "parent_commit": "701869936943f9babd7d4d5287008b646106188b",
       "parent_tree": "85a1ca377d655151a348e3e657f3ddc1c3e1177c",
-      "state": "feature_candidate_ready_master_integration_not_performed"
+      "candidate_generation_snapshot": {
+        "observed_master_commit": "701869936943f9babd7d4d5287008b646106188b",
+        "observation_phase": "candidate_generation_before_master_integration",
+        "master_integration_performed_at_observation": false,
+        "live_current_integration_state_claimed": false,
+        "current_state_source": "external_read_only_git_ref_reconciliation_not_package_generation"
+      }
     },
     "inheritance_proof": {
       "accepted_creative_content_changed": false,
@@ -561,8 +570,8 @@
     }
   },
   "targeted_tests": {
-    "total": 24,
-    "passed": 24,
+    "total": 25,
+    "passed": 25,
     "all_passed": true,
     "cases": [
       {
@@ -627,12 +636,20 @@
         ]
       },
       {
-        "id": "reject-false-main-integration",
-        "expected": "human review, integration, voice, or audio boundary mismatch",
+        "id": "reject-unscoped-main-integration",
+        "expected": "unscoped current integration state claim",
         "passed": true,
         "observed_failures": [
-          "candidate distribution state mismatch",
-          "human review, integration, voice, or audio boundary mismatch"
+          "unscoped current integration state claim"
+        ]
+      },
+      {
+        "id": "reject-external-authority-in-human-acceptance",
+        "expected": "external-effect authority escaped into human acceptance",
+        "passed": true,
+        "observed_failures": [
+          "scoped human acceptance binding mismatch",
+          "external-effect authority escaped into human acceptance"
         ]
       },
       {
@@ -5759,7 +5776,7 @@
   },
   "package_manifest": {
     "path": "artifacts/private-raster-case-digest/private-raster-case-digest-manifest.json",
-    "fingerprint": "db61ce4dc453a0ef7e62188c8c142c7bf176d344b4f70e0b86fda8c10d722dac",
+    "fingerprint": "2a6a18774f435cc421fe760539dc1ec2d5c93ddcd764a228febabbb249203349",
     "payload_file_count": 10
   },
   "continuity_manifest": {
@@ -5780,9 +5797,6 @@
     "human_case_digest_review": "accepted_scoped",
     "integration_candidate_id": "fff-case-digest-accepted-forward-integration-v1",
     "integration_target_ref": "refs/heads/codex/fff-case-digest-accepted-forward-integration-v1",
-    "integration_state": "feature_candidate_ready_master_integration_not_performed",
-    "integration_timepoint": "feature_branch_candidate_before_master_integration",
-    "main_integration_performed": false,
     "release_path_reachable": false,
     "release_path_reachable_scope": "product_release_path",
     "private_identifier_meaning": "unreleased_product_candidate_not_repository_confidentiality",
@@ -5802,6 +5816,26 @@
     "audio_generated": false,
     "voice": false,
     "voice_selected": false,
-    "final_canon": false
+    "final_canon": false,
+    "candidate_generation_snapshot": {
+      "observed_master_commit": "701869936943f9babd7d4d5287008b646106188b",
+      "observation_phase": "candidate_generation_before_master_integration",
+      "master_integration_performed_at_observation": false,
+      "live_current_integration_state_claimed": false,
+      "current_state_source": "external_read_only_git_ref_reconciliation_not_package_generation"
+    }
+  },
+  "metadata_rework": {
+    "mode": "offline_metadata_only",
+    "candidate_generation_snapshot": {
+      "observed_master_commit": "701869936943f9babd7d4d5287008b646106188b",
+      "observation_phase": "candidate_generation_before_master_integration",
+      "master_integration_performed_at_observation": false,
+      "live_current_integration_state_claimed": false,
+      "current_state_source": "external_read_only_git_ref_reconciliation_not_package_generation"
+    },
+    "media_regenerated": false,
+    "browser_capture_repeated": false,
+    "network_lookup_required": false
   }
 }

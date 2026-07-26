@@ -13,7 +13,7 @@
 | subtitle actual-width | 44測定 / failure 0 | 4表示条件で禁則・孤立行・固有名詞分断を防止 |
 | continuity | 7 entry | 将来生成時の同一性条件を固定 |
 | browser | desktop 1440px / narrow 390px | file HTML、shot境界、overflow、2行上限を検証 |
-| targeted negative | 24/24 | scope・権限・字幕・transitionの逸脱を拒否 |
+| targeted negative | 25/25 | scope・権限・字幕・transitionの逸脱を拒否 |
 
 ## 旧形式の扱い
 
@@ -27,6 +27,7 @@
 - inherited from: human-review context `f817003ea2156817220225a1b25f39cbcd7b09f3` and exact C2 `2e96bd380d47869024587eeb19b3f054064390af` (tree `accfb3fc5474f4ecb2e39b5c4d69fd8de6a7e841`)
 - unchanged proof: review-caption CSV、shot order/timings、subtitle-layout evidence、source-image identities、MP4 bytesはexact C2。HTMLのvisible markup/style/playback/captions/layoutはembedded state/decision metadataを除きexact C2です。
 - integration candidate: `fff-case-digest-accepted-forward-integration-v1` at `refs/heads/codex/fff-case-digest-accepted-forward-integration-v1`, parent M2 `701869936943f9babd7d4d5287008b646106188b`
+- integration snapshot: candidate generation時点でmaster `701869936943f9babd7d4d5287008b646106188b` を観測し、その時点のmaster integration performedはfalse。artifactはlive/current stateを主張せず、現在値は外部Git refsから解決します。
 
 accepted creative contentの変更はfalseです。この受入れはproduction subtitle selection、production acceptance、rights clearance、publication、product/public release、voice/audio、final canon、master integrationへ拡張されません。
 

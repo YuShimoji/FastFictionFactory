@@ -26,4 +26,8 @@
 
 ## 未成立
 
-production subtitle selection、production acceptance、rights clearance、publication、product/public release、voice、audio、final canon、master integrationは成立していません。
+production subtitle selection、production acceptance、rights clearance、publication、product/public release、voice、audio、final canonは成立していません。
+
+## Integration snapshot
+
+このpackageが記録するのはcandidate generation時点のsnapshotです。観測したmasterは `701869936943f9babd7d4d5287008b646106188b` で、その観測時点ではmaster integrationは未実施でした。artifactはopen時点のlive/current integration stateを主張しません。現在のcanonical integrationは外部のread-only Git-ref reconciliationで解決します。

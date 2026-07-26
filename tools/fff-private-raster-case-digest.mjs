@@ -57,7 +57,6 @@ const SOURCE_ARTIFACT_ID = "fff-private-full-raster-clarity-candidate-001";
 const DEFAULT_ARTIFACT_ID = "fff-private-previsualization-timeline-001";
 const QUARANTINE_ID = "FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26";
 const CONTINUITY_ID = "fff-recurring-element-continuity-001";
-const AUTHORITY_ID = "AUTH-FFF-CASE-DIGEST-ACCEPTED-FORWARD-INTEGRATION-CANDIDATE-PUSH-20260726";
 const HUMAN_VERDICT_ID = "FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726";
 const HUMAN_REVIEW_CONTEXT_COMMIT = "f817003ea2156817220225a1b25f39cbcd7b09f3";
 const ACCEPTED_SOURCE_REF = "refs/heads/codex/fff-case-digest-format-reset-continuity-v1";
@@ -341,6 +340,16 @@ function valuesEqual(left, right) {
   return JSON.stringify(left) === JSON.stringify(right);
 }
 
+function candidateGenerationSnapshot() {
+  return {
+    observed_master_commit: INTEGRATION_BASE_COMMIT,
+    observation_phase: "candidate_generation_before_master_integration",
+    master_integration_performed_at_observation: false,
+    live_current_integration_state_claimed: false,
+    current_state_source: "external_read_only_git_ref_reconciliation_not_package_generation"
+  };
+}
+
 function candidateDistributionState() {
   return {
     repository_visibility: "public",
@@ -354,9 +363,7 @@ function candidateDistributionState() {
     human_case_digest_review: "accepted_scoped",
     integration_candidate_id: INTEGRATION_CANDIDATE_ID,
     integration_target_ref: INTEGRATION_TARGET_REF,
-    integration_state: "feature_candidate_ready_master_integration_not_performed",
-    integration_timepoint: "feature_branch_candidate_before_master_integration",
-    main_integration_performed: false,
+    candidate_generation_snapshot: candidateGenerationSnapshot(),
     release_path_reachable: false,
     release_path_reachable_scope: "product_release_path",
     private_identifier_meaning: "unreleased_product_candidate_not_repository_confidentiality"
@@ -366,7 +373,6 @@ function candidateDistributionState() {
 function humanAcceptanceDecision() {
   return {
     decision_id: HUMAN_VERDICT_ID,
-    authority_id: AUTHORITY_ID,
     verdict: "ACCEPTED_SCOPED",
     observation_ja: HUMAN_OBSERVATION_JA,
     accepted_dimensions: [
@@ -395,7 +401,7 @@ function humanAcceptanceDecision() {
       target_ref: INTEGRATION_TARGET_REF,
       parent_commit: INTEGRATION_BASE_COMMIT,
       parent_tree: INTEGRATION_BASE_TREE,
-      state: "feature_candidate_ready_master_integration_not_performed"
+      candidate_generation_snapshot: candidateGenerationSnapshot()
     },
     inheritance_proof: {
       accepted_creative_content_changed: false,
@@ -1241,6 +1247,8 @@ function contractFailures(model) {
   require(model.narrative_format_quarantine.status === "ACTIVE" && model.narrative_format_quarantine.preserved_scope.includes("19 accepted"), "narrative quarantine mismatch");
   const humanDecision = humanAcceptanceDecision();
   require(valuesEqual(model.human_acceptance, humanDecision), "scoped human acceptance binding mismatch");
+  require(!("authority_id" in model.human_acceptance)
+    && !JSON.stringify(model.human_acceptance).includes("AUTH-FFF-"), "external-effect authority escaped into human acceptance");
   require(model.human_acceptance.inheritance_proof.accepted_creative_content_changed === false, "accepted creative content changed");
   require(model.human_acceptance.excluded_dimensions.includes("production subtitle selection")
     && model.human_acceptance.excluded_dimensions.includes("rights approval or clearance")
@@ -1253,6 +1261,10 @@ function contractFailures(model) {
   const distributionState = candidateDistributionState();
   require(model.boundaries.private && !model.boundaries.private_local_only && !model.boundaries.default_active && model.boundaries.successor_candidate && model.boundaries.primary_images_owner_accepted, "candidate state mismatch");
   require(Object.entries(distributionState).every(([key, value]) => valuesEqual(model.boundaries[key], value)), "candidate distribution state mismatch");
+  require(!("integration_state" in model.boundaries)
+    && !("integration_timepoint" in model.boundaries)
+    && !("main_integration_performed" in model.boundaries), "unscoped current integration state claim");
+  require(valuesEqual(model.boundaries.candidate_generation_snapshot, candidateGenerationSnapshot()), "candidate-generation integration snapshot mismatch");
   require(model.boundaries.human_comprehension_review_performed === true
     && model.boundaries.human_comprehension_review === "accepted_scoped_case_digest"
     && model.boundaries.accepted_creative_content_changed === false, "scoped human review boundary mismatch");
@@ -1264,8 +1276,7 @@ function contractFailures(model) {
     && !model.boundaries.final_canon, "closed authority boundary escaped");
   require(model.boundaries.human_case_digest_review === "accepted_scoped"
     && !model.boundaries.voice_selected
-    && !model.boundaries.audio_generated
-    && model.boundaries.main_integration_performed === false, "human review, integration, voice, or audio boundary mismatch");
+    && !model.boundaries.audio_generated, "human review, voice, or audio boundary mismatch");
   return failures;
 }
 
@@ -1321,7 +1332,8 @@ function targetedTests(model) {
     ["reject-default-promotion", "candidate state mismatch", (candidate) => { candidate.boundaries.default_active = true; }],
     ["reject-rights-claim", "closed authority boundary escaped", (candidate) => { candidate.boundaries.rights_cleared_claim = true; }],
     ["reject-production-subtitle-selection", "closed authority boundary escaped", (candidate) => { candidate.boundaries.production_subtitle_selected = true; }],
-    ["reject-false-main-integration", "human review, integration, voice, or audio boundary mismatch", (candidate) => { candidate.boundaries.main_integration_performed = true; }],
+    ["reject-unscoped-main-integration", "unscoped current integration state claim", (candidate) => { candidate.boundaries.main_integration_performed = true; }],
+    ["reject-external-authority-in-human-acceptance", "external-effect authority escaped into human acceptance", (candidate) => { candidate.human_acceptance.authority_id = "AUTH-FFF-EXTERNAL-EFFECT"; }],
     ["reject-human-acceptance-expansion", "scoped human acceptance binding mismatch", (candidate) => { candidate.human_acceptance.accepted_dimensions.push("production acceptance"); }],
     ["reject-transition-reset", "transition reset or flash detected", (candidate) => { candidate.transition_boundary_audit.status = "PASS"; candidate.transition_boundary_audit.position_reset_count = 1; }],
     ["reject-continuity-loss", "continuity Bible count mismatch", (candidate) => { candidate.recurring_element_continuity.elements.pop(); }]
@@ -1533,7 +1545,11 @@ function renderReadme(model, mp4) {
 
 ## 未成立
 
-production subtitle selection、production acceptance、rights clearance、publication、product/public release、voice、audio、final canon、master integrationは成立していません。
+production subtitle selection、production acceptance、rights clearance、publication、product/public release、voice、audio、final canonは成立していません。
+
+## Integration snapshot
+
+このpackageが記録するのはcandidate generation時点のsnapshotです。観測したmasterは \`${INTEGRATION_BASE_COMMIT}\` で、その観測時点ではmaster integrationは未実施でした。artifactはopen時点のlive/current integration stateを主張しません。現在のcanonical integrationは外部のread-only Git-ref reconciliationで解決します。
 `;
 }
 
@@ -1585,7 +1601,7 @@ function renderQuarantineJson() {
       target_ref: INTEGRATION_TARGET_REF,
       parent_commit: INTEGRATION_BASE_COMMIT,
       accepted_source_commit: ACCEPTED_SOURCE_COMMIT,
-      integration_state: "feature_candidate_ready_master_integration_not_performed",
+      candidate_generation_snapshot: candidateGenerationSnapshot(),
       active_default_artifact_id: DEFAULT_ARTIFACT_ID,
       successor_candidate_artifact_id: ARTIFACT_ID,
       product_release: false,
@@ -1602,7 +1618,7 @@ function renderQuarantineJson() {
       production_subtitle_selected: false,
       rights_cleared_claim: false,
       public_release: false,
-      main_integration_performed: false,
+      candidate_generation_snapshot: candidateGenerationSnapshot(),
       final_canon: false
     }
   };
@@ -1621,7 +1637,7 @@ function renderQuarantineReadme() {
 
 \`${ARTIFACT_ID}\` は \`${HUMAN_VERDICT_ID}\` により、CASE_DIGEST comprehension、review-caption wording/readability、変更のない既存visual sequenceに限ってacceptedです。継承元は \`${ACCEPTED_SOURCE_REF}\` の exact C2 \`${ACCEPTED_SOURCE_COMMIT}\`、MP4 SHA256は \`${ACCEPTED_MP4_SHA256}\` です。
 
-このfeature treeは \`${INTEGRATION_TARGET_REF}\` 向けのforward-integration candidateです。active/defaultはfalse、master integrationは未実施です。\`${DEFAULT_ARTIFACT_ID}\` がactive/defaultのままです。quarantineはACTIVEを維持し、production subtitle selection、production acceptance、rights、voice/audio、product/public release、final canonは承認していません。
+このfeature treeは \`${INTEGRATION_TARGET_REF}\` 向けのforward-integration candidateです。candidate generation snapshotが観測したmasterは \`${INTEGRATION_BASE_COMMIT}\` で、その観測時点ではmaster integrationは未実施でした。artifactはlive/current integration stateを主張せず、現在のcanonical stateは外部のread-only Git refsから解決します。\`${DEFAULT_ARTIFACT_ID}\` がactive/defaultです。quarantineはACTIVEを維持し、production subtitle selection、production acceptance、rights、voice/audio、product/public release、final canonは承認していません。
 `;
 }
 
@@ -1804,6 +1820,7 @@ function renderReviewDoc(model, mp4, browser, tests) {
 - inherited from: human-review context \`${HUMAN_REVIEW_CONTEXT_COMMIT}\` and exact C2 \`${ACCEPTED_SOURCE_COMMIT}\` (tree \`${ACCEPTED_SOURCE_TREE}\`)
 - unchanged proof: review-caption CSV、shot order/timings、subtitle-layout evidence、source-image identities、MP4 bytesはexact C2。HTMLのvisible markup/style/playback/captions/layoutはembedded state/decision metadataを除きexact C2です。
 - integration candidate: \`${INTEGRATION_CANDIDATE_ID}\` at \`${INTEGRATION_TARGET_REF}\`, parent M2 \`${INTEGRATION_BASE_COMMIT}\`
+- integration snapshot: candidate generation時点でmaster \`${INTEGRATION_BASE_COMMIT}\` を観測し、その時点のmaster integration performedはfalse。artifactはlive/current stateを主張せず、現在値は外部Git refsから解決します。
 
 accepted creative contentの変更はfalseです。この受入れはproduction subtitle selection、production acceptance、rights clearance、publication、product/public release、voice/audio、final canon、master integrationへ拡張されません。
 
@@ -1853,7 +1870,7 @@ function renderSubtitleGuideline() {
 `;
 }
 
-async function buildManifests(model, mp4, browser) {
+async function buildPackageManifest(model, mp4, browser) {
   const packageInventory = await directoryInventory(PACKAGE_ROOT, MANIFEST_PATH);
   const packageManifest = {
     schemaVersion: "fff.privateRasterCaseDigestManifest.v1",
@@ -1871,6 +1888,11 @@ async function buildManifests(model, mp4, browser) {
     files: packageInventory.files
   };
   await writeFile(MANIFEST_PATH, `${JSON.stringify(packageManifest, null, 2)}\n`, "utf8");
+  return packageManifest;
+}
+
+async function buildManifests(model, mp4, browser) {
+  const packageManifest = await buildPackageManifest(model, mp4, browser);
   const continuityInventory = await directoryInventory(CONTINUITY_ROOT, CONTINUITY_MANIFEST_PATH);
   const continuityManifest = {
     schemaVersion: "fff.recurringElementContinuityManifest.v1",
@@ -1980,6 +2002,92 @@ async function updateRootManifest(model, manifests) {
     final_canon: false
   };
   await writeFile(ROOT_MANIFEST_PATH, `${JSON.stringify(root, null, 2)}\n`, "utf8");
+}
+
+function applyMetadataRework(model) {
+  model.human_acceptance = humanAcceptanceDecision();
+  for (const key of [
+    "integration_state",
+    "integration_timepoint",
+    "main_integration_performed",
+    "candidate_generation_snapshot"
+  ]) {
+    delete model.boundaries[key];
+  }
+  Object.assign(model.boundaries, candidateDistributionState());
+  return model;
+}
+
+async function metadataReworkProtectedInventory() {
+  const paths = [
+    MP4_PATH,
+    SCRIPT_PATH,
+    REVIEW_CAPTIONS_PATH,
+    PRODUCTION_SUBTITLES_PATH,
+    SHOT_SEQUENCE_PATH,
+    TRANSITION_MAP_PATH,
+    SUBTITLE_EVIDENCE_PATH,
+    SCREENSHOTS.desktop,
+    SCREENSHOTS.narrow,
+    CONTINUITY_GUIDELINE_PATH,
+    SUBTITLE_GUIDELINE_PATH,
+    path.join(REPO_ROOT, "mkdocs.yml"),
+    path.join(REPO_ROOT, "tools", "fff-state.mjs")
+  ];
+  const records = [];
+  for (const filePath of paths) records.push(await fileRecord(filePath));
+  for (const filePath of await listFilesRecursive(CONTINUITY_ROOT)) records.push(await fileRecord(filePath));
+  return records.sort((left, right) => left.relative_path.localeCompare(right.relative_path));
+}
+
+async function rebuildMetadata() {
+  const sharp = await loadSharp();
+  await verifySource(sharp);
+  const protectedBefore = await metadataReworkProtectedInventory();
+  const [model, existingManifest, continuityManifest, result] = await Promise.all([
+    readJson(MODEL_PATH),
+    readJson(MANIFEST_PATH),
+    readJson(CONTINUITY_MANIFEST_PATH),
+    readJson(RESULT_PATH)
+  ]);
+  applyMetadataRework(model);
+  const failures = contractFailures(model);
+  if (failures.length) throw new Error(`Metadata rework contract failed:\n- ${failures.join("\n- ")}`);
+  const tests = targetedTests(model);
+  if (!tests.all_passed) throw new Error(`Metadata rework targeted tests failed: ${JSON.stringify(tests)}`);
+  await Promise.all([
+    writeFile(MODEL_PATH, `${JSON.stringify(model, null, 2)}\n`, "utf8"),
+    writeFile(HTML_PATH, renderHtml(model), "utf8"),
+    writeFile(README_PATH, renderReadme(model, existingManifest.mp4), "utf8"),
+    writeFile(REVIEW_DOC_PATH, renderReviewDoc(model, existingManifest.mp4, result.browser_evidence, tests), "utf8"),
+    writeFile(QUARANTINE_JSON_PATH, `${JSON.stringify(renderQuarantineJson(), null, 2)}\n`, "utf8"),
+    writeFile(QUARANTINE_README_PATH, renderQuarantineReadme(), "utf8")
+  ]);
+  const packageManifest = await buildPackageManifest(model, existingManifest.mp4, result.browser_evidence);
+  result.distribution_state = candidateDistributionState();
+  result.human_acceptance = humanAcceptanceDecision();
+  result.targeted_tests = tests;
+  result.package_manifest = {
+    path: repoPath(MANIFEST_PATH),
+    fingerprint: packageManifest.package_fingerprint_sha256,
+    payload_file_count: packageManifest.payload_file_count
+  };
+  result.boundaries = model.boundaries;
+  result.metadata_rework = {
+    mode: "offline_metadata_only",
+    candidate_generation_snapshot: candidateGenerationSnapshot(),
+    media_regenerated: false,
+    browser_capture_repeated: false,
+    network_lookup_required: false
+  };
+  await writeFile(RESULT_PATH, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+  await updateRootManifest(model, { packageManifest, continuityManifest });
+  const protectedAfter = await metadataReworkProtectedInventory();
+  if (!valuesEqual(protectedBefore, protectedAfter)) throw new Error("Metadata rework changed a protected creative, media, route, or continuity path");
+  console.log(`Rebuilt metadata for ${ARTIFACT_ID}`);
+  console.log(`Package fingerprint ${packageManifest.package_fingerprint_sha256}`);
+  console.log("Media regenerated: false; browser capture repeated: false; network lookup required: false");
+  return result;
 }
 
 async function build() {
@@ -2106,6 +2214,31 @@ async function validate(inputPath = RESULT_PATH) {
   const candidateEntry = root.primary_imagery_medium_gate?.new_visual_candidates?.find((candidate) => candidate.artifact_id === ARTIFACT_ID);
   require(valuesEqual(candidateEntry?.distribution_state, distributionState), "candidate registry distribution state mismatch");
   require(valuesEqual(candidateEntry?.human_acceptance, humanDecision), "candidate registry human acceptance mismatch");
+  const integrationContainers = [
+    model.boundaries,
+    result.distribution_state,
+    manifest.distribution_state,
+    root.private_raster_case_digest,
+    candidateEntry?.distribution_state
+  ];
+  require(integrationContainers.every((container) =>
+    container
+    && !("integration_state" in container)
+    && !("integration_timepoint" in container)
+    && !("main_integration_performed" in container)
+    && valuesEqual(container.candidate_generation_snapshot, candidateGenerationSnapshot())
+  ), "unscoped or inconsistent integration state metadata");
+  require([model, result, manifest, root.private_raster_case_digest, candidateEntry].every((container) =>
+    container?.human_acceptance
+    && !("authority_id" in container.human_acceptance)
+    && !JSON.stringify(container.human_acceptance).includes("AUTH-FFF-")
+  ), "external-effect authority found in generated human acceptance");
+  require(!result.metadata_rework || (
+    result.metadata_rework.mode === "offline_metadata_only"
+    && result.metadata_rework.media_regenerated === false
+    && result.metadata_rework.browser_capture_repeated === false
+    && result.metadata_rework.network_lookup_required === false
+  ), "metadata rework execution boundary mismatch");
   require(root.narrative_format_quarantine?.quarantine_id === QUARANTINE_ID && root.narrative_format_quarantine?.status === "ACTIVE", "root narrative quarantine mismatch");
   require(root.narrative_format_quarantine?.replacement_artifact_id === ARTIFACT_ID
     && root.narrative_format_quarantine?.replacement_status === "ACCEPTED_SCOPED_DEFAULT_OFF_SUCCESSOR_CANDIDATE", "accepted replacement registration mismatch");
@@ -2158,6 +2291,7 @@ export async function runPrivateRasterCaseDigestCommand({ command, inputPath }) 
 async function main() {
   const command = process.argv[2] || "build";
   if (command === "build") await build();
+  else if (command === "rebuild-metadata") await rebuildMetadata();
   else if (command === "validate") await validate(process.argv[3] ? path.resolve(process.argv[3]) : RESULT_PATH);
   else if (command === "smoke") {
     const model = await readJson(MODEL_PATH);
@@ -2165,7 +2299,7 @@ async function main() {
     console.log(JSON.stringify(tests, null, 2));
     if (!tests.all_passed) process.exitCode = 1;
   } else {
-    throw new Error("Usage: node tools/fff-private-raster-case-digest.mjs <build|validate|smoke>");
+    throw new Error("Usage: node tools/fff-private-raster-case-digest.mjs <build|rebuild-metadata|validate|smoke>");
   }
 }
 

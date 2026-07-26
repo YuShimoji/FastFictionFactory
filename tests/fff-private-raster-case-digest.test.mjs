@@ -27,6 +27,26 @@ async function sha256(filePath) {
   return createHash("sha256").update(await readFile(filePath)).digest("hex");
 }
 
+const expectedIntegrationSnapshot = {
+  observed_master_commit: "701869936943f9babd7d4d5287008b646106188b",
+  observation_phase: "candidate_generation_before_master_integration",
+  master_integration_performed_at_observation: false,
+  live_current_integration_state_claimed: false,
+  current_state_source: "external_read_only_git_ref_reconciliation_not_package_generation"
+};
+
+function assertNoExternalEffectAuthority(decision) {
+  assert.equal(Object.hasOwn(decision, "authority_id"), false);
+  assert.equal(JSON.stringify(decision).includes("AUTH-FFF-"), false);
+}
+
+function assertSnapshotScopedIntegration(container) {
+  assert.equal(Object.hasOwn(container, "integration_state"), false);
+  assert.equal(Object.hasOwn(container, "integration_timepoint"), false);
+  assert.equal(Object.hasOwn(container, "main_integration_performed"), false);
+  assert.deepEqual(container.candidate_generation_snapshot, expectedIntegrationSnapshot);
+}
+
 test("CASE_DIGEST uses the exact five sections and eleven shot windows", async () => {
   const model = await readJson(modelPath);
   assert.equal(model.format_id, "CASE_DIGEST");
@@ -92,6 +112,7 @@ test("scoped human acceptance is inherited from exact C2 without expanding produ
     readJson(packageManifestPath)
   ]);
   for (const decision of [model.human_acceptance, result.human_acceptance, manifest.human_acceptance]) {
+    assertNoExternalEffectAuthority(decision);
     assert.equal(decision.decision_id, "FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726");
     assert.equal(decision.verdict, "ACCEPTED_SCOPED");
     assert.equal(decision.source_binding.human_review_context_commit, "f817003ea2156817220225a1b25f39cbcd7b09f3");
@@ -99,20 +120,28 @@ test("scoped human acceptance is inherited from exact C2 without expanding produ
     assert.equal(decision.source_binding.accepted_source_tree, "accfb3fc5474f4ecb2e39b5c4d69fd8de6a7e841");
     assert.equal(decision.source_binding.accepted_mp4_sha256, "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1");
     assert.equal(decision.integration_candidate_binding.parent_commit, "701869936943f9babd7d4d5287008b646106188b");
+    assert.deepEqual(decision.integration_candidate_binding.candidate_generation_snapshot, expectedIntegrationSnapshot);
     assert.equal(decision.inheritance_proof.accepted_creative_content_changed, false);
     assert.deepEqual(decision.accepted_dimensions, [
       "CASE_DIGEST comprehension and format fitness",
       "review-caption wording and line-break/readability",
       "unchanged existing image sequence and visual essence"
     ]);
-    assert.equal(decision.excluded_dimensions.includes("production subtitle selection"), true);
-    assert.equal(decision.excluded_dimensions.includes("rights approval or clearance"), true);
-    assert.equal(decision.excluded_dimensions.includes("product or public release"), true);
+    assert.deepEqual(decision.excluded_dimensions, [
+      "production subtitle selection",
+      "voice or audio",
+      "rights approval or clearance",
+      "production acceptance",
+      "product or public release",
+      "final canon"
+    ]);
   }
   assert.equal(model.boundaries.production_subtitle_selected, false);
   assert.equal(model.boundaries.audio_generated, false);
   assert.equal(model.boundaries.voice_selected, false);
-  assert.equal(model.boundaries.main_integration_performed, false);
+  assertSnapshotScopedIntegration(model.boundaries);
+  assertSnapshotScopedIntegration(result.distribution_state);
+  assertSnapshotScopedIntegration(manifest.distribution_state);
   assert.equal(model.boundaries.final_canon, false);
 });
 
@@ -132,7 +161,61 @@ test("current successor assertions supersede both stale predecessor self-success
   assert.equal(root.private_full_raster_clarity_candidate.successor_candidate, false);
   assert.equal(root.private_raster_case_digest.successor_candidate, true);
   assert.equal(root.private_raster_case_digest.active_default, false);
-  assert.equal(root.private_raster_case_digest.main_integration_performed, false);
+  assertSnapshotScopedIntegration(root.private_raster_case_digest);
+  assertNoExternalEffectAuthority(root.private_raster_case_digest.human_acceptance);
+});
+
+test("generated metadata does not claim live integration state or borrow Git-effect authority", async () => {
+  const [root, model, result, manifest, quarantine] = await Promise.all([
+    readJson(rootManifestPath),
+    readJson(modelPath),
+    readJson(resultPath),
+    readJson(packageManifestPath),
+    readJson(quarantinePath)
+  ]);
+  const candidate = root.primary_imagery_medium_gate.new_visual_candidates.find((item) => item.artifact_id === "fff-private-raster-case-digest-001");
+  for (const decision of [
+    model.human_acceptance,
+    result.human_acceptance,
+    manifest.human_acceptance,
+    root.private_raster_case_digest.human_acceptance,
+    candidate.human_acceptance,
+    quarantine.human_acceptance
+  ]) assertNoExternalEffectAuthority(decision);
+  for (const container of [
+    model.boundaries,
+    result.distribution_state,
+    manifest.distribution_state,
+    root.private_raster_case_digest,
+    candidate.distribution_state,
+    quarantine.canonical_integration_boundary,
+    quarantine.authority_boundaries
+  ]) assertSnapshotScopedIntegration(container);
+  assert.equal(result.metadata_rework.mode, "offline_metadata_only");
+  assert.equal(result.metadata_rework.media_regenerated, false);
+  assert.equal(result.metadata_rework.browser_capture_repeated, false);
+  assert.equal(result.metadata_rework.network_lookup_required, false);
+});
+
+test("metadata rework stays offline and does not repeat media or browser generation", async () => {
+  const source = await readFile(toolPath, "utf8");
+  const start = source.indexOf("async function rebuildMetadata");
+  const end = source.indexOf("async function build()", start);
+  const body = source.slice(start, end);
+  assert.notEqual(start, -1);
+  assert.notEqual(end, -1);
+  for (const forbidden of [
+    "encodeTimeline(",
+    "captureBrowserEvidence(",
+    "buildContinuitySheet(",
+    "runFfmpeg(",
+    "execFile(",
+    "fetch(",
+    "git "
+  ]) assert.equal(body.includes(forbidden), false, `${forbidden} must stay outside metadata rework`);
+  assert.equal(body.includes('media_regenerated: false'), true);
+  assert.equal(body.includes('browser_capture_repeated: false'), true);
+  assert.equal(body.includes('network_lookup_required: false'), true);
 });
 
 test("continuity Bible contains the exact seven required elements and future gates", async () => {

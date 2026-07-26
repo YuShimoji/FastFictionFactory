@@ -41,7 +41,6 @@
   "replacement_status": "ACCEPTED_SCOPED_DEFAULT_OFF_SUCCESSOR_CANDIDATE",
   "human_acceptance": {
     "decision_id": "FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726",
-    "authority_id": "AUTH-FFF-CASE-DIGEST-ACCEPTED-FORWARD-INTEGRATION-CANDIDATE-PUSH-20260726",
     "verdict": "ACCEPTED_SCOPED",
     "observation_ja": "事件ダイジェストとして理解できます。字幕改行にも問題ありません。次へ進めてよいです。",
     "accepted_dimensions": [
@@ -70,7 +69,13 @@
       "target_ref": "refs/heads/codex/fff-case-digest-accepted-forward-integration-v1",
       "parent_commit": "701869936943f9babd7d4d5287008b646106188b",
       "parent_tree": "85a1ca377d655151a348e3e657f3ddc1c3e1177c",
-      "state": "feature_candidate_ready_master_integration_not_performed"
+      "candidate_generation_snapshot": {
+        "observed_master_commit": "701869936943f9babd7d4d5287008b646106188b",
+        "observation_phase": "candidate_generation_before_master_integration",
+        "master_integration_performed_at_observation": false,
+        "live_current_integration_state_claimed": false,
+        "current_state_source": "external_read_only_git_ref_reconciliation_not_package_generation"
+      }
     },
     "inheritance_proof": {
       "accepted_creative_content_changed": false,
@@ -93,7 +98,13 @@
     "target_ref": "refs/heads/codex/fff-case-digest-accepted-forward-integration-v1",
     "parent_commit": "701869936943f9babd7d4d5287008b646106188b",
     "accepted_source_commit": "2e96bd380d47869024587eeb19b3f054064390af",
-    "integration_state": "feature_candidate_ready_master_integration_not_performed",
+    "candidate_generation_snapshot": {
+      "observed_master_commit": "701869936943f9babd7d4d5287008b646106188b",
+      "observation_phase": "candidate_generation_before_master_integration",
+      "master_integration_performed_at_observation": false,
+      "live_current_integration_state_claimed": false,
+      "current_state_source": "external_read_only_git_ref_reconciliation_not_package_generation"
+    },
     "active_default_artifact_id": "fff-private-previsualization-timeline-001",
     "successor_candidate_artifact_id": "fff-private-raster-case-digest-001",
     "product_release": false,
@@ -110,7 +121,13 @@
     "production_subtitle_selected": false,
     "rights_cleared_claim": false,
     "public_release": false,
-    "main_integration_performed": false,
+    "candidate_generation_snapshot": {
+      "observed_master_commit": "701869936943f9babd7d4d5287008b646106188b",
+      "observation_phase": "candidate_generation_before_master_integration",
+      "master_integration_performed_at_observation": false,
+      "live_current_integration_state_claimed": false,
+      "current_state_source": "external_read_only_git_ref_reconciliation_not_package_generation"
+    },
     "final_canon": false
   }
 }
