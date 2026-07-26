@@ -396,8 +396,8 @@
       "focus_outline_style": "solid",
       "focus_outline_width": "3px",
       "screenshot_path": "artifacts/review-screens/private-raster-case-digest-desktop.png",
-      "screenshot_byte_size": 616498,
-      "screenshot_sha256": "be2fa80a7565b125b3ebeb442b5a78ced0ea3189ab0a7616f229606ce2018fa6"
+      "screenshot_byte_size": 615964,
+      "screenshot_sha256": "7a62ce07862532225d0101d2fd3ff79ff843cc4750fd1ca56d6ac8df9a7ba4dd"
     },
     "narrow": {
       "document_width": 390,
@@ -416,8 +416,8 @@
       "focus_outline_style": "solid",
       "focus_outline_width": "3px",
       "screenshot_path": "artifacts/review-screens/private-raster-case-digest-narrow.png",
-      "screenshot_byte_size": 193432,
-      "screenshot_sha256": "c678b152db8ab1563fc890595c56ead60fbc595cdb27d1133b1100da557d9501"
+      "screenshot_byte_size": 191342,
+      "screenshot_sha256": "59f8e5b926a54ccdb8fcd89ec22e301ef12c1505f7b7698b413c0c293cfd0bb8"
     }
   },
   "targeted_tests": {
@@ -5594,12 +5594,12 @@
   },
   "package_manifest": {
     "path": "artifacts/private-raster-case-digest/private-raster-case-digest-manifest.json",
-    "fingerprint": "b8817aa01ce09644de8e5e0e80cdd69b4b53e9127969a618a716d3077f439612",
+    "fingerprint": "03ee72366707d2f20491d2357511cd37c581a318bb22135494f75fad3a66e10c",
     "payload_file_count": 10
   },
   "continuity_manifest": {
     "path": "artifacts/recurring-element-continuity/recurring-element-continuity-manifest.json",
-    "fingerprint": "454acf15ae4cf285a5e8659ed70e01e82e9ed308d89d9851df467e0623a9bf7e",
+    "fingerprint": "f8eee2ea45dd62d43e25d349fd7065c3d24b6fa9b6fb30a2939e8f481f507adb",
     "payload_file_count": 4
   },
   "boundaries": {

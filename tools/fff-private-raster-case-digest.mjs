@@ -1445,11 +1445,12 @@ async function buildContinuitySheet(model, sharp) {
   const columns = 2;
   const rows = Math.ceil(CONTINUITY_ELEMENTS.length / columns);
   const canvas = sharp({ create: { width: tileWidth * columns, height: (imageHeight + labelHeight) * rows, channels: 3, background: "#10171c" } });
-  const sourceById = new Map(model.shots.map((shot) => [shot.shot_id, shot]));
   const composites = [];
-  for (let index = 0; index < CONTINUITY_ELEMENTS.length; index += 1) {
-    const element = CONTINUITY_ELEMENTS[index];
-    const source = sourceById.get(element.first_appearance_shot_id);
+  for (let index = 0; index < model.recurring_element_continuity.elements.length; index += 1) {
+    const element = model.recurring_element_continuity.elements[index];
+    const displayShotId = element.protected_anchor_shot_ids[0] || element.first_appearance_shot_id;
+    const source = element.canonical_image_paths_and_hashes.find((image) => image.shot_id === displayShotId);
+    if (!source) throw new Error(`Continuity contact-sheet source missing: ${element.element_id}/${displayShotId}`);
     const left = (index % columns) * tileWidth;
     const top = Math.floor(index / columns) * (imageHeight + labelHeight);
     const image = await sharp(path.join(REPO_ROOT, source.image_path)).resize(tileWidth, imageHeight, { fit: "cover" }).jpeg().toBuffer();

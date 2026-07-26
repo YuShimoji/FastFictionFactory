@@ -20,16 +20,16 @@
   "screenshots": {
     "desktop": {
       "path": "artifacts/review-screens/private-raster-case-digest-desktop.png",
-      "byte_size": 616498,
-      "sha256": "be2fa80a7565b125b3ebeb442b5a78ced0ea3189ab0a7616f229606ce2018fa6"
+      "byte_size": 615964,
+      "sha256": "7a62ce07862532225d0101d2fd3ff79ff843cc4750fd1ca56d6ac8df9a7ba4dd"
     },
     "narrow": {
       "path": "artifacts/review-screens/private-raster-case-digest-narrow.png",
-      "byte_size": 193432,
-      "sha256": "c678b152db8ab1563fc890595c56ead60fbc595cdb27d1133b1100da557d9501"
+      "byte_size": 191342,
+      "sha256": "59f8e5b926a54ccdb8fcd89ec22e301ef12c1505f7b7698b413c0c293cfd0bb8"
     }
   },
-  "package_fingerprint_sha256": "b8817aa01ce09644de8e5e0e80cdd69b4b53e9127969a618a716d3077f439612",
+  "package_fingerprint_sha256": "03ee72366707d2f20491d2357511cd37c581a318bb22135494f75fad3a66e10c",
   "payload_file_count": 10,
   "files": [
     {
@@ -39,8 +39,8 @@
     },
     {
       "relative_path": "case-digest-review-captions.csv",
-      "byte_size": 1637,
-      "sha256": "295b67dab8ade6006198208ad39b1bf55de9a67eb6c0dd53878b82278dba0fec"
+      "byte_size": 1589,
+      "sha256": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d"
     },
     {
       "relative_path": "case-digest-script.md",
@@ -49,13 +49,13 @@
     },
     {
       "relative_path": "private-raster-case-digest.html",
-      "byte_size": 116093,
-      "sha256": "02c91cb60274859b0870c3a03ee35c9001796cf4c9fc2723eb6dff6cd98c5185"
+      "byte_size": 115433,
+      "sha256": "6bdffc72c30b801e6a0da3c40b564fd6ddd7eeb3e8b46855039d27feece64eda"
     },
     {
       "relative_path": "private-raster-case-digest.json",
-      "byte_size": 136267,
-      "sha256": "6729d018a2645ea4d4aac6803bb51d2c4ab0433887d05c33aebdcd46c579c294"
+      "byte_size": 135451,
+      "sha256": "1a793b321cfdfd2e6f6651642172775d3cadec917b1d1badb8a316486dce4f9f"
     },
     {
       "relative_path": "private-raster-case-digest.mp4",
@@ -74,8 +74,8 @@
     },
     {
       "relative_path": "subtitle-layout-evidence.csv",
-      "byte_size": 12801,
-      "sha256": "3b3d6c2fa5a9cd8d0d70de152c7cb43c34309b2aa8d4871ef24812b82ffa5d04"
+      "byte_size": 12387,
+      "sha256": "cc7d02ac77d92e95ed94caef70ffa6b1905fb23369b5eb57f260a42ddaf855eb"
     },
     {
       "relative_path": "transition-boundary-map.csv",
