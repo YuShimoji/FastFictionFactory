@@ -1,7 +1,7 @@
 {
   "artifact_id": "fff-private-previsualization-timeline-001",
   "active_default_artifact_id": "fff-private-previsualization-timeline-001",
-  "successor_candidate_artifact_id": "fff-private-raster-case-digest-001",
+  "successor_candidate_artifact_id": null,
   "quarantined_candidate_artifact_id": "fff-private-materialized-motion-previs-001",
   "primary_imagery_quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
   "primary_imagery_quarantine_path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
@@ -35,7 +35,7 @@
       {
         "artifact_id": "fff-private-full-raster-candidate-001",
         "active_default": false,
-        "successor_candidate": true,
+        "successor_candidate": false,
         "primary_frames": [
           {
             "shot_id": "shot-b01-01",
@@ -269,79 +269,6 @@
           {
             "shot_id": "shot-b06-03",
             "source_kind": "accepted_existing_raster",
-            "candidate_source_kind": "deterministic_raster_composite",
-            "rasterized_forbidden_vector": false
-          }
-        ]
-      },
-      {
-        "artifact_id": "fff-private-raster-case-digest-001",
-        "active_default": false,
-        "successor_candidate": true,
-        "primary_frames": [
-          {
-            "shot_id": "shot-b01-01",
-            "source_kind": "generated_raster",
-            "candidate_source_kind": "generated_raster",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b01-02",
-            "source_kind": "generated_raster",
-            "candidate_source_kind": "generated_raster",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b02-01",
-            "source_kind": "generated_raster",
-            "candidate_source_kind": "generated_raster",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b02-02",
-            "source_kind": "generated_raster",
-            "candidate_source_kind": "generated_raster",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b02-03",
-            "source_kind": "taste_approved_high_fidelity_raster",
-            "candidate_source_kind": "accepted_generated_raster_anchor",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b03-01",
-            "source_kind": "generated_raster",
-            "candidate_source_kind": "generated_raster",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b03-02",
-            "source_kind": "generated_raster",
-            "candidate_source_kind": "generated_raster",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b04-01",
-            "source_kind": "taste_approved_high_fidelity_raster",
-            "candidate_source_kind": "accepted_generated_raster_anchor",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b04-02",
-            "source_kind": "generated_raster",
-            "candidate_source_kind": "generated_raster",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b06-01",
-            "source_kind": "taste_approved_high_fidelity_raster",
-            "candidate_source_kind": "deterministic_raster_composite",
-            "rasterized_forbidden_vector": false
-          },
-          {
-            "shot_id": "shot-b06-03",
-            "source_kind": "taste_approved_high_fidelity_raster",
             "candidate_source_kind": "deterministic_raster_composite",
             "rasterized_forbidden_vector": false
           }
@@ -4779,7 +4706,7 @@
     "private_local_only": true,
     "default_active": false,
     "active_default": false,
-    "successor_candidate": true,
+    "successor_candidate": false,
     "release_path_reachable": false,
     "product_owner_whole_story_review": "pending",
     "selected_for_production": false,
@@ -4847,53 +4774,8 @@
     "status": "ACTIVE",
     "path": "artifacts/narrative-format-quarantine/narrative-format-quarantine.json",
     "source_artifact_id": "fff-private-full-raster-clarity-candidate-001",
-    "replacement_artifact_id": "fff-private-raster-case-digest-001"
-  },
-  "private_raster_case_digest": {
-    "artifact_id": "fff-private-raster-case-digest-001",
-    "schemaVersion": "fff.privateRasterCaseDigest.v1",
-    "format_id": "CASE_DIGEST",
-    "package_root": "artifacts/private-raster-case-digest",
-    "result_path": "artifacts/private-raster-case-digest-result.json",
-    "review_doc_path": "docs/review/private-raster-case-digest.md",
-    "access_route": "artifacts/private-raster-case-digest/private-raster-case-digest.html",
-    "manifest_path": "artifacts/private-raster-case-digest/private-raster-case-digest-manifest.json",
-    "mp4_path": "artifacts/private-raster-case-digest/private-raster-case-digest.mp4",
-    "package_fingerprint_sha256": "03ee72366707d2f20491d2357511cd37c581a318bb22135494f75fad3a66e10c",
-    "source_artifact_id": "fff-private-full-raster-clarity-candidate-001",
-    "narrative_quarantine_id": "FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26",
-    "continuity_id": "fff-recurring-element-continuity-001",
-    "continuity_fingerprint_sha256": "f8eee2ea45dd62d43e25d349fd7065c3d24b6fa9b6fb30a2939e8f481f507adb",
-    "shot_count": 11,
-    "section_count": 5,
-    "duration_seconds": 180,
-    "frame_count": 5400,
-    "subtitle_layout_evidence_count": 44,
-    "narration_segment_count": 5,
-    "owner_accepted_primary_frame_count": 19,
-    "selected_primary_frame_count": 11,
-    "primary_image_change_count": 0,
-    "image_generation_call_count": 0,
-    "image_reencode_count": 0,
-    "transition_boundary_count": 10,
-    "position_reset_count": 0,
-    "raw_source_flash_count": 0,
-    "private_local_only": true,
-    "default_active": false,
-    "active_default": false,
-    "successor_candidate": true,
-    "human_comprehension_review": "not_performed",
-    "human_case_digest_review": "pending",
-    "primary_images_owner_accepted": true,
-    "production_approved": false,
-    "selected_for_production": false,
-    "rights_cleared_claim": false,
-    "public_release": false,
-    "release_path_reachable": false,
-    "audio": false,
-    "audio_generated": false,
-    "voice": false,
-    "voice_selected": false,
-    "final_canon": false
+    "replacement_artifact_id": null,
+    "replacement_state": "external_candidate_not_integrated",
+    "boundary_record_path": "artifacts/narrative-format-quarantine/narrative-format-quarantine.json"
   }
 }

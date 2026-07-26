@@ -1,19 +1,15 @@
 # Artifacts
 
-## fff-private-raster-case-digest-001
+## CASE_DIGEST canonical-isolation boundary
 
-- Title: Fast Fiction Factory Private Raster CASE_DIGEST
-- Purpose: Replace the rejected clarity narrative format with a five-section factual case digest while preserving all nineteen accepted raster bytes and the terminal-frame transition method.
-- Primary file: `artifacts/private-raster-case-digest/private-raster-case-digest.html`
-- Package: canonical JSON, standalone file HTML player, silent watermarked H.264 MP4, five-section script, eleven review captions, eleven provisional production subtitle cues, selected-shot sequence, ten-boundary transition evidence, forty-four-row actual-width subtitle evidence, README, and integrity manifest.
-- Exact runtime: 180 seconds / 5400 frames / 30 fps / 11 selected accepted shots / 5 `CASE_DIGEST` sections.
-- Narrative quarantine: `artifacts/narrative-format-quarantine/narrative-format-quarantine.json`; previous six-beat narrative, twenty review captions, twenty production subtitle draft cues, and forced-choice closure are quarantined while visual bytes and transition method remain preserved.
-- Continuity Bible: `artifacts/recurring-element-continuity/recurring-element-continuity.json`; exactly seven recurring-element entries, HTML, appearance map, contact sheet, and integrity manifest.
-- Review doc/result: `docs/review/private-raster-case-digest.md`, `artifacts/private-raster-case-digest-result.json`
-- Visual evidence: `artifacts/review-screens/private-raster-case-digest-desktop.png`, `artifacts/review-screens/private-raster-case-digest-narrow.png`
-- Read-only validation: `node tools/fff-state.mjs validate-private-raster-case-digest artifacts/private-raster-case-digest-result.json`
-- State: machine-green only after validator completion, private, default-off, successor-candidate-only; human comprehension review not performed.
-- Boundaries: production selection, rights clearance, audio, voice, publication, release approval, and final canon remain closed.
+- Historical master event: commit `f817003ea2156817220225a1b25f39cbcd7b09f3` publicly stored the corrected files while retaining a stale MP4 subtitle track.
+- Current master tree: no live CASE_DIGEST package, result, review route, generator, test, screenshot, or candidate-derived guideline; `successor_candidate_artifact_id` is `null`.
+- External successor candidate: artifact `fff-private-raster-case-digest-001` at `refs/heads/codex/fff-case-digest-format-reset-continuity-v1`, commit `2e96bd380d47869024587eeb19b3f054064390af`.
+- Exact human-review identity: MP4 SHA256 `0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1`; package fingerprint `0f701e7cfa106dee19cf6e378eec1082920cd7f119f37be0f09696ac8020fbf2`.
+- Distribution boundary: repository visibility is public and Git-history distribution is authorized; the candidate remains an unreleased product object, default-off, not integrated, human-review-pending, and without rights approval.
+- Preserved default: `fff-private-previsualization-timeline-001`.
+- Preserved quarantine: `FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26` remains ACTIVE at `artifacts/narrative-format-quarantine/narrative-format-quarantine.json`.
+- Closed gates: human CASE_DIGEST acceptance, product publication, rights approval, production subtitle selection, voice/audio work, production acceptance, and final canon.
 
 ## fff-private-full-raster-clarity-candidate-001
 

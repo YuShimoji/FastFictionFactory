@@ -36,15 +36,72 @@
     "terminal-frame transition implementation",
     "existing source package and its historical evidence"
   ],
-  "replacement_artifact_id": "fff-private-raster-case-digest-001",
+  "replacement_artifact_id": null,
+  "replacement_candidate_artifact_id": "fff-private-raster-case-digest-001",
+  "canonical_isolation_boundary": {
+    "repository_visibility": "public",
+    "git_history_distribution": "authorized",
+    "legacy_private_local_only_repository_claim": "superseded",
+    "product_release": false,
+    "public_release": false,
+    "active_default": false,
+    "human_case_digest_review": "pending",
+    "rights_approval": "not_granted",
+    "integration_state": "not_integrated",
+    "historical_misintegration_commit": "f817003ea2156817220225a1b25f39cbcd7b09f3",
+    "candidate_ref": "refs/heads/codex/fff-case-digest-format-reset-continuity-v1",
+    "candidate_commit": "2e96bd380d47869024587eeb19b3f054064390af",
+    "candidate_mp4_sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1",
+    "candidate_package_fingerprint": "0f701e7cfa106dee19cf6e378eec1082920cd7f119f37be0f09696ac8020fbf2",
+    "private_identifier_meaning": "unreleased_product_candidate_not_repository_confidentiality",
+    "current_master_successor_candidate_artifact_id": null,
+    "current_master_active_default_artifact_id": "fff-private-previsualization-timeline-001"
+  },
+  "change_management": [
+    {
+      "prior_state": "local-only interpretation",
+      "current_state": "public Git storage; product remains unreleased",
+      "affected_consumers": "repository readers and candidate reviewers",
+      "migration": "use the public candidate ref and exact commit identity",
+      "rollback_boundary": "Git history remains intact; do not rewrite or force-push"
+    },
+    {
+      "prior_state": "f817003e master misintegration",
+      "current_state": "coherent candidate isolated on the dedicated branch",
+      "affected_consumers": "master consumers and successor-candidate tooling",
+      "migration": "resolve the external candidate only by its ref and exact commit",
+      "rollback_boundary": "restore only through a new forward commit after separate authority"
+    },
+    {
+      "prior_state": "stale historical MP4 with an empty subtitle track",
+      "current_state": "coherent candidate MP4 with eleven corrected review-caption cues",
+      "affected_consumers": "human review and media verification",
+      "migration": "bind review to candidate artifact, commit, MP4 SHA256, and package fingerprint",
+      "rollback_boundary": "the historical MP4 remains obtainable only as history, not current review evidence"
+    },
+    {
+      "prior_state": "live successor and shared master routes",
+      "current_state": "successor null on master; routes are candidate-local",
+      "affected_consumers": "manifest, MkDocs, state dispatcher, tests, and review links",
+      "migration": "remove live master consumers and use the external candidate locator",
+      "rollback_boundary": "no merge, cherry-pick, default promotion, or shared dispatcher without new authority"
+    }
+  ],
   "reuse_policy": "Quarantined narrative text and structure must not be copied into active review or production tracks. Visual bytes and the terminal-frame transition method remain reusable under their existing boundaries.",
   "authority_boundaries": {
     "private": true,
+    "repository_visibility": "public",
+    "git_history_distribution": "authorized",
+    "private_identifier_meaning": "unreleased_product_candidate_not_repository_confidentiality",
     "source_files_mutated": false,
     "human_comprehension_review_performed": false,
+    "human_case_digest_review": "pending",
     "production_approved": false,
+    "product_release": false,
     "rights_cleared_claim": false,
+    "rights_approval": "not_granted",
     "public_release": false,
+    "integration_state": "not_integrated",
     "final_canon": false
   }
 }

@@ -65,9 +65,6 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
-      - Private Raster CASE_DIGEST (fff-private-raster-case-digest-001): review/private-raster-case-digest.md
-      - Recurring Element Continuity Guideline: production/RECURRING_ELEMENT_CONTINUITY_GUIDELINE.md
-      - Japanese Subtitle Layout Guideline: production/JAPANESE_SUBTITLE_LAYOUT_GUIDELINE.md
       - Private Full Raster Clarity Candidate (fff-private-full-raster-clarity-candidate-001): review/private-full-raster-clarity-candidate.md
       - Narrative Visual Binding Guideline: production/NARRATIVE_VISUAL_BINDING_GUIDELINE.md
       - Private Full Raster Candidate (fff-private-full-raster-candidate-001): review/private-full-raster-candidate.md
