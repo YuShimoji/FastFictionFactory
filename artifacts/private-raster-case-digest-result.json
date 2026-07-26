@@ -357,10 +357,25 @@
     ]
   },
   "subtitle_layout_status": "PASS",
+  "distribution_state": {
+    "repository_visibility": "public",
+    "git_history_distribution": "authorized",
+    "repository_file_retrievable": true,
+    "legacy_private_local_only_repository_claim": "superseded",
+    "private_local_only": false,
+    "product_release": false,
+    "public_release": false,
+    "rights_approval": "not_granted",
+    "human_case_digest_review": "pending",
+    "integration_state": "not_integrated",
+    "release_path_reachable": false,
+    "release_path_reachable_scope": "product_release_path",
+    "private_identifier_meaning": "unreleased_product_candidate_not_repository_confidentiality"
+  },
   "mp4": {
     "path": "artifacts/private-raster-case-digest/private-raster-case-digest.mp4",
-    "byte_size": 16987131,
-    "sha256": "85b6d6b4d85eb3b590945a22c7486b92e7857650af22b1ccdde85a23cc261ac5",
+    "byte_size": 16988212,
+    "sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1",
     "duration_seconds": 180,
     "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
     "codec_name": "h264",
@@ -370,6 +385,76 @@
     "frame_count": 5400,
     "audio_stream_count": 0,
     "subtitle_stream_count": 1,
+    "subtitle_cue_count": 11,
+    "subtitle_timing_text_sha256": "39fb4e99038ea6cdb7a489d22d475df614b88a33f3d887bc138437631a9d9209",
+    "subtitle_cues": [
+      {
+        "cue_index": 1,
+        "start_seconds": 0,
+        "end_seconds": 12,
+        "text_ja": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "cue_index": 2,
+        "start_seconds": 12,
+        "end_seconds": 24,
+        "text_ja": "塔の取付枠は空で、鐘は確認できない。"
+      },
+      {
+        "cue_index": 3,
+        "start_seconds": 24,
+        "end_seconds": 38,
+        "text_ja": "時計修理師のミラ・ヴェイルが、失踪した兄の手掛かりを調べる。"
+      },
+      {
+        "cue_index": 4,
+        "start_seconds": 38,
+        "end_seconds": 52,
+        "text_ja": "失踪した兄のメモと真鍮の蛾が、作業台に残されている。"
+      },
+      {
+        "cue_index": 5,
+        "start_seconds": 52,
+        "end_seconds": 65,
+        "text_ja": "時計と記録には、9:17が繰り返し現れる。"
+      },
+      {
+        "cue_index": 6,
+        "start_seconds": 65,
+        "end_seconds": 81,
+        "text_ja": "失踪した兄のメモは、二列の台帳へ調査を導く。"
+      },
+      {
+        "cue_index": 7,
+        "start_seconds": 81,
+        "end_seconds": 97,
+        "text_ja": "台帳には、「分」の欄と人名の欄が並んでいる。"
+      },
+      {
+        "cue_index": 8,
+        "start_seconds": 97,
+        "end_seconds": 116,
+        "text_ja": "メモは、市の評議会を調査対象として指している。"
+      },
+      {
+        "cue_index": 9,
+        "start_seconds": 116,
+        "end_seconds": 136,
+        "text_ja": "告発は記録されているが、評議会の関与を裏づける証拠はない。"
+      },
+      {
+        "cue_index": 10,
+        "start_seconds": 136,
+        "end_seconds": 158,
+        "text_ja": "時間と名前は、台帳の二つの損失区分である。"
+      },
+      {
+        "cue_index": 11,
+        "start_seconds": 158,
+        "end_seconds": 180,
+        "text_ja": "音源と関係者を確定できないまま、塔は調査対象として残る。"
+      }
+    ],
     "watermark_text": "CASE DIGEST / PRIVATE / NOT FOR PUBLICATION"
   },
   "browser_evidence": {
@@ -397,7 +482,9 @@
       "focus_outline_width": "3px",
       "screenshot_path": "artifacts/review-screens/private-raster-case-digest-desktop.png",
       "screenshot_byte_size": 615964,
-      "screenshot_sha256": "7a62ce07862532225d0101d2fd3ff79ff843cc4750fd1ca56d6ac8df9a7ba4dd"
+      "screenshot_sha256": "7a62ce07862532225d0101d2fd3ff79ff843cc4750fd1ca56d6ac8df9a7ba4dd",
+      "observed_screenshot_byte_size": 616336,
+      "observed_screenshot_sha256": "ad8d41754b23a634b840f477315a7f88750c52130f9aeb6fd46d703ec8b2e8c5"
     },
     "narrow": {
       "document_width": 390,
@@ -417,7 +504,9 @@
       "focus_outline_width": "3px",
       "screenshot_path": "artifacts/review-screens/private-raster-case-digest-narrow.png",
       "screenshot_byte_size": 191342,
-      "screenshot_sha256": "59f8e5b926a54ccdb8fcd89ec22e301ef12c1505f7b7698b413c0c293cfd0bb8"
+      "screenshot_sha256": "59f8e5b926a54ccdb8fcd89ec22e301ef12c1505f7b7698b413c0c293cfd0bb8",
+      "observed_screenshot_byte_size": 191340,
+      "observed_screenshot_sha256": "3fd959df24eada43328a5382ef724c8948f7070a4a6f7243fd04d5059afbf14c"
     }
   },
   "targeted_tests": {
@@ -5594,7 +5683,7 @@
   },
   "package_manifest": {
     "path": "artifacts/private-raster-case-digest/private-raster-case-digest-manifest.json",
-    "fingerprint": "03ee72366707d2f20491d2357511cd37c581a318bb22135494f75fad3a66e10c",
+    "fingerprint": "0f701e7cfa106dee19cf6e378eec1082920cd7f119f37be0f09696ac8020fbf2",
     "payload_file_count": 10
   },
   "continuity_manifest": {
@@ -5604,19 +5693,28 @@
   },
   "boundaries": {
     "private": true,
-    "private_local_only": true,
+    "repository_visibility": "public",
+    "git_history_distribution": "authorized",
+    "repository_file_retrievable": true,
+    "legacy_private_local_only_repository_claim": "superseded",
+    "private_local_only": false,
+    "product_release": false,
+    "public_release": false,
+    "rights_approval": "not_granted",
+    "human_case_digest_review": "pending",
+    "integration_state": "not_integrated",
+    "release_path_reachable": false,
+    "release_path_reachable_scope": "product_release_path",
+    "private_identifier_meaning": "unreleased_product_candidate_not_repository_confidentiality",
     "local_file_player": true,
     "default_active": false,
     "successor_candidate": true,
     "narrative_format_selected_by_product_owner": true,
     "human_comprehension_review_performed": false,
-    "human_case_digest_review": "pending",
     "primary_images_owner_accepted": true,
     "production_approved": false,
     "selected_for_production": false,
     "rights_cleared_claim": false,
-    "public_release": false,
-    "release_path_reachable": false,
     "audio": false,
     "audio_generated": false,
     "voice": false,

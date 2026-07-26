@@ -322,6 +322,24 @@ function valuesEqual(left, right) {
   return JSON.stringify(left) === JSON.stringify(right);
 }
 
+function candidateDistributionState() {
+  return {
+    repository_visibility: "public",
+    git_history_distribution: "authorized",
+    repository_file_retrievable: true,
+    legacy_private_local_only_repository_claim: "superseded",
+    private_local_only: false,
+    product_release: false,
+    public_release: false,
+    rights_approval: "not_granted",
+    human_case_digest_review: "pending",
+    integration_state: "not_integrated",
+    release_path_reachable: false,
+    release_path_reachable_scope: "product_release_path",
+    private_identifier_meaning: "unreleased_product_candidate_not_repository_confidentiality"
+  };
+}
+
 async function readJson(filePath) {
   return JSON.parse(await readFile(filePath, "utf8"));
 }
@@ -358,6 +376,14 @@ function formatTime(seconds) {
   const whole = Math.floor(seconds % 60);
   const milliseconds = Math.round((seconds - Math.floor(seconds)) * 1000);
   return `${String(minutes).padStart(2, "0")}:${String(whole).padStart(2, "0")},${String(milliseconds).padStart(3, "0")}`;
+}
+
+function formatSrtTime(seconds) {
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const whole = Math.floor(seconds % 60);
+  const milliseconds = Math.round((seconds - Math.floor(seconds)) * 1000);
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(whole).padStart(2, "0")},${String(milliseconds).padStart(3, "0")}`;
 }
 
 async function runFfmpeg(args) {
@@ -777,19 +803,16 @@ async function buildModel(sourceBundle, sharp) {
     },
     boundaries: {
       private: true,
-      private_local_only: true,
+      ...candidateDistributionState(),
       local_file_player: true,
       default_active: false,
       successor_candidate: true,
       narrative_format_selected_by_product_owner: true,
       human_comprehension_review_performed: false,
-      human_case_digest_review: "pending",
       primary_images_owner_accepted: true,
       production_approved: false,
       selected_for_production: false,
       rights_cleared_claim: false,
-      public_release: false,
-      release_path_reachable: false,
       audio: false,
       audio_generated: false,
       voice: false,
@@ -877,10 +900,57 @@ async function normalizedPixelDifference(firstPath, secondPath, sharp) {
 function srtText(cues) {
   return cues.map((cue, index) => [
     index + 1,
-    `${formatTime(cue.start_seconds)} --> ${formatTime(cue.end_seconds)}`,
+    `${formatSrtTime(cue.start_seconds)} --> ${formatSrtTime(cue.end_seconds)}`,
     cue.layouts.video_960x540.lines.join("\n"),
     ""
   ].join("\n")).join("\n");
+}
+
+function parseSrtTime(value) {
+  const match = String(value).trim().match(/^(\d{2}):(\d{2}):(\d{2}),(\d{3})$/);
+  if (!match) throw new Error(`Invalid extracted SRT timestamp: ${value}`);
+  return Number(match[1]) * 3600 + Number(match[2]) * 60 + Number(match[3]) + Number(match[4]) / 1000;
+}
+
+function parseExtractedSrt(text) {
+  const normalized = String(text).replace(/^\uFEFF/, "").replace(/\r\n?/g, "\n").trim();
+  if (!normalized) return [];
+  return normalized.split(/\n{2,}/).map((block, index) => {
+    const lines = block.split("\n");
+    const timingIndex = lines.findIndex((line) => line.includes("-->"));
+    if (timingIndex < 0) throw new Error(`Extracted SRT cue ${index + 1} has no timing line`);
+    const [start, end] = lines[timingIndex].split("-->").map((value) => value.trim());
+    return {
+      cue_index: index + 1,
+      start_seconds: parseSrtTime(start),
+      end_seconds: parseSrtTime(end),
+      text_ja: lines.slice(timingIndex + 1).map((line) => line.trim()).join("")
+    };
+  });
+}
+
+function expectedMuxedCaptionCues(model) {
+  return model.review_captions.map((cue, index) => ({
+    cue_index: index + 1,
+    start_seconds: cue.start_seconds,
+    end_seconds: cue.end_seconds,
+    text_ja: cue.text_ja
+  }));
+}
+
+async function extractMuxedCaptionCues(filePath) {
+  const tempRoot = await mkdtemp(path.join(tmpdir(), "fff-case-digest-subtitle-"));
+  try {
+    const extractedPath = path.join(tempRoot, "extracted.srt");
+    await runFfmpeg(["-i", filePath, "-map", "0:s:0", "-c:s", "srt", extractedPath]);
+    return parseExtractedSrt(await readFile(extractedPath, "utf8"));
+  } finally {
+    const resolved = path.resolve(tempRoot);
+    if (path.dirname(resolved) !== path.resolve(tmpdir()) || !path.basename(resolved).startsWith("fff-case-digest-subtitle-")) {
+      throw new Error("Subtitle temporary cleanup target escaped expected boundary");
+    }
+    await rm(resolved, { recursive: true, force: true });
+  }
 }
 
 async function probeMp4(filePath) {
@@ -893,6 +963,7 @@ async function probeMp4(filePath) {
   const probe = JSON.parse(stdout);
   const video = probe.streams.find((stream) => stream.codec_type === "video");
   const bytes = await readFile(filePath);
+  const subtitleCues = await extractMuxedCaptionCues(filePath);
   return {
     path: repoPath(filePath),
     byte_size: bytes.length,
@@ -906,6 +977,9 @@ async function probeMp4(filePath) {
     frame_count: Number(video.nb_frames),
     audio_stream_count: probe.streams.filter((stream) => stream.codec_type === "audio").length,
     subtitle_stream_count: probe.streams.filter((stream) => stream.codec_type === "subtitle").length,
+    subtitle_cue_count: subtitleCues.length,
+    subtitle_timing_text_sha256: sha256(Buffer.from(JSON.stringify(subtitleCues))),
+    subtitle_cues: subtitleCues,
     watermark_text: "CASE DIGEST / PRIVATE / NOT FOR PUBLICATION"
   };
 }
@@ -1096,7 +1170,9 @@ function contractFailures(model) {
     require(model.transition_boundary_audit.position_reset_count === 0 && model.transition_boundary_audit.raw_source_flash_count === 0, "transition reset or flash detected");
     require(model.transition_boundary_audit.boundaries.every((boundary) => !boundary.raw_outgoing_source_reopened), "raw outgoing source reopened");
   }
-  require(model.boundaries.private && model.boundaries.private_local_only && !model.boundaries.default_active && model.boundaries.successor_candidate && model.boundaries.primary_images_owner_accepted, "candidate state mismatch");
+  const distributionState = candidateDistributionState();
+  require(model.boundaries.private && !model.boundaries.private_local_only && !model.boundaries.default_active && model.boundaries.successor_candidate && model.boundaries.primary_images_owner_accepted, "candidate state mismatch");
+  require(Object.entries(distributionState).every(([key, value]) => valuesEqual(model.boundaries[key], value)), "candidate distribution state mismatch");
   require(!model.boundaries.human_comprehension_review_performed && !model.boundaries.production_approved && !model.boundaries.rights_cleared_claim && !model.boundaries.public_release && !model.boundaries.final_canon, "closed authority boundary escaped");
   require(model.boundaries.human_case_digest_review === "pending" && !model.boundaries.voice_selected && !model.boundaries.audio_generated, "human review, voice, or audio boundary mismatch");
   return failures;
@@ -1528,12 +1604,18 @@ async function captureBrowserEvidence(model) {
         };
       });
       await page.evaluate(() => window.scrollTo(0, 0));
-      await page.screenshot({ path: screenshotPath, fullPage: false, animations: "disabled" });
+      const observedScreenshot = await page.screenshot({ fullPage: false, animations: "disabled" });
       const screenshot = await fileRecord(screenshotPath);
       await page.close();
-      return { ...metrics, screenshot_path: screenshot.relative_path, screenshot_byte_size: screenshot.byte_size, screenshot_sha256: screenshot.sha256 };
+      return {
+        ...metrics,
+        screenshot_path: screenshot.relative_path,
+        screenshot_byte_size: screenshot.byte_size,
+        screenshot_sha256: screenshot.sha256,
+        observed_screenshot_byte_size: observedScreenshot.length,
+        observed_screenshot_sha256: sha256(observedScreenshot)
+      };
     };
-    await mkdir(path.dirname(SCREENSHOTS.desktop), { recursive: true });
     results.desktop = await inspect("desktop", 1440, 1000, SCREENSHOTS.desktop, 118.2);
     results.narrow = await inspect("narrow", 390, 844, SCREENSHOTS.narrow, 155.2);
   } finally {
@@ -1647,6 +1729,7 @@ async function buildManifests(model, mp4, browser) {
     schemaVersion: "fff.privateRasterCaseDigestManifest.v1",
     artifact_id: ARTIFACT_ID,
     format_id: FORMAT_ID,
+    distribution_state: candidateDistributionState(),
     mp4,
     screenshots: {
       desktop: { path: browser.desktop.screenshot_path, byte_size: browser.desktop.screenshot_byte_size, sha256: browser.desktop.screenshot_sha256 },
@@ -1681,6 +1764,7 @@ async function updateRootManifest(model, manifests) {
     artifact_id: ARTIFACT_ID,
     active_default: false,
     successor_candidate: true,
+    distribution_state: candidateDistributionState(),
     primary_frames: model.shots.map((shot) => ({
       shot_id: shot.shot_id,
       source_kind: ["generated_raster", "licensed_photocomposite"].includes(shot.source_kind)
@@ -1743,18 +1827,15 @@ async function updateRootManifest(model, manifests) {
     transition_boundary_count: 10,
     position_reset_count: 0,
     raw_source_flash_count: 0,
-    private_local_only: true,
+    ...candidateDistributionState(),
     default_active: false,
     active_default: false,
     successor_candidate: true,
     human_comprehension_review: "not_performed",
-    human_case_digest_review: "pending",
     primary_images_owner_accepted: true,
     production_approved: false,
     selected_for_production: false,
     rights_cleared_claim: false,
-    public_release: false,
-    release_path_reachable: false,
     audio: false,
     audio_generated: false,
     voice: false,
@@ -1801,7 +1882,7 @@ async function build() {
     writeFile(CONTINUITY_GUIDELINE_PATH, renderContinuityGuideline(), "utf8"),
     writeFile(SUBTITLE_GUIDELINE_PATH, renderSubtitleGuideline(), "utf8")
   ]);
-  if (Math.abs(encoded.mp4.duration_seconds - 180) > 0.001 || encoded.mp4.frame_count !== 5400 || encoded.mp4.codec_name !== "h264" || encoded.mp4.audio_stream_count !== 0 || encoded.mp4.subtitle_stream_count !== 1) {
+  if (Math.abs(encoded.mp4.duration_seconds - 180) > 0.001 || encoded.mp4.frame_count !== 5400 || encoded.mp4.codec_name !== "h264" || encoded.mp4.audio_stream_count !== 0 || encoded.mp4.subtitle_stream_count !== 1 || !valuesEqual(encoded.mp4.subtitle_cues, expectedMuxedCaptionCues(model))) {
     throw new Error(`MP4 contract failed: ${JSON.stringify(encoded.mp4)}`);
   }
   await buildContinuitySheet(model, sharp);
@@ -1831,6 +1912,7 @@ async function build() {
     image_identity: model.image_identity,
     transition_boundary_audit: model.transition_boundary_audit,
     subtitle_layout_status: model.subtitle_layout.status,
+    distribution_state: candidateDistributionState(),
     mp4: encoded.mp4,
     browser_evidence: browser,
     targeted_tests: tests,
@@ -1874,6 +1956,12 @@ async function validate(inputPath = RESULT_PATH) {
   require(root.active_default_artifact_id === DEFAULT_ARTIFACT_ID, "accepted default artifact changed");
   require(root.successor_candidate_artifact_id === ARTIFACT_ID, "successor registration mismatch");
   require(root.private_raster_case_digest?.artifact_id === ARTIFACT_ID && root.private_raster_case_digest?.successor_candidate === true, "root case digest registration mismatch");
+  const distributionState = candidateDistributionState();
+  require(valuesEqual(result.distribution_state, distributionState), "result distribution state mismatch");
+  require(valuesEqual(manifest.distribution_state, distributionState), "package manifest distribution state mismatch");
+  require(Object.entries(distributionState).every(([key, value]) => valuesEqual(root.private_raster_case_digest?.[key], value)), "root case digest distribution state mismatch");
+  const candidateEntry = root.primary_imagery_medium_gate?.new_visual_candidates?.find((candidate) => candidate.artifact_id === ARTIFACT_ID);
+  require(valuesEqual(candidateEntry?.distribution_state, distributionState), "candidate registry distribution state mismatch");
   require(root.narrative_format_quarantine?.quarantine_id === QUARANTINE_ID && root.narrative_format_quarantine?.status === "ACTIVE", "root narrative quarantine mismatch");
   require(root.private_full_raster_clarity_candidate?.successor_candidate === false && root.private_full_raster_clarity_candidate?.narrative_format_status === "QUARANTINED_BY_PRODUCT_OWNER", "clarity narrative was not durably demoted");
   const packageInventory = await directoryInventory(PACKAGE_ROOT, MANIFEST_PATH);
@@ -1882,6 +1970,7 @@ async function validate(inputPath = RESULT_PATH) {
   require(continuityInventory.aggregate_sha256 === continuityManifest.package_fingerprint_sha256 && valuesEqual(continuityInventory.files, continuityManifest.files), "continuity inventory mismatch");
   const liveMp4 = await probeMp4(MP4_PATH);
   require(valuesEqual(liveMp4, manifest.mp4), "live MP4 probe mismatch");
+  require(valuesEqual(liveMp4.subtitle_cues, expectedMuxedCaptionCues(model)), "live MP4 subtitle cue mismatch");
   require(result.image_identity?.changed_image_count === 0 && result.image_identity?.generated_image_count === 0, "result image identity mismatch");
   require((await readFile(SUBTITLE_GUIDELINE_PATH, "utf8")).includes("44 rows"), "subtitle guideline incomplete");
   require((await readFile(CONTINUITY_GUIDELINE_PATH, "utf8")).includes("7 entry"), "continuity guideline incomplete");
