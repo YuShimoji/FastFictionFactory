@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "fff.narrativeFormatQuarantine.v1",
+  "quarantine_id": "FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26",
+  "status": "ACTIVE",
+  "scope": "three-minute Fast Fiction Factory narrative candidates",
+  "source_artifact_id": "fff-private-full-raster-clarity-candidate-001",
+  "decision": "PRODUCT_OWNER_REJECTED_NARRATIVE_FORMAT",
+  "narrative_verdict": "REJECTED_NARRATIVE_FORMAT",
+  "narrative_archive_only": true,
+  "narrative_successor_candidate": false,
+  "narrative_shared_template_allowed": false,
+  "further_same_format_wording_refinement_allowed": false,
+  "primary_images_accepted": true,
+  "transition_engine_accepted": true,
+  "technical_evidence_preserved": true,
+  "quarantined_signature": [
+    "six-Beat from-the-beginning lore exposition",
+    "nineteen-shot exhaustive chronology used as a mandatory three-minute structure",
+    "twenty-cue coverage as a completeness target",
+    "more than three unexplained proper names or institutions",
+    "atmosphere-first rhetorical narration",
+    "successive unresolved hypotheses without concrete information gain",
+    "production-state wording used as story progress",
+    "a closing choice not earned by an enacted event",
+    "a candidate that is neither explicitly a digest, trailer, PV, nor complete short story"
+  ],
+  "quarantined_components": [
+    "six-Beat linear-lore narration",
+    "nineteen-shot chronology as mandatory three-minute structure",
+    "twenty-cue completeness target",
+    "forced time-or-names closure"
+  ],
+  "preserved_components": [
+    "all 19 accepted primary-image bytes",
+    "three immutable raster anchors",
+    "terminal-frame transition implementation",
+    "existing source package and its historical evidence"
+  ],
+  "replacement_artifact_id": "fff-private-raster-case-digest-001",
+  "reuse_policy": "Quarantined narrative text and structure must not be copied into active review or production tracks. Visual bytes and the terminal-frame transition method remain reusable under their existing boundaries.",
+  "authority_boundaries": {
+    "private": true,
+    "source_files_mutated": false,
+    "human_comprehension_review_performed": false,
+    "production_approved": false,
+    "rights_cleared_claim": false,
+    "public_release": false,
+    "final_canon": false
+  }
+}

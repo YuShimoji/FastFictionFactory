@@ -1704,6 +1704,12 @@ async function main() {
     return;
   }
 
+  if (command === "validate-private-raster-case-digest" || command === "smoke-private-raster-case-digest") {
+    const { runPrivateRasterCaseDigestCommand } = await import("./fff-private-raster-case-digest.mjs");
+    await runPrivateRasterCaseDigestCommand({ command, inputPath, outputPath });
+    return;
+  }
+
   if (command === "validate-private-materialized-motion-previs" || command === "smoke-private-materialized-motion-previs") {
     const { runPrivateMaterializedMotionPrevisCommand } = await import("./fff-private-materialized-motion-previs.mjs");
     await runPrivateMaterializedMotionPrevisCommand({ command, inputPath, outputPath });
@@ -22968,6 +22974,8 @@ Usage:
   node tools/fff-state.mjs smoke-private-full-raster-candidate <private-full-raster-candidate-result.json>
   node tools/fff-state.mjs validate-private-full-raster-clarity-candidate <private-full-raster-clarity-candidate-result.json>
   node tools/fff-state.mjs smoke-private-full-raster-clarity-candidate <private-full-raster-clarity-candidate-result.json>
+  node tools/fff-state.mjs validate-private-raster-case-digest <private-raster-case-digest-result.json>
+  node tools/fff-state.mjs smoke-private-raster-case-digest <private-raster-case-digest-result.json>
   node tools/fff-state.mjs validate-private-materialized-motion-previs <private-materialized-motion-previs-result.json>
   node tools/fff-state.mjs smoke-private-materialized-motion-previs <private-materialized-motion-previs-result.json>
   node tools/fff-state.mjs validate-composition-expansion-wave2 <composition-expansion-wave2-result.json>

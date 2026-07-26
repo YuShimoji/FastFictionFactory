@@ -1,0 +1,12 @@
+cue_id,shot_id,start_seconds,end_seconds,text_ja,character_count,characters_per_second,authored_line_break_hint,declarative
+case-digest-caption-01,shot-b01-01,0,12,正午、鐘のない塔から鐘の音が響いたと報告された。,24,2,false,true
+case-digest-caption-02,shot-b01-02,12,24,塔の取付枠は空で、鐘は確認できない。,18,1.5,false,true
+case-digest-caption-03,shot-b02-01,24,38,時計修理師のミラ・ヴェイルが、失踪した兄の手掛かりを調べる。,30,2.143,false,true
+case-digest-caption-04,shot-b02-02,38,52,失踪した兄が残したとされるメモと真鍮の蛾が、作業台に保管されている。,34,2.429,false,true
+case-digest-caption-05,shot-b02-03,52,65,時計と記録には、9:17が繰り返し現れる。,21,1.615,false,true
+case-digest-caption-06,shot-b03-01,65,81,失踪した兄のメモは、二列の台帳へ調査を導く。,22,1.375,false,true
+case-digest-caption-07,shot-b03-02,81,97,台帳には、「分」の欄と人名の欄が並んでいる。,22,1.375,false,true
+case-digest-caption-08,shot-b04-01,97,116,メモは、市の評議会を調査対象として指している。,23,1.211,false,true
+case-digest-caption-09,shot-b04-02,116,136,告発は記録されているが、評議会の関与を裏づける証拠はない。,29,1.45,false,true
+case-digest-caption-10,shot-b06-01,136,158,時間と名前は、台帳上の二つの損失区分として記録されている。,29,1.318,false,true
+case-digest-caption-11,shot-b06-03,158,180,音源と関係者を確定できないまま、塔は調査対象として残る。,28,1.273,false,true

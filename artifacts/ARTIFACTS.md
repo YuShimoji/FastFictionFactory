@@ -1,5 +1,20 @@
 # Artifacts
 
+## fff-private-raster-case-digest-001
+
+- Title: Fast Fiction Factory Private Raster CASE_DIGEST
+- Purpose: Replace the rejected clarity narrative format with a five-section factual case digest while preserving all nineteen accepted raster bytes and the terminal-frame transition method.
+- Primary file: `artifacts/private-raster-case-digest/private-raster-case-digest.html`
+- Package: canonical JSON, standalone file HTML player, silent watermarked H.264 MP4, five-section script, eleven review captions, eleven provisional production subtitle cues, selected-shot sequence, ten-boundary transition evidence, forty-four-row actual-width subtitle evidence, README, and integrity manifest.
+- Exact runtime: 180 seconds / 5400 frames / 30 fps / 11 selected accepted shots / 5 `CASE_DIGEST` sections.
+- Narrative quarantine: `artifacts/narrative-format-quarantine/narrative-format-quarantine.json`; previous six-beat narrative, twenty review captions, twenty production subtitle draft cues, and forced-choice closure are quarantined while visual bytes and transition method remain preserved.
+- Continuity Bible: `artifacts/recurring-element-continuity/recurring-element-continuity.json`; exactly seven recurring-element entries, HTML, appearance map, contact sheet, and integrity manifest.
+- Review doc/result: `docs/review/private-raster-case-digest.md`, `artifacts/private-raster-case-digest-result.json`
+- Visual evidence: `artifacts/review-screens/private-raster-case-digest-desktop.png`, `artifacts/review-screens/private-raster-case-digest-narrow.png`
+- Read-only validation: `node tools/fff-state.mjs validate-private-raster-case-digest artifacts/private-raster-case-digest-result.json`
+- State: machine-green only after validator completion, private, default-off, successor-candidate-only; human comprehension review not performed.
+- Boundaries: production selection, rights clearance, audio, voice, publication, release approval, and final canon remain closed.
+
 ## fff-private-full-raster-clarity-candidate-001
 
 - Title: Fast Fiction Factory Private Full Raster Clarity Candidate
