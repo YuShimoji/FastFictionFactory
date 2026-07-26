@@ -1,15 +1,19 @@
 # Artifacts
 
-## CASE_DIGEST canonical-isolation boundary
+## fff-private-raster-case-digest-001
 
-- Historical master event: commit `f817003ea2156817220225a1b25f39cbcd7b09f3` publicly stored the corrected files while retaining a stale MP4 subtitle track.
-- Current master tree: no live CASE_DIGEST package, result, review route, generator, test, screenshot, or candidate-derived guideline; `successor_candidate_artifact_id` is `null`.
-- External successor candidate: artifact `fff-private-raster-case-digest-001` at `refs/heads/codex/fff-case-digest-format-reset-continuity-v1`, commit `2e96bd380d47869024587eeb19b3f054064390af`.
-- Exact human-review identity: MP4 SHA256 `0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1`; package fingerprint `0f701e7cfa106dee19cf6e378eec1082920cd7f119f37be0f09696ac8020fbf2`.
-- Distribution boundary: repository visibility is public and Git-history distribution is authorized; the candidate remains an unreleased product object, default-off, not integrated, human-review-pending, and without rights approval.
-- Preserved default: `fff-private-previsualization-timeline-001`.
-- Preserved quarantine: `FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26` remains ACTIVE at `artifacts/narrative-format-quarantine/narrative-format-quarantine.json`.
-- Closed gates: human CASE_DIGEST acceptance, product publication, rights approval, production subtitle selection, voice/audio work, production acceptance, and final canon.
+- Title: Fast Fiction Factory Private Raster CASE_DIGEST
+- State timepoint: forward-integration candidate ready on `refs/heads/codex/fff-case-digest-accepted-forward-integration-v1`; master integration has not occurred.
+- Lineage: single-parent candidate from M2 `701869936943f9babd7d4d5287008b646106188b`, restoring the exact coherent C2 payload at `2e96bd380d47869024587eeb19b3f054064390af`.
+- Human verdict: `FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726` records「事件ダイジェストとして理解できます。字幕改行にも問題ありません。次へ進めてよいです。」for CASE_DIGEST comprehension, review-caption wording/readability, and the unchanged existing visual sequence only.
+- Inheritance proof: review-caption wording/timings, shot order/timings, subtitle-layout evidence, source-image identities, and MP4 bytes remain exact C2. HTML visible markup, styling, playback, captions, and layout remain exact C2 apart from embedded state/decision metadata.
+- Primary files: `artifacts/private-raster-case-digest/private-raster-case-digest.html`, `artifacts/private-raster-case-digest/private-raster-case-digest.mp4`, `artifacts/private-raster-case-digest/private-raster-case-digest.json`.
+- Exact media identity: silent H.264 960×540 / 30 fps / 180 seconds / 5400 frames / eleven mov_text cues / SHA256 `0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1`.
+- Registration: `successor_candidate_artifact_id=fff-private-raster-case-digest-001`; active/default remains `fff-private-previsualization-timeline-001`.
+- Preserved quarantine: `FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26` remains ACTIVE for the rejected six-beat narrative signature.
+- Product boundary: repository visibility is public and Git-history distribution is authorized. “Private” identifies an unreleased product candidate.
+- Closed gates: production subtitle selection, production acceptance, rights approval, product/public release, voice/audio work, final canon, and master integration remain false.
+- Read-only validation: `node tools/fff-state.mjs validate-private-raster-case-digest artifacts/private-raster-case-digest-result.json`.
 
 ## fff-private-full-raster-clarity-candidate-001
 

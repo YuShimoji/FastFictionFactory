@@ -1,0 +1,390 @@
+{
+  "continuity_id": "fff-recurring-element-continuity-001",
+  "element_count": 7,
+  "future_continuity_gate": {
+    "accepted_modes": [
+      "exact_anchor_reuse",
+      "deterministic_anchor_derivative",
+      "new_generation_with_declared_canonical_anchor_image_reference_and_continuity_delta_reason"
+    ],
+    "reject_when": [
+      "recurring object geometry changes without reason",
+      "clock time changes without story authority",
+      "tower architecture changes",
+      "ledger columns or binding change",
+      "moth wing or screw pattern changes",
+      "a new character identity is introduced silently",
+      "source kind or anchor identity is missing"
+    ]
+  },
+  "elements": [
+    {
+      "element_id": "bellless_tower",
+      "canonical_label_ja": "鐘のない塔",
+      "invariant": "外観は石造塔、上部の取付枠は空。鐘や音源を画像へ追加しない。",
+      "first_appearance_shot_id": "shot-b01-01",
+      "appearance_shot_ids": [
+        "shot-b01-01",
+        "shot-b01-02",
+        "shot-b06-03"
+      ],
+      "protected_anchor_shot_ids": [],
+      "allowed_variation": "crop、distance、weather、time of day、slow pushまたはslow pull。",
+      "forbidden_drift": "鐘、発音機構、確定した原因の追加。",
+      "future_generation_gate": "空の取付枠と同じ塔のシルエットを照合し、音源を描かない。",
+      "continuity_id": "fff-recurring-element-continuity-001:bellless_tower",
+      "canonical_image_paths_and_hashes": [
+        {
+          "shot_id": "shot-b01-01",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-01.jpg",
+          "sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e",
+          "source_kind": "generated_raster"
+        },
+        {
+          "shot_id": "shot-b01-02",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-02.jpg",
+          "sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23",
+          "source_kind": "generated_raster"
+        },
+        {
+          "shot_id": "shot-b06-03",
+          "image_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-03.jpg",
+          "sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6",
+          "source_kind": "deterministic_raster_composite"
+        }
+      ],
+      "forbidden_variation": "鐘、発音機構、確定した原因の追加。",
+      "identity_defining_visual_features": "外観は石造塔、上部の取付枠は空。鐘や音源を画像へ追加しない。",
+      "material_and_color_invariants": "weathered stone, dark metal empty mounting frame, restrained cool exterior palette",
+      "structural_invariants": "same architecture and empty mounting frame; no bell",
+      "current_story_state": "Reported to ring at noon; image shows an empty mounting frame; sound source unconfirmed.",
+      "current_derivative_recipes": [
+        {
+          "shot_id": "shot-b01-01",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        },
+        {
+          "shot_id": "shot-b01-02",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        },
+        {
+          "shot_id": "shot-b06-03",
+          "recipe": "Non-destructive tower-family callback crop with a restrained slow-pull-safe grade; no bell, cause, or resolution added."
+        }
+      ],
+      "future_generation_reference_requirement": "Record exact_anchor_reuse, deterministic_anchor_derivative, or new_generation_with_declared_canonical_anchor_image_reference.",
+      "continuity_delta_reason_requirement": "Required for every new generation or any geometry, material, color, structure, story-state, or displayed-time difference.",
+      "owner_review_required_when": "Required when a new generated identity is proposed, an invariant changes, a forbidden variation is approached, or a continuity delta changes story meaning."
+    },
+    {
+      "element_id": "mira_workbench",
+      "canonical_label_ja": "ミラの作業台",
+      "invariant": "同じ時計修理の職能、木製作業台の素材群、手元と衣装の扱いを維持し、新しい顔identityを加えない。",
+      "first_appearance_shot_id": "shot-b02-01",
+      "appearance_shot_ids": [
+        "shot-b02-01",
+        "shot-b02-02"
+      ],
+      "protected_anchor_shot_ids": [],
+      "allowed_variation": "道具の見切れ、寄り引き、焦点位置。",
+      "forbidden_drift": "別室への置換、現代的な電子機器の追加。",
+      "future_generation_gate": "木材、時計工具、暖色照明の三条件を参照画像と照合する。",
+      "continuity_id": "fff-recurring-element-continuity-001:mira_workbench",
+      "canonical_image_paths_and_hashes": [
+        {
+          "shot_id": "shot-b02-01",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-01.jpg",
+          "sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304",
+          "source_kind": "generated_raster"
+        },
+        {
+          "shot_id": "shot-b02-02",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-02.jpg",
+          "sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09",
+          "source_kind": "generated_raster"
+        }
+      ],
+      "forbidden_variation": "別室への置換、現代的な電子機器の追加。",
+      "identity_defining_visual_features": "同じ時計修理の職能、木製作業台の素材群、手元と衣装の扱いを維持し、新しい顔identityを加えない。",
+      "material_and_color_invariants": "wooden clock-repair bench, brass and steel tools, warm localized light, established hand and wardrobe treatment",
+      "structural_invariants": "same clock-repair profession and workbench family; no new face identity",
+      "current_story_state": "Work area of clock repairer Mira Vale during investigation.",
+      "current_derivative_recipes": [
+        {
+          "shot_id": "shot-b02-01",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        },
+        {
+          "shot_id": "shot-b02-02",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        }
+      ],
+      "future_generation_reference_requirement": "Record exact_anchor_reuse, deterministic_anchor_derivative, or new_generation_with_declared_canonical_anchor_image_reference.",
+      "continuity_delta_reason_requirement": "Required for every new generation or any geometry, material, color, structure, story-state, or displayed-time difference.",
+      "owner_review_required_when": "Required when a new generated identity is proposed, an invariant changes, a forbidden variation is approached, or a continuity delta changes story meaning."
+    },
+    {
+      "element_id": "missing_brother_memo",
+      "canonical_label_ja": "兄のメモ",
+      "invariant": "同じ紙、折り目、インク系統、摩耗を維持し、新たに判読可能な未裏付け文言を加えない。",
+      "first_appearance_shot_id": "shot-b02-02",
+      "appearance_shot_ids": [
+        "shot-b02-02",
+        "shot-b03-01"
+      ],
+      "protected_anchor_shot_ids": [],
+      "allowed_variation": "紙面の寄り、手元との組み合わせ。",
+      "forbidden_drift": "確定証拠、評議会の自白、兄の現在地を示す文言の追加。",
+      "future_generation_gate": "既存紙質と手書き密度を合わせ、意味のある新規文字を生成しない。",
+      "continuity_id": "fff-recurring-element-continuity-001:missing_brother_memo",
+      "canonical_image_paths_and_hashes": [
+        {
+          "shot_id": "shot-b02-02",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-02.jpg",
+          "sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09",
+          "source_kind": "generated_raster"
+        },
+        {
+          "shot_id": "shot-b03-01",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-01.jpg",
+          "sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839",
+          "source_kind": "generated_raster"
+        }
+      ],
+      "forbidden_variation": "確定証拠、評議会の自白、兄の現在地を示す文言の追加。",
+      "identity_defining_visual_features": "同じ紙、折り目、インク系統、摩耗を維持し、新たに判読可能な未裏付け文言を加えない。",
+      "material_and_color_invariants": "same paper stock, folds, ink family, edge wear, and stain pattern",
+      "structural_invariants": "same folds and wear; no newly legible unsupported message",
+      "current_story_state": "Allegation and investigative lead attributed by relation to the missing brother; not proof.",
+      "current_derivative_recipes": [
+        {
+          "shot_id": "shot-b02-02",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        },
+        {
+          "shot_id": "shot-b03-01",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        }
+      ],
+      "future_generation_reference_requirement": "Record exact_anchor_reuse, deterministic_anchor_derivative, or new_generation_with_declared_canonical_anchor_image_reference.",
+      "continuity_delta_reason_requirement": "Required for every new generation or any geometry, material, color, structure, story-state, or displayed-time difference.",
+      "owner_review_required_when": "Required when a new generated identity is proposed, an invariant changes, a forbidden variation is approached, or a continuity delta changes story meaning."
+    },
+    {
+      "element_id": "brass_moth",
+      "canonical_label_ja": "真鍮の蛾",
+      "invariant": "小型の真鍮製蛾モチーフ。作動、生命、超常性を確定しない。",
+      "first_appearance_shot_id": "shot-b02-02",
+      "appearance_shot_ids": [
+        "shot-b02-02",
+        "shot-b02-03",
+        "shot-b05-02"
+      ],
+      "protected_anchor_shot_ids": [
+        "shot-b05-02"
+      ],
+      "allowed_variation": "反射、被写界深度、部分的な遮蔽。",
+      "forbidden_drift": "羽ばたき、発光、別素材、別形状への変更。",
+      "future_generation_gate": "exact accepted anchor shot-b05-02のwing geometry、screw layout、seams、oxidation、scratchesを必須参照にする。",
+      "continuity_id": "fff-recurring-element-continuity-001:brass_moth",
+      "canonical_image_paths_and_hashes": [
+        {
+          "shot_id": "shot-b02-02",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-02.jpg",
+          "sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09",
+          "source_kind": "generated_raster"
+        },
+        {
+          "shot_id": "shot-b02-03",
+          "image_path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+          "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31",
+          "source_kind": "accepted_generated_raster_anchor"
+        },
+        {
+          "shot_id": "shot-b05-02",
+          "image_path": "artifacts/high-fidelity-raster-pilot/images/shot-b05-02.jpg",
+          "sha256": "4ebf56180c1bf6ebfbcbff1ffd4a141a07e5c045645a2670ec5a776bee3374ac",
+          "source_kind": "accepted_generated_raster_anchor"
+        }
+      ],
+      "forbidden_variation": "羽ばたき、発光、別素材、別形状への変更。",
+      "identity_defining_visual_features": "小型の真鍮製蛾モチーフ。作動、生命、超常性を確定しない。",
+      "material_and_color_invariants": "accepted brass surface, oxidation, scratches, seams, and screw layout",
+      "structural_invariants": "same wing geometry, screw layout, and seams; no regeneration in this Mission",
+      "current_story_state": "Observed accepted object in the clue chain; operation and significance unproven.",
+      "current_derivative_recipes": [
+        {
+          "shot_id": "shot-b02-02",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        },
+        {
+          "shot_id": "shot-b02-03",
+          "recipe": "Byte-identical accepted pilot anchor; no regeneration, overwrite, recolor, replacement, or re-encoding."
+        },
+        {
+          "shot_id": "shot-b05-02",
+          "recipe": "Byte-identical accepted pilot anchor; no regeneration, overwrite, recolor, replacement, or re-encoding."
+        }
+      ],
+      "future_generation_reference_requirement": "Record exact_anchor_reuse, deterministic_anchor_derivative, or new_generation_with_declared_canonical_anchor_image_reference.",
+      "continuity_delta_reason_requirement": "Required for every new generation or any geometry, material, color, structure, story-state, or displayed-time difference.",
+      "owner_review_required_when": "Required when a new generated identity is proposed, an invariant changes, a forbidden variation is approached, or a continuity delta changes story meaning."
+    },
+    {
+      "element_id": "clock_0917",
+      "canonical_label_ja": "9:17の時計",
+      "invariant": "時計面と記録の時刻は9:17。別時刻へ変更しない。",
+      "first_appearance_shot_id": "shot-b02-03",
+      "appearance_shot_ids": [
+        "shot-b02-03"
+      ],
+      "protected_anchor_shot_ids": [
+        "shot-b02-03"
+      ],
+      "allowed_variation": "寄り引き、反射、時計面の一部見切れ。",
+      "forbidden_drift": "針位置または表記時刻の変更、原因説明の追加。",
+      "future_generation_gate": "exact accepted anchor shot-b02-03のcase、dial、hands、glass、wearを画素参照し、9:17を再確認する。",
+      "continuity_id": "fff-recurring-element-continuity-001:clock_0917",
+      "canonical_image_paths_and_hashes": [
+        {
+          "shot_id": "shot-b02-03",
+          "image_path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+          "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31",
+          "source_kind": "accepted_generated_raster_anchor"
+        }
+      ],
+      "forbidden_variation": "針位置または表記時刻の変更、原因説明の追加。",
+      "identity_defining_visual_features": "時計面と記録の時刻は9:17。別時刻へ変更しない。",
+      "material_and_color_invariants": "accepted metal case, dial, hands, glass, patina, and wear",
+      "structural_invariants": "same case, dial, hands, and displayed time 9:17",
+      "current_story_state": "Accepted clock image repeatedly shows 9:17; causal meaning unproven.",
+      "current_derivative_recipes": [
+        {
+          "shot_id": "shot-b02-03",
+          "recipe": "Byte-identical accepted pilot anchor; no regeneration, overwrite, recolor, replacement, or re-encoding."
+        }
+      ],
+      "future_generation_reference_requirement": "Record exact_anchor_reuse, deterministic_anchor_derivative, or new_generation_with_declared_canonical_anchor_image_reference.",
+      "continuity_delta_reason_requirement": "Required for every new generation or any geometry, material, color, structure, story-state, or displayed-time difference.",
+      "owner_review_required_when": "Required when a new generated identity is proposed, an invariant changes, a forbidden variation is approached, or a continuity delta changes story meaning."
+    },
+    {
+      "element_id": "minute_name_ledger",
+      "canonical_label_ja": "分数と人名の台帳",
+      "invariant": "同じ紙、罫線、「分」と人名の列、binding、wearを維持し、日本語labelはsource textではなくoverlayとして扱う。",
+      "first_appearance_shot_id": "shot-b03-01",
+      "appearance_shot_ids": [
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b04-02",
+        "shot-b06-01"
+      ],
+      "protected_anchor_shot_ids": [],
+      "allowed_variation": "紙面の寄り、列の一部見切れ、決定論的な説明用オーバーレイ。",
+      "forbidden_drift": "一方だけを真相に選ぶ、奪取や消失の因果を確定する。",
+      "future_generation_gate": "二列が同格で読める構図とし、時間と名前の両方を保持する。",
+      "continuity_id": "fff-recurring-element-continuity-001:minute_name_ledger",
+      "canonical_image_paths_and_hashes": [
+        {
+          "shot_id": "shot-b03-01",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-01.jpg",
+          "sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839",
+          "source_kind": "generated_raster"
+        },
+        {
+          "shot_id": "shot-b03-02",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-02.jpg",
+          "sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460",
+          "source_kind": "generated_raster"
+        },
+        {
+          "shot_id": "shot-b04-02",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b04-02.jpg",
+          "sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf",
+          "source_kind": "generated_raster"
+        },
+        {
+          "shot_id": "shot-b06-01",
+          "image_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-01.jpg",
+          "sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed",
+          "source_kind": "deterministic_raster_composite"
+        }
+      ],
+      "forbidden_variation": "一方だけを真相に選ぶ、奪取や消失の因果を確定する。",
+      "identity_defining_visual_features": "同じ紙、罫線、「分」と人名の列、binding、wearを維持し、日本語labelはsource textではなくoverlayとして扱う。",
+      "material_and_color_invariants": "aged paper, ruled ink, binding material, column treatment, and wear",
+      "structural_invariants": "same ruling, minute/name columns, and binding; Japanese labels remain overlays",
+      "current_story_state": "Observed record with minute and name columns; causal power and provenance unconfirmed.",
+      "current_derivative_recipes": [
+        {
+          "shot_id": "shot-b03-01",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        },
+        {
+          "shot_id": "shot-b03-02",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        },
+        {
+          "shot_id": "shot-b04-02",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        },
+        {
+          "shot_id": "shot-b06-01",
+          "recipe": "Reframe the ledger base and add equal-status deterministic Japanese text overlays for time and names, separated by an unresolved center."
+        }
+      ],
+      "future_generation_reference_requirement": "Record exact_anchor_reuse, deterministic_anchor_derivative, or new_generation_with_declared_canonical_anchor_image_reference.",
+      "continuity_delta_reason_requirement": "Required for every new generation or any geometry, material, color, structure, story-state, or displayed-time difference.",
+      "owner_review_required_when": "Required when a new generated identity is proposed, an invariant changes, a forbidden variation is approached, or a continuity delta changes story meaning."
+    },
+    {
+      "element_id": "council_institutional_space",
+      "canonical_label_ja": "市の評議会",
+      "invariant": "同じarchitecture、glass、tableとroom period、fabric、light familyを維持し、実在人物やvillain lightingを加えない。",
+      "first_appearance_shot_id": "shot-b04-01",
+      "appearance_shot_ids": [
+        "shot-b04-01",
+        "shot-b04-02"
+      ],
+      "protected_anchor_shot_ids": [
+        "shot-b04-01"
+      ],
+      "allowed_variation": "建築の寄り引き、文書との対置。",
+      "forbidden_drift": "犯行主体としての描写、特定人物の有罪表現。",
+      "future_generation_gate": "shot-b04-01の建築意匠を参照し、責任確定を示す図像を加えない。",
+      "continuity_id": "fff-recurring-element-continuity-001:council_institutional_space",
+      "canonical_image_paths_and_hashes": [
+        {
+          "shot_id": "shot-b04-01",
+          "image_path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+          "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1",
+          "source_kind": "accepted_generated_raster_anchor"
+        },
+        {
+          "shot_id": "shot-b04-02",
+          "image_path": "artifacts/private-full-raster-candidate/images/base/shot-b04-02.jpg",
+          "sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf",
+          "source_kind": "generated_raster"
+        }
+      ],
+      "forbidden_variation": "犯行主体としての描写、特定人物の有罪表現。",
+      "identity_defining_visual_features": "同じarchitecture、glass、tableとroom period、fabric、light familyを維持し、実在人物やvillain lightingを加えない。",
+      "material_and_color_invariants": "period architecture, glass, table, fabric, and neutral institutional light family",
+      "structural_invariants": "same architecture, glass, room period, table and fabric; no identifiable real official or villain-lighting drift",
+      "current_story_state": "Institution pointed to by the memo; involvement, responsibility, and motive unconfirmed.",
+      "current_derivative_recipes": [
+        {
+          "shot_id": "shot-b04-01",
+          "recipe": "Byte-identical accepted pilot anchor; no regeneration, overwrite, recolor, replacement, or re-encoding."
+        },
+        {
+          "shot_id": "shot-b04-02",
+          "recipe": "Sharp center crop and resize from observed 1672x941 PNG to 1600x900 JPEG; quality 94; 4:4:4 chroma; mozjpeg."
+        }
+      ],
+      "future_generation_reference_requirement": "Record exact_anchor_reuse, deterministic_anchor_derivative, or new_generation_with_declared_canonical_anchor_image_reference.",
+      "continuity_delta_reason_requirement": "Required for every new generation or any geometry, material, color, structure, story-state, or displayed-time difference.",
+      "owner_review_required_when": "Required when a new generated identity is proposed, an invariant changes, a forbidden variation is approached, or a continuity delta changes story meaning."
+    }
+  ]
+}

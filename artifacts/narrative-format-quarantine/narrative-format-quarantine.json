@@ -36,72 +36,81 @@
     "terminal-frame transition implementation",
     "existing source package and its historical evidence"
   ],
-  "replacement_artifact_id": null,
+  "replacement_artifact_id": "fff-private-raster-case-digest-001",
   "replacement_candidate_artifact_id": "fff-private-raster-case-digest-001",
-  "canonical_isolation_boundary": {
-    "repository_visibility": "public",
-    "git_history_distribution": "authorized",
-    "legacy_private_local_only_repository_claim": "superseded",
+  "replacement_status": "ACCEPTED_SCOPED_DEFAULT_OFF_SUCCESSOR_CANDIDATE",
+  "human_acceptance": {
+    "decision_id": "FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726",
+    "authority_id": "AUTH-FFF-CASE-DIGEST-ACCEPTED-FORWARD-INTEGRATION-CANDIDATE-PUSH-20260726",
+    "verdict": "ACCEPTED_SCOPED",
+    "observation_ja": "事件ダイジェストとして理解できます。字幕改行にも問題ありません。次へ進めてよいです。",
+    "accepted_dimensions": [
+      "CASE_DIGEST comprehension and format fitness",
+      "review-caption wording and line-break/readability",
+      "unchanged existing image sequence and visual essence"
+    ],
+    "excluded_dimensions": [
+      "production subtitle selection",
+      "voice or audio",
+      "rights approval or clearance",
+      "production acceptance",
+      "product or public release",
+      "final canon"
+    ],
+    "source_binding": {
+      "human_review_context_commit": "f817003ea2156817220225a1b25f39cbcd7b09f3",
+      "accepted_source_ref": "refs/heads/codex/fff-case-digest-format-reset-continuity-v1",
+      "accepted_source_commit": "2e96bd380d47869024587eeb19b3f054064390af",
+      "accepted_source_tree": "accfb3fc5474f4ecb2e39b5c4d69fd8de6a7e841",
+      "accepted_source_package_fingerprint": "0f701e7cfa106dee19cf6e378eec1082920cd7f119f37be0f09696ac8020fbf2",
+      "accepted_mp4_sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1"
+    },
+    "integration_candidate_binding": {
+      "integration_candidate_id": "fff-case-digest-accepted-forward-integration-v1",
+      "target_ref": "refs/heads/codex/fff-case-digest-accepted-forward-integration-v1",
+      "parent_commit": "701869936943f9babd7d4d5287008b646106188b",
+      "parent_tree": "85a1ca377d655151a348e3e657f3ddc1c3e1177c",
+      "state": "feature_candidate_ready_master_integration_not_performed"
+    },
+    "inheritance_proof": {
+      "accepted_creative_content_changed": false,
+      "review_caption_wording_and_timing": "exact_C2",
+      "selected_shot_order_and_timing": "exact_C2",
+      "subtitle_layout_evidence": "exact_C2",
+      "source_image_identities": "exact_C2",
+      "html_visible_markup_style_playback_captions_and_layout": "exact_C2_except_embedded_state_and_decision_metadata",
+      "mp4_bytes": "exact_C2",
+      "fixed_payload_sha256": {
+        "review_caption_csv_sha256": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d",
+        "selected_shot_sequence_csv_sha256": "fa50635ec9dc17dfed233bac9c28197644be91e986033c309c8f3019066b7ec2",
+        "subtitle_layout_evidence_csv_sha256": "cc7d02ac77d92e95ed94caef70ffa6b1905fb23369b5eb57f260a42ddaf855eb",
+        "transition_boundary_map_csv_sha256": "e67312d91f7d8d1e9231acdd419263b05bbcb78044eadb0bd2fcd4568dede5d3"
+      }
+    }
+  },
+  "canonical_integration_boundary": {
+    "integration_candidate_id": "fff-case-digest-accepted-forward-integration-v1",
+    "target_ref": "refs/heads/codex/fff-case-digest-accepted-forward-integration-v1",
+    "parent_commit": "701869936943f9babd7d4d5287008b646106188b",
+    "accepted_source_commit": "2e96bd380d47869024587eeb19b3f054064390af",
+    "integration_state": "feature_candidate_ready_master_integration_not_performed",
+    "active_default_artifact_id": "fff-private-previsualization-timeline-001",
+    "successor_candidate_artifact_id": "fff-private-raster-case-digest-001",
     "product_release": false,
     "public_release": false,
-    "active_default": false,
-    "human_case_digest_review": "pending",
-    "rights_approval": "not_granted",
-    "integration_state": "not_integrated",
-    "historical_misintegration_commit": "f817003ea2156817220225a1b25f39cbcd7b09f3",
-    "candidate_ref": "refs/heads/codex/fff-case-digest-format-reset-continuity-v1",
-    "candidate_commit": "2e96bd380d47869024587eeb19b3f054064390af",
-    "candidate_mp4_sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1",
-    "candidate_package_fingerprint": "0f701e7cfa106dee19cf6e378eec1082920cd7f119f37be0f09696ac8020fbf2",
-    "private_identifier_meaning": "unreleased_product_candidate_not_repository_confidentiality",
-    "current_master_successor_candidate_artifact_id": null,
-    "current_master_active_default_artifact_id": "fff-private-previsualization-timeline-001"
+    "rights_approval": "not_granted"
   },
-  "change_management": [
-    {
-      "prior_state": "local-only interpretation",
-      "current_state": "public Git storage; product remains unreleased",
-      "affected_consumers": "repository readers and candidate reviewers",
-      "migration": "use the public candidate ref and exact commit identity",
-      "rollback_boundary": "Git history remains intact; do not rewrite or force-push"
-    },
-    {
-      "prior_state": "f817003e master misintegration",
-      "current_state": "coherent candidate isolated on the dedicated branch",
-      "affected_consumers": "master consumers and successor-candidate tooling",
-      "migration": "resolve the external candidate only by its ref and exact commit",
-      "rollback_boundary": "restore only through a new forward commit after separate authority"
-    },
-    {
-      "prior_state": "stale historical MP4 with an empty subtitle track",
-      "current_state": "coherent candidate MP4 with eleven corrected review-caption cues",
-      "affected_consumers": "human review and media verification",
-      "migration": "bind review to candidate artifact, commit, MP4 SHA256, and package fingerprint",
-      "rollback_boundary": "the historical MP4 remains obtainable only as history, not current review evidence"
-    },
-    {
-      "prior_state": "live successor and shared master routes",
-      "current_state": "successor null on master; routes are candidate-local",
-      "affected_consumers": "manifest, MkDocs, state dispatcher, tests, and review links",
-      "migration": "remove live master consumers and use the external candidate locator",
-      "rollback_boundary": "no merge, cherry-pick, default promotion, or shared dispatcher without new authority"
-    }
-  ],
   "reuse_policy": "Quarantined narrative text and structure must not be copied into active review or production tracks. Visual bytes and the terminal-frame transition method remain reusable under their existing boundaries.",
   "authority_boundaries": {
     "private": true,
-    "repository_visibility": "public",
-    "git_history_distribution": "authorized",
-    "private_identifier_meaning": "unreleased_product_candidate_not_repository_confidentiality",
     "source_files_mutated": false,
-    "human_comprehension_review_performed": false,
-    "human_case_digest_review": "pending",
+    "human_comprehension_review_performed": true,
+    "human_case_digest_review": "accepted_scoped",
     "production_approved": false,
-    "product_release": false,
+    "production_subtitle_selected": false,
     "rights_cleared_claim": false,
-    "rights_approval": "not_granted",
     "public_release": false,
-    "integration_state": "not_integrated",
+    "main_integration_performed": false,
     "final_canon": false
   }
 }

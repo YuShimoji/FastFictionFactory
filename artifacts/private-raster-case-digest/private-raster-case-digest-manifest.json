@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "fff.privateRasterCaseDigestManifest.v1",
+  "artifact_id": "fff-private-raster-case-digest-001",
+  "format_id": "CASE_DIGEST",
+  "distribution_state": {
+    "repository_visibility": "public",
+    "git_history_distribution": "authorized",
+    "repository_file_retrievable": true,
+    "legacy_private_local_only_repository_claim": "superseded",
+    "private_local_only": false,
+    "product_release": false,
+    "public_release": false,
+    "rights_approval": "not_granted",
+    "human_case_digest_review": "accepted_scoped",
+    "integration_candidate_id": "fff-case-digest-accepted-forward-integration-v1",
+    "integration_target_ref": "refs/heads/codex/fff-case-digest-accepted-forward-integration-v1",
+    "integration_state": "feature_candidate_ready_master_integration_not_performed",
+    "integration_timepoint": "feature_branch_candidate_before_master_integration",
+    "main_integration_performed": false,
+    "release_path_reachable": false,
+    "release_path_reachable_scope": "product_release_path",
+    "private_identifier_meaning": "unreleased_product_candidate_not_repository_confidentiality"
+  },
+  "human_acceptance": {
+    "decision_id": "FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726",
+    "authority_id": "AUTH-FFF-CASE-DIGEST-ACCEPTED-FORWARD-INTEGRATION-CANDIDATE-PUSH-20260726",
+    "verdict": "ACCEPTED_SCOPED",
+    "observation_ja": "事件ダイジェストとして理解できます。字幕改行にも問題ありません。次へ進めてよいです。",
+    "accepted_dimensions": [
+      "CASE_DIGEST comprehension and format fitness",
+      "review-caption wording and line-break/readability",
+      "unchanged existing image sequence and visual essence"
+    ],
+    "excluded_dimensions": [
+      "production subtitle selection",
+      "voice or audio",
+      "rights approval or clearance",
+      "production acceptance",
+      "product or public release",
+      "final canon"
+    ],
+    "source_binding": {
+      "human_review_context_commit": "f817003ea2156817220225a1b25f39cbcd7b09f3",
+      "accepted_source_ref": "refs/heads/codex/fff-case-digest-format-reset-continuity-v1",
+      "accepted_source_commit": "2e96bd380d47869024587eeb19b3f054064390af",
+      "accepted_source_tree": "accfb3fc5474f4ecb2e39b5c4d69fd8de6a7e841",
+      "accepted_source_package_fingerprint": "0f701e7cfa106dee19cf6e378eec1082920cd7f119f37be0f09696ac8020fbf2",
+      "accepted_mp4_sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1"
+    },
+    "integration_candidate_binding": {
+      "integration_candidate_id": "fff-case-digest-accepted-forward-integration-v1",
+      "target_ref": "refs/heads/codex/fff-case-digest-accepted-forward-integration-v1",
+      "parent_commit": "701869936943f9babd7d4d5287008b646106188b",
+      "parent_tree": "85a1ca377d655151a348e3e657f3ddc1c3e1177c",
+      "state": "feature_candidate_ready_master_integration_not_performed"
+    },
+    "inheritance_proof": {
+      "accepted_creative_content_changed": false,
+      "review_caption_wording_and_timing": "exact_C2",
+      "selected_shot_order_and_timing": "exact_C2",
+      "subtitle_layout_evidence": "exact_C2",
+      "source_image_identities": "exact_C2",
+      "html_visible_markup_style_playback_captions_and_layout": "exact_C2_except_embedded_state_and_decision_metadata",
+      "mp4_bytes": "exact_C2",
+      "fixed_payload_sha256": {
+        "review_caption_csv_sha256": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d",
+        "selected_shot_sequence_csv_sha256": "fa50635ec9dc17dfed233bac9c28197644be91e986033c309c8f3019066b7ec2",
+        "subtitle_layout_evidence_csv_sha256": "cc7d02ac77d92e95ed94caef70ffa6b1905fb23369b5eb57f260a42ddaf855eb",
+        "transition_boundary_map_csv_sha256": "e67312d91f7d8d1e9231acdd419263b05bbcb78044eadb0bd2fcd4568dede5d3"
+      }
+    }
+  },
+  "mp4": {
+    "path": "artifacts/private-raster-case-digest/private-raster-case-digest.mp4",
+    "byte_size": 16988212,
+    "sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1",
+    "duration_seconds": 180,
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "codec_name": "h264",
+    "width": 960,
+    "height": 540,
+    "avg_frame_rate": "30/1",
+    "frame_count": 5400,
+    "audio_stream_count": 0,
+    "subtitle_stream_count": 1,
+    "subtitle_cue_count": 11,
+    "subtitle_timing_text_sha256": "39fb4e99038ea6cdb7a489d22d475df614b88a33f3d887bc138437631a9d9209",
+    "subtitle_cues": [
+      {
+        "cue_index": 1,
+        "start_seconds": 0,
+        "end_seconds": 12,
+        "text_ja": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "cue_index": 2,
+        "start_seconds": 12,
+        "end_seconds": 24,
+        "text_ja": "塔の取付枠は空で、鐘は確認できない。"
+      },
+      {
+        "cue_index": 3,
+        "start_seconds": 24,
+        "end_seconds": 38,
+        "text_ja": "時計修理師のミラ・ヴェイルが、失踪した兄の手掛かりを調べる。"
+      },
+      {
+        "cue_index": 4,
+        "start_seconds": 38,
+        "end_seconds": 52,
+        "text_ja": "失踪した兄のメモと真鍮の蛾が、作業台に残されている。"
+      },
+      {
+        "cue_index": 5,
+        "start_seconds": 52,
+        "end_seconds": 65,
+        "text_ja": "時計と記録には、9:17が繰り返し現れる。"
+      },
+      {
+        "cue_index": 6,
+        "start_seconds": 65,
+        "end_seconds": 81,
+        "text_ja": "失踪した兄のメモは、二列の台帳へ調査を導く。"
+      },
+      {
+        "cue_index": 7,
+        "start_seconds": 81,
+        "end_seconds": 97,
+        "text_ja": "台帳には、「分」の欄と人名の欄が並んでいる。"
+      },
+      {
+        "cue_index": 8,
+        "start_seconds": 97,
+        "end_seconds": 116,
+        "text_ja": "メモは、市の評議会を調査対象として指している。"
+      },
+      {
+        "cue_index": 9,
+        "start_seconds": 116,
+        "end_seconds": 136,
+        "text_ja": "告発は記録されているが、評議会の関与を裏づける証拠はない。"
+      },
+      {
+        "cue_index": 10,
+        "start_seconds": 136,
+        "end_seconds": 158,
+        "text_ja": "時間と名前は、台帳の二つの損失区分である。"
+      },
+      {
+        "cue_index": 11,
+        "start_seconds": 158,
+        "end_seconds": 180,
+        "text_ja": "音源と関係者を確定できないまま、塔は調査対象として残る。"
+      }
+    ],
+    "watermark_text": "CASE DIGEST / PRIVATE / NOT FOR PUBLICATION"
+  },
+  "screenshots": {
+    "desktop": {
+      "path": "artifacts/review-screens/private-raster-case-digest-desktop.png",
+      "byte_size": 615964,
+      "sha256": "7a62ce07862532225d0101d2fd3ff79ff843cc4750fd1ca56d6ac8df9a7ba4dd"
+    },
+    "narrow": {
+      "path": "artifacts/review-screens/private-raster-case-digest-narrow.png",
+      "byte_size": 191342,
+      "sha256": "59f8e5b926a54ccdb8fcd89ec22e301ef12c1505f7b7698b413c0c293cfd0bb8"
+    }
+  },
+  "package_fingerprint_sha256": "db61ce4dc453a0ef7e62188c8c142c7bf176d344b4f70e0b86fda8c10d722dac",
+  "payload_file_count": 10,
+  "files": [
+    {
+      "relative_path": "case-digest-production-subtitles-draft.csv",
+      "byte_size": 1301,
+      "sha256": "494f240c57c6e6113da8e625096d5a94b0a4d4e40b3ff5b1ee6cb95ba743d6f1"
+    },
+    {
+      "relative_path": "case-digest-review-captions.csv",
+      "byte_size": 1589,
+      "sha256": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d"
+    },
+    {
+      "relative_path": "case-digest-script.md",
+      "byte_size": 2803,
+      "sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe"
+    },
+    {
+      "relative_path": "private-raster-case-digest.html",
+      "byte_size": 118670,
+      "sha256": "485a1f83aa54a99981855faba6323ada26ad803dd615e585a2bcd6d7c08b6bff"
+    },
+    {
+      "relative_path": "private-raster-case-digest.json",
+      "byte_size": 139132,
+      "sha256": "f5a2588049c2541eba26661e5e065439d90502432e752c1c498749418c6f8cb8"
+    },
+    {
+      "relative_path": "private-raster-case-digest.mp4",
+      "byte_size": 16988212,
+      "sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1"
+    },
+    {
+      "relative_path": "README_PRIVATE_RASTER_CASE_DIGEST.md",
+      "byte_size": 2068,
+      "sha256": "b759a3ded782e08a5c2e5e685c5c918adfb07f45ab6fc5671b0f3be02c97be4a"
+    },
+    {
+      "relative_path": "selected-shot-sequence.csv",
+      "byte_size": 2452,
+      "sha256": "fa50635ec9dc17dfed233bac9c28197644be91e986033c309c8f3019066b7ec2"
+    },
+    {
+      "relative_path": "subtitle-layout-evidence.csv",
+      "byte_size": 12387,
+      "sha256": "cc7d02ac77d92e95ed94caef70ffa6b1905fb23369b5eb57f260a42ddaf855eb"
+    },
+    {
+      "relative_path": "transition-boundary-map.csv",
+      "byte_size": 3759,
+      "sha256": "e67312d91f7d8d1e9231acdd419263b05bbcb78044eadb0bd2fcd4568dede5d3"
+    }
+  ]
+}

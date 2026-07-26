@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "fff.recurringElementContinuityManifest.v1",
+  "continuity_id": "fff-recurring-element-continuity-001",
+  "artifact_id": "fff-private-raster-case-digest-001",
+  "element_count": 7,
+  "package_fingerprint_sha256": "f8eee2ea45dd62d43e25d349fd7065c3d24b6fa9b6fb30a2939e8f481f507adb",
+  "payload_file_count": 4,
+  "files": [
+    {
+      "relative_path": "recurring-element-appearance-map.csv",
+      "byte_size": 14252,
+      "sha256": "621ae946b0787ed72997303b91c905f8508092788150e2ab83b5a4161b25aff1"
+    },
+    {
+      "relative_path": "recurring-element-contact-sheet.jpg",
+      "byte_size": 174801,
+      "sha256": "d489426a879dcade1aa046380162775fe2db51d66a5f2f4d6e822226dc586a9f"
+    },
+    {
+      "relative_path": "recurring-element-continuity.html",
+      "byte_size": 5403,
+      "sha256": "feb0b6e45da0d1f20e1e548b5aa6602ef0b4d6e4b828967dfd00ce72ec186562"
+    },
+    {
+      "relative_path": "recurring-element-continuity.json",
+      "byte_size": 23205,
+      "sha256": "9461daca762e38404fcdc5c44490dca630c125d137d2151137a86526e9accc86"
+    }
+  ]
+}
