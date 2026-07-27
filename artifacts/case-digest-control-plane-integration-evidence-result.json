@@ -9,12 +9,12 @@
   "target_base": "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e",
   "accepted_local_inputs": [
     {
-      "role": "control_plane_predecessor",
-      "commit_id": "dab9810961b64f1e31420f18797e897e1ef05819"
+      "role": "control_plane_audited_tip",
+      "commit_id": "197d23d47760e727126f7ad7e3e4e3120b2ae98c"
     },
     {
-      "role": "writer_source_adaptation",
-      "commit_id": "11c30b264f8f257cc802ac218998479b805648e7"
+      "role": "writer_source_adaptation_and_decision_workspace_audited_tip",
+      "commit_id": "a49b07c94a75fcda8bf8e85f4cd995af8018622d"
     }
   ],
   "frozen_predecessor_inventory": {
@@ -676,24 +676,43 @@
     "reconciled": true
   },
   "path_overlap_audit": {
-    "control_plane_commit": "dab9810961b64f1e31420f18797e897e1ef05819",
-    "writer_commit": "11c30b264f8f257cc802ac218998479b805648e7",
+    "frozen_inventory_commit": "dab9810961b64f1e31420f18797e897e1ef05819",
+    "control_plane_commit": "197d23d47760e727126f7ad7e3e4e3120b2ae98c",
+    "writer_commit": "a49b07c94a75fcda8bf8e85f4cd995af8018622d",
     "control_changed_paths": [
       "artifacts/artifact-manifest.json",
       "artifacts/ARTIFACTS.md",
       "artifacts/case-digest-control-plane-convergence-result.json",
+      "artifacts/case-digest-control-plane-integration-evidence-result.json",
       "docs/decision-log.md",
       "docs/idea-ledger.md",
       "docs/project-context.md",
       "docs/project-overview.md",
       "docs/review/case-digest-control-plane-convergence.md",
+      "docs/review/case-digest-control-plane-integration-evidence.md",
       "docs/review/current-status.md",
       "docs/review/next-terminal-handoff.md",
       "docs/review/supervisor-current-report.md",
       "tests/fff-case-digest-control-plane-convergence.test.mjs",
+      "tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
       "tools/fff-state.mjs"
     ],
     "writer_changed_paths": [
+      "artifacts/writer-decision-workspace-v1/case-digest-markdown-intake-result.json",
+      "artifacts/writer-decision-workspace-v1/decision-impact-contract.json",
+      "artifacts/writer-decision-workspace-v1/fragment-after-decisions-result.json",
+      "artifacts/writer-decision-workspace-v1/fragment-before-decisions-result.json",
+      "artifacts/writer-decision-workspace-v1/proposal-application-result.schema.json",
+      "artifacts/writer-decision-workspace-v1/raw-markdown-intake.schema.json",
+      "artifacts/writer-decision-workspace-v1/README_WRITER_DECISION_WORKSPACE_V1.md",
+      "artifacts/writer-decision-workspace-v1/successor-editorial-handoff-input.json",
+      "artifacts/writer-decision-workspace-v1/successor-narrative-ir.json",
+      "artifacts/writer-decision-workspace-v1/successor-narrative-ir.schema.json",
+      "artifacts/writer-decision-workspace-v1/writer-decision-record.schema.json",
+      "artifacts/writer-decision-workspace-v1/writer-decision-records.json",
+      "artifacts/writer-decision-workspace-v1/writer-decision-workspace-result.json",
+      "artifacts/writer-decision-workspace-v1/writer-decision-workspace.html",
+      "artifacts/writer-decision-workspace-v1/writer-proposal-application-result.json",
       "artifacts/writer-source-adaptation-v0/case-digest-fixture-output.json",
       "artifacts/writer-source-adaptation-v0/downstream-contract-map.json",
       "artifacts/writer-source-adaptation-v0/editorial-handoff-input.schema.json",
@@ -709,23 +728,41 @@
       "artifacts/writer-source-adaptation-v0/writer-source-adaptation-readback.html",
       "artifacts/writer-source-adaptation-v0/writer-source-adaptation-result.json",
       "artifacts/writer-source-adaptation-v0/writer-source-packet.schema.json",
+      "docs/architecture/WRITER_DECISION_WORKSPACE_V1.md",
       "docs/architecture/WRITER_SOURCE_ADAPTATION_V0.md",
+      "docs/review/writer-decision-workspace-v1.md",
       "docs/review/writer-source-adaptation-v0.md",
+      "fixtures/writer-decision-workspace/case-digest.metadata.json",
+      "fixtures/writer-decision-workspace/fixture-set.json",
+      "fixtures/writer-decision-workspace/fragment-bundle.md",
+      "fixtures/writer-decision-workspace/fragment-bundle.metadata.json",
+      "fixtures/writer-decision-workspace/fragment-decisions.json",
+      "fixtures/writer-decision-workspace/fragment-proposals.md",
+      "fixtures/writer-decision-workspace/proposal-decisions.json",
+      "fixtures/writer-decision-workspace/writer-proposals.md",
       "fixtures/writer-source-adaptation/case-digest.prose.json",
       "fixtures/writer-source-adaptation/fixture-set.json",
       "fixtures/writer-source-adaptation/fragment-bundle.json",
       "fixtures/writer-source-adaptation/linear-lore.prose.json",
       "fixtures/writer-source-adaptation/writer-proposal.json",
+      "tests/fff-writer-decision-workspace.test.mjs",
       "tests/fff-writer-source-adaptation.test.mjs",
+      "tools/fff-writer-decision-workspace.mjs",
       "tools/fff-writer-source-adaptation.mjs"
     ],
     "followup_changed_paths": [
       "artifacts/artifact-manifest.json",
       "artifacts/ARTIFACTS.md",
-      "artifacts/case-digest-control-plane-convergence-result.json",
       "artifacts/case-digest-control-plane-integration-evidence-result.json",
+      "docs/decision-log.md",
+      "docs/idea-ledger.md",
+      "docs/project-context.md",
+      "docs/project-overview.md",
       "docs/review/case-digest-control-plane-convergence.md",
       "docs/review/case-digest-control-plane-integration-evidence.md",
+      "docs/review/current-status.md",
+      "docs/review/next-terminal-handoff.md",
+      "docs/review/supervisor-current-report.md",
       "tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
       "tools/fff-state.mjs"
     ],
@@ -737,11 +774,20 @@
     "control_followup_intersection": [
       "artifacts/artifact-manifest.json",
       "artifacts/ARTIFACTS.md",
-      "artifacts/case-digest-control-plane-convergence-result.json",
+      "artifacts/case-digest-control-plane-integration-evidence-result.json",
+      "docs/decision-log.md",
+      "docs/idea-ledger.md",
+      "docs/project-context.md",
+      "docs/project-overview.md",
       "docs/review/case-digest-control-plane-convergence.md",
+      "docs/review/case-digest-control-plane-integration-evidence.md",
+      "docs/review/current-status.md",
+      "docs/review/next-terminal-handoff.md",
+      "docs/review/supervisor-current-report.md",
+      "tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
       "tools/fff-state.mjs"
     ],
-    "control_followup_intersection_count": 5,
+    "control_followup_intersection_count": 14,
     "semantic_contract_intersection": [
       "accepted CASE_DIGEST identity and scoped/default-off boundary",
       "missing-causality and quarantined linear-lore boundaries",
@@ -756,14 +802,14 @@
   "integration_readiness": {
     "status": "pending",
     "recommended_order": [
-      "dab9810961b64f1e31420f18797e897e1ef05819",
-      "this control-plane evidence follow-up",
-      "11c30b264f8f257cc802ac218998479b805648e7"
+      "197d23d47760e727126f7ad7e3e4e3120b2ae98c",
+      "this control-plane handoff evidence successor",
+      "a49b07c94a75fcda8bf8e85f4cd995af8018622d"
     ],
-    "order_summary": "control-plane first (including its follow-up), writer second",
+    "order_summary": "control-plane audited tip plus this handoff successor first, writer audited tip second",
     "followup_commit_status": "represented_by_containing_git_commit",
     "followup_commit_identity_resolution": "resolve the commit containing this result after local commit creation",
-    "followup_preferred_subject": "Clarify control-plane inventory and integration evidence",
+    "followup_preferred_subject": "Refresh CASE_DIGEST and Writer branch handoff",
     "product_bytes_protected": true,
     "targeted_validation_after_integration": [
       "node --check tools/fff-state.mjs",
@@ -771,7 +817,10 @@
       "node --test tests/fff-case-digest-control-plane-convergence.test.mjs",
       "node --test tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
       "node --test tests/fff-private-raster-case-digest.test.mjs",
+      "node --check tools/fff-writer-source-adaptation.mjs",
+      "node --check tools/fff-writer-decision-workspace.mjs",
       "node --test tests/fff-writer-source-adaptation.test.mjs",
+      "node --test tests/fff-writer-decision-workspace.test.mjs",
       "git diff --check"
     ],
     "excluded_or_stale_inputs": [
@@ -788,7 +837,9 @@
     "default_state_unchanged": true,
     "acceptance_state_unchanged": true,
     "production_rights_release_unchanged": true,
-    "writer_v1_started_or_passed": false,
+    "writer_v0_local_branch_passed": true,
+    "writer_v1_local_branch_passed": true,
+    "writer_branch_integrated": false,
     "branch_integration_performed": false,
     "push_performed": false,
     "external_effect_count": 0

@@ -1,5 +1,13 @@
 # Decision Log
 
+## 2026-07-27 — Record complete local branch tips without integrating them
+
+- Decision: Treat `197d23d47760e727126f7ad7e3e4e3120b2ae98c` and `a49b07c94a75fcda8bf8e85f4cd995af8018622d` as audited local inputs while keeping `master` at exact `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`.
+- Evidence: both branches descend directly from `bcdf84e`, each is two commits ahead of the base, both worktrees are clean, neither has an upstream or remote ref, and their complete 16-path / 51-path diffs have zero intersection.
+- Validation: control root gate, focused control tests 21/21, CASE_DIGEST 14/14, Writer read-only CLI checks with writes 0, and Writer focused tests 31/31 pass without worktree mutation.
+- Integration rule: if separately authorized, integrate the control-plane handoff successor first and the Writer tip second, then run the combined targeted validation set. This record does not authorize merge, rebase, cherry-pick, push, publication, or product/default/canon promotion.
+- Product boundary: Writer Source Adaptation v0 and Decision Workspace v1 are implemented local mechanism evidence, not canonical integration, arbitrary-novel support, project canon, literary-quality acceptance, production-ready script status, or production/release authority.
+
 ## 2026-07-27 — Separate CASE_DIGEST current health from archive integrity and historical debt
 
 - Decision: Keep `fff-private-previsualization-timeline-001` active/default and `fff-private-raster-case-digest-001` accepted/default-off; make CASE_DIGEST validation and its dedicated 14/14 tests mandatory in the canonical root command.

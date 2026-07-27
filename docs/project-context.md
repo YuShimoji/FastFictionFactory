@@ -1,17 +1,19 @@
 # Project Context
 
-## CASE_DIGEST current authority and control-plane convergence — 2026-07-27 JST
+## CASE_DIGEST authority and two-branch integration audit — 2026-07-27 JST
 
-- Remote restart authority is exact `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`. The bounded support implementation is isolated on `codex/fff-case-digest-control-plane-convergence-v1`; it does not promote a product artifact or open an external effect.
+- Remote restart authority is exact `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`, with canonical `master` at parity `0 / 0`. The audited implementation tips are control-plane `197d23d47760e727126f7ad7e3e4e3120b2ae98c` and Writer `a49b07c94a75fcda8bf8e85f4cd995af8018622d`; the containing handoff successor is the current control-plane branch `HEAD`. Both branches have no upstream and are absent from remote refs.
+- All three linked worktrees were clean before and after focused validation: tracked 0, untracked 0, ignored 0. No merge, rebase, cherry-pick, push, checkout replacement, stash, reset, or user-file overwrite was performed.
 - `fff-private-previsualization-timeline-001` remains active/default. `fff-private-raster-case-digest-001` is the accepted, default-off successor candidate. Human acceptance is limited to CASE_DIGEST comprehension, review-caption wording/readability, and the unchanged existing visual sequence.
 - `fff-private-materialized-motion-previs-001` remains `REJECTED_VISUAL_DIRECTION`, archive-only, non-successor, and release-unreachable. The clarity package's primary raster bytes and terminal-frame transition method remain accepted evidence, while its prior linear-lore narrative is quarantined and not a current successor.
 - Composition review and CASE_DIGEST comprehension review are complete. The current remote candidate is silent. Production subtitle selection, final voice integration, effects, rights clearance, production acceptance, release, publication, and final canon remain separate closed decisions.
-- The canonical read-only health command now separates current-path validity, stored artifact self-integrity, and non-blocking historical debt. It requires the active preview validator, CASE_DIGEST validator, the dedicated CASE_DIGEST 14/14 tests, and both quarantine identities; predecessor artifacts are checked without requiring them to remain the unique current successor.
+- On the unintegrated control-plane branch, the manifest-owned read-only health command separates current-path validity, stored artifact self-integrity, and non-blocking historical debt. It requires the active preview validator, CASE_DIGEST validator, the dedicated CASE_DIGEST 14/14 tests, and both quarantine identities; predecessor artifacts are checked without requiring them to remain the unique current successor.
 - The Asset / Rights Readiness inventory is a protected 76-result subset, not a permanent total-count assertion. All 76 baseline paths and hashes must remain exact; five later valid product results are accepted as additive descendants.
 - Historical `.serena/project.yml` dirty SHA evidence remains historical only. A clean checkout is not required to reproduce machine-local bytes.
-- This convergence is bounded support, not a product gate. The next product-bearing development family is Writer Source Adaptation; this statement names the route but does not claim that work has started or passed.
+- Control-plane validation passes its root gate, focused tests 21/21, and CASE_DIGEST 14/14. The Writer branch implements `fff-writer-source-adaptation-v0-001` and `fff-writer-decision-workspace-v1-001`; read-only CLI checks report writes 0 and focused tests pass 31/31. Those results are local branch evidence, not canonical integration.
+- The complete base-relative path sets are disjoint: control-plane 16 paths, Writer 51 paths, intersection 0. Recommended integration order is the control-plane branch including this handoff successor, then the Writer branch. Integration and push remain unauthorized and pending.
 
-PowerShell 5.1 restart validation:
+PowerShell 5.1 validation after entering the control-plane worktree:
 
 ```powershell
 $manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json

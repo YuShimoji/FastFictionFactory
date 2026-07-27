@@ -6,9 +6,9 @@ This page is a navigation map for quickly understanding the current Fast Fiction
 
 The active/default artifact remains `fff-private-previsualization-timeline-001`. The accepted successor is silent, default-off `fff-private-raster-case-digest-001`, with human acceptance limited to CASE_DIGEST comprehension, review-caption readability, and the unchanged visual sequence. Rejected materialized motion remains archive-only, and the prior clarity narrative remains quarantined.
 
-Whole-story composition and CASE_DIGEST comprehension are complete. Production subtitle selection, final voice integration, effects, rights, production acceptance, release/publication, and final canon remain separate. Writer Source Adaptation is the next product-bearing family; `fff-case-digest-control-plane-convergence-001` only repairs restart authority and read-only validation and does not claim that product work has started.
+Whole-story composition and CASE_DIGEST comprehension are complete. Production subtitle selection, final voice integration, effects, rights, production acceptance, release/publication, and final canon remain separate. `fff-case-digest-control-plane-convergence-001` repairs restart authority and read-only validation only. A separate clean local branch implements Writer Source Adaptation v0 and Writer Decision Workspace v1 with focused tests 31/31, but those artifacts remain unintegrated, unpushed, and non-canonical.
 
-Run current health through the root manifest:
+On the unintegrated control-plane branch, run current health through the root manifest:
 
 ```powershell
 $manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json

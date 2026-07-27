@@ -98,8 +98,15 @@
       "result_path": "artifacts/case-digest-control-plane-integration-evidence-result.json",
       "review_doc_path": "docs/review/case-digest-control-plane-integration-evidence.md",
       "target_base": "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e",
-      "control_plane_predecessor_commit": "dab9810961b64f1e31420f18797e897e1ef05819",
-      "writer_source_adaptation_commit": "11c30b264f8f257cc802ac218998479b805648e7",
+      "frozen_inventory_commit": "dab9810961b64f1e31420f18797e897e1ef05819",
+      "control_plane_audited_tip": "197d23d47760e727126f7ad7e3e4e3120b2ae98c",
+      "writer_branch_audited_tip": "a49b07c94a75fcda8bf8e85f4cd995af8018622d",
+      "writer_local_artifact_ids": [
+        "fff-writer-source-adaptation-v0-001",
+        "fff-writer-decision-workspace-v1-001"
+      ],
+      "writer_local_validation_status": "passed",
+      "writer_integration_status": "pending",
       "integration_status": "pending",
       "push_authority": "not_authorized",
       "integration_authority": "not_authorized",

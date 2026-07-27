@@ -1,13 +1,18 @@
 # Next Terminal Handoff
 
-## Start here — CASE_DIGEST current remote authority (2026-07-27 JST)
+## Start here — CASE_DIGEST and local branch integration audit (2026-07-27 JST)
 
-Exact restart base is `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`. After synchronizing a clean checkout, run the manifest-owned read-only command:
+Exact remote restart base is `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`, ahead/behind `0 / 0`. Two clean, local-only branches are intentionally outside that canonical base:
+
+- control-plane audited tip `197d23d47760e727126f7ad7e3e4e3120b2ae98c`, followed by the containing handoff successor in this worktree;
+- Writer audited tip `a49b07c94a75fcda8bf8e85f4cd995af8018622d`.
+
+Neither branch has an upstream or remote ref. Do not merge, rebase, cherry-pick, or push from this handoff alone. After entering the control-plane worktree, run its manifest-owned read-only command:
 
 ```powershell
 git fetch --prune origin
-git pull --ff-only origin master
-git rev-list --left-right --count "HEAD...origin/master"
+git rev-list --left-right --count "master...origin/master"
+git rev-parse HEAD
 $manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 ```
@@ -21,9 +26,11 @@ The expected state is:
 - completed: whole-story composition and CASE_DIGEST comprehension/review-caption readability;
 - still closed: production subtitle selection, final voice integration, effects, rights, production acceptance, release/publication, and final canon.
 
-The root command must report CASE_DIGEST validator PASS, dedicated tests `14/14`, archive self-integrity separately, readiness baseline `76/76` with five additive descendant results, and `mutation_detected=false`. A historical `.serena/project.yml` dirty SHA is evidence from an old terminal, not a current checkout requirement.
+The root command must report CASE_DIGEST validator PASS, dedicated tests `14/14`, archive self-integrity separately, readiness baseline `76/76` with five additive descendant results, and `mutation_detected=false`. Fresh focused control tests pass 21/21. A historical `.serena/project.yml` dirty SHA is evidence from an old terminal, not a current checkout requirement.
 
-Writer Source Adaptation is the next product-bearing development family. This control-plane support slice does not gate it and does not claim it has started. Do not return to completed clarity review, promote CASE_DIGEST to default, revive rejected motion, infer local-only audio, or infer production/rights/release/canon approval.
+The Writer branch now contains two verified local artifacts: Source Adaptation v0 preserves exact source/authority, selects among six bounded formats, rejects the quarantined linear-lore SHORT_DRAMA, and compiles a compatible Handoff only when safe; Decision Workspace v1 ingests Markdown, applies only explicit writer-authorized decisions, and creates a candidate-only successor without overwriting v0. Its read-only CLI checks report writes 0 and focused tests pass 31/31. This is fixture-bounded mechanism evidence, not arbitrary-novel adaptation, project canon, literary-quality proof, or a production-ready script.
+
+Git path audit is disjoint at the two audited tips: control 16 paths, Writer 51 paths, intersection 0. The next executable integration sequence, once separately authorized, is control-plane plus this handoff successor first and Writer second, followed by all targeted checks recorded in `artifacts/case-digest-control-plane-integration-evidence-result.json`. Until then, preserve both worktrees. Do not return to completed clarity review, promote CASE_DIGEST to default, revive rejected motion, infer local-only audio, or infer production/rights/release/canon approval.
 
 ## Start here — synchronized development handoff (2026-07-24 JST)
 

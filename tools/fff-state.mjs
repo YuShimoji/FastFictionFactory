@@ -83,8 +83,9 @@ const CASE_DIGEST_FULL_RASTER_PREDECESSOR_ID = "fff-private-full-raster-candidat
 const CASE_DIGEST_PRIMARY_QUARANTINE_ID = "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25";
 const CASE_DIGEST_NARRATIVE_QUARANTINE_ID = "FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26";
 const CASE_DIGEST_BASE_REVISION = "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e";
-const CASE_DIGEST_CONTROL_PLANE_COMMIT = "dab9810961b64f1e31420f18797e897e1ef05819";
-const CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT = "11c30b264f8f257cc802ac218998479b805648e7";
+const CASE_DIGEST_CONTROL_PLANE_INVENTORY_COMMIT = "dab9810961b64f1e31420f18797e897e1ef05819";
+const CASE_DIGEST_CONTROL_PLANE_AUDITED_TIP = "197d23d47760e727126f7ad7e3e4e3120b2ae98c";
+const CASE_DIGEST_WRITER_BRANCH_AUDITED_TIP = "a49b07c94a75fcda8bf8e85f4cd995af8018622d";
 const CASE_DIGEST_INTEGRATION_EVIDENCE_SCHEMA_VERSION = "fff.caseDigestControlPlaneIntegrationEvidence.v1";
 const CASE_DIGEST_INTEGRATION_EVIDENCE_ARTIFACT_ID = "fff-case-digest-control-plane-integration-evidence-001";
 const CASE_DIGEST_INTEGRATION_EVIDENCE_RESULT_PATH = "artifacts/case-digest-control-plane-integration-evidence-result.json";
@@ -1558,17 +1559,18 @@ function caseDigestGitRun(args, encoding = "utf8") {
   return run.stdout;
 }
 
-function caseDigestGitChangedPaths(commitId) {
-  return caseDigestNormalizePaths(
-    String(
-      caseDigestGitRun([
+function caseDigestGitChangedPaths(commitId, baseId = null) {
+  const args = baseId
+    ? ["diff", "--name-only", `${baseId}..${commitId}`]
+    : [
         "diff-tree",
         "--no-commit-id",
         "--name-only",
         "-r",
         commitId
-      ])
-    )
+      ];
+  return caseDigestNormalizePaths(
+    String(caseDigestGitRun(args))
       .split(/\r?\n/u)
       .filter(Boolean)
   );
@@ -1626,7 +1628,7 @@ async function buildCaseDigestIntegrationEvidence(outputPath) {
       filePath !== CASE_DIGEST_INTEGRATION_EVIDENCE_RESULT_PATH
   );
   const predecessorRecords = caseDigestGitResultRecords(
-    CASE_DIGEST_CONTROL_PLANE_COMMIT
+    CASE_DIGEST_CONTROL_PLANE_INVENTORY_COMMIT
   );
   const predecessorByPath = new Map(
     predecessorRecords.map((record) => [record.path, record])
@@ -1641,18 +1643,26 @@ async function buildCaseDigestIntegrationEvidence(outputPath) {
       predecessorByPath.get(record.relative_path)?.artifact_id || null
   }));
   const controlPaths = caseDigestGitChangedPaths(
-    CASE_DIGEST_CONTROL_PLANE_COMMIT
+    CASE_DIGEST_CONTROL_PLANE_AUDITED_TIP,
+    CASE_DIGEST_BASE_REVISION
   );
   const writerPaths = caseDigestGitChangedPaths(
-    CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT
+    CASE_DIGEST_WRITER_BRANCH_AUDITED_TIP,
+    CASE_DIGEST_BASE_REVISION
   );
   const followupPaths = [
     "artifacts/artifact-manifest.json",
     "artifacts/ARTIFACTS.md",
-    "artifacts/case-digest-control-plane-convergence-result.json",
     CASE_DIGEST_INTEGRATION_EVIDENCE_RESULT_PATH,
+    "docs/decision-log.md",
+    "docs/idea-ledger.md",
+    "docs/project-context.md",
+    "docs/project-overview.md",
     "docs/review/case-digest-control-plane-convergence.md",
     "docs/review/case-digest-control-plane-integration-evidence.md",
+    "docs/review/current-status.md",
+    "docs/review/next-terminal-handoff.md",
+    "docs/review/supervisor-current-report.md",
     "tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
     "tools/fff-state.mjs"
   ];
@@ -1689,16 +1699,16 @@ async function buildCaseDigestIntegrationEvidence(outputPath) {
     target_base: CASE_DIGEST_BASE_REVISION,
     accepted_local_inputs: [
       {
-        role: "control_plane_predecessor",
-        commit_id: CASE_DIGEST_CONTROL_PLANE_COMMIT
+        role: "control_plane_audited_tip",
+        commit_id: CASE_DIGEST_CONTROL_PLANE_AUDITED_TIP
       },
       {
-        role: "writer_source_adaptation",
-        commit_id: CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT
+        role: "writer_source_adaptation_and_decision_workspace_audited_tip",
+        commit_id: CASE_DIGEST_WRITER_BRANCH_AUDITED_TIP
       }
     ],
     frozen_predecessor_inventory: {
-      commit_id: CASE_DIGEST_CONTROL_PLANE_COMMIT,
+      commit_id: CASE_DIGEST_CONTROL_PLANE_INVENTORY_COMMIT,
       observed_result_total: predecessorRecords.length,
       inventory_sha256: evaluated.inventory.inventory_sha256,
       items: predecessorRecords.map((record) => ({
@@ -1746,8 +1756,9 @@ async function buildCaseDigestIntegrationEvidence(outputPath) {
       reconciled: true
     },
     path_overlap_audit: {
-      control_plane_commit: CASE_DIGEST_CONTROL_PLANE_COMMIT,
-      writer_commit: CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT,
+      frozen_inventory_commit: CASE_DIGEST_CONTROL_PLANE_INVENTORY_COMMIT,
+      control_plane_commit: CASE_DIGEST_CONTROL_PLANE_AUDITED_TIP,
+      writer_commit: CASE_DIGEST_WRITER_BRANCH_AUDITED_TIP,
       control_changed_paths: controlPaths,
       writer_changed_paths: writerPaths,
       followup_changed_paths: caseDigestNormalizePaths(followupPaths),
@@ -1779,16 +1790,16 @@ async function buildCaseDigestIntegrationEvidence(outputPath) {
     integration_readiness: {
       status: "pending",
       recommended_order: [
-        CASE_DIGEST_CONTROL_PLANE_COMMIT,
-        "this control-plane evidence follow-up",
-        CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT
+        CASE_DIGEST_CONTROL_PLANE_AUDITED_TIP,
+        "this control-plane handoff evidence successor",
+        CASE_DIGEST_WRITER_BRANCH_AUDITED_TIP
       ],
-      order_summary: "control-plane first (including its follow-up), writer second",
+      order_summary: "control-plane audited tip plus this handoff successor first, writer audited tip second",
       followup_commit_status: "represented_by_containing_git_commit",
       followup_commit_identity_resolution:
         "resolve the commit containing this result after local commit creation",
       followup_preferred_subject:
-        "Clarify control-plane inventory and integration evidence",
+        "Refresh CASE_DIGEST and Writer branch handoff",
       product_bytes_protected: true,
       targeted_validation_after_integration: [
         "node --check tools/fff-state.mjs",
@@ -1796,7 +1807,10 @@ async function buildCaseDigestIntegrationEvidence(outputPath) {
         "node --test tests/fff-case-digest-control-plane-convergence.test.mjs",
         "node --test tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
         "node --test tests/fff-private-raster-case-digest.test.mjs",
+        "node --check tools/fff-writer-source-adaptation.mjs",
+        "node --check tools/fff-writer-decision-workspace.mjs",
         "node --test tests/fff-writer-source-adaptation.test.mjs",
+        "node --test tests/fff-writer-decision-workspace.test.mjs",
         "git diff --check"
       ],
       excluded_or_stale_inputs: [
@@ -1813,7 +1827,9 @@ async function buildCaseDigestIntegrationEvidence(outputPath) {
       default_state_unchanged: true,
       acceptance_state_unchanged: true,
       production_rights_release_unchanged: true,
-      writer_v1_started_or_passed: false,
+      writer_v0_local_branch_passed: true,
+      writer_v1_local_branch_passed: true,
+      writer_branch_integrated: false,
       branch_integration_performed: false,
       push_performed: false,
       external_effect_count: 0

@@ -1,27 +1,32 @@
 # Current Status Packet
 
-## CASE_DIGEST remote authority — 2026-07-27 JST
+## CASE_DIGEST authority and local branch audit — 2026-07-27 JST
 
-| Decision dimension | Current remote state |
+| Decision dimension | Verified state |
 | --- | --- |
 | Exact base | `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e` |
+| Canonical parity | local `master = origin/master`; ahead/behind `0 / 0`; clean |
+| Unintegrated control branch | audited implementation tip `197d23d47760e727126f7ad7e3e4e3120b2ae98c`; containing handoff successor is current branch `HEAD`; upstream none; remote ref absent |
+| Unintegrated Writer branch | `a49b07c94a75fcda8bf8e85f4cd995af8018622d`; clean; upstream none; remote ref absent |
 | Active/default artifact | `fff-private-previsualization-timeline-001`; unchanged |
 | Accepted successor | `fff-private-raster-case-digest-001`; scoped acceptance; default-off; silent |
 | Archived/rejected visual direction | `fff-private-materialized-motion-previs-001`; rejected, archive-only, non-successor |
 | Quarantined predecessor narrative | clarity linear-lore structure is rejected; accepted raster bytes and terminal-frame transition evidence remain preserved |
 | Completed human gates | whole-story composition and CASE_DIGEST comprehension/review-caption readability |
 | Still separate | production subtitles, final voice integration, effects, rights, production acceptance, release/publication, final canon |
-| Current product route | Writer Source Adaptation is the next product-bearing family; no start or pass is claimed here |
+| Writer Source Adaptation v0 | Local branch implementation complete; three annotated input envelopes, six-format decision, source-bound IR, compatible Handoff; focused evidence pass |
+| Writer Decision Workspace v1 | Local branch implementation complete; Markdown intake, explicit decisions, candidate-only successor; focused evidence pass |
+| Integration state | Both branch families remain outside canonical `master`; integration and push pending/not authorized |
 | Support lane | `fff-case-digest-control-plane-convergence-001`; current-state/read-only validation repair only, not a product gate |
 
-The canonical read-only command is:
+The control-plane branch's manifest-owned read-only command is:
 
 ```powershell
 $manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 ```
 
-Its concise JSON separates `current_path_pass`, current/default identity, accepted successor identity, archive self-integrity, non-blocking debt, failures, revision, and mutation detection. CASE_DIGEST's dedicated 14/14 tests are mandatory. Historical `.serena` dirty bytes and predecessor successor-exclusivity are not clean-checkout requirements. The Readiness Packet's 76 historical results are protected as a path/hash subset, while five valid later results remain additive descendants.
+Its concise JSON separates `current_path_pass`, current/default identity, accepted successor identity, archive self-integrity, non-blocking debt, failures, revision, and mutation detection. Fresh validation passed the root gate, control focused tests 21/21, and CASE_DIGEST 14/14 with mutation 0. The Writer branch passed two read-only CLI checks with writes 0 and focused tests 31/31. Historical `.serena` dirty bytes and predecessor successor-exclusivity are not clean-checkout requirements. The Readiness Packet's 76 historical results are protected as a path/hash subset, while five valid later results remain additive descendants.
 
 ## Transition Continuity and Narrative Clarity Candidate — 2026-07-26 JST
 

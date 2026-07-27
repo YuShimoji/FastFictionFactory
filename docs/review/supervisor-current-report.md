@@ -2,15 +2,19 @@
 
 更新日: 2026-07-27 JST
 
-## 2026-07-27 CASE_DIGEST remote authority
+## 2026-07-27 CASE_DIGEST authority and two-branch handoff
 
-現行 remote base は `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e` です。`fff-private-previsualization-timeline-001` は active/default のまま、`fff-private-raster-case-digest-001` は scoped accepted・default-off・silent successor candidate です。全編 composition と CASE_DIGEST comprehension / review-caption readability の人間確認は完了しています。
+現行 remote base は `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`、ahead/behind `0 / 0` です。別worktreeの audited implementation tip は control-plane `197d23d47760e727126f7ad7e3e4e3120b2ae98c` と Writer `a49b07c94a75fcda8bf8e85f4cd995af8018622d` で、control-planeのcurrent `HEAD`が本handoff successorです。両branchはupstreamなし、remote refなし、本流未統合です。無断 merge / rebase / cherry-pick / push は行っていません。
+
+`fff-private-previsualization-timeline-001` は active/default のまま、`fff-private-raster-case-digest-001` は scoped accepted・default-off・silent successor candidate です。全編 composition と CASE_DIGEST comprehension / review-caption readability の人間確認は完了しています。
 
 一方で、production subtitle selection、final voice integration、effects、rights、production acceptance、release/publication、final canon は別 gate のままです。`fff-private-materialized-motion-previs-001` は rejected/archive-only/non-successor、旧 clarity narrative は quarantine 維持です。accepted raster bytes と terminal-frame transition evidence の保存は narrative 採用を意味しません。
 
-`fff-case-digest-control-plane-convergence-001` は current-state の読解と clean-checkout validation を直す bounded support であり、product progress や gate ではありません。root health は current path、archive self-integrity、historical debt を分離し、CASE_DIGEST validator と dedicated 14/14 を必須化します。Readiness の 76 baseline は protected subset として保持し、5件の正当な descendant result を許可します。過去端末の `.serena` dirty SHA は current requirement ではありません。
+`fff-case-digest-control-plane-convergence-001` は current-state の読解と clean-checkout validation を直す bounded support であり、product progress や gate ではありません。root health は current path、archive self-integrity、historical debt を分離し、CASE_DIGEST validator と dedicated 14/14 を必須化します。Readiness の 76 baseline は protected subset として保持し、5件の正当な descendant result を許可します。過去端末の `.serena` dirty SHA は current requirement ではありません。再検証は root gate、control focused 21/21、CASE_DIGEST 14/14、mutation 0 で通過しました。
 
-次の product-bearing family は Writer Source Adaptation です。ここではその開始・完了を主張しません。
+Writer branch は Source Adaptation v0 と Decision Workspace v1 まで実装済みです。前者は source span / authority / six-format decision / Narrative IR / Editorial Handoff input をローカルかつprovider-neutralに接続し、linear-loreと順序不明fragmentを安全に停止します。後者は実Markdown intakeと明示的な accept / reject / defer / replace recordからcandidate-only successorを作り、predecessorを上書きしません。read-only CLIはwrites 0、focused testsは31/31です。ただしfixture-bounded mechanism proofであり、任意小説対応、project canon、文学的品質、production-ready scriptを意味しません。
+
+base-relative path は control 16、Writer 51、intersection 0です。別途統合許可が出た場合の順序は、control-planeと本handoff successorを先に、Writer tipを後にし、machine-readable evidenceに列挙した全checkを実行します。production subtitle、voice/effects、rights、production acceptance、release/publication、final canonは引き続き別gateです。
 
 ## 2026-07-24 PLANNER007端末での最新同期・再検証（現行ローカル追記）
 

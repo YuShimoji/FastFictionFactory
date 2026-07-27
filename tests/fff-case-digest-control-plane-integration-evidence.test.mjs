@@ -1,11 +1,17 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const toolPath = path.join(repoRoot, "tools", "fff-state.mjs");
+const evidencePath = path.join(
+  repoRoot,
+  "artifacts",
+  "case-digest-control-plane-integration-evidence-result.json"
+);
 
 function baselineRecord(suffix) {
   return {
@@ -240,5 +246,30 @@ test("normal validation mutation fails readiness", () => {
   assert.notEqual(run.status, 0);
   assert.ok(
     failureCodes(run).includes("NORMAL_VALIDATION_MUTATED_REPOSITORY")
+  );
+});
+
+test("committed evidence binds both audited branch tips without claiming integration", () => {
+  const evidence = JSON.parse(readFileSync(evidencePath, "utf8"));
+  assert.deepEqual(
+    evidence.accepted_local_inputs.map((entry) => entry.commit_id),
+    [
+      "197d23d47760e727126f7ad7e3e4e3120b2ae98c",
+      "a49b07c94a75fcda8bf8e85f4cd995af8018622d"
+    ]
+  );
+  assert.equal(evidence.path_overlap_audit.control_changed_paths.length, 16);
+  assert.equal(evidence.path_overlap_audit.writer_changed_paths.length, 51);
+  assert.equal(evidence.path_overlap_audit.writer_control_intersection_count, 0);
+  assert.equal(evidence.path_overlap_audit.writer_followup_intersection_count, 0);
+  assert.equal(evidence.boundaries.writer_v0_local_branch_passed, true);
+  assert.equal(evidence.boundaries.writer_v1_local_branch_passed, true);
+  assert.equal(evidence.boundaries.writer_branch_integrated, false);
+  assert.equal(evidence.boundaries.branch_integration_performed, false);
+  assert.equal(evidence.boundaries.push_performed, false);
+  assert.ok(
+    evidence.integration_readiness.targeted_validation_after_integration.includes(
+      "node --test tests/fff-writer-decision-workspace.test.mjs"
+    )
   );
 });

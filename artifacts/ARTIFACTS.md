@@ -15,13 +15,14 @@
 
 - Type: bounded support / inventory reconciliation and integration-readiness evidence.
 - Target base: `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`.
-- Accepted inputs: control-plane predecessor `dab9810961b64f1e31420f18797e897e1ef05819`; Writer source adaptation `11c30b264f8f257cc802ac218998479b805648e7`.
+- Frozen inventory input: control-plane predecessor `dab9810961b64f1e31420f18797e897e1ef05819`.
+- Audited local tips: control-plane `197d23d47760e727126f7ad7e3e4e3120b2ae98c`; Writer Source Adaptation plus Decision Workspace `a49b07c94a75fcda8bf8e85f4cd995af8018622d`.
 - Result/review: `artifacts/case-digest-control-plane-integration-evidence-result.json`, `docs/review/case-digest-control-plane-integration-evidence.md`.
 - Frozen predecessor inventory: 85 exact result paths and SHA256 identities; aggregate SHA256 `361e16663e2da86e18c5c30c853fc23c8a598460c06e673de1d9a6ca20c06b73`.
 - Reconciliation: the previously omitted identities are `fff-asset-rights-readiness-packet-001`, `fff-private-previsualization-timeline-001`, `fff-resumable-private-pipeline-001`, and `fff-case-digest-control-plane-convergence-001`.
-- Path audit: control 13 paths; Writer 24 paths; direct intersection zero. The declared eight-path follow-up also intersects Writer at zero.
+- Path audit: control 16 paths; Writer 51 paths; direct intersection zero. The declared handoff-refresh paths also intersect Writer at zero.
 - Forward gate: valid passing non-authority descendants may grow the total; unclassified, duplicate, missing/changed baseline, baseline-ID collision, unregistered current authority, incorrect arithmetic, path overlap, and validation mutation cases fail closed.
-- Recommended order: control-plane predecessor and this evidence follow-up first, Writer second.
+- Recommended order: control-plane audited tip and its containing handoff successor first, Writer audited tip second.
 - State: integration pending; push and integration not authorized; product/default/acceptance/rights/production/release/canon unchanged.
 
 ## fff-private-raster-case-digest-001

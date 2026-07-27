@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-27 Two-branch integration handoff
+
+- Purpose: Preserve exact, evidence-backed restart state for the completed local control-plane and Writer branch tips without silently integrating or publishing either.
+- Effect: Replaces the stale “Writer not started” handoff with verified v0/v1 capability, validation, path-disjointness, and integration-order evidence while keeping canonical product/default/acceptance state unchanged.
+- Requirements: Keep `master` at remote parity; preserve all three clean worktrees; retain exact tips `197d23d47760e727126f7ad7e3e4e3120b2ae98c` and `a49b07c94a75fcda8bf8e85f4cd995af8018622d`; require separate integration/push authority and the combined post-integration checks.
+- State: Handoff evidence implemented on the control-plane branch. Writer v0 and v1 pass 31/31 focused tests but remain local-only and unintegrated; control root/focused/CASE_DIGEST gates pass with mutation 0.
+- Owner: Repository integrator owns any later Git integration and conflict resolution; writer/editor/product owner supplies real-source decision records; production, rights, voice/effects, release, and canon owners retain their separate gates.
+- Next move: With explicit integration authority, land the control-plane handoff successor first, then the Writer tip, and run the recorded combined checks. Without that authority, preserve both worktrees and use the Writer workspace only as fixture-bounded evidence.
+
 ## 2026-07-27 CASE_DIGEST Control-plane Convergence
 
 - Purpose: Let clean-checkout workers resolve the accepted CASE_DIGEST state through one read-only root command.
@@ -7,7 +16,7 @@
 - Requirements: Preserve all product/media bytes and both quarantines; require CASE_DIGEST validator plus dedicated 14/14; protect the 76-result baseline as a subset; keep normal validation mutation-free.
 - State: Implemented as bounded support in `fff-case-digest-control-plane-convergence-001`; not a product gate.
 - Owner: Repository/control-plane maintainer for validator continuity; human owners retain production subtitle, voice, effects, rights, production, release, and canon decisions.
-- Next move: Use Writer Source Adaptation as the next product-bearing family without claiming it has started; keep this support contract as the restart health gate.
+- Next move: Keep this support contract as the restart health gate; Writer Source Adaptation v0 and Decision Workspace v1 now exist on a separate validated local branch and require explicit integration authority before becoming canonical.
 
 ## 2026-07-26 Transition Continuity and Narrative Clarity Candidate
 

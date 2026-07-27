@@ -54,10 +54,10 @@ The four formerly omitted identities are `fff-asset-rights-readiness-packet-001`
 
 The root output now exposes the observed total, every class count, unclassified and duplicate counts, baseline missing and hash-mismatch counts, and a dynamic aggregate inventory hash. A well-formed passing non-authority result may increase the total as an additive descendant; a baseline identity collision or an unregistered current-authority claim fails closed.
 
-Exact Git comparison is recorded in `artifacts/case-digest-control-plane-integration-evidence-result.json`. Control predecessor `dab9810961b64f1e31420f18797e897e1ef05819` changes 13 paths, Writer input `11c30b264f8f257cc802ac218998479b805648e7` changes 24, and their direct intersection is zero. The declared eight-path evidence follow-up also intersects Writer at zero; it intentionally overlaps the control predecessor on five support paths. Integration remains pending and unauthorized, with control-plane predecessor plus this evidence follow-up recommended before Writer.
+Exact Git comparison is recorded in `artifacts/case-digest-control-plane-integration-evidence-result.json`. The 85-result inventory remains frozen at control predecessor `dab9810961b64f1e31420f18797e897e1ef05819`; integration compatibility is audited at complete local tips `197d23d47760e727126f7ad7e3e4e3120b2ae98c` and `a49b07c94a75fcda8bf8e85f4cd995af8018622d`. Their 16-path and 51-path base diffs have zero direct intersection, and the declared handoff-refresh paths also intersect Writer at zero. Integration remains pending and unauthorized, with the control-plane handoff successor recommended before Writer.
 
 ## Product handoff
 
 Whole-story composition and CASE_DIGEST comprehension are already accepted within their recorded scopes. The remote CASE_DIGEST candidate remains silent. Production subtitle selection, final voice integration, effects, rights clearance, production acceptance, release/publication, and final canon remain separate.
 
-Writer Source Adaptation is the next product-bearing family. This support artifact neither gates that family nor claims it has started.
+Writer Source Adaptation v0 and Writer Decision Workspace v1 are implemented and pass their focused checks on a separate clean local branch, but neither is integrated into canonical `master`. This support artifact does not promote them, and the next product decision remains whether to integrate that audited branch after the control-plane handoff.
