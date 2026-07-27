@@ -1,0 +1,237 @@
+{
+  "schemaVersion": "fff.caseDigestControlPlaneConvergenceResult.v1",
+  "artifact_id": "fff-case-digest-control-plane-convergence-001",
+  "mission_id": "fff-case-digest-control-plane-convergence-planner-001",
+  "passed": true,
+  "failures": [],
+  "exact_base": "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e",
+  "branch": "codex/fff-case-digest-control-plane-convergence-v1",
+  "support_only": true,
+  "product_gate": false,
+  "current_artifact_state": {
+    "active_default_artifact_id": "fff-private-previsualization-timeline-001",
+    "accepted_successor_artifact_id": "fff-private-raster-case-digest-001",
+    "accepted_successor_default_active": false,
+    "accepted_successor_human_scope": "accepted_scoped_case_digest_comprehension_review_captions_and_unchanged_visual_sequence",
+    "archived_rejected_artifact_id": "fff-private-materialized-motion-previs-001",
+    "archived_rejected_status": "REJECTED_VISUAL_DIRECTION_ARCHIVE_ONLY_NON_SUCCESSOR",
+    "clarity_narrative_status": "QUARANTINED_BY_PRODUCT_OWNER",
+    "remote_candidate_audio_state": "silent",
+    "production_rights_release_state": "closed"
+  },
+  "initial_eight_failure_classification": [
+    {
+      "defect": "stale handoff and current-state documents",
+      "cause": "pre-CASE_DIGEST restart authority remained at the top of durable handoff files",
+      "decision_effect_before": "BLOCK_CURRENT",
+      "correction": "current remote authority is now the leading handoff section"
+    },
+    {
+      "defect": "CASE_DIGEST absent from root health",
+      "cause": "root validation still required rejected motion plus the active preview",
+      "decision_effect_before": "BLOCK_CURRENT",
+      "correction": "CASE_DIGEST validator and dedicated 14/14 tests are mandatory"
+    },
+    {
+      "defect": "historical .serena dirty SHA required",
+      "cause": "materialized-motion validation consumed old machine-local dirty fingerprints",
+      "decision_effect_before": "BLOCK_CURRENT",
+      "correction": "dirty fingerprints remain historical evidence and are excluded from current validation"
+    },
+    {
+      "defect": "predecessor self-integrity coupled to successor exclusivity",
+      "cause": "full-raster, clarity, and motion validators asserted their historical successor role as current",
+      "decision_effect_before": "BLOCK_CURRENT",
+      "correction": "stored package/source integrity is validated independently from current registration"
+    },
+    {
+      "defect": "readiness inventory fixed at exactly 76 current results",
+      "cause": "aggregate/count equality treated valid descendant growth as corruption",
+      "decision_effect_before": "BLOCK_SAFETY",
+      "correction": "all 76 baseline identities are protected as a subset and valid descendants are additive"
+    },
+    {
+      "defect": "PowerShell JSON reads lacked an explicit UTF-8 raw contract",
+      "cause": "current restart examples were not consistently PowerShell 5.1 safe",
+      "decision_effect_before": "BLOCK_CURRENT",
+      "correction": "current examples use Get-Content -Encoding UTF8 -Raw before ConvertFrom-Json"
+    },
+    {
+      "defect": "archive registration findings blocked the current path",
+      "cause": "archive byte integrity and live registration were reported as one boolean",
+      "decision_effect_before": "BLOCK_CURRENT",
+      "correction": "archive self-integrity remains blocking only for protected-byte corruption; stale registration is DEBT_NONBLOCKING"
+    },
+    {
+      "defect": "root output did not expose decision effects or mutation proof",
+      "cause": "the prior chain emitted sequential validator text without a current-state summary",
+      "decision_effect_before": "BLOCK_CURRENT",
+      "correction": "one concise JSON result reports current path, archive integrity, debt, failures, revision, and mutation detection"
+    }
+  ],
+  "current_root_chain": {
+    "command": "node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json",
+    "read_only": true,
+    "current_project_state_integrity": true,
+    "active_default_validation": "PASS",
+    "case_digest_validation": "PASS",
+    "case_digest_dedicated_tests": "14/14",
+    "primary_imagery_quarantine": "PASS",
+    "narrative_format_quarantine": "PASS",
+    "current_path_pass": true,
+    "mutation_detected": false
+  },
+  "case_digest_mandatory_validation": {
+    "validator_command": "node tools/fff-state.mjs validate-private-raster-case-digest artifacts/private-raster-case-digest-result.json",
+    "validator_passed": true,
+    "dedicated_test_command": "node --test tests/fff-private-raster-case-digest.test.mjs",
+    "dedicated_tests_passed": 14,
+    "dedicated_tests_total": 14
+  },
+  "archive_validation": {
+    "passed": true,
+    "mode": "stored_artifact_self_integrity_without_current_successor_exclusivity",
+    "artifacts": [
+      {
+        "artifact_id": "fff-private-materialized-motion-previs-001",
+        "status": "REJECTED_VISUAL_DIRECTION_ARCHIVE_ONLY",
+        "self_integrity": "PASS"
+      },
+      {
+        "artifact_id": "fff-private-full-raster-candidate-001",
+        "status": "SUPERSEDED_PREDECESSOR",
+        "self_integrity": "PASS"
+      },
+      {
+        "artifact_id": "fff-private-full-raster-clarity-candidate-001",
+        "status": "SUPERSEDED_NARRATIVE_PREDECESSOR",
+        "self_integrity": "PASS"
+      }
+    ]
+  },
+  "historical_dirty_dependency_removed": true,
+  "historical_dirty_evidence_retained": true,
+  "clean_checkout_requires_historical_dirty_fingerprint": false,
+  "predecessor_supersession_mode": "self_integrity_separate_from_current_registration",
+  "readiness_baseline": {
+    "contract": "protected_subset",
+    "baseline_count": 76,
+    "protected_subset_count": 76,
+    "missing_count": 0,
+    "hash_changed_count": 0,
+    "fixed_current_count_required": false,
+    "additive_descendant_count": 5,
+    "invalid_additive_descendant_count": 0
+  },
+  "affected_tests": [
+    {
+      "command": "node --check tools/fff-state.mjs",
+      "status": "PASS"
+    },
+    {
+      "command": "node --test tests/fff-case-digest-control-plane-convergence.test.mjs",
+      "status": "PASS",
+      "passed": 10,
+      "total": 10
+    },
+    {
+      "command": "node --test tests/fff-private-raster-case-digest.test.mjs",
+      "status": "PASS",
+      "passed": 14,
+      "total": 14
+    },
+    {
+      "command": "node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json",
+      "status": "PASS"
+    },
+    {
+      "command": "node tools/fff-state.mjs validate-private-materialized-motion-previs-self-integrity artifacts/private-materialized-motion-previs-result.json",
+      "status": "PASS"
+    },
+    {
+      "command": "node tools/fff-state.mjs validate-private-full-raster-candidate-self-integrity artifacts/private-full-raster-candidate-result.json",
+      "status": "PASS"
+    },
+    {
+      "command": "node tools/fff-state.mjs validate-private-full-raster-clarity-candidate-self-integrity artifacts/private-full-raster-clarity-candidate-result.json",
+      "status": "PASS"
+    },
+    {
+      "command": "node tools/fff-state.mjs validate-asset-rights-readiness-baseline-subset artifacts/asset-rights-readiness-packet-result.json",
+      "status": "PASS"
+    },
+    {
+      "command": "node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json",
+      "status": "PASS"
+    }
+  ],
+  "protected_pre_post_hashes": [
+    {
+      "group": "case_digest",
+      "file_count": 12,
+      "before_sha256": "7aa1c990d8a75bdf3aad307b1ec33110a757274acacb68c45ed6c37dd8c351e7",
+      "after_sha256": "7aa1c990d8a75bdf3aad307b1ec33110a757274acacb68c45ed6c37dd8c351e7"
+    },
+    {
+      "group": "active_previsualization",
+      "file_count": 43,
+      "before_sha256": "66d0ff74544d44341d7457126dd1d6c69156c9b4fb0f77f73cc297b715c4cc58",
+      "after_sha256": "66d0ff74544d44341d7457126dd1d6c69156c9b4fb0f77f73cc297b715c4cc58"
+    },
+    {
+      "group": "rejected_materialized_motion",
+      "file_count": 94,
+      "before_sha256": "f659c2553059241ea67518979077d8aa50f5842b621fa5113924af8db4e1ad93",
+      "after_sha256": "f659c2553059241ea67518979077d8aa50f5842b621fa5113924af8db4e1ad93"
+    },
+    {
+      "group": "full_raster_predecessor",
+      "file_count": 40,
+      "before_sha256": "0de565b178524f25fd93fea1b09dd531ad442470a9ec1955ab78587f597b0633",
+      "after_sha256": "0de565b178524f25fd93fea1b09dd531ad442470a9ec1955ab78587f597b0633"
+    },
+    {
+      "group": "clarity_predecessor",
+      "file_count": 14,
+      "before_sha256": "c41450bc22881103d8522af7c12f675b350758bf9e6ae7abdc5fa4fca1e02448",
+      "after_sha256": "c41450bc22881103d8522af7c12f675b350758bf9e6ae7abdc5fa4fca1e02448"
+    },
+    {
+      "group": "primary_raster_source",
+      "file_count": 10,
+      "before_sha256": "59ce83c9086ed5c122730c9cebcc9429dd0c879d00e98d083fa19f576ddb328b",
+      "after_sha256": "59ce83c9086ed5c122730c9cebcc9429dd0c879d00e98d083fa19f576ddb328b"
+    },
+    {
+      "group": "quarantines",
+      "file_count": 4,
+      "before_sha256": "618687738fc8dfb9f34b5aa8bd2e2f659d1bb6ec8acbc0fb69c0c8695c54597e",
+      "after_sha256": "618687738fc8dfb9f34b5aa8bd2e2f659d1bb6ec8acbc0fb69c0c8695c54597e"
+    },
+    {
+      "group": "asset_rights_readiness",
+      "file_count": 10,
+      "before_sha256": "4d778e8172ddd5999515103103c64d3349523e563ecdbc39db1a563ee13039d7",
+      "after_sha256": "4d778e8172ddd5999515103103c64d3349523e563ecdbc39db1a563ee13039d7"
+    }
+  ],
+  "mutation_count": 0,
+  "current_blockers": [],
+  "bounded_debt": [
+    {
+      "code": "HISTORICAL_DIRTY_FINGERPRINT_RETAINED_AS_EVIDENCE",
+      "decision_effect": "DEBT_NONBLOCKING",
+      "detail": "The old materialized-motion result still records terminal-local dirty hashes, but no current validator consumes them."
+    }
+  ],
+  "product_state_unchanged": true,
+  "default_selection_unchanged": true,
+  "acceptance_state_unchanged": true,
+  "voice_state_unchanged": true,
+  "rights_state_unchanged": true,
+  "production_state_unchanged": true,
+  "release_state_unchanged": true,
+  "canon_state_unchanged": true,
+  "public_effects": false,
+  "external_effect_count": 0
+}

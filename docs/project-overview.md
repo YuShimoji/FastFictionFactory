@@ -2,6 +2,19 @@
 
 This page is a navigation map for quickly understanding the current Fast Fiction Factory project from the Markdown set. It points to existing source documents instead of replacing them.
 
+## Current product/control-plane route — 2026-07-27 JST
+
+The active/default artifact remains `fff-private-previsualization-timeline-001`. The accepted successor is silent, default-off `fff-private-raster-case-digest-001`, with human acceptance limited to CASE_DIGEST comprehension, review-caption readability, and the unchanged visual sequence. Rejected materialized motion remains archive-only, and the prior clarity narrative remains quarantined.
+
+Whole-story composition and CASE_DIGEST comprehension are complete. Production subtitle selection, final voice integration, effects, rights, production acceptance, release/publication, and final canon remain separate. Writer Source Adaptation is the next product-bearing family; `fff-case-digest-control-plane-convergence-001` only repairs restart authority and read-only validation and does not claim that product work has started.
+
+Run current health through the root manifest:
+
+```powershell
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+```
+
 ## Where To Look First
 
 | Question | Primary document | What it answers |
@@ -196,6 +209,8 @@ For an existing clone:
 ```powershell
 git fetch --prune origin
 git pull --ff-only origin master
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
 uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 ```
 

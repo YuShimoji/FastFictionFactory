@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-27 CASE_DIGEST Control-plane Convergence
+
+- Purpose: Let clean-checkout workers resolve the accepted CASE_DIGEST state through one read-only root command.
+- Effect: Separates active/default selection, accepted successor scope, archived/rejected status, byte self-integrity, current registration, human acceptance, and production/rights/release state.
+- Requirements: Preserve all product/media bytes and both quarantines; require CASE_DIGEST validator plus dedicated 14/14; protect the 76-result baseline as a subset; keep normal validation mutation-free.
+- State: Implemented as bounded support in `fff-case-digest-control-plane-convergence-001`; not a product gate.
+- Owner: Repository/control-plane maintainer for validator continuity; human owners retain production subtitle, voice, effects, rights, production, release, and canon decisions.
+- Next move: Use Writer Source Adaptation as the next product-bearing family without claiming it has started; keep this support contract as the restart health gate.
+
 ## 2026-07-26 Transition Continuity and Narrative Clarity Candidate
 
 - Purpose: Preserve the Product Owner-accepted nineteen-image raster sequence while removing boundary crop resets and making the silent three-minute story understandable without production-state copy.

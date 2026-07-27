@@ -1,5 +1,28 @@
 # Current Status Packet
 
+## CASE_DIGEST remote authority — 2026-07-27 JST
+
+| Decision dimension | Current remote state |
+| --- | --- |
+| Exact base | `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e` |
+| Active/default artifact | `fff-private-previsualization-timeline-001`; unchanged |
+| Accepted successor | `fff-private-raster-case-digest-001`; scoped acceptance; default-off; silent |
+| Archived/rejected visual direction | `fff-private-materialized-motion-previs-001`; rejected, archive-only, non-successor |
+| Quarantined predecessor narrative | clarity linear-lore structure is rejected; accepted raster bytes and terminal-frame transition evidence remain preserved |
+| Completed human gates | whole-story composition and CASE_DIGEST comprehension/review-caption readability |
+| Still separate | production subtitles, final voice integration, effects, rights, production acceptance, release/publication, final canon |
+| Current product route | Writer Source Adaptation is the next product-bearing family; no start or pass is claimed here |
+| Support lane | `fff-case-digest-control-plane-convergence-001`; current-state/read-only validation repair only, not a product gate |
+
+The canonical read-only command is:
+
+```powershell
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+```
+
+Its concise JSON separates `current_path_pass`, current/default identity, accepted successor identity, archive self-integrity, non-blocking debt, failures, revision, and mutation detection. CASE_DIGEST's dedicated 14/14 tests are mandatory. Historical `.serena` dirty bytes and predecessor successor-exclusivity are not clean-checkout requirements. The Readiness Packet's 76 historical results are protected as a path/hash subset, while five valid later results remain additive descendants.
+
 ## Transition Continuity and Narrative Clarity Candidate — 2026-07-26 JST
 
 | Item | Verified state |

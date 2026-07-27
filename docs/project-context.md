@@ -1,5 +1,23 @@
 # Project Context
 
+## CASE_DIGEST current authority and control-plane convergence — 2026-07-27 JST
+
+- Remote restart authority is exact `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`. The bounded support implementation is isolated on `codex/fff-case-digest-control-plane-convergence-v1`; it does not promote a product artifact or open an external effect.
+- `fff-private-previsualization-timeline-001` remains active/default. `fff-private-raster-case-digest-001` is the accepted, default-off successor candidate. Human acceptance is limited to CASE_DIGEST comprehension, review-caption wording/readability, and the unchanged existing visual sequence.
+- `fff-private-materialized-motion-previs-001` remains `REJECTED_VISUAL_DIRECTION`, archive-only, non-successor, and release-unreachable. The clarity package's primary raster bytes and terminal-frame transition method remain accepted evidence, while its prior linear-lore narrative is quarantined and not a current successor.
+- Composition review and CASE_DIGEST comprehension review are complete. The current remote candidate is silent. Production subtitle selection, final voice integration, effects, rights clearance, production acceptance, release, publication, and final canon remain separate closed decisions.
+- The canonical read-only health command now separates current-path validity, stored artifact self-integrity, and non-blocking historical debt. It requires the active preview validator, CASE_DIGEST validator, the dedicated CASE_DIGEST 14/14 tests, and both quarantine identities; predecessor artifacts are checked without requiring them to remain the unique current successor.
+- The Asset / Rights Readiness inventory is a protected 76-result subset, not a permanent total-count assertion. All 76 baseline paths and hashes must remain exact; five later valid product results are accepted as additive descendants.
+- Historical `.serena/project.yml` dirty SHA evidence remains historical only. A clean checkout is not required to reproduce machine-local bytes.
+- This convergence is bounded support, not a product gate. The next product-bearing development family is Writer Source Adaptation; this statement names the route but does not claim that work has started or passed.
+
+PowerShell 5.1 restart validation:
+
+```powershell
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+```
+
 ## Transition Continuity and Narrative Clarity Candidate — 2026-07-26 JST
 
 - Restart authority: `git fetch origin --prune` confirmed exact `origin/master = 2716b4b0988ab103ff0ac16d038c1a28af37736e`. Work is isolated on `codex/fff-transition-continuity-narrative-clarity-v1`; the original checkout remains at `cfd645f` with the same seven pre-existing dirty paths and SHA256 identities.
@@ -381,7 +399,7 @@ all passed. The broader preserved safety chain below was last fully verified on
 2026-07-07 and was not re-run merely for this handoff refresh:
 
 ```powershell
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 node .\tools\fff-state.mjs smoke-layout-lab-visual-audit .\artifacts\layout-lab-visual-audit-result.json .\artifacts\layout-lab-visual-audit-result.json
 node .\tools\fff-state.mjs smoke-apply-decision-shell-guard-diet .\artifacts\apply-decision-shell-guard-diet-result.json .\artifacts\apply-decision-shell-guard-diet-result.json
@@ -492,23 +510,21 @@ uvx --with mkdocs-material mkdocs serve -a 127.0.0.1:8000
 
 If port `8000` is already in use, use a neighboring local port such as `8001`.
 
-Pull the remote handoff state, verify parity, and run the current read-only gates:
+Pull the remote handoff state, verify parity, and run the canonical current read-only gate:
 
 ```powershell
 git fetch --prune origin
 git pull --ff-only origin master
 git rev-list --left-right --count "HEAD...origin/master"
 git status --short --branch --untracked-files=all
-node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json
-node tools/fff-state.mjs validate-asset-rights-readiness-packet artifacts/asset-rights-readiness-packet-result.json
-node tools/fff-state.mjs validate-integrated-visual-production-package artifacts/integrated-visual-production-package-result.json
-Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
 ```
 
-First next move: review the exact private artifact once and report findings with shot ID, cue ID, or timestamp. If there is no material defect, preserve it and route the separate A/B/C `owner_asset_plan_decision`. If there is a defect, authorize only a bounded preview repair that regenerates the canonical frame lineage coherently. Do not repeat source integration or predecessor reviews. Actual asset selection, rights clearance, local synthetic-engine choice/calibration, audio or media generation, provider work, final render, public release, database persistence, timing/order changes, truth, and canon remain deferred until separately authorized.
+The current remote composition and CASE_DIGEST comprehension gates are complete. Keep the silent CASE_DIGEST package default-off and use the Writer Source Adaptation family as the next product-bearing route. Production subtitle selection, final voice integration, effects, asset selection, rights clearance, production acceptance, final render, public release, database persistence, timing/order changes, truth, and canon remain deferred until separately authorized.
 
 ## Handoff Path
 
 For another terminal, start with `docs/review/next-terminal-handoff.md` after pulling latest remote state. `docs/review/current-status.md` is the authoritative current packet for the active artifact and validation commands.
 
-The current repository handoff names `fff-private-previsualization-timeline-001` as the latest product artifact and `e5ae7a11af3430c0a410948d8f5dc218de513b19` as its immutable implementation checkpoint. `fff-integrated-visual-production-package-001` remains accepted composition authority, while `fff-asset-rights-readiness-packet-001` remains the independent Owner material-plan decision surface. The full Visual Treatment / Composition Board / expansion / Storyboard / Production Execution / Operator / Blueprint / Derivative / Revision / Handoff chain stays protected historical evidence. After fetching `origin/master`, use `git log -1 --oneline --decorate` and `git rev-list --left-right --count "HEAD...origin/master"` to establish the exact documentation-successor HEAD and parity, then run the three current read-only validators. Do not rely on prior chat history.
+The current repository handoff keeps `fff-private-previsualization-timeline-001` active/default and registers accepted, default-off `fff-private-raster-case-digest-001` as its successor candidate. `fff-integrated-visual-production-package-001` remains accepted composition authority, while `fff-asset-rights-readiness-packet-001` remains an independent material-plan decision surface. The full Visual Treatment / Composition Board / expansion / Storyboard / Production Execution / Operator / Blueprint / Derivative / Revision / Handoff chain stays protected historical evidence. After fetching `origin/master`, establish parity and invoke the root manifest's one canonical read-only command. Do not reopen completed clarity review or interpret archive-only validation as current successor selection.

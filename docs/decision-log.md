@@ -1,5 +1,14 @@
 # Decision Log
 
+## 2026-07-27 — Separate CASE_DIGEST current health from archive integrity and historical debt
+
+- Decision: Keep `fff-private-previsualization-timeline-001` active/default and `fff-private-raster-case-digest-001` accepted/default-off; make CASE_DIGEST validation and its dedicated 14/14 tests mandatory in the canonical root command.
+- Decision: Validate rejected/superseded packages by their own stored bytes and source identities without requiring each predecessor to remain the unique current successor.
+- Decision: Treat the Readiness Packet's 76 historical results as an immutable path/hash subset and allow valid additive descendants. Historical machine-local `.serena` dirty fingerprints remain evidence only.
+- Effect: A clean checkout can obtain one trustworthy current-state result without reviving rejected motion, reopening completed clarity review, or treating inventory growth as corruption.
+- Boundaries: No product package, media, default selection, human acceptance, production subtitle, voice, effects, rights, production, release, publication, or canon state changes.
+- Forward route: Writer Source Adaptation is the next product-bearing family; this bounded support decision neither starts nor gates it.
+
 ## 2026-07-26 — Preserve accepted imagery while repairing transitions and story comprehension
 
 - Decision: register `fff-private-full-raster-clarity-candidate-001` as the sole new private, default-off successor candidate while keeping `fff-private-previsualization-timeline-001` active/default.

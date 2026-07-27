@@ -1,5 +1,16 @@
 # Artifacts
 
+## fff-case-digest-control-plane-convergence-001
+
+- Type: bounded support / read-only control-plane convergence.
+- Exact remote base: `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`.
+- Result/review: `artifacts/case-digest-control-plane-convergence-result.json`, `docs/review/case-digest-control-plane-convergence.md`.
+- Canonical validation: `node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json`.
+- Current state: active/default `fff-private-previsualization-timeline-001`; accepted/default-off successor `fff-private-raster-case-digest-001`; rejected/archive-only motion `fff-private-materialized-motion-previs-001`.
+- Health model: current path, archive self-integrity, and `DEBT_NONBLOCKING` history are reported separately. CASE_DIGEST validator and dedicated 14/14 tests are mandatory.
+- Inventory model: all 76 Readiness baseline result identities remain an immutable subset; five valid later product results are additive descendants.
+- Boundaries: product packages/media/default selection/acceptance/voice/effects/rights/production/release/canon unchanged; public effects false.
+
 ## fff-private-raster-case-digest-001
 
 - Title: Fast Fiction Factory Private Raster CASE_DIGEST

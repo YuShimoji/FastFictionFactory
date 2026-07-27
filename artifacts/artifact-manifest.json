@@ -5,6 +5,60 @@
   "quarantined_candidate_artifact_id": "fff-private-materialized-motion-previs-001",
   "primary_imagery_quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
   "primary_imagery_quarantine_path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
+  "case_digest_control_plane_convergence": {
+    "artifact_id": "fff-case-digest-control-plane-convergence-001",
+    "schemaVersion": "fff.caseDigestControlPlaneConvergence.v1",
+    "exact_remote_base": "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e",
+    "result_path": "artifacts/case-digest-control-plane-convergence-result.json",
+    "review_doc_path": "docs/review/case-digest-control-plane-convergence.md",
+    "support_only": true,
+    "product_gate": false,
+    "current_state_model": {
+      "active_default": {
+        "artifact_id": "fff-private-previsualization-timeline-001",
+        "active": true,
+        "default": true
+      },
+      "accepted_successor_candidate": {
+        "artifact_id": "fff-private-raster-case-digest-001",
+        "accepted": "scoped",
+        "active": false,
+        "default": false
+      },
+      "archived_rejected": {
+        "artifact_id": "fff-private-materialized-motion-previs-001",
+        "visual_verdict": "REJECTED_VISUAL_DIRECTION",
+        "archive_only": true
+      },
+      "artifact_self_integrity": "validated_independently_from_current_registration",
+      "current_registration_state": "CASE_DIGEST_ACCEPTED_DEFAULT_OFF_SUCCESSOR",
+      "human_acceptance_scope": "case_digest_comprehension_review_captions_and_unchanged_visual_sequence",
+      "production_rights_release_state": "closed"
+    },
+    "current_path_chain": [
+      "current-project-state-integrity",
+      "validate-private-previsualization-timeline",
+      "validate-private-raster-case-digest",
+      "tests/fff-private-raster-case-digest.test.mjs",
+      "primary-imagery-quarantine-integrity",
+      "narrative-format-quarantine-integrity"
+    ],
+    "archive_self_integrity_commands": [
+      "validate-private-materialized-motion-previs-self-integrity",
+      "validate-private-full-raster-candidate-self-integrity",
+      "validate-private-full-raster-clarity-candidate-self-integrity"
+    ],
+    "readiness_baseline_contract": "protected_76_file_subset_with_valid_additive_descendants",
+    "predecessor_unique_successor_required": false,
+    "clean_checkout_requires_historical_dirty_fingerprint": false,
+    "normal_validation_writes_result": false,
+    "decision_effects": [
+      "BLOCK_CURRENT",
+      "BLOCK_SAFETY",
+      "DEBT_NONBLOCKING"
+    ],
+    "public_effects": false
+  },
   "primary_imagery_medium_gate": {
     "active": true,
     "quarantine_id": "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25",
@@ -1099,7 +1153,7 @@
   "created_at": "2026-06-23T14:06:00+09:00",
   "editorial_handoff_line_ending_policy": "LF enforced by .gitattributes for portable byte-size and SHA256 verification",
   "editorial_handoff_portability_validation_result": "passed 6/6 filtered checkout files; LF-only bytes, working-tree hashes, and package-manifest hashes matched with core.autocrlf=true on 2026-07-12",
-  "validation_command": "& { node --check tools/fff-state.mjs; if ($LASTEXITCODE -ne 0) { throw 'State tool syntax failed' }; node --check tools/fff-private-materialized-motion-previs.mjs; if ($LASTEXITCODE -ne 0) { throw 'Materialized motion tool syntax failed' }; node --check tools/fff-private-previsualization-timeline.mjs; if ($LASTEXITCODE -ne 0) { throw 'Accepted preview tool syntax failed' }; node tools/fff-state.mjs validate-private-materialized-motion-previs artifacts/private-materialized-motion-previs-result.json; if ($LASTEXITCODE -ne 0) { throw 'Materialized motion validation failed' }; node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json; if ($LASTEXITCODE -ne 0) { throw 'Accepted preview validation failed' }; Write-Output 'Private materialized motion candidate and accepted default preview validation passed' }",
+  "validation_command": "node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json",
   "validation_result": "The private materialized motion successor preserves the accepted 180-second / 6-Beat / 19-shot / 20-subtitle chronology and predecessor bytes, materializes nine deterministic local-original families across the exact seventeen mapped shots, renders all motion and transition classes into a silent 960x540 H.264 MP4, records 57 non-blank frame witnesses, passes sixteen targeted tests and eighteen browser boundary probes, and keeps production, rights, voice, canon, upload, and publication gates closed.",
   "scope_lock_validation_result": "passed 2026-06-23T18:00:28+09:00; fff-downstream-adoption-gate-scope-lock-001 parsed and confirmed readback-only, no adoption implementation, no Profile/Claim/Timeline mutation, no canon promotion, no DB persistence, no model/API/provider execution, no production sync, contradictory claims held, and pre-adoption source/routing/hold checks preserved over the latest downstream gate readback.",
   "review_status": "resumable_private_pipeline_h0_passed",

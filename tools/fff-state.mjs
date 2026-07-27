@@ -2,6 +2,7 @@
 
 import { mkdir, readFile, readdir, stat, writeFile } from "node:fs/promises";
 import { createHash } from "node:crypto";
+import { spawnSync } from "node:child_process";
 import path from "node:path";
 
 const SCHEMA_VERSION = "fff.projectState.v1";
@@ -72,6 +73,47 @@ const PRODUCTION_STORYBOARD_BRIEF_MANIFEST_SCHEMA_VERSION = "fff.productionStory
 const BEAT2_COMPOSITION_BOARD_SCHEMA_VERSION = "fff.beat2CompositionBoard.v1";
 const BEAT2_COMPOSITION_BOARD_RESULT_SCHEMA_VERSION = "fff.beat2CompositionBoardResult.v1";
 const BEAT2_COMPOSITION_BOARD_MANIFEST_SCHEMA_VERSION = "fff.beat2CompositionBoardManifest.v1";
+const CASE_DIGEST_CONTROL_PLANE_SCHEMA_VERSION = "fff.caseDigestControlPlaneConvergence.v1";
+const CASE_DIGEST_CONTROL_PLANE_ARTIFACT_ID = "fff-case-digest-control-plane-convergence-001";
+const CASE_DIGEST_ACTIVE_ARTIFACT_ID = "fff-private-previsualization-timeline-001";
+const CASE_DIGEST_ACCEPTED_SUCCESSOR_ID = "fff-private-raster-case-digest-001";
+const CASE_DIGEST_REJECTED_MOTION_ID = "fff-private-materialized-motion-previs-001";
+const CASE_DIGEST_CLARITY_PREDECESSOR_ID = "fff-private-full-raster-clarity-candidate-001";
+const CASE_DIGEST_FULL_RASTER_PREDECESSOR_ID = "fff-private-full-raster-candidate-001";
+const CASE_DIGEST_PRIMARY_QUARANTINE_ID = "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25";
+const CASE_DIGEST_NARRATIVE_QUARANTINE_ID = "FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26";
+const CASE_DIGEST_BASE_REVISION = "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e";
+const CASE_DIGEST_PRIMARY_QUARANTINE_SHA256 = "aab00065e9994b1dedc6d30d2b1b9f6eb1ef4a1893d7f8948c5564578dde542b";
+const CASE_DIGEST_NARRATIVE_QUARANTINE_SHA256 = "1a23bef3bc41609b0957ec8ed7af112e43058cd975485f6badf7806ea119943f";
+const CASE_DIGEST_BASELINE_OWNER_RESULT_PATHS = new Set([
+  "artifacts/asset-rights-readiness-packet-result.json",
+  "artifacts/private-previsualization-timeline-result.json",
+  "artifacts/resumable-private-pipeline-result.json",
+  "artifacts/case-digest-control-plane-convergence-result.json"
+]);
+const CASE_DIGEST_SELF_INTEGRITY_TARGETS = {
+  [CASE_DIGEST_REJECTED_MOTION_ID]: {
+    result_path: "artifacts/private-materialized-motion-previs-result.json",
+    package_root: "artifacts/private-materialized-motion-previs",
+    manifest_path: "artifacts/private-materialized-motion-previs/private-materialized-motion-previs-manifest.json",
+    manifest_schema: "fff.privateMaterializedMotionPrevisManifest.v1",
+    result_schema: "fff.privateMaterializedMotionPrevisResult.v1"
+  },
+  [CASE_DIGEST_FULL_RASTER_PREDECESSOR_ID]: {
+    result_path: "artifacts/private-full-raster-candidate-result.json",
+    package_root: "artifacts/private-full-raster-candidate",
+    manifest_path: "artifacts/private-full-raster-candidate/private-full-raster-candidate-manifest.json",
+    manifest_schema: "fff.privateFullRasterCandidateManifest.v1",
+    result_schema: "fff.privateFullRasterCandidateResult.v1"
+  },
+  [CASE_DIGEST_CLARITY_PREDECESSOR_ID]: {
+    result_path: "artifacts/private-full-raster-clarity-candidate-result.json",
+    package_root: "artifacts/private-full-raster-clarity-candidate",
+    manifest_path: "artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate-manifest.json",
+    manifest_schema: "fff.privateFullRasterClarityCandidateManifest.v1",
+    result_schema: "fff.privateFullRasterClarityCandidateResult.v1"
+  }
+};
 const DEFAULT_OUTPUT = "artifacts/current-project-state.json";
 const DEFAULT_EXTRACTION_FIXTURE_SMOKE_OUTPUT = "artifacts/extraction-validator-smoke-result.json";
 const DEFAULT_ROUTING_POLICY_REGRESSION_OUTPUT = "artifacts/routing-policy-regression-hardening-result.json";
@@ -844,6 +886,533 @@ const EXTRACTION_FIXTURE_EXPECTATIONS = {
   }
 };
 
+function caseDigestControlPlaneSha256(value) {
+  return createHash("sha256").update(value).digest("hex");
+}
+
+async function caseDigestControlPlaneReadStdin() {
+  const chunks = [];
+  for await (const chunk of process.stdin) chunks.push(Buffer.from(chunk));
+  return Buffer.concat(chunks).toString("utf8");
+}
+
+async function caseDigestControlPlaneListFiles(root) {
+  const entries = await readdir(root, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const child = path.join(root, entry.name);
+    if (entry.isDirectory()) files.push(...await caseDigestControlPlaneListFiles(child));
+    else if (entry.isFile()) files.push(child.replaceAll("\\", "/"));
+  }
+  return files.sort();
+}
+
+async function caseDigestControlPlaneTreeDigest(root) {
+  const files = await caseDigestControlPlaneListFiles(root);
+  const rows = [];
+  for (const filePath of files) {
+    const bytes = await readFile(filePath);
+    const info = await stat(filePath);
+    rows.push(`${path.relative(root, filePath).replaceAll("\\", "/")}|${info.size}|${caseDigestControlPlaneSha256(bytes)}`);
+  }
+  return {
+    file_count: rows.length,
+    sha256: caseDigestControlPlaneSha256(Buffer.from(rows.join("\n")))
+  };
+}
+
+async function caseDigestControlPlaneFileMatches(record) {
+  if (!record?.relative_path || !Number.isInteger(record.byte_size) || typeof record.sha256 !== "string") return false;
+  const snapshot = await readFileSnapshot(record.relative_path);
+  return snapshot.exists && snapshot.byteSize === record.byte_size && snapshot.sha256 === record.sha256;
+}
+
+async function validateCaseDigestStoredArtifactSelfIntegrity(artifactId, inputPath) {
+  const target = CASE_DIGEST_SELF_INTEGRITY_TARGETS[artifactId];
+  if (!target) throw new Error(`Unsupported CASE_DIGEST self-integrity artifact: ${artifactId}`);
+  if (path.resolve(inputPath) !== path.resolve(target.result_path)) {
+    throw new Error(`${artifactId} self-integrity requires ${target.result_path}`);
+  }
+
+  const [result, manifest] = await Promise.all([
+    readJson(target.result_path),
+    readJson(target.manifest_path)
+  ]);
+  const failures = [];
+  const add = (condition, message) => { if (!condition) failures.push(message); };
+  add(result.schemaVersion === target.result_schema && result.artifact_id === artifactId, "stored result identity mismatch");
+  add(result.passed === true && Array.isArray(result.failures) && result.failures.length === 0, "stored result is not a passing historical record");
+  add(manifest.schemaVersion === target.manifest_schema && manifest.artifact_id === artifactId, "package manifest identity mismatch");
+  add(result.package_manifest?.path === target.manifest_path, "stored result manifest path mismatch");
+  add(result.package_manifest?.fingerprint === manifest.package_fingerprint_sha256, "stored result package fingerprint mismatch");
+  add(result.package_manifest?.payload_file_count === manifest.payload_file_count, "stored result package count mismatch");
+
+  const payloadFiles = (await caseDigestControlPlaneListFiles(target.package_root))
+    .filter((filePath) => path.resolve(filePath) !== path.resolve(target.manifest_path));
+  const actualRelativePaths = payloadFiles
+    .map((filePath) => path.relative(target.package_root, filePath).replaceAll("\\", "/"))
+    .sort((left, right) => left.localeCompare(right));
+  const manifestRelativePaths = (manifest.files || []).map((item) => item.relative_path);
+  const orderedFiles = manifestRelativePaths.map((relativePath) => path.join(target.package_root, relativePath));
+  const records = [];
+  for (const filePath of orderedFiles) {
+    const bytes = await readFile(filePath);
+    const info = await stat(filePath);
+    records.push({
+      relative_path: path.relative(target.package_root, filePath).replaceAll("\\", "/"),
+      byte_size: info.size,
+      sha256: caseDigestControlPlaneSha256(bytes)
+    });
+  }
+  const aggregateInput = artifactId === CASE_DIGEST_REJECTED_MOTION_ID
+    ? records.map((item) => `${item.relative_path}\t${item.byte_size}\t${item.sha256}\n`).join("")
+    : records.map((item) => `${item.relative_path}\0${item.byte_size}\0${item.sha256}`).join("\n");
+  const inventory = {
+    file_count: records.length,
+    aggregate_sha256: caseDigestControlPlaneSha256(Buffer.from(aggregateInput)),
+    files: records
+  };
+  add(inventory.file_count === manifest.payload_file_count, "package payload count mismatch");
+  add(JSON.stringify(actualRelativePaths) === JSON.stringify([...manifestRelativePaths].sort((left, right) => left.localeCompare(right))), "package payload path set mismatch");
+  add(inventory.aggregate_sha256 === manifest.package_fingerprint_sha256, "package aggregate fingerprint mismatch");
+  add(JSON.stringify(inventory.files) === JSON.stringify(manifest.files), "package file identity list mismatch");
+
+  const protectedRecords = result.protected_inputs?.before || [];
+  for (const record of protectedRecords) {
+    add(await caseDigestControlPlaneFileMatches(record), `protected input identity mismatch: ${record.relative_path || "unknown"}`);
+  }
+
+  if (artifactId === CASE_DIGEST_REJECTED_MOTION_ID) {
+    const evidence = result.protected_input_evidence?.before || {};
+    for (const [filePath, expected] of Object.entries(evidence.result_hashes || {})) {
+      const snapshot = await readFileSnapshot(filePath);
+      add(snapshot.exists && snapshot.sha256 === expected, `protected historical result mismatch: ${filePath}`);
+    }
+    for (const [root, expected] of Object.entries(evidence.tree_hashes || {})) {
+      try {
+        const observed = await caseDigestControlPlaneTreeDigest(root);
+        add(observed.sha256 === expected, `protected historical tree mismatch: ${root}`);
+      } catch {
+        add(false, `protected historical tree missing: ${root}`);
+      }
+    }
+    add(result.selected_for_production_count === 0 && result.rights_cleared_claim_count === 0, "historical motion production boundary changed");
+    add(result.public_upload === false && result.production_approved === false && result.final_canon_decision === false, "historical motion release boundary changed");
+    add(manifest.boundaries?.replaces_accepted_private_preview === false, "historical motion replacement boundary changed");
+  } else {
+    add(result.boundaries?.default_active === false, "historical predecessor default boundary changed");
+    add(result.boundaries?.selected_for_final_production === false, "historical predecessor production selection changed");
+    add(result.boundaries?.rights_cleared_claim === false, "historical predecessor rights boundary changed");
+    add(result.boundaries?.public_release === false && result.boundaries?.final_canon === false, "historical predecessor release/canon boundary changed");
+  }
+
+  if (failures.length) {
+    throw new Error(`${artifactId} self-integrity failed: ${failures.join("; ")}`);
+  }
+  return {
+    artifact_id: artifactId,
+    passed: true,
+    payload_file_count: inventory.file_count,
+    package_fingerprint_sha256: inventory.aggregate_sha256,
+    protected_input_count: protectedRecords.length,
+    historical_dirty_fingerprint_used: false
+  };
+}
+
+async function validateCaseDigestBaselineSubset(inputPath) {
+  const canonicalPath = "artifacts/asset-rights-readiness-packet-result.json";
+  if (path.resolve(inputPath) !== path.resolve(canonicalPath)) {
+    throw new Error(`Readiness baseline subset validation requires ${canonicalPath}`);
+  }
+  const readiness = await readJson(canonicalPath);
+  const baselineFiles = readiness.protected_integrity?.historical_results?.files || [];
+  const missing_paths = [];
+  const hash_changed_paths = [];
+  for (const record of baselineFiles) {
+    const snapshot = await readFileSnapshot(record.relative_path);
+    if (!snapshot.exists) missing_paths.push(record.relative_path);
+    else if (snapshot.byteSize !== record.byte_size || snapshot.sha256 !== record.sha256) hash_changed_paths.push(record.relative_path);
+  }
+
+  const artifactEntries = await readdir("artifacts", { withFileTypes: true });
+  const currentResultPaths = artifactEntries
+    .filter((entry) => entry.isFile() && entry.name.endsWith("-result.json"))
+    .map((entry) => `artifacts/${entry.name}`)
+    .sort();
+  const baselinePaths = new Set(baselineFiles.map((item) => item.relative_path));
+  const additionalPaths = currentResultPaths.filter((filePath) =>
+    !baselinePaths.has(filePath) && !CASE_DIGEST_BASELINE_OWNER_RESULT_PATHS.has(filePath)
+  );
+  const valid_additive_paths = [];
+  const invalid_additive_paths = [];
+  for (const filePath of additionalPaths) {
+    const snapshot = await readJsonFileSnapshot(filePath);
+    if (
+      snapshot.value &&
+      typeof snapshot.value.artifact_id === "string" &&
+      snapshot.value.artifact_id.length > 0 &&
+      snapshot.value.passed === true &&
+      Array.isArray(snapshot.value.failures) &&
+      snapshot.value.failures.length === 0
+    ) valid_additive_paths.push(filePath);
+    else invalid_additive_paths.push(filePath);
+  }
+
+  return {
+    passed: baselineFiles.length === 76 && missing_paths.length === 0 && hash_changed_paths.length === 0,
+    baseline_count: baselineFiles.length,
+    protected_subset_count: baselineFiles.length - missing_paths.length - hash_changed_paths.length,
+    missing_paths,
+    hash_changed_paths,
+    additive_descendant_count: valid_additive_paths.length,
+    valid_additive_paths,
+    invalid_additive_paths,
+    current_result_count: currentResultPaths.length,
+    fixed_current_count_required: false
+  };
+}
+
+function caseDigestControlPlaneFailure(code, decisionEffect, detail) {
+  return { code, decision_effect: decisionEffect, detail };
+}
+
+function evaluateCaseDigestControlPlaneSnapshot(snapshot) {
+  const failures = [];
+  const nonBlockingDebt = [...(snapshot.non_blocking_debt || [])];
+  const addFailure = (condition, code, decisionEffect, detail) => {
+    if (!condition) failures.push(caseDigestControlPlaneFailure(code, decisionEffect, detail));
+  };
+
+  addFailure(snapshot.schemaVersion === CASE_DIGEST_CONTROL_PLANE_SCHEMA_VERSION, "CONTROL_MODEL_SCHEMA_INVALID", "BLOCK_CURRENT", "control-plane snapshot schema mismatch");
+  addFailure(snapshot.control?.current_project_state_integrity === true, "CURRENT_PROJECT_STATE_INVALID", "BLOCK_CURRENT", "root project-state registration is incomplete or inconsistent");
+  addFailure(snapshot.control?.canonical_root_command === true, "ROOT_COMMAND_NOT_CANONICAL", "BLOCK_CURRENT", "manifest validation command is not the canonical CASE_DIGEST control-plane command");
+  addFailure(snapshot.control?.case_digest_mandatory === true, "CASE_DIGEST_MISSING_FROM_CURRENT_CHAIN", "BLOCK_CURRENT", "CASE_DIGEST validation is not mandatory in the current-path chain");
+  addFailure(snapshot.control?.predecessor_unique_successor_required === false, "PREDECESSOR_UNIQUE_SUCCESSOR_REQUIRED", "BLOCK_CURRENT", "a predecessor is incorrectly required to remain the unique current successor");
+  addFailure(snapshot.control?.clean_checkout_requires_historical_dirty_fingerprint === false, "HISTORICAL_DIRTY_FINGERPRINT_REQUIRED", "BLOCK_CURRENT", "a clean checkout is incorrectly required to reproduce historical machine-local dirty bytes");
+  addFailure(snapshot.control?.validation_writes_result === false, "NORMAL_VALIDATION_WRITES_RESULT", "BLOCK_SAFETY", "normal validation is configured to write a result");
+
+  addFailure(snapshot.state?.active_default_artifact_id === CASE_DIGEST_ACTIVE_ARTIFACT_ID, "ACTIVE_DEFAULT_MISMATCH", "BLOCK_CURRENT", "the active/default previsualization identity changed");
+  addFailure(snapshot.state?.accepted_successor_artifact_id === CASE_DIGEST_ACCEPTED_SUCCESSOR_ID, "ACCEPTED_SUCCESSOR_MISMATCH", "BLOCK_CURRENT", "CASE_DIGEST is not the registered accepted successor");
+  addFailure(snapshot.state?.accepted_successor_default_active === false, "CASE_DIGEST_PROMOTED_TO_DEFAULT", "BLOCK_SAFETY", "CASE_DIGEST was promoted beyond its accepted default-off scope");
+  addFailure(snapshot.state?.accepted_successor_human_scope === "accepted_scoped", "CASE_DIGEST_ACCEPTANCE_SCOPE_DRIFT", "BLOCK_CURRENT", "CASE_DIGEST scoped human acceptance is missing or expanded");
+  addFailure(snapshot.state?.production_rights_release_closed === true, "PRODUCTION_RIGHTS_RELEASE_BOUNDARY_OPEN", "BLOCK_SAFETY", "production, rights, voice, release, or canon boundary opened");
+  addFailure(snapshot.state?.rejected_motion_promoted === false, "REJECTED_MOTION_PROMOTED", "BLOCK_SAFETY", "the rejected motion artifact became current, default, successor, or release-reachable");
+  addFailure(snapshot.state?.clarity_narrative_promoted === false, "QUARANTINED_CLARITY_NARRATIVE_PROMOTED", "BLOCK_SAFETY", "the quarantined clarity narrative became current or reusable as an active successor");
+
+  addFailure(snapshot.current_validations?.active_default_pass === true, "ACTIVE_DEFAULT_VALIDATION_FAILED", "BLOCK_CURRENT", snapshot.current_validations?.active_default_detail || "active/default validation failed");
+  addFailure(snapshot.current_validations?.case_digest_validator_pass === true, "CASE_DIGEST_CURRENT_CORRUPTION", "BLOCK_CURRENT", snapshot.current_validations?.case_digest_validator_detail || "CASE_DIGEST validator failed");
+  addFailure(
+    snapshot.current_validations?.case_digest_tests_pass === true &&
+      Number(snapshot.current_validations?.case_digest_tests_total) >= 14 &&
+      Number(snapshot.current_validations?.case_digest_tests_passed) >= 14,
+    "CASE_DIGEST_DEDICATED_ACCEPTANCE_FAILED",
+    "BLOCK_CURRENT",
+    snapshot.current_validations?.case_digest_tests_detail || "CASE_DIGEST dedicated 14/14 acceptance failed"
+  );
+
+  addFailure(snapshot.quarantines?.primary_imagery_pass === true, "PRIMARY_IMAGERY_QUARANTINE_INVALID", "BLOCK_SAFETY", "primary-imagery quarantine identity or policy changed");
+  addFailure(snapshot.quarantines?.narrative_format_pass === true, "NARRATIVE_FORMAT_QUARANTINE_INVALID", "BLOCK_SAFETY", "narrative-format quarantine identity or replacement policy changed");
+  addFailure(snapshot.archive?.self_integrity_pass === true, "ARCHIVE_SELF_INTEGRITY_FAILED", "BLOCK_SAFETY", snapshot.archive?.self_integrity_detail || "a protected archived/predecessor package changed");
+  for (const mismatch of snapshot.archive?.registration_mismatches || []) {
+    nonBlockingDebt.push({
+      code: "ARCHIVE_REGISTRATION_MISMATCH",
+      decision_effect: "DEBT_NONBLOCKING",
+      detail: mismatch
+    });
+  }
+
+  addFailure(snapshot.baseline?.baseline_count === 76, "READINESS_BASELINE_COUNT_INVALID", "BLOCK_SAFETY", "the protected readiness baseline is not the recorded 76-file set");
+  addFailure((snapshot.baseline?.missing_paths || []).length === 0, "PROTECTED_BASELINE_FILE_MISSING", "BLOCK_SAFETY", (snapshot.baseline?.missing_paths || []).join(", "));
+  addFailure((snapshot.baseline?.hash_changed_paths || []).length === 0, "PROTECTED_BASELINE_HASH_CHANGED", "BLOCK_SAFETY", (snapshot.baseline?.hash_changed_paths || []).join(", "));
+  for (const filePath of snapshot.baseline?.invalid_additive_paths || []) {
+    nonBlockingDebt.push({
+      code: "INVALID_ADDITIVE_DESCENDANT_RESULT",
+      decision_effect: "DEBT_NONBLOCKING",
+      detail: filePath
+    });
+  }
+
+  addFailure(snapshot.mutation_detected === false, "NORMAL_VALIDATION_MUTATED_REPOSITORY", "BLOCK_SAFETY", "normal validation changed the repository mutation surface");
+  const archiveItems = snapshot.archive?.items || [];
+  return {
+    schemaVersion: CASE_DIGEST_CONTROL_PLANE_SCHEMA_VERSION,
+    artifact_id: CASE_DIGEST_CONTROL_PLANE_ARTIFACT_ID,
+    current_path_pass: failures.length === 0,
+    current_artifact: {
+      artifact_id: snapshot.state?.active_default_artifact_id || null,
+      active_default: snapshot.state?.active_default_artifact_id === CASE_DIGEST_ACTIVE_ARTIFACT_ID
+    },
+    accepted_successor: {
+      artifact_id: snapshot.state?.accepted_successor_artifact_id || null,
+      default_active: snapshot.state?.accepted_successor_default_active ?? null,
+      human_acceptance_scope: snapshot.state?.accepted_successor_human_scope || null,
+      validator_pass: snapshot.current_validations?.case_digest_validator_pass === true,
+      dedicated_tests: `${Number(snapshot.current_validations?.case_digest_tests_passed) || 0}/${Number(snapshot.current_validations?.case_digest_tests_total) || 0}`
+    },
+    archive_integrity: {
+      passed: snapshot.archive?.self_integrity_pass === true,
+      artifacts: archiveItems.map((item) => ({
+        artifact_id: item.artifact_id,
+        passed: item.passed === true,
+        role: item.role
+      }))
+    },
+    readiness_baseline_subset: {
+      baseline_count: Number(snapshot.baseline?.baseline_count) || 0,
+      protected_subset_count: Number(snapshot.baseline?.protected_subset_count) || 0,
+      additive_descendant_count: Number(snapshot.baseline?.additive_descendant_count) || 0,
+      fixed_current_count_required: false
+    },
+    non_blocking_debt: nonBlockingDebt,
+    failures,
+    validation_revision: snapshot.validation_revision || CASE_DIGEST_BASE_REVISION,
+    mutation_detected: snapshot.mutation_detected === true
+  };
+}
+
+function caseDigestRunReadOnlyNode(args) {
+  const run = spawnSync(process.execPath, args, {
+    cwd: process.cwd(),
+    encoding: "utf8",
+    windowsHide: true,
+    maxBuffer: 16 * 1024 * 1024
+  });
+  const detail = [run.stdout, run.stderr].filter(Boolean).join("\n").trim();
+  return {
+    passed: run.status === 0,
+    status: run.status,
+    detail: detail.length > 1600 ? detail.slice(-1600) : detail
+  };
+}
+
+async function caseDigestRepositoryMutationSnapshot() {
+  const listed = spawnSync("git", ["ls-files", "--cached", "--others", "--exclude-standard", "-z"], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+    windowsHide: true,
+    maxBuffer: 16 * 1024 * 1024
+  });
+  if (listed.status !== 0) throw new Error(`Cannot enumerate repository mutation surface: ${listed.stderr || listed.stdout}`);
+  const files = listed.stdout.split("\0").filter(Boolean).sort();
+  const rows = [];
+  for (const filePath of files) {
+    const snapshot = await readFileSnapshot(filePath);
+    rows.push(`${filePath.replaceAll("\\", "/")}|${snapshot.exists ? snapshot.byteSize : "missing"}|${snapshot.sha256 || "missing"}`);
+  }
+  return {
+    file_count: files.length,
+    aggregate_sha256: caseDigestControlPlaneSha256(Buffer.from(rows.join("\n")))
+  };
+}
+
+function caseDigestRegistrationMismatches(manifest) {
+  const mismatches = [];
+  for (const [artifactId, key] of [
+    [CASE_DIGEST_REJECTED_MOTION_ID, "private_materialized_motion_previs"],
+    [CASE_DIGEST_FULL_RASTER_PREDECESSOR_ID, "private_full_raster_candidate"],
+    [CASE_DIGEST_CLARITY_PREDECESSOR_ID, "private_full_raster_clarity_candidate"]
+  ]) {
+    const target = CASE_DIGEST_SELF_INTEGRITY_TARGETS[artifactId];
+    const entry = manifest?.[key];
+    if (!entry || entry.artifact_id !== artifactId || entry.result_path !== target.result_path || entry.package_root !== target.package_root) {
+      mismatches.push(`${artifactId} current registration metadata does not match its stored artifact paths`);
+    }
+  }
+  return mismatches;
+}
+
+async function validateCaseDigestControlPlane(inputPath) {
+  const before = await caseDigestRepositoryMutationSnapshot();
+  const manifestSnapshot = await readJsonFileSnapshot(inputPath);
+  const manifest = manifestSnapshot.value || {};
+  const [primaryQuarantineSnapshot, narrativeQuarantineSnapshot] = await Promise.all([
+    readJsonFileSnapshot("artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json"),
+    readJsonFileSnapshot("artifacts/narrative-format-quarantine/narrative-format-quarantine.json")
+  ]);
+  const primaryQuarantine = primaryQuarantineSnapshot.value || {};
+  const narrativeQuarantine = narrativeQuarantineSnapshot.value || {};
+
+  const activeValidation = caseDigestRunReadOnlyNode([
+    "tools/fff-state.mjs",
+    "validate-private-previsualization-timeline",
+    "artifacts/private-previsualization-timeline-result.json"
+  ]);
+  const caseDigestValidation = caseDigestRunReadOnlyNode([
+    "tools/fff-state.mjs",
+    "validate-private-raster-case-digest",
+    "artifacts/private-raster-case-digest-result.json"
+  ]);
+  const caseDigestTests = caseDigestRunReadOnlyNode([
+    "--test",
+    "tests/fff-private-raster-case-digest.test.mjs"
+  ]);
+  const testsTotal = Number(caseDigestTests.detail.match(/# tests (\d+)/)?.[1] || 0);
+  const testsPassed = Number(caseDigestTests.detail.match(/# pass (\d+)/)?.[1] || 0);
+
+  const archiveItems = [];
+  const archiveFailures = [];
+  for (const [artifactId, role] of [
+    [CASE_DIGEST_REJECTED_MOTION_ID, "rejected_archive"],
+    [CASE_DIGEST_FULL_RASTER_PREDECESSOR_ID, "superseded_predecessor"],
+    [CASE_DIGEST_CLARITY_PREDECESSOR_ID, "superseded_narrative_predecessor"]
+  ]) {
+    const target = CASE_DIGEST_SELF_INTEGRITY_TARGETS[artifactId];
+    try {
+      const evidence = await validateCaseDigestStoredArtifactSelfIntegrity(artifactId, target.result_path);
+      archiveItems.push({ artifact_id: artifactId, role, passed: true, evidence });
+    } catch (error) {
+      archiveItems.push({ artifact_id: artifactId, role, passed: false });
+      archiveFailures.push(error.message);
+    }
+  }
+
+  let baseline;
+  try {
+    baseline = await validateCaseDigestBaselineSubset("artifacts/asset-rights-readiness-packet-result.json");
+  } catch (error) {
+    baseline = {
+      passed: false,
+      baseline_count: 0,
+      protected_subset_count: 0,
+      missing_paths: [],
+      hash_changed_paths: [],
+      additive_descendant_count: 0,
+      invalid_additive_paths: [],
+      error: error.message
+    };
+  }
+
+  const controlRegistration = manifest.case_digest_control_plane_convergence || {};
+  const validationCommand = String(manifest.validation_command || "");
+  const currentSuccessor = manifest.private_raster_case_digest || {};
+  const rejectedMotion = manifest.private_materialized_motion_previs || {};
+  const productionClosed = [
+    currentSuccessor.production_approved,
+    currentSuccessor.production_subtitle_selected,
+    currentSuccessor.selected_for_production,
+    currentSuccessor.rights_cleared_claim,
+    currentSuccessor.audio,
+    currentSuccessor.audio_generated,
+    currentSuccessor.voice,
+    currentSuccessor.voice_selected,
+    currentSuccessor.product_release,
+    currentSuccessor.public_release,
+    currentSuccessor.final_canon
+  ].every((value) => value === false);
+  const primaryQuarantinePass =
+    primaryQuarantineSnapshot.sha256 === CASE_DIGEST_PRIMARY_QUARANTINE_SHA256 &&
+    primaryQuarantine.quarantine_id === CASE_DIGEST_PRIMARY_QUARANTINE_ID &&
+    primaryQuarantine.status === "ACTIVE" &&
+    primaryQuarantine.rejected_candidate?.artifact_id === CASE_DIGEST_REJECTED_MOTION_ID &&
+    primaryQuarantine.rejected_candidate?.visual_verdict === "REJECTED_VISUAL_DIRECTION" &&
+    primaryQuarantine.rejected_candidate?.archive_only === true &&
+    primaryQuarantine.rejected_candidate?.successor_candidate === false &&
+    primaryQuarantine.active_default?.artifact_id === CASE_DIGEST_ACTIVE_ARTIFACT_ID;
+  const narrativeQuarantinePass =
+    narrativeQuarantineSnapshot.sha256 === CASE_DIGEST_NARRATIVE_QUARANTINE_SHA256 &&
+    narrativeQuarantine.quarantine_id === CASE_DIGEST_NARRATIVE_QUARANTINE_ID &&
+    narrativeQuarantine.status === "ACTIVE" &&
+    narrativeQuarantine.replacement_artifact_id === CASE_DIGEST_ACCEPTED_SUCCESSOR_ID &&
+    narrativeQuarantine.replacement_status === "ACCEPTED_SCOPED_DEFAULT_OFF_SUCCESSOR_CANDIDATE" &&
+    narrativeQuarantine.canonical_integration_boundary?.successor_candidate_artifact_id === CASE_DIGEST_ACCEPTED_SUCCESSOR_ID;
+
+  const after = await caseDigestRepositoryMutationSnapshot();
+  const revisionRun = spawnSync("git", ["rev-parse", "HEAD"], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+    windowsHide: true
+  });
+  const snapshot = {
+    schemaVersion: CASE_DIGEST_CONTROL_PLANE_SCHEMA_VERSION,
+    control: {
+      current_project_state_integrity:
+        manifestSnapshot.error === null &&
+        path.resolve(inputPath) === path.resolve("artifacts/artifact-manifest.json") &&
+        controlRegistration.artifact_id === CASE_DIGEST_CONTROL_PLANE_ARTIFACT_ID &&
+        controlRegistration.schemaVersion === CASE_DIGEST_CONTROL_PLANE_SCHEMA_VERSION &&
+        controlRegistration.exact_remote_base === CASE_DIGEST_BASE_REVISION,
+      canonical_root_command:
+        validationCommand === "node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json",
+      case_digest_mandatory:
+        validationCommand.includes("validate-case-digest-control-plane") &&
+        controlRegistration.current_path_chain?.includes("validate-private-raster-case-digest") &&
+        controlRegistration.current_path_chain?.includes("tests/fff-private-raster-case-digest.test.mjs"),
+      predecessor_unique_successor_required: controlRegistration.predecessor_unique_successor_required === true,
+      clean_checkout_requires_historical_dirty_fingerprint:
+        controlRegistration.clean_checkout_requires_historical_dirty_fingerprint !== false,
+      validation_writes_result:
+        controlRegistration.normal_validation_writes_result !== false ||
+        /\bsmoke-/.test(validationCommand)
+    },
+    state: {
+      active_default_artifact_id: manifest.active_default_artifact_id,
+      accepted_successor_artifact_id: manifest.successor_candidate_artifact_id,
+      accepted_successor_default_active: currentSuccessor.active_default,
+      accepted_successor_human_scope: currentSuccessor.human_case_digest_review,
+      production_rights_release_closed: productionClosed,
+      rejected_motion_promoted:
+        manifest.artifact_id === CASE_DIGEST_REJECTED_MOTION_ID ||
+        manifest.active_default_artifact_id === CASE_DIGEST_REJECTED_MOTION_ID ||
+        manifest.successor_candidate_artifact_id === CASE_DIGEST_REJECTED_MOTION_ID ||
+        rejectedMotion.active_default === true ||
+        rejectedMotion.successor_candidate === true ||
+        rejectedMotion.release_path_reachable === true ||
+        (
+          Boolean(rejectedMotion.artifact_id) &&
+          (
+            rejectedMotion.visual_verdict !== "REJECTED_VISUAL_DIRECTION" ||
+            rejectedMotion.archive_only !== true
+          )
+        ),
+      clarity_narrative_promoted:
+        manifest.artifact_id === CASE_DIGEST_CLARITY_PREDECESSOR_ID ||
+        manifest.active_default_artifact_id === CASE_DIGEST_CLARITY_PREDECESSOR_ID ||
+        manifest.successor_candidate_artifact_id === CASE_DIGEST_CLARITY_PREDECESSOR_ID ||
+        (
+          Boolean(manifest.private_full_raster_clarity_candidate?.artifact_id) &&
+          (
+            manifest.private_full_raster_clarity_candidate.narrative_verdict !== "REJECTED_NARRATIVE_FORMAT" ||
+            manifest.private_full_raster_clarity_candidate.narrative_archive_only !== true ||
+            manifest.private_full_raster_clarity_candidate.narrative_successor_candidate !== false
+          )
+        )
+    },
+    current_validations: {
+      active_default_pass: activeValidation.passed,
+      active_default_detail: activeValidation.detail,
+      case_digest_validator_pass: caseDigestValidation.passed,
+      case_digest_validator_detail: caseDigestValidation.detail,
+      case_digest_tests_pass: caseDigestTests.passed,
+      case_digest_tests_total: testsTotal,
+      case_digest_tests_passed: testsPassed,
+      case_digest_tests_detail: caseDigestTests.detail
+    },
+    quarantines: {
+      primary_imagery_pass: primaryQuarantinePass,
+      narrative_format_pass: narrativeQuarantinePass
+    },
+    archive: {
+      self_integrity_pass: archiveFailures.length === 0,
+      self_integrity_detail: archiveFailures.join("; "),
+      items: archiveItems,
+      registration_mismatches: caseDigestRegistrationMismatches(manifest)
+    },
+    baseline,
+    non_blocking_debt: [
+      {
+        code: "HISTORICAL_DIRTY_FINGERPRINT_RETAINED_AS_EVIDENCE",
+        decision_effect: "DEBT_NONBLOCKING",
+        detail: "The historical materialized-motion result retains its old dirty-file observation; current validation does not consume it."
+      }
+    ],
+    validation_revision: revisionRun.status === 0 ? revisionRun.stdout.trim() : CASE_DIGEST_BASE_REVISION,
+    mutation_detected:
+      before.file_count !== after.file_count ||
+      before.aggregate_sha256 !== after.aggregate_sha256
+  };
+  return evaluateCaseDigestControlPlaneSnapshot(snapshot);
+}
+
 async function main() {
   const [command, inputPath, outputPath] = process.argv.slice(2);
 
@@ -854,6 +1423,58 @@ async function main() {
 
   if (!inputPath) {
     fail("Missing input JSON path or fixture directory.");
+  }
+
+  if (command === "audit-case-digest-control-plane-model") {
+    if (outputPath) {
+      fail("audit-case-digest-control-plane-model is read-only and does not accept an output path.");
+    }
+    const snapshot = inputPath === "-"
+      ? JSON.parse(await caseDigestControlPlaneReadStdin())
+      : await readJson(inputPath);
+    const result = evaluateCaseDigestControlPlaneSnapshot(snapshot);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.current_path_pass) process.exitCode = 1;
+    return;
+  }
+
+  if (command === "validate-case-digest-control-plane") {
+    if (outputPath) {
+      fail("validate-case-digest-control-plane is read-only and does not accept an output path.");
+    }
+    const result = await validateCaseDigestControlPlane(inputPath);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.current_path_pass) process.exitCode = 1;
+    return;
+  }
+
+  if (command === "validate-private-materialized-motion-previs-self-integrity") {
+    if (outputPath) fail(`${command} is read-only and does not accept an output path.`);
+    await validateCaseDigestStoredArtifactSelfIntegrity(CASE_DIGEST_REJECTED_MOTION_ID, inputPath);
+    console.log(`Validated ${CASE_DIGEST_REJECTED_MOTION_ID} self-integrity: PASS`);
+    return;
+  }
+
+  if (command === "validate-private-full-raster-candidate-self-integrity") {
+    if (outputPath) fail(`${command} is read-only and does not accept an output path.`);
+    await validateCaseDigestStoredArtifactSelfIntegrity(CASE_DIGEST_FULL_RASTER_PREDECESSOR_ID, inputPath);
+    console.log(`Validated ${CASE_DIGEST_FULL_RASTER_PREDECESSOR_ID} self-integrity: PASS`);
+    return;
+  }
+
+  if (command === "validate-private-full-raster-clarity-candidate-self-integrity") {
+    if (outputPath) fail(`${command} is read-only and does not accept an output path.`);
+    await validateCaseDigestStoredArtifactSelfIntegrity(CASE_DIGEST_CLARITY_PREDECESSOR_ID, inputPath);
+    console.log(`Validated ${CASE_DIGEST_CLARITY_PREDECESSOR_ID} self-integrity: PASS`);
+    return;
+  }
+
+  if (command === "validate-asset-rights-readiness-baseline-subset") {
+    if (outputPath) fail(`${command} is read-only and does not accept an output path.`);
+    const result = await validateCaseDigestBaselineSubset(inputPath);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) process.exitCode = 1;
+    return;
   }
 
   const readinessPreservedValidationCommands = new Set([
@@ -22887,6 +23508,12 @@ Usage:
   node tools/fff-state.mjs validate <state.json>
   node tools/fff-state.mjs summarize <state.json>
   node tools/fff-state.mjs normalize <state.json> [output.json]
+  node tools/fff-state.mjs validate-case-digest-control-plane <artifact-manifest.json>
+  node tools/fff-state.mjs audit-case-digest-control-plane-model <fixture.json>
+  node tools/fff-state.mjs validate-private-materialized-motion-previs-self-integrity <result.json>
+  node tools/fff-state.mjs validate-private-full-raster-candidate-self-integrity <result.json>
+  node tools/fff-state.mjs validate-private-full-raster-clarity-candidate-self-integrity <result.json>
+  node tools/fff-state.mjs validate-asset-rights-readiness-baseline-subset <asset-rights-readiness-packet-result.json>
   node tools/fff-state.mjs validate-extraction <payload.json>
   node tools/fff-state.mjs summarize-extraction <payload.json>
   node tools/fff-state.mjs validate-extraction-fixtures <fixture-directory>

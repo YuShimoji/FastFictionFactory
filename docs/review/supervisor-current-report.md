@@ -1,6 +1,16 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-24 JST
+更新日: 2026-07-27 JST
+
+## 2026-07-27 CASE_DIGEST remote authority
+
+現行 remote base は `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e` です。`fff-private-previsualization-timeline-001` は active/default のまま、`fff-private-raster-case-digest-001` は scoped accepted・default-off・silent successor candidate です。全編 composition と CASE_DIGEST comprehension / review-caption readability の人間確認は完了しています。
+
+一方で、production subtitle selection、final voice integration、effects、rights、production acceptance、release/publication、final canon は別 gate のままです。`fff-private-materialized-motion-previs-001` は rejected/archive-only/non-successor、旧 clarity narrative は quarantine 維持です。accepted raster bytes と terminal-frame transition evidence の保存は narrative 採用を意味しません。
+
+`fff-case-digest-control-plane-convergence-001` は current-state の読解と clean-checkout validation を直す bounded support であり、product progress や gate ではありません。root health は current path、archive self-integrity、historical debt を分離し、CASE_DIGEST validator と dedicated 14/14 を必須化します。Readiness の 76 baseline は protected subset として保持し、5件の正当な descendant result を許可します。過去端末の `.serena` dirty SHA は current requirement ではありません。
+
+次の product-bearing family は Writer Source Adaptation です。ここではその開始・完了を主張しません。
 
 ## 2026-07-24 PLANNER007端末での最新同期・再検証（現行ローカル追記）
 
@@ -89,7 +99,7 @@ cd 'C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory'
 git fetch --prune origin
 git pull --ff-only origin master
 git rev-list --left-right --count 'HEAD...@{upstream}'
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 $run = 'C:\path\outside\FastFictionFactory\fff-private-run-001'
 node .\tools\fff-private-pipeline.mjs dry-run --run-dir $run
@@ -213,7 +223,7 @@ git fetch --prune origin
 git pull --ff-only origin master
 git rev-list --left-right --count "HEAD...origin/master"
 git status --short --branch --untracked-files=all
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
 ```
@@ -338,7 +348,7 @@ git fetch --prune origin
 git pull --ff-only origin master
 git rev-list --left-right --count "HEAD...origin/master"
 git status --short --branch --untracked-files=all
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
 ```

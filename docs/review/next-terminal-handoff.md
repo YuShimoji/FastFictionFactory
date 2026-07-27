@@ -1,5 +1,30 @@
 # Next Terminal Handoff
 
+## Start here — CASE_DIGEST current remote authority (2026-07-27 JST)
+
+Exact restart base is `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`. After synchronizing a clean checkout, run the manifest-owned read-only command:
+
+```powershell
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count "HEAD...origin/master"
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+```
+
+The expected state is:
+
+- active/default: `fff-private-previsualization-timeline-001`;
+- accepted successor candidate: silent, default-off `fff-private-raster-case-digest-001`;
+- rejected archive: `fff-private-materialized-motion-previs-001`;
+- narrative quarantine: the prior clarity linear-lore format remains rejected, while its accepted raster bytes and transition evidence remain preserved;
+- completed: whole-story composition and CASE_DIGEST comprehension/review-caption readability;
+- still closed: production subtitle selection, final voice integration, effects, rights, production acceptance, release/publication, and final canon.
+
+The root command must report CASE_DIGEST validator PASS, dedicated tests `14/14`, archive self-integrity separately, readiness baseline `76/76` with five additive descendant results, and `mutation_detected=false`. A historical `.serena/project.yml` dirty SHA is evidence from an old terminal, not a current checkout requirement.
+
+Writer Source Adaptation is the next product-bearing development family. This control-plane support slice does not gate it and does not claim it has started. Do not return to completed clarity review, promote CASE_DIGEST to default, revive rejected motion, infer local-only audio, or infer production/rights/release/canon approval.
+
 ## Start here — synchronized development handoff (2026-07-24 JST)
 
 `master` was fetched and is at `origin/master`. The verified restart tip is the current `HEAD = origin/master` (run `git log -1 --oneline --decorate` for its exact SHA), ahead/behind `0 / 0`; implementation parent `58049c9` (`Add resumable private preview pipeline`) contains the resumable private pipeline for a creator continuing on another terminal.
@@ -11,7 +36,7 @@ git fetch --prune origin
 git pull --ff-only origin master
 git rev-list --left-right --count "HEAD...origin/master"
 git status --short --branch --untracked-files=all
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 node .\tools\fff-private-pipeline.mjs dry-run --run-dir 'C:\path\outside\FastFictionFactory\fff-private-run-001'
 node .\tools\fff-private-pipeline.mjs build --run-dir 'C:\path\outside\FastFictionFactory\fff-private-run-001'
@@ -35,7 +60,7 @@ git fetch --prune origin
 git pull --ff-only origin master
 git rev-list --left-right --count "HEAD...origin/master"
 git status --short --branch --untracked-files=all
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 .\scripts\operator\open_review.ps1 -Mode brief -PrintUri
 Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
@@ -56,7 +81,7 @@ git fetch --prune origin
 git pull --ff-only origin master
 git rev-list --left-right --count "HEAD...origin/master"
 git status --short --branch --untracked-files=all
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
 ```
@@ -285,7 +310,7 @@ git pull --ff-only
 git rev-list --left-right --count "HEAD...@{u}"
 git status --short --branch
 
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 Select-String -Path .\docs\review\beat2-composition-board.md -Pattern "H1 independent transfer result" -Context 0,40
 ```
@@ -773,7 +798,7 @@ are `public/review/index.html?mode=home`,
 5. Re-run local checks before changing behavior:
 
 ```powershell
-$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw | ConvertFrom-Json
+$manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encoding UTF8 -Raw | ConvertFrom-Json
 Invoke-Expression $manifest.validation_command
 uvx --with mkdocs-material mkdocs build --strict --site-dir "$env:TEMP\fff-mkdocs-build"
 git diff --check
