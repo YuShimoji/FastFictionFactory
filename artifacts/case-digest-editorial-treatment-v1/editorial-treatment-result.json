@@ -1,0 +1,646 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-editorial-treatment-001",
+  "mission_id": "fff-case-digest-editorial-treatment-thank-001",
+  "passed": true,
+  "visual_direction_signature": "archival_case_digest_editorial_treatment_v1",
+  "before_after_delta": {
+    "before": "Accepted style-10000 audio and 11-shot 960x540 sequence existed; file-local review exposed only a video element and browser-invisible mov_text subtitles; no portable sidecars or coherent section/shot editorial treatment.",
+    "after": "One 1280x720 clean treated candidate, one 1280x720 burned-caption proxy, SRT/VTT sidecars, synchronized default-on DOM captions, five compact section markers, and eleven semantic shot treatments."
+  },
+  "subtitle_disappearance_root_cause": {
+    "accepted_mp4_subtitle_codec": "mov_text",
+    "accepted_mp4_subtitle_stream_count": 1,
+    "prior_review_html_track_count": 0,
+    "prior_review_html_dom_caption_count": 0,
+    "finding": "The prior standalone HTML referenced the MP4 directly. File-local Chromium did not expose the embedded mov_text stream, and no track or synchronized DOM fallback existed."
+  },
+  "caption_identity": {
+    "cue_count": 11,
+    "timing_text_identity_sha256": "f306c99773410fb76b351261d8c87579dc362257c497abcdd0989aaec76d08dd",
+    "srt_sha256": "d2011ed2f89232a7eea42e6e798508900e0b9eb9e210858ddad3f14a960d0ba3",
+    "vtt_sha256": "fba81911bab1d79f9a7ecdfa673e613294b54b95176d45dd4ea58d04c6b63d90",
+    "authored_forced_line_break_count": 0,
+    "max_render_lines": 2,
+    "dom_source": "inline canonical authority",
+    "burn_source": "caption-render-map semantic wraps"
+  },
+  "media": {
+    "clean": {
+      "path": "D:\\AI-Runs\\FastFictionFactory\\fff-case-digest-editorial-treatment-001\\clean\\case-digest-editorial-treatment-clean.mp4",
+      "bytes": 49035271,
+      "sha256": "114462bf75954e997aac366d616394edab3fb60eabebfa7909d235991080edd7",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 1,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "subtitle_stream_count": 0
+    },
+    "burned_review": {
+      "path": "D:\\AI-Runs\\FastFictionFactory\\fff-case-digest-editorial-treatment-001\\review\\case-digest-editorial-treatment-review-burned.mp4",
+      "bytes": 22856375,
+      "sha256": "40b0feaf60400a6f43ecb6b1af34c16a10c6f4a32e74d759d7b60dd0b950c570",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 1,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "subtitle_stream_count": 0
+    }
+  },
+  "browser_evidence": {
+    "passed": true,
+    "engine": "playwright chromium",
+    "headless": true,
+    "muted_inspection": true,
+    "playback_started": false,
+    "system_volume_changed": false,
+    "console_errors": [],
+    "page_errors": [],
+    "external_requests": [],
+    "caption_start_checks": [
+      {
+        "cue_id": "case-digest-caption-01",
+        "visible": true,
+        "text_ja": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "cue_id": "case-digest-caption-02",
+        "visible": true,
+        "text_ja": "塔の取付枠は空で、鐘は確認できない。"
+      },
+      {
+        "cue_id": "case-digest-caption-03",
+        "visible": true,
+        "text_ja": "時計修理師のミラ・ヴェイルが、失踪した兄の手掛かりを調べる。"
+      },
+      {
+        "cue_id": "case-digest-caption-04",
+        "visible": true,
+        "text_ja": "失踪した兄のメモと真鍮の蛾が、作業台に残されている。"
+      },
+      {
+        "cue_id": "case-digest-caption-05",
+        "visible": true,
+        "text_ja": "時計と記録には、9:17が繰り返し現れる。"
+      },
+      {
+        "cue_id": "case-digest-caption-06",
+        "visible": true,
+        "text_ja": "失踪した兄のメモは、二列の台帳へ調査を導く。"
+      },
+      {
+        "cue_id": "case-digest-caption-07",
+        "visible": true,
+        "text_ja": "台帳には、「分」の欄と人名の欄が並んでいる。"
+      },
+      {
+        "cue_id": "case-digest-caption-08",
+        "visible": true,
+        "text_ja": "メモは、市の評議会を調査対象として指している。"
+      },
+      {
+        "cue_id": "case-digest-caption-09",
+        "visible": true,
+        "text_ja": "告発は記録されているが、評議会の関与を裏づける証拠はない。"
+      },
+      {
+        "cue_id": "case-digest-caption-10",
+        "visible": true,
+        "text_ja": "時間と名前は、台帳の二つの損失区分である。"
+      },
+      {
+        "cue_id": "case-digest-caption-11",
+        "visible": true,
+        "text_ja": "音源と関係者を確定できないまま、塔は調査対象として残る。"
+      }
+    ],
+    "viewports": {
+      "desktop": {
+        "document_width": 1440,
+        "viewport_width": 1440,
+        "horizontal_overflow_px": 0,
+        "nested_vertical_scroll_count": 0,
+        "focus_outline_style": "solid",
+        "focus_outline_width": "3px",
+        "native_controls": true,
+        "autoplay": false,
+        "caption_toggle_count": 1,
+        "track_count": 1,
+        "runtime_caption_count": 11,
+        "paused": true,
+        "muted": true,
+        "screenshot_path": "D:\\AI-Runs\\FastFictionFactory\\fff-case-digest-editorial-treatment-001\\verification\\review-desktop.png"
+      },
+      "narrow": {
+        "document_width": 390,
+        "viewport_width": 390,
+        "horizontal_overflow_px": 0,
+        "nested_vertical_scroll_count": 0,
+        "focus_outline_style": "solid",
+        "focus_outline_width": "3px",
+        "native_controls": true,
+        "autoplay": false,
+        "caption_toggle_count": 1,
+        "track_count": 1,
+        "runtime_caption_count": 11,
+        "paused": true,
+        "muted": true,
+        "screenshot_path": "D:\\AI-Runs\\FastFictionFactory\\fff-case-digest-editorial-treatment-001\\verification\\review-narrow.png"
+      }
+    }
+  },
+  "transitions": {
+    "count": 10,
+    "position_reset_count": 0,
+    "raw_source_flash_count": 0,
+    "gap_frame_count": 0,
+    "overlap_frame_count": 0,
+    "construction_rule": "Non-hard transitions begin from the rendered outgoing final clip terminal frame; raw outgoing source images are never reopened.",
+    "actual_frame_audit": {
+      "passed": true,
+      "boundary_count": 10,
+      "position_reset_count": 0,
+      "raw_source_flash_count": 0,
+      "boundaries": [
+        {
+          "seconds": 12,
+          "type": "short_dissolve",
+          "before_at_normalized_pixel_difference": 0.004868,
+          "at_after_normalized_pixel_difference": 0.014441,
+          "luma": {
+            "before": 54.97765625,
+            "at": 53.90940972222222,
+            "after": 52.28046875
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        },
+        {
+          "seconds": 24,
+          "type": "hard_cut",
+          "before_at_normalized_pixel_difference": 0.143486,
+          "at_after_normalized_pixel_difference": 0.00013,
+          "luma": {
+            "before": 22.442413194444445,
+            "at": 42.53836805555556,
+            "after": 42.557864583333334
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        },
+        {
+          "seconds": 38,
+          "type": "match_cut",
+          "before_at_normalized_pixel_difference": 0.004976,
+          "at_after_normalized_pixel_difference": 0.022171,
+          "luma": {
+            "before": 41.68795138888889,
+            "at": 40.7884375,
+            "after": 40.53288194444445
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        },
+        {
+          "seconds": 52,
+          "type": "graphic_match",
+          "before_at_normalized_pixel_difference": 0.003887,
+          "at_after_normalized_pixel_difference": 0.020487,
+          "luma": {
+            "before": 35.55815972222222,
+            "at": 34.73288194444444,
+            "after": 39.1175
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        },
+        {
+          "seconds": 65,
+          "type": "hard_cut",
+          "before_at_normalized_pixel_difference": 0.185657,
+          "at_after_normalized_pixel_difference": 0.001846,
+          "luma": {
+            "before": 71.5847048611111,
+            "at": 50.20796875,
+            "after": 50.49501736111111
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        },
+        {
+          "seconds": 81,
+          "type": "graphic_match",
+          "before_at_normalized_pixel_difference": 0.00454,
+          "at_after_normalized_pixel_difference": 0.015086,
+          "luma": {
+            "before": 53.980885416666666,
+            "at": 52.931111111111115,
+            "after": 55.11421875
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        },
+        {
+          "seconds": 97,
+          "type": "hard_cut",
+          "before_at_normalized_pixel_difference": 0.188693,
+          "at_after_normalized_pixel_difference": 0.003056,
+          "luma": {
+            "before": 69.21913194444444,
+            "at": 67.56571180555555,
+            "after": 67.795
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        },
+        {
+          "seconds": 116,
+          "type": "graphic_match",
+          "before_at_normalized_pixel_difference": 0.005784,
+          "at_after_normalized_pixel_difference": 0.025342,
+          "luma": {
+            "before": 70.78800347222223,
+            "at": 69.32859375,
+            "after": 67.77161458333333
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        },
+        {
+          "seconds": 136,
+          "type": "hard_cut",
+          "before_at_normalized_pixel_difference": 0.173494,
+          "at_after_normalized_pixel_difference": 0.000229,
+          "luma": {
+            "before": 50.26690972222222,
+            "at": 61.14414930555556,
+            "after": 61.17170138888889
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        },
+        {
+          "seconds": 158,
+          "type": "held_fade",
+          "before_at_normalized_pixel_difference": 0.005041,
+          "at_after_normalized_pixel_difference": 0.060993,
+          "luma": {
+            "before": 60.68770833333333,
+            "at": 59.63043402777778,
+            "after": 43.62869791666667
+          },
+          "position_reset_detected": false,
+          "raw_source_flash_detected": false
+        }
+      ]
+    },
+    "boundaries": [
+      {
+        "boundary_seconds": 12.0,
+        "outgoing_shot_id": "shot-b01-01",
+        "incoming_shot_id": "shot-b01-02",
+        "transition_type": "short_dissolve",
+        "transition_duration_seconds": 0.45,
+        "incoming_transition_source": "rendered_outgoing_final_clip_terminal_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      },
+      {
+        "boundary_seconds": 24.0,
+        "outgoing_shot_id": "shot-b01-02",
+        "incoming_shot_id": "shot-b02-01",
+        "transition_type": "hard_cut",
+        "transition_duration_seconds": 0.0,
+        "incoming_transition_source": "hard_cut_to_treated_incoming_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      },
+      {
+        "boundary_seconds": 38.0,
+        "outgoing_shot_id": "shot-b02-01",
+        "incoming_shot_id": "shot-b02-02",
+        "transition_type": "match_cut",
+        "transition_duration_seconds": 0.22,
+        "incoming_transition_source": "rendered_outgoing_final_clip_terminal_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      },
+      {
+        "boundary_seconds": 52.0,
+        "outgoing_shot_id": "shot-b02-02",
+        "incoming_shot_id": "shot-b02-03",
+        "transition_type": "graphic_match",
+        "transition_duration_seconds": 0.3,
+        "incoming_transition_source": "rendered_outgoing_final_clip_terminal_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      },
+      {
+        "boundary_seconds": 65.0,
+        "outgoing_shot_id": "shot-b02-03",
+        "incoming_shot_id": "shot-b03-01",
+        "transition_type": "hard_cut",
+        "transition_duration_seconds": 0.0,
+        "incoming_transition_source": "hard_cut_to_treated_incoming_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      },
+      {
+        "boundary_seconds": 81.0,
+        "outgoing_shot_id": "shot-b03-01",
+        "incoming_shot_id": "shot-b03-02",
+        "transition_type": "graphic_match",
+        "transition_duration_seconds": 0.3,
+        "incoming_transition_source": "rendered_outgoing_final_clip_terminal_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      },
+      {
+        "boundary_seconds": 97.0,
+        "outgoing_shot_id": "shot-b03-02",
+        "incoming_shot_id": "shot-b04-01",
+        "transition_type": "hard_cut",
+        "transition_duration_seconds": 0.0,
+        "incoming_transition_source": "hard_cut_to_treated_incoming_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      },
+      {
+        "boundary_seconds": 116.0,
+        "outgoing_shot_id": "shot-b04-01",
+        "incoming_shot_id": "shot-b04-02",
+        "transition_type": "graphic_match",
+        "transition_duration_seconds": 0.3,
+        "incoming_transition_source": "rendered_outgoing_final_clip_terminal_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      },
+      {
+        "boundary_seconds": 136.0,
+        "outgoing_shot_id": "shot-b04-02",
+        "incoming_shot_id": "shot-b06-01",
+        "transition_type": "hard_cut",
+        "transition_duration_seconds": 0.0,
+        "incoming_transition_source": "hard_cut_to_treated_incoming_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      },
+      {
+        "boundary_seconds": 158.0,
+        "outgoing_shot_id": "shot-b06-01",
+        "incoming_shot_id": "shot-b06-03",
+        "transition_type": "held_fade",
+        "transition_duration_seconds": 0.55,
+        "incoming_transition_source": "rendered_outgoing_final_clip_terminal_frame",
+        "raw_source_reopened_for_transition": false,
+        "position_reset_detected": false,
+        "raw_source_flash_detected": false,
+        "gap_frames": 0,
+        "overlap_frames": 0
+      }
+    ]
+  },
+  "representative_evidence": {
+    "before_after_contact_sheet": {
+      "path": "D:\\AI-Runs\\FastFictionFactory\\fff-case-digest-editorial-treatment-001\\evidence\\before-after-contact-sheet.jpg",
+      "bytes": 301869,
+      "sha256": "6fab671de4596cb5c660dd427e33d457e696e0bdf122b6b98343cf14392b1360"
+    },
+    "caption_start_contact_sheet": {
+      "path": "D:\\AI-Runs\\FastFictionFactory\\fff-case-digest-editorial-treatment-001\\verification\\caption-start-contact-sheet.jpg",
+      "bytes": 155408,
+      "sha256": "8bd54b0e7598e4ab4ecc2ef02d854005fefa56d2f7da8f239d59d364be91c028"
+    },
+    "representative_frame_count": 22,
+    "shot_coverage": 11,
+    "section_coverage": 5
+  },
+  "preserved_inputs": {
+    "voice_head": "f42822db1a75282b6dcb956deb4f226753e3d1ea",
+    "narration_wav_sha256": "e3db719f4f5aed766ca18b7c77af35f64693cf4a479298325f3f8fa017bd266c",
+    "accepted_mp4_sha256": "cd245bec74df93bb8af98db966cb6835bc0ef9c504bf0a24e5cb692ee858ac4c",
+    "source_hashes": {
+      "model": "e111abc5e5e4ed6a7593072dd0a8fd2d8e27b30051891c93c3042e2611efec32",
+      "shot_map": "fa50635ec9dc17dfed233bac9c28197644be91e986033c309c8f3019066b7ec2",
+      "transition_map": "e67312d91f7d8d1e9231acdd419263b05bbcb78044eadb0bd2fcd4568dede5d3",
+      "caption_csv": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d",
+      "script": "a284281335e5264b665a25886aa3e25296dedd6e8384ea6b3bf0a55d97bf182c",
+      "continuity": "0d0b8e1135a49edcb6dea28246e22a288d67dd7277c13e8f111f16c13673502b",
+      "narrative_quarantine": "c545469b33f4b6576f736c7fb05d50c9f890b7a7bda315082e5819595cc6460c",
+      "utterance_map": "c8f9f713ae1524c3e3169ead925ae84febf44bb40555cbff4ace26af5988d32f"
+    },
+    "image_hashes": [
+      {
+        "shot_id": "shot-b01-01",
+        "path": "artifacts/private-full-raster-candidate/images/base/shot-b01-01.jpg",
+        "sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e"
+      },
+      {
+        "shot_id": "shot-b01-02",
+        "path": "artifacts/private-full-raster-candidate/images/base/shot-b01-02.jpg",
+        "sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23"
+      },
+      {
+        "shot_id": "shot-b02-01",
+        "path": "artifacts/private-full-raster-candidate/images/base/shot-b02-01.jpg",
+        "sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304"
+      },
+      {
+        "shot_id": "shot-b02-02",
+        "path": "artifacts/private-full-raster-candidate/images/base/shot-b02-02.jpg",
+        "sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09"
+      },
+      {
+        "shot_id": "shot-b02-03",
+        "path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg",
+        "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31"
+      },
+      {
+        "shot_id": "shot-b03-01",
+        "path": "artifacts/private-full-raster-candidate/images/base/shot-b03-01.jpg",
+        "sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839"
+      },
+      {
+        "shot_id": "shot-b03-02",
+        "path": "artifacts/private-full-raster-candidate/images/base/shot-b03-02.jpg",
+        "sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460"
+      },
+      {
+        "shot_id": "shot-b04-01",
+        "path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg",
+        "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1"
+      },
+      {
+        "shot_id": "shot-b04-02",
+        "path": "artifacts/private-full-raster-candidate/images/base/shot-b04-02.jpg",
+        "sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf"
+      },
+      {
+        "shot_id": "shot-b06-01",
+        "path": "artifacts/private-full-raster-candidate/images/final/shot-b06-01.jpg",
+        "sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed"
+      },
+      {
+        "shot_id": "shot-b06-03",
+        "path": "artifacts/private-full-raster-candidate/images/final/shot-b06-03.jpg",
+        "sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6"
+      }
+    ],
+    "protected_legacy_before": {
+      "root": "C:\\Users\\thank\\Storage\\Media Contents Projects\\FastFictionFactory",
+      "head": "cfd645ff2928b06e474aae5aefb9019d771d0ce9",
+      "branch": "master",
+      "ahead_behind": "0\t8",
+      "status": [
+        " M .serena/project.yml",
+        " M docs/decision-log.md",
+        " M docs/idea-ledger.md",
+        " M docs/project-context.md",
+        " M docs/review/current-status.md",
+        " M docs/review/next-terminal-handoff.md",
+        " M docs/review/supervisor-current-report.md"
+      ],
+      "files": [
+        {
+          "path": ".serena/project.yml",
+          "sha256": "98337e11cbcd1fde6a0850cd26a2cb27d4b728e4b2ae85874d38f703e342872c",
+          "bytes": 9555
+        },
+        {
+          "path": "docs/project-context.md",
+          "sha256": "f3bef6d4415cdc905fa7bad5139319612d3e373c4963b34c2e874a70f0a154f6",
+          "bytes": 78063
+        },
+        {
+          "path": "docs/review/current-status.md",
+          "sha256": "84e3ff5d9184d90ee269102133e5cdc44191d56f5dcb64ee891ea91c2943e9c4",
+          "bytes": 133990
+        },
+        {
+          "path": "docs/review/next-terminal-handoff.md",
+          "sha256": "c91a543db7cb5f99158e202ae56864a55be2617caa5777aa7ee05bd14d8fb889",
+          "bytes": 122345
+        },
+        {
+          "path": "docs/review/supervisor-current-report.md",
+          "sha256": "1d73e28629bcc047958b6d566889b9f13cd5604e62c2e10da79fcbf9dc985df1",
+          "bytes": 102282
+        },
+        {
+          "path": "docs/decision-log.md",
+          "sha256": "441360cb43d9dec7455faeaf7c8a76aaac74ed3dee7dab15f53b65e2e9791b0f",
+          "bytes": 83225
+        },
+        {
+          "path": "docs/idea-ledger.md",
+          "sha256": "0675ea45ffb333ad6887aef1fd69aac08393ecd85435f7aa2c8d670c6da49325",
+          "bytes": 70659
+        }
+      ]
+    },
+    "protected_legacy_after": {
+      "root": "C:\\Users\\thank\\Storage\\Media Contents Projects\\FastFictionFactory",
+      "head": "cfd645ff2928b06e474aae5aefb9019d771d0ce9",
+      "branch": "master",
+      "ahead_behind": "0\t8",
+      "status": [
+        " M .serena/project.yml",
+        " M docs/decision-log.md",
+        " M docs/idea-ledger.md",
+        " M docs/project-context.md",
+        " M docs/review/current-status.md",
+        " M docs/review/next-terminal-handoff.md",
+        " M docs/review/supervisor-current-report.md"
+      ],
+      "files": [
+        {
+          "path": ".serena/project.yml",
+          "sha256": "98337e11cbcd1fde6a0850cd26a2cb27d4b728e4b2ae85874d38f703e342872c",
+          "bytes": 9555
+        },
+        {
+          "path": "docs/project-context.md",
+          "sha256": "f3bef6d4415cdc905fa7bad5139319612d3e373c4963b34c2e874a70f0a154f6",
+          "bytes": 78063
+        },
+        {
+          "path": "docs/review/current-status.md",
+          "sha256": "84e3ff5d9184d90ee269102133e5cdc44191d56f5dcb64ee891ea91c2943e9c4",
+          "bytes": 133990
+        },
+        {
+          "path": "docs/review/next-terminal-handoff.md",
+          "sha256": "c91a543db7cb5f99158e202ae56864a55be2617caa5777aa7ee05bd14d8fb889",
+          "bytes": 122345
+        },
+        {
+          "path": "docs/review/supervisor-current-report.md",
+          "sha256": "1d73e28629bcc047958b6d566889b9f13cd5604e62c2e10da79fcbf9dc985df1",
+          "bytes": 102282
+        },
+        {
+          "path": "docs/decision-log.md",
+          "sha256": "441360cb43d9dec7455faeaf7c8a76aaac74ed3dee7dab15f53b65e2e9791b0f",
+          "bytes": 83225
+        },
+        {
+          "path": "docs/idea-ledger.md",
+          "sha256": "0675ea45ffb333ad6887aef1fd69aac08393ecd85435f7aa2c8d670c6da49325",
+          "bytes": 70659
+        }
+      ]
+    },
+    "legacy_byte_identical": true
+  },
+  "boundaries": {
+    "private_candidate_voice_accepted": true,
+    "voice_style_id": 10000,
+    "final_voice_selected": false,
+    "production_voice_approved": false,
+    "rights_cleared": false,
+    "production_approved": false,
+    "release_approved": false,
+    "published": false,
+    "final_canon": false,
+    "pushed": false,
+    "music_or_sfx_added": false,
+    "image_or_voice_generation": false
+  }
+}

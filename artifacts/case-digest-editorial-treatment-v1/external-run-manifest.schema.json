@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fast-fiction-factory.local/schemas/case-digest-editorial-treatment-run-manifest-v1.json",
+  "title": "CASE_DIGEST Editorial Treatment external run manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "mission_id",
+    "artifact_id",
+    "status",
+    "git",
+    "inputs",
+    "captions",
+    "outputs",
+    "validation",
+    "boundaries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "mission_id": {
+      "const": "fff-case-digest-editorial-treatment-thank-001"
+    },
+    "artifact_id": {
+      "const": "fff-case-digest-editorial-treatment-001"
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL"
+      ]
+    },
+    "git": {
+      "type": "object"
+    },
+    "inputs": {
+      "type": "object"
+    },
+    "captions": {
+      "type": "object"
+    },
+    "outputs": {
+      "type": "object"
+    },
+    "validation": {
+      "type": "object"
+    },
+    "boundaries": {
+      "type": "object"
+    }
+  }
+}

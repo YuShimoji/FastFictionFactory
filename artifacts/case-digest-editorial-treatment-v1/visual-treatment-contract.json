@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-editorial-treatment-001",
+  "visual_direction_signature": "archival_case_digest_editorial_treatment_v1",
+  "description": "Restrained investigative documentary using aged brass, paper, glass, charcoal, cool shadow, and accepted Raster imagery.",
+  "global_treatment": {
+    "coherent_color_grade": true,
+    "low_frequency_static_grain": {
+      "enabled": true,
+      "intensity": 1.15,
+      "animated_high_frequency_noise": false
+    },
+    "low_intensity_vignette": true,
+    "restrained_local_contrast": true,
+    "controlled_black_and_highlights": true,
+    "subtitle_safe_contrast": true
+  },
+  "rejected": [
+    "crushed subtitle blacks",
+    "flicker",
+    "strobe",
+    "VHS noise",
+    "glitch",
+    "horror jump effect",
+    "excessive chromatic aberration",
+    "high-frequency animated noise",
+    "generic difference-erasing LUT"
+  ],
+  "section_marker": {
+    "full_screen": false,
+    "pauses_timeline": false,
+    "repeats_narration": false,
+    "duration_seconds": 3.2,
+    "caption_overlap": false
+  },
+  "effect_safety": {
+    "unsupported_fact_assertion": false,
+    "moth_activation": false,
+    "council_guilt": false,
+    "ledger_authenticity": false,
+    "known_tower_mechanism": false,
+    "time_or_name_selected": false
+  },
+  "quarantines": {
+    "svg_vector_geometric_primary_imagery": "active",
+    "three_minute_linear_lore_narrative": "active"
+  },
+  "font": {
+    "installed_path": "C:\\Windows\\Fonts\\YuGothB.ttc",
+    "copied_or_committed": false
+  }
+}

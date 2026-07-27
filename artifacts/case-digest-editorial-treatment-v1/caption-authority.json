@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-editorial-treatment-001",
+  "authority_role": "single_canonical_caption_model",
+  "source_artifact_id": "fff-private-raster-case-digest-001",
+  "source_path": "artifacts/private-raster-case-digest/private-raster-case-digest.json",
+  "cue_count": 11,
+  "authored_forced_line_break_count": 0,
+  "timing_text_identity_sha256": "f306c99773410fb76b351261d8c87579dc362257c497abcdd0989aaec76d08dd",
+  "derivations": [
+    "UTF-8 SRT",
+    "UTF-8 WebVTT",
+    "synchronized DOM overlay",
+    "burned review proxy"
+  ],
+  "cues": [
+    {
+      "cue_id": "case-digest-caption-01",
+      "shot_id": "shot-b01-01",
+      "start_milliseconds": 0,
+      "end_milliseconds": 12000,
+      "text_ja": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+    },
+    {
+      "cue_id": "case-digest-caption-02",
+      "shot_id": "shot-b01-02",
+      "start_milliseconds": 12000,
+      "end_milliseconds": 24000,
+      "text_ja": "塔の取付枠は空で、鐘は確認できない。"
+    },
+    {
+      "cue_id": "case-digest-caption-03",
+      "shot_id": "shot-b02-01",
+      "start_milliseconds": 24000,
+      "end_milliseconds": 38000,
+      "text_ja": "時計修理師のミラ・ヴェイルが、失踪した兄の手掛かりを調べる。"
+    },
+    {
+      "cue_id": "case-digest-caption-04",
+      "shot_id": "shot-b02-02",
+      "start_milliseconds": 38000,
+      "end_milliseconds": 52000,
+      "text_ja": "失踪した兄のメモと真鍮の蛾が、作業台に残されている。"
+    },
+    {
+      "cue_id": "case-digest-caption-05",
+      "shot_id": "shot-b02-03",
+      "start_milliseconds": 52000,
+      "end_milliseconds": 65000,
+      "text_ja": "時計と記録には、9:17が繰り返し現れる。"
+    },
+    {
+      "cue_id": "case-digest-caption-06",
+      "shot_id": "shot-b03-01",
+      "start_milliseconds": 65000,
+      "end_milliseconds": 81000,
+      "text_ja": "失踪した兄のメモは、二列の台帳へ調査を導く。"
+    },
+    {
+      "cue_id": "case-digest-caption-07",
+      "shot_id": "shot-b03-02",
+      "start_milliseconds": 81000,
+      "end_milliseconds": 97000,
+      "text_ja": "台帳には、「分」の欄と人名の欄が並んでいる。"
+    },
+    {
+      "cue_id": "case-digest-caption-08",
+      "shot_id": "shot-b04-01",
+      "start_milliseconds": 97000,
+      "end_milliseconds": 116000,
+      "text_ja": "メモは、市の評議会を調査対象として指している。"
+    },
+    {
+      "cue_id": "case-digest-caption-09",
+      "shot_id": "shot-b04-02",
+      "start_milliseconds": 116000,
+      "end_milliseconds": 136000,
+      "text_ja": "告発は記録されているが、評議会の関与を裏づける証拠はない。"
+    },
+    {
+      "cue_id": "case-digest-caption-10",
+      "shot_id": "shot-b06-01",
+      "start_milliseconds": 136000,
+      "end_milliseconds": 158000,
+      "text_ja": "時間と名前は、台帳の二つの損失区分である。"
+    },
+    {
+      "cue_id": "case-digest-caption-11",
+      "shot_id": "shot-b06-03",
+      "start_milliseconds": 158000,
+      "end_milliseconds": 180000,
+      "text_ja": "音源と関係者を確定できないまま、塔は調査対象として残る。"
+    }
+  ]
+}
