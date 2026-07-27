@@ -95,12 +95,19 @@ test("tracked scope is text-only and declares all section and shot treatments", 
   const contract = await json(path.join(artifactRoot, "visual-treatment-contract.json"));
   const sectionMap = await readFile(path.join(artifactRoot, "section-treatment-map.csv"), "utf8");
   const shotMap = await readFile(path.join(artifactRoot, "shot-effect-map.csv"), "utf8");
+  const packageReadme = await readFile(path.join(artifactRoot, "README_CASE_DIGEST_EDITORIAL_TREATMENT.md"), "utf8");
+  const reviewDoc = await readFile(path.join(repoRoot, "docs", "review", "case-digest-editorial-treatment-v1.md"), "utf8");
   assert.equal(contract.visual_direction_signature, "archival_case_digest_editorial_treatment_v1");
   assert.equal((sectionMap.match(/case-digest-section-/g) || []).length, 5);
   assert.equal((shotMap.match(/shot-b/g) || []).length, 11);
   assert.equal(contract.quarantines.svg_vector_geometric_primary_imagery, "active");
   assert.equal(contract.quarantines.three_minute_linear_lore_narrative, "active");
   assert.equal(contract.font.copied_or_committed, false);
+  for (const document of [packageReadme, reviewDoc]) {
+    assert.doesNotMatch(document, /\$(?:[A-Za-z_(])/u, "generated docs must not retain PowerShell placeholders");
+    assert.match(document, /f42822db1a75282b6dcb956deb4f226753e3d1ea/u);
+    assert.match(document, /archival_case_digest_editorial_treatment_v1/u);
+  }
 });
 
 test("actual final frames show no transition reset or single-frame luminance flash", async () => {

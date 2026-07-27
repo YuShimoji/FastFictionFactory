@@ -155,8 +155,30 @@ function ConvertTo-CsvText {
 function Assert-ExactInputs {
   $head = (git -C $RepoRoot rev-parse HEAD).Trim()
   $branch = (git -C $RepoRoot branch --show-current).Trim()
-  if ($head -ne $ExpectedHead) { throw "EDITORIAL_TREATMENT_INPUT_IDENTITY_MISMATCH: HEAD $head" }
   if ($branch -ne $ExpectedBranch) { throw "EDITORIAL_TREATMENT_INPUT_IDENTITY_MISMATCH: branch $branch" }
+  if ($head -ne $ExpectedHead) {
+    git -C $RepoRoot merge-base --is-ancestor $ExpectedHead $head
+    if ($LASTEXITCODE -ne 0) {
+      throw "EDITORIAL_TREATMENT_INPUT_IDENTITY_MISMATCH: HEAD $head is not descended from $ExpectedHead"
+    }
+    $mergeCommits = @(git -C $RepoRoot rev-list --merges "$ExpectedHead..$head")
+    if ($mergeCommits.Count -ne 0) {
+      throw "EDITORIAL_TREATMENT_INPUT_IDENTITY_MISMATCH: merge commit in Mission lineage"
+    }
+  }
+  $missionPaths = @(
+    @(git -C $RepoRoot diff --name-only "$ExpectedHead..$head")
+    @(git -C $RepoRoot status --porcelain=v1 --untracked-files=all | ForEach-Object { $_.Substring(3) })
+  ) | ForEach-Object { $_ -replace "\\", "/" } | Sort-Object -Unique
+  $unexpectedMissionPaths = @($missionPaths | Where-Object {
+    $_ -ne "docs/review/case-digest-editorial-treatment-v1.md" -and
+    $_ -ne "tools/fff-case-digest-editorial-treatment-v1.ps1" -and
+    $_ -ne "tests/fff-case-digest-editorial-treatment-v1.test.mjs" -and
+    -not $_.StartsWith("artifacts/case-digest-editorial-treatment-v1/", [StringComparison]::Ordinal)
+  })
+  if ($unexpectedMissionPaths.Count -ne 0) {
+    throw "EDITORIAL_TREATMENT_INPUT_IDENTITY_MISMATCH: out-of-scope Mission path $($unexpectedMissionPaths -join ', ')"
+  }
 
   $voiceHead = (git -C $VoiceWorktree rev-parse HEAD).Trim()
   $voiceBranch = (git -C $VoiceWorktree branch --show-current).Trim()
@@ -811,14 +833,14 @@ function New-TrackedArtifacts {
   $readme = @"
 # CASE_DIGEST Editorial Treatment v1
 
-This tracked package records the local-only editorial treatment candidate bound to Git input `$ExpectedHead`.
+This tracked package records the local-only editorial treatment candidate bound to Git input ``$ExpectedHead``.
 
-- Direction: `$DirectionSignature`
-- Canonical captions: 11 cues, identity `$($Captions.identity_hash)`
-- Clean candidate: `$CleanMp4Path`
-- Burned-caption review proxy: `$BurnedMp4Path`
-- Standalone review: `$ReviewHtmlPath`
-- Sidecars: `case-digest-ja.srt` and `case-digest-ja.vtt`
+- Direction: ``$DirectionSignature``
+- Canonical captions: 11 cues, identity ``$($Captions.identity_hash)``
+- Clean candidate: ``$CleanMp4Path``
+- Burned-caption review proxy: ``$BurnedMp4Path``
+- Standalone review: ``$ReviewHtmlPath``
+- Sidecars: ``case-digest-ja.srt`` and ``case-digest-ja.vtt``
 
 The clean and burned MP4 files, screenshots, installed font, and external-run evidence remain outside Git. Voice style 10000 is accepted only for this private candidate. Final voice selection, production approval, rights clearance, release, publication, and canon remain false.
 "@
@@ -829,19 +851,19 @@ The clean and burned MP4 files, screenshots, installed font, and external-run ev
 
 ## Capability delta
 
-The accepted style-10000 narration and eleven-shot image sequence now have one complete 180-second editorial treatment candidate. The former review HTML referenced a `mov_text`-subtitled MP4 directly but supplied neither a `<track>` nor a synchronized DOM caption path, so file-local Chromium displayed no captions. The successor review uses the clean treated MP4 plus a canonical, default-on DOM overlay; the VTT track is secondary support.
+The accepted style-10000 narration and eleven-shot image sequence now have one complete 180-second editorial treatment candidate. The former review HTML referenced a ``mov_text``-subtitled MP4 directly but supplied neither a ``<track>`` nor a synchronized DOM caption path, so file-local Chromium displayed no captions. The successor review uses the clean treated MP4 plus a canonical, default-on DOM overlay; the VTT track is secondary support.
 
 ## Outputs
 
-- Clean 1280x720 / 30 fps / 5400-frame candidate: `$CleanMp4Path`
-- Burned Japanese-caption review proxy: `$BurnedMp4Path`
-- Standalone review HTML: `$ReviewHtmlPath`
-- UTF-8 SRT/VTT upload sidecars: `$YoutubeRoot`
-- Before/after evidence: `$ContactSheetPath`
+- Clean 1280x720 / 30 fps / 5400-frame candidate: ``$CleanMp4Path``
+- Burned Japanese-caption review proxy: ``$BurnedMp4Path``
+- Standalone review HTML: ``$ReviewHtmlPath``
+- UTF-8 SRT/VTT upload sidecars: ``$YoutubeRoot``
+- Before/after evidence: ``$ContactSheetPath``
 
 ## Treatment
 
-`$DirectionSignature` applies restrained archival color, static low-frequency grain, vignette, controlled black/highlight levels, and subtitle-safe contrast. Five compact section identifiers and eleven semantic shot treatments are recorded in the package CSVs. Raster imagery stays primary. The SVG/vector primary-imagery and three-minute linear-lore quarantines remain active.
+``$DirectionSignature`` applies restrained archival color, static low-frequency grain, vignette, controlled black/highlight levels, and subtitle-safe contrast. Five compact section identifiers and eleven semantic shot treatments are recorded in the package CSVs. Raster imagery stays primary. The SVG/vector primary-imagery and three-minute linear-lore quarantines remain active.
 
 ## Preservation and boundaries
 
