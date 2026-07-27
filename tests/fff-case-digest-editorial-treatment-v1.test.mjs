@@ -105,9 +105,10 @@ test("tracked scope is text-only and declares all section and shot treatments", 
   assert.equal(contract.font.copied_or_committed, false);
   for (const document of [packageReadme, reviewDoc]) {
     assert.doesNotMatch(document, /\$(?:[A-Za-z_(])/u, "generated docs must not retain PowerShell placeholders");
-    assert.match(document, /f42822db1a75282b6dcb956deb4f226753e3d1ea/u);
     assert.match(document, /archival_case_digest_editorial_treatment_v1/u);
   }
+  assert.match(packageReadme, /f42822db1a75282b6dcb956deb4f226753e3d1ea/u);
+  assert.match(reviewDoc, /fff-case-digest-editorial-treatment-001\\review\\case-digest-editorial-treatment\.html/u);
 });
 
 test("actual final frames show no transition reset or single-frame luminance flash", async () => {
