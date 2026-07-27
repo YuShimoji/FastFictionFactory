@@ -1,0 +1,804 @@
+{
+  "authority_ledger": {
+    "authority_classes_supported": [
+      "established_fact",
+      "observed_event",
+      "reported_claim",
+      "allegation",
+      "inference",
+      "unresolved",
+      "must_preserve",
+      "preferred",
+      "optional",
+      "forbidden_to_infer",
+      "writer_authored_proposal"
+    ],
+    "authority_ledger_id": "authority-ledger-fragment-bundle",
+    "entries": [
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-fragment-clue-chain-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。",
+        "original_wording": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。",
+        "source_span_ids": [
+          "span-fragment-clue-chain"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "forbidden_to_infer",
+        "authority_id": "authority-span-fragment-council-limit-forbidden-to-infer",
+        "canon_status": "forbidden_from_promotion",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "original_wording": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "source_status": "evidence_limit"
+      },
+      {
+        "authority_class": "must_preserve",
+        "authority_id": "authority-span-fragment-council-limit-must-preserve",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "original_wording": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "source_status": "evidence_limit"
+      },
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-fragment-incident-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+        "original_wording": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+        "source_span_ids": [
+          "span-fragment-incident"
+        ],
+        "source_status": "reported"
+      }
+    ],
+    "schema_version": "fff.storyAuthorityLedger.v0",
+    "source_packet_id": "source-packet-fragment-bundle"
+  },
+  "editorial_handoff_input": null,
+  "fixture_id": "fragment-bundle",
+  "format_selection": {
+    "authority_ledger_id": "authority-ledger-fragment-bundle",
+    "capacity_metrics": {
+      "approximate_narration_character_budget": 515,
+      "approximate_shot_budget": 11,
+      "approximate_subtitle_unit_budget": 11,
+      "candidate_ending_action": null,
+      "causal_step_count": 0,
+      "enacted_action_count": 0,
+      "exposition_unit_count": 0,
+      "information_density_score": 2.183,
+      "missing_causal_link_count": 2,
+      "named_entity_count": 0,
+      "named_entity_first_introduction_count": 0,
+      "primary_event_count": 1,
+      "required_terminology_count": 4,
+      "source_character_count": 94,
+      "target_duration_seconds": 180,
+      "unexplained_named_entity_count": 0,
+      "unresolved_major_question_count": 1
+    },
+    "derivation_limitations": [
+      "v0 capacity is reference-bound to the accepted 180-second CASE_DIGEST and the quarantined 180-second linear-lore counterexample.",
+      "The 515-character, 11-subtitle-unit, and 11-shot values are local calibration evidence, not universal format thresholds.",
+      "SHORT_DRAMA cannot pass without source-supported enacted objective, obstacle, consequential action, observable result, and complete causal links.",
+      "The selector does not rewrite source material to force a format pass."
+    ],
+    "format_candidates_supported": [
+      "CASE_DIGEST",
+      "SHORT_DRAMA",
+      "SCENE_EXCERPT",
+      "PLOT_SUMMARY",
+      "LORE_EXPLAINER",
+      "TRAILER_PV"
+    ],
+    "format_selection_id": "format-selection-fragment-bundle",
+    "material_disposition": {
+      "defer": [
+        "all connective material pending author decision"
+      ],
+      "move_to_longer_form": [],
+      "remove": [],
+      "summarize": []
+    },
+    "ranked_candidates": [
+      {
+        "acceptance_reasons": [
+          "closest_non_committal_candidate_requires_explicit_author_identity_and_scope"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "bounded_scene": false,
+          "explicit_scene_excerpt_identity": false,
+          "incomplete_context_boundary": false,
+          "no_false_completeness": false
+        },
+        "decision": "AUTHOR_DECISION_REQUIRED",
+        "format_id": "SCENE_EXCERPT",
+        "rank": 1,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_scene_excerpt_identity",
+          "missing_or_failed:bounded_scene",
+          "missing_or_failed:incomplete_context_boundary",
+          "missing_or_failed:no_false_completeness"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "no_fully_dramatized_short_simulation"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "chronological_or_causal_compression": false,
+          "explicit_summary_identity": false,
+          "no_fully_dramatized_short_simulation": true
+        },
+        "decision": "REJECTED",
+        "format_id": "PLOT_SUMMARY",
+        "rank": 2,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_summary_identity",
+          "missing_or_failed:chronological_or_causal_compression"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "incident",
+          "evidence_or_clues",
+          "evidence_limit"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "allegation_or_hypothesis": false,
+          "current_status": false,
+          "evidence_limit": true,
+          "evidence_or_clues": true,
+          "explicit_digest_identity": false,
+          "incident": true,
+          "investigation_context": false
+        },
+        "decision": "REJECTED",
+        "format_id": "CASE_DIGEST",
+        "rank": 3,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_digest_identity",
+          "missing_or_failed:investigation_context",
+          "missing_or_failed:allegation_or_hypothesis",
+          "missing_or_failed:current_status"
+        ]
+      },
+      {
+        "acceptance_reasons": [],
+        "capacity_fit": true,
+        "contract_checks": {
+          "concept_hierarchy": false,
+          "explicit_explanatory_identity": false,
+          "source_allegation_uncertainty_separated": false
+        },
+        "decision": "REJECTED",
+        "format_id": "LORE_EXPLAINER",
+        "rank": 4,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_explanatory_identity",
+          "missing_or_failed:concept_hierarchy",
+          "missing_or_failed:source_allegation_uncertainty_separated"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "duration_compatible_cast_and_exposition",
+          "historical_quarantine_absent"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "bounded_protagonist_objective": false,
+          "consequential_action": false,
+          "duration_compatible_cast_and_exposition": true,
+          "enacted_causality_present": false,
+          "enacted_obstacle": false,
+          "historical_quarantine_absent": true,
+          "observable_result": false
+        },
+        "decision": "REJECTED",
+        "format_id": "SHORT_DRAMA",
+        "rank": 5,
+        "rejection_reasons": [
+          "missing_or_failed:bounded_protagonist_objective",
+          "missing_or_failed:enacted_obstacle",
+          "missing_or_failed:consequential_action",
+          "missing_or_failed:observable_result",
+          "missing_or_failed:enacted_causality_present",
+          "enacted_causality_missing"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "no_authority_overreach"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "explicit_promotional_identity": false,
+          "no_authority_overreach": true,
+          "no_completeness_claim": false
+        },
+        "decision": "REJECTED",
+        "format_id": "TRAILER_PV",
+        "rank": 6,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_promotional_identity",
+          "missing_or_failed:no_completeness_claim"
+        ]
+      }
+    ],
+    "schema_version": "fff.formatSelection.v0",
+    "selected_format": null,
+    "source_packet_id": "source-packet-fragment-bundle",
+    "status": "AUTHOR_DECISION_REQUIRED"
+  },
+  "input_kind": "fragment_bundle_v0",
+  "narrative_ir": {
+    "audience_promise": {
+      "lineage": {
+        "authority_ids": [],
+        "mode": "adapter_generated_non_factual",
+        "source_span_ids": []
+      },
+      "statement_id": "audience-promise-fragment-bundle",
+      "statement_kind": "audience_promise",
+      "text": "Partial source bundle with explicit incompleteness"
+    },
+    "caption_units": [
+      {
+        "caption_unit_id": "caption-fragment-clue-chain-1",
+        "end_seconds": null,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-fragment-clue-chain-observed-event"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-fragment-clue-chain"
+          ]
+        },
+        "section_or_beat_id": "fragment-clue-chain",
+        "start_seconds": null,
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "caption_unit_id": "caption-fragment-council-limit-1",
+        "end_seconds": null,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-fragment-council-limit-forbidden-to-infer",
+            "authority-span-fragment-council-limit-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-fragment-council-limit"
+          ]
+        },
+        "section_or_beat_id": "fragment-council-limit",
+        "start_seconds": null,
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "caption_unit_id": "caption-fragment-incident-1",
+        "end_seconds": null,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-fragment-incident-reported-claim"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-fragment-incident"
+          ]
+        },
+        "section_or_beat_id": "fragment-incident",
+        "start_seconds": null,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      }
+    ],
+    "causal_edges": [],
+    "content_omitted_deferred_for_capacity": {
+      "defer": [
+        "all connective material pending author decision"
+      ],
+      "move_to_longer_form": [],
+      "remove": [],
+      "summarize": []
+    },
+    "ending_state": null,
+    "events": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-fragment-clue-chain-observed-event"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-fragment-clue-chain"
+          ]
+        },
+        "statement_id": "event-fragment-clue-chain-1",
+        "statement_kind": "observed",
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-fragment-incident-reported-claim"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-fragment-incident"
+          ]
+        },
+        "statement_id": "event-fragment-incident-1",
+        "statement_kind": "reported",
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      }
+    ],
+    "evidence_claim_status": [
+      {
+        "authority_ids": [
+          "authority-span-fragment-clue-chain-observed-event"
+        ],
+        "source_span_ids": [
+          "span-fragment-clue-chain"
+        ],
+        "source_status": "observed",
+        "statement_id": "claim-status-fragment-clue-chain-1",
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-fragment-council-limit-forbidden-to-infer",
+          "authority-span-fragment-council-limit-must-preserve"
+        ],
+        "source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "source_status": "evidence_limit",
+        "statement_id": "claim-status-fragment-council-limit-1",
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-fragment-incident-reported-claim"
+        ],
+        "source_span_ids": [
+          "span-fragment-incident"
+        ],
+        "source_status": "reported",
+        "statement_id": "claim-status-fragment-incident-1",
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      }
+    ],
+    "final_canon": false,
+    "first_introduction_wording": [],
+    "format_id": null,
+    "image_generation": false,
+    "incident": {
+      "lineage": {
+        "authority_ids": [
+          "authority-span-fragment-incident-reported-claim"
+        ],
+        "mode": "source_span",
+        "source_span_ids": [
+          "span-fragment-incident"
+        ]
+      },
+      "statement_id": "incident-primary",
+      "statement_kind": "incident",
+      "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+    },
+    "information_reveal_order": [
+      {
+        "basis": "undeclared",
+        "order": null,
+        "section_or_beat_id": "fragment-clue-chain"
+      },
+      {
+        "basis": "undeclared",
+        "order": null,
+        "section_or_beat_id": "fragment-council-limit"
+      },
+      {
+        "basis": "undeclared",
+        "order": null,
+        "section_or_beat_id": "fragment-incident"
+      }
+    ],
+    "missing_causal_edges": [
+      {
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "statement_id": "missing-causal-fragment-1",
+        "statement_kind": "missing_causal_edge_marker",
+        "text": "Causal connection between fragment-clue-chain and fragment-council-limit is undeclared."
+      },
+      {
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "statement_id": "missing-causal-fragment-2",
+        "statement_kind": "missing_causal_edge_marker",
+        "text": "Causal connection between fragment-council-limit and fragment-incident is undeclared."
+      }
+    ],
+    "named_entities": [],
+    "narration_units": [
+      {
+        "end_seconds": null,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-fragment-clue-chain-observed-event"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-fragment-clue-chain"
+          ]
+        },
+        "narration_unit_id": "narration-fragment-clue-chain",
+        "section_or_beat_id": "fragment-clue-chain",
+        "start_seconds": null,
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "end_seconds": null,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-fragment-council-limit-forbidden-to-infer",
+            "authority-span-fragment-council-limit-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-fragment-council-limit"
+          ]
+        },
+        "narration_unit_id": "narration-fragment-council-limit",
+        "section_or_beat_id": "fragment-council-limit",
+        "start_seconds": null,
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "end_seconds": null,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-fragment-incident-reported-claim"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-fragment-incident"
+          ]
+        },
+        "narration_unit_id": "narration-fragment-incident",
+        "section_or_beat_id": "fragment-incident",
+        "start_seconds": null,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      }
+    ],
+    "narrative_ir_id": "narrative-ir-fragment-bundle",
+    "production_approved": false,
+    "protagonist_or_subject": [],
+    "rights_cleared_claim": false,
+    "schema_version": "fff.narrativeIr.v0",
+    "section_beat_plan": [
+      {
+        "end_seconds": null,
+        "label": "Fragment 1",
+        "section_or_beat_id": "fragment-clue-chain",
+        "source_span_ids": [],
+        "start_seconds": null,
+        "structural_lineage": "adapter_generated_non_factual"
+      },
+      {
+        "end_seconds": null,
+        "label": "Fragment 2",
+        "section_or_beat_id": "fragment-council-limit",
+        "source_span_ids": [],
+        "start_seconds": null,
+        "structural_lineage": "adapter_generated_non_factual"
+      },
+      {
+        "end_seconds": null,
+        "label": "Fragment 3",
+        "section_or_beat_id": "fragment-incident",
+        "source_span_ids": [],
+        "start_seconds": null,
+        "structural_lineage": "adapter_generated_non_factual"
+      }
+    ],
+    "source_packet_id": "source-packet-fragment-bundle",
+    "source_span_lineage": [
+      {
+        "authority_ids": [
+          "authority-span-fragment-clue-chain-observed-event"
+        ],
+        "material_id": "event-fragment-clue-chain-1",
+        "source_span_ids": [
+          "span-fragment-clue-chain"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-fragment-incident-reported-claim"
+        ],
+        "material_id": "event-fragment-incident-1",
+        "source_span_ids": [
+          "span-fragment-incident"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-fragment-incident-reported-claim"
+        ],
+        "material_id": "incident-primary",
+        "source_span_ids": [
+          "span-fragment-incident"
+        ]
+      }
+    ],
+    "target_duration_seconds": 180,
+    "terminology_budget": {
+      "reference_bound_only": true,
+      "required_term_count": 4,
+      "required_terms": [
+        "鐘のない塔",
+        "真鍮の蛾",
+        "9:17",
+        "市の評議会"
+      ]
+    },
+    "unresolved_items": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-fragment-council-limit-forbidden-to-infer",
+            "authority-span-fragment-council-limit-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-fragment-council-limit"
+          ]
+        },
+        "statement_id": "unresolved-fragment-council-limit-1",
+        "statement_kind": "unresolved_item",
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      }
+    ],
+    "unsupported_factual_claim_count": 0,
+    "visual_intent_placeholders": [
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-fragment-clue-chain"
+        ],
+        "section_or_beat_id": "fragment-clue-chain",
+        "shot_id": null,
+        "visual_intent_id": "visual-intent-placeholder-fragment-clue-chain"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "section_or_beat_id": "fragment-council-limit",
+        "shot_id": null,
+        "visual_intent_id": "visual-intent-placeholder-fragment-council-limit"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-fragment-incident"
+        ],
+        "section_or_beat_id": "fragment-incident",
+        "shot_id": null,
+        "visual_intent_id": "visual-intent-placeholder-fragment-incident"
+      }
+    ],
+    "writer_decisions_required": [
+      {
+        "decision_id": "writer-decision-fragment-bundle-format",
+        "question": "Select an explicit output format without inventing missing source material.",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-fragment-bundle-1",
+        "question": "fragment order",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-fragment-bundle-2",
+        "question": "incident-to-clue causal bridge",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-fragment-bundle-3",
+        "question": "clue-to-allegation causal bridge",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-fragment-bundle-4",
+        "question": "safe output format",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      }
+    ]
+  },
+  "schema_version": "fff.writerSourceAdaptationFixtureOutput.v0",
+  "source_packet": {
+    "author_label": null,
+    "explicit_unknowns": [
+      "fragment order",
+      "incident-to-clue causal bridge",
+      "clue-to-allegation causal bridge",
+      "safe output format"
+    ],
+    "input_envelope": {
+      "relative_path": "fixtures/writer-source-adaptation/fragment-bundle.json",
+      "sha256": "160430e21abaf1e2021c3f4f9aacec6fbacfdc747262e3fedae331708533e061",
+      "utf8_byte_size": 2846
+    },
+    "input_kind": "fragment_bundle_v0",
+    "intended_audience": null,
+    "normalization_operations": [
+      {
+        "note": "Fragments are exact sentence spans from the accepted CASE_DIGEST source.",
+        "operation": "none",
+        "semantic": false
+      }
+    ],
+    "primary_source_file": {
+      "media_type": "text/markdown",
+      "relative_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+      "sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe",
+      "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+      "utf8_byte_size": 2803
+    },
+    "schema_version": "fff.writerSourcePacket.v0",
+    "source_files": [
+      {
+        "media_type": "text/markdown",
+        "relative_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+        "sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "utf8_byte_size": 2803
+      }
+    ],
+    "source_packet_id": "source-packet-fragment-bundle",
+    "source_spans": [
+      {
+        "byte_range": {
+          "end": 820,
+          "start": 729
+        },
+        "character_range": {
+          "end": 468,
+          "start": 435,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。",
+        "exact_text_sha256": "eef3ea565afb293dd2467f641006e6ef6447fded7648fa60aff730e734de1366",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-fragment-clue-chain",
+        "structural_role": "fragment_material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1704,
+          "start": 1593
+        },
+        "character_range": {
+          "end": 896,
+          "start": 859,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "exact_text_sha256": "26383beb269f8f12199e4a5a1822cf3d7d7c7868c23db50fcb5295ed0906667b",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-fragment-council-limit",
+        "structural_role": "fragment_material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 289,
+          "start": 217
+        },
+        "character_range": {
+          "end": 229,
+          "start": 205,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+        "exact_text_sha256": "504887dcd575afc26e72221e0e7eb9fd975e957e6d45cafde1b2f01b0c8cb4e0",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-fragment-incident",
+        "structural_role": "fragment_material_statement"
+      }
+    ],
+    "supplied_title": "鐘のない塔・未配列断片",
+    "target_duration_seconds": 180,
+    "writer_constraints": [
+      "fragment order must remain undeclared",
+      "missing causal bridges must not be invented",
+      "every fragment must be verified against the accepted CASE_DIGEST source"
+    ]
+  },
+  "validation_summary": {
+    "external_request_count": 0,
+    "material_lineage_complete": true,
+    "media_generation_count": 0,
+    "provider_call_count": 0,
+    "public_effect_count": 0,
+    "schema_errors": {},
+    "schemas_valid": true,
+    "unsupported_factual_claim_count": 0
+  },
+  "writer_proposal_impact": null
+}

@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.storyAuthorityLedger.v0",
+  "title": "Story Authority Ledger v0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "authority_ledger_id",
+    "source_packet_id",
+    "authority_classes_supported",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "fff.storyAuthorityLedger.v0"
+    },
+    "authority_ledger_id": {
+      "type": "string"
+    },
+    "source_packet_id": {
+      "type": "string"
+    },
+    "authority_classes_supported": {
+      "type": "array",
+      "minItems": 11,
+      "items": {
+        "enum": [
+          "established_fact",
+          "observed_event",
+          "reported_claim",
+          "allegation",
+          "inference",
+          "unresolved",
+          "must_preserve",
+          "preferred",
+          "optional",
+          "forbidden_to_infer",
+          "writer_authored_proposal"
+        ]
+      }
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "authority_id",
+          "authority_class",
+          "source_span_ids",
+          "normalized_claim",
+          "original_wording",
+          "source_status",
+          "confidence_source_certainty",
+          "mutable_by_writer_proposal",
+          "human_author_required",
+          "canon_status",
+          "downstream_consumers"
+        ],
+        "properties": {
+          "authority_id": {
+            "type": "string"
+          },
+          "authority_class": {
+            "enum": [
+              "established_fact",
+              "observed_event",
+              "reported_claim",
+              "allegation",
+              "inference",
+              "unresolved",
+              "must_preserve",
+              "preferred",
+              "optional",
+              "forbidden_to_infer",
+              "writer_authored_proposal"
+            ]
+          },
+          "source_span_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string"
+            }
+          },
+          "normalized_claim": {
+            "type": "string"
+          },
+          "original_wording": {
+            "type": "string"
+          },
+          "source_status": {
+            "type": "string"
+          },
+          "confidence_source_certainty": {
+            "type": "string"
+          },
+          "mutable_by_writer_proposal": {
+            "type": "boolean"
+          },
+          "human_author_required": {
+            "type": "boolean"
+          },
+          "canon_status": {
+            "type": "string"
+          },
+          "downstream_consumers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

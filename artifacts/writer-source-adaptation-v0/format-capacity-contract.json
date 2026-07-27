@@ -1,0 +1,87 @@
+{
+  "contract_id": "fff-format-capacity-contract-v0-001",
+  "derivation": {
+    "accepted_case_digest": {
+      "accepted_scoped": "ACCEPTED_SCOPED",
+      "artifact_id": "fff-private-raster-case-digest-001",
+      "duration_seconds": 180,
+      "format_id": "CASE_DIGEST",
+      "human_facing_proper_name_count": 2,
+      "section_count": 5,
+      "shot_count": 11,
+      "source_character_count": 515,
+      "source_path": "artifacts/private-raster-case-digest/private-raster-case-digest.json"
+    },
+    "quarantined_linear_lore": {
+      "beat_count": 6,
+      "duration_seconds": 180,
+      "forced_choice_closure": true,
+      "quarantine_id": "FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26",
+      "quarantine_path": "artifacts/narrative-format-quarantine/narrative-format-quarantine.json",
+      "short_drama_selected": false,
+      "shot_count": 19,
+      "source_character_count": 631,
+      "source_path": "artifacts/private-full-raster-clarity-candidate/narration-clarity-v1.md",
+      "unexplained_named_entity_count": 3
+    }
+  },
+  "format_candidates_supported": [
+    "CASE_DIGEST",
+    "SHORT_DRAMA",
+    "SCENE_EXCERPT",
+    "PLOT_SUMMARY",
+    "LORE_EXPLAINER",
+    "TRAILER_PV"
+  ],
+  "format_contracts": {
+    "CASE_DIGEST": [
+      "incident",
+      "investigator or investigation context",
+      "evidence or clues",
+      "allegation or hypothesis and evidence limit",
+      "current status"
+    ],
+    "LORE_EXPLAINER": [
+      "explicit explanatory identity",
+      "concept hierarchy",
+      "source, allegation, and uncertainty separation"
+    ],
+    "PLOT_SUMMARY": [
+      "explicit summary identity",
+      "chronological or causal compression",
+      "no fully dramatized-short simulation"
+    ],
+    "SCENE_EXCERPT": [
+      "one bounded scene",
+      "explicit incomplete-context boundary",
+      "no false completeness claim"
+    ],
+    "SHORT_DRAMA": [
+      "one bounded protagonist objective",
+      "one enacted obstacle",
+      "one consequential action",
+      "one observable result",
+      "duration-compatible cast and exposition"
+    ],
+    "TRAILER_PV": [
+      "explicit promotional identity",
+      "no completeness claim",
+      "no evidence or canon claim beyond source authority"
+    ]
+  },
+  "limitations": [
+    "No accepted SHORT_DRAMA calibration fixture exists in the repository.",
+    "Budgets are local reference evidence and must not be presented as universal thresholds.",
+    "A longer or differently paced work requires new human-author capacity calibration.",
+    "Capacity failure never authorizes source rewriting or unsupported connective invention."
+  ],
+  "reference_bound_budgets": {
+    "approximate_narration_character_budget": 515,
+    "approximate_shot_budget": 11,
+    "approximate_subtitle_unit_budget": 11,
+    "duration_seconds": 180,
+    "reject_unexplained_proper_noun_cascade_above": 3
+  },
+  "reference_scope": "Fast Fiction Factory 180-second local v0 only",
+  "schema_version": "fff.formatCapacityContract.v0"
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": "fff.writerSourceFixtureSet.v0",
+  "fixture_set_id": "fff-writer-source-adaptation-v0-fixtures",
+  "fixtures": [
+    "fixtures/writer-source-adaptation/case-digest.prose.json",
+    "fixtures/writer-source-adaptation/linear-lore.prose.json",
+    "fixtures/writer-source-adaptation/fragment-bundle.json",
+    "fixtures/writer-source-adaptation/writer-proposal.json"
+  ]
+}

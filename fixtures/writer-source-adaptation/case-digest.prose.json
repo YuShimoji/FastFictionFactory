@@ -1,0 +1,365 @@
+{
+  "schema_version": "fff.writerSourceInput.v0",
+  "fixture_id": "case-digest",
+  "output_filename": "case-digest-fixture-output.json",
+  "input_kind": "prose_markdown_v0",
+  "source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+  "source_parser": "numbered_markdown_sections",
+  "supplied_title": "鐘のない塔事件",
+  "author_label": null,
+  "target_duration_seconds": 180,
+  "intended_audience": "CASE_DIGEST を短時間で理解するレビュー担当者",
+  "writer_constraints": [
+    "accepted CASE_DIGEST の五セクションを保持する",
+    "出所・真正性・責任・動機・音源・兄の所在を断定しない",
+    "forced-choice ending を復元しない",
+    "既存の字幕・画像・ショット・タイミングを変更しない"
+  ],
+  "explicit_unknowns": [
+    "鐘の音源",
+    "兄の所在",
+    "台帳の出所と真正性",
+    "市の評議会の関与・責任・動機",
+    "真鍮の蛾の機能"
+  ],
+  "normalization_operations": [
+    {
+      "operation": "none",
+      "semantic": false,
+      "note": "UTF-8 source bytes and exact source wording are used without normalization."
+    }
+  ],
+  "explicit_format_identity": "CASE_DIGEST",
+  "audience_promise": "Evidence-limited incident digest",
+  "required_terminology": [
+    "鐘のない塔",
+    "ミラ・ヴェイル",
+    "真鍮の蛾",
+    "9:17",
+    "台帳",
+    "市の評議会"
+  ],
+  "shot_count_hint": 11,
+  "sections": [
+    {
+      "section_id": "case-digest-section-01-incident",
+      "title": "事件",
+      "start_seconds": 0,
+      "end_seconds": 24,
+      "shot_ids": [
+        "shot-b01-01",
+        "shot-b01-02"
+      ],
+      "caption_sentence_indexes": [
+        0,
+        1
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "reported_claim",
+            "must_preserve"
+          ],
+          "semantic_roles": [
+            "incident",
+            "primary_event",
+            "event"
+          ],
+          "source_status": "reported",
+          "confidence_source_certainty": "source_report_preserved",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "observed_event",
+            "must_preserve"
+          ],
+          "semantic_roles": [
+            "evidence_or_clue",
+            "event"
+          ],
+          "source_status": "observed",
+          "confidence_source_certainty": "accepted_visual_observation",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved",
+            "forbidden_to_infer"
+          ],
+          "semantic_roles": [
+            "evidence_limit",
+            "missing_causal_link",
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "explicitly_unconfirmed",
+          "entities": []
+        }
+      ]
+    },
+    {
+      "section_id": "case-digest-section-02-investigator",
+      "title": "調査者と手掛かり",
+      "start_seconds": 24,
+      "end_seconds": 65,
+      "shot_ids": [
+        "shot-b02-01",
+        "shot-b02-02",
+        "shot-b02-03"
+      ],
+      "caption_sentence_indexes": [
+        0,
+        1,
+        2
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "established_fact",
+            "reported_claim",
+            "must_preserve"
+          ],
+          "semantic_roles": [
+            "investigation_context",
+            "protagonist_or_subject",
+            "primary_event",
+            "event"
+          ],
+          "source_status": "mixed_established_and_reported",
+          "confidence_source_certainty": "accepted_case_digest_wording",
+          "entities": [
+            {
+              "name": "ミラ・ヴェイル",
+              "explained": true,
+              "first_introduction_wording": "時計修理師のミラ・ヴェイル"
+            }
+          ]
+        },
+        {
+          "authority_classes": [
+            "observed_event",
+            "must_preserve"
+          ],
+          "semantic_roles": [
+            "evidence_or_clue",
+            "event"
+          ],
+          "source_status": "observed",
+          "confidence_source_certainty": "accepted_case_digest_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved",
+            "forbidden_to_infer"
+          ],
+          "semantic_roles": [
+            "evidence_limit",
+            "missing_causal_link",
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "explicitly_not_direct_evidence",
+          "entities": []
+        }
+      ]
+    },
+    {
+      "section_id": "case-digest-section-03-ledger",
+      "title": "記録",
+      "start_seconds": 65,
+      "end_seconds": 97,
+      "shot_ids": [
+        "shot-b03-01",
+        "shot-b03-02"
+      ],
+      "caption_sentence_indexes": [
+        0,
+        2
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "observed_event"
+          ],
+          "semantic_roles": [
+            "event",
+            "investigation_context"
+          ],
+          "source_status": "observed_progress",
+          "confidence_source_certainty": "accepted_case_digest_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "observed_event",
+            "must_preserve"
+          ],
+          "semantic_roles": [
+            "evidence_or_clue",
+            "event"
+          ],
+          "source_status": "observed",
+          "confidence_source_certainty": "accepted_visual_observation",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved",
+            "forbidden_to_infer"
+          ],
+          "semantic_roles": [
+            "evidence_limit",
+            "missing_causal_link",
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "causality_not_proven",
+          "entities": []
+        }
+      ]
+    },
+    {
+      "section_id": "case-digest-section-04-council",
+      "title": "疑いと証拠限界",
+      "start_seconds": 97,
+      "end_seconds": 136,
+      "shot_ids": [
+        "shot-b04-01",
+        "shot-b04-02"
+      ],
+      "caption_sentence_indexes": [
+        0,
+        1
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "reported_claim",
+            "allegation"
+          ],
+          "semantic_roles": [
+            "allegation_or_hypothesis",
+            "event"
+          ],
+          "source_status": "reported_allegation",
+          "confidence_source_certainty": "memo_points_toward_investigation_only",
+          "entities": [
+            {
+              "name": "市の評議会",
+              "explained": true,
+              "first_introduction_wording": "市の評議会"
+            }
+          ]
+        },
+        {
+          "authority_classes": [
+            "forbidden_to_infer",
+            "must_preserve"
+          ],
+          "semantic_roles": [
+            "evidence_limit"
+          ],
+          "source_status": "evidence_limit",
+          "confidence_source_certainty": "explicitly_not_proof",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved",
+            "forbidden_to_infer"
+          ],
+          "semantic_roles": [
+            "evidence_limit",
+            "missing_causal_link",
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "provenance_authenticity_responsibility_and_motive_unconfirmed",
+          "entities": []
+        }
+      ]
+    },
+    {
+      "section_id": "case-digest-section-05-status",
+      "title": "現在の事件状況",
+      "start_seconds": 136,
+      "end_seconds": 180,
+      "shot_ids": [
+        "shot-b06-01",
+        "shot-b06-03"
+      ],
+      "caption_sentence_indexes": [
+        0,
+        2
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "observed_event",
+            "must_preserve"
+          ],
+          "semantic_roles": [
+            "current_status",
+            "evidence_or_clue",
+            "event"
+          ],
+          "source_status": "confirmed_scope_summary",
+          "confidence_source_certainty": "accepted_case_digest_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "preferred"
+          ],
+          "semantic_roles": [
+            "current_status",
+            "exposition_unit"
+          ],
+          "source_status": "editorial_classification",
+          "confidence_source_certainty": "accepted_case_digest_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved",
+            "forbidden_to_infer",
+            "must_preserve"
+          ],
+          "semantic_roles": [
+            "current_status",
+            "evidence_limit",
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "explicitly_unconfirmed",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "observed_event"
+          ],
+          "semantic_roles": [
+            "current_status",
+            "ending_state"
+          ],
+          "source_status": "ongoing_investigation",
+          "confidence_source_certainty": "accepted_case_digest_wording",
+          "entities": []
+        }
+      ]
+    }
+  ],
+  "candidate_ending_action": {
+    "section_index": 4,
+    "sentence_index": 3,
+    "enacted": false
+  },
+  "material_disposition": {
+    "remove": [],
+    "defer": [],
+    "summarize": [],
+    "move_to_longer_form": []
+  }
+}

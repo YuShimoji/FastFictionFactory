@@ -1,0 +1,3304 @@
+{
+  "authority_ledger": {
+    "authority_classes_supported": [
+      "established_fact",
+      "observed_event",
+      "reported_claim",
+      "allegation",
+      "inference",
+      "unresolved",
+      "must_preserve",
+      "preferred",
+      "optional",
+      "forbidden_to_infer",
+      "writer_authored_proposal"
+    ],
+    "authority_ledger_id": "authority-ledger-case-digest",
+    "entries": [
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "source_report_preserved",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+        "original_wording": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01"
+        ],
+        "source_status": "reported"
+      },
+      {
+        "authority_class": "must_preserve",
+        "authority_id": "authority-span-case-digest-section-01-incident-sentence-01-must-preserve",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "source_report_preserved",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+        "original_wording": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01"
+        ],
+        "source_status": "reported"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-case-digest-section-01-incident-sentence-02-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_visual_observation",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "塔の取付枠は空で、音を生む鐘は見当たらない。",
+        "original_wording": "塔の取付枠は空で、音を生む鐘は見当たらない。",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-02"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "must_preserve",
+        "authority_id": "authority-span-case-digest-section-01-incident-sentence-02-must-preserve",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_visual_observation",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "塔の取付枠は空で、音を生む鐘は見当たらない。",
+        "original_wording": "塔の取付枠は空で、音を生む鐘は見当たらない。",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-02"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-case-digest-section-01-incident-sentence-03-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。",
+        "original_wording": "確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "forbidden_to_infer",
+        "authority_id": "authority-span-case-digest-section-01-incident-sentence-03-forbidden-to-infer",
+        "canon_status": "forbidden_from_promotion",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。",
+        "original_wording": "確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "established_fact",
+        "authority_id": "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。",
+        "original_wording": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01"
+        ],
+        "source_status": "mixed_established_and_reported"
+      },
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。",
+        "original_wording": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01"
+        ],
+        "source_status": "mixed_established_and_reported"
+      },
+      {
+        "authority_class": "must_preserve",
+        "authority_id": "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。",
+        "original_wording": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01"
+        ],
+        "source_status": "mixed_established_and_reported"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-case-digest-section-02-investigator-sentence-02-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。",
+        "original_wording": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-02"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "must_preserve",
+        "authority_id": "authority-span-case-digest-section-02-investigator-sentence-02-must-preserve",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。",
+        "original_wording": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-02"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-case-digest-section-02-investigator-sentence-03-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "explicitly_not_direct_evidence",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。",
+        "original_wording": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "forbidden_to_infer",
+        "authority_id": "authority-span-case-digest-section-02-investigator-sentence-03-forbidden-to-infer",
+        "canon_status": "forbidden_from_promotion",
+        "confidence_source_certainty": "explicitly_not_direct_evidence",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。",
+        "original_wording": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-case-digest-section-03-ledger-sentence-01-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。",
+        "original_wording": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-01"
+        ],
+        "source_status": "observed_progress"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-case-digest-section-03-ledger-sentence-02-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_visual_observation",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "現在の画像から確認できるのは二種類の記録形式だけである。",
+        "original_wording": "現在の画像から確認できるのは二種類の記録形式だけである。",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-02"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "must_preserve",
+        "authority_id": "authority-span-case-digest-section-03-ledger-sentence-02-must-preserve",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_visual_observation",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "現在の画像から確認できるのは二種類の記録形式だけである。",
+        "original_wording": "現在の画像から確認できるのは二種類の記録形式だけである。",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-02"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-case-digest-section-03-ledger-sentence-03-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "causality_not_proven",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。",
+        "original_wording": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "forbidden_to_infer",
+        "authority_id": "authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer",
+        "canon_status": "forbidden_from_promotion",
+        "confidence_source_certainty": "causality_not_proven",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。",
+        "original_wording": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-case-digest-section-04-council-sentence-01-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "memo_points_toward_investigation_only",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "失踪した兄のメモは、市の評議会に調査の目を向けている。",
+        "original_wording": "失踪した兄のメモは、市の評議会に調査の目を向けている。",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01"
+        ],
+        "source_status": "reported_allegation"
+      },
+      {
+        "authority_class": "allegation",
+        "authority_id": "authority-span-case-digest-section-04-council-sentence-01-allegation",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "memo_points_toward_investigation_only",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "失踪した兄のメモは、市の評議会に調査の目を向けている。",
+        "original_wording": "失踪した兄のメモは、市の評議会に調査の目を向けている。",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01"
+        ],
+        "source_status": "reported_allegation"
+      },
+      {
+        "authority_class": "forbidden_to_infer",
+        "authority_id": "authority-span-case-digest-section-04-council-sentence-02-forbidden-to-infer",
+        "canon_status": "forbidden_from_promotion",
+        "confidence_source_certainty": "explicitly_not_proof",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "original_wording": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-02"
+        ],
+        "source_status": "evidence_limit"
+      },
+      {
+        "authority_class": "must_preserve",
+        "authority_id": "authority-span-case-digest-section-04-council-sentence-02-must-preserve",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "explicitly_not_proof",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "original_wording": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-02"
+        ],
+        "source_status": "evidence_limit"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-case-digest-section-04-council-sentence-03-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "provenance_authenticity_responsibility_and_motive_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。",
+        "original_wording": "台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "forbidden_to_infer",
+        "authority_id": "authority-span-case-digest-section-04-council-sentence-03-forbidden-to-infer",
+        "canon_status": "forbidden_from_promotion",
+        "confidence_source_certainty": "provenance_authenticity_responsibility_and_motive_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。",
+        "original_wording": "台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-case-digest-section-05-status-sentence-01-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。",
+        "original_wording": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-01"
+        ],
+        "source_status": "confirmed_scope_summary"
+      },
+      {
+        "authority_class": "must_preserve",
+        "authority_id": "authority-span-case-digest-section-05-status-sentence-01-must-preserve",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。",
+        "original_wording": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-01"
+        ],
+        "source_status": "confirmed_scope_summary"
+      },
+      {
+        "authority_class": "preferred",
+        "authority_id": "authority-span-case-digest-section-05-status-sentence-02-preferred",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "時間と名前は台帳に記録された二つの損失区分として扱う。",
+        "original_wording": "時間と名前は台帳に記録された二つの損失区分として扱う。",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-02"
+        ],
+        "source_status": "editorial_classification"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-case-digest-section-05-status-sentence-03-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "音源、兄の所在、評議会との関係は確認されていない。",
+        "original_wording": "音源、兄の所在、評議会との関係は確認されていない。",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "forbidden_to_infer",
+        "authority_id": "authority-span-case-digest-section-05-status-sentence-03-forbidden-to-infer",
+        "canon_status": "forbidden_from_promotion",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "音源、兄の所在、評議会との関係は確認されていない。",
+        "original_wording": "音源、兄の所在、評議会との関係は確認されていない。",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "must_preserve",
+        "authority_id": "authority-span-case-digest-section-05-status-sentence-03-must-preserve",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "音源、兄の所在、評議会との関係は確認されていない。",
+        "original_wording": "音源、兄の所在、評議会との関係は確認されていない。",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-case-digest-section-05-status-sentence-04-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "accepted_case_digest_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "塔は現在も調査対象として残る。",
+        "original_wording": "塔は現在も調査対象として残る。",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-04"
+        ],
+        "source_status": "ongoing_investigation"
+      }
+    ],
+    "schema_version": "fff.storyAuthorityLedger.v0",
+    "source_packet_id": "source-packet-case-digest"
+  },
+  "editorial_handoff_input": {
+    "caption_units": [
+      {
+        "caption_unit_id": "caption-case-digest-section-01-incident-1",
+        "end_seconds": 12,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+            "authority-span-case-digest-section-01-incident-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "start_seconds": 0,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-01-incident-2",
+        "end_seconds": 24,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-02-observed-event",
+            "authority-span-case-digest-section-01-incident-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-02"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "start_seconds": 12,
+        "text": "塔の取付枠は空で、音を生む鐘は見当たらない。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-02-investigator-1",
+        "end_seconds": 38,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+            "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+            "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "start_seconds": 24,
+        "text": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-02-investigator-2",
+        "end_seconds": 51,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-02-observed-event",
+            "authority-span-case-digest-section-02-investigator-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-02"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "start_seconds": 38,
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-02-investigator-3",
+        "end_seconds": 65,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-03-unresolved",
+            "authority-span-case-digest-section-02-investigator-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-03"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "start_seconds": 51,
+        "text": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-03-ledger-1",
+        "end_seconds": 81,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-01-observed-event"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "start_seconds": 65,
+        "text": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-03-ledger-2",
+        "end_seconds": 97,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-03-unresolved",
+            "authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-03"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "start_seconds": 81,
+        "text": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-04-council-1",
+        "end_seconds": 117,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-01-reported-claim",
+            "authority-span-case-digest-section-04-council-sentence-01-allegation"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-04-council",
+        "start_seconds": 97,
+        "text": "失踪した兄のメモは、市の評議会に調査の目を向けている。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-04-council-2",
+        "end_seconds": 136,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-02-forbidden-to-infer",
+            "authority-span-case-digest-section-04-council-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-02"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-04-council",
+        "start_seconds": 117,
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-05-status-1",
+        "end_seconds": 158,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-05-status-sentence-01-observed-event",
+            "authority-span-case-digest-section-05-status-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-05-status-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-05-status",
+        "start_seconds": 136,
+        "text": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-05-status-2",
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-05-status-sentence-03-unresolved",
+            "authority-span-case-digest-section-05-status-sentence-03-forbidden-to-infer",
+            "authority-span-case-digest-section-05-status-sentence-03-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-05-status-sentence-03"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-05-status",
+        "start_seconds": 158,
+        "text": "音源、兄の所在、評議会との関係は確認されていない。"
+      }
+    ],
+    "closed_flags": {
+      "final_canon": false,
+      "media": false,
+      "production": false,
+      "provider": false,
+      "publication": false,
+      "render": false,
+      "rights": false
+    },
+    "consumer_compatibility": {
+      "compatible": true,
+      "consumer_schema_version": "fff.editorialHandoff.v1",
+      "field_map": {
+        "caption_units[]": "subtitle_cues[]",
+        "closed_flags": "boundaries",
+        "narration_units[]": "narration_segments[]",
+        "sections_or_beats[].end_seconds": "beats[].end_seconds",
+        "sections_or_beats[].section_or_beat_id": "beats[].beat_id",
+        "sections_or_beats[].sequence": "beats[].beat_number",
+        "sections_or_beats[].start_seconds": "beats[].start_seconds",
+        "sections_or_beats[].title": "beats[].title_ja",
+        "truth_canon_boundaries[]": "truth_guards[]",
+        "visual_intent_placeholders[]": "shot_cues[]"
+      },
+      "missing_required_mappings": []
+    },
+    "continuity_ids": [
+      "continuity-case-digest-section-01-incident",
+      "continuity-case-digest-section-02-investigator",
+      "continuity-case-digest-section-03-ledger",
+      "continuity-case-digest-section-04-council",
+      "continuity-case-digest-section-05-status"
+    ],
+    "format_id": "CASE_DIGEST",
+    "handoff_input_id": "handoff-input-case-digest",
+    "narration_units": [
+      {
+        "end_seconds": 24,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+            "authority-span-case-digest-section-01-incident-sentence-01-must-preserve",
+            "authority-span-case-digest-section-01-incident-sentence-02-observed-event",
+            "authority-span-case-digest-section-01-incident-sentence-02-must-preserve",
+            "authority-span-case-digest-section-01-incident-sentence-03-unresolved",
+            "authority-span-case-digest-section-01-incident-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-01",
+            "span-case-digest-section-01-incident-sentence-02",
+            "span-case-digest-section-01-incident-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-01-incident",
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "start_seconds": 0,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。塔の取付枠は空で、音を生む鐘は見当たらない。確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。"
+      },
+      {
+        "end_seconds": 65,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+            "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+            "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve",
+            "authority-span-case-digest-section-02-investigator-sentence-02-observed-event",
+            "authority-span-case-digest-section-02-investigator-sentence-02-must-preserve",
+            "authority-span-case-digest-section-02-investigator-sentence-03-unresolved",
+            "authority-span-case-digest-section-02-investigator-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-01",
+            "span-case-digest-section-02-investigator-sentence-02",
+            "span-case-digest-section-02-investigator-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-02-investigator",
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "start_seconds": 24,
+        "text": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。"
+      },
+      {
+        "end_seconds": 97,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-01-observed-event",
+            "authority-span-case-digest-section-03-ledger-sentence-02-observed-event",
+            "authority-span-case-digest-section-03-ledger-sentence-02-must-preserve",
+            "authority-span-case-digest-section-03-ledger-sentence-03-unresolved",
+            "authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-01",
+            "span-case-digest-section-03-ledger-sentence-02",
+            "span-case-digest-section-03-ledger-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-03-ledger",
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "start_seconds": 65,
+        "text": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。現在の画像から確認できるのは二種類の記録形式だけである。この台帳が時間を奪う、または人を消すという因果関係は証明されていない。"
+      },
+      {
+        "end_seconds": 136,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-01-reported-claim",
+            "authority-span-case-digest-section-04-council-sentence-01-allegation",
+            "authority-span-case-digest-section-04-council-sentence-02-forbidden-to-infer",
+            "authority-span-case-digest-section-04-council-sentence-02-must-preserve",
+            "authority-span-case-digest-section-04-council-sentence-03-unresolved",
+            "authority-span-case-digest-section-04-council-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-01",
+            "span-case-digest-section-04-council-sentence-02",
+            "span-case-digest-section-04-council-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-04-council",
+        "section_or_beat_id": "case-digest-section-04-council",
+        "start_seconds": 97,
+        "text": "失踪した兄のメモは、市の評議会に調査の目を向けている。だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。"
+      },
+      {
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-05-status-sentence-01-observed-event",
+            "authority-span-case-digest-section-05-status-sentence-01-must-preserve",
+            "authority-span-case-digest-section-05-status-sentence-02-preferred",
+            "authority-span-case-digest-section-05-status-sentence-03-unresolved",
+            "authority-span-case-digest-section-05-status-sentence-03-forbidden-to-infer",
+            "authority-span-case-digest-section-05-status-sentence-03-must-preserve",
+            "authority-span-case-digest-section-05-status-sentence-04-observed-event"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-05-status-sentence-01",
+            "span-case-digest-section-05-status-sentence-02",
+            "span-case-digest-section-05-status-sentence-03",
+            "span-case-digest-section-05-status-sentence-04"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-05-status",
+        "section_or_beat_id": "case-digest-section-05-status",
+        "start_seconds": 136,
+        "text": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。時間と名前は台帳に記録された二つの損失区分として扱う。音源、兄の所在、評議会との関係は確認されていない。塔は現在も調査対象として残る。"
+      }
+    ],
+    "schema_version": "fff.editorialHandoffInput.v0",
+    "sections_or_beats": [
+      {
+        "end_seconds": 24,
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "sequence": 1,
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-heading"
+        ],
+        "start_seconds": 0,
+        "title": "事件"
+      },
+      {
+        "end_seconds": 65,
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "sequence": 2,
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-heading"
+        ],
+        "start_seconds": 24,
+        "title": "調査者と手掛かり"
+      },
+      {
+        "end_seconds": 97,
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "sequence": 3,
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-heading"
+        ],
+        "start_seconds": 65,
+        "title": "記録"
+      },
+      {
+        "end_seconds": 136,
+        "section_or_beat_id": "case-digest-section-04-council",
+        "sequence": 4,
+        "source_span_ids": [
+          "span-case-digest-section-04-council-heading"
+        ],
+        "start_seconds": 97,
+        "title": "疑いと証拠限界"
+      },
+      {
+        "end_seconds": 180,
+        "section_or_beat_id": "case-digest-section-05-status",
+        "sequence": 5,
+        "source_span_ids": [
+          "span-case-digest-section-05-status-heading"
+        ],
+        "start_seconds": 136,
+        "title": "現在の事件状況"
+      }
+    ],
+    "source_packet_id": "source-packet-case-digest",
+    "source_span_references": [
+      "span-case-digest-section-01-incident-sentence-01",
+      "span-case-digest-section-01-incident-sentence-02",
+      "span-case-digest-section-01-incident-sentence-03",
+      "span-case-digest-section-02-investigator-sentence-01",
+      "span-case-digest-section-02-investigator-sentence-02",
+      "span-case-digest-section-02-investigator-sentence-03",
+      "span-case-digest-section-03-ledger-sentence-01",
+      "span-case-digest-section-03-ledger-sentence-02",
+      "span-case-digest-section-03-ledger-sentence-03",
+      "span-case-digest-section-04-council-sentence-01",
+      "span-case-digest-section-04-council-sentence-02",
+      "span-case-digest-section-04-council-sentence-03",
+      "span-case-digest-section-05-status-sentence-01",
+      "span-case-digest-section-05-status-sentence-02",
+      "span-case-digest-section-05-status-sentence-03",
+      "span-case-digest-section-05-status-sentence-04"
+    ],
+    "target_duration_seconds": 180,
+    "truth_canon_boundaries": [
+      {
+        "boundary_id": "truth-boundary-unresolved-case-digest-section-01-incident-3",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-03"
+        ],
+        "state": "unresolved_human_owned",
+        "text": "確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。"
+      },
+      {
+        "boundary_id": "truth-boundary-unresolved-case-digest-section-02-investigator-3",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "state": "unresolved_human_owned",
+        "text": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。"
+      },
+      {
+        "boundary_id": "truth-boundary-unresolved-case-digest-section-03-ledger-3",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-03"
+        ],
+        "state": "unresolved_human_owned",
+        "text": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。"
+      },
+      {
+        "boundary_id": "truth-boundary-unresolved-case-digest-section-04-council-2",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-02"
+        ],
+        "state": "unresolved_human_owned",
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "boundary_id": "truth-boundary-unresolved-case-digest-section-04-council-3",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-03"
+        ],
+        "state": "unresolved_human_owned",
+        "text": "台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。"
+      },
+      {
+        "boundary_id": "truth-boundary-unresolved-case-digest-section-05-status-3",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-03"
+        ],
+        "state": "unresolved_human_owned",
+        "text": "音源、兄の所在、評議会との関係は確認されていない。"
+      }
+    ],
+    "visual_intent_placeholders": [
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01",
+          "span-case-digest-section-01-incident-sentence-02",
+          "span-case-digest-section-01-incident-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "shot_id": "shot-b01-01",
+        "visual_intent_id": "visual-intent-shot-b01-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01",
+          "span-case-digest-section-01-incident-sentence-02",
+          "span-case-digest-section-01-incident-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "shot_id": "shot-b01-02",
+        "visual_intent_id": "visual-intent-shot-b01-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01",
+          "span-case-digest-section-02-investigator-sentence-02",
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "shot_id": "shot-b02-01",
+        "visual_intent_id": "visual-intent-shot-b02-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01",
+          "span-case-digest-section-02-investigator-sentence-02",
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "shot_id": "shot-b02-02",
+        "visual_intent_id": "visual-intent-shot-b02-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01",
+          "span-case-digest-section-02-investigator-sentence-02",
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "shot_id": "shot-b02-03",
+        "visual_intent_id": "visual-intent-shot-b02-03"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-01",
+          "span-case-digest-section-03-ledger-sentence-02",
+          "span-case-digest-section-03-ledger-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "shot_id": "shot-b03-01",
+        "visual_intent_id": "visual-intent-shot-b03-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-01",
+          "span-case-digest-section-03-ledger-sentence-02",
+          "span-case-digest-section-03-ledger-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "shot_id": "shot-b03-02",
+        "visual_intent_id": "visual-intent-shot-b03-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01",
+          "span-case-digest-section-04-council-sentence-02",
+          "span-case-digest-section-04-council-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-04-council",
+        "shot_id": "shot-b04-01",
+        "visual_intent_id": "visual-intent-shot-b04-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01",
+          "span-case-digest-section-04-council-sentence-02",
+          "span-case-digest-section-04-council-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-04-council",
+        "shot_id": "shot-b04-02",
+        "visual_intent_id": "visual-intent-shot-b04-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-05-status-sentence-01",
+          "span-case-digest-section-05-status-sentence-02",
+          "span-case-digest-section-05-status-sentence-03",
+          "span-case-digest-section-05-status-sentence-04"
+        ],
+        "section_or_beat_id": "case-digest-section-05-status",
+        "shot_id": "shot-b06-01",
+        "visual_intent_id": "visual-intent-shot-b06-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-05-status-sentence-01",
+          "span-case-digest-section-05-status-sentence-02",
+          "span-case-digest-section-05-status-sentence-03",
+          "span-case-digest-section-05-status-sentence-04"
+        ],
+        "section_or_beat_id": "case-digest-section-05-status",
+        "shot_id": "shot-b06-03",
+        "visual_intent_id": "visual-intent-shot-b06-03"
+      }
+    ]
+  },
+  "fixture_id": "case-digest",
+  "format_selection": {
+    "authority_ledger_id": "authority-ledger-case-digest",
+    "capacity_metrics": {
+      "approximate_narration_character_budget": 515,
+      "approximate_shot_budget": 11,
+      "approximate_subtitle_unit_budget": 11,
+      "candidate_ending_action": {
+        "enacted": false,
+        "source_span_id": "span-case-digest-section-05-status-sentence-04",
+        "text": "塔は現在も調査対象として残る。"
+      },
+      "causal_step_count": 0,
+      "enacted_action_count": 0,
+      "exposition_unit_count": 1,
+      "information_density_score": 3,
+      "missing_causal_link_count": 4,
+      "named_entity_count": 2,
+      "named_entity_first_introduction_count": 2,
+      "primary_event_count": 2,
+      "required_terminology_count": 6,
+      "source_character_count": 515,
+      "target_duration_seconds": 180,
+      "unexplained_named_entity_count": 0,
+      "unresolved_major_question_count": 5
+    },
+    "derivation_limitations": [
+      "v0 capacity is reference-bound to the accepted 180-second CASE_DIGEST and the quarantined 180-second linear-lore counterexample.",
+      "The 515-character, 11-subtitle-unit, and 11-shot values are local calibration evidence, not universal format thresholds.",
+      "SHORT_DRAMA cannot pass without source-supported enacted objective, obstacle, consequential action, observable result, and complete causal links.",
+      "The selector does not rewrite source material to force a format pass."
+    ],
+    "format_candidates_supported": [
+      "CASE_DIGEST",
+      "SHORT_DRAMA",
+      "SCENE_EXCERPT",
+      "PLOT_SUMMARY",
+      "LORE_EXPLAINER",
+      "TRAILER_PV"
+    ],
+    "format_selection_id": "format-selection-case-digest",
+    "material_disposition": {
+      "defer": [],
+      "move_to_longer_form": [],
+      "remove": [],
+      "summarize": []
+    },
+    "ranked_candidates": [
+      {
+        "acceptance_reasons": [
+          "explicit_digest_identity",
+          "incident",
+          "investigation_context",
+          "evidence_or_clues",
+          "allegation_or_hypothesis",
+          "evidence_limit",
+          "current_status"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "allegation_or_hypothesis": true,
+          "current_status": true,
+          "evidence_limit": true,
+          "evidence_or_clues": true,
+          "explicit_digest_identity": true,
+          "incident": true,
+          "investigation_context": true
+        },
+        "decision": "ACCEPTED",
+        "format_id": "CASE_DIGEST",
+        "rank": 1,
+        "rejection_reasons": []
+      },
+      {
+        "acceptance_reasons": [
+          "duration_compatible_cast_and_exposition",
+          "historical_quarantine_absent"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "bounded_protagonist_objective": false,
+          "consequential_action": false,
+          "duration_compatible_cast_and_exposition": true,
+          "enacted_causality_present": false,
+          "enacted_obstacle": false,
+          "historical_quarantine_absent": true,
+          "observable_result": false
+        },
+        "decision": "REJECTED",
+        "format_id": "SHORT_DRAMA",
+        "rank": 2,
+        "rejection_reasons": [
+          "missing_or_failed:bounded_protagonist_objective",
+          "missing_or_failed:enacted_obstacle",
+          "missing_or_failed:consequential_action",
+          "missing_or_failed:observable_result",
+          "missing_or_failed:enacted_causality_present",
+          "enacted_causality_missing"
+        ]
+      },
+      {
+        "acceptance_reasons": [],
+        "capacity_fit": true,
+        "contract_checks": {
+          "bounded_scene": false,
+          "explicit_scene_excerpt_identity": false,
+          "incomplete_context_boundary": false,
+          "no_false_completeness": false
+        },
+        "decision": "REJECTED",
+        "format_id": "SCENE_EXCERPT",
+        "rank": 3,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_scene_excerpt_identity",
+          "missing_or_failed:bounded_scene",
+          "missing_or_failed:incomplete_context_boundary",
+          "missing_or_failed:no_false_completeness"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "no_fully_dramatized_short_simulation"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "chronological_or_causal_compression": false,
+          "explicit_summary_identity": false,
+          "no_fully_dramatized_short_simulation": true
+        },
+        "decision": "REJECTED",
+        "format_id": "PLOT_SUMMARY",
+        "rank": 4,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_summary_identity",
+          "missing_or_failed:chronological_or_causal_compression"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "source_allegation_uncertainty_separated"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "concept_hierarchy": false,
+          "explicit_explanatory_identity": false,
+          "source_allegation_uncertainty_separated": true
+        },
+        "decision": "REJECTED",
+        "format_id": "LORE_EXPLAINER",
+        "rank": 5,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_explanatory_identity",
+          "missing_or_failed:concept_hierarchy"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "no_authority_overreach"
+        ],
+        "capacity_fit": true,
+        "contract_checks": {
+          "explicit_promotional_identity": false,
+          "no_authority_overreach": true,
+          "no_completeness_claim": false
+        },
+        "decision": "REJECTED",
+        "format_id": "TRAILER_PV",
+        "rank": 6,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_promotional_identity",
+          "missing_or_failed:no_completeness_claim"
+        ]
+      }
+    ],
+    "schema_version": "fff.formatSelection.v0",
+    "selected_format": "CASE_DIGEST",
+    "source_packet_id": "source-packet-case-digest",
+    "status": "SELECTED"
+  },
+  "input_kind": "prose_markdown_v0",
+  "narrative_ir": {
+    "audience_promise": {
+      "lineage": {
+        "authority_ids": [],
+        "mode": "adapter_generated_non_factual",
+        "source_span_ids": []
+      },
+      "statement_id": "audience-promise-case-digest",
+      "statement_kind": "audience_promise",
+      "text": "Evidence-limited incident digest"
+    },
+    "caption_units": [
+      {
+        "caption_unit_id": "caption-case-digest-section-01-incident-1",
+        "end_seconds": 12,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+            "authority-span-case-digest-section-01-incident-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "start_seconds": 0,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-01-incident-2",
+        "end_seconds": 24,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-02-observed-event",
+            "authority-span-case-digest-section-01-incident-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-02"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "start_seconds": 12,
+        "text": "塔の取付枠は空で、音を生む鐘は見当たらない。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-02-investigator-1",
+        "end_seconds": 38,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+            "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+            "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "start_seconds": 24,
+        "text": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-02-investigator-2",
+        "end_seconds": 51,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-02-observed-event",
+            "authority-span-case-digest-section-02-investigator-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-02"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "start_seconds": 38,
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-02-investigator-3",
+        "end_seconds": 65,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-03-unresolved",
+            "authority-span-case-digest-section-02-investigator-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-03"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "start_seconds": 51,
+        "text": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-03-ledger-1",
+        "end_seconds": 81,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-01-observed-event"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "start_seconds": 65,
+        "text": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-03-ledger-2",
+        "end_seconds": 97,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-03-unresolved",
+            "authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-03"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "start_seconds": 81,
+        "text": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-04-council-1",
+        "end_seconds": 117,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-01-reported-claim",
+            "authority-span-case-digest-section-04-council-sentence-01-allegation"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-04-council",
+        "start_seconds": 97,
+        "text": "失踪した兄のメモは、市の評議会に調査の目を向けている。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-04-council-2",
+        "end_seconds": 136,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-02-forbidden-to-infer",
+            "authority-span-case-digest-section-04-council-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-02"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-04-council",
+        "start_seconds": 117,
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-05-status-1",
+        "end_seconds": 158,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-05-status-sentence-01-observed-event",
+            "authority-span-case-digest-section-05-status-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-05-status-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-05-status",
+        "start_seconds": 136,
+        "text": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。"
+      },
+      {
+        "caption_unit_id": "caption-case-digest-section-05-status-2",
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-05-status-sentence-03-unresolved",
+            "authority-span-case-digest-section-05-status-sentence-03-forbidden-to-infer",
+            "authority-span-case-digest-section-05-status-sentence-03-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-05-status-sentence-03"
+          ]
+        },
+        "section_or_beat_id": "case-digest-section-05-status",
+        "start_seconds": 158,
+        "text": "音源、兄の所在、評議会との関係は確認されていない。"
+      }
+    ],
+    "causal_edges": [],
+    "content_omitted_deferred_for_capacity": {
+      "defer": [],
+      "move_to_longer_form": [],
+      "remove": [],
+      "summarize": []
+    },
+    "ending_state": {
+      "lineage": {
+        "authority_ids": [
+          "authority-span-case-digest-section-05-status-sentence-04-observed-event"
+        ],
+        "mode": "source_span",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-04"
+        ]
+      },
+      "statement_id": "ending-state-case-digest",
+      "statement_kind": "non_enacted_or_status_ending",
+      "text": "塔は現在も調査対象として残る。"
+    },
+    "events": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+            "authority-span-case-digest-section-01-incident-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-01"
+          ]
+        },
+        "statement_id": "event-case-digest-section-01-incident-1",
+        "statement_kind": "reported",
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-02-observed-event",
+            "authority-span-case-digest-section-01-incident-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-02"
+          ]
+        },
+        "statement_id": "event-case-digest-section-01-incident-2",
+        "statement_kind": "observed",
+        "text": "塔の取付枠は空で、音を生む鐘は見当たらない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+            "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+            "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-01"
+          ]
+        },
+        "statement_id": "event-case-digest-section-02-investigator-1",
+        "statement_kind": "mixed_established_and_reported",
+        "text": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-02-observed-event",
+            "authority-span-case-digest-section-02-investigator-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-02"
+          ]
+        },
+        "statement_id": "event-case-digest-section-02-investigator-2",
+        "statement_kind": "observed",
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-01-observed-event"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-01"
+          ]
+        },
+        "statement_id": "event-case-digest-section-03-ledger-1",
+        "statement_kind": "observed_progress",
+        "text": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-02-observed-event",
+            "authority-span-case-digest-section-03-ledger-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-02"
+          ]
+        },
+        "statement_id": "event-case-digest-section-03-ledger-2",
+        "statement_kind": "observed",
+        "text": "現在の画像から確認できるのは二種類の記録形式だけである。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-01-reported-claim",
+            "authority-span-case-digest-section-04-council-sentence-01-allegation"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-01"
+          ]
+        },
+        "statement_id": "event-case-digest-section-04-council-1",
+        "statement_kind": "reported_allegation",
+        "text": "失踪した兄のメモは、市の評議会に調査の目を向けている。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-05-status-sentence-01-observed-event",
+            "authority-span-case-digest-section-05-status-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-05-status-sentence-01"
+          ]
+        },
+        "statement_id": "event-case-digest-section-05-status-1",
+        "statement_kind": "confirmed_scope_summary",
+        "text": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。"
+      }
+    ],
+    "evidence_claim_status": [
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+          "authority-span-case-digest-section-01-incident-sentence-01-must-preserve"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01"
+        ],
+        "source_status": "reported",
+        "statement_id": "claim-status-case-digest-section-01-incident-1",
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-01-incident-sentence-02-observed-event",
+          "authority-span-case-digest-section-01-incident-sentence-02-must-preserve"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-02"
+        ],
+        "source_status": "observed",
+        "statement_id": "claim-status-case-digest-section-01-incident-2",
+        "text": "塔の取付枠は空で、音を生む鐘は見当たらない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-01-incident-sentence-03-unresolved",
+          "authority-span-case-digest-section-01-incident-sentence-03-forbidden-to-infer"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-03"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-case-digest-section-01-incident-3",
+        "text": "確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+          "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+          "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01"
+        ],
+        "source_status": "mixed_established_and_reported",
+        "statement_id": "claim-status-case-digest-section-02-investigator-1",
+        "text": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-02-investigator-sentence-02-observed-event",
+          "authority-span-case-digest-section-02-investigator-sentence-02-must-preserve"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-02"
+        ],
+        "source_status": "observed",
+        "statement_id": "claim-status-case-digest-section-02-investigator-2",
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-02-investigator-sentence-03-unresolved",
+          "authority-span-case-digest-section-02-investigator-sentence-03-forbidden-to-infer"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-case-digest-section-02-investigator-3",
+        "text": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-03-ledger-sentence-01-observed-event"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-01"
+        ],
+        "source_status": "observed_progress",
+        "statement_id": "claim-status-case-digest-section-03-ledger-1",
+        "text": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-03-ledger-sentence-02-observed-event",
+          "authority-span-case-digest-section-03-ledger-sentence-02-must-preserve"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-02"
+        ],
+        "source_status": "observed",
+        "statement_id": "claim-status-case-digest-section-03-ledger-2",
+        "text": "現在の画像から確認できるのは二種類の記録形式だけである。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-03-ledger-sentence-03-unresolved",
+          "authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-03"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-case-digest-section-03-ledger-3",
+        "text": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-04-council-sentence-01-reported-claim",
+          "authority-span-case-digest-section-04-council-sentence-01-allegation"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01"
+        ],
+        "source_status": "reported_allegation",
+        "statement_id": "claim-status-case-digest-section-04-council-1",
+        "text": "失踪した兄のメモは、市の評議会に調査の目を向けている。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-04-council-sentence-02-forbidden-to-infer",
+          "authority-span-case-digest-section-04-council-sentence-02-must-preserve"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-02"
+        ],
+        "source_status": "evidence_limit",
+        "statement_id": "claim-status-case-digest-section-04-council-2",
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-04-council-sentence-03-unresolved",
+          "authority-span-case-digest-section-04-council-sentence-03-forbidden-to-infer"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-03"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-case-digest-section-04-council-3",
+        "text": "台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-05-status-sentence-01-observed-event",
+          "authority-span-case-digest-section-05-status-sentence-01-must-preserve"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-01"
+        ],
+        "source_status": "confirmed_scope_summary",
+        "statement_id": "claim-status-case-digest-section-05-status-1",
+        "text": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-05-status-sentence-02-preferred"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-02"
+        ],
+        "source_status": "editorial_classification",
+        "statement_id": "claim-status-case-digest-section-05-status-2",
+        "text": "時間と名前は台帳に記録された二つの損失区分として扱う。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-05-status-sentence-03-unresolved",
+          "authority-span-case-digest-section-05-status-sentence-03-forbidden-to-infer",
+          "authority-span-case-digest-section-05-status-sentence-03-must-preserve"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-03"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-case-digest-section-05-status-3",
+        "text": "音源、兄の所在、評議会との関係は確認されていない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-05-status-sentence-04-observed-event"
+        ],
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-04"
+        ],
+        "source_status": "ongoing_investigation",
+        "statement_id": "claim-status-case-digest-section-05-status-4",
+        "text": "塔は現在も調査対象として残る。"
+      }
+    ],
+    "final_canon": false,
+    "first_introduction_wording": [
+      {
+        "entity_name": "ミラ・ヴェイル",
+        "introduction_id": "introduction-case-digest-1",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01"
+        ],
+        "wording": "時計修理師のミラ・ヴェイル"
+      },
+      {
+        "entity_name": "市の評議会",
+        "introduction_id": "introduction-case-digest-2",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01"
+        ],
+        "wording": "市の評議会"
+      }
+    ],
+    "format_id": "CASE_DIGEST",
+    "image_generation": false,
+    "incident": {
+      "lineage": {
+        "authority_ids": [
+          "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+          "authority-span-case-digest-section-01-incident-sentence-01-must-preserve"
+        ],
+        "mode": "source_span",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01"
+        ]
+      },
+      "statement_id": "incident-primary",
+      "statement_kind": "incident",
+      "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+    },
+    "information_reveal_order": [
+      {
+        "basis": "source_order",
+        "order": 1,
+        "section_or_beat_id": "case-digest-section-01-incident"
+      },
+      {
+        "basis": "source_order",
+        "order": 2,
+        "section_or_beat_id": "case-digest-section-02-investigator"
+      },
+      {
+        "basis": "source_order",
+        "order": 3,
+        "section_or_beat_id": "case-digest-section-03-ledger"
+      },
+      {
+        "basis": "source_order",
+        "order": 4,
+        "section_or_beat_id": "case-digest-section-04-council"
+      },
+      {
+        "basis": "source_order",
+        "order": 5,
+        "section_or_beat_id": "case-digest-section-05-status"
+      }
+    ],
+    "missing_causal_edges": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-03-unresolved",
+            "authority-span-case-digest-section-01-incident-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-03"
+          ]
+        },
+        "statement_id": "missing-causal-case-digest-section-01-incident-3",
+        "statement_kind": "missing_causal_edge",
+        "text": "確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-03-unresolved",
+            "authority-span-case-digest-section-02-investigator-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-03"
+          ]
+        },
+        "statement_id": "missing-causal-case-digest-section-02-investigator-3",
+        "statement_kind": "missing_causal_edge",
+        "text": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-03-unresolved",
+            "authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-03"
+          ]
+        },
+        "statement_id": "missing-causal-case-digest-section-03-ledger-3",
+        "statement_kind": "missing_causal_edge",
+        "text": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-03-unresolved",
+            "authority-span-case-digest-section-04-council-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-03"
+          ]
+        },
+        "statement_id": "missing-causal-case-digest-section-04-council-3",
+        "statement_kind": "missing_causal_edge",
+        "text": "台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。"
+      }
+    ],
+    "named_entities": [
+      {
+        "entity_id": "entity-case-digest-1",
+        "explained_at_first_use": true,
+        "name": "ミラ・ヴェイル",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01"
+        ]
+      },
+      {
+        "entity_id": "entity-case-digest-2",
+        "explained_at_first_use": true,
+        "name": "市の評議会",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01"
+        ]
+      }
+    ],
+    "narration_units": [
+      {
+        "end_seconds": 24,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+            "authority-span-case-digest-section-01-incident-sentence-01-must-preserve",
+            "authority-span-case-digest-section-01-incident-sentence-02-observed-event",
+            "authority-span-case-digest-section-01-incident-sentence-02-must-preserve",
+            "authority-span-case-digest-section-01-incident-sentence-03-unresolved",
+            "authority-span-case-digest-section-01-incident-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-01",
+            "span-case-digest-section-01-incident-sentence-02",
+            "span-case-digest-section-01-incident-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-01-incident",
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "start_seconds": 0,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。塔の取付枠は空で、音を生む鐘は見当たらない。確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。"
+      },
+      {
+        "end_seconds": 65,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+            "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+            "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve",
+            "authority-span-case-digest-section-02-investigator-sentence-02-observed-event",
+            "authority-span-case-digest-section-02-investigator-sentence-02-must-preserve",
+            "authority-span-case-digest-section-02-investigator-sentence-03-unresolved",
+            "authority-span-case-digest-section-02-investigator-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-01",
+            "span-case-digest-section-02-investigator-sentence-02",
+            "span-case-digest-section-02-investigator-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-02-investigator",
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "start_seconds": 24,
+        "text": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。"
+      },
+      {
+        "end_seconds": 97,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-01-observed-event",
+            "authority-span-case-digest-section-03-ledger-sentence-02-observed-event",
+            "authority-span-case-digest-section-03-ledger-sentence-02-must-preserve",
+            "authority-span-case-digest-section-03-ledger-sentence-03-unresolved",
+            "authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-01",
+            "span-case-digest-section-03-ledger-sentence-02",
+            "span-case-digest-section-03-ledger-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-03-ledger",
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "start_seconds": 65,
+        "text": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。現在の画像から確認できるのは二種類の記録形式だけである。この台帳が時間を奪う、または人を消すという因果関係は証明されていない。"
+      },
+      {
+        "end_seconds": 136,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-01-reported-claim",
+            "authority-span-case-digest-section-04-council-sentence-01-allegation",
+            "authority-span-case-digest-section-04-council-sentence-02-forbidden-to-infer",
+            "authority-span-case-digest-section-04-council-sentence-02-must-preserve",
+            "authority-span-case-digest-section-04-council-sentence-03-unresolved",
+            "authority-span-case-digest-section-04-council-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-01",
+            "span-case-digest-section-04-council-sentence-02",
+            "span-case-digest-section-04-council-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-04-council",
+        "section_or_beat_id": "case-digest-section-04-council",
+        "start_seconds": 97,
+        "text": "失踪した兄のメモは、市の評議会に調査の目を向けている。だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。"
+      },
+      {
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-05-status-sentence-01-observed-event",
+            "authority-span-case-digest-section-05-status-sentence-01-must-preserve",
+            "authority-span-case-digest-section-05-status-sentence-02-preferred",
+            "authority-span-case-digest-section-05-status-sentence-03-unresolved",
+            "authority-span-case-digest-section-05-status-sentence-03-forbidden-to-infer",
+            "authority-span-case-digest-section-05-status-sentence-03-must-preserve",
+            "authority-span-case-digest-section-05-status-sentence-04-observed-event"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-05-status-sentence-01",
+            "span-case-digest-section-05-status-sentence-02",
+            "span-case-digest-section-05-status-sentence-03",
+            "span-case-digest-section-05-status-sentence-04"
+          ]
+        },
+        "narration_unit_id": "narration-case-digest-section-05-status",
+        "section_or_beat_id": "case-digest-section-05-status",
+        "start_seconds": 136,
+        "text": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。時間と名前は台帳に記録された二つの損失区分として扱う。音源、兄の所在、評議会との関係は確認されていない。塔は現在も調査対象として残る。"
+      }
+    ],
+    "narrative_ir_id": "narrative-ir-case-digest",
+    "production_approved": false,
+    "protagonist_or_subject": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+            "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+            "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-01"
+          ]
+        },
+        "statement_id": "subject-case-digest-section-02-investigator-1",
+        "statement_kind": "protagonist_or_subject",
+        "text": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。"
+      }
+    ],
+    "rights_cleared_claim": false,
+    "schema_version": "fff.narrativeIr.v0",
+    "section_beat_plan": [
+      {
+        "end_seconds": 24,
+        "label": "事件",
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-heading"
+        ],
+        "start_seconds": 0,
+        "structural_lineage": "source_span"
+      },
+      {
+        "end_seconds": 65,
+        "label": "調査者と手掛かり",
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-heading"
+        ],
+        "start_seconds": 24,
+        "structural_lineage": "source_span"
+      },
+      {
+        "end_seconds": 97,
+        "label": "記録",
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-heading"
+        ],
+        "start_seconds": 65,
+        "structural_lineage": "source_span"
+      },
+      {
+        "end_seconds": 136,
+        "label": "疑いと証拠限界",
+        "section_or_beat_id": "case-digest-section-04-council",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-heading"
+        ],
+        "start_seconds": 97,
+        "structural_lineage": "source_span"
+      },
+      {
+        "end_seconds": 180,
+        "label": "現在の事件状況",
+        "section_or_beat_id": "case-digest-section-05-status",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-heading"
+        ],
+        "start_seconds": 136,
+        "structural_lineage": "source_span"
+      }
+    ],
+    "source_packet_id": "source-packet-case-digest",
+    "source_span_lineage": [
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+          "authority-span-case-digest-section-01-incident-sentence-01-must-preserve"
+        ],
+        "material_id": "event-case-digest-section-01-incident-1",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-01-incident-sentence-02-observed-event",
+          "authority-span-case-digest-section-01-incident-sentence-02-must-preserve"
+        ],
+        "material_id": "event-case-digest-section-01-incident-2",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-02"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+          "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+          "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve"
+        ],
+        "material_id": "event-case-digest-section-02-investigator-1",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-02-investigator-sentence-02-observed-event",
+          "authority-span-case-digest-section-02-investigator-sentence-02-must-preserve"
+        ],
+        "material_id": "event-case-digest-section-02-investigator-2",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-02"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-03-ledger-sentence-01-observed-event"
+        ],
+        "material_id": "event-case-digest-section-03-ledger-1",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-03-ledger-sentence-02-observed-event",
+          "authority-span-case-digest-section-03-ledger-sentence-02-must-preserve"
+        ],
+        "material_id": "event-case-digest-section-03-ledger-2",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-02"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-04-council-sentence-01-reported-claim",
+          "authority-span-case-digest-section-04-council-sentence-01-allegation"
+        ],
+        "material_id": "event-case-digest-section-04-council-1",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-05-status-sentence-01-observed-event",
+          "authority-span-case-digest-section-05-status-sentence-01-must-preserve"
+        ],
+        "material_id": "event-case-digest-section-05-status-1",
+        "source_span_ids": [
+          "span-case-digest-section-05-status-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-02-investigator-sentence-01-established-fact",
+          "authority-span-case-digest-section-02-investigator-sentence-01-reported-claim",
+          "authority-span-case-digest-section-02-investigator-sentence-01-must-preserve"
+        ],
+        "material_id": "subject-case-digest-section-02-investigator-1",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-01-incident-sentence-01-reported-claim",
+          "authority-span-case-digest-section-01-incident-sentence-01-must-preserve"
+        ],
+        "material_id": "incident-primary",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-01-incident-sentence-03-unresolved",
+          "authority-span-case-digest-section-01-incident-sentence-03-forbidden-to-infer"
+        ],
+        "material_id": "missing-causal-case-digest-section-01-incident-3",
+        "source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-03"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-02-investigator-sentence-03-unresolved",
+          "authority-span-case-digest-section-02-investigator-sentence-03-forbidden-to-infer"
+        ],
+        "material_id": "missing-causal-case-digest-section-02-investigator-3",
+        "source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-03"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-03-ledger-sentence-03-unresolved",
+          "authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer"
+        ],
+        "material_id": "missing-causal-case-digest-section-03-ledger-3",
+        "source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-03"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-case-digest-section-04-council-sentence-03-unresolved",
+          "authority-span-case-digest-section-04-council-sentence-03-forbidden-to-infer"
+        ],
+        "material_id": "missing-causal-case-digest-section-04-council-3",
+        "source_span_ids": [
+          "span-case-digest-section-04-council-sentence-03"
+        ]
+      }
+    ],
+    "target_duration_seconds": 180,
+    "terminology_budget": {
+      "reference_bound_only": true,
+      "required_term_count": 6,
+      "required_terms": [
+        "鐘のない塔",
+        "ミラ・ヴェイル",
+        "真鍮の蛾",
+        "9:17",
+        "台帳",
+        "市の評議会"
+      ]
+    },
+    "unresolved_items": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-01-incident-sentence-03-unresolved",
+            "authority-span-case-digest-section-01-incident-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-01-incident-sentence-03"
+          ]
+        },
+        "statement_id": "unresolved-case-digest-section-01-incident-3",
+        "statement_kind": "unresolved_item",
+        "text": "確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-02-investigator-sentence-03-unresolved",
+            "authority-span-case-digest-section-02-investigator-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-02-investigator-sentence-03"
+          ]
+        },
+        "statement_id": "unresolved-case-digest-section-02-investigator-3",
+        "statement_kind": "unresolved_item",
+        "text": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-03-ledger-sentence-03-unresolved",
+            "authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-03-ledger-sentence-03"
+          ]
+        },
+        "statement_id": "unresolved-case-digest-section-03-ledger-3",
+        "statement_kind": "unresolved_item",
+        "text": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-02-forbidden-to-infer",
+            "authority-span-case-digest-section-04-council-sentence-02-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-02"
+          ]
+        },
+        "statement_id": "unresolved-case-digest-section-04-council-2",
+        "statement_kind": "unresolved_item",
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-04-council-sentence-03-unresolved",
+            "authority-span-case-digest-section-04-council-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-04-council-sentence-03"
+          ]
+        },
+        "statement_id": "unresolved-case-digest-section-04-council-3",
+        "statement_kind": "unresolved_item",
+        "text": "台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-case-digest-section-05-status-sentence-03-unresolved",
+            "authority-span-case-digest-section-05-status-sentence-03-forbidden-to-infer",
+            "authority-span-case-digest-section-05-status-sentence-03-must-preserve"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-case-digest-section-05-status-sentence-03"
+          ]
+        },
+        "statement_id": "unresolved-case-digest-section-05-status-3",
+        "statement_kind": "unresolved_item",
+        "text": "音源、兄の所在、評議会との関係は確認されていない。"
+      }
+    ],
+    "unsupported_factual_claim_count": 0,
+    "visual_intent_placeholders": [
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01",
+          "span-case-digest-section-01-incident-sentence-02",
+          "span-case-digest-section-01-incident-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "shot_id": "shot-b01-01",
+        "visual_intent_id": "visual-intent-shot-b01-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-01-incident-sentence-01",
+          "span-case-digest-section-01-incident-sentence-02",
+          "span-case-digest-section-01-incident-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-01-incident",
+        "shot_id": "shot-b01-02",
+        "visual_intent_id": "visual-intent-shot-b01-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01",
+          "span-case-digest-section-02-investigator-sentence-02",
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "shot_id": "shot-b02-01",
+        "visual_intent_id": "visual-intent-shot-b02-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01",
+          "span-case-digest-section-02-investigator-sentence-02",
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "shot_id": "shot-b02-02",
+        "visual_intent_id": "visual-intent-shot-b02-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-02-investigator-sentence-01",
+          "span-case-digest-section-02-investigator-sentence-02",
+          "span-case-digest-section-02-investigator-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-02-investigator",
+        "shot_id": "shot-b02-03",
+        "visual_intent_id": "visual-intent-shot-b02-03"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-01",
+          "span-case-digest-section-03-ledger-sentence-02",
+          "span-case-digest-section-03-ledger-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "shot_id": "shot-b03-01",
+        "visual_intent_id": "visual-intent-shot-b03-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-03-ledger-sentence-01",
+          "span-case-digest-section-03-ledger-sentence-02",
+          "span-case-digest-section-03-ledger-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-03-ledger",
+        "shot_id": "shot-b03-02",
+        "visual_intent_id": "visual-intent-shot-b03-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01",
+          "span-case-digest-section-04-council-sentence-02",
+          "span-case-digest-section-04-council-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-04-council",
+        "shot_id": "shot-b04-01",
+        "visual_intent_id": "visual-intent-shot-b04-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-04-council-sentence-01",
+          "span-case-digest-section-04-council-sentence-02",
+          "span-case-digest-section-04-council-sentence-03"
+        ],
+        "section_or_beat_id": "case-digest-section-04-council",
+        "shot_id": "shot-b04-02",
+        "visual_intent_id": "visual-intent-shot-b04-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-05-status-sentence-01",
+          "span-case-digest-section-05-status-sentence-02",
+          "span-case-digest-section-05-status-sentence-03",
+          "span-case-digest-section-05-status-sentence-04"
+        ],
+        "section_or_beat_id": "case-digest-section-05-status",
+        "shot_id": "shot-b06-01",
+        "visual_intent_id": "visual-intent-shot-b06-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-case-digest-section-05-status-sentence-01",
+          "span-case-digest-section-05-status-sentence-02",
+          "span-case-digest-section-05-status-sentence-03",
+          "span-case-digest-section-05-status-sentence-04"
+        ],
+        "section_or_beat_id": "case-digest-section-05-status",
+        "shot_id": "shot-b06-03",
+        "visual_intent_id": "visual-intent-shot-b06-03"
+      }
+    ],
+    "writer_decisions_required": [
+      {
+        "decision_id": "writer-decision-case-digest-1",
+        "question": "鐘の音源",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-case-digest-2",
+        "question": "兄の所在",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-case-digest-3",
+        "question": "台帳の出所と真正性",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-case-digest-4",
+        "question": "市の評議会の関与・責任・動機",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-case-digest-5",
+        "question": "真鍮の蛾の機能",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      }
+    ]
+  },
+  "schema_version": "fff.writerSourceAdaptationFixtureOutput.v0",
+  "source_packet": {
+    "author_label": null,
+    "explicit_unknowns": [
+      "鐘の音源",
+      "兄の所在",
+      "台帳の出所と真正性",
+      "市の評議会の関与・責任・動機",
+      "真鍮の蛾の機能"
+    ],
+    "input_envelope": {
+      "relative_path": "fixtures/writer-source-adaptation/case-digest.prose.json",
+      "sha256": "fad678de2e2c2fb16f1f73304b4d7d409b2af53537651628de4b48a679f5870a",
+      "utf8_byte_size": 9973
+    },
+    "input_kind": "prose_markdown_v0",
+    "intended_audience": "CASE_DIGEST を短時間で理解するレビュー担当者",
+    "normalization_operations": [
+      {
+        "note": "UTF-8 source bytes and exact source wording are used without normalization.",
+        "operation": "none",
+        "semantic": false
+      }
+    ],
+    "primary_source_file": {
+      "media_type": "text/markdown",
+      "relative_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+      "sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe",
+      "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+      "utf8_byte_size": 2803
+    },
+    "schema_version": "fff.writerSourcePacket.v0",
+    "source_files": [
+      {
+        "media_type": "text/markdown",
+        "relative_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+        "sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "utf8_byte_size": 2803
+      }
+    ],
+    "source_packet_id": "source-packet-case-digest",
+    "source_spans": [
+      {
+        "byte_range": {
+          "end": 215,
+          "start": 188
+        },
+        "character_range": {
+          "end": 203,
+          "start": 188,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## 1. 事件（0–24秒）",
+        "exact_text_sha256": "bfbffa4172084349a5ac9d56650ec0522c9e0fa166e95caea2d7e109b7a12537",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-01-incident-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 466,
+          "start": 217
+        },
+        "character_range": {
+          "end": 288,
+          "start": 205,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "正午、鐘のない塔から鐘の音が響いたと報告された。塔の取付枠は空で、音を生む鐘は見当たらない。確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。",
+        "exact_text_sha256": "ce0cc99e56b9ecb50070593c96d7794a9afd2869bce249afab52e4cede409654",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-01-incident-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 289,
+          "start": 217
+        },
+        "character_range": {
+          "end": 229,
+          "start": 205,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+        "exact_text_sha256": "504887dcd575afc26e72221e0e7eb9fd975e957e6d45cafde1b2f01b0c8cb4e0",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-01-incident-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 355,
+          "start": 289
+        },
+        "character_range": {
+          "end": 251,
+          "start": 229,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "塔の取付枠は空で、音を生む鐘は見当たらない。",
+        "exact_text_sha256": "c67293e3205afab701b39dd2eddc906f0f55ee6edfabdd3ea314149e4e461bb8",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-01-incident-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 466,
+          "start": 355
+        },
+        "character_range": {
+          "end": 288,
+          "start": 251,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。",
+        "exact_text_sha256": "2e6ba7f52c7ae8cf42f7e678d58026571cea370da48a5f69d2b18a6ea6195354",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-01-incident-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 616,
+          "start": 570
+        },
+        "character_range": {
+          "end": 396,
+          "start": 374,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## 2. 調査者と手掛かり（24–65秒）",
+        "exact_text_sha256": "4a59cfae99adf9b664436e0cf2efb4a47f7248baa420715770a39ac5882f5d08",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-02-investigator-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 929,
+          "start": 618
+        },
+        "character_range": {
+          "end": 507,
+          "start": 398,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。",
+        "exact_text_sha256": "296f6d14eee57cdcae88091e3c420115658bbb96ede03f6eefd9ae37ff8c6672",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-02-investigator-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 729,
+          "start": 618
+        },
+        "character_range": {
+          "end": 435,
+          "start": 398,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。",
+        "exact_text_sha256": "f6c22be511d40ed59a4ebcfe2f46c168d40d0482d66690c1a71128f590bfe778",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-02-investigator-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 820,
+          "start": 729
+        },
+        "character_range": {
+          "end": 468,
+          "start": 435,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。",
+        "exact_text_sha256": "eef3ea565afb293dd2467f641006e6ef6447fded7648fa60aff730e734de1366",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-02-investigator-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 929,
+          "start": 820
+        },
+        "character_range": {
+          "end": 507,
+          "start": 468,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。",
+        "exact_text_sha256": "bce565f453cd2c42840af838882f398e69a25c8ef6fd1593299a956df02b6471",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-02-investigator-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1078,
+          "start": 1050
+        },
+        "character_range": {
+          "end": 626,
+          "start": 610,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## 3. 記録（65–97秒）",
+        "exact_text_sha256": "06b000666f27ba5e7085e70bafe5177700f777c1c43f699bbeefd7913c7cc363",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-03-ledger-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 1362,
+          "start": 1080
+        },
+        "character_range": {
+          "end": 722,
+          "start": 628,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。現在の画像から確認できるのは二種類の記録形式だけである。この台帳が時間を奪う、または人を消すという因果関係は証明されていない。",
+        "exact_text_sha256": "aa996e65baa844ce04c6a8f350d5e8c77edfd8bd7a1de70f208901a5f3559407",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-03-ledger-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 1173,
+          "start": 1080
+        },
+        "character_range": {
+          "end": 659,
+          "start": 628,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。",
+        "exact_text_sha256": "9780b475dcd7766251c7e3c9d98ad7bed2085ebe59eb3fdd0d17efcc5c8f547a",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-03-ledger-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1257,
+          "start": 1173
+        },
+        "character_range": {
+          "end": 687,
+          "start": 659,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "現在の画像から確認できるのは二種類の記録形式だけである。",
+        "exact_text_sha256": "723f1d8df0c2153f28f38714216eb146d5df421d0003697d23153b80b83603b9",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-03-ledger-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1362,
+          "start": 1257
+        },
+        "character_range": {
+          "end": 722,
+          "start": 687,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "この台帳が時間を奪う、または人を消すという因果関係は証明されていない。",
+        "exact_text_sha256": "6138436e5a185a5d093d3c1fdaf407e842923d92eaa6877c57ae76d9f13d7145",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-03-ledger-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1510,
+          "start": 1466
+        },
+        "character_range": {
+          "end": 830,
+          "start": 808,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## 4. 疑いと証拠限界（97–136秒）",
+        "exact_text_sha256": "084b3d054034c76aca3be4de09b09f72a2895f563c5b088753c77f1cb52a0831",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-04-council-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 1815,
+          "start": 1512
+        },
+        "character_range": {
+          "end": 933,
+          "start": 832,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "失踪した兄のメモは、市の評議会に調査の目を向けている。だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。",
+        "exact_text_sha256": "f3c6cb9ce400048f9d1fdab0e40ea20b7622959ad48127a4fec6c2e93fec3b5c",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-04-council-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 1593,
+          "start": 1512
+        },
+        "character_range": {
+          "end": 859,
+          "start": 832,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "失踪した兄のメモは、市の評議会に調査の目を向けている。",
+        "exact_text_sha256": "2ac75de2d8607bcd90a8fbf0d81ba58c7eef8a3edf13e0ab417ce487d8cd2d4d",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-04-council-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1704,
+          "start": 1593
+        },
+        "character_range": {
+          "end": 896,
+          "start": 859,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。",
+        "exact_text_sha256": "26383beb269f8f12199e4a5a1822cf3d7d7c7868c23db50fcb5295ed0906667b",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-04-council-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1815,
+          "start": 1704
+        },
+        "character_range": {
+          "end": 933,
+          "start": 896,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。",
+        "exact_text_sha256": "fed432adb34b45982f1713627cd35703f92f60fcc28fb896d1920d8325dde9da",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-04-council-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1964,
+          "start": 1919
+        },
+        "character_range": {
+          "end": 1042,
+          "start": 1019,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## 5. 現在の事件状況（136–180秒）",
+        "exact_text_sha256": "8b84ea49d6945695c8d58dae9430c816413c8b7d51a1378ef4e865841144867a",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-05-status-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 2342,
+          "start": 1966
+        },
+        "character_range": {
+          "end": 1172,
+          "start": 1044,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。時間と名前は台帳に記録された二つの損失区分として扱う。音源、兄の所在、評議会との関係は確認されていない。塔は現在も調査対象として残る。",
+        "exact_text_sha256": "6365de92f4793fff5082b04f25c2b63a2d7541853b5fa3761305f82ef7d1e5db",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-05-status-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 2141,
+          "start": 1966
+        },
+        "character_range": {
+          "end": 1105,
+          "start": 1044,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。",
+        "exact_text_sha256": "932b528a6f5fa941d1a6842d44c47de4ccf97a3e51e49e4c301a2a5d0a3e4a70",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-05-status-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2222,
+          "start": 2141
+        },
+        "character_range": {
+          "end": 1132,
+          "start": 1105,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "時間と名前は台帳に記録された二つの損失区分として扱う。",
+        "exact_text_sha256": "d42a4c9abe6b4b84fd7bb76136a61ed6eed7a69d844892946f7d141dc26ceeed",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-05-status-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2297,
+          "start": 2222
+        },
+        "character_range": {
+          "end": 1157,
+          "start": 1132,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "音源、兄の所在、評議会との関係は確認されていない。",
+        "exact_text_sha256": "0ee8cfff442713803dcaeade32433a69dc6ac1e5f3bf21ee7997e43c5ac928b4",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-05-status-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2342,
+          "start": 2297
+        },
+        "character_range": {
+          "end": 1172,
+          "start": 1157,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "塔は現在も調査対象として残る。",
+        "exact_text_sha256": "795d738f88fc1c24b2cb7e1b1b81c0b85103c4bb7778c89691147a2f809da0e5",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-raster-case-digest-case-digest-script-md",
+        "source_span_id": "span-case-digest-section-05-status-sentence-04",
+        "structural_role": "material_statement"
+      }
+    ],
+    "supplied_title": "鐘のない塔事件",
+    "target_duration_seconds": 180,
+    "writer_constraints": [
+      "accepted CASE_DIGEST の五セクションを保持する",
+      "出所・真正性・責任・動機・音源・兄の所在を断定しない",
+      "forced-choice ending を復元しない",
+      "既存の字幕・画像・ショット・タイミングを変更しない"
+    ]
+  },
+  "validation_summary": {
+    "external_request_count": 0,
+    "material_lineage_complete": true,
+    "media_generation_count": 0,
+    "provider_call_count": 0,
+    "public_effect_count": 0,
+    "schema_errors": {},
+    "schemas_valid": true,
+    "unsupported_factual_claim_count": 0
+  },
+  "writer_proposal_impact": null
+}

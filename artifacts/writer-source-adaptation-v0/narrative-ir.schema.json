@@ -1,0 +1,194 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.narrativeIr.v0",
+  "title": "Narrative IR v0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "narrative_ir_id",
+    "source_packet_id",
+    "format_id",
+    "target_duration_seconds",
+    "audience_promise",
+    "protagonist_or_subject",
+    "incident",
+    "events",
+    "causal_edges",
+    "missing_causal_edges",
+    "evidence_claim_status",
+    "named_entities",
+    "first_introduction_wording",
+    "terminology_budget",
+    "section_beat_plan",
+    "information_reveal_order",
+    "narration_units",
+    "caption_units",
+    "visual_intent_placeholders",
+    "unresolved_items",
+    "ending_state",
+    "source_span_lineage",
+    "writer_decisions_required",
+    "content_omitted_deferred_for_capacity",
+    "unsupported_factual_claim_count",
+    "image_generation",
+    "production_approved",
+    "rights_cleared_claim",
+    "final_canon"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "fff.narrativeIr.v0"
+    },
+    "narrative_ir_id": {
+      "type": "string"
+    },
+    "source_packet_id": {
+      "type": "string"
+    },
+    "format_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "target_duration_seconds": {
+      "type": "integer"
+    },
+    "audience_promise": {
+      "$ref": "#/$defs/materialStatement"
+    },
+    "protagonist_or_subject": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/materialStatement"
+      }
+    },
+    "incident": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/materialStatement"
+      }
+    },
+    "causal_edges": {
+      "type": "array"
+    },
+    "missing_causal_edges": {
+      "type": "array"
+    },
+    "evidence_claim_status": {
+      "type": "array"
+    },
+    "named_entities": {
+      "type": "array"
+    },
+    "first_introduction_wording": {
+      "type": "array"
+    },
+    "terminology_budget": {
+      "type": "object"
+    },
+    "section_beat_plan": {
+      "type": "array",
+      "minItems": 1
+    },
+    "information_reveal_order": {
+      "type": "array",
+      "minItems": 1
+    },
+    "narration_units": {
+      "type": "array",
+      "minItems": 1
+    },
+    "caption_units": {
+      "type": "array"
+    },
+    "visual_intent_placeholders": {
+      "type": "array"
+    },
+    "unresolved_items": {
+      "type": "array"
+    },
+    "ending_state": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "source_span_lineage": {
+      "type": "array",
+      "minItems": 1
+    },
+    "writer_decisions_required": {
+      "type": "array"
+    },
+    "content_omitted_deferred_for_capacity": {
+      "type": "object"
+    },
+    "unsupported_factual_claim_count": {
+      "const": 0
+    },
+    "image_generation": {
+      "const": false
+    },
+    "production_approved": {
+      "const": false
+    },
+    "rights_cleared_claim": {
+      "const": false
+    },
+    "final_canon": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "materialStatement": {
+      "type": "object",
+      "required": [
+        "statement_id",
+        "text",
+        "statement_kind",
+        "lineage"
+      ],
+      "properties": {
+        "statement_id": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "statement_kind": {
+          "type": "string"
+        },
+        "lineage": {
+          "type": "object",
+          "required": [
+            "mode",
+            "source_span_ids",
+            "authority_ids"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "source_span",
+                "writer_authored_proposal",
+                "adapter_generated_non_factual"
+              ]
+            },
+            "source_span_ids": {
+              "type": "array"
+            },
+            "authority_ids": {
+              "type": "array"
+            }
+          }
+        }
+      }
+    }
+  }
+}

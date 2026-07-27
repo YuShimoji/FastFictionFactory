@@ -1,0 +1,3135 @@
+{
+  "authority_ledger": {
+    "authority_classes_supported": [
+      "established_fact",
+      "observed_event",
+      "reported_claim",
+      "allegation",
+      "inference",
+      "unresolved",
+      "must_preserve",
+      "preferred",
+      "optional",
+      "forbidden_to_infer",
+      "writer_authored_proposal"
+    ],
+    "authority_ledger_id": "authority-ledger-linear-lore-counterexample",
+    "entries": [
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-linear-lore-beat-01-sentence-01-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "正午、ノース・ベル駅の上にある天文台から鐘の音が響く。",
+        "original_wording": "正午、ノース・ベル駅の上にある天文台から鐘の音が響く。",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01"
+        ],
+        "source_status": "reported"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-linear-lore-beat-01-sentence-02-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "だが、塔の取付枠は空だ。",
+        "original_wording": "だが、塔の取付枠は空だ。",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-02"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-linear-lore-beat-01-sentence-03-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "記録では、鐘は冬の外出禁止令のころに外されている。",
+        "original_wording": "記録では、鐘は冬の外出禁止令のころに外されている。",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-03"
+        ],
+        "source_status": "reported"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-linear-lore-beat-01-sentence-04-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "音の原因だけが、塔に残された最初の異常になる。",
+        "original_wording": "音の原因だけが、塔に残された最初の異常になる。",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-04"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "established_fact",
+        "authority_id": "authority-span-linear-lore-beat-02-sentence-01-established-fact",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "時計修理師ミラ・ヴェイルは、ガラスのアーケードで働く。",
+        "original_wording": "時計修理師ミラ・ヴェイルは、ガラスのアーケードで働く。",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01"
+        ],
+        "source_status": "historical_source_assertion"
+      },
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-linear-lore-beat-02-sentence-02-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "彼女の引き出しには、失踪した兄トーマが残したとされるメモと真鍮の蛾がある。",
+        "original_wording": "彼女の引き出しには、失踪した兄トーマが残したとされるメモと真鍮の蛾がある。",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-02"
+        ],
+        "source_status": "mixed_reported_and_observed"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-linear-lore-beat-02-sentence-02-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "彼女の引き出しには、失踪した兄トーマが残したとされるメモと真鍮の蛾がある。",
+        "original_wording": "彼女の引き出しには、失踪した兄トーマが残したとされるメモと真鍮の蛾がある。",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-02"
+        ],
+        "source_status": "mixed_reported_and_observed"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-linear-lore-beat-02-sentence-03-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "アーケードの閉店記録と時計面には、同じ9時17分が現れる。",
+        "original_wording": "アーケードの閉店記録と時計面には、同じ9時17分が現れる。",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-03"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "inference",
+        "authority_id": "authority-span-linear-lore-beat-02-sentence-04-inference",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "link_not_enacted",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "三つの手掛かりは、兄の失踪を塔の異常へ結びつける。",
+        "original_wording": "三つの手掛かりは、兄の失踪を塔の異常へ結びつける。",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-04"
+        ],
+        "source_status": "inference"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-linear-lore-beat-02-sentence-04-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "link_not_enacted",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "三つの手掛かりは、兄の失踪を塔の異常へ結びつける。",
+        "original_wording": "三つの手掛かりは、兄の失踪を塔の異常へ結びつける。",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-04"
+        ],
+        "source_status": "inference"
+      },
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-linear-lore-beat-03-sentence-01-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "トーマのメモが指す先には、市の評議会に接点を持つ台帳がある。",
+        "original_wording": "トーマのメモが指す先には、市の評議会に接点を持つ台帳がある。",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-01"
+        ],
+        "source_status": "reported"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-linear-lore-beat-03-sentence-02-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "台帳には『分』の欄と、人の名前を記す欄が並ぶ。",
+        "original_wording": "台帳には『分』の欄と、人の名前を記す欄が並ぶ。",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-02"
+        ],
+        "source_status": "observed"
+      },
+      {
+        "authority_class": "inference",
+        "authority_id": "authority-span-linear-lore-beat-03-sentence-03-inference",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "visual_suggestion_only",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "文字の輪郭が薄れる表現は、記録からの消失を示唆する。",
+        "original_wording": "文字の輪郭が薄れる表現は、記録からの消失を示唆する。",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-03"
+        ],
+        "source_status": "suspected"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-linear-lore-beat-03-sentence-04-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "ただし、台帳の出所と真正性は確かめられていない。",
+        "original_wording": "ただし、台帳の出所と真正性は確かめられていない。",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-04"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "forbidden_to_infer",
+        "authority_id": "authority-span-linear-lore-beat-03-sentence-04-forbidden-to-infer",
+        "canon_status": "forbidden_from_promotion",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "ただし、台帳の出所と真正性は確かめられていない。",
+        "original_wording": "ただし、台帳の出所と真正性は確かめられていない。",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-04"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "allegation",
+        "authority_id": "authority-span-linear-lore-beat-04-sentence-01-allegation",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "トーマのメモは、評議会が時間を売っていると告発する。",
+        "original_wording": "トーマのメモは、評議会が時間を売っていると告発する。",
+        "source_span_ids": [
+          "span-linear-lore-beat-04-sentence-01"
+        ],
+        "source_status": "reported_allegation"
+      },
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-linear-lore-beat-04-sentence-01-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "トーマのメモは、評議会が時間を売っていると告発する。",
+        "original_wording": "トーマのメモは、評議会が時間を売っていると告発する。",
+        "source_span_ids": [
+          "span-linear-lore-beat-04-sentence-01"
+        ],
+        "source_status": "reported_allegation"
+      },
+      {
+        "authority_class": "inference",
+        "authority_id": "authority-span-linear-lore-beat-04-sentence-02-inference",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "connection_asserted_not_enacted",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "評議会が調査対象になるのは、この告発と台帳の接点があるからだ。",
+        "original_wording": "評議会が調査対象になるのは、この告発と台帳の接点があるからだ。",
+        "source_span_ids": [
+          "span-linear-lore-beat-04-sentence-02"
+        ],
+        "source_status": "inference"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-linear-lore-beat-04-sentence-03-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "だが、出所の確かでない台帳だけでは、評議会の責任も動機も証明できない。",
+        "original_wording": "だが、出所の確かでない台帳だけでは、評議会の責任も動機も証明できない。",
+        "source_span_ids": [
+          "span-linear-lore-beat-04-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "forbidden_to_infer",
+        "authority_id": "authority-span-linear-lore-beat-04-sentence-03-forbidden-to-infer",
+        "canon_status": "forbidden_from_promotion",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": false,
+        "normalized_claim": "だが、出所の確かでない台帳だけでは、評議会の責任も動機も証明できない。",
+        "original_wording": "だが、出所の確かでない台帳だけでは、評議会の責任も動機も証明できない。",
+        "source_span_ids": [
+          "span-linear-lore-beat-04-sentence-03"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "inference",
+        "authority_id": "authority-span-linear-lore-beat-05-sentence-01-inference",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "ここまでの手掛かりは、三つの論点へ整理できる。",
+        "original_wording": "ここまでの手掛かりは、三つの論点へ整理できる。",
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-01"
+        ],
+        "source_status": "editorial_inference"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-linear-lore-beat-05-sentence-02-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "explicitly_unconfirmed",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "トーマの所在を示す確かな記録はない。",
+        "original_wording": "トーマの所在を示す確かな記録はない。",
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-02"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "observed_event",
+        "authority_id": "authority-span-linear-lore-beat-05-sentence-03-observed-event",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "真鍮の蛾には加工と機構が見えるが、作動した記録はない。",
+        "original_wording": "真鍮の蛾には加工と機構が見えるが、作動した記録はない。",
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-03"
+        ],
+        "source_status": "mixed_observed_and_unresolved"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-linear-lore-beat-05-sentence-03-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "真鍮の蛾には加工と機構が見えるが、作動した記録はない。",
+        "original_wording": "真鍮の蛾には加工と機構が見えるが、作動した記録はない。",
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-03"
+        ],
+        "source_status": "mixed_observed_and_unresolved"
+      },
+      {
+        "authority_class": "reported_claim",
+        "authority_id": "authority-span-linear-lore-beat-05-sentence-04-reported-claim",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "評議会は台帳と接点を持つが、責任の所在は示されない。",
+        "original_wording": "評議会は台帳と接点を持つが、責任の所在は示されない。",
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-04"
+        ],
+        "source_status": "mixed_reported_and_unresolved"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-linear-lore-beat-05-sentence-04-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "評議会は台帳と接点を持つが、責任の所在は示されない。",
+        "original_wording": "評議会は台帳と接点を持つが、責任の所在は示されない。",
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-04"
+        ],
+        "source_status": "mixed_reported_and_unresolved"
+      },
+      {
+        "authority_class": "inference",
+        "authority_id": "authority-span-linear-lore-beat-05-sentence-05-inference",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "not_enacted",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "塔、9時17分、蛾、台帳が同じ調査へ重なり、残る中心問題は蛾の仕組みと評議会の関与になる。",
+        "original_wording": "塔、9時17分、蛾、台帳が同じ調査へ重なり、残る中心問題は蛾の仕組みと評議会の関与になる。",
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-05"
+        ],
+        "source_status": "inference"
+      },
+      {
+        "authority_class": "inference",
+        "authority_id": "authority-span-linear-lore-beat-06-sentence-01-inference",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "recovery_paths_not_enacted",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。",
+        "original_wording": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。",
+        "source_span_ids": [
+          "span-linear-lore-beat-06-sentence-01"
+        ],
+        "source_status": "suspected"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-linear-lore-beat-06-sentence-01-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "recovery_paths_not_enacted",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。",
+        "original_wording": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。",
+        "source_span_ids": [
+          "span-linear-lore-beat-06-sentence-01"
+        ],
+        "source_status": "suspected"
+      },
+      {
+        "authority_class": "unresolved",
+        "authority_id": "authority-span-linear-lore-beat-06-sentence-02-unresolved",
+        "canon_status": "unresolved",
+        "confidence_source_certainty": "choice_not_made",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": true,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "ミラには、どちらを先に救うかという選択が残る。",
+        "original_wording": "ミラには、どちらを先に救うかという選択が残る。",
+        "source_span_ids": [
+          "span-linear-lore-beat-06-sentence-02"
+        ],
+        "source_status": "unresolved"
+      },
+      {
+        "authority_class": "optional",
+        "authority_id": "authority-span-linear-lore-beat-06-sentence-03-optional",
+        "canon_status": "source_supported_nonfinal",
+        "confidence_source_certainty": "historical_source_wording",
+        "downstream_consumers": [
+          "format_selection",
+          "narrative_ir",
+          "editorial_handoff_adapter"
+        ],
+        "human_author_required": false,
+        "mutable_by_writer_proposal": true,
+        "normalized_claim": "空の鐘枠に音だけが響き、選択の答えはまだ彼女の前にある。",
+        "original_wording": "空の鐘枠に音だけが響き、選択の答えはまだ彼女の前にある。",
+        "source_span_ids": [
+          "span-linear-lore-beat-06-sentence-03"
+        ],
+        "source_status": "atmosphere_first_closure"
+      }
+    ],
+    "schema_version": "fff.storyAuthorityLedger.v0",
+    "source_packet_id": "source-packet-linear-lore-counterexample"
+  },
+  "editorial_handoff_input": null,
+  "fixture_id": "linear-lore-counterexample",
+  "format_selection": {
+    "authority_ledger_id": "authority-ledger-linear-lore-counterexample",
+    "capacity_metrics": {
+      "approximate_narration_character_budget": 515,
+      "approximate_shot_budget": 11,
+      "approximate_subtitle_unit_budget": 11,
+      "candidate_ending_action": {
+        "enacted": false,
+        "source_span_id": "span-linear-lore-beat-06-sentence-02",
+        "text": "ミラには、どちらを先に救うかという選択が残る。"
+      },
+      "causal_step_count": 0,
+      "enacted_action_count": 0,
+      "exposition_unit_count": 14,
+      "information_density_score": 8.953,
+      "missing_causal_link_count": 6,
+      "named_entity_count": 5,
+      "named_entity_first_introduction_count": 5,
+      "primary_event_count": 1,
+      "required_terminology_count": 10,
+      "source_character_count": 631,
+      "target_duration_seconds": 180,
+      "unexplained_named_entity_count": 3,
+      "unresolved_major_question_count": 8
+    },
+    "derivation_limitations": [
+      "v0 capacity is reference-bound to the accepted 180-second CASE_DIGEST and the quarantined 180-second linear-lore counterexample.",
+      "The 515-character, 11-subtitle-unit, and 11-shot values are local calibration evidence, not universal format thresholds.",
+      "SHORT_DRAMA cannot pass without source-supported enacted objective, obstacle, consequential action, observable result, and complete causal links.",
+      "The selector does not rewrite source material to force a format pass."
+    ],
+    "format_candidates_supported": [
+      "CASE_DIGEST",
+      "SHORT_DRAMA",
+      "SCENE_EXCERPT",
+      "PLOT_SUMMARY",
+      "LORE_EXPLAINER",
+      "TRAILER_PV"
+    ],
+    "format_selection_id": "format-selection-linear-lore-counterexample",
+    "material_disposition": {
+      "defer": [
+        "winter curfew lore",
+        "brass moth mechanism",
+        "Council responsibility and motive"
+      ],
+      "move_to_longer_form": [
+        "nineteen-shot exhaustive chronology",
+        "six-Beat from-the-beginning lore exposition"
+      ],
+      "remove": [
+        "forced time-or-names closure",
+        "atmosphere-first rhetorical ending"
+      ],
+      "summarize": [
+        "ledger record forms",
+        "clue inventory"
+      ]
+    },
+    "ranked_candidates": [
+      {
+        "acceptance_reasons": [
+          "no_fully_dramatized_short_simulation",
+          "closest_non_committal_candidate_requires_explicit_author_identity_and_scope"
+        ],
+        "capacity_fit": false,
+        "contract_checks": {
+          "chronological_or_causal_compression": false,
+          "explicit_summary_identity": false,
+          "no_fully_dramatized_short_simulation": true
+        },
+        "decision": "AUTHOR_DECISION_REQUIRED",
+        "format_id": "PLOT_SUMMARY",
+        "rank": 1,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_summary_identity",
+          "missing_or_failed:chronological_or_causal_compression",
+          "information_envelope_exceeds_reference_bound_180_second_capacity"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "source_allegation_uncertainty_separated"
+        ],
+        "capacity_fit": false,
+        "contract_checks": {
+          "concept_hierarchy": false,
+          "explicit_explanatory_identity": false,
+          "source_allegation_uncertainty_separated": true
+        },
+        "decision": "REJECTED",
+        "format_id": "LORE_EXPLAINER",
+        "rank": 2,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_explanatory_identity",
+          "missing_or_failed:concept_hierarchy",
+          "information_envelope_exceeds_reference_bound_180_second_capacity"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "incident",
+          "investigation_context",
+          "evidence_or_clues",
+          "allegation_or_hypothesis",
+          "evidence_limit"
+        ],
+        "capacity_fit": false,
+        "contract_checks": {
+          "allegation_or_hypothesis": true,
+          "current_status": false,
+          "evidence_limit": true,
+          "evidence_or_clues": true,
+          "explicit_digest_identity": false,
+          "incident": true,
+          "investigation_context": true
+        },
+        "decision": "REJECTED",
+        "format_id": "CASE_DIGEST",
+        "rank": 3,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_digest_identity",
+          "missing_or_failed:current_status",
+          "information_envelope_exceeds_reference_bound_180_second_capacity"
+        ]
+      },
+      {
+        "acceptance_reasons": [],
+        "capacity_fit": false,
+        "contract_checks": {
+          "bounded_protagonist_objective": false,
+          "consequential_action": false,
+          "duration_compatible_cast_and_exposition": false,
+          "enacted_causality_present": false,
+          "enacted_obstacle": false,
+          "historical_quarantine_absent": false,
+          "observable_result": false
+        },
+        "decision": "REJECTED",
+        "format_id": "SHORT_DRAMA",
+        "rank": 4,
+        "rejection_reasons": [
+          "missing_or_failed:bounded_protagonist_objective",
+          "missing_or_failed:enacted_obstacle",
+          "missing_or_failed:consequential_action",
+          "missing_or_failed:observable_result",
+          "missing_or_failed:enacted_causality_present",
+          "missing_or_failed:duration_compatible_cast_and_exposition",
+          "missing_or_failed:historical_quarantine_absent",
+          "information_envelope_exceeds_reference_bound_180_second_capacity",
+          "historical_linear_lore_signature_is_active_quarantine",
+          "enacted_causality_missing"
+        ]
+      },
+      {
+        "acceptance_reasons": [],
+        "capacity_fit": false,
+        "contract_checks": {
+          "bounded_scene": false,
+          "explicit_scene_excerpt_identity": false,
+          "incomplete_context_boundary": false,
+          "no_false_completeness": false
+        },
+        "decision": "REJECTED",
+        "format_id": "SCENE_EXCERPT",
+        "rank": 5,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_scene_excerpt_identity",
+          "missing_or_failed:bounded_scene",
+          "missing_or_failed:incomplete_context_boundary",
+          "missing_or_failed:no_false_completeness",
+          "information_envelope_exceeds_reference_bound_180_second_capacity"
+        ]
+      },
+      {
+        "acceptance_reasons": [
+          "no_authority_overreach"
+        ],
+        "capacity_fit": false,
+        "contract_checks": {
+          "explicit_promotional_identity": false,
+          "no_authority_overreach": true,
+          "no_completeness_claim": false
+        },
+        "decision": "REJECTED",
+        "format_id": "TRAILER_PV",
+        "rank": 6,
+        "rejection_reasons": [
+          "missing_or_failed:explicit_promotional_identity",
+          "missing_or_failed:no_completeness_claim",
+          "information_envelope_exceeds_reference_bound_180_second_capacity"
+        ]
+      }
+    ],
+    "schema_version": "fff.formatSelection.v0",
+    "selected_format": null,
+    "source_packet_id": "source-packet-linear-lore-counterexample",
+    "status": "AUTHOR_DECISION_REQUIRED"
+  },
+  "input_kind": "prose_markdown_v0",
+  "narrative_ir": {
+    "audience_promise": {
+      "lineage": {
+        "authority_ids": [],
+        "mode": "adapter_generated_non_factual",
+        "source_span_ids": []
+      },
+      "statement_id": "audience-promise-linear-lore-counterexample",
+      "statement_kind": "audience_promise",
+      "text": "No safe format identity established"
+    },
+    "caption_units": [
+      {
+        "caption_unit_id": "caption-linear-lore-beat-01-1",
+        "end_seconds": 20,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-01-sentence-01-reported-claim"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-01-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "linear-lore-beat-01",
+        "start_seconds": 0,
+        "text": "正午、ノース・ベル駅の上にある天文台から鐘の音が響く。"
+      },
+      {
+        "caption_unit_id": "caption-linear-lore-beat-02-1",
+        "end_seconds": 50,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-02-sentence-01-established-fact"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-02-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "linear-lore-beat-02",
+        "start_seconds": 20,
+        "text": "時計修理師ミラ・ヴェイルは、ガラスのアーケードで働く。"
+      },
+      {
+        "caption_unit_id": "caption-linear-lore-beat-03-1",
+        "end_seconds": 80,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-03-sentence-01-reported-claim"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-03-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "linear-lore-beat-03",
+        "start_seconds": 50,
+        "text": "トーマのメモが指す先には、市の評議会に接点を持つ台帳がある。"
+      },
+      {
+        "caption_unit_id": "caption-linear-lore-beat-04-1",
+        "end_seconds": 105,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-04-sentence-01-allegation",
+            "authority-span-linear-lore-beat-04-sentence-01-reported-claim"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-04-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "linear-lore-beat-04",
+        "start_seconds": 80,
+        "text": "トーマのメモは、評議会が時間を売っていると告発する。"
+      },
+      {
+        "caption_unit_id": "caption-linear-lore-beat-05-1",
+        "end_seconds": 155,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-05-sentence-01-inference"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-05-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "linear-lore-beat-05",
+        "start_seconds": 105,
+        "text": "ここまでの手掛かりは、三つの論点へ整理できる。"
+      },
+      {
+        "caption_unit_id": "caption-linear-lore-beat-06-1",
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-06-sentence-01-inference",
+            "authority-span-linear-lore-beat-06-sentence-01-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-06-sentence-01"
+          ]
+        },
+        "section_or_beat_id": "linear-lore-beat-06",
+        "start_seconds": 155,
+        "text": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。"
+      }
+    ],
+    "causal_edges": [],
+    "content_omitted_deferred_for_capacity": {
+      "defer": [
+        "winter curfew lore",
+        "brass moth mechanism",
+        "Council responsibility and motive"
+      ],
+      "move_to_longer_form": [
+        "nineteen-shot exhaustive chronology",
+        "six-Beat from-the-beginning lore exposition"
+      ],
+      "remove": [
+        "forced time-or-names closure",
+        "atmosphere-first rhetorical ending"
+      ],
+      "summarize": [
+        "ledger record forms",
+        "clue inventory"
+      ]
+    },
+    "ending_state": {
+      "lineage": {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-06-sentence-02-unresolved"
+        ],
+        "mode": "source_span",
+        "source_span_ids": [
+          "span-linear-lore-beat-06-sentence-02"
+        ]
+      },
+      "statement_id": "ending-state-linear-lore-counterexample",
+      "statement_kind": "non_enacted_or_status_ending",
+      "text": "ミラには、どちらを先に救うかという選択が残る。"
+    },
+    "events": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-01-sentence-01-reported-claim"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-01-sentence-01"
+          ]
+        },
+        "statement_id": "event-linear-lore-beat-01-1",
+        "statement_kind": "reported",
+        "text": "正午、ノース・ベル駅の上にある天文台から鐘の音が響く。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-01-sentence-02-observed-event"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-01-sentence-02"
+          ]
+        },
+        "statement_id": "event-linear-lore-beat-01-2",
+        "statement_kind": "observed",
+        "text": "だが、塔の取付枠は空だ。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-03-sentence-01-reported-claim"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-03-sentence-01"
+          ]
+        },
+        "statement_id": "event-linear-lore-beat-03-1",
+        "statement_kind": "reported",
+        "text": "トーマのメモが指す先には、市の評議会に接点を持つ台帳がある。"
+      }
+    ],
+    "evidence_claim_status": [
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-01-sentence-01-reported-claim"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01"
+        ],
+        "source_status": "reported",
+        "statement_id": "claim-status-linear-lore-beat-01-1",
+        "text": "正午、ノース・ベル駅の上にある天文台から鐘の音が響く。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-01-sentence-02-observed-event"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-02"
+        ],
+        "source_status": "observed",
+        "statement_id": "claim-status-linear-lore-beat-01-2",
+        "text": "だが、塔の取付枠は空だ。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-01-sentence-03-reported-claim"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-03"
+        ],
+        "source_status": "reported",
+        "statement_id": "claim-status-linear-lore-beat-01-3",
+        "text": "記録では、鐘は冬の外出禁止令のころに外されている。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-01-sentence-04-unresolved"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-04"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-linear-lore-beat-01-4",
+        "text": "音の原因だけが、塔に残された最初の異常になる。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-02-sentence-01-established-fact"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01"
+        ],
+        "source_status": "historical_source_assertion",
+        "statement_id": "claim-status-linear-lore-beat-02-1",
+        "text": "時計修理師ミラ・ヴェイルは、ガラスのアーケードで働く。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-02-sentence-02-reported-claim",
+          "authority-span-linear-lore-beat-02-sentence-02-observed-event"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-02"
+        ],
+        "source_status": "mixed_reported_and_observed",
+        "statement_id": "claim-status-linear-lore-beat-02-2",
+        "text": "彼女の引き出しには、失踪した兄トーマが残したとされるメモと真鍮の蛾がある。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-02-sentence-03-observed-event"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-03"
+        ],
+        "source_status": "observed",
+        "statement_id": "claim-status-linear-lore-beat-02-3",
+        "text": "アーケードの閉店記録と時計面には、同じ9時17分が現れる。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-02-sentence-04-inference",
+          "authority-span-linear-lore-beat-02-sentence-04-unresolved"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-04"
+        ],
+        "source_status": "inference",
+        "statement_id": "claim-status-linear-lore-beat-02-4",
+        "text": "三つの手掛かりは、兄の失踪を塔の異常へ結びつける。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-03-sentence-01-reported-claim"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-01"
+        ],
+        "source_status": "reported",
+        "statement_id": "claim-status-linear-lore-beat-03-1",
+        "text": "トーマのメモが指す先には、市の評議会に接点を持つ台帳がある。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-03-sentence-02-observed-event"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-02"
+        ],
+        "source_status": "observed",
+        "statement_id": "claim-status-linear-lore-beat-03-2",
+        "text": "台帳には『分』の欄と、人の名前を記す欄が並ぶ。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-03-sentence-03-inference"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-03"
+        ],
+        "source_status": "suspected",
+        "statement_id": "claim-status-linear-lore-beat-03-3",
+        "text": "文字の輪郭が薄れる表現は、記録からの消失を示唆する。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-03-sentence-04-unresolved",
+          "authority-span-linear-lore-beat-03-sentence-04-forbidden-to-infer"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-04"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-linear-lore-beat-03-4",
+        "text": "ただし、台帳の出所と真正性は確かめられていない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-04-sentence-01-allegation",
+          "authority-span-linear-lore-beat-04-sentence-01-reported-claim"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-04-sentence-01"
+        ],
+        "source_status": "reported_allegation",
+        "statement_id": "claim-status-linear-lore-beat-04-1",
+        "text": "トーマのメモは、評議会が時間を売っていると告発する。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-04-sentence-02-inference"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-04-sentence-02"
+        ],
+        "source_status": "inference",
+        "statement_id": "claim-status-linear-lore-beat-04-2",
+        "text": "評議会が調査対象になるのは、この告発と台帳の接点があるからだ。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-04-sentence-03-unresolved",
+          "authority-span-linear-lore-beat-04-sentence-03-forbidden-to-infer"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-04-sentence-03"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-linear-lore-beat-04-3",
+        "text": "だが、出所の確かでない台帳だけでは、評議会の責任も動機も証明できない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-05-sentence-01-inference"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-01"
+        ],
+        "source_status": "editorial_inference",
+        "statement_id": "claim-status-linear-lore-beat-05-1",
+        "text": "ここまでの手掛かりは、三つの論点へ整理できる。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-05-sentence-02-unresolved"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-02"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-linear-lore-beat-05-2",
+        "text": "トーマの所在を示す確かな記録はない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-05-sentence-03-observed-event",
+          "authority-span-linear-lore-beat-05-sentence-03-unresolved"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-03"
+        ],
+        "source_status": "mixed_observed_and_unresolved",
+        "statement_id": "claim-status-linear-lore-beat-05-3",
+        "text": "真鍮の蛾には加工と機構が見えるが、作動した記録はない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-05-sentence-04-reported-claim",
+          "authority-span-linear-lore-beat-05-sentence-04-unresolved"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-04"
+        ],
+        "source_status": "mixed_reported_and_unresolved",
+        "statement_id": "claim-status-linear-lore-beat-05-4",
+        "text": "評議会は台帳と接点を持つが、責任の所在は示されない。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-05-sentence-05-inference"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-05"
+        ],
+        "source_status": "inference",
+        "statement_id": "claim-status-linear-lore-beat-05-5",
+        "text": "塔、9時17分、蛾、台帳が同じ調査へ重なり、残る中心問題は蛾の仕組みと評議会の関与になる。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-06-sentence-01-inference",
+          "authority-span-linear-lore-beat-06-sentence-01-unresolved"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-06-sentence-01"
+        ],
+        "source_status": "suspected",
+        "statement_id": "claim-status-linear-lore-beat-06-1",
+        "text": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-06-sentence-02-unresolved"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-06-sentence-02"
+        ],
+        "source_status": "unresolved",
+        "statement_id": "claim-status-linear-lore-beat-06-2",
+        "text": "ミラには、どちらを先に救うかという選択が残る。"
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-06-sentence-03-optional"
+        ],
+        "source_span_ids": [
+          "span-linear-lore-beat-06-sentence-03"
+        ],
+        "source_status": "atmosphere_first_closure",
+        "statement_id": "claim-status-linear-lore-beat-06-3",
+        "text": "空の鐘枠に音だけが響き、選択の答えはまだ彼女の前にある。"
+      }
+    ],
+    "final_canon": false,
+    "first_introduction_wording": [
+      {
+        "entity_name": "ノース・ベル駅",
+        "introduction_id": "introduction-linear-lore-counterexample-1",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01"
+        ],
+        "wording": "ノース・ベル駅"
+      },
+      {
+        "entity_name": "ミラ・ヴェイル",
+        "introduction_id": "introduction-linear-lore-counterexample-2",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01"
+        ],
+        "wording": "時計修理師ミラ・ヴェイル"
+      },
+      {
+        "entity_name": "ガラスのアーケード",
+        "introduction_id": "introduction-linear-lore-counterexample-3",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01"
+        ],
+        "wording": "ガラスのアーケード"
+      },
+      {
+        "entity_name": "トーマ",
+        "introduction_id": "introduction-linear-lore-counterexample-4",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-02"
+        ],
+        "wording": "失踪した兄トーマ"
+      },
+      {
+        "entity_name": "市の評議会",
+        "introduction_id": "introduction-linear-lore-counterexample-5",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-01"
+        ],
+        "wording": "市の評議会"
+      }
+    ],
+    "format_id": null,
+    "image_generation": false,
+    "incident": {
+      "lineage": {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-01-sentence-01-reported-claim"
+        ],
+        "mode": "source_span",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01"
+        ]
+      },
+      "statement_id": "incident-primary",
+      "statement_kind": "incident",
+      "text": "正午、ノース・ベル駅の上にある天文台から鐘の音が響く。"
+    },
+    "information_reveal_order": [
+      {
+        "basis": "source_order",
+        "order": 1,
+        "section_or_beat_id": "linear-lore-beat-01"
+      },
+      {
+        "basis": "source_order",
+        "order": 2,
+        "section_or_beat_id": "linear-lore-beat-02"
+      },
+      {
+        "basis": "source_order",
+        "order": 3,
+        "section_or_beat_id": "linear-lore-beat-03"
+      },
+      {
+        "basis": "source_order",
+        "order": 4,
+        "section_or_beat_id": "linear-lore-beat-04"
+      },
+      {
+        "basis": "source_order",
+        "order": 5,
+        "section_or_beat_id": "linear-lore-beat-05"
+      },
+      {
+        "basis": "source_order",
+        "order": 6,
+        "section_or_beat_id": "linear-lore-beat-06"
+      }
+    ],
+    "missing_causal_edges": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-01-sentence-04-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-01-sentence-04"
+          ]
+        },
+        "statement_id": "missing-causal-linear-lore-beat-01-4",
+        "statement_kind": "missing_causal_edge",
+        "text": "音の原因だけが、塔に残された最初の異常になる。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-02-sentence-04-inference",
+            "authority-span-linear-lore-beat-02-sentence-04-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-02-sentence-04"
+          ]
+        },
+        "statement_id": "missing-causal-linear-lore-beat-02-4",
+        "statement_kind": "missing_causal_edge",
+        "text": "三つの手掛かりは、兄の失踪を塔の異常へ結びつける。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-03-sentence-03-inference"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-03-sentence-03"
+          ]
+        },
+        "statement_id": "missing-causal-linear-lore-beat-03-3",
+        "statement_kind": "missing_causal_edge",
+        "text": "文字の輪郭が薄れる表現は、記録からの消失を示唆する。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-04-sentence-02-inference"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-04-sentence-02"
+          ]
+        },
+        "statement_id": "missing-causal-linear-lore-beat-04-2",
+        "statement_kind": "missing_causal_edge",
+        "text": "評議会が調査対象になるのは、この告発と台帳の接点があるからだ。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-05-sentence-05-inference"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-05-sentence-05"
+          ]
+        },
+        "statement_id": "missing-causal-linear-lore-beat-05-5",
+        "statement_kind": "missing_causal_edge",
+        "text": "塔、9時17分、蛾、台帳が同じ調査へ重なり、残る中心問題は蛾の仕組みと評議会の関与になる。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-06-sentence-01-inference",
+            "authority-span-linear-lore-beat-06-sentence-01-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-06-sentence-01"
+          ]
+        },
+        "statement_id": "missing-causal-linear-lore-beat-06-1",
+        "statement_kind": "missing_causal_edge",
+        "text": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。"
+      }
+    ],
+    "named_entities": [
+      {
+        "entity_id": "entity-linear-lore-counterexample-1",
+        "explained_at_first_use": false,
+        "name": "ノース・ベル駅",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01"
+        ]
+      },
+      {
+        "entity_id": "entity-linear-lore-counterexample-2",
+        "explained_at_first_use": true,
+        "name": "ミラ・ヴェイル",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01"
+        ]
+      },
+      {
+        "entity_id": "entity-linear-lore-counterexample-3",
+        "explained_at_first_use": false,
+        "name": "ガラスのアーケード",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01"
+        ]
+      },
+      {
+        "entity_id": "entity-linear-lore-counterexample-4",
+        "explained_at_first_use": true,
+        "name": "トーマ",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-02"
+        ]
+      },
+      {
+        "entity_id": "entity-linear-lore-counterexample-5",
+        "explained_at_first_use": false,
+        "name": "市の評議会",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-01"
+        ]
+      }
+    ],
+    "narration_units": [
+      {
+        "end_seconds": 20,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-01-sentence-01-reported-claim",
+            "authority-span-linear-lore-beat-01-sentence-02-observed-event",
+            "authority-span-linear-lore-beat-01-sentence-03-reported-claim",
+            "authority-span-linear-lore-beat-01-sentence-04-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-01-sentence-01",
+            "span-linear-lore-beat-01-sentence-02",
+            "span-linear-lore-beat-01-sentence-03",
+            "span-linear-lore-beat-01-sentence-04"
+          ]
+        },
+        "narration_unit_id": "narration-linear-lore-beat-01",
+        "section_or_beat_id": "linear-lore-beat-01",
+        "start_seconds": 0,
+        "text": "正午、ノース・ベル駅の上にある天文台から鐘の音が響く。だが、塔の取付枠は空だ。記録では、鐘は冬の外出禁止令のころに外されている。音の原因だけが、塔に残された最初の異常になる。"
+      },
+      {
+        "end_seconds": 50,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-02-sentence-01-established-fact",
+            "authority-span-linear-lore-beat-02-sentence-02-reported-claim",
+            "authority-span-linear-lore-beat-02-sentence-02-observed-event",
+            "authority-span-linear-lore-beat-02-sentence-03-observed-event",
+            "authority-span-linear-lore-beat-02-sentence-04-inference",
+            "authority-span-linear-lore-beat-02-sentence-04-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-02-sentence-01",
+            "span-linear-lore-beat-02-sentence-02",
+            "span-linear-lore-beat-02-sentence-03",
+            "span-linear-lore-beat-02-sentence-04"
+          ]
+        },
+        "narration_unit_id": "narration-linear-lore-beat-02",
+        "section_or_beat_id": "linear-lore-beat-02",
+        "start_seconds": 20,
+        "text": "時計修理師ミラ・ヴェイルは、ガラスのアーケードで働く。彼女の引き出しには、失踪した兄トーマが残したとされるメモと真鍮の蛾がある。アーケードの閉店記録と時計面には、同じ9時17分が現れる。三つの手掛かりは、兄の失踪を塔の異常へ結びつける。"
+      },
+      {
+        "end_seconds": 80,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-03-sentence-01-reported-claim",
+            "authority-span-linear-lore-beat-03-sentence-02-observed-event",
+            "authority-span-linear-lore-beat-03-sentence-03-inference",
+            "authority-span-linear-lore-beat-03-sentence-04-unresolved",
+            "authority-span-linear-lore-beat-03-sentence-04-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-03-sentence-01",
+            "span-linear-lore-beat-03-sentence-02",
+            "span-linear-lore-beat-03-sentence-03",
+            "span-linear-lore-beat-03-sentence-04"
+          ]
+        },
+        "narration_unit_id": "narration-linear-lore-beat-03",
+        "section_or_beat_id": "linear-lore-beat-03",
+        "start_seconds": 50,
+        "text": "トーマのメモが指す先には、市の評議会に接点を持つ台帳がある。台帳には『分』の欄と、人の名前を記す欄が並ぶ。文字の輪郭が薄れる表現は、記録からの消失を示唆する。ただし、台帳の出所と真正性は確かめられていない。"
+      },
+      {
+        "end_seconds": 105,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-04-sentence-01-allegation",
+            "authority-span-linear-lore-beat-04-sentence-01-reported-claim",
+            "authority-span-linear-lore-beat-04-sentence-02-inference",
+            "authority-span-linear-lore-beat-04-sentence-03-unresolved",
+            "authority-span-linear-lore-beat-04-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-04-sentence-01",
+            "span-linear-lore-beat-04-sentence-02",
+            "span-linear-lore-beat-04-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-linear-lore-beat-04",
+        "section_or_beat_id": "linear-lore-beat-04",
+        "start_seconds": 80,
+        "text": "トーマのメモは、評議会が時間を売っていると告発する。評議会が調査対象になるのは、この告発と台帳の接点があるからだ。だが、出所の確かでない台帳だけでは、評議会の責任も動機も証明できない。"
+      },
+      {
+        "end_seconds": 155,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-05-sentence-01-inference",
+            "authority-span-linear-lore-beat-05-sentence-02-unresolved",
+            "authority-span-linear-lore-beat-05-sentence-03-observed-event",
+            "authority-span-linear-lore-beat-05-sentence-03-unresolved",
+            "authority-span-linear-lore-beat-05-sentence-04-reported-claim",
+            "authority-span-linear-lore-beat-05-sentence-04-unresolved",
+            "authority-span-linear-lore-beat-05-sentence-05-inference"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-05-sentence-01",
+            "span-linear-lore-beat-05-sentence-02",
+            "span-linear-lore-beat-05-sentence-03",
+            "span-linear-lore-beat-05-sentence-04",
+            "span-linear-lore-beat-05-sentence-05"
+          ]
+        },
+        "narration_unit_id": "narration-linear-lore-beat-05",
+        "section_or_beat_id": "linear-lore-beat-05",
+        "start_seconds": 105,
+        "text": "ここまでの手掛かりは、三つの論点へ整理できる。トーマの所在を示す確かな記録はない。真鍮の蛾には加工と機構が見えるが、作動した記録はない。評議会は台帳と接点を持つが、責任の所在は示されない。塔、9時17分、蛾、台帳が同じ調査へ重なり、残る中心問題は蛾の仕組みと評議会の関与になる。"
+      },
+      {
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-06-sentence-01-inference",
+            "authority-span-linear-lore-beat-06-sentence-01-unresolved",
+            "authority-span-linear-lore-beat-06-sentence-02-unresolved",
+            "authority-span-linear-lore-beat-06-sentence-03-optional"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-06-sentence-01",
+            "span-linear-lore-beat-06-sentence-02",
+            "span-linear-lore-beat-06-sentence-03"
+          ]
+        },
+        "narration_unit_id": "narration-linear-lore-beat-06",
+        "section_or_beat_id": "linear-lore-beat-06",
+        "start_seconds": 155,
+        "text": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。ミラには、どちらを先に救うかという選択が残る。空の鐘枠に音だけが響き、選択の答えはまだ彼女の前にある。"
+      }
+    ],
+    "narrative_ir_id": "narrative-ir-linear-lore-counterexample",
+    "production_approved": false,
+    "protagonist_or_subject": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-02-sentence-01-established-fact"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-02-sentence-01"
+          ]
+        },
+        "statement_id": "subject-linear-lore-beat-02-1",
+        "statement_kind": "protagonist_or_subject",
+        "text": "時計修理師ミラ・ヴェイルは、ガラスのアーケードで働く。"
+      }
+    ],
+    "rights_cleared_claim": false,
+    "schema_version": "fff.narrativeIr.v0",
+    "section_beat_plan": [
+      {
+        "end_seconds": 20,
+        "label": "鐘のない塔",
+        "section_or_beat_id": "linear-lore-beat-01",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-heading"
+        ],
+        "start_seconds": 0,
+        "structural_lineage": "source_span"
+      },
+      {
+        "end_seconds": 50,
+        "label": "ミラと三つの手掛かり",
+        "section_or_beat_id": "linear-lore-beat-02",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-heading"
+        ],
+        "start_seconds": 20,
+        "structural_lineage": "source_span"
+      },
+      {
+        "end_seconds": 80,
+        "label": "『分』と名前の台帳",
+        "section_or_beat_id": "linear-lore-beat-03",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-heading"
+        ],
+        "start_seconds": 50,
+        "structural_lineage": "source_span"
+      },
+      {
+        "end_seconds": 105,
+        "label": "評議会への告発",
+        "section_or_beat_id": "linear-lore-beat-04",
+        "source_span_ids": [
+          "span-linear-lore-beat-04-heading"
+        ],
+        "start_seconds": 80,
+        "structural_lineage": "source_span"
+      },
+      {
+        "end_seconds": 155,
+        "label": "手掛かりの収束",
+        "section_or_beat_id": "linear-lore-beat-05",
+        "source_span_ids": [
+          "span-linear-lore-beat-05-heading"
+        ],
+        "start_seconds": 105,
+        "structural_lineage": "source_span"
+      },
+      {
+        "end_seconds": 180,
+        "label": "時間か、名前か",
+        "section_or_beat_id": "linear-lore-beat-06",
+        "source_span_ids": [
+          "span-linear-lore-beat-06-heading"
+        ],
+        "start_seconds": 155,
+        "structural_lineage": "source_span"
+      }
+    ],
+    "source_packet_id": "source-packet-linear-lore-counterexample",
+    "source_span_lineage": [
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-01-sentence-01-reported-claim"
+        ],
+        "material_id": "event-linear-lore-beat-01-1",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-01-sentence-02-observed-event"
+        ],
+        "material_id": "event-linear-lore-beat-01-2",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-02"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-03-sentence-01-reported-claim"
+        ],
+        "material_id": "event-linear-lore-beat-03-1",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-02-sentence-01-established-fact"
+        ],
+        "material_id": "subject-linear-lore-beat-02-1",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-01-sentence-01-reported-claim"
+        ],
+        "material_id": "incident-primary",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-01-sentence-04-unresolved"
+        ],
+        "material_id": "missing-causal-linear-lore-beat-01-4",
+        "source_span_ids": [
+          "span-linear-lore-beat-01-sentence-04"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-02-sentence-04-inference",
+          "authority-span-linear-lore-beat-02-sentence-04-unresolved"
+        ],
+        "material_id": "missing-causal-linear-lore-beat-02-4",
+        "source_span_ids": [
+          "span-linear-lore-beat-02-sentence-04"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-03-sentence-03-inference"
+        ],
+        "material_id": "missing-causal-linear-lore-beat-03-3",
+        "source_span_ids": [
+          "span-linear-lore-beat-03-sentence-03"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-04-sentence-02-inference"
+        ],
+        "material_id": "missing-causal-linear-lore-beat-04-2",
+        "source_span_ids": [
+          "span-linear-lore-beat-04-sentence-02"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-05-sentence-05-inference"
+        ],
+        "material_id": "missing-causal-linear-lore-beat-05-5",
+        "source_span_ids": [
+          "span-linear-lore-beat-05-sentence-05"
+        ]
+      },
+      {
+        "authority_ids": [
+          "authority-span-linear-lore-beat-06-sentence-01-inference",
+          "authority-span-linear-lore-beat-06-sentence-01-unresolved"
+        ],
+        "material_id": "missing-causal-linear-lore-beat-06-1",
+        "source_span_ids": [
+          "span-linear-lore-beat-06-sentence-01"
+        ]
+      }
+    ],
+    "target_duration_seconds": 180,
+    "terminology_budget": {
+      "reference_bound_only": true,
+      "required_term_count": 10,
+      "required_terms": [
+        "ノース・ベル駅",
+        "天文台",
+        "冬の外出禁止令",
+        "ミラ・ヴェイル",
+        "ガラスのアーケード",
+        "トーマ",
+        "真鍮の蛾",
+        "9時17分",
+        "台帳",
+        "市の評議会"
+      ]
+    },
+    "unresolved_items": [
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-01-sentence-04-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-01-sentence-04"
+          ]
+        },
+        "statement_id": "unresolved-linear-lore-beat-01-4",
+        "statement_kind": "unresolved_item",
+        "text": "音の原因だけが、塔に残された最初の異常になる。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-02-sentence-04-inference",
+            "authority-span-linear-lore-beat-02-sentence-04-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-02-sentence-04"
+          ]
+        },
+        "statement_id": "unresolved-linear-lore-beat-02-4",
+        "statement_kind": "unresolved_item",
+        "text": "三つの手掛かりは、兄の失踪を塔の異常へ結びつける。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-03-sentence-04-unresolved",
+            "authority-span-linear-lore-beat-03-sentence-04-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-03-sentence-04"
+          ]
+        },
+        "statement_id": "unresolved-linear-lore-beat-03-4",
+        "statement_kind": "unresolved_item",
+        "text": "ただし、台帳の出所と真正性は確かめられていない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-04-sentence-03-unresolved",
+            "authority-span-linear-lore-beat-04-sentence-03-forbidden-to-infer"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-04-sentence-03"
+          ]
+        },
+        "statement_id": "unresolved-linear-lore-beat-04-3",
+        "statement_kind": "unresolved_item",
+        "text": "だが、出所の確かでない台帳だけでは、評議会の責任も動機も証明できない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-05-sentence-02-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-05-sentence-02"
+          ]
+        },
+        "statement_id": "unresolved-linear-lore-beat-05-2",
+        "statement_kind": "unresolved_item",
+        "text": "トーマの所在を示す確かな記録はない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-05-sentence-03-observed-event",
+            "authority-span-linear-lore-beat-05-sentence-03-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-05-sentence-03"
+          ]
+        },
+        "statement_id": "unresolved-linear-lore-beat-05-3",
+        "statement_kind": "unresolved_item",
+        "text": "真鍮の蛾には加工と機構が見えるが、作動した記録はない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-05-sentence-04-reported-claim",
+            "authority-span-linear-lore-beat-05-sentence-04-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-05-sentence-04"
+          ]
+        },
+        "statement_id": "unresolved-linear-lore-beat-05-4",
+        "statement_kind": "unresolved_item",
+        "text": "評議会は台帳と接点を持つが、責任の所在は示されない。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-06-sentence-01-inference",
+            "authority-span-linear-lore-beat-06-sentence-01-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-06-sentence-01"
+          ]
+        },
+        "statement_id": "unresolved-linear-lore-beat-06-1",
+        "statement_kind": "unresolved_item",
+        "text": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。"
+      },
+      {
+        "lineage": {
+          "authority_ids": [
+            "authority-span-linear-lore-beat-06-sentence-02-unresolved"
+          ],
+          "mode": "source_span",
+          "source_span_ids": [
+            "span-linear-lore-beat-06-sentence-02"
+          ]
+        },
+        "statement_id": "unresolved-linear-lore-beat-06-2",
+        "statement_kind": "unresolved_item",
+        "text": "ミラには、どちらを先に救うかという選択が残る。"
+      }
+    ],
+    "unsupported_factual_claim_count": 0,
+    "visual_intent_placeholders": [
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01",
+          "span-linear-lore-beat-01-sentence-02",
+          "span-linear-lore-beat-01-sentence-03",
+          "span-linear-lore-beat-01-sentence-04"
+        ],
+        "section_or_beat_id": "linear-lore-beat-01",
+        "shot_id": "shot-b01-01",
+        "visual_intent_id": "visual-intent-shot-b01-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01",
+          "span-linear-lore-beat-01-sentence-02",
+          "span-linear-lore-beat-01-sentence-03",
+          "span-linear-lore-beat-01-sentence-04"
+        ],
+        "section_or_beat_id": "linear-lore-beat-01",
+        "shot_id": "shot-b01-02",
+        "visual_intent_id": "visual-intent-shot-b01-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-01-sentence-01",
+          "span-linear-lore-beat-01-sentence-02",
+          "span-linear-lore-beat-01-sentence-03",
+          "span-linear-lore-beat-01-sentence-04"
+        ],
+        "section_or_beat_id": "linear-lore-beat-01",
+        "shot_id": "shot-b01-03",
+        "visual_intent_id": "visual-intent-shot-b01-03"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01",
+          "span-linear-lore-beat-02-sentence-02",
+          "span-linear-lore-beat-02-sentence-03",
+          "span-linear-lore-beat-02-sentence-04"
+        ],
+        "section_or_beat_id": "linear-lore-beat-02",
+        "shot_id": "shot-b02-01",
+        "visual_intent_id": "visual-intent-shot-b02-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01",
+          "span-linear-lore-beat-02-sentence-02",
+          "span-linear-lore-beat-02-sentence-03",
+          "span-linear-lore-beat-02-sentence-04"
+        ],
+        "section_or_beat_id": "linear-lore-beat-02",
+        "shot_id": "shot-b02-02",
+        "visual_intent_id": "visual-intent-shot-b02-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-02-sentence-01",
+          "span-linear-lore-beat-02-sentence-02",
+          "span-linear-lore-beat-02-sentence-03",
+          "span-linear-lore-beat-02-sentence-04"
+        ],
+        "section_or_beat_id": "linear-lore-beat-02",
+        "shot_id": "shot-b02-03",
+        "visual_intent_id": "visual-intent-shot-b02-03"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-03-sentence-01",
+          "span-linear-lore-beat-03-sentence-02",
+          "span-linear-lore-beat-03-sentence-03",
+          "span-linear-lore-beat-03-sentence-04"
+        ],
+        "section_or_beat_id": "linear-lore-beat-03",
+        "shot_id": "shot-b03-01",
+        "visual_intent_id": "visual-intent-shot-b03-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-03-sentence-01",
+          "span-linear-lore-beat-03-sentence-02",
+          "span-linear-lore-beat-03-sentence-03",
+          "span-linear-lore-beat-03-sentence-04"
+        ],
+        "section_or_beat_id": "linear-lore-beat-03",
+        "shot_id": "shot-b03-02",
+        "visual_intent_id": "visual-intent-shot-b03-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-03-sentence-01",
+          "span-linear-lore-beat-03-sentence-02",
+          "span-linear-lore-beat-03-sentence-03",
+          "span-linear-lore-beat-03-sentence-04"
+        ],
+        "section_or_beat_id": "linear-lore-beat-03",
+        "shot_id": "shot-b03-03",
+        "visual_intent_id": "visual-intent-shot-b03-03"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-04-sentence-01",
+          "span-linear-lore-beat-04-sentence-02",
+          "span-linear-lore-beat-04-sentence-03"
+        ],
+        "section_or_beat_id": "linear-lore-beat-04",
+        "shot_id": "shot-b04-01",
+        "visual_intent_id": "visual-intent-shot-b04-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-04-sentence-01",
+          "span-linear-lore-beat-04-sentence-02",
+          "span-linear-lore-beat-04-sentence-03"
+        ],
+        "section_or_beat_id": "linear-lore-beat-04",
+        "shot_id": "shot-b04-02",
+        "visual_intent_id": "visual-intent-shot-b04-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-04-sentence-01",
+          "span-linear-lore-beat-04-sentence-02",
+          "span-linear-lore-beat-04-sentence-03"
+        ],
+        "section_or_beat_id": "linear-lore-beat-04",
+        "shot_id": "shot-b04-03",
+        "visual_intent_id": "visual-intent-shot-b04-03"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-05-sentence-01",
+          "span-linear-lore-beat-05-sentence-02",
+          "span-linear-lore-beat-05-sentence-03",
+          "span-linear-lore-beat-05-sentence-04",
+          "span-linear-lore-beat-05-sentence-05"
+        ],
+        "section_or_beat_id": "linear-lore-beat-05",
+        "shot_id": "shot-b05-01",
+        "visual_intent_id": "visual-intent-shot-b05-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-05-sentence-01",
+          "span-linear-lore-beat-05-sentence-02",
+          "span-linear-lore-beat-05-sentence-03",
+          "span-linear-lore-beat-05-sentence-04",
+          "span-linear-lore-beat-05-sentence-05"
+        ],
+        "section_or_beat_id": "linear-lore-beat-05",
+        "shot_id": "shot-b05-02",
+        "visual_intent_id": "visual-intent-shot-b05-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-05-sentence-01",
+          "span-linear-lore-beat-05-sentence-02",
+          "span-linear-lore-beat-05-sentence-03",
+          "span-linear-lore-beat-05-sentence-04",
+          "span-linear-lore-beat-05-sentence-05"
+        ],
+        "section_or_beat_id": "linear-lore-beat-05",
+        "shot_id": "shot-b05-03",
+        "visual_intent_id": "visual-intent-shot-b05-03"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-05-sentence-01",
+          "span-linear-lore-beat-05-sentence-02",
+          "span-linear-lore-beat-05-sentence-03",
+          "span-linear-lore-beat-05-sentence-04",
+          "span-linear-lore-beat-05-sentence-05"
+        ],
+        "section_or_beat_id": "linear-lore-beat-05",
+        "shot_id": "shot-b05-04",
+        "visual_intent_id": "visual-intent-shot-b05-04"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-06-sentence-01",
+          "span-linear-lore-beat-06-sentence-02",
+          "span-linear-lore-beat-06-sentence-03"
+        ],
+        "section_or_beat_id": "linear-lore-beat-06",
+        "shot_id": "shot-b06-01",
+        "visual_intent_id": "visual-intent-shot-b06-01"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-06-sentence-01",
+          "span-linear-lore-beat-06-sentence-02",
+          "span-linear-lore-beat-06-sentence-03"
+        ],
+        "section_or_beat_id": "linear-lore-beat-06",
+        "shot_id": "shot-b06-02",
+        "visual_intent_id": "visual-intent-shot-b06-02"
+      },
+      {
+        "intent": "Source-bound placeholder only; no image generation or media selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-linear-lore-beat-06-sentence-01",
+          "span-linear-lore-beat-06-sentence-02",
+          "span-linear-lore-beat-06-sentence-03"
+        ],
+        "section_or_beat_id": "linear-lore-beat-06",
+        "shot_id": "shot-b06-03",
+        "visual_intent_id": "visual-intent-shot-b06-03"
+      }
+    ],
+    "writer_decisions_required": [
+      {
+        "decision_id": "writer-decision-linear-lore-counterexample-format",
+        "question": "Select an explicit output format without inventing missing source material.",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-linear-lore-counterexample-1",
+        "question": "鐘の音源",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-linear-lore-counterexample-2",
+        "question": "トーマの所在",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-linear-lore-counterexample-3",
+        "question": "真鍮の蛾の機能",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-linear-lore-counterexample-4",
+        "question": "台帳の真正性",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-linear-lore-counterexample-5",
+        "question": "評議会の責任と動機",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      },
+      {
+        "decision_id": "writer-decision-linear-lore-counterexample-6",
+        "question": "ミラの最終選択",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      }
+    ]
+  },
+  "schema_version": "fff.writerSourceAdaptationFixtureOutput.v0",
+  "source_packet": {
+    "author_label": null,
+    "explicit_unknowns": [
+      "鐘の音源",
+      "トーマの所在",
+      "真鍮の蛾の機能",
+      "台帳の真正性",
+      "評議会の責任と動機",
+      "ミラの最終選択"
+    ],
+    "input_envelope": {
+      "relative_path": "fixtures/writer-source-adaptation/linear-lore.prose.json",
+      "sha256": "d55123e4c387a1e96742a4f8d221ecec2694505035a7068d967d5bc860684699",
+      "utf8_byte_size": 13380
+    },
+    "input_kind": "prose_markdown_v0",
+    "intended_audience": "three-minute fiction review audience",
+    "normalization_operations": [
+      {
+        "note": "Historical source wording is retained exactly.",
+        "operation": "none",
+        "semantic": false
+      }
+    ],
+    "primary_source_file": {
+      "media_type": "text/markdown",
+      "relative_path": "artifacts/private-full-raster-clarity-candidate/narration-clarity-v1.md",
+      "sha256": "dfb7487f5007a714d207ec0be9e97f4d48550e8c18d1234f3777a884b7ce23ab",
+      "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+      "utf8_byte_size": 3492
+    },
+    "schema_version": "fff.writerSourcePacket.v0",
+    "source_files": [
+      {
+        "media_type": "text/markdown",
+        "relative_path": "artifacts/private-full-raster-clarity-candidate/narration-clarity-v1.md",
+        "sha256": "dfb7487f5007a714d207ec0be9e97f4d48550e8c18d1234f3777a884b7ce23ab",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "utf8_byte_size": 3492
+      },
+      {
+        "media_type": "text/markdown",
+        "relative_path": "artifacts/private-full-raster-clarity-candidate/story-spine-clarity-v1.md",
+        "sha256": "509f96b88ca8e9ffcc5f6218372d41010f6b7cb2db9dc23c5079746d48f5497d",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-story-spine-clarity-v1-md",
+        "utf8_byte_size": 5445
+      }
+    ],
+    "source_packet_id": "source-packet-linear-lore-counterexample",
+    "source_spans": [
+      {
+        "byte_range": {
+          "end": 201,
+          "start": 166
+        },
+        "character_range": {
+          "end": 199,
+          "start": 166,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 1 — clarity-narration-b01",
+        "exact_text_sha256": "ddf134dab25b3a8177a1bc93e5dea88264ebcc40698e738558e74768cd9444d5",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-01-narration-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 462,
+          "start": 433
+        },
+        "character_range": {
+          "end": 358,
+          "start": 341,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 1 — 鐘のない塔",
+        "exact_text_sha256": "1becf222967a1487faf9b003c37a6f43126e5e9febe152a99f7d00581c8c4051",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-story-spine-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-01-heading",
+        "structural_role": "section_title"
+      },
+      {
+        "byte_range": {
+          "end": 664,
+          "start": 403
+        },
+        "character_range": {
+          "end": 486,
+          "start": 399,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "正午、ノース・ベル駅の上にある天文台から鐘の音が響く。だが、塔の取付枠は空だ。記録では、鐘は冬の外出禁止令のころに外されている。音の原因だけが、塔に残された最初の異常になる。",
+        "exact_text_sha256": "ee88969fb888bffb7f94cabeacd971272f52a293782a930aa110b46fba64aec1",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-01-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 484,
+          "start": 403
+        },
+        "character_range": {
+          "end": 426,
+          "start": 399,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "正午、ノース・ベル駅の上にある天文台から鐘の音が響く。",
+        "exact_text_sha256": "1b7cd1d2dd0dc4d3b90bd32e425bf675e3a37fc5d22ed1f3bb5d5129834e7999",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-01-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 520,
+          "start": 484
+        },
+        "character_range": {
+          "end": 438,
+          "start": 426,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "だが、塔の取付枠は空だ。",
+        "exact_text_sha256": "356f8268bf7b82ab488eae71346007c1a0dd0584296ed3d79881a3a982f47c5c",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-01-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 595,
+          "start": 520
+        },
+        "character_range": {
+          "end": 463,
+          "start": 438,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "記録では、鐘は冬の外出禁止令のころに外されている。",
+        "exact_text_sha256": "0e38924132c8b1815cf329026a4902998c36b63c6840fcdcb47a6dca81e0d753",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-01-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 664,
+          "start": 595
+        },
+        "character_range": {
+          "end": 486,
+          "start": 463,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "音の原因だけが、塔に残された最初の異常になる。",
+        "exact_text_sha256": "9310b480ed130f9fd164d543ab42688e324b2173286e6d4f951bd89d289f2d32",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-01-sentence-04",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 701,
+          "start": 666
+        },
+        "character_range": {
+          "end": 521,
+          "start": 488,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 2 — clarity-narration-b02",
+        "exact_text_sha256": "efb1efa7885c05c0e40b67718e0c24ebc495f48e1a37941366b673a23a16363a",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-02-narration-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 1134,
+          "start": 1090
+        },
+        "character_range": {
+          "end": 716,
+          "start": 694,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 2 — ミラと三つの手掛かり",
+        "exact_text_sha256": "bcec491c487f1a684199c584e15a74a81999bbffd1b293e68811e2cc81b3d9cf",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-story-spine-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-02-heading",
+        "structural_role": "section_title"
+      },
+      {
+        "byte_range": {
+          "end": 1252,
+          "start": 904
+        },
+        "character_range": {
+          "end": 840,
+          "start": 722,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "時計修理師ミラ・ヴェイルは、ガラスのアーケードで働く。彼女の引き出しには、失踪した兄トーマが残したとされるメモと真鍮の蛾がある。アーケードの閉店記録と時計面には、同じ9時17分が現れる。三つの手掛かりは、兄の失踪を塔の異常へ結びつける。",
+        "exact_text_sha256": "f51c68a205d0adc74e565f63d311c08f33c337c9f0d9877e75596e0c484b3fc3",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-02-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 985,
+          "start": 904
+        },
+        "character_range": {
+          "end": 749,
+          "start": 722,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "時計修理師ミラ・ヴェイルは、ガラスのアーケードで働く。",
+        "exact_text_sha256": "c5d72494b201c5628ed28b53c15881d84f31e6e5680c45bcdaa83c06fdc41534",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-02-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1096,
+          "start": 985
+        },
+        "character_range": {
+          "end": 786,
+          "start": 749,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "彼女の引き出しには、失踪した兄トーマが残したとされるメモと真鍮の蛾がある。",
+        "exact_text_sha256": "3729099bb9dc00c014c3d76886daa0014733e2a116b1bc480f2c22c21f58612e",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-02-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1177,
+          "start": 1096
+        },
+        "character_range": {
+          "end": 815,
+          "start": 786,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "アーケードの閉店記録と時計面には、同じ9時17分が現れる。",
+        "exact_text_sha256": "206c0d6ec40212a8e3e1a7129fedea51bf6448496054499d89e1294b546471cd",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-02-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1252,
+          "start": 1177
+        },
+        "character_range": {
+          "end": 840,
+          "start": 815,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "三つの手掛かりは、兄の失踪を塔の異常へ結びつける。",
+        "exact_text_sha256": "cbea6770c76fa6e71001d434e6ac996c6c18e3967af2446420baf64458d135b5",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-02-sentence-04",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1289,
+          "start": 1254
+        },
+        "character_range": {
+          "end": 875,
+          "start": 842,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 3 — clarity-narration-b03",
+        "exact_text_sha256": "ac7c458f3d45ea771da3dd7a9fed12d4311718cd34c705a3a5d26cfb6a23f4d5",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-03-narration-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 2083,
+          "start": 2042
+        },
+        "character_range": {
+          "end": 1203,
+          "start": 1182,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 3 — 『分』と名前の台帳",
+        "exact_text_sha256": "548ea0321fe3122b905262e0f47961cbac0c289de1a41715a8508aa8fb56cebe",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-story-spine-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-03-heading",
+        "structural_role": "section_title"
+      },
+      {
+        "byte_range": {
+          "end": 1802,
+          "start": 1493
+        },
+        "character_range": {
+          "end": 1180,
+          "start": 1077,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "トーマのメモが指す先には、市の評議会に接点を持つ台帳がある。台帳には『分』の欄と、人の名前を記す欄が並ぶ。文字の輪郭が薄れる表現は、記録からの消失を示唆する。ただし、台帳の出所と真正性は確かめられていない。",
+        "exact_text_sha256": "75ae870c48728a7df0c14905089898c0cd1d5090d6f5d1577542233c46502867",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-03-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 1583,
+          "start": 1493
+        },
+        "character_range": {
+          "end": 1107,
+          "start": 1077,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "トーマのメモが指す先には、市の評議会に接点を持つ台帳がある。",
+        "exact_text_sha256": "54d00581912e1a701684bb1ebaa5c9b9158ec9eb60ab066521cd46be72a95257",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-03-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1652,
+          "start": 1583
+        },
+        "character_range": {
+          "end": 1130,
+          "start": 1107,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "台帳には『分』の欄と、人の名前を記す欄が並ぶ。",
+        "exact_text_sha256": "cdb13a117631d69123054894dbf1f4e3449fb0f78218505afe39bc451807cf95",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-03-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1730,
+          "start": 1652
+        },
+        "character_range": {
+          "end": 1156,
+          "start": 1130,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "文字の輪郭が薄れる表現は、記録からの消失を示唆する。",
+        "exact_text_sha256": "88d6cf0b25c3469b4b573cdf8788771d2d5eba7a46d8c782048e95a19eef4ca4",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-03-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1802,
+          "start": 1730
+        },
+        "character_range": {
+          "end": 1180,
+          "start": 1156,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "ただし、台帳の出所と真正性は確かめられていない。",
+        "exact_text_sha256": "d41e6be3965c316f301a608cf025010de9d366610afcac441dbc2df3139fdb1c",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-03-sentence-04",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 1839,
+          "start": 1804
+        },
+        "character_range": {
+          "end": 1215,
+          "start": 1182,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 4 — clarity-narration-b04",
+        "exact_text_sha256": "5eed70006760b49d04ce9eb88395b9abc60498cd10f6f306da2121d5337f814b",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-04-narration-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 2986,
+          "start": 2951
+        },
+        "character_range": {
+          "end": 1654,
+          "start": 1635,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 4 — 評議会への告発",
+        "exact_text_sha256": "580475ac14b3d5c166db868a143d74f009b1c11938f7b0704afef5b45e5ef911",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-story-spine-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-04-heading",
+        "structural_role": "section_title"
+      },
+      {
+        "byte_range": {
+          "end": 2316,
+          "start": 2040
+        },
+        "character_range": {
+          "end": 1506,
+          "start": 1414,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "トーマのメモは、評議会が時間を売っていると告発する。評議会が調査対象になるのは、この告発と台帳の接点があるからだ。だが、出所の確かでない台帳だけでは、評議会の責任も動機も証明できない。",
+        "exact_text_sha256": "9236ae912436a98b872c4b038daed0ca43cc6a580d32bf21fbbe2f7038f427df",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-04-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 2118,
+          "start": 2040
+        },
+        "character_range": {
+          "end": 1440,
+          "start": 1414,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "トーマのメモは、評議会が時間を売っていると告発する。",
+        "exact_text_sha256": "f93011155aa2ef7b56618324080d6903557215ef96f9c2e9c170193d21791b73",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-04-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2211,
+          "start": 2118
+        },
+        "character_range": {
+          "end": 1471,
+          "start": 1440,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "評議会が調査対象になるのは、この告発と台帳の接点があるからだ。",
+        "exact_text_sha256": "11b2a940a0b3e2352b9314887130dcddc433415cfd2079a0ae6d6005c451fb13",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-04-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2316,
+          "start": 2211
+        },
+        "character_range": {
+          "end": 1506,
+          "start": 1471,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "だが、出所の確かでない台帳だけでは、評議会の責任も動機も証明できない。",
+        "exact_text_sha256": "ee6b06241f048fb407d068b0769c34ca97b681c962c5309e930fa8543224bfc6",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-04-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2353,
+          "start": 2318
+        },
+        "character_range": {
+          "end": 1541,
+          "start": 1508,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 5 — clarity-narration-b05",
+        "exact_text_sha256": "5485731d749ede023265cbb6c8dbe36828b2f9c2db779377a17e9b9e3880f4d1",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-05-narration-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 3780,
+          "start": 3745
+        },
+        "character_range": {
+          "end": 2054,
+          "start": 2035,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 5 — 手掛かりの収束",
+        "exact_text_sha256": "92ad240bf2f9ad8b8e40dd10068626959c0b87f4057c1fc68562800384c8aa92",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-story-spine-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-05-heading",
+        "structural_role": "section_title"
+      },
+      {
+        "byte_range": {
+          "end": 2979,
+          "start": 2568
+        },
+        "character_range": {
+          "end": 1893,
+          "start": 1754,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "ここまでの手掛かりは、三つの論点へ整理できる。トーマの所在を示す確かな記録はない。真鍮の蛾には加工と機構が見えるが、作動した記録はない。評議会は台帳と接点を持つが、責任の所在は示されない。塔、9時17分、蛾、台帳が同じ調査へ重なり、残る中心問題は蛾の仕組みと評議会の関与になる。",
+        "exact_text_sha256": "24f2f2c52c747d7f28c5c0b89db212455b11a6494fddf822fe4ace26fb83495b",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-05-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 2637,
+          "start": 2568
+        },
+        "character_range": {
+          "end": 1777,
+          "start": 1754,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "ここまでの手掛かりは、三つの論点へ整理できる。",
+        "exact_text_sha256": "0aa2c22c640e529614318bbda03238e26be17bce8a0c23bb396b5d10d4c9b3bc",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-05-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2691,
+          "start": 2637
+        },
+        "character_range": {
+          "end": 1795,
+          "start": 1777,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "トーマの所在を示す確かな記録はない。",
+        "exact_text_sha256": "b2bd4cc14a80b217085ec93554c56629294f7cc63713a840a4413d52325d0a60",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-05-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2772,
+          "start": 2691
+        },
+        "character_range": {
+          "end": 1822,
+          "start": 1795,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "真鍮の蛾には加工と機構が見えるが、作動した記録はない。",
+        "exact_text_sha256": "1f5a2be0ee8cba47fbf7bf79db186b76404b9a7d6b92a0a07f9cd367f7dd6309",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-05-sentence-03",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2850,
+          "start": 2772
+        },
+        "character_range": {
+          "end": 1848,
+          "start": 1822,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "評議会は台帳と接点を持つが、責任の所在は示されない。",
+        "exact_text_sha256": "7880ec9a8a2c97e228f2409f06f4f68907ede61c4508e81312a4798b1c18fec5",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-05-sentence-04",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 2979,
+          "start": 2850
+        },
+        "character_range": {
+          "end": 1893,
+          "start": 1848,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "塔、9時17分、蛾、台帳が同じ調査へ重なり、残る中心問題は蛾の仕組みと評議会の関与になる。",
+        "exact_text_sha256": "cb82ade64b19f37a220d22eae05b42c0f41384606af42f552d0609f9cafba774",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-05-sentence-05",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 3016,
+          "start": 2981
+        },
+        "character_range": {
+          "end": 1928,
+          "start": 1895,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 6 — clarity-narration-b06",
+        "exact_text_sha256": "c5885a0855ec15a3a9488a7ae8ff13c5841570d85bb03b1410ded806333735a3",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-06-narration-heading",
+        "structural_role": "section_heading"
+      },
+      {
+        "byte_range": {
+          "end": 4715,
+          "start": 4680
+        },
+        "character_range": {
+          "end": 2513,
+          "start": 2494,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "## Beat 6 — 時間か、名前か",
+        "exact_text_sha256": "b020db38f57f0908e51924d8ae19f3a41772e193abadae9e7789798c998f89f2",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-story-spine-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-06-heading",
+        "structural_role": "section_title"
+      },
+      {
+        "byte_range": {
+          "end": 3491,
+          "start": 3215
+        },
+        "character_range": {
+          "end": 2217,
+          "start": 2125,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。ミラには、どちらを先に救うかという選択が残る。空の鐘枠に音だけが響き、選択の答えはまだ彼女の前にある。",
+        "exact_text_sha256": "cc7348d4c505b572866d5c712306bd1b46ffb6114f06c140b6b5157ba2898d68",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-06-text",
+        "structural_role": "section_text"
+      },
+      {
+        "byte_range": {
+          "end": 3338,
+          "start": 3215
+        },
+        "character_range": {
+          "end": 2166,
+          "start": 2125,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "台帳の空欄は、失われた時間を戻す道と、記録から消えた名前を戻す道を同じ重さで示す。",
+        "exact_text_sha256": "5f6530f1cd360575094432617cca1a40fbc06a3ebb61d318bf1032bf81d02c66",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-06-sentence-01",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 3407,
+          "start": 3338
+        },
+        "character_range": {
+          "end": 2189,
+          "start": 2166,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "ミラには、どちらを先に救うかという選択が残る。",
+        "exact_text_sha256": "3d2e904a25e65b8c4145b62b6e60d477d71d5ce9a8cb281c8e82c30cbafdb62e",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-06-sentence-02",
+        "structural_role": "material_statement"
+      },
+      {
+        "byte_range": {
+          "end": 3491,
+          "start": 3407
+        },
+        "character_range": {
+          "end": 2217,
+          "start": 2189,
+          "unit": "utf16_code_unit"
+        },
+        "exact_text": "空の鐘枠に音だけが響き、選択の答えはまだ彼女の前にある。",
+        "exact_text_sha256": "ea3f5ac172c5e9c621e359b7eae320beb2819e4c1488e7d8972eda484749ff89",
+        "origin": "source",
+        "range_reliability": "exact",
+        "source_file_id": "source-artifacts-private-full-raster-clarity-candidate-narration-clarity-v1-md",
+        "source_span_id": "span-linear-lore-beat-06-sentence-03",
+        "structural_role": "material_statement"
+      }
+    ],
+    "supplied_title": "Narration Clarity v1",
+    "target_duration_seconds": 180,
+    "writer_constraints": [
+      "historical negative fixture only",
+      "do not restore the forced time-or-names closure",
+      "do not rewrite source content to force a format pass",
+      "do not reuse the six-Beat linear-lore structure as an active template"
+    ]
+  },
+  "validation_summary": {
+    "external_request_count": 0,
+    "material_lineage_complete": true,
+    "media_generation_count": 0,
+    "provider_call_count": 0,
+    "public_effect_count": 0,
+    "schema_errors": {},
+    "schemas_valid": true,
+    "unsupported_factual_claim_count": 0
+  },
+  "writer_proposal_impact": null
+}

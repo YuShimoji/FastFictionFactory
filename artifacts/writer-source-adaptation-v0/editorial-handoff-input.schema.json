@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.editorialHandoffInput.v0",
+  "title": "Editorial Handoff Input v0",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "handoff_input_id",
+    "source_packet_id",
+    "format_id",
+    "target_duration_seconds",
+    "sections_or_beats",
+    "narration_units",
+    "caption_units",
+    "visual_intent_placeholders",
+    "truth_canon_boundaries",
+    "source_span_references",
+    "continuity_ids",
+    "closed_flags",
+    "consumer_compatibility"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "fff.editorialHandoffInput.v0"
+    },
+    "handoff_input_id": {
+      "type": "string"
+    },
+    "source_packet_id": {
+      "type": "string"
+    },
+    "format_id": {
+      "type": "string"
+    },
+    "target_duration_seconds": {
+      "type": "integer"
+    },
+    "sections_or_beats": {
+      "type": "array",
+      "minItems": 1
+    },
+    "narration_units": {
+      "type": "array",
+      "minItems": 1
+    },
+    "caption_units": {
+      "type": "array"
+    },
+    "visual_intent_placeholders": {
+      "type": "array"
+    },
+    "truth_canon_boundaries": {
+      "type": "array"
+    },
+    "source_span_references": {
+      "type": "array",
+      "minItems": 1
+    },
+    "continuity_ids": {
+      "type": "array"
+    },
+    "closed_flags": {
+      "type": "object",
+      "required": [
+        "production",
+        "rights",
+        "provider",
+        "media",
+        "render",
+        "publication",
+        "final_canon"
+      ],
+      "properties": {
+        "production": {
+          "const": false
+        },
+        "rights": {
+          "const": false
+        },
+        "provider": {
+          "const": false
+        },
+        "media": {
+          "const": false
+        },
+        "render": {
+          "const": false
+        },
+        "publication": {
+          "const": false
+        },
+        "final_canon": {
+          "const": false
+        }
+      }
+    },
+    "consumer_compatibility": {
+      "type": "object",
+      "required": [
+        "consumer_schema_version",
+        "compatible",
+        "missing_required_mappings",
+        "field_map"
+      ],
+      "properties": {
+        "consumer_schema_version": {
+          "const": "fff.editorialHandoff.v1"
+        },
+        "compatible": {
+          "const": true
+        },
+        "missing_required_mappings": {
+          "type": "array",
+          "maxItems": 0
+        },
+        "field_map": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}
