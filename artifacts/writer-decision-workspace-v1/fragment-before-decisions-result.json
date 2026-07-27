@@ -1,0 +1,30 @@
+{
+  "complete": false,
+  "editorial_handoff_input": null,
+  "exact_author_decisions_required": [
+    "fragment-order-proposal",
+    "fragment-bridge-incident-clue",
+    "fragment-bridge-clue-limit",
+    "fragment-current-status",
+    "fragment-format-selection"
+  ],
+  "fixture_id": "fragment-bundle",
+  "handoff_available": false,
+  "information_order": [
+    null,
+    null,
+    null
+  ],
+  "invented_bridge_count": 0,
+  "missing_causal_link_count": 2,
+  "predecessor_narrative_ir_identity": {
+    "byte_size": 12568,
+    "narrative_ir_id": "narrative-ir-fragment-bundle",
+    "sha256": "85d6d537f1aa638f665a465f6e51b10a1ea83e4d642f16376ed812208cf8bf58"
+  },
+  "schema_version": "fff.fragmentDecisionState.v1",
+  "source_intake_identity": {
+    "byte_size": 12034,
+    "sha256": "559664526cf70d882ddba0c87d878435c8d57bc88a07979c6f2bde6aa9167101"
+  }
+}

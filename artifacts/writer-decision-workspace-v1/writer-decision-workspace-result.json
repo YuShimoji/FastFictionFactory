@@ -1,0 +1,247 @@
+{
+  "accepted_case_digest": {
+    "accepted_source_artifact_id": "fff-private-raster-case-digest-001",
+    "five_section_semantics_stable": true,
+    "handoff_field_family_compatible": true,
+    "predecessor_artifact_id": "fff-writer-source-adaptation-v0-001",
+    "selected_format_after": "CASE_DIGEST",
+    "selected_format_before": "CASE_DIGEST",
+    "source_spans_resolve_to_actual_markdown_bytes": true,
+    "unsupported_factual_claim_count": 0
+  },
+  "artifact_id": "fff-writer-decision-workspace-v1-001",
+  "boundaries": {
+    "arbitrary_novel_adaptation": false,
+    "automatic_canon_completion": false,
+    "final_canon": false,
+    "literary_quality_claim": false,
+    "local_only": true,
+    "production_approved": false,
+    "production_ready_script": false,
+    "push_performed": false,
+    "release_ready": false,
+    "rights_cleared_claim": false
+  },
+  "decision_records": {
+    "applied_count": 3,
+    "deferred_count": 2,
+    "missing_decision_count": 2,
+    "proposal_presence_implies_acceptance": false,
+    "record_count": 11,
+    "rejected_count": 1,
+    "schema_valid": true
+  },
+  "determinism": {
+    "core_run_1_sha256": "b63db2617989697fb4da3e403a888d3ed0a9163ca5d0a133625bc2a6c4adc70b",
+    "core_run_2_sha256": "b63db2617989697fb4da3e403a888d3ed0a9163ca5d0a133625bc2a6c4adc70b",
+    "structured_outputs_match": true
+  },
+  "external_effects": {
+    "audio_generation_count": 0,
+    "credential_touch_count": 0,
+    "image_generation_count": 0,
+    "media_generation_count": 0,
+    "model_call_count": 0,
+    "network_request_count": 0,
+    "provider_call_count": 0,
+    "public_effect_count": 0,
+    "publication_count": 0,
+    "render_count": 0,
+    "video_generation_count": 0
+  },
+  "failures": [],
+  "fragment_demonstration": {
+    "after_complete": true,
+    "after_handoff_available": true,
+    "after_handoff_compatible": true,
+    "after_missing_causal_link_count": 0,
+    "after_selected_format": "CASE_DIGEST",
+    "before_complete": false,
+    "before_handoff_available": false,
+    "before_missing_causal_link_count": 2,
+    "literary_quality_established": false,
+    "mechanism_proof_only": true,
+    "project_canon_established": false
+  },
+  "html_runtime_contract": {
+    "buttons_outside_readback_filters": 0,
+    "console_error_count": 0,
+    "console_warning_count": 0,
+    "editable_control_count": 0,
+    "external_request_count": 0,
+    "external_resource_reference_count": 0,
+    "inline_script_count": 1,
+    "readback_only": true,
+    "runtime_ready": true,
+    "runtime_validation_performed": true,
+    "save_control_count": 0,
+    "tested_viewports": [
+      {
+        "height": 900,
+        "horizontal_overflow": false,
+        "width": 1360
+      },
+      {
+        "height": 844,
+        "horizontal_overflow": false,
+        "width": 390
+      }
+    ],
+    "wide_narrow_automated_test": "tests/fff-writer-decision-workspace.test.mjs"
+  },
+  "markdown_intake": {
+    "byte_character_line_reconstruction_passed": true,
+    "full_prose_embedded_in_input_json": false,
+    "line_count": 46,
+    "normalized_newline_mapping_recorded": true,
+    "segment_count": 5,
+    "semantic_normalization_performed": false,
+    "source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+    "source_utf8_sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe",
+    "supported_extensions": [
+      ".md",
+      ".txt"
+    ]
+  },
+  "passed": true,
+  "predecessor": {
+    "artifact_id": "fff-writer-source-adaptation-v0-001",
+    "commit": "11c30b264f8f257cc802ac218998479b805648e7",
+    "predecessor_ir_unchanged": true
+  },
+  "proposal_application": {
+    "forbidden_guilt_assertion_applied": false,
+    "impact_results": [
+      {
+        "action": "replace",
+        "application_status": "APPLIED_TO_CANDIDATE_SUCCESSOR",
+        "applied": true,
+        "impact_classification": "L0 wording only",
+        "proposal_id": "proposal-replace-opening-wording"
+      },
+      {
+        "action": "missing",
+        "application_status": "UNAPPLIED_MISSING_DECISION",
+        "applied": false,
+        "impact_classification": "L1 subject explanation",
+        "proposal_id": "proposal-clarify-moth-unknown"
+      },
+      {
+        "action": "missing",
+        "application_status": "UNAPPLIED_MISSING_DECISION",
+        "applied": false,
+        "impact_classification": "L1 subject explanation",
+        "proposal_id": "proposal-remove-repeated-clue-wording"
+      },
+      {
+        "action": "accept",
+        "application_status": "APPLIED_TO_CANDIDATE_SUCCESSOR",
+        "applied": true,
+        "impact_classification": "L2 relation or section impact",
+        "proposal_id": "proposal-add-relation-explanation"
+      },
+      {
+        "action": "defer",
+        "application_status": "DEFERRED_VISIBLE_UNAPPLIED",
+        "applied": false,
+        "impact_classification": "L3 format or structure impact",
+        "proposal_id": "proposal-reorder-evidence-and-allegation"
+      },
+      {
+        "action": "accept",
+        "application_status": "APPLIED_TO_CANDIDATE_SUCCESSOR",
+        "applied": true,
+        "impact_classification": "L1 subject explanation",
+        "proposal_id": "proposal-mark-council-motive-undecided"
+      },
+      {
+        "action": "defer",
+        "application_status": "DEFERRED_VISIBLE_UNAPPLIED",
+        "applied": false,
+        "impact_classification": "AUTHOR_DECISION_REQUIRED",
+        "proposal_id": "proposal-attach-brother-survival-canon"
+      },
+      {
+        "action": "reject",
+        "application_status": "REJECTED_FORBIDDEN_UNSUPPORTED_INFERENCE",
+        "applied": false,
+        "impact_classification": "FORBIDDEN_UNSUPPORTED_INFERENCE",
+        "proposal_id": "proposal-assert-council-guilt"
+      }
+    ],
+    "l2_section_local_only": true,
+    "l3_triggered_format_reselection": true,
+    "silent_application_count": 0
+  },
+  "protected_inputs": {
+    "changed_path_count": 0,
+    "changed_paths": [],
+    "exact_preflight_identities": [
+      {
+        "file_count": 24,
+        "git_tree_listing_sha256": "be93f125593ef7180ca8ebb94818327255dc743139264f0b19a4adcf3a0c0d5b",
+        "group": "writer_v0"
+      },
+      {
+        "file_count": 12,
+        "git_tree_listing_sha256": "03800253c0621348e6f25e85cd83e9dfa68e5aaf3f75637d9d7d874369ceb4ab",
+        "group": "accepted_case_digest"
+      },
+      {
+        "file_count": 28,
+        "git_tree_listing_sha256": "3e5a830f618cf328195ac3d320ca0bd9de50507e09293a5e542f6a267c82e141",
+        "group": "editorial_downstream"
+      },
+      {
+        "file_count": 1,
+        "git_tree_listing_sha256": "720b0bc4d9c85ad6d4fa021e600cf2bf812280f68b4a3966221679d2d0ec5d69",
+        "group": "narrative_visual_binding"
+      }
+    ],
+    "unchanged": true
+  },
+  "schema_validation": {
+    "malformed_required_field_checks": [
+      {
+        "rejected": true,
+        "removed_required_field": "decision_record_id",
+        "schema": "writer-decision-record.schema.json"
+      },
+      {
+        "rejected": true,
+        "removed_required_field": "schema_version",
+        "schema": "raw-markdown-intake.schema.json"
+      },
+      {
+        "rejected": true,
+        "removed_required_field": "schema_version",
+        "schema": "proposal-application-result.schema.json"
+      },
+      {
+        "rejected": true,
+        "removed_required_field": "schema_version",
+        "schema": "successor-narrative-ir.schema.json"
+      }
+    ],
+    "schema_count": 4
+  },
+  "schema_version": "fff.writerDecisionWorkspaceResult.v1",
+  "successor": {
+    "candidate_only": true,
+    "final_canon": false,
+    "handoff_field_family_compatible": true,
+    "handoff_schema_valid": true,
+    "narrative_ir_identity": {
+      "byte_size": 65366,
+      "identity_scope": "successor content excluding self-referential narrative_ir_id",
+      "narrative_ir_id": "narrative-ir-writer-proposal-successor-8e4f2b633a40",
+      "sha256": "8e4f2b633a40d4eae4d7bbf7d19d3a722139b50b2785be8bfb16c42fd49b7a21"
+    },
+    "parent_narrative_ir_identity": {
+      "byte_size": 55006,
+      "narrative_ir_id": "narrative-ir-writer-proposal-roundtrip",
+      "sha256": "3f15434f63ed26b6aae8adfb6f3929ded4c1c88b9d4925462625e21889d2f0a5"
+    },
+    "predecessor_overwritten": false
+  }
+}

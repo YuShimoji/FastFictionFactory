@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.proposalApplicationResult.v1",
+  "title": "Proposal Application Result v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "application_id",
+    "base_narrative_ir_identity",
+    "successor_narrative_ir_identity",
+    "decision_results",
+    "applied_decision_ids",
+    "rejected_decision_ids",
+    "deferred_decision_ids",
+    "missing_decision_proposal_ids",
+    "format_reselection",
+    "regeneration_scope",
+    "structural_diff",
+    "successor_narrative_ir",
+    "unsupported_factual_claim_count",
+    "candidate_only",
+    "final_canon"
+  ],
+  "properties": {
+    "schema_version": { "const": "fff.proposalApplicationResult.v1" },
+    "application_id": { "type": "string", "minLength": 1 },
+    "base_narrative_ir_identity": { "type": "object" },
+    "successor_narrative_ir_identity": { "type": "object" },
+    "decision_results": { "type": "array", "minItems": 1 },
+    "applied_decision_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string" }
+    },
+    "rejected_decision_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "deferred_decision_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "missing_decision_proposal_ids": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "format_reselection": { "type": "object" },
+    "regeneration_scope": { "type": "object" },
+    "structural_diff": { "type": "array", "minItems": 1 },
+    "successor_narrative_ir": { "type": "object" },
+    "unsupported_factual_claim_count": { "const": 0 },
+    "candidate_only": { "const": true },
+    "final_canon": { "const": false }
+  },
+  "additionalProperties": false
+}

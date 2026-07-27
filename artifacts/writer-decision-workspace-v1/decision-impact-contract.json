@@ -1,0 +1,60 @@
+{
+  "schema_version": "fff.decisionImpactContract.v1",
+  "contract_id": "fff-writer-decision-impact-contract-v1-001",
+  "levels": {
+    "L0 wording only": {
+      "may_preserve_format": true,
+      "regeneration_scope": "affected narration or caption unit only"
+    },
+    "L1 subject explanation": {
+      "may_preserve_format": true,
+      "regeneration_scope": "affected subject and section only"
+    },
+    "L2 relation or section impact": {
+      "may_preserve_format": true,
+      "regeneration_scope": "affected section only"
+    },
+    "L3 format or structure impact": {
+      "may_preserve_format": false,
+      "regeneration_scope": "format re-selection and full capacity evaluation required"
+    },
+    "AUTHOR_DECISION_REQUIRED": {
+      "auto_apply": false,
+      "regeneration_scope": "none until explicit authorized decision"
+    },
+    "FORBIDDEN_UNSUPPORTED_INFERENCE": {
+      "auto_apply": false,
+      "editorial_override_allowed": false,
+      "regeneration_scope": "none"
+    }
+  },
+  "application_gate": {
+    "allowed_actions": ["accept", "replace"],
+    "required_canon_status": "accepted_for_candidate",
+    "allowed_text_sources": [
+      "writer_authored_proposal",
+      "source_authorized_text"
+    ],
+    "proposal_presence_implies_acceptance": false,
+    "missing_decision": "UNAPPLIED",
+    "reject": "UNAPPLIED_VISIBLE",
+    "defer": "UNAPPLIED_VISIBLE"
+  },
+  "unsupported_assertion_classes": [
+    "guilt",
+    "authenticity",
+    "motive",
+    "outcome",
+    "final canon"
+  ],
+  "boundaries": {
+    "successor_is_candidate_only": true,
+    "final_canon": false,
+    "production": false,
+    "media": false,
+    "rights": false,
+    "provider": false,
+    "render": false,
+    "publication": false
+  }
+}

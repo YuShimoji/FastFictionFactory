@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.successorNarrativeIr.v1",
+  "title": "Successor Narrative IR v1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "narrative_ir_id",
+    "parent_narrative_ir_identity",
+    "format_id",
+    "audience_promise",
+    "section_beat_plan",
+    "narration_units",
+    "caption_units",
+    "visual_intent_placeholders",
+    "source_span_lineage",
+    "applied_decision_ids",
+    "rejected_decision_ids",
+    "deferred_decision_ids",
+    "unresolved_author_decisions",
+    "omitted_deferred_material",
+    "structural_diff",
+    "unsupported_factual_claim_count",
+    "candidate_only",
+    "closed_flags",
+    "final_canon"
+  ],
+  "properties": {
+    "schema_version": { "const": "fff.successorNarrativeIr.v1" },
+    "narrative_ir_id": { "type": "string", "minLength": 1 },
+    "parent_narrative_ir_identity": { "type": "object" },
+    "format_id": { "type": "string", "minLength": 1 },
+    "audience_promise": { "type": "object" },
+    "section_beat_plan": { "type": "array", "minItems": 1 },
+    "narration_units": { "type": "array", "minItems": 1 },
+    "caption_units": { "type": "array", "minItems": 1 },
+    "visual_intent_placeholders": { "type": "array", "minItems": 1 },
+    "source_span_lineage": { "type": "array", "minItems": 1 },
+    "applied_decision_ids": { "type": "array", "minItems": 1 },
+    "rejected_decision_ids": { "type": "array" },
+    "deferred_decision_ids": { "type": "array" },
+    "unresolved_author_decisions": { "type": "array" },
+    "omitted_deferred_material": { "type": "array" },
+    "structural_diff": { "type": "array", "minItems": 1 },
+    "unsupported_factual_claim_count": { "const": 0 },
+    "candidate_only": { "const": true },
+    "closed_flags": {
+      "type": "object",
+      "required": [
+        "production",
+        "media",
+        "rights",
+        "provider",
+        "render",
+        "publication"
+      ]
+    },
+    "final_canon": { "const": false }
+  },
+  "additionalProperties": false
+}

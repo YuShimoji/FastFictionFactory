@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.writerDecisionRecord.v1",
+  "title": "Writer Decision Record v1",
+  "type": "object",
+  "required": [
+    "decision_record_id",
+    "proposal_id",
+    "action",
+    "decision_author_label",
+    "decision_source",
+    "affected_source_spans",
+    "accepted_writer_authored_text",
+    "accepted_text_provenance",
+    "canon_status",
+    "downstream_impact",
+    "decision_timestamp_or_marker",
+    "rationale",
+    "reversible"
+  ],
+  "properties": {
+    "decision_record_id": { "type": "string", "minLength": 1 },
+    "proposal_id": { "type": "string", "minLength": 1 },
+    "action": {
+      "type": "string",
+      "enum": ["accept", "reject", "defer", "replace"]
+    },
+    "decision_author_label": { "type": "string", "minLength": 1 },
+    "decision_source": {
+      "type": "string",
+      "enum": ["writer", "editor", "product_owner", "fixture_author"]
+    },
+    "affected_source_spans": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "accepted_writer_authored_text": {
+      "type": ["string", "null"]
+    },
+    "accepted_text_provenance": {
+      "type": ["object", "null"],
+      "properties": {
+        "source_kind": {
+          "type": "string",
+          "enum": ["writer_authored_proposal", "source_authorized_text"]
+        },
+        "source_path": { "type": "string", "minLength": 1 },
+        "proposal_text_id": { "type": "string", "minLength": 1 }
+      },
+      "required": ["source_kind", "source_path", "proposal_text_id"]
+    },
+    "canon_status": {
+      "type": "string",
+      "enum": ["proposed", "accepted_for_candidate", "rejected", "undecided"]
+    },
+    "downstream_impact": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "decision_timestamp_or_marker": { "type": "string", "minLength": 1 },
+    "rationale": { "type": "string", "minLength": 1 },
+    "reversible": { "type": "boolean" }
+  },
+  "additionalProperties": false
+}

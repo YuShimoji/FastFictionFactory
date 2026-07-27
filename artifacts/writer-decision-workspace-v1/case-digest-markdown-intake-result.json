@@ -1,0 +1,1598 @@
+{
+  "case_digest_stability": {
+    "accepted_source_artifact_id": "fff-private-raster-case-digest-001",
+    "five_section_semantics_stable": true,
+    "handoff_field_family_compatible": true,
+    "predecessor_artifact_id": "fff-writer-source-adaptation-v0-001",
+    "selected_format_after": "CASE_DIGEST",
+    "selected_format_before": "CASE_DIGEST",
+    "source_spans_resolve_to_actual_markdown_bytes": true,
+    "unsupported_factual_claim_count": 0
+  },
+  "input_json_embeds_full_prose": false,
+  "intake_id": "intake-case-digest-accepted-markdown",
+  "line_spans": [
+    {
+      "byte_range": {
+        "end": 20,
+        "start": 0
+      },
+      "character_range": {
+        "end": 20,
+        "start": 0,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 1,
+      "line_text_sha256": "462b248b16989fb69e690afc3482250d605c84a7833d06393f7d13ff313480a7",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 20,
+        "start": 0,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 21,
+        "start": 21
+      },
+      "character_range": {
+        "end": 21,
+        "start": 21,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 2,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 21,
+        "start": 21,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 73,
+        "start": 22
+      },
+      "character_range": {
+        "end": 73,
+        "start": 22,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 3,
+      "line_text_sha256": "7c42c25d18ef77c8c225f8b93d5ea8c566cf8bfbcffc9f339252d26eaa6eddae",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 73,
+        "start": 22,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 100,
+        "start": 74
+      },
+      "character_range": {
+        "end": 100,
+        "start": 74,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 4,
+      "line_text_sha256": "1d01d43563b8b8446d9b0ce5425b92400a782db2839ed60c38423f30e2ac03c4",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 100,
+        "start": 74,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 138,
+        "start": 101
+      },
+      "character_range": {
+        "end": 138,
+        "start": 101,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 5,
+      "line_text_sha256": "264006b709b58b9eae0461c4919fcbf0520aa955feee8b16249ffd3d1a53b5a0",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 138,
+        "start": 101,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 152,
+        "start": 139
+      },
+      "character_range": {
+        "end": 152,
+        "start": 139,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 6,
+      "line_text_sha256": "dcfa5620a0f87fab9c8f7590a50955d3455cda73d258c26513643fd80ab742c5",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 152,
+        "start": 139,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 186,
+        "start": 153
+      },
+      "character_range": {
+        "end": 186,
+        "start": 153,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 7,
+      "line_text_sha256": "6632922f591501d56898c871467ee7b50600acf46b0aeaa8308116698b43c522",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 186,
+        "start": 153,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 187,
+        "start": 187
+      },
+      "character_range": {
+        "end": 187,
+        "start": 187,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 8,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 187,
+        "start": 187,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 215,
+        "start": 188
+      },
+      "character_range": {
+        "end": 203,
+        "start": 188,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 9,
+      "line_text_sha256": "bfbffa4172084349a5ac9d56650ec0522c9e0fa166e95caea2d7e109b7a12537",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 203,
+        "start": 188,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 216,
+        "start": 216
+      },
+      "character_range": {
+        "end": 204,
+        "start": 204,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 10,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 204,
+        "start": 204,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 466,
+        "start": 217
+      },
+      "character_range": {
+        "end": 288,
+        "start": 205,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 11,
+      "line_text_sha256": "ce0cc99e56b9ecb50070593c96d7794a9afd2869bce249afab52e4cede409654",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 288,
+        "start": 205,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 467,
+        "start": 467
+      },
+      "character_range": {
+        "end": 289,
+        "start": 289,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 12,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 289,
+        "start": 289,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 510,
+        "start": 468
+      },
+      "character_range": {
+        "end": 328,
+        "start": 290,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 13,
+      "line_text_sha256": "83f03f3f91083b0d461eba51af8045dbe42c008207e0c131cbf016a2c988de5e",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 328,
+        "start": 290,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 568,
+        "start": 511
+      },
+      "character_range": {
+        "end": 372,
+        "start": 329,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 14,
+      "line_text_sha256": "98b417464541f9d20fa0b4d83d27f6ac06906f7d04cf480e97525d6b807ee526",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 372,
+        "start": 329,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 569,
+        "start": 569
+      },
+      "character_range": {
+        "end": 373,
+        "start": 373,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 15,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 373,
+        "start": 373,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 616,
+        "start": 570
+      },
+      "character_range": {
+        "end": 396,
+        "start": 374,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 16,
+      "line_text_sha256": "4a59cfae99adf9b664436e0cf2efb4a47f7248baa420715770a39ac5882f5d08",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 396,
+        "start": 374,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 617,
+        "start": 617
+      },
+      "character_range": {
+        "end": 397,
+        "start": 397,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 17,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 397,
+        "start": 397,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 929,
+        "start": 618
+      },
+      "character_range": {
+        "end": 507,
+        "start": 398,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 18,
+      "line_text_sha256": "296f6d14eee57cdcae88091e3c420115658bbb96ede03f6eefd9ae37ff8c6672",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 507,
+        "start": 398,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 930,
+        "start": 930
+      },
+      "character_range": {
+        "end": 508,
+        "start": 508,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 19,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 508,
+        "start": 508,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 989,
+        "start": 931
+      },
+      "character_range": {
+        "end": 563,
+        "start": 509,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 20,
+      "line_text_sha256": "41224cc7e76f7a2715b9ea915f6afffd3205378d8b12457ec841cc1dde9d5c17",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 563,
+        "start": 509,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1048,
+        "start": 990
+      },
+      "character_range": {
+        "end": 608,
+        "start": 564,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 21,
+      "line_text_sha256": "dddf51fa4ef3c6a96595db1fc854501cb4bdc088d0f57d1bfbd87140f0faff4f",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 608,
+        "start": 564,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1049,
+        "start": 1049
+      },
+      "character_range": {
+        "end": 609,
+        "start": 609,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 22,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 609,
+        "start": 609,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1078,
+        "start": 1050
+      },
+      "character_range": {
+        "end": 626,
+        "start": 610,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 23,
+      "line_text_sha256": "06b000666f27ba5e7085e70bafe5177700f777c1c43f699bbeefd7913c7cc363",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 626,
+        "start": 610,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1079,
+        "start": 1079
+      },
+      "character_range": {
+        "end": 627,
+        "start": 627,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 24,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 627,
+        "start": 627,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1362,
+        "start": 1080
+      },
+      "character_range": {
+        "end": 722,
+        "start": 628,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 25,
+      "line_text_sha256": "aa996e65baa844ce04c6a8f350d5e8c77edfd8bd7a1de70f208901a5f3559407",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 722,
+        "start": 628,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1363,
+        "start": 1363
+      },
+      "character_range": {
+        "end": 723,
+        "start": 723,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 26,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 723,
+        "start": 723,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1406,
+        "start": 1364
+      },
+      "character_range": {
+        "end": 762,
+        "start": 724,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 27,
+      "line_text_sha256": "d536d02fdf69c11122b7f3220fb9b73ab803b00f9f41ce4d525e7829e361f1ae",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 762,
+        "start": 724,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1464,
+        "start": 1407
+      },
+      "character_range": {
+        "end": 806,
+        "start": 763,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 28,
+      "line_text_sha256": "8a1ea22ce19112aa5de95a06bb10096b49e4695077fbf1bae3f2c1874e9e4d9d",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 806,
+        "start": 763,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1465,
+        "start": 1465
+      },
+      "character_range": {
+        "end": 807,
+        "start": 807,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 29,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 807,
+        "start": 807,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1510,
+        "start": 1466
+      },
+      "character_range": {
+        "end": 830,
+        "start": 808,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 30,
+      "line_text_sha256": "084b3d054034c76aca3be4de09b09f72a2895f563c5b088753c77f1cb52a0831",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 830,
+        "start": 808,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1511,
+        "start": 1511
+      },
+      "character_range": {
+        "end": 831,
+        "start": 831,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 31,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 831,
+        "start": 831,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1815,
+        "start": 1512
+      },
+      "character_range": {
+        "end": 933,
+        "start": 832,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 32,
+      "line_text_sha256": "f3c6cb9ce400048f9d1fdab0e40ea20b7622959ad48127a4fec6c2e93fec3b5c",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 933,
+        "start": 832,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1816,
+        "start": 1816
+      },
+      "character_range": {
+        "end": 934,
+        "start": 934,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 33,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 934,
+        "start": 934,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1859,
+        "start": 1817
+      },
+      "character_range": {
+        "end": 973,
+        "start": 935,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 34,
+      "line_text_sha256": "a1c814b454343006968cba96a988166b96ab121035e593e88ae6703185a30eca",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 973,
+        "start": 935,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1917,
+        "start": 1860
+      },
+      "character_range": {
+        "end": 1017,
+        "start": 974,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 35,
+      "line_text_sha256": "46fda52685a240149a537ea67c77c85495725c6fc584e587ac5e433faea89253",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1017,
+        "start": 974,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1918,
+        "start": 1918
+      },
+      "character_range": {
+        "end": 1018,
+        "start": 1018,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 36,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1018,
+        "start": 1018,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1964,
+        "start": 1919
+      },
+      "character_range": {
+        "end": 1042,
+        "start": 1019,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 37,
+      "line_text_sha256": "8b84ea49d6945695c8d58dae9430c816413c8b7d51a1378ef4e865841144867a",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1042,
+        "start": 1019,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 1965,
+        "start": 1965
+      },
+      "character_range": {
+        "end": 1043,
+        "start": 1043,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 38,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1043,
+        "start": 1043,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 2342,
+        "start": 1966
+      },
+      "character_range": {
+        "end": 1172,
+        "start": 1044,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 39,
+      "line_text_sha256": "6365de92f4793fff5082b04f25c2b63a2d7541853b5fa3761305f82ef7d1e5db",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1172,
+        "start": 1044,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 2343,
+        "start": 2343
+      },
+      "character_range": {
+        "end": 1173,
+        "start": 1173,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 40,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1173,
+        "start": 1173,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 2386,
+        "start": 2344
+      },
+      "character_range": {
+        "end": 1212,
+        "start": 1174,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 41,
+      "line_text_sha256": "c06a429277b7271cb6016fa3334dac56b82fa94e5bd32f7c19e791d9bb9904ab",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1212,
+        "start": 1174,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 2445,
+        "start": 2387
+      },
+      "character_range": {
+        "end": 1257,
+        "start": 1213,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 42,
+      "line_text_sha256": "ade3efcc95516e8d6d3b4b1b4f691ef1551b8e41757b884d6a1c7bd5604a4c4f",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1257,
+        "start": 1213,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 2446,
+        "start": 2446
+      },
+      "character_range": {
+        "end": 1258,
+        "start": 1258,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 43,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1258,
+        "start": 1258,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 2462,
+        "start": 2447
+      },
+      "character_range": {
+        "end": 1266,
+        "start": 1259,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 44,
+      "line_text_sha256": "207de618c0f45ccc0fb743e33e970e45d434fffe1cfe997d21d88bdb1a973c82",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1266,
+        "start": 1259,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 2463,
+        "start": 2463
+      },
+      "character_range": {
+        "end": 1267,
+        "start": 1267,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 45,
+      "line_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1267,
+        "start": 1267,
+        "unit": "utf16_code_unit"
+      }
+    },
+    {
+      "byte_range": {
+        "end": 2802,
+        "start": 2464
+      },
+      "character_range": {
+        "end": 1498,
+        "start": 1268,
+        "unit": "utf16_code_unit"
+      },
+      "line_number": 46,
+      "line_text_sha256": "d761a1f0f048feeef311f41024c1007fffab7f9c43de7d2bf1789aac7f09fcef",
+      "newline_kind": "LF",
+      "normalized_character_range": {
+        "end": 1498,
+        "start": 1268,
+        "unit": "utf16_code_unit"
+      }
+    }
+  ],
+  "metadata": {
+    "relative_path": "fixtures/writer-decision-workspace/case-digest.metadata.json",
+    "sha256": "3cbe86e391be8237cccad926f1b3f6082e0480878df8f89b0cc64e86e7f89f97",
+    "source_id": "case-digest-accepted-markdown"
+  },
+  "newline_normalization": {
+    "mapping": [
+      {
+        "line_number": 1,
+        "normalized_character_range": {
+          "end": 21,
+          "start": 20
+        },
+        "original_byte_range": {
+          "end": 21,
+          "start": 20
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 2,
+        "normalized_character_range": {
+          "end": 22,
+          "start": 21
+        },
+        "original_byte_range": {
+          "end": 22,
+          "start": 21
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 3,
+        "normalized_character_range": {
+          "end": 74,
+          "start": 73
+        },
+        "original_byte_range": {
+          "end": 74,
+          "start": 73
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 4,
+        "normalized_character_range": {
+          "end": 101,
+          "start": 100
+        },
+        "original_byte_range": {
+          "end": 101,
+          "start": 100
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 5,
+        "normalized_character_range": {
+          "end": 139,
+          "start": 138
+        },
+        "original_byte_range": {
+          "end": 139,
+          "start": 138
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 6,
+        "normalized_character_range": {
+          "end": 153,
+          "start": 152
+        },
+        "original_byte_range": {
+          "end": 153,
+          "start": 152
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 7,
+        "normalized_character_range": {
+          "end": 187,
+          "start": 186
+        },
+        "original_byte_range": {
+          "end": 187,
+          "start": 186
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 8,
+        "normalized_character_range": {
+          "end": 188,
+          "start": 187
+        },
+        "original_byte_range": {
+          "end": 188,
+          "start": 187
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 9,
+        "normalized_character_range": {
+          "end": 204,
+          "start": 203
+        },
+        "original_byte_range": {
+          "end": 216,
+          "start": 215
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 10,
+        "normalized_character_range": {
+          "end": 205,
+          "start": 204
+        },
+        "original_byte_range": {
+          "end": 217,
+          "start": 216
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 11,
+        "normalized_character_range": {
+          "end": 289,
+          "start": 288
+        },
+        "original_byte_range": {
+          "end": 467,
+          "start": 466
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 12,
+        "normalized_character_range": {
+          "end": 290,
+          "start": 289
+        },
+        "original_byte_range": {
+          "end": 468,
+          "start": 467
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 13,
+        "normalized_character_range": {
+          "end": 329,
+          "start": 328
+        },
+        "original_byte_range": {
+          "end": 511,
+          "start": 510
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 14,
+        "normalized_character_range": {
+          "end": 373,
+          "start": 372
+        },
+        "original_byte_range": {
+          "end": 569,
+          "start": 568
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 15,
+        "normalized_character_range": {
+          "end": 374,
+          "start": 373
+        },
+        "original_byte_range": {
+          "end": 570,
+          "start": 569
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 16,
+        "normalized_character_range": {
+          "end": 397,
+          "start": 396
+        },
+        "original_byte_range": {
+          "end": 617,
+          "start": 616
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 17,
+        "normalized_character_range": {
+          "end": 398,
+          "start": 397
+        },
+        "original_byte_range": {
+          "end": 618,
+          "start": 617
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 18,
+        "normalized_character_range": {
+          "end": 508,
+          "start": 507
+        },
+        "original_byte_range": {
+          "end": 930,
+          "start": 929
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 19,
+        "normalized_character_range": {
+          "end": 509,
+          "start": 508
+        },
+        "original_byte_range": {
+          "end": 931,
+          "start": 930
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 20,
+        "normalized_character_range": {
+          "end": 564,
+          "start": 563
+        },
+        "original_byte_range": {
+          "end": 990,
+          "start": 989
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 21,
+        "normalized_character_range": {
+          "end": 609,
+          "start": 608
+        },
+        "original_byte_range": {
+          "end": 1049,
+          "start": 1048
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 22,
+        "normalized_character_range": {
+          "end": 610,
+          "start": 609
+        },
+        "original_byte_range": {
+          "end": 1050,
+          "start": 1049
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 23,
+        "normalized_character_range": {
+          "end": 627,
+          "start": 626
+        },
+        "original_byte_range": {
+          "end": 1079,
+          "start": 1078
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 24,
+        "normalized_character_range": {
+          "end": 628,
+          "start": 627
+        },
+        "original_byte_range": {
+          "end": 1080,
+          "start": 1079
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 25,
+        "normalized_character_range": {
+          "end": 723,
+          "start": 722
+        },
+        "original_byte_range": {
+          "end": 1363,
+          "start": 1362
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 26,
+        "normalized_character_range": {
+          "end": 724,
+          "start": 723
+        },
+        "original_byte_range": {
+          "end": 1364,
+          "start": 1363
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 27,
+        "normalized_character_range": {
+          "end": 763,
+          "start": 762
+        },
+        "original_byte_range": {
+          "end": 1407,
+          "start": 1406
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 28,
+        "normalized_character_range": {
+          "end": 807,
+          "start": 806
+        },
+        "original_byte_range": {
+          "end": 1465,
+          "start": 1464
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 29,
+        "normalized_character_range": {
+          "end": 808,
+          "start": 807
+        },
+        "original_byte_range": {
+          "end": 1466,
+          "start": 1465
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 30,
+        "normalized_character_range": {
+          "end": 831,
+          "start": 830
+        },
+        "original_byte_range": {
+          "end": 1511,
+          "start": 1510
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 31,
+        "normalized_character_range": {
+          "end": 832,
+          "start": 831
+        },
+        "original_byte_range": {
+          "end": 1512,
+          "start": 1511
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 32,
+        "normalized_character_range": {
+          "end": 934,
+          "start": 933
+        },
+        "original_byte_range": {
+          "end": 1816,
+          "start": 1815
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 33,
+        "normalized_character_range": {
+          "end": 935,
+          "start": 934
+        },
+        "original_byte_range": {
+          "end": 1817,
+          "start": 1816
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 34,
+        "normalized_character_range": {
+          "end": 974,
+          "start": 973
+        },
+        "original_byte_range": {
+          "end": 1860,
+          "start": 1859
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 35,
+        "normalized_character_range": {
+          "end": 1018,
+          "start": 1017
+        },
+        "original_byte_range": {
+          "end": 1918,
+          "start": 1917
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 36,
+        "normalized_character_range": {
+          "end": 1019,
+          "start": 1018
+        },
+        "original_byte_range": {
+          "end": 1919,
+          "start": 1918
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 37,
+        "normalized_character_range": {
+          "end": 1043,
+          "start": 1042
+        },
+        "original_byte_range": {
+          "end": 1965,
+          "start": 1964
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 38,
+        "normalized_character_range": {
+          "end": 1044,
+          "start": 1043
+        },
+        "original_byte_range": {
+          "end": 1966,
+          "start": 1965
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 39,
+        "normalized_character_range": {
+          "end": 1173,
+          "start": 1172
+        },
+        "original_byte_range": {
+          "end": 2343,
+          "start": 2342
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 40,
+        "normalized_character_range": {
+          "end": 1174,
+          "start": 1173
+        },
+        "original_byte_range": {
+          "end": 2344,
+          "start": 2343
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 41,
+        "normalized_character_range": {
+          "end": 1213,
+          "start": 1212
+        },
+        "original_byte_range": {
+          "end": 2387,
+          "start": 2386
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 42,
+        "normalized_character_range": {
+          "end": 1258,
+          "start": 1257
+        },
+        "original_byte_range": {
+          "end": 2446,
+          "start": 2445
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 43,
+        "normalized_character_range": {
+          "end": 1259,
+          "start": 1258
+        },
+        "original_byte_range": {
+          "end": 2447,
+          "start": 2446
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 44,
+        "normalized_character_range": {
+          "end": 1267,
+          "start": 1266
+        },
+        "original_byte_range": {
+          "end": 2463,
+          "start": 2462
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 45,
+        "normalized_character_range": {
+          "end": 1268,
+          "start": 1267
+        },
+        "original_byte_range": {
+          "end": 2464,
+          "start": 2463
+        },
+        "original_kind": "LF"
+      },
+      {
+        "line_number": 46,
+        "normalized_character_range": {
+          "end": 1499,
+          "start": 1498
+        },
+        "original_byte_range": {
+          "end": 2803,
+          "start": 2802
+        },
+        "original_kind": "LF"
+      }
+    ],
+    "non_semantic": true,
+    "normalized_text_sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe",
+    "original_counts": {
+      "CR": 0,
+      "CRLF": 0,
+      "EOF": 0,
+      "LF": 46
+    },
+    "target": "LF"
+  },
+  "reconstruction_passed": true,
+  "schema_version": "fff.rawMarkdownIntake.v1",
+  "segments": [
+    {
+      "byte_range": {
+        "end": 568,
+        "start": 188
+      },
+      "character_range": {
+        "end": 372,
+        "start": 188,
+        "unit": "utf16_code_unit"
+      },
+      "declared_order": null,
+      "exact_text_sha256": "d3f988a375927330fc0de3bdcba43497421aa1d051e818555edcf7ae35c559b2",
+      "line_range": {
+        "end": 14,
+        "start": 9
+      },
+      "origin_source_path": null,
+      "origin_source_span_id": null,
+      "segment_id": "case-digest-section-01-incident",
+      "semantic_roles": [
+        "incident",
+        "evidence_limit"
+      ],
+      "span_id": "span-case-digest-section-01-incident"
+    },
+    {
+      "byte_range": {
+        "end": 1048,
+        "start": 570
+      },
+      "character_range": {
+        "end": 608,
+        "start": 374,
+        "unit": "utf16_code_unit"
+      },
+      "declared_order": null,
+      "exact_text_sha256": "3cdfc3a716ac5f33dca3727201d4c794e92d4ada93b11921c8988a148b3d02ff",
+      "line_range": {
+        "end": 21,
+        "start": 16
+      },
+      "origin_source_path": null,
+      "origin_source_span_id": null,
+      "segment_id": "case-digest-section-02-investigator",
+      "semantic_roles": [
+        "investigation_context",
+        "evidence_or_clue"
+      ],
+      "span_id": "span-case-digest-section-02-investigator"
+    },
+    {
+      "byte_range": {
+        "end": 1464,
+        "start": 1050
+      },
+      "character_range": {
+        "end": 806,
+        "start": 610,
+        "unit": "utf16_code_unit"
+      },
+      "declared_order": null,
+      "exact_text_sha256": "3807696c7b206ad7683c6a27483321dce430d65a1a5980b628f3896240296737",
+      "line_range": {
+        "end": 28,
+        "start": 23
+      },
+      "origin_source_path": null,
+      "origin_source_span_id": null,
+      "segment_id": "case-digest-section-03-ledger",
+      "semantic_roles": [
+        "evidence_or_clue",
+        "evidence_limit"
+      ],
+      "span_id": "span-case-digest-section-03-ledger"
+    },
+    {
+      "byte_range": {
+        "end": 1917,
+        "start": 1466
+      },
+      "character_range": {
+        "end": 1017,
+        "start": 808,
+        "unit": "utf16_code_unit"
+      },
+      "declared_order": null,
+      "exact_text_sha256": "3d5d48ae3f75b61fcd05857f68c96ddb01af6add52a7139ebc750a5882ce16e1",
+      "line_range": {
+        "end": 35,
+        "start": 30
+      },
+      "origin_source_path": null,
+      "origin_source_span_id": null,
+      "segment_id": "case-digest-section-04-council",
+      "semantic_roles": [
+        "allegation_or_hypothesis",
+        "evidence_limit"
+      ],
+      "span_id": "span-case-digest-section-04-council"
+    },
+    {
+      "byte_range": {
+        "end": 2445,
+        "start": 1919
+      },
+      "character_range": {
+        "end": 1257,
+        "start": 1019,
+        "unit": "utf16_code_unit"
+      },
+      "declared_order": null,
+      "exact_text_sha256": "736591d6405a6448e0e7bb32fe0f55e36a716826acb8399cb35b63be64fc2a96",
+      "line_range": {
+        "end": 42,
+        "start": 37
+      },
+      "origin_source_path": null,
+      "origin_source_span_id": null,
+      "segment_id": "case-digest-section-05-status",
+      "semantic_roles": [
+        "current_status",
+        "evidence_limit"
+      ],
+      "span_id": "span-case-digest-section-05-status"
+    }
+  ],
+  "semantic_normalization_performed": false,
+  "source": {
+    "exact_text_sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe",
+    "media_type": "text/markdown",
+    "relative_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+    "text_character_count": 1499,
+    "utf8_byte_size": 2803,
+    "utf8_sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe"
+  }
+}

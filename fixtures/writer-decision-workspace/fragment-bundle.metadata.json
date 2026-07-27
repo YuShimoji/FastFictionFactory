@@ -1,0 +1,46 @@
+{
+  "schema_version": "fff.rawMarkdownMetadata.v1",
+  "source_id": "fragment-bundle-markdown",
+  "input_kind": "fragment_bundle",
+  "source_file_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+  "media_type": "text/markdown",
+  "format_identity": null,
+  "target_duration_seconds": 180,
+  "semantic_normalization_allowed": false,
+  "newline_normalization": "record_only_lf_target",
+  "segments": [
+    {
+      "segment_id": "fragment-clue-chain",
+      "line_start": 6,
+      "line_end": 6,
+      "declared_order": null,
+      "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+      "origin_source_span_id": "span-case-digest-section-02-investigator-sentence-02",
+      "semantic_roles": ["evidence_or_clue", "event"]
+    },
+    {
+      "segment_id": "fragment-council-limit",
+      "line_start": 9,
+      "line_end": 9,
+      "declared_order": null,
+      "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+      "origin_source_span_id": "span-case-digest-section-04-council-sentence-02",
+      "semantic_roles": ["evidence_limit", "unresolved_major_question"]
+    },
+    {
+      "segment_id": "fragment-incident",
+      "line_start": 12,
+      "line_end": 12,
+      "declared_order": null,
+      "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+      "origin_source_span_id": "span-case-digest-section-01-incident-sentence-01",
+      "semantic_roles": ["incident", "primary_event", "event"]
+    }
+  ],
+  "fixture_boundary": {
+    "actual_project_source": false,
+    "fixture_author_decisions_required": true,
+    "candidate_only": true,
+    "final_canon": false
+  }
+}

@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="ja" data-runtime-ready="false">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Writer Decision Workspace v1</title>
+<style>
+:root{color-scheme:light;--paper:#f5f1e8;--ink:#1f2826;--muted:#66706c;--rule:#b8beb7;--panel:#fffdf7;--accent:#174f45;--applied:#276a47;--deferred:#986b13;--rejected:#983c35;--unresolved:#5f6571}*{box-sizing:border-box}html,body{margin:0;min-width:0;background:var(--paper);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}main{width:min(1180px,100%);margin:auto;padding:24px clamp(16px,4vw,48px) 56px}header{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:end;padding:8px 0 20px;border-bottom:3px solid var(--ink)}h1{font:700 clamp(1.65rem,4vw,2.6rem)/1.05 Georgia,serif;margin:4px 0 8px}h2{font:700 1.25rem/1.2 Georgia,serif;margin:0 0 12px}h3{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin:0 0 8px;color:var(--muted)}p{max-width:78ch}p,li,code{overflow-wrap:anywhere;word-break:break-word}.kicker{margin:0;color:var(--accent);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem}.runtime{font-size:.82rem;color:var(--muted);text-align:right}.band{display:flex;gap:18px;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid var(--rule);font-size:.86rem}.band strong{color:var(--accent)}.section{min-width:0;padding:26px 0;border-bottom:1px solid var(--rule)}.source-layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:24px;min-width:0}.source-text,.panel{background:var(--panel);border:1px solid var(--rule);padding:16px;min-width:0}.source-text{max-height:520px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.65 ui-monospace,Consolas,monospace}.panel ul{padding-left:20px}.table-wrap{overflow:auto;max-width:100%;min-width:0;border:1px solid var(--rule);background:var(--panel)}table{border-collapse:collapse;width:100%;table-layout:fixed}th,td{padding:9px 10px;text-align:left;vertical-align:top;border-bottom:1px solid #d8dbd5;overflow-wrap:anywhere}th{font-size:.78rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.filters{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 12px}.filters button{border:1px solid var(--rule);background:var(--panel);color:var(--ink);padding:6px 10px;border-radius:999px;cursor:pointer}.filters button[aria-pressed="true"]{background:var(--accent);color:white;border-color:var(--accent)}.pill{display:inline-block;border:1px solid currentColor;border-radius:999px;padding:1px 7px;font-size:.78rem}.applied{color:var(--applied)}.deferred{color:var(--deferred)}.rejected{color:var(--rejected)}.unresolved{color:var(--unresolved)}tr[hidden]{display:none}.diff{margin:0 0 20px}.diff>p{margin:0 0 8px}.diff>div{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}.diff section{min-width:0;background:var(--panel);border:1px solid var(--rule);padding:12px}.diff pre{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;max-height:260px;overflow:auto}.handoff{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}.handoff div{background:var(--panel);padding:14px}.handoff strong{display:block;font:700 1.55rem/1.1 Georgia,serif}.boundary{border-left:4px solid var(--rejected);padding:4px 0 4px 14px}.fine{color:var(--muted);font-size:.86rem}@media(max-width:760px){main{padding:16px 14px 40px}header{grid-template-columns:minmax(0,1fr)}.runtime{text-align:left}.source-layout,.diff>div{grid-template-columns:minmax(0,1fr)}.handoff{grid-template-columns:repeat(2,minmax(0,1fr))}table{min-width:680px}.section{padding:20px 0}}@media(max-width:420px){.handoff{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body><main>
+<header><div><p class="kicker">Candidate-only readback · no save controls</p><h1>Writer Decision Workspace v1</h1><p>実 Markdown bytes、proposal provenance、明示 decision、successor Narrative IR、Editorial Handoff input を同じ読解面で照合します。</p></div><p class="runtime" id="runtime-status">runtime pending</p></header>
+<div class="band"><span>Artifact <strong>fff-writer-decision-workspace-v1-001</strong></span><span>CASE_DIGEST <strong>stable</strong></span><span>Unsupported facts <strong>0</strong></span><span>Final canon <strong>false</strong></span></div>
+<section class="section"><h2>Actual source and byte spans</h2><div class="source-layout"><pre class="source-text" id="source-text"># CASE_DIGEST script
+
+- artifact_id: `fff-private-raster-case-digest-001`
+- format_id: `CASE_DIGEST`
+- duration: 180 seconds / 5400 frames
+- sections: 5
+- authored line-break hints: none
+
+## 1. 事件（0–24秒）
+
+正午、鐘のない塔から鐘の音が響いたと報告された。塔の取付枠は空で、音を生む鐘は見当たらない。確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。
+
+対象 shot: `shot-b01-01` / `shot-b01-02`
+文字数: 83 / 読み密度: 3.458 characters per second
+
+## 2. 調査者と手掛かり（24–65秒）
+
+時計修理師のミラ・ヴェイルは、失踪した兄が残したとされるメモを調べている。作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。メモ、蛾、9:17は一つの手掛かりの連鎖だが、兄の所在を直接示す記録ではない。
+
+対象 shot: `shot-b02-01` / `shot-b02-02` / `shot-b02-03`
+文字数: 109 / 読み密度: 2.659 characters per second
+
+## 3. 記録（65–97秒）
+
+調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。現在の画像から確認できるのは二種類の記録形式だけである。この台帳が時間を奪う、または人を消すという因果関係は証明されていない。
+
+対象 shot: `shot-b03-01` / `shot-b03-02`
+文字数: 94 / 読み密度: 2.938 characters per second
+
+## 4. 疑いと証拠限界（97–136秒）
+
+失踪した兄のメモは、市の評議会に調査の目を向けている。だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。
+
+対象 shot: `shot-b04-01` / `shot-b04-02`
+文字数: 101 / 読み密度: 2.59 characters per second
+
+## 5. 現在の事件状況（136–180秒）
+
+この事件で確認されているのは、正午に報告された鐘の音、空の取付枠、失踪した兄のメモ、真鍮の蛾、9:17、二列の台帳である。時間と名前は台帳に記録された二つの損失区分として扱う。音源、兄の所在、評議会との関係は確認されていない。塔は現在も調査対象として残る。
+
+対象 shot: `shot-b06-01` / `shot-b06-03`
+文字数: 128 / 読み密度: 2.909 characters per second
+
+## 権限境界
+
+これは無音のprivate review用CASE_DIGESTです。人による理解確認はCASE_DIGEST comprehension、review-caption wording/readability、既存visual sequenceに限って成立しています。production subtitle selection、production acceptance、rights clearance、公開、音声、final canonは成立していません。
+</pre><div class="panel"><p><strong>artifacts/private-raster-case-digest/case-digest-script.md</strong></p><p class="fine">UTF-8 2803 bytes<br>SHA-256 <code>4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe</code></p><p>入力 JSON は全文を複製せず、path と metadata sidecar だけを持ちます。改行正規化は非意味的 mapping としてのみ記録されています。</p></div></div><div class="table-wrap"><table><thead><tr><th>Span</th><th>Lines</th><th>Bytes</th><th>Exact hash</th></tr></thead><tbody><tr><td><code>span-case-digest-section-01-incident</code></td><td>9–14</td><td>188–568</td><td><code>d3f988a375927330…</code></td></tr><tr><td><code>span-case-digest-section-02-investigator</code></td><td>16–21</td><td>570–1048</td><td><code>3cdfc3a716ac5f33…</code></td></tr><tr><td><code>span-case-digest-section-03-ledger</code></td><td>23–28</td><td>1050–1464</td><td><code>3807696c7b206ad7…</code></td></tr><tr><td><code>span-case-digest-section-04-council</code></td><td>30–35</td><td>1466–1917</td><td><code>3d5d48ae3f75b61f…</code></td></tr><tr><td><code>span-case-digest-section-05-status</code></td><td>37–42</td><td>1919–2445</td><td><code>736591d6405a6448…</code></td></tr></tbody></table></div></section>
+<section class="section"><h2>Proposal decisions and provenance</h2><div class="filters" aria-label="Readback row filter"><button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="applied" aria-pressed="false">Applied</button><button type="button" data-filter="deferred" aria-pressed="false">Deferred</button><button type="button" data-filter="rejected" aria-pressed="false">Rejected</button><button type="button" data-filter="unresolved" aria-pressed="false">Missing decision</button></div><div class="table-wrap"><table><thead><tr><th>Proposal</th><th>Proposal text</th><th>Provenance</th><th>Impact</th><th>Result</th><th>Action</th><th>Application</th></tr></thead><tbody id="decision-rows"><tr data-decision-status="applied"><td><code>proposal-replace-opening-wording</code></td><td>正午、鐘のない塔で鐘の音が響いたとの報告がある。</td><td><code>writer_authored_proposal</code><br><span class="fine">fixtures/writer-decision-workspace/writer-proposals.md</span></td><td>L0 wording only</td><td><span class="pill applied">applied</span></td><td>replace</td><td>APPLIED_TO_CANDIDATE_SUCCESSOR</td></tr><tr data-decision-status="unresolved"><td><code>proposal-clarify-moth-unknown</code></td><td>その働きは、まだ分からない。</td><td><code>existing_revision_example</code><br><span class="fine">artifacts/editorial-revision/revision-request.example.json</span></td><td>L1 subject explanation</td><td><span class="pill unresolved">unresolved</span></td><td>missing</td><td>UNAPPLIED_MISSING_DECISION</td></tr><tr data-decision-status="unresolved"><td><code>proposal-remove-repeated-clue-wording</code></td><td>—</td><td><code>none</code><br><span class="fine">no text source</span></td><td>L1 subject explanation</td><td><span class="pill unresolved">unresolved</span></td><td>missing</td><td>UNAPPLIED_MISSING_DECISION</td></tr><tr data-decision-status="applied"><td><code>proposal-add-relation-explanation</code></td><td>台帳と失踪の関係を、因果未確認のまま一段だけ説明する。</td><td><code>writer_authored_proposal</code><br><span class="fine">fixtures/writer-decision-workspace/writer-proposals.md</span></td><td>L2 relation or section impact</td><td><span class="pill applied">applied</span></td><td>accept</td><td>APPLIED_TO_CANDIDATE_SUCCESSOR</td></tr><tr data-decision-status="deferred"><td><code>proposal-reorder-evidence-and-allegation</code></td><td>告発より先に台帳の証拠限界を提示する。</td><td><code>writer_authored_proposal</code><br><span class="fine">fixtures/writer-decision-workspace/writer-proposals.md</span></td><td>L3 format or structure impact</td><td><span class="pill deferred">deferred</span></td><td>defer</td><td>DEFERRED_VISIBLE_UNAPPLIED</td></tr><tr data-decision-status="applied"><td><code>proposal-mark-council-motive-undecided</code></td><td>評議会の動機は作者判断まで未決定と明記する。</td><td><code>writer_authored_proposal</code><br><span class="fine">fixtures/writer-decision-workspace/writer-proposals.md</span></td><td>L1 subject explanation</td><td><span class="pill applied">applied</span></td><td>accept</td><td>APPLIED_TO_CANDIDATE_SUCCESSOR</td></tr><tr data-decision-status="deferred"><td><code>proposal-attach-brother-survival-canon</code></td><td>兄は生存して潜伏している。</td><td><code>writer_authored_proposal</code><br><span class="fine">fixtures/writer-decision-workspace/writer-proposals.md</span></td><td>AUTHOR_DECISION_REQUIRED</td><td><span class="pill deferred">deferred</span></td><td>defer</td><td>DEFERRED_VISIBLE_UNAPPLIED</td></tr><tr data-decision-status="rejected"><td><code>proposal-assert-council-guilt</code></td><td>評議会が事件を起こしたことは確定している。</td><td><code>writer_authored_proposal</code><br><span class="fine">fixtures/writer-decision-workspace/writer-proposals.md</span></td><td>FORBIDDEN_UNSUPPORTED_INFERENCE</td><td><span class="pill rejected">rejected</span></td><td>reject</td><td>REJECTED_FORBIDDEN_UNSUPPORTED_INFERENCE</td></tr></tbody></table></div></section>
+<section class="section"><h2>Before / after Narrative IR</h2><article class="diff"><p><code>/caption_units/0</code> · <code>decision-replace-opening-wording</code></p><div><section><h3>Before</h3><pre>{
+  &quot;caption_unit_id&quot;: &quot;caption-case-digest-section-01-incident-1&quot;,
+  &quot;end_seconds&quot;: 12,
+  &quot;lineage&quot;: {
+    &quot;authority_ids&quot;: [
+      &quot;authority-span-case-digest-section-01-incident-sentence-01-reported-claim&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-01-must-preserve&quot;
+    ],
+    &quot;mode&quot;: &quot;source_span&quot;,
+    &quot;source_span_ids&quot;: [
+      &quot;span-case-digest-section-01-incident-sentence-01&quot;
+    ]
+  },
+  &quot;section_or_beat_id&quot;: &quot;case-digest-section-01-incident&quot;,
+  &quot;start_seconds&quot;: 0,
+  &quot;text&quot;: &quot;正午、鐘のない塔から鐘の音が響いたと報告された。&quot;
+}</pre></section><section><h3>After</h3><pre>{
+  &quot;caption_unit_id&quot;: &quot;caption-case-digest-section-01-incident-1&quot;,
+  &quot;end_seconds&quot;: 12,
+  &quot;lineage&quot;: {
+    &quot;mode&quot;: &quot;writer_authored_proposal&quot;,
+    &quot;source_span_ids&quot;: [
+      &quot;proposal-span-proposal-replace-opening-wording&quot;
+    ],
+    &quot;authority_ids&quot;: [],
+    &quot;decision_record_ids&quot;: [
+      &quot;decision-replace-opening-wording&quot;
+    ]
+  },
+  &quot;section_or_beat_id&quot;: &quot;case-digest-section-01-incident&quot;,
+  &quot;start_seconds&quot;: 0,
+  &quot;text&quot;: &quot;正午、鐘のない塔で鐘の音が響いたとの報告がある。&quot;,
+  &quot;source_lineage&quot;: [
+    {
+      &quot;source_span_id&quot;: &quot;proposal-span-proposal-replace-opening-wording&quot;,
+      &quot;source_kind&quot;: &quot;writer_authored_proposal&quot;,
+      &quot;source_path&quot;: &quot;fixtures/writer-decision-workspace/writer-proposals.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;start&quot;: 161,
+        &quot;end&quot;: 185,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;start&quot;: 229,
+        &quot;end&quot;: 301
+      },
+      &quot;exact_text_sha256&quot;: &quot;ec003f03d958ec74762ce04001c415a92a6e47c2beaded42a27be2da521ea547&quot;,
+      &quot;decision_record_id&quot;: &quot;decision-replace-opening-wording&quot;
+    }
+  ]
+}</pre></section></div></article><article class="diff"><p><code>/narration_units/0</code> · <code>decision-replace-opening-wording</code></p><div><section><h3>Before</h3><pre>{
+  &quot;end_seconds&quot;: 24,
+  &quot;lineage&quot;: {
+    &quot;authority_ids&quot;: [
+      &quot;authority-span-case-digest-section-01-incident-sentence-01-reported-claim&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-01-must-preserve&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-02-observed-event&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-02-must-preserve&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-03-unresolved&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-03-forbidden-to-infer&quot;
+    ],
+    &quot;mode&quot;: &quot;source_span&quot;,
+    &quot;source_span_ids&quot;: [
+      &quot;span-case-digest-section-01-incident-sentence-01&quot;,
+      &quot;span-case-digest-section-01-incident-sentence-02&quot;,
+      &quot;span-case-digest-section-01-incident-sentence-03&quot;
+    ]
+  },
+  &quot;narration_unit_id&quot;: &quot;narration-case-digest-section-01-incident&quot;,
+  &quot;section_or_beat_id&quot;: &quot;case-digest-section-01-incident&quot;,
+  &quot;start_seconds&quot;: 0,
+  &quot;text&quot;: &quot;正午、鐘のない塔から鐘の音が響いたと報告された。塔の取付枠は空で、音を生む鐘は見当たらない。確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。&quot;
+}</pre></section><section><h3>After</h3><pre>{
+  &quot;end_seconds&quot;: 24,
+  &quot;lineage&quot;: {
+    &quot;mode&quot;: &quot;mixed_source_and_writer_authorized&quot;,
+    &quot;source_span_ids&quot;: [
+      &quot;span-case-digest-section-01-incident-sentence-01&quot;,
+      &quot;span-case-digest-section-01-incident-sentence-02&quot;,
+      &quot;span-case-digest-section-01-incident-sentence-03&quot;,
+      &quot;proposal-span-proposal-replace-opening-wording&quot;
+    ],
+    &quot;authority_ids&quot;: [
+      &quot;authority-span-case-digest-section-01-incident-sentence-01-reported-claim&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-01-must-preserve&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-02-observed-event&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-02-must-preserve&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-03-unresolved&quot;,
+      &quot;authority-span-case-digest-section-01-incident-sentence-03-forbidden-to-infer&quot;
+    ],
+    &quot;decision_record_ids&quot;: [
+      &quot;decision-replace-opening-wording&quot;
+    ]
+  },
+  &quot;narration_unit_id&quot;: &quot;narration-case-digest-section-01-incident&quot;,
+  &quot;section_or_beat_id&quot;: &quot;case-digest-section-01-incident&quot;,
+  &quot;start_seconds&quot;: 0,
+  &quot;text&quot;: &quot;正午、鐘のない塔で鐘の音が響いたとの報告がある。塔の取付枠は空で、音を生む鐘は見当たらない。確認できるのは、目撃された現象と空の枠だけであり、音源は特定されていない。&quot;,
+  &quot;source_lineage&quot;: [
+    {
+      &quot;source_span_id&quot;: &quot;span-case-digest-section-01-incident-sentence-01&quot;,
+      &quot;source_kind&quot;: &quot;accepted_source&quot;,
+      &quot;source_path&quot;: &quot;artifacts/private-raster-case-digest/case-digest-script.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;end&quot;: 229,
+        &quot;start&quot;: 205,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;end&quot;: 289,
+        &quot;start&quot;: 217
+      },
+      &quot;exact_text_sha256&quot;: &quot;504887dcd575afc26e72221e0e7eb9fd975e957e6d45cafde1b2f01b0c8cb4e0&quot;
+    },
+    {
+      &quot;source_span_id&quot;: &quot;span-case-digest-section-01-incident-sentence-02&quot;,
+      &quot;source_kind&quot;: &quot;accepted_source&quot;,
+      &quot;source_path&quot;: &quot;artifacts/private-raster-case-digest/case-digest-script.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;end&quot;: 251,
+        &quot;start&quot;: 229,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;end&quot;: 355,
+        &quot;start&quot;: 289
+      },
+      &quot;exact_text_sha256&quot;: &quot;c67293e3205afab701b39dd2eddc906f0f55ee6edfabdd3ea314149e4e461bb8&quot;
+    },
+    {
+      &quot;source_span_id&quot;: &quot;span-case-digest-section-01-incident-sentence-03&quot;,
+      &quot;source_kind&quot;: &quot;accepted_source&quot;,
+      &quot;source_path&quot;: &quot;artifacts/private-raster-case-digest/case-digest-script.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;end&quot;: 288,
+        &quot;start&quot;: 251,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;end&quot;: 466,
+        &quot;start&quot;: 355
+      },
+      &quot;exact_text_sha256&quot;: &quot;2e6ba7f52c7ae8cf42f7e678d58026571cea370da48a5f69d2b18a6ea6195354&quot;
+    },
+    {
+      &quot;source_span_id&quot;: &quot;proposal-span-proposal-replace-opening-wording&quot;,
+      &quot;source_kind&quot;: &quot;writer_authored_proposal&quot;,
+      &quot;source_path&quot;: &quot;fixtures/writer-decision-workspace/writer-proposals.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;start&quot;: 161,
+        &quot;end&quot;: 185,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;start&quot;: 229,
+        &quot;end&quot;: 301
+      },
+      &quot;exact_text_sha256&quot;: &quot;ec003f03d958ec74762ce04001c415a92a6e47c2beaded42a27be2da521ea547&quot;,
+      &quot;decision_record_id&quot;: &quot;decision-replace-opening-wording&quot;
+    }
+  ]
+}</pre></section></div></article><article class="diff"><p><code>/narration_units/2</code> · <code>decision-accept-relation-explanation</code></p><div><section><h3>Before</h3><pre>{
+  &quot;end_seconds&quot;: 97,
+  &quot;lineage&quot;: {
+    &quot;authority_ids&quot;: [
+      &quot;authority-span-case-digest-section-03-ledger-sentence-01-observed-event&quot;,
+      &quot;authority-span-case-digest-section-03-ledger-sentence-02-observed-event&quot;,
+      &quot;authority-span-case-digest-section-03-ledger-sentence-02-must-preserve&quot;,
+      &quot;authority-span-case-digest-section-03-ledger-sentence-03-unresolved&quot;,
+      &quot;authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer&quot;
+    ],
+    &quot;mode&quot;: &quot;source_span&quot;,
+    &quot;source_span_ids&quot;: [
+      &quot;span-case-digest-section-03-ledger-sentence-01&quot;,
+      &quot;span-case-digest-section-03-ledger-sentence-02&quot;,
+      &quot;span-case-digest-section-03-ledger-sentence-03&quot;
+    ]
+  },
+  &quot;narration_unit_id&quot;: &quot;narration-case-digest-section-03-ledger&quot;,
+  &quot;section_or_beat_id&quot;: &quot;case-digest-section-03-ledger&quot;,
+  &quot;start_seconds&quot;: 65,
+  &quot;text&quot;: &quot;調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。現在の画像から確認できるのは二種類の記録形式だけである。この台帳が時間を奪う、または人を消すという因果関係は証明されていない。&quot;
+}</pre></section><section><h3>After</h3><pre>{
+  &quot;end_seconds&quot;: 97,
+  &quot;lineage&quot;: {
+    &quot;mode&quot;: &quot;mixed_source_and_writer_authorized&quot;,
+    &quot;source_span_ids&quot;: [
+      &quot;span-case-digest-section-03-ledger-sentence-01&quot;,
+      &quot;span-case-digest-section-03-ledger-sentence-02&quot;,
+      &quot;span-case-digest-section-03-ledger-sentence-03&quot;,
+      &quot;proposal-span-proposal-add-relation-explanation&quot;
+    ],
+    &quot;authority_ids&quot;: [
+      &quot;authority-span-case-digest-section-03-ledger-sentence-01-observed-event&quot;,
+      &quot;authority-span-case-digest-section-03-ledger-sentence-02-observed-event&quot;,
+      &quot;authority-span-case-digest-section-03-ledger-sentence-02-must-preserve&quot;,
+      &quot;authority-span-case-digest-section-03-ledger-sentence-03-unresolved&quot;,
+      &quot;authority-span-case-digest-section-03-ledger-sentence-03-forbidden-to-infer&quot;
+    ],
+    &quot;decision_record_ids&quot;: [
+      &quot;decision-accept-relation-explanation&quot;
+    ]
+  },
+  &quot;narration_unit_id&quot;: &quot;narration-case-digest-section-03-ledger&quot;,
+  &quot;section_or_beat_id&quot;: &quot;case-digest-section-03-ledger&quot;,
+  &quot;start_seconds&quot;: 65,
+  &quot;text&quot;: &quot;調査対象の台帳には、「分」を記す欄と、人の名前を記す欄が並ぶ。現在の画像から確認できるのは二種類の記録形式だけである。この台帳が時間を奪う、または人を消すという因果関係は証明されていない。 台帳と失踪の関係を、因果未確認のまま一段だけ説明する。&quot;,
+  &quot;source_lineage&quot;: [
+    {
+      &quot;source_span_id&quot;: &quot;span-case-digest-section-03-ledger-sentence-01&quot;,
+      &quot;source_kind&quot;: &quot;accepted_source&quot;,
+      &quot;source_path&quot;: &quot;artifacts/private-raster-case-digest/case-digest-script.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;end&quot;: 659,
+        &quot;start&quot;: 628,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;end&quot;: 1173,
+        &quot;start&quot;: 1080
+      },
+      &quot;exact_text_sha256&quot;: &quot;9780b475dcd7766251c7e3c9d98ad7bed2085ebe59eb3fdd0d17efcc5c8f547a&quot;
+    },
+    {
+      &quot;source_span_id&quot;: &quot;span-case-digest-section-03-ledger-sentence-02&quot;,
+      &quot;source_kind&quot;: &quot;accepted_source&quot;,
+      &quot;source_path&quot;: &quot;artifacts/private-raster-case-digest/case-digest-script.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;end&quot;: 687,
+        &quot;start&quot;: 659,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;end&quot;: 1257,
+        &quot;start&quot;: 1173
+      },
+      &quot;exact_text_sha256&quot;: &quot;723f1d8df0c2153f28f38714216eb146d5df421d0003697d23153b80b83603b9&quot;
+    },
+    {
+      &quot;source_span_id&quot;: &quot;span-case-digest-section-03-ledger-sentence-03&quot;,
+      &quot;source_kind&quot;: &quot;accepted_source&quot;,
+      &quot;source_path&quot;: &quot;artifacts/private-raster-case-digest/case-digest-script.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;end&quot;: 722,
+        &quot;start&quot;: 687,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;end&quot;: 1362,
+        &quot;start&quot;: 1257
+      },
+      &quot;exact_text_sha256&quot;: &quot;6138436e5a185a5d093d3c1fdaf407e842923d92eaa6877c57ae76d9f13d7145&quot;
+    },
+    {
+      &quot;source_span_id&quot;: &quot;proposal-span-proposal-add-relation-explanation&quot;,
+      &quot;source_kind&quot;: &quot;writer_authored_proposal&quot;,
+      &quot;source_path&quot;: &quot;fixtures/writer-decision-workspace/writer-proposals.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;start&quot;: 290,
+        &quot;end&quot;: 317,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;start&quot;: 450,
+        &quot;end&quot;: 531
+      },
+      &quot;exact_text_sha256&quot;: &quot;06bd45c49bc003561ac881250014712d56eaa69e5ec6ad9ef04b3b9d7be60580&quot;,
+      &quot;decision_record_id&quot;: &quot;decision-accept-relation-explanation&quot;
+    }
+  ]
+}</pre></section></div></article><article class="diff"><p><code>/narration_units/3</code> · <code>decision-accept-motive-undecided</code></p><div><section><h3>Before</h3><pre>{
+  &quot;end_seconds&quot;: 136,
+  &quot;lineage&quot;: {
+    &quot;authority_ids&quot;: [
+      &quot;authority-span-case-digest-section-04-council-sentence-01-reported-claim&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-01-allegation&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-02-forbidden-to-infer&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-02-must-preserve&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-03-unresolved&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-03-forbidden-to-infer&quot;
+    ],
+    &quot;mode&quot;: &quot;source_span&quot;,
+    &quot;source_span_ids&quot;: [
+      &quot;span-case-digest-section-04-council-sentence-01&quot;,
+      &quot;span-case-digest-section-04-council-sentence-02&quot;,
+      &quot;span-case-digest-section-04-council-sentence-03&quot;
+    ]
+  },
+  &quot;narration_unit_id&quot;: &quot;narration-case-digest-section-04-council&quot;,
+  &quot;section_or_beat_id&quot;: &quot;case-digest-section-04-council&quot;,
+  &quot;start_seconds&quot;: 97,
+  &quot;text&quot;: &quot;失踪した兄のメモは、市の評議会に調査の目を向けている。だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。&quot;
+}</pre></section><section><h3>After</h3><pre>{
+  &quot;end_seconds&quot;: 136,
+  &quot;lineage&quot;: {
+    &quot;mode&quot;: &quot;mixed_source_and_writer_authorized&quot;,
+    &quot;source_span_ids&quot;: [
+      &quot;span-case-digest-section-04-council-sentence-01&quot;,
+      &quot;span-case-digest-section-04-council-sentence-02&quot;,
+      &quot;span-case-digest-section-04-council-sentence-03&quot;,
+      &quot;proposal-span-proposal-mark-council-motive-undecided&quot;
+    ],
+    &quot;authority_ids&quot;: [
+      &quot;authority-span-case-digest-section-04-council-sentence-01-reported-claim&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-01-allegation&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-02-forbidden-to-infer&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-02-must-preserve&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-03-unresolved&quot;,
+      &quot;authority-span-case-digest-section-04-council-sentence-03-forbidden-to-infer&quot;
+    ],
+    &quot;decision_record_ids&quot;: [
+      &quot;decision-accept-motive-undecided&quot;
+    ]
+  },
+  &quot;narration_unit_id&quot;: &quot;narration-case-digest-section-04-council&quot;,
+  &quot;section_or_beat_id&quot;: &quot;case-digest-section-04-council&quot;,
+  &quot;start_seconds&quot;: 97,
+  &quot;text&quot;: &quot;失踪した兄のメモは、市の評議会に調査の目を向けている。だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。台帳の出所と真正性も確認されておらず、責任や動機を断定できる段階にはない。 評議会の動機は作者判断まで未決定と明記する。&quot;,
+  &quot;source_lineage&quot;: [
+    {
+      &quot;source_span_id&quot;: &quot;span-case-digest-section-04-council-sentence-01&quot;,
+      &quot;source_kind&quot;: &quot;accepted_source&quot;,
+      &quot;source_path&quot;: &quot;artifacts/private-raster-case-digest/case-digest-script.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;end&quot;: 859,
+        &quot;start&quot;: 832,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;end&quot;: 1593,
+        &quot;start&quot;: 1512
+      },
+      &quot;exact_text_sha256&quot;: &quot;2ac75de2d8607bcd90a8fbf0d81ba58c7eef8a3edf13e0ab417ce487d8cd2d4d&quot;
+    },
+    {
+      &quot;source_span_id&quot;: &quot;span-case-digest-section-04-council-sentence-02&quot;,
+      &quot;source_kind&quot;: &quot;accepted_source&quot;,
+      &quot;source_path&quot;: &quot;artifacts/private-raster-case-digest/case-digest-script.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;end&quot;: 896,
+        &quot;start&quot;: 859,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;end&quot;: 1704,
+        &quot;start&quot;: 1593
+      },
+      &quot;exact_text_sha256&quot;: &quot;26383beb269f8f12199e4a5a1822cf3d7d7c7868c23db50fcb5295ed0906667b&quot;
+    },
+    {
+      &quot;source_span_id&quot;: &quot;span-case-digest-section-04-council-sentence-03&quot;,
+      &quot;source_kind&quot;: &quot;accepted_source&quot;,
+      &quot;source_path&quot;: &quot;artifacts/private-raster-case-digest/case-digest-script.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;end&quot;: 933,
+        &quot;start&quot;: 896,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;end&quot;: 1815,
+        &quot;start&quot;: 1704
+      },
+      &quot;exact_text_sha256&quot;: &quot;fed432adb34b45982f1713627cd35703f92f60fcc28fb896d1920d8325dde9da&quot;
+    },
+    {
+      &quot;source_span_id&quot;: &quot;proposal-span-proposal-mark-council-motive-undecided&quot;,
+      &quot;source_kind&quot;: &quot;writer_authored_proposal&quot;,
+      &quot;source_path&quot;: &quot;fixtures/writer-decision-workspace/writer-proposals.md&quot;,
+      &quot;character_range&quot;: {
+        &quot;start&quot;: 229,
+        &quot;end&quot;: 251,
+        &quot;unit&quot;: &quot;utf16_code_unit&quot;
+      },
+      &quot;byte_range&quot;: {
+        &quot;start&quot;: 345,
+        &quot;end&quot;: 411
+      },
+      &quot;exact_text_sha256&quot;: &quot;d860044d7e2bfc21a468a8bab4be36af36900782b9503e052af79918ee0e4e29&quot;,
+      &quot;decision_record_id&quot;: &quot;decision-accept-motive-undecided&quot;
+    }
+  ]
+}</pre></section></div></article></section>
+<section class="section"><h2>Format and fragment completion</h2><div class="source-layout"><div class="panel"><h3>Writer proposal successor</h3><p>Selected: <strong>CASE_DIGEST</strong></p><p>L3 evaluation: true; deferred L3 applied: false</p><p>Affected sections: case-digest-section-01-incident, case-digest-section-03-ledger, case-digest-section-04-council</p></div><div class="panel"><h3>Fragment demonstration</h3><p>Before: incomplete, order unknown, causal links 2, Handoff unavailable.</p><p>After: <strong>CASE_DIGEST</strong>, causal links 0, Handoff compatible true.</p><p>Rejected alternatives: SHORT_DRAMA — No source-supported enacted dramatic outcome; LORE_EXPLAINER — No explicit concept hierarchy</p><p class="fine">Mechanism proof only; not project canon or literary-quality evidence.</p></div></div></section>
+<section class="section"><h2>Successor Handoff summary</h2><div class="handoff"><div><span>Format</span><strong>CASE_DIGEST</strong></div><div><span>Sections</span><strong>5</strong></div><div><span>Narration</span><strong>5</strong></div><div><span>Captions</span><strong>11</strong></div></div><p>Consumer field-family compatible: <strong>true</strong>. Production/media/rights/provider/render/publication/final canon flags remain false.</p></section>
+<section class="section"><h2>Unresolved author and canon boundary</h2><ul><li><code>writer-decision-case-digest-1</code> — AUTHOR_DECISION_REQUIRED</li><li><code>writer-decision-case-digest-2</code> — AUTHOR_DECISION_REQUIRED</li><li><code>writer-decision-case-digest-3</code> — AUTHOR_DECISION_REQUIRED</li><li><code>writer-decision-case-digest-4</code> — AUTHOR_DECISION_REQUIRED</li><li><code>writer-decision-case-digest-5</code> — AUTHOR_DECISION_REQUIRED</li><li><code>proposal-clarify-moth-unknown</code> — UNAPPLIED_MISSING_DECISION</li><li><code>proposal-remove-repeated-clue-wording</code> — UNAPPLIED_MISSING_DECISION</li><li><code>proposal-reorder-evidence-and-allegation</code> — DEFERRED_VISIBLE_UNAPPLIED</li><li><code>proposal-attach-brother-survival-canon</code> — DEFERRED_VISIBLE_UNAPPLIED</li><li><code>proposal-assert-council-guilt</code> — REJECTED_FORBIDDEN_UNSUPPORTED_INFERENCE</li></ul><p class="boundary"><strong>This page is a readback, not an editor.</strong> 表示上の filter は保存・accept・reject を行いません。fixture-author text は candidate mechanism の証拠であり、実プロジェクト canon、文学的品質、production-ready script を成立させません。</p></section>
+</main>
+<script>
+(()=>{const buttons=[...document.querySelectorAll("[data-filter]")];const rows=[...document.querySelectorAll("[data-decision-status]")];for(const button of buttons){button.addEventListener("click",()=>{const filter=button.dataset.filter;for(const candidate of buttons)candidate.setAttribute("aria-pressed",String(candidate===button));for(const row of rows)row.hidden=filter!=="all"&&row.dataset.decisionStatus!==filter;});}document.documentElement.dataset.runtimeReady="true";document.getElementById("runtime-status").textContent="read-only runtime ready · "+rows.length+" proposals";window.__FFF_WRITER_WORKSPACE__={ready:true,decisionRowCount:rows.length,saveControlCount:0,externalResourceCount:0};})();
+</script>
+</body></html>
