@@ -1,0 +1,796 @@
+{
+  "schemaVersion": "fff.caseDigestControlPlaneIntegrationEvidence.v1",
+  "artifact_id": "fff-case-digest-control-plane-integration-evidence-001",
+  "mission_id": "fff-case-digest-control-plane-integration-evidence-001",
+  "passed": true,
+  "failures": [],
+  "support_only": true,
+  "product_gate": false,
+  "target_base": "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e",
+  "accepted_local_inputs": [
+    {
+      "role": "control_plane_predecessor",
+      "commit_id": "dab9810961b64f1e31420f18797e897e1ef05819"
+    },
+    {
+      "role": "writer_source_adaptation",
+      "commit_id": "11c30b264f8f257cc802ac218998479b805648e7"
+    }
+  ],
+  "frozen_predecessor_inventory": {
+    "commit_id": "dab9810961b64f1e31420f18797e897e1ef05819",
+    "observed_result_total": 85,
+    "inventory_sha256": "361e16663e2da86e18c5c30c853fc23c8a598460c06e673de1d9a6ca20c06b73",
+    "items": [
+      {
+        "path": "artifacts/adoption-candidate-ledger-dry-run-result.json",
+        "artifact_id": "fff-adoption-candidate-ledger-dry-run-001",
+        "byte_size": 6329,
+        "sha256": "6f3538f4f98efb63e0e5cec553dbe428bea087dddc7fe8a7d8d8b9994eae2af3"
+      },
+      {
+        "path": "artifacts/ambiguous-routing-resolution-result.json",
+        "artifact_id": "fff-ambiguous-routing-resolution-001",
+        "byte_size": 15573,
+        "sha256": "aa017f39694b651a9c8f6d6163f7f3492677db04f141614477e2d50495475343"
+      },
+      {
+        "path": "artifacts/apply-decision-shell-guard-diet-result.json",
+        "artifact_id": "fff-apply-decision-shell-guard-diet-001",
+        "byte_size": 7747,
+        "sha256": "87c270b6770c85b83c0511253877f7b9f20f345b2215a20637de7aa035fa0b6f"
+      },
+      {
+        "path": "artifacts/asset-rights-readiness-packet-result.json",
+        "artifact_id": "fff-asset-rights-readiness-packet-001",
+        "byte_size": 62807,
+        "sha256": "b188db9d0a36ca895af90041855efc55cdff0db6bdec17cbe1950bb0ac2611af"
+      },
+      {
+        "path": "artifacts/beat2-composition-board-result.json",
+        "artifact_id": "fff-beat2-composition-board-001",
+        "byte_size": 13299,
+        "sha256": "1fc50134b60e0d59c2592167081a8ba2a495f09cb920950eccbbc73fdacee4b6"
+      },
+      {
+        "path": "artifacts/beat2-visual-treatment-pilot-result.json",
+        "artifact_id": "fff-beat2-visual-treatment-pilot-001",
+        "byte_size": 14830,
+        "sha256": "efbeb419908bd857ae37e80f7e24d2b3c0856b10bc45a89f8ba7607b42fd109f"
+      },
+      {
+        "path": "artifacts/beat4-composition-counterexample-result.json",
+        "artifact_id": "fff-beat4-composition-counterexample-001",
+        "byte_size": 15545,
+        "sha256": "437c342b03aa5b81ad09f2e0f1965e77d92db721ee3ed4a01007ad4664f39db9"
+      },
+      {
+        "path": "artifacts/bridge-editorial-handoff-pack-result.json",
+        "artifact_id": "fff-bridge-editorial-handoff-pack-001",
+        "byte_size": 11002,
+        "sha256": "b55c0df56e7f7708661d0bbdfb8ab1462facabace765b9de039afacb73191809"
+      },
+      {
+        "path": "artifacts/bridge-refinement-overview-ribbon-result.json",
+        "artifact_id": "fff-bridge-refinement-overview-ribbon-001",
+        "byte_size": 6090,
+        "sha256": "d52ba37327d595da7e61e2cf4e1de003e6691cc688d687a81f04c289ea41f662"
+      },
+      {
+        "path": "artifacts/bridge-storyboard-flow-result.json",
+        "artifact_id": "fff-bridge-storyboard-flow-001",
+        "byte_size": 8689,
+        "sha256": "f04e51e81d8afb2cc3239aaaae4001c7013cd0b605f88ad7379f073cb416dd5a"
+      },
+      {
+        "path": "artifacts/broad-span-split-result.json",
+        "artifact_id": "fff-broad-span-split-001",
+        "byte_size": 6977,
+        "sha256": "b4e1a3b6efda5915fb985d03f628431bd0feb50c869ec3295509de0f307acaf9"
+      },
+      {
+        "path": "artifacts/case-digest-control-plane-convergence-result.json",
+        "artifact_id": "fff-case-digest-control-plane-convergence-001",
+        "byte_size": 10204,
+        "sha256": "37ac6229214905ecdf2afd54e95d0c1f5c9654d285f055b9767b245cfe2ac2e3"
+      },
+      {
+        "path": "artifacts/checkpoint-readback-result.json",
+        "artifact_id": null,
+        "byte_size": 3229,
+        "sha256": "6432c61dc3b478e8335125f4300cf3561fdb38c01c41e943bfee042105642e62"
+      },
+      {
+        "path": "artifacts/claim-ledger-smoke-result.json",
+        "artifact_id": "fff-claim-ledger-001",
+        "byte_size": 1680,
+        "sha256": "6512f5294d814be0402ea1910d5eae88078c8b8ed7352e5b3b532d45b5d49fd2"
+      },
+      {
+        "path": "artifacts/composition-expansion-wave1-result.json",
+        "artifact_id": "fff-composition-expansion-wave1-001",
+        "byte_size": 65059,
+        "sha256": "295755e5406bf25d548d74d42d426098dbb142fb11a88a14c8d63971f5a05bc0"
+      },
+      {
+        "path": "artifacts/composition-expansion-wave2-result.json",
+        "artifact_id": "fff-composition-expansion-wave2-001",
+        "byte_size": 93500,
+        "sha256": "389d20e13cf38ecc7ab18358ae3e1337613823a590177a4ff1ee6de17f857fc8"
+      },
+      {
+        "path": "artifacts/content-production-blueprint-result.json",
+        "artifact_id": "fff-content-production-blueprint-001",
+        "byte_size": 24859,
+        "sha256": "4efa372c31d43746fe54673b4f9edeb489109d0811a7621d37d404c89c2be04f"
+      },
+      {
+        "path": "artifacts/contradictory-claim-guard-result.json",
+        "artifact_id": "fff-contradictory-claim-guard-001",
+        "byte_size": 5991,
+        "sha256": "f877fa02a8c3b9a951b9147a8c877f99bb8e7dd11d09fbd2a65417f88c2f91a8"
+      },
+      {
+        "path": "artifacts/designer-candidate-dashboard-result.json",
+        "artifact_id": "fff-designer-candidate-dashboard-001",
+        "byte_size": 11589,
+        "sha256": "1f49c436aa62e9039afcbb7ab9ae4cfbf0cfd679c0337ed5341a54e14ca66b94"
+      },
+      {
+        "path": "artifacts/downstream-adoption-gate-scope-lock-result.json",
+        "artifact_id": "fff-downstream-adoption-gate-scope-lock-001",
+        "byte_size": 4015,
+        "sha256": "bf46e7823c7c4466c6d840258ea4372df8651ede903509b4728afeb7c623051a"
+      },
+      {
+        "path": "artifacts/downstream-adoption-semantics-design-result.json",
+        "artifact_id": "fff-downstream-adoption-semantics-design-001",
+        "byte_size": 10785,
+        "sha256": "6d44edc7454a10e35b9d586016bfd4fd78395b317711657162ccd2c11bb58212"
+      },
+      {
+        "path": "artifacts/downstream-source-span-adoption-gate-result.json",
+        "artifact_id": "fff-downstream-source-span-adoption-gate-001",
+        "byte_size": 4711,
+        "sha256": "464d49956e3adcf7eb866203039fd844b5121b2faa2d0ede1b93f20b70dda201"
+      },
+      {
+        "path": "artifacts/downstream-target-authorization-packet-result.json",
+        "artifact_id": "fff-downstream-target-authorization-packet-001",
+        "byte_size": 11726,
+        "sha256": "b43bbcd8bae1439dfc00829bd7dc66414a8819035ea2e7858cc6834b17367eaa"
+      },
+      {
+        "path": "artifacts/draft-review-pack-stabilization-result.json",
+        "artifact_id": "fff-draft-review-pack-stabilization-001",
+        "byte_size": 4777,
+        "sha256": "4f88d2261e70f5224e8918074b6c7be9d40ad383f0e964ff3ddb8d1859d0dcb1"
+      },
+      {
+        "path": "artifacts/draft-to-video-planning-bridge-result.json",
+        "artifact_id": "fff-draft-to-video-planning-bridge-001",
+        "byte_size": 9524,
+        "sha256": "eab235c68ad129b8c470ee4625f86e2c758e30808ee035725fe0f87124734565"
+      },
+      {
+        "path": "artifacts/editorial-derivative-preview-result.json",
+        "artifact_id": "fff-editorial-derivative-preview-001",
+        "byte_size": 19916,
+        "sha256": "7ca260b1f1fae745b8d353d361b17f203576c81b025234e7a6df49e1a478bbbc"
+      },
+      {
+        "path": "artifacts/editorial-revision-roundtrip-result.json",
+        "artifact_id": "fff-editorial-revision-roundtrip-001",
+        "byte_size": 9909,
+        "sha256": "89de7f993bd467c1fe49d54204e4f97c47de67f1361f07be27d24a943f2cce84"
+      },
+      {
+        "path": "artifacts/export-import-smoke-result.json",
+        "artifact_id": "fff-mvp-export-import-001",
+        "byte_size": 1381,
+        "sha256": "57763c60e0908e7b61a9e791511f6d51d200945fdf79fa12eba2844ab345c0c8"
+      },
+      {
+        "path": "artifacts/extraction-contract-smoke-result.json",
+        "artifact_id": "fff-extraction-contract-001",
+        "byte_size": 1774,
+        "sha256": "cfc5187664f9783766cf55a76ec776cbdcb749205bb7eeca99b6ceb4790c0cc1"
+      },
+      {
+        "path": "artifacts/extraction-validator-smoke-result.json",
+        "artifact_id": "fff-extraction-validator-hardening-001",
+        "byte_size": 12723,
+        "sha256": "a474894b095b129e9d320910597b6ea85293e1ecd6a1d1cceed5e5f8342438f9"
+      },
+      {
+        "path": "artifacts/file-persistence-smoke-result.json",
+        "artifact_id": "fff-local-persistence-ergonomics-001",
+        "byte_size": 1616,
+        "sha256": "2517ef2d0d7d32e79f3b4da8a73370b3544db9a2cbac3ed60e8a6dde352407be"
+      },
+      {
+        "path": "artifacts/freeform-review-intake-smoke-result.json",
+        "artifact_id": "fff-extraction-contract-001",
+        "byte_size": 754,
+        "sha256": "8dce053264203f3969b49383d3048b1681e9bd501e984cc415f789eba7146847"
+      },
+      {
+        "path": "artifacts/guided-review-flow-workspace-result.json",
+        "artifact_id": "fff-guided-review-flow-workspace-001",
+        "byte_size": 6485,
+        "sha256": "f926ded31203fdecc7aff6d8ae880869f72c1f41688b1355092a0612c1cf7b1a"
+      },
+      {
+        "path": "artifacts/held-claim-adoption-preflight-result.json",
+        "artifact_id": "fff-held-claim-adoption-preflight-001",
+        "byte_size": 6651,
+        "sha256": "ecaf37d98c88ce378e83ed313db9ec3f533bd56502d3f44c5d2bfccd5028e267"
+      },
+      {
+        "path": "artifacts/high-fidelity-raster-pilot-result.json",
+        "artifact_id": "fff-high-fidelity-raster-pilot-001",
+        "byte_size": 7123,
+        "sha256": "8c773561aeca0ca6af3f37ac106479833fd5318c549e47c0c8940dbf09b54156"
+      },
+      {
+        "path": "artifacts/home-cockpit-metric-linking-result.json",
+        "artifact_id": "fff-home-cockpit-metric-linking-001",
+        "byte_size": 6035,
+        "sha256": "bc6d734bd4c5302a05a0075c8b44ab9773773917cd5190a8c9c6b04909b9ea48"
+      },
+      {
+        "path": "artifacts/integrated-visual-production-package-result.json",
+        "artifact_id": "fff-integrated-visual-production-package-001",
+        "byte_size": 89682,
+        "sha256": "e8f7f7fc50c5700d3a14f78b72ff33b6b142753f3dd2e2dfbf79311077301582"
+      },
+      {
+        "path": "artifacts/layout-lab-visual-audit-result.json",
+        "artifact_id": "fff-layout-lab-visual-audit-001",
+        "byte_size": 6227,
+        "sha256": "b4bb0370a851bdd70e997acbee9a7e537ba1e16660ff3bf34fd89fef2e33d1f0"
+      },
+      {
+        "path": "artifacts/layout-research-decision-shell-result.json",
+        "artifact_id": "fff-layout-research-decision-shell-001",
+        "byte_size": 7145,
+        "sha256": "5af7a3aead5b124e90fad61887dac8e8bea218bddbbe7ffbe3f1c2bb6cdcee48"
+      },
+      {
+        "path": "artifacts/local-extraction-adapter-expansion-smoke-result.json",
+        "artifact_id": "fff-local-extraction-adapter-expansion-001",
+        "byte_size": 26545,
+        "sha256": "038cbf0e11e56d6014de42780116f5283bc4bd380a2d88367a426f1f82d3dcfe"
+      },
+      {
+        "path": "artifacts/local-extraction-adapter-smoke-result.json",
+        "artifact_id": "fff-local-extraction-adapter-expansion-001",
+        "byte_size": 16286,
+        "sha256": "378c7ebd24a9f168af696980c43657159c5d5c7d7d45523e25879d85f7be33b4"
+      },
+      {
+        "path": "artifacts/low-text-decision-console-result.json",
+        "artifact_id": "fff-low-text-decision-console-001",
+        "byte_size": 7929,
+        "sha256": "8b564a1dabb861a545484c0eb3524d5ab3d94e0298352b01be71c37f3739a85e"
+      },
+      {
+        "path": "artifacts/malformed-missing-span-guard-result.json",
+        "artifact_id": "fff-malformed-missing-span-guard-001",
+        "byte_size": 5772,
+        "sha256": "06b5a12743ee928b1a28767244690bf06f9a38fcd85eb3425745027e01b99bed"
+      },
+      {
+        "path": "artifacts/missing-fixture-class-probe-result.json",
+        "artifact_id": "fff-missing-fixture-class-probe-001",
+        "byte_size": 6087,
+        "sha256": "2699a03cb058ac88f462055f0a159d0badd0d707ecce9bf2199e5dd15e34f800"
+      },
+      {
+        "path": "artifacts/model-api-boundary-smoke-result.json",
+        "artifact_id": "fff-model-api-boundary-spec-001",
+        "byte_size": 1417,
+        "sha256": "fc1d576ca995cd2841451cd515b427f6528f89e9919bd6a62a8c8eaf7246f964"
+      },
+      {
+        "path": "artifacts/one-story-draft-review-pack-result.json",
+        "artifact_id": "fff-one-story-draft-review-pack-001",
+        "byte_size": 12249,
+        "sha256": "48c06c96f347dd4e8cd88449d3f38b3f942ac5061376814ac444296431ec1b79"
+      },
+      {
+        "path": "artifacts/operator-production-brief-result.json",
+        "artifact_id": "fff-operator-production-brief-001",
+        "byte_size": 19886,
+        "sha256": "5f2921895bd3ce186fdbde5333f9bc35f9acf564311643e939373c4c6840b308"
+      },
+      {
+        "path": "artifacts/operator-production-brief-typography-balance-result.json",
+        "artifact_id": "fff-operator-production-brief-typography-balance-001",
+        "byte_size": 22396,
+        "sha256": "4096ed9aaa5c1138991bd1e13ded527853d4ba2c3abbefce2b8b3a4a5d688c77"
+      },
+      {
+        "path": "artifacts/private-full-raster-candidate-result.json",
+        "artifact_id": "fff-private-full-raster-candidate-001",
+        "byte_size": 13659,
+        "sha256": "4083ffe9f6644d2ca8a9185886af28fe1b3e8513c2c1ff253d9890d6389acb5a"
+      },
+      {
+        "path": "artifacts/private-full-raster-clarity-candidate-result.json",
+        "artifact_id": "fff-private-full-raster-clarity-candidate-001",
+        "byte_size": 76389,
+        "sha256": "375b6177bf7afcc2aea98565043a148d5c746d72bc39f288d752bbb6423e15c5"
+      },
+      {
+        "path": "artifacts/private-materialized-motion-previs-result.json",
+        "artifact_id": "fff-private-materialized-motion-previs-001",
+        "byte_size": 14983,
+        "sha256": "164be517534d8ed3ccd2dabd23b084a692e35e49ffc56ebf1421362b717db9c3"
+      },
+      {
+        "path": "artifacts/private-previsualization-timeline-result.json",
+        "artifact_id": "fff-private-previsualization-timeline-001",
+        "byte_size": 9375,
+        "sha256": "088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0"
+      },
+      {
+        "path": "artifacts/private-raster-case-digest-result.json",
+        "artifact_id": "fff-private-raster-case-digest-001",
+        "byte_size": 259981,
+        "sha256": "69d4a87912237f50ecd5e676d6dba4d0b06b57bae359752a4b6a72c542f548b2"
+      },
+      {
+        "path": "artifacts/production-adoption-authorization-packet-result.json",
+        "artifact_id": "fff-production-adoption-authorization-packet-001",
+        "byte_size": 9923,
+        "sha256": "d9d97ec4d51e7d3630838cc0ea27b2c29315a5a9e0155d7cae6156651045638f"
+      },
+      {
+        "path": "artifacts/production-claim-ledger-adoption-one-claim-result.json",
+        "artifact_id": "fff-production-claim-ledger-adoption-one-claim-001",
+        "byte_size": 10792,
+        "sha256": "75504bee8956a4917594143afa5be8c5125d56bee5eca61fd3c79692074e2838"
+      },
+      {
+        "path": "artifacts/production-claim-ledger-rollback-rehearsal-result.json",
+        "artifact_id": "fff-production-claim-ledger-rollback-rehearsal-001",
+        "byte_size": 9676,
+        "sha256": "65b1c7cf0ed75665e8743d729e6ec9daacd1612a1cc09cfae70e27c5b5b5a1c6"
+      },
+      {
+        "path": "artifacts/production-execution-pack-result.json",
+        "artifact_id": "fff-production-execution-pack-001",
+        "byte_size": 25869,
+        "sha256": "991e6310f67ae898ffc2949308c4826db1792479c1bf66900b9e710ad44c737d"
+      },
+      {
+        "path": "artifacts/production-storyboard-brief-result.json",
+        "artifact_id": "fff-production-storyboard-brief-001",
+        "byte_size": 14513,
+        "sha256": "66d63166859c43de99f97068a236613234960fdaf3acc4a416982f87ab74cb0d"
+      },
+      {
+        "path": "artifacts/profile-adoption-mutation-one-claim-result.json",
+        "artifact_id": "fff-profile-adoption-mutation-one-claim-001",
+        "byte_size": 12269,
+        "sha256": "7d57affe642e4df392338b4edac22a2c762d6e0d37e590fe029ef9e7213a0c56"
+      },
+      {
+        "path": "artifacts/profile-ghost-smoke-result.json",
+        "artifact_id": "fff-profile-ghost-flow-001",
+        "byte_size": 3326,
+        "sha256": "1aacba8f9ab2eafc691f67a2e6ffe97e4d82df023552696575b87adab844e48b"
+      },
+      {
+        "path": "artifacts/provider-adapter-authorization-readiness-result.json",
+        "artifact_id": "fff-provider-adapter-authorization-readiness-001",
+        "byte_size": 8501,
+        "sha256": "8519bed9076d8913b9c46480f6dfaf9e94bf389e0d68c499c93293eeecc06ff6"
+      },
+      {
+        "path": "artifacts/provider-envelope-readiness-no-call-result.json",
+        "artifact_id": "fff-provider-envelope-readiness-no-call-001",
+        "byte_size": 5663,
+        "sha256": "a593ed27b612463ca828a3b17cd1c30ca6d9504648811daa064ebbfe6e25ddd0"
+      },
+      {
+        "path": "artifacts/remaining-fixture-coverage-one-class-result.json",
+        "artifact_id": "fff-remaining-fixture-coverage-one-class-001",
+        "byte_size": 5832,
+        "sha256": "b4883713d12ebd563e7ffd88add03b5e09dd762e1a1c6e2e28695b0bbc8ef5c2"
+      },
+      {
+        "path": "artifacts/resumable-private-pipeline-result.json",
+        "artifact_id": "fff-resumable-private-pipeline-001",
+        "byte_size": 6486,
+        "sha256": "4175f2b36413203bb352d3bd7d00970b2c6cfe07e8978a9a9eceae1a6ad1c9c6"
+      },
+      {
+        "path": "artifacts/review-brief-dark-mode-ux-result.json",
+        "artifact_id": "fff-review-brief-dark-mode-ux-001",
+        "byte_size": 5716,
+        "sha256": "5bc9257493cd180ca1846811ce9522e4bf4991ecb0b2e14d12c453aa78601850"
+      },
+      {
+        "path": "artifacts/review-ergonomics-smoke-result.json",
+        "artifact_id": "fff-local-persistence-ergonomics-001",
+        "byte_size": 1336,
+        "sha256": "f239e0a58663bbf9ceebfe083e180c7a38371fe1def281522d4171966e99de01"
+      },
+      {
+        "path": "artifacts/review-home-map-meters-result.json",
+        "artifact_id": "fff-review-home-map-meters-001",
+        "byte_size": 8875,
+        "sha256": "8d92d5f7c2c998d91a13806d1e78c469d628a0a6a61950322a774c61f7c33d9f"
+      },
+      {
+        "path": "artifacts/review-hub-ia-mode-split-smoke-result.json",
+        "artifact_id": null,
+        "byte_size": 1911,
+        "sha256": "539849009beff51e0707b0b4fe8b7e27955774da83edeb5ff02d51abd9ca1ef6"
+      },
+      {
+        "path": "artifacts/review-memory-dedup-smoke-result.json",
+        "artifact_id": "fff-review-memory-dedup-001",
+        "byte_size": 1973,
+        "sha256": "4dac348281296e473f8d66a24e05f7cedae4d452563cab809e878bc5f01d4616"
+      },
+      {
+        "path": "artifacts/review-procedure-lock-smoke-result.json",
+        "artifact_id": "fff-review-procedure-lock-001",
+        "byte_size": 1928,
+        "sha256": "f5f68688444acf6b3127506de4914b7796846ecc5f992fb4d964088f046890af"
+      },
+      {
+        "path": "artifacts/review-workbench-component-contract-result.json",
+        "artifact_id": "fff-review-workbench-component-contract-001",
+        "byte_size": 8463,
+        "sha256": "d6fd527196b06d9efb19066c1285e40798c2eeb3ccc3088ef497b99e5a8311af"
+      },
+      {
+        "path": "artifacts/routing-policy-regression-hardening-result.json",
+        "artifact_id": "fff-routing-policy-regression-hardening-001",
+        "byte_size": 5012,
+        "sha256": "1526f971fb75066df9eb03b4d5be67f98f3fe64dd5b1ec0f74c9581b49792e71"
+      },
+      {
+        "path": "artifacts/sandbox-adoption-mutation-one-claim-result.json",
+        "artifact_id": "fff-sandbox-adoption-mutation-one-claim-001",
+        "byte_size": 6791,
+        "sha256": "5ddfefdb4424a758d32038fcf74fb93a46df1f4d804aaa593852f3be5fdf2563"
+      },
+      {
+        "path": "artifacts/sandbox-adoption-rollback-rehearsal-result.json",
+        "artifact_id": "fff-sandbox-adoption-rollback-rehearsal-001",
+        "byte_size": 6450,
+        "sha256": "da443e60c436b4aacac8beb32a73c610dc1e3b171082167d4771187cfb66282f"
+      },
+      {
+        "path": "artifacts/source-span-quality-audit-result.json",
+        "artifact_id": "fff-source-span-quality-audit-001",
+        "byte_size": 79249,
+        "sha256": "dace8dd206ef2212aacd4d0d6903fc1176aaf66cc0221921dc73a4321c7912ed"
+      },
+      {
+        "path": "artifacts/source-span-routing-triage-result.json",
+        "artifact_id": "fff-source-span-routing-triage-001",
+        "byte_size": 5581,
+        "sha256": "61c80359f231acb86be1c0dd8c2a34574c9393a78e3526b4acb136c2029288e2"
+      },
+      {
+        "path": "artifacts/timeline-smoke-result.json",
+        "artifact_id": "fff-timeline-view-001",
+        "byte_size": 2327,
+        "sha256": "b31152a77ae5daad1459cd5338369f4f02afddac0a173fbecec6d85c1510fc35"
+      },
+      {
+        "path": "artifacts/translated-memo-fixture-audit-result.json",
+        "artifact_id": "fff-translated-memo-fixture-audit-001",
+        "byte_size": 7817,
+        "sha256": "d5e409eb5ca69e0df0bb9850b853539310f17df12720a9e623b5384ced65874d"
+      },
+      {
+        "path": "artifacts/translated-memo-fixture-minimum-result.json",
+        "artifact_id": "fff-translated-memo-fixture-minimum-001",
+        "byte_size": 8198,
+        "sha256": "6c7c28669c1ad798711588e8fb5df51b72f7382e5aaa632e1e15c51e6a587f1b"
+      },
+      {
+        "path": "artifacts/translation-policy-source-of-truth-boundary-result.json",
+        "artifact_id": "fff-translation-policy-source-of-truth-boundary-001",
+        "byte_size": 11860,
+        "sha256": "37b0d75d7633b420a13fd5d79f6b12a83c8f998933cb4eb309a01b003fafbd2e"
+      },
+      {
+        "path": "artifacts/translation-provenance-source-span-readback-result.json",
+        "artifact_id": "fff-translation-provenance-source-span-readback-001",
+        "byte_size": 15755,
+        "sha256": "6bdd7e1fbbfd4e1199b4acdfa22e265c9cb76b309ed2a2dfdd41bcd6a35f8e1c"
+      },
+      {
+        "path": "artifacts/v1-3-compliance-smoke-result.json",
+        "artifact_id": "fff-profile-ghost-flow-001",
+        "byte_size": 1065,
+        "sha256": "0e7da5a286d3f3ed7d0a503724dab770a1176c1738c700194bfd78f8fc3c9523"
+      },
+      {
+        "path": "artifacts/very-broad-source-span-shape-audit-result.json",
+        "artifact_id": "fff-very-broad-source-span-shape-audit-001",
+        "byte_size": 6589,
+        "sha256": "09cfb2f75c9417c5e52a83e69ef9e8fa42860dca48acbdb955e2a4ecda7f13ca"
+      },
+      {
+        "path": "artifacts/visual-review-smoke-result.json",
+        "artifact_id": null,
+        "byte_size": 2110,
+        "sha256": "031e8bd707118fba0b537e30dc5f30b1c0c66db969327187074f05bee32af7c3"
+      },
+      {
+        "path": "artifacts/weak-span-repair-result.json",
+        "artifact_id": "fff-weak-span-repair-001",
+        "byte_size": 12915,
+        "sha256": "0003ab9db9802caf0a44783ffe584d2349651d402b9ed928c673de59a08d6f50"
+      }
+    ]
+  },
+  "predecessor_partition": {
+    "class_counts": {
+      "protected_baseline": 76,
+      "accepted_additive_descendant": 5,
+      "current_control_plane_result": 1,
+      "archived_or_superseded_nonbaseline": 0,
+      "excluded_nonresult": 0,
+      "baseline_or_current_authority_nonbaseline": 3,
+      "integration_evidence_result": 0
+    },
+    "classified_result_total": 85,
+    "unclassified_result_count": 0,
+    "duplicate_classification_count": 0,
+    "baseline_missing_count": 0,
+    "baseline_hash_mismatch_count": 0,
+    "class_paths": {
+      "protected_baseline": [
+        "artifacts/adoption-candidate-ledger-dry-run-result.json",
+        "artifacts/ambiguous-routing-resolution-result.json",
+        "artifacts/apply-decision-shell-guard-diet-result.json",
+        "artifacts/beat2-composition-board-result.json",
+        "artifacts/beat2-visual-treatment-pilot-result.json",
+        "artifacts/beat4-composition-counterexample-result.json",
+        "artifacts/bridge-editorial-handoff-pack-result.json",
+        "artifacts/bridge-refinement-overview-ribbon-result.json",
+        "artifacts/bridge-storyboard-flow-result.json",
+        "artifacts/broad-span-split-result.json",
+        "artifacts/checkpoint-readback-result.json",
+        "artifacts/claim-ledger-smoke-result.json",
+        "artifacts/composition-expansion-wave1-result.json",
+        "artifacts/composition-expansion-wave2-result.json",
+        "artifacts/content-production-blueprint-result.json",
+        "artifacts/contradictory-claim-guard-result.json",
+        "artifacts/designer-candidate-dashboard-result.json",
+        "artifacts/downstream-adoption-gate-scope-lock-result.json",
+        "artifacts/downstream-adoption-semantics-design-result.json",
+        "artifacts/downstream-source-span-adoption-gate-result.json",
+        "artifacts/downstream-target-authorization-packet-result.json",
+        "artifacts/draft-review-pack-stabilization-result.json",
+        "artifacts/draft-to-video-planning-bridge-result.json",
+        "artifacts/editorial-derivative-preview-result.json",
+        "artifacts/editorial-revision-roundtrip-result.json",
+        "artifacts/export-import-smoke-result.json",
+        "artifacts/extraction-contract-smoke-result.json",
+        "artifacts/extraction-validator-smoke-result.json",
+        "artifacts/file-persistence-smoke-result.json",
+        "artifacts/freeform-review-intake-smoke-result.json",
+        "artifacts/guided-review-flow-workspace-result.json",
+        "artifacts/held-claim-adoption-preflight-result.json",
+        "artifacts/home-cockpit-metric-linking-result.json",
+        "artifacts/integrated-visual-production-package-result.json",
+        "artifacts/layout-lab-visual-audit-result.json",
+        "artifacts/layout-research-decision-shell-result.json",
+        "artifacts/local-extraction-adapter-expansion-smoke-result.json",
+        "artifacts/local-extraction-adapter-smoke-result.json",
+        "artifacts/low-text-decision-console-result.json",
+        "artifacts/malformed-missing-span-guard-result.json",
+        "artifacts/missing-fixture-class-probe-result.json",
+        "artifacts/model-api-boundary-smoke-result.json",
+        "artifacts/one-story-draft-review-pack-result.json",
+        "artifacts/operator-production-brief-result.json",
+        "artifacts/operator-production-brief-typography-balance-result.json",
+        "artifacts/production-adoption-authorization-packet-result.json",
+        "artifacts/production-claim-ledger-adoption-one-claim-result.json",
+        "artifacts/production-claim-ledger-rollback-rehearsal-result.json",
+        "artifacts/production-execution-pack-result.json",
+        "artifacts/production-storyboard-brief-result.json",
+        "artifacts/profile-adoption-mutation-one-claim-result.json",
+        "artifacts/profile-ghost-smoke-result.json",
+        "artifacts/provider-adapter-authorization-readiness-result.json",
+        "artifacts/provider-envelope-readiness-no-call-result.json",
+        "artifacts/remaining-fixture-coverage-one-class-result.json",
+        "artifacts/review-brief-dark-mode-ux-result.json",
+        "artifacts/review-ergonomics-smoke-result.json",
+        "artifacts/review-home-map-meters-result.json",
+        "artifacts/review-hub-ia-mode-split-smoke-result.json",
+        "artifacts/review-memory-dedup-smoke-result.json",
+        "artifacts/review-procedure-lock-smoke-result.json",
+        "artifacts/review-workbench-component-contract-result.json",
+        "artifacts/routing-policy-regression-hardening-result.json",
+        "artifacts/sandbox-adoption-mutation-one-claim-result.json",
+        "artifacts/sandbox-adoption-rollback-rehearsal-result.json",
+        "artifacts/source-span-quality-audit-result.json",
+        "artifacts/source-span-routing-triage-result.json",
+        "artifacts/timeline-smoke-result.json",
+        "artifacts/translated-memo-fixture-audit-result.json",
+        "artifacts/translated-memo-fixture-minimum-result.json",
+        "artifacts/translation-policy-source-of-truth-boundary-result.json",
+        "artifacts/translation-provenance-source-span-readback-result.json",
+        "artifacts/v1-3-compliance-smoke-result.json",
+        "artifacts/very-broad-source-span-shape-audit-result.json",
+        "artifacts/visual-review-smoke-result.json",
+        "artifacts/weak-span-repair-result.json"
+      ],
+      "accepted_additive_descendant": [
+        "artifacts/high-fidelity-raster-pilot-result.json",
+        "artifacts/private-full-raster-candidate-result.json",
+        "artifacts/private-full-raster-clarity-candidate-result.json",
+        "artifacts/private-materialized-motion-previs-result.json",
+        "artifacts/private-raster-case-digest-result.json"
+      ],
+      "current_control_plane_result": [
+        "artifacts/case-digest-control-plane-convergence-result.json"
+      ],
+      "archived_or_superseded_nonbaseline": [],
+      "excluded_nonresult": [],
+      "baseline_or_current_authority_nonbaseline": [
+        "artifacts/asset-rights-readiness-packet-result.json",
+        "artifacts/private-previsualization-timeline-result.json",
+        "artifacts/resumable-private-pipeline-result.json"
+      ],
+      "integration_evidence_result": []
+    }
+  },
+  "discrepancy_resolution": {
+    "prior_claim": "85 observed = 76 protected baseline + 5 additive descendants + 4 omitted nonbaseline support/authority results",
+    "previously_unexplained_count": 4,
+    "previously_unexplained_results": [
+      {
+        "path": "artifacts/asset-rights-readiness-packet-result.json",
+        "artifact_id": "fff-asset-rights-readiness-packet-001",
+        "corrected_class": "baseline_or_current_authority_nonbaseline"
+      },
+      {
+        "path": "artifacts/private-previsualization-timeline-result.json",
+        "artifact_id": "fff-private-previsualization-timeline-001",
+        "corrected_class": "baseline_or_current_authority_nonbaseline"
+      },
+      {
+        "path": "artifacts/resumable-private-pipeline-result.json",
+        "artifact_id": "fff-resumable-private-pipeline-001",
+        "corrected_class": "baseline_or_current_authority_nonbaseline"
+      },
+      {
+        "path": "artifacts/case-digest-control-plane-convergence-result.json",
+        "artifact_id": "fff-case-digest-control-plane-convergence-001",
+        "corrected_class": "current_control_plane_result"
+      }
+    ],
+    "reconciled": true
+  },
+  "path_overlap_audit": {
+    "control_plane_commit": "dab9810961b64f1e31420f18797e897e1ef05819",
+    "writer_commit": "11c30b264f8f257cc802ac218998479b805648e7",
+    "control_changed_paths": [
+      "artifacts/artifact-manifest.json",
+      "artifacts/ARTIFACTS.md",
+      "artifacts/case-digest-control-plane-convergence-result.json",
+      "docs/decision-log.md",
+      "docs/idea-ledger.md",
+      "docs/project-context.md",
+      "docs/project-overview.md",
+      "docs/review/case-digest-control-plane-convergence.md",
+      "docs/review/current-status.md",
+      "docs/review/next-terminal-handoff.md",
+      "docs/review/supervisor-current-report.md",
+      "tests/fff-case-digest-control-plane-convergence.test.mjs",
+      "tools/fff-state.mjs"
+    ],
+    "writer_changed_paths": [
+      "artifacts/writer-source-adaptation-v0/case-digest-fixture-output.json",
+      "artifacts/writer-source-adaptation-v0/downstream-contract-map.json",
+      "artifacts/writer-source-adaptation-v0/editorial-handoff-input.schema.json",
+      "artifacts/writer-source-adaptation-v0/format-capacity-contract.json",
+      "artifacts/writer-source-adaptation-v0/format-selection.schema.json",
+      "artifacts/writer-source-adaptation-v0/fragment-bundle-fixture-output.json",
+      "artifacts/writer-source-adaptation-v0/linear-lore-counterexample-output.json",
+      "artifacts/writer-source-adaptation-v0/narrative-ir.schema.json",
+      "artifacts/writer-source-adaptation-v0/README_WRITER_SOURCE_ADAPTATION_V0.md",
+      "artifacts/writer-source-adaptation-v0/story-authority-ledger.schema.json",
+      "artifacts/writer-source-adaptation-v0/writer-proposal-roundtrip-output.json",
+      "artifacts/writer-source-adaptation-v0/writer-proposal.schema.json",
+      "artifacts/writer-source-adaptation-v0/writer-source-adaptation-readback.html",
+      "artifacts/writer-source-adaptation-v0/writer-source-adaptation-result.json",
+      "artifacts/writer-source-adaptation-v0/writer-source-packet.schema.json",
+      "docs/architecture/WRITER_SOURCE_ADAPTATION_V0.md",
+      "docs/review/writer-source-adaptation-v0.md",
+      "fixtures/writer-source-adaptation/case-digest.prose.json",
+      "fixtures/writer-source-adaptation/fixture-set.json",
+      "fixtures/writer-source-adaptation/fragment-bundle.json",
+      "fixtures/writer-source-adaptation/linear-lore.prose.json",
+      "fixtures/writer-source-adaptation/writer-proposal.json",
+      "tests/fff-writer-source-adaptation.test.mjs",
+      "tools/fff-writer-source-adaptation.mjs"
+    ],
+    "followup_changed_paths": [
+      "artifacts/artifact-manifest.json",
+      "artifacts/ARTIFACTS.md",
+      "artifacts/case-digest-control-plane-convergence-result.json",
+      "artifacts/case-digest-control-plane-integration-evidence-result.json",
+      "docs/review/case-digest-control-plane-convergence.md",
+      "docs/review/case-digest-control-plane-integration-evidence.md",
+      "tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
+      "tools/fff-state.mjs"
+    ],
+    "followup_path_source": "declared support scope; verify against the containing commit",
+    "writer_control_intersection": [],
+    "writer_control_intersection_count": 0,
+    "writer_followup_intersection": [],
+    "writer_followup_intersection_count": 0,
+    "control_followup_intersection": [
+      "artifacts/artifact-manifest.json",
+      "artifacts/ARTIFACTS.md",
+      "artifacts/case-digest-control-plane-convergence-result.json",
+      "docs/review/case-digest-control-plane-convergence.md",
+      "tools/fff-state.mjs"
+    ],
+    "control_followup_intersection_count": 5,
+    "semantic_contract_intersection": [
+      "accepted CASE_DIGEST identity and scoped/default-off boundary",
+      "missing-causality and quarantined linear-lore boundaries",
+      "read-only validation and protected-product immutability"
+    ],
+    "shared_read_dependencies": [
+      "artifacts/private-raster-case-digest-result.json",
+      "artifacts/private-raster-case-digest/private-raster-case-digest.json",
+      "artifacts/narrative-format-quarantine/narrative-format-quarantine.json"
+    ]
+  },
+  "integration_readiness": {
+    "status": "pending",
+    "recommended_order": [
+      "dab9810961b64f1e31420f18797e897e1ef05819",
+      "this control-plane evidence follow-up",
+      "11c30b264f8f257cc802ac218998479b805648e7"
+    ],
+    "order_summary": "control-plane first (including its follow-up), writer second",
+    "followup_commit_status": "represented_by_containing_git_commit",
+    "followup_commit_identity_resolution": "resolve the commit containing this result after local commit creation",
+    "followup_preferred_subject": "Clarify control-plane inventory and integration evidence",
+    "product_bytes_protected": true,
+    "targeted_validation_after_integration": [
+      "node --check tools/fff-state.mjs",
+      "node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json",
+      "node --test tests/fff-case-digest-control-plane-convergence.test.mjs",
+      "node --test tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
+      "node --test tests/fff-private-raster-case-digest.test.mjs",
+      "node --test tests/fff-writer-source-adaptation.test.mjs",
+      "git diff --check"
+    ],
+    "excluded_or_stale_inputs": [
+      "uncommitted sibling worktree state",
+      "historical machine-local dirty fingerprints",
+      "rejected materialized-motion visual direction",
+      "quarantined linear-lore narrative direction"
+    ],
+    "push_authority": "not_authorized",
+    "integration_authority": "not_authorized"
+  },
+  "boundaries": {
+    "product_state_unchanged": true,
+    "default_state_unchanged": true,
+    "acceptance_state_unchanged": true,
+    "production_rights_release_unchanged": true,
+    "writer_v1_started_or_passed": false,
+    "branch_integration_performed": false,
+    "push_performed": false,
+    "external_effect_count": 0
+  }
+}

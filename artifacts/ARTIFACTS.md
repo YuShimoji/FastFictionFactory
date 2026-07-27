@@ -8,8 +8,21 @@
 - Canonical validation: `node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json`.
 - Current state: active/default `fff-private-previsualization-timeline-001`; accepted/default-off successor `fff-private-raster-case-digest-001`; rejected/archive-only motion `fff-private-materialized-motion-previs-001`.
 - Health model: current path, archive self-integrity, and `DEBT_NONBLOCKING` history are reported separately. CASE_DIGEST validator and dedicated 14/14 tests are mandatory.
-- Inventory model: all 76 Readiness baseline result identities remain an immutable subset; five valid later product results are additive descendants.
+- Inventory model: the predecessor's 85 results reconcile exactly as 76 protected baseline, five accepted additive descendants, one current control-plane result, and three baseline/current-authority nonbaseline results. The integration-evidence result is the explicit 86th support result; no result is unclassified or multiply classified.
 - Boundaries: product packages/media/default selection/acceptance/voice/effects/rights/production/release/canon unchanged; public effects false.
+
+## fff-case-digest-control-plane-integration-evidence-001
+
+- Type: bounded support / inventory reconciliation and integration-readiness evidence.
+- Target base: `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`.
+- Accepted inputs: control-plane predecessor `dab9810961b64f1e31420f18797e897e1ef05819`; Writer source adaptation `11c30b264f8f257cc802ac218998479b805648e7`.
+- Result/review: `artifacts/case-digest-control-plane-integration-evidence-result.json`, `docs/review/case-digest-control-plane-integration-evidence.md`.
+- Frozen predecessor inventory: 85 exact result paths and SHA256 identities; aggregate SHA256 `361e16663e2da86e18c5c30c853fc23c8a598460c06e673de1d9a6ca20c06b73`.
+- Reconciliation: the previously omitted identities are `fff-asset-rights-readiness-packet-001`, `fff-private-previsualization-timeline-001`, `fff-resumable-private-pipeline-001`, and `fff-case-digest-control-plane-convergence-001`.
+- Path audit: control 13 paths; Writer 24 paths; direct intersection zero. The declared eight-path follow-up also intersects Writer at zero.
+- Forward gate: valid passing non-authority descendants may grow the total; unclassified, duplicate, missing/changed baseline, baseline-ID collision, unregistered current authority, incorrect arithmetic, path overlap, and validation mutation cases fail closed.
+- Recommended order: control-plane predecessor and this evidence follow-up first, Writer second.
+- State: integration pending; push and integration not authorized; product/default/acceptance/rights/production/release/canon unchanged.
 
 ## fff-private-raster-case-digest-001
 

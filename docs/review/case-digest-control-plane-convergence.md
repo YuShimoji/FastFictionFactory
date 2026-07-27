@@ -39,6 +39,23 @@ The materialized-motion result retains the old `.serena/project.yml` dirty SHA a
 
 The Asset / Rights Readiness result still owns the exact 76-file historical baseline. Current validation checks each path, byte size, and SHA256 as a protected subset. It does not require a fixed current count: the five later valid product results are additive descendants, and future well-formed passing descendants may be added without replacing a baseline identity.
 
+The predecessor commit contained 85 `*-result.json` artifacts. The earlier summary named only 76 protected baseline results and five additive descendants, leaving four support/authority results out of the arithmetic. The complete predecessor partition is:
+
+| Inventory class | Count | Meaning |
+| --- | ---: | --- |
+| `protected_baseline` | 76 | Exact Readiness-owned historical paths, byte sizes, and SHA256 identities |
+| `accepted_additive_descendant` | 5 | The five valid post-baseline raster/product results |
+| `current_control_plane_result` | 1 | `fff-case-digest-control-plane-convergence-001` |
+| `baseline_or_current_authority_nonbaseline` | 3 | Readiness packet, active preview, and resumable pipeline authority results |
+| `archived_or_superseded_nonbaseline` | 0 | No extra result in this class at the predecessor |
+| `excluded_nonresult` | 0 | No `*-result.json` was excluded from the result inventory |
+
+The four formerly omitted identities are `fff-asset-rights-readiness-packet-001`, `fff-private-previsualization-timeline-001`, `fff-resumable-private-pipeline-001`, and `fff-case-digest-control-plane-convergence-001`. Their classification yields `76 + 5 + 1 + 3 = 85`, with no unclassified or multiply classified result. The integration-evidence result adds one explicit support class, so the final working inventory is 86 rather than changing any protected or product result.
+
+The root output now exposes the observed total, every class count, unclassified and duplicate counts, baseline missing and hash-mismatch counts, and a dynamic aggregate inventory hash. A well-formed passing non-authority result may increase the total as an additive descendant; a baseline identity collision or an unregistered current-authority claim fails closed.
+
+Exact Git comparison is recorded in `artifacts/case-digest-control-plane-integration-evidence-result.json`. Control predecessor `dab9810961b64f1e31420f18797e897e1ef05819` changes 13 paths, Writer input `11c30b264f8f257cc802ac218998479b805648e7` changes 24, and their direct intersection is zero. The declared eight-path evidence follow-up also intersects Writer at zero; it intentionally overlaps the control predecessor on five support paths. Integration remains pending and unauthorized, with control-plane predecessor plus this evidence follow-up recommended before Writer.
+
 ## Product handoff
 
 Whole-story composition and CASE_DIGEST comprehension are already accepted within their recorded scopes. The remote CASE_DIGEST candidate remains silent. Production subtitle selection, final voice integration, effects, rights clearance, production acceptance, release/publication, and final canon remain separate.

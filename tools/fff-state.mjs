@@ -83,14 +83,24 @@ const CASE_DIGEST_FULL_RASTER_PREDECESSOR_ID = "fff-private-full-raster-candidat
 const CASE_DIGEST_PRIMARY_QUARANTINE_ID = "FFF-Q-PRIMARY-IMAGERY-SVG-2026-07-25";
 const CASE_DIGEST_NARRATIVE_QUARANTINE_ID = "FFF-Q-3MIN-LINEAR-LORE-EXPOSITION-2026-07-26";
 const CASE_DIGEST_BASE_REVISION = "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e";
+const CASE_DIGEST_CONTROL_PLANE_COMMIT = "dab9810961b64f1e31420f18797e897e1ef05819";
+const CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT = "11c30b264f8f257cc802ac218998479b805648e7";
+const CASE_DIGEST_INTEGRATION_EVIDENCE_SCHEMA_VERSION = "fff.caseDigestControlPlaneIntegrationEvidence.v1";
+const CASE_DIGEST_INTEGRATION_EVIDENCE_ARTIFACT_ID = "fff-case-digest-control-plane-integration-evidence-001";
+const CASE_DIGEST_INTEGRATION_EVIDENCE_RESULT_PATH = "artifacts/case-digest-control-plane-integration-evidence-result.json";
 const CASE_DIGEST_PRIMARY_QUARANTINE_SHA256 = "aab00065e9994b1dedc6d30d2b1b9f6eb1ef4a1893d7f8948c5564578dde542b";
 const CASE_DIGEST_NARRATIVE_QUARANTINE_SHA256 = "1a23bef3bc41609b0957ec8ed7af112e43058cd975485f6badf7806ea119943f";
-const CASE_DIGEST_BASELINE_OWNER_RESULT_PATHS = new Set([
-  "artifacts/asset-rights-readiness-packet-result.json",
-  "artifacts/private-previsualization-timeline-result.json",
-  "artifacts/resumable-private-pipeline-result.json",
-  "artifacts/case-digest-control-plane-convergence-result.json"
-]);
+const CASE_DIGEST_REQUIRED_RESULT_CLASSES = [
+  "protected_baseline",
+  "accepted_additive_descendant",
+  "current_control_plane_result",
+  "archived_or_superseded_nonbaseline",
+  "excluded_nonresult"
+];
+const CASE_DIGEST_ADDITIONAL_RESULT_CLASSES = [
+  "baseline_or_current_authority_nonbaseline",
+  "integration_evidence_result"
+];
 const CASE_DIGEST_SELF_INTEGRITY_TARGETS = {
   [CASE_DIGEST_REJECTED_MOTION_ID]: {
     result_path: "artifacts/private-materialized-motion-previs-result.json",
@@ -1019,57 +1029,799 @@ async function validateCaseDigestStoredArtifactSelfIntegrity(artifactId, inputPa
   };
 }
 
-async function validateCaseDigestBaselineSubset(inputPath) {
+function caseDigestInventoryFailure(code, detail) {
+  return {
+    code,
+    decision_effect: "BLOCK_SAFETY",
+    detail
+  };
+}
+
+function caseDigestResultClaimsCurrentAuthority(value) {
+  return (
+    value?.authority_claim === "current" ||
+    value?.current_authority === true ||
+    value?.active_default === true ||
+    value?.boundaries?.active_default === true ||
+    value?.current_artifact?.active_default === true ||
+    typeof value?.current_artifact_state?.active_default_artifact_id === "string"
+  );
+}
+
+function caseDigestResultIsArchivedOrSuperseded(value) {
+  return (
+    value?.archive_only === true ||
+    value?.boundaries?.archive_only === true ||
+    value?.boundaries?.superseded === true ||
+    value?.inventory_role === "archived_or_superseded_nonbaseline"
+  );
+}
+
+function caseDigestResultIsWellFormedPassing(value) {
+  return (
+    value &&
+    typeof value.artifact_id === "string" &&
+    value.artifact_id.length > 0 &&
+    value.passed === true &&
+    Array.isArray(value.failures) &&
+    value.failures.length === 0
+  );
+}
+
+function evaluateCaseDigestResultInventoryModel(model) {
+  const requiredClasses = [
+    ...new Set([
+      ...CASE_DIGEST_REQUIRED_RESULT_CLASSES,
+      ...CASE_DIGEST_ADDITIONAL_RESULT_CLASSES
+    ])
+  ];
+  const unknownExplicitClassNames = Object.keys(
+    model.explicit_classes || {}
+  ).filter((className) => !requiredClasses.includes(className));
+  const records = [...(model.records || [])]
+    .map((record) => ({
+      ...record,
+      path: String(record.path || "").replaceAll("\\", "/")
+    }))
+    .sort((left, right) => left.path.localeCompare(right.path));
+  const baselineRecords = [...(model.baseline_records || [])].map((record) => ({
+    ...record,
+    path: String(record.path || record.relative_path || "").replaceAll("\\", "/"),
+    byte_size: Number(record.byte_size),
+    sha256: record.sha256
+  }));
+  const recordByPath = new Map(records.map((record) => [record.path, record]));
+  const baselineByPath = new Map(
+    baselineRecords.map((record) => [record.path, record])
+  );
+  const baselineArtifactIds = new Set(
+    baselineRecords.map((record) => record.artifact_id).filter(Boolean)
+  );
+  const explicitClasses = Object.fromEntries(
+    requiredClasses.map((className) => [
+      className,
+      new Set(
+        (model.explicit_classes?.[className] || []).map((filePath) =>
+          String(filePath).replaceAll("\\", "/")
+        )
+      )
+    ])
+  );
+  const memberships = new Map(records.map((record) => [record.path, new Set()]));
+
+  for (const record of records) {
+    const memberClasses = memberships.get(record.path);
+    if (baselineByPath.has(record.path)) memberClasses.add("protected_baseline");
+    for (const [className, paths] of Object.entries(explicitClasses)) {
+      if (className !== "protected_baseline" && paths.has(record.path)) {
+        memberClasses.add(className);
+      }
+    }
+    if (memberClasses.size > 0) continue;
+    if (record.declared_nonresult === true) {
+      memberClasses.add("excluded_nonresult");
+    } else if (
+      !record.claims_current_authority &&
+      !baselineArtifactIds.has(record.artifact_id) &&
+      record.well_formed_passing
+    ) {
+      memberClasses.add(
+        record.archived_or_superseded
+          ? "archived_or_superseded_nonbaseline"
+          : "accepted_additive_descendant"
+      );
+    }
+  }
+
+  const missingBaselinePaths = baselineRecords
+    .filter((record) => !recordByPath.has(record.path))
+    .map((record) => record.path);
+  const hashMismatchPaths = baselineRecords
+    .filter((expected) => {
+      const observed = recordByPath.get(expected.path);
+      return (
+        observed &&
+        (
+          Number(observed.byte_size) !== expected.byte_size ||
+          observed.sha256 !== expected.sha256
+        )
+      );
+    })
+    .map((record) => record.path);
+  const unclassifiedPaths = records
+    .filter((record) => memberships.get(record.path).size === 0)
+    .map((record) => record.path);
+  const duplicateClassificationPaths = records
+    .filter((record) => memberships.get(record.path).size > 1)
+    .map((record) => ({
+      path: record.path,
+      classes: [...memberships.get(record.path)].sort()
+    }));
+  const unregisteredAuthorityPaths = records
+    .filter(
+      (record) =>
+        record.claims_current_authority &&
+        memberships.get(record.path).size === 0
+    )
+    .map((record) => record.path);
+  const authorityClasses = new Set([
+    "protected_baseline",
+    "current_control_plane_result",
+    "baseline_or_current_authority_nonbaseline"
+  ]);
+  const misclassifiedAuthorityPaths = records
+    .filter(
+      (record) =>
+        record.claims_current_authority &&
+        memberships.get(record.path).size > 0 &&
+        ![...memberships.get(record.path)].some((className) =>
+          authorityClasses.has(className)
+        )
+    )
+    .map((record) => record.path);
+  const baselineIdentityCollisionPaths = records
+    .filter(
+      (record) =>
+        !baselineByPath.has(record.path) &&
+        baselineArtifactIds.has(record.artifact_id)
+    )
+    .map((record) => record.path);
+  const invalidAcceptedAdditivePaths = records
+    .filter(
+      (record) =>
+        memberships
+          .get(record.path)
+          .has("accepted_additive_descendant") &&
+        (
+          !record.well_formed_passing ||
+          record.claims_current_authority ||
+          baselineArtifactIds.has(record.artifact_id)
+        )
+    )
+    .map((record) => record.path);
+  const missingExplicitPaths = [];
+  for (const [className, paths] of Object.entries(explicitClasses)) {
+    for (const filePath of paths) {
+      if (!recordByPath.has(filePath)) {
+        missingExplicitPaths.push({ class_name: className, path: filePath });
+      }
+    }
+  }
+
+  const classes = {};
+  for (const className of requiredClasses) {
+    classes[className] = records
+      .filter((record) => memberships.get(record.path).has(className))
+      .map((record) => ({
+        path: record.path,
+        artifact_id: record.artifact_id || null,
+        byte_size: Number(record.byte_size) || 0,
+        sha256: record.sha256 || null
+      }));
+  }
+  const classCounts = Object.fromEntries(
+    requiredClasses.map((className) => [className, classes[className].length])
+  );
+  const classifiedResultTotal = Object.values(classCounts).reduce(
+    (total, count) => total + count,
+    0
+  );
+  const observedResultTotal = records.length;
+  const reportedTotal = Number(model.reported_total);
+  const arithmeticMatches =
+    classifiedResultTotal === observedResultTotal &&
+    unclassifiedPaths.length === 0 &&
+    duplicateClassificationPaths.length === 0;
+  const failures = [];
+  if (unknownExplicitClassNames.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "UNKNOWN_RESULT_CLASS",
+        unknownExplicitClassNames.join(", ")
+      )
+    );
+  }
+  if (
+    (model.explicit_classes?.protected_baseline || []).length > 0
+  ) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "PROTECTED_BASELINE_MANUAL_REGISTRATION",
+        "protected baseline membership must be derived from Readiness evidence"
+      )
+    );
+  }
+  if (baselineRecords.length !== Number(model.required_baseline_count)) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "READINESS_BASELINE_COUNT_INVALID",
+        `expected ${model.required_baseline_count}; observed ${baselineRecords.length}`
+      )
+    );
+  }
+  if (missingBaselinePaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "PROTECTED_BASELINE_FILE_MISSING",
+        missingBaselinePaths.join(", ")
+      )
+    );
+  }
+  if (hashMismatchPaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "PROTECTED_BASELINE_HASH_CHANGED",
+        hashMismatchPaths.join(", ")
+      )
+    );
+  }
+  if (unclassifiedPaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "UNCLASSIFIED_RESULT",
+        unclassifiedPaths.join(", ")
+      )
+    );
+  }
+  if (duplicateClassificationPaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "DUPLICATE_RESULT_CLASSIFICATION",
+        duplicateClassificationPaths
+          .map((item) => `${item.path} => ${item.classes.join("+")}`)
+          .join(", ")
+      )
+    );
+  }
+  if (unregisteredAuthorityPaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "UNREGISTERED_CURRENT_AUTHORITY_CLAIM",
+        unregisteredAuthorityPaths.join(", ")
+      )
+    );
+  }
+  if (misclassifiedAuthorityPaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "CURRENT_AUTHORITY_CLASS_INVALID",
+        misclassifiedAuthorityPaths.join(", ")
+      )
+    );
+  }
+  if (invalidAcceptedAdditivePaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "INVALID_ADDITIVE_DESCENDANT",
+        invalidAcceptedAdditivePaths.join(", ")
+      )
+    );
+  }
+  if (baselineIdentityCollisionPaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "BASELINE_RESULT_IDENTITY_COLLISION",
+        baselineIdentityCollisionPaths.join(", ")
+      )
+    );
+  }
+  if (missingExplicitPaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "REGISTERED_RESULT_MISSING",
+        missingExplicitPaths
+          .map((item) => `${item.class_name}:${item.path}`)
+          .join(", ")
+      )
+    );
+  }
+  if (!Number.isInteger(reportedTotal) || reportedTotal !== observedResultTotal) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "OBSERVED_RESULT_TOTAL_MISMATCH",
+        `reported ${model.reported_total}; enumerated ${observedResultTotal}`
+      )
+    );
+  }
+  if (!arithmeticMatches) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "RESULT_CLASS_ARITHMETIC_MISMATCH",
+        `class sum ${classifiedResultTotal}; observed ${observedResultTotal}`
+      )
+    );
+  }
+
+  const inventoryRows = records.map(
+    (record) => `${record.path}|${record.byte_size}|${record.sha256}`
+  );
+  return {
+    passed: failures.length === 0,
+    observed_result_total: observedResultTotal,
+    protected_baseline_count: classCounts.protected_baseline || 0,
+    accepted_additive_descendant_count:
+      classCounts.accepted_additive_descendant || 0,
+    other_nonbaseline_count: Object.fromEntries(
+      Object.entries(classCounts).filter(
+        ([className]) =>
+          !["protected_baseline", "accepted_additive_descendant"].includes(
+            className
+          )
+      )
+    ),
+    class_counts: classCounts,
+    classified_result_total: classifiedResultTotal,
+    unclassified_result_count: unclassifiedPaths.length,
+    duplicate_classification_count: duplicateClassificationPaths.length,
+    baseline_missing_count: missingBaselinePaths.length,
+    baseline_hash_mismatch_count: hashMismatchPaths.length,
+    unknown_result_class_count: unknownExplicitClassNames.length,
+    protected_baseline_manual_registration_count:
+      (model.explicit_classes?.protected_baseline || []).length,
+    unregistered_current_authority_count: unregisteredAuthorityPaths.length,
+    misclassified_current_authority_count:
+      misclassifiedAuthorityPaths.length,
+    invalid_additive_descendant_count:
+      invalidAcceptedAdditivePaths.length,
+    baseline_identity_collision_count: baselineIdentityCollisionPaths.length,
+    registered_result_missing_count: missingExplicitPaths.length,
+    arithmetic_matches: arithmeticMatches,
+    inventory_sha256: caseDigestControlPlaneSha256(
+      Buffer.from(inventoryRows.join("\n"))
+    ),
+    classes,
+    unclassified_paths: unclassifiedPaths,
+    duplicate_classifications: duplicateClassificationPaths,
+    missing_baseline_paths: missingBaselinePaths,
+    baseline_hash_mismatch_paths: hashMismatchPaths,
+    unknown_result_class_names: unknownExplicitClassNames,
+    unregistered_current_authority_paths: unregisteredAuthorityPaths,
+    misclassified_current_authority_paths: misclassifiedAuthorityPaths,
+    invalid_additive_descendant_paths: invalidAcceptedAdditivePaths,
+    baseline_identity_collision_paths: baselineIdentityCollisionPaths,
+    missing_registered_paths: missingExplicitPaths,
+    failures
+  };
+}
+
+async function caseDigestCurrentResultRecords() {
+  const resultPaths = (await caseDigestControlPlaneListFiles("artifacts"))
+    .filter((filePath) => filePath.endsWith("-result.json"))
+    .sort((left, right) => left.localeCompare(right));
+  const records = [];
+  for (const filePath of resultPaths) {
+    const snapshot = await readJsonFileSnapshot(filePath);
+    records.push({
+      path: filePath,
+      byte_size: snapshot.byteSize,
+      sha256: snapshot.sha256,
+      artifact_id: snapshot.value?.artifact_id || null,
+      well_formed_passing: caseDigestResultIsWellFormedPassing(snapshot.value),
+      claims_current_authority: caseDigestResultClaimsCurrentAuthority(
+        snapshot.value
+      ),
+      archived_or_superseded: caseDigestResultIsArchivedOrSuperseded(
+        snapshot.value
+      ),
+      declared_nonresult: snapshot.value?.result_artifact === false
+    });
+  }
+  return records;
+}
+
+async function validateCaseDigestBaselineSubset(inputPath, manifestValue = null) {
   const canonicalPath = "artifacts/asset-rights-readiness-packet-result.json";
   if (path.resolve(inputPath) !== path.resolve(canonicalPath)) {
     throw new Error(`Readiness baseline subset validation requires ${canonicalPath}`);
   }
   const readiness = await readJson(canonicalPath);
-  const baselineFiles = readiness.protected_integrity?.historical_results?.files || [];
-  const missing_paths = [];
-  const hash_changed_paths = [];
-  for (const record of baselineFiles) {
-    const snapshot = await readFileSnapshot(record.relative_path);
-    if (!snapshot.exists) missing_paths.push(record.relative_path);
-    else if (snapshot.byteSize !== record.byte_size || snapshot.sha256 !== record.sha256) hash_changed_paths.push(record.relative_path);
-  }
-
-  const artifactEntries = await readdir("artifacts", { withFileTypes: true });
-  const currentResultPaths = artifactEntries
-    .filter((entry) => entry.isFile() && entry.name.endsWith("-result.json"))
-    .map((entry) => `artifacts/${entry.name}`)
-    .sort();
-  const baselinePaths = new Set(baselineFiles.map((item) => item.relative_path));
-  const additionalPaths = currentResultPaths.filter((filePath) =>
-    !baselinePaths.has(filePath) && !CASE_DIGEST_BASELINE_OWNER_RESULT_PATHS.has(filePath)
-  );
-  const valid_additive_paths = [];
-  const invalid_additive_paths = [];
-  for (const filePath of additionalPaths) {
-    const snapshot = await readJsonFileSnapshot(filePath);
-    if (
-      snapshot.value &&
-      typeof snapshot.value.artifact_id === "string" &&
-      snapshot.value.artifact_id.length > 0 &&
-      snapshot.value.passed === true &&
-      Array.isArray(snapshot.value.failures) &&
-      snapshot.value.failures.length === 0
-    ) valid_additive_paths.push(filePath);
-    else invalid_additive_paths.push(filePath);
-  }
-
+  const manifest =
+    manifestValue || (await readJson("artifacts/artifact-manifest.json"));
+  const registry =
+    manifest.case_digest_control_plane_convergence?.result_inventory_registry ||
+    {};
+  const records = await caseDigestCurrentResultRecords();
+  const recordByPath = new Map(records.map((record) => [record.path, record]));
+  const baselineFiles = (
+    readiness.protected_integrity?.historical_results?.files || []
+  ).map((record) => ({
+    path: record.relative_path,
+    byte_size: record.byte_size,
+    sha256: record.sha256,
+    artifact_id: recordByPath.get(record.relative_path)?.artifact_id || null
+  }));
+  const partition = evaluateCaseDigestResultInventoryModel({
+    required_baseline_count: registry.required_baseline_count ?? 76,
+    reported_total: records.length,
+    records,
+    baseline_records: baselineFiles,
+    explicit_classes: registry.explicit_classes || {}
+  });
   return {
-    passed: baselineFiles.length === 76 && missing_paths.length === 0 && hash_changed_paths.length === 0,
+    passed: partition.passed,
+    inventory_partition_enforced: true,
     baseline_count: baselineFiles.length,
-    protected_subset_count: baselineFiles.length - missing_paths.length - hash_changed_paths.length,
-    missing_paths,
-    hash_changed_paths,
-    additive_descendant_count: valid_additive_paths.length,
-    valid_additive_paths,
-    invalid_additive_paths,
-    current_result_count: currentResultPaths.length,
-    fixed_current_count_required: false
+    protected_subset_count: partition.protected_baseline_count,
+    missing_paths: partition.missing_baseline_paths,
+    hash_changed_paths: partition.baseline_hash_mismatch_paths,
+    additive_descendant_count:
+      partition.accepted_additive_descendant_count,
+    valid_additive_paths: partition.classes.accepted_additive_descendant.map(
+      (item) => item.path
+    ),
+    invalid_additive_paths: partition.invalid_additive_descendant_paths,
+    current_result_count: partition.observed_result_total,
+    fixed_current_count_required: false,
+    ...partition
   };
+}
+
+function caseDigestNormalizePaths(paths) {
+  return [...new Set((paths || []).map((item) => String(item).replaceAll("\\", "/")))]
+    .sort((left, right) => left.localeCompare(right));
+}
+
+function caseDigestPathIntersection(leftPaths, rightPaths) {
+  const right = new Set(caseDigestNormalizePaths(rightPaths));
+  return caseDigestNormalizePaths(leftPaths).filter((filePath) =>
+    right.has(filePath)
+  );
+}
+
+function evaluateCaseDigestIntegrationEvidenceModel(model) {
+  const inventory = evaluateCaseDigestResultInventoryModel(model.inventory || {});
+  const writerPaths = caseDigestNormalizePaths(model.path_audit?.writer_paths);
+  const controlPaths = caseDigestNormalizePaths(model.path_audit?.control_paths);
+  const followupPaths = caseDigestNormalizePaths(model.path_audit?.followup_paths);
+  const writerControlIntersection = caseDigestPathIntersection(
+    writerPaths,
+    controlPaths
+  );
+  const writerFollowupIntersection = caseDigestPathIntersection(
+    writerPaths,
+    followupPaths
+  );
+  const controlFollowupIntersection = caseDigestPathIntersection(
+    controlPaths,
+    followupPaths
+  );
+  const failures = [...inventory.failures];
+  if (writerControlIntersection.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "WRITER_CONTROL_PATH_OVERLAP",
+        writerControlIntersection.join(", ")
+      )
+    );
+  }
+  if (model.mutation_detected === true) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "NORMAL_VALIDATION_MUTATED_REPOSITORY",
+        "normal validation changed the repository mutation surface"
+      )
+    );
+  }
+  return {
+    schemaVersion: CASE_DIGEST_INTEGRATION_EVIDENCE_SCHEMA_VERSION,
+    artifact_id: CASE_DIGEST_INTEGRATION_EVIDENCE_ARTIFACT_ID,
+    passed: failures.length === 0,
+    inventory,
+    path_audit: {
+      writer_changed_path_count: writerPaths.length,
+      control_changed_path_count: controlPaths.length,
+      followup_changed_path_count: followupPaths.length,
+      writer_control_intersection: writerControlIntersection,
+      writer_control_intersection_count: writerControlIntersection.length,
+      writer_followup_intersection: writerFollowupIntersection,
+      writer_followup_intersection_count: writerFollowupIntersection.length,
+      control_followup_intersection: controlFollowupIntersection,
+      control_followup_intersection_count: controlFollowupIntersection.length
+    },
+    mutation_detected: model.mutation_detected === true,
+    failures
+  };
+}
+
+function caseDigestGitRun(args, encoding = "utf8") {
+  const run = spawnSync("git", args, {
+    cwd: process.cwd(),
+    encoding,
+    windowsHide: true,
+    maxBuffer: 32 * 1024 * 1024
+  });
+  if (run.status !== 0) {
+    throw new Error(
+      `git ${args.join(" ")} failed: ${String(run.stderr || run.stdout).trim()}`
+    );
+  }
+  return run.stdout;
+}
+
+function caseDigestGitChangedPaths(commitId) {
+  return caseDigestNormalizePaths(
+    String(
+      caseDigestGitRun([
+        "diff-tree",
+        "--no-commit-id",
+        "--name-only",
+        "-r",
+        commitId
+      ])
+    )
+      .split(/\r?\n/u)
+      .filter(Boolean)
+  );
+}
+
+function caseDigestGitResultRecords(commitId) {
+  const resultPaths = String(
+    caseDigestGitRun(["ls-tree", "-r", "--name-only", commitId, "artifacts"])
+  )
+    .split(/\r?\n/u)
+    .filter((filePath) => filePath.endsWith("-result.json"))
+    .sort((left, right) => left.localeCompare(right));
+  return resultPaths.map((filePath) => {
+    const bytes = caseDigestGitRun(["show", `${commitId}:${filePath}`], null);
+    let value = null;
+    try {
+      value = JSON.parse(bytes.toString("utf8"));
+    } catch {
+      value = null;
+    }
+    return {
+      path: filePath,
+      byte_size: bytes.byteLength,
+      sha256: caseDigestControlPlaneSha256(bytes),
+      artifact_id: value?.artifact_id || null,
+      well_formed_passing: caseDigestResultIsWellFormedPassing(value),
+      claims_current_authority: caseDigestResultClaimsCurrentAuthority(value),
+      archived_or_superseded: caseDigestResultIsArchivedOrSuperseded(value),
+      declared_nonresult: value?.result_artifact === false
+    };
+  });
+}
+
+async function buildCaseDigestIntegrationEvidence(outputPath) {
+  if (
+    path.resolve(outputPath) !==
+    path.resolve(CASE_DIGEST_INTEGRATION_EVIDENCE_RESULT_PATH)
+  ) {
+    throw new Error(
+      `Integration evidence build requires ${CASE_DIGEST_INTEGRATION_EVIDENCE_RESULT_PATH}`
+    );
+  }
+  const [manifest, readiness] = await Promise.all([
+    readJson("artifacts/artifact-manifest.json"),
+    readJson("artifacts/asset-rights-readiness-packet-result.json")
+  ]);
+  const registry = structuredClone(
+    manifest.case_digest_control_plane_convergence?.result_inventory_registry ||
+      {}
+  );
+  registry.explicit_classes.integration_evidence_result = (
+    registry.explicit_classes.integration_evidence_result || []
+  ).filter(
+    (filePath) =>
+      filePath !== CASE_DIGEST_INTEGRATION_EVIDENCE_RESULT_PATH
+  );
+  const predecessorRecords = caseDigestGitResultRecords(
+    CASE_DIGEST_CONTROL_PLANE_COMMIT
+  );
+  const predecessorByPath = new Map(
+    predecessorRecords.map((record) => [record.path, record])
+  );
+  const baselineRecords = (
+    readiness.protected_integrity?.historical_results?.files || []
+  ).map((record) => ({
+    path: record.relative_path,
+    byte_size: record.byte_size,
+    sha256: record.sha256,
+    artifact_id:
+      predecessorByPath.get(record.relative_path)?.artifact_id || null
+  }));
+  const controlPaths = caseDigestGitChangedPaths(
+    CASE_DIGEST_CONTROL_PLANE_COMMIT
+  );
+  const writerPaths = caseDigestGitChangedPaths(
+    CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT
+  );
+  const followupPaths = [
+    "artifacts/artifact-manifest.json",
+    "artifacts/ARTIFACTS.md",
+    "artifacts/case-digest-control-plane-convergence-result.json",
+    CASE_DIGEST_INTEGRATION_EVIDENCE_RESULT_PATH,
+    "docs/review/case-digest-control-plane-convergence.md",
+    "docs/review/case-digest-control-plane-integration-evidence.md",
+    "tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
+    "tools/fff-state.mjs"
+  ];
+  const model = {
+    inventory: {
+      required_baseline_count: registry.required_baseline_count ?? 76,
+      reported_total: predecessorRecords.length,
+      records: predecessorRecords,
+      baseline_records: baselineRecords,
+      explicit_classes: registry.explicit_classes || {}
+    },
+    path_audit: {
+      writer_paths: writerPaths,
+      control_paths: controlPaths,
+      followup_paths: followupPaths
+    },
+    mutation_detected: false
+  };
+  const evaluated = evaluateCaseDigestIntegrationEvidenceModel(model);
+  const unexplainedBefore = [
+    "artifacts/asset-rights-readiness-packet-result.json",
+    "artifacts/private-previsualization-timeline-result.json",
+    "artifacts/resumable-private-pipeline-result.json",
+    "artifacts/case-digest-control-plane-convergence-result.json"
+  ];
+  const result = {
+    schemaVersion: CASE_DIGEST_INTEGRATION_EVIDENCE_SCHEMA_VERSION,
+    artifact_id: CASE_DIGEST_INTEGRATION_EVIDENCE_ARTIFACT_ID,
+    mission_id: "fff-case-digest-control-plane-integration-evidence-001",
+    passed: evaluated.passed,
+    failures: evaluated.failures,
+    support_only: true,
+    product_gate: false,
+    target_base: CASE_DIGEST_BASE_REVISION,
+    accepted_local_inputs: [
+      {
+        role: "control_plane_predecessor",
+        commit_id: CASE_DIGEST_CONTROL_PLANE_COMMIT
+      },
+      {
+        role: "writer_source_adaptation",
+        commit_id: CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT
+      }
+    ],
+    frozen_predecessor_inventory: {
+      commit_id: CASE_DIGEST_CONTROL_PLANE_COMMIT,
+      observed_result_total: predecessorRecords.length,
+      inventory_sha256: evaluated.inventory.inventory_sha256,
+      items: predecessorRecords.map((record) => ({
+        path: record.path,
+        artifact_id: record.artifact_id,
+        byte_size: record.byte_size,
+        sha256: record.sha256
+      }))
+    },
+    predecessor_partition: {
+      class_counts: evaluated.inventory.class_counts,
+      classified_result_total:
+        evaluated.inventory.classified_result_total,
+      unclassified_result_count:
+        evaluated.inventory.unclassified_result_count,
+      duplicate_classification_count:
+        evaluated.inventory.duplicate_classification_count,
+      baseline_missing_count: evaluated.inventory.baseline_missing_count,
+      baseline_hash_mismatch_count:
+        evaluated.inventory.baseline_hash_mismatch_count,
+      class_paths: Object.fromEntries(
+        Object.entries(evaluated.inventory.classes).map(
+          ([className, items]) => [
+            className,
+            items.map((item) => item.path)
+          ]
+        )
+      )
+    },
+    discrepancy_resolution: {
+      prior_claim: "85 observed = 76 protected baseline + 5 additive descendants + 4 omitted nonbaseline support/authority results",
+      previously_unexplained_count: unexplainedBefore.length,
+      previously_unexplained_results: unexplainedBefore.map((filePath) => {
+        const record = predecessorByPath.get(filePath);
+        return {
+          path: filePath,
+          artifact_id: record?.artifact_id || null,
+          corrected_class:
+            filePath ===
+            "artifacts/case-digest-control-plane-convergence-result.json"
+              ? "current_control_plane_result"
+              : "baseline_or_current_authority_nonbaseline"
+        };
+      }),
+      reconciled: true
+    },
+    path_overlap_audit: {
+      control_plane_commit: CASE_DIGEST_CONTROL_PLANE_COMMIT,
+      writer_commit: CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT,
+      control_changed_paths: controlPaths,
+      writer_changed_paths: writerPaths,
+      followup_changed_paths: caseDigestNormalizePaths(followupPaths),
+      followup_path_source:
+        "declared support scope; verify against the containing commit",
+      writer_control_intersection:
+        evaluated.path_audit.writer_control_intersection,
+      writer_control_intersection_count:
+        evaluated.path_audit.writer_control_intersection_count,
+      writer_followup_intersection:
+        evaluated.path_audit.writer_followup_intersection,
+      writer_followup_intersection_count:
+        evaluated.path_audit.writer_followup_intersection_count,
+      control_followup_intersection:
+        evaluated.path_audit.control_followup_intersection,
+      control_followup_intersection_count:
+        evaluated.path_audit.control_followup_intersection_count,
+      semantic_contract_intersection: [
+        "accepted CASE_DIGEST identity and scoped/default-off boundary",
+        "missing-causality and quarantined linear-lore boundaries",
+        "read-only validation and protected-product immutability"
+      ],
+      shared_read_dependencies: [
+        "artifacts/private-raster-case-digest-result.json",
+        "artifacts/private-raster-case-digest/private-raster-case-digest.json",
+        "artifacts/narrative-format-quarantine/narrative-format-quarantine.json"
+      ]
+    },
+    integration_readiness: {
+      status: "pending",
+      recommended_order: [
+        CASE_DIGEST_CONTROL_PLANE_COMMIT,
+        "this control-plane evidence follow-up",
+        CASE_DIGEST_WRITER_SOURCE_ADAPTATION_COMMIT
+      ],
+      order_summary: "control-plane first (including its follow-up), writer second",
+      followup_commit_status: "represented_by_containing_git_commit",
+      followup_commit_identity_resolution:
+        "resolve the commit containing this result after local commit creation",
+      followup_preferred_subject:
+        "Clarify control-plane inventory and integration evidence",
+      product_bytes_protected: true,
+      targeted_validation_after_integration: [
+        "node --check tools/fff-state.mjs",
+        "node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json",
+        "node --test tests/fff-case-digest-control-plane-convergence.test.mjs",
+        "node --test tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
+        "node --test tests/fff-private-raster-case-digest.test.mjs",
+        "node --test tests/fff-writer-source-adaptation.test.mjs",
+        "git diff --check"
+      ],
+      excluded_or_stale_inputs: [
+        "uncommitted sibling worktree state",
+        "historical machine-local dirty fingerprints",
+        "rejected materialized-motion visual direction",
+        "quarantined linear-lore narrative direction"
+      ],
+      push_authority: "not_authorized",
+      integration_authority: "not_authorized"
+    },
+    boundaries: {
+      product_state_unchanged: true,
+      default_state_unchanged: true,
+      acceptance_state_unchanged: true,
+      production_rights_release_unchanged: true,
+      writer_v1_started_or_passed: false,
+      branch_integration_performed: false,
+      push_performed: false,
+      external_effect_count: 0
+    }
+  };
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, `${JSON.stringify(result, null, 2)}\n`, "utf8");
+  return result;
 }
 
 function caseDigestControlPlaneFailure(code, decisionEffect, detail) {
@@ -1124,12 +1876,67 @@ function evaluateCaseDigestControlPlaneSnapshot(snapshot) {
   addFailure(snapshot.baseline?.baseline_count === 76, "READINESS_BASELINE_COUNT_INVALID", "BLOCK_SAFETY", "the protected readiness baseline is not the recorded 76-file set");
   addFailure((snapshot.baseline?.missing_paths || []).length === 0, "PROTECTED_BASELINE_FILE_MISSING", "BLOCK_SAFETY", (snapshot.baseline?.missing_paths || []).join(", "));
   addFailure((snapshot.baseline?.hash_changed_paths || []).length === 0, "PROTECTED_BASELINE_HASH_CHANGED", "BLOCK_SAFETY", (snapshot.baseline?.hash_changed_paths || []).join(", "));
-  for (const filePath of snapshot.baseline?.invalid_additive_paths || []) {
-    nonBlockingDebt.push({
-      code: "INVALID_ADDITIVE_DESCENDANT_RESULT",
-      decision_effect: "DEBT_NONBLOCKING",
-      detail: filePath
-    });
+  if (snapshot.baseline?.inventory_partition_enforced === true) {
+    addFailure(
+      snapshot.baseline.unclassified_result_count === 0,
+      "UNCLASSIFIED_RESULT",
+      "BLOCK_SAFETY",
+      (snapshot.baseline.unclassified_paths || []).join(", ")
+    );
+    addFailure(
+      snapshot.baseline.duplicate_classification_count === 0,
+      "DUPLICATE_RESULT_CLASSIFICATION",
+      "BLOCK_SAFETY",
+      JSON.stringify(snapshot.baseline.duplicate_classifications || [])
+    );
+    addFailure(
+      snapshot.baseline.arithmetic_matches === true,
+      "RESULT_CLASS_ARITHMETIC_MISMATCH",
+      "BLOCK_SAFETY",
+      `class sum ${snapshot.baseline.classified_result_total}; observed ${snapshot.baseline.observed_result_total}`
+    );
+    addFailure(
+      snapshot.baseline.unregistered_current_authority_count === 0,
+      "UNREGISTERED_CURRENT_AUTHORITY_CLAIM",
+      "BLOCK_SAFETY",
+      (snapshot.baseline.unregistered_current_authority_paths || []).join(", ")
+    );
+    addFailure(
+      snapshot.baseline.misclassified_current_authority_count === 0,
+      "CURRENT_AUTHORITY_CLASS_INVALID",
+      "BLOCK_SAFETY",
+      (snapshot.baseline.misclassified_current_authority_paths || []).join(", ")
+    );
+    addFailure(
+      snapshot.baseline.invalid_additive_descendant_count === 0,
+      "INVALID_ADDITIVE_DESCENDANT",
+      "BLOCK_SAFETY",
+      (snapshot.baseline.invalid_additive_descendant_paths || []).join(", ")
+    );
+    addFailure(
+      snapshot.baseline.unknown_result_class_count === 0,
+      "UNKNOWN_RESULT_CLASS",
+      "BLOCK_SAFETY",
+      (snapshot.baseline.unknown_result_class_names || []).join(", ")
+    );
+    addFailure(
+      snapshot.baseline.protected_baseline_manual_registration_count === 0,
+      "PROTECTED_BASELINE_MANUAL_REGISTRATION",
+      "BLOCK_SAFETY",
+      "protected baseline membership must be derived from Readiness evidence"
+    );
+    addFailure(
+      snapshot.baseline.baseline_identity_collision_count === 0,
+      "BASELINE_RESULT_IDENTITY_COLLISION",
+      "BLOCK_SAFETY",
+      (snapshot.baseline.baseline_identity_collision_paths || []).join(", ")
+    );
+    addFailure(
+      snapshot.baseline.registered_result_missing_count === 0,
+      "REGISTERED_RESULT_MISSING",
+      "BLOCK_SAFETY",
+      JSON.stringify(snapshot.baseline.missing_registered_paths || [])
+    );
   }
 
   addFailure(snapshot.mutation_detected === false, "NORMAL_VALIDATION_MUTATED_REPOSITORY", "BLOCK_SAFETY", "normal validation changed the repository mutation surface");
@@ -1163,6 +1970,31 @@ function evaluateCaseDigestControlPlaneSnapshot(snapshot) {
       additive_descendant_count: Number(snapshot.baseline?.additive_descendant_count) || 0,
       fixed_current_count_required: false
     },
+    observed_result_total:
+      Number(snapshot.baseline?.observed_result_total) ||
+      Number(snapshot.baseline?.current_result_count) ||
+      0,
+    protected_baseline_count:
+      Number(snapshot.baseline?.protected_baseline_count) ||
+      Number(snapshot.baseline?.protected_subset_count) ||
+      0,
+    accepted_additive_descendant_count:
+      Number(snapshot.baseline?.accepted_additive_descendant_count) ||
+      Number(snapshot.baseline?.additive_descendant_count) ||
+      0,
+    other_nonbaseline_count:
+      snapshot.baseline?.other_nonbaseline_count || {},
+    unclassified_result_count:
+      Number(snapshot.baseline?.unclassified_result_count) || 0,
+    duplicate_classification_count:
+      Number(snapshot.baseline?.duplicate_classification_count) || 0,
+    baseline_missing_count:
+      Number(snapshot.baseline?.baseline_missing_count) ||
+      (snapshot.baseline?.missing_paths || []).length,
+    baseline_hash_mismatch_count:
+      Number(snapshot.baseline?.baseline_hash_mismatch_count) ||
+      (snapshot.baseline?.hash_changed_paths || []).length,
+    inventory_sha256: snapshot.baseline?.inventory_sha256 || null,
     non_blocking_debt: nonBlockingDebt,
     failures,
     validation_revision: snapshot.validation_revision || CASE_DIGEST_BASE_REVISION,
@@ -1268,7 +2100,10 @@ async function validateCaseDigestControlPlane(inputPath) {
 
   let baseline;
   try {
-    baseline = await validateCaseDigestBaselineSubset("artifacts/asset-rights-readiness-packet-result.json");
+    baseline = await validateCaseDigestBaselineSubset(
+      "artifacts/asset-rights-readiness-packet-result.json",
+      manifest
+    );
   } catch (error) {
     baseline = {
       passed: false,
@@ -1435,6 +2270,43 @@ async function main() {
     const result = evaluateCaseDigestControlPlaneSnapshot(snapshot);
     console.log(JSON.stringify(result, null, 2));
     if (!result.current_path_pass) process.exitCode = 1;
+    return;
+  }
+
+  if (command === "audit-case-digest-integration-evidence-model") {
+    if (outputPath) {
+      fail("audit-case-digest-integration-evidence-model is read-only and does not accept an output path.");
+    }
+    const snapshot = inputPath === "-"
+      ? JSON.parse(await caseDigestControlPlaneReadStdin())
+      : await readJson(inputPath);
+    const result = evaluateCaseDigestIntegrationEvidenceModel(snapshot);
+    console.log(JSON.stringify(result, null, 2));
+    if (!result.passed) process.exitCode = 1;
+    return;
+  }
+
+  if (command === "build-case-digest-integration-evidence") {
+    if (outputPath) {
+      fail("build-case-digest-integration-evidence accepts exactly one output path.");
+    }
+    const result = await buildCaseDigestIntegrationEvidence(inputPath);
+    console.log(
+      JSON.stringify(
+        {
+          artifact_id: result.artifact_id,
+          passed: result.passed,
+          output_path: inputPath,
+          frozen_result_total:
+            result.frozen_predecessor_inventory.observed_result_total,
+          writer_control_path_overlap:
+            result.path_overlap_audit.writer_control_intersection_count
+        },
+        null,
+        2
+      )
+    );
+    if (!result.passed) process.exitCode = 1;
     return;
   }
 
@@ -23510,6 +24382,8 @@ Usage:
   node tools/fff-state.mjs normalize <state.json> [output.json]
   node tools/fff-state.mjs validate-case-digest-control-plane <artifact-manifest.json>
   node tools/fff-state.mjs audit-case-digest-control-plane-model <fixture.json>
+  node tools/fff-state.mjs audit-case-digest-integration-evidence-model <fixture.json>
+  node tools/fff-state.mjs build-case-digest-integration-evidence <output.json>
   node tools/fff-state.mjs validate-private-materialized-motion-previs-self-integrity <result.json>
   node tools/fff-state.mjs validate-private-full-raster-candidate-self-integrity <result.json>
   node tools/fff-state.mjs validate-private-full-raster-clarity-candidate-self-integrity <result.json>

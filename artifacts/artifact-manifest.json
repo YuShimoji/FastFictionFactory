@@ -49,6 +49,63 @@
       "validate-private-full-raster-clarity-candidate-self-integrity"
     ],
     "readiness_baseline_contract": "protected_76_file_subset_with_valid_additive_descendants",
+    "result_inventory_registry": {
+      "required_classes": [
+        "protected_baseline",
+        "accepted_additive_descendant",
+        "current_control_plane_result",
+        "archived_or_superseded_nonbaseline",
+        "excluded_nonresult"
+      ],
+      "additional_classes": [
+        "baseline_or_current_authority_nonbaseline",
+        "integration_evidence_result"
+      ],
+      "required_baseline_count": 76,
+      "explicit_classes": {
+        "accepted_additive_descendant": [
+          "artifacts/high-fidelity-raster-pilot-result.json",
+          "artifacts/private-full-raster-candidate-result.json",
+          "artifacts/private-full-raster-clarity-candidate-result.json",
+          "artifacts/private-materialized-motion-previs-result.json",
+          "artifacts/private-raster-case-digest-result.json"
+        ],
+        "current_control_plane_result": [
+          "artifacts/case-digest-control-plane-convergence-result.json"
+        ],
+        "baseline_or_current_authority_nonbaseline": [
+          "artifacts/asset-rights-readiness-packet-result.json",
+          "artifacts/private-previsualization-timeline-result.json",
+          "artifacts/resumable-private-pipeline-result.json"
+        ],
+        "archived_or_superseded_nonbaseline": [],
+        "integration_evidence_result": [
+          "artifacts/case-digest-control-plane-integration-evidence-result.json"
+        ],
+        "excluded_nonresult": []
+      },
+      "forward_rules": {
+        "well_formed_passing_non_authority_result": "accepted_additive_descendant",
+        "explicit_archive_or_superseded_result": "archived_or_superseded_nonbaseline",
+        "current_authority_requires_explicit_registration": true,
+        "baseline_artifact_id_collision_fails": true,
+        "inventory_growth_without_collision_is_allowed": true
+      }
+    },
+    "integration_evidence": {
+      "artifact_id": "fff-case-digest-control-plane-integration-evidence-001",
+      "schemaVersion": "fff.caseDigestControlPlaneIntegrationEvidence.v1",
+      "result_path": "artifacts/case-digest-control-plane-integration-evidence-result.json",
+      "review_doc_path": "docs/review/case-digest-control-plane-integration-evidence.md",
+      "target_base": "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e",
+      "control_plane_predecessor_commit": "dab9810961b64f1e31420f18797e897e1ef05819",
+      "writer_source_adaptation_commit": "11c30b264f8f257cc802ac218998479b805648e7",
+      "integration_status": "pending",
+      "push_authority": "not_authorized",
+      "integration_authority": "not_authorized",
+      "support_only": true,
+      "product_gate": false
+    },
     "predecessor_unique_successor_required": false,
     "clean_checkout_requires_historical_dirty_fingerprint": false,
     "normal_validation_writes_result": false,

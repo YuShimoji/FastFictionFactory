@@ -121,7 +121,59 @@
     "hash_changed_count": 0,
     "fixed_current_count_required": false,
     "additive_descendant_count": 5,
-    "invalid_additive_descendant_count": 0
+    "invalid_additive_descendant_count": 0,
+    "predecessor_observed_result_total": 85,
+    "predecessor_inventory_sha256": "361e16663e2da86e18c5c30c853fc23c8a598460c06e673de1d9a6ca20c06b73",
+    "final_observed_result_total": 86,
+    "final_inventory_sha256_emitted_dynamically": true,
+    "classified_result_total": 86,
+    "unclassified_result_count": 0,
+    "duplicate_classification_count": 0,
+    "class_counts": {
+      "protected_baseline": 76,
+      "accepted_additive_descendant": 5,
+      "current_control_plane_result": 1,
+      "baseline_or_current_authority_nonbaseline": 3,
+      "integration_evidence_result": 1,
+      "archived_or_superseded_nonbaseline": 0,
+      "excluded_nonresult": 0
+    },
+    "previously_unexplained_results": [
+      {
+        "path": "artifacts/asset-rights-readiness-packet-result.json",
+        "artifact_id": "fff-asset-rights-readiness-packet-001",
+        "class": "baseline_or_current_authority_nonbaseline"
+      },
+      {
+        "path": "artifacts/private-previsualization-timeline-result.json",
+        "artifact_id": "fff-private-previsualization-timeline-001",
+        "class": "baseline_or_current_authority_nonbaseline"
+      },
+      {
+        "path": "artifacts/resumable-private-pipeline-result.json",
+        "artifact_id": "fff-resumable-private-pipeline-001",
+        "class": "baseline_or_current_authority_nonbaseline"
+      },
+      {
+        "path": "artifacts/case-digest-control-plane-convergence-result.json",
+        "artifact_id": "fff-case-digest-control-plane-convergence-001",
+        "class": "current_control_plane_result"
+      }
+    ]
+  },
+  "integration_readiness_evidence": {
+    "artifact_id": "fff-case-digest-control-plane-integration-evidence-001",
+    "result_path": "artifacts/case-digest-control-plane-integration-evidence-result.json",
+    "target_base": "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e",
+    "control_plane_commit": "dab9810961b64f1e31420f18797e897e1ef05819",
+    "writer_commit": "11c30b264f8f257cc802ac218998479b805648e7",
+    "control_changed_path_count": 13,
+    "writer_changed_path_count": 24,
+    "writer_control_path_intersection_count": 0,
+    "writer_followup_path_intersection_count": 0,
+    "recommended_order": "control-plane predecessor and evidence follow-up first; writer second",
+    "integration_status": "pending",
+    "push_authority": "not_authorized"
   },
   "affected_tests": [
     {
@@ -133,6 +185,12 @@
       "status": "PASS",
       "passed": 10,
       "total": 10
+    },
+    {
+      "command": "node --test tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
+      "status": "PASS",
+      "passed": 11,
+      "total": 11
     },
     {
       "command": "node --test tests/fff-private-raster-case-digest.test.mjs",
