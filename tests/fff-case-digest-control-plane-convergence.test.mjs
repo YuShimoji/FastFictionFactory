@@ -15,6 +15,12 @@ function validSnapshot() {
       current_project_state_integrity: true,
       canonical_root_command: true,
       case_digest_mandatory: true,
+      writer_integration_registered: true,
+      writer_validation_mandatory: true,
+      writer_source_adaptation_artifact_id: "fff-writer-source-adaptation-v0-001",
+      writer_decision_workspace_artifact_id: "fff-writer-decision-workspace-v1-001",
+      writer_candidate_only: true,
+      writer_effect_boundaries_closed: true,
       predecessor_unique_successor_required: false,
       clean_checkout_requires_historical_dirty_fingerprint: false,
       validation_writes_result: false
@@ -33,7 +39,12 @@ function validSnapshot() {
       case_digest_validator_pass: true,
       case_digest_tests_pass: true,
       case_digest_tests_total: 14,
-      case_digest_tests_passed: 14
+      case_digest_tests_passed: 14,
+      writer_source_cli_pass: true,
+      writer_decision_cli_pass: true,
+      writer_tests_pass: true,
+      writer_tests_total: 31,
+      writer_tests_passed: 31
     },
     quarantines: {
       primary_imagery_pass: true,
@@ -92,6 +103,23 @@ test("current chain fails closed when CASE_DIGEST is missing", () => {
   const run = runAudit(snapshot);
   assert.notEqual(run.status, 0);
   assert.ok(failureCodes(run).includes("CASE_DIGEST_MISSING_FROM_CURRENT_CHAIN"));
+});
+
+test("integrated Writer support must stay registered and candidate-only", () => {
+  const snapshot = validSnapshot();
+  snapshot.control.writer_integration_registered = false;
+  snapshot.control.writer_candidate_only = false;
+  const run = runAudit(snapshot);
+  assert.notEqual(run.status, 0);
+  assert.ok(failureCodes(run).includes("WRITER_INTEGRATION_NOT_REGISTERED"));
+});
+
+test("integrated Writer focused validation is part of current health", () => {
+  const snapshot = validSnapshot();
+  snapshot.current_validations.writer_tests_passed = 30;
+  const run = runAudit(snapshot);
+  assert.notEqual(run.status, 0);
+  assert.ok(failureCodes(run).includes("WRITER_FOCUSED_ACCEPTANCE_FAILED"));
 });
 
 test("rejected materialized motion cannot be promoted to current state", () => {
@@ -187,4 +215,33 @@ test("normal validation rejects any result-writing configuration or output path"
   });
   assert.notEqual(command.status, 0);
   assert.match(command.stderr, /read-only and does not accept an output path/);
+});
+
+test("repository root health includes the integrated Writer artifacts", () => {
+  const childEnvironment = { ...process.env };
+  delete childEnvironment.NODE_TEST_CONTEXT;
+  const run = spawnSync(process.execPath, [
+    toolPath,
+    "validate-case-digest-control-plane",
+    "artifacts/artifact-manifest.json"
+  ], {
+    cwd: repoRoot,
+    encoding: "utf8",
+    windowsHide: true,
+    env: childEnvironment
+  });
+  assert.equal(run.status, 0, run.stderr || run.stdout);
+  const result = JSON.parse(run.stdout);
+  assert.equal(result.current_path_pass, true);
+  assert.equal(result.writer_integration.registered, true);
+  assert.equal(result.writer_integration.read_only_cli_pass, true);
+  assert.equal(result.writer_integration.focused_tests, "31/31");
+  assert.equal(result.writer_integration.candidate_only, true);
+  assert.equal(
+    result.writer_integration.production_rights_release_canon_closed,
+    true
+  );
+  assert.equal(result.other_nonbaseline_count.excluded_nonresult, 4);
+  assert.equal(result.unclassified_result_count, 0);
+  assert.equal(result.mutation_detected, false);
 });

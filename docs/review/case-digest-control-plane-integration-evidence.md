@@ -1,5 +1,7 @@
 # CASE_DIGEST control-plane integration evidence
 
+> 2026-07-28 outcome: the separately authorized continuation integrated the audited control-plane first and Writer second on `codex/fff-case-digest-writer-integration-v1`; Writer merge commit `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc`. This document and its result remain the immutable pre-integration path/inventory audit. Current integration and validation state is owned by `docs/project-context.md`, `docs/review/current-status.md`, and the live root command.
+
 `fff-case-digest-control-plane-integration-evidence-001` closes a support-evidence gap without changing product state. It freezes the 85 result artifacts visible at control-plane commit `dab9810961b64f1e31420f18797e897e1ef05819`, records their exact paths, byte sizes, SHA256 identities, and one-and-only-one inventory class, then leaves the new evidence result as an explicit 86th support result.
 
 ## Inventory decision

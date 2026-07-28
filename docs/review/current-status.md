@@ -1,5 +1,30 @@
 # Current Status Packet
 
+## CASE_DIGEST / Writer integration status — 2026-07-28 JST
+
+| Decision dimension | Verified state |
+| --- | --- |
+| Exact restart base | clean `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`; ahead/behind `0 / 0` after fetch |
+| Integration branch | `codex/fff-case-digest-writer-integration-v1` |
+| Integration order | control-plane handoff successor first; Writer tip `a49b07c94a75fcda8bf8e85f4cd995af8018622d` second |
+| Writer merge identity | `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc` |
+| Active/default product | `fff-private-previsualization-timeline-001`; unchanged |
+| Accepted successor | silent `fff-private-raster-case-digest-001`; scoped acceptance; default-off |
+| Writer Source Adaptation | integrated and registered; exact source/authority lineage; six bounded formats; provider-neutral |
+| Writer Decision Workspace | integrated and registered; explicit accept/reject/defer/replace records; candidate-only successor; predecessor unchanged |
+| Root current health | PASS; CASE_DIGEST 14/14; Writer read-only CLI writes 0; Writer focused 31/31 |
+| Result inventory | 92 observed; 76 protected baseline; 7 additive; 4 explicit component-only; unclassified 0; duplicate 0 |
+| Separate human gate | exact transition-boundary review for the clarity predecessor remains unrecorded; not satisfied or blocked by this integration |
+| Still closed | production subtitle, final voice/effects, rights, production acceptance, release/publication, final canon |
+
+The Writer fixture proves the mechanism and boundaries, not the literary fitness or canon status of a real project source. A real-source successor requires supplied Markdown/text plus explicit writer decisions; absent causality remains `AUTHOR_DECISION_REQUIRED`.
+
+Run the branch-owned health command:
+
+```powershell
+node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json
+```
+
 ## CASE_DIGEST authority and local branch audit — 2026-07-27 JST
 
 | Decision dimension | Verified state |

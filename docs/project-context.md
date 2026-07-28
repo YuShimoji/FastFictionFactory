@@ -1,5 +1,17 @@
 # Project Context
 
+## CASE_DIGEST / Writer controlled integration — 2026-07-28 JST
+
+- Restart base was exact clean `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`, ahead/behind `0 / 0`, after `git fetch origin --prune`.
+- The delegated continuation authority integrated the clean control-plane line first and the clean Writer line second on `codex/fff-case-digest-writer-integration-v1`. The Writer merge commit is `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc`; both source worktrees remain clean and unchanged.
+- `fff-writer-source-adaptation-v0-001` and `fff-writer-decision-workspace-v1-001` are now registered together in the branch control plane. They preserve exact Markdown/source spans, explicit authority and decision records, six bounded format choices, candidate-only successor IR, and an Editorial Handoff-compatible output without overwriting the predecessor.
+- The Writer mechanism remains fixture-bounded. It does not claim arbitrary-novel adaptation, literary quality, a production-ready script, project canon, or permission to infer missing causality.
+- The root read-only command now requires CASE_DIGEST 14/14, both Writer read-only CLI checks with writes 0, and Writer focused tests 31/31. It reports 92 result-named JSON files as 76 protected baseline, seven valid additive artifact results, one current control-plane result, three baseline/current-authority results, one pre-integration evidence result, and four explicitly component-only files. Unclassified, duplicate, missing-baseline, and changed-baseline counts are zero; validation mutation is false.
+- Product state is unchanged: `fff-private-previsualization-timeline-001` remains active/default and the silent `fff-private-raster-case-digest-001` remains the scoped-accepted, default-off successor candidate.
+- The exact transition-boundary human review associated with `fff-private-full-raster-clarity-candidate-001` is still not recorded. That predecessor's linear-lore narrative remains quarantined; its accepted raster bytes and terminal-frame transition evidence remain preserved. This separate human gate neither blocks nor is satisfied by Writer integration.
+- Production subtitle selection, voice/effects, rights clearance, production acceptance, release/publication, and final canon remain closed.
+- Re-entry: read `AGENTS.md` → this section → `docs/review/current-status.md` → `docs/review/next-terminal-handoff.md`; then run `node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json`.
+
 ## CASE_DIGEST authority and two-branch integration audit — 2026-07-27 JST
 
 - Remote restart authority is exact `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`, with canonical `master` at parity `0 / 0`. The audited implementation tips are control-plane `197d23d47760e727126f7ad7e3e4e3120b2ae98c` and Writer `a49b07c94a75fcda8bf8e85f4cd995af8018622d`; the containing handoff successor is the current control-plane branch `HEAD`. Both branches have no upstream and are absent from remote refs.

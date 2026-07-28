@@ -1,6 +1,23 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-27 JST
+更新日: 2026-07-28 JST
+
+## 2026-07-28 CASE_DIGEST / Writer 統合完了
+
+`master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e` の clean / parity `0 / 0` を開始点に、監査済み control-plane を先、Writer を後に `codex/fff-case-digest-writer-integration-v1` へ統合しました。Writer の merge commit は `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc` です。元の control-plane / Writer worktree は変更せず clean のままです。
+
+| 統合した面 | workflow / decision への効果 | 現在の証拠 | 境界 |
+| --- | --- | --- | --- |
+| CASE_DIGEST control plane | accepted/default-off successor、archive、historical debtを同じ「current」と誤認しない | root read-only gate PASS、CASE_DIGEST 14/14 | default昇格・production判断なし |
+| Writer Source Adaptation v0 | source span、authority、format capacity を narration/shotより前に確定できる | read-only CLI writes 0、focused suite内でgreen | 任意小説・文学品質・canonを主張しない |
+| Writer Decision Workspace v1 | accept/reject/defer/replaceを明示recordにし、candidate-only successorを再現できる | predecessor overwrite 0、31/31 focused tests | missing causalityを自動補完しない |
+| 統合後 result inventory | Writerの2 artifact resultと4 component outputを権威混同せず収容 | 92件を一意分類、unclassified/duplicate 0 | component outputはproject stateではない |
+
+active/default は引き続き `fff-private-previsualization-timeline-001`、silent CASE_DIGEST は scoped accepted / default-off です。production subtitle selection、final voice/effects、rights、production acceptance、release/publication、final canon は閉じたままです。
+
+別候補 `fff-private-full-raster-clarity-candidate-001` の exact transition-boundary 人手レビューは未記録です。旧linear-lore narrativeはquarantine維持、accepted raster bytesとterminal-frame evidenceは保存されています。この人手ゲートをWriter統合で代行・完了扱いしていません。
+
+監修側で次に一意に判断できるのは、実ソースをWriter workspaceへ渡すか、transition boundaryだけを独立レビューするかです。実ソースを選ぶ場合は `.md` / `.txt`、metadata sidecar、明示decision recordが必要で、順序・因果が未提示なら `AUTHOR_DECISION_REQUIRED` のまま止めます。
 
 ## 2026-07-27 CASE_DIGEST authority and two-branch handoff
 

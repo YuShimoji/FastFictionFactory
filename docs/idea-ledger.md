@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-28 Integrated Writer decision path
+
+- Purpose: Make the audited Writer Source Adaptation and Decision Workspace available from the same restart authority as accepted CASE_DIGEST without widening production or canon authority.
+- Effect: A source can now be frozen as exact Markdown/text spans, evaluated against bounded format contracts, and advanced only through explicit accept/reject/defer/replace records into a candidate-only successor Handoff.
+- Requirements: Real source bytes, metadata sidecar, author-owned decision records, root health PASS, no invented causality, and preserved default/production/rights/release/canon boundaries.
+- State: Integrated on `codex/fff-case-digest-writer-integration-v1`; root health includes CASE_DIGEST 14/14, Writer read-only writes 0, Writer focused 31/31, result inventory 92/92, and mutation 0. Remote parity is recorded by the later Git handoff successor.
+- Owner: Writer/editor supplies source and decisions; repository maintainer owns control-plane continuity; a human reviewer owns the separate transition-boundary judgment; production, rights, release, and canon owners retain their gates.
+- Next move: Choose either one real-source decision packet, one exact transition-boundary human review, or a documentation/control-plane audit. Do not turn fixture completion into project canon.
+
 ## 2026-07-27 Two-branch integration handoff
 
 - Purpose: Preserve exact, evidence-backed restart state for the completed local control-plane and Writer branch tips without silently integrating or publishing either.

@@ -2,6 +2,12 @@
 
 This page is a navigation map for quickly understanding the current Fast Fiction Factory project from the Markdown set. It points to existing source documents instead of replacing them.
 
+## Current integrated development path — 2026-07-28 JST
+
+The accepted, silent CASE_DIGEST remains a default-off successor while the existing private previsualization remains active/default. The integrated Writer path adds exact Markdown/text intake, source and authority lineage, bounded format selection, explicit decision records, candidate-only successor IR, and Editorial Handoff-compatible output. It does not infer missing causality, finalize canon, select production subtitles or media, clear rights, or authorize release.
+
+Current health is `node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json`. The command includes CASE_DIGEST acceptance checks, Writer read-only checks and focused tests, inventory classification, archive integrity, quarantines, and mutation detection.
+
 ## Current product/control-plane route — 2026-07-27 JST
 
 The active/default artifact remains `fff-private-previsualization-timeline-001`. The accepted successor is silent, default-off `fff-private-raster-case-digest-001`, with human acceptance limited to CASE_DIGEST comprehension, review-caption readability, and the unchanged visual sequence. Rejected materialized motion remains archive-only, and the prior clarity narrative remains quarantined.

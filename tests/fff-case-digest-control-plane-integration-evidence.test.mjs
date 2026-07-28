@@ -183,6 +183,30 @@ test("valid additive descendant may increase the total", () => {
   assert.equal(run.result.inventory.accepted_additive_descendant_count, 2);
 });
 
+test("explicit component outputs are excluded without borrowing artifact authority", () => {
+  const model = validModel();
+  model.inventory.records.push(
+    observed(
+      {
+        path: "artifacts/writer/component-result.json",
+        artifact_id: null,
+        byte_size: 330,
+        sha256: "4".repeat(64)
+      },
+      { well_formed_passing: false }
+    )
+  );
+  model.inventory.explicit_classes.excluded_nonresult = [
+    "artifacts/writer/component-result.json"
+  ];
+  model.inventory.reported_total = 6;
+  const run = runAudit(model);
+  assert.equal(run.status, 0);
+  assert.equal(run.result.passed, true);
+  assert.equal(run.result.inventory.class_counts.excluded_nonresult, 1);
+  assert.equal(run.result.inventory.unclassified_result_count, 0);
+});
+
 test("unregistered current-authority result fails closed", () => {
   const model = validModel();
   model.inventory.records.push(

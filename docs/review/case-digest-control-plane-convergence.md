@@ -1,5 +1,7 @@
 # CASE_DIGEST control-plane convergence
 
+> 2026-07-28 successor: the audited Writer Source Adaptation v0 and Decision Workspace v1 lines are integrated on `codex/fff-case-digest-writer-integration-v1`. The root command now validates both Writer read-only CLIs and 31/31 focused tests, and classifies their result surface without changing product/default/canon authority. The original 2026-07-27 convergence evidence below remains the pre-integration audit.
+
 `fff-case-digest-control-plane-convergence-001` is a bounded support artifact that makes the current remote CASE_DIGEST authority readable and verifiable from a clean checkout. It changes no story package, media, default selection, human verdict, rights state, production state, release state, or canon state.
 
 ## State dimensions kept separate

@@ -1,5 +1,7 @@
 # Writer Decision Workspace v1 Review
 
+> Integration note (2026-07-28): this candidate-only workspace is registered on `codex/fff-case-digest-writer-integration-v1` and is now part of the root read-only health chain. Integration does not turn fixture decisions into project canon or production authority.
+
 ## 実行範囲
 
 開始時点は branch `codex/fff-writer-source-adaptation-v0-planner`、HEAD `11c30b264f8f257cc802ac218998479b805648e7`、parent `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`。worktree は clean、staged 0、untracked 0 で、v1 target path は未作成だった。

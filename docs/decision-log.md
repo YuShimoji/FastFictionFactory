@@ -1,5 +1,13 @@
 # Decision Log
 
+## 2026-07-28 — Integrate the audited Writer line without changing product authority
+
+- Decision: use the delegated continuation task as the separate Git integration authority that the 2026-07-27 handoff required. Integrate the control-plane handoff successor first and Writer tip `a49b07c94a75fcda8bf8e85f4cd995af8018622d` second on `codex/fff-case-digest-writer-integration-v1`.
+- Evidence: both source worktrees were clean, their base-relative path sets were disjoint, and the Writer merge completed without conflict at `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc`.
+- Control decision: register Writer Source Adaptation v0 and Decision Workspace v1 in the root manifest; require their read-only CLI checks and 31/31 focused tests in the canonical root health command.
+- Inventory decision: classify the two top-level Writer artifact results as valid additive descendants and the four `*-result.json` component outputs as explicit non-artifact components. Result arithmetic is 92/92 with unclassified 0 and duplicate 0.
+- Product boundary: active/default and CASE_DIGEST scoped acceptance do not change. The clarity predecessor's exact transition-boundary human review remains unrecorded and separate. Production subtitle, voice/effects, rights, production acceptance, release/publication, and final canon remain closed.
+
 ## 2026-07-27 — Record complete local branch tips without integrating them
 
 - Decision: Treat `197d23d47760e727126f7ad7e3e4e3120b2ae98c` and `a49b07c94a75fcda8bf8e85f4cd995af8018622d` as audited local inputs while keeping `master` at exact `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`.

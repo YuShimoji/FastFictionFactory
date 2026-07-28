@@ -86,6 +86,10 @@ const CASE_DIGEST_BASE_REVISION = "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e";
 const CASE_DIGEST_CONTROL_PLANE_INVENTORY_COMMIT = "dab9810961b64f1e31420f18797e897e1ef05819";
 const CASE_DIGEST_CONTROL_PLANE_AUDITED_TIP = "197d23d47760e727126f7ad7e3e4e3120b2ae98c";
 const CASE_DIGEST_WRITER_BRANCH_AUDITED_TIP = "a49b07c94a75fcda8bf8e85f4cd995af8018622d";
+const CASE_DIGEST_WRITER_SOURCE_ADAPTATION_ID = "fff-writer-source-adaptation-v0-001";
+const CASE_DIGEST_WRITER_SOURCE_ADAPTATION_RESULT_PATH = "artifacts/writer-source-adaptation-v0/writer-source-adaptation-result.json";
+const CASE_DIGEST_WRITER_DECISION_WORKSPACE_ID = "fff-writer-decision-workspace-v1-001";
+const CASE_DIGEST_WRITER_DECISION_WORKSPACE_RESULT_PATH = "artifacts/writer-decision-workspace-v1/writer-decision-workspace-result.json";
 const CASE_DIGEST_INTEGRATION_EVIDENCE_SCHEMA_VERSION = "fff.caseDigestControlPlaneIntegrationEvidence.v1";
 const CASE_DIGEST_INTEGRATION_EVIDENCE_ARTIFACT_ID = "fff-case-digest-control-plane-integration-evidence-001";
 const CASE_DIGEST_INTEGRATION_EVIDENCE_RESULT_PATH = "artifacts/case-digest-control-plane-integration-evidence-result.json";
@@ -1855,6 +1859,8 @@ function evaluateCaseDigestControlPlaneSnapshot(snapshot) {
   addFailure(snapshot.control?.current_project_state_integrity === true, "CURRENT_PROJECT_STATE_INVALID", "BLOCK_CURRENT", "root project-state registration is incomplete or inconsistent");
   addFailure(snapshot.control?.canonical_root_command === true, "ROOT_COMMAND_NOT_CANONICAL", "BLOCK_CURRENT", "manifest validation command is not the canonical CASE_DIGEST control-plane command");
   addFailure(snapshot.control?.case_digest_mandatory === true, "CASE_DIGEST_MISSING_FROM_CURRENT_CHAIN", "BLOCK_CURRENT", "CASE_DIGEST validation is not mandatory in the current-path chain");
+  addFailure(snapshot.control?.writer_integration_registered === true, "WRITER_INTEGRATION_NOT_REGISTERED", "BLOCK_CURRENT", "the integrated Writer Source Adaptation and Decision Workspace are not registered in the current control plane");
+  addFailure(snapshot.control?.writer_validation_mandatory === true, "WRITER_VALIDATION_MISSING_FROM_CURRENT_CHAIN", "BLOCK_CURRENT", "Writer read-only validation and focused tests are not mandatory in the current-path chain");
   addFailure(snapshot.control?.predecessor_unique_successor_required === false, "PREDECESSOR_UNIQUE_SUCCESSOR_REQUIRED", "BLOCK_CURRENT", "a predecessor is incorrectly required to remain the unique current successor");
   addFailure(snapshot.control?.clean_checkout_requires_historical_dirty_fingerprint === false, "HISTORICAL_DIRTY_FINGERPRINT_REQUIRED", "BLOCK_CURRENT", "a clean checkout is incorrectly required to reproduce historical machine-local dirty bytes");
   addFailure(snapshot.control?.validation_writes_result === false, "NORMAL_VALIDATION_WRITES_RESULT", "BLOCK_SAFETY", "normal validation is configured to write a result");
@@ -1876,6 +1882,16 @@ function evaluateCaseDigestControlPlaneSnapshot(snapshot) {
     "CASE_DIGEST_DEDICATED_ACCEPTANCE_FAILED",
     "BLOCK_CURRENT",
     snapshot.current_validations?.case_digest_tests_detail || "CASE_DIGEST dedicated 14/14 acceptance failed"
+  );
+  addFailure(snapshot.current_validations?.writer_source_cli_pass === true, "WRITER_SOURCE_READ_ONLY_VALIDATION_FAILED", "BLOCK_CURRENT", snapshot.current_validations?.writer_source_cli_detail || "Writer Source Adaptation read-only validation failed");
+  addFailure(snapshot.current_validations?.writer_decision_cli_pass === true, "WRITER_DECISION_READ_ONLY_VALIDATION_FAILED", "BLOCK_CURRENT", snapshot.current_validations?.writer_decision_cli_detail || "Writer Decision Workspace read-only validation failed");
+  addFailure(
+    snapshot.current_validations?.writer_tests_pass === true &&
+      Number(snapshot.current_validations?.writer_tests_total) >= 31 &&
+      Number(snapshot.current_validations?.writer_tests_passed) >= 31,
+    "WRITER_FOCUSED_ACCEPTANCE_FAILED",
+    "BLOCK_CURRENT",
+    snapshot.current_validations?.writer_tests_detail || "Writer focused 31/31 acceptance failed"
   );
 
   addFailure(snapshot.quarantines?.primary_imagery_pass === true, "PRIMARY_IMAGERY_QUARANTINE_INVALID", "BLOCK_SAFETY", "primary-imagery quarantine identity or policy changed");
@@ -1971,6 +1987,20 @@ function evaluateCaseDigestControlPlaneSnapshot(snapshot) {
       human_acceptance_scope: snapshot.state?.accepted_successor_human_scope || null,
       validator_pass: snapshot.current_validations?.case_digest_validator_pass === true,
       dedicated_tests: `${Number(snapshot.current_validations?.case_digest_tests_passed) || 0}/${Number(snapshot.current_validations?.case_digest_tests_total) || 0}`
+    },
+    writer_integration: {
+      registered: snapshot.control?.writer_integration_registered === true,
+      source_adaptation_artifact_id:
+        snapshot.control?.writer_source_adaptation_artifact_id || null,
+      decision_workspace_artifact_id:
+        snapshot.control?.writer_decision_workspace_artifact_id || null,
+      read_only_cli_pass:
+        snapshot.current_validations?.writer_source_cli_pass === true &&
+        snapshot.current_validations?.writer_decision_cli_pass === true,
+      focused_tests: `${Number(snapshot.current_validations?.writer_tests_passed) || 0}/${Number(snapshot.current_validations?.writer_tests_total) || 0}`,
+      candidate_only: snapshot.control?.writer_candidate_only === true,
+      production_rights_release_canon_closed:
+        snapshot.control?.writer_effect_boundaries_closed === true
     },
     archive_integrity: {
       passed: snapshot.archive?.self_integrity_pass === true,
@@ -2096,6 +2126,29 @@ async function validateCaseDigestControlPlane(inputPath) {
   ]);
   const testsTotal = Number(caseDigestTests.detail.match(/# tests (\d+)/)?.[1] || 0);
   const testsPassed = Number(caseDigestTests.detail.match(/# pass (\d+)/)?.[1] || 0);
+  const writerSourceCli = caseDigestRunReadOnlyNode([
+    "tools/fff-writer-source-adaptation.mjs",
+    "validate-source",
+    "--input",
+    "fixtures/writer-source-adaptation/case-digest.prose.json"
+  ]);
+  const writerDecisionCli = caseDigestRunReadOnlyNode([
+    "tools/fff-writer-decision-workspace.mjs",
+    "validate-decision-record",
+    "--input",
+    "fixtures/writer-decision-workspace/proposal-decisions.json"
+  ]);
+  const writerTests = caseDigestRunReadOnlyNode([
+    "--test",
+    "tests/fff-writer-source-adaptation.test.mjs",
+    "tests/fff-writer-decision-workspace.test.mjs"
+  ]);
+  const writerTestsTotal = Number(writerTests.detail.match(/# tests (\d+)/)?.[1] || 0);
+  const writerTestsPassed = Number(writerTests.detail.match(/# pass (\d+)/)?.[1] || 0);
+  const [writerSourceResultSnapshot, writerDecisionResultSnapshot] = await Promise.all([
+    readJsonFileSnapshot(CASE_DIGEST_WRITER_SOURCE_ADAPTATION_RESULT_PATH),
+    readJsonFileSnapshot(CASE_DIGEST_WRITER_DECISION_WORKSPACE_RESULT_PATH)
+  ]);
 
   const archiveItems = [];
   const archiveFailures = [];
@@ -2134,6 +2187,8 @@ async function validateCaseDigestControlPlane(inputPath) {
   }
 
   const controlRegistration = manifest.case_digest_control_plane_convergence || {};
+  const writerSourceRegistration = manifest.writer_source_adaptation_v0 || {};
+  const writerDecisionRegistration = manifest.writer_decision_workspace_v1 || {};
   const validationCommand = String(manifest.validation_command || "");
   const currentSuccessor = manifest.private_raster_case_digest || {};
   const rejectedMotion = manifest.private_materialized_motion_previs || {};
@@ -2150,6 +2205,35 @@ async function validateCaseDigestControlPlane(inputPath) {
     currentSuccessor.public_release,
     currentSuccessor.final_canon
   ].every((value) => value === false);
+  const writerSourceResult = writerSourceResultSnapshot.value || {};
+  const writerDecisionResult = writerDecisionResultSnapshot.value || {};
+  const writerEffectBoundariesClosed =
+    writerSourceResult.passed === true &&
+    writerDecisionResult.passed === true &&
+    writerSourceResult.external_effects?.network_request_count === 0 &&
+    writerSourceResult.external_effects?.provider_call_count === 0 &&
+    writerSourceResult.external_effects?.model_call_count === 0 &&
+    writerSourceResult.external_effects?.publication_count === 0 &&
+    writerDecisionResult.external_effects?.network_request_count === 0 &&
+    writerDecisionResult.external_effects?.provider_call_count === 0 &&
+    writerDecisionResult.external_effects?.model_call_count === 0 &&
+    writerDecisionResult.external_effects?.publication_count === 0 &&
+    writerSourceResult.boundaries?.production_approved === false &&
+    writerSourceResult.boundaries?.rights_cleared_claim === false &&
+    writerSourceResult.boundaries?.final_canon === false &&
+    writerDecisionResult.boundaries?.production_approved === false &&
+    writerDecisionResult.boundaries?.rights_cleared_claim === false &&
+    writerDecisionResult.boundaries?.final_canon === false;
+  const writerIntegrationRegistered =
+    writerSourceRegistration.artifact_id === CASE_DIGEST_WRITER_SOURCE_ADAPTATION_ID &&
+    writerSourceRegistration.result_path === CASE_DIGEST_WRITER_SOURCE_ADAPTATION_RESULT_PATH &&
+    writerSourceRegistration.integrated === true &&
+    writerDecisionRegistration.artifact_id === CASE_DIGEST_WRITER_DECISION_WORKSPACE_ID &&
+    writerDecisionRegistration.result_path === CASE_DIGEST_WRITER_DECISION_WORKSPACE_RESULT_PATH &&
+    writerDecisionRegistration.source_artifact_id === CASE_DIGEST_WRITER_SOURCE_ADAPTATION_ID &&
+    writerDecisionRegistration.integrated === true &&
+    controlRegistration.integration_evidence?.writer_integration_status === "integrated_on_branch" &&
+    controlRegistration.integration_evidence?.integration_status === "integrated_on_branch";
   const primaryQuarantinePass =
     primaryQuarantineSnapshot.sha256 === CASE_DIGEST_PRIMARY_QUARANTINE_SHA256 &&
     primaryQuarantine.quarantine_id === CASE_DIGEST_PRIMARY_QUARANTINE_ID &&
@@ -2188,6 +2272,21 @@ async function validateCaseDigestControlPlane(inputPath) {
         validationCommand.includes("validate-case-digest-control-plane") &&
         controlRegistration.current_path_chain?.includes("validate-private-raster-case-digest") &&
         controlRegistration.current_path_chain?.includes("tests/fff-private-raster-case-digest.test.mjs"),
+      writer_integration_registered: writerIntegrationRegistered,
+      writer_validation_mandatory:
+        controlRegistration.current_path_chain?.includes("validate-writer-source-adaptation-read-only") &&
+        controlRegistration.current_path_chain?.includes("validate-writer-decision-workspace-read-only") &&
+        controlRegistration.current_path_chain?.includes("tests/fff-writer-source-adaptation.test.mjs") &&
+        controlRegistration.current_path_chain?.includes("tests/fff-writer-decision-workspace.test.mjs"),
+      writer_source_adaptation_artifact_id:
+        writerSourceResult.artifact_id || null,
+      writer_decision_workspace_artifact_id:
+        writerDecisionResult.artifact_id || null,
+      writer_candidate_only:
+        writerSourceRegistration.candidate_only === true &&
+        writerDecisionRegistration.candidate_only === true &&
+        writerDecisionResult.successor?.candidate_only === true,
+      writer_effect_boundaries_closed: writerEffectBoundariesClosed,
       predecessor_unique_successor_required: controlRegistration.predecessor_unique_successor_required === true,
       clean_checkout_requires_historical_dirty_fingerprint:
         controlRegistration.clean_checkout_requires_historical_dirty_fingerprint !== false,
@@ -2236,7 +2335,19 @@ async function validateCaseDigestControlPlane(inputPath) {
       case_digest_tests_pass: caseDigestTests.passed,
       case_digest_tests_total: testsTotal,
       case_digest_tests_passed: testsPassed,
-      case_digest_tests_detail: caseDigestTests.detail
+      case_digest_tests_detail: caseDigestTests.detail,
+      writer_source_cli_pass:
+        writerSourceCli.passed &&
+        writerSourceCli.detail.includes('"writes_performed": 0'),
+      writer_source_cli_detail: writerSourceCli.detail,
+      writer_decision_cli_pass:
+        writerDecisionCli.passed &&
+        writerDecisionCli.detail.includes('"writes_performed": 0'),
+      writer_decision_cli_detail: writerDecisionCli.detail,
+      writer_tests_pass: writerTests.passed,
+      writer_tests_total: writerTestsTotal,
+      writer_tests_passed: writerTestsPassed,
+      writer_tests_detail: writerTests.detail
     },
     quarantines: {
       primary_imagery_pass: primaryQuarantinePass,

@@ -1,5 +1,29 @@
 # Next Terminal Handoff
 
+## Start here — integrated CASE_DIGEST / Writer control plane (2026-07-28 JST)
+
+The prior separately validated control-plane and Writer branches have been integrated, in the audited order, on `codex/fff-case-digest-writer-integration-v1`. The exact remote restart base before integration was `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`; the Writer merge commit is `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc`. Use current Git refs for the later handoff/parity successor.
+
+After entering the integrated worktree, run:
+
+```powershell
+git fetch origin --prune
+git status --short --branch --untracked-files=all
+node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json
+```
+
+Expected readback:
+
+- active/default remains `fff-private-previsualization-timeline-001`;
+- accepted/default-off successor remains silent `fff-private-raster-case-digest-001`;
+- Writer Source Adaptation v0 and Decision Workspace v1 are registered, candidate-only, and protected by read-only CLI checks plus 31/31 focused tests;
+- result inventory is 92 total with 76 protected baseline, seven additive results, four explicitly component-only files, and zero unclassified/duplicate/baseline drift;
+- production subtitle, voice/effects, rights, production acceptance, release/publication, and final canon remain false.
+
+Do not reinterpret the Writer fixture as project canon or a production-ready script. The next real-source pass needs exact `.md` or `.txt` bytes, metadata sidecar, and explicit author decisions. If order or causality is not supplied, retain `AUTHOR_DECISION_REQUIRED` rather than inventing connective prose.
+
+The separate `fff-private-full-raster-clarity-candidate-001` transition-boundary human review is still unrecorded. Its old linear-lore narrative remains quarantined; accepted rasters and terminal-frame evidence are preserved. That review may be requested independently but is not a prerequisite for using the Writer decision packet.
+
 ## Start here — CASE_DIGEST and local branch integration audit (2026-07-27 JST)
 
 Exact remote restart base is `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`, ahead/behind `0 / 0`. Two clean, local-only branches are intentionally outside that canonical base:

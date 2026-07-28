@@ -76,6 +76,9 @@
     "active_default_validation": "PASS",
     "case_digest_validation": "PASS",
     "case_digest_dedicated_tests": "14/14",
+    "writer_source_read_only_validation": "PASS / writes 0",
+    "writer_decision_read_only_validation": "PASS / writes 0",
+    "writer_focused_tests": "31/31",
     "primary_imagery_quarantine": "PASS",
     "narrative_format_quarantine": "PASS",
     "current_path_pass": true,
@@ -87,6 +90,16 @@
     "dedicated_test_command": "node --test tests/fff-private-raster-case-digest.test.mjs",
     "dedicated_tests_passed": 14,
     "dedicated_tests_total": 14
+  },
+  "writer_mandatory_validation": {
+    "source_artifact_id": "fff-writer-source-adaptation-v0-001",
+    "decision_workspace_artifact_id": "fff-writer-decision-workspace-v1-001",
+    "source_read_only_writes": 0,
+    "decision_read_only_writes": 0,
+    "focused_tests_passed": 31,
+    "focused_tests_total": 31,
+    "candidate_only": true,
+    "production_rights_release_canon_closed": true
   },
   "archive_validation": {
     "passed": true,
@@ -120,23 +133,23 @@
     "missing_count": 0,
     "hash_changed_count": 0,
     "fixed_current_count_required": false,
-    "additive_descendant_count": 5,
+    "additive_descendant_count": 7,
     "invalid_additive_descendant_count": 0,
     "predecessor_observed_result_total": 85,
     "predecessor_inventory_sha256": "361e16663e2da86e18c5c30c853fc23c8a598460c06e673de1d9a6ca20c06b73",
-    "final_observed_result_total": 86,
+    "final_observed_result_total": 92,
     "final_inventory_sha256_emitted_dynamically": true,
-    "classified_result_total": 86,
+    "classified_result_total": 92,
     "unclassified_result_count": 0,
     "duplicate_classification_count": 0,
     "class_counts": {
       "protected_baseline": 76,
-      "accepted_additive_descendant": 5,
+      "accepted_additive_descendant": 7,
       "current_control_plane_result": 1,
       "baseline_or_current_authority_nonbaseline": 3,
       "integration_evidence_result": 1,
       "archived_or_superseded_nonbaseline": 0,
-      "excluded_nonresult": 0
+      "excluded_nonresult": 4
     },
     "previously_unexplained_results": [
       {
@@ -165,15 +178,17 @@
     "artifact_id": "fff-case-digest-control-plane-integration-evidence-001",
     "result_path": "artifacts/case-digest-control-plane-integration-evidence-result.json",
     "target_base": "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e",
-    "control_plane_commit": "dab9810961b64f1e31420f18797e897e1ef05819",
-    "writer_commit": "11c30b264f8f257cc802ac218998479b805648e7",
-    "control_changed_path_count": 13,
-    "writer_changed_path_count": 24,
+    "control_plane_commit": "197d23d47760e727126f7ad7e3e4e3120b2ae98c",
+    "writer_commit": "a49b07c94a75fcda8bf8e85f4cd995af8018622d",
+    "writer_merge_commit": "fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc",
+    "control_changed_path_count": 16,
+    "writer_changed_path_count": 51,
     "writer_control_path_intersection_count": 0,
     "writer_followup_path_intersection_count": 0,
     "recommended_order": "control-plane predecessor and evidence follow-up first; writer second",
-    "integration_status": "pending",
-    "push_authority": "not_authorized"
+    "integration_status": "integrated_on_branch",
+    "canonical_master_integration_status": "pending",
+    "push_authority": "delegated_continuation_task_2026-07-28"
   },
   "affected_tests": [
     {
@@ -183,20 +198,26 @@
     {
       "command": "node --test tests/fff-case-digest-control-plane-convergence.test.mjs",
       "status": "PASS",
-      "passed": 10,
-      "total": 10
+      "passed": 13,
+      "total": 13
     },
     {
       "command": "node --test tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
       "status": "PASS",
-      "passed": 11,
-      "total": 11
+      "passed": 13,
+      "total": 13
     },
     {
       "command": "node --test tests/fff-private-raster-case-digest.test.mjs",
       "status": "PASS",
       "passed": 14,
       "total": 14
+    },
+    {
+      "command": "node --test tests/fff-writer-source-adaptation.test.mjs tests/fff-writer-decision-workspace.test.mjs",
+      "status": "PASS",
+      "passed": 31,
+      "total": 31
     },
     {
       "command": "node tools/fff-state.mjs validate-private-previsualization-timeline artifacts/private-previsualization-timeline-result.json",

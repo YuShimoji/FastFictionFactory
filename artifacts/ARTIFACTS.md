@@ -1,5 +1,24 @@
 # Artifacts
 
+## fff-writer-decision-workspace-v1-001
+
+- Type: local Writer decision/readback workspace; integrated candidate-only mechanism.
+- Source: `fff-writer-source-adaptation-v0-001`.
+- Primary files: `artifacts/writer-decision-workspace-v1/writer-decision-workspace.html`, `artifacts/writer-decision-workspace-v1/writer-decision-workspace-result.json`.
+- Review/architecture: `docs/review/writer-decision-workspace-v1.md`, `docs/architecture/WRITER_DECISION_WORKSPACE_V1.md`.
+- Decision contract: explicit accept/reject/defer/replace records; accepted provenance required; predecessor overwrite false; missing causality remains author-owned.
+- Root evidence: read-only decision validation writes 0; combined Writer focused tests 31/31.
+- Boundaries: fixture-bounded, candidate-only, no automatic canon, no production/right/provider/media/render/publication effect.
+
+## fff-writer-source-adaptation-v0-001
+
+- Type: local source/authority/format adaptation mechanism; integrated support path.
+- Primary files: `artifacts/writer-source-adaptation-v0/writer-source-adaptation-readback.html`, `artifacts/writer-source-adaptation-v0/writer-source-adaptation-result.json`.
+- Review/architecture: `docs/review/writer-source-adaptation-v0.md`, `docs/architecture/WRITER_SOURCE_ADAPTATION_V0.md`.
+- Input/format contract: three explicit annotated input envelopes; six bounded output formats; source-bound Narrative IR and Editorial Handoff-compatible output only when safe.
+- Root evidence: read-only source validation writes 0; combined Writer focused tests 31/31.
+- Boundaries: provider-neutral; no arbitrary-novel, literary-quality, production-ready-script, project-canon, rights, release, or public effect claim.
+
 ## fff-case-digest-control-plane-convergence-001
 
 - Type: bounded support / read-only control-plane convergence.
@@ -7,8 +26,8 @@
 - Result/review: `artifacts/case-digest-control-plane-convergence-result.json`, `docs/review/case-digest-control-plane-convergence.md`.
 - Canonical validation: `node tools/fff-state.mjs validate-case-digest-control-plane artifacts/artifact-manifest.json`.
 - Current state: active/default `fff-private-previsualization-timeline-001`; accepted/default-off successor `fff-private-raster-case-digest-001`; rejected/archive-only motion `fff-private-materialized-motion-previs-001`.
-- Health model: current path, archive self-integrity, and `DEBT_NONBLOCKING` history are reported separately. CASE_DIGEST validator and dedicated 14/14 tests are mandatory.
-- Inventory model: the predecessor's 85 results reconcile exactly as 76 protected baseline, five accepted additive descendants, one current control-plane result, and three baseline/current-authority nonbaseline results. The integration-evidence result is the explicit 86th support result; no result is unclassified or multiply classified.
+- Health model: current path, archive self-integrity, and `DEBT_NONBLOCKING` history are reported separately. CASE_DIGEST validator and dedicated 14/14 tests plus Writer read-only CLI checks and 31/31 focused tests are mandatory.
+- Inventory model: 92 result-named JSON files reconcile exactly as 76 protected baseline, seven accepted additive descendants, one current control-plane result, three baseline/current-authority nonbaseline results, one pre-integration evidence result, and four explicit component-only files. No result is unclassified or multiply classified.
 - Boundaries: product packages/media/default selection/acceptance/voice/effects/rights/production/release/canon unchanged; public effects false.
 
 ## fff-case-digest-control-plane-integration-evidence-001
@@ -23,7 +42,7 @@
 - Path audit: control 16 paths; Writer 51 paths; direct intersection zero. The declared handoff-refresh paths also intersect Writer at zero.
 - Forward gate: valid passing non-authority descendants may grow the total; unclassified, duplicate, missing/changed baseline, baseline-ID collision, unregistered current authority, incorrect arithmetic, path overlap, and validation mutation cases fail closed.
 - Recommended order: control-plane audited tip and its containing handoff successor first, Writer audited tip second.
-- State: integration pending; push and integration not authorized; product/default/acceptance/rights/production/release/canon unchanged.
+- State: retained as the immutable pre-integration audit. The separately authorized integration completed on `codex/fff-case-digest-writer-integration-v1`; product/default/acceptance/rights/production/release/canon remain unchanged.
 
 ## fff-private-raster-case-digest-001
 

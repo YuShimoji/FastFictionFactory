@@ -40,6 +40,10 @@
       "validate-private-previsualization-timeline",
       "validate-private-raster-case-digest",
       "tests/fff-private-raster-case-digest.test.mjs",
+      "validate-writer-source-adaptation-read-only",
+      "validate-writer-decision-workspace-read-only",
+      "tests/fff-writer-source-adaptation.test.mjs",
+      "tests/fff-writer-decision-workspace.test.mjs",
       "primary-imagery-quarantine-integrity",
       "narrative-format-quarantine-integrity"
     ],
@@ -82,7 +86,12 @@
         "integration_evidence_result": [
           "artifacts/case-digest-control-plane-integration-evidence-result.json"
         ],
-        "excluded_nonresult": []
+        "excluded_nonresult": [
+          "artifacts/writer-decision-workspace-v1/case-digest-markdown-intake-result.json",
+          "artifacts/writer-decision-workspace-v1/fragment-after-decisions-result.json",
+          "artifacts/writer-decision-workspace-v1/fragment-before-decisions-result.json",
+          "artifacts/writer-decision-workspace-v1/writer-proposal-application-result.json"
+        ]
       },
       "forward_rules": {
         "well_formed_passing_non_authority_result": "accepted_additive_descendant",
@@ -106,10 +115,12 @@
         "fff-writer-decision-workspace-v1-001"
       ],
       "writer_local_validation_status": "passed",
-      "writer_integration_status": "pending",
-      "integration_status": "pending",
-      "push_authority": "not_authorized",
-      "integration_authority": "not_authorized",
+      "writer_integration_status": "integrated_on_branch",
+      "integration_status": "integrated_on_branch",
+      "canonical_master_integration_status": "pending",
+      "writer_merge_commit": "fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc",
+      "push_authority": "delegated_continuation_task_2026-07-28",
+      "integration_authority": "delegated_continuation_task_2026-07-28",
       "support_only": true,
       "product_gate": false
     },
@@ -122,6 +133,41 @@
       "DEBT_NONBLOCKING"
     ],
     "public_effects": false
+  },
+  "writer_source_adaptation_v0": {
+    "artifact_id": "fff-writer-source-adaptation-v0-001",
+    "schemaVersion": "fff.writerSourceAdaptationResult.v0",
+    "package_root": "artifacts/writer-source-adaptation-v0",
+    "result_path": "artifacts/writer-source-adaptation-v0/writer-source-adaptation-result.json",
+    "review_doc_path": "docs/review/writer-source-adaptation-v0.md",
+    "architecture_doc_path": "docs/architecture/WRITER_SOURCE_ADAPTATION_V0.md",
+    "access_route": "artifacts/writer-source-adaptation-v0/writer-source-adaptation-readback.html",
+    "integrated": true,
+    "candidate_only": true,
+    "provider_neutral": true,
+    "current_default_changed": false,
+    "production_approved": false,
+    "rights_cleared_claim": false,
+    "publication": false,
+    "final_canon": false
+  },
+  "writer_decision_workspace_v1": {
+    "artifact_id": "fff-writer-decision-workspace-v1-001",
+    "schemaVersion": "fff.writerDecisionWorkspaceResult.v1",
+    "source_artifact_id": "fff-writer-source-adaptation-v0-001",
+    "package_root": "artifacts/writer-decision-workspace-v1",
+    "result_path": "artifacts/writer-decision-workspace-v1/writer-decision-workspace-result.json",
+    "review_doc_path": "docs/review/writer-decision-workspace-v1.md",
+    "architecture_doc_path": "docs/architecture/WRITER_DECISION_WORKSPACE_V1.md",
+    "access_route": "artifacts/writer-decision-workspace-v1/writer-decision-workspace.html",
+    "integrated": true,
+    "candidate_only": true,
+    "predecessor_overwritten": false,
+    "current_default_changed": false,
+    "production_approved": false,
+    "rights_cleared_claim": false,
+    "publication": false,
+    "final_canon": false
   },
   "primary_imagery_medium_gate": {
     "active": true,
