@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+  "english_max_lines": 2,
+  "japanese_debug_max_lines": 2,
+  "english_orphan_count": 0,
+  "english_split_name_count": 0,
+  "english_split_number_phrase_count": 0,
+  "japanese_kinsoku_violation_count": 0,
+  "rows": [
+    {
+      "utterance_id": "cd-en-001",
+      "english_lines": [
+        "At noon, witnesses reported a bell",
+        "sounding from a tower that has no bell."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "正午、鐘のない塔から鐘の音",
+        "がしたと目撃者が報告した。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-002",
+      "english_lines": [
+        "The tower's mounting frame was empty, and no",
+        "instrument capable of making that sound was found."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "塔の取付枠は空で、",
+        "その音を生む楽器は見つかっていない。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-003",
+      "english_lines": [
+        "The reported sound and empty frame are established, but",
+        "no bell or sound-making mechanism has been confirmed."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "報告された音と空の枠は確認事項だが、",
+        "鐘や発音機構は確認されていない。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-004",
+      "english_lines": [
+        "The source of that reported",
+        "sound remains unidentified."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "報告された音源は特定されていない。"
+      ],
+      "japanese_line_count": 1,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-005",
+      "english_lines": [
+        "Clock repairer Mira is examining clues",
+        "connected to her missing brother."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "時計修理師のミラは、",
+        "失踪した兄につながる手掛かりを調べている。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-006",
+      "english_lines": [
+        "A note said to be his was left",
+        "among the workshop materials."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "兄のものとされるメモが、",
+        "作業場の品々の中に残されていた。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-007",
+      "english_lines": [
+        "A brass moth appears beside the note, but",
+        "its meaning and purpose remain unknown."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "真鍮の蛾はメモのそばにあるが、",
+        "その意味と用途は不明である。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-008",
+      "english_lines": [
+        "Clocks and records repeat the time nine seventeen,",
+        "linking the note, moth, and recorded time."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "時計と記録は九時十七分を繰り返し、",
+        "メモ、蛾、記録時刻を結んでいる。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-009",
+      "english_lines": [
+        "Together, those items form a clue chain,",
+        "not proof of her brother's location."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "それらは手掛かりの連鎖だが、",
+        "兄の居場所を示す証拠ではない。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-010",
+      "english_lines": [
+        "The note directs the investigation",
+        "toward a ledger arranged in two columns."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "メモは調査を、二列に分かれた台帳へ導く。"
+      ],
+      "japanese_line_count": 1,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-011",
+      "english_lines": [
+        "One column records minutes, while",
+        "the other records people's names."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "一方の欄には分が、",
+        "もう一方には人名が記されている。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-012",
+      "english_lines": [
+        "The visible pages establish those two",
+        "categories, but no causal action by the ledger."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "見えるページが示すのは二つの区分だけで、",
+        "台帳の因果作用ではない。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-013",
+      "english_lines": [
+        "They do not prove that the ledger steals time,",
+        "removes people, or records genuine losses."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "台帳が時間を奪い、人を消し、",
+        "実在の損失を記すとは証明されていない。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-014",
+      "english_lines": [
+        "The missing brother's note points the",
+        "investigation toward the city council."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "失踪した兄のメモは、",
+        "調査の目を市の評議会へ向けている。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-015",
+      "english_lines": [
+        "That note records an allegation, not evidence",
+        "confirming the council's involvement."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "そのメモは告発を記すが、",
+        "評議会の関与を裏づける証拠ではない。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-016",
+      "english_lines": [
+        "The ledger's origin and",
+        "authenticity also remain unverified."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "台帳の出所と真正性も確認されていない。"
+      ],
+      "japanese_line_count": 1,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-017",
+      "english_lines": [
+        "No available material establishes the",
+        "council's responsibility or motive."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "利用可能な資料は、",
+        "評議会の責任や動機を立証していない。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-018",
+      "english_lines": [
+        "No known mechanism connects the council,",
+        "ledger, missing brother, and tower incident."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "評議会、台帳、失踪した兄、",
+        "塔の事件を結ぶ仕組みは確認されていない。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-019",
+      "english_lines": [
+        "Confirmed items include the reported bell, empty frame,",
+        "note, brass moth, nine seventeen, and two-column ledger."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "確認事項は、報告された鐘の音、空の枠、メモ、",
+        "真鍮の蛾、九時十七分、二列の台帳である。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-020",
+      "english_lines": [
+        "The ledger records minutes and",
+        "names as two separate categories."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "台帳は、分と人名を二つの別",
+        "々の区分として記している。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-021",
+      "english_lines": [
+        "Those categories are described without",
+        "claiming that either records a real loss."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "どちらかが実在の損失を記すとは断定せず、",
+        "その区分だけを述べる。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-022",
+      "english_lines": [
+        "The sound's source and the missing",
+        "brother's location remain unconfirmed."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "音源と失踪した兄の居場所は、",
+        "依然として確認されていない。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-023",
+      "english_lines": [
+        "Any connection between the evidence and",
+        "the council also remains unconfirmed."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "証拠と評議会のつながりも、確認されていない。"
+      ],
+      "japanese_line_count": 1,
+      "audience_japanese_burned": false
+    },
+    {
+      "utterance_id": "cd-en-024",
+      "english_lines": [
+        "With those evidential limits unchanged,",
+        "the tower remains under investigation."
+      ],
+      "english_line_count": 2,
+      "japanese_lines": [
+        "それらの証拠限界を保ったまま、",
+        "塔は調査対象として残る。"
+      ],
+      "japanese_line_count": 2,
+      "audience_japanese_burned": false
+    }
+  ]
+}

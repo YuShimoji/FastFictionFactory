@@ -1,0 +1,525 @@
+{
+  "schemaVersion": 1,
+  "mission_id": "fff-case-digest-english-verbatim-bilingual-001",
+  "artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+  "passed": true,
+  "capability_delta": "English narration is now the sole audience information channel; every English subtitle surface is verbatim, with one-to-one Japanese debug translations.",
+  "source": {
+    "exact_commit": "fd6c8e0fb25d6a72f9ca992da5ae032d807bb257",
+    "source_branch": "codex/fff-case-digest-editorial-treatment-v1",
+    "successor_branch": "codex/fff-case-digest-english-verbatim-bilingual-v1",
+    "source_clean_sha256": "114462bf75954e997aac366d616394edab3fb60eabebfa7909d235991080edd7",
+    "source_review_sha256": "be05477275594014e98df630b7578bd914f79008c11da78818ffb6173bb4458c",
+    "source_dirty_partition": [
+      {
+        "path": ".serena/project.yml",
+        "bytes": 9790,
+        "sha256": "9dbcfacd541237c69388c6611fc40aa15f4d2ffa81866bfbbfcd1e3bc719f29e",
+        "staged": false,
+        "unstaged": true,
+        "classification": "protected_preexisting_residue",
+        "scope_relation": "out_of_scope",
+        "decision_effect": "DEBT_NONBLOCKING"
+      }
+    ]
+  },
+  "script": {
+    "section_count": 5,
+    "shot_count": 11,
+    "utterance_count": 24,
+    "word_count": 291.0,
+    "proper_name_count": 1,
+    "maximum_sentence_word_count": 17.0,
+    "unsupported_fact_count": 0
+  },
+  "voice": {
+    "selected_voice": "Microsoft Zira Desktop",
+    "eligible_english_voice_count": 1,
+    "offline_only": true,
+    "final_voice_selected": false
+  },
+  "spoken_caption_lock": {
+    "schemaVersion": 1,
+    "artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+    "canonical_field": "spoken_text_en",
+    "spoken_text_identity_sha256": "20ef0193894c6843a5436bad949dc3f0d4e85b948de7621c2b1ce20b4a218529",
+    "utterance_count": 24,
+    "english_spoken_caption_coverage_percent": 100,
+    "japanese_debug_coverage_percent": 100,
+    "spoken_caption_text_mismatch_count": 0,
+    "audio_only_semantic_unit_count": 0,
+    "caption_only_semantic_unit_count": 0,
+    "non_verbatim_editorial_text_during_speech_count": 0,
+    "allowed_normalizations": [
+      "layout line breaks",
+      "leading or trailing whitespace"
+    ],
+    "surfaces": [
+      "offline TTS input",
+      "English SRT",
+      "English WebVTT",
+      "English audience burned subtitle",
+      "English bilingual-debug burned subtitle",
+      "local HTML English caption"
+    ]
+  },
+  "bilingual_alignment": {
+    "english_count": 24,
+    "japanese_count": 24,
+    "id_mismatch_count": 0
+  },
+  "timing": {
+    "first_narration_seconds": 0.65,
+    "maximum_internal_narration_gap_seconds": 4.214,
+    "final_tail_seconds": 0.7,
+    "narration_overlap_count": 0,
+    "caption_overlap_count": 0,
+    "caption_onset_max_absolute_delta_milliseconds": 30,
+    "caption_end_after_speech_milliseconds": 200
+  },
+  "caption_layout": {
+    "schemaVersion": 1,
+    "artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+    "english_max_lines": 2,
+    "japanese_debug_max_lines": 2,
+    "english_orphan_count": 0,
+    "english_split_name_count": 0,
+    "english_split_number_phrase_count": 0,
+    "japanese_kinsoku_violation_count": 0,
+    "rows": [
+      {
+        "utterance_id": "cd-en-001",
+        "english_lines": [
+          "At noon, witnesses reported a bell",
+          "sounding from a tower that has no bell."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "正午、鐘のない塔から鐘の音",
+          "がしたと目撃者が報告した。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-002",
+        "english_lines": [
+          "The tower's mounting frame was empty, and no",
+          "instrument capable of making that sound was found."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "塔の取付枠は空で、",
+          "その音を生む楽器は見つかっていない。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-003",
+        "english_lines": [
+          "The reported sound and empty frame are established, but",
+          "no bell or sound-making mechanism has been confirmed."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "報告された音と空の枠は確認事項だが、",
+          "鐘や発音機構は確認されていない。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-004",
+        "english_lines": [
+          "The source of that reported",
+          "sound remains unidentified."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "報告された音源は特定されていない。"
+        ],
+        "japanese_line_count": 1,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-005",
+        "english_lines": [
+          "Clock repairer Mira is examining clues",
+          "connected to her missing brother."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "時計修理師のミラは、",
+          "失踪した兄につながる手掛かりを調べている。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-006",
+        "english_lines": [
+          "A note said to be his was left",
+          "among the workshop materials."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "兄のものとされるメモが、",
+          "作業場の品々の中に残されていた。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-007",
+        "english_lines": [
+          "A brass moth appears beside the note, but",
+          "its meaning and purpose remain unknown."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "真鍮の蛾はメモのそばにあるが、",
+          "その意味と用途は不明である。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-008",
+        "english_lines": [
+          "Clocks and records repeat the time nine seventeen,",
+          "linking the note, moth, and recorded time."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "時計と記録は九時十七分を繰り返し、",
+          "メモ、蛾、記録時刻を結んでいる。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-009",
+        "english_lines": [
+          "Together, those items form a clue chain,",
+          "not proof of her brother's location."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "それらは手掛かりの連鎖だが、",
+          "兄の居場所を示す証拠ではない。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-010",
+        "english_lines": [
+          "The note directs the investigation",
+          "toward a ledger arranged in two columns."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "メモは調査を、二列に分かれた台帳へ導く。"
+        ],
+        "japanese_line_count": 1,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-011",
+        "english_lines": [
+          "One column records minutes, while",
+          "the other records people's names."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "一方の欄には分が、",
+          "もう一方には人名が記されている。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-012",
+        "english_lines": [
+          "The visible pages establish those two",
+          "categories, but no causal action by the ledger."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "見えるページが示すのは二つの区分だけで、",
+          "台帳の因果作用ではない。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-013",
+        "english_lines": [
+          "They do not prove that the ledger steals time,",
+          "removes people, or records genuine losses."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "台帳が時間を奪い、人を消し、",
+          "実在の損失を記すとは証明されていない。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-014",
+        "english_lines": [
+          "The missing brother's note points the",
+          "investigation toward the city council."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "失踪した兄のメモは、",
+          "調査の目を市の評議会へ向けている。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-015",
+        "english_lines": [
+          "That note records an allegation, not evidence",
+          "confirming the council's involvement."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "そのメモは告発を記すが、",
+          "評議会の関与を裏づける証拠ではない。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-016",
+        "english_lines": [
+          "The ledger's origin and",
+          "authenticity also remain unverified."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "台帳の出所と真正性も確認されていない。"
+        ],
+        "japanese_line_count": 1,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-017",
+        "english_lines": [
+          "No available material establishes the",
+          "council's responsibility or motive."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "利用可能な資料は、",
+          "評議会の責任や動機を立証していない。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-018",
+        "english_lines": [
+          "No known mechanism connects the council,",
+          "ledger, missing brother, and tower incident."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "評議会、台帳、失踪した兄、",
+          "塔の事件を結ぶ仕組みは確認されていない。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-019",
+        "english_lines": [
+          "Confirmed items include the reported bell, empty frame,",
+          "note, brass moth, nine seventeen, and two-column ledger."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "確認事項は、報告された鐘の音、空の枠、メモ、",
+          "真鍮の蛾、九時十七分、二列の台帳である。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-020",
+        "english_lines": [
+          "The ledger records minutes and",
+          "names as two separate categories."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "台帳は、分と人名を二つの別",
+          "々の区分として記している。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-021",
+        "english_lines": [
+          "Those categories are described without",
+          "claiming that either records a real loss."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "どちらかが実在の損失を記すとは断定せず、",
+          "その区分だけを述べる。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-022",
+        "english_lines": [
+          "The sound's source and the missing",
+          "brother's location remain unconfirmed."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "音源と失踪した兄の居場所は、",
+          "依然として確認されていない。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-023",
+        "english_lines": [
+          "Any connection between the evidence and",
+          "the council also remains unconfirmed."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "証拠と評議会のつながりも、確認されていない。"
+        ],
+        "japanese_line_count": 1,
+        "audience_japanese_burned": false
+      },
+      {
+        "utterance_id": "cd-en-024",
+        "english_lines": [
+          "With those evidential limits unchanged,",
+          "the tower remains under investigation."
+        ],
+        "english_line_count": 2,
+        "japanese_lines": [
+          "それらの証拠限界を保ったまま、",
+          "塔は調査対象として残る。"
+        ],
+        "japanese_line_count": 2,
+        "audience_japanese_burned": false
+      }
+    ]
+  },
+  "narration_wav": {
+    "path": "audio/case-digest-english-narration.wav",
+    "bytes": 17280078,
+    "sha256": "053d994a4b4ec1ac9167f2e4c2572565cbbe96e538292e5a8a1f4e859822e502",
+    "metadata": {
+      "codec": "pcm_s16le",
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 16,
+      "sample_count": 8640000,
+      "duration_seconds": 180.0,
+      "max_absolute_sample": 19966,
+      "clipping_count": 0
+    }
+  },
+  "outputs": {
+    "clean": {
+      "path": "clean/case-digest-english-clean.mp4",
+      "bytes": 49667841,
+      "sha256": "5dabf0d31a93f7e56c9ed30cbc8718e453817a770759ae74ee50c37eb0f69b4c",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 1,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "audio_sample_rate": 48000,
+      "subtitle_stream_count": 2,
+      "subtitle_languages": [
+        "eng",
+        "jpn"
+      ]
+    },
+    "audience": {
+      "path": "audience/case-digest-english-burned.mp4",
+      "bytes": 24028996,
+      "sha256": "f0bea3f35e0e3bce31ba5f465861d045ca21d0065f2080b31782f24b1e7991ca",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 1,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "audio_sample_rate": 48000,
+      "subtitle_stream_count": 0,
+      "subtitle_languages": []
+    },
+    "debug": {
+      "path": "debug/case-digest-english-japanese-debug.mp4",
+      "bytes": 24294409,
+      "sha256": "00c29b139c0113db79b79a7f917489112fa41a89f8d414ebf57464c3e507cb3f",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 1,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "audio_sample_rate": 48000,
+      "subtitle_stream_count": 0,
+      "subtitle_languages": []
+    }
+  },
+  "preserved_visual": {
+    "source_clean_sha256": "114462bf75954e997aac366d616394edab3fb60eabebfa7909d235991080edd7",
+    "accepted_image_change_count": 0,
+    "image_generation_count": 0,
+    "section_count": 5,
+    "shot_count": 11,
+    "frame_count": 5400,
+    "duration_seconds": 180,
+    "transition_reset_count": 0,
+    "transition_behavior": "copied from accepted Editorial Treatment clean video"
+  },
+  "effects": {
+    "network_request_count": 0,
+    "credential_touch_count": 0,
+    "package_install_count": 0,
+    "image_generation_count": 0,
+    "japanese_audio_generation_count": 0,
+    "music_sfx_count": 0,
+    "upload_count": 0,
+    "public_effect_count": 0
+  },
+  "boundaries": {
+    "private_candidate": true,
+    "rights_cleared": false,
+    "production_approved": false,
+    "published": false,
+    "final_voice_selected": false,
+    "final_canon": false,
+    "pushed": false
+  }
+}

@@ -1,5 +1,20 @@
 # Artifacts
 
+## fff-case-digest-english-verbatim-bilingual-001
+
+- Title: CASE_DIGEST English Verbatim Bilingual Candidate
+- Purpose: Make canonical English the sole audience information channel across offline narration and every English caption surface, while retaining one-to-one Japanese as debug-only support.
+- Package: `artifacts/case-digest-english-verbatim-bilingual/` (canonical script, utterance authority, fact audit, voice inventory, spoken-caption lock, layout evidence, English/Japanese SRT and WebVTT, rejected-format record, result, and README).
+- Tool/test: `tools/fff-case-digest-english-verbatim-bilingual.ps1`, `tests/fff-case-digest-english-verbatim-bilingual.test.mjs`
+- Review/guideline: `docs/review/case-digest-english-verbatim-bilingual.md`, `docs/production/SPOKEN_CAPTION_LOCK_GUIDELINE.md`
+- Exact source: commit `fd6c8e0fb25d6a72f9ca992da5ae032d807bb257`; accepted Editorial Treatment clean MP4 SHA256 `114462bf75954e997aac366d616394edab3fb60eabebfa7909d235991080edd7`.
+- Contract: 5 sections / 11 shots / 180 seconds / 5,400 frames / 24 English utterances / 291 words / 24 Japanese debug translations.
+- Text/fact result: 0 spoken-caption mismatches / 0 unsupported facts / 100% Japanese debug coverage.
+- Visual result: all 5,400 decoded frame hashes identical to source / 0 accepted-image changes / 0 image generation / 0 transition resets / 0 raw-source flashes.
+- External run: `fff-case-digest-english-verbatim-bilingual-001`; WAV, MP4, review HTML, screenshots, browser evidence, and test TAP remain outside Git.
+- State: machine-green private branch candidate, default-off, unpushed, unpublished; existing active/default and registered raster successor identities remain unchanged.
+- Boundaries: final voice selection, production approval, rights clearance, publication, release, and final canon remain closed.
+
 ## fff-private-raster-case-digest-001
 
 - Title: Fast Fiction Factory Private Raster CASE_DIGEST

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "rejection_id": "FFF-Q-DIVERGENT-SPOKEN-CAPTION-2026-07-29",
+  "status": "active",
+  "scope": "bounded_information_channel_format",
+  "rejected": [
+    "narration and captions carrying different semantic units",
+    "caption-only exposition competing with narration",
+    "multiple simultaneous non-diegetic explanations",
+    "Japanese as the audience-facing default"
+  ],
+  "preserved": [
+    "prior candidate as historical evidence",
+    "accepted Raster images",
+    "accepted visual effects and grade",
+    "shot order and timing",
+    "terminal-frame transition behavior"
+  ]
+}

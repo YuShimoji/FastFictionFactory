@@ -65,9 +65,11 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - CASE_DIGEST English Verbatim Bilingual Candidate: review/case-digest-english-verbatim-bilingual.md
       - CASE_DIGEST Nemo Delivery Reflow: review/case-digest-nemo-delivery-reflow.md
       - CASE_DIGEST Nemo Voice Calibration: review/case-digest-nemo-voice-calibration.md
       - Private Raster CASE_DIGEST (fff-private-raster-case-digest-001): review/private-raster-case-digest.md
+      - Spoken-Caption Lock Guideline: production/SPOKEN_CAPTION_LOCK_GUIDELINE.md
       - Recurring Element Continuity Guideline: production/RECURRING_ELEMENT_CONTINUITY_GUIDELINE.md
       - Japanese Subtitle Layout Guideline: production/JAPANESE_SUBTITLE_LAYOUT_GUIDELINE.md
       - Private Full Raster Clarity Candidate (fff-private-full-raster-clarity-candidate-001): review/private-full-raster-clarity-candidate.md

@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+  "audit_scope": "every canonical English utterance",
+  "utterance_count": 24,
+  "unsupported_fact_count": 0,
+  "rows": [
+    {
+      "utterance_id": "cd-en-001",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-01",
+      "spoken_text_en": "At noon, witnesses reported a bell sounding from a tower that has no bell.",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.what_happened"
+      ],
+      "claim_type": "reported_observation",
+      "evidential_status": "reported",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-002",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-01",
+      "spoken_text_en": "The tower's mounting frame was empty, and no instrument capable of making that sound was found.",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.evidence_or_observation"
+      ],
+      "claim_type": "observed_condition",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-003",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-02",
+      "spoken_text_en": "The reported sound and empty frame are established, but no bell or sound-making mechanism has been confirmed.",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.evidence_or_observation",
+        "case-digest-section-01-incident.evidential_limit"
+      ],
+      "claim_type": "observation_with_limit",
+      "evidential_status": "bounded",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-004",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-02",
+      "spoken_text_en": "The source of that reported sound remains unidentified.",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.evidential_limit"
+      ],
+      "claim_type": "evidential_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-005",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-01",
+      "spoken_text_en": "Clock repairer Mira is examining clues connected to her missing brother.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.what_happened"
+      ],
+      "claim_type": "investigator_identity",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-006",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-01",
+      "spoken_text_en": "A note said to be his was left among the workshop materials.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.text_ja"
+      ],
+      "claim_type": "reported_clue",
+      "evidential_status": "attributed_not_authenticated",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-007",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-02",
+      "spoken_text_en": "A brass moth appears beside the note, but its meaning and purpose remain unknown.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidence_or_observation",
+        "recurring-element-continuity.brass_moth.evidential_limit"
+      ],
+      "claim_type": "clue_with_limit",
+      "evidential_status": "meaning_unconfirmed",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-008",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-03",
+      "spoken_text_en": "Clocks and records repeat the time nine seventeen, linking the note, moth, and recorded time.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidence_or_observation"
+      ],
+      "claim_type": "clue_chain",
+      "evidential_status": "established_pattern",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-009",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-03",
+      "spoken_text_en": "Together, those items form a clue chain, not proof of her brother's location.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidential_limit"
+      ],
+      "claim_type": "evidential_limit",
+      "evidential_status": "location_unconfirmed",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-010",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-01",
+      "spoken_text_en": "The note directs the investigation toward a ledger arranged in two columns.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.what_happened",
+        "case-digest-caption-06"
+      ],
+      "claim_type": "investigative_link",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-011",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-01",
+      "spoken_text_en": "One column records minutes, while the other records people's names.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.evidence_or_observation"
+      ],
+      "claim_type": "record_structure",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-012",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-02",
+      "spoken_text_en": "The visible pages establish those two categories, but no causal action by the ledger.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.text_ja",
+        "case-digest-section-03-ledger.evidential_limit"
+      ],
+      "claim_type": "record_with_limit",
+      "evidential_status": "bounded",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-013",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-02",
+      "spoken_text_en": "They do not prove that the ledger steals time, removes people, or records genuine losses.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.evidential_limit",
+        "case-digest-section-04-council.evidential_limit"
+      ],
+      "claim_type": "causal_limit",
+      "evidential_status": "unproven",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-014",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-01",
+      "spoken_text_en": "The missing brother's note points the investigation toward the city council.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.what_happened"
+      ],
+      "claim_type": "allegation_direction",
+      "evidential_status": "recorded_allegation",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-015",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-01",
+      "spoken_text_en": "That note records an allegation, not evidence confirming the council's involvement.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.evidence_or_observation",
+        "case-digest-section-04-council.evidential_limit"
+      ],
+      "claim_type": "allegation_with_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-016",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-02",
+      "spoken_text_en": "The ledger's origin and authenticity also remain unverified.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.evidential_limit"
+      ],
+      "claim_type": "authenticity_limit",
+      "evidential_status": "unverified",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-017",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-02",
+      "spoken_text_en": "No available material establishes the council's responsibility or motive.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.text_ja"
+      ],
+      "claim_type": "responsibility_limit",
+      "evidential_status": "unproven",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-018",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-02",
+      "spoken_text_en": "No known mechanism connects the council, ledger, missing brother, and tower incident.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.text_ja",
+        "case-digest-section-05-status.evidential_limit"
+      ],
+      "claim_type": "mechanism_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-019",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-01",
+      "spoken_text_en": "Confirmed items include the reported bell, empty frame, note, brass moth, nine seventeen, and two-column ledger.",
+      "source_fact_ids": [
+        "case-digest-section-05-status.evidence_or_observation"
+      ],
+      "claim_type": "confirmed_inventory",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-020",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-01",
+      "spoken_text_en": "The ledger records minutes and names as two separate categories.",
+      "source_fact_ids": [
+        "case-digest-section-05-status.text_ja"
+      ],
+      "claim_type": "record_structure",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-021",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-01",
+      "spoken_text_en": "Those categories are described without claiming that either records a real loss.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.evidential_limit",
+        "case-digest-section-05-status.text_ja"
+      ],
+      "claim_type": "evidential_limit",
+      "evidential_status": "bounded",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-022",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-03",
+      "spoken_text_en": "The sound's source and the missing brother's location remain unconfirmed.",
+      "source_fact_ids": [
+        "case-digest-section-05-status.evidential_limit"
+      ],
+      "claim_type": "status_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-023",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-03",
+      "spoken_text_en": "Any connection between the evidence and the council also remains unconfirmed.",
+      "source_fact_ids": [
+        "case-digest-section-05-status.evidential_limit"
+      ],
+      "claim_type": "status_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-024",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-03",
+      "spoken_text_en": "With those evidential limits unchanged, the tower remains under investigation.",
+      "source_fact_ids": [
+        "case-digest-section-05-status.what_happened",
+        "case-digest-section-05-status.connection_to_next_section"
+      ],
+      "claim_type": "case_status",
+      "evidential_status": "open_investigation",
+      "unsupported_fact_count": 0
+    }
+  ]
+}

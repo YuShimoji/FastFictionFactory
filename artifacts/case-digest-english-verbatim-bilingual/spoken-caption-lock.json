@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+  "canonical_field": "spoken_text_en",
+  "spoken_text_identity_sha256": "20ef0193894c6843a5436bad949dc3f0d4e85b948de7621c2b1ce20b4a218529",
+  "utterance_count": 24,
+  "english_spoken_caption_coverage_percent": 100,
+  "japanese_debug_coverage_percent": 100,
+  "spoken_caption_text_mismatch_count": 0,
+  "audio_only_semantic_unit_count": 0,
+  "caption_only_semantic_unit_count": 0,
+  "non_verbatim_editorial_text_during_speech_count": 0,
+  "allowed_normalizations": [
+    "layout line breaks",
+    "leading or trailing whitespace"
+  ],
+  "surfaces": [
+    "offline TTS input",
+    "English SRT",
+    "English WebVTT",
+    "English audience burned subtitle",
+    "English bilingual-debug burned subtitle",
+    "local HTML English caption"
+  ]
+}
