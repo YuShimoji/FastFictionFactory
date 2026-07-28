@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-28 CASE_DIGEST Editorial Treatment Candidate
+
+- Purpose: turn the accepted style-10000 narration and eleven-shot Raster sequence into one complete private CASE_DIGEST review object without changing accepted story, timing, voice placement, imagery, or transitions.
+- Effect: adds a clean 1280×720 candidate, a burned-caption proxy, a standalone default-on DOM-caption review surface, matching eleven-cue UTF-8 SRT/VTT sidecars, five compact section markers, and eleven documented semantic shot treatments.
+- Requirements: exact accepted voice HEAD `f42822db1a75282b6dcb956deb4f226753e3d1ea`; external run `fff-case-digest-editorial-treatment-001`; caption identity `f306c99773410fb76b351261d8c87579dc362257c497abcdd0989aaec76d08dd`; unchanged accepted inputs; active imagery/narrative quarantines; external-run media kept outside Git.
+- State: implementation and two focused validation repairs are complete at `cec950d854dd285945af8fb937776f0998ef2e14`; validate mode passes all eleven cue starts, both viewports, media contracts, ten transition boundaries, input preservation, legacy-checkout preservation, and process cleanup. The authority-sync successor is published on the same branch with fetch/readback parity.
+- Owner: product implementer for deterministic package/evidence integrity; Product Owner or editorial reviewer for the exact whole-candidate judgment; separately named voice, production, rights, release, publication, and canon owners for later gates.
+- Next move: review `D:\AI-Runs\FastFictionFactory\fff-case-digest-editorial-treatment-001\review\case-digest-editorial-treatment.html` once. Accept unchanged or bind each material finding to section ID, shot ID, cue ID, or timestamp; do not reopen voice-only micro-review absent a material defect.
+
 ## 2026-07-26 Transition Continuity and Narrative Clarity Candidate
 
 - Purpose: Preserve the Product Owner-accepted nineteen-image raster sequence while removing boundary crop resets and making the silent three-minute story understandable without production-state copy.

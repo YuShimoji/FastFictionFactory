@@ -1,5 +1,13 @@
 # Decision Log
 
+## 2026-07-28 — Publish the private CASE_DIGEST editorial-treatment branch for exact review
+
+- Decision: preserve the completed local candidate and its two validation repairs as one branch history, add the material state to the existing authority docs, and publish only `codex/fff-case-digest-editorial-treatment-v1` by normal push with fetch/readback parity.
+- Why: the complete 180-second treated candidate, portable captions, and browser/transition evidence existed at implementation tip `cec950d854dd285945af8fb937776f0998ef2e14`, while the authority docs still opened on the superseded 2026-07-26 lane and the remote branch did not exist.
+- Evidence: validate mode passed with eleven visible caption starts, both required viewports green, ten boundaries free of reset/raw-source flash, exact clean/burned media hashes, the accepted voice worktree clean, and all protected legacy-checkout hashes unchanged.
+- Boundary: the push publishes source, text metadata, validation code, and authority documentation only. External-run MP4s remain outside Git; there is no merge, PR, tag, release, deploy, upload, production approval, rights claim, final voice selection, or canon change.
+- Next decision: the Product Owner or editorial reviewer accepts the exact complete candidate or records bounded findings by section, shot, cue, or timestamp. Do not infer downstream production authority from technical acceptance.
+
 ## 2026-07-26 — Preserve accepted imagery while repairing transitions and story comprehension
 
 - Decision: register `fff-private-full-raster-clarity-candidate-001` as the sole new private, default-off successor candidate while keeping `fff-private-previsualization-timeline-001` active/default.

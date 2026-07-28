@@ -1,5 +1,16 @@
 # Current Status Packet
 
+## CASE_DIGEST Editorial Treatment Candidate — 2026-07-28 JST
+
+- Current branch: `codex/fff-case-digest-editorial-treatment-v1`; implementation tip `cec950d854dd285945af8fb937776f0998ef2e14`, with the authority-sync successor published on the same remote branch. Re-entry is valid only after fetch/readback confirms `HEAD = origin/codex/fff-case-digest-editorial-treatment-v1` and ahead/behind `0 / 0`.
+- Current review object: `D:\AI-Runs\FastFictionFactory\fff-case-digest-editorial-treatment-001\review\case-digest-editorial-treatment.html`. It is a no-server, no-network standalone surface with native controls, scrubber, time, section/shot identity, and a default-on synchronized DOM caption overlay plus caption toggle.
+- Current media: clean candidate SHA256 `114462bf75954e997aac366d616394edab3fb60eabebfa7909d235991080edd7`; burned-caption review proxy SHA256 `40b0feaf60400a6f43ecb6b1af34c16a10c6f4a32e74d759d7b60dd0b950c570`. Each is 1280×720, 30 fps, 5400 frames, 180.000 seconds, H.264/AAC, one narration stream, and zero subtitle streams.
+- Caption status: eleven accepted texts/windows drive the DOM overlay, burn-in layout, SRT, and VTT. Timing/text identity is `f306c99773410fb76b351261d8c87579dc362257c497abcdd0989aaec76d08dd`; authored forced line breaks are zero and rendered captions use at most two lines.
+- Treatment status: five sections and all eleven shots have documented semantic treatment under `archival_case_digest_editorial_treatment_v1`. Raster imagery remains primary; SVG/vector/geometric primary imagery and three-minute linear-lore treatment remain quarantined.
+- Verification: validate mode passed at the implementation tip. All eleven cue starts were visible; desktop and narrow viewports had zero external requests, console/page errors, horizontal overflow, or nested scroll; ten transition boundaries had zero position reset and raw-source flash.
+- Preserved state: accepted voice HEAD `f42822db1a75282b6dcb956deb4f226753e3d1ea` remains clean. The protected legacy checkout remains at `cfd645ff2928b06e474aae5aefb9019d771d0ce9`, behind `origin/master` by eight, with the same seven tracked modifications and hashes.
+- Next gate: one whole-candidate editorial review. Accept unchanged or bind each material finding to section, shot, cue, or timestamp. No further voice-only review is required absent a material defect; production, rights, final voice, release, publication, and canon remain separate closed gates.
+
 ## Transition Continuity and Narrative Clarity Candidate — 2026-07-26 JST
 
 | Item | Verified state |
