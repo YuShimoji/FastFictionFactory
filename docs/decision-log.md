@@ -6,6 +6,7 @@
 - Evidence: both source worktrees were clean, their base-relative path sets were disjoint, and the Writer merge completed without conflict at `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc`.
 - Control decision: register Writer Source Adaptation v0 and Decision Workspace v1 in the root manifest; require their read-only CLI checks and 31/31 focused tests in the canonical root health command.
 - Inventory decision: classify the two top-level Writer artifact results as valid additive descendants and the four `*-result.json` component outputs as explicit non-artifact components. Result arithmetic is 92/92 with unclassified 0 and duplicate 0.
+- Git follow-through: push validated implementation checkpoint `db8af76d3f35e86aa3727239d8dda102821474e6` to `origin/codex/fff-case-digest-writer-integration-v1`, confirm local/upstream parity `0 / 0`, and leave `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`.
 - Product boundary: active/default and CASE_DIGEST scoped acceptance do not change. The clarity predecessor's exact transition-boundary human review remains unrecorded and separate. Production subtitle, voice/effects, rights, production acceptance, release/publication, and final canon remain closed.
 
 ## 2026-07-27 — Record complete local branch tips without integrating them

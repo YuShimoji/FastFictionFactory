@@ -2,7 +2,7 @@
 
 ## Start here — integrated CASE_DIGEST / Writer control plane (2026-07-28 JST)
 
-The prior separately validated control-plane and Writer branches have been integrated, in the audited order, on `codex/fff-case-digest-writer-integration-v1`. The exact remote restart base before integration was `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`; the Writer merge commit is `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc`. Use current Git refs for the later handoff/parity successor.
+The prior separately validated control-plane and Writer branches have been integrated, in the audited order, on `codex/fff-case-digest-writer-integration-v1`. The exact remote restart base before integration was `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`; the Writer merge commit is `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc`. Validated implementation checkpoint `db8af76d3f35e86aa3727239d8dda102821474e6` was pushed to the same-named origin branch and observed at parity `0 / 0`; canonical master was not advanced. Use the current remote-tracking ref for the handoff-only successor.
 
 After entering the integrated worktree, run:
 

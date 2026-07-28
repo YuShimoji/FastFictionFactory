@@ -6,6 +6,7 @@
 | --- | --- |
 | Exact restart base | clean `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`; ahead/behind `0 / 0` after fetch |
 | Integration branch | `codex/fff-case-digest-writer-integration-v1` |
+| Remote handoff | validated implementation checkpoint `db8af76d3f35e86aa3727239d8dda102821474e6` pushed to `origin/codex/fff-case-digest-writer-integration-v1`; observed parity `0 / 0`; canonical master unchanged |
 | Integration order | control-plane handoff successor first; Writer tip `a49b07c94a75fcda8bf8e85f4cd995af8018622d` second |
 | Writer merge identity | `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc` |
 | Active/default product | `fff-private-previsualization-timeline-001`; unchanged |

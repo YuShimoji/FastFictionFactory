@@ -4,7 +4,7 @@
 
 ## 2026-07-28 CASE_DIGEST / Writer 統合完了
 
-`master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e` の clean / parity `0 / 0` を開始点に、監査済み control-plane を先、Writer を後に `codex/fff-case-digest-writer-integration-v1` へ統合しました。Writer の merge commit は `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc` です。元の control-plane / Writer worktree は変更せず clean のままです。
+`master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e` の clean / parity `0 / 0` を開始点に、監査済み control-plane を先、Writer を後に `codex/fff-case-digest-writer-integration-v1` へ統合しました。Writer の merge commit は `fad3c6b2d6eb1f5c2e72dad30696ed920cad08bc`、検証済み実装 checkpoint は `db8af76d3f35e86aa3727239d8dda102821474e6` です。この checkpoint は同名 origin branch へ push 済みで 0 / 0 を確認し、canonical master は進めていません。元の control-plane / Writer worktree は変更せず clean のままです。
 
 | 統合した面 | workflow / decision への効果 | 現在の証拠 | 境界 |
 | --- | --- | --- | --- |
