@@ -1,0 +1,48 @@
+{
+  "schema_version": "fff.rawMarkdownMetadata.v1",
+  "source_id": "case-digest-accepted-markdown",
+  "input_kind": "accepted_case_digest",
+  "source_file_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+  "media_type": "text/markdown",
+  "format_identity": "CASE_DIGEST",
+  "target_duration_seconds": 180,
+  "semantic_normalization_allowed": false,
+  "newline_normalization": "record_only_lf_target",
+  "segments": [
+    {
+      "segment_id": "case-digest-section-01-incident",
+      "line_start": 9,
+      "line_end": 14,
+      "semantic_roles": ["incident", "evidence_limit"]
+    },
+    {
+      "segment_id": "case-digest-section-02-investigator",
+      "line_start": 16,
+      "line_end": 21,
+      "semantic_roles": ["investigation_context", "evidence_or_clue"]
+    },
+    {
+      "segment_id": "case-digest-section-03-ledger",
+      "line_start": 23,
+      "line_end": 28,
+      "semantic_roles": ["evidence_or_clue", "evidence_limit"]
+    },
+    {
+      "segment_id": "case-digest-section-04-council",
+      "line_start": 30,
+      "line_end": 35,
+      "semantic_roles": ["allegation_or_hypothesis", "evidence_limit"]
+    },
+    {
+      "segment_id": "case-digest-section-05-status",
+      "line_start": 37,
+      "line_end": 42,
+      "semantic_roles": ["current_status", "evidence_limit"]
+    }
+  ],
+  "fixture_boundary": {
+    "actual_project_source": true,
+    "candidate_only": true,
+    "final_canon": false
+  }
+}

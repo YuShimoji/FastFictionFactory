@@ -1,0 +1,100 @@
+{
+  "schema_version": "fff.writerSourceInput.v0",
+  "fixture_id": "fragment-bundle",
+  "output_filename": "fragment-bundle-fixture-output.json",
+  "input_kind": "fragment_bundle_v0",
+  "supplied_title": "鐘のない塔・未配列断片",
+  "author_label": null,
+  "target_duration_seconds": 180,
+  "intended_audience": null,
+  "writer_constraints": [
+    "fragment order must remain undeclared",
+    "missing causal bridges must not be invented",
+    "every fragment must be verified against the accepted CASE_DIGEST source"
+  ],
+  "explicit_unknowns": [
+    "fragment order",
+    "incident-to-clue causal bridge",
+    "clue-to-allegation causal bridge",
+    "safe output format"
+  ],
+  "normalization_operations": [
+    {
+      "operation": "none",
+      "semantic": false,
+      "note": "Fragments are exact sentence spans from the accepted CASE_DIGEST source."
+    }
+  ],
+  "explicit_format_identity": null,
+  "audience_promise": "Partial source bundle with explicit incompleteness",
+  "required_terminology": [
+    "鐘のない塔",
+    "真鍮の蛾",
+    "9:17",
+    "市の評議会"
+  ],
+  "shot_count_hint": 0,
+  "source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+  "source_parser": "numbered_markdown_sections",
+  "fragments": [
+    {
+      "fragment_id": "fragment-clue-chain",
+      "section_index": 1,
+      "sentence_index": 1,
+      "declared_order": null,
+      "causal_link_to_previous": "unknown",
+      "authority_classes": [
+        "observed_event"
+      ],
+      "semantic_roles": [
+        "evidence_or_clue",
+        "event"
+      ],
+      "source_status": "observed",
+      "confidence_source_certainty": "accepted_case_digest_wording"
+    },
+    {
+      "fragment_id": "fragment-council-limit",
+      "section_index": 3,
+      "sentence_index": 1,
+      "declared_order": null,
+      "causal_link_to_previous": "unknown",
+      "authority_classes": [
+        "forbidden_to_infer",
+        "must_preserve"
+      ],
+      "semantic_roles": [
+        "evidence_limit",
+        "unresolved_major_question"
+      ],
+      "source_status": "evidence_limit",
+      "confidence_source_certainty": "accepted_case_digest_wording"
+    },
+    {
+      "fragment_id": "fragment-incident",
+      "section_index": 0,
+      "sentence_index": 0,
+      "declared_order": null,
+      "causal_link_to_previous": "unknown",
+      "authority_classes": [
+        "reported_claim"
+      ],
+      "semantic_roles": [
+        "incident",
+        "primary_event",
+        "event"
+      ],
+      "source_status": "reported",
+      "confidence_source_certainty": "accepted_case_digest_wording"
+    }
+  ],
+  "candidate_ending_action": null,
+  "material_disposition": {
+    "remove": [],
+    "defer": [
+      "all connective material pending author decision"
+    ],
+    "summarize": [],
+    "move_to_longer_form": []
+  }
+}

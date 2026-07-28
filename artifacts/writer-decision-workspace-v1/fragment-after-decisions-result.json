@@ -1,0 +1,1511 @@
+{
+  "applied_decision_ids": [
+    "decision-fragment-order",
+    "decision-fragment-bridge-one",
+    "decision-fragment-bridge-two",
+    "decision-fragment-current-status",
+    "decision-fragment-format"
+  ],
+  "complete": true,
+  "editorial_handoff_input": {
+    "applied_writer_decisions": [
+      "decision-fragment-order",
+      "decision-fragment-bridge-one",
+      "decision-fragment-bridge-two",
+      "decision-fragment-current-status",
+      "decision-fragment-format"
+    ],
+    "candidate_only": true,
+    "caption_units": [
+      {
+        "caption_unit_id": "fragment-caption-1",
+        "end_seconds": 24,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-incident"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-1",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 521,
+              "start": 449
+            },
+            "character_range": {
+              "end": 245,
+              "start": 221,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "504887dcd575afc26e72221e0e7eb9fd975e957e6d45cafde1b2f01b0c8cb4e0",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-01-incident-sentence-01",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-incident"
+          }
+        ],
+        "start_seconds": 0,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-2",
+        "end_seconds": 45,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-bridge-one"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-bridge-incident-clue"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-2",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 414,
+              "start": 335
+            },
+            "character_range": {
+              "end": 254,
+              "start": 225,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-one",
+            "exact_text_sha256": "bdbe64ada7d48fff2ea359ac84a27f028d24ab14ddc29a4d8e7a57ce8d805057",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-incident-clue"
+          }
+        ],
+        "start_seconds": 24,
+        "text": "鐘の音の報告を受け、調査は真鍮の蛾と9:17の反復へ進む。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-3",
+        "end_seconds": 72,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-clue-chain"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-3",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 287,
+              "start": 196
+            },
+            "character_range": {
+              "end": 133,
+              "start": 100,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "eef3ea565afb293dd2467f641006e6ef6447fded7648fa60aff730e734de1366",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-02-investigator-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-clue-chain"
+          }
+        ],
+        "start_seconds": 45,
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-4",
+        "end_seconds": 97,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-bridge-two"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-bridge-clue-limit"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-4",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 539,
+              "start": 446
+            },
+            "character_range": {
+              "end": 317,
+              "start": 286,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-two",
+            "exact_text_sha256": "0a7d8269a12591079cd8cf12889480b084c59da54fb09693e4aefb5ec5ccc87f",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-clue-limit"
+          }
+        ],
+        "start_seconds": 72,
+        "text": "手掛かりを検討しても、評議会の関与を示す証拠にはまだ届かない。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-5",
+        "end_seconds": 136,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-council-limit"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-5",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 426,
+              "start": 315
+            },
+            "character_range": {
+              "end": 198,
+              "start": 161,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "26383beb269f8f12199e4a5a1822cf3d7d7c7868c23db50fcb5295ed0906667b",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-04-council-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-council-limit"
+          }
+        ],
+        "start_seconds": 97,
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-6",
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-current-status"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-current-status"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-6",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 685,
+              "start": 568
+            },
+            "character_range": {
+              "end": 385,
+              "start": 346,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-current-status",
+            "exact_text_sha256": "7ead6b43d34fc7d5e2f7f6c6098344592e9fb8ced49c5de70001665c4ad17158",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-current-status"
+          }
+        ],
+        "start_seconds": 136,
+        "text": "現時点では、鐘の音の原因と評議会の関与はいずれも未確認で、調査は継続している。"
+      }
+    ],
+    "closed_flags": {
+      "final_canon": false,
+      "media": false,
+      "production": false,
+      "provider": false,
+      "publication": false,
+      "render": false,
+      "rights": false
+    },
+    "consumer_compatibility": {
+      "compatible": true,
+      "consumer_schema_version": "fff.editorialHandoff.v1",
+      "field_map": {
+        "caption_units[]": "subtitle_cues[]",
+        "closed_flags": "boundaries",
+        "narration_units[]": "narration_segments[]",
+        "sections_or_beats[]": "beats[]",
+        "truth_canon_boundaries[]": "truth_guards[]",
+        "visual_intent_placeholders[]": "shot_cues[]"
+      },
+      "missing_required_mappings": []
+    },
+    "continuity_ids": [
+      "continuity-fragment-section-1",
+      "continuity-fragment-section-2",
+      "continuity-fragment-section-3",
+      "continuity-fragment-section-4",
+      "continuity-fragment-section-5",
+      "continuity-fragment-section-6"
+    ],
+    "final_canon": false,
+    "format_id": "CASE_DIGEST",
+    "handoff_input_id": "handoff-input-narrative-ir-fragment-successor-00c0301ca724",
+    "narration_units": [
+      {
+        "decision_ids": [],
+        "end_seconds": 24,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-incident"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-incident",
+        "section_or_beat_id": "fragment-section-1",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 521,
+              "start": 449
+            },
+            "character_range": {
+              "end": 245,
+              "start": 221,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "504887dcd575afc26e72221e0e7eb9fd975e957e6d45cafde1b2f01b0c8cb4e0",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-01-incident-sentence-01",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-incident"
+          }
+        ],
+        "source_span_ids": [
+          "span-fragment-incident"
+        ],
+        "start_seconds": 0,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "decision_ids": [
+          "decision-fragment-bridge-one"
+        ],
+        "end_seconds": 45,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-bridge-one"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-bridge-incident-clue"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-bridge-incident-clue",
+        "section_or_beat_id": "fragment-section-2",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 414,
+              "start": 335
+            },
+            "character_range": {
+              "end": 254,
+              "start": 225,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-one",
+            "exact_text_sha256": "bdbe64ada7d48fff2ea359ac84a27f028d24ab14ddc29a4d8e7a57ce8d805057",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-incident-clue"
+          }
+        ],
+        "source_span_ids": [
+          "proposal-span-fragment-bridge-incident-clue"
+        ],
+        "start_seconds": 24,
+        "text": "鐘の音の報告を受け、調査は真鍮の蛾と9:17の反復へ進む。"
+      },
+      {
+        "decision_ids": [],
+        "end_seconds": 72,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-clue-chain"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-clue",
+        "section_or_beat_id": "fragment-section-3",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 287,
+              "start": 196
+            },
+            "character_range": {
+              "end": 133,
+              "start": 100,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "eef3ea565afb293dd2467f641006e6ef6447fded7648fa60aff730e734de1366",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-02-investigator-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-clue-chain"
+          }
+        ],
+        "source_span_ids": [
+          "span-fragment-clue-chain"
+        ],
+        "start_seconds": 45,
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "decision_ids": [
+          "decision-fragment-bridge-two"
+        ],
+        "end_seconds": 97,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-bridge-two"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-bridge-clue-limit"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-bridge-clue-limit",
+        "section_or_beat_id": "fragment-section-4",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 539,
+              "start": 446
+            },
+            "character_range": {
+              "end": 317,
+              "start": 286,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-two",
+            "exact_text_sha256": "0a7d8269a12591079cd8cf12889480b084c59da54fb09693e4aefb5ec5ccc87f",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-clue-limit"
+          }
+        ],
+        "source_span_ids": [
+          "proposal-span-fragment-bridge-clue-limit"
+        ],
+        "start_seconds": 72,
+        "text": "手掛かりを検討しても、評議会の関与を示す証拠にはまだ届かない。"
+      },
+      {
+        "decision_ids": [],
+        "end_seconds": 136,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-council-limit"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-evidence-limit",
+        "section_or_beat_id": "fragment-section-5",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 426,
+              "start": 315
+            },
+            "character_range": {
+              "end": 198,
+              "start": 161,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "26383beb269f8f12199e4a5a1822cf3d7d7c7868c23db50fcb5295ed0906667b",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-04-council-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-council-limit"
+          }
+        ],
+        "source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "start_seconds": 97,
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "decision_ids": [
+          "decision-fragment-current-status"
+        ],
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-current-status"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-current-status"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-current-status",
+        "section_or_beat_id": "fragment-section-6",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 685,
+              "start": 568
+            },
+            "character_range": {
+              "end": 385,
+              "start": 346,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-current-status",
+            "exact_text_sha256": "7ead6b43d34fc7d5e2f7f6c6098344592e9fb8ced49c5de70001665c4ad17158",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-current-status"
+          }
+        ],
+        "source_span_ids": [
+          "proposal-span-fragment-current-status"
+        ],
+        "start_seconds": 136,
+        "text": "現時点では、鐘の音の原因と評議会の関与はいずれも未確認で、調査は継続している。"
+      }
+    ],
+    "schema_version": "fff.editorialHandoffInput.v0",
+    "sections_or_beats": [
+      {
+        "end_seconds": 24,
+        "section_or_beat_id": "fragment-section-1",
+        "sequence": 1,
+        "source_span_ids": [
+          "span-fragment-incident"
+        ],
+        "start_seconds": 0,
+        "title": "事件"
+      },
+      {
+        "end_seconds": 45,
+        "section_or_beat_id": "fragment-section-2",
+        "sequence": 2,
+        "source_span_ids": [
+          "proposal-span-fragment-bridge-incident-clue"
+        ],
+        "start_seconds": 24,
+        "title": "調査への接続"
+      },
+      {
+        "end_seconds": 72,
+        "section_or_beat_id": "fragment-section-3",
+        "sequence": 3,
+        "source_span_ids": [
+          "span-fragment-clue-chain"
+        ],
+        "start_seconds": 45,
+        "title": "手掛かり"
+      },
+      {
+        "end_seconds": 97,
+        "section_or_beat_id": "fragment-section-4",
+        "sequence": 4,
+        "source_span_ids": [
+          "proposal-span-fragment-bridge-clue-limit"
+        ],
+        "start_seconds": 72,
+        "title": "証拠限界への接続"
+      },
+      {
+        "end_seconds": 136,
+        "section_or_beat_id": "fragment-section-5",
+        "sequence": 5,
+        "source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "start_seconds": 97,
+        "title": "疑いと証拠限界"
+      },
+      {
+        "end_seconds": 180,
+        "section_or_beat_id": "fragment-section-6",
+        "sequence": 6,
+        "source_span_ids": [
+          "proposal-span-fragment-current-status"
+        ],
+        "start_seconds": 136,
+        "title": "現在の事件状況"
+      }
+    ],
+    "source_packet_id": "intake-fragment-bundle-markdown",
+    "source_span_references": [
+      "span-fragment-incident",
+      "proposal-span-fragment-bridge-incident-clue",
+      "span-fragment-clue-chain",
+      "proposal-span-fragment-bridge-clue-limit",
+      "span-fragment-council-limit",
+      "proposal-span-fragment-current-status"
+    ],
+    "target_duration_seconds": 180,
+    "truth_canon_boundaries": [
+      {
+        "boundary_id": "fragment-fixture-canon-boundary",
+        "source_span_ids": [],
+        "state": "fixture_candidate_not_project_canon",
+        "text": "Fixture-author completion demonstrates mechanism only."
+      }
+    ],
+    "visual_intent_placeholders": [
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-fragment-incident"
+        ],
+        "section_or_beat_id": "fragment-section-1",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-1"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "proposal-span-fragment-bridge-incident-clue"
+        ],
+        "section_or_beat_id": "fragment-section-2",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-2"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-fragment-clue-chain"
+        ],
+        "section_or_beat_id": "fragment-section-3",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-3"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "proposal-span-fragment-bridge-clue-limit"
+        ],
+        "section_or_beat_id": "fragment-section-4",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-4"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "section_or_beat_id": "fragment-section-5",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-5"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "proposal-span-fragment-current-status"
+        ],
+        "section_or_beat_id": "fragment-section-6",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-6"
+      }
+    ]
+  },
+  "fixture_id": "fragment-bundle",
+  "format_selection": {
+    "capacity_metrics": {
+      "approximate_narration_character_budget": 515,
+      "capacity_fit": true,
+      "missing_causal_link_count": 0,
+      "narration_character_count": 193,
+      "order_complete": true,
+      "target_duration_seconds": 180
+    },
+    "format_reselection_triggered": true,
+    "full_capacity_evaluation_performed": true,
+    "rejected_formats": [
+      {
+        "format_id": "SHORT_DRAMA",
+        "reason": "No source-supported enacted dramatic outcome"
+      },
+      {
+        "format_id": "LORE_EXPLAINER",
+        "reason": "No explicit concept hierarchy"
+      }
+    ],
+    "selected_format": "CASE_DIGEST",
+    "status": "SELECTED_AFTER_EXPLICIT_WRITER_DECISIONS",
+    "trigger_decision_ids": [
+      "decision-fragment-order",
+      "decision-fragment-format"
+    ]
+  },
+  "handoff_available": true,
+  "information_order": [
+    "fragment-incident",
+    "fragment-clue-chain",
+    "fragment-council-limit"
+  ],
+  "literary_quality_established": false,
+  "mechanism_proof_only": true,
+  "missing_causal_link_count": 0,
+  "production_ready": false,
+  "project_canon_established": false,
+  "schema_version": "fff.fragmentDecisionState.v1",
+  "source_intake_identity": {
+    "byte_size": 12034,
+    "sha256": "559664526cf70d882ddba0c87d878435c8d57bc88a07979c6f2bde6aa9167101"
+  },
+  "successor_narrative_ir": {
+    "applied_decision_ids": [
+      "decision-fragment-order",
+      "decision-fragment-bridge-one",
+      "decision-fragment-bridge-two",
+      "decision-fragment-current-status",
+      "decision-fragment-format"
+    ],
+    "audience_promise": {
+      "statement_id": "fragment-audience-promise",
+      "statement_kind": "adapter_generated_non_factual",
+      "text": "Fixture-author completed evidence-limited digest candidate"
+    },
+    "candidate_only": true,
+    "caption_units": [
+      {
+        "caption_unit_id": "fragment-caption-1",
+        "end_seconds": 24,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-incident"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-1",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 521,
+              "start": 449
+            },
+            "character_range": {
+              "end": 245,
+              "start": 221,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "504887dcd575afc26e72221e0e7eb9fd975e957e6d45cafde1b2f01b0c8cb4e0",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-01-incident-sentence-01",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-incident"
+          }
+        ],
+        "start_seconds": 0,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-2",
+        "end_seconds": 45,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-bridge-one"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-bridge-incident-clue"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-2",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 414,
+              "start": 335
+            },
+            "character_range": {
+              "end": 254,
+              "start": 225,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-one",
+            "exact_text_sha256": "bdbe64ada7d48fff2ea359ac84a27f028d24ab14ddc29a4d8e7a57ce8d805057",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-incident-clue"
+          }
+        ],
+        "start_seconds": 24,
+        "text": "鐘の音の報告を受け、調査は真鍮の蛾と9:17の反復へ進む。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-3",
+        "end_seconds": 72,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-clue-chain"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-3",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 287,
+              "start": 196
+            },
+            "character_range": {
+              "end": 133,
+              "start": 100,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "eef3ea565afb293dd2467f641006e6ef6447fded7648fa60aff730e734de1366",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-02-investigator-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-clue-chain"
+          }
+        ],
+        "start_seconds": 45,
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-4",
+        "end_seconds": 97,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-bridge-two"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-bridge-clue-limit"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-4",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 539,
+              "start": 446
+            },
+            "character_range": {
+              "end": 317,
+              "start": 286,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-two",
+            "exact_text_sha256": "0a7d8269a12591079cd8cf12889480b084c59da54fb09693e4aefb5ec5ccc87f",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-clue-limit"
+          }
+        ],
+        "start_seconds": 72,
+        "text": "手掛かりを検討しても、評議会の関与を示す証拠にはまだ届かない。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-5",
+        "end_seconds": 136,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-council-limit"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-5",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 426,
+              "start": 315
+            },
+            "character_range": {
+              "end": 198,
+              "start": 161,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "26383beb269f8f12199e4a5a1822cf3d7d7c7868c23db50fcb5295ed0906667b",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-04-council-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-council-limit"
+          }
+        ],
+        "start_seconds": 97,
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "caption_unit_id": "fragment-caption-6",
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-current-status"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-current-status"
+          ]
+        },
+        "section_or_beat_id": "fragment-section-6",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 685,
+              "start": 568
+            },
+            "character_range": {
+              "end": 385,
+              "start": 346,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-current-status",
+            "exact_text_sha256": "7ead6b43d34fc7d5e2f7f6c6098344592e9fb8ced49c5de70001665c4ad17158",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-current-status"
+          }
+        ],
+        "start_seconds": 136,
+        "text": "現時点では、鐘の音の原因と評議会の関与はいずれも未確認で、調査は継続している。"
+      }
+    ],
+    "closed_flags": {
+      "media": false,
+      "production": false,
+      "provider": false,
+      "publication": false,
+      "render": false,
+      "rights": false
+    },
+    "deferred_decision_ids": [],
+    "final_canon": false,
+    "format_id": "CASE_DIGEST",
+    "narration_units": [
+      {
+        "decision_ids": [],
+        "end_seconds": 24,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-incident"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-incident",
+        "section_or_beat_id": "fragment-section-1",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 521,
+              "start": 449
+            },
+            "character_range": {
+              "end": 245,
+              "start": 221,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "504887dcd575afc26e72221e0e7eb9fd975e957e6d45cafde1b2f01b0c8cb4e0",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-01-incident-sentence-01",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-incident"
+          }
+        ],
+        "source_span_ids": [
+          "span-fragment-incident"
+        ],
+        "start_seconds": 0,
+        "text": "正午、鐘のない塔から鐘の音が響いたと報告された。"
+      },
+      {
+        "decision_ids": [
+          "decision-fragment-bridge-one"
+        ],
+        "end_seconds": 45,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-bridge-one"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-bridge-incident-clue"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-bridge-incident-clue",
+        "section_or_beat_id": "fragment-section-2",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 414,
+              "start": 335
+            },
+            "character_range": {
+              "end": 254,
+              "start": 225,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-one",
+            "exact_text_sha256": "bdbe64ada7d48fff2ea359ac84a27f028d24ab14ddc29a4d8e7a57ce8d805057",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-incident-clue"
+          }
+        ],
+        "source_span_ids": [
+          "proposal-span-fragment-bridge-incident-clue"
+        ],
+        "start_seconds": 24,
+        "text": "鐘の音の報告を受け、調査は真鍮の蛾と9:17の反復へ進む。"
+      },
+      {
+        "decision_ids": [],
+        "end_seconds": 72,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-clue-chain"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-clue",
+        "section_or_beat_id": "fragment-section-3",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 287,
+              "start": 196
+            },
+            "character_range": {
+              "end": 133,
+              "start": 100,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "eef3ea565afb293dd2467f641006e6ef6447fded7648fa60aff730e734de1366",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-02-investigator-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-clue-chain"
+          }
+        ],
+        "source_span_ids": [
+          "span-fragment-clue-chain"
+        ],
+        "start_seconds": 45,
+        "text": "作業台には真鍮の蛾があり、時計と記録には9:17が繰り返し現れる。"
+      },
+      {
+        "decision_ids": [
+          "decision-fragment-bridge-two"
+        ],
+        "end_seconds": 97,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-bridge-two"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-bridge-clue-limit"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-bridge-clue-limit",
+        "section_or_beat_id": "fragment-section-4",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 539,
+              "start": 446
+            },
+            "character_range": {
+              "end": 317,
+              "start": 286,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-two",
+            "exact_text_sha256": "0a7d8269a12591079cd8cf12889480b084c59da54fb09693e4aefb5ec5ccc87f",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-clue-limit"
+          }
+        ],
+        "source_span_ids": [
+          "proposal-span-fragment-bridge-clue-limit"
+        ],
+        "start_seconds": 72,
+        "text": "手掛かりを検討しても、評議会の関与を示す証拠にはまだ届かない。"
+      },
+      {
+        "decision_ids": [],
+        "end_seconds": 136,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [],
+          "mode": "accepted_source_fragment",
+          "source_span_ids": [
+            "span-fragment-council-limit"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-evidence-limit",
+        "section_or_beat_id": "fragment-section-5",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 426,
+              "start": 315
+            },
+            "character_range": {
+              "end": 198,
+              "start": 161,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "26383beb269f8f12199e4a5a1822cf3d7d7c7868c23db50fcb5295ed0906667b",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-04-council-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-council-limit"
+          }
+        ],
+        "source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "start_seconds": 97,
+        "text": "だが、メモは告発の記録であり、評議会の関与を裏づける証拠そのものではない。"
+      },
+      {
+        "decision_ids": [
+          "decision-fragment-current-status"
+        ],
+        "end_seconds": 180,
+        "lineage": {
+          "authority_ids": [],
+          "decision_record_ids": [
+            "decision-fragment-current-status"
+          ],
+          "mode": "writer_authored_proposal",
+          "source_span_ids": [
+            "proposal-span-fragment-current-status"
+          ]
+        },
+        "narration_unit_id": "fragment-unit-current-status",
+        "section_or_beat_id": "fragment-section-6",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 685,
+              "start": 568
+            },
+            "character_range": {
+              "end": 385,
+              "start": 346,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-current-status",
+            "exact_text_sha256": "7ead6b43d34fc7d5e2f7f6c6098344592e9fb8ced49c5de70001665c4ad17158",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-current-status"
+          }
+        ],
+        "source_span_ids": [
+          "proposal-span-fragment-current-status"
+        ],
+        "start_seconds": 136,
+        "text": "現時点では、鐘の音の原因と評議会の関与はいずれも未確認で、調査は継続している。"
+      }
+    ],
+    "narrative_ir_id": "narrative-ir-fragment-successor-00c0301ca724",
+    "omitted_deferred_material": [],
+    "parent_narrative_ir_identity": {
+      "byte_size": 12568,
+      "narrative_ir_id": "narrative-ir-fragment-bundle",
+      "sha256": "85d6d537f1aa638f665a465f6e51b10a1ea83e4d642f16376ed812208cf8bf58"
+    },
+    "rejected_decision_ids": [],
+    "schema_version": "fff.successorNarrativeIr.v1",
+    "section_beat_plan": [
+      {
+        "end_seconds": 24,
+        "label": "事件",
+        "section_or_beat_id": "fragment-section-1",
+        "sequence": 1,
+        "source_span_ids": [
+          "span-fragment-incident"
+        ],
+        "start_seconds": 0
+      },
+      {
+        "end_seconds": 45,
+        "label": "調査への接続",
+        "section_or_beat_id": "fragment-section-2",
+        "sequence": 2,
+        "source_span_ids": [
+          "proposal-span-fragment-bridge-incident-clue"
+        ],
+        "start_seconds": 24
+      },
+      {
+        "end_seconds": 72,
+        "label": "手掛かり",
+        "section_or_beat_id": "fragment-section-3",
+        "sequence": 3,
+        "source_span_ids": [
+          "span-fragment-clue-chain"
+        ],
+        "start_seconds": 45
+      },
+      {
+        "end_seconds": 97,
+        "label": "証拠限界への接続",
+        "section_or_beat_id": "fragment-section-4",
+        "sequence": 4,
+        "source_span_ids": [
+          "proposal-span-fragment-bridge-clue-limit"
+        ],
+        "start_seconds": 72
+      },
+      {
+        "end_seconds": 136,
+        "label": "疑いと証拠限界",
+        "section_or_beat_id": "fragment-section-5",
+        "sequence": 5,
+        "source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "start_seconds": 97
+      },
+      {
+        "end_seconds": 180,
+        "label": "現在の事件状況",
+        "section_or_beat_id": "fragment-section-6",
+        "sequence": 6,
+        "source_span_ids": [
+          "proposal-span-fragment-current-status"
+        ],
+        "start_seconds": 136
+      }
+    ],
+    "source_span_lineage": [
+      {
+        "material_id": "fragment-unit-incident",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 521,
+              "start": 449
+            },
+            "character_range": {
+              "end": 245,
+              "start": 221,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "504887dcd575afc26e72221e0e7eb9fd975e957e6d45cafde1b2f01b0c8cb4e0",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-01-incident-sentence-01",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-incident"
+          }
+        ]
+      },
+      {
+        "material_id": "fragment-unit-bridge-incident-clue",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 414,
+              "start": 335
+            },
+            "character_range": {
+              "end": 254,
+              "start": 225,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-one",
+            "exact_text_sha256": "bdbe64ada7d48fff2ea359ac84a27f028d24ab14ddc29a4d8e7a57ce8d805057",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-incident-clue"
+          }
+        ]
+      },
+      {
+        "material_id": "fragment-unit-clue",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 287,
+              "start": 196
+            },
+            "character_range": {
+              "end": 133,
+              "start": 100,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "eef3ea565afb293dd2467f641006e6ef6447fded7648fa60aff730e734de1366",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-02-investigator-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-clue-chain"
+          }
+        ]
+      },
+      {
+        "material_id": "fragment-unit-bridge-clue-limit",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 539,
+              "start": 446
+            },
+            "character_range": {
+              "end": 317,
+              "start": 286,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-bridge-two",
+            "exact_text_sha256": "0a7d8269a12591079cd8cf12889480b084c59da54fb09693e4aefb5ec5ccc87f",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-bridge-clue-limit"
+          }
+        ]
+      },
+      {
+        "material_id": "fragment-unit-evidence-limit",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 426,
+              "start": 315
+            },
+            "character_range": {
+              "end": 198,
+              "start": 161,
+              "unit": "utf16_code_unit"
+            },
+            "exact_text_sha256": "26383beb269f8f12199e4a5a1822cf3d7d7c7868c23db50fcb5295ed0906667b",
+            "origin_source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+            "origin_source_span_id": "span-case-digest-section-04-council-sentence-02",
+            "source_kind": "accepted_source_fragment",
+            "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+            "source_span_id": "span-fragment-council-limit"
+          }
+        ]
+      },
+      {
+        "material_id": "fragment-unit-current-status",
+        "source_lineage": [
+          {
+            "byte_range": {
+              "end": 685,
+              "start": 568
+            },
+            "character_range": {
+              "end": 385,
+              "start": 346,
+              "unit": "utf16_code_unit"
+            },
+            "decision_record_id": "decision-fragment-current-status",
+            "exact_text_sha256": "7ead6b43d34fc7d5e2f7f6c6098344592e9fb8ced49c5de70001665c4ad17158",
+            "source_kind": "writer_authored_proposal",
+            "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+            "source_span_id": "proposal-span-fragment-current-status"
+          }
+        ]
+      }
+    ],
+    "structural_diff": [
+      {
+        "after": [
+          "fragment-incident",
+          "fragment-clue-chain",
+          "fragment-council-limit"
+        ],
+        "after_sha256": "056569d38c7f832c0d8b482e864f2149e4e3a46e885c5776e1b442b0f9704615",
+        "before": [
+          null,
+          null,
+          null
+        ],
+        "before_sha256": "4550cd09828d19bb331d5d4b0933a0dcf594e75caf78c054b24bdb9c4f50c0d5",
+        "decision_record_id": "decision-fragment-order",
+        "json_pointer": "/information_reveal_order"
+      },
+      {
+        "after": [
+          "鐘の音の報告を受け、調査は真鍮の蛾と9:17の反復へ進む。",
+          "手掛かりを検討しても、評議会の関与を示す証拠にはまだ届かない。"
+        ],
+        "after_sha256": "490a925629a73dee3eca772d0297e64dc17d53f7be224ff5265f748c6facaed8",
+        "before": [],
+        "before_sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "decision_record_id": "decision-fragment-bridge-one",
+        "json_pointer": "/causal_bridges"
+      }
+    ],
+    "unresolved_author_decisions": [
+      {
+        "question": "Whether these fixture-author bridges become project canon",
+        "status": "AUTHOR_DECISION_REQUIRED"
+      }
+    ],
+    "unsupported_factual_claim_count": 0,
+    "visual_intent_placeholders": [
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-fragment-incident"
+        ],
+        "section_or_beat_id": "fragment-section-1",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-1"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "proposal-span-fragment-bridge-incident-clue"
+        ],
+        "section_or_beat_id": "fragment-section-2",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-2"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-fragment-clue-chain"
+        ],
+        "section_or_beat_id": "fragment-section-3",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-3"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "proposal-span-fragment-bridge-clue-limit"
+        ],
+        "section_or_beat_id": "fragment-section-4",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-4"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "span-fragment-council-limit"
+        ],
+        "section_or_beat_id": "fragment-section-5",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-5"
+      },
+      {
+        "intent": "Source-bound placeholder only; no media generation or selection.",
+        "lineage": {
+          "authority_ids": [],
+          "mode": "adapter_generated_non_factual",
+          "source_span_ids": []
+        },
+        "related_source_span_ids": [
+          "proposal-span-fragment-current-status"
+        ],
+        "section_or_beat_id": "fragment-section-6",
+        "shot_id": null,
+        "visual_intent_id": "fragment-visual-placeholder-6"
+      }
+    ]
+  }
+}

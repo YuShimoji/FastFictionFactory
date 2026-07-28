@@ -1,0 +1,487 @@
+{
+  "schema_version": "fff.writerSourceInput.v0",
+  "fixture_id": "linear-lore-counterexample",
+  "output_filename": "linear-lore-counterexample-output.json",
+  "input_kind": "prose_markdown_v0",
+  "source_path": "artifacts/private-full-raster-clarity-candidate/narration-clarity-v1.md",
+  "section_title_source_path": "artifacts/private-full-raster-clarity-candidate/story-spine-clarity-v1.md",
+  "source_parser": "beat_narration_markdown",
+  "quarantine_path": "artifacts/narrative-format-quarantine/narrative-format-quarantine.json",
+  "supplied_title": "Narration Clarity v1",
+  "author_label": null,
+  "target_duration_seconds": 180,
+  "intended_audience": "three-minute fiction review audience",
+  "writer_constraints": [
+    "historical negative fixture only",
+    "do not restore the forced time-or-names closure",
+    "do not rewrite source content to force a format pass",
+    "do not reuse the six-Beat linear-lore structure as an active template"
+  ],
+  "explicit_unknowns": [
+    "鐘の音源",
+    "トーマの所在",
+    "真鍮の蛾の機能",
+    "台帳の真正性",
+    "評議会の責任と動機",
+    "ミラの最終選択"
+  ],
+  "normalization_operations": [
+    {
+      "operation": "none",
+      "semantic": false,
+      "note": "Historical source wording is retained exactly."
+    }
+  ],
+  "explicit_format_identity": null,
+  "audience_promise": "No safe format identity established",
+  "required_terminology": [
+    "ノース・ベル駅",
+    "天文台",
+    "冬の外出禁止令",
+    "ミラ・ヴェイル",
+    "ガラスのアーケード",
+    "トーマ",
+    "真鍮の蛾",
+    "9時17分",
+    "台帳",
+    "市の評議会"
+  ],
+  "shot_count_hint": 19,
+  "sections": [
+    {
+      "section_id": "linear-lore-beat-01",
+      "title": "鐘のない塔",
+      "start_seconds": 0,
+      "end_seconds": 20,
+      "shot_ids": [
+        "shot-b01-01",
+        "shot-b01-02",
+        "shot-b01-03"
+      ],
+      "caption_sentence_indexes": [
+        0
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "reported_claim"
+          ],
+          "semantic_roles": [
+            "incident",
+            "primary_event",
+            "event",
+            "exposition_unit"
+          ],
+          "source_status": "reported",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": [
+            {
+              "name": "ノース・ベル駅",
+              "explained": false,
+              "first_introduction_wording": "ノース・ベル駅"
+            }
+          ]
+        },
+        {
+          "authority_classes": [
+            "observed_event"
+          ],
+          "semantic_roles": [
+            "evidence_or_clue",
+            "event"
+          ],
+          "source_status": "observed",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "reported_claim"
+          ],
+          "semantic_roles": [
+            "exposition_unit"
+          ],
+          "source_status": "reported",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved"
+          ],
+          "semantic_roles": [
+            "missing_causal_link",
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        }
+      ]
+    },
+    {
+      "section_id": "linear-lore-beat-02",
+      "title": "ミラと三つの手掛かり",
+      "start_seconds": 20,
+      "end_seconds": 50,
+      "shot_ids": [
+        "shot-b02-01",
+        "shot-b02-02",
+        "shot-b02-03"
+      ],
+      "caption_sentence_indexes": [
+        0
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "established_fact"
+          ],
+          "semantic_roles": [
+            "protagonist_or_subject",
+            "investigation_context",
+            "exposition_unit"
+          ],
+          "source_status": "historical_source_assertion",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": [
+            {
+              "name": "ミラ・ヴェイル",
+              "explained": true,
+              "first_introduction_wording": "時計修理師ミラ・ヴェイル"
+            },
+            {
+              "name": "ガラスのアーケード",
+              "explained": false,
+              "first_introduction_wording": "ガラスのアーケード"
+            }
+          ]
+        },
+        {
+          "authority_classes": [
+            "reported_claim",
+            "observed_event"
+          ],
+          "semantic_roles": [
+            "evidence_or_clue",
+            "exposition_unit"
+          ],
+          "source_status": "mixed_reported_and_observed",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": [
+            {
+              "name": "トーマ",
+              "explained": true,
+              "first_introduction_wording": "失踪した兄トーマ"
+            }
+          ]
+        },
+        {
+          "authority_classes": [
+            "observed_event"
+          ],
+          "semantic_roles": [
+            "evidence_or_clue",
+            "exposition_unit"
+          ],
+          "source_status": "observed",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "inference",
+            "unresolved"
+          ],
+          "semantic_roles": [
+            "missing_causal_link",
+            "unresolved_major_question"
+          ],
+          "source_status": "inference",
+          "confidence_source_certainty": "link_not_enacted",
+          "entities": []
+        }
+      ]
+    },
+    {
+      "section_id": "linear-lore-beat-03",
+      "title": "『分』と名前の台帳",
+      "start_seconds": 50,
+      "end_seconds": 80,
+      "shot_ids": [
+        "shot-b03-01",
+        "shot-b03-02",
+        "shot-b03-03"
+      ],
+      "caption_sentence_indexes": [
+        0
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "reported_claim"
+          ],
+          "semantic_roles": [
+            "event",
+            "exposition_unit"
+          ],
+          "source_status": "reported",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": [
+            {
+              "name": "市の評議会",
+              "explained": false,
+              "first_introduction_wording": "市の評議会"
+            }
+          ]
+        },
+        {
+          "authority_classes": [
+            "observed_event"
+          ],
+          "semantic_roles": [
+            "evidence_or_clue",
+            "exposition_unit"
+          ],
+          "source_status": "observed",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "inference"
+          ],
+          "semantic_roles": [
+            "exposition_unit",
+            "missing_causal_link"
+          ],
+          "source_status": "suspected",
+          "confidence_source_certainty": "visual_suggestion_only",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved",
+            "forbidden_to_infer"
+          ],
+          "semantic_roles": [
+            "evidence_limit",
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "explicitly_unconfirmed",
+          "entities": []
+        }
+      ]
+    },
+    {
+      "section_id": "linear-lore-beat-04",
+      "title": "評議会への告発",
+      "start_seconds": 80,
+      "end_seconds": 105,
+      "shot_ids": [
+        "shot-b04-01",
+        "shot-b04-02",
+        "shot-b04-03"
+      ],
+      "caption_sentence_indexes": [
+        0
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "allegation",
+            "reported_claim"
+          ],
+          "semantic_roles": [
+            "allegation_or_hypothesis",
+            "exposition_unit"
+          ],
+          "source_status": "reported_allegation",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "inference"
+          ],
+          "semantic_roles": [
+            "exposition_unit",
+            "missing_causal_link"
+          ],
+          "source_status": "inference",
+          "confidence_source_certainty": "connection_asserted_not_enacted",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved",
+            "forbidden_to_infer"
+          ],
+          "semantic_roles": [
+            "evidence_limit",
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "explicitly_unconfirmed",
+          "entities": []
+        }
+      ]
+    },
+    {
+      "section_id": "linear-lore-beat-05",
+      "title": "手掛かりの収束",
+      "start_seconds": 105,
+      "end_seconds": 155,
+      "shot_ids": [
+        "shot-b05-01",
+        "shot-b05-02",
+        "shot-b05-03",
+        "shot-b05-04"
+      ],
+      "caption_sentence_indexes": [
+        0
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "inference"
+          ],
+          "semantic_roles": [
+            "exposition_unit"
+          ],
+          "source_status": "editorial_inference",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved"
+          ],
+          "semantic_roles": [
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "explicitly_unconfirmed",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "observed_event",
+            "unresolved"
+          ],
+          "semantic_roles": [
+            "evidence_or_clue",
+            "unresolved_major_question"
+          ],
+          "source_status": "mixed_observed_and_unresolved",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "reported_claim",
+            "unresolved"
+          ],
+          "semantic_roles": [
+            "allegation_or_hypothesis",
+            "unresolved_major_question"
+          ],
+          "source_status": "mixed_reported_and_unresolved",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "inference"
+          ],
+          "semantic_roles": [
+            "exposition_unit",
+            "missing_causal_link"
+          ],
+          "source_status": "inference",
+          "confidence_source_certainty": "not_enacted",
+          "entities": []
+        }
+      ]
+    },
+    {
+      "section_id": "linear-lore-beat-06",
+      "title": "時間か、名前か",
+      "start_seconds": 155,
+      "end_seconds": 180,
+      "shot_ids": [
+        "shot-b06-01",
+        "shot-b06-02",
+        "shot-b06-03"
+      ],
+      "caption_sentence_indexes": [
+        0
+      ],
+      "sentence_annotations": [
+        {
+          "authority_classes": [
+            "inference",
+            "unresolved"
+          ],
+          "semantic_roles": [
+            "ending_choice",
+            "exposition_unit",
+            "missing_causal_link"
+          ],
+          "source_status": "suspected",
+          "confidence_source_certainty": "recovery_paths_not_enacted",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "unresolved"
+          ],
+          "semantic_roles": [
+            "ending_choice",
+            "unresolved_major_question"
+          ],
+          "source_status": "unresolved",
+          "confidence_source_certainty": "choice_not_made",
+          "entities": []
+        },
+        {
+          "authority_classes": [
+            "optional"
+          ],
+          "semantic_roles": [
+            "ending_state",
+            "exposition_unit"
+          ],
+          "source_status": "atmosphere_first_closure",
+          "confidence_source_certainty": "historical_source_wording",
+          "entities": []
+        }
+      ]
+    }
+  ],
+  "candidate_ending_action": {
+    "section_index": 5,
+    "sentence_index": 1,
+    "enacted": false
+  },
+  "material_disposition": {
+    "remove": [
+      "forced time-or-names closure",
+      "atmosphere-first rhetorical ending"
+    ],
+    "defer": [
+      "winter curfew lore",
+      "brass moth mechanism",
+      "Council responsibility and motive"
+    ],
+    "summarize": [
+      "ledger record forms",
+      "clue inventory"
+    ],
+    "move_to_longer_form": [
+      "nineteen-shot exhaustive chronology",
+      "six-Beat from-the-beginning lore exposition"
+    ]
+  }
+}

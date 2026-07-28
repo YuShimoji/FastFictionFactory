@@ -1,0 +1,153 @@
+{
+  "schema_version": "fff.writerSourceInput.v0",
+  "fixture_id": "writer-proposal-roundtrip",
+  "output_filename": "writer-proposal-roundtrip-output.json",
+  "input_kind": "writer_proposal_v0",
+  "proposal_id": "fff-writer-proposal-roundtrip-fixture-001",
+  "base_input_path": "fixtures/writer-source-adaptation/case-digest.prose.json",
+  "revision_source_path": "artifacts/editorial-revision/revision-request.example.json",
+  "supplied_title": "CASE_DIGEST writer proposal roundtrip",
+  "author_label": "fixture writer",
+  "target_duration_seconds": 180,
+  "intended_audience": "editorial review",
+  "writer_constraints": [
+    "do not auto-apply changes",
+    "do not promote writer-authored text to canon",
+    "keep unsupported guilt, authenticity, motive, outcome, and final-choice claims blocked"
+  ],
+  "explicit_unknowns": [
+    "whether relation changes are accepted",
+    "whether structure changes are accepted",
+    "whether any canon proposal is accepted"
+  ],
+  "normalization_operations": [
+    {
+      "operation": "none",
+      "semantic": false,
+      "note": "Existing revision wording and inline writer proposals retain exact text."
+    }
+  ],
+  "changes": [
+    {
+      "change_id": "proposal-replace-opening-wording",
+      "operation": "replace",
+      "affected_base_section_index": 0,
+      "affected_base_sentence_index": 0,
+      "import_revision_change_id": "rev-change-b01-narration-wording",
+      "new_text_origin": "existing_revision_example",
+      "intent": "editorial_wording",
+      "relation_scope": "wording",
+      "expected_downstream_impact": [
+        "narration wording only"
+      ],
+      "expected_classification": "L0 wording only"
+    },
+    {
+      "change_id": "proposal-clarify-moth-unknown",
+      "operation": "clarify",
+      "affected_base_section_index": 1,
+      "affected_base_sentence_index": 2,
+      "import_revision_change_id": "rev-change-b02-subtitle-wording",
+      "new_text_origin": "existing_revision_example",
+      "intent": "editorial_wording",
+      "relation_scope": "subject",
+      "expected_downstream_impact": [
+        "subject explanation",
+        "caption wording"
+      ],
+      "expected_classification": "L1 subject explanation"
+    },
+    {
+      "change_id": "proposal-remove-repeated-clue-wording",
+      "operation": "remove",
+      "affected_base_section_index": 4,
+      "affected_base_sentence_index": 1,
+      "new_text": null,
+      "new_text_origin": "none",
+      "intent": "editorial_wording",
+      "relation_scope": "subject",
+      "expected_downstream_impact": [
+        "subject explanation removed",
+        "capacity decreases"
+      ],
+      "expected_classification": "L1 subject explanation"
+    },
+    {
+      "change_id": "proposal-add-relation-explanation",
+      "operation": "add",
+      "affected_base_section_index": 2,
+      "affected_base_sentence_index": 2,
+      "new_text": "台帳と失踪の関係を、因果未確認のまま一段だけ説明する。",
+      "new_text_origin": "writer_authored_proposal",
+      "intent": "editorial_wording",
+      "relation_scope": "relation",
+      "expected_downstream_impact": [
+        "relation explanation",
+        "section evidence limit"
+      ],
+      "expected_classification": "L2 relation or section impact"
+    },
+    {
+      "change_id": "proposal-reorder-evidence-and-allegation",
+      "operation": "reorder",
+      "affected_base_section_index": 3,
+      "affected_base_sentence_index": 0,
+      "new_text": "告発より先に台帳の証拠限界を提示する。",
+      "new_text_origin": "writer_authored_proposal",
+      "intent": "editorial_wording",
+      "relation_scope": "structure",
+      "expected_downstream_impact": [
+        "section order",
+        "information reveal order"
+      ],
+      "expected_classification": "L3 format or structure impact"
+    },
+    {
+      "change_id": "proposal-mark-council-motive-undecided",
+      "operation": "mark_undecided",
+      "affected_base_section_index": 3,
+      "affected_base_sentence_index": 2,
+      "new_text": "評議会の動機は作者判断まで未決定と明記する。",
+      "new_text_origin": "writer_authored_proposal",
+      "intent": "editorial_wording",
+      "relation_scope": "subject",
+      "expected_downstream_impact": [
+        "truth boundary remains unresolved"
+      ],
+      "expected_classification": "L1 subject explanation"
+    },
+    {
+      "change_id": "proposal-attach-brother-survival-canon",
+      "operation": "attach_writer_authored_text",
+      "affected_base_section_index": 1,
+      "affected_base_sentence_index": 0,
+      "new_text": "兄は生存して潜伏している。",
+      "new_text_origin": "writer_authored_proposal",
+      "intent": "canon_proposal",
+      "relation_scope": "subject",
+      "canon_proposal": true,
+      "expected_downstream_impact": [
+        "brother outcome",
+        "canon boundary"
+      ],
+      "expected_classification": "AUTHOR_DECISION_REQUIRED"
+    },
+    {
+      "change_id": "proposal-assert-council-guilt",
+      "operation": "attach_writer_authored_text",
+      "affected_base_section_index": 3,
+      "affected_base_sentence_index": 1,
+      "new_text": "評議会が事件を起こしたことは確定している。",
+      "new_text_origin": "writer_authored_proposal",
+      "intent": "canon_proposal",
+      "relation_scope": "relation",
+      "unsupported_inference": true,
+      "expected_downstream_impact": [
+        "guilt claim",
+        "causal relation",
+        "canon boundary"
+      ],
+      "expected_classification": "FORBIDDEN_UNSUPPORTED_INFERENCE"
+    }
+  ]
+}

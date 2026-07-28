@@ -1,0 +1,27 @@
+{
+  "schema_version": "fff.writerDecisionWorkspaceFixtureSet.v1",
+  "fixture_set_id": "fff-writer-decision-workspace-v1-fixtures",
+  "case_digest": {
+    "source_path": "artifacts/private-raster-case-digest/case-digest-script.md",
+    "metadata_path": "fixtures/writer-decision-workspace/case-digest.metadata.json"
+  },
+  "writer_proposal": {
+    "predecessor_output_path": "artifacts/writer-source-adaptation-v0/writer-proposal-roundtrip-output.json",
+    "predecessor_fixture_path": "fixtures/writer-source-adaptation/writer-proposal.json",
+    "proposal_source_path": "fixtures/writer-decision-workspace/writer-proposals.md",
+    "decision_record_path": "fixtures/writer-decision-workspace/proposal-decisions.json"
+  },
+  "fragment_bundle": {
+    "source_path": "fixtures/writer-decision-workspace/fragment-bundle.md",
+    "metadata_path": "fixtures/writer-decision-workspace/fragment-bundle.metadata.json",
+    "predecessor_output_path": "artifacts/writer-source-adaptation-v0/fragment-bundle-fixture-output.json",
+    "proposal_source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+    "decision_record_path": "fixtures/writer-decision-workspace/fragment-decisions.json"
+  },
+  "fixture_boundary": {
+    "mechanism_proof_only": true,
+    "project_canon_established": false,
+    "literary_quality_established": false,
+    "production_ready": false
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "schema_version": "fff.writerDecisionRecordSet.v1",
+  "record_set_id": "fragment-completion-fixture-decisions-v1",
+  "records": [
+    {
+      "decision_record_id": "decision-fragment-order",
+      "proposal_id": "fragment-order-proposal",
+      "action": "accept",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-fragment-incident", "span-fragment-clue-chain", "span-fragment-council-limit"],
+      "accepted_writer_authored_text": "事件断片、手掛かり断片、証拠限界断片の順に構成する。",
+      "accepted_text_provenance": {
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+        "proposal_text_id": "fragment-order-proposal"
+      },
+      "canon_status": "accepted_for_candidate",
+      "downstream_impact": ["L3 structure", "format re-selection", "full capacity evaluation"],
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:001",
+      "rationale": "Supply an explicit fixture-author order for the mechanism demonstration.",
+      "reversible": true
+    },
+    {
+      "decision_record_id": "decision-fragment-bridge-one",
+      "proposal_id": "fragment-bridge-incident-clue",
+      "action": "accept",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-fragment-incident", "span-fragment-clue-chain"],
+      "accepted_writer_authored_text": "鐘の音の報告を受け、調査は真鍮の蛾と9:17の反復へ進む。",
+      "accepted_text_provenance": {
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+        "proposal_text_id": "fragment-bridge-incident-clue"
+      },
+      "canon_status": "accepted_for_candidate",
+      "downstream_impact": ["L2 causal bridge", "affected section regeneration"],
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:002",
+      "rationale": "Supply the first missing bridge as explicit fixture-author text.",
+      "reversible": true
+    },
+    {
+      "decision_record_id": "decision-fragment-bridge-two",
+      "proposal_id": "fragment-bridge-clue-limit",
+      "action": "accept",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-fragment-clue-chain", "span-fragment-council-limit"],
+      "accepted_writer_authored_text": "手掛かりを検討しても、評議会の関与を示す証拠にはまだ届かない。",
+      "accepted_text_provenance": {
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+        "proposal_text_id": "fragment-bridge-clue-limit"
+      },
+      "canon_status": "accepted_for_candidate",
+      "downstream_impact": ["L2 causal bridge", "affected section regeneration"],
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:003",
+      "rationale": "Supply the second bridge while preserving the evidence limit.",
+      "reversible": true
+    },
+    {
+      "decision_record_id": "decision-fragment-current-status",
+      "proposal_id": "fragment-current-status",
+      "action": "accept",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-fragment-council-limit"],
+      "accepted_writer_authored_text": "現時点では、鐘の音の原因と評議会の関与はいずれも未確認で、調査は継続している。",
+      "accepted_text_provenance": {
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+        "proposal_text_id": "fragment-current-status"
+      },
+      "canon_status": "accepted_for_candidate",
+      "downstream_impact": ["L1 status explanation", "candidate ending unit"],
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:004",
+      "rationale": "Provide a bounded unresolved ending for the candidate.",
+      "reversible": true
+    },
+    {
+      "decision_record_id": "decision-fragment-format",
+      "proposal_id": "fragment-format-selection",
+      "action": "accept",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-fragment-incident", "span-fragment-clue-chain", "span-fragment-council-limit"],
+      "accepted_writer_authored_text": "CASE_DIGEST",
+      "accepted_text_provenance": {
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md",
+        "proposal_text_id": "fragment-format-selection"
+      },
+      "canon_status": "accepted_for_candidate",
+      "downstream_impact": ["L3 format selection", "full capacity evaluation"],
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:005",
+      "rationale": "Choose the evidence-limited digest form for this fixture candidate.",
+      "reversible": true
+    }
+  ]
+}

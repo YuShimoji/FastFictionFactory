@@ -1,0 +1,113 @@
+{
+  "audited_sources": [
+    {
+      "consumer": "editorial_handoff",
+      "fields_read_for_upstream_compatibility": [
+        "schemaVersion",
+        "artifact_id",
+        "total_duration_seconds",
+        "beats",
+        "narration_segments",
+        "subtitle_cues",
+        "shot_cues",
+        "truth_guards",
+        "rights_guards",
+        "boundaries"
+      ],
+      "relative_path": "artifacts/editorial-handoff/editorial-handoff.json",
+      "schema_version": "fff.editorialHandoff.v1",
+      "sha256": "c818d81a0d87796a8d61e7d16ff0448a9feb5422b6ee3e0d2989cebd907b3080"
+    },
+    {
+      "consumer": "editorial_revision",
+      "fields_read_for_upstream_compatibility": [
+        "schemaVersion",
+        "request_id",
+        "source",
+        "changes",
+        "boundaries"
+      ],
+      "relative_path": "artifacts/editorial-revision/revision-request.example.json",
+      "schema_version": "fff.editorialRevisionRequest.v1",
+      "sha256": "f06ee9fb6b311061566f8d55951fd5c1026d58d4805835967d0a878664f61ae1"
+    },
+    {
+      "consumer": "editorial_derivative",
+      "fields_read_for_upstream_compatibility": [
+        "schemaVersion",
+        "source",
+        "total_duration_seconds",
+        "beats",
+        "narration_segments",
+        "subtitle_cues",
+        "shot_cues",
+        "truth_guards",
+        "rights_guards",
+        "boundaries"
+      ],
+      "relative_path": "artifacts/editorial-derivative/editorial-handoff.derived.json",
+      "schema_version": "fff.editorialDerivativePreview.v1",
+      "sha256": "15a695b7336ce55f520878cb9a26a35d47994fa176ef57ac55bf231a9cc0b51c"
+    },
+    {
+      "consumer": "production_blueprint",
+      "fields_read_for_upstream_compatibility": [
+        "schemaVersion",
+        "source",
+        "profile",
+        "content_contract",
+        "beats",
+        "shots",
+        "subtitle_metrics",
+        "boundaries"
+      ],
+      "relative_path": "artifacts/production-blueprint/production-blueprint.json",
+      "schema_version": "fff.contentProductionBlueprint.v1",
+      "sha256": "ca7a5b00e2a9abb0d3dd0abff2d4ca04a11c50438e89081d920a19e82220679d"
+    },
+    {
+      "consumer": "accepted_case_digest",
+      "fields_read_for_upstream_compatibility": [
+        "schemaVersion",
+        "artifact_id",
+        "format_id",
+        "duration_seconds",
+        "sections",
+        "narration_segments",
+        "shots",
+        "narrative_quality_audit",
+        "boundaries"
+      ],
+      "relative_path": "artifacts/private-raster-case-digest/private-raster-case-digest.json",
+      "schema_version": "fff.privateRasterCaseDigest.v1",
+      "sha256": "d2255f43ec711d2867129b7dbd6058265f3c52adfe3dfdbe314c60b53cda4c66"
+    }
+  ],
+  "compatibility_rule": "The v0 adapter must populate the existing Editorial Handoff field families without mutating any consumer package.",
+  "contract_map_id": "fff-writer-source-adaptation-downstream-map-001",
+  "deliberately_not_mapped": [
+    "asset selection",
+    "rights clearance",
+    "provider configuration",
+    "media generation",
+    "render authorization",
+    "publication",
+    "final canon"
+  ],
+  "required_upstream_mappings": {
+    "caption_units[]": "editorial_handoff.subtitle_cues[]",
+    "closed_flags": "editorial_handoff.boundaries",
+    "format_selection.capacity_metrics": "production_blueprint content/shot/subtitle metrics",
+    "narration_units[]": "editorial_handoff.narration_segments[]",
+    "sections_or_beats[].end_seconds": "editorial_handoff.beats[].end_seconds",
+    "sections_or_beats[].section_or_beat_id": "editorial_handoff.beats[].beat_id",
+    "sections_or_beats[].sequence": "editorial_handoff.beats[].beat_number",
+    "sections_or_beats[].start_seconds": "editorial_handoff.beats[].start_seconds",
+    "sections_or_beats[].title": "editorial_handoff.beats[].title_ja",
+    "truth_canon_boundaries[]": "editorial_handoff.truth_guards[]",
+    "visual_intent_placeholders[]": "editorial_handoff.shot_cues[]",
+    "writer_proposal_impact.auto_accept_canon_proposals": "editorial_revision guarded apply boundary",
+    "writer_proposal_impact.changes[]": "editorial_revision.changes[]"
+  },
+  "schema_version": "fff.downstreamContractMap.v0"
+}

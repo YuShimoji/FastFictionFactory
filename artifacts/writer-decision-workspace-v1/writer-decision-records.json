@@ -1,0 +1,266 @@
+{
+  "fragment_decisions": [
+    {
+      "accepted_text_provenance": {
+        "proposal_text_id": "fragment-order-proposal",
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md"
+      },
+      "accepted_writer_authored_text": "事件断片、手掛かり断片、証拠限界断片の順に構成する。",
+      "action": "accept",
+      "affected_source_spans": [
+        "span-fragment-incident",
+        "span-fragment-clue-chain",
+        "span-fragment-council-limit"
+      ],
+      "canon_status": "accepted_for_candidate",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-fragment-order",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:001",
+      "downstream_impact": [
+        "L3 structure",
+        "format re-selection",
+        "full capacity evaluation"
+      ],
+      "proposal_id": "fragment-order-proposal",
+      "rationale": "Supply an explicit fixture-author order for the mechanism demonstration.",
+      "reversible": true
+    },
+    {
+      "accepted_text_provenance": {
+        "proposal_text_id": "fragment-bridge-incident-clue",
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md"
+      },
+      "accepted_writer_authored_text": "鐘の音の報告を受け、調査は真鍮の蛾と9:17の反復へ進む。",
+      "action": "accept",
+      "affected_source_spans": [
+        "span-fragment-incident",
+        "span-fragment-clue-chain"
+      ],
+      "canon_status": "accepted_for_candidate",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-fragment-bridge-one",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:002",
+      "downstream_impact": [
+        "L2 causal bridge",
+        "affected section regeneration"
+      ],
+      "proposal_id": "fragment-bridge-incident-clue",
+      "rationale": "Supply the first missing bridge as explicit fixture-author text.",
+      "reversible": true
+    },
+    {
+      "accepted_text_provenance": {
+        "proposal_text_id": "fragment-bridge-clue-limit",
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md"
+      },
+      "accepted_writer_authored_text": "手掛かりを検討しても、評議会の関与を示す証拠にはまだ届かない。",
+      "action": "accept",
+      "affected_source_spans": [
+        "span-fragment-clue-chain",
+        "span-fragment-council-limit"
+      ],
+      "canon_status": "accepted_for_candidate",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-fragment-bridge-two",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:003",
+      "downstream_impact": [
+        "L2 causal bridge",
+        "affected section regeneration"
+      ],
+      "proposal_id": "fragment-bridge-clue-limit",
+      "rationale": "Supply the second bridge while preserving the evidence limit.",
+      "reversible": true
+    },
+    {
+      "accepted_text_provenance": {
+        "proposal_text_id": "fragment-current-status",
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md"
+      },
+      "accepted_writer_authored_text": "現時点では、鐘の音の原因と評議会の関与はいずれも未確認で、調査は継続している。",
+      "action": "accept",
+      "affected_source_spans": [
+        "span-fragment-council-limit"
+      ],
+      "canon_status": "accepted_for_candidate",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-fragment-current-status",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:004",
+      "downstream_impact": [
+        "L1 status explanation",
+        "candidate ending unit"
+      ],
+      "proposal_id": "fragment-current-status",
+      "rationale": "Provide a bounded unresolved ending for the candidate.",
+      "reversible": true
+    },
+    {
+      "accepted_text_provenance": {
+        "proposal_text_id": "fragment-format-selection",
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/fragment-proposals.md"
+      },
+      "accepted_writer_authored_text": "CASE_DIGEST",
+      "action": "accept",
+      "affected_source_spans": [
+        "span-fragment-incident",
+        "span-fragment-clue-chain",
+        "span-fragment-council-limit"
+      ],
+      "canon_status": "accepted_for_candidate",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-fragment-format",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:fragment-v1:005",
+      "downstream_impact": [
+        "L3 format selection",
+        "full capacity evaluation"
+      ],
+      "proposal_id": "fragment-format-selection",
+      "rationale": "Choose the evidence-limited digest form for this fixture candidate.",
+      "reversible": true
+    }
+  ],
+  "proposal_decisions": [
+    {
+      "accepted_text_provenance": {
+        "proposal_text_id": "proposal-replace-opening-wording",
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/writer-proposals.md"
+      },
+      "accepted_writer_authored_text": "正午、鐘のない塔で鐘の音が響いたとの報告がある。",
+      "action": "replace",
+      "affected_source_spans": [
+        "span-case-digest-section-01-incident-sentence-01"
+      ],
+      "canon_status": "accepted_for_candidate",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-replace-opening-wording",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:001",
+      "downstream_impact": [
+        "L0 narration wording",
+        "section 1 regeneration"
+      ],
+      "proposal_id": "proposal-replace-opening-wording",
+      "rationale": "Exercise an explicit writer-authored replacement without changing the incident claim.",
+      "reversible": true
+    },
+    {
+      "accepted_text_provenance": {
+        "proposal_text_id": "proposal-mark-council-motive-undecided",
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/writer-proposals.md"
+      },
+      "accepted_writer_authored_text": "評議会の動機は作者判断まで未決定と明記する。",
+      "action": "accept",
+      "affected_source_spans": [
+        "span-case-digest-section-04-council-sentence-03"
+      ],
+      "canon_status": "accepted_for_candidate",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-accept-motive-undecided",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:002",
+      "downstream_impact": [
+        "L1 subject explanation",
+        "section 4 regeneration"
+      ],
+      "proposal_id": "proposal-mark-council-motive-undecided",
+      "rationale": "Keep the motive boundary explicit rather than infer a motive.",
+      "reversible": true
+    },
+    {
+      "accepted_text_provenance": {
+        "proposal_text_id": "proposal-add-relation-explanation",
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/writer-proposals.md"
+      },
+      "accepted_writer_authored_text": "台帳と失踪の関係を、因果未確認のまま一段だけ説明する。",
+      "action": "accept",
+      "affected_source_spans": [
+        "span-case-digest-section-03-ledger-sentence-03"
+      ],
+      "canon_status": "accepted_for_candidate",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-accept-relation-explanation",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:003",
+      "downstream_impact": [
+        "L2 relation explanation",
+        "section 3 regeneration only"
+      ],
+      "proposal_id": "proposal-add-relation-explanation",
+      "rationale": "Demonstrate a section-local relation edit while retaining the unconfirmed-causality boundary.",
+      "reversible": true
+    },
+    {
+      "accepted_text_provenance": null,
+      "accepted_writer_authored_text": null,
+      "action": "defer",
+      "affected_source_spans": [
+        "span-case-digest-section-04-council-sentence-01"
+      ],
+      "canon_status": "undecided",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-defer-structure-reorder",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:004",
+      "downstream_impact": [
+        "L3 format re-selection evaluation",
+        "no structural application"
+      ],
+      "proposal_id": "proposal-reorder-evidence-and-allegation",
+      "rationale": "Keep the proposal visible while declining to reorder the candidate.",
+      "reversible": true
+    },
+    {
+      "accepted_text_provenance": null,
+      "accepted_writer_authored_text": null,
+      "action": "defer",
+      "affected_source_spans": [
+        "span-case-digest-section-02-investigator-sentence-01"
+      ],
+      "canon_status": "undecided",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-defer-brother-survival",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:005",
+      "downstream_impact": [
+        "AUTHOR_DECISION_REQUIRED",
+        "no application"
+      ],
+      "proposal_id": "proposal-attach-brother-survival-canon",
+      "rationale": "The fixture does not authorize the brother outcome.",
+      "reversible": true
+    },
+    {
+      "accepted_text_provenance": null,
+      "accepted_writer_authored_text": null,
+      "action": "reject",
+      "affected_source_spans": [
+        "span-case-digest-section-04-council-sentence-02"
+      ],
+      "canon_status": "rejected",
+      "decision_author_label": "fixture writer",
+      "decision_record_id": "decision-reject-council-guilt",
+      "decision_source": "fixture_author",
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:006",
+      "downstream_impact": [
+        "FORBIDDEN_UNSUPPORTED_INFERENCE",
+        "no application"
+      ],
+      "proposal_id": "proposal-assert-council-guilt",
+      "rationale": "The accepted source explicitly does not establish Council guilt.",
+      "reversible": true
+    }
+  ],
+  "schema_version": "fff.writerDecisionRecordBundle.v1"
+}

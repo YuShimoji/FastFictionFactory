@@ -1,0 +1,108 @@
+{
+  "schema_version": "fff.writerDecisionRecordSet.v1",
+  "record_set_id": "writer-proposal-fixture-decisions-v1",
+  "records": [
+    {
+      "decision_record_id": "decision-replace-opening-wording",
+      "proposal_id": "proposal-replace-opening-wording",
+      "action": "replace",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-case-digest-section-01-incident-sentence-01"],
+      "accepted_writer_authored_text": "正午、鐘のない塔で鐘の音が響いたとの報告がある。",
+      "accepted_text_provenance": {
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/writer-proposals.md",
+        "proposal_text_id": "proposal-replace-opening-wording"
+      },
+      "canon_status": "accepted_for_candidate",
+      "downstream_impact": ["L0 narration wording", "section 1 regeneration"],
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:001",
+      "rationale": "Exercise an explicit writer-authored replacement without changing the incident claim.",
+      "reversible": true
+    },
+    {
+      "decision_record_id": "decision-accept-motive-undecided",
+      "proposal_id": "proposal-mark-council-motive-undecided",
+      "action": "accept",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-case-digest-section-04-council-sentence-03"],
+      "accepted_writer_authored_text": "評議会の動機は作者判断まで未決定と明記する。",
+      "accepted_text_provenance": {
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/writer-proposals.md",
+        "proposal_text_id": "proposal-mark-council-motive-undecided"
+      },
+      "canon_status": "accepted_for_candidate",
+      "downstream_impact": ["L1 subject explanation", "section 4 regeneration"],
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:002",
+      "rationale": "Keep the motive boundary explicit rather than infer a motive.",
+      "reversible": true
+    },
+    {
+      "decision_record_id": "decision-accept-relation-explanation",
+      "proposal_id": "proposal-add-relation-explanation",
+      "action": "accept",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-case-digest-section-03-ledger-sentence-03"],
+      "accepted_writer_authored_text": "台帳と失踪の関係を、因果未確認のまま一段だけ説明する。",
+      "accepted_text_provenance": {
+        "source_kind": "writer_authored_proposal",
+        "source_path": "fixtures/writer-decision-workspace/writer-proposals.md",
+        "proposal_text_id": "proposal-add-relation-explanation"
+      },
+      "canon_status": "accepted_for_candidate",
+      "downstream_impact": ["L2 relation explanation", "section 3 regeneration only"],
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:003",
+      "rationale": "Demonstrate a section-local relation edit while retaining the unconfirmed-causality boundary.",
+      "reversible": true
+    },
+    {
+      "decision_record_id": "decision-defer-structure-reorder",
+      "proposal_id": "proposal-reorder-evidence-and-allegation",
+      "action": "defer",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-case-digest-section-04-council-sentence-01"],
+      "accepted_writer_authored_text": null,
+      "accepted_text_provenance": null,
+      "canon_status": "undecided",
+      "downstream_impact": ["L3 format re-selection evaluation", "no structural application"],
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:004",
+      "rationale": "Keep the proposal visible while declining to reorder the candidate.",
+      "reversible": true
+    },
+    {
+      "decision_record_id": "decision-defer-brother-survival",
+      "proposal_id": "proposal-attach-brother-survival-canon",
+      "action": "defer",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-case-digest-section-02-investigator-sentence-01"],
+      "accepted_writer_authored_text": null,
+      "accepted_text_provenance": null,
+      "canon_status": "undecided",
+      "downstream_impact": ["AUTHOR_DECISION_REQUIRED", "no application"],
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:005",
+      "rationale": "The fixture does not authorize the brother outcome.",
+      "reversible": true
+    },
+    {
+      "decision_record_id": "decision-reject-council-guilt",
+      "proposal_id": "proposal-assert-council-guilt",
+      "action": "reject",
+      "decision_author_label": "fixture writer",
+      "decision_source": "fixture_author",
+      "affected_source_spans": ["span-case-digest-section-04-council-sentence-02"],
+      "accepted_writer_authored_text": null,
+      "accepted_text_provenance": null,
+      "canon_status": "rejected",
+      "downstream_impact": ["FORBIDDEN_UNSUPPORTED_INFERENCE", "no application"],
+      "decision_timestamp_or_marker": "fixture-marker:writer-v1:006",
+      "rationale": "The accepted source explicitly does not establish Council guilt.",
+      "reversible": true
+    }
+  ]
+}
