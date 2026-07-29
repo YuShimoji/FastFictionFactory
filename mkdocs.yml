@@ -65,6 +65,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - CASE_DIGEST English Editorial Naturalness: review/case-digest-english-editorial-naturalness.md
       - CASE_DIGEST English Verbatim Bilingual Candidate: review/case-digest-english-verbatim-bilingual.md
       - CASE_DIGEST Nemo Delivery Reflow: review/case-digest-nemo-delivery-reflow.md
       - CASE_DIGEST Nemo Voice Calibration: review/case-digest-nemo-voice-calibration.md

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "contract_id": "fff-case-digest-english-editorial-naturalness-contract-v1",
+  "artifact_id": "fff-case-digest-english-editorial-naturalness-001",
+  "predecessor": {
+    "artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+    "exact_source_commit": "2a2cb5ddc3ca7cdcbf9934a75023325d4bdbf155",
+    "product_checkpoint": "dbd3ec00d7f31ba84bebb032f78057780215c338",
+    "visual_treatment_parent": "fd6c8e0fb25d6a72f9ca992da5ae032d807bb257",
+    "external_run": "../fff-case-digest-english-verbatim-bilingual-001"
+  },
+  "editorial_style": [
+    "idiomatic international English",
+    "calm documentary narration",
+    "direct, concise, and suitable for first-listen comprehension",
+    "explicit evidence limits without legal-report repetition"
+  ],
+  "structural_limits": {
+    "section_count": 5,
+    "shot_count": 11,
+    "utterance_count": 24,
+    "duration_seconds": 180,
+    "target_word_count_minimum": 270,
+    "target_word_count_maximum": 320,
+    "normal_utterance_word_count_minimum": 5,
+    "normal_utterance_word_count_maximum": 18,
+    "absolute_utterance_word_count_maximum": 22
+  },
+  "immutable_boundaries": [
+    "tower incident remains reported, not explained",
+    "note is attributed to the missing brother, not authenticated",
+    "brass moth purpose remains unknown",
+    "nine seventeen is a repeated clue, not proof",
+    "ledger contains minutes and names",
+    "ledger causal power and authenticity remain unproven",
+    "council responsibility remains alleged, not proven",
+    "brother location remains unknown",
+    "tower remains under investigation"
+  ],
+  "voice": {
+    "backend": "System.Speech",
+    "name": "Microsoft Zira Desktop",
+    "culture": "en-US",
+    "rate": 0,
+    "volume": 92,
+    "final_voice_selected": false,
+    "production_voice_approved": false
+  },
+  "naturalness_thresholds": {
+    "grammatical_fragment_count": 0,
+    "adjacent_redundant_caveat_count": 0,
+    "final_section_ledger_duplication_count": 0,
+    "banned_phrase_count": 0
+  },
+  "public_effect_authorized": false
+}

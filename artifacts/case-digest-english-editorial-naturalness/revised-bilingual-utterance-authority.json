@@ -1,0 +1,785 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-editorial-naturalness-001",
+  "predecessor_artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+  "language_default": "en",
+  "japanese_debug_only": true,
+  "japanese_audio_generation": false,
+  "section_count": 5,
+  "shot_count": 11,
+  "duration_seconds": 180,
+  "utterance_count": 24,
+  "word_count": 313.0,
+  "spoken_text_identity_sha256": "bd847d8def963304834f2417878d366b629756cfa9977efe6e1fea526032220b",
+  "utterances": [
+    {
+      "utterance_id": "cd-en-001",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-01",
+      "spoken_text_en": "At noon, witnesses reported hearing a bell from a tower that has no bell.",
+      "text_ja": "正午、鐘のない塔から鐘の音がしたと、目撃者たちが証言した。",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.what_happened"
+      ],
+      "claim_type": "reported_observation",
+      "evidential_status": "reported",
+      "word_count": 14,
+      "audio_duration_seconds": 4.405583,
+      "audio_relative_path": "audio/utterances/cd-en-001.wav",
+      "audio_sha256": "9edf19a978668cf413b7cc7fc39c7a923a141059180409b5e9890c0bdc3ef3bd",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 0.65,
+      "audio_end_seconds": 5.056,
+      "caption_start_seconds": 0.65,
+      "caption_end_seconds": 5.256,
+      "duration_seconds": 4.606,
+      "layout_en": [
+        "At noon, witnesses reported hearing",
+        "a bell from a tower that has no bell."
+      ],
+      "layout_ja": [
+        "正午、鐘のない塔から鐘の音がしたと、",
+        "目撃者たちが証言した。"
+      ],
+      "tts_text_en": "At noon, witnesses reported hearing a bell from a tower that has no bell.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-002",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-01",
+      "spoken_text_en": "The mounting frame was empty, with no instrument there that could make the sound.",
+      "text_ja": "塔の取付枠は空で、その音を出せる楽器は何も置かれていなかった。",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.evidence_or_observation"
+      ],
+      "claim_type": "observed_condition",
+      "evidential_status": "established",
+      "word_count": 14,
+      "audio_duration_seconds": 4.292125,
+      "audio_relative_path": "audio/utterances/cd-en-002.wav",
+      "audio_sha256": "e4cd8a3f0d4345375d9af130ac3135aa02a76f737000d8ee2d1707a863fd69c2",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 7.228,
+      "audio_end_seconds": 11.52,
+      "caption_start_seconds": 7.228,
+      "caption_end_seconds": 11.72,
+      "duration_seconds": 4.492,
+      "layout_en": [
+        "The mounting frame was empty, with no",
+        "instrument there that could make the sound."
+      ],
+      "layout_ja": [
+        "塔の取付枠は空で、",
+        "その音を出せる楽器は何も置かれていなかった。"
+      ],
+      "tts_text_en": "The mounting frame was empty, with no instrument there that could make the sound.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-003",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-02",
+      "spoken_text_en": "The empty frame can be verified, but no bell or other sound-making device has been found.",
+      "text_ja": "空の取付枠は確認できるが、鐘も他の発音装置も見つかっていない。",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.evidence_or_observation",
+        "case-digest-section-01-incident.evidential_limit"
+      ],
+      "claim_type": "observation_with_limit",
+      "evidential_status": "bounded",
+      "word_count": 16,
+      "audio_duration_seconds": 5.289542,
+      "audio_relative_path": "audio/utterances/cd-en-003.wav",
+      "audio_sha256": "50c885b61d85232321461702bd3db7a790877702281f3619c8b16f75f476c48e",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 13.692,
+      "audio_end_seconds": 18.981,
+      "caption_start_seconds": 13.692,
+      "caption_end_seconds": 19.181,
+      "duration_seconds": 5.489,
+      "layout_en": [
+        "The empty frame can be verified, but no bell",
+        "or other sound-making device has been found."
+      ],
+      "layout_ja": [
+        "空の取付枠は確認できるが、",
+        "鐘も他の発音装置も見つかっていない。"
+      ],
+      "tts_text_en": "The empty frame can be verified, but no bell or other sound-making device has been found.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-004",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-02",
+      "spoken_text_en": "What produced the sound is still unknown.",
+      "text_ja": "何が音を生んだのかは、今も不明だ。",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.evidential_limit"
+      ],
+      "claim_type": "evidential_limit",
+      "evidential_status": "unconfirmed",
+      "word_count": 7,
+      "audio_duration_seconds": 2.147167,
+      "audio_relative_path": "audio/utterances/cd-en-004.wav",
+      "audio_sha256": "2d3d2c8a13dbe98389be9030a9ecbc16ebec9c0b657bd024fb462a9363baf8f2",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 21.153,
+      "audio_end_seconds": 23.3,
+      "caption_start_seconds": 21.153,
+      "caption_end_seconds": 23.5,
+      "duration_seconds": 2.347,
+      "layout_en": [
+        "What produced the sound is still unknown."
+      ],
+      "layout_ja": [
+        "何が音を生んだのかは、今も不明だ。"
+      ],
+      "tts_text_en": "What produced the sound is still unknown.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-005",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-01",
+      "spoken_text_en": "Clock repairer Mira is following a trail of clues that may relate to her missing brother.",
+      "text_ja": "時計修理師のミラは、失踪した兄に関係するかもしれない一連の手掛かりを追っている。",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.what_happened"
+      ],
+      "claim_type": "investigator_identity",
+      "evidential_status": "established",
+      "word_count": 16,
+      "audio_duration_seconds": 4.549,
+      "audio_relative_path": "audio/utterances/cd-en-005.wav",
+      "audio_sha256": "79cbb32edf15b59c2748c0ba1d36c5c4b1bcaccbf2ab11a85f0dfcd13eb084dc",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 24.65,
+      "audio_end_seconds": 29.199,
+      "caption_start_seconds": 24.65,
+      "caption_end_seconds": 29.399,
+      "duration_seconds": 4.749,
+      "layout_en": [
+        "Clock repairer Mira is following a trail of",
+        "clues that may relate to her missing brother."
+      ],
+      "layout_ja": [
+        "時計修理師のミラは、",
+        "失踪した兄に関係するかもしれない一連の手掛かりを追っている。"
+      ],
+      "tts_text_en": "Clock repairer Mira is following a trail of clues that may relate to her missing brother.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-006",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-01",
+      "spoken_text_en": "Among the workshop materials is a handwritten note said to have come from him.",
+      "text_ja": "作業場の品々の中には、兄が残したとされる手書きのメモがあった。",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.text_ja"
+      ],
+      "claim_type": "reported_clue",
+      "evidential_status": "attributed_not_authenticated",
+      "word_count": 14,
+      "audio_duration_seconds": 3.967,
+      "audio_relative_path": "audio/utterances/cd-en-006.wav",
+      "audio_sha256": "81c385bbce3f58a5205a6d5da9d879dbde59a290cec945f25a6de5e5f57f85e8",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 33.605,
+      "audio_end_seconds": 37.572,
+      "caption_start_seconds": 33.605,
+      "caption_end_seconds": 37.772,
+      "duration_seconds": 4.167,
+      "layout_en": [
+        "Among the workshop materials is a",
+        "handwritten note said to have come from him."
+      ],
+      "layout_ja": [
+        "作業場の品々の中には、",
+        "兄が残したとされる手書きのメモがあった。"
+      ],
+      "tts_text_en": "Among the workshop materials is a handwritten note said to have come from him.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-007",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-02",
+      "spoken_text_en": "A brass moth lies beside it, though no one knows what the object was meant for.",
+      "text_ja": "そのそばには真鍮の蛾があるが、何のために作られた物かは分かっていない。",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidence_or_observation",
+        "recurring-element-continuity.brass_moth.evidential_limit"
+      ],
+      "claim_type": "clue_with_limit",
+      "evidential_status": "meaning_unconfirmed",
+      "word_count": 16,
+      "audio_duration_seconds": 4.652396,
+      "audio_relative_path": "audio/utterances/cd-en-007.wav",
+      "audio_sha256": "903d57b27ffff32b91c0498453c2da19a017358b86cfee86df44efea369fbb4a",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 41.978,
+      "audio_end_seconds": 46.631,
+      "caption_start_seconds": 41.978,
+      "caption_end_seconds": 46.831,
+      "duration_seconds": 4.853,
+      "layout_en": [
+        "A brass moth lies beside it, though no",
+        "one knows what the object was meant for."
+      ],
+      "layout_ja": [
+        "そのそばには真鍮の蛾があるが、",
+        "何のために作られた物かは分かっていない。"
+      ],
+      "tts_text_en": "A brass moth lies beside it, though no one knows what the object was meant for.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-008",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-03",
+      "spoken_text_en": "The time nine seventeen recurs in clocks and records, alongside the note and moth.",
+      "text_ja": "九時十七分という時刻が、メモや蛾とともに時計や記録へ繰り返し現れる。",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidence_or_observation"
+      ],
+      "claim_type": "clue_chain",
+      "evidential_status": "established_pattern",
+      "word_count": 14,
+      "audio_duration_seconds": 4.952083,
+      "audio_relative_path": "audio/utterances/cd-en-008.wav",
+      "audio_sha256": "43a88ba2810f9d2e19427be595352ac3d96bfc9c5df0595aab346d920fc00227",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 51.037,
+      "audio_end_seconds": 55.989,
+      "caption_start_seconds": 51.037,
+      "caption_end_seconds": 56.189,
+      "duration_seconds": 5.152,
+      "layout_en": [
+        "The time nine seventeen recurs in clocks",
+        "and records, alongside the note and moth."
+      ],
+      "layout_ja": [
+        "九時十七分という時刻が、",
+        "メモや蛾とともに時計や記録へ繰り返し現れる。"
+      ],
+      "tts_text_en": "The time nine seventeen recurs in clocks and records, alongside the note and moth.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-009",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-03",
+      "spoken_text_en": "Together they form a pattern, but not proof of where her brother is.",
+      "text_ja": "それらは一つのパターンを作るが、兄の居場所を示す証拠ではない。",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidential_limit"
+      ],
+      "claim_type": "evidential_limit",
+      "evidential_status": "location_unconfirmed",
+      "word_count": 13,
+      "audio_duration_seconds": 3.9045,
+      "audio_relative_path": "audio/utterances/cd-en-009.wav",
+      "audio_sha256": "31f02a441864a9e9b68832d34925aca82dcbe2af11b7d98ede9ce6b17f5b030f",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 60.395,
+      "audio_end_seconds": 64.3,
+      "caption_start_seconds": 60.395,
+      "caption_end_seconds": 64.5,
+      "duration_seconds": 4.105,
+      "layout_en": [
+        "Together they form a pattern, but",
+        "not proof of where her brother is."
+      ],
+      "layout_ja": [
+        "それらは一つのパターンを作るが、",
+        "兄の居場所を示す証拠ではない。"
+      ],
+      "tts_text_en": "Together they form a pattern, but not proof of where her brother is.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-010",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-01",
+      "spoken_text_en": "The note leads Mira to a ledger divided into two columns.",
+      "text_ja": "メモはミラを、二列に分かれた台帳へ導く。",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.what_happened",
+        "case-digest-caption-06"
+      ],
+      "claim_type": "investigative_link",
+      "evidential_status": "established",
+      "word_count": 11,
+      "audio_duration_seconds": 3.220146,
+      "audio_relative_path": "audio/utterances/cd-en-010.wav",
+      "audio_sha256": "71705839d4c28266a04968d44b5d8b2c5fb2ce201b51430bee8e28a4f6e2e38f",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 65.65,
+      "audio_end_seconds": 68.87,
+      "caption_start_seconds": 65.65,
+      "caption_end_seconds": 69.07,
+      "duration_seconds": 3.42,
+      "layout_en": [
+        "The note leads Mira to a ledger",
+        "divided into two columns."
+      ],
+      "layout_ja": [
+        "メモはミラを、二列に分かれた台帳へ導く。"
+      ],
+      "tts_text_en": "The note leads Mira to a ledger divided into two columns.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-011",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-01",
+      "spoken_text_en": "One column lists minutes; the other column lists people's names.",
+      "text_ja": "一方の欄には分が、もう一方の欄には人名が並ぶ。",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.evidence_or_observation"
+      ],
+      "claim_type": "record_structure",
+      "evidential_status": "established",
+      "word_count": 10,
+      "audio_duration_seconds": 4.034708,
+      "audio_relative_path": "audio/utterances/cd-en-011.wav",
+      "audio_sha256": "a4d1e0239f5607966465cb2a6d27a6afc854b549215abc7bb35de58ba2e48103",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 73.322,
+      "audio_end_seconds": 77.357,
+      "caption_start_seconds": 73.322,
+      "caption_end_seconds": 77.557,
+      "duration_seconds": 4.235,
+      "layout_en": [
+        "One column lists minutes; the",
+        "other column lists people's names."
+      ],
+      "layout_ja": [
+        "一方の欄には分が、もう一方の欄には人名が並ぶ。"
+      ],
+      "tts_text_en": "One column lists minutes; the other column lists people's names.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-012",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-02",
+      "spoken_text_en": "The pages show that structure, but they do not show the ledger causing anything.",
+      "text_ja": "ページから分かるのはその構造だけで、台帳が何かを引き起こすとは示していない。",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.text_ja",
+        "case-digest-section-03-ledger.evidential_limit"
+      ],
+      "claim_type": "record_with_limit",
+      "evidential_status": "bounded",
+      "word_count": 14,
+      "audio_duration_seconds": 4.389354,
+      "audio_relative_path": "audio/utterances/cd-en-012.wav",
+      "audio_sha256": "e587463d7504bf8358c74d2db0e4fbe0cc12683da7d8268c525ad1501e7a6766",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 81.809,
+      "audio_end_seconds": 86.198,
+      "caption_start_seconds": 81.809,
+      "caption_end_seconds": 86.398,
+      "duration_seconds": 4.589,
+      "layout_en": [
+        "The pages show that structure, but they",
+        "do not show the ledger causing anything."
+      ],
+      "layout_ja": [
+        "ページから分かるのはその構造だけで、",
+        "台帳が何かを引き起こすとは示していない。"
+      ],
+      "tts_text_en": "The pages show that structure, but they do not show the ledger causing anything.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-013",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-02",
+      "spoken_text_en": "There is no proof that it steals time, makes people disappear, or records real losses.",
+      "text_ja": "台帳が時間を奪い、人を消し、実在の損失を記すという証拠はない。",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.evidential_limit",
+        "case-digest-section-04-council.evidential_limit"
+      ],
+      "claim_type": "causal_limit",
+      "evidential_status": "unproven",
+      "word_count": 15,
+      "audio_duration_seconds": 5.650354,
+      "audio_relative_path": "audio/utterances/cd-en-013.wav",
+      "audio_sha256": "0d7a96188e3143be466b3832dc51f2d289d593ba5765ff0dfbcf73af9e1cd5ae",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 90.65,
+      "audio_end_seconds": 96.3,
+      "caption_start_seconds": 90.65,
+      "caption_end_seconds": 96.5,
+      "duration_seconds": 5.85,
+      "layout_en": [
+        "There is no proof that it steals time, makes",
+        "people disappear, or records real losses."
+      ],
+      "layout_ja": [
+        "台帳が時間を奪い、人を消し、",
+        "実在の損失を記すという証拠はない。"
+      ],
+      "tts_text_en": "There is no proof that it steals time, makes people disappear, or records real losses.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-014",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-01",
+      "spoken_text_en": "The note also turns Mira's investigation toward the city council.",
+      "text_ja": "メモはさらに、ミラの調査を市の評議会へ向ける。",
+      "source_fact_ids": [
+        "case-digest-section-04-council.what_happened"
+      ],
+      "claim_type": "allegation_direction",
+      "evidential_status": "recorded_allegation",
+      "word_count": 10,
+      "audio_duration_seconds": 3.685417,
+      "audio_relative_path": "audio/utterances/cd-en-014.wav",
+      "audio_sha256": "54464373ce516fdaccd308d7c0e2126d3512748311270baa69102bce377f224a",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 97.65,
+      "audio_end_seconds": 101.335,
+      "caption_start_seconds": 97.65,
+      "caption_end_seconds": 101.535,
+      "duration_seconds": 3.885,
+      "layout_en": [
+        "The note also turns Mira's",
+        "investigation toward the city council."
+      ],
+      "layout_ja": [
+        "メモはさらに、ミラの調査を市の評議会へ向ける。"
+      ],
+      "tts_text_en": "The note also turns Mira's investigation toward the city council.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-015",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-01",
+      "spoken_text_en": "The accusation raises suspicion, but it does not prove that the council was involved.",
+      "text_ja": "告発は疑いを生むが、評議会の関与を証明するものではない。",
+      "source_fact_ids": [
+        "case-digest-section-04-council.evidence_or_observation",
+        "case-digest-section-04-council.evidential_limit"
+      ],
+      "claim_type": "allegation_with_limit",
+      "evidential_status": "unconfirmed",
+      "word_count": 14,
+      "audio_duration_seconds": 4.849583,
+      "audio_relative_path": "audio/utterances/cd-en-015.wav",
+      "audio_sha256": "a926c759b6ce2ac9b740bb4e179c1e58f055608325e1ae8cf6123a0aef0dca0b",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 105.475,
+      "audio_end_seconds": 110.325,
+      "caption_start_seconds": 105.475,
+      "caption_end_seconds": 110.525,
+      "duration_seconds": 5.05,
+      "layout_en": [
+        "The accusation raises suspicion, but it does",
+        "not prove that the council was involved."
+      ],
+      "layout_ja": [
+        "告発は疑いを生むが、",
+        "評議会の関与を証明するものではない。"
+      ],
+      "tts_text_en": "The accusation raises suspicion, but it does not prove that the council was involved.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-016",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-02",
+      "spoken_text_en": "No one knows where the ledger came from or whether it is genuine.",
+      "text_ja": "台帳がどこから来たのか、真正な物なのかは分かっていない。",
+      "source_fact_ids": [
+        "case-digest-section-04-council.evidential_limit"
+      ],
+      "claim_type": "authenticity_limit",
+      "evidential_status": "unverified",
+      "word_count": 13,
+      "audio_duration_seconds": 3.218875,
+      "audio_relative_path": "audio/utterances/cd-en-016.wav",
+      "audio_sha256": "47ad7a4621daf21720a9e809fd0ae83b3219f423c1d8f957a35fe3e1f2f9c8a1",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 114.465,
+      "audio_end_seconds": 117.684,
+      "caption_start_seconds": 114.465,
+      "caption_end_seconds": 117.884,
+      "duration_seconds": 3.419,
+      "layout_en": [
+        "No one knows where the ledger came",
+        "from or whether it is genuine."
+      ],
+      "layout_ja": [
+        "台帳がどこから来たのか、",
+        "真正な物なのかは分かっていない。"
+      ],
+      "tts_text_en": "No one knows where the ledger came from or whether it is genuine.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-017",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-02",
+      "spoken_text_en": "The evidence leaves the council's possible role and motive equally unclear.",
+      "text_ja": "証拠を見ても、評議会の役割や動機はやはり分からない。",
+      "source_fact_ids": [
+        "case-digest-section-04-council.text_ja"
+      ],
+      "claim_type": "responsibility_limit",
+      "evidential_status": "unproven",
+      "word_count": 11,
+      "audio_duration_seconds": 3.946625,
+      "audio_relative_path": "audio/utterances/cd-en-017.wav",
+      "audio_sha256": "a918ffbefca28a07b880ff9ce1f1f1e32b304d302b9729b512328a112a288359",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 121.824,
+      "audio_end_seconds": 125.771,
+      "caption_start_seconds": 121.824,
+      "caption_end_seconds": 125.971,
+      "duration_seconds": 4.147,
+      "layout_en": [
+        "The evidence leaves the council's",
+        "possible role and motive equally unclear."
+      ],
+      "layout_ja": [
+        "証拠を見ても、",
+        "評議会の役割や動機はやはり分からない。"
+      ],
+      "tts_text_en": "The evidence leaves the council's possible role and motive equally unclear.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-018",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-02",
+      "spoken_text_en": "No known link connects the council to the ledger, the missing brother, or the tower incident.",
+      "text_ja": "評議会を台帳、失踪した兄、塔の事件へ結ぶ既知のつながりはない。",
+      "source_fact_ids": [
+        "case-digest-section-04-council.text_ja",
+        "case-digest-section-05-status.evidential_limit"
+      ],
+      "claim_type": "mechanism_limit",
+      "evidential_status": "unconfirmed",
+      "word_count": 16,
+      "audio_duration_seconds": 5.388,
+      "audio_relative_path": "audio/utterances/cd-en-018.wav",
+      "audio_sha256": "c31a26adb841e7098d0796797f4f5aa26202e3aace47dfe98a970fe646974da4",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 129.911,
+      "audio_end_seconds": 135.299,
+      "caption_start_seconds": 129.911,
+      "caption_end_seconds": 135.499,
+      "duration_seconds": 5.588,
+      "layout_en": [
+        "No known link connects the council to the ledger,",
+        "the missing brother, or the tower incident."
+      ],
+      "layout_ja": [
+        "評議会を台帳、失踪した兄、",
+        "塔の事件へ結ぶ既知のつながりはない。"
+      ],
+      "tts_text_en": "No known link connects the council to the ledger, the missing brother, or the tower incident.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-019",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-01",
+      "spoken_text_en": "What is known is the empty frame, the report of a bell, the note, brass moth, nine seventeen, and two-column ledger.",
+      "text_ja": "分かっているのは、空の取付枠と鐘の報告、そしてメモ、蛾、九時十七分、二列の台帳だ。",
+      "source_fact_ids": [
+        "case-digest-section-05-status.evidence_or_observation"
+      ],
+      "claim_type": "confirmed_inventory",
+      "evidential_status": "established",
+      "word_count": 21,
+      "audio_duration_seconds": 8.098333,
+      "audio_relative_path": "audio/utterances/cd-en-019.wav",
+      "audio_sha256": "9b5cf0b45dbc276f7001e9ac97c014fb78f65bbea12f4abd8f09429ce6ae98ea",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 136.65,
+      "audio_end_seconds": 144.748,
+      "caption_start_seconds": 136.65,
+      "caption_end_seconds": 144.948,
+      "duration_seconds": 8.298,
+      "layout_en": [
+        "What is known is the empty frame, the report of a bell, the",
+        "note, brass moth, nine seventeen, and two-column ledger."
+      ],
+      "layout_ja": [
+        "分かっているのは、空の取付枠と鐘の報告、",
+        "そしてメモ、蛾、九時十七分、二列の台帳だ。"
+      ],
+      "tts_text_en": "What is known is the empty frame, the report of a bell, the note, brass moth, nine seventeen, and two-column ledger.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-020",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-01",
+      "spoken_text_en": "The note, moth, and repeated time form a trail through the evidence.",
+      "text_ja": "メモ、蛾、繰り返す時刻は、証拠の中に一つの道筋を作る。",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidence_or_observation",
+        "case-digest-section-05-status.evidence_or_observation"
+      ],
+      "claim_type": "clue_chain_summary",
+      "evidential_status": "established_pattern",
+      "word_count": 12,
+      "audio_duration_seconds": 3.715667,
+      "audio_relative_path": "audio/utterances/cd-en-020.wav",
+      "audio_sha256": "a5b5f965ddf3486aa453d076c500bda202fe2cdf42fc89d668eac596541ccaf4",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 148.229,
+      "audio_end_seconds": 151.944,
+      "caption_start_seconds": 148.229,
+      "caption_end_seconds": 152.144,
+      "duration_seconds": 3.915,
+      "layout_en": [
+        "The note, moth, and repeated time",
+        "form a trail through the evidence."
+      ],
+      "layout_ja": [
+        "メモ、蛾、繰り返す時刻は、",
+        "証拠の中に一つの道筋を作る。"
+      ],
+      "tts_text_en": "The note, moth, and repeated time form a trail through the evidence.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-021",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-01",
+      "spoken_text_en": "The ledger's meaning and any power behind it are still unknown.",
+      "text_ja": "台帳が何を意味し、何らかの力を持つのかは、今も分かっていない。",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.evidential_limit",
+        "case-digest-section-05-status.text_ja"
+      ],
+      "claim_type": "ledger_status_limit",
+      "evidential_status": "bounded",
+      "word_count": 11,
+      "audio_duration_seconds": 3.170667,
+      "audio_relative_path": "audio/utterances/cd-en-021.wav",
+      "audio_sha256": "1abf5de2433fd5060629f3b44d4918195c77e939fe409c385422ff46c4cc5b30",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 155.425,
+      "audio_end_seconds": 158.595,
+      "caption_start_seconds": 155.425,
+      "caption_end_seconds": 158.795,
+      "duration_seconds": 3.37,
+      "layout_en": [
+        "The ledger's meaning and any",
+        "power behind it are still unknown."
+      ],
+      "layout_ja": [
+        "台帳が何を意味し、何らかの力を持つのかは、",
+        "今も分かっていない。"
+      ],
+      "tts_text_en": "The ledger's meaning and any power behind it are still unknown.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-022",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-03",
+      "spoken_text_en": "The bell's source and Mira's brother's location have not been found.",
+      "text_ja": "鐘の音源も、ミラの兄の居場所も見つかっていない。",
+      "source_fact_ids": [
+        "case-digest-section-05-status.evidential_limit"
+      ],
+      "claim_type": "status_limit",
+      "evidential_status": "unconfirmed",
+      "word_count": 11,
+      "audio_duration_seconds": 3.466771,
+      "audio_relative_path": "audio/utterances/cd-en-022.wav",
+      "audio_sha256": "0f2d5d893d4160d1ee67146a8a156844276245826ba7d1a435a268e5f1a6b443",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 162.076,
+      "audio_end_seconds": 165.542,
+      "caption_start_seconds": 162.076,
+      "caption_end_seconds": 165.742,
+      "duration_seconds": 3.666,
+      "layout_en": [
+        "The bell's source and Mira's brother's",
+        "location have not been found."
+      ],
+      "layout_ja": [
+        "鐘の音源も、ミラの兄の居場所も見つかっていない。"
+      ],
+      "tts_text_en": "The bell's source and Mira's brother's location have not been found.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-023",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-03",
+      "spoken_text_en": "No evidence yet connects the council to the ledger or the tower incident.",
+      "text_ja": "評議会を台帳や塔の事件へ結ぶ証拠は、まだない。",
+      "source_fact_ids": [
+        "case-digest-section-05-status.evidential_limit"
+      ],
+      "claim_type": "status_limit",
+      "evidential_status": "unconfirmed",
+      "word_count": 13,
+      "audio_duration_seconds": 3.668667,
+      "audio_relative_path": "audio/utterances/cd-en-023.wav",
+      "audio_sha256": "45726f3213406d69ee1839ed420f6446c8e2895ddf3247e9d7ff844feec9951e",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 169.023,
+      "audio_end_seconds": 172.691,
+      "caption_start_seconds": 169.023,
+      "caption_end_seconds": 172.891,
+      "duration_seconds": 3.868,
+      "layout_en": [
+        "No evidence yet connects the council",
+        "to the ledger or the tower incident."
+      ],
+      "layout_ja": [
+        "評議会を台帳や塔の事件へ結ぶ証拠は、まだない。"
+      ],
+      "tts_text_en": "No evidence yet connects the council to the ledger or the tower incident.",
+      "unsupported_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-024",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-03",
+      "spoken_text_en": "For now, the tower remains under investigation.",
+      "text_ja": "今も塔の調査は続いている。",
+      "source_fact_ids": [
+        "case-digest-section-05-status.what_happened",
+        "case-digest-section-05-status.connection_to_next_section"
+      ],
+      "claim_type": "case_status",
+      "evidential_status": "open_investigation",
+      "word_count": 7,
+      "audio_duration_seconds": 3.127083,
+      "audio_relative_path": "audio/utterances/cd-en-024.wav",
+      "audio_sha256": "d6fa2bd554250061a355dae66bc19490d5b7ea15f68a3509ef7932d9f0eb4918",
+      "audible_onset_offset_milliseconds": 30,
+      "audio_start_seconds": 176.172,
+      "audio_end_seconds": 179.299,
+      "caption_start_seconds": 176.172,
+      "caption_end_seconds": 179.499,
+      "duration_seconds": 3.327,
+      "layout_en": [
+        "For now, the tower remains under investigation."
+      ],
+      "layout_ja": [
+        "今も塔の調査は続いている。"
+      ],
+      "tts_text_en": "For now, the tower remains under investigation.",
+      "unsupported_fact_count": 0
+    }
+  ]
+}

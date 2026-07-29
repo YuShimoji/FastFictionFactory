@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.case-digest-english-editorial-naturalness.external-run-manifest.v1",
+  "title": "Fast Fiction Factory English editorial naturalness external run manifest",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "mission_id",
+    "artifact_id",
+    "status",
+    "git",
+    "source",
+    "voice",
+    "utterance_count",
+    "word_count",
+    "narration",
+    "captions",
+    "outputs",
+    "review_html",
+    "validation",
+    "effects",
+    "boundaries"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "integer",
+      "const": 1
+    },
+    "mission_id": {
+      "type": "string",
+      "const": "fff-case-digest-english-editorial-naturalness-001"
+    },
+    "artifact_id": {
+      "type": "string",
+      "const": "fff-case-digest-english-editorial-naturalness-001"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "BUILT_PENDING_FINAL_VALIDATION",
+        "PASS",
+        "PASS_COMMITTED_LOCAL_ONLY"
+      ]
+    },
+    "utterance_count": {
+      "type": "integer",
+      "const": 24
+    },
+    "word_count": {
+      "type": "integer",
+      "minimum": 270,
+      "maximum": 320
+    },
+    "git": {
+      "type": "object"
+    },
+    "source": {
+      "type": "object"
+    },
+    "voice": {
+      "type": "object"
+    },
+    "narration": {
+      "type": "object"
+    },
+    "captions": {
+      "type": "object"
+    },
+    "outputs": {
+      "type": "object"
+    },
+    "review_html": {
+      "type": "object"
+    },
+    "validation": {
+      "type": "object"
+    },
+    "effects": {
+      "type": "object"
+    },
+    "boundaries": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

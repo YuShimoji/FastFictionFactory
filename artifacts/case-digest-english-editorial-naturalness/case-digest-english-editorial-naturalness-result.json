@@ -1,0 +1,260 @@
+{
+  "schemaVersion": 1,
+  "mission_id": "fff-case-digest-english-editorial-naturalness-001",
+  "artifact_id": "fff-case-digest-english-editorial-naturalness-001",
+  "passed": true,
+  "capability_delta": "The private English CASE_DIGEST now uses idiomatic calm documentary narration while preserving exact story evidence, 24 utterance identities, shot ownership, bilingual debug alignment, and accepted visuals.",
+  "source": {
+    "exact_commit": "2a2cb5ddc3ca7cdcbf9934a75023325d4bdbf155",
+    "product_checkpoint": "dbd3ec00d7f31ba84bebb032f78057780215c338",
+    "visual_treatment_parent": "fd6c8e0fb25d6a72f9ca992da5ae032d807bb257",
+    "source_branch": "codex/fff-case-digest-english-verbatim-bilingual-v1",
+    "successor_branch": "codex/fff-case-digest-english-editorial-naturalness-v1",
+    "predecessor_artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+    "predecessor_external_run": "../fff-case-digest-english-verbatim-bilingual-001",
+    "source_dirty_partition": [],
+    "source_hashes": {
+      "clean": "5dabf0d31a93f7e56c9ed30cbc8718e453817a770759ae74ee50c37eb0f69b4c",
+      "audience": "f0bea3f35e0e3bce31ba5f465861d045ca21d0065f2080b31782f24b1e7991ca",
+      "debug": "00c29b139c0113db79b79a7f917489112fa41a89f8d414ebf57464c3e507cb3f",
+      "narration": "053d994a4b4ec1ac9167f2e4c2572565cbbe96e538292e5a8a1f4e859822e502",
+      "review": "afdefd82fd6e555c6dfb370643fbe2795a6ff330f8005a8d5b8cd41052b0d203"
+    }
+  },
+  "predecessor_audit": {
+    "utterance_count": 24,
+    "required_repair_count": 7,
+    "materially_rewritten_count": 24,
+    "required_repair_ids": [
+      "cd-en-003",
+      "cd-en-012",
+      "cd-en-015",
+      "cd-en-017",
+      "cd-en-019",
+      "cd-en-020",
+      "cd-en-021"
+    ]
+  },
+  "script": {
+    "section_count": 5,
+    "shot_count": 11,
+    "utterance_count": 24,
+    "word_count": 313.0,
+    "proper_name_count": 2,
+    "maximum_sentence_word_count": 21.0
+  },
+  "naturalness": {
+    "grammatical_fragment_count": 0.0,
+    "translated_syntax_count": 0.0,
+    "legal_report_phrase_count": 0.0,
+    "abstract_causal_noun_count": 0.0,
+    "adjacent_redundant_caveat_count": 0,
+    "first_listen_issue_count": 0.0,
+    "final_section_ledger_duplication_count": 0,
+    "banned_phrase_count": 0,
+    "repeated_term_counts": {
+      "reported": 1,
+      "established": 0,
+      "confirmed": 0,
+      "unverified": 0,
+      "available_material": 0
+    }
+  },
+  "source_fact_audit": {
+    "unsupported_fact_count": 0,
+    "hidden_causal_bridge_count": 0,
+    "unauthorized_canon_count": 0,
+    "allegation_promoted_to_fact_count": 0,
+    "unknown_promoted_to_fact_count": 0
+  },
+  "final_section": {
+    "utterance_ids": [
+      "cd-en-019",
+      "cd-en-020",
+      "cd-en-021",
+      "cd-en-022",
+      "cd-en-023",
+      "cd-en-024"
+    ],
+    "unresolved_link_group_count": 3,
+    "ledger_duplication_count": 0,
+    "closes_on_continuing_investigation": true
+  },
+  "voice": {
+    "selected_voice": "Microsoft Zira Desktop",
+    "selected_backend": "System.Speech",
+    "selected_rate": 0,
+    "selected_volume": 92,
+    "offline_only": true,
+    "final_voice_selected": false,
+    "production_voice_approved": false
+  },
+  "spoken_caption_lock": {
+    "schemaVersion": 1,
+    "artifact_id": "fff-case-digest-english-editorial-naturalness-001",
+    "canonical_field": "spoken_text_en",
+    "spoken_text_identity_sha256": "bd847d8def963304834f2417878d366b629756cfa9977efe6e1fea526032220b",
+    "utterance_count": 24,
+    "english_spoken_caption_coverage_percent": 100,
+    "japanese_debug_coverage_percent": 100,
+    "spoken_caption_text_mismatch_count": 0,
+    "audio_only_semantic_unit_count": 0,
+    "caption_only_semantic_unit_count": 0,
+    "non_verbatim_editorial_text_during_speech_count": 0,
+    "allowed_normalizations": [
+      "layout line breaks",
+      "leading or trailing whitespace"
+    ],
+    "surfaces": [
+      "offline TTS input",
+      "English SRT",
+      "English WebVTT",
+      "English audience burned subtitle",
+      "English bilingual-debug burned subtitle",
+      "local HTML English caption"
+    ]
+  },
+  "bilingual_alignment": {
+    "english_count": 24,
+    "japanese_count": 24,
+    "id_mismatch_count": 0,
+    "japanese_audio_generation_count": 0
+  },
+  "timing": {
+    "first_narration_seconds": 0.65,
+    "maximum_internal_narration_gap_seconds": 4.452,
+    "final_tail_seconds": 0.701,
+    "narration_overlap_count": 0,
+    "caption_overlap_count": 0,
+    "caption_onset_max_absolute_delta_milliseconds": 30,
+    "caption_end_after_speech_milliseconds": 200
+  },
+  "narration_wav": {
+    "path": "audio/case-digest-english-narration.wav",
+    "bytes": 17280078,
+    "sha256": "21f900b997db909bbe85556d9ddf4c1b9d2642b586b3e249a0eaeacd6ba96c0a",
+    "metadata": {
+      "codec": "pcm_s16le",
+      "channels": 1,
+      "sample_rate": 48000,
+      "bits_per_sample": 16,
+      "sample_count": 8640000,
+      "duration_seconds": 180.0,
+      "max_absolute_sample": 19813,
+      "clipping_count": 0
+    }
+  },
+  "captions": {
+    "english_srt": {
+      "path": "youtube/case-digest.en.srt",
+      "bytes": 2615,
+      "sha256": "0c0be8ede8faf4b2baaedc2b852fa9b0fbea151a35bcb8bd6e1f99c5724ac2e0"
+    },
+    "english_vtt": {
+      "path": "youtube/case-digest.en.vtt",
+      "bytes": 2800,
+      "sha256": "05dc4dde708b576f778a2dfa0f766edf9b45ddc8d86ee56822ab9636e86c8cbc"
+    },
+    "japanese_srt": {
+      "path": "youtube/case-digest.ja.srt",
+      "bytes": 2905,
+      "sha256": "01bb9501f3ddb1a54108014fcf4115413bf71aae6ea5e055f3afe320f737496d"
+    },
+    "japanese_vtt": {
+      "path": "youtube/case-digest.ja.vtt",
+      "bytes": 3090,
+      "sha256": "e0dcdc17ad367f433d7ac620b88d391629044c87c9d2e8c1ab61697883f6ee80"
+    }
+  },
+  "outputs": {
+    "clean": {
+      "path": "clean/case-digest-english-clean.mp4",
+      "bytes": 49479014,
+      "sha256": "94383a3067d769831fe9fd4e71846283867623f77a5799b570eca1dda034831f",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 1,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "audio_sample_rate": 48000,
+      "subtitle_stream_count": 2,
+      "subtitle_languages": [
+        "eng",
+        "jpn"
+      ]
+    },
+    "audience": {
+      "path": "audience/case-digest-english-burned.mp4",
+      "bytes": 23886903,
+      "sha256": "181820cb28af66526569691bb575eec5c637adb3bff6fd25b15545940d976de7",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 1,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "audio_sample_rate": 48000,
+      "subtitle_stream_count": 0,
+      "subtitle_languages": []
+    },
+    "debug": {
+      "path": "debug/case-digest-english-japanese-debug.mp4",
+      "bytes": 24143363,
+      "sha256": "e68dac0ebc9211f071b5e47d56c6031a839f458fb5923b740f7b73449334aa44",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 1,
+      "audio_codec": "aac",
+      "audio_channels": 1,
+      "audio_sample_rate": 48000,
+      "subtitle_stream_count": 0,
+      "subtitle_languages": []
+    }
+  },
+  "review_html": {
+    "path": "review/case-digest-english-editorial-naturalness.html"
+  },
+  "preserved_visual": {
+    "predecessor_clean_sha256": "5dabf0d31a93f7e56c9ed30cbc8718e453817a770759ae74ee50c37eb0f69b4c",
+    "decoded_frame_identity": true,
+    "accepted_image_change_count": 0,
+    "image_generation_count": 0,
+    "section_count": 5,
+    "shot_count": 11,
+    "frame_count": 5400,
+    "duration_seconds": 180,
+    "transition_reset_count": 0,
+    "raw_source_flash_count": 0
+  },
+  "effects": {
+    "network_request_count": 0,
+    "credential_touch_count": 0,
+    "package_install_count": 0,
+    "image_generation_count": 0,
+    "japanese_audio_generation_count": 0,
+    "music_sfx_count": 0,
+    "tracked_media_count": 0,
+    "upload_count": 0,
+    "public_effect_count": 0
+  },
+  "boundaries": {
+    "private_candidate": true,
+    "rights_cleared": false,
+    "production_approved": false,
+    "published": false,
+    "final_voice_selected": false,
+    "final_canon": false,
+    "pushed": false
+  }
+}

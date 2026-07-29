@@ -1,5 +1,21 @@
 # Artifacts
 
+## fff-case-digest-english-editorial-naturalness-001
+
+- Title: CASE_DIGEST English Editorial Naturalness Successor
+- Purpose: Replace translated, legal-report, and repetitive English cadence with calm idiomatic documentary narration while preserving facts, 24 utterance IDs, shot ownership, bilingual debug alignment, and accepted visuals.
+- Package: `artifacts/case-digest-english-editorial-naturalness/` (editorial contract, predecessor audit, revised EN/JA authority, fact and naturalness audits, spoken-caption lock, utterance/caption maps, English/Japanese debug SRT and WebVTT, result, schema, script, and README).
+- Tool/test: `tools/fff-case-digest-english-editorial-naturalness.ps1`, `tests/fff-case-digest-english-editorial-naturalness.test.mjs`
+- Review: `docs/review/case-digest-english-editorial-naturalness.md`
+- Exact source: commit `2a2cb5ddc3ca7cdcbf9934a75023325d4bdbf155`; product checkpoint `dbd3ec00d7f31ba84bebb032f78057780215c338`; predecessor clean SHA256 `5dabf0d31a93f7e56c9ed30cbc8718e453817a770759ae74ee50c37eb0f69b4c`.
+- Contract: 5 sections / 11 shots / 180 seconds / 5,400 frames / 24 stable English utterance IDs / 313 words / 24 Japanese debug translations.
+- Editorial result: required repairs 7/7; fragments 0; legal-report phrases 0; adjacent redundant caveats 0; final-section ledger duplication 0.
+- Fact/lock result: unsupported facts, hidden causal bridges, unauthorized canon, promoted allegations, promoted unknowns, and spoken-caption mismatches all 0.
+- Visual result: all 5,400 decoded frame hashes identical to predecessor / image changes 0 / image generation 0 / transition resets 0 / raw-source flashes 0.
+- External run: `fff-case-digest-english-editorial-naturalness-001`; WAV, three MP4s, review HTML, screenshots, browser evidence, and test TAP remain outside Git.
+- State: machine-green private branch candidate; default-off; local-only; no push or public effect authorized.
+- Boundaries: final voice selection, production approval, rights clearance, publication, release, and final canon remain closed.
+
 ## fff-case-digest-english-verbatim-bilingual-001
 
 - Title: CASE_DIGEST English Verbatim Bilingual Candidate

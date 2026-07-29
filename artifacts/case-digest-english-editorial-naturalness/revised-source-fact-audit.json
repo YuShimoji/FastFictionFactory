@@ -1,0 +1,407 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-editorial-naturalness-001",
+  "audit_scope": "every revised canonical English utterance",
+  "utterance_count": 24,
+  "unsupported_fact_count": 0,
+  "hidden_causal_bridge_count": 0,
+  "unauthorized_canon_count": 0,
+  "allegation_promoted_to_fact_count": 0,
+  "unknown_promoted_to_fact_count": 0,
+  "rows": [
+    {
+      "utterance_id": "cd-en-001",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-01",
+      "spoken_text_en": "At noon, witnesses reported hearing a bell from a tower that has no bell.",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.what_happened"
+      ],
+      "claim_type": "reported_observation",
+      "evidential_status": "reported",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-002",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-01",
+      "spoken_text_en": "The mounting frame was empty, with no instrument there that could make the sound.",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.evidence_or_observation"
+      ],
+      "claim_type": "observed_condition",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-003",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-02",
+      "spoken_text_en": "The empty frame can be verified, but no bell or other sound-making device has been found.",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.evidence_or_observation",
+        "case-digest-section-01-incident.evidential_limit"
+      ],
+      "claim_type": "observation_with_limit",
+      "evidential_status": "bounded",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-004",
+      "section_id": "case-digest-section-01-incident",
+      "shot_id": "shot-b01-02",
+      "spoken_text_en": "What produced the sound is still unknown.",
+      "source_fact_ids": [
+        "case-digest-section-01-incident.evidential_limit"
+      ],
+      "claim_type": "evidential_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-005",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-01",
+      "spoken_text_en": "Clock repairer Mira is following a trail of clues that may relate to her missing brother.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.what_happened"
+      ],
+      "claim_type": "investigator_identity",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-006",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-01",
+      "spoken_text_en": "Among the workshop materials is a handwritten note said to have come from him.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.text_ja"
+      ],
+      "claim_type": "reported_clue",
+      "evidential_status": "attributed_not_authenticated",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-007",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-02",
+      "spoken_text_en": "A brass moth lies beside it, though no one knows what the object was meant for.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidence_or_observation",
+        "recurring-element-continuity.brass_moth.evidential_limit"
+      ],
+      "claim_type": "clue_with_limit",
+      "evidential_status": "meaning_unconfirmed",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-008",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-03",
+      "spoken_text_en": "The time nine seventeen recurs in clocks and records, alongside the note and moth.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidence_or_observation"
+      ],
+      "claim_type": "clue_chain",
+      "evidential_status": "established_pattern",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-009",
+      "section_id": "case-digest-section-02-investigator",
+      "shot_id": "shot-b02-03",
+      "spoken_text_en": "Together they form a pattern, but not proof of where her brother is.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidential_limit"
+      ],
+      "claim_type": "evidential_limit",
+      "evidential_status": "location_unconfirmed",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-010",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-01",
+      "spoken_text_en": "The note leads Mira to a ledger divided into two columns.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.what_happened",
+        "case-digest-caption-06"
+      ],
+      "claim_type": "investigative_link",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-011",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-01",
+      "spoken_text_en": "One column lists minutes; the other column lists people's names.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.evidence_or_observation"
+      ],
+      "claim_type": "record_structure",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-012",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-02",
+      "spoken_text_en": "The pages show that structure, but they do not show the ledger causing anything.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.text_ja",
+        "case-digest-section-03-ledger.evidential_limit"
+      ],
+      "claim_type": "record_with_limit",
+      "evidential_status": "bounded",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-013",
+      "section_id": "case-digest-section-03-ledger",
+      "shot_id": "shot-b03-02",
+      "spoken_text_en": "There is no proof that it steals time, makes people disappear, or records real losses.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.evidential_limit",
+        "case-digest-section-04-council.evidential_limit"
+      ],
+      "claim_type": "causal_limit",
+      "evidential_status": "unproven",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-014",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-01",
+      "spoken_text_en": "The note also turns Mira's investigation toward the city council.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.what_happened"
+      ],
+      "claim_type": "allegation_direction",
+      "evidential_status": "recorded_allegation",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-015",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-01",
+      "spoken_text_en": "The accusation raises suspicion, but it does not prove that the council was involved.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.evidence_or_observation",
+        "case-digest-section-04-council.evidential_limit"
+      ],
+      "claim_type": "allegation_with_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-016",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-02",
+      "spoken_text_en": "No one knows where the ledger came from or whether it is genuine.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.evidential_limit"
+      ],
+      "claim_type": "authenticity_limit",
+      "evidential_status": "unverified",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-017",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-02",
+      "spoken_text_en": "The evidence leaves the council's possible role and motive equally unclear.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.text_ja"
+      ],
+      "claim_type": "responsibility_limit",
+      "evidential_status": "unproven",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-018",
+      "section_id": "case-digest-section-04-council",
+      "shot_id": "shot-b04-02",
+      "spoken_text_en": "No known link connects the council to the ledger, the missing brother, or the tower incident.",
+      "source_fact_ids": [
+        "case-digest-section-04-council.text_ja",
+        "case-digest-section-05-status.evidential_limit"
+      ],
+      "claim_type": "mechanism_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-019",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-01",
+      "spoken_text_en": "What is known is the empty frame, the report of a bell, the note, brass moth, nine seventeen, and two-column ledger.",
+      "source_fact_ids": [
+        "case-digest-section-05-status.evidence_or_observation"
+      ],
+      "claim_type": "confirmed_inventory",
+      "evidential_status": "established",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-020",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-01",
+      "spoken_text_en": "The note, moth, and repeated time form a trail through the evidence.",
+      "source_fact_ids": [
+        "case-digest-section-02-investigator.evidence_or_observation",
+        "case-digest-section-05-status.evidence_or_observation"
+      ],
+      "claim_type": "clue_chain_summary",
+      "evidential_status": "established_pattern",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-021",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-01",
+      "spoken_text_en": "The ledger's meaning and any power behind it are still unknown.",
+      "source_fact_ids": [
+        "case-digest-section-03-ledger.evidential_limit",
+        "case-digest-section-05-status.text_ja"
+      ],
+      "claim_type": "ledger_status_limit",
+      "evidential_status": "bounded",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-022",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-03",
+      "spoken_text_en": "The bell's source and Mira's brother's location have not been found.",
+      "source_fact_ids": [
+        "case-digest-section-05-status.evidential_limit"
+      ],
+      "claim_type": "status_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-023",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-03",
+      "spoken_text_en": "No evidence yet connects the council to the ledger or the tower incident.",
+      "source_fact_ids": [
+        "case-digest-section-05-status.evidential_limit"
+      ],
+      "claim_type": "status_limit",
+      "evidential_status": "unconfirmed",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    },
+    {
+      "utterance_id": "cd-en-024",
+      "section_id": "case-digest-section-05-status",
+      "shot_id": "shot-b06-03",
+      "spoken_text_en": "For now, the tower remains under investigation.",
+      "source_fact_ids": [
+        "case-digest-section-05-status.what_happened",
+        "case-digest-section-05-status.connection_to_next_section"
+      ],
+      "claim_type": "case_status",
+      "evidential_status": "open_investigation",
+      "unsupported_fact_count": 0,
+      "hidden_causal_bridge_count": 0,
+      "unauthorized_canon_count": 0,
+      "allegation_promoted_to_fact_count": 0,
+      "unknown_promoted_to_fact_count": 0
+    }
+  ]
+}
