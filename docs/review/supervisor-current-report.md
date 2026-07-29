@@ -1,6 +1,36 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-24 JST
+更新日: 2026-07-29 JST
+
+## 2026-07-29 English verbatim CASE_DIGEST feature-branch handoff
+
+### 結論
+
+`dbd3ec00d7f31ba84bebb032f78057780215c338 Add English verbatim CASE_DIGEST candidate` は、英語ナレーションと英語字幕を24 utterancesの同一正本へ固定し、日本語を24/24のdebug translationへ限定した、private/default-offのproduct checkpointです。正確な親は、公開済みEditorial Treatment authorityの `fd6c8e0fb25d6a72f9ca992da5ae032d807bb257` です。
+
+このhandoffは `codex/fff-case-digest-english-verbatim-bilingual-v1` だけを通常pushし、`master`、active/default artifact、Writer integration branchを置き換えません。旧 `master` checkoutは `cfd645f` のまま `origin/master` より8 commits behindで、7件の既存差分を保持しています。incomingと4つのauthority docsが競合し得るためpullは保留し、reset、stash、clean、rebase、mergeは行っていません。
+
+### 実装済みの差分
+
+- 5 sections / 11 shots / 180.000秒 / 5400 frames。
+- English 24 utterances / 291 words。TTS、burned subtitle、SRT、WebVTT、HTML captionのsemantic identity mismatchは0。
+- Japanese debug translationは24/24、coverage 100%、Japanese audio generation 0、audience-default pictureへの表示0。
+- source-fact auditはunsupported fact 0。established fact、allegation、unknownの境界を維持。
+- local voiceはSystem.Speech `Microsoft Zira Desktop`。これは技術候補でありfinal voice selectionではない。
+- clean/audience/debugの3 MP4、180秒WAV、review HTML、screenshots、browser/transition evidenceはrepository外runに保持。
+- clean masterの5400 decoded framesはsourceと一致。image change、image generation、transition reset、raw-source flashはいずれも0。
+
+### 検証と正本
+
+focused Node suiteは8/8、PowerShell parse、JSON、SRT/VTT、media contract、browser runtime、1440×1000 / 390×844、frame identity、`git diff --check`、strict MkDocsがgreenです。tracked product checkpointは20 text/tool/test/doc filesで、WAV、MP4、PNG、font、model、archiveを含みません。
+
+技術結果のbuild-time `pushed=false` は履歴証拠として保持します。後続のfeature-branch distributionはこのhandoffとGit readbackが所有し、media resultを遡及改変しません。再開時はfetch後にローカルHEADと `origin/codex/fff-case-digest-english-verbatim-bilingual-v1` の一致とahead/behind `0 / 0` を確認してください。
+
+### 次の一手と閉じた境界
+
+次の一手は、exact English audience renderとcanonical English scriptを一度だけProduct Owner/editorial reviewすることです。問題がなければartifact変更なしでacceptし、問題がある場合だけutterance、section、shot、timestampへ束縛した最小repairを開きます。
+
+production approval、rights clearance、publication、release、final voice selection、final canonはすべて閉じています。feature-branch pushはこれらを開かず、PR、merge、tag、deploy、media upload、public access変更も行いません。
 
 ## 2026-07-24 PLANNER007端末での最新同期・再検証（現行ローカル追記）
 

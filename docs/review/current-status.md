@@ -1,5 +1,28 @@
 # Current Status Packet
 
+## English Verbatim CASE_DIGEST Candidate — 2026-07-29 JST
+
+| Item | Verified state |
+| --- | --- |
+| Branch | `codex/fff-case-digest-english-verbatim-bilingual-v1` |
+| Product checkpoint | `dbd3ec00d7f31ba84bebb032f78057780215c338 Add English verbatim CASE_DIGEST candidate` |
+| Exact parent | `fd6c8e0fb25d6a72f9ca992da5ae032d807bb257` on the published Editorial Treatment authority branch |
+| Candidate | `fff-case-digest-english-verbatim-bilingual-001`; private; default-off; branch-scoped |
+| Audience channel | 24 English narration utterances = burned English = English SRT/VTT = HTML English captions |
+| Japanese boundary | 24/24 one-to-one debug translations; 100% coverage; no Japanese audio; absent from the audience render |
+| Script/facts | 291 words; 5 sections; 11 shots; unsupported facts 0 |
+| Timing | first narration 0.650 s; maximum internal gap 4.214 s; final tail 0.700 s; narration/caption overlap 0 |
+| Narration | local System.Speech `Microsoft Zira Desktop`; PCM s16le mono 48 kHz; exactly 180.000 s; clipping 0; final voice selection false |
+| Media | clean, English-burned audience, and English/Japanese debug MP4s are 1280×720, 30 fps, 5400 frames, exactly 180.000 s |
+| Visual preservation | all 5400 decoded clean frames match source; image changes 0; generation 0; transition resets 0; raw flashes 0 |
+| Browser | 1440×1000 and 390×844 pass; English default; Japanese debug toggle; overflow/external requests/console/page errors all 0 |
+| Validation | PowerShell/JSON/diff checks pass; focused Node suite 8/8; strict MkDocs passes after authority registration |
+| Tracked boundary | 20 product files in the checkpoint and this authority-only successor; no WAV/MP4/PNG/font/model/archive is tracked |
+| Legacy checkout | `master@cfd645f`, behind `origin/master` by 8; seven pre-existing modified paths preserved; overlapping pull intentionally held |
+| Distribution | feature branch only; re-entry requires fetched remote parity; no merge, PR, release, deploy, upload, or public publication |
+
+Next gate: review the exact English audience render and canonical script from external run `fff-case-digest-english-verbatim-bilingual-001`. The reviewer may accept this private candidate or bind a material wording/delivery/comprehension finding to utterance, section, shot, or timestamp. Technical green does not approve production, rights, publication, the final voice, or canon.
+
 ## CASE_DIGEST Editorial Treatment Candidate — 2026-07-28 JST
 
 - Current branch: `codex/fff-case-digest-editorial-treatment-v1`; implementation tip `cec950d854dd285945af8fb937776f0998ef2e14`, with the authority-sync successor published on the same remote branch. Re-entry is valid only after fetch/readback confirms `HEAD = origin/codex/fff-case-digest-editorial-treatment-v1` and ahead/behind `0 / 0`.

@@ -1,5 +1,17 @@
 # Project Context
 
+## English Verbatim CASE_DIGEST Remote-Ready Handoff — 2026-07-29 JST
+
+- Product checkpoint: `dbd3ec00d7f31ba84bebb032f78057780215c338` (`Add English verbatim CASE_DIGEST candidate`) on `codex/fff-case-digest-english-verbatim-bilingual-v1`, with exact parent `fd6c8e0fb25d6a72f9ca992da5ae032d807bb257` from the published Editorial Treatment authority branch.
+- Capability delta: `fff-case-digest-english-verbatim-bilingual-001` makes English narration the sole audience-facing explanatory channel. The same 24 canonical English utterances drive TTS, burned captions, SRT, WebVTT, and the standalone HTML; 24 one-to-one Japanese translations remain debug-only.
+- Evidence: 291 English words, five sections, eleven shots, 180.000 seconds, 5400 frames, zero unsupported facts, zero spoken-caption mismatches, and 100% Japanese debug coverage. The focused suite passes 8/8.
+- Media boundary: WAV, three MP4 outputs, review HTML, screenshots, and browser/transition evidence remain under external run `D:\AI-Runs\FastFictionFactory\fff-case-digest-english-verbatim-bilingual-001`, outside Git. The tracked package is text-only.
+- Visual preservation: all 5400 clean-master frame identities match the accepted Editorial Treatment source; accepted image changes, image generation, transition resets, and raw-source flashes are all zero. The active primary-imagery quarantine remains unchanged.
+- Repository boundary: this feature branch does not replace `origin/master`, the repository active/default artifact, or the registered raster successor. It is a private, default-off review candidate. The legacy `master` checkout remains untouched at `cfd645ff2928b06e474aae5aefb9019d771d0ce9`, eight commits behind `origin/master`, with its seven pre-existing modified paths preserved; pull there remains held because four incoming authority-doc paths overlap local edits.
+- Publication/readback rule: the authority-sync successor is distributed only on `origin/codex/fff-case-digest-english-verbatim-bilingual-v1`. After `git fetch --prune`, re-entry requires local HEAD to equal that exact remote branch tip with ahead/behind `0 / 0`; no merge into `master` is implied.
+- Current gate: Product Owner/editorial review of the exact English-default audience render and script. Accept or reject wording, delivery, and comprehension against this checkpoint. Production approval, rights clearance, publication, final voice selection, and final canon remain closed.
+- Re-entry: read `AGENTS.md` → this section → `docs/review/current-status.md` → `docs/review/case-digest-english-verbatim-bilingual.md`; then run `node --test tests/fff-case-digest-english-verbatim-bilingual.test.mjs`.
+
 ## CASE_DIGEST Editorial Treatment Candidate — 2026-07-28 JST
 
 - Restart authority: implementation tip `cec950d854dd285945af8fb937776f0998ef2e14` on `codex/fff-case-digest-editorial-treatment-v1`, based on accepted voice-delivery tip `f42822db1a75282b6dcb956deb4f226753e3d1ea`. The authority-sync successor is published on the same remote branch; after `git fetch --prune`, re-entry requires `HEAD = origin/codex/fff-case-digest-editorial-treatment-v1` and ahead/behind `0 / 0`.

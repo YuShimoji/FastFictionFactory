@@ -1,5 +1,14 @@
 # Decision Log
 
+## 2026-07-29 — Publish the English-verbatim CASE_DIGEST as a review branch
+
+- Decision: preserve `dbd3ec00d7f31ba84bebb032f78057780215c338` as the immutable product checkpoint, add a documentation-only handoff successor, and publish only `codex/fff-case-digest-english-verbatim-bilingual-v1` by normal push with fetch/readback parity.
+- Why: the complete English-default candidate, aligned English/Japanese sidecars, offline narration, three exact media outputs, standalone review page, and 8/8 focused validation already exist, while the branch had no upstream and its opening authority still pointed to the predecessor Editorial Treatment gate.
+- Master boundary: do not pull into or modify the legacy `master` checkout. It is eight commits behind `origin/master`, and four incoming authority-doc paths overlap seven preserved local modifications. The feature branch remains intentionally separate from `master` and from the Writer integration branch.
+- Evidence boundary: original candidate result files retain their build-time `pushed=false` record. This later repository distribution event is owned by the handoff documents and Git readback; it does not regenerate media or rewrite technical evidence.
+- Release boundary: a normal feature-branch push is source distribution only. It is not a merge, PR, tag, release, deploy, upload of media, production approval, rights clearance, final voice selection, publication, or canon decision.
+- Next decision: Product Owner/editorial review of the exact English audience render and script. Any repair must be bound to an utterance, section, shot, or timestamp.
+
 ## 2026-07-28 — Publish the private CASE_DIGEST editorial-treatment branch for exact review
 
 - Decision: preserve the completed local candidate and its two validation repairs as one branch history, add the material state to the existing authority docs, and publish only `codex/fff-case-digest-editorial-treatment-v1` by normal push with fetch/readback parity.

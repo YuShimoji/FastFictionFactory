@@ -1,5 +1,24 @@
 # Next Terminal Handoff
 
+## Start here — English verbatim CASE_DIGEST branch (2026-07-29 JST)
+
+The product checkpoint is `dbd3ec00d7f31ba84bebb032f78057780215c338` on `codex/fff-case-digest-english-verbatim-bilingual-v1`, with exact parent `fd6c8e0fb25d6a72f9ca992da5ae032d807bb257`. The following authority-only successor is distributed on the same remote feature branch. It does not merge into or replace `master`.
+
+```powershell
+git fetch --prune origin
+git switch codex/fff-case-digest-english-verbatim-bilingual-v1
+git pull --ff-only origin codex/fff-case-digest-english-verbatim-bilingual-v1
+git rev-list --left-right --count 'HEAD...origin/codex/fff-case-digest-english-verbatim-bilingual-v1'
+git status --short --branch
+node --test tests/fff-case-digest-english-verbatim-bilingual.test.mjs
+```
+
+Primary tracked authority is `docs/review/case-digest-english-verbatim-bilingual.md`. External media and runtime evidence are under `D:\AI-Runs\FastFictionFactory\fff-case-digest-english-verbatim-bilingual-001`; review `review\case-digest-english-verbatim.html`, the English-burned audience MP4, and `artifacts\case-digest-english-verbatim-bilingual\english-script.md` together.
+
+Expected evidence is 24 English utterances, 291 words, unsupported facts 0, spoken-caption mismatches 0, Japanese alignment 24/24, exact 180.000-second media, 5400 source-identical clean frames, and focused tests 8/8. The only permitted worktree residue is unstaged `.serena/project.yml`; do not stage, restore, stash, or normalize it.
+
+The next action is one Product Owner/editorial review. Accept the private candidate unchanged or identify a material wording, delivery, or comprehension issue by utterance, section, shot, or timestamp. Production approval, rights clearance, final voice selection, publication, release, and final canon remain closed.
+
 ## Start here — synchronized development handoff (2026-07-24 JST)
 
 `master` was fetched and is at `origin/master`. The verified restart tip is the current `HEAD = origin/master` (run `git log -1 --oneline --decorate` for its exact SHA), ahead/behind `0 / 0`; implementation parent `58049c9` (`Add resumable private preview pipeline`) contains the resumable private pipeline for a creator continuing on another terminal.

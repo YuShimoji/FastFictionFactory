@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-29 English Verbatim CASE_DIGEST Remote Handoff
+
+- Purpose: make the completed English-default private candidate restartable from remote Git without merging it into `master` or relying on prior chat.
+- Effect: records product checkpoint `dbd3ec00d7f31ba84bebb032f78057780215c338`, exact parent/source authority, external-run identity, 8/8 validation, feature-branch publication boundary, preserved legacy checkout, and the one remaining editorial gate.
+- Requirements: preserve the 24-utterance spoken-caption lock, 24/24 Japanese debug alignment, 5400-frame visual identity, active quarantines, external-run binaries outside Git, and `.serena/project.yml` outside staging.
+- State: product implementation is complete and validated; the documentation-only authority successor is the remote-ready handoff. The original result's `pushed=false` field remains historical build evidence rather than a claim about later branch distribution.
+- Owner: repository maintainer for feature-branch parity; Product Owner/editorial reviewer for private candidate acceptance; separately named production, rights, publication, voice, and canon owners for closed gates.
+- Next move: review the exact English audience render and canonical script once. Accept unchanged or bind a material repair to utterance, section, shot, or timestamp.
+
 ## 2026-07-28 CASE_DIGEST Editorial Treatment Candidate
 
 - Purpose: turn the accepted style-10000 narration and eleven-shot Raster sequence into one complete private CASE_DIGEST review object without changing accepted story, timing, voice placement, imagery, or transitions.
