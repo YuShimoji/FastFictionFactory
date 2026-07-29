@@ -1,0 +1,156 @@
+{
+  "schemaVersion": 1,
+  "input_mode": "per_utterance_wav_v1",
+  "speaker_identity": "REQUIRED_EXPLICIT_IDENTITY",
+  "voice_name": "REQUIRED_NON_ZIRA_VOICE_NAME",
+  "voice_origin": "human_recording",
+  "voice_character": {
+    "gender_presentation": "male",
+    "delivery": "calm",
+    "register": "lower_mid"
+  },
+  "clone_authorized": false,
+  "contains_music_or_sfx": false,
+  "extra_or_omitted_words_declared": false,
+  "rights_provenance": {
+    "status": "REQUIRED_documented",
+    "source": "REQUIRED",
+    "private_release_candidate_use_authorized": false
+  },
+  "naturalness_human_judgment": "pending_whole_release_candidate",
+  "technical_fixture_only": false,
+  "canonical_transcript_sha256": "ea43c76d89e0358fe43b70e3c216cc73323ba0ff9d64144ac8abfa583a1b58b6",
+  "audio_contract": {
+    "container": "WAV",
+    "codec": [
+      "pcm_s16le",
+      "pcm_s24le"
+    ],
+    "sample_rate_hz": 48000,
+    "channels": 1,
+    "clipping_count": 0,
+    "speech_only": true
+  },
+  "entries": [
+    {
+      "utterance_id": "cd-en-001",
+      "file": "utterances/cd-en-001.wav",
+      "transcript": "At noon, witnesses reported hearing a bell from a tower that has no bell."
+    },
+    {
+      "utterance_id": "cd-en-002",
+      "file": "utterances/cd-en-002.wav",
+      "transcript": "The mounting frame was empty, with no instrument there that could make the sound."
+    },
+    {
+      "utterance_id": "cd-en-003",
+      "file": "utterances/cd-en-003.wav",
+      "transcript": "The empty frame can be verified, but no bell or other sound-making device has been found."
+    },
+    {
+      "utterance_id": "cd-en-004",
+      "file": "utterances/cd-en-004.wav",
+      "transcript": "What produced the sound is still unknown."
+    },
+    {
+      "utterance_id": "cd-en-005",
+      "file": "utterances/cd-en-005.wav",
+      "transcript": "Clock repairer Mira is following a trail of clues that may relate to her missing brother."
+    },
+    {
+      "utterance_id": "cd-en-006",
+      "file": "utterances/cd-en-006.wav",
+      "transcript": "Among the workshop materials is a handwritten note said to have come from him."
+    },
+    {
+      "utterance_id": "cd-en-007",
+      "file": "utterances/cd-en-007.wav",
+      "transcript": "A brass moth lies beside it, though no one knows what the object was meant for."
+    },
+    {
+      "utterance_id": "cd-en-008",
+      "file": "utterances/cd-en-008.wav",
+      "transcript": "The time nine seventeen recurs in clocks and records, alongside the note and moth."
+    },
+    {
+      "utterance_id": "cd-en-009",
+      "file": "utterances/cd-en-009.wav",
+      "transcript": "Together they form a pattern, but not proof of where her brother is."
+    },
+    {
+      "utterance_id": "cd-en-010",
+      "file": "utterances/cd-en-010.wav",
+      "transcript": "The note leads Mira to a ledger divided into two columns."
+    },
+    {
+      "utterance_id": "cd-en-011",
+      "file": "utterances/cd-en-011.wav",
+      "transcript": "One column lists minutes; the other column lists people's names."
+    },
+    {
+      "utterance_id": "cd-en-012",
+      "file": "utterances/cd-en-012.wav",
+      "transcript": "The pages show that structure, but they do not show the ledger causing anything."
+    },
+    {
+      "utterance_id": "cd-en-013",
+      "file": "utterances/cd-en-013.wav",
+      "transcript": "There is no proof that it steals time, makes people disappear, or records real losses."
+    },
+    {
+      "utterance_id": "cd-en-014",
+      "file": "utterances/cd-en-014.wav",
+      "transcript": "The note also turns Mira's investigation toward the city council."
+    },
+    {
+      "utterance_id": "cd-en-015",
+      "file": "utterances/cd-en-015.wav",
+      "transcript": "The accusation raises suspicion, but it does not prove that the council was involved."
+    },
+    {
+      "utterance_id": "cd-en-016",
+      "file": "utterances/cd-en-016.wav",
+      "transcript": "No one knows where the ledger came from or whether it is genuine."
+    },
+    {
+      "utterance_id": "cd-en-017",
+      "file": "utterances/cd-en-017.wav",
+      "transcript": "The evidence leaves the council's possible role and motive equally unclear."
+    },
+    {
+      "utterance_id": "cd-en-018",
+      "file": "utterances/cd-en-018.wav",
+      "transcript": "No known link connects the council to the ledger, the missing brother, or the tower incident."
+    },
+    {
+      "utterance_id": "cd-en-019",
+      "file": "utterances/cd-en-019.wav",
+      "transcript": "What is known is the empty frame, the report of a bell, the note, brass moth, nine seventeen, and two-column ledger."
+    },
+    {
+      "utterance_id": "cd-en-020",
+      "file": "utterances/cd-en-020.wav",
+      "transcript": "The note, moth, and repeated time form a trail through the evidence."
+    },
+    {
+      "utterance_id": "cd-en-021",
+      "file": "utterances/cd-en-021.wav",
+      "transcript": "The ledger's meaning and any power behind it are still unknown."
+    },
+    {
+      "utterance_id": "cd-en-022",
+      "file": "utterances/cd-en-022.wav",
+      "transcript": "The bell's source and Mira's brother's location have not been found."
+    },
+    {
+      "utterance_id": "cd-en-023",
+      "file": "utterances/cd-en-023.wav",
+      "transcript": "No evidence yet connects the council to the ledger or the tower incident."
+    },
+    {
+      "utterance_id": "cd-en-024",
+      "file": "utterances/cd-en-024.wav",
+      "transcript": "For now, the tower remains under investigation."
+    }
+  ]
+}

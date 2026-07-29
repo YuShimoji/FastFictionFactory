@@ -1,5 +1,22 @@
 # Artifacts
 
+## fff-case-digest-release-candidate-preparation-001
+
+- Title: CASE_DIGEST Release Candidate Preparation
+- Purpose: freeze the accepted picture/script/captions, quarantine the rejected Zira successor voice, and make a documented calm English male voice the only missing full-candidate input.
+- Package: `artifacts/case-digest-release-candidate-preparation/` (18 text/JSON/CSV/Markdown contract files).
+- Tool/test: `tools/fff-case-digest-release-candidate-preparation.ps1`, `tests/fff-case-digest-release-candidate-preparation.test.mjs`
+- Production/review docs: `docs/production/CASE_DIGEST_RELEASE_CANDIDATE_PREPARATION.md`, `docs/review/case-digest-release-candidate-preparation.md`
+- Exact source: commit `58b8cc437bb0f8e0f796490bdfd213e8b211834f`; source run `fff-case-digest-english-editorial-naturalness-001`; source clean SHA256 `94383a3067d769831fe9fd4e71846283867623f77a5799b570eca1dda034831f`.
+- Fixed contract: 5 sections / 11 shots / 24 English utterances / 313 words / 180 seconds / 5,400 frames / four byte-locked caption sidecars.
+- Picture lock: SHA256 `36e72701562ce3e624b55b560d02d341d80e7b0ea0f88abec2494bd3f51289e8`; video-only; decoded-frame identity 5,400/5,400.
+- Thumbnail: SHA256 `8460846b41c140e16d7c5d16a9995ecec43ab0d8e8c6864acc16159f76369061`; accepted `shot-b03-01` derivative; `archival_case_file_thumbnail_v1`.
+- Voice: Zira successor status rejected; local eligible English male count 0; exact state `natural_male_voice_input_required`; no provisional A/V.
+- Validation: targeted package/media/caption/voice/metadata/provenance/browser/tracked-boundary suite; eight required voice negative probes fail closed; naturalness remains human-only.
+- External run: `fff-case-digest-release-candidate-preparation-001`; picture lock, captions, thumbnail, metadata copies, voice intake area, review HTML, evidence, and verification remain outside Git.
+- State: machine-complete preparation; private; default-off; local-only; no push or public effect authorized.
+- Boundaries: final voice selection, production voice approval, production approval, rights clearance, publication approval, and final canon remain closed.
+
 ## fff-case-digest-english-editorial-naturalness-001
 
 - Title: CASE_DIGEST English Editorial Naturalness Successor

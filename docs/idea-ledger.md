@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-07-30 CASE_DIGEST Release Candidate Preparation
+
+- Purpose: move beyond isolated TTS comparison by freezing all accepted release inputs, excluding the rejected Zira successor voice, and making one documented calm English male take the only missing assembly input.
+- Effect: adds an 18-file tracked contract, exact video-only picture lock, four locked caption sidecars, accepted-raster thumbnail, YouTube metadata/credits, complete provenance matrix, two voice input modes, eight fail-closed probes, deterministic three-output A/V builder, final QC, and offline operator readback.
+- Requirements: exact source `58b8cc437bb0f8e0f796490bdfd213e8b211834f`; 24/313 script lock; 5,400-frame visual identity; no Zira successor synthesis; no script/caption/visual rework; no new imagery/music/SFX/network/install; explicit identity and provenance for voice input; whole-candidate-only human judgment.
+- State: `PASS_RELEASE_PREPARATION_AWAITING_VOICE`; local eligible English male voice count `0`; `voice_input_state=natural_male_voice_input_required`; provisional A/V absent by design.
+- Owner: product implementer for contract, deterministic assembly, and QC; voice provider and rights owner for the take; Product Owner/editorial reviewer for whole-candidate naturalness; named production, publication, and canon owners for later gates.
+- Next move: place a compliant take under the accepted-take directory, run `ValidateVoiceTake` and `BuildReleaseCandidate`, then judge the complete candidate once. Do not request another voice-only review.
+
 ## 2026-07-29 English Verbatim CASE_DIGEST Remote Handoff
 
 - Purpose: make the completed English-default private candidate restartable from remote Git without merging it into `master` or relying on prior chat.

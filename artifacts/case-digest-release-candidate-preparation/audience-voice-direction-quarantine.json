@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "quarantine_id": "FFF-Q-MECHANICAL-ENGLISH-TTS-CASE-DIGEST-20260730",
+  "target_scope": "current_CASE_DIGEST_successor_lineage_only",
+  "rejected_voice": {
+    "backend": "System.Speech",
+    "name": "Microsoft Zira Desktop",
+    "gender": "Female",
+    "status": "rejected_for_successor_audience_voice",
+    "historical_outputs_retained": true
+  },
+  "direction": {
+    "natural_male_english_voice_required": true,
+    "calm_delivery_required": true,
+    "lower_or_mid_register_preferred": true
+  },
+  "standalone_voice_review_prohibited": true,
+  "next_human_review_scope": "whole_release_candidate",
+  "universal_female_voice_ban": false,
+  "script_rework_authorized": false,
+  "caption_rework_authorized": false,
+  "visual_rework_authorized": false,
+  "final_voice_selected": false,
+  "production_voice_approved": false,
+  "production_approved": false,
+  "rights_cleared": false,
+  "publication_approved": false,
+  "final_canon": false
+}

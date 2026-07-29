@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "command": "pwsh -NoProfile -File tools/fff-case-digest-release-candidate-preparation.ps1 -Mode ValidateVoiceTake -VoiceTakeRoot <path>",
+  "modes": [
+    "per_utterance_wav_v1",
+    "full_programme_wav_v1"
+  ],
+  "machine_checks": [
+    "explicit_speaker_identity",
+    "non_zira_voice",
+    "male_calm_lower_or_mid_direction",
+    "exact_transcript",
+    "complete_unique_coverage",
+    "pcm_mono_48000_16_or_24_bit",
+    "clipping_count_zero",
+    "speech_only_declaration",
+    "timing_windows",
+    "rights_provenance_documented",
+    "clone_authority_when_applicable"
+  ],
+  "negative_probes": [
+    "missing_file",
+    "duplicate_utterance",
+    "wrong_transcript",
+    "clipping",
+    "music_or_sfx",
+    "timing_mismatch",
+    "unknown_identity",
+    "absent_rights_provenance"
+  ],
+  "fail_closed": true,
+  "naturalness_is_human_judgment": true,
+  "naturalness_verified_by_validator": false,
+  "production_voice_approved_by_validator": false,
+  "human_review_scope": "whole_release_candidate_only"
+}

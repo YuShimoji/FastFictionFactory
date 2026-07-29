@@ -1,5 +1,15 @@
 # Decision Log
 
+## 2026-07-30 — Reject Zira for the CASE_DIGEST successor and prepare the whole release-candidate lane
+
+- Decision: quarantine Microsoft Zira for the current CASE_DIGEST successor audience voice under `FFF-Q-MECHANICAL-ENGLISH-TTS-CASE-DIGEST-20260730`, require a natural calm English male voice in a lower or mid register, prohibit another standalone voice review, and prepare the larger release-candidate bundle now.
+- Scope boundary: retain historical Zira outputs; do not turn this into a universal female-voice ban; do not reopen the accepted script, bilingual captions, picture, shot/timing map, or truth boundaries.
+- Implementation: derive a video-only picture lock and private thumbnail from accepted inputs; package title/description/five chapters/credits/provenance; support per-utterance and full-programme voice takes; fail closed on eight required negative-probe classes; expose deterministic A/V build and final QC without source edits.
+- Local inventory decision: no eligible installed English male file-output voice exists. Absence is a successful preparation state, not a blocker: record `natural_male_voice_input_required` and create no provisional A/V.
+- Review decision: machine validation never claims naturalness. The next human voice judgment belongs to the whole release candidate and is not requested by this slice.
+- Authority boundary: final voice selection, production voice approval, production approval, rights clearance, publication approval, and final canon remain false. The local commit does not authorize push, PR, merge, release, deployment, upload, or public exposure.
+- Next decision: after a documented take passes intake and the complete candidate passes QC, the Product Owner/editorial reviewer decides naturalness in context; named rights/production/publication/canon owners decide their gates separately.
+
 ## 2026-07-29 — Publish the English-verbatim CASE_DIGEST as a review branch
 
 - Decision: preserve `dbd3ec00d7f31ba84bebb032f78057780215c338` as the immutable product checkpoint, add a documentation-only handoff successor, and publish only `codex/fff-case-digest-english-verbatim-bilingual-v1` by normal push with fetch/readback parity.

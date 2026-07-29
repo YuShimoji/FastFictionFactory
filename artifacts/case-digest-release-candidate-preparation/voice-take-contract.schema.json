@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.voiceTakeContract.v1",
+  "title": "CASE_DIGEST Voice Take Contract",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "input_mode",
+    "speaker_identity",
+    "voice_name",
+    "voice_origin",
+    "voice_character",
+    "clone_authorized",
+    "contains_music_or_sfx",
+    "extra_or_omitted_words_declared",
+    "rights_provenance",
+    "naturalness_human_judgment",
+    "technical_fixture_only"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "input_mode": {
+      "enum": [
+        "per_utterance_wav_v1",
+        "full_programme_wav_v1"
+      ]
+    },
+    "speaker_identity": {
+      "type": "string",
+      "minLength": 1
+    },
+    "voice_name": {
+      "type": "string",
+      "minLength": 1,
+      "not": {
+        "pattern": "(?i)zira"
+      }
+    },
+    "voice_origin": {
+      "enum": [
+        "human_recording",
+        "licensed_synthesis",
+        "voice_clone"
+      ]
+    },
+    "clone_authorized": {
+      "type": "boolean"
+    },
+    "contains_music_or_sfx": {
+      "const": false
+    },
+    "extra_or_omitted_words_declared": {
+      "const": false
+    },
+    "naturalness_human_judgment": {
+      "const": "pending_whole_release_candidate"
+    },
+    "technical_fixture_only": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "input_mode": {
+            "const": "per_utterance_wav_v1"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "entries"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "input_mode": {
+            "const": "full_programme_wav_v1"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "file",
+          "transcript",
+          "transcript_sha256",
+          "alignment"
+        ]
+      }
+    }
+  ]
+}

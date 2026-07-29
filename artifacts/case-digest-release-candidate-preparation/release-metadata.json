@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-release-candidate-preparation-001",
+  "format_id": "CASE_DIGEST",
+  "working_title": "The Tower File",
+  "language": "en",
+  "duration_seconds": 180,
+  "audience": "general mystery and documentary-fiction viewers",
+  "editorial_promise": "A restrained three-minute case digest that separates what is seen, alleged, and still unknown.",
+  "picture_lock": "picture/case-digest-picture-lock.mp4",
+  "subtitle_tracks": [
+    {
+      "language": "en",
+      "role": "original_default",
+      "srt": "captions/case-digest.en.srt",
+      "vtt": "captions/case-digest.en.vtt"
+    },
+    {
+      "language": "ja",
+      "role": "debug_translation_not_default",
+      "srt": "captions/case-digest.ja.srt",
+      "vtt": "captions/case-digest.ja.vtt"
+    }
+  ],
+  "voice_input_state": "natural_male_voice_input_required",
+  "final_voice_selected": false,
+  "production_voice_approved": false,
+  "production_approved": false,
+  "rights_cleared": false,
+  "publication_approved": false,
+  "final_canon": false,
+  "publication_notes": "Private release-candidate preparation only. Do not upload or publish. Re-run QC after an accepted voice take is supplied."
+}

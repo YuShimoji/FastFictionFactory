@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-release-candidate-preparation-001",
+  "source": {
+    "run_id": "fff-case-digest-english-editorial-naturalness-001",
+    "file": "clean/case-digest-english-clean.mp4",
+    "sha256": "94383a3067d769831fe9fd4e71846283867623f77a5799b570eca1dda034831f",
+    "source_commit": "58b8cc437bb0f8e0f796490bdfd213e8b211834f"
+  },
+  "output": {
+    "path": "picture/case-digest-picture-lock.mp4",
+    "bytes": 47329106,
+    "sha256": "36e72701562ce3e624b55b560d02d341d80e7b0ea0f88abec2494bd3f51289e8",
+    "duration_seconds": 180.0,
+    "width": 1280,
+    "height": 720,
+    "frame_rate": "30/1",
+    "frame_count": 5400,
+    "video_codec": "h264",
+    "audio_stream_count": 0,
+    "audio_codec": null,
+    "audio_channels": 0,
+    "audio_sample_rate": 0,
+    "subtitle_stream_count": 0,
+    "subtitle_languages": []
+  },
+  "contract": {
+    "duration_seconds": 180,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "frame_count": 5400,
+    "video_only": true,
+    "audio_stream_count": 0,
+    "subtitle_stream_count": 0,
+    "burned_caption_count": 0,
+    "decoded_frame_identity_required": true
+  },
+  "script_change_count": 0,
+  "caption_change_count": 0,
+  "accepted_image_change_count": 0,
+  "image_generation_count": 0
+}

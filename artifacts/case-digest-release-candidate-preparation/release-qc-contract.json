@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "command": "pwsh -NoProfile -File tools/fff-case-digest-release-candidate-preparation.ps1 -Mode FinalQc -RunRoot <path>",
+  "preparation_pass_state": "PASS_RELEASE_PREPARATION_AWAITING_VOICE",
+  "release_pass_state": "PASS_RELEASE_CANDIDATE_MACHINE_QC",
+  "checks": [
+    "picture_lock_exact_media",
+    "decoded_frame_identity_5400",
+    "caption_hashes_and_24_cues",
+    "no_burned_text_in_picture_lock",
+    "accepted_voice_contract_when_present",
+    "thumbnail_16_9_and_signature",
+    "metadata_and_exactly_5_chapters",
+    "all_11_visual_provenance_rows",
+    "tracked_boundary_no_media",
+    "review_offline_and_responsive"
+  ],
+  "fail_closed": true,
+  "human_naturalness_excluded": true,
+  "production_approval_excluded": true,
+  "rights_clearance_excluded": true,
+  "publication_approval_excluded": true
+}

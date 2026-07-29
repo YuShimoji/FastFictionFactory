@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.caseDigestReleaseCandidatePreparationRun.v1",
+  "title": "CASE_DIGEST Release Candidate Preparation Run",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schemaVersion",
+    "mission_id",
+    "artifact_id",
+    "status",
+    "git",
+    "voice",
+    "picture_lock",
+    "captions",
+    "thumbnail",
+    "metadata",
+    "validation",
+    "boundaries",
+    "effects"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "mission_id": {
+      "const": "fff-case-digest-release-candidate-preparation-001"
+    },
+    "artifact_id": {
+      "const": "fff-case-digest-release-candidate-preparation-001"
+    },
+    "status": {
+      "enum": [
+        "BUILDING",
+        "PASS_RELEASE_PREPARATION_AWAITING_VOICE",
+        "PASS_RELEASE_CANDIDATE_MACHINE_QC",
+        "PASS_COMMITTED_LOCAL_ONLY"
+      ]
+    }
+  }
+}

@@ -1,5 +1,18 @@
 # Project Context
 
+## CASE_DIGEST Release Candidate Preparation — 2026-07-30 JST
+
+- Product Owner decision: reject the current Microsoft Zira audience voice as too mechanical for the present CASE_DIGEST successor, require a natural calm English male voice in a lower or mid register, prohibit another voice-only review, and make the next human voice judgment part of the whole release candidate.
+- Quarantine: `FFF-Q-MECHANICAL-ENGLISH-TTS-CASE-DIGEST-20260730` is lineage-scoped. Historical Zira outputs remain evidence; this is not a universal female-voice ban.
+- Exact source: clean commit `58b8cc437bb0f8e0f796490bdfd213e8b211834f` and finalized external run `fff-case-digest-english-editorial-naturalness-001`.
+- Successor lane: `codex/fff-case-digest-release-candidate-preparation-v1`; artifact/run `fff-case-digest-release-candidate-preparation-001`; local-only and default-off.
+- Fixed content: 5 sections, 11 shots, 24 English utterances, 313 words, four bilingual caption sidecars, 180 seconds, 30 fps, and 5,400 accepted frames. Script, caption, visual, shot, timing, and story-truth rework remain out of scope.
+- Machine outcome: `PASS_RELEASE_PREPARATION_AWAITING_VOICE`. The picture lock is video-only with no burned captions; all 5,400 decoded frames match the source; caption hashes are unchanged; the private thumbnail derives from accepted `shot-b03-01`; metadata has exactly five chapters; all 11 visuals and the script/caption/thumbnail/voice/font dependencies have provenance rows.
+- Voice outcome: installed local file-output inventory contains no eligible English male voice. Exact state is `natural_male_voice_input_required`; no provisional A/V or Zira synthesis was generated.
+- Intake capability: both per-utterance and full-programme WAV contracts, eight fail-closed negative probes, deterministic release builder, final QC, and two offline review viewports are implemented. Machine validation expressly does not judge naturalness or grant approval.
+- Repository boundary: tracked content is text/code only; external media stays in the named run. No push, PR, merge, release, deployment, upload, network call, provider install, credential use, music/SFX generation, or public effect occurred.
+- Current gate: provide one documented machine-valid calm English male take, build the complete candidate, then conduct one whole-release-candidate judgment. Final voice selection, production voice approval, production approval, rights clearance, publication approval, and final canon remain false.
+
 ## English Verbatim CASE_DIGEST Remote-Ready Handoff — 2026-07-29 JST
 
 - Product checkpoint: `dbd3ec00d7f31ba84bebb032f78057780215c338` (`Add English verbatim CASE_DIGEST candidate`) on `codex/fff-case-digest-english-verbatim-bilingual-v1`, with exact parent `fd6c8e0fb25d6a72f9ca992da5ae032d807bb257` from the published Editorial Treatment authority branch.

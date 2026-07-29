@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "visual_direction_signature": "archival_case_file_thumbnail_v1",
+  "output": {
+    "path": "thumbnail/case-digest-thumbnail.jpg",
+    "bytes": 145190,
+    "sha256": "8460846b41c140e16d7c5d16a9995ecec43ab0d8e8c6864acc16159f76369061"
+  },
+  "canvas": {
+    "width": 1280,
+    "height": 720,
+    "aspect_ratio": "16:9"
+  },
+  "source": {
+    "shot_id": "shot-b03-01",
+    "path": "artifacts/private-full-raster-candidate/images/base/shot-b03-01.jpg",
+    "sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839",
+    "accepted_raster": true
+  },
+  "title_phrase": "THE TOWER FILE",
+  "focal_subject_count": 1,
+  "small_size_legibility_required": true,
+  "new_imagery_created": false,
+  "fake_evidence_added": false,
+  "guilt_implied": false,
+  "private_only": true
+}

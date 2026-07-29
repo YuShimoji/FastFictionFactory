@@ -1,5 +1,26 @@
 # Current Status Packet
 
+## CASE_DIGEST Release Candidate Preparation — 2026-07-30 JST
+
+| Item | Verified state |
+| --- | --- |
+| Branch / exact parent | `codex/fff-case-digest-release-candidate-preparation-v1` / `58b8cc437bb0f8e0f796490bdfd213e8b211834f` |
+| Artifact / run | `fff-case-digest-release-candidate-preparation-001`; private; local-only; default-off |
+| Preparation status | `PASS_RELEASE_PREPARATION_AWAITING_VOICE` |
+| Voice quarantine | `FFF-Q-MECHANICAL-ENGLISH-TTS-CASE-DIGEST-20260730`; Zira rejected only for this successor lineage |
+| Voice input state | `natural_male_voice_input_required`; eligible installed English male voices `0`; provisional A/V `false` |
+| Fixed content | 5 sections / 11 shots / 24 utterances / 313 words / 180 seconds / 5,400 frames |
+| Picture lock | 1280×720 H.264; 30 fps; 5,400 frames; video-only; no subtitle streams; no burned captions |
+| Preservation | 5,400/5,400 decoded frames identical; four caption hashes unchanged; script/caption/visual rework `0` |
+| Voice intake | per-utterance and full-programme PCM WAV; explicit identity/provenance; eight negative probes fail closed |
+| Thumbnail / metadata | accepted-raster derivative; `archival_case_file_thumbnail_v1`; one title/description; five chapters; credits |
+| Review surface | local file; no server/network; 1440×1000 and 390×844; native controls; no autoplay; no review request |
+| Tracked boundary | 18-file text contract plus tool/test/docs; generated MP4/WAV/JPG/PNG remain outside Git |
+| Closed gates | final voice, production voice, production, rights, publication, and canon all false |
+| External effects | push/PR/merge/release/deploy/upload/public effect/network/install/credential use all `0` or `false` |
+
+Next move: a voice provider and rights owner supply one documented calm lower/mid-register English male take through the tracked contract. After machine validation and deterministic full-candidate assembly, the Product Owner/editorial reviewer may judge naturalness only in the whole release candidate. Do not request another standalone voice review.
+
 ## English Verbatim CASE_DIGEST Candidate — 2026-07-29 JST
 
 | Item | Verified state |
