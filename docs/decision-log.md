@@ -1,5 +1,13 @@
 # Decision Log
 
+## 2026-07-31 — Make the finalized release-preparation run revalidatable
+
+- Decision: repair the dedicated test contract so the canonical run remains verifiable after its manifest advances from transient `BUILDING` to the declared finalized lifecycle state `PASS_COMMITTED_LOCAL_ONLY`.
+- Evidence rule: accept only the explicit release-preparation lifecycle statuses, retain all product and gate assertions, and require commit-created, exact parent/subject, 40-character commit SHA, and validation receipts for the committed-local-only state.
+- Worktree rule: permit only exact terminal-local `.serena/project.yml` in the dirty-boundary check. Do not generalize this into an allowlist for arbitrary repository changes.
+- Product boundary: make no media or content change. Preserve the original run manifest's `pushed=false` as build-time evidence; later Git branch distribution is recorded by Git readback and authority docs, not by rewriting the finalized artifact.
+- Gate boundary: `natural_male_voice_input_required` remains the next product input. Source validation and source push do not select a voice, approve production, clear rights, approve publication, or establish canon.
+
 ## 2026-07-30 — Reject Zira for the CASE_DIGEST successor and prepare the whole release-candidate lane
 
 - Decision: quarantine Microsoft Zira for the current CASE_DIGEST successor audience voice under `FFF-Q-MECHANICAL-ENGLISH-TTS-CASE-DIGEST-20260730`, require a natural calm English male voice in a lower or mid register, prohibit another standalone voice review, and prepare the larger release-candidate bundle now.

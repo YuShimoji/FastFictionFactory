@@ -1,5 +1,15 @@
 # Project Context
 
+## CASE_DIGEST Finalized-Run Revalidation — 2026-07-31 JST
+
+- Restart authority: the newest direct successor is `codex/fff-case-digest-release-candidate-preparation-v1` at implementation checkpoint `47be1e577f883a200ec757d9f0255a36886ddf50`, with finalized external run `fff-case-digest-release-candidate-preparation-001`.
+- Revalidation repair: the dedicated test had encoded transient build state `BUILDING` as the only valid run-manifest status and therefore failed against the committed result `PASS_COMMITTED_LOCAL_ONLY`. It now accepts the declared lifecycle states and checks the commit evidence when the run is finalized.
+- Current evidence: the finalized-run dedicated suite passes 10/10; `FinalQc` returns `PASS_RELEASE_PREPARATION_AWAITING_VOICE`; JavaScript syntax, `git diff --check`, and strict MkDocs pass.
+- Worktree boundary: the tracked-boundary assertion admits only the exact terminal-local path `.serena/project.yml`; it does not broaden the allowlist to other dirty or untracked content.
+- Product effect: none. No script, caption, visual, picture-lock, thumbnail, metadata, voice input, generated media, artifact result, or gate state changed.
+- Current gate: `PASS_RELEASE_PREPARATION_AWAITING_VOICE` and `natural_male_voice_input_required` remain authoritative. The next product action still requires one documented calm English male take followed by deterministic full-candidate assembly and one whole-candidate review.
+- Distribution boundary: publishing this source/test/documentation successor is not a media rebuild, merge, PR, release, deployment, upload, production approval, rights clearance, publication approval, or canon decision. The finalized run manifest's `pushed=false` remains immutable build-time evidence.
+
 ## CASE_DIGEST Release Candidate Preparation — 2026-07-30 JST
 
 - Product Owner decision: reject the current Microsoft Zira audience voice as too mechanical for the present CASE_DIGEST successor, require a natural calm English male voice in a lower or mid register, prohibit another voice-only review, and make the next human voice judgment part of the whole release candidate.

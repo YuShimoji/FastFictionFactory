@@ -5,6 +5,7 @@ These gates are visible in the MVP workbench. They are local review checks, not 
 ## CASE_DIGEST Release Candidate Preparation
 
 - Pass preparation when the exact source/run bindings hold; the picture lock is 180-second 1280×720 30 fps video-only with 5,400 decoded frames identical to source; all four captions preserve exact hashes and 24 cues; thumbnail, metadata, provenance, review, and tracked boundaries pass; and voice state is explicit.
+- Revalidation must accept the declared run-manifest lifecycle from `BUILDING` through committed local evidence rather than pinning the suite to a transient state. A terminal-local dirty exception is valid only for exact `.serena/project.yml`.
 - Pass voice intake only when one supported mode has complete unique coverage, exact transcripts, explicit non-Zira identity, calm male lower/mid direction, mono 48 kHz 16/24-bit PCM, zero clipped samples, no music/SFX declaration, fixed timing compliance, documented private-candidate authority, and clone authority when applicable.
 - Block voice intake on:
   - missing file;

@@ -363,11 +363,25 @@ test("local review surface is offline, responsive, non-autoplay, and does not re
   await writeFile(path.join(verificationRoot, "browser-validation.json"), `${JSON.stringify(evidence, null, 2)}\n`);
 });
 
-test("run manifest and tracked boundary remain private preparation only", async () => {
+test("run manifest supports finalized lifecycle while preserving the private tracked boundary", async () => {
   const manifest = await json(path.join(runRoot, "run-manifest.json"));
-  assert.equal(manifest.status, "BUILDING");
+  assert.ok([
+    "BUILDING",
+    "PASS_RELEASE_PREPARATION_AWAITING_VOICE",
+    "PASS_RELEASE_CANDIDATE_MACHINE_QC",
+    "PASS_COMMITTED_LOCAL_ONLY"
+  ].includes(manifest.status), `unsupported run status ${manifest.status}`);
   assert.equal(manifest.git.source_commit, "58b8cc437bb0f8e0f796490bdfd213e8b211834f");
   assert.equal(manifest.git.pushed, false);
+  if (manifest.status === "PASS_COMMITTED_LOCAL_ONLY") {
+    assert.equal(manifest.git.commit_created, true);
+    assert.match(manifest.git.commit_sha, /^[0-9a-f]{40}$/u);
+    assert.equal(manifest.git.parent_sha, "58b8cc437bb0f8e0f796490bdfd213e8b211834f");
+    assert.equal(manifest.git.subject, "Prepare CASE_DIGEST release candidate bundle");
+    assert.equal(manifest.validation.targeted_tests, true);
+    assert.equal(manifest.validation.browser, true);
+    assert.equal(manifest.validation.strict_mkdocs, true);
+  }
   assert.equal(manifest.voice.current_zira_audience_voice_status, "rejected");
   assert.equal(manifest.voice.provisional_av_generated, false);
   assert.equal(manifest.effects.network_request_count, 0);
@@ -384,7 +398,8 @@ test("run manifest and tracked boundary remain private preparation only", async 
     "docs/",
     "mkdocs.yml",
     "tests/fff-case-digest-release-candidate-preparation.test.mjs",
-    "tools/fff-case-digest-release-candidate-preparation.ps1"
+    "tools/fff-case-digest-release-candidate-preparation.ps1",
+    ".serena/project.yml"
   ];
   for (const row of status) {
     const relative = row.slice(3).replaceAll("\\", "/");

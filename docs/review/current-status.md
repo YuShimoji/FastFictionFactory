@@ -1,5 +1,20 @@
 # Current Status Packet
 
+## CASE_DIGEST Finalized-Run Revalidation — 2026-07-31 JST
+
+| Item | Verified state |
+| --- | --- |
+| Branch / implementation checkpoint | `codex/fff-case-digest-release-candidate-preparation-v1` / `47be1e577f883a200ec757d9f0255a36886ddf50` |
+| Canonical run | `fff-case-digest-release-candidate-preparation-001`; manifest `PASS_COMMITTED_LOCAL_ONLY`; product state `PASS_RELEASE_PREPARATION_AWAITING_VOICE` |
+| Repaired defect | Dedicated validation no longer treats transient `BUILDING` as the only valid manifest lifecycle state |
+| Finalized evidence | Commit-created flag, 40-character commit SHA, exact parent, subject, validation receipts, no push, no Zira successor, no provisional A/V, and zero content rework are asserted |
+| Current validation | Finalized-run suite 10/10; `FinalQc` pass; JavaScript syntax pass; `git diff --check` pass; strict MkDocs pass |
+| Tracked boundary | Only exact terminal-local `.serena/project.yml` is excluded; no broad dirty-path exemption |
+| Product/media effect | None; all accepted script, caption, picture, thumbnail, metadata, provenance, voice-state, and external-run media identities remain unchanged |
+| Closed gates | Final voice, production voice, production, rights, publication, and canon remain false |
+
+Next move: supply one compliant, documented calm lower/mid-register English male take. Validate and assemble it through the existing deterministic contract, then review the whole release candidate once. Do not request a standalone voice review or infer downstream approval from source-branch publication.
+
 ## CASE_DIGEST Release Candidate Preparation — 2026-07-30 JST
 
 | Item | Verified state |

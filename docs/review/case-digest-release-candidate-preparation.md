@@ -1,5 +1,13 @@
 # CASE_DIGEST Release Candidate Preparation
 
+## Finalized-run revalidation — 2026-07-31 JST
+
+The implementation checkpoint is `47be1e577f883a200ec757d9f0255a36886ddf50`. The canonical external run subsequently reached manifest state `PASS_COMMITTED_LOCAL_ONLY`, but the dedicated suite still required the transient state `BUILDING`. The test contract now accepts the declared lifecycle states, verifies exact commit evidence for the finalized state, and permits only terminal-local `.serena/project.yml` at the tracked boundary.
+
+Live revalidation passes: the dedicated finalized-run suite is 10/10; `FinalQc` returns `PASS_RELEASE_PREPARATION_AWAITING_VOICE`; JavaScript syntax, `git diff --check`, and strict MkDocs pass. The MkDocs build retains the existing non-blocking warning that 24 review pages are outside configured navigation.
+
+This repair changes no product or media input/output. The original manifest's `pushed=false` remains build-time evidence. Git branch distribution, if performed, is a separate source-control event and does not imply a media rebuild, merge, PR, release, production approval, rights clearance, publication, or canon change.
+
 ## Outcome
 
 `fff-case-digest-release-candidate-preparation-001` is a machine-complete private preparation bundle built from exact source commit `58b8cc437bb0f8e0f796490bdfd213e8b211834f`. It freezes the accepted picture, canonical 24-utterance English script, and bilingual caption timing while moving the rejected Zira voice out of the successor build path.

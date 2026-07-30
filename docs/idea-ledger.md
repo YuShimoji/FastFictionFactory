@@ -1,5 +1,15 @@
 # Idea Ledger
 
+## 2026-07-31 Finalized-Run Validation Contract
+
+- Purpose: keep the accepted release-preparation evidence executable after the run manifest leaves its transient build state.
+- Effect: replaces a `BUILDING`-only test assumption with the declared lifecycle contract, adds committed-state evidence checks, and keeps the tracked-boundary exception exact to `.serena/project.yml`.
+- Requirements: canonical run `fff-case-digest-release-candidate-preparation-001`; implementation checkpoint `47be1e577f883a200ec757d9f0255a36886ddf50`; no artifact/media regeneration; no weakening of product, voice, rights, production, publication, or canon assertions.
+- Negative example: a regression test bound to a transient orchestration state can turn successful finalization into a false failure and make the strongest available evidence impossible to re-run.
+- State: implemented and revalidated against the finalized run; dedicated suite 10/10, `FinalQc`, JavaScript syntax, `git diff --check`, and strict MkDocs pass; product status and external-run identities are unchanged.
+- Owner: repository maintainer for lifecycle-schema validation and branch parity; voice provider/rights owner for the missing take; Product Owner/editorial reviewer for later whole-candidate judgment.
+- Next move: use the repaired suite for re-entry, then wait for a compliant documented voice take before invoking the existing A/V build path.
+
 ## 2026-07-30 CASE_DIGEST Release Candidate Preparation
 
 - Purpose: move beyond isolated TTS comparison by freezing all accepted release inputs, excluding the rejected Zira successor voice, and making one documented calm English male take the only missing assembly input.
