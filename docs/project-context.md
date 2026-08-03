@@ -1,5 +1,20 @@
 # Project Context
 
+## Cross-terminal Sync & Development Readiness Snapshot — 2026-07-25 JST
+
+- Sync authority: this terminal started at `f5fba013061263fe22c019e25754453998e62ab3`, fetched the two new remote commits `b7703b4` and `76dbe86`, and fast-forwarded with `git pull --ff-only origin master`. The synchronized base is `HEAD = origin/master = 76dbe8690011830d07e32c321d83035c97cd26c7`, ahead/behind `0 / 0`.
+- Incoming scope: the remote advance changed only `docs/review/supervisor-current-report.md`. It adds the PLANNER007 cross-toolchain readback and its publication-parity successor; no product artifact, tool, script, result JSON, or public UI changed in the pull.
+- Preserved local state: `.serena/project.yml` was the only pre-existing worktree difference. Its SHA256 stayed `98337e11cbcd1fde6a0850cd26a2cb27d4b728e4b2ae85874d38f703e342872c` across fetch/pull and remains unstaged, terminal-local, and outside this handoff scope.
+- Verified local stack: Git `2.53.0.windows.1`, Node.js `v24.13.0`, npm `11.6.2`, uvx `0.10.7`, FFmpeg/ffprobe `8.0.1`. The repository has no root package manifest or lockfile, so no install or dependency mutation is required.
+- Green development surface: `artifacts/current-project-state.json` validated; pipeline `dry-run` resolved source identity `d4b3bc790062c1bba4f90c2faeeaf6b6dc828258cb900775c045504ccc90debb`; the root manifest read-only chain passed all five validators; and the dedicated pipeline suite passed 6/6.
+- Evidence immutability: the five protected result SHA256 values remain Pipeline `4175f2b3…`, Preview `088bd9b9…`, Readiness `b188db9d…`, Integrated `e8f7f7fc…`, and Execution `991e6310…`. Routine health checks did not rewrite tracked evidence.
+- Local access and documentation: both `brief` and `blueprint` launchers returned valid `file:///` URIs. Strict MkDocs passed to an external temporary directory, which was removed after verification. Twenty-three existing review pages remain absent from `mkdocs.yml` navigation; this is discoverability debt, not a development blocker.
+- Current operational lane: `PRIVATE_PREVISUALIZATION_REVIEW`. The supervising AI must review the exact 180-second HTML/MP4 once and return `accept`, or a `revise` list bound to shot ID, cue ID, or timestamp. A repair lane opens only from a material finding.
+- Independent human lane: `owner_asset_plan_decision` remains A = accept default, B = name exception requirement IDs, or C = reconstruct strategy. Preview acceptance does not select production assets or clear rights.
+- Development-ready boundary: local review, read-only evidence validation, external-run preview reconstruction, validator/docs maintenance, and a future evidence-bounded preview repair are ready. Acquisition/construction, rights, provider/API/credentials, voice/TTS, generation, render, publication, persistence, production approval, release acceptance, and canon remain separately closed.
+- Authority rule: this 2026-07-25 snapshot and the opening 2026-07-25 section of `docs/review/supervisor-current-report.md` own the forward plan. Lower dated sections are retained evidence history.
+- Re-entry order: `AGENTS.md` → this file → `docs/review/current-status.md` → `docs/review/next-terminal-handoff.md` → `docs/review/supervisor-current-report.md`; then run the manifest read-only chain before changing product behavior.
+
 ## Cross-terminal Sync & Development Readiness Snapshot — 2026-07-24 JST
 
 - Sync authority: `master` is at `origin/master` with ahead/behind `0 / 0`; the current exact tip is obtained with `git log -1 --oneline --decorate`. Its implementation parent is `58049c9` (`Add resumable private preview pipeline`), which supplies the external-run build, status, resume, and verify path.

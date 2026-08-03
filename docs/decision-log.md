@@ -1,5 +1,15 @@
 # Decision Log
 
+## 2026-07-25 — Adopt the PLANNER007 parity successor as the synchronized base
+
+- Decision: Treat `76dbe8690011830d07e32c321d83035c97cd26c7` (`Record PLANNER007 handoff parity`) as the exact synchronized restart base after `git fetch --prune origin` and `git pull --ff-only origin master`.
+- Incoming scope: the two new commits `b7703b4` and `76dbe86` changed only `docs/review/supervisor-current-report.md`; they add a second-toolchain readback and publication parity without changing product artifacts, tools, scripts, result JSON, or public UI.
+- Preserved state: keep the pre-existing `.serena/project.yml` modification unstaged and terminal-local. Its SHA256 remained `98337e11cbcd1fde6a0850cd26a2cb27d4b728e4b2ae85874d38f703e342872c` across synchronization.
+- Verification: current project state, canonical dry-run, the five-validator read-only chain, the 6/6 pipeline suite, both local launcher URIs, and strict MkDocs passed. Five protected result SHA256 values matched the published handoff.
+- Lane decision: keep `PRIVATE_PREVISUALIZATION_REVIEW` as the only immediately executable product decision. Keep `owner_asset_plan_decision` independent; keep material, voice, rights, production, render, persistence, release, and canon behind their named authority.
+- Roadmap decision: sequence the work as two gated tracks. The content track advances from exact experience truth through planning, production-input evidence, no-publish candidate, QA, rights/production freeze, controlled release, and operational readback. The platform track begins with golden-path extraction and durable single-project state before provider or publishing adapters.
+- Publication boundary: the 2026-07-25 six-document handoff refresh is local. It is not represented as committed or pushed.
+
 ## 2026-07-24 — Publish resumable private-preview handoff from the current remote base
 
 - Decision: Treat `73fbb13` (`Refresh resumable private preview handoff`) as the exact published restart tip, with implementation parent `58049c9` (`Add resumable private preview pipeline`), and publish only the six handoff/report documents; preserve terminal-local `.serena/project.yml` outside the publication scope.

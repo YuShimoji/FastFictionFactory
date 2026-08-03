@@ -1,6 +1,145 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-24 JST
+更新日: 2026-07-25 JST
+
+## 2026-07-25 最新同期・開発可能性・監修引き継ぎ（現行正本）
+
+### 結論
+
+この端末は `master` を `f5fba013061263fe22c019e25754453998e62ab3` から `76dbe8690011830d07e32c321d83035c97cd26c7` へ `--ff-only` で更新しました。リモートから受領した2コミットは `b7703b4 Publish PLANNER007 supervisor handoff` と `76dbe86 Record PLANNER007 handoff parity` です。変更対象は本報告書だけで、製品成果物、validator、pipeline、result JSON、public UIは変わっていません。同期後は `HEAD = origin/master`、ahead/behind `0 / 0` です。
+
+開始時に存在した `.serena/project.yml` のローカル変更はSHA256 `98337e11cbcd1fde6a0850cd26a2cb27d4b728e4b2ae85874d38f703e342872c` のまま保持しました。本日追記した6つのhandoff文書はローカル差分であり、commit/push済みとは扱いません。
+
+開発環境は使用可能です。Git `2.53.0.windows.1`、Node.js `v24.13.0`、npm `11.6.2`、uvx `0.10.7`、FFmpeg/ffprobe `8.0.1` で、current state、canonical dry-run、5段read-only chain、pipeline受け入れ6/6、local launcher、strict MkDocsを確認しました。リポジトリ直下にpackage manifestとlockfileはなく、依存追加やinstallは不要です。
+
+現在の実行レーンは `PRIVATE_PREVISUALIZATION_REVIEW` です。監修AIがexact HTML/MP4を一度通覧して `accept`、またはshot ID / cue ID / timestampへ結びついた `revise` を返すことが次の判断です。`owner_asset_plan_decision` はProduct OwnerがA/B/Cを選ぶ独立レーンです。rights、voice、production、render、release、persistence、canonは各ownerの明示判断まで閉じています。
+
+### 同期で受領した変更
+
+| Commit | 内容 | 現在への効果 |
+| --- | --- | --- |
+| `b7703b4` | PLANNER007端末での同期、Node 22 / FFmpeg 8.1.1環境のreadback、作品経路D0–D5と基盤経路P0–P4 | 同じcontractが既存のNode 24 / FFmpeg 8.0.1環境以外でも成立した実測を追加 |
+| `76dbe86` | 上記handoffのremote parityを記録 | 現在の再開baseを一意化 |
+
+この実測は2種類のtoolchainでの成立を示します。未検証の全Node/FFmpeg版へ互換性を一般化しません。pipelineは生成MP4のtoolchainと実SHA256をrun receiptへ記録し、source identity、duration、frame profile、silence、watermark、timelineを検証します。
+
+### 開発可能性のライブ証拠
+
+| 検証面 | 2026-07-25実測 | 判断 |
+| --- | --- | --- |
+| Git | `HEAD = origin/master = 76dbe86…`; parity `0 / 0`; fast-forwardのみ | 現行remote baseから分岐なしで再開可能 |
+| Local state | `.serena/project.yml` SHA256 `98337e11…` がpull前後一致 | ユーザー所有の端末設定を保護 |
+| Project state | `node tools/fff-state.mjs validate artifacts/current-project-state.json` pass | state schemaとhuman-authority境界を読める |
+| Pipeline dry-run | identity `d4b3bc79…`; 6 Beats / 19 shots / 180秒 / 19 frames / 20 cues | 実runを作る前にcanonical inputを検査可能 |
+| Root chain | Pipeline、Preview、Readiness、Integrated、Executionの5 validatorがpass | authority chainをtracked再生成なしで確認 |
+| Acceptance suite | 6 tests pass / 0 fail | fresh build、interrupt/resume、corruption fail-closed、stale/failed分類を確認 |
+| Protected evidence | Pipeline `4175f2b3…`; Preview `088bd9b9…`; Readiness `b188db9d…`; Integrated `e8f7f7fc…`; Execution `991e6310…` | health check後も公開result identityを保持 |
+| Local access | `brief` / `blueprint` が有効な `file:///` URIを返却 | browserを自動起動せず入口を点検可能 |
+| Documentation | strict MkDocs pass; temporary siteを削除済み | handoffをlocal siteとしてbuild可能 |
+| Hygiene | 検証直後の製品/evidence差分なし | validation起因のproduct driftなし |
+
+MkDocsには23件の既存review pageがnav未収載です。これはEvidence Vaultの発見性を下げる文書負債です。private preview監修、pipeline再開、validator作業は継続できます。
+
+### Recovery brief
+
+- Project thesis: 人間の創作権限を維持し、source、候補、判断、時系列、private production proof、rights/release gateを追跡可能にするlocal-first fiction production workbench。
+- Current axis: 受理済み19-shot構成をexact 180-second private previewとして監修可能・再構築可能にする。
+- Current lane / slice: `PRIVATE_PREVISUALIZATION_REVIEW` / exact HTML・silent MP4の一回監修。
+- Final deliverable image: 作品経路では、権利・production・release ownerがexact hashへ判断を結びつけられる180秒candidate。基盤経路では、複数作品をmigration、backup、rebuild、rollback可能なproduction workbench。
+- Major delivery gap: machine evidenceはgreenだが、180秒体験への主観監修が未記録。production input、rights、voice、render、releaseはその後も独立して未完。
+- Decision debt: `owner_asset_plan_decision` A/B/C、voice/provider contract、production/right/release owner判断。
+- Documentation debt: MkDocs nav未収載23ページ。長い履歴節は保存されているため、各文書の冒頭現行節を優先する。
+
+以下は計画用の概算で、QA合否やrelease進捗率ではありません。
+
+| 面 | 概算 | 根拠 |
+| --- | --- | --- |
+| Rebuild / evidence readiness | `██████████ 100%` | read-only chain、dry-run、6/6 tests、external run contractがgreen |
+| Private planning checkpoint | `█████████░ 90%` | exact artifact完成、残りは一回の体験監修と独立Owner判断 |
+| Production candidate | `███░░░░░░░ 30%` | story/timing proofは存在、production material・voice・rights・renderは未着手または閉鎖 |
+| Controlled release | `█░░░░░░░░░ 10%` | gate設計はあるが、exact release candidate・rights freeze・release authorityなし |
+| Reusable multi-project platform | `██░░░░░░░░ 20%` | local review/evidence contractは豊富、durable multi-project state・provider eval・adapters・operationsは未実装 |
+
+### 監修AIへ渡す最初の判断
+
+対象:
+
+- `artifacts/private-previsualization-timeline/private-previsualization-timeline.html`
+- `artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4`
+- Artifact ID `fff-private-previsualization-timeline-001`
+- MP4 SHA256 `78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978`
+
+`accept` では、rhythm、shot readability、subtitle timing、transition、callbackにmaterial defectがなく、artifact変更不要であることを記録します。
+
+`revise` では、findingごとにshot ID / cue ID / timestamp、期待した理解、実際の誤読または摩擦、最小修正対象を記録します。一般的なstyle希望、production素材の好み、rights判断、voice/provider選択は別レーンへ送ります。
+
+この判断後、Product Ownerへ `owner_asset_plan_decision` を別件で一度だけ依頼します。
+
+- A: recommended defaultを受け入れる
+- B: 例外にするrequirement IDだけを列挙する
+- C: material strategyを再構成する
+
+### 作品完成経路 — 最遠安全目標
+
+| Goal | 目的 / 完了像 | 開始条件 | State | Owner | Exit evidence |
+| --- | --- | --- | --- | --- | --- |
+| D0 Exact experience truth | 180秒previewをaccept、または具体findingへ分解 | 現行exact HTML/MP4 | **open now** | Supervising AI + creator | artifact hashに結びついたaccept/revise記録 |
+| D1 Conditional preview repair | D0のmaterial findingだけを同一canonical lineageで修正 | D0 revise、shot/cue/time scope | conditional closed | Future implementer | successor artifact、差分理由、全validator |
+| D2 Planning authority closure | private usefulnessとasset-plan A/B/Cを別々に確定 | D0結果、readiness packet | pending | Product Owner | exact decision receipt |
+| D3 Production-input contract | 19 shots / 14 requirements / 6 narrationの入力とownerを固定 | D2、write/acquisition/voice authority | closed | Production lead | requirement-to-input map、未解決例外 |
+| D4 Material and voice evidence | deterministic material、replacement candidate、voice envelopeを独立生成 | D3、provenance、provider/credential contract | closed | Asset / voice owners | file hashes、lineage、timing envelope |
+| D5 No-publish audiovisual candidate | exact 180秒private A/V candidateを再構築可能に固定 | D4 closure、render authority | closed | Production owner | run receipt、candidate hash、subtitle/audio sync |
+| D6 Technical QA and bounded repair | duration、codec、levels、legibility、missing input、rebuildを検証 | D5 exact candidate | closed | QA + production | QA receipt、限定repair lineage |
+| D7 Production / rights freeze | candidate bytes、attribution、compatibility、risk、replacementを判断 | D6 pass、named owners | closed | Production + rights owners | signed decision packet、frozen hash |
+| D8 Controlled release | destination、visibility、rollbackを伴って外部delivery | D7、explicit release authority | closed | Release owner | release ID、public/private readback、rollback plan |
+| D9 Operational readback | quality signal、failure、repair、rollbackを次作品へ戻す | D8、privacy/telemetry policy | future | Operations + product | incident/learning ledger、next-project changes |
+
+最短経路はD0です。`accept` ならartifact修正を省きD2へ進みます。`revise` ならD1だけを閉じ、material constructionやvoiceを先行させません。
+
+### 製品基盤経路 — 最遠安全目標
+
+| Goal | 目的 / 完了像 | 前提 | State | 最初のthin slice |
+| --- | --- | --- | --- | --- |
+| P0 Golden-path extraction | D0–D5で実際に使ったcontractを作品固有historyから分離 | 体験・repair・run evidence | future | project modelとimmutable evidence reference |
+| P1 Durable state foundation | migration、backup/export、no-auto-canonを持つ永続store | schema decision、rollback plan | not started | single-project import/export roundtrip |
+| P2 Multi-project portability | 複数story/sessionを衝突なく切替・移送 | P1、golden fixtures | not started | 2 project clean-room roundtrip |
+| P3 Evaluated provider extraction | provider出力をsource-span/conflict/human-hold guardへ通す | provider/credential/transport authority、eval set | blocked by authority | no-write shadow extraction on fixtures |
+| P4 Production adapter layer | rights-approved入力だけをno-publish renderへ接続 | D7相当gate、credential isolation | closed | dry-run adapter with zero external release |
+| P5 Release operations | delivery、readback、rollback、auditを一つのrunとして追跡 | D8 evidence、destination contract | closed | private destination rehearsal |
+| P6 Governance and learning | quality、rights、cost、latency、incidentをproject横断で評価 | P2–P5、privacy policy | future | bounded scorecard and failure taxonomy |
+
+P1以降はD0の学びをgolden pathへ抽出してから始めます。最初のplatform sliceはdurable storeのsingle-project roundtripが適切です。provider activationとpublishing activationには別のexternal authorityが必要です。
+
+### Active residual work
+
+| Work | Purpose | Effect | Requirements | State | Owner | Next move |
+| --- | --- | --- | --- | --- | --- | --- |
+| Exact preview review | 180秒体験のmaterial defectを確定 | preserveまたは限定repairへ分岐 | exact HTML/MP4、全編一回、hash binding | open now | Supervising AI + creator | accept / timestamped reviseを記録 |
+| Owner asset-plan decision | 14 requirementのdefault/exceptionを確定 | material contractの入力を固定 | readiness packet、A/B/C | pending independent | Product Owner | D0後に一回だけ判断 |
+| Conditional preview repair | concrete findingだけを解消 | canonical successorを作る | D0 revise、shot/cue/time scope | conditional | Future implementer | findingがなければskip |
+| MkDocs nav debt | review evidenceの発見性を上げる | Evidence Vault探索を短縮 | 23 pageの分類、nav設計、strict build | non-blocking debt | Docs owner | product laneと分離したdocs sliceを提案 |
+| Material construction / sourcing | private assembly inputを揃える | 19-shot input gapを閉じる | D2、write/acquisition authority、provenance | closed | Asset owner + implementer | requirement単位contractまで待つ |
+| Voice calibration | 6 narrationの実測envelopeを作る | A/V timing判断を可能にする | engine/voice/provider/credential/data contract | closed independent | Voice owner | explicit contract後に代表区間から開始 |
+| No-publish assembly | private A/V candidateを統合 | sync、subtitle、asset gapを観測 | material/voice closure、render authority | closed | Production owner | D4完了後だけ実行 |
+| Rights / production / release | 利用・凍結・公開を判断 | controlled deliveryを開く | exact candidate、named owners、rollback | closed | Rights + production + release owners | 自動進行しない |
+| Durable multi-project state | productを複数作品へ一般化 | session継続とportabilityを得る | schema/migration/backup/rollback | proposed | Product lead + implementer | D0学習後にP1 contractを設計 |
+
+### 別端末での最短再開
+
+```powershell
+cd 'C:\Users\thank\Storage\Media Contents Projects\FastFictionFactory'
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count 'HEAD...@{upstream}'
+git status --short --branch --untracked-files=all
+$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+node .\tools\fff-private-pipeline.mjs dry-run
+.\scripts\operator\open_review.ps1 -Mode brief -PrintUri
+Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+```
+
+新しいcandidateが必要な場合だけ、リポジトリ外の新規/空run directoryで `build` → `verify` を実行します。中断時は `status` → `resume` → `verify` です。canonical input変更時は `CANONICAL_INPUT_CHANGED` を受け入れ、既存runを上書きせずsuccessor identityを割り当てます。
 
 ## 2026-07-24 PLANNER007端末での最新同期・再検証（現行ローカル追記）
 

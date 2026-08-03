@@ -1,5 +1,37 @@
 # Next Terminal Handoff
 
+## Start here — synchronized supervisory handoff (2026-07-25 JST)
+
+The exact synchronized base is `HEAD = origin/master = 76dbe8690011830d07e32c321d83035c97cd26c7`, with ahead/behind `0 / 0`. This terminal fast-forwarded from `f5fba01` through `b7703b4 Publish PLANNER007 supervisor handoff` and `76dbe86 Record PLANNER007 handoff parity`. The pull changed only `docs/review/supervisor-current-report.md`.
+
+The pre-existing `.serena/project.yml` change remains unstaged and byte-identical at SHA256 `98337e11cbcd1fde6a0850cd26a2cb27d4b728e4b2ae85874d38f703e342872c`. Do not reset, stash, stage, overwrite, or describe it as product work. The 2026-07-25 handoff-document edits are local until separately authorized for commit/push.
+
+```powershell
+git fetch --prune origin
+git pull --ff-only origin master
+git rev-list --left-right --count 'HEAD...@{upstream}'
+git status --short --branch --untracked-files=all
+$manifest = Get-Content .\artifacts\artifact-manifest.json -Raw -Encoding UTF8 | ConvertFrom-Json
+Invoke-Expression $manifest.validation_command
+node .\tools\fff-private-pipeline.mjs dry-run
+node --test .\tests\fff-private-pipeline.test.mjs
+.\scripts\operator\open_review.ps1 -Mode brief -PrintUri
+Invoke-Item .\artifacts\private-previsualization-timeline\private-previsualization-timeline.html
+```
+
+If reconstruction is required, allocate a new or empty directory outside the repository and run `build`, then `verify`. After an interruption run `status` → `resume` → `verify`. If canonical input changed, abandon that run identity and allocate a successor directory; do not overwrite a completed run.
+
+Verified on this terminal: current project state passed, `dry-run` resolved canonical identity `d4b3bc79…`, the five-validator read-only chain passed, the pipeline suite passed 6/6, the five protected result hashes stayed at their published values, both launcher URIs resolved, and strict MkDocs passed. No root dependency install is required. Twenty-three existing pages absent from MkDocs nav remain non-blocking discovery debt.
+
+Current supervising action: review the exact 180-second private preview once.
+
+- `accept`: record that rhythm, shot readability, subtitle timing, transitions, and callback have no material defect; leave the artifact unchanged.
+- `revise`: bind every finding to shot ID, cue ID, or timestamp and state the minimum repair target.
+
+Then request `owner_asset_plan_decision` separately. Asset choice, rights, construction/acquisition, voice/provider/credentials, generation, render, publication, persistence, production approval, release, and canon remain closed without their named owner and evidence.
+
+Read the opening 2026-07-25 sections first. Lower dated sections are preserved history.
+
 ## Start here — synchronized development handoff (2026-07-24 JST)
 
 `master` was fetched and is at `origin/master`. The verified restart tip is the current `HEAD = origin/master` (run `git log -1 --oneline --decorate` for its exact SHA), ahead/behind `0 / 0`; implementation parent `58049c9` (`Add resumable private preview pipeline`) contains the resumable private pipeline for a creator continuing on another terminal.

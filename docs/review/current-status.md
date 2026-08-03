@@ -1,5 +1,32 @@
 # Current Status Packet
 
+## Live Sync / Development Readiness — 2026-07-25 JST
+
+| Item | Verified state |
+| --- | --- |
+| Branch / remote | `master` tracking `origin/master` |
+| Pulled authority | `76dbe8690011830d07e32c321d83035c97cd26c7 Record PLANNER007 handoff parity` |
+| Sync evidence | fetch advanced `origin/master` from `f5fba01` to `76dbe86`; `git pull --ff-only origin master` fast-forwarded two commits; `HEAD...origin/master = 0 / 0` |
+| Incoming change | Only `docs/review/supervisor-current-report.md`; PLANNER007 toolchain readback plus parity record |
+| Preserved pre-existing state | `.serena/project.yml` remained byte-identical at SHA256 `98337e11…`, unstaged, and outside product/report scope |
+| Current report state | The synchronized commit graph is at remote parity; this 2026-07-25 six-document handoff refresh is local and is not claimed as committed or pushed |
+| Runtime | Git `2.53.0.windows.1`; Node `v24.13.0`; npm `11.6.2`; uvx `0.10.7`; FFmpeg/ffprobe `8.0.1` |
+| Dependency posture | No root package manifest or lockfile; no dependency installation or mutation required |
+| State / dry-run | current-project-state validation passed; dry-run identity `d4b3bc79…`; 6 Beats / 19 shots / 180 seconds / 19 frames / 20 cues |
+| Read-only health | Root chain passed for Resumable Pipeline, Private Preview, Readiness Packet, Integrated Package, and Execution Pack |
+| Pipeline test | `node --test tests/fff-private-pipeline.test.mjs`: 6 passed, 0 failed |
+| Result immutability | Five protected result SHA256 values match the published handoff; no tracked evidence regeneration |
+| Local entry health | `brief` and `blueprint` launchers returned valid local file URIs without opening a browser |
+| Docs health | Strict MkDocs passed; its temporary output was removed; 23 nav omissions remain non-blocking discoverability debt |
+| Product readiness | Local review, evidence inspection, external-run rebuild/resume/verify, validator/docs maintenance, and evidence-bounded preview repair are development-ready |
+| Explicitly not ready | Production materials, rights clearance, voice/provider work, generation, render, release, persistence, production approval, and canon |
+
+Immediate gate: review the exact `fff-private-previsualization-timeline-001` HTML/MP4 once. Return `accept` without artifact mutation when there is no material defect. Return `revise` only with shot ID, cue ID, or timestamp, expected understanding, observed friction, and minimum repair target.
+
+Independent gate: obtain `owner_asset_plan_decision` as A = default, B = exception requirement IDs, or C = reconstruction. Do not infer it from preview acceptance.
+
+The active roadmap is the opening 2026-07-25 section of `docs/review/supervisor-current-report.md`. Historical sections naming Beat 2, Execution Pack, integration, or an older commit as the next gate are preserved records, not the current queue.
+
 ## Live Sync / Development Readiness — 2026-07-24 JST
 
 | Item | Verified state |

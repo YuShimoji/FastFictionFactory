@@ -1,5 +1,23 @@
 # Idea Ledger
 
+## 2026-07-25 Synchronized Supervisor Handoff
+
+- Purpose: Give a supervising AI an exact, current restart point after receiving the PLANNER007 toolchain readback and parity successor.
+- Effect: Records `76dbe86` parity, the two-commit incoming scope, preserved `.serena/project.yml` identity, green state/dry-run/read-only/test/docs/launcher evidence, and the exact preview-review decision packet.
+- Requirements: Preserve terminal-local state; keep routine validation read-only; bind experience findings to shot/cue/time; keep preview, asset plan, rights, voice, production, release, persistence, and canon as separate decisions.
+- State: Synchronization and development-readiness verification are complete. The six 2026-07-25 handoff edits are local and are not claimed as committed or pushed.
+- Owner: Repository maintainer for evidence freshness; supervising AI and creator for D0; Product Owner for D2; named asset/voice/production/rights/release owners for later gates.
+- Next move: Review the exact private preview once. Preserve on accept; open only one lineage-bounded repair on concrete revise evidence.
+
+## 2026-07-25 Two-Track Long-Range Roadmap
+
+- Purpose: Advance the current 180-second work toward controlled delivery while evolving the proven contracts into a reusable multi-project workbench.
+- Effect: Separates content goals D0–D9 from platform goals P0–P6 so platform work cannot silently authorize production, providers, rights, or publication.
+- Requirements: Use D0 experience evidence as the golden-path input; require schema/migration/backup/rollback for durable state; require explicit provider/credential/transport authority; require exact candidate/right/production/release decisions before external delivery.
+- State: D0 is open now. D1 is conditional. D2 is pending human authority. D3–D8 and P3–P5 are closed. P0–P2 and P6 are proposed future work.
+- Owner: Product lead for sequencing; supervising AI and creator for D0; Product Owner and named delivery owners for content gates; future implementer for separately authorized platform slices.
+- Next move: Complete D0, then choose D1 or D2 from evidence. After D0 learning is recorded, define P1 as a single-project durable-state import/export roundtrip before multi-project, provider, or release automation.
+
 ## 2026-07-24 Resumable Private Preview Cross-Terminal Handoff
 
 - Purpose: Make the accepted private preview reconstructible from another terminal through one external-run CLI with durable stage receipts and source fingerprints.
