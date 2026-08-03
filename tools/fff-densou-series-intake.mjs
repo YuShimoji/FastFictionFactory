@@ -435,7 +435,12 @@ async function commandValidateContract(options) {
   const result = await readJson(resultPath);
   requireCondition(result.schema_version === "fff.densou.seriesIntakeResult.v1", "SOURCE_INVALID", "result schema mismatch", 2);
   requireCondition(result.artifact_id === "fff-densou-series-intake-v1", "SOURCE_INVALID", "artifact identity mismatch", 2);
-  requireCondition(result.state_code === "DEPENDENCY_MISSING" && result.source_resolution?.source_material_matches === 0, "SOURCE_INVALID", "missing-source state is not exact", 2);
+  requireCondition(result.state_code === "CONTINUE", "SOURCE_INVALID", "intake state has not released the prior dependency", 2);
+  requireCondition(result.source_resolution?.prior_source_material_matches === 0 && result.source_resolution?.selected_source_material_matches === 1, "SOURCE_INVALID", "source-basis transition is not exact", 2);
+  requireCondition(result.source_resolution?.selection_authority === "current_user_coordinator_priority_override", "AUTHORITY_REQUIRED", "source-basis selection authority missing", 2);
+  const selectedSourcePath = path.join(repoRoot, result.source_resolution.selected_primary_path);
+  const selectedSourceBytes = await readFile(selectedSourcePath);
+  requireCondition(sha256(selectedSourceBytes) === result.source_resolution.selected_primary_sha256, "SOURCE_INVALID", "selected primary source hash mismatch", 2);
   const authority = await readJson(path.join(repoRoot, result.authority_path));
   validateAuthority(authority);
   const schemaIds = [
@@ -452,9 +457,9 @@ async function commandValidateContract(options) {
   }
   const review = await readFile(path.join(repoRoot, result.review_path), "utf8");
   assertLocalReview(review);
-  requireCondition(review.includes("DEPENDENCY_MISSING") && review.includes("CONTINUE"), "SOURCE_INVALID", "review does not expose both current and arrival states", 2);
+  requireCondition(review.includes("PRIOR DEPENDENCY_MISSING") && review.includes("CONTINUE") && review.includes(result.source_resolution.selected_primary_sha256), "SOURCE_INVALID", "review does not expose the released dependency and selected source identity", 2);
   requireCondition(result.boundaries && Object.values(result.boundaries).every((value) => value === false), "SOURCE_INVALID", "result boundary opened unexpectedly", 2);
-  requireCondition(Object.keys(result.commands).sort().join(",") === ["init_when_source_arrives", "status_without_source", "tests", "validate_contract", "verify_packet"].sort().join(","), "SOURCE_INVALID", "command surface mismatch", 2);
+  requireCondition(Object.keys(result.commands).sort().join(",") === ["build_episode_quickwin", "reproduce_selected_intake", "tests", "validate_contract", "verify_episode_quickwin", "verify_packet"].sort().join(","), "SOURCE_INVALID", "command surface mismatch", 2);
   console.log(JSON.stringify({
     result: "PASS",
     artifact_id: result.artifact_id,

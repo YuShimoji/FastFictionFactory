@@ -1,0 +1,66 @@
+{
+  "schema_version": "fff.densou.seriesEpisodeQuickwinResult.v1",
+  "artifact_id": "fff-densou-series-episode-quickwin-001",
+  "series_id": "densou-series",
+  "season_id": "densou-season-01",
+  "episode_id": "densou-s01e01-bellless-tower",
+  "working_title": "鐘のない塔",
+  "state_code": "WAITING_USER_DECISION",
+  "source_basis": {
+    "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+    "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+    "source_revision_id": "densou-256837a94afd521c",
+    "primary_path": "artifacts/sample-raw-memo.md",
+    "primary_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+    "basis_receipt_path": "artifacts/densou-series-episode-quickwin-001/source-basis-receipt.json",
+    "separately_delivered_original_present": false,
+    "current_user_selection_override_applied": true
+  },
+  "episode": {
+    "form": "long_form_episode_development_treatment",
+    "editorial_window_seconds": 720,
+    "segment_count": 8,
+    "source_claim_count": 12,
+    "unresolved_count": 7,
+    "forbidden_inference_count": 7,
+    "unsupported_fact_count": 0,
+    "hidden_causal_bridge_count": 0
+  },
+  "season": {
+    "episode_slot_count": 6,
+    "complete_development_packet_count": 1,
+    "question_bound_not_written_count": 5
+  },
+  "entrypoints": {
+    "review": "artifacts/densou-series-episode-quickwin-001/densou-episode-001-review.html",
+    "treatment": "artifacts/densou-series-episode-quickwin-001/episode-001-review-treatment.md",
+    "episode_manifest": "artifacts/densou-series-episode-quickwin-001/episode-001-manifest.json",
+    "season_manifest": "artifacts/densou-series-episode-quickwin-001/season-01-manifest.json",
+    "evidence_manifest": "artifacts/densou-series-episode-quickwin-001/evidence-manifest.json"
+  },
+  "identities": {
+    "review_sha256": "11d4d55c53375940ca8a66146477ddd0149f9f737e2b284d6e047563e080492a",
+    "episode_manifest_sha256": "9717d5ebbfe2d0ba2c1ac311580d035cb0f0a46afbee0b97fa6615b47023774b",
+    "season_manifest_sha256": "4049284e0980a93a3f16ed27db3e2183520bd0976e1cc12814c875118578d39d",
+    "evidence_manifest_sha256": "4687ab4673bb05fab8e130481007db29df4f3f4f5be08f4bb3d3f77a91b4289c"
+  },
+  "verification": {
+    "packet_checks": "21/21 PASS",
+    "focused_tests": "10/10 PASS",
+    "source_intake_packet_checks": "13/13 PASS",
+    "tamper_rejection": "PASS",
+    "local_only_review": "PASS"
+  },
+  "boundaries": {
+    "final_canon": false,
+    "rights_clearance": false,
+    "production_approval": false,
+    "publication": false,
+    "upload": false,
+    "release": false,
+    "external_provider": false,
+    "credentials": false,
+    "voice_audio_video_generation": false,
+    "human_acceptance": false
+  }
+}

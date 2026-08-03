@@ -1,0 +1,130 @@
+{
+  "schema_version": "fff.densou.episodeManifest.v1.1",
+  "schema_lineage": "fff.densou.episodeManifest.v1",
+  "artifact_id": "fff-densou-series-episode-quickwin-001",
+  "series_id": "densou-series",
+  "season_id": "densou-season-01",
+  "episode_id": "densou-s01e01-bellless-tower",
+  "working_title": "鐘のない塔",
+  "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+  "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+  "source_revision_id": "densou-256837a94afd521c",
+  "target_form": {
+    "format": "long_form_episode_development_treatment",
+    "editorial_window_seconds": 720,
+    "timing_status": "review_timing_not_audio_or_picture_lock"
+  },
+  "state": "complete_development_packet_ready_for_local_review",
+  "segments": [
+    {
+      "segment_id": "ep01-seg01-incident",
+      "start_seconds": 0,
+      "end_seconds": 70,
+      "title_ja": "事件――鐘のない塔",
+      "treatment_ja": "正午、ノース・ベル駅の上にある古い天文台から鐘の音が響く。ところが、原メモでは鐘は冬の外出禁止令のころに撤去され、既存の派生証拠では取付枠も空として扱われている。このepisodeは音の正体を決めず、報告された音、撤去記録、空の枠を最初の調査対象として並べる。",
+      "claim_ids": [
+        "claim-bell-reported-at-noon",
+        "claim-bell-removed",
+        "claim-empty-bell-frame"
+      ]
+    },
+    {
+      "segment_id": "ep01-seg02-investigator",
+      "start_seconds": 70,
+      "end_seconds": 155,
+      "title_ja": "調査者――時計修理師ミラ",
+      "treatment_ja": "ミラ・ヴェイルはガラスのアーケードで時計を修理している。アーケードが毎晩9:17に閉まること、時計を扱う彼女の仕事、失踪した兄トーマの存在を、別々の確認事項として提示する。9:17が鐘や失踪を引き起こすとは言わず、同じ調査で見直す時刻として保留する。",
+      "claim_ids": [
+        "claim-mira-clockmaker",
+        "claim-arcade-917",
+        "claim-toma-missing"
+      ]
+    },
+    {
+      "segment_id": "ep01-seg03-personal-clues",
+      "start_seconds": 155,
+      "end_seconds": 245,
+      "title_ja": "個人的な手掛かり――メモと真鍮の蛾",
+      "treatment_ja": "作業場の引き出しには、トーマが残したとされるメモと真鍮の蛾がある。これはミラが調査を続ける個人的な理由になるが、トーマの所在を示す直接証拠ではない。蛾の機能も作動記録も決めず、まずメモの文面が何を告発しているかへ進む。",
+      "claim_ids": [
+        "claim-toma-missing",
+        "claim-note-and-moth"
+      ]
+    },
+    {
+      "segment_id": "ep01-seg04-allegation",
+      "start_seconds": 245,
+      "end_seconds": 335,
+      "title_ja": "告発――売られる『分』",
+      "treatment_ja": "メモは、市の評議会が放棄された人生から『分』を売っていると主張する。ここで重要なのは告発の強さではなく、その証拠区分である。メモは調査方向を示すが、評議会の関与、責任、動機を証明しない。episodeは告発を事実として採用せず、次の確認対象である台帳へ接続する。",
+      "claim_ids": [
+        "claim-council-allegation"
+      ]
+    },
+    {
+      "segment_id": "ep01-seg05-ledger",
+      "start_seconds": 335,
+      "end_seconds": 430,
+      "title_ja": "記録――『分』と名前の台帳",
+      "treatment_ja": "原メモは、アーケード下の施錠された棚に評議会の『分』の台帳があると記す。派生CASE_DIGESTは、その台帳を『分』欄と人名欄を持つ記録として整理している。ただし、後者は原メモ全文そのものではない。二つの出典層を混同せず、台帳が何を記録し、誰が作ったのかを未解決のまま残す。",
+      "claim_ids": [
+        "claim-ledger-location",
+        "claim-ledger-columns"
+      ]
+    },
+    {
+      "segment_id": "ep01-seg06-alternatives",
+      "start_seconds": 430,
+      "end_seconds": 525,
+      "title_ja": "証拠限界――三つの可能性",
+      "treatment_ja": "原メモ自身が、台帳は証拠、囮、偽記録のいずれでもあり得ると境界を置く。鐘の音を『歯車から漏れる記憶』とみる考えも、ミラの仮説にとどまる。このepisodeでは複数の説明を競わせるだけで、一つを真実として選ばない。確認済み、報告、派生観察、仮説を明確に分ける。",
+      "claim_ids": [
+        "claim-ledger-alternatives",
+        "claim-memory-leak-theory"
+      ]
+    },
+    {
+      "segment_id": "ep01-seg07-current-status",
+      "start_seconds": 525,
+      "end_seconds": 630,
+      "title_ja": "現在地――結ばれていない手掛かり",
+      "treatment_ja": "現時点で同じ調査表に置けるのは、正午の鐘、撤去された鐘、9:17、トーマのメモ、真鍮の蛾、台帳、評議会への告発である。だが、同じ表にあることは因果関係の証明ではない。トーマの所在、蛾の機能、台帳の真正性、評議会の関与はすべて開いたままである。",
+      "claim_ids": [
+        "claim-bell-reported-at-noon",
+        "claim-arcade-917",
+        "claim-note-and-moth",
+        "claim-council-allegation",
+        "claim-ledger-alternatives"
+      ]
+    },
+    {
+      "segment_id": "ep01-seg08-series-hook",
+      "start_seconds": 630,
+      "end_seconds": 720,
+      "title_ja": "シリーズへの入口――次に確かめること",
+      "treatment_ja": "第1話は解決ではなく、調査可能な問いを固定して終える。9:17は何の記録なのか。真鍮の蛾は何をするのか。台帳は真正か。評議会は関与したのか。トーマはどこにいるのか。これらを後続episodeの調査slotとして分離し、答えを先取りせず長尺シリーズの経路を開く。",
+      "claim_ids": [
+        "claim-arcade-917",
+        "claim-note-and-moth",
+        "claim-ledger-alternatives",
+        "claim-council-allegation",
+        "claim-toma-missing"
+      ]
+    }
+  ],
+  "viewer_artifact": "densou-episode-001-review.html",
+  "script_artifact": "episode-001-review-treatment.md",
+  "unsupported_fact_count": 0,
+  "hidden_causal_bridge_count": 0,
+  "boundaries": {
+    "final_canon": false,
+    "rights_clearance": false,
+    "production_approval": false,
+    "publication": false,
+    "upload": false,
+    "release": false,
+    "external_provider": false,
+    "credentials": false,
+    "voice_audio_video_generation": false
+  }
+}

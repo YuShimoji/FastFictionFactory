@@ -2,15 +2,22 @@
   "schema_version": "fff.densou.seriesIntakeResult.v1",
   "artifact_id": "fff-densou-series-intake-v1",
   "title": "Densou Long-form Series Source Intake v1",
-  "state_code": "DEPENDENCY_MISSING",
+  "state_code": "CONTINUE",
   "source_resolution": {
     "prior_stop_code": "DENSOU_SOURCE_LOCATOR_MISSING",
     "prior_stop_manifest_sha256": "13921dcbe31cd5164c20c240708d850579101339df5038173c20e74f155da7b8",
     "incremental_cutoff_utc": "2026-08-01T14:45:41.8065860Z",
     "incremental_attachment_files": 16,
     "keyword_matching_records": 10,
-    "source_material_matches": 0,
-    "classification": "control-plane instructions and missing-source status records only"
+    "prior_source_material_matches": 0,
+    "selection_authority": "current_user_coordinator_priority_override",
+    "selected_source_material_matches": 1,
+    "selected_primary_path": "artifacts/sample-raw-memo.md",
+    "selected_primary_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+    "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+    "source_revision_id": "densou-256837a94afd521c",
+    "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+    "classification": "existing repository sample raw memo selected as private development input; not represented as a separately delivered Densou original"
   },
   "authority_path": "artifacts/densou-series-intake/densou-authority-input.json",
   "schemas": [
@@ -24,19 +31,28 @@
   "test_path": "tests/fff-densou-series-intake.test.mjs",
   "commands": {
     "validate_contract": "node tools/fff-densou-series-intake.mjs validate-contract --result artifacts/densou-series-intake-result.json",
-    "status_without_source": "node tools/fff-densou-series-intake.mjs status --authority artifacts/densou-series-intake/densou-authority-input.json",
-    "init_when_source_arrives": "node tools/fff-densou-series-intake.mjs init --authority artifacts/densou-series-intake/densou-authority-input.json --source <exact-utf8-source-path> --out <new-empty-output-directory>",
+    "reproduce_selected_intake": "node tools/fff-densou-series-intake.mjs init --authority artifacts/densou-series-intake/densou-authority-input.json --source artifacts/sample-raw-memo.md --out <new-empty-output-directory>",
     "verify_packet": "node tools/fff-densou-series-intake.mjs verify --packet <packet-directory>",
-    "tests": "node --test tests/fff-densou-series-intake.test.mjs"
+    "build_episode_quickwin": "node tools/fff-densou-series-episode-quickwin.mjs build --out <new-empty-output-directory>",
+    "verify_episode_quickwin": "node tools/fff-densou-series-episode-quickwin.mjs verify --root artifacts/densou-series-episode-quickwin-001",
+    "tests": "node --test tests/fff-densou-series-intake.test.mjs tests/fff-densou-series-episode-quickwin.test.mjs"
   },
   "verification": {
     "contract_checks": "12/12 PASS",
     "focused_tests": "10/10 PASS",
     "generated_packet_checks": "13/13 PASS",
+    "episode_quickwin_checks": "21/21 PASS",
+    "episode_quickwin_tests": "10/10 PASS",
     "tamper_rejection": "PASS",
     "mkdocs_strict": "PASS",
-    "missing_source_exit_code": 3,
-    "first_pass_repair": "tracked review now exposes both DEPENDENCY_MISSING and CONTINUE"
+    "prior_missing_source_exit_code": 3,
+    "dependency_transition": "DEPENDENCY_MISSING released by explicit current user source-selection override"
+  },
+  "successor_artifact": {
+    "artifact_id": "fff-densou-series-episode-quickwin-001",
+    "episode_id": "densou-s01e01-bellless-tower",
+    "review_path": "artifacts/densou-series-episode-quickwin-001/densou-episode-001-review.html",
+    "state": "complete_development_packet_ready_for_local_review"
   },
   "boundaries": {
     "source_invented": false,

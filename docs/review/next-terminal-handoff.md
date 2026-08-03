@@ -1,6 +1,22 @@
 # Next Terminal Handoff
 
-## Start here — Densou series intake v1 (2026-08-04 JST)
+## Start here — Densou Season 1 Episode 1 Quick-win (2026-08-04 JST)
+
+Work on branch `codex/densou-series-intake-v1`. The predecessor before this slice is `5637c9dc945c24a968921d95ddb33f9013deae9e`; resolve the current remote tip at restart. The active Densou development artifact is `fff-densou-series-episode-quickwin-001`; it does not replace existing CASE_DIGEST active/default media.
+
+Current user authority selects existing repository Densou/canon/reference material as sufficient private-development input. Primary is `artifacts/sample-raw-memo.md`, SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`, revision `densou-256837a94afd521c`. It is a repository sample memo, not a separately delivered Densou original; supporting artifacts remain derived. Do not request another locator or silently merge `artifacts/sample-story-memo.md`.
+
+Open `artifacts/densou-series-episode-quickwin-001/densou-episode-001-review.html`. It presents `densou-s01e01-bellless-tower` / 「鐘のない塔」as a 12-minute, eight-segment Episode 1 development treatment and a six-slot Season 1 map. Only Episode 1 is written. The current state is `WAITING_USER_DECISION` for direction review, not human acceptance.
+
+```powershell
+node tools/fff-densou-series-intake.mjs validate-contract --result artifacts/densou-series-intake-result.json
+node tools/fff-densou-series-episode-quickwin.mjs verify --root artifacts/densou-series-episode-quickwin-001
+node --test tests/fff-densou-series-intake.test.mjs tests/fff-densou-series-episode-quickwin.test.mjs
+```
+
+Preserve source basis hashes, twelve claim IDs, seven unresolved items, seven forbidden inferences, and Episodes 2–6 as question-bound/unwritten. Any next implementation must start from an exact review finding. Final screenplay, playable media, final canon, rights clearance, production approval, provider/credentials, voice/audio/video, publication, upload, and release remain closed.
+
+## Historical predecessor — Densou series intake v1 (2026-08-04 JST)
 
 Work on branch `codex/densou-series-intake-v1` from exact base `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`. The primary artifact is `fff-densou-series-intake-v1`; it does not replace the existing CASE_DIGEST active/default or successor artifacts.
 

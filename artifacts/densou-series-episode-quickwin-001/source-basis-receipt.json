@@ -1,0 +1,75 @@
+{
+  "schema_version": "fff.densou.sourceBasisReceipt.v1",
+  "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+  "material_label": "デンソウ",
+  "selection_authority": {
+    "authority_type": "current_user_coordinator_priority_override",
+    "authority_date_jst": "2026-08-04",
+    "decision": "existing_repository_densou_canon_reference_material_is_sufficient_and_may_be_selected_without_another_locator",
+    "use_scope": "Fast Fiction Factory private long-form series and episode development"
+  },
+  "intake_binding": {
+    "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+    "source_revision_id": "densou-256837a94afd521c",
+    "primary_source_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+    "external_intake_manifest_sha256": "f91ebbc602e4058dcfb84c14fc9dff1f1e39337265552e47ee4001419fc84736"
+  },
+  "basis_hash_sha256": "b2cab3adb7c270d828f110bc82bdf5b0092d77f6e6d9eae432512747e9e0858c",
+  "files": [
+    {
+      "role": "primary_selected_source",
+      "path": "artifacts/sample-raw-memo.md",
+      "sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+      "git_blob": "70ec0c8be41c25ed053670e885ad44ea44b13558",
+      "last_commit": "e329e8e2ae41ffdb7bcee5e1b862b4bc35fe24a6",
+      "evidence_class": "repository_author_memo_fixture_selected_by_current_user_override"
+    },
+    {
+      "role": "supporting_story_structure",
+      "path": "artifacts/private-full-raster-clarity-candidate/story-spine-clarity-v1.md",
+      "sha256": "509f96b88ca8e9ffcc5f6218372d41010f6b7cb2db9dc23c5079746d48f5497d",
+      "git_blob": "09e1224ebed09eb54a750debb14252b19317766e",
+      "last_commit": "c4ebaf91abfd0dc4441c604142975201dd76c365",
+      "evidence_class": "derived_story_spine_not_original_prose"
+    },
+    {
+      "role": "supporting_fact_boundary",
+      "path": "artifacts/private-raster-case-digest/case-digest-script.md",
+      "sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe",
+      "git_blob": "e9ebccdb48216ba9d8bff901b9f398f4f506ec1a",
+      "last_commit": "5ca536f3ef5f00da53b847b5537324a696aca1ef",
+      "evidence_class": "derived_case_digest_with_human_comprehension_receipt"
+    },
+    {
+      "role": "supporting_serial_form",
+      "path": "artifacts/one-story-draft-review-pack-result.json",
+      "sha256": "48c06c96f347dd4e8cd88449d3f38b3f942ac5061376814ac444296431ec1b79",
+      "git_blob": "e156db778c3c46c4c3b66925bf93d96da8f36c49",
+      "last_commit": "cfcb176393da916cc1e8c54fc7375fc14538ec23",
+      "evidence_class": "derived_provisional_mystery_lore_serial_route"
+    }
+  ],
+  "ambiguity_receipt": {
+    "exact_separately_delivered_densou_original_present": false,
+    "primary_file_self_labels_as_sample_raw_memo": true,
+    "supporting_files_are_derived_artifacts": true,
+    "selected_as_private_development_input_under_current_user_authority": true,
+    "claims_may_not_be_promoted_beyond_recorded_evidence_status": true,
+    "final_canon_asserted": false
+  },
+  "excluded_candidate": {
+    "path": "artifacts/sample-story-memo.md",
+    "reason": "less conservative alternate memo contains additional names and a more committed possible ending; not silently merged into the selected primary"
+  },
+  "boundaries": {
+    "final_canon": false,
+    "rights_clearance": false,
+    "production_approval": false,
+    "publication": false,
+    "upload": false,
+    "release": false,
+    "external_provider": false,
+    "credentials": false,
+    "voice_audio_video_generation": false
+  }
+}

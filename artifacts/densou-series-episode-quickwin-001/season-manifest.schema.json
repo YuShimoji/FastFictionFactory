@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.densou.seasonManifest.v1.1",
+  "title": "Densou Developed Season Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "schema_lineage",
+    "series_id",
+    "season_id",
+    "source_basis_id",
+    "working_title",
+    "state",
+    "episodes",
+    "slot_rule"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "fff.densou.seasonManifest.v1.1"
+    },
+    "schema_lineage": {
+      "const": "fff.densou.seasonManifest.v1"
+    },
+    "series_id": {
+      "const": "densou-series"
+    },
+    "season_id": {
+      "const": "densou-season-01"
+    },
+    "source_basis_id": {
+      "type": "string",
+      "pattern": "^fff-densou-source-basis-[0-9a-f]{16}$"
+    },
+    "working_title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "state": {
+      "const": "episode_01_quickwin_ready_later_slots_not_written"
+    },
+    "episodes": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "episode_id",
+          "working_title",
+          "state",
+          "investigation_question"
+        ],
+        "properties": {
+          "episode_id": {
+            "type": "string",
+            "pattern": "^densou-s01e0[1-6]-"
+          },
+          "working_title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "state": {
+            "enum": [
+              "complete_development_packet_ready_for_local_review",
+              "source_backed_investigation_slot_not_written"
+            ]
+          },
+          "investigation_question": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "slot_rule": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

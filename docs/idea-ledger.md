@@ -1,13 +1,22 @@
 # Idea Ledger
 
+## 2026-08-04 Densou Season 1 Episode 1 Quick-win
+
+- Purpose: turn the newly authorized existing repository basis into the first coherent long-form Densou episode/season path without pretending that a separately delivered original exists.
+- Effect: binds four exact source/support files into `fff-densou-source-basis-b2cab3adb7c270d8`, creates one 12-minute/eight-segment Episode 1 treatment, a six-slot Season 1 investigation map, fact/uncertainty guards, offline review, deterministic builder, verifier, and tamper tests.
+- Requirements: preserve `sample-raw-memo.md` as the primary byte identity; keep supporting files derived; keep the alternate memo excluded from silent merge; cite claim IDs from the fact boundary; author no event/answer for Episodes 2–6.
+- State: implementation and focused validation complete. Source intake 13/13, packet 21/21, focused tests 10/10, v1→v1.1 schema lineage 3/3, result identity 4/4, unsupported facts 0, hidden causal bridges 0. Exact artifact awaits one local Episode 1 direction review.
+- Owner: repository implementation for identity and boundary integrity; user/Product Owner for Episode 1 direction; separately authorized owners for final canon, rights, production, media, provider, publication, and release.
+- Next move: review `artifacts/densou-series-episode-quickwin-001/densou-episode-001-review.html` and bind any finding to a segment or claim ID. A positive direction decision may open a full draft or private playable episode; it does not open production/publication gates.
+
 ## 2026-08-04 Densou Long-form Series Source Intake v1
 
 - Purpose: remove infrastructure ambiguity from the missing-source gate so exact prose can move directly into a reproducible long-form series packet.
 - Effect: provides hash-bound source, authority, series, season, episode, review, and evidence identities while leaving adaptation fields empty.
 - Requirements: one authoritative UTF-8 `.txt`/`.md` source; a named revision only when multiple versions are supplied; a new or empty repository-external output directory.
-- State: implementation and focused validation complete; product dependency remains `DEPENDENCY_MISSING` because exact source bytes are absent.
+- State: implementation and focused validation complete; the historical dependency was released by the current user selection override and the intake is now `CONTINUE`.
 - Owner: user for source bytes/revision choice; repository implementation for packet integrity; future editorial/production owners for adaptation and media.
-- Next move: run `status` → `init` → `verify` on the supplied source, then open one Episode 1 long-form adaptation slice bound only to selected source spans.
+- Next move: preserved as the predecessor intake route; the active successor is `fff-densou-series-episode-quickwin-001`.
 
 ## 2026-07-26 Transition Continuity and Narrative Clarity Candidate
 

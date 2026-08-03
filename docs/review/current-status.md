@@ -1,6 +1,26 @@
 # Current Status Packet
 
-## Densou Long-form Series Source Intake v1 — 2026-08-04 JST
+## Densou Season 1 Episode 1 Quick-win — 2026-08-04 JST
+
+| Item | Verified state |
+| --- | --- |
+| Branch / predecessor | `codex/densou-series-intake-v1` / `5637c9dc945c24a968921d95ddb33f9013deae9e` before this slice |
+| Current user authority | Select existing repository Densou/canon/reference material; do not request another locator; preserve ambiguity and external gates |
+| Primary source | `artifacts/sample-raw-memo.md`; SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`; revision `densou-256837a94afd521c` |
+| Source ambiguity | Repository sample memo selected under current override; separately delivered Densou original absent; supporting files remain derived evidence |
+| Source basis | `fff-densou-source-basis-b2cab3adb7c270d8`; four exact repository files; alternate memo not silently merged |
+| Artifact | `fff-densou-series-episode-quickwin-001`; private development packet; not active/default CASE_DIGEST media |
+| Episode | `densou-s01e01-bellless-tower` / 「鐘のない塔」; 720 seconds / 8 continuous treatment segments |
+| Season | `densou-season-01`; 6 investigation slots; Episode 1 complete packet; Episodes 2–6 question-bound and not written |
+| Fact boundary | 12 source-backed claims; 7 unresolved items; 7 forbidden inferences; unsupported facts 0; hidden causal bridges 0 |
+| Review | Offline static HTML; no network, form, persistence, autoplay, audio, or video surface |
+| Verification | intake 13/13; episode packet 21/21; focused tests 10/10; result-hash identity and tamper rejection PASS; v1→v1.1 schema lineage PASS |
+| Current state | `WAITING_USER_DECISION` for Episode 1 direction only |
+| Closed effects | human acceptance, final canon, rights clearance, production approval, provider, credentials, voice/audio/video generation, publication, upload, release |
+
+Primary local review: `artifacts/densou-series-episode-quickwin-001/densou-episode-001-review.html`. Reproduce with `node tools/fff-densou-series-episode-quickwin.mjs verify --root artifacts/densou-series-episode-quickwin-001` and `node --test tests/fff-densou-series-episode-quickwin.test.mjs`.
+
+## Historical predecessor — Densou Long-form Series Source Intake v1 — 2026-08-04 JST
 
 | Item | Verified state |
 | --- | --- |

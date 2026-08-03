@@ -45,7 +45,7 @@ test("tracked Densou intake contract validates", () => {
     artifact_id: "fff-densou-series-intake-v1",
     checks_passed: 12,
     checks_total: 12,
-    state_code: "DEPENDENCY_MISSING"
+    state_code: "CONTINUE"
   });
 });
 

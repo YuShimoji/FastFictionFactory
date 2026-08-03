@@ -1,0 +1,32 @@
+{
+  "schema_version": "fff.densou.seriesManifest.v1.1",
+  "schema_lineage": "fff.densou.seriesManifest.v1",
+  "artifact_id": "fff-densou-series-episode-quickwin-001",
+  "series_id": "densou-series",
+  "material_label": "デンソウ",
+  "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+  "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+  "source_revision_id": "densou-256837a94afd521c",
+  "series_form": "long_form_evidence_led_mystery_serial",
+  "audience_language": "ja-JP-review-treatment",
+  "series_promise_ja": "鐘、時刻、記録、失踪を一つずつ検証し、未証明の因果を確定せずに追う長尺ミステリーシリーズ。",
+  "state": "season_01_episode_01_quickwin_ready_for_local_review",
+  "seasons": [
+    {
+      "season_id": "densou-season-01",
+      "manifest_path": "season-01-manifest.json",
+      "state": "episode_01_ready_later_slots_question_bound"
+    }
+  ],
+  "boundaries": {
+    "final_canon": false,
+    "rights_clearance": false,
+    "production_approval": false,
+    "publication": false,
+    "upload": false,
+    "release": false,
+    "external_provider": false,
+    "credentials": false,
+    "voice_audio_video_generation": false
+  }
+}

@@ -1,5 +1,15 @@
 # Decision Log
 
+## 2026-08-04 — Select the existing repository memo as the Densou private-development basis
+
+- Decision authority: the current user directs the project to treat existing Densou/canon/reference material as sufficient, select it without requesting another locator, and start the long-form series while recording ambiguity honestly.
+- Selected primary: `artifacts/sample-raw-memo.md`, exact SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`, source revision `densou-256837a94afd521c`.
+- Supporting evidence: use the exact story spine, CASE_DIGEST script, and one-story draft review pack only in their recorded derived roles. Do not silently merge `artifacts/sample-story-memo.md`, whose added names and stronger ending candidate differ from the conservative raw memo.
+- Ambiguity rule: the primary is a repository file labeled `Sample Raw Memo`, not a separately delivered Densou original. Current authority makes it usable for private development but does not retroactively change its provenance or elevate derived claims to final canon.
+- Product decision: create `fff-densou-series-episode-quickwin-001`, Season 1 with six investigation slots, and Episode 1「鐘のない塔」as a 12-minute, eight-segment, source-claim-bound review treatment. Only Episode 1 is written; later slots contain questions, not events or answers.
+- Evidence rule: every treatment segment must resolve to claim IDs; allegation, derived observation, character theory, and unresolved alternatives remain distinct. Unsupported facts, hidden causal bridges, guilt, mechanism, motive, Toma fate, moth function, and ending decisions remain zero.
+- Gate decision: prior `DEPENDENCY_MISSING` is released. The new terminal state is `WAITING_USER_DECISION` for the exact local Episode 1 direction review. Human acceptance, final canon, rights clearance, production approval, provider/credentials, media generation, publication, upload, and release remain separate.
+
 ## 2026-08-04 — Make Densou source arrival executable without inventing source text
 
 - Decision: record the user as Densou author/rights holder with full internal/private adaptation and modification authority, while keeping the exact source binding unbound until actual bytes arrive.

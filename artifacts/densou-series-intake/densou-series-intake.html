@@ -8,7 +8,7 @@
     :root { color-scheme: light dark; font-family: system-ui, sans-serif; }
     body { max-width: 64rem; margin: 0 auto; padding: 2rem 1rem 4rem; line-height: 1.65; }
     h1, h2 { line-height: 1.25; }
-    .status { border-left: .4rem solid #b66a00; padding: .8rem 1rem; background: color-mix(in srgb, #b66a00 12%, transparent); }
+    .status { border-left: .4rem solid #27803c; padding: .8rem 1rem; background: color-mix(in srgb, #27803c 12%, transparent); }
     code { overflow-wrap: anywhere; }
     table { width: 100%; border-collapse: collapse; }
     th, td { text-align: left; vertical-align: top; padding: .55rem; border-bottom: 1px solid #8886; }
@@ -17,21 +17,23 @@
 <body>
   <main>
     <h1>デンソウ長尺シリーズ Source Intake v1</h1>
-    <p class="status"><strong>DEPENDENCY_MISSING</strong><br>権利者・全面改変利用許諾は記録済みです。正確な原文bytesまたは一意なlocatorは未提供です。</p>
-    <h2>このsliceで利用可能になったこと</h2>
-    <p>原文到着後、exact bytesの検査に合格した経路は状態コード <strong>CONTINUE</strong> を返します。</p>
+    <p class="status"><strong>CONTINUE</strong><br><strong>PRIOR DEPENDENCY_MISSING</strong> は現在のユーザーoverrideにより解放されました。repository内の既存memoをprivate development inputとしてhash-bindしています。</p>
+    <h2>選定したsource basis</h2>
+    <p>Primaryは <code>artifacts/sample-raw-memo.md</code>、SHA-256は <code>256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32</code>、revisionは <code>densou-256837a94afd521c</code> です。</p>
+    <p>このファイルは自らを「Sample Raw Memo」と表示しており、別送されたデンソウ原典全文とは表現しません。story spine、CASE_DIGEST、draft review packは派生supporting evidenceとして別層に保っています。</p>
+    <h2>利用可能になったこと</h2>
     <ul>
       <li>UTF-8の原文ファイルをexact SHA-256とrevision IDへ固定</li>
       <li>原文snapshot、locator receipt、authority receipt、series／season／episode manifestを一括生成</li>
-      <li>改変や物語補完を行わない初期episode stubを生成</li>
+      <li>12分・8セグメントのEpisode 1 development packetを生成</li>
       <li>evidence manifestとlocal review readbackをfail-closed検証</li>
     </ul>
-    <h2>必要入力</h2>
-    <p>今回の正本となる一つのUTF-8 <code>.txt</code>／<code>.md</code>ファイルです。全文でなく断片でも構いません。複数版がある場合は、今回使用する一版を明示してください。</p>
+    <h2>Episode 1入口</h2>
+    <p><code>artifacts/densou-series-episode-quickwin-001/densou-episode-001-review.html</code></p>
     <h2>再現コマンド</h2>
     <pre><code>node tools/fff-densou-series-intake.mjs status --authority artifacts/densou-series-intake/densou-authority-input.json
-node tools/fff-densou-series-intake.mjs init --authority artifacts/densou-series-intake/densou-authority-input.json --source C:\path\to\densou.txt --out C:\path\to\new-empty-packet
-node tools/fff-densou-series-intake.mjs verify --packet C:\path\to\new-empty-packet</code></pre>
+node tools/fff-densou-series-intake.mjs init --authority artifacts/densou-series-intake/densou-authority-input.json --source artifacts/sample-raw-memo.md --out C:\path\to\new-empty-packet
+node tools/fff-densou-series-episode-quickwin.mjs verify --root artifacts/densou-series-episode-quickwin-001</code></pre>
     <h2>閉じたままの効果</h2>
     <table>
       <tbody>

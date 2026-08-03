@@ -1,0 +1,48 @@
+{
+  "schema_version": "fff.densou.seasonManifest.v1.1",
+  "schema_lineage": "fff.densou.seasonManifest.v1",
+  "series_id": "densou-series",
+  "season_id": "densou-season-01",
+  "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+  "working_title": "失われた分と名前",
+  "state": "episode_01_quickwin_ready_later_slots_not_written",
+  "episodes": [
+    {
+      "episode_id": "densou-s01e01-bellless-tower",
+      "working_title": "鐘のない塔",
+      "state": "complete_development_packet_ready_for_local_review",
+      "investigation_question": "鐘のない塔、9:17、トーマの手掛かりは何を確認でき、何が未証明か。"
+    },
+    {
+      "episode_id": "densou-s01e02-0917",
+      "working_title": "9:17",
+      "state": "source_backed_investigation_slot_not_written",
+      "investigation_question": "9:17は何の記録なのか。"
+    },
+    {
+      "episode_id": "densou-s01e03-brass-moth",
+      "working_title": "真鍮の蛾",
+      "state": "source_backed_investigation_slot_not_written",
+      "investigation_question": "真鍮の蛾の機能は何か。"
+    },
+    {
+      "episode_id": "densou-s01e04-ledger",
+      "working_title": "『分』と名前の台帳",
+      "state": "source_backed_investigation_slot_not_written",
+      "investigation_question": "台帳は真正か、何を記録しているのか。"
+    },
+    {
+      "episode_id": "densou-s01e05-council",
+      "working_title": "評議会への告発",
+      "state": "source_backed_investigation_slot_not_written",
+      "investigation_question": "評議会は関与したのか。"
+    },
+    {
+      "episode_id": "densou-s01e06-toma",
+      "working_title": "トーマの所在",
+      "state": "source_backed_investigation_slot_not_written",
+      "investigation_question": "トーマはどこにいるのか。"
+    }
+  ],
+  "slot_rule": "Episodes 2-6 are question-bound slots only; no event, answer, mechanism, motive, or ending is authored."
+}

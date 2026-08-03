@@ -1,15 +1,27 @@
 # Artifacts
 
+## fff-densou-series-episode-quickwin-001
+
+- Title: Densou Season 1 Episode 1 — The Bellless Tower Quick-win
+- Purpose: turn the current user-authorized existing repository source basis into one coherent, hash-bound long-form episode development packet and a question-bound Season 1 route.
+- Primary review: `artifacts/densou-series-episode-quickwin-001/densou-episode-001-review.html`
+- Identity: source basis `fff-densou-source-basis-b2cab3adb7c270d8`; source revision `densou-256837a94afd521c`; episode `densou-s01e01-bellless-tower`; 720-second editorial window; eight continuous treatment segments.
+- Ambiguity: primary `artifacts/sample-raw-memo.md` labels itself as a sample repository memo and is not represented as a separately delivered Densou original. Three supporting files remain explicitly derived evidence.
+- Season: six investigation slots; Episode 1 has a complete development packet, while Episodes 2–6 contain questions only and are not written.
+- Verification: packet 21/21 PASS, including three developed-state schema lineage checks; focused tests 10/10 PASS; source intake packet 13/13 PASS; tamper rejection PASS.
+- State: `WAITING_USER_DECISION` for one exact local Episode 1 direction review. This is not a finished script, audio, video, production artifact, or final canon.
+- Closed gates: human acceptance, final canon, rights clearance, production approval, provider/credentials, voice/audio/video generation, publication, upload, and release remain false.
+
 ## fff-densou-series-intake-v1
 
 - Title: Densou Long-form Series Source Intake v1
 - Purpose: bind one exact Densou source file to a reproducible source packet and open versioned series/season/episode planning without inventing story content.
 - Primary readback: `artifacts/densou-series-intake/densou-series-intake.html`
-- Authority: user author/rights-holder; full Fast Fiction Factory internal/private adaptation and modification; source binding currently unbound.
-- State: `DEPENDENCY_MISSING` until one exact UTF-8 source file or fragment bundle is supplied. Valid arrival state is `CONTINUE`.
+- Authority: user author/rights-holder; full Fast Fiction Factory internal/private adaptation and modification; current override authorizes selection of existing repository material as private development input.
+- State: `CONTINUE`; primary `artifacts/sample-raw-memo.md` is bound as `densou-256837a94afd521c`, with ambiguity recorded in the successor source-basis receipt.
 - Executable surface: `tools/fff-densou-series-intake.mjs` with `validate-contract`, `status`, `init`, and `verify`.
 - Verification: tracked contract 12/12 PASS; focused tests 10/10 PASS; generated packet 13/13 PASS; tamper rejection PASS.
-- Boundary: source invention/revision selection, story adaptation, episode media, external provider/credentials, publication, release, production approval, rights clearance, human acceptance, and final canon remain false.
+- Boundary: the intake contract itself does not invent source or open external effects. Its successor creates a review treatment only; episode media, external provider/credentials, publication, release, production approval, rights clearance, human acceptance, and final canon remain false.
 - Active/default effect: none; existing CASE_DIGEST artifact identities remain unchanged.
 
 ## fff-private-raster-case-digest-001

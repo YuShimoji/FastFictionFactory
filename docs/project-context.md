@@ -1,6 +1,17 @@
 # Project Context
 
-## Densou Long-form Series Source Intake v1 — 2026-08-04 JST
+## Densou Season 1 Episode 1 Quick-win — 2026-08-04 JST
+
+- Current authority: the user explicitly authorizes selecting existing repository Densou/canon/reference material as production input for private series development and directs the project not to request another locator. This releases the prior `DEPENDENCY_MISSING` diagnosis but does not authorize public production, provider/credentials, release, rights clearance, or final canon.
+- Exact selected basis: primary `artifacts/sample-raw-memo.md`, SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`, revision `densou-256837a94afd521c`; supporting story spine `509f96b…`, CASE_DIGEST script `4673e509…`, and draft review pack `48c06c96…` remain derived evidence layers.
+- Ambiguity: primary identifies itself as `Sample Raw Memo: The Clockmaker Under Glass`; it is not represented as a separately delivered Densou original. `artifacts/sample-story-memo.md` is excluded from silent merge because it adds names and a more committed ending candidate.
+- Active quick-win: `fff-densou-series-episode-quickwin-001`; source basis `fff-densou-source-basis-b2cab3adb7c270d8`; Season 1 `densou-season-01`; Episode 1 `densou-s01e01-bellless-tower` / 「鐘のない塔」.
+- Product surface: 12-minute editorial window, eight continuous source-claim-bound treatment segments, twelve fact-boundary claims, seven unresolved items, seven forbidden inferences, and one offline static HTML review. Season 1 has six investigation slots; only Episode 1 is written as a development packet.
+- Verification: existing intake bound the primary source and passed 13/13; episode packet passed 21/21 including developed-state schema lineage; focused tests passed 10/10 including result-hash identity and tamper rejection; unsupported facts and hidden causal bridges are both zero by contract and source-ref audit.
+- Review state: `WAITING_USER_DECISION` for one exact Episode 1 direction review at `artifacts/densou-series-episode-quickwin-001/densou-episode-001-review.html`. This is not a finished screenplay, audio/video artifact, human acceptance, final canon, rights clearance, production approval, or release.
+- Git lane: `codex/densou-series-intake-v1`; branch predecessor before this slice is `5637c9dc945c24a968921d95ddb33f9013deae9e`; original checkout and user-owned `.serena/project.yml` remain outside this worktree and untouched.
+
+## Historical predecessor — Densou Long-form Series Source Intake v1 — 2026-08-04 JST
 
 - Restart authority: `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`; implementation is isolated on `codex/densou-series-intake-v1`. The original checkout and its user-owned `.serena/project.yml` difference remain untouched.
 - Goal slice: make exact Densou prose arrival executable without inventing or selecting source text. The slice adds one versioned source packet, series/season/episode schemas, exact locator/hash receipts, a fail-closed CLI, focused tests, and local readback.
