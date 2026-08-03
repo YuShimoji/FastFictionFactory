@@ -1,5 +1,16 @@
 # Project Context
 
+## Densou Long-form Series Source Intake v1 — 2026-08-04 JST
+
+- Restart authority: `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`; implementation is isolated on `codex/densou-series-intake-v1`. The original checkout and its user-owned `.serena/project.yml` difference remain untouched.
+- Goal slice: make exact Densou prose arrival executable without inventing or selecting source text. The slice adds one versioned source packet, series/season/episode schemas, exact locator/hash receipts, a fail-closed CLI, focused tests, and local readback.
+- Authority: the user is recorded as author and rights holder and permits full adaptation/modification for Fast Fiction Factory internal/private series and episode development. AI/third-party mixture remains `unknown`; external provider, credentials, publication, release, production approval, third-party clearance, human acceptance, and final canon remain closed.
+- Source resolution: prior `DENSOU_SOURCE_LOCATOR_MISSING` evidence remains valid. Sixteen incremental attachment files were checked; ten mention Densou only in Coordinator/control-plane instructions or missing-source status, and zero contain exact source material.
+- Executable states: without `--source`, the CLI returns `DEPENDENCY_MISSING` and exit 3 with one concrete required input. With one valid UTF-8 source file, `status` returns `CONTINUE`; `init` copies exact bytes into a private packet and emits authority/source receipts, source packet, series/season/episode stubs, review HTML, and hash manifest; `verify` checks thirteen invariants.
+- Verification: tracked contract 12/12 PASS; focused Node tests 10/10 PASS; generated fixture packet 13/13 PASS; byte tamper, empty source, weakened authority, and non-empty output all fail closed.
+- Product boundary: no Densou story, script, episode, image, audio, video, voice, external call, publication, or canon was generated. Existing CASE_DIGEST active/default and successor identities are unchanged.
+- Re-entry: open `artifacts/densou-series-intake/densou-series-intake.html`, then provide exactly one authoritative UTF-8 `.txt`/`.md` source (or choose one revision when several exist) and run `status` → `init` → `verify`.
+
 ## Transition Continuity and Narrative Clarity Candidate — 2026-07-26 JST
 
 - Restart authority: `git fetch origin --prune` confirmed exact `origin/master = 2716b4b0988ab103ff0ac16d038c1a28af37736e`. Work is isolated on `codex/fff-transition-continuity-narrative-clarity-v1`; the original checkout remains at `cfd645f` with the same seven pre-existing dirty paths and SHA256 identities.

@@ -1,5 +1,22 @@
 # Current Status Packet
 
+## Densou Long-form Series Source Intake v1 — 2026-08-04 JST
+
+| Item | Verified state |
+| --- | --- |
+| Base / branch | `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e` / `codex/densou-series-intake-v1` |
+| Artifact | `fff-densou-series-intake-v1`; source-independent development dependency; not active/default story media |
+| Authority | User is author and rights holder; full internal/private adaptation and modification for series/episodes allowed |
+| Exact source | Missing; no prose bytes, locator, revision, or source span selected |
+| Incremental intake | 16 new attachment records; 10 Densou keyword mentions; 0 source-material matches |
+| Current state | `DEPENDENCY_MISSING`; CLI exit 3 with one exact required input |
+| Arrival state | `CONTINUE` after one UTF-8 source file passes exact-byte inspection |
+| Generated packet | source snapshot, locator/hash receipt, bound authority receipt, versioned source packet, series/season/episode manifests, local readback, evidence manifest |
+| Verification | contract 12/12; tests 10/10; generated packet 13/13; tamper rejection PASS |
+| Closed effects | story adaptation, episode media, external provider, credentials, publication, release, production approval, rights clearance, human acceptance, final canon |
+
+Primary local readback: `artifacts/densou-series-intake/densou-series-intake.html`. Reproduce with `node tools/fff-densou-series-intake.mjs validate-contract --result artifacts/densou-series-intake-result.json` and `node --test tests/fff-densou-series-intake.test.mjs`.
+
 ## Transition Continuity and Narrative Clarity Candidate — 2026-07-26 JST
 
 | Item | Verified state |

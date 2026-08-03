@@ -1,0 +1,36 @@
+{
+  "schema_version": "fff.densou.authorityInput.v1",
+  "authority_record_id": "fff-densou-authority-input-20260804-001",
+  "material_label": "デンソウ",
+  "claimant": "user",
+  "claimant_roles": [
+    "author",
+    "rights_holder"
+  ],
+  "authority_basis": "direct_user_input",
+  "allowed_scope": {
+    "fastfictionfactory_internal_private_development": true,
+    "full_adaptation_and_modification": true,
+    "series_and_episode_development": true
+  },
+  "source_binding": {
+    "status": "unbound",
+    "locator": null,
+    "sha256": null,
+    "revision_id": null
+  },
+  "ai_third_party_mixture": "unknown",
+  "does_not_authorize": [
+    "source invention or completion",
+    "silent source revision selection",
+    "external provider activation",
+    "credentials use",
+    "publication",
+    "release",
+    "production approval",
+    "rights clearance for third-party elements",
+    "human acceptance",
+    "final canon"
+  ],
+  "asserted_at": "2026-08-04"
+}

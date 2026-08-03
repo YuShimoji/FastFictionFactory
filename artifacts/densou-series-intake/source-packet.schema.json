@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.densou.seriesSourcePacket.v1",
+  "title": "Densou Series Source Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_packet_id",
+    "material_label",
+    "revision_id",
+    "source_sha256",
+    "source_receipt_path",
+    "authority_receipt_path",
+    "source_snapshot",
+    "source_spans",
+    "canon_intake_state"
+  ],
+  "properties": {
+    "schema_version": { "const": "fff.densou.seriesSourcePacket.v1" },
+    "source_packet_id": { "type": "string", "minLength": 1 },
+    "material_label": { "const": "デンソウ" },
+    "revision_id": { "type": "string", "pattern": "^densou-[0-9a-f]{16}$" },
+    "source_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "source_receipt_path": { "const": "source-receipt.json" },
+    "authority_receipt_path": { "const": "authority-receipt.json" },
+    "source_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "byte_size", "sha256", "media_type", "encoding"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^source/" },
+        "byte_size": { "type": "integer", "minimum": 1 },
+        "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "media_type": { "enum": ["text/plain", "text/markdown"] },
+        "encoding": { "const": "utf-8" }
+      }
+    },
+    "source_spans": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["span_id", "byte_start", "byte_end", "line_start", "line_end", "status"],
+        "properties": {
+          "span_id": { "type": "string" },
+          "byte_start": { "type": "integer", "minimum": 0 },
+          "byte_end": { "type": "integer", "minimum": 1 },
+          "line_start": { "type": "integer", "minimum": 1 },
+          "line_end": { "type": "integer", "minimum": 1 },
+          "status": { "const": "raw_source_uninterpreted" }
+        }
+      }
+    },
+    "canon_intake_state": { "const": "hash_bound_not_adapted" }
+  }
+}

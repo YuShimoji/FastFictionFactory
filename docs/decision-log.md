@@ -1,5 +1,14 @@
 # Decision Log
 
+## 2026-08-04 — Make Densou source arrival executable without inventing source text
+
+- Decision: record the user as Densou author/rights holder with full internal/private adaptation and modification authority, while keeping the exact source binding unbound until actual bytes arrive.
+- Evidence: prior stop manifest `13921dcbe31cd5164c20c240708d850579101339df5038173c20e74f155da7b8`; incremental intake found 16 new records, 10 control-plane mentions, and 0 source-material matches.
+- Implementation: add `fff-densou-series-intake-v1`, four versioned schemas, `status/init/verify/validate-contract` CLI commands, one local readback, and ten focused tests.
+- Fail-closed rule: empty/unreadable source, weakened authority, hash drift, active review surfaces, non-empty output, and source snapshot tamper must fail. Missing source returns `DEPENDENCY_MISSING`, not a fabricated packet.
+- Authority boundary: this decision does not authorize source invention, revision selection, external provider/credentials, publication, release, production approval, third-party rights clearance, human acceptance, or final canon.
+- Next gate: one exact UTF-8 Densou source file or fragment bundle materialized as one file; if several revisions are supplied, a single explicit revision selection.
+
 ## 2026-07-26 — Preserve accepted imagery while repairing transitions and story comprehension
 
 - Decision: register `fff-private-full-raster-clarity-candidate-001` as the sole new private, default-off successor candidate while keeping `fff-private-previsualization-timeline-001` active/default.

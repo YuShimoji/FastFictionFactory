@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "fff.densou.episodeManifest.v1",
+  "title": "Densou Long-form Episode Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "series_id",
+    "season_id",
+    "episode_id",
+    "working_title",
+    "source_packet_id",
+    "source_revision_id",
+    "source_spans",
+    "target_form",
+    "state",
+    "adaptation",
+    "viewer_artifact"
+  ],
+  "properties": {
+    "schema_version": { "const": "fff.densou.episodeManifest.v1" },
+    "series_id": { "const": "densou-series" },
+    "season_id": { "pattern": "^season-[0-9]{3}$" },
+    "episode_id": { "pattern": "^episode-[0-9]{3}$" },
+    "working_title": { "type": ["string", "null"] },
+    "source_packet_id": { "type": "string", "minLength": 1 },
+    "source_revision_id": { "type": "string", "pattern": "^densou-[0-9a-f]{16}$" },
+    "source_spans": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "target_form": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["format", "target_duration_minutes"],
+      "properties": {
+        "format": { "const": "long_form_episode" },
+        "target_duration_minutes": { "type": ["number", "null"], "minimum": 1 }
+      }
+    },
+    "state": { "const": "source_bound_adaptation_pending" },
+    "adaptation": { "type": ["object", "null"] },
+    "viewer_artifact": { "type": ["object", "null"] }
+  }
+}

@@ -1,5 +1,19 @@
 # Next Terminal Handoff
 
+## Start here — Densou series intake v1 (2026-08-04 JST)
+
+Work on branch `codex/densou-series-intake-v1` from exact base `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`. The primary artifact is `fff-densou-series-intake-v1`; it does not replace the existing CASE_DIGEST active/default or successor artifacts.
+
+Current state is `DEPENDENCY_MISSING`: author/rights-holder and full internal/private adaptation authority are recorded, but no exact Densou prose bytes or locator exists. Incremental intake after the prior stop contains control-plane mentions only. Do not rescan unrelated history, infer prose, combine revisions, or begin episode adaptation without source bytes.
+
+```powershell
+node tools/fff-densou-series-intake.mjs validate-contract --result artifacts/densou-series-intake-result.json
+node --test tests/fff-densou-series-intake.test.mjs
+node tools/fff-densou-series-intake.mjs status --authority artifacts/densou-series-intake/densou-authority-input.json
+```
+
+When one exact UTF-8 source file arrives, run `status --source` and then `init --source <path> --out <new-empty-directory>` followed by `verify --packet <directory>`. Expected state is `CONTINUE`, with one exact source SHA/revision and empty episode adaptation fields. The next slice then selects source spans and builds Episode 1 as a complete local/private long-form artifact. External provider, credentials, publication, release, production approval, rights clearance, human acceptance, and final canon remain closed.
+
 ## Start here — synchronized development handoff (2026-07-24 JST)
 
 `master` was fetched and is at `origin/master`. The verified restart tip is the current `HEAD = origin/master` (run `git log -1 --oneline --decorate` for its exact SHA), ahead/behind `0 / 0`; implementation parent `58049c9` (`Add resumable private preview pipeline`) contains the resumable private pipeline for a creator continuing on another terminal.

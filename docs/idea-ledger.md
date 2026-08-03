@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-08-04 Densou Long-form Series Source Intake v1
+
+- Purpose: remove infrastructure ambiguity from the missing-source gate so exact prose can move directly into a reproducible long-form series packet.
+- Effect: provides hash-bound source, authority, series, season, episode, review, and evidence identities while leaving adaptation fields empty.
+- Requirements: one authoritative UTF-8 `.txt`/`.md` source; a named revision only when multiple versions are supplied; a new or empty repository-external output directory.
+- State: implementation and focused validation complete; product dependency remains `DEPENDENCY_MISSING` because exact source bytes are absent.
+- Owner: user for source bytes/revision choice; repository implementation for packet integrity; future editorial/production owners for adaptation and media.
+- Next move: run `status` → `init` → `verify` on the supplied source, then open one Episode 1 long-form adaptation slice bound only to selected source spans.
+
 ## 2026-07-26 Transition Continuity and Narrative Clarity Candidate
 
 - Purpose: Preserve the Product Owner-accepted nineteen-image raster sequence while removing boundary crop resets and making the silent three-minute story understandable without production-state copy.

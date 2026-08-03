@@ -65,6 +65,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Densou Long-form Series Source Intake (fff-densou-series-intake-v1): review/densou-series-intake.md
       - Private Raster CASE_DIGEST (fff-private-raster-case-digest-001): review/private-raster-case-digest.md
       - Recurring Element Continuity Guideline: production/RECURRING_ELEMENT_CONTINUITY_GUIDELINE.md
       - Japanese Subtitle Layout Guideline: production/JAPANESE_SUBTITLE_LAYOUT_GUIDELINE.md

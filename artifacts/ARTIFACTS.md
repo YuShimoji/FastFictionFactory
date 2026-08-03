@@ -1,5 +1,17 @@
 # Artifacts
 
+## fff-densou-series-intake-v1
+
+- Title: Densou Long-form Series Source Intake v1
+- Purpose: bind one exact Densou source file to a reproducible source packet and open versioned series/season/episode planning without inventing story content.
+- Primary readback: `artifacts/densou-series-intake/densou-series-intake.html`
+- Authority: user author/rights-holder; full Fast Fiction Factory internal/private adaptation and modification; source binding currently unbound.
+- State: `DEPENDENCY_MISSING` until one exact UTF-8 source file or fragment bundle is supplied. Valid arrival state is `CONTINUE`.
+- Executable surface: `tools/fff-densou-series-intake.mjs` with `validate-contract`, `status`, `init`, and `verify`.
+- Verification: tracked contract 12/12 PASS; focused tests 10/10 PASS; generated packet 13/13 PASS; tamper rejection PASS.
+- Boundary: source invention/revision selection, story adaptation, episode media, external provider/credentials, publication, release, production approval, rights clearance, human acceptance, and final canon remain false.
+- Active/default effect: none; existing CASE_DIGEST artifact identities remain unchanged.
+
 ## fff-private-raster-case-digest-001
 
 - Title: Fast Fiction Factory Private Raster CASE_DIGEST
