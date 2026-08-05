@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-documentary-successor-001",
+  "method": "machine coverage audit of the canonical audio-first script; not human comprehension acceptance",
+  "required_topic_count": 7,
+  "covered_topic_count": 7,
+  "coverage_percent": 100,
+  "human_comprehension_verified": false,
+  "topics": [
+    {
+      "topic": "incident",
+      "utterance_ids": [
+        "cd-doc-en-001",
+        "cd-doc-en-002",
+        "cd-doc-en-003",
+        "cd-doc-en-004",
+        "cd-doc-en-018",
+        "cd-doc-en-020"
+      ],
+      "covered": true
+    },
+    {
+      "topic": "investigator",
+      "utterance_ids": [
+        "cd-doc-en-005"
+      ],
+      "covered": true
+    },
+    {
+      "topic": "personal_connection",
+      "utterance_ids": [
+        "cd-doc-en-005",
+        "cd-doc-en-006",
+        "cd-doc-en-009",
+        "cd-doc-en-013",
+        "cd-doc-en-020"
+      ],
+      "covered": true
+    },
+    {
+      "topic": "clue_chain",
+      "utterance_ids": [
+        "cd-doc-en-006",
+        "cd-doc-en-007",
+        "cd-doc-en-008",
+        "cd-doc-en-009",
+        "cd-doc-en-010",
+        "cd-doc-en-014",
+        "cd-doc-en-018"
+      ],
+      "covered": true
+    },
+    {
+      "topic": "ledger",
+      "utterance_ids": [
+        "cd-doc-en-010",
+        "cd-doc-en-011",
+        "cd-doc-en-012",
+        "cd-doc-en-013",
+        "cd-doc-en-016",
+        "cd-doc-en-018",
+        "cd-doc-en-019"
+      ],
+      "covered": true
+    },
+    {
+      "topic": "council_relevance",
+      "utterance_ids": [
+        "cd-doc-en-014",
+        "cd-doc-en-015",
+        "cd-doc-en-016",
+        "cd-doc-en-017",
+        "cd-doc-en-021"
+      ],
+      "covered": true
+    },
+    {
+      "topic": "unresolved_boundary",
+      "utterance_ids": [
+        "cd-doc-en-002",
+        "cd-doc-en-003",
+        "cd-doc-en-007",
+        "cd-doc-en-009",
+        "cd-doc-en-012",
+        "cd-doc-en-013",
+        "cd-doc-en-015",
+        "cd-doc-en-016",
+        "cd-doc-en-017",
+        "cd-doc-en-019",
+        "cd-doc-en-020",
+        "cd-doc-en-021",
+        "cd-doc-en-022"
+      ],
+      "covered": true
+    }
+  ]
+}

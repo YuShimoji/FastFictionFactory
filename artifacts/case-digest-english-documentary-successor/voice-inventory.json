@@ -1,0 +1,94 @@
+{
+  "inventory_scope": "locally_installed_file_output_capable_only",
+  "network_backed_engine_count": 0,
+  "installed_voice_count": 6,
+  "eligible_english_voice_count": 1,
+  "eligible_english_male_voice_count": 0,
+  "candidates_examined": [
+    {
+      "backend": "System.Speech",
+      "name": "Microsoft Zira Desktop",
+      "culture": "en-US",
+      "gender": "Female",
+      "age": "Adult",
+      "enabled": true,
+      "file_output_capable": true,
+      "english_eligible": true,
+      "male_eligible": false
+    }
+  ],
+  "selected_voice": null,
+  "voice_slot_state": "voice_pending_natural_male",
+  "zira_status": "rejected_not_accepted_not_recommended_not_final",
+  "zira_used_for_successor": false,
+  "final_voice_selected": false,
+  "production_voice_approved": false,
+  "voices": [
+    {
+      "backend": "System.Speech",
+      "name": "Microsoft Haruka Desktop",
+      "culture": "ja-JP",
+      "gender": "Female",
+      "age": "Adult",
+      "enabled": true,
+      "file_output_capable": true,
+      "english_eligible": false,
+      "male_eligible": false
+    },
+    {
+      "backend": "System.Speech",
+      "name": "Microsoft Zira Desktop",
+      "culture": "en-US",
+      "gender": "Female",
+      "age": "Adult",
+      "enabled": true,
+      "file_output_capable": true,
+      "english_eligible": true,
+      "male_eligible": false
+    },
+    {
+      "backend": "System.Speech",
+      "name": "Microsoft Ayumi",
+      "culture": "ja-JP",
+      "gender": "Female",
+      "age": "Adult",
+      "enabled": true,
+      "file_output_capable": true,
+      "english_eligible": false,
+      "male_eligible": false
+    },
+    {
+      "backend": "System.Speech",
+      "name": "Microsoft Haruka",
+      "culture": "ja-JP",
+      "gender": "Female",
+      "age": "Adult",
+      "enabled": true,
+      "file_output_capable": true,
+      "english_eligible": false,
+      "male_eligible": false
+    },
+    {
+      "backend": "System.Speech",
+      "name": "Microsoft Ichiro",
+      "culture": "ja-JP",
+      "gender": "Male",
+      "age": "Adult",
+      "enabled": true,
+      "file_output_capable": true,
+      "english_eligible": false,
+      "male_eligible": false
+    },
+    {
+      "backend": "System.Speech",
+      "name": "Microsoft Sayaka",
+      "culture": "ja-JP",
+      "gender": "Female",
+      "age": "Adult",
+      "enabled": true,
+      "file_output_capable": true,
+      "english_eligible": false,
+      "male_eligible": false
+    }
+  ]
+}

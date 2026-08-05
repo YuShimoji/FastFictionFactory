@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-documentary-successor-001",
+  "status": "active",
+  "selected": "CASE_DIGEST",
+  "rejected": [
+    "SHORT_DRAMA",
+    "TRAILER_PV",
+    "EXHAUSTIVE_LINEAR_LORE",
+    "FORCED_CHOICE_CLOSURE"
+  ],
+  "preserved": [
+    "accepted Raster image bytes",
+    "crop, motion, effects and grade",
+    "terminal-frame transitions",
+    "English sole audience explanatory channel",
+    "Japanese debug-only channel",
+    "evidential boundaries",
+    "active SVG/primitive-primary quarantine",
+    "divergent spoken-caption quarantine"
+  ]
+}

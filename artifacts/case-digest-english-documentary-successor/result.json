@@ -1,0 +1,192 @@
+{
+  "schemaVersion": 1,
+  "mission_id": "fff-development-english-documentary-successor-001",
+  "attempt_id": 2,
+  "artifact_id": "fff-case-digest-english-documentary-successor-001",
+  "status": "PASS_VOICE_PENDING_NATURAL_MALE",
+  "source": {
+    "successor_head": "2a2cb5ddc3ca7cdcbf9934a75023325d4bdbf155",
+    "successor_branch": "codex/fff-case-digest-english-documentary-successor-v1-thank-r2",
+    "source_ref": "refs/remotes/origin/codex/fff-case-digest-english-verbatim-bilingual-v1",
+    "source_tip": "2a2cb5ddc3ca7cdcbf9934a75023325d4bdbf155",
+    "product_checkpoint": "dbd3ec00d7f31ba84bebb032f78057780215c338",
+    "source_artifact_id": "fff-case-digest-english-verbatim-bilingual-001",
+    "source_clean_sha256": "5dabf0d31a93f7e56c9ed30cbc8718e453817a770759ae74ee50c37eb0f69b4c",
+    "planner007_used": false
+  },
+  "format": {
+    "selected": "CASE_DIGEST",
+    "rejected": [
+      "SHORT_DRAMA",
+      "TRAILER_PV",
+      "EXHAUSTIVE_LINEAR_LORE",
+      "FORCED_CHOICE_CLOSURE"
+    ],
+    "legalistic_negative_reduction_percent": 42.9
+  },
+  "script": {
+    "section_count": 5,
+    "shot_count": 11,
+    "utterance_count": 22,
+    "word_count": 293,
+    "duration_seconds": 180,
+    "audio_only_topic_coverage_percent": 100,
+    "human_comprehension_verified": false
+  },
+  "facts": {
+    "unsupported_fact_count": 0,
+    "hidden_causal_bridge_count": 0,
+    "unauthorized_canon_count": 0,
+    "altered_evidence_boundary_count": 0
+  },
+  "voice": {
+    "state": "voice_pending_natural_male",
+    "eligible_local_english_male_voice_count": 0,
+    "zira_status": "rejected_not_accepted_not_recommended_not_final",
+    "zira_used": false,
+    "voice_audio_generated": false,
+    "replaceable_voice_slot_complete": true,
+    "final_voice_selected": false
+  },
+  "spoken_caption": {
+    "canonical_field": "spoken_text_en",
+    "identity_sha256": "716708f6f5fb59c16cdb8362665106fc703128128afd16d76578a8a2b4899413",
+    "text_mismatch_count": 0,
+    "timing_mismatch_count": 0,
+    "japanese_debug_coverage_percent": 100,
+    "japanese_burned_audience_text_count": 0
+  },
+  "timing": {
+    "first_narration_slot_seconds": 0.414,
+    "maximum_internal_gap_seconds": 4.002,
+    "final_tail_seconds": 2.001,
+    "narration_caption_overlap_count": 0
+  },
+  "visual": {
+    "accepted_image_change_count": 0,
+    "image_generation_count": 0,
+    "svg_primitive_primary_count": 0,
+    "transition_reset_count": 0,
+    "raw_source_flash_count": 0,
+    "picture_lock_decoded_frame_identity": true,
+    "frame_count": 5400
+  },
+  "review": {
+    "wide_horizontal_overflow_px": 0,
+    "narrow_horizontal_overflow_px": 0,
+    "console_error_count": 0,
+    "page_error_count": 0,
+    "external_request_count": 0,
+    "autoplay": false
+  },
+  "outputs": {
+    "picture_lock": {
+      "path": "picture/case-digest-documentary-picture-lock.mp4",
+      "bytes": 47329123,
+      "sha256": "740677fb90e165820c3c8f89d6ce98d0094be282b2e40bc86266a02e2501bf07",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 0,
+      "subtitle_stream_count": 0
+    },
+    "audience_burned": {
+      "path": "audience/case-digest-documentary-english-burned.mp4",
+      "bytes": 21684137,
+      "sha256": "55d9961e886aa0279b99bea7ae4cbcf6f90707fe064f9afae9de4f2639dd6b97",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 0,
+      "subtitle_stream_count": 0
+    },
+    "bilingual_debug": {
+      "path": "debug/case-digest-documentary-bilingual-debug.mp4",
+      "bytes": 21949995,
+      "sha256": "ed502243ddbccb5ee347cb2ed599e461e3ca385247592279461ad83df20b78cc",
+      "duration_seconds": 180.0,
+      "width": 1280,
+      "height": 720,
+      "frame_rate": "30/1",
+      "frame_count": 5400,
+      "video_codec": "h264",
+      "audio_stream_count": 0,
+      "subtitle_stream_count": 0
+    },
+    "review_html": {
+      "path": "review/case-digest-documentary-successor.html",
+      "bytes": 27266,
+      "sha256": "1096b95411969f922a73f2f1494bf548c74a06222b8c31447d6b0e98c6eb39d3"
+    },
+    "english_srt": {
+      "path": "youtube/case-digest-documentary.en.srt",
+      "bytes": 2545,
+      "sha256": "b549adf3f4995c0cf80d73f25645e38b2f247bf79763a5f69d90b167cd5be855"
+    },
+    "english_vtt": {
+      "path": "youtube/case-digest-documentary.en.vtt",
+      "bytes": 2804,
+      "sha256": "027ba0eacfccf46ab1d1e3d8db972bfd845b96c68675f312f04418af72514a99"
+    },
+    "japanese_srt": {
+      "path": "youtube/case-digest-documentary.ja.srt",
+      "bytes": 2779,
+      "sha256": "35b3c39d8eeb76a8547ed9283aba15f786308f4d50dbb3d1e553c0cb054d1195"
+    },
+    "japanese_vtt": {
+      "path": "youtube/case-digest-documentary.ja.vtt",
+      "bytes": 3038,
+      "sha256": "9b2e4018d6c96f45c1c318705cc65e7692fd89ee23dc3d54a2b51e713b509ab0"
+    }
+  },
+  "boundaries": {
+    "private": true,
+    "default_off": true,
+    "committed": false,
+    "pushed": false,
+    "human_accepted": false,
+    "rights_cleared": false,
+    "production_approved": false,
+    "published": false,
+    "final_voice_selected": false,
+    "final_canon": false
+  },
+  "effects": {
+    "commit_attempt_count": 0,
+    "push_attempt_count": 0,
+    "pr_attempt_count": 0,
+    "merge_attempt_count": 0,
+    "release_attempt_count": 0,
+    "publication_attempt_count": 0,
+    "upload_attempt_count": 0,
+    "access_change_attempt_count": 0,
+    "network_tts_request_count": 0,
+    "credential_touch_count": 0,
+    "install_count": 0,
+    "image_generation_count": 0,
+    "music_sfx_generation_count": 0
+  },
+  "validation": {
+    "targeted_tests": true,
+    "targeted_test_count": 7,
+    "browser": true,
+    "visual_preservation": true,
+    "powershell_syntax": true,
+    "json_parse": true,
+    "global_historical_suite_run": false,
+    "browser_evidence_sha256": "7cf7c93721819efd4ac74938ab699bb3c5ac3c250d111b6a50650a0b6e2e15b9",
+    "visual_evidence_sha256": "f56539ba48e7a2ec9567894004e3bb3599e57df50f7d382ab20f3647f9834dd0",
+    "targeted_tests_sha256": "3bf55433f3877ca15e0e132b251a851c1ae1888341f7c4c5a51a7e9954215c35"
+  },
+  "process_cleanup": {
+    "synchronous_ffmpeg_children_remaining": 0,
+    "playwright_browser_closed": true,
+    "temporary_server_count": 0
+  }
+}

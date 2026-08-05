@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-documentary-successor-001",
+  "selected_format": "CASE_DIGEST",
+  "rejected_formats": [
+    "SHORT_DRAMA",
+    "TRAILER_PV",
+    "EXHAUSTIVE_LINEAR_LORE",
+    "FORCED_CHOICE_CLOSURE"
+  ],
+  "predecessor_legalistic_negative_token_count": 21,
+  "successor_legalistic_negative_token_count": 12,
+  "reduction_count": 9,
+  "reduction_percent": 42.9,
+  "materially_reduced": true,
+  "unsupported_fact_count": 0,
+  "forced_choice_count": 0
+}

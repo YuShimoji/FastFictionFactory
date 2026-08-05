@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-documentary-successor-001",
+  "english_maximum_line_count": 2,
+  "japanese_maximum_line_count": 2,
+  "english_orphan_count": 0,
+  "japanese_kinsoku_violation_count": 0,
+  "rows": [
+    {
+      "utterance_id": "cd-doc-en-001",
+      "english_lines": [
+        "At noon, witnesses reported a bell",
+        "sounding from a tower built without one."
+      ],
+      "japanese_lines": [
+        "正午、鐘のない塔から鐘の音が",
+        "したと、目撃者たちは報告した。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-002",
+      "english_lines": [
+        "The mounting frame stood empty, with no bell",
+        "or other sound-making instrument in view."
+      ],
+      "japanese_lines": [
+        "取付枠は空で、鐘もほかの発音器具も見当たらなかった。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 1
+    },
+    {
+      "utterance_id": "cd-doc-en-003",
+      "english_lines": [
+        "The event is clear in outline: a reported sound,",
+        "an empty frame, and an unidentified source."
+      ],
+      "japanese_lines": [
+        "事件の輪郭は、報告された音、空の枠、",
+        "そして特定されていない音源である。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-004",
+      "english_lines": [
+        "That unanswered contrast begins the case."
+      ],
+      "japanese_lines": [
+        "その未解決の対比から、事件は始まる。"
+      ],
+      "english_line_count": 1,
+      "japanese_line_count": 1
+    },
+    {
+      "utterance_id": "cd-doc-en-005",
+      "english_lines": [
+        "Clock repairer Mira Vale follows the",
+        "evidence because her brother is missing."
+      ],
+      "japanese_lines": [
+        "時計修理師ミラ・ヴェイルが証拠を",
+        "追うのは、兄が失踪しているからだ。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-006",
+      "english_lines": [
+        "A note attributed to him was left",
+        "among the materials on her workbench."
+      ],
+      "japanese_lines": [
+        "兄のものとされるメモが、彼女",
+        "の作業台の品々に残されていた。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-007",
+      "english_lines": [
+        "Beside it rests a brass moth, a small",
+        "object whose purpose is still unknown."
+      ],
+      "japanese_lines": [
+        "そのそばには真鍮の蛾があり、この",
+        "小さな物の用途はまだ分からない。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-008",
+      "english_lines": [
+        "Clocks and records repeat nine seventeen, bringing",
+        "the note, moth, and time into one sequence."
+      ],
+      "japanese_lines": [
+        "時計と記録は九時十七分を繰り返し、",
+        "メモ、蛾、時刻を一つの連なりにする。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-009",
+      "english_lines": [
+        "Together they form a trail of clues,",
+        "though not a map to her brother."
+      ],
+      "japanese_lines": [
+        "それらは手掛かりの道筋を作るが、",
+        "兄の居場所を示す地図ではない。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-010",
+      "english_lines": [
+        "The note leads Mira to a ledger",
+        "divided into two facing columns."
+      ],
+      "japanese_lines": [
+        "メモはミラを、向かい合う二列に分かれた台帳へ導く。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 1
+    },
+    {
+      "utterance_id": "cd-doc-en-011",
+      "english_lines": [
+        "One column records minutes; the",
+        "other records people's names."
+      ],
+      "japanese_lines": [
+        "一方の列には分が、もう一方には人々の名前が記されている。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 1
+    },
+    {
+      "utterance_id": "cd-doc-en-012",
+      "english_lines": [
+        "The visible pages establish those two categories,",
+        "while their purpose remains unresolved."
+      ],
+      "japanese_lines": [
+        "見えるページが示すのは二つの区分",
+        "であり、その用途は未解決のままだ。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-013",
+      "english_lines": [
+        "Their relationship to the missing brother",
+        "is a question the case has not answered."
+      ],
+      "japanese_lines": [
+        "その記録と失踪した兄の関係は、この",
+        "事件がまだ答えていない問いである。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-014",
+      "english_lines": [
+        "From the ledger, the investigation turns",
+        "toward the city council indicated by the note."
+      ],
+      "japanese_lines": [
+        "台帳から、調査はメモが示す市の評議会へ向かう。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 1
+    },
+    {
+      "utterance_id": "cd-doc-en-015",
+      "english_lines": [
+        "The note makes the council relevant, but remains",
+        "an allegation rather than proof of involvement."
+      ],
+      "japanese_lines": [
+        "メモは評議会を調査対象にするが、関与",
+        "の証明ではなく告発の記録にとどまる。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-016",
+      "english_lines": [
+        "The ledger's origin and authenticity",
+        "are also open questions."
+      ],
+      "japanese_lines": [
+        "台帳の出所と真正性も、まだ開かれた問いである。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 1
+    },
+    {
+      "utterance_id": "cd-doc-en-017",
+      "english_lines": [
+        "So the council, the ledger, and the tower occupy",
+        "the same investigation without a proven mechanism."
+      ],
+      "japanese_lines": [
+        "こうして評議会、台帳、塔は、仕組み",
+        "が証明されないまま同じ調査に並ぶ。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-018",
+      "english_lines": [
+        "What is established is the evidence set: reported bell,",
+        "empty frame, note, brass moth, nine seventeen, ledger."
+      ],
+      "japanese_lines": [
+        "確認できる証拠群は、報告された鐘、空の枠、",
+        "メモ、真鍮の蛾、九時十七分、台帳である。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-019",
+      "english_lines": [
+        "The ledger visibly separates minutes from names, but",
+        "the significance of those categories remains uncertain."
+      ],
+      "japanese_lines": [
+        "台帳は分と名前を明確に分けているが、",
+        "その区分の意味は不確かなままだ。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    },
+    {
+      "utterance_id": "cd-doc-en-020",
+      "english_lines": [
+        "The source of the sound and the location",
+        "of Mira's brother are still unknown."
+      ],
+      "japanese_lines": [
+        "音源とミラの兄の居場所は、今も分かっていない。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 1
+    },
+    {
+      "utterance_id": "cd-doc-en-021",
+      "english_lines": [
+        "Any connection between the council and the",
+        "collected evidence is likewise unresolved."
+      ],
+      "japanese_lines": [
+        "評議会と集められた証拠のつながりも、同じく未解決である。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 1
+    },
+    {
+      "utterance_id": "cd-doc-en-022",
+      "english_lines": [
+        "For now, the tower remains an open case,",
+        "defined as much by its limits as its clues."
+      ],
+      "japanese_lines": [
+        "今のところ塔は、手掛かりと同じだけ限界",
+        "によって形づくられた未解決事件である。"
+      ],
+      "english_line_count": 2,
+      "japanese_line_count": 2
+    }
+  ]
+}

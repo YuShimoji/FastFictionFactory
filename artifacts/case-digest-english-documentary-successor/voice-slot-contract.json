@@ -1,0 +1,208 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-documentary-successor-001",
+  "state": "voice_pending_natural_male",
+  "replaceable": true,
+  "accepted_modes": [
+    "per_utterance_pcm_wav",
+    "full_programme_pcm_wav"
+  ],
+  "required_direction": "natural calm English male voice in a lower or mid register",
+  "required_audio": {
+    "codec": "pcm_s16le_or_pcm_s24le",
+    "channels": 1,
+    "sample_rate": 48000,
+    "clipping_count": 0,
+    "music_sfx_allowed": false
+  },
+  "required_provenance": [
+    "speaker_identity",
+    "recording_or_provider_source",
+    "rights_provenance",
+    "clone_authority_when_applicable"
+  ],
+  "transcript_identity_sha256": "716708f6f5fb59c16cdb8362665106fc703128128afd16d76578a8a2b4899413",
+  "first_slot_start_seconds": 0.414,
+  "maximum_internal_gap_seconds": 4.002,
+  "final_tail_seconds": 2.001,
+  "narration_caption_overlap_count": 0,
+  "validation_state": "not_run_no_input",
+  "slots": [
+    {
+      "utterance_id": "cd-doc-en-001",
+      "tts_text_en": "At noon, witnesses reported a bell sounding from a tower built without one.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-001.wav",
+      "start_seconds": 0.414,
+      "end_seconds": 6.322,
+      "maximum_duration_seconds": 5.909
+    },
+    {
+      "utterance_id": "cd-doc-en-002",
+      "tts_text_en": "The mounting frame stood empty, with no bell or other sound-making instrument in view.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-002.wav",
+      "start_seconds": 6.598,
+      "end_seconds": 12.962,
+      "maximum_duration_seconds": 6.364
+    },
+    {
+      "utterance_id": "cd-doc-en-003",
+      "tts_text_en": "The event is clear in outline: a reported sound, an empty frame, and an unidentified source.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-003.wav",
+      "start_seconds": 13.238,
+      "end_seconds": 20.511,
+      "maximum_duration_seconds": 7.273
+    },
+    {
+      "utterance_id": "cd-doc-en-004",
+      "tts_text_en": "That unanswered contrast begins the case.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-004.wav",
+      "start_seconds": 20.787,
+      "end_seconds": 23.587,
+      "maximum_duration_seconds": 2.8
+    },
+    {
+      "utterance_id": "cd-doc-en-005",
+      "tts_text_en": "Clock repairer Mira Vale follows the evidence because her brother is missing.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-005.wav",
+      "start_seconds": 26.0,
+      "end_seconds": 31.455,
+      "maximum_duration_seconds": 5.455
+    },
+    {
+      "utterance_id": "cd-doc-en-006",
+      "tts_text_en": "A note attributed to him was left among the materials on her workbench.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-006.wav",
+      "start_seconds": 32.978,
+      "end_seconds": 38.886,
+      "maximum_duration_seconds": 5.909
+    },
+    {
+      "utterance_id": "cd-doc-en-007",
+      "tts_text_en": "Beside it rests a brass moth, a small object whose purpose is still unknown.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-007.wav",
+      "start_seconds": 40.408,
+      "end_seconds": 46.772,
+      "maximum_duration_seconds": 6.364
+    },
+    {
+      "utterance_id": "cd-doc-en-008",
+      "tts_text_en": "Clocks and records repeat nine seventeen, bringing the note, moth, and time into one sequence.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-008.wav",
+      "start_seconds": 48.294,
+      "end_seconds": 55.112,
+      "maximum_duration_seconds": 6.818
+    },
+    {
+      "utterance_id": "cd-doc-en-009",
+      "tts_text_en": "Together they form a trail of clues, though not a map to her brother.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-009.wav",
+      "start_seconds": 56.634,
+      "end_seconds": 62.998,
+      "maximum_duration_seconds": 6.364
+    },
+    {
+      "utterance_id": "cd-doc-en-010",
+      "tts_text_en": "The note leads Mira to a ledger divided into two facing columns.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-010.wav",
+      "start_seconds": 67.0,
+      "end_seconds": 72.455,
+      "maximum_duration_seconds": 5.455
+    },
+    {
+      "utterance_id": "cd-doc-en-011",
+      "tts_text_en": "One column records minutes; the other records people's names.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-011.wav",
+      "start_seconds": 74.667,
+      "end_seconds": 78.758,
+      "maximum_duration_seconds": 4.091
+    },
+    {
+      "utterance_id": "cd-doc-en-012",
+      "tts_text_en": "The visible pages establish those two categories, while their purpose remains unresolved.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-012.wav",
+      "start_seconds": 80.97,
+      "end_seconds": 86.425,
+      "maximum_duration_seconds": 5.455
+    },
+    {
+      "utterance_id": "cd-doc-en-013",
+      "tts_text_en": "Their relationship to the missing brother is a question the case has not answered.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-013.wav",
+      "start_seconds": 88.637,
+      "end_seconds": 95.001,
+      "maximum_duration_seconds": 6.364
+    },
+    {
+      "utterance_id": "cd-doc-en-014",
+      "tts_text_en": "From the ledger, the investigation turns toward the city council indicated by the note.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-014.wav",
+      "start_seconds": 99.0,
+      "end_seconds": 105.364,
+      "maximum_duration_seconds": 6.364
+    },
+    {
+      "utterance_id": "cd-doc-en-015",
+      "tts_text_en": "The note makes the council relevant, but remains an allegation rather than proof of involvement.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-015.wav",
+      "start_seconds": 108.849,
+      "end_seconds": 115.667,
+      "maximum_duration_seconds": 6.818
+    },
+    {
+      "utterance_id": "cd-doc-en-016",
+      "tts_text_en": "The ledger's origin and authenticity are also open questions.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-016.wav",
+      "start_seconds": 119.152,
+      "end_seconds": 123.243,
+      "maximum_duration_seconds": 4.091
+    },
+    {
+      "utterance_id": "cd-doc-en-017",
+      "tts_text_en": "So the council, the ledger, and the tower occupy the same investigation without a proven mechanism.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-017.wav",
+      "start_seconds": 126.728,
+      "end_seconds": 134.001,
+      "maximum_duration_seconds": 7.273
+    },
+    {
+      "utterance_id": "cd-doc-en-018",
+      "tts_text_en": "What is established is the evidence set: reported bell, empty frame, note, brass moth, nine seventeen, ledger.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-018.wav",
+      "start_seconds": 138.0,
+      "end_seconds": 145.727,
+      "maximum_duration_seconds": 7.727
+    },
+    {
+      "utterance_id": "cd-doc-en-019",
+      "tts_text_en": "The ledger visibly separates minutes from names, but the significance of those categories remains uncertain.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-019.wav",
+      "start_seconds": 147.204,
+      "end_seconds": 154.022,
+      "maximum_duration_seconds": 6.818
+    },
+    {
+      "utterance_id": "cd-doc-en-020",
+      "tts_text_en": "The source of the sound and the location of Mira's brother are still unknown.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-020.wav",
+      "start_seconds": 155.499,
+      "end_seconds": 161.863,
+      "maximum_duration_seconds": 6.364
+    },
+    {
+      "utterance_id": "cd-doc-en-021",
+      "tts_text_en": "Any connection between the council and the collected evidence is likewise unresolved.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-021.wav",
+      "start_seconds": 163.34,
+      "end_seconds": 168.795,
+      "maximum_duration_seconds": 5.455
+    },
+    {
+      "utterance_id": "cd-doc-en-022",
+      "tts_text_en": "For now, the tower remains an open case, defined as much by its limits as its clues.",
+      "expected_relative_path": "accepted-take/utterances/cd-doc-en-022.wav",
+      "start_seconds": 170.272,
+      "end_seconds": 177.999,
+      "maximum_duration_seconds": 7.727
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "artifact_id": "fff-case-digest-english-documentary-successor-001",
+  "canonical_field": "spoken_text_en",
+  "spoken_text_identity_sha256": "716708f6f5fb59c16cdb8362665106fc703128128afd16d76578a8a2b4899413",
+  "utterance_count": 22,
+  "english_tts_input_coverage_percent": 100,
+  "english_spoken_caption_coverage_percent": 100,
+  "japanese_debug_coverage_percent": 100,
+  "spoken_caption_text_mismatch_count": 0,
+  "timing_mismatch_count": 0,
+  "audio_only_semantic_unit_count": 0,
+  "caption_only_semantic_unit_count": 0,
+  "japanese_burned_audience_text_count": 0,
+  "voice_audio_present": false,
+  "voice_slot_state": "voice_pending_natural_male",
+  "surfaces": [
+    "replaceable voice-slot TTS input",
+    "English SRT",
+    "English WebVTT",
+    "English audience burned subtitle",
+    "English bilingual-debug burned subtitle",
+    "local HTML English caption"
+  ]
+}
