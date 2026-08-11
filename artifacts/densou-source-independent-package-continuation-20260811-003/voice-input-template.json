@@ -1,0 +1,12 @@
+{
+  "schema_version": "fff.densou.firstBindVoiceInput.v1",
+  "artifact_id": "fff-densou-first-bind-voice-input-<binding_id_suffix>",
+  "state": "PENDING_ACTUAL_SOURCE",
+  "classification": "NONCANON_PENDING_ACTUAL_SOURCE",
+  "binding_id": null,
+  "source_sha256": null,
+  "units": [],
+  "ready_for_voice_generation": false,
+  "filled_only_by": "generate-first-bind-downstream",
+  "content_inference_allowed": false
+}

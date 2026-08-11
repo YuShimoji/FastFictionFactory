@@ -1,0 +1,20 @@
+{
+  "schema_version": "fff.densou.episodeAudioRepairSourcePacketReceipt.v1",
+  "artifact_id": "fff-densou-s01e01-benchmark-video-slice-audio-repair-001",
+  "packet_root": "C:\\Users\\thank\\Storage\\Media Contents Projects\\FastFictionFactory-runs\\fff-densou-series-episode-quickwin-001-intake-a1",
+  "evidence_manifest_sha256": "f91ebbc602e4058dcfb84c14fc9dff1f1e39337265552e47ee4001419fc84736",
+  "manifest_file_count": 8,
+  "manifest_mismatch_count": 0,
+  "source_binding_status": "bound",
+  "exact_source_locator": "C:\\Users\\thank\\Storage\\Media Contents Projects\\FastFictionFactory-worktrees\\densou-series-intake-v1\\artifacts\\sample-raw-memo.md",
+  "source_snapshot_path": "source/densou-source-original.md",
+  "source_snapshot_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+  "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+  "source_revision_id": "densou-256837a94afd521c",
+  "source_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+  "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+  "provenance_caveat": "The selected primary is a repository file labeled Sample Raw Memo, not a separately delivered Densou original. Supporting structure and Raster media remain derived evidence and are not final canon.",
+  "parent_artifact_id": "fff-densou-s01e01-benchmark-video-slice-001",
+  "source_gate_state": "ACCEPT_UNLOCK",
+  "wait_user": false
+}

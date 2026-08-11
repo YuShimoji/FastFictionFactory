@@ -1,5 +1,78 @@
 # Current Status Packet
 
+## Densou durable source binding vertical slice — 2026-08-11 JST
+
+| Item | Verified state |
+| --- | --- |
+| Work order / contract | `FFF-DENSOU-DURABLE-SOURCE-BINDING-20260811-001` / `fff-densou-durable-source-binding-v1` |
+| Sole authority | ignored vault record `.local/densou-source-vault/v1/scopes/<scope>/bindings/<binding_id>/binding.json`; tracked unbound authority is explicitly non-authoritative |
+| Vault | project-owned, Git-ignored, hash-addressed, non-overwriting; portable locator only; actual external path discarded after bind |
+| One-shot | `bind-source` performs copy, byte/hash/UTF-8 verification, binding, packet init, verify, ingest, and materialize |
+| State machine | `UNBOUND -> BOUND -> VERIFIED -> INGEST_READY -> MATERIALIZED`; `REJECTED` remains terminal for quarantined identities |
+| Resolver | `status/init/verify/resume/materialize` use binding ID and hashes only; different cwd PASS; source path required=false after bind |
+| Source blocker dedup | fingerprint `<binding_id>|actual_densou_original|<condition>`; identical repeat suppresses the question |
+| Legitimate reopen | vault object missing, vault hash mismatch, explicit revision change, explicit canon change only |
+| Non-source dependency | `RESOURCE_DEPENDENCY_MISSING` reports `source_binding_closed=true` and does not reopen the source question |
+| Synthetic binding | `densou-binding-f17e7e10ed3d38ebb035`; 427 bytes; original/canonical SHA-256 `734d5e5a880b72723dd897eec07f3e3b63696591532afb1f7a221740de3b9a68`; `NONCANON_SYNTHETIC_FIXTURE`; `MATERIALIZED` |
+| Material artifact | `fff-densou-durable-source-binding-synthetic-e2e-001`; evidence manifest SHA-256 `e7e858c5841ccd799aa4623c452ba95c2027a7ec43156dffe74708a4ea1ceb24` |
+| Actual Densou requested now | no |
+
+## Historical Densou source recovery boundary — superseded 2026-08-11 JST
+
+| Item | Verified state |
+| --- | --- |
+| Work order / artifact | `FFF-DENSOU-SOURCE-RECOVERY-20260811-001` / `fff-densou-source-recovery-v1` |
+| Historical recovery state | `DEPENDENCY_MISSING`; superseded as the current gate by the durable binding implementation above |
+| Live authority | `artifacts/densou-series-intake/densou-authority-input.json`; `source_binding.status=unbound`; locator/SHA/revision null |
+| Quarantined source | `artifacts/sample-raw-memo.md`; 1080 bytes; SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`; self-label `Sample Raw Memo: The Clockmaker Under Glass`; actual Densou authority=false |
+| Quarantined lineage | packet `fff-densou-series-source-256837a94afd521c`; basis `fff-densou-source-basis-b2cab3adb7c270d8`; Episode `densou-s01e01-bellless-tower`; 180-second silent and audio-repair candidates |
+| Preserved wrong candidate | `fff-densou-s01e01-benchmark-video-slice-audio-repair-001`; recorded SHA-256 `ad692cd068320db02db787a80bef8a0809a0bdcce0fddfad4c5543454cfda94e`; not rebuilt, rehashed, reverified, or resubmitted by this recovery |
+| Independent lane check | Episode 2–6 slots, Episode 1 video, and Haruka voice repair all inherit or hard-code the quarantined source identity; no independent approved Densou material action exists |
+| Gate scope | Prior `dependency_gate` holds the wrong-source candidate and its 540-second/Episode expansion path; current source recovery is not waiting for that candidate's human verdict |
+| Intake | `tools/fff-densou-series-intake.mjs status -> init -> verify`; known wrong source now returns `SOURCE_IDENTITY_REJECTED` |
+| Historical transition | do not execute the transient-path `status -> init -> verify` route; future binding uses the single durable `bind-source` command documented above, and no actual source is requested now |
+
+Machine-readable boundary: `artifacts/densou-source-recovery-20260811-001/source-recovery-boundary.json`.
+
+## Densou Episode 1 180-second audio repair — 2026-08-06 JST
+
+| Item | Verified state |
+| --- | --- |
+| Work order / state | `FFF-DENSOU-180-AUDIO-REPAIR-001` / `AUDIO_REPAIRED_180S_CANDIDATE_READY_FOR_S_REVIEW` |
+| Classification | `PARTIAL_PRODUCTION_SLICE`; 180/720 seconds; Episode completion=false; 540 seconds remain |
+| Source gate | `ACCEPT_UNLOCK`; `WAIT_USER=false`; no other original, locator, version, source, or Episode request |
+| Source identity | `fff-densou-series-source-256837a94afd521c`; `densou-256837a94afd521c`; SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`; basis `fff-densou-source-basis-b2cab3adb7c270d8` |
+| Original | Parent `fff-densou-s01e01-benchmark-video-slice-001`; 6,445,162 bytes; SHA-256 `0254d1946b1b3b6ac0e544ddbdcb8f097a451330f371b629d56a4ddc0c6cc9fc`; unchanged=true |
+| Revision | `fff-densou-s01e01-benchmark-video-slice-audio-repair-001`; 8,385,679 bytes; SHA-256 `ad692cd068320db02db787a80bef8a0809a0bdcce0fddfad4c5543454cfda94e` |
+| Video | Exact parent H.264 essence match; 1280×720; 30 fps; 5400 frames; burned caption picture unchanged |
+| Audio | One AAC stream; 48 kHz stereo; local Microsoft Haruka synthetic narration; final mean/max `-22.2 / -3.0 dBFS` |
+| Subtitle sync | 15/15 existing caption units synthesized; 15/15 audible and inside subtitle windows; atempo 1.0 for all cues; eight pronunciation-only normalizations; dialogue authored 0 |
+| Media health | Full A/V decode PASS; blackdetect events 0; fifteen expected post-cue silence gaps; no scheduled cue is silent |
+| Source mapping | Episode segments 8/8; source claims 12/12; unsupported claims 0; hidden causal bridges 0; new canon claims 0 |
+| S packet | `artifacts/densou-s01e01-benchmark-video-slice-audio-repair-001/s-review-packet.json`; SHA-256 `9135101c2a4463c7778c27d1cc73d111dbcf8dec175afb684d8923e65e3f25ec` |
+| Closed effects | 720-second extension, another Episode/source, final voice, human acceptance, rights, canon, production, publication, upload, sharing, monetization, and release |
+
+Primary local review: `artifacts/densou-s01e01-benchmark-video-slice-audio-repair-001/review.html`. Reproduce with `node tools/fff-densou-episode-audio-repair.mjs verify` and `node --test tests/fff-densou-episode-audio-repair.test.mjs`.
+
+## Densou Episode 1 benchmark video slice — 2026-08-06 JST
+
+| Item | Verified state |
+| --- | --- |
+| Branch / implementation base | `codex/densou-series-intake-v1` / `a98717aa3316b3502f6e0d15da137cfdc06f05c0` before this slice |
+| Current state | `PRIVATE_PLAYABLE_BENCHMARK_VERTICAL_SLICE_READY_FOR_SUPERVISOR_REVIEW`; `WAIT_USER=false` |
+| Source identity | `artifacts/sample-raw-memo.md`; 1080 bytes; SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`; revision `densou-256837a94afd521c` |
+| Source packet / basis | `fff-densou-series-source-256837a94afd521c` / `fff-densou-source-basis-b2cab3adb7c270d8`; accepted packet manifest 8/8 exact |
+| Provenance caveat | Selected primary is labeled `Sample Raw Memo` and is not represented as a separately delivered original; this caveat does not reopen the accepted source gate |
+| Artifact | `fff-densou-s01e01-benchmark-video-slice-001`; private development/previsualization only |
+| Media | H.264 MP4; 1280×720; 30 fps; 5400 frames; 180.000 seconds; intentional silent picture; burned Japanese captions |
+| Source mapping | Episode segments 8/8; source claims 12/12; unsupported claims 0; hidden causal bridges 0 |
+| Benchmark | `fff-benchmark-form-contract-case-digest-v1@1.0.0`; machine checks 10/10, 70/70 machine-available points; BF-11 human comprehension pending; final acceptance unclaimed |
+| Media health | full decode PASS; blackdetect events 0; audio streams 0 by intentional silent-picture policy |
+| Duration gap | 180/720 seconds playable (25%); 540 seconds remain and require a long-form shot/audio plan rather than padding |
+| Closed effects | human creative acceptance, final canon, rights clearance, production approval, publication, upload, sharing, monetization, release, and voice/audio generation |
+
+Primary local review: `artifacts/densou-s01e01-benchmark-video-slice-001/review.html`. Reproduce with `node tools/fff-densou-episode-video.mjs verify` and `node --test tests/fff-densou-episode-video.test.mjs`.
+
 ## Densou Season 1 Episode 1 Quick-win — 2026-08-04 JST
 
 | Item | Verified state |

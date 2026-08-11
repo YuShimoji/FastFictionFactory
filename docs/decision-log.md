@@ -1,5 +1,43 @@
 # Decision Log
 
+## 2026-08-11 — Make ignored durable binding the only active Densou source authority
+
+- Authority decision: a tracked template may define the contract but may not express active `UNBOUND` or `BOUND` authority. The only active authority is the versioned binding record under the ignored project vault; the old authority input and its absolute-locator receipts are legacy fixture/forensic evidence only.
+- Identity decision: derive `binding_id` from semantic role, original byte hash and size, canonical UTF-8 hash, explicit revision/canon labels, and explicit provenance/rights assertions. Do not infer any of those labels or assertions.
+- Storage decision: retain source bytes only at `objects/sha256/<first2>/<hash>/original.bin` beneath the ignored vault. Never track source bytes or store the original absolute path in binding, packet, material, checkpoint, or portable evidence.
+- Continuation decision: `bind-source` is the only command that accepts a path. All subsequent commands use resolver state and binding ID; safe checkpoints permit resume without the path.
+- Dedup decision: record source blocker fingerprints in the local vault and ask at most once per binding/role/condition. Downstream resource failures use a separate blocker class and must not reopen source discovery.
+- Material decision: complete the slice with source-bound ingest plus substantive noncanon synthetic episode/voice seed material. Synthetic proof never implies actual Densou identity, canon, rights, production, publication, or human acceptance.
+- Compatibility decision: leave existing tests and schemas unchanged. Preserve legacy intake behavior only as explicitly non-authoritative fixture/forensic compatibility; all future authoritative downstream work starts from the durable resolver.
+
+## 2026-08-11 — Quarantine the wrong-source Densou lineage and reopen exact intake (historical; superseded)
+
+- Source correction: treat `artifacts/sample-raw-memo.md` as a non-Densou sample, not an authoritative Densou source. Preserve its bytes and every derived artifact as incident evidence; do not reuse, rebuild, resubmit, or promote the lineage.
+- Identity decision: quarantine SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`, packet `fff-densou-series-source-256837a94afd521c`, basis `fff-densou-source-basis-b2cab3adb7c270d8`, Episode `densou-s01e01-bellless-tower`, and recorded audio-repair candidate SHA-256 `ad692cd068320db02db787a80bef8a0809a0bdcce0fddfad4c5543454cfda94e`.
+- Authority decision: the tracked authority template remains unbound. Historical `CONTINUE` and `ACCEPT_UNLOCK` receipts prove how the wrong selection propagated, not actual-Densou semantic identity.
+- Gate decision: the old audio `dependency_gate` is candidate/extension-specific. The current user correction permits source recovery without a verdict on the wrong candidate, while leaving all creative, rights, canon, production, and publication decisions closed.
+- Implementation decision: keep the schemas and tests unchanged. Add one recovery boundary receipt and make the existing intake tool reject the quarantined source during `status`, `init`, and `verify`; allow any different exact authoritative source to use the established non-overwriting path.
+- Historical stop decision: this block stopped at `DEPENDENCY_MISSING` after proving the old transition. The later durable-binding decision above supersedes that state and transition as current authority; retain this text only as incident history and do not turn it into a present source request.
+
+## 2026-08-06 — Repair only the retained 180-second Densou slice with source-bound narration
+
+- Stage-gate decision: honor S `dependency_gate`. Keep classification `PARTIAL_PRODUCTION_SLICE`, Episode completion=false, 180/720 seconds, and block all expansion until S reviews the exact repaired revision. Keep source `ACCEPT_UNLOCK` and `WAIT_USER=false`.
+- Preservation decision: create revision `fff-densou-s01e01-benchmark-video-slice-audio-repair-001`; never overwrite the parent MP4. Stream-copy its H.264 essence and prove original/revision video essence hashes match exactly.
+- Audio decision: use the already-installed Microsoft Haruka Desktop Japanese SAPI voice through a process-local `windir=SystemRoot` expansion fix. Use no network, credentials, provider, install, registry write, or system setting change. Treat this voice as a provisional private technical layer, not final selection or publication-rights clearance.
+- Content decision: synthesize only the fifteen existing burned-caption units with one neutral evidence narrator. Record eight pronunciation-only normalizations (`9:17`, `CASE_DIGEST`, quoted `分`, and quote marks); author zero dialogue and zero new canon claims.
+- Timing decision: start each cue 0.35 seconds after its subtitle appears, require at least 0.35 seconds of tail, cap any pacing compression at 1.15, and fail closed if the cue cannot fit. All fifteen cues fit at atempo 1.0.
+- Health decision: require one AAC 48 kHz stereo stream, full A/V decode, zero blackdetect events, 15/15 audible cue windows, exact subtitle companion bytes, exact source/segment mapping, and honest reporting of intentional post-cue silence.
+- Review decision: state is `AUDIO_REPAIRED_180S_CANDIDATE_READY_FOR_S_REVIEW`. S must return `ACCEPT_REPAIR` or timestamp/cue-bound `REPAIR_REQUIRED`; technical evidence does not supply human pronunciation, pacing, comprehension, visual, rights, canon, production, or publication acceptance.
+
+## 2026-08-06 — Advance the accepted Densou packet as an honest playable benchmark slice
+
+- Authority: use the existing accepted packet after Supervisor `ACCEPT_UNLOCK`; keep `WAIT_USER=false` and do not request or select another source, locator, or version.
+- Source decision: preserve `artifacts/sample-raw-memo.md` at SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`, revision `densou-256837a94afd521c`, packet `fff-densou-series-source-256837a94afd521c`, and basis `fff-densou-source-basis-b2cab3adb7c270d8`. Preserve the Sample Raw Memo provenance caveat and derived-material noncanon boundary.
+- Product decision: materialize `fff-densou-s01e01-benchmark-video-slice-001` as a 180-second, silent, burned-caption, private Episode 1 MP4 using only existing accepted raster resources. Bind every visual update to an Episode segment and only that segment's source claims.
+- Benchmark decision: reuse `fff-benchmark-form-contract-case-digest-v1@1.0.0`. Treat voice as an auxiliary replaceable layer; do not fail or deduct for its absence. Keep BF-11 human first-pass comprehension unscored until review.
+- Long-form decision: record 180/720 seconds as 25% playable coverage and retain a 540-second gap. Do not pad a three-minute visual/cadence contract into a twelve-minute picture lock without a source-span-bound long-form shot and audio plan.
+- Gate decision: technical state is `PRIVATE_PLAYABLE_BENCHMARK_VERTICAL_SLICE_READY_FOR_SUPERVISOR_REVIEW`. No human acceptance, rights clearance, final canon, production approval, publication, upload, sharing, monetization, or release follows from the technical pass.
+
 ## 2026-08-04 — Select the existing repository memo as the Densou private-development basis
 
 - Decision authority: the current user directs the project to treat existing Densou/canon/reference material as sufficient, select it without requesting another locator, and start the long-form series while recording ambiguity honestly.

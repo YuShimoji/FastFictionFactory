@@ -1,0 +1,176 @@
+{
+  "schema_version": "fff.densou.actualSourceProductionPreflight.v1",
+  "artifact_id": "fff-densou-actual-source-production-preflight-20260811-002",
+  "work_order_id": "FFF-DENSOU-ACTUAL-SOURCE-LOCATOR-AND-PREFLIGHT-20260811-002",
+  "classification": "PRODUCTION_SHAPED_INPUT_TEMPLATE_NOT_SOURCE_MATERIAL",
+  "semantic_role": "actual_densou_original",
+  "current_actual_source": {
+    "status": "UNBOUND",
+    "content": null,
+    "locator": null,
+    "canon": null,
+    "rights": null,
+    "source_question_emitted_by_this_artifact": false
+  },
+  "human_only_fields": {
+    "revision_label": {
+      "status": "UNBOUND",
+      "value": null,
+      "owner": "human_caller",
+      "cli_option": "--revision",
+      "inference_allowed": false
+    },
+    "canon_label": {
+      "status": "UNBOUND",
+      "value": null,
+      "owner": "human_caller",
+      "cli_option": "--canon-label",
+      "inference_allowed": false
+    },
+    "provenance_assertion": {
+      "status": "UNBOUND",
+      "value": null,
+      "owner": "human_caller",
+      "cli_option": "--provenance-assertion",
+      "inference_allowed": false
+    },
+    "rights_assertion": {
+      "status": "UNBOUND",
+      "value": null,
+      "owner": "human_caller",
+      "cli_option": "--rights-assertion",
+      "inference_allowed": false
+    }
+  },
+  "resolver_filled_fields": {
+    "binding_id": {
+      "status": "RESOLVER_FILLED_AFTER_BIND",
+      "value": null,
+      "owner": "durable_binding_resolver"
+    },
+    "original_bytes_sha256": {
+      "status": "RESOLVER_FILLED_AFTER_BIND",
+      "value": null,
+      "owner": "durable_binding_resolver"
+    },
+    "byte_size": {
+      "status": "RESOLVER_FILLED_AFTER_BIND",
+      "value": null,
+      "owner": "durable_binding_resolver"
+    },
+    "canonical_utf8_sha256": {
+      "status": "RESOLVER_FILLED_AFTER_BIND",
+      "value": null,
+      "owner": "durable_binding_resolver"
+    },
+    "portable_vault_locator": {
+      "status": "RESOLVER_FILLED_AFTER_BIND",
+      "value": null,
+      "owner": "durable_binding_resolver"
+    },
+    "bound_at": {
+      "status": "RESOLVER_FILLED_AFTER_BIND",
+      "value": null,
+      "owner": "durable_binding_resolver"
+    },
+    "verified_at": {
+      "status": "RESOLVER_FILLED_AFTER_BIND",
+      "value": null,
+      "owner": "durable_binding_resolver"
+    }
+  },
+  "one_shot_bind": {
+    "command_argv": [
+      "node",
+      "tools/fff-densou-durable-source-binding.mjs",
+      "bind-source",
+      "--path",
+      "<one-time-path>",
+      "--revision",
+      "<explicit-revision>",
+      "--canon-label",
+      "<explicit-canon-label>",
+      "--provenance-assertion",
+      "<explicit-provenance>",
+      "--rights-assertion",
+      "<explicit-rights-assertion>"
+    ],
+    "command": "node tools/fff-densou-durable-source-binding.mjs bind-source --path <one-time-path> --revision <explicit-revision> --canon-label <explicit-canon-label> --provenance-assertion <explicit-provenance> --rights-assertion <explicit-rights-assertion>",
+    "external_path_consumed_once": true,
+    "external_path_retained": false,
+    "automatic_continuation": [
+      "BOUND",
+      "VERIFIED",
+      "INGEST_READY",
+      "MATERIALIZED"
+    ]
+  },
+  "checkpoint_resume": {
+    "command_argv": [
+      "node",
+      "tools/fff-densou-durable-source-binding.mjs",
+      "resume",
+      "--binding-id",
+      "<binding_id>"
+    ],
+    "command": "node tools/fff-densou-durable-source-binding.mjs resume --binding-id <binding_id>",
+    "original_path_required": false
+  },
+  "wrong_source_guard": {
+    "recovery_boundary_path": "artifacts/densou-source-recovery-20260811-001/source-recovery-boundary.json",
+    "recovery_boundary_sha256": "4760eda0258d3a50d5b69e2ab41b7bc8c34aed5adf1b8bef530f756bceaa4b50",
+    "rejected_original_bytes_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+    "expected_result": "REJECTED",
+    "reuse_allowed": false
+  },
+  "source_gate_contract": {
+    "blocker_fingerprint": "<binding_id>|actual_densou_original|<condition>",
+    "source_gate_reissued_after_bound_matching_vault": false,
+    "legitimate_reopen_conditions": [
+      "VAULT_OBJECT_MISSING",
+      "VAULT_HASH_MISMATCH",
+      "EXPLICIT_REVISION_CHANGE",
+      "EXPLICIT_CANON_CHANGE"
+    ],
+    "densou_source_locator_missing_after_bound": false
+  },
+  "first_downstream_material": {
+    "automatically_materialized_by_bind_source": true,
+    "schema_version": "fff.densou.bindingDerivedMaterial.v1",
+    "artifact_id_template": "fff-densou-binding-material-<binding_id_suffix>",
+    "portable_target_template": "packages/<binding_id>/noncanon-material.json",
+    "resolver_command_argv": [
+      "node",
+      "tools/fff-densou-durable-source-binding.mjs",
+      "materialize",
+      "--binding-id",
+      "<binding_id>"
+    ],
+    "source_content_policy": "exact_bound_source_derived_only",
+    "canon_status": "NONCANON_PRIVATE_SOURCE_INGEST_MATERIAL"
+  },
+  "consumer_contract": {
+    "ready_for_direct_consumption": true,
+    "preflight_portable_path": "artifacts/densou-actual-source-production-preflight-20260811-002/actual-bind-production-preflight.json",
+    "required_binding_status": "BOUND",
+    "required_minimum_state": "VERIFIED",
+    "reject_legacy_receipt_reinterpretation": true,
+    "reject_synthetic_binding_as_actual": true
+  },
+  "authority_guard": {
+    "durable_contract_path": "artifacts/densou-durable-source-binding/binding-contract.json",
+    "durable_contract_sha256": "30efe0b9f8c166e20054e7018d415b6dc1ce7686e9ca83b2e76cbd04b5c63d81",
+    "sole_authoritative_record": "ignored_local_vault_binding_record",
+    "legacy_packets_authoritative": false
+  },
+  "boundaries": {
+    "actual_source_found_by_this_preflight": false,
+    "synthetic_as_actual_or_canon": false,
+    "canon_inferred": false,
+    "rights_inferred": false,
+    "source_content_invented": false,
+    "human_acceptance_claimed": false,
+    "production_approval_claimed": false,
+    "publication_authorized": false
+  }
+}

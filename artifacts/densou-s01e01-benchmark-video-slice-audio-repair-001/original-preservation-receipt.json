@@ -1,0 +1,21 @@
+{
+  "schema_version": "fff.densou.originalMediaPreservationReceipt.v1",
+  "artifact_id": "fff-densou-s01e01-benchmark-video-slice-audio-repair-001",
+  "parent_artifact_id": "fff-densou-s01e01-benchmark-video-slice-001",
+  "original_media": {
+    "path": "artifacts/densou-s01e01-benchmark-video-slice-001/densou-s01e01-benchmark-video-slice.mp4",
+    "bytes_before": 6445162,
+    "bytes_after": 6445162,
+    "sha256_before": "0254d1946b1b3b6ac0e544ddbdcb8f097a451330f371b629d56a4ddc0c6cc9fc",
+    "sha256_after": "0254d1946b1b3b6ac0e544ddbdcb8f097a451330f371b629d56a4ddc0c6cc9fc",
+    "mtime_utc_before": "2026-08-05T16:36:04.987Z",
+    "mtime_utc_after": "2026-08-05T16:36:04.987Z",
+    "unchanged": true
+  },
+  "video_essence": {
+    "extraction": "ffmpeg stream-copy Annex B H.264",
+    "original_sha256": "d4a7141f34347fecc90d5ba4949889e7c62cf2a7484647480986cf670967e843",
+    "revised_sha256": "d4a7141f34347fecc90d5ba4949889e7c62cf2a7484647480986cf670967e843",
+    "exact_match": true
+  }
+}

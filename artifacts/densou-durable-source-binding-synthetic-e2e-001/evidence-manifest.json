@@ -1,0 +1,28 @@
+{
+  "schema_version": "fff.densou.syntheticBindingEvidenceManifest.v1",
+  "artifact_id": "fff-densou-durable-source-binding-synthetic-e2e-001",
+  "binding_id": "densou-binding-f17e7e10ed3d38ebb035",
+  "generated_at": "2026-08-11T06:30:01.259Z",
+  "files": [
+    {
+      "path": "binding-summary.json",
+      "byte_size": 901,
+      "sha256": "b8f1d44e8ab82f828d67a792947e574df0d435959ba7b24a8d971bb84f0396c7"
+    },
+    {
+      "path": "noncanon-episode-seed.json",
+      "byte_size": 1752,
+      "sha256": "9eb00c3376f9011d689b99b86e35a234a132c4b257d8377a672c662dd95ca84b"
+    },
+    {
+      "path": "README.md",
+      "byte_size": 297,
+      "sha256": "0e000d7d0dbaf5ec3f7bedbf45334afd0e45cd93f0c920393ac90f329342ccc4"
+    },
+    {
+      "path": "source-bound-ingest-packet.json",
+      "byte_size": 1158,
+      "sha256": "ee2333548096688422d79b8294d53d132c071461136c35147b466091bedbd0bd"
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "schema_version": "fff.densou.audioSubtitleSync.v1",
+  "artifact_id": "fff-densou-s01e01-benchmark-video-slice-audio-repair-001",
+  "parent_artifact_id": "fff-densou-s01e01-benchmark-video-slice-001",
+  "timing_policy": {
+    "speech_lead_in_seconds": 0.35,
+    "minimum_tail_seconds": 0.35,
+    "maximum_atempo_ratio": 1.15,
+    "trim_silence_threshold_db": -42,
+    "cue_audibility_max_volume_threshold_db": -30,
+    "final_silence_detection_threshold_db": -45,
+    "final_silence_minimum_duration_seconds": 1
+  },
+  "content_policy": {
+    "subtitle_units_preserved": true,
+    "spoken_content_source": "existing burned-caption units only",
+    "dialogue_authored": false,
+    "pronunciation_only_normalizations": 8,
+    "new_canon_claims": 0
+  },
+  "cues": [
+    {
+      "cue_id": "DA-01",
+      "update_id": "DV-01",
+      "subtitle_start_seconds": 0,
+      "subtitle_end_seconds": 8,
+      "subtitle_text_ja": "正午、ノース・ベル駅上の古い天文台から鐘の音が響く。",
+      "spoken_text_ja": "正午、ノース・ベル駅上の古い天文台から鐘の音が響く。",
+      "pronunciation_normalizations": [],
+      "raw_duration_seconds": 6.34322,
+      "trimmed_duration_seconds": 5.210083,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 0.35,
+      "audio_end_seconds": 5.557125,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 2.442875,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-01",
+        "mean_volume_db": -18.1,
+        "max_volume_db": -4.3,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-02",
+      "update_id": "DV-02",
+      "subtitle_start_seconds": 8,
+      "subtitle_end_seconds": 18,
+      "subtitle_text_ja": "鐘は撤去済みで、既存の派生証拠では取付枠も空とされる。",
+      "spoken_text_ja": "鐘は撤去済みで、既存の派生証拠では取付枠も空とされる。",
+      "pronunciation_normalizations": [],
+      "raw_duration_seconds": 6.242585,
+      "trimmed_duration_seconds": 5.078958,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 8.35,
+      "audio_end_seconds": 13.426188,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 4.573812,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-02",
+        "mean_volume_db": -19.2,
+        "max_volume_db": -4,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-03",
+      "update_id": "DV-03",
+      "subtitle_start_seconds": 18,
+      "subtitle_end_seconds": 30,
+      "subtitle_text_ja": "ミラ・ヴェイルは、ガラスのアーケードで時計を修理している。",
+      "spoken_text_ja": "ミラ・ヴェイルは、ガラスのアーケードで時計を修理している。",
+      "pronunciation_normalizations": [],
+      "raw_duration_seconds": 5.501497,
+      "trimmed_duration_seconds": 4.35075,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 18.35,
+      "audio_end_seconds": 22.69875,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 7.30125,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-03",
+        "mean_volume_db": -19.3,
+        "max_volume_db": -5.5,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-04",
+      "update_id": "DV-04",
+      "subtitle_start_seconds": 30,
+      "subtitle_end_seconds": 42,
+      "subtitle_text_ja": "アーケードは毎晩9:17に閉まり、兄トーマは失踪中である。",
+      "spoken_text_ja": "アーケードは毎晩九時十七分に閉まり、兄トーマは失踪中である。",
+      "pronunciation_normalizations": [
+        {
+          "from": "9:17",
+          "to": "九時十七分",
+          "reason": "spoken-time expansion"
+        }
+      ],
+      "raw_duration_seconds": 6.418186,
+      "trimmed_duration_seconds": 5.238458,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 30.35,
+      "audio_end_seconds": 35.585542,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 6.414458,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-04",
+        "mean_volume_db": -18.6,
+        "max_volume_db": -4.3,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-05",
+      "update_id": "DV-05",
+      "subtitle_start_seconds": 42,
+      "subtitle_end_seconds": 54,
+      "subtitle_text_ja": "トーマが残したとされるメモと真鍮の蛾が、作業場の引き出しにある。",
+      "spoken_text_ja": "トーマが残したとされるメモと真鍮の蛾が、作業場の引き出しにある。",
+      "pronunciation_normalizations": [],
+      "raw_duration_seconds": 6.212245,
+      "trimmed_duration_seconds": 5.036875,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 42.35,
+      "audio_end_seconds": 47.384042,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 6.615958,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-05",
+        "mean_volume_db": -17.9,
+        "max_volume_db": -4,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-06",
+      "update_id": "DV-06",
+      "subtitle_start_seconds": 54,
+      "subtitle_end_seconds": 66,
+      "subtitle_text_ja": "メモと蛾は個人的な手掛かりだが、トーマの所在を示す直接証拠ではない。",
+      "spoken_text_ja": "メモと蛾は個人的な手掛かりだが、トーマの所在を示す直接証拠ではない。",
+      "pronunciation_normalizations": [],
+      "raw_duration_seconds": 6.886757,
+      "trimmed_duration_seconds": 5.750208,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 54.35,
+      "audio_end_seconds": 60.095729,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 5.904271,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-06",
+        "mean_volume_db": -18.3,
+        "max_volume_db": -5,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-07",
+      "update_id": "DV-07",
+      "subtitle_start_seconds": 66,
+      "subtitle_end_seconds": 78,
+      "subtitle_text_ja": "メモは、市の評議会が放棄された人生から『分』を売ると告発する。",
+      "spoken_text_ja": "メモは、市の評議会が放棄された人生から「ふん」を売ると告発する。",
+      "pronunciation_normalizations": [
+        {
+          "from": "『分』",
+          "to": "「ふん」",
+          "reason": "minutes reading"
+        }
+      ],
+      "raw_duration_seconds": 6.248707,
+      "trimmed_duration_seconds": 5.115167,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 66.35,
+      "audio_end_seconds": 71.461458,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 6.538542,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-07",
+        "mean_volume_db": -18.8,
+        "max_volume_db": -4.4,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-08",
+      "update_id": "DV-08",
+      "subtitle_start_seconds": 78,
+      "subtitle_end_seconds": 90,
+      "subtitle_text_ja": "原メモでは、『分』の台帳はアーケード下の施錠棚にある。",
+      "spoken_text_ja": "原メモでは、「ふん」の台帳はアーケード下の施錠棚にある。",
+      "pronunciation_normalizations": [
+        {
+          "from": "『分』",
+          "to": "「ふん」",
+          "reason": "minutes reading"
+        }
+      ],
+      "raw_duration_seconds": 5.464898,
+      "trimmed_duration_seconds": 4.310208,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 78.35,
+      "audio_end_seconds": 82.65575,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 7.34425,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-08",
+        "mean_volume_db": -17.5,
+        "max_volume_db": -4.2,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-09",
+      "update_id": "DV-09",
+      "subtitle_start_seconds": 90,
+      "subtitle_end_seconds": 103,
+      "subtitle_text_ja": "派生CASE_DIGESTでは、台帳に『分』欄と人名欄があると整理される。",
+      "spoken_text_ja": "派生ケース・ダイジェストでは、台帳に「ふん」欄と人名欄があると整理される。",
+      "pronunciation_normalizations": [
+        {
+          "from": "CASE_DIGEST",
+          "to": "ケース・ダイジェスト",
+          "reason": "spoken-project-label expansion"
+        },
+        {
+          "from": "『分』",
+          "to": "「ふん」",
+          "reason": "minutes reading"
+        }
+      ],
+      "raw_duration_seconds": 7.133379,
+      "trimmed_duration_seconds": 5.971208,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 90.35,
+      "audio_end_seconds": 96.319375,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 6.680625,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-09",
+        "mean_volume_db": -18.5,
+        "max_volume_db": -4.3,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-10",
+      "update_id": "DV-10",
+      "subtitle_start_seconds": 103,
+      "subtitle_end_seconds": 116,
+      "subtitle_text_ja": "台帳は証拠、囮、偽記録のいずれでもあり得る。",
+      "spoken_text_ja": "台帳は証拠、囮、偽記録のいずれでもあり得る。",
+      "pronunciation_normalizations": [],
+      "raw_duration_seconds": 5.518413,
+      "trimmed_duration_seconds": 4.384813,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 103.35,
+      "audio_end_seconds": 107.732854,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 8.267146,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-10",
+        "mean_volume_db": -18.2,
+        "max_volume_db": -3.6,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-11",
+      "update_id": "DV-11",
+      "subtitle_start_seconds": 116,
+      "subtitle_end_seconds": 129,
+      "subtitle_text_ja": "鐘を『歯車から漏れる記憶』とみるのは、ミラの仮説にとどまる。",
+      "spoken_text_ja": "鐘を「歯車から漏れる記憶」とみるのは、ミラの仮説にとどまる。",
+      "pronunciation_normalizations": [
+        {
+          "from": "『歯車から漏れる記憶』",
+          "to": "「歯車から漏れる記憶」",
+          "reason": "spoken-quotation normalization"
+        }
+      ],
+      "raw_duration_seconds": 5.720181,
+      "trimmed_duration_seconds": 4.541417,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 116.35,
+      "audio_end_seconds": 120.888021,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 8.111979,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-11",
+        "mean_volume_db": -18,
+        "max_volume_db": -4.1,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-12",
+      "update_id": "DV-12",
+      "subtitle_start_seconds": 129,
+      "subtitle_end_seconds": 141,
+      "subtitle_text_ja": "鐘、9:17、メモ、蛾、台帳、告発を同じ調査表に置く。",
+      "spoken_text_ja": "鐘、九時十七分、メモ、蛾、台帳、告発を同じ調査表に置く。",
+      "pronunciation_normalizations": [
+        {
+          "from": "9:17",
+          "to": "九時十七分",
+          "reason": "spoken-time expansion"
+        }
+      ],
+      "raw_duration_seconds": 8.535692,
+      "trimmed_duration_seconds": 7.375479,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 129.35,
+      "audio_end_seconds": 136.720833,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 4.279167,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-12",
+        "mean_volume_db": -20.1,
+        "max_volume_db": -3.7,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-13",
+      "update_id": "DV-13",
+      "subtitle_start_seconds": 141,
+      "subtitle_end_seconds": 153,
+      "subtitle_text_ja": "同じ調査表にあることは、手掛かり同士の因果関係を証明しない。",
+      "spoken_text_ja": "同じ調査表にあることは、手掛かり同士の因果関係を証明しない。",
+      "pronunciation_normalizations": [],
+      "raw_duration_seconds": 6.401542,
+      "trimmed_duration_seconds": 5.276479,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 141.35,
+      "audio_end_seconds": 146.622229,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 6.377771,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-13",
+        "mean_volume_db": -18,
+        "max_volume_db": -3,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-14",
+      "update_id": "DV-14",
+      "subtitle_start_seconds": 153,
+      "subtitle_end_seconds": 166,
+      "subtitle_text_ja": "9:17、真鍮の蛾、台帳の真正性を、次の調査で確かめる。",
+      "spoken_text_ja": "九時十七分、真鍮の蛾、台帳の真正性を、次の調査で確かめる。",
+      "pronunciation_normalizations": [
+        {
+          "from": "9:17",
+          "to": "九時十七分",
+          "reason": "spoken-time expansion"
+        }
+      ],
+      "raw_duration_seconds": 7.787075,
+      "trimmed_duration_seconds": 6.606083,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 153.35,
+      "audio_end_seconds": 159.951396,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 6.048604,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-14",
+        "mean_volume_db": -19.4,
+        "max_volume_db": -3.8,
+        "threshold_db": -30,
+        "audible": true
+      }
+    },
+    {
+      "cue_id": "DA-15",
+      "update_id": "DV-15",
+      "subtitle_start_seconds": 166,
+      "subtitle_end_seconds": 180,
+      "subtitle_text_ja": "評議会の関与とトーマの所在は、未解決のまま残る。",
+      "spoken_text_ja": "評議会の関与とトーマの所在は、未解決のまま残る。",
+      "pronunciation_normalizations": [],
+      "raw_duration_seconds": 5.403991,
+      "trimmed_duration_seconds": 4.212854,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 166.35,
+      "audio_end_seconds": 170.558646,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 9.441354,
+      "within_subtitle_window": true,
+      "activity": {
+        "cue_id": "DA-15",
+        "mean_volume_db": -18.5,
+        "max_volume_db": -4,
+        "threshold_db": -30,
+        "audible": true
+      }
+    }
+  ],
+  "counts": {
+    "subtitle_cues": 15,
+    "audio_cues": 15,
+    "within_subtitle_window": 15,
+    "audible_cues": 15,
+    "dialogue_units": 0,
+    "pronunciation_normalizations": 8
+  },
+  "passed": true
+}

@@ -1,0 +1,96 @@
+{
+  "schema_version": "fff.densou.firstBindDownstreamPackageContract.v1",
+  "artifact_id": "fff-densou-source-independent-package-continuation-20260811-003",
+  "contract_id": "fff-densou-first-bind-downstream-package-v1",
+  "work_order_id": "FFF-DENSOU-SOURCE-INDEPENDENT-PACKAGE-CONTINUATION-20260811-003",
+  "classification": "EXECUTABLE_SOURCE_INDEPENDENT_DOWNSTREAM_PACKAGE",
+  "state": "PENDING_ACTUAL_SOURCE",
+  "semantic_role": "actual_densou_original",
+  "predecessor": {
+    "path": "artifacts/densou-actual-source-production-preflight-20260811-002/actual-bind-production-preflight.json",
+    "byte_size": 5990,
+    "sha256": "4d79576605f6e9f72ced3082e8d1b05de5ae0897613e41d30568d304f5ed31d6",
+    "artifact_id": "fff-densou-actual-source-production-preflight-20260811-002"
+  },
+  "binding_input_contract": {
+    "authority": "durable_binding_resolver_only",
+    "required_status": "BOUND",
+    "required_state": "MATERIALIZED",
+    "fields": [
+      "binding_id",
+      "original_bytes_sha256",
+      "canonical_utf8_sha256",
+      "byte_size",
+      "revision_label",
+      "canon_label",
+      "portable_vault_locator"
+    ],
+    "absolute_source_path_allowed": false,
+    "legacy_receipt_reinterpretation_allowed": false
+  },
+  "generator": {
+    "cli": "tools/fff-densou-durable-source-binding.mjs",
+    "command": "generate-first-bind-downstream",
+    "resume_command_argv": [
+      "node",
+      "tools/fff-densou-durable-source-binding.mjs",
+      "generate-first-bind-downstream",
+      "--binding-id",
+      "<binding_id>"
+    ],
+    "resume_command": "node tools/fff-densou-durable-source-binding.mjs generate-first-bind-downstream --binding-id <binding_id>",
+    "source_path_required_after_bind": false,
+    "output_root_template": ".local/densou-source-vault/v1/scopes/<scope>/downstream-packages/<artifact_id>"
+  },
+  "output_shape": {
+    "files": [
+      "binding-input.json",
+      "voice-input.json",
+      "episode-seed.json",
+      "render-handoff.json",
+      "review.html",
+      "evidence-manifest.json"
+    ],
+    "binding_input": "binding-input.json",
+    "voice_input": "voice-input.json",
+    "episode_seed": "episode-seed.json",
+    "render_handoff": "render-handoff.json",
+    "local_review": "review.html",
+    "evidence_manifest": "evidence-manifest.json"
+  },
+  "guards": {
+    "wrong_source_recovery_path": "artifacts/densou-source-recovery-20260811-001/source-recovery-boundary.json",
+    "wrong_source_recovery_sha256": "4760eda0258d3a50d5b69e2ab41b7bc8c34aed5adf1b8bef530f756bceaa4b50",
+    "rejected_source_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+    "synthetic_binding_allowed_as_actual": false,
+    "explicit_synthetic_consumer_proof_requires_flag": true,
+    "final_canon_allowed": false,
+    "source_question_emitted_when_pending": false,
+    "source_gate_reissued_after_bound_matching_vault": false,
+    "blocker_fingerprint": "<binding_id>|actual_densou_original|<condition>",
+    "legitimate_reopen_conditions": [
+      "VAULT_OBJECT_MISSING",
+      "VAULT_HASH_MISMATCH",
+      "EXPLICIT_REVISION_CHANGE",
+      "EXPLICIT_CANON_CHANGE"
+    ]
+  },
+  "materialization": {
+    "package_root": "artifacts/densou-source-independent-package-continuation-20260811-003",
+    "voice_template": "voice-input-template.json",
+    "episode_template": "episode-seed-template.json",
+    "render_template": "render-handoff-template.json",
+    "review_surface": "review.html",
+    "direct_consumer_ready": true
+  },
+  "boundaries": {
+    "actual_source_content_present": false,
+    "actual_revision_present": false,
+    "actual_canon_present": false,
+    "actual_rights_present": false,
+    "dummy_content_presented_as_product": false,
+    "synthetic_promoted_to_actual_or_canon": false,
+    "render_performed": false,
+    "publication_authorized": false
+  }
+}

@@ -1,5 +1,52 @@
 # Artifacts
 
+## fff-densou-durable-source-binding-synthetic-e2e-001
+
+- Work order: `FFF-DENSOU-DURABLE-SOURCE-BINDING-20260811-001`.
+- Contract: `fff-densou-durable-source-binding-v1`; sole active authority is an ignored vault binding record, never the tracked legacy unbound template.
+- Synthetic binding: `densou-binding-f17e7e10ed3d38ebb035`; semantic role `actual_densou_original` exercised structurally, while canon label `NONCANON_SYNTHETIC_FIXTURE` and every boundary explicitly deny actual-Densou/canon/rights/production/publication claims.
+- Source identity: 427 bytes; original and canonical UTF-8 SHA-256 `734d5e5a880b72723dd897eec07f3e3b63696591532afb1f7a221740de3b9a68`; external source path not retained.
+- State: `BOUND -> VERIFIED -> INGEST_READY -> MATERIALIZED`; rerun idempotent=true; later status/init/verify resolve by binding ID from a different cwd without a source path.
+- Material: `source-bound-ingest-packet.json` plus `noncanon-episode-seed.json` containing six exact fixture-derived lines, two episode-seed lines, and one voice-input line.
+- Evidence manifest: SHA-256 `e7e858c5841ccd799aa4623c452ba95c2027a7ec43156dffe74708a4ea1ceb24`.
+- Boundaries: synthetic test only; actual Densou requested=false; canon, rights clearance, human acceptance, production approval, publication, upload, and release remain false.
+
+## fff-densou-source-recovery-v1 (historical; superseded)
+
+- Work order: `FFF-DENSOU-SOURCE-RECOVERY-20260811-001`.
+- Boundary receipt: `artifacts/densou-source-recovery-20260811-001/source-recovery-boundary.json`.
+- Historical state: `DEPENDENCY_MISSING`; product progress=false. The durable binding artifact above supersedes this as current source-gate authority; no actual source is requested now.
+- Quarantine: `artifacts/sample-raw-memo.md`, SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`, is wrong-source evidence and cannot be reused for Densou intake. Packet, basis, Episode, video, and audio repair identities derived from it are evidence-only.
+- Preserved candidate: recorded SHA-256 `ad692cd068320db02db787a80bef8a0809a0bdcce0fddfad4c5543454cfda94e`; this recovery did not rebuild, rehash, verify, or resubmit the media.
+- Historical boundary: the transient-path `status -> init -> verify` route is retained for incident evidence only and must not be used as current authority. Future exact bytes, if independently available, enter only through durable `bind-source`; no adaptation, canon, rights, production, or publication follows automatically.
+
+## fff-densou-s01e01-benchmark-video-slice-audio-repair-001
+
+- Title: Densou Season 1 Episode 1 — 180-second Audio Repair
+- Purpose: repair the zero-audio stage gate on the retained 180-second Episode 1 slice without changing picture, source, Episode, duration, or canon scope.
+- Primary review: `artifacts/densou-s01e01-benchmark-video-slice-audio-repair-001/review.html`
+- Revised media: `densou-s01e01-benchmark-video-slice-audio-repair.mp4`; 8,385,679 bytes; SHA-256 `ad692cd068320db02db787a80bef8a0809a0bdcce0fddfad4c5543454cfda94e`; H.264 1280×720 / 30 fps / 180.000 seconds / 5400 frames plus AAC 48 kHz stereo Japanese narration.
+- Parent preservation: original MP4 remains 6,445,162 bytes / SHA-256 `0254d1946b1b3b6ac0e544ddbdcb8f097a451330f371b629d56a4ddc0c6cc9fc`; original/revision H.264 essence SHA-256 both `d4a7141f34347fecc90d5ba4949889e7c62cf2a7484647480986cf670967e843`.
+- Audio/subtitles: local Microsoft Haruka Desktop via Windows SAPI; external calls/credentials/install zero; fifteen existing subtitle units produce 15/15 audible cues inside their burned-caption windows; atempo 1.0; eight pronunciation-only normalizations; dialogue/new canon claims 0.
+- Source identity: packet `fff-densou-series-source-256837a94afd521c`; revision `densou-256837a94afd521c`; source SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`; basis `fff-densou-source-basis-b2cab3adb7c270d8`; provenance caveat retained.
+- Health and mapping: full A/V decode PASS; blackdetect events 0; final mean/max `-22.2 / -3.0 dBFS`; fifteen expected post-cue silence gaps; Episode segments 8/8; source claims 12/12; unsupported/hidden bridges 0/0.
+- S packet: `s-review-packet.json`; SHA-256 `9135101c2a4463c7778c27d1cc73d111dbcf8dec175afb684d8923e65e3f25ec`; axes cover visual grammar, character/scene readability, pacing, subtitles, audio, source fidelity, and expandability.
+- State: `AUDIO_REPAIRED_180S_CANDIDATE_READY_FOR_S_REVIEW`; `PARTIAL_PRODUCTION_SLICE` 180/720; Episode completion=false; remaining 540 seconds blocked until S acceptance.
+- Closed gates: final voice, human acceptance, rights clearance, canon, production approval, 720-second extension, another Episode/source, publication, upload, sharing, monetization, and release remain false.
+
+## fff-densou-s01e01-benchmark-video-slice-001
+
+- Title: Densou Season 1 Episode 1 — Benchmark Video Slice
+- Purpose: materialize the accepted source-bound Episode 1 packet as the largest honest directly playable private slice under the existing three-minute benchmark contract.
+- Primary review: `artifacts/densou-s01e01-benchmark-video-slice-001/review.html`
+- Media: `artifacts/densou-s01e01-benchmark-video-slice-001/densou-s01e01-benchmark-video-slice.mp4`; 6,445,162 bytes; SHA-256 `0254d1946b1b3b6ac0e544ddbdcb8f097a451330f371b629d56a4ddc0c6cc9fc`; H.264 1280×720 / 30 fps / 180.000 seconds / 5400 frames; intentional silent picture with burned Japanese captions.
+- Source identity: `artifacts/sample-raw-memo.md`; SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`; revision `densou-256837a94afd521c`; packet `fff-densou-series-source-256837a94afd521c`; basis `fff-densou-source-basis-b2cab3adb7c270d8`.
+- Provenance: selected primary is labeled `Sample Raw Memo` and is not represented as a separately delivered original. Supporting evidence remains derived and noncanon.
+- Mapping: Episode treatment segments 8/8; source claims 12/12; fifteen continuous evidence-led visual updates; fourteen exact accepted raster images; unsupported claims 0; hidden causal bridges 0.
+- Benchmark and health: `fff-benchmark-form-contract-case-digest-v1@1.0.0`; machine checks 10/10 and 70/70 machine-available points; BF-11 human comprehension pending; full decode PASS; blackdetect events 0; packet manifest 8/8 and package evidence manifest 11/11 exact.
+- State and gap: `PRIVATE_PLAYABLE_BENCHMARK_VERTICAL_SLICE_READY_FOR_SUPERVISOR_REVIEW`; 180/720 seconds playable (25%), 540 seconds remaining. Long-form expansion requires a source-span-bound shot/audio plan rather than padding.
+- Closed gates: human creative acceptance, rights clearance, final canon, production approval, voice/audio generation, publication, upload, sharing, monetization, release, and default-product promotion remain false.
+
 ## fff-densou-series-episode-quickwin-001
 
 - Title: Densou Season 1 Episode 1 — The Bellless Tower Quick-win

@@ -1,0 +1,14 @@
+{
+  "schema_version": "fff.densou.firstBindEpisodeSeed.v1",
+  "artifact_id": "fff-densou-first-bind-episode-seed-<binding_id_suffix>",
+  "state": "PENDING_ACTUAL_SOURCE",
+  "classification": "NONCANON_PENDING_ACTUAL_SOURCE",
+  "binding_id": null,
+  "source_sha256": null,
+  "episode_id": null,
+  "title": null,
+  "source_units": [],
+  "authored_events": [],
+  "final_canon": false,
+  "filled_only_by": "generate-first-bind-downstream"
+}

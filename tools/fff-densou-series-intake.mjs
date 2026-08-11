@@ -8,6 +8,7 @@ const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."
 const artifactRoot = path.join(repoRoot, "artifacts", "densou-series-intake");
 const defaultAuthorityPath = path.join(artifactRoot, "densou-authority-input.json");
 const defaultResultPath = path.join(repoRoot, "artifacts", "densou-series-intake-result.json");
+const sourceRecoveryBoundaryPath = path.join(repoRoot, "artifacts", "densou-source-recovery-20260811-001", "source-recovery-boundary.json");
 const requiredClosedEffects = [
   "source invention or completion",
   "silent source revision selection",
@@ -49,6 +50,24 @@ async function writeJson(filePath, value) {
   await writeFile(filePath, `${JSON.stringify(value, null, 2)}\n`, "utf8");
 }
 
+async function assertSourceNotQuarantined(sourceSha256) {
+  const recovery = await readJson(sourceRecoveryBoundaryPath);
+  const wrongSourceLineage = recovery?.wrong_source_lineage;
+  const wrongSource = wrongSourceLineage?.source;
+  requireCondition(
+    recovery?.schema_version === "fff.densou.sourceRecoveryBoundary.v1" && wrongSourceLineage?.reuse_allowed === false,
+    "SOURCE_INVALID",
+    "source recovery quarantine policy is invalid",
+    2
+  );
+  requireCondition(
+    sourceSha256 !== wrongSource.sha256,
+    "SOURCE_IDENTITY_REJECTED",
+    `source identity is quarantined as wrong-source evidence and cannot be used for Densou intake: ${sourceSha256}`,
+    4
+  );
+}
+
 function parseArgs(argv) {
   const [command = "help", ...rest] = argv;
   const options = {};
@@ -67,6 +86,8 @@ function parseArgs(argv) {
 function validateAuthority(authority, { requireUnbound = true } = {}) {
   const expectedSchema = requireUnbound ? "fff.densou.authorityInput.v1" : "fff.densou.boundAuthorityReceipt.v1";
   requireCondition(authority?.schema_version === expectedSchema, "AUTHORITY_REQUIRED", "unsupported authority schema");
+  requireCondition(authority.authority_role === "legacy_fixture_template_non_authoritative", "AUTHORITY_REQUIRED", "legacy authority template must be explicitly non-authoritative");
+  requireCondition(authority.must_not_be_used_as_active_binding === true, "AUTHORITY_REQUIRED", "legacy authority template active-binding guard missing");
   requireCondition(authority.material_label === "デンソウ", "AUTHORITY_REQUIRED", "authority material label mismatch");
   requireCondition(authority.claimant === "user", "AUTHORITY_REQUIRED", "authority claimant must be user");
   requireCondition(Array.isArray(authority.claimant_roles) && authority.claimant_roles.includes("author") && authority.claimant_roles.includes("rights_holder"), "AUTHORITY_REQUIRED", "author and rights-holder claims are required");
@@ -79,6 +100,7 @@ function validateAuthority(authority, { requireUnbound = true } = {}) {
   }
   if (requireUnbound) {
     requireCondition(authority.source_binding?.status === "unbound", "AUTHORITY_REQUIRED", "tracked authority template must remain unbound");
+    requireCondition(authority.source_binding.authoritative === false, "AUTHORITY_REQUIRED", "tracked authority template must remain non-authoritative");
     requireCondition(authority.source_binding.locator === null && authority.source_binding.sha256 === null && authority.source_binding.revision_id === null, "AUTHORITY_REQUIRED", "unbound authority must not guess source identity");
   }
   return true;
@@ -105,6 +127,8 @@ async function inspectSource(sourcePath) {
   }
   requireCondition(text.trim().length > 0, "SOURCE_INVALID", "source contains no readable text", 2);
   requireCondition(!text.includes("\u0000"), "SOURCE_INVALID", "source contains NUL bytes", 2);
+  const sourceSha256 = sha256(bytes);
+  await assertSourceNotQuarantined(sourceSha256);
   return {
     resolved,
     sourceStat,
@@ -112,13 +136,16 @@ async function inspectSource(sourcePath) {
     text,
     extension: extension === ".markdown" ? ".md" : extension,
     mediaType: extension === ".txt" ? "text/plain" : "text/markdown",
-    sourceSha256: sha256(bytes)
+    sourceSha256
   };
 }
 
 function dependencyStatus(authorityPath, sourcePath = null) {
   return {
     state_code: "DEPENDENCY_MISSING",
+    authority_mode: "legacy_fixture_template_non_authoritative",
+    human_question_authorized: false,
+    authoritative_entrypoint: "tools/fff-densou-durable-source-binding.mjs",
     material_label: "デンソウ",
     authority_path: path.resolve(authorityPath),
     source_locator: sourcePath ? path.resolve(sourcePath) : null,
@@ -147,6 +174,8 @@ async function commandStatus(options) {
   const source = await inspectSource(options.source);
   console.log(JSON.stringify({
     state_code: "CONTINUE",
+    authority_mode: "legacy_fixture_template_non_authoritative",
+    authoritative_transition: false,
     material_label: "デンソウ",
     exact_source_locator: source.resolved,
     source_sha256: source.sourceSha256,
@@ -237,6 +266,8 @@ async function commandInit(options) {
     schema_version: "fff.densou.boundAuthorityReceipt.v1",
     source_binding: {
       status: "bound",
+      authoritative: false,
+      binding_mode: "legacy_fixture_packet_non_authoritative",
       locator: source.resolved,
       sha256: source.sourceSha256,
       revision_id: revisionId
@@ -361,6 +392,8 @@ async function commandInit(options) {
   const verification = await verifyPacket(outputRoot);
   console.log(JSON.stringify({
     state_code: "CONTINUE",
+    authority_mode: "legacy_fixture_template_non_authoritative",
+    authoritative_transition: false,
     output_root: outputRoot,
     source_packet_id: sourcePacketId,
     revision_id: revisionId,
@@ -401,6 +434,7 @@ async function verifyPacket(packetRoot) {
     readJson(path.join(root, "episode-001.json")),
     readFile(path.join(root, "densou-source-readback.html"), "utf8")
   ]);
+  await assertSourceNotQuarantined(packet.source_sha256);
   validateAuthority(authority, { requireUnbound: false });
   requireCondition(authority.source_binding?.status === "bound", "AUTHORITY_REQUIRED", "bound authority receipt missing");
   requireCondition(path.isAbsolute(receipt.exact_source_locator) && authority.source_binding.locator === receipt.exact_source_locator, "AUTHORITY_REQUIRED", "authority/source locator mismatch");
@@ -421,7 +455,8 @@ async function verifyPacket(packetRoot) {
     checks_total: 13,
     source_packet_id: packet.source_packet_id,
     source_sha256: packet.source_sha256,
-    state_code: "CONTINUE"
+    state_code: "CONTINUE",
+    authority_mode: "legacy_fixture_packet_non_authoritative"
   };
 }
 
@@ -470,7 +505,10 @@ async function commandValidateContract(options) {
 }
 
 function printHelp() {
-  console.log(`Densou series source intake v1
+  console.log(`Densou series source intake v1 — legacy fixture/forensic compatibility only
+
+Authoritative future binding entrypoint:
+  node tools/fff-densou-durable-source-binding.mjs bind-source ...
 
 Commands:
   validate-contract [--result <result.json>]

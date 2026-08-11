@@ -1,0 +1,50 @@
+{
+  "schema_version": "fff.densou.durableSourceBindingContract.v1",
+  "contract_id": "fff-densou-durable-source-binding-v1",
+  "semantic_role": "actual_densou_original",
+  "authority_model": {
+    "sole_authoritative_record": "ignored_local_vault_binding_record",
+    "portable_record_locator": ".local/densou-source-vault/v1/scopes/<scope>/bindings/<binding_id>/binding.json",
+    "active_resolver_locator": ".local/densou-source-vault/v1/scopes/<scope>/active-bindings.json",
+    "tracked_unbound_authority_allowed": false,
+    "legacy_authority_input": "artifacts/densou-series-intake/densou-authority-input.json",
+    "legacy_authority_role": "legacy_fixture_template_non_authoritative"
+  },
+  "vault": {
+    "root": ".local/densou-source-vault/v1",
+    "git_policy": "ignored",
+    "object_layout": "objects/sha256/<first2>/<original_bytes_sha256>/original.bin",
+    "source_bytes_tracked": false,
+    "absolute_external_locator_recorded": false,
+    "non_overwriting": true
+  },
+  "binding_required_fields": [
+    "binding_id",
+    "semantic_role",
+    "original_bytes_sha256",
+    "byte_size",
+    "canonical_utf8_sha256",
+    "revision_label",
+    "canon_label",
+    "provenance_assertion",
+    "rights_assertion",
+    "portable_vault_locator",
+    "status",
+    "state",
+    "bound_at",
+    "verified_at"
+  ],
+  "binding_statuses": ["UNBOUND", "BOUND", "REJECTED"],
+  "state_machine": ["UNBOUND", "BOUND", "VERIFIED", "INGEST_READY", "MATERIALIZED"],
+  "source_reopen_conditions": [
+    "VAULT_OBJECT_MISSING",
+    "VAULT_HASH_MISMATCH",
+    "EXPLICIT_REVISION_CHANGE",
+    "EXPLICIT_CANON_CHANGE"
+  ],
+  "blocker_fingerprint": "<binding_id>|actual_densou_original|<condition>",
+  "quarantine_source": "artifacts/densou-source-recovery-20260811-001/source-recovery-boundary.json",
+  "legacy_packets_authoritative": false,
+  "actual_source_requested_by_this_contract": false
+}
+

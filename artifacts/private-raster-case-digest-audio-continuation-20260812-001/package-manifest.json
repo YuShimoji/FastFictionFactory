@@ -1,0 +1,38 @@
+{
+  "schema_version": "fff.privateRasterCaseDigestAudioContinuationManifest.v1",
+  "artifact_id": "fff-private-raster-case-digest-audio-continuation-20260812-001",
+  "parent_artifact_id": "fff-private-raster-case-digest-001",
+  "classification": "PRIVATE_TECHNICAL_AV_REVIEW_CANDIDATE",
+  "content_lane": "NON_DENSOU_CASE_DIGEST",
+  "payload_count": 5,
+  "payloads": [
+    {
+      "path": "private-raster-case-digest-audio-continuation.mp4",
+      "bytes": 18147465,
+      "sha256": "cea496c12c7485a47a992877dc2544bff4be9cd6a1a7c7192574adb7215f0c12"
+    },
+    {
+      "path": "audio-waveform.jpg",
+      "bytes": 18114,
+      "sha256": "9588f622f36a9587ad55c51d3ae235316bad83fa5813d08078ac2db287d92469"
+    },
+    {
+      "path": "audio-sync-receipt.json",
+      "bytes": 14057,
+      "sha256": "2428f2b49ae3ce88a14fe9a2ed6c4b1389c122fc8f9b3092c5d141a46e992f31"
+    },
+    {
+      "path": "review.html",
+      "bytes": 4648,
+      "sha256": "1c5f596782782f7c1403366e43a4ecf82d6a1ad9ffa9cb81cb0dacd273b008e2"
+    },
+    {
+      "path": "README.md",
+      "bytes": 703,
+      "sha256": "c01fdb304c8180a09acb5c574d91ba90867b382be8b04cd4f0c30f76a9c14eb7"
+    }
+  ],
+  "portable": true,
+  "review_entrypoint": "review.html",
+  "media_entrypoint": "private-raster-case-digest-audio-continuation.mp4"
+}

@@ -1,0 +1,7 @@
+SYNTHETIC NONCANON SOURCE-BINDING FIXTURE — THIS IS NOT DENSOU.
+SEED TITLE: Lantern Relay Fixture
+SCENE SEED: A paper lantern emits one test pulse inside an empty calibration room.
+VOICE INPUT: This sentence exists only to prove durable source-bound downstream materialization.
+CANON STATUS: NONCANON SYNTHETIC TEST MATERIAL ONLY.
+RIGHTS NOTE: Created locally for automated pipeline verification; no real-work rights claim.
+

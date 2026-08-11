@@ -1,0 +1,20 @@
+{
+  "schema_version": "fff.densou.firstBindRenderHandoff.v1",
+  "artifact_id": "fff-densou-first-bind-render-handoff-<binding_id_suffix>",
+  "state": "PENDING_ACTUAL_SOURCE",
+  "binding_id": null,
+  "render_ready": false,
+  "required_inputs": [
+    "binding-input.json",
+    "voice-input.json",
+    "episode-seed.json"
+  ],
+  "human_gates": [
+    "canon_selection",
+    "voice_selection",
+    "visual_direction",
+    "production_approval"
+  ],
+  "source_question_required": false,
+  "publication_authorized": false
+}

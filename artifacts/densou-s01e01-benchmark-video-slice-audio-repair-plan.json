@@ -1,0 +1,261 @@
+{
+  "schema_version": "fff.densou.episodeAudioRepairPlan.v1",
+  "work_order_id": "FFF-DENSOU-180-AUDIO-REPAIR-001",
+  "artifact_id": "fff-densou-s01e01-benchmark-video-slice-audio-repair-001",
+  "parent_artifact_id": "fff-densou-s01e01-benchmark-video-slice-001",
+  "episode_id": "densou-s01e01-bellless-tower",
+  "classification": "PARTIAL_PRODUCTION_SLICE",
+  "episode_completion": false,
+  "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+  "source_revision_id": "densou-256837a94afd521c",
+  "source_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+  "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+  "source_path": "artifacts/sample-raw-memo.md",
+  "provenance_caveat": "The selected primary is a repository file labeled Sample Raw Memo, not a separately delivered Densou original. Supporting structure and Raster media remain derived evidence and are not final canon.",
+  "original_media": {
+    "path": "artifacts/densou-s01e01-benchmark-video-slice-001/densou-s01e01-benchmark-video-slice.mp4",
+    "bytes": 6445162,
+    "sha256": "0254d1946b1b3b6ac0e544ddbdcb8f097a451330f371b629d56a4ddc0c6cc9fc",
+    "duration_seconds": 180,
+    "video_codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "frame_rate": 30,
+    "audio_stream_count": 0
+  },
+  "parent_plan_path": "artifacts/densou-s01e01-benchmark-video-slice-plan.json",
+  "parent_package_path": "artifacts/densou-s01e01-benchmark-video-slice-001",
+  "target": {
+    "duration_seconds": 180,
+    "full_episode_duration_seconds": 720,
+    "remaining_seconds": 540,
+    "video_policy": "copy_exact_parent_h264_essence",
+    "subtitle_policy": "preserve_exact_burned_captions_and_companion_ass_srt",
+    "audio_codec": "aac",
+    "audio_sample_rate_hz": 48000,
+    "audio_channels": 2,
+    "audio_bitrate": "192k",
+    "private_previsualization_only": true
+  },
+  "voice": {
+    "engine_id": "windows-system-speech-sapi-local",
+    "voice_name": "Microsoft Haruka Desktop",
+    "culture": "ja-JP",
+    "gender": "Female",
+    "rate": -1,
+    "volume": 100,
+    "delivery_role": "neutral_evidence_narrator",
+    "dialogue_authored": false,
+    "external_call": false,
+    "credentials_required": false,
+    "new_software_install": false,
+    "voice_rights_clearance_claimed": false,
+    "publication_voice_approval": false
+  },
+  "timing_policy": {
+    "speech_lead_in_seconds": 0.35,
+    "minimum_tail_seconds": 0.35,
+    "maximum_atempo_ratio": 1.15,
+    "trim_silence_threshold_db": -42,
+    "cue_audibility_max_volume_threshold_db": -30,
+    "final_silence_detection_threshold_db": -45,
+    "final_silence_minimum_duration_seconds": 1
+  },
+  "cues": [
+    {
+      "cue_id": "DA-01",
+      "update_id": "DV-01",
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "subtitle_text_ja": "正午、ノース・ベル駅上の古い天文台から鐘の音が響く。",
+      "spoken_text_ja": "正午、ノース・ベル駅上の古い天文台から鐘の音が響く。",
+      "pronunciation_normalizations": []
+    },
+    {
+      "cue_id": "DA-02",
+      "update_id": "DV-02",
+      "start_seconds": 8,
+      "end_seconds": 18,
+      "subtitle_text_ja": "鐘は撤去済みで、既存の派生証拠では取付枠も空とされる。",
+      "spoken_text_ja": "鐘は撤去済みで、既存の派生証拠では取付枠も空とされる。",
+      "pronunciation_normalizations": []
+    },
+    {
+      "cue_id": "DA-03",
+      "update_id": "DV-03",
+      "start_seconds": 18,
+      "end_seconds": 30,
+      "subtitle_text_ja": "ミラ・ヴェイルは、ガラスのアーケードで時計を修理している。",
+      "spoken_text_ja": "ミラ・ヴェイルは、ガラスのアーケードで時計を修理している。",
+      "pronunciation_normalizations": []
+    },
+    {
+      "cue_id": "DA-04",
+      "update_id": "DV-04",
+      "start_seconds": 30,
+      "end_seconds": 42,
+      "subtitle_text_ja": "アーケードは毎晩9:17に閉まり、兄トーマは失踪中である。",
+      "spoken_text_ja": "アーケードは毎晩九時十七分に閉まり、兄トーマは失踪中である。",
+      "pronunciation_normalizations": [
+        {
+          "from": "9:17",
+          "to": "九時十七分",
+          "reason": "spoken-time expansion"
+        }
+      ]
+    },
+    {
+      "cue_id": "DA-05",
+      "update_id": "DV-05",
+      "start_seconds": 42,
+      "end_seconds": 54,
+      "subtitle_text_ja": "トーマが残したとされるメモと真鍮の蛾が、作業場の引き出しにある。",
+      "spoken_text_ja": "トーマが残したとされるメモと真鍮の蛾が、作業場の引き出しにある。",
+      "pronunciation_normalizations": []
+    },
+    {
+      "cue_id": "DA-06",
+      "update_id": "DV-06",
+      "start_seconds": 54,
+      "end_seconds": 66,
+      "subtitle_text_ja": "メモと蛾は個人的な手掛かりだが、トーマの所在を示す直接証拠ではない。",
+      "spoken_text_ja": "メモと蛾は個人的な手掛かりだが、トーマの所在を示す直接証拠ではない。",
+      "pronunciation_normalizations": []
+    },
+    {
+      "cue_id": "DA-07",
+      "update_id": "DV-07",
+      "start_seconds": 66,
+      "end_seconds": 78,
+      "subtitle_text_ja": "メモは、市の評議会が放棄された人生から『分』を売ると告発する。",
+      "spoken_text_ja": "メモは、市の評議会が放棄された人生から「ふん」を売ると告発する。",
+      "pronunciation_normalizations": [
+        {
+          "from": "『分』",
+          "to": "「ふん」",
+          "reason": "minutes reading"
+        }
+      ]
+    },
+    {
+      "cue_id": "DA-08",
+      "update_id": "DV-08",
+      "start_seconds": 78,
+      "end_seconds": 90,
+      "subtitle_text_ja": "原メモでは、『分』の台帳はアーケード下の施錠棚にある。",
+      "spoken_text_ja": "原メモでは、「ふん」の台帳はアーケード下の施錠棚にある。",
+      "pronunciation_normalizations": [
+        {
+          "from": "『分』",
+          "to": "「ふん」",
+          "reason": "minutes reading"
+        }
+      ]
+    },
+    {
+      "cue_id": "DA-09",
+      "update_id": "DV-09",
+      "start_seconds": 90,
+      "end_seconds": 103,
+      "subtitle_text_ja": "派生CASE_DIGESTでは、台帳に『分』欄と人名欄があると整理される。",
+      "spoken_text_ja": "派生ケース・ダイジェストでは、台帳に「ふん」欄と人名欄があると整理される。",
+      "pronunciation_normalizations": [
+        {
+          "from": "CASE_DIGEST",
+          "to": "ケース・ダイジェスト",
+          "reason": "spoken-project-label expansion"
+        },
+        {
+          "from": "『分』",
+          "to": "「ふん」",
+          "reason": "minutes reading"
+        }
+      ]
+    },
+    {
+      "cue_id": "DA-10",
+      "update_id": "DV-10",
+      "start_seconds": 103,
+      "end_seconds": 116,
+      "subtitle_text_ja": "台帳は証拠、囮、偽記録のいずれでもあり得る。",
+      "spoken_text_ja": "台帳は証拠、囮、偽記録のいずれでもあり得る。",
+      "pronunciation_normalizations": []
+    },
+    {
+      "cue_id": "DA-11",
+      "update_id": "DV-11",
+      "start_seconds": 116,
+      "end_seconds": 129,
+      "subtitle_text_ja": "鐘を『歯車から漏れる記憶』とみるのは、ミラの仮説にとどまる。",
+      "spoken_text_ja": "鐘を「歯車から漏れる記憶」とみるのは、ミラの仮説にとどまる。",
+      "pronunciation_normalizations": [
+        {
+          "from": "『歯車から漏れる記憶』",
+          "to": "「歯車から漏れる記憶」",
+          "reason": "spoken-quotation normalization"
+        }
+      ]
+    },
+    {
+      "cue_id": "DA-12",
+      "update_id": "DV-12",
+      "start_seconds": 129,
+      "end_seconds": 141,
+      "subtitle_text_ja": "鐘、9:17、メモ、蛾、台帳、告発を同じ調査表に置く。",
+      "spoken_text_ja": "鐘、九時十七分、メモ、蛾、台帳、告発を同じ調査表に置く。",
+      "pronunciation_normalizations": [
+        {
+          "from": "9:17",
+          "to": "九時十七分",
+          "reason": "spoken-time expansion"
+        }
+      ]
+    },
+    {
+      "cue_id": "DA-13",
+      "update_id": "DV-13",
+      "start_seconds": 141,
+      "end_seconds": 153,
+      "subtitle_text_ja": "同じ調査表にあることは、手掛かり同士の因果関係を証明しない。",
+      "spoken_text_ja": "同じ調査表にあることは、手掛かり同士の因果関係を証明しない。",
+      "pronunciation_normalizations": []
+    },
+    {
+      "cue_id": "DA-14",
+      "update_id": "DV-14",
+      "start_seconds": 153,
+      "end_seconds": 166,
+      "subtitle_text_ja": "9:17、真鍮の蛾、台帳の真正性を、次の調査で確かめる。",
+      "spoken_text_ja": "九時十七分、真鍮の蛾、台帳の真正性を、次の調査で確かめる。",
+      "pronunciation_normalizations": [
+        {
+          "from": "9:17",
+          "to": "九時十七分",
+          "reason": "spoken-time expansion"
+        }
+      ]
+    },
+    {
+      "cue_id": "DA-15",
+      "update_id": "DV-15",
+      "start_seconds": 166,
+      "end_seconds": 180,
+      "subtitle_text_ja": "評議会の関与とトーマの所在は、未解決のまま残る。",
+      "spoken_text_ja": "評議会の関与とトーマの所在は、未解決のまま残る。",
+      "pronunciation_normalizations": []
+    }
+  ],
+  "closed_effects": {
+    "episode_720_extension": false,
+    "another_episode": false,
+    "another_source": false,
+    "human_creative_acceptance": false,
+    "rights_clearance": false,
+    "final_canon": false,
+    "production_approval": false,
+    "publication": false,
+    "upload": false,
+    "sharing": false,
+    "monetization": false
+  }
+}

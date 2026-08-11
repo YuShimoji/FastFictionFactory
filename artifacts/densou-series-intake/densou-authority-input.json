@@ -1,6 +1,8 @@
 {
   "schema_version": "fff.densou.authorityInput.v1",
   "authority_record_id": "fff-densou-authority-input-20260804-001",
+  "authority_role": "legacy_fixture_template_non_authoritative",
+  "durable_binding_contract_path": "artifacts/densou-durable-source-binding/binding-contract.json",
   "material_label": "デンソウ",
   "claimant": "user",
   "claimant_roles": [
@@ -15,10 +17,12 @@
   },
   "source_binding": {
     "status": "unbound",
+    "authoritative": false,
     "locator": null,
     "sha256": null,
     "revision_id": null
   },
+  "must_not_be_used_as_active_binding": true,
   "ai_third_party_mixture": "unknown",
   "does_not_authorize": [
     "source invention or completion",

@@ -1,5 +1,69 @@
 # Next Terminal Handoff
 
+## Start here — Densou durable source binding (2026-08-11 JST)
+
+The authoritative entrypoint is `tools/fff-densou-durable-source-binding.mjs`; the tracked old authority input and `tools/fff-densou-series-intake.mjs` are legacy fixture/forensic compatibility only. Do not use old Coordinator overrides or absolute-locator packets for new product work.
+
+No actual Densou is requested now. When one exact source is independently available, bind it once with caller-supplied labels and assertions:
+
+```powershell
+node tools/fff-densou-durable-source-binding.mjs bind-source --path '<one-time-authoritative-path>' --revision '<explicit-revision>' --canon-label '<explicit-canon-label>' --provenance-assertion '<explicit-provenance>' --rights-assertion '<explicit-rights-assertion>'
+```
+
+The command automatically copies to the ignored hash vault, verifies, initializes, ingests, and materializes. Save the returned `binding_id`; later terminals use:
+
+```powershell
+node tools/fff-densou-durable-source-binding.mjs status --binding-id '<binding-id>'
+node tools/fff-densou-durable-source-binding.mjs resume --binding-id '<binding-id>'
+```
+
+Matching bound bytes never require the original path again. Only vault missing/hash mismatch or an explicit revision/canon change may reopen the source gate. A separate missing render/voice/resource dependency must keep `source_binding_closed=true`.
+
+Synthetic proof `densou-binding-f17e7e10ed3d38ebb035` and artifact `fff-densou-durable-source-binding-synthetic-e2e-001` are noncanon test evidence only. Keep the quarantined sample, 180-second candidates, and remaining 540-second wrong-source path unchanged.
+
+## Historical incident record — Densou wrong-source recovery boundary (superseded 2026-08-11 JST)
+
+Recovery identity `fff-densou-source-recovery-v1` captured the pre-binding `DEPENDENCY_MISSING` boundary. It is preserved as incident evidence, not a current handoff or source request. The human verdict on the preserved wrong-source 180-second candidate does not block durable source architecture.
+
+Read `artifacts/densou-source-recovery-20260811-001/source-recovery-boundary.json`. The known sample SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32` and every packet/Episode/video/voice identity derived from it are evidence-only and must not be reused. The recorded candidate SHA-256 `ad692cd068320db02db787a80bef8a0809a0bdcce0fddfad4c5543454cfda94e` remains preserved; do not rebuild, rehash, verify, or resubmit it.
+
+Do not execute the historical transient-path `status -> init -> verify` sequence. The only future authoritative entrypoint is the durable `bind-source` command at the top of this handoff; no actual Densou is requested by this work order. Do not reuse the old quick-win/video/audio tools until a durable binding has produced a new source-bound packet and material identity.
+
+## Start here — Densou Episode 1 180-second audio repair (2026-08-06 JST)
+
+Work on branch `codex/densou-series-intake-v1`. The immediate artifact is `fff-densou-s01e01-benchmark-video-slice-audio-repair-001`, state `AUDIO_REPAIRED_180S_CANDIDATE_READY_FOR_S_REVIEW`. It remains `PARTIAL_PRODUCTION_SLICE` 180/720 and Episode completion=false. Do not expand, change Episode/source, or request another original/locator/version before S disposition.
+
+The parent MP4 remains 6,445,162 bytes at SHA-256 `0254d1946b1b3b6ac0e544ddbdcb8f097a451330f371b629d56a4ddc0c6cc9fc`. The revision is 8,385,679 bytes at SHA-256 `ad692cd068320db02db787a80bef8a0809a0bdcce0fddfad4c5543454cfda94e`; H.264 essence is exact and one AAC 48 kHz stereo Japanese narration stream is added.
+
+Open `artifacts/densou-s01e01-benchmark-video-slice-audio-repair-001/review.html`. The S packet is `s-review-packet.json`, SHA-256 `9135101c2a4463c7778c27d1cc73d111dbcf8dec175afb684d8923e65e3f25ec`. Review visual grammar, character/scene readability, narration/dialogue pacing, subtitle synchronization, audio/pronunciation, source fidelity, and expandability.
+
+```powershell
+node tools/fff-densou-episode-audio-repair.mjs validate-plan
+node tools/fff-densou-episode-audio-repair.mjs verify
+node --test tests/fff-densou-episode-audio-repair.test.mjs tests/fff-densou-episode-video.test.mjs tests/fff-densou-series-episode-quickwin.test.mjs tests/fff-densou-series-intake.test.mjs
+```
+
+Expected technical evidence is A/V verifier 52/52, 15/15 cue windows audible and aligned, parent/package manifests exact, original/video essence exact, source mapping 8/8 and 12/12, full A/V decode PASS, and blackdetect 0. Fifteen silence events are intentional post-cue gaps and every scheduled speech window separately passes audibility.
+
+Exact next event: S returns `ACCEPT_REPAIR` or `REPAIR_REQUIRED` with cue IDs/timestamps. Final voice selection, human acceptance, rights, canon, production, publication, upload, sharing, monetization, release, and the remaining 540 seconds remain closed.
+
+## Start here — Densou Episode 1 benchmark video slice (2026-08-06 JST)
+
+Work on branch `codex/densou-series-intake-v1` from implementation base `a98717aa3316b3502f6e0d15da137cfdc06f05c0`. The active product result is `fff-densou-s01e01-benchmark-video-slice-001`, and its technical state is `PRIVATE_PLAYABLE_BENCHMARK_VERTICAL_SLICE_READY_FOR_SUPERVISOR_REVIEW`; `WAIT_USER=false`.
+
+Do not reopen source selection. The accepted primary remains `artifacts/sample-raw-memo.md`, 1080 bytes, SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`, revision `densou-256837a94afd521c`, packet `fff-densou-series-source-256837a94afd521c`, and basis `fff-densou-source-basis-b2cab3adb7c270d8`. Preserve the caveat that this repository primary is labeled `Sample Raw Memo` and is not represented as a separately delivered original.
+
+Review `artifacts/densou-s01e01-benchmark-video-slice-001/review.html` and the exact MP4. The slice is 180.000 seconds / 5400 frames / 1280×720 / 30 fps, maps Episode segments 8/8 and source claims 12/12, and has zero unsupported claims, hidden causal bridges, blackdetect events, or decode errors. It covers 25% of the 720-second episode; the remaining 540 seconds require an explicit source-span-bound long-form shot/audio plan.
+
+```powershell
+node tools/fff-densou-series-intake.mjs validate-contract --result artifacts/densou-series-intake-result.json
+node tools/fff-densou-series-episode-quickwin.mjs verify --root artifacts/densou-series-episode-quickwin-001
+node tools/fff-densou-episode-video.mjs verify
+node --test tests/fff-densou-series-intake.test.mjs tests/fff-densou-series-episode-quickwin.test.mjs tests/fff-densou-episode-video.test.mjs
+```
+
+The existing Supervisor should review the technical slice. Human creative acceptance, final canon, rights clearance, production approval, voice/audio generation, publication, upload, sharing, monetization, and release remain closed. Do not treat the intentional silent picture as a final audio decision or stretch the current cadence into a twelve-minute picture lock.
+
 ## Start here — Densou Season 1 Episode 1 Quick-win (2026-08-04 JST)
 
 Work on branch `codex/densou-series-intake-v1`. The predecessor before this slice is `5637c9dc945c24a968921d95ddb33f9013deae9e`; resolve the current remote tip at restart. The active Densou development artifact is `fff-densou-series-episode-quickwin-001`; it does not replace existing CASE_DIGEST active/default media.

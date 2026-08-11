@@ -1,0 +1,228 @@
+{
+  "schema_version": "fff.densou.episodeAudioRepairMediaHealth.v1",
+  "artifact_id": "fff-densou-s01e01-benchmark-video-slice-audio-repair-001",
+  "probe": {
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "duration_seconds": 180,
+    "bytes": 8385679,
+    "video_codec": "h264",
+    "pixel_format": "yuvj420p",
+    "width": 1280,
+    "height": 720,
+    "avg_frame_rate": "30/1",
+    "frame_count": 5400,
+    "audio_stream_count": 1,
+    "audio_codec": "aac",
+    "audio_sample_rate_hz": 48000,
+    "audio_channels": 2,
+    "audio_channel_layout": "stereo",
+    "audio_bit_rate": 80272,
+    "subtitle_stream_count": 0
+  },
+  "full_av_decode": {
+    "passed": true,
+    "error_line_count": 0
+  },
+  "blackdetect": {
+    "passed": true,
+    "event_count": 0,
+    "minimum_duration_seconds": 0.2
+  },
+  "silence_check": {
+    "status": "PASS_EXPECTED_GAPS_OUTSIDE_SPEECH_WINDOWS",
+    "threshold_db": -45,
+    "minimum_duration_seconds": 1,
+    "event_count": 15,
+    "events": [
+      {
+        "start_seconds": 5.554854,
+        "end_seconds": 8.355937,
+        "duration_seconds": 2.801083
+      },
+      {
+        "start_seconds": 13.426021,
+        "end_seconds": 18.355521,
+        "duration_seconds": 4.9295
+      },
+      {
+        "start_seconds": 22.698687,
+        "end_seconds": 30.357125,
+        "duration_seconds": 7.658437
+      },
+      {
+        "start_seconds": 35.585062,
+        "end_seconds": 42.355333,
+        "duration_seconds": 6.770271
+      },
+      {
+        "start_seconds": 47.383958,
+        "end_seconds": 54.355812,
+        "duration_seconds": 6.971854
+      },
+      {
+        "start_seconds": 60.095729,
+        "end_seconds": 66.356813,
+        "duration_seconds": 6.261083
+      },
+      {
+        "start_seconds": 71.461458,
+        "end_seconds": 78.356583,
+        "duration_seconds": 6.895125
+      },
+      {
+        "start_seconds": 82.655583,
+        "end_seconds": 90.356958,
+        "duration_seconds": 7.701375
+      },
+      {
+        "start_seconds": 96.318458,
+        "end_seconds": 103.359708,
+        "duration_seconds": 7.04125
+      },
+      {
+        "start_seconds": 107.732833,
+        "end_seconds": 116.355917,
+        "duration_seconds": 8.623083
+      },
+      {
+        "start_seconds": 120.887812,
+        "end_seconds": 129.356042,
+        "duration_seconds": 8.468229
+      },
+      {
+        "start_seconds": 136.720812,
+        "end_seconds": 141.355792,
+        "duration_seconds": 4.634979
+      },
+      {
+        "start_seconds": 146.621854,
+        "end_seconds": 153.35975,
+        "duration_seconds": 6.737896
+      },
+      {
+        "start_seconds": 159.950917,
+        "end_seconds": 166.356063,
+        "duration_seconds": 6.405146
+      },
+      {
+        "start_seconds": 170.5585,
+        "end_seconds": 180.010667,
+        "duration_seconds": 9.452167
+      }
+    ],
+    "policy": "Silence between scheduled narration cues is intentional. Every scheduled speech window must independently pass audibility."
+  },
+  "final_volume": {
+    "mean_volume_db": -22.2,
+    "max_volume_db": -3
+  },
+  "cue_activity": [
+    {
+      "cue_id": "DA-01",
+      "mean_volume_db": -18.1,
+      "max_volume_db": -4.3,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-02",
+      "mean_volume_db": -19.2,
+      "max_volume_db": -4,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-03",
+      "mean_volume_db": -19.3,
+      "max_volume_db": -5.5,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-04",
+      "mean_volume_db": -18.6,
+      "max_volume_db": -4.3,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-05",
+      "mean_volume_db": -17.9,
+      "max_volume_db": -4,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-06",
+      "mean_volume_db": -18.3,
+      "max_volume_db": -5,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-07",
+      "mean_volume_db": -18.8,
+      "max_volume_db": -4.4,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-08",
+      "mean_volume_db": -17.5,
+      "max_volume_db": -4.2,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-09",
+      "mean_volume_db": -18.5,
+      "max_volume_db": -4.3,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-10",
+      "mean_volume_db": -18.2,
+      "max_volume_db": -3.6,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-11",
+      "mean_volume_db": -18,
+      "max_volume_db": -4.1,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-12",
+      "mean_volume_db": -20.1,
+      "max_volume_db": -3.7,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-13",
+      "mean_volume_db": -18,
+      "max_volume_db": -3,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-14",
+      "mean_volume_db": -19.4,
+      "max_volume_db": -3.8,
+      "threshold_db": -30,
+      "audible": true
+    },
+    {
+      "cue_id": "DA-15",
+      "mean_volume_db": -18.5,
+      "max_volume_db": -4,
+      "threshold_db": -30,
+      "audible": true
+    }
+  ],
+  "audible_cue_count": 15,
+  "passed": true
+}

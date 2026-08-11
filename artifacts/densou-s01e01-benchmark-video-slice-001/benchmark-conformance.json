@@ -1,0 +1,150 @@
+{
+  "schema_version": "fff.densou.benchmarkConformance.v1",
+  "artifact_id": "fff-densou-s01e01-benchmark-video-slice-001",
+  "benchmark_contract": "fff-benchmark-form-contract-case-digest-v1@1.0.0",
+  "target_form": "three-minute evidence-led illustrated Episode 1 vertical slice",
+  "status": "TECHNICAL_VERTICAL_SLICE_CONFORMANCE_PASS_HUMAN_COMPREHENSION_PENDING",
+  "score_weights_percent": {
+    "benchmark_form_match": 35,
+    "narrative_comprehension": 30,
+    "visual_grammar": 12,
+    "cadence": 8,
+    "viewer_facing_execution": 7,
+    "caption_accessibility": 4,
+    "voice_technical_layer": 4
+  },
+  "provisional_scoring": {
+    "benchmark_form_match": {
+      "available": 35,
+      "earned": 35
+    },
+    "narrative_comprehension": {
+      "available": 30,
+      "earned": null,
+      "state": "UNSCORED_PENDING_HUMAN_REVIEW"
+    },
+    "visual_grammar": {
+      "available": 12,
+      "earned": 12
+    },
+    "cadence": {
+      "available": 8,
+      "earned": 8
+    },
+    "viewer_facing_execution": {
+      "available": 7,
+      "earned": 7
+    },
+    "caption_accessibility": {
+      "available": 4,
+      "earned": 4,
+      "state": "JAPANESE_ADAPTED_TECHNICAL_PASS"
+    },
+    "voice_technical_layer": {
+      "available": 4,
+      "earned": 4,
+      "state": "DEFERRED_AUXILIARY_NO_DEDUCTION"
+    },
+    "machine_available_points": 70,
+    "machine_earned_points": 70,
+    "final_acceptance_score_claimed": false
+  },
+  "dimensions": [
+    {
+      "id": "BF-01",
+      "dimension": "duration",
+      "measured": "180.000 seconds",
+      "requirement": "150-210; target 180",
+      "status": "PASS"
+    },
+    {
+      "id": "BF-02",
+      "dimension": "anomaly hook",
+      "measured": "incident 0.0; contradiction 8.0 seconds",
+      "requirement": "anomaly <=8",
+      "status": "PASS"
+    },
+    {
+      "id": "BF-03",
+      "dimension": "investigator and personal stake",
+      "measured": "investigator 18.0; personal stake 30.0 seconds",
+      "requirement": "both <=35",
+      "status": "PASS"
+    },
+    {
+      "id": "BF-04",
+      "dimension": "clue chain start",
+      "measured": "42.0 seconds",
+      "requirement": "<=45",
+      "status": "PASS"
+    },
+    {
+      "id": "BF-05",
+      "dimension": "evidence turn",
+      "measured": "90.0 seconds; one ledger structure turn",
+      "requirement": "65-110; count 1",
+      "status": "PASS"
+    },
+    {
+      "id": "BF-06",
+      "dimension": "institutional relevance",
+      "measured": "66.0 seconds; allegation boundary retained",
+      "requirement": "<=125",
+      "status": "PASS"
+    },
+    {
+      "id": "BF-07",
+      "dimension": "unresolved close",
+      "measured": "153.0-180.0; forced solutions 0",
+      "requirement": "start >=145; end <=180",
+      "status": "PASS"
+    },
+    {
+      "id": "BF-08",
+      "dimension": "visual evidence updates",
+      "measured": "15 updates; maximum gap 14.0 seconds",
+      "requirement": ">=4; max gap <=18",
+      "status": "PASS"
+    },
+    {
+      "id": "BF-09",
+      "dimension": "caption unit",
+      "measured": "Japanese adaptation; max 37 visible characters; 15 authored-break-free units",
+      "requirement": "language-adapted compact unit and auto-wrap",
+      "status": "ADAPTED_PASS"
+    },
+    {
+      "id": "BF-10",
+      "dimension": "epistemic repetition",
+      "measured": "reported / derived / allegation / theory / unresolved boundaries remain distinct",
+      "requirement": "<=4 redundant phrases",
+      "status": "PASS"
+    },
+    {
+      "id": "BF-11",
+      "dimension": "audio-independent comprehension",
+      "measured": "machine topic presence 7/7; human first-pass not performed",
+      "requirement": "human first-pass 7 topics",
+      "status": "PENDING_HUMAN_REVIEW"
+    }
+  ],
+  "coverage": {
+    "episode_segments": "8/8",
+    "source_claims": "12/12",
+    "unsupported_claim_count": 0,
+    "hidden_causal_bridge_count": 0
+  },
+  "full_episode_gap": {
+    "current_playable_seconds": 180,
+    "target_seconds": 720,
+    "remaining_seconds": 540,
+    "playable_duration_coverage_percent": 25,
+    "reason_not_padded": "The current accepted Raster/cadence contract is a 180-second CASE_DIGEST lineage. Padding it to 720 seconds without a long-form shot and audio plan would manufacture picture-lock confidence and fail the cadence objective."
+  },
+  "voice_policy": {
+    "role": "auxiliary_replaceable_layer",
+    "absent_without_failure_or_deduction": true,
+    "audio_stream_count": 0
+  },
+  "final_acceptance_claimed": false
+}

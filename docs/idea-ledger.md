@@ -1,5 +1,41 @@
 # Idea Ledger
 
+## 2026-08-11 Densou durable source binding
+
+- Purpose: eliminate recurring source/resource questions by converting one external-path encounter into a durable local identity and resumable state machine.
+- Effect: adds one-shot binding, ignored hash vault, sole-authority resolver, safe checkpoints, differential blocker fingerprints, no-repeat status, source-bound ingest, and a first substantive noncanon material artifact.
+- Requirements: future real binding supplies one path once plus explicit revision, canon, provenance, and rights assertion values. Vault bytes and hashes must remain available; source changes require an explicit new decision rather than silent override.
+- State: implementation and synthetic E2E are `MATERIALIZED`; actual Densou remains unrequested and unbound; wrong-source/180/540 lineages remain evidence-only.
+- Owner: repository owns resolver, vault contract, checkpointing, dedup, and deterministic materialization; the caller owns future explicit source labels/assertions; later creative, rights, canon, production, and publication decisions remain separate.
+- Next move: when actual Densou is independently available, run the single documented `bind-source` command once. Thereafter use `status` or `resume` by binding ID; do not ask for the path again unless a legitimate differential condition occurs.
+
+## 2026-08-11 Densou source recovery boundary (historical; superseded)
+
+- Purpose: recover from the wrong-source incident without destroying evidence or inventing actual Densou material.
+- Effect: records the exact provenance chain, quarantines the known sample identity from intake reuse, separates the candidate-specific human review hold from source recovery, and leaves an executable `status -> init -> verify` path.
+- Historical requirements: the old route required an exact locator, bytes, revision choice, and empty packet directory. This is retained only to explain the incident boundary; SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32` and all derived identities remain excluded.
+- State: historical `DEPENDENCY_MISSING`, superseded by the durable binding implementation; wrong-source evidence remains preserved.
+- Owner: repository recovery guard and provenance receipt remain evidence; the durable resolver now owns future continuation and no source is requested in this work order.
+- Next move: do not run the old transient-path sequence. If a future exact source is independently available, use the one-shot durable `bind-source` command once; later commands resolve by binding ID.
+
+## 2026-08-06 Densou Episode 1 180-second audio repair
+
+- Purpose: remove the zero-audio stage-gate on the existing 180-second candidate without expanding duration, Episode, source, canon, or visual scope.
+- Effect: adds one exact H.264-preserving A/V revision, local Japanese synthetic narration for all fifteen burned-caption units, cue-to-audio timing evidence, waveform/contact-sheet review evidence, media health, original preservation receipt, and seven-axis S packet.
+- Requirements: retain the source packet/basis/revision, parent MP4 bytes, burned subtitle picture, 8/8 segment and 12/12 claim mapping, provenance caveat, and `PARTIAL_PRODUCTION_SLICE` classification. Use no external call, credentials, install, invented dialogue, or 720-second expansion.
+- State: `AUDIO_REPAIRED_180S_CANDIDATE_READY_FOR_S_REVIEW`; A/V verifier 52/52, cues audible/in-window 15/15, full decode PASS, black events 0, original/video essence exact. Human pronunciation, pacing, comprehension, visual, voice, rights, canon, production, and publication review remains pending.
+- Owner: repository implementation owns exact media/evidence and reproducibility; the same S owns the immediate repaired-candidate stage gate; later authorized creative/rights/production owners retain their separate decisions.
+- Next move: S opens the exact revised MP4/review and returns `ACCEPT_REPAIR` or `REPAIR_REQUIRED` with cue IDs/timestamps across visual grammar, character/scene readability, dialogue/narration pacing, subtitles, audio, source fidelity, and expandability. Do not begin the remaining 540 seconds before acceptance.
+
+## 2026-08-06 Densou Episode 1 benchmark video slice
+
+- Purpose: turn the accepted hash-bound Episode 1 packet into the largest honest directly playable slice possible under the existing three-minute benchmark contract.
+- Effect: adds a deterministic plan/builder/verifier, a 180-second H.264 MP4, burned Japanese captions, contact sheet, offline review, source/segment map, benchmark receipt, media-health receipt, and exact evidence manifest. All eight episode segments and twelve source claims are represented without adding story facts.
+- Requirements: preserve source revision `densou-256837a94afd521c` and packet/basis identities; use accepted raster assets by exact hash; keep Sample Raw Memo provenance visible; keep unsupported claims and hidden causal bridges at zero; keep the artifact private and noncanon.
+- State: `PRIVATE_PLAYABLE_BENCHMARK_VERTICAL_SLICE_READY_FOR_SUPERVISOR_REVIEW`; 180/720 seconds playable (25%), with 540 seconds remaining. Machine benchmark checks and media decode/black checks pass; human BF-11 comprehension remains pending.
+- Owner: repository implementation for deterministic media/evidence integrity; existing Supervisor review for technical disposition; a later authorized creative/production owner for long-form shot/audio planning and human acceptance.
+- Next move: review the exact MP4/HTML and its segment/source map. If technically accepted, expand the remaining 540 seconds from a source-span-bound long-form shot and audio plan; do not pad, reopen source selection, or infer final canon/rights/production/publication approval.
+
 ## 2026-08-04 Densou Season 1 Episode 1 Quick-win
 
 - Purpose: turn the newly authorized existing repository basis into the first coherent long-form Densou episode/season path without pretending that a separately delivered original exists.

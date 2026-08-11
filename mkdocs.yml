@@ -65,6 +65,8 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Densou Episode 1 Audio Repair (fff-densou-s01e01-benchmark-video-slice-audio-repair-001): review/densou-s01e01-benchmark-video-slice-audio-repair.md
+      - Densou Episode 1 Benchmark Video Slice (fff-densou-s01e01-benchmark-video-slice-001): review/densou-s01e01-benchmark-video-slice.md
       - Densou Season 1 Episode 1 Quick-win (fff-densou-series-episode-quickwin-001): review/densou-series-episode-quickwin.md
       - Densou Long-form Series Source Intake (fff-densou-series-intake-v1): review/densou-series-intake.md
       - Private Raster CASE_DIGEST (fff-private-raster-case-digest-001): review/private-raster-case-digest.md

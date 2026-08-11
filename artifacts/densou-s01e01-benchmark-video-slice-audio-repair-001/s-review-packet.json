@@ -1,0 +1,55 @@
+{
+  "schema_version": "fff.densou.supervisorAudioRepairReviewPacket.v1",
+  "work_order_id": "FFF-DENSOU-180-AUDIO-REPAIR-001",
+  "artifact_id": "fff-densou-s01e01-benchmark-video-slice-audio-repair-001",
+  "parent_artifact_id": "fff-densou-s01e01-benchmark-video-slice-001",
+  "classification": "PARTIAL_PRODUCTION_SLICE",
+  "episode_completion": false,
+  "state": "AUDIO_REPAIRED_180S_CANDIDATE_READY_FOR_S_REVIEW",
+  "review_media_path": "artifacts/densou-s01e01-benchmark-video-slice-audio-repair-001/densou-s01e01-benchmark-video-slice-audio-repair.mp4",
+  "source_binding": {
+    "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+    "source_revision_id": "densou-256837a94afd521c",
+    "source_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+    "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+    "provenance_caveat": "The selected primary is a repository file labeled Sample Raw Memo, not a separately delivered Densou original. Supporting structure and Raster media remain derived evidence and are not final canon."
+  },
+  "review_axes": {
+    "visual_grammar": {
+      "technical_evidence": "H.264 essence exact match d4a7141f34347fecc90d5ba4949889e7c62cf2a7484647480986cf670967e843",
+      "human_question": "Does the retained raster grammar remain legible when heard with narration?"
+    },
+    "character_scene_readability": {
+      "technical_evidence": "15/15 existing visual updates and burned captions retained; no picture or source-map change",
+      "human_question": "Are Mira, Toma, Council, ledger, moth, and tower roles readable without adding unsupported causality?"
+    },
+    "dialogue_pacing": {
+      "technical_evidence": "15/15 narration cues fit and are audible inside subtitle windows; dialogue units intentionally 0",
+      "human_question": "Is the neutral narration pacing natural, and is the absence of invented dialogue appropriate?"
+    },
+    "subtitles": {
+      "technical_evidence": "15/15 cue-window matches; burned subtitle picture essence unchanged; pronunciation-only normalizations 8",
+      "human_question": "Do spoken phrases and burned Japanese captions feel synchronized and readable?"
+    },
+    "audio": {
+      "technical_evidence": "aac 48000 Hz 2ch; full A/V decode PASS; audible cues 15/15; max -3 dBFS",
+      "human_question": "Are pronunciation, synthetic voice character, level, and silence gaps acceptable for this private repair candidate?"
+    },
+    "source_fidelity": {
+      "technical_evidence": "8/8 Episode segments, 12/12 source claims, unsupported/hidden bridges 0/0, new canon claims 0",
+      "human_question": "Does the audible delivery preserve allegation, theory, derived evidence, and unresolved boundaries?"
+    },
+    "expandability": {
+      "technical_evidence": "180/720 seconds; remaining 540 seconds; Episode completion=false",
+      "human_question": "Does this repaired 180-second form justify later long-form planning without treating it as Episode completion?"
+    }
+  },
+  "limitations": [
+    "Local Microsoft Haruka synthetic narration is a private technical review layer, not a final voice selection or publication-rights clearance.",
+    "No dialogue was authored because the accepted 15-unit script contains evidence narration rather than character dialogue.",
+    "Human pronunciation, pacing, comprehension, visual, rights, canon, production, and publication acceptance remain pending.",
+    "The artifact remains 180/720 seconds; extension is prohibited until this exact repair passes S."
+  ],
+  "exact_next_s_event": "S opens review.html and the exact revised MP4, reviews the seven axes, then returns ACCEPT_REPAIR or REPAIR_REQUIRED with cue IDs/timestamps. No 720-second extension occurs before ACCEPT_REPAIR.",
+  "final_acceptance_claimed": false
+}

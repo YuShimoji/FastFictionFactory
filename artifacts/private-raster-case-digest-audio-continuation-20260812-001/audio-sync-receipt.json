@@ -1,0 +1,392 @@
+{
+  "schema_version": "fff.privateRasterCaseDigestAudioContinuationReceipt.v1",
+  "work_order_id": "FFF-PROJECT-WIDE-NONDENSOU-FRONTIER-CONTINUATION-20260812-005",
+  "artifact_id": "fff-private-raster-case-digest-audio-continuation-20260812-001",
+  "parent_artifact_id": "fff-private-raster-case-digest-001",
+  "classification": "PRIVATE_TECHNICAL_AV_REVIEW_CANDIDATE",
+  "content_lane": "NON_DENSOU_CASE_DIGEST",
+  "material_result": true,
+  "parent_binding": {
+    "accepted_source_ref": "refs/heads/codex/fff-case-digest-format-reset-continuity-v1",
+    "accepted_source_commit": "2e96bd380d47869024587eeb19b3f054064390af",
+    "accepted_source_tree": "accfb3fc5474f4ecb2e39b5c4d69fd8de6a7e841",
+    "accepted_package_fingerprint": "0f701e7cfa106dee19cf6e378eec1082920cd7f119f37be0f09696ac8020fbf2",
+    "accepted_parent_mp4_sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1",
+    "human_decision_id": "FFF-SUP-CASE-DIGEST-C2-ACCEPT-20260726",
+    "human_verdict": "ACCEPTED_SCOPED",
+    "accepted_dimensions": [
+      "CASE_DIGEST comprehension and format fitness",
+      "review-caption wording and line-break/readability",
+      "unchanged existing image sequence and visual essence"
+    ]
+  },
+  "input_identities": {
+    "parent_media": {
+      "path": "artifacts/private-raster-case-digest/private-raster-case-digest.mp4",
+      "bytes": 16988212,
+      "sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1"
+    },
+    "caption_csv": {
+      "path": "artifacts/private-raster-case-digest/case-digest-review-captions.csv",
+      "bytes": 1589,
+      "sha256": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d"
+    },
+    "parent_manifest": {
+      "path": "artifacts/private-raster-case-digest/private-raster-case-digest-manifest.json",
+      "bytes": 9482,
+      "sha256": "2cb21aa909999fe1369a6ae4eefbdacb4e7714ffcfb2e04ef2fcfa753bcf7a88"
+    },
+    "sapi_tool": {
+      "path": "tools/fff-local-sapi-tts.ps1",
+      "bytes": 2674,
+      "sha256": "adfc400ede587f1673153534ac5a12517c5b70275b61f29c45286479b7fcf0d7"
+    }
+  },
+  "voice": {
+    "engine_id": "windows-system-speech-sapi-local",
+    "voice_name": "Microsoft Haruka Desktop",
+    "culture": "ja-JP",
+    "gender": "Female",
+    "rate": 0,
+    "volume": 100,
+    "external_call": false,
+    "credentials_touched": false,
+    "provisional": true,
+    "production_selected": false,
+    "rights_cleared": false
+  },
+  "timing_policy": {
+    "duration_seconds": 180,
+    "cue_count": 11,
+    "voice_name": "Microsoft Haruka Desktop",
+    "culture": "ja-JP",
+    "rate": 0,
+    "volume": 100,
+    "lead_in_seconds": 0.35,
+    "minimum_tail_seconds": 0.5,
+    "maximum_atempo_ratio": 1.25,
+    "trim_threshold_db": -50,
+    "cue_audibility_threshold_db": -35
+  },
+  "cues": [
+    {
+      "cue_id": "case-digest-caption-01",
+      "shot_id": "shot-b01-01",
+      "start_seconds": 0,
+      "end_seconds": 12,
+      "text_ja": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+      "spoken_text_ja": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+      "raw_duration_seconds": 4.907528,
+      "trimmed_duration_seconds": 3.934063,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 0.35,
+      "audio_end_seconds": 4.280792,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 7.719208,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-02",
+      "shot_id": "shot-b01-02",
+      "start_seconds": 12,
+      "end_seconds": 24,
+      "text_ja": "塔の取付枠は空で、鐘は確認できない。",
+      "spoken_text_ja": "塔の取付枠は空で、鐘は確認できない。",
+      "raw_duration_seconds": 4.257914,
+      "trimmed_duration_seconds": 3.206625,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 12.35,
+      "audio_end_seconds": 15.555125,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 8.444875,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-03",
+      "shot_id": "shot-b02-01",
+      "start_seconds": 24,
+      "end_seconds": 38,
+      "text_ja": "時計修理師のミラ・ヴェイルが、失踪した兄の手掛かりを調べる。",
+      "spoken_text_ja": "時計修理師のミラ・ヴェイルが、失踪した兄の手掛かりを調べる。",
+      "raw_duration_seconds": 5.64254,
+      "trimmed_duration_seconds": 4.598688,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 24.35,
+      "audio_end_seconds": 28.94625,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 9.05375,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-04",
+      "shot_id": "shot-b02-02",
+      "start_seconds": 38,
+      "end_seconds": 52,
+      "text_ja": "失踪した兄のメモと真鍮の蛾が、作業台に残されている。",
+      "spoken_text_ja": "失踪した兄のメモと真鍮の蛾が、作業台に残されている。",
+      "raw_duration_seconds": 5.16263,
+      "trimmed_duration_seconds": 4.133333,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 38.35,
+      "audio_end_seconds": 42.481833,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 9.518167,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-05",
+      "shot_id": "shot-b02-03",
+      "start_seconds": 52,
+      "end_seconds": 65,
+      "text_ja": "時計と記録には、9:17が繰り返し現れる。",
+      "spoken_text_ja": "時計と記録には、9:17が繰り返し現れる。",
+      "raw_duration_seconds": 4.792653,
+      "trimmed_duration_seconds": 3.750354,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 52.35,
+      "audio_end_seconds": 56.097854,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 8.902146,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-06",
+      "shot_id": "shot-b03-01",
+      "start_seconds": 65,
+      "end_seconds": 81,
+      "text_ja": "失踪した兄のメモは、二列の台帳へ調査を導く。",
+      "spoken_text_ja": "失踪した兄のメモは、二列の台帳へ調査を導く。",
+      "raw_duration_seconds": 4.912834,
+      "trimmed_duration_seconds": 3.894667,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 65.35,
+      "audio_end_seconds": 69.239479,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 11.760521,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-07",
+      "shot_id": "shot-b03-02",
+      "start_seconds": 81,
+      "end_seconds": 97,
+      "text_ja": "台帳には、「分」の欄と人名の欄が並んでいる。",
+      "spoken_text_ja": "台帳には、「分」の欄と人名の欄が並んでいる。",
+      "raw_duration_seconds": 4.302948,
+      "trimmed_duration_seconds": 3.292667,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 81.35,
+      "audio_end_seconds": 84.641479,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 12.358521,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-08",
+      "shot_id": "shot-b04-01",
+      "start_seconds": 97,
+      "end_seconds": 116,
+      "text_ja": "メモは、市の評議会を調査対象として指している。",
+      "spoken_text_ja": "メモは、市の評議会を調査対象として指している。",
+      "raw_duration_seconds": 4.362812,
+      "trimmed_duration_seconds": 3.346667,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 97.35,
+      "audio_end_seconds": 100.690896,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 15.309104,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-09",
+      "shot_id": "shot-b04-02",
+      "start_seconds": 116,
+      "end_seconds": 136,
+      "text_ja": "告発は記録されているが、評議会の関与を裏づける証拠はない。",
+      "spoken_text_ja": "告発は記録されているが、評議会の関与を裏づける証拠はない。",
+      "raw_duration_seconds": 5.447392,
+      "trimmed_duration_seconds": 4.384646,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 116.35,
+      "audio_end_seconds": 120.730417,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 15.269583,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-10",
+      "shot_id": "shot-b06-01",
+      "start_seconds": 136,
+      "end_seconds": 158,
+      "text_ja": "時間と名前は、台帳の二つの損失区分である。",
+      "spoken_text_ja": "時間と名前は、台帳の二つの損失区分である。",
+      "raw_duration_seconds": 4.532925,
+      "trimmed_duration_seconds": 3.530479,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 136.35,
+      "audio_end_seconds": 139.876625,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 18.123375,
+      "within_accepted_caption_window": true
+    },
+    {
+      "cue_id": "case-digest-caption-11",
+      "shot_id": "shot-b06-03",
+      "start_seconds": 158,
+      "end_seconds": 180,
+      "text_ja": "音源と関係者を確定できないまま、塔は調査対象として残る。",
+      "spoken_text_ja": "音源と関係者を確定できないまま、塔は調査対象として残る。",
+      "raw_duration_seconds": 5.582449,
+      "trimmed_duration_seconds": 4.57275,
+      "atempo_ratio": 1,
+      "audio_start_seconds": 158.35,
+      "audio_end_seconds": 162.920375,
+      "subtitle_lead_in_seconds": 0.35,
+      "subtitle_tail_seconds": 17.079625,
+      "within_accepted_caption_window": true
+    }
+  ],
+  "media": {
+    "probe": {
+      "duration_seconds": 180,
+      "bytes": 18147465,
+      "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+      "video": {
+        "codec": "h264",
+        "profile": "High",
+        "width": 960,
+        "height": 540,
+        "avg_frame_rate": "30/1",
+        "frame_count": 5400
+      },
+      "audio": {
+        "codec": "aac",
+        "sample_rate_hz": 48000,
+        "channels": 2,
+        "channel_layout": "stereo",
+        "language": "jpn",
+        "title": null
+      },
+      "video_stream_count": 1,
+      "audio_stream_count": 1,
+      "subtitle_stream_count": 1,
+      "subtitle_codecs": [
+        "mov_text"
+      ]
+    },
+    "full_av_decode": "PASS",
+    "parent_video_essence_sha256": "b5facecd9fbdea57daad03096566dd478ac6ea9c1120dd2e6b49656569dcb989",
+    "revised_video_essence_sha256": "b5facecd9fbdea57daad03096566dd478ac6ea9c1120dd2e6b49656569dcb989",
+    "exact_parent_video_essence_match": true,
+    "parent_subtitle_srt_sha256": "917d0d243fb0ee1e4e47d84c198c9dd12bd029360887ae2cda0c4031eb3c37e7",
+    "revised_subtitle_srt_sha256": "917d0d243fb0ee1e4e47d84c198c9dd12bd029360887ae2cda0c4031eb3c37e7",
+    "exact_parent_subtitle_text_timing_match": true,
+    "cue_activity": [
+      {
+        "cue_id": "case-digest-caption-01",
+        "max_volume_db": -4.3,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-02",
+        "max_volume_db": -4.4,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-03",
+        "max_volume_db": -5.5,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-04",
+        "max_volume_db": -5.2,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-05",
+        "max_volume_db": -5.7,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-06",
+        "max_volume_db": -4.1,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-07",
+        "max_volume_db": -3.6,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-08",
+        "max_volume_db": -4.3,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-09",
+        "max_volume_db": -4.3,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-10",
+        "max_volume_db": -4.4,
+        "threshold_db": -35,
+        "audible": true
+      },
+      {
+        "cue_id": "case-digest-caption-11",
+        "max_volume_db": -3.4,
+        "threshold_db": -35,
+        "audible": true
+      }
+    ],
+    "audible_cue_count": 11,
+    "total_max_volume_db": -3.4,
+    "silence_event_count": 11,
+    "silence_policy": {
+      "noise_db": -45,
+      "minimum_duration_seconds": 0.75,
+      "interpretation": "expected pauses between discrete narration cues; scheduled cue audibility is evaluated separately"
+    },
+    "black_event_count": 0,
+    "black_policy": {
+      "minimum_duration_seconds": 1,
+      "pixel_threshold": 0.02
+    }
+  },
+  "preservation": {
+    "parent_before": {
+      "path": "artifacts/private-raster-case-digest/private-raster-case-digest.mp4",
+      "bytes": 16988212,
+      "sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1"
+    },
+    "parent_after": {
+      "path": "artifacts/private-raster-case-digest/private-raster-case-digest.mp4",
+      "bytes": 16988212,
+      "sha256": "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1"
+    },
+    "parent_unchanged": true
+  },
+  "boundaries": {
+    "actual_densou_source_used": false,
+    "densou_source_gate_polled_or_reopened": false,
+    "accepted_creative_content_changed": false,
+    "picture_changed": false,
+    "accepted_caption_text_or_timing_changed": false,
+    "audio_human_accepted": false,
+    "voice_final": false,
+    "rights_approved": false,
+    "production_approved": false,
+    "publication_approved": false,
+    "final_canon": false
+  }
+}

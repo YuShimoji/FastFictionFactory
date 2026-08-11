@@ -1,0 +1,362 @@
+{
+  "schema_version": "fff.densou.episodeAudioRepairSegmentSourceMap.v1",
+  "artifact_id": "fff-densou-s01e01-benchmark-video-slice-audio-repair-001",
+  "episode_id": "densou-s01e01-bellless-tower",
+  "source_binding": {
+    "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+    "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+    "source_revision_id": "densou-256837a94afd521c",
+    "source_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+    "source_path": "artifacts/sample-raw-memo.md",
+    "packet_evidence_manifest_sha256": "f91ebbc602e4058dcfb84c14fc9dff1f1e39337265552e47ee4001419fc84736"
+  },
+  "mapping_policy": "Every visual update maps to one existing Episode 1 segment and only to claim IDs already allowed by that segment. Slice timing is a benchmark compression and does not replace the 720-second treatment timing. Audio repair preserves every mapping and adds no claims.",
+  "segments": [
+    {
+      "segment_id": "ep01-seg01-incident",
+      "original_start_seconds": 0,
+      "original_end_seconds": 70,
+      "slice_start_seconds": 0,
+      "slice_end_seconds": 18,
+      "update_ids": [
+        "DV-01",
+        "DV-02"
+      ],
+      "claim_ids": [
+        "claim-bell-reported-at-noon",
+        "claim-bell-removed",
+        "claim-empty-bell-frame"
+      ],
+      "claim_evidence": [
+        {
+          "claim_id": "claim-bell-reported-at-noon",
+          "statement_ja": "正午、ノース・ベル駅上の古い天文台から鐘の音が響く。",
+          "status": "reported",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L7",
+            "artifacts/private-raster-case-digest/case-digest-script.md#L10-L14"
+          ]
+        },
+        {
+          "claim_id": "claim-bell-removed",
+          "statement_ja": "天文台の鐘は冬の外出禁止令のころに撤去された。",
+          "status": "source_statement",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L7"
+          ]
+        },
+        {
+          "claim_id": "claim-empty-bell-frame",
+          "statement_ja": "既存の派生証拠では塔の鐘枠が空として扱われている。",
+          "status": "derived_observation",
+          "source_refs": [
+            "artifacts/private-full-raster-clarity-candidate/story-spine-clarity-v1.md#L8-L18",
+            "artifacts/private-raster-case-digest/case-digest-script.md#L10-L14"
+          ]
+        }
+      ]
+    },
+    {
+      "segment_id": "ep01-seg02-investigator",
+      "original_start_seconds": 70,
+      "original_end_seconds": 155,
+      "slice_start_seconds": 18,
+      "slice_end_seconds": 42,
+      "update_ids": [
+        "DV-03",
+        "DV-04"
+      ],
+      "claim_ids": [
+        "claim-mira-clockmaker",
+        "claim-arcade-917",
+        "claim-toma-missing"
+      ],
+      "claim_evidence": [
+        {
+          "claim_id": "claim-mira-clockmaker",
+          "statement_ja": "ミラ・ヴェイルはガラスのアーケードで時計を修理している。",
+          "status": "source_statement",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5"
+          ]
+        },
+        {
+          "claim_id": "claim-arcade-917",
+          "statement_ja": "ガラスのアーケードは毎晩9:17に閉まる。",
+          "status": "source_statement",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5"
+          ]
+        },
+        {
+          "claim_id": "claim-toma-missing",
+          "statement_ja": "トーマはミラの失踪した兄として記録されている。",
+          "status": "source_statement",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5",
+            "artifacts/private-raster-case-digest/case-digest-script.md#L18-L22"
+          ]
+        }
+      ]
+    },
+    {
+      "segment_id": "ep01-seg03-personal-clues",
+      "original_start_seconds": 155,
+      "original_end_seconds": 245,
+      "slice_start_seconds": 42,
+      "slice_end_seconds": 66,
+      "update_ids": [
+        "DV-05",
+        "DV-06"
+      ],
+      "claim_ids": [
+        "claim-toma-missing",
+        "claim-note-and-moth"
+      ],
+      "claim_evidence": [
+        {
+          "claim_id": "claim-toma-missing",
+          "statement_ja": "トーマはミラの失踪した兄として記録されている。",
+          "status": "source_statement",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5",
+            "artifacts/private-raster-case-digest/case-digest-script.md#L18-L22"
+          ]
+        },
+        {
+          "claim_id": "claim-note-and-moth",
+          "statement_ja": "トーマが残したとされるメモと真鍮の蛾が作業場の引き出しにある。",
+          "status": "reported",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5",
+            "artifacts/private-full-raster-clarity-candidate/story-spine-clarity-v1.md#L20-L33"
+          ]
+        }
+      ]
+    },
+    {
+      "segment_id": "ep01-seg04-allegation",
+      "original_start_seconds": 245,
+      "original_end_seconds": 335,
+      "slice_start_seconds": 66,
+      "slice_end_seconds": 78,
+      "update_ids": [
+        "DV-07"
+      ],
+      "claim_ids": [
+        "claim-council-allegation"
+      ],
+      "claim_evidence": [
+        {
+          "claim_id": "claim-council-allegation",
+          "statement_ja": "メモは、市の評議会が放棄された人生から『分』を売っていると告発する。",
+          "status": "allegation_not_proof",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5",
+            "artifacts/private-raster-case-digest/case-digest-script.md#L34-L38"
+          ]
+        }
+      ]
+    },
+    {
+      "segment_id": "ep01-seg05-ledger",
+      "original_start_seconds": 335,
+      "original_end_seconds": 430,
+      "slice_start_seconds": 78,
+      "slice_end_seconds": 103,
+      "update_ids": [
+        "DV-08",
+        "DV-09"
+      ],
+      "claim_ids": [
+        "claim-ledger-location",
+        "claim-ledger-columns"
+      ],
+      "claim_evidence": [
+        {
+          "claim_id": "claim-ledger-location",
+          "statement_ja": "原メモは、評議会がアーケード下の施錠された棚に『分』の台帳を保管すると記す。",
+          "status": "source_statement_not_independently_verified",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L9"
+          ]
+        },
+        {
+          "claim_id": "claim-ledger-columns",
+          "statement_ja": "派生CASE_DIGESTでは、台帳に『分』欄と人名欄があると整理されている。",
+          "status": "derived_observation",
+          "source_refs": [
+            "artifacts/private-raster-case-digest/case-digest-script.md#L26-L30"
+          ]
+        }
+      ]
+    },
+    {
+      "segment_id": "ep01-seg06-alternatives",
+      "original_start_seconds": 430,
+      "original_end_seconds": 525,
+      "slice_start_seconds": 103,
+      "slice_end_seconds": 129,
+      "update_ids": [
+        "DV-10",
+        "DV-11"
+      ],
+      "claim_ids": [
+        "claim-ledger-alternatives",
+        "claim-memory-leak-theory"
+      ],
+      "claim_evidence": [
+        {
+          "claim_id": "claim-ledger-alternatives",
+          "statement_ja": "台帳は証拠、囮、偽記録のいずれでもあり得る。",
+          "status": "explicit_unresolved_alternatives",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L9"
+          ]
+        },
+        {
+          "claim_id": "claim-memory-leak-theory",
+          "statement_ja": "鐘の音を『歯車から漏れる記憶』とみるのはミラの考えであり、確定事実ではない。",
+          "status": "character_theory_unresolved",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L7"
+          ]
+        }
+      ]
+    },
+    {
+      "segment_id": "ep01-seg07-current-status",
+      "original_start_seconds": 525,
+      "original_end_seconds": 630,
+      "slice_start_seconds": 129,
+      "slice_end_seconds": 153,
+      "update_ids": [
+        "DV-12",
+        "DV-13"
+      ],
+      "claim_ids": [
+        "claim-bell-reported-at-noon",
+        "claim-arcade-917",
+        "claim-note-and-moth",
+        "claim-council-allegation",
+        "claim-ledger-alternatives"
+      ],
+      "claim_evidence": [
+        {
+          "claim_id": "claim-bell-reported-at-noon",
+          "statement_ja": "正午、ノース・ベル駅上の古い天文台から鐘の音が響く。",
+          "status": "reported",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L7",
+            "artifacts/private-raster-case-digest/case-digest-script.md#L10-L14"
+          ]
+        },
+        {
+          "claim_id": "claim-arcade-917",
+          "statement_ja": "ガラスのアーケードは毎晩9:17に閉まる。",
+          "status": "source_statement",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5"
+          ]
+        },
+        {
+          "claim_id": "claim-note-and-moth",
+          "statement_ja": "トーマが残したとされるメモと真鍮の蛾が作業場の引き出しにある。",
+          "status": "reported",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5",
+            "artifacts/private-full-raster-clarity-candidate/story-spine-clarity-v1.md#L20-L33"
+          ]
+        },
+        {
+          "claim_id": "claim-council-allegation",
+          "statement_ja": "メモは、市の評議会が放棄された人生から『分』を売っていると告発する。",
+          "status": "allegation_not_proof",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5",
+            "artifacts/private-raster-case-digest/case-digest-script.md#L34-L38"
+          ]
+        },
+        {
+          "claim_id": "claim-ledger-alternatives",
+          "statement_ja": "台帳は証拠、囮、偽記録のいずれでもあり得る。",
+          "status": "explicit_unresolved_alternatives",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L9"
+          ]
+        }
+      ]
+    },
+    {
+      "segment_id": "ep01-seg08-series-hook",
+      "original_start_seconds": 630,
+      "original_end_seconds": 720,
+      "slice_start_seconds": 153,
+      "slice_end_seconds": 180,
+      "update_ids": [
+        "DV-14",
+        "DV-15"
+      ],
+      "claim_ids": [
+        "claim-arcade-917",
+        "claim-note-and-moth",
+        "claim-ledger-alternatives",
+        "claim-council-allegation",
+        "claim-toma-missing"
+      ],
+      "claim_evidence": [
+        {
+          "claim_id": "claim-arcade-917",
+          "statement_ja": "ガラスのアーケードは毎晩9:17に閉まる。",
+          "status": "source_statement",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5"
+          ]
+        },
+        {
+          "claim_id": "claim-note-and-moth",
+          "statement_ja": "トーマが残したとされるメモと真鍮の蛾が作業場の引き出しにある。",
+          "status": "reported",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5",
+            "artifacts/private-full-raster-clarity-candidate/story-spine-clarity-v1.md#L20-L33"
+          ]
+        },
+        {
+          "claim_id": "claim-ledger-alternatives",
+          "statement_ja": "台帳は証拠、囮、偽記録のいずれでもあり得る。",
+          "status": "explicit_unresolved_alternatives",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L9"
+          ]
+        },
+        {
+          "claim_id": "claim-council-allegation",
+          "statement_ja": "メモは、市の評議会が放棄された人生から『分』を売っていると告発する。",
+          "status": "allegation_not_proof",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5",
+            "artifacts/private-raster-case-digest/case-digest-script.md#L34-L38"
+          ]
+        },
+        {
+          "claim_id": "claim-toma-missing",
+          "statement_ja": "トーマはミラの失踪した兄として記録されている。",
+          "status": "source_statement",
+          "source_refs": [
+            "artifacts/sample-raw-memo.md#L5",
+            "artifacts/private-raster-case-digest/case-digest-script.md#L18-L22"
+          ]
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "mapped_segments": 8,
+    "mapped_visual_updates": 15,
+    "distinct_source_claims": 12,
+    "unsupported_claims": 0,
+    "hidden_causal_bridges": 0
+  },
+  "parent_artifact_id": "fff-densou-s01e01-benchmark-video-slice-001"
+}

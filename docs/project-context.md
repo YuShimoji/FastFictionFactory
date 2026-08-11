@@ -1,5 +1,41 @@
 # Project Context
 
+## Densou durable source binding vertical slice — 2026-08-11 JST
+
+- Structural result: `fff-densou-durable-source-binding-v1` replaces transient-path authority with one ignored project-local vault binding record. The tracked `densou-authority-input.json` is now explicitly `legacy_fixture_template_non_authoritative`; it cannot coexist as active authority with a vault binding.
+- One-shot route: `tools/fff-densou-durable-source-binding.mjs bind-source` accepts the external path once, requires caller-supplied revision, canon, provenance, and rights assertions, copies strict UTF-8 bytes into a non-overwriting hash-addressed ignored vault, writes no absolute source path, and continues through `BOUND -> VERIFIED -> INGEST_READY -> MATERIALIZED`.
+- Durable discovery: later `status`, `init`, `verify`, `resume`, and `materialize` resolve only by binding ID plus stored hashes. Missing or mismatched vault bytes and explicit revision/canon changes are the only source-related differential blockers; a missing downstream resource leaves the source binding closed.
+- Question dedup: source blockers use `<binding_id>|actual_densou_original|<condition>` and persist their first question in the ignored vault. Repeated identical fingerprints suppress the question and return only the changed condition and exact resume command. A bound matching source never emits `DENSOU_SOURCE_LOCATOR_MISSING`.
+- Synthetic proof: binding `densou-binding-f17e7e10ed3d38ebb035`, source SHA-256 `734d5e5a880b72723dd897eec07f3e3b63696591532afb1f7a221740de3b9a68`, is unmistakably noncanon synthetic test material. It reached `MATERIALIZED` and produced `fff-densou-durable-source-binding-synthetic-e2e-001`; it is not actual Densou, canon, rights clearance, human acceptance, production approval, or publication authority.
+- Current actual-source state: no actual Densou is requested or bound by this work order. The structure is ready for a future single `bind-source` invocation without recurring locator questions. The known wrong sample and all 180/540 evidence remain quarantined and unchanged.
+
+## Historical Densou source recovery boundary — superseded 2026-08-11 JST
+
+- Binding correction: `artifacts/sample-raw-memo.md` is `Sample Raw Memo: The Clockmaker Under Glass`, not the actual Densou source. Its SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`, packet `fff-densou-series-source-256837a94afd521c`, basis `fff-densou-source-basis-b2cab3adb7c270d8`, Episode `densou-s01e01-bellless-tower`, and both 180-second candidates are preserved as wrong-source evidence and quarantined from reuse.
+- Live authority: `artifacts/densou-series-intake/densou-authority-input.json` remains `source_binding.status=unbound` with locator, SHA-256, and revision all null. Every precise packet locator currently available resolves back to the quarantined sample; no exact actual-Densou locator or bytes are present.
+- Recovery result: `fff-densou-source-recovery-v1` records the provenance chain and exact executable boundary at `artifacts/densou-source-recovery-20260811-001/source-recovery-boundary.json`. This is a recovery control artifact, not product progress or source recovery completion.
+- Intake guard: `tools/fff-densou-series-intake.mjs` now rejects the quarantined sample identity during `status`, `init`, and `verify`. A different exact authoritative UTF-8 `.txt`, `.md`, or `.markdown` source can still proceed through the existing non-overwriting `status -> init -> verify` route.
+- Gate scope: the prior `dependency_gate` belongs to the wrong-source 180-second candidate and its Episode 1 extension path. The current user correction releases independent source recovery from that human-review hold; it does not approve another Episode, source interpretation, voice, canon, rights, production, or publication.
+- Historical state: this block stopped at `DEPENDENCY_MISSING` before durable binding was implemented. It is retained as incident evidence, not the current gate or handoff. Do not request a source from this record or use the known sample, derived quick-win, 180-second video, or audio repair as source; all future binding goes through the durable one-shot route above.
+
+## Densou Episode 1 180-second audio repair — 2026-08-06 JST
+
+- Stage-gate authority: Supervisor verdict `dependency_gate` keeps the product at `PARTIAL_PRODUCTION_SLICE` 180/720 and Episode completion=false. The repaired 180-second candidate must pass the same S before any 720-second, other-Episode, or other-source work. Source remains `ACCEPT_UNLOCK`; `WAIT_USER=false`.
+- Revision result: `fff-densou-s01e01-benchmark-video-slice-audio-repair-001` preserves the exact parent H.264 essence and adds one local Japanese synthetic narration stream to the existing fifteen burned-caption units. The original MP4 remains byte-identical at SHA-256 `0254d1946b1b3b6ac0e544ddbdcb8f097a451330f371b629d56a4ddc0c6cc9fc`.
+- Revised media: 180.000-second H.264/AAC MP4, 1280×720, 30 fps, 5400 frames, AAC 48 kHz stereo; 8,385,679 bytes; SHA-256 `ad692cd068320db02db787a80bef8a0809a0bdcce0fddfad4c5543454cfda94e`.
+- Audio/subtitle implementation: Microsoft Haruka Desktop via local Windows SAPI, rate -1, one neutral evidence narrator, external calls/credentials/install zero. Fifteen existing caption texts become fifteen cues; eight recorded transformations are pronunciation-only. No dialogue or canon event is authored.
+- Technical evidence: 15/15 cues are audible and wholly inside their subtitle windows without time compression, full A/V decode passes, blackdetect events are zero, and fifteen detected silence gaps are expected spaces after narration cues. Source mapping remains 8/8 segments and 12/12 claims with unsupported/hidden bridges 0/0.
+- State: `AUDIO_REPAIRED_180S_CANDIDATE_READY_FOR_S_REVIEW`. Human pronunciation, pacing, comprehension, visual, final-voice, rights, canon, production, publication, and release decisions remain open; extension to 720 seconds remains closed.
+
+## Densou Episode 1 benchmark video slice — 2026-08-06 JST
+
+- Current authority: Supervisor verdict `ACCEPT_UNLOCK` and the live Storage v6.2 binding make the accepted Densou packet reusable for product work. `WAIT_USER=false`; do not reopen source selection or request another original, locator, or version.
+- Exact source binding: `artifacts/sample-raw-memo.md`, 1080 bytes, SHA-256 `256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32`, revision `densou-256837a94afd521c`, packet `fff-densou-series-source-256837a94afd521c`, basis `fff-densou-source-basis-b2cab3adb7c270d8`. The selected primary remains labeled `Sample Raw Memo` and is not represented as a separately delivered original.
+- Product result: `fff-densou-s01e01-benchmark-video-slice-001` is a directly playable private 180-second H.264 Episode 1 vertical slice. It maps all eight treatment segments and all twelve source claims into fifteen continuous evidence-led visual updates while preserving zero unsupported claims and zero hidden causal bridges.
+- Form and health: the slice conforms to `fff-benchmark-form-contract-case-digest-v1@1.0.0`; ten machine-checkable dimensions pass, BF-11 human first-pass comprehension remains pending, full decode passes, black frames are zero, and intentional silent-picture policy leaves audio as a replaceable auxiliary layer.
+- Honest long-form boundary: the slice covers 180/720 seconds, or 25% of the target duration. The remaining 540 seconds are not padded from a three-minute cadence contract; expansion requires a source-span-bound long-form shot and audio plan.
+- State: `PRIVATE_PLAYABLE_BENCHMARK_VERTICAL_SLICE_READY_FOR_SUPERVISOR_REVIEW`. This is private development/previsualization, not human creative acceptance, final canon, rights clearance, production approval, publication, upload, sharing, monetization, or release.
+
 ## Densou Season 1 Episode 1 Quick-win — 2026-08-04 JST
 
 - Current authority: the user explicitly authorizes selecting existing repository Densou/canon/reference material as production input for private series development and directs the project not to request another locator. This releases the prior `DEPENDENCY_MISSING` diagnosis but does not authorize public production, provider/credentials, release, rights clearance, or final canon.

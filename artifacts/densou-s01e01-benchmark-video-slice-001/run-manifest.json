@@ -1,0 +1,71 @@
+{
+  "schema_version": "fff.densou.episodeVideoSliceRunManifest.v1",
+  "mission_id": "FFF-DENSOU-EP1-VIDEO-001",
+  "artifact_id": "fff-densou-s01e01-benchmark-video-slice-001",
+  "episode_id": "densou-s01e01-bellless-tower",
+  "state": "PRIVATE_PLAYABLE_BENCHMARK_VERTICAL_SLICE_READY_FOR_SUPERVISOR_REVIEW",
+  "generated_at": "2026-08-05T16:36:33.580Z",
+  "source_binding": {
+    "source_basis_id": "fff-densou-source-basis-b2cab3adb7c270d8",
+    "source_packet_id": "fff-densou-series-source-256837a94afd521c",
+    "source_revision_id": "densou-256837a94afd521c",
+    "source_sha256": "256837a94afd521cadfcb676da2c3873a914ce95f11f493d5b60e15bc42f9a32",
+    "source_path": "artifacts/sample-raw-memo.md",
+    "packet_evidence_manifest_sha256": "f91ebbc602e4058dcfb84c14fc9dff1f1e39337265552e47ee4001419fc84736"
+  },
+  "media": {
+    "path": "densou-s01e01-benchmark-video-slice.mp4",
+    "bytes": 6445162,
+    "sha256": "0254d1946b1b3b6ac0e544ddbdcb8f097a451330f371b629d56a4ddc0c6cc9fc",
+    "format_name": "mov,mp4,m4a,3gp,3g2,mj2",
+    "duration_seconds": 180,
+    "video_codec": "h264",
+    "pixel_format": "yuvj420p",
+    "width": 1280,
+    "height": 720,
+    "avg_frame_rate": "30/1",
+    "frame_count": 5400,
+    "audio_stream_count": 0,
+    "subtitle_stream_count": 0,
+    "burned_caption_count": 15,
+    "audio_policy": "silent_picture_with_burned_captions"
+  },
+  "coverage": {
+    "mapped_episode_segments": 8,
+    "mapped_source_claims": 12,
+    "visual_updates": 15,
+    "playable_seconds": 180,
+    "full_episode_target_seconds": 720,
+    "remaining_seconds": 540,
+    "playable_duration_coverage_percent": 25
+  },
+  "benchmark": {
+    "contract": "fff-benchmark-form-contract-case-digest-v1@1.0.0",
+    "status": "TECHNICAL_VERTICAL_SLICE_CONFORMANCE_PASS_HUMAN_COMPREHENSION_PENDING",
+    "machine_dimensions_passed": 9,
+    "machine_dimensions_adapted_passed": 1,
+    "human_dimensions_pending": 1,
+    "machine_earned_points": 70,
+    "final_acceptance_claimed": false
+  },
+  "assets": {
+    "accepted_raster_source_count": 14,
+    "new_image_acquisition_count": 0,
+    "image_generation_count": 0,
+    "svg_primary_imagery_count": 0,
+    "primitive_primary_imagery_count": 0
+  },
+  "boundaries": {
+    "private_previsualization": true,
+    "not_for_publication": true,
+    "human_creative_acceptance": false,
+    "rights_clearance": false,
+    "final_canon": false,
+    "production_approval": false,
+    "upload": false,
+    "sharing": false,
+    "monetization": false,
+    "voice_selected": false,
+    "audio_generated": false
+  }
+}
