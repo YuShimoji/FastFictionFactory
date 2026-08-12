@@ -171,18 +171,11 @@ async function commandStatus(options) {
     process.exitCode = 3;
     return;
   }
-  const source = await inspectSource(options.source);
-  console.log(JSON.stringify({
-    state_code: "CONTINUE",
-    authority_mode: "legacy_fixture_template_non_authoritative",
-    authoritative_transition: false,
-    material_label: "デンソウ",
-    exact_source_locator: source.resolved,
-    source_sha256: source.sourceSha256,
-    byte_size: source.bytes.length,
-    revision_id: `densou-${source.sourceSha256.slice(0, 16)}`,
-    next_command: "init"
-  }, null, 2));
+  throw new IntakeError(
+    "LEGACY_MUTATION_DISABLED",
+    "legacy intake may not inspect or bind a new source; use tools/fff-densou-durable-source-binding.mjs bind-source",
+    4
+  );
 }
 
 async function ensureEmptyOutput(outputPath) {
@@ -241,6 +234,12 @@ async function inventoryFile(root, filePath) {
 }
 
 async function commandInit(options) {
+  throw new IntakeError(
+    "LEGACY_MUTATION_DISABLED",
+    "legacy intake packet generation is disabled; use the durable one-shot binding route",
+    4
+  );
+  /* c8 ignore start -- preserved historical implementation, unreachable by design */
   requireCondition(options.source, "DEPENDENCY_MISSING", "--source is required", 3);
   requireCondition(options.out, "SOURCE_INVALID", "--out is required", 2);
   const authorityPath = path.resolve(options.authority ?? defaultAuthorityPath);
@@ -401,6 +400,7 @@ async function commandInit(options) {
     evidence_manifest_sha256: manifestHash,
     verification
   }, null, 2));
+  /* c8 ignore stop */
 }
 
 function assertLocalReview(html) {
@@ -498,6 +498,9 @@ async function commandValidateContract(options) {
   console.log(JSON.stringify({
     result: "PASS",
     artifact_id: result.artifact_id,
+    classification: "WRONG_SOURCE_EVIDENCE_QUARANTINED",
+    active_authority: false,
+    reuse_allowed: false,
     checks_passed: 12,
     checks_total: 12,
     state_code: result.state_code
@@ -512,8 +515,7 @@ Authoritative future binding entrypoint:
 
 Commands:
   validate-contract [--result <result.json>]
-  status --authority <authority.json> [--source <source.txt>]
-  init --authority <authority.json> --source <source.txt> --out <new-empty-directory>
+  status --authority <authority.json>
   verify --packet <packet-directory>`);
 }
 

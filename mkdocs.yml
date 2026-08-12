@@ -65,6 +65,7 @@ nav:
       - Decision Log: decision-log.md
       - Idea Ledger: idea-ledger.md
   - Development Notes:
+      - Densou Source-Unbound Hardening Review: review/densou-source-unbound-hardening.md
       - Densou Episode 1 Audio Repair (fff-densou-s01e01-benchmark-video-slice-audio-repair-001): review/densou-s01e01-benchmark-video-slice-audio-repair.md
       - Densou Episode 1 Benchmark Video Slice (fff-densou-s01e01-benchmark-video-slice-001): review/densou-s01e01-benchmark-video-slice.md
       - Densou Season 1 Episode 1 Quick-win (fff-densou-series-episode-quickwin-001): review/densou-series-episode-quickwin.md

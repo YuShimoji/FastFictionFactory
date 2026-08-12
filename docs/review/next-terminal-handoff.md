@@ -1,5 +1,17 @@
 # Next Terminal Handoff
 
+## Start here — source-unbound candidate review (2026-08-12 JST)
+
+`master` has not adopted the Densou candidate. Review branch `codex/densou-source-unbound-hardening-v1` starts at remote candidate `acf7898` and adds only source-unbound safety enforcement. Run this first; it performs no source selection and writes no vault state:
+
+```powershell
+node tools/fff-densou-durable-source-binding.mjs audit-source-readiness
+```
+
+Expected current result is `authority_state=UNBOUND`, `writes_performed=false`, `wrong_source_quarantine_active=true`, and source-independent state `PENDING_ACTUAL_SOURCE`. Do not run `bind-source` until a human explicitly chooses the exact source plus revision, canon, provenance, and rights assertions.
+
+Legacy `fff-densou-series-intake.mjs init`, quick-win build, video build/verify, and audio-repair build/verify are intentionally closed. Their payloads remain historical evidence, not current product or review candidates. See `docs/review/densou-source-unbound-hardening.md` before deciding whether any of the three candidate commits should be adopted.
+
 ## Start here — Densou durable source binding (2026-08-11 JST)
 
 The authoritative entrypoint is `tools/fff-densou-durable-source-binding.mjs`; the tracked old authority input and `tools/fff-densou-series-intake.mjs` are legacy fixture/forensic compatibility only. Do not use old Coordinator overrides or absolute-locator packets for new product work.

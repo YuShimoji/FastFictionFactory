@@ -22,30 +22,19 @@ function runTool(args) {
   });
 }
 
-test("Densou Episode 1 video plan binds all accepted segments and claims", () => {
+test("Densou Episode 1 video plan fails closed as wrong-source evidence", () => {
   const result = runTool(["validate-plan"]);
-  assert.equal(result.status, 0, result.stderr);
-  const payload = JSON.parse(result.stdout);
-  assert.equal(payload.result, "PASS");
-  assert.equal(payload.segment_count, 8);
-  assert.equal(payload.claim_count, 12);
-  assert.equal(payload.visual_update_count, 15);
-  assert.equal(payload.maximum_visual_update_gap_seconds, 14);
-  assert.equal(payload.unsupported_claim_count, 0);
+  assert.equal(result.status, 4);
+  const payload = JSON.parse(result.stderr);
+  assert.equal(payload.code, "WRONG_SOURCE_EVIDENCE_QUARANTINED");
+  assert.doesNotMatch(payload.message, /FastFictionFactory-runs/);
 });
 
-test("playable package passes source, benchmark, decode, and media-health verification", () => {
+test("playable package verification stops before decode or packet lookup", () => {
   const result = runTool(["verify", "--root", packageRoot]);
-  assert.equal(result.status, 0, result.stderr);
-  const payload = JSON.parse(result.stdout);
-  assert.equal(payload.result, "PASS");
-  assert.equal(payload.segment_count, 8);
-  assert.equal(payload.source_claim_count, 12);
-  assert.equal(payload.evidence_manifest_mismatches, 0);
-  assert.equal(payload.packet_manifest_mismatches, 0);
-  assert.equal(payload.full_decode, true);
-  assert.equal(payload.blackdetect_events, 0);
-  assert.equal(payload.audio_stream_count, 0);
+  assert.equal(result.status, 4);
+  const payload = JSON.parse(result.stderr);
+  assert.equal(payload.code, "WRONG_SOURCE_EVIDENCE_QUARANTINED");
 });
 
 test("result records the exact bounded 180-of-720 product delta", () => {
@@ -61,18 +50,16 @@ test("result records the exact bounded 180-of-720 product delta", () => {
   assert.equal(result.boundaries.not_for_publication, true);
 });
 
-test("source identity tamper fails closed", () => {
+test("build fails closed without creating a derived package", () => {
   const tempRoot = mkdtempSync(path.join(os.tmpdir(), "fff-densou-video-test-"));
   try {
-    const plan = JSON.parse(readFileSync(planPath, "utf8"));
-    plan.source_sha256 = "0".repeat(64);
-    const tamperedPath = path.join(tempRoot, "tampered-plan.json");
-    writeFileSync(tamperedPath, `${JSON.stringify(plan, null, 2)}\n`, "utf8");
-    const result = runTool(["validate-plan", "--plan", tamperedPath]);
-    assert.notEqual(result.status, 0);
+    const outputRoot = path.join(tempRoot, "output");
+    const result = runTool(["build", "--out", outputRoot]);
+    assert.equal(result.status, 4);
     const payload = JSON.parse(result.stderr);
     assert.equal(payload.result, "FAIL");
-    assert.equal(payload.code, "INVALID_PLAN");
+    assert.equal(payload.code, "WRONG_SOURCE_EVIDENCE_QUARANTINED");
+    assert.equal(readFileSync(planPath, "utf8").includes("256837a94afd521c"), true);
   } finally {
     const resolved = path.resolve(tempRoot);
     assert.ok(resolved.startsWith(path.resolve(os.tmpdir()) + path.sep));

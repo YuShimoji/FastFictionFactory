@@ -1,15 +1,15 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { cp, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
-import test, { after, before } from "node:test";
+import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const toolPath = path.join(repoRoot, "tools", "fff-densou-series-episode-quickwin.mjs");
-let packetRoot;
+const packetRoot = path.join(repoRoot, "artifacts", "densou-series-episode-quickwin-001");
 
 function run(args, expectedStatus = 0) {
   const result = spawnSync(process.execPath, [toolPath, ...args], {
@@ -24,22 +24,21 @@ function sha256(bytes) {
   return createHash("sha256").update(bytes).digest("hex");
 }
 
-before(async () => {
-  packetRoot = await mkdtemp(path.join(os.tmpdir(), "fff-densou-episode-quickwin-"));
-  const result = run(["build", "--out", packetRoot]);
-  assert.equal(JSON.parse(result.stdout).result, "PASS");
-});
-
-after(async () => {
-  await rm(packetRoot, { recursive: true, force: true });
-});
-
 test("quick-win packet verifies all twenty-one invariants", () => {
   const result = JSON.parse(run(["verify", "--root", packetRoot]).stdout);
   assert.equal(result.result, "PASS");
   assert.equal(result.checks_passed, 21);
   assert.equal(result.checks_total, 21);
-  assert.equal(result.state_code, "WAITING_USER_DECISION");
+  assert.equal(result.state_code, "WRONG_SOURCE_EVIDENCE_QUARANTINED");
+  assert.equal(result.reuse_allowed, false);
+  assert.equal(result.product_progress, false);
+});
+
+test("quick-win build is disabled before writing output", async () => {
+  const outputRoot = path.join(os.tmpdir(), `fff-densou-disabled-${process.pid}-${Date.now()}`);
+  const result = run(["build", "--out", outputRoot], 4);
+  assert.equal(JSON.parse(result.stderr).state_code, "WRONG_SOURCE_EVIDENCE_QUARANTINED");
+  await assert.rejects(readFile(outputRoot, "utf8"), { code: "ENOENT" });
 });
 
 test("source-basis receipt binds exact repository bytes and preserves ambiguity", async () => {
@@ -134,7 +133,7 @@ test("tracked result binds exact review, episode, season, and evidence identitie
 test("verification rejects treatment tampering", async () => {
   const tamperedRoot = await mkdtemp(path.join(os.tmpdir(), "fff-densou-episode-tamper-"));
   try {
-    run(["build", "--out", tamperedRoot]);
+    await cp(packetRoot, tamperedRoot, { recursive: true });
     const filePath = path.join(tamperedRoot, "episode-001-review-treatment.md");
     await writeFile(filePath, `${await readFile(filePath, "utf8")}\nunsupported answer\n`, "utf8");
     const result = run(["verify", "--root", tamperedRoot], 2);

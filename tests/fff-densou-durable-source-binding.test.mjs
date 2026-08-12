@@ -224,3 +224,61 @@ test("durable CLI refuses legacy authority overrides", async (t) => {
   assert.equal(result.status, 2);
   assert.equal(json(result).state_code, "INVALID_ARGUMENT");
 });
+
+test("source readiness audit proves UNBOUND safety without creating vault state", async (t) => {
+  const root = await makeTemp(t);
+  const vaultRoot = path.join(root, "vault-that-must-not-be-created");
+  const result = run(["audit-source-readiness", "--scope", "unbound-audit"], { vaultRoot });
+  assert.equal(result.status, 0, result.stderr);
+  const output = json(result);
+  assert.equal(output.result, "PASS");
+  assert.equal(output.authority_state, "UNBOUND");
+  assert.equal(output.active_binding, null);
+  assert.equal(output.actual_source_preflight.state, "UNBOUND");
+  assert.equal(output.source_independent_package.state, "PENDING_ACTUAL_SOURCE");
+  assert.equal(output.wrong_source_quarantine_active, true);
+  assert.equal(output.source_question_emitted, false);
+  assert.equal(output.writes_performed, false);
+  await assert.rejects(readFile(path.join(vaultRoot, "scopes", "unbound-audit", "active-bindings.json"), "utf8"), { code: "ENOENT" });
+});
+
+test("duplicate options and invalid checkpoints fail before creating binding state", async (t) => {
+  const root = await makeTemp(t);
+  const vaultRoot = path.join(root, "vault");
+  const duplicate = run(bindArgs(["--path", fixturePath]), { vaultRoot });
+  assert.equal(duplicate.status, 2);
+  assert.equal(json(duplicate).state_code, "INVALID_ARGUMENT");
+
+  const invalidCheckpoint = run(bindArgs(["--interrupt-after", "AFTER_EVERYTHING"]), { vaultRoot });
+  assert.equal(invalidCheckpoint.status, 2);
+  assert.equal(json(invalidCheckpoint).state_code, "INVALID_ARGUMENT");
+  await assert.rejects(readFile(path.join(vaultRoot, "scopes", scope, "active-bindings.json"), "utf8"), { code: "ENOENT" });
+});
+
+test("binding IDs reject traversal before any vault record lookup", async (t) => {
+  const root = await makeTemp(t);
+  const result = run(["status", "--scope", scope, "--binding-id", "..\\..\\outside"], { vaultRoot: path.join(root, "vault") });
+  assert.equal(result.status, 2);
+  assert.equal(json(result).state_code, "INVALID_BINDING_ID");
+});
+
+test("tampered binding identity and vault locator fail closed", async (t) => {
+  const root = await makeTemp(t);
+  const firstVault = path.join(root, "identity-vault");
+  const first = json(run(bindArgs(), { vaultRoot: firstVault }));
+  const identityRecord = await boundRecord(firstVault, first.binding_id);
+  identityRecord.rights_assertion = "tampered-rights-assertion";
+  await writeFile(bindingPath(firstVault, first.binding_id), `${JSON.stringify(identityRecord, null, 2)}\n`, "utf8");
+  const identityFailure = run(["status", "--scope", scope, "--binding-id", first.binding_id], { vaultRoot: firstVault });
+  assert.equal(identityFailure.status, 5);
+  assert.equal(json(identityFailure).state_code, "BINDING_IDENTITY_CONFLICT");
+
+  const secondVault = path.join(root, "locator-vault");
+  const second = json(run(bindArgs(), { vaultRoot: secondVault }));
+  const locatorRecord = await boundRecord(secondVault, second.binding_id);
+  locatorRecord.portable_vault_locator = "../../outside/source.txt";
+  await writeFile(bindingPath(secondVault, second.binding_id), `${JSON.stringify(locatorRecord, null, 2)}\n`, "utf8");
+  const locatorFailure = run(["status", "--scope", scope, "--binding-id", second.binding_id], { vaultRoot: secondVault });
+  assert.equal(locatorFailure.status, 5);
+  assert.equal(json(locatorFailure).state_code, "BINDING_RECORD_INVALID");
+});

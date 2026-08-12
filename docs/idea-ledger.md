@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-08-12 Densou source-unbound hardening
+
+- Purpose: make the durable source design safe to review and operate while actual Densou remains unavailable and the three candidate commits remain unadopted.
+- Effect: adds a no-write readiness audit, closes binding-ID and vault-record integrity gaps, removes duplicate-option ambiguity, and makes obsolete wrong-source generation routes fail before source, packet, decode, synthesis, or output side effects.
+- Requirements: retain the ignored vault contract, the exact wrong-source SHA-256 quarantine, immutable historical payload bytes, and explicit human ownership of future source/revision/canon/provenance/rights assertions.
+- State: implemented on the isolated review branch; focused Densou verification is 42/42; actual source remains `UNBOUND`; no media playback, decode, synthesis, GUI, publication, or external write occurred.
+- Owner: repository code owns fail-closed validation and route enforcement; a maintainer decides candidate adoption; the source owner supplies any future exact source and assertions; creative, rights, production, and publication owners keep their independent gates.
+- Next move: review the three candidate commits together with this hardening delta. If the durable contract is accepted, integrate only through an explicit branch decision and re-run the no-write audit before any one-shot source bind.
+
 ## 2026-08-11 Densou durable source binding
 
 - Purpose: eliminate recurring source/resource questions by converting one external-path encounter into a durable local identity and resumable state machine.

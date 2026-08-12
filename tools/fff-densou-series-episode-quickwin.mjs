@@ -206,7 +206,13 @@ const episodeSegments = [
   }
 ];
 
-class QuickwinError extends Error {}
+class QuickwinError extends Error {
+  constructor(message, stateCode = "SOURCE_OR_PACKET_INVALID", exitCode = 2) {
+    super(message);
+    this.stateCode = stateCode;
+    this.exitCode = exitCode;
+  }
+}
 
 function requireCondition(condition, message) {
   if (!condition) throw new QuickwinError(message);
@@ -546,6 +552,12 @@ function buildDocuments() {
 }
 
 async function commandBuild(options) {
+  throw new QuickwinError(
+    "quick-win generation is disabled because its source basis is quarantined wrong-source evidence",
+    "WRONG_SOURCE_EVIDENCE_QUARANTINED",
+    4
+  );
+  /* c8 ignore start -- preserved historical generator, unreachable by design */
   await validateBasisFiles();
   const outputRoot = path.resolve(options.out ?? defaultOutputRoot);
   await ensureEmpty(outputRoot);
@@ -589,6 +601,7 @@ async function commandBuild(options) {
   await writeJson(path.join(outputRoot, "evidence-manifest.json"), evidenceManifest);
   const verification = await verify(outputRoot);
   console.log(JSON.stringify({ result: "PASS", output_root: outputRoot, artifact_id: artifactId, source_basis_id: docs.basisReceipt.source_basis_id, episode_id: docs.episode.episode_id, verification }, null, 2));
+  /* c8 ignore stop */
 }
 
 function assertLocalReview(html) {
@@ -650,7 +663,7 @@ async function verify(outputRoot) {
     const bytes = await readFile(path.join(root, entry.path));
     requireCondition(bytes.length === entry.byte_size && sha256(bytes) === entry.sha256, `evidence identity mismatch: ${entry.path}`);
   }
-  return { result: "PASS", checks_passed: 21, checks_total: 21, artifact_id: artifactId, source_basis_id: expectedBasisId, episode_id: episode.episode_id, editorial_window_seconds: 720, state_code: "WAITING_USER_DECISION" };
+  return { result: "PASS", checks_passed: 21, checks_total: 21, artifact_id: artifactId, source_basis_id: expectedBasisId, episode_id: episode.episode_id, editorial_window_seconds: 720, state_code: "WRONG_SOURCE_EVIDENCE_QUARANTINED", reuse_allowed: false, product_progress: false };
 }
 
 async function commandVerify(options) {
@@ -659,7 +672,7 @@ async function commandVerify(options) {
 }
 
 function printHelp() {
-  console.log(`Densou series episode quick-win\n\nCommands:\n  build [--out <new-empty-directory>]\n  verify [--root <packet-directory>]`);
+  console.log(`Densou series episode quick-win — quarantined historical evidence\n\nCommands:\n  verify [--root <packet-directory>]\n\nBuild is disabled because the exact source basis is quarantined wrong-source evidence.`);
 }
 
 async function main() {
@@ -671,6 +684,6 @@ async function main() {
 }
 
 await main().catch((error) => {
-  console.error(JSON.stringify({ result: "FAIL", state_code: "SOURCE_OR_PACKET_INVALID", error: error.message }, null, 2));
-  process.exitCode = 2;
+  console.error(JSON.stringify({ result: "FAIL", state_code: error.stateCode ?? "SOURCE_OR_PACKET_INVALID", error: error.message }, null, 2));
+  process.exitCode = error.exitCode ?? 2;
 });

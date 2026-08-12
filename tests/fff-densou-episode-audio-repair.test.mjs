@@ -32,35 +32,23 @@ function runTool(args, options = {}) {
   });
 }
 
-test("audio-repair plan preserves the exact parent, source, episode, and 180-second scope", () => {
-  const output = JSON.parse(runTool(["validate-plan"]));
-  assert.equal(output.result, "PASS");
-  assert.equal(output.checks_total, 30);
-  assert.equal(output.artifact_id, "fff-densou-s01e01-benchmark-video-slice-audio-repair-001");
-  assert.equal(output.parent_artifact_id, "fff-densou-s01e01-benchmark-video-slice-001");
-  assert.equal(output.classification, "PARTIAL_PRODUCTION_SLICE");
-  assert.equal(output.episode_completion, false);
-  assert.equal(output.cue_count, 15);
-  assert.equal(output.segment_count, 8);
-  assert.equal(output.source_claim_count, 12);
-  assert.equal(output.dialogue_authored_count, 0);
+function runFailure(args) {
+  try {
+    runTool(args);
+    assert.fail("command unexpectedly passed");
+  } catch (error) {
+    return JSON.parse(error.stderr?.toString() ?? "{}");
+  }
+}
+
+test("audio-repair plan fails closed as wrong-source evidence", () => {
+  const output = runFailure(["validate-plan"]);
+  assert.equal(output.code, "WRONG_SOURCE_EVIDENCE_QUARANTINED");
 });
 
-test("repaired package passes full A/V, sync, source, and preservation verification", () => {
-  const output = JSON.parse(runTool(["verify"]));
-  assert.equal(output.result, "PASS");
-  assert.equal(output.checks_total, 52);
-  assert.equal(output.audio_stream_count, 1);
-  assert.equal(output.audio_codec, "aac");
-  assert.equal(output.audio_sample_rate_hz, 48000);
-  assert.equal(output.audio_channels, 2);
-  assert.equal(output.full_av_decode, true);
-  assert.equal(output.blackdetect_events, 0);
-  assert.equal(output.audible_cues, 15);
-  assert.equal(output.within_subtitle_window, 15);
-  assert.equal(output.original_media_unchanged, true);
-  assert.equal(output.video_essence_exact_match, true);
-  assert.equal(output.episode_completion, false);
+test("repaired package verification stops before decode", () => {
+  const output = runFailure(["verify"]);
+  assert.equal(output.code, "WRONG_SOURCE_EVIDENCE_QUARANTINED");
 });
 
 test("original and revised exact identities are distinct while subtitles remain byte-identical", async () => {
@@ -100,7 +88,7 @@ test("S packet keeps the partial-production and human/rights/canon gates explici
   assert.doesNotMatch(html, /<form|autoplay|fetch\(|XMLHttpRequest/i);
 });
 
-test("plan validation fails closed when the retained original identity is changed", async () => {
+test("quarantine precedes retained-media identity checks", async () => {
   const tempRoot = await mkdtemp(path.join(os.tmpdir(), "fff-densou-audio-repair-test-"));
   try {
     const plan = await readJson(planPath);
@@ -114,7 +102,7 @@ test("plan validation fails closed when the retained original identity is change
     } catch (error) {
       stderr = error.stderr?.toString() ?? "";
     }
-    assert.match(stderr, /ORIGINAL_IDENTITY_MISMATCH/);
+    assert.match(stderr, /WRONG_SOURCE_EVIDENCE_QUARANTINED/);
   } finally {
     await rm(tempRoot, { recursive: true, force: true });
   }

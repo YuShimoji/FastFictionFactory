@@ -1,5 +1,13 @@
 # Project Context
 
+## Densou source-unbound hardening review — 2026-08-12 JST
+
+- Review lane: `codex/densou-source-unbound-hardening-v1` is an isolated local review branch based on `origin/codex/densou-series-intake-v1@acf7898`. It does not adopt the three candidate commits into `master` and does not select an actual source.
+- Read-only readiness: `audit-source-readiness` validates the durable contract, the actual-source preflight, the source-independent package, the live scope index, and the wrong-source quarantine without creating vault state or emitting a source question. The default review scope remains `UNBOUND`.
+- Binding integrity: CLI options are single-valued, binding IDs must match `densou-binding-<20 lowercase hex>`, active indexes reject unknown roles, loaded records must recompute to the same binding ID, and vault locators must equal the expected hash-addressed object path before any object read.
+- Supersession enforcement: legacy intake may report the unbound dependency and verify historical packets, but it can no longer inspect or bind a new source. The quick-win, video, and audio-repair generators now fail `WRONG_SOURCE_EVIDENCE_QUARANTINED` before output creation, external packet lookup, decode, synthesis, or media work.
+- Evidence boundary: historical quick-win payloads remain byte-preserved and structurally verifiable as quarantined evidence. Their older `WAITING_USER_DECISION`, production-slice, or acceptance wording is not current product authority.
+
 ## Densou durable source binding vertical slice — 2026-08-11 JST
 
 - Structural result: `fff-densou-durable-source-binding-v1` replaces transient-path authority with one ignored project-local vault binding record. The tracked `densou-authority-input.json` is now explicitly `legacy_fixture_template_non_authoritative`; it cannot coexist as active authority with a vault binding.

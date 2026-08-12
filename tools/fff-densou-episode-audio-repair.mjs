@@ -20,6 +20,7 @@ const repoRoot = path.resolve(path.dirname(toolPath), "..");
 const defaultPlanPath = path.join(repoRoot, "artifacts", "densou-s01e01-benchmark-video-slice-audio-repair-plan.json");
 const defaultOutputPath = path.join(repoRoot, "artifacts", "densou-s01e01-benchmark-video-slice-audio-repair-001");
 const defaultResultPath = path.join(repoRoot, "artifacts", "densou-s01e01-benchmark-video-slice-audio-repair-result.json");
+const sourceRecoveryBoundaryPath = path.join(repoRoot, "artifacts", "densou-source-recovery-20260811-001", "source-recovery-boundary.json");
 const sapiToolPath = path.join(repoRoot, "tools", "fff-local-sapi-tts.ps1");
 const expectedArtifactId = "fff-densou-s01e01-benchmark-video-slice-audio-repair-001";
 const expectedParentArtifactId = "fff-densou-s01e01-benchmark-video-slice-001";
@@ -201,6 +202,10 @@ async function validateParentEvidence(parentRoot) {
 
 async function validatePlan(planPath) {
   const plan = await readJson(planPath);
+  const recovery = await readJson(sourceRecoveryBoundaryPath);
+  if (recovery.wrong_source_lineage?.reuse_allowed === false && plan.source_sha256 === recovery.wrong_source_lineage.source?.sha256) {
+    throw new AudioRepairError("WRONG_SOURCE_EVIDENCE_QUARANTINED", "audio-repair plan is bound to quarantined wrong-source evidence and cannot be validated or rebuilt as product", 4);
+  }
   requireCondition(plan.schema_version === "fff.densou.episodeAudioRepairPlan.v1", "INVALID_PLAN", "plan schema mismatch");
   requireCondition(plan.work_order_id === "FFF-DENSOU-180-AUDIO-REPAIR-001", "INVALID_PLAN", "work order mismatch");
   requireCondition(plan.artifact_id === expectedArtifactId, "INVALID_PLAN", "artifact identity mismatch");
@@ -890,6 +895,11 @@ async function commandValidatePlan(options) {
 }
 
 async function commandVerify(options) {
+  const plan = await readJson(defaultPlanPath);
+  const recovery = await readJson(sourceRecoveryBoundaryPath);
+  if (recovery.wrong_source_lineage?.reuse_allowed === false && plan.source_sha256 === recovery.wrong_source_lineage.source?.sha256) {
+    throw new AudioRepairError("WRONG_SOURCE_EVIDENCE_QUARANTINED", "audio-repair package is preserved historical evidence and must not be resubmitted", 4);
+  }
   const verification = await verifyPackage(path.resolve(options.root ?? defaultOutputPath), { skipDecode: false });
   console.log(JSON.stringify(verification, null, 2));
 }
@@ -897,8 +907,9 @@ async function commandVerify(options) {
 function printHelp() {
   console.log(`Usage:
   node tools/fff-densou-episode-audio-repair.mjs validate-plan [--plan <plan.json>]
-  node tools/fff-densou-episode-audio-repair.mjs build [--plan <plan.json>] [--out <new-empty-directory>] [--result <result.json>]
-  node tools/fff-densou-episode-audio-repair.mjs verify [--root <package-directory>]`);
+  node tools/fff-densou-episode-audio-repair.mjs verify [--root <package-directory>]
+
+The tracked plan is quarantined wrong-source evidence; validation, rebuild, resubmission, and synthesis fail closed.`);
 }
 
 async function main() {

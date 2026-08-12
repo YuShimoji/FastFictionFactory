@@ -1,5 +1,21 @@
 # Current Status Packet
 
+## Densou source-unbound hardening — 2026-08-12 JST
+
+| Item | Verified state |
+| --- | --- |
+| Review base | isolated `codex/densou-source-unbound-hardening-v1` at candidate base `acf7898`; no `master` adoption decision made |
+| Actual source | `UNBOUND`; no source path, revision, canon, provenance, or rights value selected |
+| Read-only command | `node tools/fff-densou-durable-source-binding.mjs audit-source-readiness`; validates without creating `.local` vault state |
+| Durable record hardening | duplicate options, malformed/traversing binding IDs, active-index role drift, identity tamper, and vault-locator tamper fail closed |
+| Legacy intake | source-bearing `status` and `init` return `LEGACY_MUTATION_DISABLED`; the durable one-shot route is the only future binding entrypoint |
+| Wrong-source lineage | quick-win build, video plan/build/verify, and audio plan/build/verify return `WRONG_SOURCE_EVIDENCE_QUARANTINED` before product or media work |
+| Historical payloads | retained unchanged for forensic hash and structure checks; reuse, rebuild, resubmission, product progress, and current review authority remain false |
+| Focused verification | 42/42 Node tests PASS; media decode and synthesis were not invoked by the hardened suite |
+| Repository-wide test | 64/72 PASS; the same 8 pre-existing CASE_DIGEST successor/readiness-baseline failures remain outside this Densou delta |
+
+Detailed review: `docs/review/densou-source-unbound-hardening.md`.
+
 ## Densou durable source binding vertical slice — 2026-08-11 JST
 
 | Item | Verified state |

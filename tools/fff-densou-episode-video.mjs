@@ -19,6 +19,7 @@ const repoRoot = path.resolve(path.dirname(toolPath), "..");
 const defaultPlanPath = path.join(repoRoot, "artifacts", "densou-s01e01-benchmark-video-slice-plan.json");
 const defaultOutputPath = path.join(repoRoot, "artifacts", "densou-s01e01-benchmark-video-slice-001");
 const defaultResultPath = path.join(repoRoot, "artifacts", "densou-s01e01-benchmark-video-slice-result.json");
+const sourceRecoveryBoundaryPath = path.join(repoRoot, "artifacts", "densou-source-recovery-20260811-001", "source-recovery-boundary.json");
 const defaultPacketRoot = path.resolve(
   repoRoot,
   "..",
@@ -181,6 +182,10 @@ async function validatePacketRoot(packetRoot, expectedManifestSha) {
 
 async function validatePlan(planPath, packetRoot) {
   const plan = await readJson(planPath);
+  const recovery = await readJson(sourceRecoveryBoundaryPath);
+  if (recovery.wrong_source_lineage?.reuse_allowed === false && plan.source_sha256 === recovery.wrong_source_lineage.source?.sha256) {
+    throw new VideoSliceError("WRONG_SOURCE_EVIDENCE_QUARANTINED", "video plan is bound to quarantined wrong-source evidence and cannot be validated or rebuilt as product", 4);
+  }
   const episode = await readJson(episodeManifestPath);
   const facts = await readJson(factBoundaryPath);
   const basis = await readJson(sourceBasisPath);
@@ -785,6 +790,11 @@ async function commandValidatePlan(options) {
 }
 
 async function commandVerify(options) {
+  const plan = await readJson(defaultPlanPath);
+  const recovery = await readJson(sourceRecoveryBoundaryPath);
+  if (recovery.wrong_source_lineage?.reuse_allowed === false && plan.source_sha256 === recovery.wrong_source_lineage.source?.sha256) {
+    throw new VideoSliceError("WRONG_SOURCE_EVIDENCE_QUARANTINED", "video package is preserved historical evidence and must not be resubmitted", 4);
+  }
   const root = path.resolve(options.root ?? defaultOutputPath);
   const verification = await verifyPackage(root, { packetRoot: path.resolve(options.packet_root ?? defaultPacketRoot), skipDecode: false });
   console.log(JSON.stringify(verification, null, 2));
@@ -793,8 +803,9 @@ async function commandVerify(options) {
 function printHelp() {
   console.log(`Usage:
   node tools/fff-densou-episode-video.mjs validate-plan [--plan <plan.json>] [--packet-root <packet-directory>]
-  node tools/fff-densou-episode-video.mjs build [--plan <plan.json>] [--packet-root <packet-directory>] [--out <new-empty-directory>] [--result <result.json>]
-  node tools/fff-densou-episode-video.mjs verify [--root <package-directory>] [--packet-root <packet-directory>]`);
+  node tools/fff-densou-episode-video.mjs verify [--root <package-directory>] [--packet-root <packet-directory>]
+
+The tracked plan is quarantined wrong-source evidence; validation, rebuild, and resubmission fail closed.`);
 }
 
 async function main() {

@@ -60,8 +60,9 @@ async function exists(filePath) {
   try {
     await stat(filePath);
     return true;
-  } catch {
-    return false;
+  } catch (error) {
+    if (error.code === "ENOENT") return false;
+    throw new BindingError("FILESYSTEM_ACCESS_FAILED", `cannot inspect durable binding path: ${error.message}`, 6);
   }
 }
 
@@ -107,6 +108,8 @@ function parseArgs(argv) {
     const token = rest[index];
     requireCondition(token.startsWith("--"), "INVALID_ARGUMENT", `unexpected argument: ${token}`, 2);
     const key = token.slice(2).replaceAll("-", "_");
+    requireCondition(/^[a-z0-9][a-z0-9_]*$/.test(key), "INVALID_ARGUMENT", `invalid option name: ${token}`, 2);
+    requireCondition(!Object.hasOwn(options, key), "INVALID_ARGUMENT", `duplicate option is not allowed: ${token}`, 2);
     const value = rest[index + 1];
     requireCondition(value && !value.startsWith("--"), "INVALID_ARGUMENT", `missing value for ${token}`, 2);
     options[key] = value;
@@ -126,7 +129,8 @@ function normalizeScope(value = "production") {
 }
 
 function vaultContext(options = {}) {
-  const vaultRoot = path.resolve(process.env.FFF_DENSOU_VAULT_ROOT ?? defaultVaultRoot);
+  const configuredVaultRoot = process.env.FFF_DENSOU_VAULT_ROOT?.trim();
+  const vaultRoot = path.resolve(configuredVaultRoot || defaultVaultRoot);
   const scope = normalizeScope(options.scope);
   const scopeRoot = path.join(vaultRoot, "scopes", scope);
   return {
@@ -141,8 +145,18 @@ function portable(...parts) {
   return parts.join("/").replaceAll("\\", "/");
 }
 
+function normalizeBindingId(value) {
+  requireCondition(
+    typeof value === "string" && /^densou-binding-[0-9a-f]{20}$/.test(value),
+    "INVALID_BINDING_ID",
+    "binding ID must match densou-binding-<20 lowercase hex>",
+    2
+  );
+  return value;
+}
+
 function bindingRecordPath(context, bindingId) {
-  return path.join(context.scopeRoot, "bindings", bindingId, "binding.json");
+  return path.join(context.scopeRoot, "bindings", normalizeBindingId(bindingId), "binding.json");
 }
 
 function objectRelativePath(sourceHash) {
@@ -150,7 +164,44 @@ function objectRelativePath(sourceHash) {
 }
 
 function packageRelativeRoot(bindingId) {
-  return portable("packages", bindingId);
+  return portable("packages", normalizeBindingId(bindingId));
+}
+
+function recordIdentity(record) {
+  return {
+    semantic_role: record.semantic_role,
+    original_bytes_sha256: record.original_bytes_sha256,
+    byte_size: record.byte_size,
+    canonical_utf8_sha256: record.canonical_utf8_sha256,
+    revision_label: record.revision_label,
+    canon_label: record.canon_label,
+    provenance_assertion: record.provenance_assertion,
+    rights_assertion: record.rights_assertion
+  };
+}
+
+function assertBindingRecord(record, bindingId, context) {
+  const normalizedBindingId = normalizeBindingId(bindingId);
+  requireCondition(record && typeof record === "object" && !Array.isArray(record), "BINDING_RECORD_INVALID", "binding record must be an object", 5);
+  requireCondition(record.schema_version === "fff.densou.durableSourceBinding.v1", "BINDING_RECORD_INVALID", "binding record schema mismatch", 5);
+  requireCondition(record.binding_id === normalizedBindingId, "BINDING_RECORD_INVALID", "binding record identity mismatch", 5);
+  requireCondition(record.semantic_role === semanticRole && record.status === "BOUND", "BINDING_RECORD_INVALID", "binding is not active for actual_densou_original", 5);
+  requireCondition(record.scope === context.scope, "BINDING_RECORD_INVALID", "binding scope mismatch", 5);
+  requireCondition(states.includes(record.state), "BINDING_RECORD_INVALID", "binding state is invalid", 5);
+  requireCondition(/^[0-9a-f]{64}$/.test(record.original_bytes_sha256), "BINDING_RECORD_INVALID", "binding source hash is invalid", 5);
+  requireCondition(record.canonical_utf8_sha256 === record.original_bytes_sha256, "BINDING_RECORD_INVALID", "canonical source hash differs from original bytes", 5);
+  requireCondition(Number.isSafeInteger(record.byte_size) && record.byte_size > 0, "BINDING_RECORD_INVALID", "binding byte size is invalid", 5);
+  for (const key of ["revision_label", "canon_label", "provenance_assertion", "rights_assertion"]) {
+    requireCondition(typeof record[key] === "string" && record[key].trim().length > 0, "BINDING_RECORD_INVALID", `binding field is invalid: ${key}`, 5);
+  }
+  const expectedBindingId = `densou-binding-${sha256(Buffer.from(stableStringify(recordIdentity(record)), "utf8")).slice(0, 20)}`;
+  requireCondition(normalizedBindingId === expectedBindingId, "BINDING_IDENTITY_CONFLICT", "binding ID does not match the stored identity", 5);
+  requireCondition(
+    record.portable_vault_locator === objectRelativePath(record.original_bytes_sha256),
+    "BINDING_RECORD_INVALID",
+    "binding vault locator does not match the hash-addressed object identity",
+    5
+  );
 }
 
 async function loadContract() {
@@ -239,11 +290,19 @@ async function ensureObject(context, source) {
 }
 
 async function loadIndex(context) {
-  return (await readJsonIfPresent(context.activeIndexPath)) ?? {
+  const index = (await readJsonIfPresent(context.activeIndexPath)) ?? {
     schema_version: "fff.densou.activeBindingIndex.v1",
     scope: context.scope,
     active_by_semantic_role: {}
   };
+  requireCondition(index.schema_version === "fff.densou.activeBindingIndex.v1", "ACTIVE_INDEX_INVALID", "active binding index schema mismatch", 5);
+  requireCondition(index.scope === context.scope, "ACTIVE_INDEX_INVALID", "active binding index scope mismatch", 5);
+  requireCondition(index.active_by_semantic_role && typeof index.active_by_semantic_role === "object" && !Array.isArray(index.active_by_semantic_role), "ACTIVE_INDEX_INVALID", "active binding index map is invalid", 5);
+  const unknownRoles = Object.keys(index.active_by_semantic_role).filter((role) => role !== semanticRole);
+  requireCondition(unknownRoles.length === 0, "ACTIVE_INDEX_INVALID", `active binding index contains unsupported roles: ${unknownRoles.join(", ")}`, 5);
+  const active = index.active_by_semantic_role[semanticRole];
+  if (active !== undefined) normalizeBindingId(active);
+  return index;
 }
 
 async function saveIndex(context, index) {
@@ -306,17 +365,16 @@ async function resolveBinding(options = {}, { requireObject = true } = {}) {
   await loadContract();
   const context = vaultContext(options);
   const index = await loadIndex(context);
-  const bindingId = options.binding_id ?? index.active_by_semantic_role[semanticRole];
-  if (!bindingId) {
+  const selectedBindingId = options.binding_id ?? index.active_by_semantic_role[semanticRole];
+  if (!selectedBindingId) {
     const resumeCommand = "node tools/fff-densou-durable-source-binding.mjs bind-source --path <one-time-path> --revision <explicit> --canon-label <explicit> --provenance-assertion <explicit> --rights-assertion <explicit>";
     const blocker = await recordBlocker(context, "UNBOUND", "UNBOUND", resumeCommand, "One explicit source binding is required for this scope.");
     throw new BindingError("UNBOUND", "no durable source binding exists for this scope", 3, { blocker });
   }
+  const bindingId = normalizeBindingId(selectedBindingId);
   const record = await readJsonIfPresent(bindingRecordPath(context, bindingId));
   requireCondition(record, "BINDING_RECORD_MISSING", `binding record is missing: ${bindingId}`, 6);
-  requireCondition(record.schema_version === "fff.densou.durableSourceBinding.v1" && record.binding_id === bindingId, "BINDING_RECORD_INVALID", "binding record identity mismatch", 5);
-  requireCondition(record.semantic_role === semanticRole && record.status === "BOUND", "BINDING_RECORD_INVALID", "binding is not active for actual_densou_original", 5);
-  requireCondition(record.scope === context.scope, "BINDING_RECORD_INVALID", "binding scope mismatch", 5);
+  assertBindingRecord(record, bindingId, context);
   if (options.revision && options.revision !== record.revision_label) {
     await throwDifferential(context, bindingId, "EXPLICIT_REVISION_CHANGE", `requested revision differs from bound revision ${record.revision_label}`);
   }
@@ -348,6 +406,9 @@ function addHistory(record, state, at) {
 async function bindSource(options) {
   requireAllowedOptions(options, ["path", "revision", "canon_label", "provenance_assertion", "rights_assertion", "scope", "synthetic_fixture", "fixture_output", "interrupt_after"]);
   requireCondition(options.path, "SOURCE_PATH_MISSING", "--path is required exactly once for bind-source", 3);
+  if (options.interrupt_after !== undefined) {
+    requireCondition(["BOUND", "VERIFIED", "INGEST_READY"].includes(options.interrupt_after), "INVALID_ARGUMENT", "--interrupt-after must be BOUND, VERIFIED, or INGEST_READY", 2);
+  }
   const { rejectedSourceSha256 } = await loadContract();
   const context = vaultContext(options);
   const source = await inspectExternalSource(options.path);
@@ -1402,6 +1463,47 @@ async function commandValidateFirstBindDownstream(options) {
   console.log(JSON.stringify(await validateFirstBindDownstream(options), null, 2));
 }
 
+async function commandAuditSourceReadiness(options) {
+  requireAllowedOptions(options, ["scope"]);
+  await loadContract();
+  const actualPreflight = await validateActualSourcePreflight(actualSourcePreflightPath);
+  const sourceIndependent = await validateSourceIndependentPackage();
+  const context = vaultContext(options);
+  const index = await loadIndex(context);
+  const activeBindingId = index.active_by_semantic_role[semanticRole] ?? null;
+  let liveBinding = null;
+  if (activeBindingId) {
+    const resolved = await resolveBinding({ scope: context.scope, binding_id: activeBindingId });
+    liveBinding = {
+      binding_id: resolved.record.binding_id,
+      state: resolved.record.state,
+      original_bytes_sha256: resolved.record.original_bytes_sha256,
+      source_path_required: false
+    };
+  }
+  console.log(JSON.stringify({
+    result: "PASS",
+    command: "audit-source-readiness",
+    scope: context.scope,
+    authority_state: liveBinding ? "BOUND" : "UNBOUND",
+    active_binding: liveBinding,
+    actual_source_preflight: {
+      state: actualPreflight.actual_source_status,
+      exact_source_present: false,
+      source_selection_performed: false
+    },
+    source_independent_package: {
+      state: sourceIndependent.state,
+      artifact_id: sourceIndependent.artifact_id,
+      check_count: sourceIndependent.check_count
+    },
+    wrong_source_quarantine_active: true,
+    source_question_emitted: false,
+    writes_performed: false,
+    safe_without_source: true
+  }, null, 2));
+}
+
 function printHelp() {
   console.log(`Densou durable source binding v1
 
@@ -1418,6 +1520,7 @@ Commands:
   validate-source-independent-package
   generate-first-bind-downstream --binding-id <binding-id> [--scope <portable-scope>] [--allow-synthetic-example true]
   validate-first-bind-downstream --binding-id <binding-id> [--scope <portable-scope>] [--allow-synthetic-example true]
+  audit-source-readiness [--scope <portable-scope>]
 
 The external source path is accepted only by bind-source and is never stored.`);
 }
@@ -1436,6 +1539,7 @@ async function main() {
   if (command === "validate-source-independent-package") return commandValidateSourceIndependentPackage(options);
   if (command === "generate-first-bind-downstream") return commandGenerateFirstBindDownstream(options);
   if (command === "validate-first-bind-downstream") return commandValidateFirstBindDownstream(options);
+  if (command === "audit-source-readiness") return commandAuditSourceReadiness(options);
   if (command === "help" || command === "--help" || command === "-h") return printHelp();
   throw new BindingError("INVALID_COMMAND", `unknown command: ${command}`, 2);
 }

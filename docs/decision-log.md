@@ -1,5 +1,14 @@
 # Decision Log
 
+## 2026-08-12 — Enforce source-unbound safety without adopting the Densou candidate
+
+- Review decision: evaluate the three remote commits on an isolated local branch; do not merge, rebase, fast-forward `master`, select a source, or convert the candidate into product authority during this slice.
+- Resolver decision: validate binding IDs, active-index shape, identity-derived binding IDs, and hash-addressed vault locators before reading vault objects. Reject duplicate CLI options and unknown interruption checkpoints instead of accepting last-value-wins ambiguity.
+- Readiness decision: provide one read-only `audit-source-readiness` command that proves contract, preflight, source-independent package, live index state, and quarantine state without creating a blocker or vault record.
+- Supersession decision: the 2026-08-11 durable route supersedes legacy source mutation behavior. Preserve legacy payload verification for forensic use, but disable legacy source inspection/init and every rebuild/resubmission path hard-bound to the quarantined sample.
+- Media decision: quarantine checks run before external packet lookup, FFmpeg decode, SAPI synthesis, or derived output. Existing media bytes remain untouched; local metadata and hashes may still be audited separately.
+- Acceptance boundary: this hardening is a reviewable implementation delta only. Candidate adoption, actual source choice, canon/provenance/rights assertions, production, human creative acceptance, and publication remain human-owned decisions.
+
 ## 2026-08-11 — Make ignored durable binding the only active Densou source authority
 
 - Authority decision: a tracked template may define the contract but may not express active `UNBOUND` or `BOUND` authority. The only active authority is the versioned binding record under the ignored project vault; the old authority input and its absolute-locator receipts are legacy fixture/forensic evidence only.
