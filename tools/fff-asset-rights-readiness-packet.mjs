@@ -201,19 +201,28 @@ async function inventoryFiles(files, base = ".") {
   return { file_count: inventory.length, aggregate_sha256, files: inventory };
 }
 
-async function captureIntegrity() {
+function recordedHistoricalResultPaths(integrity) {
+  const files = integrity?.historical_results?.files;
+  if (!Array.isArray(files)) return null;
+  return files.map((file) => file.relative_path);
+}
+
+async function captureIntegrity({ historicalResultPaths = null } = {}) {
   const directories = {};
   for (const dir of PROTECTED_DIRS) {
     directories[dir] = await inventoryFiles(await listFilesRecursive(dir), dir);
   }
-  const allArtifactFiles = await readdir("artifacts", { withFileTypes: true });
-  const resultFiles = allArtifactFiles
-    .filter((entry) => entry.isFile() && entry.name.endsWith("-result.json") && !DESCENDANT_RESULT_PATHS.has(`artifacts/${entry.name}`))
-    .map((entry) => `artifacts/${entry.name}`)
-    .sort();
+  let resultFiles = historicalResultPaths;
+  if (resultFiles === null) {
+    const allArtifactFiles = await readdir("artifacts", { withFileTypes: true });
+    resultFiles = allArtifactFiles
+      .filter((entry) => entry.isFile() && entry.name.endsWith("-result.json") && !DESCENDANT_RESULT_PATHS.has(`artifacts/${entry.name}`))
+      .map((entry) => `artifacts/${entry.name}`)
+      .sort();
+  }
   return {
     protected_directories: directories,
-    historical_results: await inventoryFiles(resultFiles, ".")
+    historical_results: await inventoryFiles([...resultFiles].sort(), ".")
   };
 }
 
@@ -288,7 +297,9 @@ export async function validateReadinessPreservedArtifact({ command, inputPath, o
     protected_directories: model.integrity?.protected_directories,
     historical_results: model.integrity?.historical_results
   };
-  const current = await captureIntegrity();
+  const current = await captureIntegrity({
+    historicalResultPaths: recordedHistoricalResultPaths(baseline)
+  });
   if (!sameIntegrity(baseline, current)) {
     throw new Error(`PREDECESSOR_INTEGRITY_BLOCKER: protected package or historical result differs from the readiness baseline while running ${command}`);
   }
@@ -1003,7 +1014,9 @@ async function validatePacket(inputPath = RESULT_PATH) {
   const before = await inventoryFiles([...PACKAGE_PAYLOAD_FILES.map((name) => `${PACKAGE_ROOT}/${name}`), MANIFEST_PATH, RESULT_PATH], ".");
   const [model, manifest, result, html] = await Promise.all([readJson(MODEL_PATH), readJson(MANIFEST_PATH), readJson(inputPath), readFile(HTML_PATH, "utf8")]);
   const failures = validateCore(model);
-  const actualIntegrity = await captureIntegrity();
+  const actualIntegrity = await captureIntegrity({
+    historicalResultPaths: recordedHistoricalResultPaths(model.integrity)
+  });
   if (!sameIntegrity(model.integrity, actualIntegrity)) failures.push("protected predecessor or historical result fingerprint mismatch");
   failures.push(...await validateManifest(manifest));
   for (const reference of model.references) {
@@ -1112,8 +1125,14 @@ async function captureBrowserEvidence() {
 async function build({ validateAfter = false } = {}) {
   const existingModel = await readJsonIfPresent(MODEL_PATH);
   const existingResult = await readJsonIfPresent(RESULT_PATH);
-  const currentIntegrity = await captureIntegrity();
-  const baseline = existingModel?.integrity?.protected_directories ? { protected_directories: existingModel.integrity.protected_directories, historical_results: existingModel.integrity.historical_results } : currentIntegrity;
+  const storedBaseline = existingModel?.integrity?.protected_directories ? {
+    protected_directories: existingModel.integrity.protected_directories,
+    historical_results: existingModel.integrity.historical_results
+  } : null;
+  const currentIntegrity = await captureIntegrity({
+    historicalResultPaths: recordedHistoricalResultPaths(storedBaseline)
+  });
+  const baseline = storedBaseline ?? currentIntegrity;
   if (existingModel && !sameIntegrity(baseline, currentIntegrity)) throw new Error("PREDECESSOR_INTEGRITY_BLOCKER: protected package or historical result differs from stored baseline");
   const authority = await loadAuthority(existingModel);
   const model = await buildModel(authority, baseline);
