@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CASE_DIGEST development content/process review</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #071017;
+      --panel: #101d25;
+      --panel-2: #172731;
+      --text: #edf6f5;
+      --muted: #a9bdba;
+      --line: #2b4650;
+      --cyan: #63d6cf;
+      --amber: #f1c26f;
+      --red: #ff8181;
+      --green: #80d6a7;
+      --max: 1360px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(67, 127, 142, .22), transparent 34rem),
+        linear-gradient(150deg, #071017 0%, #08131b 55%, #0b171d 100%);
+      color: var(--text);
+      font-family: "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+      line-height: 1.62;
+    }
+    a { color: var(--cyan); }
+    button, textarea { font: inherit; }
+    .shell { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; padding: 34px 0 80px; }
+    .eyebrow { color: var(--cyan); font-size: .79rem; font-weight: 800; letter-spacing: .16em; }
+    h1 { margin: 8px 0 12px; max-width: 980px; font-size: clamp(2rem, 4vw, 4rem); line-height: 1.07; letter-spacing: -.035em; }
+    h2 { margin: 0 0 14px; font-size: clamp(1.25rem, 2vw, 1.8rem); }
+    h3 { margin: 0 0 8px; font-size: 1rem; }
+    p { margin: 0 0 12px; }
+    code { word-break: break-all; color: #d4fffb; }
+    .lede { max-width: 910px; color: var(--muted); font-size: 1.06rem; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 30px; }
+    .badge { border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; background: rgba(14, 29, 37, .8); font-size: .8rem; }
+    .badge.accept { border-color: #377d61; color: var(--green); }
+    .badge.boundary { border-color: #816d37; color: var(--amber); }
+    .grid { display: grid; grid-template-columns: minmax(0, 1.38fr) minmax(330px, .62fr); gap: 22px; align-items: start; }
+    .panel { background: rgba(16, 29, 37, .94); border: 1px solid var(--line); border-radius: 18px; padding: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, .22); }
+    .player-panel { position: sticky; top: 12px; z-index: 3; }
+    .video-wrap { position: relative; overflow: hidden; border-radius: 12px; background: #000; border: 1px solid #213943; }
+    video { display: block; width: 100%; aspect-ratio: 16/9; background: #000; }
+    .caption { min-height: 3.4em; display: grid; place-items: center; padding: 9px 16px; background: #020607; color: #fff; text-align: center; font-weight: 700; letter-spacing: .015em; }
+    .transport-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px; color: var(--muted); font-size: .88rem; }
+    .live { color: var(--cyan); font-weight: 700; }
+    .route { margin-top: 14px; padding: 12px 14px; border: 1px solid #356d62; border-radius: 12px; background: rgba(30, 92, 75, .14); }
+    .route strong { color: var(--green); }
+    .challenge { display: none; margin-top: 14px; padding: 12px 14px; border: 1px solid #9a4747; border-radius: 12px; background: rgba(122, 35, 35, .2); color: #ffd7d7; }
+    .challenge.visible { display: block; }
+    .stage-list, .cue-list { display: grid; gap: 9px; }
+    .stage-button, .cue-button {
+      width: 100%; border: 1px solid var(--line); border-radius: 12px; background: var(--panel-2); color: var(--text); text-align: left; padding: 11px 12px; cursor: pointer;
+    }
+    .stage-button:hover, .stage-button:focus-visible, .cue-button:hover, .cue-button:focus-visible { border-color: var(--cyan); outline: none; transform: translateY(-1px); }
+    .stage-button.active, .cue-button.active { border-color: var(--cyan); box-shadow: inset 3px 0 0 var(--cyan); background: #18313a; }
+    .stage-time, .cue-meta { display: block; color: var(--cyan); font-size: .75rem; font-weight: 800; letter-spacing: .04em; }
+    .stage-prompt { display: block; margin-top: 4px; color: var(--muted); font-size: .83rem; }
+    .cue-text { display: block; margin-top: 3px; font-size: .88rem; }
+    .cue-list { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 12px; }
+    .section { margin-top: 24px; }
+    .axis { border-left: 4px solid var(--amber); padding-left: 16px; }
+    .axis p { color: #f7e6c2; font-size: 1.02rem; }
+    .answer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
+    .answer-grid button { border: 1px solid var(--line); border-radius: 10px; background: #14242d; color: var(--text); padding: 10px; cursor: pointer; }
+    textarea { width: 100%; min-height: 120px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; background: #091218; color: var(--text); padding: 12px; }
+    .summary { white-space: pre-wrap; min-height: 96px; border: 1px dashed var(--line); border-radius: 10px; padding: 12px; color: var(--muted); background: #0a151c; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 780px; font-size: .88rem; }
+    th, td { border-bottom: 1px solid var(--line); padding: 10px 9px; vertical-align: top; text-align: left; }
+    th { color: var(--cyan); font-size: .76rem; letter-spacing: .06em; }
+    .state { font-weight: 800; white-space: nowrap; }
+    .fixed { color: var(--green); }
+    .deferred { color: var(--amber); }
+    .closed { color: #b8c2c4; }
+    details { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: #0c171e; }
+    summary { cursor: pointer; color: var(--cyan); font-weight: 800; }
+    .identity-list { display: grid; gap: 10px; margin-top: 12px; }
+    .identity-row { display: grid; grid-template-columns: 180px 1fr; gap: 10px; }
+    .identity-row span:first-child { color: var(--muted); }
+    .footer-boundary { margin-top: 24px; color: var(--muted); font-size: .88rem; }
+    @media (max-width: 960px) {
+      .grid { grid-template-columns: 1fr; }
+      .player-panel { position: relative; top: auto; }
+    }
+    @media (max-width: 620px) {
+      .shell { width: min(100% - 18px, var(--max)); padding-top: 20px; }
+      .panel { padding: 14px; border-radius: 14px; }
+      .cue-list { grid-template-columns: 1fr; }
+      .identity-row { grid-template-columns: 1fr; gap: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="eyebrow">NON_DENSOU · CASE_DIGEST · 180.000 SECONDS</div>
+    <h1>内容と制作工程を、一つの画面で追う。</h1>
+    <p class="lede">採用済みの開発用 Ichiro 音声を含む exact MP4 を変更せずに参照します。11 の cue／shot と五つの理解段階を行き来し、何が固定済みで、何が後から差し替え可能で、どこに人の判断が残るかを同時に確認できます。</p>
+    <div class="badges">
+      <span class="badge accept">開発用タイミング音声 ACCEPT</span>
+      <span class="badge">MP4 1499cd6e7538…bc10</span>
+      <span class="badge">picture essence exact</span>
+      <span class="badge">subtitle text/timing exact</span>
+      <span class="badge boundary">final voice deferred</span>
+      <span class="badge boundary">not production / not publication</span>
+    </div>
+
+    <div class="grid">
+      <section class="panel player-panel" aria-label="Exact media player">
+        <h2>Exact 180 秒メディア</h2>
+        <div class="video-wrap">
+          <video id="review-media" controls preload="metadata" playsinline>
+            <source src="../private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4" type="video/mp4">
+          </video>
+          <div id="caption-overlay" class="caption" aria-live="polite">正午、鐘のない塔から鐘の音が響いたと報告された。</div>
+        </div>
+        <div class="transport-meta">
+          <span id="time-label">00:00 / 03:00</span>
+          <span id="cue-label" class="live">shot-b01-01 · case-digest-caption-01</span>
+        </div>
+        <div id="route-state" class="route"><strong>ACTIVE_EXACT_MEDIA</strong> — 初期状態は一時停止。ボタン移動も自動再生しません。</div>
+        <div id="challenge-state" class="challenge">
+          <strong>BLOCKED_DISTINCT_CHALLENGE</strong><br>
+          exact media を読み込めません。別ファイルを代用せず、challenge <code>fff-missing-media-challenge-1499cd6e7538</code> として扱ってください。
+        </div>
+        <div class="section">
+          <h3>五つの理解段階</h3>
+          <div id="stage-list" class="stage-list"></div>
+        </div>
+      </section>
+
+      <aside class="panel" aria-label="Cue and shot index">
+        <h2>11 cue / shot index</h2>
+        <p class="lede">各項目は、その cue の開始位置へ移動して一時停止します。字幕文は exact caption CSV と一致します。</p>
+        <div id="cue-list" class="cue-list"></div>
+      </aside>
+    </div>
+
+    <section class="panel section axis" aria-labelledby="review-axis-title">
+      <h2 id="review-axis-title">今回の一つの判断軸</h2>
+      <p>この3分で、観測事実、調査の手掛かり、裏づけのない関与、未解決の現状を、制作資料を読み直さずに区別できるか。</p>
+      <p class="lede">自然文でそのまま返せます。修正が必要なら、時刻・shot ID・cue ID のいずれか一つと、どこで理解が途切れたかを書けば十分です。この画面から topic、canon、major visual method、editorial winner を決める必要はありません。</p>
+      <div class="answer-grid">
+        <button type="button" data-verdict="流れは明瞭。観測事実、手掛かり、証拠の限界、未解決の現状を区別できた。">明瞭だった</button>
+        <button type="button" data-verdict="修正が必要。以下の時刻または cue で理解が途切れた。">修正点がある</button>
+      </div>
+      <label for="review-note">観察メモ</label>
+      <textarea id="review-note" placeholder="例: 01:56 / shot-b04-02 で、評議会への疑いと証拠不足の区別が弱く感じる。"></textarea>
+      <p><button id="build-summary" type="button">返信用の要約を組み立てる</button></p>
+      <div id="review-summary" class="summary" aria-live="polite">判断を選ぶか、自然文の観察メモを入力すると、Coordinator にそのまま渡せる要約をここに作れます。</div>
+    </section>
+
+    <section class="panel section" aria-labelledby="provenance-title">
+      <h2 id="provenance-title">制作段階と所有境界</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>段階</th><th>この pass の状態</th><th>所有</th><th>次の扱い</th></tr></thead>
+          <tbody>
+            <tr><td>CASE_DIGEST format / current topic</td><td class="state fixed">FIXED FOR THIS PASS</td><td>この review 外の human owner</td><td>この面では選択も変更もしない</td></tr>
+            <tr><td>picture sequence / edit timing</td><td class="state fixed">FIXED EXACT</td><td>accepted parent binding</td><td>H.264 essence を保持</td></tr>
+            <tr><td>subtitle text / timing</td><td class="state fixed">FIXED EXACT</td><td>accepted parent binding</td><td>11 cue window を保持</td></tr>
+            <tr><td>Japanese development timing voice</td><td class="state fixed">ACCEPTED DEVELOPMENT ONLY</td><td>exact human verdict</td><td>この review では同一 bytes を使用</td></tr>
+            <tr><td>final Japanese voice / rights</td><td class="state deferred">REPLACEABLE / DEFERRED</td><td>human voice / rights owner</td><td>後日の比較と規約確認</td></tr>
+            <tr><td>content flow / process comprehension</td><td class="state deferred">ACTIVE SINGLE AXIS</td><td>human reviewer</td><td>自然文 clear または一箇所の repair</td></tr>
+            <tr><td>canon / production / publication / localization</td><td class="state closed">CLOSED</td><td>各 human owner</td><td>独立した後続判断</td></tr>
+            <tr><td>Densou identity / source</td><td class="state closed">OUT OF LANE</td><td>independent Densou gate</td><td>ここでは照会も推論もしない</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel section">
+      <details>
+        <summary>Exact input / output identities</summary>
+        <div class="identity-list">
+          <div class="identity-row"><span>Active MP4</span><code>artifacts/private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4</code></div>
+          <div class="identity-row"><span>MP4 SHA-256</span><code>1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10</code></div>
+          <div class="identity-row"><span>Bytes / duration</span><code>18300218 / 180.000 seconds</code></div>
+          <div class="identity-row"><span>Parent artifact</span><code>fff-private-raster-case-digest-001</code></div>
+          <div class="identity-row"><span>Caption CSV</span><code>447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d</code></div>
+          <div class="identity-row"><span>Shot sequence CSV</span><code>fa50635ec9dc17dfed233bac9c28197644be91e986033c309c8f3019066b7ec2</code></div>
+          <div class="identity-row"><span>Picture essence</span><code>b5facecd9fbdea57daad03096566dd478ac6ea9c1120dd2e6b49656569dcb989 (exact parent match)</code></div>
+          <div class="identity-row"><span>Subtitle text/timing</span><code>917d0d243fb0ee1e4e47d84c198c9dd12bd029360887ae2cda0c4031eb3c37e7 (exact parent match)</code></div>
+          <div class="identity-row"><span>Voice acceptance</span><code>ACCEPT_DEVELOPMENT_TIMING_VOICE / DEVELOPMENT_TIMING_VOICE_ONLY</code></div>
+          <div class="identity-row"><span>Missing-media challenge</span><code>fff-missing-media-challenge-1499cd6e7538</code></div>
+        </div>
+      </details>
+    </section>
+
+    <p class="footer-boundary">This is private development evidence. It is not final voice selection, voice rights clearance, canon approval, production acceptance, distribution, publication, localization, or Densou authority.</p>
+  </main>
+
+  <script id="surface-data" type="application/json">
+  {
+    "stages": [
+      {"id":"stage-01-anomaly","label":"異常の確認","start":0,"end":24,"prompt":"鐘の音の報告と、現物の鐘がない事実を分けて受け取れるか。"},
+      {"id":"stage-02-investigation","label":"調査者と手掛かり","start":24,"end":65,"prompt":"ミラの動機、兄のメモと真鍮の蛾、9:17 の反復が順につながるか。"},
+      {"id":"stage-03-ledger","label":"台帳への到達","start":65,"end":97,"prompt":"メモから二列の台帳へ進み、「分」と人名の列を提示情報として追えるか。"},
+      {"id":"stage-04-evidence-limit","label":"疑いと証拠の境界","start":97,"end":136,"prompt":"評議会が調査対象であることと、関与の証拠がないことを混同しないか。"},
+      {"id":"stage-05-open-status","label":"現在地と未解決","start":136,"end":180,"prompt":"二つの損失区分から、音源・関係者未確定の調査継続へ着地できるか。"}
+    ],
+    "cues": [
+      {"n":1,"cue":"case-digest-caption-01","shot":"shot-b01-01","stage":"stage-01-anomaly","start":0,"end":12,"text":"正午、鐘のない塔から鐘の音が響いたと報告された。"},
+      {"n":2,"cue":"case-digest-caption-02","shot":"shot-b01-02","stage":"stage-01-anomaly","start":12,"end":24,"text":"塔の取付枠は空で、鐘は確認できない。"},
+      {"n":3,"cue":"case-digest-caption-03","shot":"shot-b02-01","stage":"stage-02-investigation","start":24,"end":38,"text":"時計修理師のミラ・ヴェイルが、失踪した兄の手掛かりを調べる。"},
+      {"n":4,"cue":"case-digest-caption-04","shot":"shot-b02-02","stage":"stage-02-investigation","start":38,"end":52,"text":"失踪した兄のメモと真鍮の蛾が、作業台に残されている。"},
+      {"n":5,"cue":"case-digest-caption-05","shot":"shot-b02-03","stage":"stage-02-investigation","start":52,"end":65,"text":"時計と記録には、9:17が繰り返し現れる。"},
+      {"n":6,"cue":"case-digest-caption-06","shot":"shot-b03-01","stage":"stage-03-ledger","start":65,"end":81,"text":"失踪した兄のメモは、二列の台帳へ調査を導く。"},
+      {"n":7,"cue":"case-digest-caption-07","shot":"shot-b03-02","stage":"stage-03-ledger","start":81,"end":97,"text":"台帳には、「分」の欄と人名の欄が並んでいる。"},
+      {"n":8,"cue":"case-digest-caption-08","shot":"shot-b04-01","stage":"stage-04-evidence-limit","start":97,"end":116,"text":"メモは、市の評議会を調査対象として指している。"},
+      {"n":9,"cue":"case-digest-caption-09","shot":"shot-b04-02","stage":"stage-04-evidence-limit","start":116,"end":136,"text":"告発は記録されているが、評議会の関与を裏づける証拠はない。"},
+      {"n":10,"cue":"case-digest-caption-10","shot":"shot-b06-01","stage":"stage-05-open-status","start":136,"end":158,"text":"時間と名前は、台帳の二つの損失区分である。"},
+      {"n":11,"cue":"case-digest-caption-11","shot":"shot-b06-03","stage":"stage-05-open-status","start":158,"end":180,"text":"音源と関係者を確定できないまま、塔は調査対象として残る。"}
+    ]
+  }
+  </script>
+  <script>
+    (function () {
+      "use strict";
+      var data = JSON.parse(document.getElementById("surface-data").textContent);
+      var media = document.getElementById("review-media");
+      var caption = document.getElementById("caption-overlay");
+      var timeLabel = document.getElementById("time-label");
+      var cueLabel = document.getElementById("cue-label");
+      var cueList = document.getElementById("cue-list");
+      var stageList = document.getElementById("stage-list");
+      var routeState = document.getElementById("route-state");
+      var challengeState = document.getElementById("challenge-state");
+      var validationMuted = new URLSearchParams(location.search).get("validation") === "muted";
+      var selectedVerdict = "";
+
+      function clock(seconds) {
+        var value = Math.max(0, Math.min(180, Number(seconds) || 0));
+        var minutes = Math.floor(value / 60);
+        var secs = Math.floor(value % 60);
+        return String(minutes).padStart(2, "0") + ":" + String(secs).padStart(2, "0");
+      }
+
+      function cueAt(seconds) {
+        return data.cues.find(function (cue) {
+          return seconds >= cue.start && seconds < cue.end;
+        }) || data.cues[data.cues.length - 1];
+      }
+
+      function updateActive(seconds) {
+        var activeCue = cueAt(seconds);
+        caption.textContent = activeCue.text;
+        timeLabel.textContent = clock(seconds) + " / 03:00";
+        cueLabel.textContent = activeCue.shot + " · " + activeCue.cue;
+        document.querySelectorAll(".cue-button").forEach(function (button) {
+          button.classList.toggle("active", Number(button.dataset.index) === activeCue.n);
+        });
+        document.querySelectorAll(".stage-button").forEach(function (button) {
+          button.classList.toggle("active", button.dataset.stage === activeCue.stage);
+        });
+      }
+
+      function jump(seconds) {
+        media.pause();
+        media.currentTime = seconds;
+        updateActive(seconds);
+      }
+
+      data.stages.forEach(function (stage) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "stage-button";
+        button.dataset.stage = stage.id;
+        var time = document.createElement("span");
+        time.className = "stage-time";
+        time.textContent = clock(stage.start) + "–" + clock(stage.end);
+        var title = document.createElement("strong");
+        title.textContent = stage.label;
+        var prompt = document.createElement("span");
+        prompt.className = "stage-prompt";
+        prompt.textContent = stage.prompt;
+        button.append(time, title, prompt);
+        button.addEventListener("click", function () { jump(stage.start); });
+        stageList.appendChild(button);
+      });
+
+      data.cues.forEach(function (cue) {
+        var button = document.createElement("button");
+        button.type = "button";
+        button.className = "cue-button";
+        button.dataset.index = String(cue.n);
+        var meta = document.createElement("span");
+        meta.className = "cue-meta";
+        meta.textContent = String(cue.n).padStart(2, "0") + " · " + clock(cue.start) + " · " + cue.shot;
+        var text = document.createElement("span");
+        text.className = "cue-text";
+        text.textContent = cue.text;
+        button.append(meta, text);
+        button.addEventListener("click", function () { jump(cue.start); });
+        cueList.appendChild(button);
+      });
+
+      media.addEventListener("loadedmetadata", function () {
+        media.pause();
+        if (Math.abs(media.duration - 180) > 0.1) {
+          routeState.innerHTML = "<strong>IDENTITY WARNING</strong> — media duration is not the expected 180.000 seconds. Run the verifier before review.";
+        }
+        updateActive(media.currentTime);
+      });
+      media.addEventListener("timeupdate", function () { updateActive(media.currentTime); });
+      media.addEventListener("seeked", function () {
+        if (validationMuted) { media.pause(); }
+        updateActive(media.currentTime);
+      });
+      media.addEventListener("error", function () {
+        media.pause();
+        routeState.style.display = "none";
+        challengeState.classList.add("visible");
+      });
+
+      if (validationMuted) {
+        media.muted = true;
+        media.volume = 0;
+        media.pause();
+        routeState.innerHTML = "<strong>ACTIVE_EXACT_MEDIA · MUTED VALIDATION MODE</strong> — volume 0 / muted / paused。操作検証でも再生しません。";
+      } else {
+        media.pause();
+      }
+
+      document.querySelectorAll("[data-verdict]").forEach(function (button) {
+        button.addEventListener("click", function () {
+          selectedVerdict = button.dataset.verdict;
+          document.querySelectorAll("[data-verdict]").forEach(function (candidate) {
+            candidate.style.borderColor = candidate === button ? "var(--cyan)" : "var(--line)";
+          });
+        });
+      });
+
+      document.getElementById("build-summary").addEventListener("click", function () {
+        var note = document.getElementById("review-note").value.trim();
+        var parts = [
+          "対象: fff-private-raster-case-digest-ichiro-successor-20260813-001",
+          "MP4: 1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10",
+          "判断軸: 観測事実、手掛かり、証拠の限界、未解決の現状を区別できるか"
+        ];
+        if (selectedVerdict) { parts.push("判断: " + selectedVerdict); }
+        if (note) { parts.push("観察: " + note); }
+        if (!selectedVerdict && !note) { parts.push("観察: 自然文の所感をここへ記入"); }
+        document.getElementById("review-summary").textContent = parts.join("\n");
+      });
+
+      updateActive(0);
+    })();
+  </script>
+</body>
+</html>

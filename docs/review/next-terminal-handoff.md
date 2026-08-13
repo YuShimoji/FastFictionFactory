@@ -1,5 +1,31 @@
 # Next Terminal Handoff
 
+## Start here — NON_DENSOU CASE_DIGEST content/process review (2026-08-13 JST)
+
+This section is the single project-local continuation owner for this checkpoint. The exact candidate is `fff-private-raster-case-digest-ichiro-successor-20260813-001`, MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10`, with `ACCEPT_DEVELOPMENT_TIMING_VOICE` scoped to `DEVELOPMENT_TIMING_VOICE_ONLY`.
+
+Open `artifacts/case-digest-development-review-surface-20260813-001/review.html` directly. It loads that exact accepted 180-second Ichiro MP4 by relative path, begins paused, and offers 11 cue/shot jumps plus a compact provenance view. The development timing voice is already accepted only for this stage; do not create or relay another voice packet, install a voice engine, or compare final voices during this pass.
+
+Review the content/process ladder in order:
+
+1. `00:00–00:24` — separate the reported bell sound from the observed absence of a bell.
+2. `00:24–01:05` — follow Mira, her missing brother's memo and brass moth, and the repeated `9:17` as investigation leads.
+3. `01:05–01:37` — follow the memo into the two-column ledger and distinguish its presented fields.
+4. `01:37–02:16` — keep the council as an investigation target without turning the recorded allegation into proof.
+5. `02:16–03:00` — understand the two loss categories and arrive at an unresolved sound/source/person status with the tower still under investigation.
+
+The single bounded review axis is whether the three-minute sequence lets a viewer distinguish observed facts, investigative leads, unsupported involvement, and unresolved status without reconstructing the pipeline. Natural-language feedback may name a timestamp, shot ID, or cue ID; it does not need a command token. Picture, subtitle text/timing, accepted audio bytes, topic, canon, major visual method, and editorial winner are fixed for this pass.
+
+Final Japanese voice, voice terms/credits/rights, canon, production, publication, distribution, localization, and Densou identity/source remain independent closed or deferred gates. This checkpoint does not promote any of them.
+
+Before review or relay, run:
+
+```powershell
+node tools/fff-case-digest-development-review-surface.mjs verify
+```
+
+If exact media is missing or mismatched, stop review and report the deterministic missing-media challenge returned by the verifier. Never substitute a sample or retain a nominal review action.
+
 ## Start here — source-unbound candidate review (2026-08-12 JST)
 
 `master` has not adopted the Densou candidate. Review branch `codex/densou-source-unbound-hardening-v1` starts at remote candidate `acf7898` and adds only source-unbound safety enforcement. Run this first; it performs no source selection and writes no vault state:

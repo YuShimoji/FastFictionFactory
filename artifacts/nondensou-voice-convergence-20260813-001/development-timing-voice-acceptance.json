@@ -1,0 +1,55 @@
+{
+  "schema_version": "fff.developmentTimingVoiceAcceptance.v1",
+  "decision_id": "FFF-CASE-DIGEST-ICHIRO-DEVELOPMENT-TIMING-VOICE-ACCEPT-20260813",
+  "recorded_at": "2026-08-13",
+  "verdict": "ACCEPT_DEVELOPMENT_TIMING_VOICE",
+  "scope": "DEVELOPMENT_TIMING_VOICE_ONLY",
+  "natural_language_verdict_ja": "FastFictionFactoryでは開発段階の音声として現在の音声が適切。ひとまずこれで進め、速度重視で動画内容・制作過程の多くの確認まで持っていく。",
+  "binding": {
+    "artifact_id": "fff-private-raster-case-digest-ichiro-successor-20260813-001",
+    "media_path": "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4",
+    "media_bytes": 18300218,
+    "media_sha256": "1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10",
+    "duration_seconds": 180.0,
+    "content_lane": "NON_DENSOU_CASE_DIGEST",
+    "voice_engine": "windows-media-speechsynthesis-onecore-local",
+    "voice_name": "Microsoft Ichiro",
+    "culture": "ja-JP",
+    "gender": "Male"
+  },
+  "closed_gate": {
+    "id": "development_timing_voice_perceptual_gate",
+    "state": "CLOSED_ACCEPTED",
+    "accepted_for": [
+      "development timing and process review",
+      "speed-first content review using the exact bound media",
+      "continued local pipeline validation without a new voice candidate"
+    ]
+  },
+  "preservation": {
+    "candidate_bytes_must_remain_unchanged": true,
+    "picture_essence_sha256": "b5facecd9fbdea57daad03096566dd478ac6ea9c1120dd2e6b49656569dcb989",
+    "subtitle_text_timing_srt_sha256": "917d0d243fb0ee1e4e47d84c198c9dd12bd029360887ae2cda0c4031eb3c37e7",
+    "picture_essence_exact_parent_match": true,
+    "subtitle_text_timing_exact_parent_match": true,
+    "rejected_haruka_media_sha256_remains_rejected": "cea496c12c7485a47a992877dc2544bff4be9cd6a1a7c7192574adb7215f0c12"
+  },
+  "supersession": {
+    "active_human_voice_gate": null,
+    "active_voice_candidate": null,
+    "active_project_implementation_lane": "CASE_DIGEST_CONTENT_PROCESS_REVIEW",
+    "new_audio_probe_or_packet_required": false,
+    "final_voice_comparison_deferred": true
+  },
+  "not_accepted": {
+    "final_japanese_voice": false,
+    "production_voice": false,
+    "voice_rights_or_credits": false,
+    "topic_or_canon": false,
+    "major_visual_method": false,
+    "editorial_winner": false,
+    "production": false,
+    "publication_or_distribution": false,
+    "densou_identity_or_source": false
+  }
+}

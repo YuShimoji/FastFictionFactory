@@ -1,5 +1,12 @@
 # Project Context
 
+## NON_DENSOU CASE_DIGEST development review transition — 2026-08-13 JST
+
+- Voice transition: exact MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10` is accepted as `DEVELOPMENT_TIMING_VOICE_ONLY`. This closes the active voice gate but leaves final/production voice, terms, credits, rights, canon, Densou, production, and publication untouched.
+- Product transition: the one active lane is `artifacts/case-digest-development-review-surface-20260813-001/review.html`, a directly openable 180-second content/process workbench that references the accepted media unchanged and exposes cue/shot navigation, story-flow prompts, exact bindings, and stage ownership.
+- Review boundary: the next bounded question is whether the viewer can follow observed facts, leads, lack of proof, and unresolved status across the current sequence. The surface does not silently choose a topic, canon interpretation, major visual method, or editorial winner.
+- Availability rule: absence or hash drift of the exact media becomes challenge `fff-missing-media-challenge-1499cd6e7538`. It never falls back to the rejected Haruka media, a Densou artifact, or another sample.
+
 ## Densou source-unbound hardening review — 2026-08-12 JST
 
 - Review lane: `codex/densou-source-unbound-hardening-v1` is an isolated local review branch based on `origin/codex/densou-series-intake-v1@acf7898`. It does not adopt the three candidate commits into `master` and does not select an actual source.

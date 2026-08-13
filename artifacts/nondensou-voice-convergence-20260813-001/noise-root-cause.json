@@ -1,0 +1,107 @@
+{
+  "schema_version": "fff.voiceNoiseRootCause.v1",
+  "evidence_lineage": "fff-nondensou-voice-convergence-20260813-001",
+  "recorded_at": "2026-08-13",
+  "rejected_candidate": {
+    "artifact_id": "fff-private-raster-case-digest-audio-continuation-20260812-001",
+    "media_sha256": "cea496c12c7485a47a992877dc2544bff4be9cd6a1a7c7192574adb7215f0c12",
+    "user_perceptual_finding": "REJECT: audible ビリビリ/crackling or buzzing and an unfamiliar voice"
+  },
+  "method": {
+    "playback_used": false,
+    "first_cue_text": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+    "reproduction_identity": "Microsoft Haruka Desktop, ja-JP, rate 0, volume 100, exact accepted first-cue text and recorded trim/fade/limiter settings",
+    "analysis_decode": "mono float PCM at 48000 Hz",
+    "spectral_window": "2048-sample Hann FFT, 1024 hop, active frames above -45 dBFS",
+    "analyzer": "tools/fff-audio-signal-audit.mjs",
+    "limitation": "The historical raw cue was not retained. Raw and intermediate stages are deterministic reconstructions; the final stage is the exact rejected MP4. Matching recorded duration and near-identical processed/final metrics support, but do not turn the reconstruction into archived original bytes."
+  },
+  "stages": [
+    {
+      "stage": "raw_synth_reconstruction",
+      "sha256": "d875ff6599a264bd710cd60d8b0e967c9c30e7afb1c411630dd4240f3f3defb6",
+      "duration_seconds": 4.907542,
+      "peak_dbfs": -2.213996,
+      "rms_dbfs": -17.125274,
+      "dc_offset": 0.019016929,
+      "clipped_sample_count": 0,
+      "maximum_adjacent_delta": 0.060199251,
+      "adjacent_delta_over_0_75_count": 0,
+      "high_band_8000_20000_ratio": 0.000005233,
+      "objective_noise_gate_pass": false
+    },
+    {
+      "stage": "trim_and_resample_reconstruction",
+      "sha256": "161f7e044241606eeede8fccc616f22bcb8eb6a0de39755787777010dbf95cd6",
+      "duration_seconds": 3.934063,
+      "peak_dbfs": -2.213692,
+      "rms_dbfs": -16.16899,
+      "dc_offset": 0.023677605,
+      "clipped_sample_count": 0,
+      "maximum_adjacent_delta": 0.059051514,
+      "adjacent_delta_over_0_75_count": 0,
+      "high_band_8000_20000_ratio": 0.000004269,
+      "objective_noise_gate_pass": false
+    },
+    {
+      "stage": "fade_and_limiter_reconstruction",
+      "sha256": "2676f15130e3b704bf2f8933e40515a08acf56193a6a42d3879b79ec4eddb01f",
+      "duration_seconds": 3.934063,
+      "peak_dbfs": -1.298474,
+      "rms_dbfs": -15.255556,
+      "dc_offset": 0.026281221,
+      "clipped_sample_count": 0,
+      "maximum_adjacent_delta": 0.063934326,
+      "adjacent_delta_over_0_75_count": 0,
+      "high_band_8000_20000_ratio": 0.000003773,
+      "objective_noise_gate_pass": false
+    },
+    {
+      "stage": "exact_candidate_muxed_aac_first_cue",
+      "source_media_sha256": "cea496c12c7485a47a992877dc2544bff4be9cd6a1a7c7192574adb7215f0c12",
+      "region_start_seconds": 0.35,
+      "duration_seconds": 3.930792,
+      "peak_dbfs": -1.301775,
+      "rms_dbfs": -15.188497,
+      "dc_offset": 0.026707612,
+      "clipped_sample_count": 0,
+      "maximum_adjacent_delta": 0.063485175,
+      "adjacent_delta_over_0_75_count": 0,
+      "high_band_8000_20000_ratio": 0.000003695,
+      "objective_noise_gate_pass": false
+    }
+  ],
+  "layer_findings": {
+    "raw_synthesizer_output": "earliest observed failure: large positive DC offset already present",
+    "normalization_or_resampling": "did not remove the bias; trimming silence increased its average magnitude",
+    "cue_assembly_or_concat": "no overlapping cues, clipping, or hard sample jumps found; not the earliest divergence",
+    "mux_or_aac": "final first-cue metrics closely track the processed reconstruction; no new clipping or extreme discontinuity found",
+    "playback_surface": "not exercised because playback was prohibited; it cannot explain away the source-level bias or the user's audible rejection"
+  },
+  "root_cause_conclusion": "The earliest objective divergence is the Haruka raw synthesizer output. The former pipeline omitted DC removal and its limiter increased level while preserving the bias. This is consistent with a source-level tonal/buzz complaint, but the user's listening evidence remains stronger than the numeric inference.",
+  "successor_probe": {
+    "voice": "Microsoft Ichiro",
+    "raw_sha256": "158a56850841e9b8eec4394ac82a925d28b0e45b16efdf4f66e98c4f3052cd53",
+    "raw_dc_offset": 0.015352122,
+    "processed_sha256": "dee5ad10dddca56a8d46d68e7a3ed2fa3a52246d58589d71eb1bbd2de41d1865",
+    "processing_change": "60 Hz high-pass before fade and limiter",
+    "processed_dc_offset": -0.000000441,
+    "processed_clipped_sample_count": 0,
+    "processed_adjacent_delta_over_0_75_count": 0,
+    "processed_high_band_8000_20000_ratio": 0.000001113,
+    "objective_noise_gate_pass": true,
+    "perceptual_acceptance_claimed": false
+  },
+  "successor_full_candidate": {
+    "artifact_id": "fff-private-raster-case-digest-ichiro-successor-20260813-001",
+    "media_sha256": "1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10",
+    "cue_count": 11,
+    "all_objective_cue_gates_pass": true,
+    "maximum_absolute_dc_offset": 0.00002602,
+    "total_clipped_sample_count": 0,
+    "total_adjacent_delta_over_0_75_count": 0,
+    "maximum_adjacent_delta": 0.149058156,
+    "maximum_high_band_8000_20000_ratio": 0.000042983,
+    "perceptual_acceptance_claimed": false
+  }
+}

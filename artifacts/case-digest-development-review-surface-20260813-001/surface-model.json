@@ -1,0 +1,314 @@
+{
+  "schema_version": "fff.caseDigestDevelopmentReviewSurface.v1",
+  "surface_id": "fff-case-digest-development-review-surface-20260813-001",
+  "review_axis": {
+    "id": "CASE_DIGEST_STORY_FLOW_AND_PROCESS_COMPREHENSION",
+    "question_ja": "この3分で、観測事実、調査の手掛かり、裏づけのない関与、未解決の現状を、制作資料を読み直さずに区別できるか。",
+    "natural_language_reply_supported": true,
+    "repair_locator_fields": [
+      "timestamp",
+      "shot_id",
+      "cue_id"
+    ]
+  },
+  "review_route": {
+    "state": "ACTIVE_EXACT_MEDIA",
+    "initial_playback": "PAUSED",
+    "validation_query": "?validation=muted",
+    "missing_or_mismatched_media": {
+      "state": "BLOCKED_DISTINCT_CHALLENGE",
+      "challenge_id": "fff-missing-media-challenge-1499cd6e7538",
+      "substitution_allowed": false,
+      "phantom_review_allowed": false
+    }
+  },
+  "identity": {
+    "content_lane": "NON_DENSOU_CASE_DIGEST",
+    "artifact_id": "fff-private-raster-case-digest-ichiro-successor-20260813-001",
+    "media_path": "../private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4",
+    "repo_relative_media_path": "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4",
+    "media_bytes": 18300218,
+    "media_sha256": "1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10",
+    "duration_seconds": 180,
+    "development_voice_verdict": "ACCEPT_DEVELOPMENT_TIMING_VOICE",
+    "development_voice_scope": "DEVELOPMENT_TIMING_VOICE_ONLY",
+    "acceptance_receipt": {
+      "path": "artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json",
+      "bytes": 2515,
+      "sha256": "552314d4c8adc5c822b6d8f8738d208e47663587eab3a2bfbdbfd9dea046d049"
+    },
+    "parent_artifact_id": "fff-private-raster-case-digest-001",
+    "parent_manifest": {
+      "path": "artifacts/private-raster-case-digest/private-raster-case-digest-manifest.json",
+      "bytes": 9482,
+      "sha256": "2cb21aa909999fe1369a6ae4eefbdacb4e7714ffcfb2e04ef2fcfa753bcf7a88"
+    },
+    "caption_csv": {
+      "path": "artifacts/private-raster-case-digest/case-digest-review-captions.csv",
+      "bytes": 1589,
+      "sha256": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d"
+    },
+    "shot_sequence_csv": {
+      "path": "artifacts/private-raster-case-digest/selected-shot-sequence.csv",
+      "bytes": 2452,
+      "sha256": "fa50635ec9dc17dfed233bac9c28197644be91e986033c309c8f3019066b7ec2"
+    },
+    "picture_essence_sha256": "b5facecd9fbdea57daad03096566dd478ac6ea9c1120dd2e6b49656569dcb989",
+    "subtitle_text_timing_srt_sha256": "917d0d243fb0ee1e4e47d84c198c9dd12bd029360887ae2cda0c4031eb3c37e7",
+    "picture_essence_exact_parent_match": true,
+    "subtitle_text_timing_exact_parent_match": true,
+    "cue_count": 11
+  },
+  "story_stages": [
+    {
+      "stage_id": "stage-01-anomaly",
+      "label_ja": "異常の確認",
+      "start_seconds": 0,
+      "end_seconds": 24,
+      "cue_ids": [
+        "case-digest-caption-01",
+        "case-digest-caption-02"
+      ],
+      "prompt_ja": "鐘の音が報告されたことと、現物の鐘が確認できないことを、別々の観測事実として受け取れるか。"
+    },
+    {
+      "stage_id": "stage-02-investigation",
+      "label_ja": "調査者と手掛かり",
+      "start_seconds": 24,
+      "end_seconds": 65,
+      "cue_ids": [
+        "case-digest-caption-03",
+        "case-digest-caption-04",
+        "case-digest-caption-05"
+      ],
+      "prompt_ja": "ミラの動機、兄のメモと真鍮の蛾、9:17の反復が、調査の入口として順につながって見えるか。"
+    },
+    {
+      "stage_id": "stage-03-ledger",
+      "label_ja": "台帳への到達",
+      "start_seconds": 65,
+      "end_seconds": 97,
+      "cue_ids": [
+        "case-digest-caption-06",
+        "case-digest-caption-07"
+      ],
+      "prompt_ja": "メモが二列の台帳へ導き、列が「分」と人名であることを、推測ではなく提示情報として追えるか。"
+    },
+    {
+      "stage_id": "stage-04-evidence-limit",
+      "label_ja": "疑いと証拠の境界",
+      "start_seconds": 97,
+      "end_seconds": 136,
+      "cue_ids": [
+        "case-digest-caption-08",
+        "case-digest-caption-09"
+      ],
+      "prompt_ja": "評議会が調査対象に挙がることと、関与を裏づける証拠がないことが混同されずに伝わるか。"
+    },
+    {
+      "stage_id": "stage-05-open-status",
+      "label_ja": "現在地と未解決",
+      "start_seconds": 136,
+      "end_seconds": 180,
+      "cue_ids": [
+        "case-digest-caption-10",
+        "case-digest-caption-11"
+      ],
+      "prompt_ja": "台帳の二つの損失区分を示したうえで、音源と関係者は未確定、塔は調査継続という終点に着地できるか。"
+    }
+  ],
+  "cues": [
+    {
+      "sequence": 1,
+      "cue_id": "case-digest-caption-01",
+      "shot_id": "shot-b01-01",
+      "stage_id": "stage-01-anomaly",
+      "start_seconds": 0,
+      "end_seconds": 12,
+      "text_ja": "正午、鐘のない塔から鐘の音が響いたと報告された。",
+      "image_sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e",
+      "motion": "slow_push",
+      "transition": "hard_cut"
+    },
+    {
+      "sequence": 2,
+      "cue_id": "case-digest-caption-02",
+      "shot_id": "shot-b01-02",
+      "stage_id": "stage-01-anomaly",
+      "start_seconds": 12,
+      "end_seconds": 24,
+      "text_ja": "塔の取付枠は空で、鐘は確認できない。",
+      "image_sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23",
+      "motion": "locked",
+      "transition": "short_dissolve"
+    },
+    {
+      "sequence": 3,
+      "cue_id": "case-digest-caption-03",
+      "shot_id": "shot-b02-01",
+      "stage_id": "stage-02-investigation",
+      "start_seconds": 24,
+      "end_seconds": 38,
+      "text_ja": "時計修理師のミラ・ヴェイルが、失踪した兄の手掛かりを調べる。",
+      "image_sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304",
+      "motion": "slow_pan",
+      "transition": "hard_cut"
+    },
+    {
+      "sequence": 4,
+      "cue_id": "case-digest-caption-04",
+      "shot_id": "shot-b02-02",
+      "stage_id": "stage-02-investigation",
+      "start_seconds": 38,
+      "end_seconds": 52,
+      "text_ja": "失踪した兄のメモと真鍮の蛾が、作業台に残されている。",
+      "image_sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09",
+      "motion": "locked",
+      "transition": "match_cut"
+    },
+    {
+      "sequence": 5,
+      "cue_id": "case-digest-caption-05",
+      "shot_id": "shot-b02-03",
+      "stage_id": "stage-02-investigation",
+      "start_seconds": 52,
+      "end_seconds": 65,
+      "text_ja": "時計と記録には、9:17が繰り返し現れる。",
+      "image_sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31",
+      "motion": "controlled_parallax",
+      "transition": "graphic_match"
+    },
+    {
+      "sequence": 6,
+      "cue_id": "case-digest-caption-06",
+      "shot_id": "shot-b03-01",
+      "stage_id": "stage-03-ledger",
+      "start_seconds": 65,
+      "end_seconds": 81,
+      "text_ja": "失踪した兄のメモは、二列の台帳へ調査を導く。",
+      "image_sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839",
+      "motion": "slow_push",
+      "transition": "hard_cut"
+    },
+    {
+      "sequence": 7,
+      "cue_id": "case-digest-caption-07",
+      "shot_id": "shot-b03-02",
+      "stage_id": "stage-03-ledger",
+      "start_seconds": 81,
+      "end_seconds": 97,
+      "text_ja": "台帳には、「分」の欄と人名の欄が並んでいる。",
+      "image_sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460",
+      "motion": "locked",
+      "transition": "graphic_match"
+    },
+    {
+      "sequence": 8,
+      "cue_id": "case-digest-caption-08",
+      "shot_id": "shot-b04-01",
+      "stage_id": "stage-04-evidence-limit",
+      "start_seconds": 97,
+      "end_seconds": 116,
+      "text_ja": "メモは、市の評議会を調査対象として指している。",
+      "image_sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1",
+      "motion": "slow_push",
+      "transition": "hard_cut"
+    },
+    {
+      "sequence": 9,
+      "cue_id": "case-digest-caption-09",
+      "shot_id": "shot-b04-02",
+      "stage_id": "stage-04-evidence-limit",
+      "start_seconds": 116,
+      "end_seconds": 136,
+      "text_ja": "告発は記録されているが、評議会の関与を裏づける証拠はない。",
+      "image_sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf",
+      "motion": "locked",
+      "transition": "graphic_match"
+    },
+    {
+      "sequence": 10,
+      "cue_id": "case-digest-caption-10",
+      "shot_id": "shot-b06-01",
+      "stage_id": "stage-05-open-status",
+      "start_seconds": 136,
+      "end_seconds": 158,
+      "text_ja": "時間と名前は、台帳の二つの損失区分である。",
+      "image_sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed",
+      "motion": "locked",
+      "transition": "hard_cut"
+    },
+    {
+      "sequence": 11,
+      "cue_id": "case-digest-caption-11",
+      "shot_id": "shot-b06-03",
+      "stage_id": "stage-05-open-status",
+      "start_seconds": 158,
+      "end_seconds": 180,
+      "text_ja": "音源と関係者を確定できないまま、塔は調査対象として残る。",
+      "image_sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6",
+      "motion": "slow_pull",
+      "transition": "held_fade"
+    }
+  ],
+  "provenance_stages": [
+    {
+      "stage": "CASE_DIGEST format and current topic",
+      "state": "FIXED_FOR_THIS_PASS",
+      "owner": "human-owned outside this review",
+      "next": "no selection or change in this surface"
+    },
+    {
+      "stage": "picture sequence and edit timing",
+      "state": "FIXED_EXACT",
+      "owner": "accepted parent binding",
+      "next": "preserve exact H.264 essence"
+    },
+    {
+      "stage": "subtitle text and timing",
+      "state": "FIXED_EXACT",
+      "owner": "accepted parent binding",
+      "next": "preserve all 11 cue windows"
+    },
+    {
+      "stage": "Japanese development timing voice",
+      "state": "ACCEPTED_DEVELOPMENT_ONLY",
+      "owner": "exact human verdict",
+      "next": "use unchanged for content/process review"
+    },
+    {
+      "stage": "final Japanese voice and voice rights",
+      "state": "REPLACEABLE_DEFERRED",
+      "owner": "human voice and rights owners",
+      "next": "later explicit comparison and terms review"
+    },
+    {
+      "stage": "content flow and process comprehension",
+      "state": "ACTIVE_SINGLE_REVIEW_AXIS",
+      "owner": "human reviewer",
+      "next": "natural-language clear or one timestamp/cue repair"
+    },
+    {
+      "stage": "canon, production, publication, localization",
+      "state": "CLOSED",
+      "owner": "respective human owners",
+      "next": "independent later decisions"
+    },
+    {
+      "stage": "Densou identity and source",
+      "state": "OUT_OF_LANE",
+      "owner": "independent Densou gate",
+      "next": "no polling or inference here"
+    }
+  ],
+  "integrity": {
+    "media_is_referenced_not_copied": true,
+    "candidate_content_changed": false,
+    "picture_changed": false,
+    "subtitle_text_or_timing_changed": false,
+    "accepted_development_audio_changed": false,
+    "final_voice_selected": false,
+    "production_or_publication_approved": false,
+    "densou_identity_claimed": false
+  }
+}

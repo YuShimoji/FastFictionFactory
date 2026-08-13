@@ -1,0 +1,52 @@
+{
+  "schema_version": "fff.voiceRejectionReceipt.v1",
+  "evidence_lineage": "fff-nondensou-voice-convergence-20260813-001",
+  "recorded_at": "2026-08-13",
+  "authority": "user perceptual review routed by video Coordinator",
+  "candidate": {
+    "artifact_id": "fff-private-raster-case-digest-audio-continuation-20260812-001",
+    "content_lane": "NON_DENSOU_CASE_DIGEST",
+    "media_relative_path": "artifacts/private-raster-case-digest-audio-continuation-20260812-001/private-raster-case-digest-audio-continuation.mp4",
+    "media_bytes": 18147465,
+    "media_sha256": "cea496c12c7485a47a992877dc2544bff4be9cd6a1a7c7192574adb7215f0c12"
+  },
+  "verdict": "REJECT",
+  "usable": false,
+  "perceptual_findings": [
+    "unexplained crackling or buzzing noise described as ビリビリ",
+    "the voice is unfamiliar to Japanese users",
+    "there is little reason to retain this voice route"
+  ],
+  "decision_precedence": "The user audible finding overrides prior decode, hash, audibility, and structural PASS results for experience acceptance.",
+  "review_action": {
+    "candidate_status": "REJECTED_IMMUTABLE_EVIDENCE",
+    "old_review_action": "CLOSED",
+    "implicit_acceptance": false,
+    "may_reopen_from_machine_pass": false,
+    "successor_review": {
+      "status": "EXPLICIT_ONE_CANDIDATE_GATE",
+      "artifact_id": "fff-private-raster-case-digest-ichiro-successor-20260813-001",
+      "media_sha256": "1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10"
+    }
+  },
+  "preserved_package_files": [
+    { "path": "audio-sync-receipt.json", "bytes": 14057, "sha256": "2428f2b49ae3ce88a14fe9a2ed6c4b1389c122fc8f9b3092c5d141a46e992f31" },
+    { "path": "audio-waveform.jpg", "bytes": 18114, "sha256": "9588f622f36a9587ad55c51d3ae235316bad83fa5813d08078ac2db287d92469" },
+    { "path": "package-manifest.json", "bytes": 1297, "sha256": "4187d3297809b22e83f9648f956ad8792a6120b6349d774c8dd9bca1efdd42e0" },
+    { "path": "private-raster-case-digest-audio-continuation.mp4", "bytes": 18147465, "sha256": "cea496c12c7485a47a992877dc2544bff4be9cd6a1a7c7192574adb7215f0c12" },
+    { "path": "README.md", "bytes": 703, "sha256": "c01fdb304c8180a09acb5c574d91ba90867b382be8b04cd4f0c30f76a9c14eb7" },
+    { "path": "review.html", "bytes": 4648, "sha256": "1c5f596782782f7c1403366e43a4ecf82d6a1ad9ffa9cb81cb0dacd273b008e2" }
+  ],
+  "preservation": {
+    "candidate_directory_modified": false,
+    "candidate_media_modified": false,
+    "picture_decision_reopened": false,
+    "subtitle_text_or_timing_decision_reopened": false,
+    "non_densou_identity_reopened": false,
+    "densou_source_reopened": false,
+    "rights_reopened": false,
+    "canon_reopened": false,
+    "production_reopened": false,
+    "publication_reopened": false
+  }
+}

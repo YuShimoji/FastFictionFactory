@@ -1,5 +1,19 @@
 # Current Status Packet
 
+## NON_DENSOU CASE_DIGEST content/process review — 2026-08-13 JST
+
+| Item | Verified state |
+| --- | --- |
+| Development voice decision | `ACCEPT_DEVELOPMENT_TIMING_VOICE` for exact artifact `fff-private-raster-case-digest-ichiro-successor-20260813-001`, MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10` |
+| Scope | development timing voice only; final/production voice, rights, canon, Densou, production, and publication remain unselected |
+| Active implementation lane | one NON_DENSOU content/process review surface; there is no active human voice gate or successor voice candidate |
+| Open target | `artifacts/case-digest-development-review-surface-20260813-001/review.html`; it references the accepted MP4 instead of copying or remuxing it |
+| Review mechanics | exact 180-second player, 11 cue/shot jumps, five story-flow checkpoints, picture/subtitle/audio binding, input/output identities, and fixed/replaceable/human-owned/closed provenance |
+| Missing-media behavior | deterministic challenge `fff-missing-media-challenge-1499cd6e7538`; no substituted file and no phantom review |
+| Creative boundary | the surface exposes comprehension and process questions; it does not change or approve topic, canon, major visuals, edit, picture, subtitle text/timing, or accepted development audio |
+
+The exact voice decision is at `artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json`. Machine identity and browser operation support the surface; content and production-process judgment remain human-owned.
+
 ## Densou source-unbound hardening — 2026-08-12 JST
 
 | Item | Verified state |

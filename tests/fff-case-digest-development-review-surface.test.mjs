@@ -1,0 +1,129 @@
+import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { existsSync, readFileSync, statSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { spawnSync } from "node:child_process";
+import test from "node:test";
+import { fileURLToPath } from "node:url";
+
+const repoRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+const readJson = (relativePath) => JSON.parse(readFileSync(resolve(repoRoot, relativePath), "utf8"));
+const sha256 = (relativePath) => createHash("sha256").update(readFileSync(resolve(repoRoot, relativePath))).digest("hex");
+
+const mediaPath = "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4";
+const mediaSha = "1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10";
+const surfaceDir = "artifacts/case-digest-development-review-surface-20260813-001";
+
+test("development timing voice acceptance binds only the exact Ichiro media", () => {
+  const receipt = readJson("artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json");
+  assert.equal(receipt.verdict, "ACCEPT_DEVELOPMENT_TIMING_VOICE");
+  assert.equal(receipt.scope, "DEVELOPMENT_TIMING_VOICE_ONLY");
+  assert.equal(receipt.binding.media_sha256, mediaSha);
+  assert.equal(receipt.binding.media_bytes, 18300218);
+  assert.equal(receipt.closed_gate.state, "CLOSED_ACCEPTED");
+  assert.equal(receipt.supersession.active_human_voice_gate, null);
+  assert.equal(receipt.supersession.active_voice_candidate, null);
+  assert.equal(receipt.supersession.final_voice_comparison_deferred, true);
+  assert.ok(Object.values(receipt.not_accepted).every((value) => value === false));
+  if (existsSync(resolve(repoRoot, mediaPath))) {
+    assert.equal(statSync(resolve(repoRoot, mediaPath)).size, 18300218);
+    assert.equal(sha256(mediaPath), mediaSha);
+  } else {
+    const model = readJson(surfaceDir + "/surface-model.json");
+    assert.equal(model.review_route.missing_or_mismatched_media.challenge_id, "fff-missing-media-challenge-1499cd6e7538");
+    assert.equal(model.review_route.missing_or_mismatched_media.substitution_allowed, false);
+  }
+});
+
+test("surface provides one exact-media route and a distinct missing-media challenge", () => {
+  const model = readJson(surfaceDir + "/surface-model.json");
+  const manifest = readJson(surfaceDir + "/surface-manifest.json");
+  assert.equal(model.review_route.state, "ACTIVE_EXACT_MEDIA");
+  assert.equal(model.review_route.initial_playback, "PAUSED");
+  assert.equal(model.review_route.missing_or_mismatched_media.challenge_id, "fff-missing-media-challenge-1499cd6e7538");
+  assert.equal(model.review_route.missing_or_mismatched_media.substitution_allowed, false);
+  assert.equal(model.review_route.missing_or_mismatched_media.phantom_review_allowed, false);
+  assert.equal(model.identity.media_sha256, mediaSha);
+  assert.equal(model.integrity.media_is_referenced_not_copied, true);
+  assert.equal(model.integrity.picture_changed, false);
+  assert.equal(model.integrity.subtitle_text_or_timing_changed, false);
+  assert.equal(model.integrity.accepted_development_audio_changed, false);
+  assert.equal(manifest.surface_id, model.surface_id);
+  assert.equal(manifest.exact_media.sha256, mediaSha);
+  assert.equal(manifest.exact_media.referenced_not_copied, true);
+  assert.equal(manifest.decision.scope, "DEVELOPMENT_TIMING_VOICE_ONLY");
+});
+
+test("five story stages index all eleven exact caption and shot bindings", () => {
+  const model = readJson(surfaceDir + "/surface-model.json");
+  const captionLines = readFileSync(resolve(repoRoot, "artifacts/private-raster-case-digest/case-digest-review-captions.csv"), "utf8").trim().split(/\r?\n/).slice(1);
+  const shotLines = readFileSync(resolve(repoRoot, "artifacts/private-raster-case-digest/selected-shot-sequence.csv"), "utf8").trim().split(/\r?\n/).slice(1);
+  assert.equal(model.story_stages.length, 5);
+  assert.equal(model.cues.length, 11);
+  assert.equal(new Set(model.cues.map((cue) => cue.stage_id)).size, 5);
+  model.cues.forEach((cue, index) => {
+    const caption = captionLines[index].split(",");
+    const shot = shotLines[index].split(",");
+    assert.equal(cue.cue_id, caption[0]);
+    assert.equal(cue.shot_id, caption[1]);
+    assert.equal(cue.start_seconds, Number(caption[2]));
+    assert.equal(cue.end_seconds, Number(caption[3]));
+    assert.equal(cue.text_ja, caption[4]);
+    assert.equal(cue.shot_id, shot[1]);
+    assert.equal(cue.image_sha256, shot[6]);
+  });
+});
+
+test("review HTML is directly bound, initially paused, muted in validation mode, and accepts natural language", () => {
+  const html = readFileSync(resolve(repoRoot, surfaceDir, "review.html"), "utf8");
+  assert.match(html, /\.\.\/private-raster-case-digest-ichiro-successor-20260813-001\/private-raster-case-digest-ichiro-provisional\.mp4/);
+  assert.doesNotMatch(html, /\bautoplay\b/i);
+  assert.match(html, /validationMuted/);
+  assert.match(html, /media\.muted = true/);
+  assert.match(html, /media\.volume = 0/);
+  assert.match(html, /media\.pause\(\)/);
+  assert.match(html, /id="review-note"/);
+  assert.match(html, /id="build-summary"/);
+  assert.match(html, /fff-missing-media-challenge-1499cd6e7538/);
+});
+
+test("portable new evidence contains no host thread or work-order identifier", () => {
+  [
+    "artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json",
+    surfaceDir + "/surface-model.json",
+    surfaceDir + "/review.html",
+    surfaceDir + "/README.md",
+    surfaceDir + "/surface-manifest.json"
+  ].forEach((relativePath) => {
+    const content = readFileSync(resolve(repoRoot, relativePath), "utf8");
+    assert.doesNotMatch(content, /019ff[0-9a-f-]+/i);
+    assert.doesNotMatch(content, /WO-\d{8}-[A-Z0-9-]+/);
+  });
+});
+
+test("standalone verifier reports an active exact-media route without playback", () => {
+  const result = spawnSync(process.execPath, ["tools/fff-case-digest-development-review-surface.mjs", "verify"], {
+    cwd: repoRoot,
+    encoding: "utf8"
+  });
+  const report = JSON.parse(result.stdout);
+  if (existsSync(resolve(repoRoot, mediaPath))) {
+    assert.equal(result.status, 0, result.stderr + "\n" + result.stdout);
+    assert.equal(report.status, "PASS");
+    assert.equal(report.review_route, "ACTIVE_EXACT_MEDIA");
+    assert.equal(report.exact_media.sha256, mediaSha);
+    assert.equal(report.review_surface.story_stage_count, 5);
+    assert.equal(report.review_surface.cue_shot_count, 11);
+    assert.equal(report.review_surface.natural_language_reply_supported, true);
+    assert.ok(report.evidence_manifest.evidence_file_count >= 10);
+    assert.equal(report.side_effects.playback_performed, false);
+    assert.equal(report.side_effects.media_written, false);
+    assert.deepEqual(report.issues, []);
+  } else {
+    assert.equal(result.status, 2, result.stderr + "\n" + result.stdout);
+    assert.equal(report.status, "BLOCKED_DISTINCT_CHALLENGE");
+    assert.equal(report.challenge_id, "fff-missing-media-challenge-1499cd6e7538");
+    assert.equal(report.substitution_allowed, false);
+    assert.equal(report.phantom_review_allowed, false);
+  }
+});

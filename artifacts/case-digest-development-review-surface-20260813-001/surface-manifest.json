@@ -1,0 +1,68 @@
+{
+  "schema_version": "fff.caseDigestDevelopmentReviewSurfaceManifest.v1",
+  "surface_id": "fff-case-digest-development-review-surface-20260813-001",
+  "recorded_at": "2026-08-13",
+  "review_route": "ACTIVE_EXACT_MEDIA",
+  "exact_media": {
+    "artifact_id": "fff-private-raster-case-digest-ichiro-successor-20260813-001",
+    "path": "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4",
+    "bytes": 18300218,
+    "sha256": "1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10",
+    "duration_seconds": 180.0,
+    "referenced_not_copied": true
+  },
+  "decision": {
+    "verdict": "ACCEPT_DEVELOPMENT_TIMING_VOICE",
+    "scope": "DEVELOPMENT_TIMING_VOICE_ONLY",
+    "voice_gate": "CLOSED_ACCEPTED",
+    "final_voice_deferred": true,
+    "acceptance_receipt_sha256": "552314d4c8adc5c822b6d8f8738d208e47663587eab3a2bfbdbfd9dea046d049"
+  },
+  "review_capability": {
+    "story_stage_count": 5,
+    "cue_shot_count": 11,
+    "natural_language_reply_supported": true,
+    "initial_playback": "PAUSED",
+    "muted_validation_query": "?validation=muted",
+    "single_human_axis": "CASE_DIGEST_STORY_FLOW_AND_PROCESS_COMPREHENSION"
+  },
+  "exact_bindings": {
+    "picture_essence_sha256": "b5facecd9fbdea57daad03096566dd478ac6ea9c1120dd2e6b49656569dcb989",
+    "subtitle_text_timing_srt_sha256": "917d0d243fb0ee1e4e47d84c198c9dd12bd029360887ae2cda0c4031eb3c37e7",
+    "caption_csv_sha256": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d",
+    "shot_sequence_csv_sha256": "fa50635ec9dc17dfed233bac9c28197644be91e986033c309c8f3019066b7ec2",
+    "picture_essence_exact_parent_match": true,
+    "subtitle_text_timing_exact_parent_match": true
+  },
+  "missing_media_contract": {
+    "challenge_id": "fff-missing-media-challenge-1499cd6e7538",
+    "substitution_allowed": false,
+    "phantom_review_allowed": false
+  },
+  "evidence_files": [
+    { "path": "artifacts/case-digest-development-review-surface-20260813-001/review.html", "bytes": 23392, "sha256": "90d69d6619a1977c694a236f13d05b1bccd227e9d2bb82b3fad323dbc4de17e3" },
+    { "path": "artifacts/case-digest-development-review-surface-20260813-001/surface-model.json", "bytes": 11848, "sha256": "7dbbe7ce9bb10af724835075b648c57815eacc6602b3d974c5cde0ed2e3d5764" },
+    { "path": "artifacts/case-digest-development-review-surface-20260813-001/README.md", "bytes": 1251, "sha256": "f1947b47ff02f6485e873734b0e34063974515dd32d20c6aeb5d3804784185af" },
+    { "path": "artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json", "bytes": 2515, "sha256": "552314d4c8adc5c822b6d8f8738d208e47663587eab3a2bfbdbfd9dea046d049" },
+    { "path": "tools/fff-case-digest-development-review-surface.mjs", "bytes": 15124, "sha256": "8abd1b59092af4daffaa76aaa33fd2322abdf6d89b7a7e7fc6fd0e2c4caa91fd" },
+    { "path": "tests/fff-case-digest-development-review-surface.test.mjs", "bytes": 7182, "sha256": "36efcd658275d22afa86c0738299c99144c89c72dcef1d096166972e8a5e452a" },
+    { "path": "docs/voice-vision.md", "bytes": 7255, "sha256": "d26d8034eae3bc0706099c0e78d46cf12a8fd0938d709c7488cb5b3d92e6b0a2" },
+    { "path": "docs/workflow.md", "bytes": 2087, "sha256": "a20e63e0cdd622836bf532d9250762a813ae47d9697938fd438a4f52f7ccd855" },
+    { "path": "docs/review/current-status.md", "bytes": 151207, "sha256": "f6a1a7bacb5540d8c5f05a3400dcc550294f6140cac5bf429734161fe1414b97" },
+    { "path": "docs/review/next-terminal-handoff.md", "bytes": 133608, "sha256": "7c1328f2c3bb9c755dba8868e9282c1a7962bab6c17c918bfe4691290493e5a0" },
+    { "path": "docs/project-context.md", "bytes": 96462, "sha256": "69a088d94be19b423219472ca8c66386148b08a2ec93061add33b75c60f1af8f" },
+    { "path": "docs/decision-log.md", "bytes": 98957, "sha256": "968755f0b7d965d19d3c631533c276ce8a7c62fda46e384360442de7072f8779" },
+    { "path": "docs/idea-ledger.md", "bytes": 83299, "sha256": "c86c633dcb3926cd5b5148fd6ea226f4e5a83779bec80ccdebe3be2326687354" }
+  ],
+  "boundaries": {
+    "candidate_media_written": false,
+    "picture_changed": false,
+    "subtitle_text_or_timing_changed": false,
+    "accepted_development_audio_changed": false,
+    "voice_candidate_created": false,
+    "dependency_added_or_downloaded": false,
+    "playback_performed_during_build": false,
+    "external_call_upload_or_publication": false,
+    "densou_source_reopened": false
+  }
+}

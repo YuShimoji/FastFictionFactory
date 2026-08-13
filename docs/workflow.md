@@ -4,6 +4,8 @@
 
 The first reviewable artifact is `public/review/index.html`. It is a static local workbench and does not call external services.
 
+For an exact media review, the referenced media identity is part of the review target. If that file is absent or fails its expected hash, the review becomes a distinct deterministic missing-media challenge derived from the artifact ID and expected SHA-256 prefix. The workflow must not substitute another sample, show a nominal review action, or infer acceptance from a different file. A challenge may resume as review only after the exact expected identity is restored and reverified.
+
 ## Flow
 
 1. Memo intake

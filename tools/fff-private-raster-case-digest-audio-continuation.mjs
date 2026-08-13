@@ -6,18 +6,56 @@ import { access, mkdir, mkdtemp, readFile, rename, rm, stat, writeFile } from "n
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { analyzeAudio } from "./fff-audio-signal-audit.mjs";
 
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const artifactId = "fff-private-raster-case-digest-audio-continuation-20260812-001";
+const profileName = process.argv[3] ?? "legacy-haruka";
+const profiles = Object.freeze({
+  "legacy-haruka": Object.freeze({
+    artifact_id: "fff-private-raster-case-digest-audio-continuation-20260812-001",
+    work_order_id: "FFF-PROJECT-WIDE-NONDENSOU-FRONTIER-CONTINUATION-20260812-005",
+    output_directory: "private-raster-case-digest-audio-continuation-20260812-001",
+    media_name: "private-raster-case-digest-audio-continuation.mp4",
+    tts_tool_name: "fff-local-sapi-tts.ps1",
+    tts_kind: "sapi",
+    voice_name: "Microsoft Haruka Desktop",
+    culture: "ja-JP",
+    gender: "Female",
+    rate: 0,
+    volume: 100,
+    speaking_rate: null,
+    highpass_hz: null,
+    review_voice_description: "local SAPI"
+  }),
+  "ichiro-provisional": Object.freeze({
+    artifact_id: "fff-private-raster-case-digest-ichiro-successor-20260813-001",
+    work_order_id: "FFF-NONDENSOU-VOICE-CONVERGENCE-20260813-001",
+    output_directory: "private-raster-case-digest-ichiro-successor-20260813-001",
+    media_name: "private-raster-case-digest-ichiro-provisional.mp4",
+    tts_tool_name: "fff-local-winrt-tts.ps1",
+    tts_kind: "winrt",
+    voice_name: "Microsoft Ichiro",
+    culture: "ja-JP",
+    gender: "Male",
+    rate: null,
+    volume: null,
+    speaking_rate: 1.0,
+    highpass_hz: 60,
+    review_voice_description: "local Windows OneCore male timing voice"
+  })
+});
+const profile = profiles[profileName];
+if (!profile) throw new Error(`Unknown profile: ${profileName}`);
+const artifactId = profile.artifact_id;
 const parentArtifactId = "fff-private-raster-case-digest-001";
-const workOrderId = "FFF-PROJECT-WIDE-NONDENSOU-FRONTIER-CONTINUATION-20260812-005";
+const workOrderId = profile.work_order_id;
 const parentRoot = path.join(repoRoot, "artifacts", "private-raster-case-digest");
 const parentMedia = path.join(parentRoot, "private-raster-case-digest.mp4");
 const captionCsv = path.join(parentRoot, "case-digest-review-captions.csv");
 const parentManifest = path.join(parentRoot, "private-raster-case-digest-manifest.json");
-const sapiTool = path.join(repoRoot, "tools", "fff-local-sapi-tts.ps1");
-const outputRoot = path.join(repoRoot, "artifacts", "private-raster-case-digest-audio-continuation-20260812-001");
-const mediaName = "private-raster-case-digest-audio-continuation.mp4";
+const ttsTool = path.join(repoRoot, "tools", profile.tts_tool_name);
+const outputRoot = path.join(repoRoot, "artifacts", profile.output_directory);
+const mediaName = profile.media_name;
 const expected = Object.freeze({
   parent_media_sha256: "0fb679b5d13d56b726a505d060bf9678daa49a1c138e10657954cd7053765df1",
   caption_csv_sha256: "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d",
@@ -29,10 +67,13 @@ const expected = Object.freeze({
 const policy = Object.freeze({
   duration_seconds: 180,
   cue_count: 11,
-  voice_name: "Microsoft Haruka Desktop",
-  culture: "ja-JP",
-  rate: 0,
-  volume: 100,
+  voice_name: profile.voice_name,
+  culture: profile.culture,
+  gender: profile.gender,
+  rate: profile.rate,
+  volume: profile.volume,
+  speaking_rate: profile.speaking_rate,
+  highpass_hz: profile.highpass_hz,
   lead_in_seconds: 0.35,
   minimum_tail_seconds: 0.5,
   maximum_atempo_ratio: 1.25,
@@ -187,13 +228,13 @@ async function extractSubtitleText(filePath, outputPath) {
 }
 
 async function validateInputs() {
-  await Promise.all([access(parentMedia), access(captionCsv), access(parentManifest), access(sapiTool)]);
+  await Promise.all([access(parentMedia), access(captionCsv), access(parentManifest), access(ttsTool)]);
   const identities = {
     parent_media: await fileIdentity(parentMedia),
     caption_csv: await fileIdentity(captionCsv),
-    parent_manifest: await fileIdentity(parentManifest),
-    sapi_tool: await fileIdentity(sapiTool)
+    parent_manifest: await fileIdentity(parentManifest)
   };
+  identities[profile.tts_kind === "sapi" ? "sapi_tool" : "tts_tool"] = await fileIdentity(ttsTool);
   requireCondition(identities.parent_media.sha256 === expected.parent_media_sha256, "PARENT_CHANGED", "accepted CASE_DIGEST MP4 identity mismatch");
   requireCondition(identities.caption_csv.sha256 === expected.caption_csv_sha256, "PARENT_CHANGED", "accepted caption CSV identity mismatch");
   requireCondition(identities.parent_manifest.sha256 === expected.parent_manifest_sha256, "PARENT_CHANGED", "accepted package manifest identity mismatch");
@@ -234,19 +275,21 @@ async function createCueAudio(inputs, tempRoot) {
   await writeJson(configPath, {
     voice_name: policy.voice_name,
     culture: policy.culture,
+    gender: policy.gender,
     rate: policy.rate,
     volume: policy.volume,
+    speaking_rate: policy.speaking_rate,
     cues: inputs.captions.map((cue) => ({ cue_id: cue.cue_id, spoken_text_ja: cue.text_ja }))
   });
   const systemRoot = process.env.SystemRoot ?? "C:\\Windows";
   const powershell = path.join(systemRoot, "System32", "WindowsPowerShell", "v1.0", "powershell.exe");
   const synthesis = await run(powershell, [
-    "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", sapiTool,
+    "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File", ttsTool,
     "-ConfigPath", configPath, "-OutputDirectory", rawRoot
   ]);
   const synthesisReceipt = JSON.parse(synthesis.stdout.trim().split(/\r?\n/).at(-1));
   requireCondition(synthesisReceipt.result === "PASS", "TTS_FAILED", "local SAPI synthesis did not pass");
-  requireCondition(synthesisReceipt.voice_name === policy.voice_name && synthesisReceipt.culture === policy.culture, "TTS_FAILED", "unexpected local voice identity");
+  requireCondition(synthesisReceipt.voice_name === policy.voice_name && synthesisReceipt.culture === policy.culture && synthesisReceipt.gender === policy.gender, "TTS_FAILED", "unexpected local voice identity");
   requireCondition(synthesisReceipt.generated_cues.length === policy.cue_count, "TTS_FAILED", "generated cue count mismatch");
   const cues = [];
   for (const cue of inputs.captions) {
@@ -265,12 +308,17 @@ async function createCueAudio(inputs, tempRoot) {
     requireCondition(atempo <= policy.maximum_atempo_ratio, "PACING_DEPENDENCY", `${cue.cue_id} requires atempo ${atempo.toFixed(4)}`);
     const predictedDuration = trimmedDuration / atempo;
     const fadeOutStart = Math.max(0, predictedDuration - 0.06);
+    const cleanup = policy.highpass_hz ? `highpass=f=${policy.highpass_hz},` : "";
     await run("ffmpeg", [
       "-hide_banner", "-loglevel", "error", "-y", "-i", trimmedPath,
-      "-af", `atempo=${atempo.toFixed(8)},afade=t=in:st=0:d=0.03,afade=t=out:st=${fadeOutStart.toFixed(6)}:d=0.06,alimiter=limit=0.90`,
+      "-af", `${cleanup}atempo=${atempo.toFixed(8)},afade=t=in:st=0:d=0.03,afade=t=out:st=${fadeOutStart.toFixed(6)}:d=0.06,alimiter=limit=0.90`,
       "-ar", "48000", "-ac", "1", "-c:a", "pcm_s16le", processedPath
     ]);
     const processedDuration = await probeDuration(processedPath);
+    const signalAudit = await analyzeAudio({ input: processedPath, label: `${cue.cue_id}-processed` });
+    if (profile.tts_kind === "winrt") {
+      requireCondition(signalAudit.objective_noise_gate_pass, "AUDIO_NOISE_GATE_FAILED", `${cue.cue_id} processed signal failed objective noise gate`);
+    }
     const audioStart = cue.start_seconds + policy.lead_in_seconds;
     const audioEnd = audioStart + processedDuration;
     const tail = cue.end_seconds - audioEnd;
@@ -286,6 +334,17 @@ async function createCueAudio(inputs, tempRoot) {
       subtitle_lead_in_seconds: round(audioStart - cue.start_seconds),
       subtitle_tail_seconds: round(tail),
       within_accepted_caption_window: audioStart >= cue.start_seconds && audioEnd <= cue.end_seconds + 0.01,
+      processed_signal_audit: {
+        peak_dbfs: signalAudit.amplitude.peak_dbfs,
+        rms_dbfs: signalAudit.amplitude.rms_dbfs,
+        dc_offset: signalAudit.amplitude.dc_offset,
+        clipped_sample_count: signalAudit.amplitude.clipped_sample_count,
+        maximum_adjacent_delta: signalAudit.continuity.maximum_adjacent_delta,
+        adjacent_delta_over_0_75_count: signalAudit.continuity.adjacent_delta_over_0_75_count,
+        high_band_8000_20000_ratio: signalAudit.spectral.high_band_8000_20000_ratio,
+        objective_noise_gate_pass: signalAudit.objective_noise_gate_pass,
+        perceptual_acceptance_claimed: false
+      },
       processed_path: processedPath
     });
   }
@@ -338,6 +397,31 @@ async function analyzeCandidate(mediaPath, cues, tempRoot) {
   const totalVolume = await run("ffmpeg", ["-hide_banner", "-nostats", "-i", mediaPath, "-map", "0:a:0", "-vn", "-af", "volumedetect", "-f", "null", "-"], { allowFailure: true });
   const silence = await run("ffmpeg", ["-hide_banner", "-nostats", "-i", mediaPath, "-map", "0:a:0", "-vn", "-af", "silencedetect=noise=-45dB:d=0.75", "-f", "null", "-"], { allowFailure: true });
   const black = await run("ffmpeg", ["-hide_banner", "-nostats", "-i", mediaPath, "-map", "0:v:0", "-an", "-vf", "blackdetect=d=1:pix_th=0.02", "-f", "null", "-"], { allowFailure: true });
+  const signalQuality = [];
+  for (const cue of cues) {
+    const audit = await analyzeAudio({
+      input: mediaPath,
+      startSeconds: cue.audio_start_seconds,
+      durationSeconds: cue.audio_end_seconds - cue.audio_start_seconds,
+      label: `${cue.cue_id}-muxed-aac`
+    });
+    const summary = {
+      cue_id: cue.cue_id,
+      peak_dbfs: audit.amplitude.peak_dbfs,
+      rms_dbfs: audit.amplitude.rms_dbfs,
+      dc_offset: audit.amplitude.dc_offset,
+      clipped_sample_count: audit.amplitude.clipped_sample_count,
+      maximum_adjacent_delta: audit.continuity.maximum_adjacent_delta,
+      adjacent_delta_over_0_75_count: audit.continuity.adjacent_delta_over_0_75_count,
+      high_band_8000_20000_ratio: audit.spectral.high_band_8000_20000_ratio,
+      objective_noise_gate_pass: audit.objective_noise_gate_pass,
+      perceptual_acceptance_claimed: false
+    };
+    signalQuality.push(summary);
+  }
+  if (profile.tts_kind === "winrt") {
+    requireCondition(signalQuality.every((cue) => cue.objective_noise_gate_pass), "AUDIO_NOISE_GATE_FAILED", "one or more muxed cue regions failed the objective noise gate");
+  }
   return {
     probe,
     full_av_decode: "PASS",
@@ -353,13 +437,31 @@ async function analyzeCandidate(mediaPath, cues, tempRoot) {
     silence_event_count: (silence.stderr.match(/silence_start:/g) ?? []).length,
     silence_policy: { noise_db: -45, minimum_duration_seconds: 0.75, interpretation: "expected pauses between discrete narration cues; scheduled cue audibility is evaluated separately" },
     black_event_count: (black.stderr.match(/black_start:/g) ?? []).length,
-    black_policy: { minimum_duration_seconds: 1, pixel_threshold: 0.02 }
+    black_policy: { minimum_duration_seconds: 1, pixel_threshold: 0.02 },
+    signal_quality: {
+      gate_contract: {
+        clipping_free: true,
+        absolute_dc_offset_maximum: 0.005,
+        adjacent_delta_over_0_75_count_maximum: 0,
+        active_high_band_8000_20000_ratio_maximum: 0.1,
+        human_perceptual_listening_required: true
+      },
+      cue_regions: signalQuality,
+      objective_noise_gate_pass: signalQuality.every((cue) => cue.objective_noise_gate_pass),
+      perceptual_acceptance_claimed: false
+    }
   };
 }
 
 function reviewHtml(receipt, mediaSha) {
   const rows = receipt.cues.map((cue) => `<tr><td>${cue.cue_id}</td><td>${cue.shot_id}</td><td>${cue.start_seconds.toFixed(2)}–${cue.end_seconds.toFixed(2)}</td><td>${cue.audio_start_seconds.toFixed(2)}–${cue.audio_end_seconds.toFixed(2)}</td><td>${cue.text_ja}</td><td>${cue.atempo_ratio.toFixed(3)}</td></tr>`).join("");
-  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CASE_DIGEST provisional audio review</title><style>:root{color-scheme:dark;background:#0b1015;color:#f4f0e7;font-family:"Yu Gothic UI",system-ui,sans-serif}*{box-sizing:border-box}body{margin:0}.page{width:min(1120px,calc(100% - 32px));margin:auto;padding:36px 0 64px}h1,h2{font-family:"Yu Mincho",serif}.kicker{color:#d7b875;letter-spacing:.14em}.notice{border-left:4px solid #d7b875;background:#151c24;padding:14px 18px}video,img{display:block;width:100%;background:#000;border:1px solid #35414e}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.grid div{background:#151c24;padding:12px}.grid b{display:block;color:#d7b875}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;font-size:.78rem}th,td{padding:8px;border-top:1px solid #35414e;text-align:left;vertical-align:top}code{color:#d7b875;overflow-wrap:anywhere}@media(max-width:720px){.grid{grid-template-columns:1fr}}</style></head><body><main class="page"><p class="kicker">NON-DENSOU · PRIVATE REVIEW · PROVISIONAL AUDIO</p><h1>3分事件ダイジェスト — A/V continuation</h1><p class="notice">限定受入れ済みの既存 CASE_DIGEST picture・11 review caption・subtitle timing を変更せず、同じ11文を local SAPI で仮ナレーション化した技術review候補です。voice/audio の人間受入れ、rights、production、publication、final canon は未成立です。</p><video controls preload="metadata"><source src="${mediaName}" type="video/mp4"></video><div class="grid"><div><b>Artifact</b>${artifactId}</div><div><b>Duration</b>${receipt.media.probe.duration_seconds.toFixed(3)}s</div><div><b>Audible cues</b>${receipt.media.audible_cue_count}/${policy.cue_count}</div><div><b>MP4 SHA-256</b><code>${mediaSha}</code></div></div><h2>Audio waveform</h2><img src="audio-waveform.jpg" alt="Provisional narration waveform"><h2>Cue sync</h2><div class="scroll"><table><thead><tr><th>Cue</th><th>Shot</th><th>Accepted caption</th><th>Audio</th><th>Exact accepted text</th><th>Atempo</th></tr></thead><tbody>${rows}</tbody></table></div><h2>Review boundary</h2><p>Picture essence exact match: <code>${receipt.media.exact_parent_video_essence_match}</code>. Subtitle text/timing exact match: <code>${receipt.media.exact_parent_subtitle_text_timing_match}</code>. The local voice is provisional and not selected for production.</p></main></body></html>`;
+  const successor = profile.tts_kind === "winrt";
+  const kicker = successor ? "NON-DENSOU · PRIVATE REVIEW · PROVISIONAL AUDIO · NOT ACCEPTED" : "NON-DENSOU · PRIVATE REVIEW · REJECTED HISTORICAL AUDIO";
+  const heading = successor ? "3分事件ダイジェスト — male timing-voice successor" : "3分事件ダイジェスト — rejected Haruka A/V continuation";
+  const notice = successor
+    ? `限定受入れ済みの既存 CASE_DIGEST picture・11 review caption・subtitle timing を変更せず、同じ11文を ${profile.review_voice_description} で仮ナレーション化した一候補です。旧 Haruka 候補は音声 REJECT 済みで、この後継は暗黙に受入れ済みではありません。voice/audio の人間受入れ、最終声、rights、production、publication、final canon は未成立です。`
+    : "この Haruka 音声は人手聴取で REJECT 済みです。技術 PASS は判定を再開しません。このページは履歴再生成時の証拠表示だけで、active review ではありません。";
+  return `<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CASE_DIGEST provisional audio review</title><style>:root{color-scheme:dark;background:#0b1015;color:#f4f0e7;font-family:"Yu Gothic UI",system-ui,sans-serif}*{box-sizing:border-box}body{margin:0}.page{width:min(1120px,calc(100% - 32px));margin:auto;padding:36px 0 64px}h1,h2{font-family:"Yu Mincho",serif}.kicker{color:#d7b875;letter-spacing:.14em}.notice{border-left:4px solid #d7b875;background:#151c24;padding:14px 18px}video,img{display:block;width:100%;background:#000;border:1px solid #35414e}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.grid div{background:#151c24;padding:12px}.grid b{display:block;color:#d7b875}.scroll{overflow:auto}table{width:100%;border-collapse:collapse;font-size:.78rem}th,td{padding:8px;border-top:1px solid #35414e;text-align:left;vertical-align:top}code{color:#d7b875;overflow-wrap:anywhere}@media(max-width:720px){.grid{grid-template-columns:1fr}}</style></head><body><main class="page"><p class="kicker">${kicker}</p><h1>${heading}</h1><p class="notice">${notice}</p><video controls preload="metadata"><source src="${mediaName}" type="video/mp4"></video><div class="grid"><div><b>Artifact</b>${artifactId}</div><div><b>Duration</b>${receipt.media.probe.duration_seconds.toFixed(3)}s</div><div><b>Audible cues</b>${receipt.media.audible_cue_count}/${policy.cue_count}</div><div><b>MP4 SHA-256</b><code>${mediaSha}</code></div></div><h2>Audio waveform</h2><img src="audio-waveform.jpg" alt="Provisional narration waveform"><h2>Cue sync</h2><div class="scroll"><table><thead><tr><th>Cue</th><th>Shot</th><th>Accepted caption</th><th>Audio</th><th>Exact accepted text</th><th>Atempo</th></tr></thead><tbody>${rows}</tbody></table></div><h2>Review boundary</h2><p>Picture essence exact match: <code>${receipt.media.exact_parent_video_essence_match}</code>. Subtitle text/timing exact match: <code>${receipt.media.exact_parent_subtitle_text_timing_match}</code>. Objective signal gate: <code>${receipt.media.signal_quality.objective_noise_gate_pass}</code>. This does not replace listening; the local voice is provisional and not selected for production.</p></main></body></html>`;
 }
 
 async function build() {
@@ -384,7 +486,7 @@ async function build() {
     requireCondition(originalBefore.bytes === originalAfter.bytes && originalBefore.sha256 === originalAfter.sha256, "PARENT_CHANGED", "accepted parent MP4 changed during build");
     await run("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-i", mediaPath, "-filter_complex", "[0:a:0]aformat=channel_layouts=mono,showwavespic=s=1280x240:colors=0xd7b875[wave]", "-map", "[wave]", "-an", "-frames:v", "1", "-c:v", "mjpeg", "-q:v", "3", path.join(packageRoot, "audio-waveform.jpg")]);
     const receipt = {
-      schema_version: "fff.privateRasterCaseDigestAudioContinuationReceipt.v1",
+      schema_version: profile.tts_kind === "winrt" ? "fff.privateRasterCaseDigestVoiceSuccessorReceipt.v1" : "fff.privateRasterCaseDigestAudioContinuationReceipt.v1",
       work_order_id: workOrderId,
       artifact_id: artifactId,
       parent_artifact_id: parentArtifactId,
@@ -405,14 +507,20 @@ async function build() {
       voice: {
         engine_id: generated.synthesisReceipt.engine_id,
         voice_name: generated.synthesisReceipt.voice_name,
+        voice_id: generated.synthesisReceipt.voice_id ?? null,
         culture: generated.synthesisReceipt.culture,
         gender: generated.synthesisReceipt.gender,
-        rate: generated.synthesisReceipt.rate,
-        volume: generated.synthesisReceipt.volume,
+        rate: generated.synthesisReceipt.rate ?? null,
+        volume: generated.synthesisReceipt.volume ?? null,
+        speaking_rate: generated.synthesisReceipt.speaking_rate ?? null,
+        environment_fix_applied: generated.synthesisReceipt.environment_fix_applied ?? false,
         external_call: generated.synthesisReceipt.external_call,
         credentials_touched: generated.synthesisReceipt.credentials_touched,
+        playback_used: generated.synthesisReceipt.playback_used ?? false,
         provisional: true,
+        timing_voice_only: profile.tts_kind === "winrt",
         production_selected: false,
+        final_voice_selected: false,
         rights_cleared: false
       },
       timing_policy: policy,
@@ -440,12 +548,16 @@ async function build() {
     await writeJson(path.join(packageRoot, "audio-sync-receipt.json"), receipt);
     const mediaSha = await hashFile(mediaPath);
     await writeFile(path.join(packageRoot, "review.html"), reviewHtml(receipt, mediaSha), "utf8");
-    await writeFile(path.join(packageRoot, "README.md"), `# CASE_DIGEST provisional A/V continuation\n\n- Artifact: \`${artifactId}\`\n- Parent: \`${parentArtifactId}\`\n- Media: \`${mediaName}\`\n- Media SHA-256: \`${mediaSha}\`\n- Scope: non-Densou, private technical A/V review candidate\n- Audio: ${policy.cue_count}/${policy.cue_count} accepted review-caption texts, local ${policy.voice_name}, provisional only\n- Picture/subtitle: exact parent essence and extracted subtitle timing/text match\n\nOpen \`review.html\` locally. This package does not establish voice/audio acceptance, rights clearance, production approval, publication, or final canon.\n`, "utf8");
+    const readmeTitle = profile.tts_kind === "winrt" ? "CASE_DIGEST provisional male timing-voice successor" : "CASE_DIGEST rejected historical Haruka continuation";
+    const readmeBoundary = profile.tts_kind === "winrt"
+      ? "The Haruka predecessor is rejected and remains preserved. This successor does not establish voice/audio acceptance, final voice selection, rights clearance, production approval, publication, or final canon."
+      : "This historical route is rejected and must not be returned to active review. Machine verification does not reopen it.";
+    await writeFile(path.join(packageRoot, "README.md"), `# ${readmeTitle}\n\n- Artifact: \`${artifactId}\`\n- Parent: \`${parentArtifactId}\`\n- Media: \`${mediaName}\`\n- Media SHA-256: \`${mediaSha}\`\n- Scope: non-Densou, private voice evidence\n- Audio: ${policy.cue_count}/${policy.cue_count} accepted review-caption texts, local ${policy.voice_name}, provisional only\n- Objective signal gate: ${receipt.media.signal_quality.objective_noise_gate_pass ? "PASS" : "FAIL"}; human listening is still required\n- Picture/subtitle: exact parent essence and extracted subtitle timing/text match\n\nOpen \`review.html\` locally. ${readmeBoundary}\n`, "utf8");
     const payloadNames = [mediaName, "audio-waveform.jpg", "audio-sync-receipt.json", "review.html", "README.md"];
     const payloads = [];
     for (const name of payloadNames) payloads.push(await fileIdentity(path.join(packageRoot, name), packageRoot));
     const manifest = {
-      schema_version: "fff.privateRasterCaseDigestAudioContinuationManifest.v1",
+      schema_version: profile.tts_kind === "winrt" ? "fff.privateRasterCaseDigestVoiceSuccessorManifest.v1" : "fff.privateRasterCaseDigestAudioContinuationManifest.v1",
       artifact_id: artifactId,
       parent_artifact_id: parentArtifactId,
       classification: "PRIVATE_TECHNICAL_AV_REVIEW_CANDIDATE",
@@ -485,6 +597,10 @@ async function verify() {
   requireCondition(receipt.cues.every((cue) => cue.spoken_text_ja === cue.text_ja && cue.within_accepted_caption_window), "PACKAGE_INVALID", "cue text/timing drift");
   requireCondition(receipt.media.audible_cue_count === policy.cue_count && receipt.media.full_av_decode === "PASS", "PACKAGE_INVALID", "media health receipt mismatch");
   requireCondition(receipt.media.exact_parent_video_essence_match && receipt.media.exact_parent_subtitle_text_timing_match, "PACKAGE_INVALID", "parent essence preservation mismatch");
+  if (profile.tts_kind === "winrt") {
+    requireCondition(receipt.voice.gender === "Male" && receipt.voice.timing_voice_only === true && receipt.voice.final_voice_selected === false, "PACKAGE_INVALID", "provisional male timing-voice boundary mismatch");
+    requireCondition(receipt.media.signal_quality.objective_noise_gate_pass === true && receipt.media.signal_quality.perceptual_acceptance_claimed === false, "PACKAGE_INVALID", "objective/perceptual noise-gate boundary mismatch");
+  }
   requireCondition(receipt.boundaries.actual_densou_source_used === false && receipt.boundaries.densou_source_gate_polled_or_reopened === false, "PACKAGE_INVALID", "Densou boundary mismatch");
   requireCondition(Object.entries(receipt.boundaries).filter(([key]) => ["audio_human_accepted", "voice_final", "rights_approved", "production_approved", "publication_approved", "final_canon"].includes(key)).every(([, value]) => value === false), "PACKAGE_INVALID", "closed human/rights/production boundary was opened");
   const liveProbe = await probeMedia(path.join(outputRoot, mediaName));
@@ -498,7 +614,7 @@ async function verify() {
 }
 
 function usage() {
-  console.log(`Usage:\n  node tools/fff-private-raster-case-digest-audio-continuation.mjs build\n  node tools/fff-private-raster-case-digest-audio-continuation.mjs verify`);
+  console.log(`Usage:\n  node tools/fff-private-raster-case-digest-audio-continuation.mjs build [legacy-haruka|ichiro-provisional]\n  node tools/fff-private-raster-case-digest-audio-continuation.mjs verify [legacy-haruka|ichiro-provisional]`);
 }
 
 const command = process.argv[2];

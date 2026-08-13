@@ -1,0 +1,113 @@
+{
+  "schema_version": "fff.projectVoiceInventory.v1",
+  "evidence_lineage": "fff-nondensou-voice-convergence-20260813-001",
+  "recorded_at": "2026-08-13",
+  "authority_owner": "docs/voice-vision.md",
+  "active_implementation_lane_count": 1,
+  "active_human_gate_count": 1,
+  "items": [
+    {
+      "item_id": "project-voice-vision",
+      "classification": "canonical_current",
+      "locator": "docs/voice-vision.md",
+      "state": "single project-level routing owner",
+      "next_move": "apply its closure rules to every future voice packet"
+    },
+    {
+      "item_id": "case-digest-ichiro-successor",
+      "classification": "canonical_current",
+      "locator": "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/review.html",
+      "state": "only active NON_DENSOU implementation lane and one-candidate human gate",
+      "next_move": "one perceptual verdict on the exact MP4 hash"
+    },
+    {
+      "item_id": "case-digest-haruka-audio-continuation",
+      "classification": "rejected_superseded",
+      "locator": "artifacts/private-raster-case-digest-audio-continuation-20260812-001/",
+      "state": "exact package preserved; user REJECT bound to cea496c12c7485a47a992877dc2544bff4be9cd6a1a7c7192574adb7215f0c12",
+      "next_move": "none; never relay its old acceptance packet again"
+    },
+    {
+      "item_id": "windows-sapi-haruka-route",
+      "classification": "rejected_superseded",
+      "locator": "tools/fff-local-sapi-tts.ps1",
+      "state": "historical/reproduction tool only for this CASE_DIGEST voice lane",
+      "next_move": "retain for forensic verification; do not make a new Haruka candidate"
+    },
+    {
+      "item_id": "windows-onecore-ichiro-route",
+      "classification": "provisional_evidence",
+      "locator": "tools/fff-local-winrt-tts.ps1",
+      "state": "locally executable male ja-JP file-output route; timing voice only",
+      "next_move": "keep provisional unless the exact successor receives human acceptance"
+    },
+    {
+      "item_id": "nemo-style-10000-calibration-and-delivery",
+      "classification": "provisional_evidence",
+      "locator": "branch codex/fff-case-digest-english-documentary-successor-v1: docs/review/case-digest-nemo-delivery-reflow.md",
+      "state": "prior owner preferred calmer style 10000; final voice remained false; referenced D:/AI-Runs engine and media roots are now absent",
+      "next_move": "closed duplicate wording; only reactivate if an exact local engine/input locator and a new explicit lane decision arrive"
+    },
+    {
+      "item_id": "final-familiar-japanese-voice",
+      "classification": "future_final_voice_gate",
+      "locator": "https://voicevox.hiroshiba.jp/product/aoyama_ryusei/",
+      "state": "青山龍星 is a named option, not selected; VOICEVOX was not found in scoped installed-program roots",
+      "next_move": "human owner may later authorize an exact comparison, terms/credit check, and installation boundary"
+    },
+    {
+      "item_id": "youtube-automatic-dubbing",
+      "classification": "youtube_localization",
+      "locator": "https://support.google.com/youtube/answer/15569972?hl=ja-JP",
+      "state": "optional translated-audio lane; Japanese source currently maps to English and automatic dubs are not editable",
+      "next_move": "remain inactive until original narration, production, publication, and localization decisions exist"
+    },
+    {
+      "item_id": "english-documentary-successor-voice-slot",
+      "classification": "future_final_voice_gate",
+      "locator": "branch codex/fff-case-digest-english-documentary-successor-v1: artifacts/case-digest-english-documentary-successor/english-voice-slot.json",
+      "state": "separate English documentary lane; Zira timing proxy is explicitly not acceptable and natural male English voice remains pending",
+      "next_move": "do not merge with original Japanese narration or YouTube auto-dubbing"
+    },
+    {
+      "item_id": "densou-audio-repair",
+      "classification": "densou_specific_out_of_lane",
+      "locator": "artifacts/densou-s01e01-benchmark-video-slice-audio-repair-001/ and tools/fff-densou-episode-audio-repair.mjs",
+      "state": "wrong-source/quarantined Densou history; actual Densou source remains UNBOUND",
+      "next_move": "none in NON_DENSOU; do not reopen or request source"
+    },
+    {
+      "item_id": "planning-only-synthetic-voice-fields",
+      "classification": "future_final_voice_gate",
+      "locator": "artifacts/production-execution-pack/ and artifacts/asset-rights-readiness-packet/",
+      "state": "canonical planning preserves voice/audio as separate unselected future gates; no engine or media selection",
+      "next_move": "keep closed until an explicit production voice contract exists"
+    },
+    {
+      "item_id": "prior-acceptance-packets-and-task-wording",
+      "classification": "duplicate_task_wording",
+      "locator": "current task history plus historical review documents",
+      "state": "old open/listen prompts for Haruka and absent Nemo external media are closed and superseded by this inventory",
+      "next_move": "relay only the current Ichiro successor packet"
+    }
+  ],
+  "environment": {
+    "windows_onecore_ichiro_registry_present": true,
+    "windows_onecore_ichiro_model_file_present": true,
+    "windows_onecore_ichiro_headless_file_synthesis_pass": true,
+    "voicevox_scoped_program_install_found": false,
+    "nemo_calibration_external_run_found": false,
+    "nemo_delivery_external_run_found": false,
+    "dependency_added": false,
+    "download_or_install_performed": false,
+    "credentials_or_payment_used": false,
+    "playback_used": false
+  },
+  "protected_worktrees": {
+    "master": "bcdf84e4d89f26bf41d288f8282d7ae50911cc1e clean and origin/master equal",
+    "densou_hardening": "428a65bbed1f3bee5c7eae22455c481dc0eeeb48 clean and upstream equal",
+    "control_plane": "9d3b028e87ed62c6aaf37577a080df59fa27f6ad with 13 pre-existing tracked modifications preserved",
+    "english_nemo_evidence": "541750219f20b2a6952981f61e4db20e53f4e42d clean",
+    "mutation_lane": "codex/fff-nondensou-voice-vision-v1 based on 428a65bbed1f3bee5c7eae22455c481dc0eeeb48"
+  }
+}

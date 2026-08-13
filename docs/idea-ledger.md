@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-08-13 NON_DENSOU CASE_DIGEST content/process review
+
+- Purpose: turn the accepted development timing voice into a fast, directly inspectable content and production-process checkpoint without reopening voice selection or reconstructing the pipeline by hand.
+- Effect: one local surface binds the exact 180-second media to all eleven shot/caption/audio cues, five story-flow questions, exact source/output identities, and a concise fixed/replaceable/human-owned/closed stage map.
+- Requirements: keep MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10`, picture essence, subtitle text/timing, accepted development audio, topic, canon, major visual method, and editorial winner unchanged. Missing media becomes its own challenge, never a substituted review.
+- State: the development timing-voice gate is closed accepted; the content/process surface is the only active implementation lane; final voice and all production/publication decisions are deferred.
+- Owner: repository code owns exact binding, navigation, challenge behavior, and verification. A human reviewer owns the one next comprehension judgment; later voice, rights, canon, production, and publication owners retain independent gates.
+- Next move: open the surface and assess whether observed facts, investigative leads, unsupported involvement, and the unresolved ending remain distinguishable through the full sequence. Timestamp/shot/cue natural-language repair notes are sufficient if they are not.
+
 ## 2026-08-12 Densou source-unbound hardening
 
 - Purpose: make the durable source design safe to review and operate while actual Densou remains unavailable and the three candidate commits remain unadopted.

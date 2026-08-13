@@ -1,5 +1,13 @@
 # Decision Log
 
+## 2026-08-13 — Accept Ichiro only as the development timing voice and advance content/process review
+
+- Exact decision: bind `ACCEPT_DEVELOPMENT_TIMING_VOICE` only to `fff-private-raster-case-digest-ichiro-successor-20260813-001` at MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10`. Preserve its bytes and the rejected Haruka package.
+- Scope decision: close the development timing-voice perceptual gate and defer final-voice comparison. Do not install or generate VOICEVOX/青山龍星, create a successor voice candidate, or infer final voice, rights, canon, production, publication, or Densou approval.
+- Workflow decision: make one content/process workbench the active implementation lane. It references the accepted media unchanged, indexes every cue/shot, groups the story into five comprehension checkpoints, and shows exact input/output and stage ownership.
+- Review decision: expose one human axis—whether the current 180-second sequence clearly separates facts, leads, lack of proof, and unresolved status. Natural-language timestamp/cue feedback is valid; no token-only response is required.
+- Availability decision: missing or mismatched exact media must close the nominal review route and create a deterministic challenge identity. Never substitute another sample or carry a phantom review forward.
+
 ## 2026-08-12 — Enforce source-unbound safety without adopting the Densou candidate
 
 - Review decision: evaluate the three remote commits on an isolated local branch; do not merge, rebase, fast-forward `master`, select a source, or convert the candidate into product authority during this slice.
