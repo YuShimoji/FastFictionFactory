@@ -1,13 +1,22 @@
 # Idea Ledger
 
-## 2026-08-13 NON_DENSOU CASE_DIGEST content/process review
+## 2026-08-14 Structured production lanes
+
+- Purpose: replace side-quest-driven progress with a measurable reference -> authored plot -> presentation -> provisional assembly -> integrated review -> final-gates path.
+- Effect: adds an independent replaceable-material envelope, a comprehensive production-neutral reference model, an explicitly pinned five-beat provisional spine with role-typed references, presentation coverage, integration-only checks, and independent structural requirement vectors in one compact owner/state pair. No heterogeneous stage percentage is produced.
+- Requirements: preserve the exact NON_DENSOU candidate and timing-voice scope, the full current project state, all off-video facts/open questions, primary-imagery quarantine, and all human-owned source/canon/topic/voice/visual/editorial/rights/production/publication boundaries. Reference completeness must not generate plot.
+- State: implementation owner, machine state, validator, and focused negative/regression tests exist. Current vectors are fact/source-status records 28/28, versioned fact-specific literal support contracts 23/23, bound typed literal author-memo locators 23/23, locator-span audit 23/23, nonliteral classifications 5/5, profiles 11, relationships 18, claims 9, events 8, typed-reference beats 5/5, shots/captions 11/11, production-selected beats 0/5, effect records 0/5, rights-cleared primary choices 0/11. The locator inventory has 23 unique spans, no whole-memo span, and one explicit multi-section overbroad audit record. These are structural coverage vectors rather than a quality/progress score.
+- Owner: repository code owns record integrity, dependency separation, and metric arithmetic; human owners retain creative and external gates.
+- Next move: the ordered ladder has no remaining known agent-owned reference-layer requirement. Its first failure is now human-owned production selection at 0/5, so preserve the audited reference state and do not skip forward, select beats, or open a review without a separate explicit route.
+
+## 2026-08-13 NON_DENSOU CASE_DIGEST content/process review (parked presentation evidence)
 
 - Purpose: turn the accepted development timing voice into a fast, directly inspectable content and production-process checkpoint without reopening voice selection or reconstructing the pipeline by hand.
 - Effect: one local surface binds the exact 180-second media to all eleven shot/caption/audio cues, five story-flow questions, exact source/output identities, and a concise fixed/replaceable/human-owned/closed stage map.
 - Requirements: keep MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10`, picture essence, subtitle text/timing, accepted development audio, topic, canon, major visual method, and editorial winner unchanged. Missing media becomes its own challenge, never a substituted review.
-- State: the development timing-voice gate is closed accepted; the content/process surface is the only active implementation lane; final voice and all production/publication decisions are deferred.
-- Owner: repository code owns exact binding, navigation, challenge behavior, and verification. A human reviewer owns the one next comprehension judgment; later voice, rights, canon, production, and publication owners retain independent gates.
-- Next move: open the surface and assess whether observed facts, investigative leads, unsupported involvement, and the unresolved ending remain distinguishable through the full sequence. Timestamp/shot/cue natural-language repair notes are sufficient if they are not.
+- State: the development timing-voice gate remains closed accepted; the content/process surface is preserved but is no longer the active implementation lane or current review gate. Final voice and all production/publication decisions remain deferred.
+- Owner: repository code preserves exact binding, navigation, challenge behavior, and verification. No human action is opened from this historical packet.
+- Next move: use the structured production-lane owner above. Reopen an experience review only from a later explicit ladder transition, not from this former “one question” label.
 
 ## 2026-08-12 Densou source-unbound hardening
 

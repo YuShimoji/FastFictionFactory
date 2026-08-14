@@ -1,18 +1,36 @@
 # Current Status Packet
 
-## NON_DENSOU CASE_DIGEST content/process review — 2026-08-13 JST
+## Structured NON_DENSOU production position — 2026-08-14 JST
+
+Current authority is `docs/production-lanes.md`; machine state is `artifacts/case-digest-production-state.json`; validation is `node tools/fff-case-digest-production-state.mjs verify`.
+
+| Production layer | Live quantitative state | What prevents a completion claim |
+| --- | --- | --- |
+| Replaceable assets/metadata | 180-second working envelope; captions 11/11; provisional subtitle rows 11/11; development-audio cue windows and objective signal gates 11/11; final subtitle and final voice selections 0 | This lane supplies replaceable timing compatibility only and cannot own story or presentation |
+| Story reference model | fact records 28/28; source-status records 28/28; fact-specific literal support contracts 23/23; bound literal author-memo locators 23/23; locator-span audit 23/23; nonliteral classifications 5/5; profiles 11, relationship edges 18, claims 9, events 8 | Literal evidence resolves `/rawMemo` by typed pointer, offsets, exact quote, quote hash, and the receiving fact's versioned exact-anchor contract; comprehensive coverage still cannot create or select plot beats |
+| Authored plot spine | Five explicit existing beats, 180/180 seconds, role-typed references and entry/exit functions 5/5 | Production-selected beats are 0/5; rejected or unselected ending records cannot be affirmative support; reference coverage is not selection authority |
+| Story presentation | Presentation segments 5/5; shots, captions, motion, and transition records 11/11; forbidden primary source kinds 0 | Screen-effect beat records are 0/5 and rights-cleared primary choices are 0/11 |
+| Integration check | Source/hash/version, DAG, cue/shot, quarantine, media, and arithmetic checks are executable | Integration has no creative authority and cannot promote evidence to acceptance |
+
+All 23 literal locators now pass typed pointer, UTF-16 range, exact slice, quote SHA-256, and fact-specific support checks. The span audit reports 23 unique spans, zero whole-memo spans, zero invalid locators, zero unclassified records, zero wrong-fact support issues, and one explicitly justified 399-code-unit multi-section span for `el-fiction-001`. Nonliteral classifications remain separately complete at 5/5.
+
+The first failed requirement computed from the ordered ladder is now `C.PRODUCTION_SELECTED_BEATS` at 0/5. Its unit is `human_selected_beats`, so this is a human-owned creative gate rather than an autonomous repository task. Reference integrity is structurally closed under the declared contract; the project does not skip that human gate to perform later presentation work and does not open a review question from this checkpoint. These independent vectors remain structural coverage only, not a scalar quality or creative-progress score.
+
+The exact Ichiro media remains accepted only as `DEVELOPMENT_TIMING_VOICE_ONLY`. The old content/process review surface is `PARKED_PRESENTATION_EVIDENCE`, not an active project gate. Source, canon, topic, final/major voice, major visual method, editorial winner, rights, production, publication, and Densou identity remain independently unselected.
+
+## Preserved NON_DENSOU CASE_DIGEST content/process review — superseded as current gate 2026-08-14 JST
 
 | Item | Verified state |
 | --- | --- |
 | Development voice decision | `ACCEPT_DEVELOPMENT_TIMING_VOICE` for exact artifact `fff-private-raster-case-digest-ichiro-successor-20260813-001`, MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10` |
 | Scope | development timing voice only; final/production voice, rights, canon, Densou, production, and publication remain unselected |
-| Active implementation lane | one NON_DENSOU content/process review surface; there is no active human voice gate or successor voice candidate |
-| Open target | `artifacts/case-digest-development-review-surface-20260813-001/review.html`; it references the accepted MP4 instead of copying or remuxing it |
+| Historical implementation evidence | one NON_DENSOU content/process review surface; there is no active human voice gate or successor voice candidate |
+| Parked target | `artifacts/case-digest-development-review-surface-20260813-001/review.html`; it references the accepted MP4 instead of copying or remuxing it, but it is not the current project gate |
 | Review mechanics | exact 180-second player, 11 cue/shot jumps, five story-flow checkpoints, picture/subtitle/audio binding, input/output identities, and fixed/replaceable/human-owned/closed provenance |
 | Missing-media behavior | deterministic challenge `fff-missing-media-challenge-1499cd6e7538`; no substituted file and no phantom review |
 | Creative boundary | the surface exposes comprehension and process questions; it does not change or approve topic, canon, major visuals, edit, picture, subtitle text/timing, or accepted development audio |
 
-The exact voice decision is at `artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json`. Machine identity and browser operation support the surface; content and production-process judgment remain human-owned.
+The exact voice decision is at `artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json`. Machine identity and browser operation support the preserved surface only; its former single question does not count as current progress, prioritization, or judgment authority.
 
 ## Densou source-unbound hardening — 2026-08-12 JST
 

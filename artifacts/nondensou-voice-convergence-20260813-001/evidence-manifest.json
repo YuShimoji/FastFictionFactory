@@ -20,13 +20,21 @@
     "active_project_implementation_lane": "CASE_DIGEST_CONTENT_PROCESS_REVIEW",
     "final_voice_selected": false
   },
+  "current_authority_update": {
+    "recorded_at": "2026-08-14",
+    "owner": "docs/production-lanes.md",
+    "active_project_implementation_lane": "STRUCTURED_PRODUCTION_LANES",
+    "legacy_content_process_surface": "PARKED_PRESENTATION_EVIDENCE",
+    "voice_lane": "A_REPLACEABLE_ASSETS_AND_METADATA",
+    "development_timing_voice_scope_unchanged": "DEVELOPMENT_TIMING_VOICE_ONLY"
+  },
   "evidence_files": [
-    { "path": "docs/voice-vision.md", "bytes": 7255, "sha256": "d26d8034eae3bc0706099c0e78d46cf12a8fd0938d709c7488cb5b3d92e6b0a2" },
+    { "path": "docs/voice-vision.md", "bytes": 7590, "sha256": "ec1a33e38fc0ad2db61dff063578750243432a6fbb3723c93c16bcfbd11db357" },
     { "path": "tools/fff-audio-signal-audit.mjs", "bytes": 11505, "sha256": "ed8c7fe2370decdd68af9a9f83b4c0011317514680451fdc46bae605430b759d" },
     { "path": "tools/fff-local-winrt-tts.ps1", "bytes": 4725, "sha256": "b74410d527ee3d0d3c03d82445236d49b7276774f9c715966720eacadcd461ff" },
     { "path": "tools/fff-private-raster-case-digest-audio-continuation.mjs", "bytes": 39465, "sha256": "cbc31b94d91f7a3fb99598c0e0876d7789ca99629b7aa1d958093301db4c8bcb" },
     { "path": "tools/fff-private-raster-case-digest.mjs", "bytes": 136548, "sha256": "6d7612dc081ecbd4d7f661f52ebc85302904469e8e356a3f3f6731bbab8fa588" },
-    { "path": "tests/fff-nondensou-voice-convergence.test.mjs", "bytes": 9858, "sha256": "1726f001bebeefb48f2c95f5b6959622f99fe6942523d6d2787fda731b657e23" },
+    { "path": "tests/fff-nondensou-voice-convergence.test.mjs", "bytes": 10162, "sha256": "e5cf1e4c31c5460d30f4ad73b78bc5fe8c33918e1e9908f04aa6055b25ed4995" },
     { "path": "artifacts/nondensou-voice-convergence-20260813-001/coordinator-acceptance-packet.md", "bytes": 1154, "sha256": "db7dc5094eccc87c2a933c1e946bb712eead368b543797e1c7780e360454cd6c" },
     { "path": "artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json", "bytes": 2515, "sha256": "552314d4c8adc5c822b6d8f8738d208e47663587eab3a2bfbdbfd9dea046d049" },
     { "path": "artifacts/nondensou-voice-convergence-20260813-001/noise-root-cause.json", "bytes": 5417, "sha256": "06cf433162bf57a1c142aadc9743849724528dabe581b2e0eb0d06cf99d1190a" },

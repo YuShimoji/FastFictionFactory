@@ -2,6 +2,8 @@
 
 This file is the single project-level owner for voice and narration routing. Artifact receipts keep exact historical evidence, but they do not create a second roadmap or reopen an old review.
 
+Voice and narration now sit in `A_REPLACEABLE_ASSETS_AND_METADATA` under `docs/production-lanes.md`. A working voice supplies a duration/cue envelope only. Replacing it or uniformly retiming the whole video inside that envelope cannot rewrite the story reference, authored plot spine, prose/style, imagery, shots, transitions, or edit authority.
+
 ## The three boundaries
 
 | Boundary | What it is for | Current state | What can advance it |
@@ -18,7 +20,7 @@ YouTube Help describes automatic dubbing as generated translated tracks, current
 2. **Human-approved familiar Japanese final voice.** Only after the timing candidate has shown the intended delivery should the voice owner compare an explicitly approved familiar route. Selection, character terms, credit, and production use are separate decisions. A timing voice does not become final by surviving technical checks.
 3. **Optional YouTube localization.** Consider automatic dubbing only after original Japanese narration, production, publication, and localization ownership are resolved. Its translated tracks do not supply or repair the original Japanese narration.
 
-At any moment the project may have one active implementation lane and at most one human voice gate. As of 2026-08-13, `fff-private-raster-case-digest-ichiro-successor-20260813-001` at SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10` has verdict `ACCEPT_DEVELOPMENT_TIMING_VOICE`; the development timing-voice perceptual gate is closed and there is no active voice candidate or voice review packet. The sole active implementation lane is now the NON_DENSOU CASE_DIGEST content/process review surface. Nemo calibration, English documentary voice work, Densou audio repair, and old task packets are evidence or independent lanes, not parallel review requests.
+At any moment the project may have at most one human voice gate. As of 2026-08-13, `fff-private-raster-case-digest-ichiro-successor-20260813-001` at SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10` has verdict `ACCEPT_DEVELOPMENT_TIMING_VOICE`; the development timing-voice perceptual gate is closed and there is no active voice candidate or voice review packet. The old NON_DENSOU CASE_DIGEST content/process surface is parked presentation evidence rather than the current project gate. Nemo calibration, English documentary voice work, Densou audio repair, and old task packets are evidence or independent lanes, not parallel review requests.
 
 ## Noise and listening contract
 

@@ -1,5 +1,11 @@
 # Fast Fiction Factory MVP Workflow
 
+## Current Production Route
+
+`docs/production-lanes.md` is the current production-lane owner and `artifacts/case-digest-production-state.json` is its computed CASE_DIGEST state. Work proceeds through reference model -> explicitly authored plot spine -> story presentation -> provisional assembly -> integrated review -> final/production gates. Replaceable voice, subtitle, and similar metadata use an independent working envelope; satisfying or replacing that envelope cannot create, reorder, accept, or reject plot beats and cannot own presentation choices.
+
+Stage state comes from independent, versioned requirement vectors such as literal locators 23/23, literal locator-span audit 23/23, typed beat-reference roles 5/5, production-selected beats 0/5, effect records 0/5, or rights-cleared choices 0/11. Heterogeneous requirements are never summed into a scalar percentage. These vectors measure structural record coverage, not quality or creative progress. A phrase, current-question label, declared review axis, file, hash, test, or compatibility PASS is not progress or acceptance by itself. The prior three-minute content/process surface is parked historical presentation evidence, has `current_project_gate=false` and `current_human_action=false`, and cannot generate a current clear/fix review packet.
+
 ## Active Artifact
 
 The first reviewable artifact is `public/review/index.html`. It is a static local workbench and does not call external services.
@@ -34,6 +40,8 @@ For an exact media review, the referenced media identity is part of the review t
 ## Human Authority
 
 Only a human author can promote candidates into durable canon. The workbench may suggest structure, tasks, and outlines, but it must not replace creative decisions with final canon.
+
+Integration checks may verify versions, compatibility, checkpoints, coverage arithmetic, quarantine, and identity. They may not select creative content or promote evidence into acceptance.
 
 ## Residual Work Reporting
 

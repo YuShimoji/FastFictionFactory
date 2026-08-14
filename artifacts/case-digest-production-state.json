@@ -1,0 +1,647 @@
+{
+  "schema_version": "fff.caseDigestProductionState.v2",
+  "state_id": "fff-nondensou-case-digest-structured-production-lanes-v2",
+  "recorded_at": "2026-08-14",
+  "authority": {
+    "owner": "docs/production-lanes.md",
+    "progress_rule": "computed_from_explicit_records_and_metrics_only",
+    "coverage_vectors_are_structural_not_quality_or_creative_progress": true,
+    "declared_axis_counts_as_progress": false,
+    "review_question_count_counts_as_progress": false,
+    "prose_labels_count_as_authority": false,
+    "shared_control_alignment": {
+      "model_id": "content-production-lanes/v1",
+      "portable_coordinator_locator": "docs/content-production-lanes-v1.md",
+      "sha256": "ba2042aea1e0c9fd07718ecb0dc3d26f119114db60ee6e7d374a6d8ee8df2968",
+      "alignment_scope": "CONTROL_ONLY",
+      "project_authority_owner": "docs/production-lanes.md",
+      "project_authority_replaced": false,
+      "array_or_file_order_authoritative": false,
+      "first_failed_rule": "lowest_unique_integer_order_unsatisfied_with_satisfied_dependencies",
+      "na_requires_reason_and_dependency_effect": true,
+      "missing_gate_may_be_na": false
+    },
+    "legacy_content_process_surface": {
+      "path": "artifacts/case-digest-development-review-surface-20260813-001/review.html",
+      "state": "PARKED_PRESENTATION_EVIDENCE",
+      "current_project_gate": false,
+      "current_human_action": false
+    }
+  },
+  "identity": {
+    "project": "FastFictionFactory",
+    "content_lane": "NON_DENSOU_CASE_DIGEST",
+    "work_id": "work-clockmaker-under-glass",
+    "presentation_artifact_id": "fff-private-raster-case-digest-001",
+    "development_media_artifact_id": "fff-private-raster-case-digest-ichiro-successor-20260813-001",
+    "development_media_bytes": 18300218,
+    "development_media_sha256": "1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10",
+    "duration_seconds": 180,
+    "densou_identity": "OUT_OF_LANE",
+    "densou_may_satisfy_dependencies": false
+  },
+  "source_bindings": [
+    {
+      "role": "project_state",
+      "path": "artifacts/current-project-state.json",
+      "sha256": "4e03ac0e18aac1e5350e99e462eb07514637ce49ded5928eb9d5a45423a9f673"
+    },
+    {
+      "role": "literal_fact_support_registry",
+      "path": "artifacts/case-digest-literal-fact-support-registry.json",
+      "sha256": "89cd93cde3e59554826ce9782971d5ae33414ee35277ad250f85066ca89a1741"
+    },
+    {
+      "role": "presentation_provenance_rights_inventory",
+      "path": "artifacts/case-digest-presentation-provenance-rights-inventory.json",
+      "sha256": "3a398af590a5a624a2f7fa4ff8a23f05f37be2e0ce5b09e74492554e38369f49"
+    },
+    {
+      "role": "case_digest_model",
+      "path": "artifacts/private-raster-case-digest/private-raster-case-digest.json",
+      "sha256": "d2255f43ec711d2867129b7dbd6058265f3c52adfe3dfdbe314c60b53cda4c66"
+    },
+    {
+      "role": "authored_case_digest_script",
+      "path": "artifacts/private-raster-case-digest/case-digest-script.md",
+      "sha256": "4673e50999ff68cb0b56ce6ca51ca6f0dd62c002a393dab24b967846f8b1dabe"
+    },
+    {
+      "role": "shot_sequence",
+      "path": "artifacts/private-raster-case-digest/selected-shot-sequence.csv",
+      "sha256": "fa50635ec9dc17dfed233bac9c28197644be91e986033c309c8f3019066b7ec2"
+    },
+    {
+      "role": "review_captions",
+      "path": "artifacts/private-raster-case-digest/case-digest-review-captions.csv",
+      "sha256": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d"
+    },
+    {
+      "role": "production_subtitles_draft",
+      "path": "artifacts/private-raster-case-digest/case-digest-production-subtitles-draft.csv",
+      "sha256": "494f240c57c6e6113da8e625096d5a94b0a4d4e40b3ff5b1ee6cb95ba743d6f1"
+    },
+    {
+      "role": "case_digest_manifest",
+      "path": "artifacts/private-raster-case-digest/private-raster-case-digest-manifest.json",
+      "sha256": "2cb21aa909999fe1369a6ae4eefbdacb4e7714ffcfb2e04ef2fcfa753bcf7a88"
+    },
+    {
+      "role": "primary_imagery_quarantine",
+      "path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
+      "sha256": "aab00065e9994b1dedc6d30d2b1b9f6eb1ef4a1893d7f8948c5564578dde542b"
+    },
+    {
+      "role": "development_timing_voice_acceptance",
+      "path": "artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json",
+      "sha256": "552314d4c8adc5c822b6d8f8738d208e47663587eab3a2bfbdbfd9dea046d049"
+    },
+    {
+      "role": "development_media_sync_receipt",
+      "path": "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/audio-sync-receipt.json",
+      "sha256": "bc8a594992f8cbd354ee3ce8fb0e32bb33f5d4ca7ecf187175e36b6ee687d4c1"
+    }
+  ],
+  "dependency_dag": {
+    "nodes": [
+      "A_REPLACEABLE_ASSETS_AND_METADATA",
+      "B_STORY_REFERENCE_MODEL",
+      "C_AUTHORED_PLOT_SPINE",
+      "D_STORY_PRESENTATION",
+      "E_INTEGRATION_CHECK"
+    ],
+    "edges": [
+      {
+        "from": "B_STORY_REFERENCE_MODEL",
+        "to": "C_AUTHORED_PLOT_SPINE",
+        "contract": "constraint_and_source_refs_only"
+      },
+      {
+        "from": "C_AUTHORED_PLOT_SPINE",
+        "to": "D_STORY_PRESENTATION",
+        "contract": "explicit_authored_beat_structure"
+      },
+      {
+        "from": "A_REPLACEABLE_ASSETS_AND_METADATA",
+        "to": "D_STORY_PRESENTATION",
+        "contract": "non_blocking_working_envelope_only"
+      },
+      {
+        "from": "A_REPLACEABLE_ASSETS_AND_METADATA",
+        "to": "E_INTEGRATION_CHECK",
+        "contract": "version_and_compatibility_pin_only"
+      },
+      {
+        "from": "B_STORY_REFERENCE_MODEL",
+        "to": "E_INTEGRATION_CHECK",
+        "contract": "reference_version_pin_only"
+      },
+      {
+        "from": "C_AUTHORED_PLOT_SPINE",
+        "to": "E_INTEGRATION_CHECK",
+        "contract": "plot_version_pin_only"
+      },
+      {
+        "from": "D_STORY_PRESENTATION",
+        "to": "E_INTEGRATION_CHECK",
+        "contract": "presentation_version_pin_only"
+      }
+    ],
+    "forbidden_edges": [
+      "A_REPLACEABLE_ASSETS_AND_METADATA->B_STORY_REFERENCE_MODEL",
+      "A_REPLACEABLE_ASSETS_AND_METADATA->C_AUTHORED_PLOT_SPINE"
+    ]
+  },
+  "lanes": {
+    "A_REPLACEABLE_ASSETS_AND_METADATA": {
+      "stage_status": "PROVISIONAL_ENVELOPE_SATISFIED",
+      "authority_scope": [
+        "duration_envelope",
+        "cue_coverage",
+        "provisional_final_state",
+        "replaceability_class",
+        "version_hash",
+        "objective_subtitle_audio_checks"
+      ],
+      "may_block_story_reference": false,
+      "may_block_plot_when_envelope_satisfied": false,
+      "may_block_presentation_when_envelope_satisfied": false,
+      "may_overwrite_plot_or_presentation_authority": false,
+      "duration_envelope": {
+        "basis": "working_engineering_envelope_not_creative_duration_decision",
+        "target_seconds": 180,
+        "minimum_seconds": 162,
+        "maximum_seconds": 198,
+        "whole_video_uniform_retime_allowed": true,
+        "retime_requires_story_reauthoring": false,
+        "outside_envelope_action": "compatibility_recheck_without_automatic_story_change"
+      },
+      "items": [
+        {
+          "id": "development_voice_ichiro",
+          "kind": "voice",
+          "state": "PROVISIONAL_ACCEPTED_DEVELOPMENT_ONLY",
+          "replaceability_class": "WHOLE_TRACK_REPLACEABLE",
+          "version_identity": "1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10",
+          "cue_coverage": {
+            "observed": 11,
+            "required": 11,
+            "unit": "cues"
+          },
+          "final_selected": false,
+          "production_selected": false
+        },
+        {
+          "id": "case_digest_review_captions",
+          "kind": "caption_metadata",
+          "state": "EXISTING_PRESENTATION_EVIDENCE",
+          "replaceability_class": "CUE_TEXT_REPLACEABLE_WITH_EXPLICIT_VERSION",
+          "version_identity": "447512097ba63c63685e2fd5e8549c714fd853de8978cfd93b04322ec35c6f7d",
+          "cue_coverage": {
+            "observed": 11,
+            "required": 11,
+            "unit": "cues"
+          },
+          "maximum_characters_per_second": 2.143,
+          "final_selected": false
+        },
+        {
+          "id": "case_digest_production_subtitle_draft",
+          "kind": "subtitle_metadata",
+          "state": "PROVISIONAL_DRAFT",
+          "replaceability_class": "CUE_TEXT_AND_TIMING_REPLACEABLE_WITHIN_ENVELOPE",
+          "version_identity": "494f240c57c6e6113da8e625096d5a94b0a4d4e40b3ff5b1ee6cb95ba743d6f1",
+          "cue_coverage": {
+            "observed": 11,
+            "required": 11,
+            "unit": "cues"
+          },
+          "production_selected_count": 0,
+          "voice_calibrated_count": 0,
+          "final_selected": false
+        }
+      ],
+      "objective_checks": {
+        "audio_cues_within_caption_windows": {
+          "observed": 11,
+          "required": 11,
+          "unit": "cues"
+        },
+        "audio_cues_passing_noise_gate": {
+          "observed": 11,
+          "required": 11,
+          "unit": "cues"
+        },
+        "clipped_sample_count": 0,
+        "full_av_decode": "PASS",
+        "picture_essence_exact_parent_match": true,
+        "subtitle_text_timing_exact_parent_match": true,
+        "human_perceptual_voice_scope": "DEVELOPMENT_TIMING_VOICE_ONLY"
+      }
+    },
+    "B_STORY_REFERENCE_MODEL": {
+      "stage_status": "LITERAL_EVIDENCE_MATERIALIZED_AND_AUDITED",
+      "authority_scope": "read_only_constraint_and_source_layer",
+      "auto_create_plot_beats": false,
+      "auto_reorder_plot_beats": false,
+      "auto_accept_plot_beats": false,
+      "auto_reject_plot_beats": false,
+      "auto_choose_ending": false,
+      "source_locator_contract": {
+        "literal_locator_class": "literal_author_memo_span",
+        "literal_source_status": "author_memo",
+        "source_binding_role": "project_state",
+        "json_pointer": "/rawMemo",
+        "offset_unit": "utf16_code_unit",
+        "quote_hash_algorithm": "sha256_utf8",
+        "support_registry_role": "literal_fact_support_registry",
+        "support_registry_schema": "fff.caseDigestLiteralFactSupportRegistry.v1",
+        "support_rule": "quote_contains_all_required_anchors_exact_case",
+        "required_literal_fields": [
+          "locator_class",
+          "source_binding_role",
+          "json_pointer",
+          "offset_range.start",
+          "offset_range.end",
+          "offset_range.unit",
+          "exact_quote",
+          "quote_sha256"
+        ],
+        "nonliteral_locator_classes": [
+          "derived_candidate",
+          "inferred_candidate",
+          "missing_decision"
+        ]
+      },
+      "fact_table": [
+        { "id": "el-person-001", "category": "people", "title": "Mira Vale", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 44, "end": 53, "unit": "utf16_code_unit" }, "exact_quote": "Mira Vale", "quote_sha256": "8b587e184d196b1cf11ff067496ec7cf2ce4ae60349aff51feea740ecb15411f" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-person-002", "category": "people", "title": "Toma Vale", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 421, "end": 430, "unit": "utf16_code_unit" }, "exact_quote": "Toma Vale", "quote_sha256": "600a1fc44da4d6b60cce644385d5b1ad497dfbe83fecef3fe07873b8d072b0bf" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-person-003", "category": "people", "title": "Sister Hal", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 454, "end": 487, "unit": "utf16_code_unit" }, "exact_quote": "the archivist known as Sister Hal", "quote_sha256": "19938c0ac577bb028926fff33940f20a0a359d35c1e21024fdb18c0b5820dc6d" }, "review_status": "hold", "current_case_digest_usage": "not_selected" },
+        { "id": "el-place-001", "category": "places", "title": "North Bell Station", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 303, "end": 321, "unit": "utf16_code_unit" }, "exact_quote": "North Bell Station", "quote_sha256": "c6252da27712899472c1eec684b6c4bb3c07032bf0a42f3cb2b7088e21133185" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-place-002", "category": "places", "title": "Glass arcade", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 517, "end": 533, "unit": "utf16_code_unit" }, "exact_quote": "the glass arcade", "quote_sha256": "512dc7a651027089a9c26bf7bc05a8153fe63dc1c2ba5dab595665a8ecd22b6b" }, "review_status": "hold", "current_case_digest_usage": "not_selected" },
+        { "id": "el-place-003", "category": "places", "title": "Canal market", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 556, "end": 572, "unit": "utf16_code_unit" }, "exact_quote": "the canal market", "quote_sha256": "32060aafec81fc005bcc8fc72e4eddd280acd75de00e374c91b93650d20077d1" }, "review_status": "hold", "current_case_digest_usage": "not_selected" },
+        { "id": "el-org-001", "category": "organizations", "title": "City council", "source_status": "inferred_candidate", "source_locator": { "locator_class": "inferred_candidate", "classification_basis": "current_project_state_source_status" }, "review_status": "hold", "current_case_digest_usage": "investigation_target_only" },
+        { "id": "el-event-001", "category": "events", "title": "Arcade closes at 9:17", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 44, "end": 130, "unit": "utf16_code_unit" }, "exact_quote": "Mira Vale repairs antique clocks in a floodlit arcade that closes every night at 9:17.", "quote_sha256": "4cdc0bd032f1d626e14b02f978b9048220af66a49fd636ad427a42748150035c" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-event-002", "category": "events", "title": "Missing brother leaves a note", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 131, "end": 276, "unit": "utf16_code_unit" }, "exact_quote": "Her missing brother left a brass moth in the workshop drawer and a note that says the city council has been selling minutes from abandoned lives.", "quote_sha256": "8644a4e7a166d60ca818a608498136d7aa9a60142369a563e3647a7a3d73e61e" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-object-001", "category": "objects", "title": "Brass moth", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 156, "end": 191, "unit": "utf16_code_unit" }, "exact_quote": "a brass moth in the workshop drawer", "quote_sha256": "4c2741c21d19eeed68ae6663e1fe421ec9f12d4fe4096414e47fe8857bd1d217" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-object-002", "category": "objects", "title": "Ledger of minutes", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 595, "end": 612, "unit": "utf16_code_unit" }, "exact_quote": "ledger of minutes", "quote_sha256": "d8c7a8626f4a4cc3bccf90b96d473a17f981acf8d0dfd336f011fb3c90273354" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-object-003", "category": "objects", "title": "Black ribbon key", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 637, "end": 653, "unit": "utf16_code_unit" }, "exact_quote": "black ribbon key", "quote_sha256": "d33b52c14af930ab1e43243ca8658920b75f5d3ef6352f17e5931116e941caae" }, "review_status": "hold", "current_case_digest_usage": "not_selected" },
+        { "id": "el-concept-001", "category": "concepts", "title": "Selling minutes from abandoned lives", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 213, "end": 275, "unit": "utf16_code_unit" }, "exact_quote": "the city council has been selling minutes from abandoned lives", "quote_sha256": "d325cd277672be35ee80b554a528739d41f11355afdbb9ed341b87c069c22a48" }, "review_status": "hold", "current_case_digest_usage": "constraint_only_not_asserted" },
+        { "id": "el-concept-002", "category": "concepts", "title": "Time restoration refusal", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 908, "end": 954, "unit": "utf16_code_unit" }, "exact_quote": "Mira refuses to restore the city's stolen time", "quote_sha256": "03aba6f02f4061a819627c8cccc6dac01b575b26f4648c109c7a242057c88b2a" }, "review_status": "hold", "current_case_digest_usage": "not_selected" },
+        { "id": "el-timeline-001", "category": "timelines", "title": "Nightly 9:17 closure", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 80, "end": 129, "unit": "utf16_code_unit" }, "exact_quote": "a floodlit arcade that closes every night at 9:17", "quote_sha256": "87a95ccbe5b0c0c5095fa6759a84e00bc17186cfa3c653331c3e763f79312c26" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-timeline-002", "category": "timelines", "title": "Winter curfew bell removal", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 354, "end": 399, "unit": "utf16_code_unit" }, "exact_quote": "its bell was removed during the winter curfew", "quote_sha256": "0c38f0004f57e1d0808c49a4e265d572b91af994b72594c2ceab0617b1a25cdf" }, "review_status": "hold", "current_case_digest_usage": "not_selected" },
+        { "id": "el-placeholder-001", "category": "placeholders", "title": "Magic rules", "source_status": "missing_decision", "source_locator": { "locator_class": "missing_decision", "classification_basis": "current_project_state_source_status" }, "review_status": "hold", "current_case_digest_usage": "not_selected" },
+        { "id": "el-placeholder-002", "category": "placeholders", "title": "Council motive", "source_status": "missing_decision", "source_locator": { "locator_class": "missing_decision", "classification_basis": "current_project_state_source_status" }, "review_status": "hold", "current_case_digest_usage": "constraint_only_unresolved" },
+        { "id": "el-history-001", "category": "historical references", "title": "Winter curfew", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 386, "end": 399, "unit": "utf16_code_unit" }, "exact_quote": "winter curfew", "quote_sha256": "46399d61286440cf63e16f6059515dbea3aa10f6b781f4c8ebbf0697f7774f38" }, "review_status": "hold", "current_case_digest_usage": "not_selected" },
+        { "id": "el-fiction-001", "category": "fictional elements", "title": "Abandoned lives ledger", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 213, "end": 612, "unit": "utf16_code_unit" }, "exact_quote": "the city council has been selling minutes from abandoned lives. The old observatory above North Bell Station still rings at noon even though its bell was removed during the winter curfew.\n\nPeople: Mira Vale, Toma Vale, Councillor Iven Rusk, the archivist known as Sister Hal.\nPlaces: North Bell Station, the glass arcade, the old observatory, the canal market.\nObjects: brass moth, ledger of minutes", "quote_sha256": "2e02111f0d7032c78b655a8b2f72bf0683e6234c2e31d6a4672b50dd65ec12b9" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-fiction-002", "category": "fictional elements", "title": "Observatory bell without a bell", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 277, "end": 400, "unit": "utf16_code_unit" }, "exact_quote": "The old observatory above North Bell Station still rings at noon even though its bell was removed during the winter curfew.", "quote_sha256": "087ccd2b9b83a9d13c576287a0e959fd05b96ad09efe26dc7da30bdfd8858ac3" }, "review_status": "hold", "current_case_digest_usage": "direct" },
+        { "id": "el-undecided-001", "category": "undecided items", "title": "Toma alive or dead", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 737, "end": 773, "unit": "utf16_code_unit" }, "exact_quote": "Need to decide whether Toma is alive", "quote_sha256": "f774b096e5fbd36ee7f4cdaa7dd9599a5d378a9dab5239c327fd3269f10430b8" }, "review_status": "hold", "current_case_digest_usage": "constraint_only_unresolved" },
+        { "id": "el-undecided-002", "category": "undecided items", "title": "Brass moth function", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 827, "end": 888, "unit": "utf16_code_unit" }, "exact_quote": "whether the brass moth is a spy, a key, or a memory container", "quote_sha256": "1103f6837d33c5ba2a2df0c89f354e8a850aa093a7818d97792ebd16a842a1a0" }, "review_status": "hold", "current_case_digest_usage": "constraint_only_unresolved" },
+        { "id": "el-ambiguity-001", "category": "ambiguity", "title": "Council villainous or desperate", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 775, "end": 821, "unit": "utf16_code_unit" }, "exact_quote": "whether the council is villainous or desperate", "quote_sha256": "275fe4ccc0d63a41716b39c84a8cf13abf686c6974d71c7ec1d14d55188eac86" }, "review_status": "hold", "current_case_digest_usage": "constraint_only_unresolved" },
+        { "id": "el-ambiguity-002", "category": "ambiguity", "title": "Magic explanation timing", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 704, "end": 735, "unit": "utf16_code_unit" }, "exact_quote": "not explain the magic too early", "quote_sha256": "cf79c6cd7ef0ba5197dd50ffa154c9e40659e5d5235d463895b5caa9dd8a5e43" }, "review_status": "hold", "current_case_digest_usage": "constraint_only" },
+        { "id": "el-contradiction-001", "category": "contradiction candidates", "title": "Bell removed but still rings", "source_status": "author_memo", "source_locator": { "locator_class": "literal_author_memo_span", "source_binding_role": "project_state", "json_pointer": "/rawMemo", "offset_range": { "start": 322, "end": 374, "unit": "utf16_code_unit" }, "exact_quote": "still rings at noon even though its bell was removed", "quote_sha256": "8110334189569d98d467bcf07b769f23331152dc7fdc523fb976f1f600125c4a" }, "review_status": "hold", "current_case_digest_usage": "direct_open_contradiction" },
+        { "id": "el-foreshadow-001", "category": "foreshadowing candidates", "title": "Closing time 9:17", "source_status": "derived_candidate", "source_locator": { "locator_class": "derived_candidate", "classification_basis": "current_project_state_source_status" }, "review_status": "hold", "current_case_digest_usage": "direct_motif" },
+        { "id": "el-foreshadow-002", "category": "foreshadowing candidates", "title": "Black ribbon key", "source_status": "derived_candidate", "source_locator": { "locator_class": "derived_candidate", "classification_basis": "current_project_state_source_status" }, "review_status": "hold", "current_case_digest_usage": "not_selected" }
+      ],
+      "literal_locator_audit": {
+        "schema_version": "fff.caseDigestLiteralLocatorAudit.v1",
+        "selection_rule": "smallest_natural_contiguous_rawMemo_span_containing_all_required_anchors",
+        "overbroad_threshold_utf16_code_units": 240,
+        "whole_raw_memo_spans_allowed": false,
+        "duplicate_exact_spans_allowed_only_when_explicitly_audited": true,
+        "materialized_locator_count": 23,
+        "unique_exact_span_count": 23,
+        "whole_raw_memo_span_count": 0,
+        "shared_span_groups": [],
+        "overbroad_span_records": [
+          {
+            "fact_id": "el-fiction-001",
+            "span_utf16_code_units": 399,
+            "reason_code": "ACCEPTED_MULTI_ANCHOR_CONTRACT_SPANS_SEPARATE_SOURCE_SECTIONS",
+            "authority_effect": "evidence_binding_only"
+          }
+        ]
+      },
+      "profiles": [
+        { "id": "profile-mira", "type": "person", "review_status": "hold", "related_ids": ["profile-toma", "profile-brass-moth", "profile-council"], "open_questions": ["How much does Mira know before the first scene?", "What does repair work cost her emotionally?"], "unresolved_dependencies": [] },
+        { "id": "profile-toma", "type": "person", "review_status": "hold", "related_ids": ["profile-mira", "profile-brass-moth", "profile-final-answer-ghost"], "open_questions": ["Alive, dead, erased, transformed, or deliberately unknown?", "Was the note voluntary?"], "unresolved_dependencies": ["Toma fate"] },
+        { "id": "profile-council", "type": "organization", "review_status": "hold", "related_ids": ["profile-mira", "profile-toma", "profile-stolen-time"], "open_questions": ["Villainous, desperate, divided, or misled?", "Who benefits from the trade?"], "unresolved_dependencies": ["Council motive"] },
+        { "id": "profile-brass-moth", "type": "object", "review_status": "hold", "related_ids": ["profile-toma", "profile-mira", "profile-magic-rules"], "open_questions": ["What does it do on-screen?", "Can it be explained visually without exposition?"], "unresolved_dependencies": ["brass moth truth"] },
+        { "id": "profile-north-bell-station", "type": "place", "review_status": "hold", "related_ids": ["profile-mira", "profile-stolen-time"], "open_questions": ["How much of the curfew is visible early?", "Is the observatory inside or above the station?"], "unresolved_dependencies": [] },
+        { "id": "profile-arcade-917-closure", "type": "event", "review_status": "hold", "related_ids": ["profile-mira"], "open_questions": ["Is 9:17 literal time, ritual time, or production timing?", "Should the motif link to stolen minutes later?"], "unresolved_dependencies": [] },
+        { "id": "profile-stolen-time", "type": "concept", "review_status": "hold", "related_ids": ["profile-council", "profile-ledger-of-minutes", "profile-magic-rules"], "open_questions": ["Is time stolen, traded, harvested, or misreported?", "Who knows the mechanism?"], "unresolved_dependencies": ["Council motive"] },
+        { "id": "profile-ledger-of-minutes", "type": "document", "review_status": "hold", "related_ids": ["profile-council", "profile-stolen-time"], "open_questions": ["Who wrote the ledger?", "Does it name erased people or only account balances?"], "unresolved_dependencies": ["Council motive"] },
+        { "id": "profile-placeholder-visuals", "type": "visual_asset", "review_status": "hold", "related_ids": ["profile-north-bell-station", "profile-brass-moth"], "open_questions": ["Which assets are truly needed later?", "What rights status applies once real assets exist?"], "unresolved_dependencies": [] },
+        { "id": "profile-magic-rules", "type": "placeholder", "review_status": "hold", "related_ids": ["profile-brass-moth", "profile-stolen-time"], "open_questions": ["Which rule must be known in act one?", "Which rule should remain hidden?"], "unresolved_dependencies": ["brass moth truth", "Council motive"] },
+        { "id": "profile-final-answer-ghost", "type": "placeholder", "review_status": "reject", "related_ids": ["profile-toma", "profile-brass-moth", "profile-council"], "open_questions": ["None; keep rejected unless a human explicitly creates separate final decisions."], "unresolved_dependencies": ["Toma fate", "brass moth truth", "Council motive"] }
+      ],
+      "relationship_edges": [
+        "profile-arcade-917-closure|profile-mira",
+        "profile-brass-moth|profile-final-answer-ghost",
+        "profile-brass-moth|profile-magic-rules",
+        "profile-brass-moth|profile-mira",
+        "profile-brass-moth|profile-placeholder-visuals",
+        "profile-brass-moth|profile-toma",
+        "profile-council|profile-final-answer-ghost",
+        "profile-council|profile-ledger-of-minutes",
+        "profile-council|profile-mira",
+        "profile-council|profile-stolen-time",
+        "profile-council|profile-toma",
+        "profile-final-answer-ghost|profile-toma",
+        "profile-ledger-of-minutes|profile-stolen-time",
+        "profile-magic-rules|profile-stolen-time",
+        "profile-mira|profile-north-bell-station",
+        "profile-mira|profile-toma",
+        "profile-north-bell-station|profile-placeholder-visuals",
+        "profile-north-bell-station|profile-stolen-time"
+      ],
+      "claims": [
+        { "id": "claim-mira-clockmaker", "truth_status": "canon fact", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "contradicts": [] },
+        { "id": "claim-arcade-closes-917", "truth_status": "canon fact", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "contradicts": [] },
+        { "id": "claim-city-sells-time", "truth_status": "uncertain", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "contradicts": ["claim-council-desperate"] },
+        { "id": "claim-council-desperate", "truth_status": "rumor", "review_status": "hold", "source_ref_ids": ["src-derived-claim-ledger-001"], "contradicts": ["claim-city-sells-time"] },
+        { "id": "claim-toma-left-note", "truth_status": "uncertain", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "contradicts": [] },
+        { "id": "claim-brass-moth-function", "truth_status": "uncertain", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "contradicts": [] },
+        { "id": "claim-bell-rings", "truth_status": "planned reversal", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "contradicts": [] },
+        { "id": "claim-winter-curfew", "truth_status": "uncertain", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "contradicts": [] },
+        { "id": "claim-ending-restores-hour", "truth_status": "planned reversal", "review_status": "hold", "source_ref_ids": ["src-possible-ending-001"], "contradicts": [] }
+      ],
+      "events": [
+        { "id": "timeline-917-cycle", "axis": "story_order", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "unresolved_dependencies": [] },
+        { "id": "timeline-toma-note", "axis": "story_order", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "unresolved_dependencies": ["Toma fate"] },
+        { "id": "timeline-noon-bell", "axis": "calendar_time", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "unresolved_dependencies": [] },
+        { "id": "timeline-winter-curfew", "axis": "historical_reference_order", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "unresolved_dependencies": [] },
+        { "id": "timeline-council-motive-disclosure", "axis": "viewer_disclosure_order", "review_status": "hold", "source_ref_ids": ["src-derived-timeline-view-001"], "unresolved_dependencies": ["Council motive"] },
+        { "id": "timeline-brass-moth-first-use", "axis": "viewer_disclosure_order", "review_status": "hold", "source_ref_ids": ["src-raw-memo-001"], "unresolved_dependencies": ["brass moth truth"] },
+        { "id": "timeline-production-open-bell", "axis": "production_order", "review_status": "hold", "source_ref_ids": ["src-derived-timeline-view-001"], "unresolved_dependencies": [] },
+        { "id": "timeline-ending-hour-return", "axis": "story_order", "review_status": "hold", "source_ref_ids": ["src-possible-ending-001"], "unresolved_dependencies": ["Toma fate", "Council motive"] }
+      ],
+      "contradictions_and_unsupported_claims": [
+        { "id": "bell_present_absent", "kind": "intentional_open_contradiction", "refs": ["el-contradiction-001", "claim-bell-rings", "timeline-noon-bell"], "resolution_status": "open" },
+        { "id": "council_motive_conflict", "kind": "mutually_unresolved_claims", "refs": ["claim-city-sells-time", "claim-council-desperate", "el-ambiguity-001"], "resolution_status": "human_owned" },
+        { "id": "council_involvement_not_proven", "kind": "unsupported_involvement_boundary", "refs": ["case-digest-caption-08", "case-digest-caption-09", "claim-city-sells-time"], "resolution_status": "explicitly_not_proven" },
+        { "id": "possible_ending_not_selected", "kind": "candidate_ending_only", "refs": ["claim-ending-restores-hour", "timeline-ending-hour-return", "el-concept-002"], "resolution_status": "not_selected" }
+      ],
+      "coverage_vectors": {
+        "interpretation": "STRUCTURAL_RECORD_COVERAGE_NOT_QUALITY_OR_CREATIVE_PROGRESS",
+        "fact_records": { "observed": 28, "required": 28, "unit": "records" },
+        "fact_source_status": { "observed": 28, "required": 28, "unit": "records" },
+        "literal_fact_support_contracts": { "observed": 23, "required": 23, "unit": "versioned_fact_contracts" },
+        "literal_author_memo_locators": { "observed": 23, "required": 23, "unit": "typed_verified_locators" },
+        "literal_locator_span_audit": { "observed": 23, "required": 23, "unit": "audited_locators" },
+        "nonliteral_source_classifications": { "observed": 5, "required": 5, "unit": "typed_classifications" },
+        "derived_candidate_classifications": { "observed": 2, "required": 2, "unit": "typed_classifications" },
+        "inferred_candidate_classifications": { "observed": 1, "required": 1, "unit": "typed_classifications" },
+        "missing_decision_classifications": { "observed": 2, "required": 2, "unit": "typed_classifications" },
+        "profiles": { "observed": 11, "required": 11, "unit": "records" },
+        "relationship_edges": { "observed": 18, "required": 18, "unit": "edges" },
+        "claims": { "observed": 9, "required": 9, "unit": "records" },
+        "events": { "observed": 8, "required": 8, "unit": "records" },
+        "off_video_fact_records": 11
+      }
+    },
+    "C_AUTHORED_PLOT_SPINE": {
+      "stage_status": "PROVISIONAL_EXISTING_AUTHORED_SPINE",
+      "selection_status": "NOT_SELECTED_FOR_PRODUCTION",
+      "generated_from_reference_coverage": false,
+      "reference_model_may_force_beat_coverage": false,
+      "production_selected_beat_count": 0,
+      "beats": [
+        { "order": 1, "beat_id": "case-digest-beat-01-anomaly", "start_seconds": 0, "end_seconds": 24, "target_duration_seconds": 24, "target_weight": 0.133333, "entry_function": "report_impossible_signal", "exit_function": "separate_report_from_observed_absence", "affirmative_support_refs": ["el-place-001", "el-fiction-002", "timeline-noon-bell", "profile-north-bell-station"], "constraint_boundary_refs": ["el-contradiction-001", "claim-bell-rings"], "unresolved_candidate_refs": [], "rejected_reference_refs": [], "production_selected": false },
+        { "order": 2, "beat_id": "case-digest-beat-02-investigation", "start_seconds": 24, "end_seconds": 65, "target_duration_seconds": 41, "target_weight": 0.227778, "entry_function": "introduce_investigator_and_personal_stake", "exit_function": "connect_note_moth_and_917_as_leads", "affirmative_support_refs": ["el-person-001", "el-person-002", "el-event-001", "el-event-002", "el-object-001", "timeline-917-cycle", "profile-mira"], "constraint_boundary_refs": [], "unresolved_candidate_refs": ["timeline-toma-note", "profile-toma", "profile-brass-moth"], "rejected_reference_refs": [], "production_selected": false },
+        { "order": 3, "beat_id": "case-digest-beat-03-ledger", "start_seconds": 65, "end_seconds": 97, "target_duration_seconds": 32, "target_weight": 0.177778, "entry_function": "follow_note_to_record", "exit_function": "identify_two_columns_without_asserting_causality", "affirmative_support_refs": ["el-object-002", "el-fiction-001"], "constraint_boundary_refs": ["claim-city-sells-time"], "unresolved_candidate_refs": ["profile-ledger-of-minutes", "profile-stolen-time"], "rejected_reference_refs": [], "production_selected": false },
+        { "order": 4, "beat_id": "case-digest-beat-04-evidence-limit", "start_seconds": 97, "end_seconds": 136, "target_duration_seconds": 39, "target_weight": 0.216667, "entry_function": "name_council_as_investigation_target", "exit_function": "withhold_unproven_involvement", "affirmative_support_refs": [], "constraint_boundary_refs": ["el-org-001", "claim-city-sells-time", "claim-toma-left-note"], "unresolved_candidate_refs": ["el-placeholder-002", "el-ambiguity-001", "claim-council-desperate", "profile-council"], "rejected_reference_refs": [], "production_selected": false },
+        { "order": 5, "beat_id": "case-digest-beat-05-open-status", "start_seconds": 136, "end_seconds": 180, "target_duration_seconds": 44, "target_weight": 0.244444, "entry_function": "summarize_loss_categories", "exit_function": "leave_source_and_people_unresolved", "affirmative_support_refs": [], "constraint_boundary_refs": ["el-concept-001"], "unresolved_candidate_refs": ["el-undecided-001", "el-undecided-002", "claim-ending-restores-hour", "timeline-ending-hour-return"], "rejected_reference_refs": ["profile-final-answer-ghost"], "production_selected": false }
+      ],
+      "coverage_vectors": {
+        "interpretation": "STRUCTURAL_RECORD_COVERAGE_NOT_QUALITY_OR_CREATIVE_PROGRESS",
+        "explicit_beat_records": { "observed": 5, "required": 5, "unit": "beats" },
+        "ordered_beats": { "observed": 5, "required": 5, "unit": "beats" },
+        "beats_with_typed_reference_roles": { "observed": 5, "required": 5, "unit": "beats" },
+        "beats_with_entry_exit_function": { "observed": 5, "required": 5, "unit": "beats" },
+        "beats_with_target_duration_and_weight": { "observed": 5, "required": 5, "unit": "beats" },
+        "production_selected_beats": { "observed": 0, "required": 5, "unit": "human_selected_beats" },
+        "duration_coverage_seconds": { "observed": 180, "required": 180, "unit": "seconds" }
+      }
+    },
+    "D_STORY_PRESENTATION": {
+      "stage_status": "PROVISIONAL_PRESENTATION_EVIDENCE",
+      "nested_under": "STORY",
+      "replaceable_assets_lane_is_owner": false,
+      "prose_style": {
+        "mode": "CASE_DIGEST_evidence_led",
+        "state": "existing_presentation_evidence_not_current_gate"
+      },
+      "backgrounds_and_primary_imagery": {
+        "shot_count": 11,
+        "allowed_source_kind_count": 11,
+        "forbidden_source_kind_count": 0,
+        "rights_cleared_count": 0,
+        "quarantine_state": "ACTIVE",
+        "production_selected": false,
+        "provenance_rights_inventory": {
+          "binding_role": "presentation_provenance_rights_inventory",
+          "schema_version": "fff.caseDigestPresentationProvenanceRightsInventory.v1",
+          "purpose": "READ_ONLY_EVIDENCE_CLASSIFICATION",
+          "may_select_or_replace_imagery": false,
+          "may_grant_rights_clearance": false,
+          "record_count": 11,
+          "technically_usable_count": 11,
+          "owner_accepted_primary_image_count": 11,
+          "provenance_observed_count": 11,
+          "repository_chain_observed_count": 9,
+          "recorded_chain_source_bytes_not_repository_bound_count": 2,
+          "rights_evidence_present_count": 0,
+          "rights_evidence_absent_count": 11,
+          "rights_evidence_unresolved_count": 0,
+          "rights_decision_unresolved_count": 11,
+          "rights_cleared_count": 0
+        }
+      },
+      "screen_effects": {
+        "required_beat_count": 5,
+        "itemized_beat_count": 0,
+        "state": "GAP_NOT_SEPARATELY_ITEMIZED"
+      },
+      "segments": [
+        { "beat_id": "case-digest-beat-01-anomaly", "shot_ids": ["shot-b01-01", "shot-b01-02"], "cue_ids": ["case-digest-caption-01", "case-digest-caption-02"] },
+        { "beat_id": "case-digest-beat-02-investigation", "shot_ids": ["shot-b02-01", "shot-b02-02", "shot-b02-03"], "cue_ids": ["case-digest-caption-03", "case-digest-caption-04", "case-digest-caption-05"] },
+        { "beat_id": "case-digest-beat-03-ledger", "shot_ids": ["shot-b03-01", "shot-b03-02"], "cue_ids": ["case-digest-caption-06", "case-digest-caption-07"] },
+        { "beat_id": "case-digest-beat-04-evidence-limit", "shot_ids": ["shot-b04-01", "shot-b04-02"], "cue_ids": ["case-digest-caption-08", "case-digest-caption-09"] },
+        { "beat_id": "case-digest-beat-05-open-status", "shot_ids": ["shot-b06-01", "shot-b06-03"], "cue_ids": ["case-digest-caption-10", "case-digest-caption-11"] }
+      ],
+      "coverage_vectors": {
+        "interpretation": "STRUCTURAL_RECORD_COVERAGE_NOT_QUALITY_OR_CREATIVE_PROGRESS",
+        "beats_with_presentation_segments": { "observed": 5, "required": 5, "unit": "beats" },
+        "shots_mapped": { "observed": 11, "required": 11, "unit": "shots" },
+        "captions_mapped": { "observed": 11, "required": 11, "unit": "cues" },
+        "motion_records": { "observed": 11, "required": 11, "unit": "shots" },
+        "transition_records": { "observed": 11, "required": 11, "unit": "shots" },
+        "source_kind_inventory_records": { "observed": 11, "required": 11, "unit": "classified_shots" },
+        "technical_usability_inventory_records": { "observed": 11, "required": 11, "unit": "classified_shots" },
+        "owner_acceptance_inventory_records": { "observed": 11, "required": 11, "unit": "classified_shots" },
+        "provenance_status_inventory_records": { "observed": 11, "required": 11, "unit": "classified_shots" },
+        "rights_status_inventory_records": { "observed": 11, "required": 11, "unit": "classified_shots" },
+        "screen_effect_beat_records": { "observed": 0, "required": 5, "unit": "beats" },
+        "rights_cleared_primary_choices": { "observed": 0, "required": 11, "unit": "shots" }
+      }
+    },
+    "E_INTEGRATION_CHECK": {
+      "stage_status": "COMPATIBILITY_CHECK_AVAILABLE",
+      "creative_authority": false,
+      "may_choose_content": false,
+      "may_select_plot": false,
+      "may_select_presentation": false,
+      "may_promote_evidence_to_acceptance": false,
+      "checks": [
+        "source_binding_hashes",
+        "dag_authority_separation",
+        "reference_record_coverage",
+        "beat_reference_integrity",
+        "duration_and_order_continuity",
+        "cue_shot_subtitle_coverage",
+        "replaceable_asset_envelope",
+        "primary_imagery_quarantine",
+        "presentation_provenance_rights_inventory",
+        "exact_media_package_identity",
+        "non_densou_densou_separation",
+        "requirement_vector_integrity"
+      ]
+    }
+  },
+  "production_ladder": [
+    {
+      "order": 1,
+      "stage": "REFERENCE_MODEL",
+      "status": "SATISFIED",
+      "state_detail": "STRUCTURALLY_MATERIALIZED_AND_AUDITED",
+      "coverage_interpretation": "STRUCTURAL_RECORD_COVERAGE_NOT_QUALITY_OR_CREATIVE_PROGRESS",
+      "requirement_vectors": [
+        {"requirement_id": "B.FACT_RECORDS", "order": 1, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "records", "required": 28, "observed": 28, "owner": "agent_owned", "depends_on": [], "evidence": "artifacts/current-project-state.json#/extractedCandidates/elements", "authority_effect": "may_change=reference_fact_record_state;may_not_change=authored_selection_or_acceptance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "B.FACT_SOURCE_STATUS", "order": 2, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "records", "required": 28, "observed": 28, "owner": "agent_owned", "depends_on": ["B.FACT_RECORDS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/B_STORY_REFERENCE_MODEL/fact_table", "authority_effect": "may_change=reference_source_classification;may_not_change=source_truth_or_authored_selection", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "B.LITERAL_FACT_SUPPORT_CONTRACTS", "order": 3, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "versioned_fact_contracts", "required": 23, "observed": 23, "owner": "agent_owned", "depends_on": ["B.FACT_RECORDS", "B.FACT_SOURCE_STATUS"], "evidence": "artifacts/case-digest-literal-fact-support-registry.json#/fact_support_contracts", "authority_effect": "may_change=fact_support_contract_coverage;may_not_change=fact_meaning_or_plot", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "B.LITERAL_AUTHOR_MEMO_LOCATORS", "order": 4, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "typed_verified_locators", "required": 23, "observed": 23, "owner": "agent_owned", "depends_on": ["B.LITERAL_FACT_SUPPORT_CONTRACTS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/B_STORY_REFERENCE_MODEL/fact_table", "authority_effect": "may_change=literal_evidence_binding;may_not_change=fact_meaning_or_plot", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "B.LITERAL_LOCATOR_SPAN_AUDIT", "order": 5, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "audited_locators", "required": 23, "observed": 23, "owner": "agent_owned", "depends_on": ["B.LITERAL_AUTHOR_MEMO_LOCATORS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/B_STORY_REFERENCE_MODEL/literal_locator_audit", "authority_effect": "may_change=locator_audit_state;may_not_change=source_or_creative_authority", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "B.NONLITERAL_SOURCE_CLASSIFICATIONS", "order": 6, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "typed_classifications", "required": 5, "observed": 5, "owner": "agent_owned", "depends_on": ["B.FACT_RECORDS", "B.FACT_SOURCE_STATUS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/B_STORY_REFERENCE_MODEL/fact_table", "authority_effect": "may_change=nonliteral_evidence_classification;may_not_change=fact_truth_or_plot", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "B.PROFILES", "order": 7, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "records", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["B.FACT_RECORDS"], "evidence": "artifacts/current-project-state.json#/extractedCandidates/profiles", "authority_effect": "may_change=reference_profile_records;may_not_change=authored_selection", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "B.RELATIONSHIP_EDGES", "order": 8, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "edges", "required": 18, "observed": 18, "owner": "agent_owned", "depends_on": ["B.PROFILES"], "evidence": "artifacts/case-digest-production-state.json#/lanes/B_STORY_REFERENCE_MODEL/relationship_edges", "authority_effect": "may_change=reference_relationship_records;may_not_change=plot_or_ending", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "B.CLAIMS", "order": 9, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "records", "required": 9, "observed": 9, "owner": "agent_owned", "depends_on": ["B.FACT_RECORDS"], "evidence": "artifacts/current-project-state.json#/claimCandidates", "authority_effect": "may_change=reference_claim_records;may_not_change=claim_acceptance_or_plot", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "B.EVENTS", "order": 10, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "B_STORY_REFERENCE_MODEL", "unit": "records", "required": 8, "observed": 8, "owner": "agent_owned", "depends_on": ["B.FACT_RECORDS"], "evidence": "artifacts/current-project-state.json#/timelineCandidates", "authority_effect": "may_change=reference_event_records;may_not_change=authored_order_or_ending", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null}
+      ],
+      "first_failed_requirement": null,
+      "first_blocked_requirement": null
+    },
+    {
+      "order": 2,
+      "stage": "AUTHORED_PLOT_SPINE",
+      "status": "UNSATISFIED",
+      "state_detail": "PROVISIONAL_NOT_PRODUCTION_SELECTED",
+      "coverage_interpretation": "STRUCTURAL_RECORD_COVERAGE_NOT_QUALITY_OR_CREATIVE_PROGRESS",
+      "requirement_vectors": [
+        {"requirement_id": "C.EXPLICIT_BEATS", "order": 11, "lane": "C_AUTHORED_CONTENT_AND_STRUCTURE", "project_lane": "C_AUTHORED_PLOT_SPINE", "unit": "beats", "required": 5, "observed": 5, "owner": "agent_owned", "depends_on": ["B.FACT_RECORDS", "B.LITERAL_AUTHOR_MEMO_LOCATORS", "B.NONLITERAL_SOURCE_CLASSIFICATIONS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/C_AUTHORED_PLOT_SPINE/beats", "authority_effect": "may_change=explicit_beat_record_coverage;may_not_change=production_selection_or_rights", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "C.ORDERED_BEATS", "order": 12, "lane": "C_AUTHORED_CONTENT_AND_STRUCTURE", "project_lane": "C_AUTHORED_PLOT_SPINE", "unit": "beats", "required": 5, "observed": 5, "owner": "agent_owned", "depends_on": ["C.EXPLICIT_BEATS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/C_AUTHORED_PLOT_SPINE/beats", "authority_effect": "may_change=authored_order_record;may_not_change=production_selection_or_presentation", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "C.TYPED_REFERENCE_ROLES", "order": 13, "lane": "C_AUTHORED_CONTENT_AND_STRUCTURE", "project_lane": "C_AUTHORED_PLOT_SPINE", "unit": "beats", "required": 5, "observed": 5, "owner": "agent_owned", "depends_on": ["C.EXPLICIT_BEATS", "B.FACT_RECORDS", "B.PROFILES", "B.CLAIMS", "B.EVENTS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/C_AUTHORED_PLOT_SPINE/beats", "authority_effect": "may_change=beat_reference_role_integrity;may_not_change=reference_truth_or_ending_selection", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "C.ENTRY_EXIT_FUNCTIONS", "order": 14, "lane": "C_AUTHORED_CONTENT_AND_STRUCTURE", "project_lane": "C_AUTHORED_PLOT_SPINE", "unit": "beats", "required": 5, "observed": 5, "owner": "agent_owned", "depends_on": ["C.EXPLICIT_BEATS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/C_AUTHORED_PLOT_SPINE/beats", "authority_effect": "may_change=beat_function_record_coverage;may_not_change=creative_acceptance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "C.TARGET_DURATION_AND_WEIGHT", "order": 15, "lane": "C_AUTHORED_CONTENT_AND_STRUCTURE", "project_lane": "C_AUTHORED_PLOT_SPINE", "unit": "beats", "required": 5, "observed": 5, "owner": "agent_owned", "depends_on": ["C.ORDERED_BEATS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/C_AUTHORED_PLOT_SPINE/beats", "authority_effect": "may_change=authored_duration_weight_records;may_not_change=replaceable_asset_or_production_selection", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "C.PRODUCTION_SELECTED_BEATS", "order": 16, "lane": "C_AUTHORED_CONTENT_AND_STRUCTURE", "project_lane": "C_AUTHORED_PLOT_SPINE", "unit": "human_selected_beats", "required": 5, "observed": 0, "owner": "human_owned", "depends_on": ["C.ORDERED_BEATS", "C.TYPED_REFERENCE_ROLES", "C.ENTRY_EXIT_FUNCTIONS", "C.TARGET_DURATION_AND_WEIGHT"], "evidence": "typed-absence:NO_EXPLICIT_PRODUCTION_BEAT_SELECTION", "authority_effect": "may_change=production_selected_plot_spine;may_not_change=presentation_rights_voice_or_release", "status": "UNSATISFIED", "na_reason": null, "na_dependency_effect": null}
+      ],
+      "first_failed_requirement": "C.PRODUCTION_SELECTED_BEATS",
+      "first_blocked_requirement": null
+    },
+    {
+      "order": 3,
+      "stage": "PRESENTATION_PLAN",
+      "status": "BLOCKED_BY_DEPENDENCY",
+      "state_detail": "PROVISIONAL_EVIDENCE_WITH_EFFECTS_AND_RIGHTS_GAPS",
+      "coverage_interpretation": "STRUCTURAL_RECORD_COVERAGE_NOT_QUALITY_OR_CREATIVE_PROGRESS",
+      "requirement_vectors": [
+        {"requirement_id": "D.PRESENTATION_SEGMENTS", "order": 17, "lane": "D_PRESENTATION_AND_REALIZATION", "project_lane": "D_STORY_PRESENTATION", "unit": "beats", "required": 5, "observed": 5, "owner": "agent_owned", "depends_on": ["C.EXPLICIT_BEATS"], "evidence": "artifacts/case-digest-production-state.json#/lanes/D_STORY_PRESENTATION/segments", "authority_effect": "may_change=provisional_spine_to_presentation_mapping;may_not_change=plot_selection_or_facts", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.SHOTS_MAPPED", "order": 18, "lane": "D_PRESENTATION_AND_REALIZATION", "project_lane": "D_STORY_PRESENTATION", "unit": "shots", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.PRESENTATION_SEGMENTS"], "evidence": "artifacts/private-raster-case-digest/selected-shot-sequence.csv", "authority_effect": "may_change=shot_mapping_record_state;may_not_change=plot_or_rights", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.CAPTIONS_MAPPED", "order": 19, "lane": "D_PRESENTATION_AND_REALIZATION", "project_lane": "D_STORY_PRESENTATION", "unit": "cues", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.SHOTS_MAPPED"], "evidence": "artifacts/private-raster-case-digest/case-digest-review-captions.csv", "authority_effect": "may_change=caption_mapping_record_state;may_not_change=plot_or_final_subtitle_acceptance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.MOTION_RECORDS", "order": 20, "lane": "D_PRESENTATION_AND_REALIZATION", "project_lane": "D_STORY_PRESENTATION", "unit": "shots", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.SHOTS_MAPPED"], "evidence": "artifacts/private-raster-case-digest/selected-shot-sequence.csv", "authority_effect": "may_change=motion_record_coverage;may_not_change=major_visual_method_or_acceptance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.TRANSITION_RECORDS", "order": 21, "lane": "D_PRESENTATION_AND_REALIZATION", "project_lane": "D_STORY_PRESENTATION", "unit": "shots", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.SHOTS_MAPPED"], "evidence": "artifacts/private-raster-case-digest/selected-shot-sequence.csv", "authority_effect": "may_change=transition_record_coverage;may_not_change=editorial_winner_or_acceptance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.ALLOWED_PRIMARY_IMAGERY_KINDS", "order": 22, "lane": "D_PRESENTATION_AND_REALIZATION", "project_lane": "D_STORY_PRESENTATION", "unit": "shots", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.SHOTS_MAPPED"], "evidence": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json", "authority_effect": "may_change=quarantine_compatibility_record;may_not_change=imagery_selection_or_rights", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.SOURCE_KIND_INVENTORY_RECORDS", "order": 23, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "D_STORY_PRESENTATION", "unit": "classified_shots", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.SHOTS_MAPPED"], "evidence": "artifacts/case-digest-presentation-provenance-rights-inventory.json#/records", "authority_effect": "may_change=presentation_source_kind_classification;may_not_change=imagery_selection_or_rights", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.TECHNICAL_USABILITY_INVENTORY_RECORDS", "order": 24, "lane": "E_INTEGRATION_EXPERIENCE_AND_RELEASE", "project_lane": "D_STORY_PRESENTATION", "unit": "classified_shots", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.SOURCE_KIND_INVENTORY_RECORDS"], "evidence": "artifacts/case-digest-presentation-provenance-rights-inventory.json#/records", "authority_effect": "may_change=technical_usability_classification;may_not_change=creative_or_rights_acceptance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.OWNER_ACCEPTANCE_INVENTORY_RECORDS", "order": 25, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "D_STORY_PRESENTATION", "unit": "classified_shots", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.SOURCE_KIND_INVENTORY_RECORDS"], "evidence": "artifacts/case-digest-presentation-provenance-rights-inventory.json#/records", "authority_effect": "may_change=historical_owner_acceptance_classification;may_not_change=production_or_rights_acceptance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.PROVENANCE_STATUS_INVENTORY_RECORDS", "order": 26, "lane": "B_EVIDENCE_AND_REFERENCE", "project_lane": "D_STORY_PRESENTATION", "unit": "classified_shots", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.SOURCE_KIND_INVENTORY_RECORDS"], "evidence": "artifacts/case-digest-presentation-provenance-rights-inventory.json#/records", "authority_effect": "may_change=presentation_provenance_classification;may_not_change=rights_clearance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.RIGHTS_STATUS_INVENTORY_RECORDS", "order": 27, "lane": "E_INTEGRATION_EXPERIENCE_AND_RELEASE", "project_lane": "D_STORY_PRESENTATION", "unit": "classified_shots", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["D.PROVENANCE_STATUS_INVENTORY_RECORDS"], "evidence": "artifacts/case-digest-presentation-provenance-rights-inventory.json#/records", "authority_effect": "may_change=rights_evidence_status_classification;may_not_change=rights_clearance_or_release", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.SCREEN_EFFECT_BEAT_RECORDS", "order": 28, "lane": "D_PRESENTATION_AND_REALIZATION", "project_lane": "D_STORY_PRESENTATION", "unit": "beats", "required": 5, "observed": 0, "owner": "human_owned", "depends_on": ["C.PRODUCTION_SELECTED_BEATS", "D.PRESENTATION_SEGMENTS"], "evidence": "typed-absence:NO_EXPLICIT_SCREEN_EFFECT_BEAT_RECORDS", "authority_effect": "may_change=screen_effect_beat_plan;may_not_change=plot_facts_rights_or_release", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "D.RIGHTS_CLEARED_PRIMARY_CHOICES", "order": 29, "lane": "E_INTEGRATION_EXPERIENCE_AND_RELEASE", "project_lane": "D_STORY_PRESENTATION", "unit": "shots", "required": 11, "observed": 0, "owner": "external_evidence_owned", "depends_on": ["C.PRODUCTION_SELECTED_BEATS", "D.ALLOWED_PRIMARY_IMAGERY_KINDS", "D.RIGHTS_STATUS_INVENTORY_RECORDS"], "evidence": "typed-absence:NO_BOUND_LICENSE_TERMS_OR_RIGHTS_CLEARANCE", "authority_effect": "may_change=rights_cleared_primary_choice_count;may_not_change=creative_production_or_publication_approval", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null}
+      ],
+      "first_failed_requirement": null,
+      "first_blocked_requirement": "D.SCREEN_EFFECT_BEAT_RECORDS"
+    },
+    {
+      "order": 4,
+      "stage": "PROVISIONAL_ASSEMBLY",
+      "status": "BLOCKED_BY_DEPENDENCY",
+      "state_detail": "AVAILABLE_PARKED_EVIDENCE",
+      "coverage_interpretation": "STRUCTURAL_RECORD_COVERAGE_NOT_QUALITY_OR_CREATIVE_PROGRESS",
+      "requirement_vectors": [
+        {"requirement_id": "A.EXACT_MEDIA_AVAILABLE", "order": 30, "lane": "A_REPLACEABLE_ASSETS_AND_METADATA", "project_lane": "A_REPLACEABLE_ASSETS_AND_METADATA", "unit": "identity", "required": 1, "observed": 1, "owner": "agent_owned", "depends_on": [], "evidence": "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4#sha256=1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10", "authority_effect": "may_change=exact_media_availability_state;may_not_change=content_or_acceptance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "A.DURATION_ENVELOPE_SATISFIED", "order": 31, "lane": "A_REPLACEABLE_ASSETS_AND_METADATA", "project_lane": "A_REPLACEABLE_ASSETS_AND_METADATA", "unit": "envelope", "required": 1, "observed": 1, "owner": "agent_owned", "depends_on": [], "evidence": "artifacts/case-digest-production-state.json#/lanes/A_REPLACEABLE_ASSETS_AND_METADATA/duration_envelope", "authority_effect": "may_change=working_duration_compatibility;may_not_change=story_or_final_duration_acceptance", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "A.AUDIO_CUE_WINDOWS", "order": 32, "lane": "A_REPLACEABLE_ASSETS_AND_METADATA", "project_lane": "A_REPLACEABLE_ASSETS_AND_METADATA", "unit": "cues", "required": 11, "observed": 11, "owner": "agent_owned", "depends_on": ["A.DURATION_ENVELOPE_SATISFIED"], "evidence": "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/audio-sync-receipt.json#/cues", "authority_effect": "may_change=development_audio_cue_compatibility;may_not_change=final_voice_or_content", "status": "SATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "A.CURRENT_ASSEMBLY_ADOPTED", "order": 33, "lane": "E_INTEGRATION_EXPERIENCE_AND_RELEASE", "project_lane": "E_INTEGRATION_CHECK", "unit": "explicit_adoption", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": ["C.PRODUCTION_SELECTED_BEATS", "D.ALLOWED_PRIMARY_IMAGERY_KINDS", "D.SCREEN_EFFECT_BEAT_RECORDS", "A.EXACT_MEDIA_AVAILABLE", "A.DURATION_ENVELOPE_SATISFIED", "A.AUDIO_CUE_WINDOWS"], "evidence": "typed-absence:NO_EXPLICIT_CURRENT_ASSEMBLY_ADOPTION", "authority_effect": "may_change=current_provisional_assembly_adoption;may_not_change=rights_production_or_publication_approval", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null}
+      ],
+      "first_failed_requirement": null,
+      "first_blocked_requirement": "A.CURRENT_ASSEMBLY_ADOPTED"
+    },
+    {
+      "order": 5,
+      "stage": "INTEGRATED_REVIEW",
+      "status": "BLOCKED_BY_DEPENDENCY",
+      "state_detail": "NOT_CURRENT_GATE",
+      "coverage_interpretation": "STRUCTURAL_RECORD_COVERAGE_NOT_QUALITY_OR_CREATIVE_PROGRESS",
+      "requirement_vectors": [
+        {"requirement_id": "INTEGRATED_REVIEW.CURRENT_ACCEPTANCE", "order": 34, "lane": "E_INTEGRATION_EXPERIENCE_AND_RELEASE", "project_lane": "E_INTEGRATION_CHECK", "unit": "explicit_human_acceptance", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": ["A.CURRENT_ASSEMBLY_ADOPTED"], "evidence": "typed-absence:NO_CURRENT_INTEGRATED_REVIEW_ACCEPTANCE", "authority_effect": "may_change=integrated_experience_acceptance;may_not_change=creative_winner_rights_or_release", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null}
+      ],
+      "first_failed_requirement": null,
+      "first_blocked_requirement": "INTEGRATED_REVIEW.CURRENT_ACCEPTANCE"
+    },
+    {
+      "order": 6,
+      "stage": "FINAL_AND_PRODUCTION_GATES",
+      "status": "UNSATISFIED",
+      "state_detail": "CLOSED",
+      "coverage_interpretation": "STRUCTURAL_RECORD_COVERAGE_NOT_QUALITY_OR_CREATIVE_PROGRESS",
+      "requirement_vectors": [
+        {"requirement_id": "FINAL.SOURCE_SELECTED", "order": 35, "lane": "C_AUTHORED_CONTENT_AND_STRUCTURE", "project_lane": "C_AUTHORED_PLOT_SPINE", "unit": "human_decision", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": [], "evidence": "typed-absence:NO_EXPLICIT_CURRENT_SOURCE_SELECTION", "authority_effect": "may_change=source_selection;may_not_change=canon_topic_rights_or_release", "status": "UNSATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "FINAL.CANON_SELECTED", "order": 36, "lane": "C_AUTHORED_CONTENT_AND_STRUCTURE", "project_lane": "C_AUTHORED_PLOT_SPINE", "unit": "human_decision", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": ["FINAL.SOURCE_SELECTED"], "evidence": "typed-absence:NO_EXPLICIT_CURRENT_CANON_SELECTION", "authority_effect": "may_change=canon_selection;may_not_change=topic_presentation_rights_or_release", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "FINAL.TOPIC_SELECTED", "order": 37, "lane": "C_AUTHORED_CONTENT_AND_STRUCTURE", "project_lane": "C_AUTHORED_PLOT_SPINE", "unit": "human_decision", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": ["FINAL.CANON_SELECTED"], "evidence": "typed-absence:NO_EXPLICIT_CURRENT_TOPIC_SELECTION", "authority_effect": "may_change=topic_selection;may_not_change=presentation_rights_or_release", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "FINAL.VOICE_SELECTED", "order": 38, "lane": "D_PRESENTATION_AND_REALIZATION", "project_lane": "A_REPLACEABLE_ASSETS_AND_METADATA", "unit": "human_decision", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": ["A.AUDIO_CUE_WINDOWS"], "evidence": "typed-absence:NO_EXPLICIT_FINAL_VOICE_SELECTION", "authority_effect": "may_change=final_voice_selection;may_not_change=source_canon_rights_or_publication", "status": "UNSATISFIED", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "FINAL.MAJOR_VISUAL_AND_EDITORIAL_SELECTED", "order": 39, "lane": "D_PRESENTATION_AND_REALIZATION", "project_lane": "D_STORY_PRESENTATION", "unit": "human_decision", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": ["C.PRODUCTION_SELECTED_BEATS", "D.PRESENTATION_SEGMENTS"], "evidence": "typed-absence:NO_EXPLICIT_MAJOR_VISUAL_OR_EDITORIAL_SELECTION", "authority_effect": "may_change=major_visual_method_and_editorial_winner;may_not_change=facts_rights_or_release", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "FINAL.RIGHTS_APPROVED", "order": 40, "lane": "E_INTEGRATION_EXPERIENCE_AND_RELEASE", "project_lane": "E_INTEGRATION_CHECK", "unit": "human_decision", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": ["D.RIGHTS_CLEARED_PRIMARY_CHOICES"], "evidence": "typed-absence:NO_EXPLICIT_RIGHTS_APPROVAL", "authority_effect": "may_change=rights_approval;may_not_change=creative_production_or_publication_approval", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "FINAL.PRODUCTION_APPROVED", "order": 41, "lane": "E_INTEGRATION_EXPERIENCE_AND_RELEASE", "project_lane": "E_INTEGRATION_CHECK", "unit": "human_decision", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": ["INTEGRATED_REVIEW.CURRENT_ACCEPTANCE", "FINAL.VOICE_SELECTED", "FINAL.MAJOR_VISUAL_AND_EDITORIAL_SELECTED", "FINAL.RIGHTS_APPROVED"], "evidence": "typed-absence:NO_EXPLICIT_PRODUCTION_APPROVAL", "authority_effect": "may_change=production_approval;may_not_change=publication_approval", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null},
+        {"requirement_id": "FINAL.PUBLICATION_APPROVED", "order": 42, "lane": "E_INTEGRATION_EXPERIENCE_AND_RELEASE", "project_lane": "E_INTEGRATION_CHECK", "unit": "human_decision", "required": 1, "observed": 0, "owner": "human_owned", "depends_on": ["FINAL.PRODUCTION_APPROVED"], "evidence": "typed-absence:NO_EXPLICIT_PUBLICATION_APPROVAL", "authority_effect": "may_change=publication_approval;may_not_change=source_canon_or_creative_history", "status": "BLOCKED_BY_DEPENDENCY", "na_reason": null, "na_dependency_effect": null}
+      ],
+      "first_failed_requirement": "FINAL.SOURCE_SELECTED",
+      "first_blocked_requirement": "FINAL.CANON_SELECTED"
+    }
+  ],
+  "current_position": {
+    "first_failed_requirement": "C.PRODUCTION_SELECTED_BEATS",
+    "first_failed_requirement_owner": "human_owned",
+    "agent_owned_requirement_available": false,
+    "decisive_vector": {
+      "order": 16,
+      "observed": 0,
+      "required": 5,
+      "unit": "human_selected_beats",
+      "status": "UNSATISFIED"
+    },
+    "next_autonomous_step": "none_in_ordered_ladder_until_explicit_human_owned_plot_selection; preserve_reference_integrity_without_opening_a_review",
+    "human_review_requested": false,
+    "source_selected": false,
+    "canon_selected": false,
+    "topic_selected": false,
+    "final_voice_selected": false,
+    "major_visual_method_selected": false,
+    "editorial_winner_selected": false,
+    "rights_approved": false,
+    "production_approved": false,
+    "publication_approved": false,
+    "first_failed_dependency_state": "DEPENDENCIES_SATISFIED",
+    "shared_model_id": "content-production-lanes/v1"
+  }
+}

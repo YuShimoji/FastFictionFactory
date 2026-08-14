@@ -2,6 +2,15 @@
 
 These gates are visible in the MVP workbench. They are local review checks, not production approval.
 
+The current production-lane application is defined by `docs/production-lanes.md`. Gate labels and question counts are not progress metrics. Integration checks can report version, compatibility, checkpoint, coverage, quarantine, and identity status only; they cannot choose a fact, beat, ending, presentation treatment, asset, or acceptance state.
+
+## Literal Author-Memo Binding
+
+- Purpose: bind each `author_memo` fact to deterministic source evidence without transferring one fact's quote to another or granting evidence creative authority.
+- Pass: every locator matches `/rawMemo` pointer, UTF-16 range, exact quote, quote hash, and its fact-specific accepted anchors; duplicate and overbroad spans match the explicit span audit.
+- Warn: a multi-section span is necessary for accepted anchors and is explicitly recorded as evidence-binding only.
+- Block: wrong-fact support, invalid range/hash, whole-memo fallback, unclassified source record, unaudited duplicate use, or unrecorded overbroad span.
+
 ## Story Nucleus
 
 - Purpose: Confirm that the premise, central pressure, and emotional turn are visible.

@@ -1,0 +1,62 @@
+# FastFictionFactory production lanes
+
+This file is the compact project-local owner for the straight production path. The machine-readable current position is `artifacts/case-digest-production-state.json`; `node tools/fff-case-digest-production-state.mjs verify` recomputes it from live repository records. Historical packets, review questions, labels such as “今回の”, and a declared review axis are evidence or interface flavor only. None of them supplies progress, priority, acceptance, or creative authority. Every numeric pair below is an independent structural requirement vector, not a stage percentage or a claim about quality or creative progress; heterogeneous requirements are never added together.
+
+## Shared control alignment
+
+This project maps to the independently accepted coordination model `content-production-lanes/v1`, whose portable Coordinator locator is `docs/content-production-lanes-v1.md` and whose exact SHA-256 is `ba2042aea1e0c9fd07718ecb0dc3d26f119114db60ee6e7d374a6d8ee8df2968`. This is `CONTROL_ONLY` alignment. The shared model does not replace this file, does not close a CASE_DIGEST requirement, and does not create product progress, a review action, or creative, rights, production, or publication authority.
+
+| Existing FFF responsibility | Shared invariant mapping | Preserved FFF boundary |
+| --- | --- | --- |
+| `A_REPLACEABLE_ASSETS_AND_METADATA` | `A_REPLACEABLE_ASSETS_AND_METADATA` | Timing voice, subtitle/cue windows, replaceable media, and duration envelope remain non-authoring inputs |
+| `B_STORY_REFERENCE_MODEL` | `B_EVIDENCE_AND_REFERENCE` | Facts, locators, profiles, timelines, relationships, claims, contradictions, and source evidence constrain but never select plot |
+| `C_AUTHORED_PLOT_SPINE` | `C_AUTHORED_CONTENT_AND_STRUCTURE` | Explicit beats, order, typed reference roles, entry/exit functions, weights, and human production selection remain the authored-structure authority |
+| `D_STORY_PRESENTATION` | Primarily `D_PRESENTATION_AND_REALIZATION`; provenance classifications map to `B_EVIDENCE_AND_REFERENCE`, while technical and rights-status classifications map to `E_INTEGRATION_EXPERIENCE_AND_RELEASE` | Prose, imagery, shots, motion, transitions, and effects remain nested under story; classification never grants imagery selection or rights |
+| `E_INTEGRATION_CHECK` and final gates | `E_INTEGRATION_EXPERIENCE_AND_RELEASE`; final source/canon/topic and major presentation selections retain their C/D invariant responsibility in their individual records | Hashes, checks, adoption, experience, rights, production, and publication remain separate; technical PASS cannot create a winner or acceptance |
+
+Every active requirement under `production_ladder[].requirement_vectors[]` carries a stable integer `order` unique across the project, shared `lane`, FFF `project_lane`, `owner`, exact `depends_on`, portable `evidence`, bounded `authority_effect`, and one of `SATISFIED`, `UNSATISFIED`, `BLOCKED_BY_DEPENDENCY`, or `N/A`. The first failed requirement is the lowest-order `UNSATISFIED` record whose dependencies are satisfied. JSON array order, table order, file order, task order, and artifact creation time are not authoritative. `N/A` is permitted only when the responsibility genuinely does not exist and both `na_reason` and `na_dependency_effect` are explicit; no current CASE_DIGEST requirement is `N/A`, and a missing gate is never converted to it.
+
+The current control vector contains 42 active requirement records with unique orders 1–42: 29 `SATISFIED`, 3 independently `UNSATISFIED`, 10 `BLOCKED_BY_DEPENDENCY`, and 0 `N/A`. These are requirement-state counts, not an overall score or product-progress percentage. The lowest dependency-ready failure remains order 16, `C.PRODUCTION_SELECTED_BEATS`; later unsatisfied records do not displace it merely because they appear earlier in a file or task.
+
+## Dependency lanes
+
+| Lane | Owns | Current CASE_DIGEST position | Does not own |
+| --- | --- | --- | --- |
+| `A_REPLACEABLE_ASSETS_AND_METADATA` | Working duration envelope, provisional/final flags, cue coverage, version/hash pins, subtitle and audio machine checks | 180-second working envelope; 11/11 caption, subtitle, and development-audio cue windows are present; exact Ichiro voice is accepted only as a replaceable development/timing asset; final subtitle and final voice selections are 0 | Facts, plot beats/order/ending, prose, imagery, shots, transitions, canon, rights, or production acceptance |
+| `B_STORY_REFERENCE_MODEL` | Production-neutral facts, typed source status/locator, timeline/events, profiles, relationships, open questions, contradictions, and unsupported-claim boundaries, including records unused by the video | 28/28 fact records and source-status records; versioned fact-specific literal support contracts 23/23; bound and span-audited literal author-memo locators 23/23; nonliteral classifications 5/5 (`derived_candidate` 2/2, `inferred_candidate` 1/1, `missing_decision` 2/2); 11 profiles, 18 relationship edges, 9 claims, and 8 timeline candidates | Creating, reordering, accepting, or rejecting plot beats |
+| `C_AUTHORED_PLOT_SPINE` | Explicitly authored/selected beat records, order, role-typed references, target duration/weight, and entry/exit function | Five existing CASE_DIGEST beats cover 180 seconds and use affirmative, constraint, unresolved-candidate, and rejected-reference roles; rejected or unselected ending material is not affirmative support; the spine remains provisional and production-selected is 0/5 | Comprehensive-reference coverage as an automatic beat generator; prose, imagery, or edit treatment |
+| `D_STORY_PRESENTATION` | Prose/style, backgrounds and primary imagery, screen effects, shots, transitions, and edit treatment nested under story | Existing presentation evidence covers 5/5 beats, 11/11 shots, captions, motions, and transitions. All 11 shots now have typed source-kind, technical-usability, owner-acceptance, provenance, and rights-status classifications; this is record coverage only. Screen effects are not separately itemized and rights-cleared primary choices remain 0/11 | Plot selection, final asset/rights selection, or authority from the replaceable-material lane |
+| `E_INTEGRATION_CHECK` | Version pins, compatibility, checkpoint identity, coverage arithmetic, and fail-closed validation | The current source, sequence, caption, subtitle, quarantine, timing-voice, and media identities are pinned and locally checkable | Choosing creative content, promoting evidence, or converting a technical PASS into acceptance |
+
+The quantitative DAG has no edge from lane A to B or C. A provisional asset may feed presentation/integration only when it satisfies its declared envelope; changing that asset or uniformly retiming the whole video within the working envelope must not rewrite facts, beat order, prose intent, or imagery decisions. Lane B constrains C by references only. Lane C supplies authored structure to D. Lane E reads all lanes but writes no creative decision.
+
+## Straight production ladder
+
+1. **Reference model.** Preserve all relevant information and uncertainty before deciding what the video uses.
+2. **Authored plot spine.** Record explicit beats, support pins, weight/duration, and entry/exit functions. Reference coverage alone never creates a beat.
+3. **Presentation plan.** Map the authored spine to prose/style, imagery, effects, shots, transitions, and edit treatment.
+4. **Provisional assembly.** Combine replaceable working materials with presentation without treating them as final.
+5. **Integrated review.** Review the assembled experience only after the preceding records are compatible; technical checks remain supporting evidence.
+6. **Final and production gates.** Final voice, subtitles, source/canon/topic, major visual method, editorial winner, rights, production, and publication require separately owned decisions.
+
+The reference layer now has 23/23 literal author-memo locators and 23/23 locator-span audit records. Each typed locator resolves `source_binding_role=project_state` and JSON Pointer `/rawMemo`, its UTF-16 offset range slices the exact quote, the quote's UTF-8 SHA-256 matches, and that quote contains every fact-specific exact-case anchor fixed in `artifacts/case-digest-literal-fact-support-registry.json` (`fff.caseDigestLiteralFactSupportRegistry.v1`). The 23 materialized spans are all unique and none covers the whole memo. One 399-code-unit span for `el-fiction-001` is explicitly audited because its accepted two anchors occur in separate source sections; the registry and audit remain evidence-binding only. Candidate-defined support, runtime title derivation, fuzzy matching, LLM judgment, and unaudited duplicate span reuse remain forbidden.
+
+The validator's ordered requirement logic now reports `C.PRODUCTION_SELECTED_BEATS` at 0/5 as the first failed requirement. Its unit is `human_selected_beats`, so it is human-owned, not an autonomous repository requirement. No additional known agent-owned reference-integrity gap remains after literal binding, duplicate/overbroad-span audit, and nonliteral classification. This checkpoint does not open a human question or authorize production selection.
+
+## Existing presentation provenance and rights inventory
+
+`artifacts/case-digest-presentation-provenance-rights-inventory.json` (`fff.caseDigestPresentationProvenanceRightsInventory.v1`) classifies the eleven existing shot images against the selected-shot sequence, presentation model, image lineage, generation-attempt records, accepted-anchor provenance records, and active quarantine. It is a read-only evidence inventory: it cannot select or replace imagery, grant rights, or turn technical compatibility or owner acceptance into production approval.
+
+| Existing source group | Shot records | What the repository can trace | Rights position |
+| --- | ---: | --- | --- |
+| `generated_raster` | 7 | Repository-held generated original, its SHA, the deterministic crop/resize lineage, and the bound 1600×900 presentation raster | No license or terms record is bound; decision remains human-owned and unresolved; 0 cleared |
+| `accepted_generated_raster_anchor` | 2 | Generator/tool record, generated-original SHA, postprocess record, and exact accepted presentation raster; the generated-original bytes themselves are not repository-bound | Owner acceptance is presentation evidence only; no license or terms record is bound; 0 cleared |
+| `deterministic_raster_composite` | 2 | Repository-held generated original, intermediate base raster, deterministic composite lineage, and final presentation raster | A deterministic derivative does not improve the upstream rights state; no license or terms record is bound; 0 cleared |
+
+The resulting independent status counts are: technically usable 11/11, owner-accepted as existing presentation evidence 11/11, provenance observed 11/11 (repository-byte chain 9; recorded chain with source bytes not repository-bound 2), rights evidence present 0/11, rights evidence absent 11/11, rights evidence with unresolved identity 0/11, rights decisions unresolved 11/11, rights-cleared 0/11, and production-selected 0/11. These vectors describe record and evidence state, not creative quality, progress percentage, or permission to use the imagery in production. A missing or unknown provenance chain fails closed, and compatible generated or derived raster cannot self-grant rights.
+
+## Preserved CASE_DIGEST evidence
+
+`fff-private-raster-case-digest-ichiro-successor-20260813-001` at MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10` remains exact NON_DENSOU evidence. `ACCEPT_DEVELOPMENT_TIMING_VOICE` is scoped to `DEVELOPMENT_TIMING_VOICE_ONLY` and makes the voice replaceable development material, not final or production voice. The existing three-minute content/process review surface is parked presentation evidence, not the current project gate; its old “single axis/current question” wording has no progress or decision weight.
+
+The primary-imagery quarantine remains active. Existing accepted raster imagery may be referenced as presentation evidence, but SVG/primitive substitutes stay rejected and neither technical coverage nor existing presentation acceptance clears rights or selects production imagery. Densou source, candidates, and identities remain a separate lane and cannot satisfy any NON_DENSOU dependency.

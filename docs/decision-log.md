@@ -1,11 +1,24 @@
 # Decision Log
 
-## 2026-08-13 — Accept Ichiro only as the development timing voice and advance content/process review
+## 2026-08-14 — Make structured production lanes the current authority
+
+- Authority decision: use `docs/production-lanes.md` and `artifacts/case-digest-production-state.json` as the compact human-readable and machine-readable owners for the straight production path. Large historical packets remain evidence, not current stage authority.
+- Dependency decision: isolate replaceable voice, subtitle, and metadata inputs in lane A. A provisional asset that satisfies its working duration/cue envelope cannot block the reference, plot, or presentation lanes and cannot rewrite their authority.
+- Story decision: make lane B a comprehensive production-neutral reference layer; lane C owns only explicitly authored/selected beats; lane D owns prose/style, imagery, effects, shots, transitions, and edit treatment under story. Reference coverage may constrain a beat but never create, reorder, accept, reject, or end a plot.
+- Integration decision: lane E checks versions, compatibility, checkpoints, coverage arithmetic, quarantine, and identity only. A technical PASS cannot choose content or become human acceptance.
+- Coverage decision: expose independent per-requirement vectors only. Do not add heterogeneous record classes into a scalar percentage, and do not interpret structural coverage as quality or creative progress. Phrases, labels, declared axes, question counts, files, hashes, and tests do not independently count as progress.
+- Source-evidence decision: literal author-memo locator records must carry binding role, JSON Pointer, UTF-16 offsets, exact quote, and quote SHA-256 validated against tracked `current-project-state.json#/rawMemo`. They count only when the quote also satisfies the receiving fact's explicit exact-case anchor contract in `fff.caseDigestLiteralFactSupportRegistry.v1`; a valid quote for another fact is rejected. Expected support is never derived from the candidate locator, a runtime title match, fuzzy similarity, or LLM judgment. Derived, inferred, and missing-decision records use separate classification-only locator classes.
+- Plot-reference decision: split beat references into affirmative support, constraint boundary, unresolved candidate, and rejected-reference roles. Rejected records, candidate endings, and human-owned unresolved decisions cannot become affirmative plot support.
+- Locator-materialization decision: bind all 23 `author_memo` facts to the smallest natural contiguous `/rawMemo` span that contains their accepted anchors. The resulting inventory is 23/23 valid and audited, 23 unique spans, zero whole-memo spans, zero wrong-fact support issues, and one explicit 399-unit `el-fiction-001` multi-section exception. Unrecorded duplicate use and unrecorded overbroad spans fail closed.
+- Current-position decision: preserve the five-beat/11-shot/180-second CASE_DIGEST and exact Ichiro bytes as provisional presentation/timing evidence; park the former single-question review posture across its page, model, manifest, verifier, and tests. Ordered computation now reaches `C.PRODUCTION_SELECTED_BEATS` at 0/5 with owner `human_owned`; no further known autonomous B-layer gap remains, no code selects a beat, and no new human review is opened.
+- Boundary decision: source, canon, topic, final/major voice, major visual method, editorial winner, rights, production, publication, and Densou identity remain separately human-owned and unselected.
+
+## 2026-08-13 — Accept Ichiro only as the development timing voice and advance content/process review (review posture superseded 2026-08-14)
 
 - Exact decision: bind `ACCEPT_DEVELOPMENT_TIMING_VOICE` only to `fff-private-raster-case-digest-ichiro-successor-20260813-001` at MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10`. Preserve its bytes and the rejected Haruka package.
 - Scope decision: close the development timing-voice perceptual gate and defer final-voice comparison. Do not install or generate VOICEVOX/青山龍星, create a successor voice candidate, or infer final voice, rights, canon, production, publication, or Densou approval.
-- Workflow decision: make one content/process workbench the active implementation lane. It references the accepted media unchanged, indexes every cue/shot, groups the story into five comprehension checkpoints, and shows exact input/output and stage ownership.
-- Review decision: expose one human axis—whether the current 180-second sequence clearly separates facts, leads, lack of proof, and unresolved status. Natural-language timestamp/cue feedback is valid; no token-only response is required.
+- Historical workflow decision: the content/process workbench references the accepted media unchanged, indexes every cue/shot, groups the story into five comprehension checkpoints, and shows exact input/output and stage ownership. It is now parked presentation evidence rather than the active implementation lane.
+- Historical review decision: its single human axis is retained as interface/evidence text only. It is no longer the current gate and does not count as progress, acceptance, prioritization, or authority.
 - Availability decision: missing or mismatched exact media must close the nominal review route and create a deterministic challenge identity. Never substitute another sample or carry a phantom review forward.
 
 ## 2026-08-12 — Enforce source-unbound safety without adopting the Densou candidate

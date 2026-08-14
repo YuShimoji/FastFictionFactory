@@ -1,18 +1,29 @@
 {
-  "schema_version": "fff.caseDigestDevelopmentReviewSurface.v1",
+  "schema_version": "fff.caseDigestDevelopmentReviewSurface.v2",
   "surface_id": "fff-case-digest-development-review-surface-20260813-001",
   "review_axis": {
     "id": "CASE_DIGEST_STORY_FLOW_AND_PROCESS_COMPREHENSION",
+    "state": "HISTORICAL_SUPERSEDED",
     "question_ja": "この3分で、観測事実、調査の手掛かり、裏づけのない関与、未解決の現状を、制作資料を読み直さずに区別できるか。",
-    "natural_language_reply_supported": true,
-    "repair_locator_fields": [
+    "natural_language_reply_supported": false,
+    "current_review_packet_allowed": false,
+    "packet_generation": "DISABLED_SUPERSEDED",
+    "historical_locator_fields": [
       "timestamp",
       "shot_id",
       "cue_id"
     ]
   },
   "review_route": {
-    "state": "ACTIVE_EXACT_MEDIA",
+    "state": "PARKED_PRESENTATION_EVIDENCE",
+    "historical": true,
+    "exact_media_availability": "AVAILABLE_EXACT_BYTES",
+    "current_project_gate": false,
+    "current_human_action": false,
+    "superseded_by": {
+      "owner": "docs/production-lanes.md",
+      "machine_state": "artifacts/case-digest-production-state.json"
+    },
     "initial_playback": "PAUSED",
     "validation_query": "?validation=muted",
     "missing_or_mismatched_media": {
@@ -284,9 +295,9 @@
     },
     {
       "stage": "content flow and process comprehension",
-      "state": "ACTIVE_SINGLE_REVIEW_AXIS",
-      "owner": "human reviewer",
-      "next": "natural-language clear or one timestamp/cue repair"
+      "state": "PARKED_HISTORICAL_PRESENTATION_EVIDENCE",
+      "owner": "no current human owner",
+      "next": "do not generate or relay a current review packet; use docs/production-lanes.md"
     },
     {
       "stage": "canon, production, publication, localization",
@@ -307,6 +318,7 @@
     "picture_changed": false,
     "subtitle_text_or_timing_changed": false,
     "accepted_development_audio_changed": false,
+    "current_review_packet_generated": false,
     "final_voice_selected": false,
     "production_or_publication_approved": false,
     "densou_identity_claimed": false

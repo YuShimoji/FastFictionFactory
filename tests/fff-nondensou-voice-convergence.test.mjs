@@ -51,7 +51,8 @@ test("one project voice owner separates narration, closes the accepted timing ga
   assert.match(vision, /Final Japanese voice/);
   assert.match(vision, /YouTube localization/);
   assert.match(vision, /there is no active voice candidate or voice review packet/i);
-  assert.match(vision, /sole active implementation lane is now the NON_DENSOU CASE_DIGEST content\/process review surface/i);
+  assert.match(vision, /A_REPLACEABLE_ASSETS_AND_METADATA/);
+  assert.match(vision, /parked presentation evidence rather than the current project gate/i);
   assert.match(vision, /ACCEPT_DEVELOPMENT_TIMING_VOICE/);
   assert.match(vision, /cea496c12c7485a47a992877dc2544bff4be9cd6a1a7c7192574adb7215f0c12/);
   assert.match(vision, /machine checks[\s\S]*do not certify/i);
@@ -155,7 +156,9 @@ test("voice convergence evidence manifest closes every supporting text and tool 
   assert.equal(manifest.transition.human_audio_accepted, true);
   assert.equal(manifest.transition.human_audio_acceptance_scope, "DEVELOPMENT_TIMING_VOICE_ONLY");
   assert.equal(manifest.transition.active_human_voice_gate, null);
-  assert.equal(manifest.transition.active_project_implementation_lane, "CASE_DIGEST_CONTENT_PROCESS_REVIEW");
+  assert.equal(manifest.transition.active_project_implementation_lane, "CASE_DIGEST_CONTENT_PROCESS_REVIEW", "preserved 2026-08-13 transition snapshot");
+  assert.equal(manifest.current_authority_update.active_project_implementation_lane, "STRUCTURED_PRODUCTION_LANES");
+  assert.equal(manifest.current_authority_update.legacy_content_process_surface, "PARKED_PRESENTATION_EVIDENCE");
   assert.equal(manifest.transition.final_voice_selected, false);
   assert.equal(manifest.boundaries.playback_performed, false);
   assert.equal(manifest.boundaries.gui_opened, false);

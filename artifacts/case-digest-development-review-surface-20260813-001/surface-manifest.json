@@ -1,8 +1,15 @@
 {
-  "schema_version": "fff.caseDigestDevelopmentReviewSurfaceManifest.v1",
+  "schema_version": "fff.caseDigestDevelopmentReviewSurfaceManifest.v2",
   "surface_id": "fff-case-digest-development-review-surface-20260813-001",
   "recorded_at": "2026-08-13",
-  "review_route": "ACTIVE_EXACT_MEDIA",
+  "review_route": "PARKED_PRESENTATION_EVIDENCE",
+  "historical": true,
+  "current_project_gate": false,
+  "current_human_action": false,
+  "superseded_by": {
+    "owner": "docs/production-lanes.md",
+    "machine_state": "artifacts/case-digest-production-state.json"
+  },
   "exact_media": {
     "artifact_id": "fff-private-raster-case-digest-ichiro-successor-20260813-001",
     "path": "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4",
@@ -21,10 +28,13 @@
   "review_capability": {
     "story_stage_count": 5,
     "cue_shot_count": 11,
-    "natural_language_reply_supported": true,
+    "natural_language_reply_supported": false,
     "initial_playback": "PAUSED",
     "muted_validation_query": "?validation=muted",
-    "single_human_axis": "CASE_DIGEST_STORY_FLOW_AND_PROCESS_COMPREHENSION"
+    "historical_review_axis": "CASE_DIGEST_STORY_FLOW_AND_PROCESS_COMPREHENSION",
+    "current_human_axis": null,
+    "current_review_packet_allowed": false,
+    "packet_generation": "DISABLED_SUPERSEDED"
   },
   "exact_bindings": {
     "picture_essence_sha256": "b5facecd9fbdea57daad03096566dd478ac6ea9c1120dd2e6b49656569dcb989",
@@ -40,19 +50,22 @@
     "phantom_review_allowed": false
   },
   "evidence_files": [
-    { "path": "artifacts/case-digest-development-review-surface-20260813-001/review.html", "bytes": 23392, "sha256": "90d69d6619a1977c694a236f13d05b1bccd227e9d2bb82b3fad323dbc4de17e3" },
-    { "path": "artifacts/case-digest-development-review-surface-20260813-001/surface-model.json", "bytes": 11848, "sha256": "7dbbe7ce9bb10af724835075b648c57815eacc6602b3d974c5cde0ed2e3d5764" },
-    { "path": "artifacts/case-digest-development-review-surface-20260813-001/README.md", "bytes": 1251, "sha256": "f1947b47ff02f6485e873734b0e34063974515dd32d20c6aeb5d3804784185af" },
+    { "path": "artifacts/case-digest-development-review-surface-20260813-001/review.html", "bytes": 21039, "sha256": "dd9a6ad92f587ace855b1eee15ad8991ca66f8f3f811c8165b9305324aafe95e" },
+    { "path": "artifacts/case-digest-development-review-surface-20260813-001/surface-model.json", "bytes": 12382, "sha256": "11b75e604e5683535f624687bbf89c26d6a0175019d96381a3001854160cc76c" },
+    { "path": "artifacts/case-digest-development-review-surface-20260813-001/README.md", "bytes": 1506, "sha256": "d6142d93e730f03bd0cffe73b4d991719088555e9f7202e048328c86406944ab" },
     { "path": "artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json", "bytes": 2515, "sha256": "552314d4c8adc5c822b6d8f8738d208e47663587eab3a2bfbdbfd9dea046d049" },
-    { "path": "tools/fff-case-digest-development-review-surface.mjs", "bytes": 15124, "sha256": "8abd1b59092af4daffaa76aaa33fd2322abdf6d89b7a7e7fc6fd0e2c4caa91fd" },
-    { "path": "tests/fff-case-digest-development-review-surface.test.mjs", "bytes": 7182, "sha256": "36efcd658275d22afa86c0738299c99144c89c72dcef1d096166972e8a5e452a" },
-    { "path": "docs/voice-vision.md", "bytes": 7255, "sha256": "d26d8034eae3bc0706099c0e78d46cf12a8fd0938d709c7488cb5b3d92e6b0a2" },
-    { "path": "docs/workflow.md", "bytes": 2087, "sha256": "a20e63e0cdd622836bf532d9250762a813ae47d9697938fd438a4f52f7ccd855" },
-    { "path": "docs/review/current-status.md", "bytes": 151207, "sha256": "f6a1a7bacb5540d8c5f05a3400dcc550294f6140cac5bf429734161fe1414b97" },
-    { "path": "docs/review/next-terminal-handoff.md", "bytes": 133608, "sha256": "7c1328f2c3bb9c755dba8868e9282c1a7962bab6c17c918bfe4691290493e5a0" },
-    { "path": "docs/project-context.md", "bytes": 96462, "sha256": "69a088d94be19b423219472ca8c66386148b08a2ec93061add33b75c60f1af8f" },
-    { "path": "docs/decision-log.md", "bytes": 98957, "sha256": "968755f0b7d965d19d3c631533c276ce8a7c62fda46e384360442de7072f8779" },
-    { "path": "docs/idea-ledger.md", "bytes": 83299, "sha256": "c86c633dcb3926cd5b5148fd6ea226f4e5a83779bec80ccdebe3be2326687354" }
+    { "path": "tools/fff-case-digest-development-review-surface.mjs", "bytes": 20076, "sha256": "72c4b3c613f68d2b39703b36186b950b207f54f9ab3540b9250a573306c42062" },
+    { "path": "tests/fff-case-digest-development-review-surface.test.mjs", "bytes": 10707, "sha256": "2f171a720e71b2e94c08d1a977552fd8e2016cff59994c14bf813c0890be1474" },
+    { "path": "docs/production-lanes.md", "bytes": 12440, "sha256": "efa0499db9d7c54192e4b722216fe69d94a37cffad9984161d1742f14d49b747" },
+    { "path": "artifacts/case-digest-production-state.json", "bytes": 71168, "sha256": "70482de2f54a695f9cea493314f42dc904a0b8d154ef77702c39ef9f166d7377" },
+    { "path": "artifacts/case-digest-literal-fact-support-registry.json", "bytes": 5339, "sha256": "89cd93cde3e59554826ce9782971d5ae33414ee35277ad250f85066ca89a1741" },
+    { "path": "docs/voice-vision.md", "bytes": 7590, "sha256": "ec1a33e38fc0ad2db61dff063578750243432a6fbb3723c93c16bcfbd11db357" },
+    { "path": "docs/workflow.md", "bytes": 3589, "sha256": "e99ebb7541356a55d8b74384f16c0c69fb865f8feeccf95f3488ed03c01b80cf" },
+    { "path": "docs/review/current-status.md", "bytes": 154515, "sha256": "f6366969dc1f2f9e4ba236579ae63f79a08806f10e333a648b55b13ac32cd96e" },
+    { "path": "docs/review/next-terminal-handoff.md", "bytes": 136461, "sha256": "cb1f69679ee0af33f46df9a1a57b5d4cbaa778873e4b0bd9dcc884cc94d0da59" },
+    { "path": "docs/project-context.md", "bytes": 98901, "sha256": "a48b032a792ee7f8a2ea2f621b202e9f9382988790bec0ea5e60eac214bf2d7c" },
+    { "path": "docs/decision-log.md", "bytes": 102421, "sha256": "b1e2cdf0a5138b788c1e7890d73024faa5c187f4ee37e39062a39e4e1b518047" },
+    { "path": "docs/idea-ledger.md", "bytes": 85255, "sha256": "382f18119a6ef9b4d6b7d4177aa119351f18a73ab44c27c6c0b5e5862c00bc80" }
   ],
   "boundaries": {
     "candidate_media_written": false,

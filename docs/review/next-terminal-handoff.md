@@ -1,10 +1,26 @@
 # Next Terminal Handoff
 
-## Start here — NON_DENSOU CASE_DIGEST content/process review (2026-08-13 JST)
+## Start here — structured NON_DENSOU CASE_DIGEST production lanes (2026-08-14 JST)
 
-This section is the single project-local continuation owner for this checkpoint. The exact candidate is `fff-private-raster-case-digest-ichiro-successor-20260813-001`, MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10`, with `ACCEPT_DEVELOPMENT_TIMING_VOICE` scoped to `DEVELOPMENT_TIMING_VOICE_ONLY`.
+Current continuation authority is `docs/production-lanes.md`; the machine-readable position is `artifacts/case-digest-production-state.json`. Recompute it without playback, media generation, or external access:
 
-Open `artifacts/case-digest-development-review-surface-20260813-001/review.html` directly. It loads that exact accepted 180-second Ichiro MP4 by relative path, begins paused, and offers 11 cue/shot jumps plus a compact provenance view. The development timing voice is already accepted only for this stage; do not create or relay another voice packet, install a voice engine, or compare final voices during this pass.
+```powershell
+node tools/fff-case-digest-production-state.mjs verify
+```
+
+The straight production ladder is reference model -> authored plot spine -> story presentation -> provisional assembly -> integrated review -> final/production gates. It exposes independent structural vectors rather than a stage percentage: fact/source-status records 28/28, versioned literal support contracts 23/23, bound literal author-memo locators 23/23, locator-span audit 23/23, nonliteral classifications 5/5; explicit/ordered/typed-reference beats 5/5 with production-selected beats 0/5; presentation segments 5/5, shots/captions/motion/transitions 11/11, screen-effect records 0/5, rights-cleared choices 0/11; exact media and envelope available, current assembly adoption 0/1; integrated-review acceptance 0/1; each final human gate 0/1. These vectors are not quality or creative-progress scores and are never summed across unlike requirements.
+
+The reference-layer locator action is complete: 23/23 author-memo facts have an evidence-bearing typed locator satisfying their accepted fact-specific anchors, and 23/23 pass span audit. Exact spans are unique in the current state; future repetition is allowed only when the state records an explicit shared-span group for distinct contracts that genuinely share the same source sentence. `el-fiction-001` is the sole overbroad-threshold record and is explicitly bounded to 399 UTF-16 units because its two accepted anchors occur in separate source sections. Derived, inferred, and missing-decision facts remain classification-only at 5/5.
+
+The generic first failure is `C.PRODUCTION_SELECTED_BEATS` at 0/5 with owner `human_owned`. There is no remaining known agent-owned B-layer requirement to run before it, but this handoff does not request that decision, create a packet, or permit code to select beats. Source, canon, topic, major voice, major visual method, editorial winner, rights, production, publication, and creative acceptance remain human-owned.
+
+The exact Ichiro package remains preserved byte-for-byte as replaceable development/timing evidence. Its `DEVELOPMENT_TIMING_VOICE_ONLY` acceptance remains valid, but it is not a final voice decision. There is no current human review request in this handoff.
+
+## Preserved NON_DENSOU CASE_DIGEST content/process surface (current-review posture superseded 2026-08-14 JST)
+
+This section preserves the prior presentation-evidence map. It is no longer the continuation owner, current project gate, or a request to relay a review question. The exact candidate is `fff-private-raster-case-digest-ichiro-successor-20260813-001`, MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10`, with `ACCEPT_DEVELOPMENT_TIMING_VOICE` scoped to `DEVELOPMENT_TIMING_VOICE_ONLY`.
+
+The preserved surface is `artifacts/case-digest-development-review-surface-20260813-001/review.html`. It binds the exact accepted 180-second Ichiro MP4 by relative path, begins paused, and offers 11 cue/shot jumps plus a compact provenance view. Do not open or relay it as a current action under the structured-lane work order. The development timing voice is accepted only for this stage; do not create or relay another voice packet, install a voice engine, or compare final voices during this pass.
 
 Review the content/process ladder in order:
 
@@ -14,11 +30,11 @@ Review the content/process ladder in order:
 4. `01:37–02:16` — keep the council as an investigation target without turning the recorded allegation into proof.
 5. `02:16–03:00` — understand the two loss categories and arrive at an unresolved sound/source/person status with the tower still under investigation.
 
-The single bounded review axis is whether the three-minute sequence lets a viewer distinguish observed facts, investigative leads, unsupported involvement, and unresolved status without reconstructing the pipeline. Natural-language feedback may name a timestamp, shot ID, or cue ID; it does not need a command token. Picture, subtitle text/timing, accepted audio bytes, topic, canon, major visual method, and editorial winner are fixed for this pass.
+The former bounded review axis asked whether the three-minute sequence let a viewer distinguish observed facts, investigative leads, unsupported involvement, and unresolved status without reconstructing the pipeline. That question remains historical presentation context only: declaring or answering it is not current progress, prioritization, acceptance, or authority. Picture, subtitle text/timing, accepted audio bytes, topic, canon, major visual method, and editorial winner remain unchanged.
 
 Final Japanese voice, voice terms/credits/rights, canon, production, publication, distribution, localization, and Densou identity/source remain independent closed or deferred gates. This checkpoint does not promote any of them.
 
-Before review or relay, run:
+If the preserved evidence is ever inspected under separate current authority, first run:
 
 ```powershell
 node tools/fff-case-digest-development-review-surface.mjs verify

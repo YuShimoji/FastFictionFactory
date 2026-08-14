@@ -1,10 +1,19 @@
 # Project Context
 
-## NON_DENSOU CASE_DIGEST development review transition — 2026-08-13 JST
+## Structured production lanes — 2026-08-14 JST
+
+- Current authority: `docs/production-lanes.md` owns the five-lane dependency contract; `artifacts/case-digest-production-state.json` owns the machine-readable NON_DENSOU CASE_DIGEST position; `node tools/fff-case-digest-production-state.mjs verify` recomputes it from live records.
+- Straight path: production-neutral reference model -> explicitly authored plot spine -> story presentation -> provisional assembly -> integrated review -> separately owned final/production gates. Replaceable voice/subtitle/metadata inputs are an independent envelope lane and do not block reference, plot, or presentation work while their provisional envelope is satisfied.
+- Structural requirement vectors: fact records and source-status records are 28/28; versioned fact-specific literal support contracts are 23/23; bound typed literal author-memo locators and locator-span audit are 23/23; nonliteral source classifications are 5/5; 11 profiles, 18 relationship edges, 9 claims, and 8 events are retained. The five-beat/180-second provisional spine uses role-typed references and maps to 11 shots and 11 captions. Production-selected beats are 0/5, itemized screen-effect beats are 0/5, and rights-cleared primary choices are 0/11. These vectors are record coverage, not quality or creative progress, and are never summed into a scalar percentage.
+- Reference integrity transition: all 23 `author_memo` facts now carry exact `/rawMemo` UTF-16 span, quote, hash, and fact-specific support bindings. The inventory contains 23 unique spans, zero whole-memo spans, zero invalid/unclassified records, and one explicit 399-unit multi-section audit record for `el-fiction-001`. The generic next failure is `C.PRODUCTION_SELECTED_BEATS` at 0/5; its `human_selected_beats` unit makes it human-owned. No further known agent-owned reference-layer gap or new human review request is created here.
+- Preserved evidence: the exact Ichiro package remains `DEVELOPMENT_TIMING_VOICE_ONLY`. The prior three-minute content/process surface remains byte-preserved presentation evidence but is parked and is not the current project gate. A declared question, axis, or label never supplies progress or authority.
+- Human boundaries: source, canon, topic, final/major voice, major visual method, editorial winner, rights, production, and publication remain unselected. Densou remains out of lane.
+
+## Preserved NON_DENSOU CASE_DIGEST development review transition — superseded as current gate 2026-08-14 JST
 
 - Voice transition: exact MP4 SHA-256 `1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10` is accepted as `DEVELOPMENT_TIMING_VOICE_ONLY`. This closes the active voice gate but leaves final/production voice, terms, credits, rights, canon, Densou, production, and publication untouched.
-- Product transition: the one active lane is `artifacts/case-digest-development-review-surface-20260813-001/review.html`, a directly openable 180-second content/process workbench that references the accepted media unchanged and exposes cue/shot navigation, story-flow prompts, exact bindings, and stage ownership.
-- Review boundary: the next bounded question is whether the viewer can follow observed facts, leads, lack of proof, and unresolved status across the current sequence. The surface does not silently choose a topic, canon interpretation, major visual method, or editorial winner.
+- Historical product evidence: `artifacts/case-digest-development-review-surface-20260813-001/review.html` is a directly openable 180-second workbench that references the accepted media unchanged. It is no longer the active gate; its story-flow question is preserved only as presentation evidence and does not establish progress, priority, or acceptance.
+- Preserved boundary: the surface does not silently choose a topic, canon interpretation, major visual method, or editorial winner. Any later experience review must be separately routed from the structured production ladder.
 - Availability rule: absence or hash drift of the exact media becomes challenge `fff-missing-media-challenge-1499cd6e7538`. It never falls back to the rejected Haruka media, a Densou artifact, or another sample.
 
 ## Densou source-unbound hardening review — 2026-08-12 JST

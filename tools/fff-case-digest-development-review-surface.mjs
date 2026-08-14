@@ -13,6 +13,9 @@ const expected = {
   challengeId: "fff-missing-media-challenge-1499cd6e7538",
   surfaceDir: "artifacts/case-digest-development-review-surface-20260813-001",
   surfaceManifestPath: "artifacts/case-digest-development-review-surface-20260813-001/surface-manifest.json",
+  surfaceModelPath: "artifacts/case-digest-development-review-surface-20260813-001/surface-model.json",
+  productionOwnerPath: "docs/production-lanes.md",
+  productionStatePath: "artifacts/case-digest-production-state.json",
   acceptancePath: "artifacts/nondensou-voice-convergence-20260813-001/development-timing-voice-acceptance.json",
   syncReceiptPath: "artifacts/private-raster-case-digest-ichiro-successor-20260813-001/audio-sync-receipt.json",
   captionCsvPath: "artifacts/private-raster-case-digest/case-digest-review-captions.csv",
@@ -54,7 +57,7 @@ function issue(issues, condition, code, detail) {
 
 function blockForExactMedia(reason, observed = null) {
   const result = {
-    schema_version: "fff.caseDigestDevelopmentReviewSurfaceVerification.v1",
+    schema_version: "fff.caseDigestDevelopmentReviewSurfaceVerification.v2",
     status: "BLOCKED_DISTINCT_CHALLENGE",
     challenge_id: expected.challengeId,
     reason,
@@ -72,7 +75,7 @@ function blockForExactMedia(reason, observed = null) {
   process.exitCode = 2;
 }
 
-function verify() {
+function verify(modelPathArgument) {
   const mediaAbsolute = absolute(expected.mediaPath);
   if (!existsSync(mediaAbsolute)) {
     blockForExactMedia("EXACT_MEDIA_MISSING");
@@ -91,14 +94,19 @@ function verify() {
   const issues = [];
   const acceptance = readJson(expected.acceptancePath);
   const syncReceipt = readJson(expected.syncReceiptPath);
-  const model = readJson(expected.surfaceDir + "/surface-model.json");
+  const model = readJson(modelPathArgument || expected.surfaceModelPath);
   const surfaceManifest = readJson(expected.surfaceManifestPath);
+  const productionState = readJson(expected.productionStatePath);
   const captions = parseCsv(expected.captionCsvPath);
   const shots = parseCsv(expected.shotCsvPath);
   const html = readFileSync(absolute(expected.surfaceDir + "/review.html"), "utf8");
   const readme = readFileSync(absolute(expected.surfaceDir + "/README.md"), "utf8");
   const voiceOwner = readFileSync(absolute("docs/voice-vision.md"), "utf8");
   const workflow = readFileSync(absolute("docs/workflow.md"), "utf8");
+  const productionOwner = readFileSync(absolute(expected.productionOwnerPath), "utf8");
+
+  issue(issues, model.schema_version === "fff.caseDigestDevelopmentReviewSurface.v2", "SURFACE_MODEL_SCHEMA", model.schema_version);
+  issue(issues, surfaceManifest.schema_version === "fff.caseDigestDevelopmentReviewSurfaceManifest.v2", "SURFACE_MANIFEST_SCHEMA", surfaceManifest.schema_version);
 
   issue(issues, acceptance.verdict === "ACCEPT_DEVELOPMENT_TIMING_VOICE", "ACCEPTANCE_VERDICT", acceptance.verdict);
   issue(issues, acceptance.scope === "DEVELOPMENT_TIMING_VOICE_ONLY", "ACCEPTANCE_SCOPE", acceptance.scope);
@@ -117,7 +125,17 @@ function verify() {
   issue(issues, syncReceipt.media?.parent_video_essence_sha256 === model.identity.picture_essence_sha256, "PICTURE_BINDING_DRIFT", model.identity.picture_essence_sha256);
   issue(issues, syncReceipt.media?.parent_subtitle_srt_sha256 === model.identity.subtitle_text_timing_srt_sha256, "SUBTITLE_BINDING_DRIFT", model.identity.subtitle_text_timing_srt_sha256);
 
-  issue(issues, model.review_route?.state === "ACTIVE_EXACT_MEDIA", "REVIEW_ROUTE_INACTIVE", model.review_route?.state);
+  issue(issues, model.review_route?.state === "PARKED_PRESENTATION_EVIDENCE", "LEGACY_ROUTE_NOT_PARKED", model.review_route?.state);
+  issue(issues, model.review_route?.historical === true, "LEGACY_ROUTE_NOT_HISTORICAL", model.review_route?.historical);
+  issue(issues, model.review_route?.exact_media_availability === "AVAILABLE_EXACT_BYTES", "EXACT_MEDIA_AVAILABILITY_STATE", model.review_route?.exact_media_availability);
+  issue(issues, model.review_route?.current_project_gate === false, "LEGACY_SURFACE_CURRENT_PROJECT_GATE", model.review_route?.current_project_gate);
+  issue(issues, model.review_route?.current_human_action === false, "LEGACY_SURFACE_CURRENT_HUMAN_ACTION", model.review_route?.current_human_action);
+  issue(issues, model.review_route?.superseded_by?.owner === expected.productionOwnerPath, "LEGACY_SUPERSESSION_OWNER", model.review_route?.superseded_by);
+  issue(issues, model.review_route?.superseded_by?.machine_state === expected.productionStatePath, "LEGACY_SUPERSESSION_STATE", model.review_route?.superseded_by);
+  issue(issues, model.review_axis?.state === "HISTORICAL_SUPERSEDED", "LEGACY_AXIS_NOT_HISTORICAL", model.review_axis?.state);
+  issue(issues, model.review_axis?.natural_language_reply_supported === false, "LEGACY_NATURAL_LANGUAGE_PACKET_ENABLED", model.review_axis?.natural_language_reply_supported);
+  issue(issues, model.review_axis?.current_review_packet_allowed === false, "LEGACY_CURRENT_REVIEW_PACKET_ENABLED", model.review_axis?.current_review_packet_allowed);
+  issue(issues, model.review_axis?.packet_generation === "DISABLED_SUPERSEDED", "LEGACY_PACKET_GENERATION_ENABLED", model.review_axis?.packet_generation);
   issue(issues, model.review_route?.missing_or_mismatched_media?.challenge_id === expected.challengeId, "CHALLENGE_ID_DRIFT", model.review_route?.missing_or_mismatched_media?.challenge_id);
   issue(issues, model.review_route?.missing_or_mismatched_media?.substitution_allowed === false, "SUBSTITUTION_OPEN", model.review_route?.missing_or_mismatched_media?.substitution_allowed);
   issue(issues, model.identity?.media_sha256 === expected.mediaSha256, "MODEL_MEDIA_HASH", model.identity?.media_sha256);
@@ -128,6 +146,14 @@ function verify() {
   issue(issues, model.integrity?.media_is_referenced_not_copied === true, "MEDIA_COPY_POLICY", model.integrity?.media_is_referenced_not_copied);
   issue(issues, Object.entries(model.integrity || {}).filter(([key]) => key !== "media_is_referenced_not_copied").every(([, value]) => value === false), "SURFACE_SCOPE_LEAK", model.integrity);
   issue(issues, surfaceManifest.surface_id === model.surface_id, "SURFACE_MANIFEST_ID_DRIFT", surfaceManifest.surface_id);
+  issue(issues, surfaceManifest.review_route === "PARKED_PRESENTATION_EVIDENCE", "SURFACE_MANIFEST_ROUTE_NOT_PARKED", surfaceManifest.review_route);
+  issue(issues, surfaceManifest.historical === true, "SURFACE_MANIFEST_NOT_HISTORICAL", surfaceManifest.historical);
+  issue(issues, surfaceManifest.current_project_gate === false, "SURFACE_MANIFEST_CURRENT_GATE", surfaceManifest.current_project_gate);
+  issue(issues, surfaceManifest.current_human_action === false, "SURFACE_MANIFEST_CURRENT_HUMAN_ACTION", surfaceManifest.current_human_action);
+  issue(issues, surfaceManifest.superseded_by?.owner === expected.productionOwnerPath, "SURFACE_MANIFEST_SUPERSESSION_OWNER", surfaceManifest.superseded_by);
+  issue(issues, surfaceManifest.superseded_by?.machine_state === expected.productionStatePath, "SURFACE_MANIFEST_SUPERSESSION_STATE", surfaceManifest.superseded_by);
+  issue(issues, surfaceManifest.review_capability?.current_human_axis === null, "SURFACE_MANIFEST_CURRENT_HUMAN_AXIS", surfaceManifest.review_capability?.current_human_axis);
+  issue(issues, surfaceManifest.review_capability?.current_review_packet_allowed === false, "SURFACE_MANIFEST_PACKET_ENABLED", surfaceManifest.review_capability?.current_review_packet_allowed);
   issue(issues, surfaceManifest.exact_media?.sha256 === expected.mediaSha256, "SURFACE_MANIFEST_MEDIA_HASH", surfaceManifest.exact_media?.sha256);
   issue(issues, surfaceManifest.exact_media?.referenced_not_copied === true, "SURFACE_MANIFEST_MEDIA_COPY_POLICY", surfaceManifest.exact_media?.referenced_not_copied);
   issue(issues, surfaceManifest.decision?.scope === "DEVELOPMENT_TIMING_VOICE_ONLY", "SURFACE_MANIFEST_ACCEPTANCE_SCOPE", surfaceManifest.decision?.scope);
@@ -154,11 +180,17 @@ function verify() {
   issue(issues, !/\bautoplay\b/i.test(html), "HTML_AUTOPLAY_PRESENT", null);
   issue(issues, html.includes("validation") && html.includes("media.muted = true") && html.includes("media.volume = 0") && html.includes("media.pause()"), "MUTED_VALIDATION_CONTRACT_MISSING", null);
   issue(issues, html.includes(expected.challengeId), "HTML_CHALLENGE_MISSING", null);
-  issue(issues, html.includes("data-verdict") && html.includes("review-note") && html.includes("build-summary"), "NATURAL_LANGUAGE_REVIEW_UI_MISSING", null);
+  issue(issues, html.includes("PARKED_PRESENTATION_EVIDENCE") && html.includes(expected.productionOwnerPath) && html.includes(expected.productionStatePath), "HTML_PARKED_OWNER_MARKERS_MISSING", null);
+  issue(issues, !html.includes("data-verdict") && !html.includes('id="review-note"') && !html.includes('id="build-summary"'), "HTML_CURRENT_REVIEW_PACKET_UI_PRESENT", null);
+  issue(issues, !html.includes("ACTIVE_EXACT_MEDIA") && !html.includes("ACTIVE SINGLE AXIS") && !html.includes("ACTIVE_SINGLE_REVIEW_AXIS"), "HTML_LEGACY_ACTIVE_MARKER_PRESENT", null);
   issue(issues, (html.match(/class=\"cue-button\"/g) || []).length === 0, "STATIC_CUE_BUTTON_DUPLICATION", "cue buttons must be generated from bound data");
   issue(issues, readme.includes(expected.mediaSha256) && readme.includes(expected.challengeId), "README_IDENTITY_MISSING", null);
   issue(issues, voiceOwner.includes(expected.mediaSha256) && voiceOwner.includes("there is no active voice candidate or voice review packet"), "VOICE_OWNER_NOT_CLOSED", null);
   issue(issues, workflow.includes("distinct deterministic missing-media challenge") && workflow.includes("must not substitute"), "WORKFLOW_CHALLENGE_POLICY_MISSING", null);
+  issue(issues, productionOwner.includes("parked presentation evidence") && productionOwner.includes("not the current project gate"), "PRODUCTION_OWNER_PARKING_MISSING", null);
+  issue(issues, productionState.authority?.legacy_content_process_surface?.state === "PARKED_PRESENTATION_EVIDENCE", "PRODUCTION_STATE_SURFACE_NOT_PARKED", productionState.authority?.legacy_content_process_surface);
+  issue(issues, productionState.authority?.legacy_content_process_surface?.current_project_gate === false, "PRODUCTION_STATE_SURFACE_CURRENT_GATE", productionState.authority?.legacy_content_process_surface);
+  issue(issues, productionState.authority?.legacy_content_process_surface?.current_human_action === false, "PRODUCTION_STATE_SURFACE_CURRENT_HUMAN_ACTION", productionState.authority?.legacy_content_process_surface);
 
   const portableNewFiles = [
     expected.acceptancePath,
@@ -187,10 +219,12 @@ function verify() {
   }
 
   const result = {
-    schema_version: "fff.caseDigestDevelopmentReviewSurfaceVerification.v1",
+    schema_version: "fff.caseDigestDevelopmentReviewSurfaceVerification.v2",
     status: issues.length === 0 ? "PASS" : "FAIL",
     surface_id: model.surface_id,
-    review_route: issues.length === 0 ? "ACTIVE_EXACT_MEDIA" : "BLOCKED_VALIDATION_FAILURE",
+    review_route: issues.length === 0 ? "PARKED_PRESENTATION_EVIDENCE" : "BLOCKED_VALIDATION_FAILURE",
+    current_project_gate: false,
+    current_human_action: false,
     exact_media: {
       path: expected.mediaPath,
       bytes: observedMedia.bytes,
@@ -209,6 +243,7 @@ function verify() {
       story_stage_count: model.story_stages.length,
       cue_shot_count: model.cues.length,
       natural_language_reply_supported: model.review_axis.natural_language_reply_supported,
+      current_review_packet_allowed: model.review_axis.current_review_packet_allowed,
       initial_playback: model.review_route.initial_playback,
       muted_validation_query: model.review_route.validation_query
     },
@@ -228,6 +263,7 @@ function verify() {
       substitution_allowed: false,
       phantom_review_allowed: false
     },
+    superseded_by: model.review_route.superseded_by,
     side_effects: {
       playback_performed: false,
       media_written: false,
@@ -242,9 +278,9 @@ function verify() {
   }
 }
 
-if (process.argv[2] !== "verify" || process.argv.length !== 3) {
-  process.stderr.write("Usage: node tools/fff-case-digest-development-review-surface.mjs verify\n");
+if (process.argv[2] !== "verify" || process.argv.length > 4) {
+  process.stderr.write("Usage: node tools/fff-case-digest-development-review-surface.mjs verify [surface-model-json]\n");
   process.exitCode = 64;
 } else {
-  verify();
+  verify(process.argv[3]);
 }

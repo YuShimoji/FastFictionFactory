@@ -1,0 +1,352 @@
+{
+  "schema_version": "fff.caseDigestPresentationProvenanceRightsInventory.v1",
+  "inventory_id": "fff-nondensou-case-digest-presentation-provenance-rights-v1",
+  "recorded_at": "2026-08-14",
+  "identity": {
+    "content_lane": "NON_DENSOU_CASE_DIGEST",
+    "presentation_artifact_id": "fff-private-raster-case-digest-001",
+    "shot_count": 11,
+    "densou_identity": "OUT_OF_LANE"
+  },
+  "authority": {
+    "purpose": "READ_ONLY_EVIDENCE_CLASSIFICATION",
+    "may_select_or_replace_imagery": false,
+    "may_grant_rights_clearance": false,
+    "technical_usability_may_imply_rights_clearance": false,
+    "owner_acceptance_may_imply_rights_clearance": false,
+    "generated_or_derived_raster_compatibility_may_imply_rights_clearance": false,
+    "missing_or_unknown_provenance_may_imply_rights_clearance": false,
+    "rights_clearance_requires_explicit_current_authority": true
+  },
+  "evidence_bindings": [
+    {
+      "role": "shot_sequence",
+      "path": "artifacts/private-raster-case-digest/selected-shot-sequence.csv",
+      "sha256": "fa50635ec9dc17dfed233bac9c28197644be91e986033c309c8f3019066b7ec2"
+    },
+    {
+      "role": "presentation_model",
+      "path": "artifacts/private-raster-case-digest/private-raster-case-digest.json",
+      "sha256": "d2255f43ec711d2867129b7dbd6058265f3c52adfe3dfdbe314c60b53cda4c66"
+    },
+    {
+      "role": "image_lineage",
+      "path": "artifacts/private-full-raster-candidate/image-lineage.csv",
+      "sha256": "bde7811bb52980db53e708b54d87a6d6b4dece937371f8055d1591177c95ec8d"
+    },
+    {
+      "role": "generated_original_records",
+      "path": "artifacts/private-full-raster-candidate/generation-attempts-source.json",
+      "sha256": "21cc4b81f46ff277084117d5555b539ab125997bbf7215554cc5e065edf84c07"
+    },
+    {
+      "role": "anchor_generation_records",
+      "path": "artifacts/high-fidelity-raster-pilot/source-provenance.csv",
+      "sha256": "1ac82bd87752d5227e7e882a5f0acc17de72ddc2261d8730878e3ffa70b855c2"
+    },
+    {
+      "role": "primary_imagery_quarantine",
+      "path": "artifacts/primary-imagery-quarantine/primary-imagery-quarantine.json",
+      "sha256": "aab00065e9994b1dedc6d30d2b1b9f6eb1ef4a1893d7f8948c5564578dde542b"
+    }
+  ],
+  "classification_contract": {
+    "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+    "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+    "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+    "rights_evidence_status_values": [
+      "PRESENT_BOUND_RECORD",
+      "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "UNRESOLVED_EVIDENCE_IDENTITY"
+    ],
+    "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+    "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+    "rights_clearance_status": "NOT_CLEARED"
+  },
+  "records": [
+    {
+      "sequence": 1,
+      "shot_id": "shot-b01-01",
+      "cue_id": "case-digest-caption-01",
+      "image": { "path": "artifacts/private-full-raster-candidate/images/base/shot-b01-01.jpg", "sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e", "width": 1600, "height": 900 },
+      "source_kind": "generated_raster",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_REPOSITORY_CHAIN",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL", "path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-01-attempt-01.png", "sha256": "b162b2a90297ae69dd4cffc6ef75005be1e8fb3afb8ba49300ac6084e59238f1", "repository_bytes_observed": true },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b01-01", "output_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-01.jpg", "output_sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e", "evidence_role": "image_lineage" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 2,
+      "shot_id": "shot-b01-02",
+      "cue_id": "case-digest-caption-02",
+      "image": { "path": "artifacts/private-full-raster-candidate/images/base/shot-b01-02.jpg", "sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23", "width": 1600, "height": 900 },
+      "source_kind": "generated_raster",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_REPOSITORY_CHAIN",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL", "path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-02-attempt-01.png", "sha256": "55d56a4cf11df2a2fb4850c040ea7a58adc5f2309518928f00152185350aa860", "repository_bytes_observed": true },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b01-02", "output_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-02.jpg", "output_sha256": "bd252485bbdb15d4d0ac722f36005e80c534e5e72b79d9a03233fb2cbd9a9c23", "evidence_role": "image_lineage" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 3,
+      "shot_id": "shot-b02-01",
+      "cue_id": "case-digest-caption-03",
+      "image": { "path": "artifacts/private-full-raster-candidate/images/base/shot-b02-01.jpg", "sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304", "width": 1600, "height": 900 },
+      "source_kind": "generated_raster",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_REPOSITORY_CHAIN",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL", "path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b02-01-attempt-01.png", "sha256": "b401ee8473580ade02262773f505d590c86eb89f6623ca398b4606afc0ada296", "repository_bytes_observed": true },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b02-01", "output_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-01.jpg", "output_sha256": "a53cdb8c0077615fb2005b03e26b5f7cd0400ad70d113d0a1673a578da246304", "evidence_role": "image_lineage" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 4,
+      "shot_id": "shot-b02-02",
+      "cue_id": "case-digest-caption-04",
+      "image": { "path": "artifacts/private-full-raster-candidate/images/base/shot-b02-02.jpg", "sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09", "width": 1600, "height": 900 },
+      "source_kind": "generated_raster",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_REPOSITORY_CHAIN",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL", "path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b02-02-attempt-01.png", "sha256": "d362f8b8402a2da4fc02319e988a98d26e95de4e001ff563c70a7df4918e4800", "repository_bytes_observed": true },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b02-02", "output_path": "artifacts/private-full-raster-candidate/images/base/shot-b02-02.jpg", "output_sha256": "f9a668fd9fea3dc897caa2b41a3ca97e334dd4e7c2ca6047e160bfc76c6bba09", "evidence_role": "image_lineage" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 5,
+      "shot_id": "shot-b02-03",
+      "cue_id": "case-digest-caption-05",
+      "image": { "path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg", "sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31", "width": 1600, "height": 900 },
+      "source_kind": "accepted_generated_raster_anchor",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_RECORDED_CHAIN_SOURCE_BYTES_NOT_REPOSITORY_BOUND",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL_RECORD", "path": null, "sha256": "cf58a5bdac78b049c973741edfc3e2815aa66019006c2f495ba24e7557b11a97", "repository_bytes_observed": false, "evidence_role": "anchor_generation_records" },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b02-03", "output_path": "artifacts/high-fidelity-raster-pilot/images/shot-b02-03.jpg", "output_sha256": "5a2b371948dfeed3e15cbdcd81ec4de48e2d4f4db429bbea3ee021c9f74f1c31", "evidence_role": "anchor_generation_records" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 6,
+      "shot_id": "shot-b03-01",
+      "cue_id": "case-digest-caption-06",
+      "image": { "path": "artifacts/private-full-raster-candidate/images/base/shot-b03-01.jpg", "sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839", "width": 1600, "height": 900 },
+      "source_kind": "generated_raster",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_REPOSITORY_CHAIN",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL", "path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b03-01-attempt-01.png", "sha256": "75e4ddb52bd36ec055b57d17ec509f5409bb4b36a532df6c5b59410c3ad7293d", "repository_bytes_observed": true },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b03-01", "output_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-01.jpg", "output_sha256": "4dd4f97732892c79b97590a20a90e03a4dbd1350330c31cfdf499f1a45060839", "evidence_role": "image_lineage" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 7,
+      "shot_id": "shot-b03-02",
+      "cue_id": "case-digest-caption-07",
+      "image": { "path": "artifacts/private-full-raster-candidate/images/base/shot-b03-02.jpg", "sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460", "width": 1600, "height": 900 },
+      "source_kind": "generated_raster",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_REPOSITORY_CHAIN",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL", "path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b03-02-attempt-01.png", "sha256": "94a7fcf85cf61364adb14d7e2f2b91a469d76819c7466555a5b48d11cceccac0", "repository_bytes_observed": true },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b03-02", "output_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-02.jpg", "output_sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460", "evidence_role": "image_lineage" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 8,
+      "shot_id": "shot-b04-01",
+      "cue_id": "case-digest-caption-08",
+      "image": { "path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg", "sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1", "width": 1600, "height": 900 },
+      "source_kind": "accepted_generated_raster_anchor",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_RECORDED_CHAIN_SOURCE_BYTES_NOT_REPOSITORY_BOUND",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL_RECORD", "path": null, "sha256": "235e5c0ffe8b5d1d704eb038498ccc8c518fce2473d71159efce1780a65fa1a8", "repository_bytes_observed": false, "evidence_role": "anchor_generation_records" },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b04-01", "output_path": "artifacts/high-fidelity-raster-pilot/images/shot-b04-01.jpg", "output_sha256": "ec774118a012db4f70ee138ba0e4f8107e8abfdd98f8fb006a95c7e409b4c8d1", "evidence_role": "anchor_generation_records" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 9,
+      "shot_id": "shot-b04-02",
+      "cue_id": "case-digest-caption-09",
+      "image": { "path": "artifacts/private-full-raster-candidate/images/base/shot-b04-02.jpg", "sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf", "width": 1600, "height": 900 },
+      "source_kind": "generated_raster",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_REPOSITORY_CHAIN",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL", "path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b04-02-attempt-01.png", "sha256": "cda3c9406e0b1c90a801ab7feda4ace53e6dfadd32ed0b99293e5680ff3aa9ab", "repository_bytes_observed": true },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b04-02", "output_path": "artifacts/private-full-raster-candidate/images/base/shot-b04-02.jpg", "output_sha256": "a0d854fe6a39523aad612216f3205c312de9a9a8129bd472023e97206b662ddf", "evidence_role": "image_lineage" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 10,
+      "shot_id": "shot-b06-01",
+      "cue_id": "case-digest-caption-10",
+      "image": { "path": "artifacts/private-full-raster-candidate/images/final/shot-b06-01.jpg", "sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed", "width": 1600, "height": 900 },
+      "source_kind": "deterministic_raster_composite",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_REPOSITORY_CHAIN",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL", "path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b03-02-attempt-01.png", "sha256": "94a7fcf85cf61364adb14d7e2f2b91a469d76819c7466555a5b48d11cceccac0", "repository_bytes_observed": true },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b03-02", "output_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-02.jpg", "output_sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460", "evidence_role": "image_lineage" },
+          { "relation": "DETERMINISTIC_RASTER_COMPOSITE", "input_shot_id": "shot-b03-02", "input_path": "artifacts/private-full-raster-candidate/images/base/shot-b03-02.jpg", "input_sha256": "02aaff8818dbbd2bcc39d2943f38a369018b03a74f9d273eee406c93656da460", "output_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-01.jpg", "output_sha256": "3adae460a12c3a5d6dbd1a73c78b0f2078acc8105419e15e41441b84383259ed", "evidence_role": "image_lineage" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    },
+    {
+      "sequence": 11,
+      "shot_id": "shot-b06-03",
+      "cue_id": "case-digest-caption-11",
+      "image": { "path": "artifacts/private-full-raster-candidate/images/final/shot-b06-03.jpg", "sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6", "width": 1600, "height": 900 },
+      "source_kind": "deterministic_raster_composite",
+      "technical_usability_status": "PRESENT_HASH_AND_DIMENSION_BOUND_RASTER",
+      "owner_accepted_primary_image": true,
+      "owner_acceptance_scope": "PRESENTATION_EVIDENCE_ONLY",
+      "quarantine_compatibility_status": "COMPATIBLE_SOURCE_KIND_NOT_RIGHTS_AUTHORITY",
+      "provenance": {
+        "status": "OBSERVED_REPOSITORY_CHAIN",
+        "observed": true,
+        "chain_steps": [
+          { "relation": "GENERATED_ORIGINAL", "path": "artifacts/private-full-raster-candidate/images/generated-originals/shot-b01-01-attempt-01.png", "sha256": "b162b2a90297ae69dd4cffc6ef75005be1e8fb3afb8ba49300ac6084e59238f1", "repository_bytes_observed": true },
+          { "relation": "DETERMINISTIC_CROP_RESIZE", "input_shot_id": "shot-b01-01", "output_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-01.jpg", "output_sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e", "evidence_role": "image_lineage" },
+          { "relation": "DETERMINISTIC_RASTER_COMPOSITE", "input_shot_id": "shot-b01-01", "input_path": "artifacts/private-full-raster-candidate/images/base/shot-b01-01.jpg", "input_sha256": "02d383985abb9da03411f8e82db0f7bf98b6514fe49b13f163be44149cfe079e", "output_path": "artifacts/private-full-raster-candidate/images/final/shot-b06-03.jpg", "output_sha256": "016a02f3749f1d12331cf146683a57049e85019af604bf337cc0fcac2712d3d6", "evidence_role": "image_lineage" }
+        ]
+      },
+      "rights_evidence_status": "ABSENT_NO_LICENSE_OR_TERMS_RECORD",
+      "rights_decision_status": "UNRESOLVED_HUMAN_OWNED",
+      "rights_clearance_status": "NOT_CLEARED",
+      "rights_cleared": false,
+      "production_selected": false
+    }
+  ],
+  "observed_status_counts": {
+    "source_kinds": {
+      "generated_raster": 7,
+      "accepted_generated_raster_anchor": 2,
+      "deterministic_raster_composite": 2
+    },
+    "technically_usable": 11,
+    "owner_accepted_primary_image": 11,
+    "provenance_observed": 11,
+    "repository_chain_observed": 9,
+    "recorded_chain_source_bytes_not_repository_bound": 2,
+    "rights_evidence_present": 0,
+    "rights_evidence_absent": 11,
+    "rights_evidence_unresolved": 0,
+    "rights_decision_unresolved": 11,
+    "rights_cleared": 0,
+    "production_selected": 0
+  }
+}

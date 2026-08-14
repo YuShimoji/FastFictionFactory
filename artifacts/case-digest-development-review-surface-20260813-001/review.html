@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CASE_DIGEST development content/process review</title>
+  <title>CASE_DIGEST parked presentation evidence</title>
   <style>
     :root {
       color-scheme: dark;
@@ -30,7 +30,7 @@
       line-height: 1.62;
     }
     a { color: var(--cyan); }
-    button, textarea { font: inherit; }
+    button { font: inherit; }
     .shell { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; padding: 34px 0 80px; }
     .eyebrow { color: var(--cyan); font-size: .79rem; font-weight: 800; letter-spacing: .16em; }
     h1 { margin: 8px 0 12px; max-width: 980px; font-size: clamp(2rem, 4vw, 4rem); line-height: 1.07; letter-spacing: -.035em; }
@@ -68,10 +68,6 @@
     .section { margin-top: 24px; }
     .axis { border-left: 4px solid var(--amber); padding-left: 16px; }
     .axis p { color: #f7e6c2; font-size: 1.02rem; }
-    .answer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 12px 0; }
-    .answer-grid button { border: 1px solid var(--line); border-radius: 10px; background: #14242d; color: var(--text); padding: 10px; cursor: pointer; }
-    textarea { width: 100%; min-height: 120px; resize: vertical; border: 1px solid var(--line); border-radius: 10px; background: #091218; color: var(--text); padding: 12px; }
-    .summary { white-space: pre-wrap; min-height: 96px; border: 1px dashed var(--line); border-radius: 10px; padding: 12px; color: var(--muted); background: #0a151c; }
     .table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; min-width: 780px; font-size: .88rem; }
     th, td { border-bottom: 1px solid var(--line); padding: 10px 9px; vertical-align: top; text-align: left; }
@@ -101,8 +97,8 @@
 <body>
   <main class="shell">
     <div class="eyebrow">NON_DENSOU · CASE_DIGEST · 180.000 SECONDS</div>
-    <h1>内容と制作工程を、一つの画面で追う。</h1>
-    <p class="lede">採用済みの開発用 Ichiro 音声を含む exact MP4 を変更せずに参照します。11 の cue／shot と五つの理解段階を行き来し、何が固定済みで、何が後から差し替え可能で、どこに人の判断が残るかを同時に確認できます。</p>
+    <h1>保存済みの内容・制作工程提示証拠。</h1>
+    <p class="lede">この画面は過去の presentation evidence です。採用済みの開発用 Ichiro 音声を含む exact MP4 を変更せず参照できますが、現行 project gate、人の action、clear/fix packet ではありません。現行 owner は <code>docs/production-lanes.md</code>、machine state は <code>artifacts/case-digest-production-state.json</code> です。</p>
     <div class="badges">
       <span class="badge accept">開発用タイミング音声 ACCEPT</span>
       <span class="badge">MP4 1499cd6e7538…bc10</span>
@@ -110,6 +106,7 @@
       <span class="badge">subtitle text/timing exact</span>
       <span class="badge boundary">final voice deferred</span>
       <span class="badge boundary">not production / not publication</span>
+      <span class="badge boundary">PARKED · HISTORICAL · NO CURRENT REVIEW</span>
     </div>
 
     <div class="grid">
@@ -125,7 +122,7 @@
           <span id="time-label">00:00 / 03:00</span>
           <span id="cue-label" class="live">shot-b01-01 · case-digest-caption-01</span>
         </div>
-        <div id="route-state" class="route"><strong>ACTIVE_EXACT_MEDIA</strong> — 初期状態は一時停止。ボタン移動も自動再生しません。</div>
+        <div id="route-state" class="route"><strong>PARKED_PRESENTATION_EVIDENCE</strong> — exact bytes は参照可能ですが、現行レビューではありません。初期状態は一時停止し、ボタン移動も自動再生しません。</div>
         <div id="challenge-state" class="challenge">
           <strong>BLOCKED_DISTINCT_CHALLENGE</strong><br>
           exact media を読み込めません。別ファイルを代用せず、challenge <code>fff-missing-media-challenge-1499cd6e7538</code> として扱ってください。
@@ -144,17 +141,9 @@
     </div>
 
     <section class="panel section axis" aria-labelledby="review-axis-title">
-      <h2 id="review-axis-title">今回の一つの判断軸</h2>
-      <p>この3分で、観測事実、調査の手掛かり、裏づけのない関与、未解決の現状を、制作資料を読み直さずに区別できるか。</p>
-      <p class="lede">自然文でそのまま返せます。修正が必要なら、時刻・shot ID・cue ID のいずれか一つと、どこで理解が途切れたかを書けば十分です。この画面から topic、canon、major visual method、editorial winner を決める必要はありません。</p>
-      <div class="answer-grid">
-        <button type="button" data-verdict="流れは明瞭。観測事実、手掛かり、証拠の限界、未解決の現状を区別できた。">明瞭だった</button>
-        <button type="button" data-verdict="修正が必要。以下の時刻または cue で理解が途切れた。">修正点がある</button>
-      </div>
-      <label for="review-note">観察メモ</label>
-      <textarea id="review-note" placeholder="例: 01:56 / shot-b04-02 で、評議会への疑いと証拠不足の区別が弱く感じる。"></textarea>
-      <p><button id="build-summary" type="button">返信用の要約を組み立てる</button></p>
-      <div id="review-summary" class="summary" aria-live="polite">判断を選ぶか、自然文の観察メモを入力すると、Coordinator にそのまま渡せる要約をここに作れます。</div>
+      <h2 id="review-axis-title">保存済みの過去の確認軸</h2>
+      <p>過去には、この3分で観測事実、調査の手掛かり、裏づけのない関与、未解決の現状を区別できるかを確認対象にしていました。</p>
+      <p class="lede"><strong>current_project_gate=false / current_human_action=false</strong>。この画面は現行の clear/fix 判断や Coordinator 返信 packet を生成しません。次の作業位置は <code>docs/production-lanes.md</code> と <code>artifacts/case-digest-production-state.json</code> だけから解決してください。</p>
     </section>
 
     <section class="panel section" aria-labelledby="provenance-title">
@@ -168,7 +157,7 @@
             <tr><td>subtitle text / timing</td><td class="state fixed">FIXED EXACT</td><td>accepted parent binding</td><td>11 cue window を保持</td></tr>
             <tr><td>Japanese development timing voice</td><td class="state fixed">ACCEPTED DEVELOPMENT ONLY</td><td>exact human verdict</td><td>この review では同一 bytes を使用</td></tr>
             <tr><td>final Japanese voice / rights</td><td class="state deferred">REPLACEABLE / DEFERRED</td><td>human voice / rights owner</td><td>後日の比較と規約確認</td></tr>
-            <tr><td>content flow / process comprehension</td><td class="state deferred">ACTIVE SINGLE AXIS</td><td>human reviewer</td><td>自然文 clear または一箇所の repair</td></tr>
+            <tr><td>content flow / process comprehension</td><td class="state closed">PARKED HISTORICAL EVIDENCE</td><td>current human owner なし</td><td>現行 packet を生成せず production lanes を参照</td></tr>
             <tr><td>canon / production / publication / localization</td><td class="state closed">CLOSED</td><td>各 human owner</td><td>独立した後続判断</td></tr>
             <tr><td>Densou identity / source</td><td class="state closed">OUT OF LANE</td><td>independent Densou gate</td><td>ここでは照会も推論もしない</td></tr>
           </tbody>
@@ -180,7 +169,7 @@
       <details>
         <summary>Exact input / output identities</summary>
         <div class="identity-list">
-          <div class="identity-row"><span>Active MP4</span><code>artifacts/private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4</code></div>
+          <div class="identity-row"><span>Preserved MP4</span><code>artifacts/private-raster-case-digest-ichiro-successor-20260813-001/private-raster-case-digest-ichiro-provisional.mp4</code></div>
           <div class="identity-row"><span>MP4 SHA-256</span><code>1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10</code></div>
           <div class="identity-row"><span>Bytes / duration</span><code>18300218 / 180.000 seconds</code></div>
           <div class="identity-row"><span>Parent artifact</span><code>fff-private-raster-case-digest-001</code></div>
@@ -234,7 +223,6 @@
       var routeState = document.getElementById("route-state");
       var challengeState = document.getElementById("challenge-state");
       var validationMuted = new URLSearchParams(location.search).get("validation") === "muted";
-      var selectedVerdict = "";
 
       function clock(seconds) {
         var value = Math.max(0, Math.min(180, Number(seconds) || 0));
@@ -324,32 +312,10 @@
         media.muted = true;
         media.volume = 0;
         media.pause();
-        routeState.innerHTML = "<strong>ACTIVE_EXACT_MEDIA · MUTED VALIDATION MODE</strong> — volume 0 / muted / paused。操作検証でも再生しません。";
+        routeState.innerHTML = "<strong>PARKED_PRESENTATION_EVIDENCE · MUTED VALIDATION MODE</strong> — exact bytes available / current gate false / volume 0 / muted / paused。";
       } else {
         media.pause();
       }
-
-      document.querySelectorAll("[data-verdict]").forEach(function (button) {
-        button.addEventListener("click", function () {
-          selectedVerdict = button.dataset.verdict;
-          document.querySelectorAll("[data-verdict]").forEach(function (candidate) {
-            candidate.style.borderColor = candidate === button ? "var(--cyan)" : "var(--line)";
-          });
-        });
-      });
-
-      document.getElementById("build-summary").addEventListener("click", function () {
-        var note = document.getElementById("review-note").value.trim();
-        var parts = [
-          "対象: fff-private-raster-case-digest-ichiro-successor-20260813-001",
-          "MP4: 1499cd6e753888e29db6cfc269db75cef312c049776ffe30b021dd13e5f2bc10",
-          "判断軸: 観測事実、手掛かり、証拠の限界、未解決の現状を区別できるか"
-        ];
-        if (selectedVerdict) { parts.push("判断: " + selectedVerdict); }
-        if (note) { parts.push("観察: " + note); }
-        if (!selectedVerdict && !note) { parts.push("観察: 自然文の所感をここへ記入"); }
-        document.getElementById("review-summary").textContent = parts.join("\n");
-      });
 
       updateActive(0);
     })();

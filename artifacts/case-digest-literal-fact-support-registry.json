@@ -1,0 +1,142 @@
+{
+  "schema_version": "fff.caseDigestLiteralFactSupportRegistry.v1",
+  "registry_id": "fff-nondensou-case-digest-literal-fact-support-v1",
+  "recorded_at": "2026-08-14",
+  "source_contract": {
+    "source_binding_role": "project_state",
+    "source_path": "artifacts/current-project-state.json",
+    "source_sha256": "4e03ac0e18aac1e5350e99e462eb07514637ce49ded5928eb9d5a45423a9f673",
+    "json_pointer": "/rawMemo",
+    "raw_memo_sha256_utf8": "357f4fce2ec9b3ac0d10732c41cd3a71ce655fab8ece37e8a8290b993cb46743",
+    "raw_memo_utf16_code_units": 1040,
+    "support_rule": "quote_contains_all_required_anchors_exact_case",
+    "candidate_locator_may_define_expected_support": false,
+    "runtime_title_derivation_allowed": false,
+    "fuzzy_matching_allowed": false,
+    "llm_judgment_allowed": false
+  },
+  "fact_support_contracts": [
+    {
+      "fact_id": "el-person-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["Mira Vale"]
+    },
+    {
+      "fact_id": "el-person-002",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["Toma Vale"]
+    },
+    {
+      "fact_id": "el-person-003",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["the archivist known as Sister Hal"]
+    },
+    {
+      "fact_id": "el-place-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["North Bell Station"]
+    },
+    {
+      "fact_id": "el-place-002",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["the glass arcade"]
+    },
+    {
+      "fact_id": "el-place-003",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["the canal market"]
+    },
+    {
+      "fact_id": "el-event-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["arcade that closes every night at 9:17"]
+    },
+    {
+      "fact_id": "el-event-002",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["Her missing brother left", "a note that says"]
+    },
+    {
+      "fact_id": "el-object-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["a brass moth in the workshop drawer"]
+    },
+    {
+      "fact_id": "el-object-002",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["ledger of minutes"]
+    },
+    {
+      "fact_id": "el-object-003",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["black ribbon key"]
+    },
+    {
+      "fact_id": "el-concept-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["selling minutes from abandoned lives"]
+    },
+    {
+      "fact_id": "el-concept-002",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["Mira refuses to restore the city's stolen time"]
+    },
+    {
+      "fact_id": "el-timeline-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["closes every night at 9:17"]
+    },
+    {
+      "fact_id": "el-timeline-002",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["bell was removed", "during the winter curfew"]
+    },
+    {
+      "fact_id": "el-history-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["winter curfew"]
+    },
+    {
+      "fact_id": "el-fiction-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["selling minutes from abandoned lives", "ledger of minutes"]
+    },
+    {
+      "fact_id": "el-fiction-002",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["old observatory", "still rings at noon", "bell was removed"]
+    },
+    {
+      "fact_id": "el-undecided-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["whether Toma is alive"]
+    },
+    {
+      "fact_id": "el-undecided-002",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["whether the brass moth is a spy, a key, or a memory container"]
+    },
+    {
+      "fact_id": "el-ambiguity-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["whether the council is villainous or desperate"]
+    },
+    {
+      "fact_id": "el-ambiguity-002",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["not explain the magic too early"]
+    },
+    {
+      "fact_id": "el-contradiction-001",
+      "support_rule": "quote_contains_all_required_anchors_exact_case",
+      "required_anchors": ["still rings at noon", "bell was removed"]
+    }
+  ],
+  "authority_boundaries": {
+    "registry_supplies_evidence_binding_only": true,
+    "registry_may_select_or_reject_plot": false,
+    "registry_may_choose_ending": false,
+    "missing_or_unsafe_binding_counts_as_literal_locator": false,
+    "nonliteral_classifications_remain_separate": true
+  }
+}
