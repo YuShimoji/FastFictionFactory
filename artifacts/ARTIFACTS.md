@@ -1,5 +1,17 @@
 # Artifacts
 
+## fff-current-basis-review-burden-001
+
+- Title: Fast Fiction Factory Current Root / Handoff Review Basis Receipt
+- Purpose: Classify which current production-path decisions close from exact evidence/rules/accepted authority, which remain future human gates, and which stale or foreign contracts are not applicable.
+- Receipt: `docs/review/current-basis-review-burden-receipt.json`
+- Review doc: `docs/review/current-basis-review-burden.md`
+- Validation: `node tools/fff-current-basis-review-burden.mjs`; focused negative suite: `node --test tests/fff-current-basis-review-burden.test.mjs`
+- Exact default: `fff-private-previsualization-timeline-001`; accepted preview and plan decisions are reused without reopening them.
+- Successor boundary: `fff-private-materialized-motion-previs-001` remains an isolated H0-green candidate and is not promoted to the default.
+- Review-burden effect: two stale questions retired, zero current human questions, zero Board cards, and no predecessor review replay.
+- Root-manifest boundary: this receipt stays under `docs/review/`, outside the production/historical result inventory and separate from `artifacts/artifact-manifest.json`, so the FFF production artifact identity and historical pipeline source identity do not change.
+
 ## fff-private-materialized-motion-previs-001
 
 - Title: Fast Fiction Factory Private Materialized Motion Previsualization

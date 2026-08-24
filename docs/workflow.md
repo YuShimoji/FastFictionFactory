@@ -1,5 +1,19 @@
 # Fast Fiction Factory MVP Workflow
 
+## Current production / review basis — 2026-08-25
+
+The active production-path basis is no longer the early MVP Review Hub sequence below. The accepted default is exact artifact `fff-private-previsualization-timeline-001`; the H0-green `fff-private-materialized-motion-previs-001` remains an isolated successor candidate.
+
+Use this decision order:
+
+1. Verify exact artifact identity and closed flags from repo-local evidence.
+2. Reuse accepted human authority within its exact scope: preview `accept`, no preview repair, asset plan `A`, no exception IDs.
+3. Do not replay predecessor or same-axis review unless target, evidence, axis, or decision value changed.
+4. Require fresh human authority only for successor creative promotion, actual asset/right decisions, voice/provider, production, release, or canon.
+5. Route the current path directly to `D3 Production-input contract`; its next real gate is `production_input_contract_authorization`, not either closed review question.
+
+`docs/review/current-basis-review-burden.md` and `docs/review/current-basis-review-burden-receipt.json` own this current classification. The MVP flow below remains product history and still governs those older workbench surfaces when they are explicitly reopened.
+
 ## Active Artifact
 
 The first reviewable artifact is `public/review/index.html`. It is a static local workbench and does not call external services.

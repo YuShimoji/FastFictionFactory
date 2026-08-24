@@ -1,5 +1,11 @@
 # Fast Fiction Factory QA Gates
 
+## Current-basis closure gate — 2026-08-25
+
+For the current production path, QA first verifies `fff-current-basis-review-burden-001` and the root manifest's accepted default/successor identities. Matching hashes and validators close technical identity only. The accepted preview and asset-plan decisions close their exact human axes only. Neither class of evidence authorizes production assets, rights, voice/provider, render, release, or canon.
+
+Fail closed when the exact artifact hash drifts, accepted-authority readback changes, the successor is treated as the default, root manifest exposes accept/revise or `owner_asset_plan_decision` as current pending, a stale question is reopened in the current handoff, a ClipPipeGen-specific decision-card contract is imported, or Board/DB mutation is claimed as a prerequisite. A passing route must skip both closed decisions and resolve `production_input_contract_authorization` as the next stage. The focused command is `node tools/fff-current-basis-review-burden.mjs`.
+
 These gates are visible in the MVP workbench. They are local review checks, not production approval.
 
 ## Story Nucleus

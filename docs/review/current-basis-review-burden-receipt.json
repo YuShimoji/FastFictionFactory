@@ -1,0 +1,171 @@
+{
+  "schemaVersion": "fff.currentBasisReviewBurdenResult.v1",
+  "mission_id": "FFF-CURRENT-BASIS-REVIEW-BURDEN-20260825-001",
+  "artifact_id": "fff-current-basis-review-burden-001",
+  "generated_at": "2026-08-25T00:00:00+09:00",
+  "passed": true,
+  "source": {
+    "checkout_branch": "codex/fastfiction-handoff-20260803",
+    "fresh_read_head": "b4e49ca0fe6dc9e5a689d827367bff54b01a3f78",
+    "accepted_authority_commit": "cfd645ff2928b06e474aae5aefb9019d771d0ce9",
+    "remote_seal_performed": false,
+    "push_count": 0
+  },
+  "exact_review_artifact": {
+    "artifact_id": "fff-private-previsualization-timeline-001",
+    "role": "accepted_default_private_preview",
+    "html_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.html",
+    "html_sha256": "f152ecfe35650eca87d5e56bcde8bc19d05f2a477773ea66d8ba14ab15dbe256",
+    "mp4_path": "artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4",
+    "mp4_sha256": "78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978",
+    "duration_seconds": 180,
+    "beat_count": 6,
+    "shot_count": 19,
+    "subtitle_cue_count": 20
+  },
+  "accepted_authority": {
+    "container_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.json",
+    "container_sha256": "816ee1996e48f1db6ebbe4774ebf40f76eecd50259a95488fd89ae75f892edda",
+    "private_preview_experience": "accept",
+    "preview_material_defect": false,
+    "existing_preview_repair_required": false,
+    "recommended_asset_plan": "A",
+    "exception_requirement_ids": [],
+    "new_human_gate_required_inside_mission": false
+  },
+  "successor_candidate": {
+    "artifact_id": "fff-private-materialized-motion-previs-001",
+    "role": "isolated_technical_h0_successor_not_default_replacement",
+    "result_path": "artifacts/private-materialized-motion-previs-result.json",
+    "result_sha256": "164be517534d8ed3ccd2dabd23b084a692e35e49ffc56ebf1421362b717db9c3",
+    "mp4_path": "artifacts/private-materialized-motion-previs/private-materialized-motion-previs.mp4",
+    "mp4_sha256": "a543e14ed081296162b6209e56b01418e8ff4293f29ea8cdf00952f0eeaa2fb1",
+    "technical_h0_passed": true,
+    "accepted_default_replacement": false
+  },
+  "closures": [
+    {
+      "id": "exact_identity_and_integrity",
+      "basis": "evidence_and_rule",
+      "state": "closed",
+      "effect": "Exact HTML, MP4, result, manifest lineage, duration, chronology, and closed-boundary flags are machine-checkable; no human reconfirmation is needed while hashes match."
+    },
+    {
+      "id": "private_preview_acceptance",
+      "basis": "accepted_authority",
+      "state": "closed",
+      "effect": "The existing accept decision and no-repair decision are reused; no accept/revise question is reopened."
+    },
+    {
+      "id": "owner_asset_plan_decision",
+      "basis": "accepted_authority",
+      "state": "closed_as_plan_A_no_exceptions",
+      "effect": "The recorded A decision is reused as planning authority only; it does not select production assets or clear rights."
+    },
+    {
+      "id": "predecessor_review_replay",
+      "basis": "rule_and_accepted_authority",
+      "state": "not_required",
+      "effect": "Beat, Storyboard, Execution, integrated-package, and per-Beat reviews stay historical evidence and are not replayed without changed target, axis, evidence, or decision value."
+    }
+  ],
+  "human_authority_required": [
+    {
+      "id": "successor_creative_promotion",
+      "state": "future_only",
+      "effect": "A human must decide before the materialized-motion successor replaces the accepted default or becomes a creative-quality authority."
+    },
+    {
+      "id": "asset_candidate_and_rights",
+      "state": "future_closed_gate",
+      "effect": "Actual asset choice, proxy replacement, rights compatibility, and legal clearance remain separately human-owned."
+    },
+    {
+      "id": "voice_production_and_release",
+      "state": "future_closed_gate",
+      "effect": "Voice/provider authority, production render, full-view quality acceptance, publication, release, and rollback remain separately human-owned."
+    },
+    {
+      "id": "story_truth_and_canon",
+      "state": "future_closed_gate",
+      "effect": "Toma fate, brass moth truth/function, Council motive, ending truth, and canon remain human-owned."
+    }
+  ],
+  "retired_or_non_applicable_contracts": [
+    {
+      "id": "repeat_preview_accept_revise",
+      "state": "retired_for_unchanged_exact_artifact",
+      "reason": "Accepted authority already closes the same target and axis."
+    },
+    {
+      "id": "repeat_owner_asset_plan_abc",
+      "state": "retired_for_current_basis",
+      "reason": "Accepted authority already records A with no exception requirement IDs."
+    },
+    {
+      "id": "historical_five_validator_restart_chain",
+      "state": "historical_not_current_gate",
+      "reason": "The current root manifest validates the accepted default and materialized-motion successor; the resumable-pipeline golden result is historical after root-manifest identity changed."
+    },
+    {
+      "id": "clippipegen_decision_card_or_subtitle_owner_schema",
+      "state": "not_applicable_to_fff",
+      "reason": "FFF keeps its own artifact, generation, review, and authority contracts; only decision/receipt principles are shared."
+    },
+    {
+      "id": "board_daily_db_snapshot_choice_mutation",
+      "state": "not_required_and_not_performed",
+      "reason": "The current basis is closed by repo-local evidence, rule, and accepted authority."
+    }
+  ],
+  "review_burden": {
+    "stale_questions_removed": 2,
+    "critical_path_decision_steps_removed": 2,
+    "current_human_questions": 0,
+    "predecessor_review_replays_required": 0,
+    "board_cards_issued": 0,
+    "summary": "Removed the stale repeat accept/revise request and stale repeat owner_asset_plan_decision while preserving all future human authority gates."
+  },
+  "current_routing": {
+    "closed_decisions_skipped": [
+      "private_preview_accept_revise",
+      "owner_asset_plan_decision"
+    ],
+    "next_reachable_stage": "D3_PRODUCTION_INPUT_CONTRACT",
+    "next_decision": "production_input_contract_authorization",
+    "remaining_human_blocker": "Exact owner and scope authority for material write/acquisition and voice/provider inputs",
+    "root_manifest_routing_repaired": true,
+    "historical_handoff_pending_text_is_current": false
+  },
+  "current_human_question": {
+    "required_now": false,
+    "question": null,
+    "board_issue_status": "not_issued"
+  },
+  "protected_dirty_state": {
+    "path": ".serena/project.yml",
+    "sha256": "98337e11cbcd1fde6a0850cd26a2cb27d4b728e4b2ae85874d38f703e342872c",
+    "preserved": true,
+    "staged": false
+  },
+  "boundaries": {
+    "new_generation": false,
+    "production": false,
+    "rights_decision": false,
+    "publication": false,
+    "board_mutation": false,
+    "database_mutation": false,
+    "accepted_artifact_bytes_mutated": false,
+    "foreign_project_mutation": false
+  },
+  "validation_inputs": {
+    "root_manifest_path": "artifacts/artifact-manifest.json",
+    "root_manifest_sha256": "84e02924b085a28f4764531cf613c14b05eeb9d20ce32a6eb0a25caf9cd8e961",
+    "preview_result_path": "artifacts/private-previsualization-timeline-result.json",
+    "preview_result_sha256": "088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0",
+    "readiness_result_path": "artifacts/asset-rights-readiness-packet-result.json",
+    "readiness_result_sha256": "b188db9d0a36ca895af90041855efc55cdff0db6bdec17cbe1950bb0ac2611af",
+    "integrated_result_path": "artifacts/integrated-visual-production-package-result.json",
+    "integrated_result_sha256": "e8f7f7fc50c5700d3a14f78b72ff33b6b142753f3dd2e2dfbf79311077301582"
+  }
+}
