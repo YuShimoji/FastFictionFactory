@@ -133,6 +133,8 @@
     ],
     "next_reachable_stage": "D3_PRODUCTION_INPUT_CONTRACT",
     "next_decision": "production_input_contract_authorization",
+    "cockpit_entry_path": "public/cockpit/d3-production-input.html",
+    "state_after_cockpit_entry": "OWNER_SCOPE_REQUIRED",
     "remaining_human_blocker": "Exact owner and scope authority for material write/acquisition and voice/provider inputs",
     "root_manifest_routing_repaired": true,
     "historical_handoff_pending_text_is_current": false
@@ -160,7 +162,7 @@
   },
   "validation_inputs": {
     "root_manifest_path": "artifacts/artifact-manifest.json",
-    "root_manifest_sha256": "84e02924b085a28f4764531cf613c14b05eeb9d20ce32a6eb0a25caf9cd8e961",
+    "root_manifest_sha256": "d521bc071ebe23abf483fa26b4ebf33d163bdefaaf8afcbfd61f8b7f46805727",
     "preview_result_path": "artifacts/private-previsualization-timeline-result.json",
     "preview_result_sha256": "088bd9b9a61f23f4b2828d618fa4cb4002ec5d1fd2cd6b634c3d9a0a55abbaa0",
     "readiness_result_path": "artifacts/asset-rights-readiness-packet-result.json",

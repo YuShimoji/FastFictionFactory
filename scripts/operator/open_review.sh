@@ -58,15 +58,19 @@ if [ "$docs" = true ]; then
   fail "docs mode requires uvx or a Python installation with MkDocs"
 fi
 
-review_path="$repo_root/public/review/index.html"
-
 case "$mode" in
-  brief|home|layout-lab|bridge|handoff|revision|derivative|blueprint|story|designer|draft|source|project|artifacts)
+  brief|home|layout-lab|bridge|handoff|revision|derivative|blueprint|story|designer|draft|source|project|artifacts|d3)
     ;;
   *)
     fail "unknown or unsafe mode: $mode"
     ;;
 esac
+
+if [ "$mode" = d3 ]; then
+  review_path="$repo_root/public/cockpit/d3-production-input.html"
+else
+  review_path="$repo_root/public/review/index.html"
+fi
 
 encode_uri_path() {
   printf '%s' "$1" | sed \
@@ -78,9 +82,13 @@ encode_uri_path() {
 
 if command -v cygpath >/dev/null 2>&1; then
   uri_path=$(cygpath -m "$review_path")
-  review_uri="file:///$(encode_uri_path "$uri_path")?mode=$mode"
+  review_uri="file:///$(encode_uri_path "$uri_path")"
 else
-  review_uri="file://$(encode_uri_path "$review_path")?mode=$mode"
+  review_uri="file://$(encode_uri_path "$review_path")"
+fi
+
+if [ "$mode" != d3 ]; then
+  review_uri="$review_uri?mode=$mode"
 fi
 
 if [ "$print_uri" = true ]; then

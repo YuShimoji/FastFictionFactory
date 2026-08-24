@@ -76,6 +76,8 @@ export async function validateCurrentBasis(resultPath = DEFAULT_RESULT) {
   requireCondition(JSON.stringify(result.current_routing.closed_decisions_skipped) === JSON.stringify(["private_preview_accept_revise", "owner_asset_plan_decision"]), "closed decision routing");
   requireCondition(result.current_routing.next_reachable_stage === "D3_PRODUCTION_INPUT_CONTRACT", "next reachable stage");
   requireCondition(result.current_routing.next_decision === "production_input_contract_authorization", "next decision routing");
+  requireCondition(result.current_routing.cockpit_entry_path === "public/cockpit/d3-production-input.html", "D3 cockpit entry path");
+  requireCondition(result.current_routing.state_after_cockpit_entry === "OWNER_SCOPE_REQUIRED", "D3 cockpit state");
   requireCondition(result.current_routing.root_manifest_routing_repaired === true, "root routing repair receipt");
   requireCondition(result.current_routing.historical_handoff_pending_text_is_current === false, "historical handoff boundary");
   requireCondition(result.retired_or_non_applicable_contracts.some((item) => item.id === "clippipegen_decision_card_or_subtitle_owner_schema" && item.state === "not_applicable_to_fff"), "FFF route isolation");
@@ -111,6 +113,8 @@ export async function validateCurrentBasis(resultPath = DEFAULT_RESULT) {
   requireCondition(rootManifest.asset_rights_readiness_packet_owner_asset_plan_authority_path === result.accepted_authority.container_path, "root manifest accepted authority path");
   requireCondition(rootManifest.asset_rights_readiness_packet_next_decision === result.current_routing.next_decision, "root manifest next decision");
   requireCondition(rootManifest.asset_rights_readiness_packet_next_decision !== "owner_asset_plan_decision", "root manifest must not reopen asset-plan decision");
+  requireCondition(rootManifest.d3_cockpit_path === result.current_routing.cockpit_entry_path, "root manifest D3 cockpit path");
+  requireCondition(rootManifest.d3_cockpit_validation_command === "node tools/fff-d3-cockpit.mjs", "root manifest D3 validation command");
   requireCondition(rootInstructions.includes("is the current handoff authority") && rootInstructions.includes("must not reopen either decision"), "root instruction routing");
   requireCondition(currentHandoff.includes("現行root / handoff authority") && currentHandoff.includes("D3 Production-input contract") && currentHandoff.includes("production_input_contract_authorization"), "current handoff routing");
   requireCondition(previewResult.passed === true && previewResult.failures.length === 0, "preview result health");

@@ -6,6 +6,8 @@ For the current production path, QA first verifies `fff-current-basis-review-bur
 
 Fail closed when the exact artifact hash drifts, accepted-authority readback changes, the successor is treated as the default, root manifest exposes accept/revise or `owner_asset_plan_decision` as current pending, a stale question is reopened in the current handoff, a ClipPipeGen-specific decision-card contract is imported, or Board/DB mutation is claimed as a prerequisite. A passing route must skip both closed decisions and resolve `production_input_contract_authorization` as the next stage. The focused command is `node tools/fff-current-basis-review-burden.mjs`.
 
+The D3 Cockpit gate additionally requires `node tools/fff-d3-cockpit.mjs`, focused regression tests, and rendered browser evidence that the exact MP4 opens and its playback time advances before the D3 control unlocks. After entry, the visible state must be `OWNER_SCOPE_REQUIRED`; preview accept/revise and asset-plan A/B/C must not exist as form inputs.
+
 These gates are visible in the MVP workbench. They are local review checks, not production approval.
 
 ## Story Nucleus

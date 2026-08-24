@@ -30,6 +30,12 @@ Machine-readable receipt: `docs/review/current-basis-review-burden-receipt.json`
 
 次の本当のhuman blockerは、D3でmaterial write/acquisitionとvoice/providerを誰がどのexact scopeで引き受けるかというproduction-input authorityです。asset選定、rights clearance、生成、render、publicationの承認へは読み替えません。
 
+## FFF CockpitからD3へ入る
+
+`scripts/operator/open_review.ps1 -Mode d3` はFFF固有のcurrent Cockpitを開きます。exact `fff-private-previsualization-timeline-001` MP4が180秒mediaとしてopenし、実再生時刻が進んだ後だけD3 entryを有効化します。D3 preflightはaccepted previewとplan Aをlocked readbackとして近接表示し、入力欄をmaterial write owner、acquisition/provenance owner、voice/provider owner、exact scope boundaryだけに限定します。値は保存せず、Board/DB write、生成、owner代理決定を行いません。
+
+Project-native validationは `node tools/fff-d3-cockpit.mjs`、focused regressionは `node --test tests/fff-d3-cockpit.test.mjs` です。browser試走では `actual artifact → playback observed → D3_PRODUCTION_INPUT_CONTRACT → OWNER_SCOPE_REQUIRED` の順に実状態を確認します。
+
 ## 旧様式から外す契約
 
 - 同一hash・同一axisへのpreview accept/revise再質問。

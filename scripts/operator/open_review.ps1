@@ -15,7 +15,8 @@ param(
     "draft",
     "source",
     "project",
-    "artifacts"
+    "artifacts",
+    "d3"
   )]
   [string]$Mode = "brief",
 
@@ -46,9 +47,17 @@ if ($Docs) {
   exit $exitCode
 }
 
-$reviewPath = (Resolve-Path (Join-Path $repoRoot "public\review\index.html")).Path
 $Mode = $Mode.ToLowerInvariant()
-$reviewUri = ([System.Uri]$reviewPath).AbsoluteUri + "?mode=$Mode"
+$reviewPath = if ($Mode -eq "d3") {
+  (Resolve-Path (Join-Path $repoRoot "public\cockpit\d3-production-input.html")).Path
+} else {
+  (Resolve-Path (Join-Path $repoRoot "public\review\index.html")).Path
+}
+$reviewUri = if ($Mode -eq "d3") {
+  ([System.Uri]$reviewPath).AbsoluteUri
+} else {
+  ([System.Uri]$reviewPath).AbsoluteUri + "?mode=$Mode"
+}
 
 if ($PrintUri) {
   Write-Output $reviewUri

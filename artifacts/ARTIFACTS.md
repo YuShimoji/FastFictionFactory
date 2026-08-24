@@ -12,6 +12,16 @@
 - Review-burden effect: two stale questions retired, zero current human questions, zero Board cards, and no predecessor review replay.
 - Root-manifest boundary: this receipt stays under `docs/review/`, outside the production/historical result inventory and separate from `artifacts/artifact-manifest.json`, so the FFF production artifact identity and historical pipeline source identity do not change.
 
+## fff-d3-production-input-cockpit-001
+
+- Title: Fast Fiction Factory D3 Production-input Cockpit
+- Purpose: Put the exact accepted previsualization, accepted decisions, completion point, D3 entry, and remaining owner/scope blocker on one FFF-owned surface.
+- Surface: `public/cockpit/d3-production-input.html`
+- Launcher: `scripts/operator/open_review.ps1 -Mode d3`
+- Validation: `node tools/fff-d3-cockpit.mjs`; focused suite: `node --test tests/fff-d3-cockpit.test.mjs`
+- Interaction contract: exact MP4 openability plus observed playback unlocks D3; the resulting state is `OWNER_SCOPE_REQUIRED` with no accept/revise or A/B/C input.
+- Boundary: no persistence, Board/DB write, generation, owner proxy decision, production, rights, or publication authority.
+
 ## fff-private-materialized-motion-previs-001
 
 - Title: Fast Fiction Factory Private Materialized Motion Previsualization
