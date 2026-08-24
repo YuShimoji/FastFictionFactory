@@ -34,7 +34,7 @@ Machine-readable receipt: `docs/review/current-basis-review-burden-receipt.json`
 
 `scripts/operator/open_review.ps1 -Mode d3` はFFF固有のcurrent Cockpitを開きます。exact `fff-private-previsualization-timeline-001` MP4が180秒mediaとしてopenし、実再生時刻が進んだ後だけD3 entryを有効化します。D3 preflightはaccepted previewとplan Aをlocked readbackとして近接表示し、入力欄をmaterial write owner、acquisition/provenance owner、voice/provider owner、exact scope boundaryだけに限定します。値は保存せず、Board/DB write、生成、owner代理決定を行いません。
 
-Project-native validationは `node tools/fff-d3-cockpit.mjs`、focused regressionは `node --test tests/fff-d3-cockpit.test.mjs` です。browser試走では `actual artifact → playback observed → D3_PRODUCTION_INPUT_CONTRACT → OWNER_SCOPE_REQUIRED` の順に実状態を確認します。
+Project-native validationは `node tools/fff-d3-cockpit.mjs`、focused regressionは `node --test tests/fff-d3-cockpit.test.mjs` です。browser試走では再生・seek前に `muted=true` / `volume=0` を成立させ、hidden/backgroundでは再生せず、終了時にpauseした上で、`actual artifact → playback observed → D3_PRODUCTION_INPUT_CONTRACT → OWNER_SCOPE_REQUIRED` の順に実状態を確認します。
 
 ## 旧様式から外す契約
 

@@ -135,6 +135,12 @@
     "next_decision": "production_input_contract_authorization",
     "cockpit_entry_path": "public/cockpit/d3-production-input.html",
     "state_after_cockpit_entry": "OWNER_SCOPE_REQUIRED",
+    "media_qa_safety": {
+      "muted_before_play_or_seek": true,
+      "volume": 0,
+      "hidden_playback": false,
+      "pause_on_exit": true
+    },
     "remaining_human_blocker": "Exact owner and scope authority for material write/acquisition and voice/provider inputs",
     "root_manifest_routing_repaired": true,
     "historical_handoff_pending_text_is_current": false

@@ -75,6 +75,12 @@ export async function validateD3Cockpit({ cockpitPath = COCKPIT_PATH } = {}) {
   for (const marker of requiredMarkup) requireCondition(cockpit.includes(marker), `missing marker ${marker}`);
   requireCondition(!/name=["'](?:preview_decision|owner_asset_plan_decision)["']/i.test(cockpit), "closed decision was reintroduced as input");
   requireCondition(/video\.currentTime > 0\.05/.test(cockpit) && /enterButton\.disabled = false/.test(cockpit), "actual playback must unlock D3");
+  requireCondition(/<video\b[^>]*\bmuted\b/i.test(cockpit), "preview must be muted in markup before playback");
+  requireCondition(/video\.muted = true/.test(cockpit) && /video\.volume = 0/.test(cockpit), "preview must enforce muted zero-volume playback");
+  requireCondition(/playButton\.addEventListener\("click", async \(\) => \{\s*enforceSilentMedia\(\);\s*try \{ await video\.play\(\)/.test(cockpit), "silence must be enforced before play");
+  requireCondition(/video\.addEventListener\("seeking", enforceSilentMedia\)/.test(cockpit), "silence must be enforced before or during seek");
+  requireCondition(/document\.addEventListener\("visibilitychange"[\s\S]*?document\.hidden\) video\.pause\(\)/.test(cockpit), "hidden or background playback must pause");
+  requireCondition(/window\.addEventListener\("pagehide", pauseSilentMedia\)/.test(cockpit), "media must pause when the QA page ends");
 
   const psLauncher = await text("scripts/operator/open_review.ps1");
   const shLauncher = await text("scripts/operator/open_review.sh");
@@ -91,6 +97,12 @@ export async function validateD3Cockpit({ cockpitPath = COCKPIT_PATH } = {}) {
     critical_steps_removed: 2,
     next_stage: "D3_PRODUCTION_INPUT_CONTRACT",
     state_after_entry: "OWNER_SCOPE_REQUIRED",
+    media_qa: {
+      muted_before_play_or_seek: true,
+      volume: 0,
+      hidden_playback: false,
+      pause_on_exit: true
+    },
     board_write: false,
     generation: false
   };

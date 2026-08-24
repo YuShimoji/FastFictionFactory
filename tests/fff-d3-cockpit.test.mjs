@@ -29,6 +29,12 @@ test("validates the actual-artifact to D3 cockpit route", async () => {
   assert.equal(result.critical_steps_removed, 2);
   assert.equal(result.next_stage, "D3_PRODUCTION_INPUT_CONTRACT");
   assert.equal(result.state_after_entry, "OWNER_SCOPE_REQUIRED");
+  assert.deepEqual(result.media_qa, {
+    muted_before_play_or_seek: true,
+    volume: 0,
+    hidden_playback: false,
+    pause_on_exit: true
+  });
 });
 
 test("fails if preview acceptance is reintroduced as a form input", async () => {
@@ -49,5 +55,33 @@ test("fails if playback no longer unlocks D3", async () => {
   await withMutatedCockpit(
     (html) => html.replace("video.currentTime > 0.05", "video.currentTime > 999"),
     async (cockpitPath) => assert.rejects(validateD3Cockpit({ cockpitPath }), /actual playback must unlock D3/)
+  );
+});
+
+test("fails if the preview loses its muted markup default", async () => {
+  await withMutatedCockpit(
+    (html) => html.replace(" controls muted playsinline", " controls playsinline"),
+    async (cockpitPath) => assert.rejects(validateD3Cockpit({ cockpitPath }), /muted in markup/)
+  );
+});
+
+test("fails if zero volume is not enforced", async () => {
+  await withMutatedCockpit(
+    (html) => html.replace("video.volume = 0", "video.volume = 1"),
+    async (cockpitPath) => assert.rejects(validateD3Cockpit({ cockpitPath }), /zero-volume/)
+  );
+});
+
+test("fails if hidden playback is not paused", async () => {
+  await withMutatedCockpit(
+    (html) => html.replaceAll("if (document.hidden) video.pause();", "if (document.hidden) refreshEntry();"),
+    async (cockpitPath) => assert.rejects(validateD3Cockpit({ cockpitPath }), /background playback must pause/)
+  );
+});
+
+test("fails if exit no longer pauses media", async () => {
+  await withMutatedCockpit(
+    (html) => html.replace('window.addEventListener("pagehide", pauseSilentMedia);', 'window.addEventListener("pagehide", enforceSilentMedia);'),
+    async (cockpitPath) => assert.rejects(validateD3Cockpit({ cockpitPath }), /pause when the QA page ends/)
   );
 });

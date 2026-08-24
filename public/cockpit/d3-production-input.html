@@ -137,7 +137,7 @@
           <span class="pill amber" data-testid="media-status">OPENING</span>
         </header>
         <div class="panel-body">
-          <video id="previewVideo" controls preload="metadata" poster="../../artifacts/private-previsualization-timeline/private-previsualization-contact-sheet.jpg">
+          <video id="previewVideo" controls muted playsinline preload="metadata" poster="../../artifacts/private-previsualization-timeline/private-previsualization-contact-sheet.jpg">
             <source src="../../artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4" type="video/mp4">
           </video>
           <div class="media-meta">
@@ -247,6 +247,19 @@
     let opened = false;
     let played = false;
 
+    function enforceSilentMedia() {
+      video.defaultMuted = true;
+      video.muted = true;
+      video.volume = 0;
+    }
+
+    function pauseSilentMedia() {
+      enforceSilentMedia();
+      video.pause();
+    }
+
+    enforceSilentMedia();
+
     function refreshEntry() {
       if (!opened) return;
       if (!played) {
@@ -271,14 +284,25 @@
         refreshEntry();
       }
     });
+    video.addEventListener("play", () => {
+      enforceSilentMedia();
+      if (document.hidden) video.pause();
+    });
+    video.addEventListener("seeking", enforceSilentMedia);
     video.addEventListener("error", () => {
       mediaStatus.textContent = "OPEN FAILED";
       mediaStatus.className = "pill";
       entryStatus.textContent = "exact MP4を開けません";
     });
     playButton.addEventListener("click", async () => {
+      enforceSilentMedia();
       try { await video.play(); } catch { entryStatus.textContent = "browserの再生許可が必要です"; }
     });
+    document.addEventListener("visibilitychange", () => {
+      enforceSilentMedia();
+      if (document.hidden) video.pause();
+    });
+    window.addEventListener("pagehide", pauseSilentMedia);
     enterButton.addEventListener("click", () => {
       cockpit.dataset.currentStage = "d3-owner-scope-required";
       preflight.hidden = false;
