@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="data:,">
-  <title>FFF Cockpit — D3 Production-input Preflight</title>
+  <title>FastFictionFactory — Production-input contract</title>
   <style>
     :root {
       color-scheme: dark;
@@ -39,12 +39,12 @@
     .hero { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr); gap: 30px; align-items: end; padding: 38px 0 30px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     .eyebrow { margin: 0 0 10px; color: var(--amber); font: 800 12px/1.3 ui-monospace, monospace; letter-spacing: .14em; text-transform: uppercase; }
     h1, h2, h3, p { margin-top: 0; }
-    h1 { max-width: 17ch; margin-bottom: 16px; font: 600 clamp(42px, 6vw, 76px)/.98 Georgia, "Yu Mincho", serif; letter-spacing: -.035em; }
+    h1 { max-width: 24ch; margin-bottom: 16px; font: 600 clamp(32px, 4vw, 48px)/1.08 Georgia, "Yu Mincho", serif; letter-spacing: -.025em; }
     h2 { margin-bottom: 8px; font: 600 clamp(28px, 4vw, 42px)/1.08 Georgia, "Yu Mincho", serif; }
     h3 { margin-bottom: 8px; font-size: 16px; }
     .lede { max-width: 65ch; color: var(--muted); font-size: 17px; }
     .gain { padding: 20px; border-left: 3px solid var(--amber); background: rgba(227, 161, 75, .08); }
-    .gain strong { display: block; font: 700 54px/1 ui-monospace, monospace; color: var(--amber); }
+    .gain strong { display: block; font: 700 22px/1.2 ui-monospace, monospace; color: var(--amber); }
     .gain span { display: block; margin-top: 10px; color: var(--muted); }
     .grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(310px, .6fr); gap: 22px; margin-top: 28px; }
     .panel { border: 1px solid var(--line); background: rgba(17, 24, 33, .93); }
@@ -55,6 +55,11 @@
     .pill.green { border-color: rgba(115, 200, 154, .55); color: var(--green); }
     .pill.amber { border-color: rgba(227, 161, 75, .6); color: var(--amber); }
     video { display: block; width: 100%; aspect-ratio: 16 / 9; background: #000; object-fit: contain; }
+    .archived-preview { border: 1px solid var(--line); background: #0c1218; }
+    .archived-preview summary { padding: 16px 18px; color: var(--blue); cursor: pointer; font-weight: 750; }
+    .archived-preview summary::marker { color: var(--muted); }
+    .archived-preview[open] summary { border-bottom: 1px solid var(--line); }
+    .archived-preview-body { padding: 16px; }
     .media-meta { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding: 14px 0 0; }
     .identity { min-width: 0; }
     .identity code { display: block; overflow: hidden; color: var(--muted); font: 11px/1.5 ui-monospace, monospace; text-overflow: ellipsis; white-space: nowrap; }
@@ -112,64 +117,69 @@
   </style>
 </head>
 <body>
-  <main class="shell" data-fff-cockpit="d3-production-input" data-current-stage="accepted-basis">
+  <main class="shell" data-fff-cockpit="d3-production-input" data-current-stage="goal-reset-pending" data-review-requirement="none">
     <header class="topbar">
       <div class="brand"><span class="mark">FFF</span><span>Fast Fiction Factory / Project Cockpit</span></div>
-      <div class="mission">FFF-COCKPIT-D3-ENTRY-20260825-001<br>local / private / no Board write</div>
+      <div class="mission">local / private / no Board write</div>
     </header>
 
     <section class="hero" aria-labelledby="page-title">
       <div>
-        <p class="eyebrow">Critical path / accepted basis</p>
-        <h1 id="page-title">見る。確かめる。D3へ進む。</h1>
-        <p class="lede">受理済みpreviewとplan Aを再質問しない。実物の180秒previsualizationを開いて再生できた時だけ、次のproduction-input owner / scope preflightを開きます。</p>
+        <p class="eyebrow">FastFictionFactory / D3</p>
+        <h1 id="page-title">Production-input contract（保留中）</h1>
+        <p class="lede">以前の <code>fff-private-previsualization-timeline-001</code> は確定済みの記録です。再視聴やPass / Failは求めません。素材・取得元・音声担当の入力も、プロジェクト目標を再設定するまで保留します。</p>
       </div>
-      <aside class="gain" aria-label="critical path gain">
-        <strong>−2</strong>
-        <span>preview accept/reviseとasset plan A/B/Cをcritical pathから除去済み。</span>
+      <aside class="gain" aria-label="入力不要な確定事項">
+        <strong>現在の入力なし</strong>
+        <span>次はプロジェクト目標の再設定です。この画面から判断や値を送る必要はありません。</span>
       </aside>
     </section>
 
     <div class="grid">
       <section class="panel" aria-labelledby="artifact-title">
         <header class="panel-head">
-          <div><p class="kicker">Actual artifact</p><h2 id="artifact-title">Private previsualization</h2></div>
-          <span class="pill amber" data-testid="media-status">OPENING</span>
+          <div><p class="kicker">Optional reference</p><h2 id="artifact-title">過去のPrivate previsualization</h2></div>
+          <span class="pill" data-testid="media-status">再生不要</span>
         </header>
         <div class="panel-body">
-          <video id="previewVideo" controls muted playsinline preload="metadata" poster="../../artifacts/private-previsualization-timeline/private-previsualization-contact-sheet.jpg">
-            <source src="../../artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4" type="video/mp4">
-          </video>
-          <div class="media-meta">
-            <div class="identity">
-              <code>fff-private-previsualization-timeline-001</code>
-              <code>SHA256 78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978</code>
+          <details id="archivedPreview" class="archived-preview">
+            <summary>過去の動画を表示</summary>
+            <div class="archived-preview-body">
+              <video id="previewVideo" controls muted playsinline preload="none" poster="../../artifacts/private-previsualization-timeline/private-previsualization-contact-sheet.jpg">
+                <source src="../../artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4" type="video/mp4">
+              </video>
+              <div class="media-meta">
+                <div class="identity">
+                  <code>fff-private-previsualization-timeline-001</code>
+                  <code>SHA256 78c1b45498c25b873a757e04816257c42d31d4a53fd0c9905b50ae37a6022978</code>
+                </div>
+                <div class="actions">
+                  <button id="playArtifact" type="button">無音で再生</button>
+                  <a class="button" href="../../artifacts/private-previsualization-timeline/private-previsualization-timeline.html">タイムラインを開く</a>
+                </div>
+              </div>
             </div>
-            <div class="actions">
-              <button id="playArtifact" type="button">実物を再生</button>
-              <a class="button" href="../../artifacts/private-previsualization-timeline/private-previsualization-timeline.html">exact timelineを開く</a>
-            </div>
-          </div>
+          </details>
         </div>
       </section>
 
       <aside class="panel" aria-labelledby="authority-title">
         <header class="panel-head">
-          <div><p class="kicker">Accepted authority</p><h2 id="authority-title">再質問しない判断</h2></div>
+          <div><p class="kicker">Recorded decisions</p><h2 id="authority-title">確定済みの判断</h2></div>
           <span class="pill green">LOCKED</span>
         </header>
         <div class="panel-body authority-list">
           <div class="authority-card" data-accepted-decision="preview">
             <strong>Preview — ACCEPT</strong>
-            <small>material defectなし / existing repair不要</small>
+            <small>修正要求なし</small>
           </div>
           <div class="authority-card" data-accepted-decision="asset-plan">
             <strong>Asset plan — A</strong>
-            <small>exception requirement IDs: 0 / planning authorityのみ</small>
+            <small>例外指定なし。計画上の選択です。</small>
           </div>
           <div class="authority-card">
-            <strong>Current default preserved</strong>
-            <small>materialized-motion successorはH0 candidate。default replacementではない。</small>
+            <strong>Current default</strong>
+            <small>別候補は現在の標準を置き換えていません。</small>
           </div>
         </div>
       </aside>
@@ -177,75 +187,35 @@
 
     <section class="grid" aria-labelledby="progress-title">
       <div class="panel">
-        <header class="panel-head"><div><p class="kicker">Completion point</p><h2 id="progress-title">いま到達している地点</h2></div></header>
+        <header class="panel-head"><div><p class="kicker">Current stage</p><h2 id="progress-title">現在の工程</h2></div></header>
         <div class="panel-body steps">
-          <div class="step closed"><span class="step-id">D0</span><div><h3>Exact experience truth</h3><p>accepted。review replay不要。</p></div></div>
-          <div class="step closed"><span class="step-id">D2</span><div><h3>Planning authority closure</h3><p>plan A / exceptionなし。A/B/C再質問不要。</p></div></div>
-          <div class="step active"><span class="step-id">D3</span><div><h3>Production-input contract</h3><p>次の実工程。ownerとexact scopeだけが未確定。</p></div></div>
-          <div class="step"><span class="step-id">D4</span><div><h3>Material & voice evidence</h3><p>D3 authority後。ここでは生成しない。</p></div></div>
+          <div class="step closed"><span class="step-id">D0</span><div><h3>Preview</h3><p>採用済み。再入力はありません。</p></div></div>
+          <div class="step closed"><span class="step-id">D2</span><div><h3>Asset plan</h3><p>Plan A、例外指定なし。</p></div></div>
+          <div class="step"><span class="step-id">D3</span><div><h3>Production-input contract</h3><p>現在の工程から外しました。目標決定後、必要な場合だけ再設計します。</p></div></div>
+          <div class="step active"><span class="step-id">NEXT</span><div><h3>プロジェクト目標の再設定</h3><p>現有資産を踏まえ、次に実現する結果を選びます。</p></div></div>
         </div>
       </div>
 
       <aside class="panel">
-        <header class="panel-head"><div><p class="kicker">Entry gate</p><h2>D3 preflight</h2></div><span class="pill">OWNER/SCOPE</span></header>
+        <header class="panel-head"><div><p class="kicker">Current action</p><h2>この画面での操作</h2></div><span class="pill green">NONE</span></header>
         <div class="panel-body">
-          <p>artifactのopen/playを確認すると、既知判断を持ち越したままpreflightを開けます。</p>
+          <p>動画は過去の根拠資料として残しています。再生は任意で、現在の工程を進める条件ではありません。</p>
           <div class="gate">
-            <strong data-testid="entry-status">artifact play待ち</strong>
-            <p class="gate-status">openabilityとplaybackを確認中。acceptやplanは尋ねません。</p>
-            <button id="enterD3" class="primary" type="button" disabled>D3 preflightへ進む</button>
+            <strong data-testid="entry-status">入力不要</strong>
+            <p class="gate-status">この画面でPass / Failを求めません。担当者や対象範囲も、目標再設定前には確定しません。</p>
           </div>
         </div>
       </aside>
     </section>
-
-    <section id="d3-preflight" class="preflight" hidden aria-labelledby="d3-title">
-      <p class="eyebrow">D3 / project-owned preflight</p>
-      <h2 id="d3-title">Production-input contract authority</h2>
-      <p class="lede" data-testid="d3-state">OWNER_SCOPE_REQUIRED — accepted decisionsは持越し済み。残る入力はownerとscopeだけです。</p>
-      <div class="preflight-grid">
-        <div class="locked">
-          <h3>持ち越したaccepted basis</h3>
-          <ul>
-            <li><b>Preview accepted</b><br>同一artifactへのaccept/reviseは不要</li>
-            <li><b>Plan A accepted</b><br>exceptionなし。A/B/Cは不要</li>
-            <li><b>19 shots / 14 requirements / 6 narration</b><br>D3がownerとinput境界を固定する対象</li>
-          </ul>
-        </div>
-        <form class="owner-fields" id="ownerScopeForm" novalidate>
-          <h3>未確定のhuman-owned入力</h3>
-          <label>Material write owner
-            <input name="material_write_owner" autocomplete="off" placeholder="未指定 — human authority required">
-          </label>
-          <label>Acquisition / provenance owner
-            <input name="acquisition_owner" autocomplete="off" placeholder="未指定 — human authority required">
-          </label>
-          <label>Voice / provider owner
-            <input name="voice_provider_owner" autocomplete="off" placeholder="未指定 — human authority required">
-          </label>
-          <label>Exact scope boundary
-            <textarea name="production_input_scope" placeholder="対象requirements、write/acquisition範囲、provider境界を明示"></textarea>
-          </label>
-          <button type="submit">preflight不足を確認</button>
-          <div class="preflight-result" data-testid="preflight-result">未送信。repo、Board、DBへは保存しません。</div>
-        </form>
-      </div>
-      <p class="boundary">このsurfaceはowner/scopeの入力準備だけを行います。asset選定、rights clearance、voice/provider採用、生成、render、publication、canonを承認しません。</p>
-    </section>
+    <p class="boundary">旧D3の担当者・対象範囲フォームは現在の確認項目から外しました。素材選定、権利確認、voice/provider採用、生成、render、公開、canonは承認しません。</p>
   </main>
 
   <script>
-    const cockpit = document.querySelector("[data-fff-cockpit]");
     const video = document.querySelector("#previewVideo");
+    const archiveDetails = document.querySelector("#archivedPreview");
     const mediaStatus = document.querySelector("[data-testid='media-status']");
     const entryStatus = document.querySelector("[data-testid='entry-status']");
     const playButton = document.querySelector("#playArtifact");
-    const enterButton = document.querySelector("#enterD3");
-    const preflight = document.querySelector("#d3-preflight");
-    const form = document.querySelector("#ownerScopeForm");
-    const result = document.querySelector("[data-testid='preflight-result']");
-    let opened = false;
-    let played = false;
 
     function enforceSilentMedia() {
       video.defaultMuted = true;
@@ -260,29 +230,10 @@
 
     enforceSilentMedia();
 
-    function refreshEntry() {
-      if (!opened) return;
-      if (!played) {
-        mediaStatus.textContent = "OPENABLE";
-        mediaStatus.className = "pill green";
-        entryStatus.textContent = "openability確認済み / playback待ち";
-        return;
-      }
-      mediaStatus.textContent = "PLAYED";
-      mediaStatus.className = "pill green";
-      entryStatus.textContent = "actual artifact確認済み";
-      enterButton.disabled = false;
-    }
-
     video.addEventListener("loadedmetadata", () => {
-      opened = Number.isFinite(video.duration) && Math.abs(video.duration - 180) < 0.25;
-      refreshEntry();
-    });
-    video.addEventListener("timeupdate", () => {
-      if (video.currentTime > 0.05) {
-        played = true;
-        refreshEntry();
-      }
+      const exactDuration = Number.isFinite(video.duration) && Math.abs(video.duration - 180) < 0.25;
+      mediaStatus.textContent = exactDuration ? "任意再生可能" : "資料を確認できません";
+      mediaStatus.className = exactDuration ? "pill green" : "pill";
     });
     video.addEventListener("play", () => {
       enforceSilentMedia();
@@ -290,38 +241,22 @@
     });
     video.addEventListener("seeking", enforceSilentMedia);
     video.addEventListener("error", () => {
-      mediaStatus.textContent = "OPEN FAILED";
+      mediaStatus.textContent = "読み込み失敗";
       mediaStatus.className = "pill";
-      entryStatus.textContent = "exact MP4を開けません";
+      entryStatus.textContent = "参考動画を開けません。現在の工程には影響しません";
     });
     playButton.addEventListener("click", async () => {
       enforceSilentMedia();
       try { await video.play(); } catch { entryStatus.textContent = "browserの再生許可が必要です"; }
+    });
+    archiveDetails.addEventListener("toggle", () => {
+      if (!archiveDetails.open) pauseSilentMedia();
     });
     document.addEventListener("visibilitychange", () => {
       enforceSilentMedia();
       if (document.hidden) video.pause();
     });
     window.addEventListener("pagehide", pauseSilentMedia);
-    enterButton.addEventListener("click", () => {
-      cockpit.dataset.currentStage = "d3-owner-scope-required";
-      preflight.hidden = false;
-      preflight.scrollIntoView({ behavior: "smooth", block: "start" });
-      document.querySelector("input[name='material_write_owner']").focus({ preventScroll: true });
-    });
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
-      const data = new FormData(form);
-      const missing = [
-        ["material_write_owner", "material write owner"],
-        ["acquisition_owner", "acquisition / provenance owner"],
-        ["voice_provider_owner", "voice / provider owner"],
-        ["production_input_scope", "exact scope boundary"]
-      ].filter(([key]) => !String(data.get(key) || "").trim()).map(([, label]) => label);
-      result.textContent = missing.length
-        ? `HUMAN AUTHORITY REQUIRED — missing: ${missing.join(", ")}. 保存・代理決定はしていません。`
-        : "INPUT READY FOR HUMAN REVIEW — 値はこの画面内だけで、保存・承認・実行はしていません。";
-    });
   </script>
 </body>
 </html>

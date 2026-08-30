@@ -10,7 +10,7 @@ Use this decision order:
 2. Reuse accepted human authority within its exact scope: preview `accept`, no preview repair, asset plan `A`, no exception IDs.
 3. Do not replay predecessor or same-axis review unless target, evidence, axis, or decision value changed.
 4. Require fresh human authority only for successor creative promotion, actual asset/right decisions, voice/provider, production, release, or canon.
-5. Open the FFF-specific Cockpit with `scripts/operator/open_review.ps1 -Mode d3`, play the exact accepted MP4, and route directly to `D3 Production-input contract`. Its next real gate is `production_input_contract_authorization`, not either closed review question.
+5. Keep `scripts/operator/open_review.ps1 -Mode d3` as reference-only readback. The accepted MP4 may be played optionally, but playback, Pass / Fail, and owner/scope input are not current gates. Route next to `project_goal_reset`; reconstruct production-input work only after the new goal requires it.
 
 `docs/review/current-basis-review-burden.md` and `docs/review/current-basis-review-burden-receipt.json` own this current classification. The MVP flow below remains product history and still governs those older workbench surfaces when they are explicitly reopened.
 

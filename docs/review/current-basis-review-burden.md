@@ -11,7 +11,7 @@ Machine-readable receipt: `docs/review/current-basis-review-burden-receipt.json`
 
 したがって、後から重ねられたhandoff文書に残る同一previewへのaccept/revise再質問と `owner_asset_plan_decision` A/B/C再質問は、未回答gateではありません。accepted authorityを再利用して閉じます。これは判断の代理回答ではなく、commit `cfd645f…` に固定済みのhuman decisionをfresh readbackした結果です。
 
-この文書が現行root / handoff authorityです。`docs/project-context.md`、`docs/review/current-status.md`、`docs/review/next-terminal-handoff.md`、`docs/review/supervisor-current-report.md` の2026-07-25以前のhandoff節は削除せずhistorical evidenceとして保持しますが、そこに残る二つのpending表記はcurrent queueへ投影しません。root manifestもplan `A` / exceptionなしを明示し、次の実工程を `D3 Production-input contract` の `production_input_contract_authorization` へ進めます。critical pathからdecision stepを2件、再質問を2件除去しました。
+この文書が現行root / handoff authorityです。`docs/project-context.md`、`docs/review/current-status.md`、`docs/review/next-terminal-handoff.md`、`docs/review/supervisor-current-report.md` の2026-07-25以前のhandoff節は削除せずhistorical evidenceとして保持しますが、そこに残る二つのpending表記はcurrent queueへ投影しません。2026-08-30のユーザー指示により、旧動画の必須再生とD3 owner/scope入力もcurrent queueから外しました。current-basis receiptの次の判断は `project_goal_reset` です。保護対象のroot manifestは以前のrouteをhistorical値として保持し、このreceiptが現行routeを上書きします。新しい目標はまだ選択していません。
 
 ## 何を機械的に閉じ、何を人間に残すか
 
@@ -26,19 +26,21 @@ Machine-readable receipt: `docs/review/current-basis-review-burden-receipt.json`
 | voice/provider、production render、full-view quality acceptance、publication/release | human authority | closed future gates | 各ownerとexact candidateが揃うまで開始しない |
 | story truth / canon | human authority | closed future gate | Toma、真鍮の蛾、Council、endingを決めない |
 
-現在発行すべきhuman questionは0件です。不可避な判断は将来gateとして残しますが、現時点でBoard card、Choice、Snapshot、daily DBを作る理由はありません。
+現在のhuman questionは、FastFictionFactoryの次のプロジェクト目標をどの方向に再設定するかの1件です。旧previewの再視聴、Pass / Fail、D3 owner/scope入力はこの質問に含めません。Board card、Snapshot、daily DBは作成していません。
 
-次の本当のhuman blockerは、D3でmaterial write/acquisitionとvoice/providerを誰がどのexact scopeで引き受けるかというproduction-input authorityです。asset選定、rights clearance、生成、render、publicationの承認へは読み替えません。
+material write/acquisition、voice/provider、asset選定、rights clearance、生成、render、publicationの各判断は、選択された新目標が必要とする場合だけ後続工程として再構成します。
 
-## FFF CockpitからD3へ入る
+## 旧D3 Cockpitの現在の扱い
 
-`scripts/operator/open_review.ps1 -Mode d3` はFFF固有のcurrent Cockpitを開きます。exact `fff-private-previsualization-timeline-001` MP4が180秒mediaとしてopenし、実再生時刻が進んだ後だけD3 entryを有効化します。D3 preflightはaccepted previewとplan Aをlocked readbackとして近接表示し、入力欄をmaterial write owner、acquisition/provenance owner、voice/provider owner、exact scope boundaryだけに限定します。値は保存せず、Board/DB write、生成、owner代理決定を行いません。
+`scripts/operator/open_review.ps1 -Mode d3` は、確定済みの判断と旧previewを参照するローカル画面として残します。MP4再生は任意で、再生時刻、Pass / Fail、owner/scope入力のいずれも現在の工程を進める条件ではありません。目標再設定前にproduction-input値を集めません。
 
-Project-native validationは `node tools/fff-d3-cockpit.mjs`、focused regressionは `node --test tests/fff-d3-cockpit.test.mjs` です。browser試走では再生・seek前に `muted=true` / `volume=0` を成立させ、hidden/backgroundでは再生せず、終了時にpauseした上で、`actual artifact → playback observed → D3_PRODUCTION_INPUT_CONTRACT → OWNER_SCOPE_REQUIRED` の順に実状態を確認します。
+Project-native validationは `node tools/fff-d3-cockpit.mjs`、focused regressionは `node --test tests/fff-d3-cockpit.test.mjs` です。任意再生を使った場合の `muted=true` / `volume=0`、hidden/background pause、終了時pauseは維持します。validatorは `PROJECT_GOAL_RESET`、`REFERENCE_ONLY_NO_HUMAN_ACTION`、playback/Pass-Fail/owner-scope inputの3項目がrequiredではないことを確認します。
 
 ## 旧様式から外す契約
 
 - 同一hash・同一axisへのpreview accept/revise再質問。
+- 同一hashの旧preview再生を、D3へ進む条件またはPass / Fail判定として扱うこと。
+- プロジェクト目標の再設定前にmaterial/voice ownerとscopeを入力させること。
 - accepted plan Aを無視した `owner_asset_plan_decision` の再質問。
 - root manifestがmaterialized successorを登録する前の「5 validator restart chain」を現行gateとして扱うこと。現在のroot commandはaccepted defaultとsuccessor candidateを直接検証します。resumable pipeline golden resultはroot-manifest identity変更前のhistorical evidenceです。
 - ClipPipeGenのsubtitle-owner、ED-10、decision-card schema、固定formをFFFへ移植すること。FFFはartifact identity、generation recipe、review axis、accepted authorityを独自に維持し、共通化するのはdecision/receiptの原則だけです。
@@ -61,4 +63,4 @@ node tools/fff-current-basis-review-burden.mjs
 node --test tests/fff-current-basis-review-burden.test.mjs
 ```
 
-このreceiptはroot manifestのcurrent routingだけを修復し、accepted artifact bytesと旧handoff本文は変更しません。historical evidenceを残したまま、project-native readbackが二つのclosed decisionを飛ばしてD3へ到達することをfail-closedで固定します。
+このreceiptは、保護対象のroot manifest bytesを変更せず、そのhistorical routeを `project_goal_reset` で上書きします。accepted artifact bytesと旧handoff本文も変更しません。historical evidenceを残したまま、project-native readbackが旧preview再生とD3入力をHuman Gateへ戻さないことをfail-closedで固定します。

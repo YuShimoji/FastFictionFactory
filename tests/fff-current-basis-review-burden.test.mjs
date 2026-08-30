@@ -26,21 +26,21 @@ async function withMutatedResult(mutator, run) {
 test("validates the exact current FFF review basis", async () => {
   const summary = await validateCurrentBasis();
   assert.equal(summary.passed, true);
-  assert.equal(summary.current_human_questions, 0);
+  assert.equal(summary.current_human_questions, 1);
   assert.equal(summary.stale_questions_removed, 2);
   assert.equal(summary.critical_path_decision_steps_removed, 2);
-  assert.equal(summary.next_reachable_stage, "D3_PRODUCTION_INPUT_CONTRACT");
-  assert.equal(summary.next_decision, "production_input_contract_authorization");
+  assert.equal(summary.next_reachable_stage, "PROJECT_GOAL_RESET");
+  assert.equal(summary.next_decision, "project_goal_reset");
 });
 
-test("fails closed if a stale human question is reopened", async () => {
+test("fails closed if the project-goal choice is replaced by a stale preview question", async () => {
   await withMutatedResult(
     (result) => {
       result.current_human_question.required_now = true;
       result.current_human_question.question = "accept or revise?";
     },
     async (resultPath) => {
-      await assert.rejects(validateCurrentBasis(resultPath), /current human question must remain closed/);
+      await assert.rejects(validateCurrentBasis(resultPath), /project goal question/);
     }
   );
 });
@@ -63,6 +63,17 @@ test("fails closed if current routing reopens the asset-plan decision", async ()
     },
     async (resultPath) => {
       await assert.rejects(validateCurrentBasis(resultPath), /next decision routing/);
+    }
+  );
+});
+
+test("fails closed if unchanged preview playback becomes required again", async () => {
+  await withMutatedResult(
+    (result) => {
+      result.current_routing.playback_required = true;
+    },
+    async (resultPath) => {
+      await assert.rejects(validateCurrentBasis(resultPath), /playback must remain optional/);
     }
   );
 });

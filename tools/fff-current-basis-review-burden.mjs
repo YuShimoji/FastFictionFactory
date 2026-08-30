@@ -47,7 +47,7 @@ async function assertHash(repoRelativePath, expected) {
 export async function validateCurrentBasis(resultPath = DEFAULT_RESULT) {
   const result = await readJson(resultPath);
 
-  requireCondition(result.schemaVersion === "fff.currentBasisReviewBurdenResult.v1", "schemaVersion");
+  requireCondition(result.schemaVersion === "fff.currentBasisReviewBurdenResult.v2", "schemaVersion");
   requireCondition(result.mission_id === "FFF-CURRENT-BASIS-REVIEW-BURDEN-20260825-001", "mission identity");
   requireCondition(result.artifact_id === "fff-current-basis-review-burden-001", "artifact identity");
   requireCondition(result.passed === true, "result must be passed");
@@ -66,19 +66,23 @@ export async function validateCurrentBasis(resultPath = DEFAULT_RESULT) {
   requireCondition(Array.isArray(accepted.exception_requirement_ids) && accepted.exception_requirement_ids.length === 0, "asset-plan exceptions");
   requireCondition(accepted.new_human_gate_required_inside_mission === false, "human gate authority");
 
-  requireCondition(result.current_human_question.required_now === false, "current human question must remain closed");
-  requireCondition(result.current_human_question.question === null, "no synthetic human question");
+  requireCondition(result.current_human_question.required_now === true, "project goal choice must remain visible");
+  requireCondition(result.current_human_question.question === "Which project goal should FastFictionFactory adopt next?", "project goal question");
   requireCondition(result.current_human_question.board_issue_status === "not_issued", "Board issue boundary");
   requireCondition(result.review_burden.stale_questions_removed === 2, "stale review count");
   requireCondition(result.review_burden.critical_path_decision_steps_removed === 2, "critical-path reduction count");
-  requireCondition(result.review_burden.current_human_questions === 0, "current human review count");
+  requireCondition(result.review_burden.current_human_questions === 1, "current human decision count");
   requireCondition(result.review_burden.board_cards_issued === 0, "Board card count");
   requireCondition(JSON.stringify(result.current_routing.closed_decisions_skipped) === JSON.stringify(["private_preview_accept_revise", "owner_asset_plan_decision"]), "closed decision routing");
-  requireCondition(result.current_routing.next_reachable_stage === "D3_PRODUCTION_INPUT_CONTRACT", "next reachable stage");
-  requireCondition(result.current_routing.next_decision === "production_input_contract_authorization", "next decision routing");
+  requireCondition(result.current_routing.next_reachable_stage === "PROJECT_GOAL_RESET", "next reachable stage");
+  requireCondition(result.current_routing.next_decision === "project_goal_reset", "next decision routing");
   requireCondition(result.current_routing.cockpit_entry_path === "public/cockpit/d3-production-input.html", "D3 cockpit entry path");
-  requireCondition(result.current_routing.state_after_cockpit_entry === "OWNER_SCOPE_REQUIRED", "D3 cockpit state");
-  requireCondition(result.current_routing.root_manifest_routing_repaired === true, "root routing repair receipt");
+  requireCondition(result.current_routing.state_after_cockpit_entry === "REFERENCE_ONLY_NO_HUMAN_ACTION", "D3 cockpit state");
+  requireCondition(result.current_routing.playback_required === false, "unchanged preview playback must remain optional");
+  requireCondition(result.current_routing.pass_fail_required === false, "D3 must not request pass or fail");
+  requireCondition(result.current_routing.owner_scope_input_required_now === false, "owner and scope input must wait for goal reset");
+  requireCondition(result.current_routing.root_manifest_routing_superseded === true, "root routing supersession receipt");
+  requireCondition(result.current_routing.root_manifest_historical_next_decision === "production_input_contract_authorization", "root historical routing receipt");
   requireCondition(result.current_routing.historical_handoff_pending_text_is_current === false, "historical handoff boundary");
   requireCondition(result.retired_or_non_applicable_contracts.some((item) => item.id === "clippipegen_decision_card_or_subtitle_owner_schema" && item.state === "not_applicable_to_fff"), "FFF route isolation");
   requireCondition(Object.values(result.boundaries).every((value) => value === false), "closed mutation boundaries");
@@ -111,12 +115,12 @@ export async function validateCurrentBasis(resultPath = DEFAULT_RESULT) {
   requireCondition(rootManifest.asset_rights_readiness_packet_owner_asset_plan_decision === accepted.recommended_asset_plan, "root manifest accepted asset-plan decision");
   requireCondition(JSON.stringify(rootManifest.asset_rights_readiness_packet_owner_asset_plan_exception_requirement_ids) === JSON.stringify(accepted.exception_requirement_ids), "root manifest accepted asset-plan exceptions");
   requireCondition(rootManifest.asset_rights_readiness_packet_owner_asset_plan_authority_path === result.accepted_authority.container_path, "root manifest accepted authority path");
-  requireCondition(rootManifest.asset_rights_readiness_packet_next_decision === result.current_routing.next_decision, "root manifest next decision");
+  requireCondition(rootManifest.asset_rights_readiness_packet_next_decision === result.current_routing.root_manifest_historical_next_decision, "protected root manifest historical route");
   requireCondition(rootManifest.asset_rights_readiness_packet_next_decision !== "owner_asset_plan_decision", "root manifest must not reopen asset-plan decision");
   requireCondition(rootManifest.d3_cockpit_path === result.current_routing.cockpit_entry_path, "root manifest D3 cockpit path");
   requireCondition(rootManifest.d3_cockpit_validation_command === "node tools/fff-d3-cockpit.mjs", "root manifest D3 validation command");
   requireCondition(rootInstructions.includes("is the current handoff authority") && rootInstructions.includes("must not reopen either decision"), "root instruction routing");
-  requireCondition(currentHandoff.includes("現行root / handoff authority") && currentHandoff.includes("D3 Production-input contract") && currentHandoff.includes("production_input_contract_authorization"), "current handoff routing");
+  requireCondition(currentHandoff.includes("現行root / handoff authority") && currentHandoff.includes("プロジェクト目標の再設定") && currentHandoff.includes("project_goal_reset"), "current handoff routing");
   requireCondition(previewResult.passed === true && previewResult.failures.length === 0, "preview result health");
   requireCondition(previewResult.mp4.sha256 === result.exact_review_artifact.mp4_sha256, "preview result MP4 identity");
   requireCondition(previewResult.duration_seconds === 180 && previewResult.beat_count === 6 && previewResult.shot_count === 19 && previewResult.subtitle_cue_count === 20, "preview chronology");

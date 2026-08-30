@@ -1,5 +1,13 @@
 # Project Context
 
+## Current execution shift — 2026-08-30 JST
+
+- The old accepted preview remains historical evidence; replaying it is not a current review task and supplies no new Pass / Fail basis.
+- `scripts/operator/open_review.ps1 -Mode d3` is reference-only. Playback is optional, and the removed owner/scope form is not a current requirement.
+- Current-basis routing is `project_goal_reset`. The protected root manifest retains its prior route as historical input. The next project goal has not been selected; current assets will be used to prepare user-facing alternatives.
+- Production inputs, rights, providers, generation, render, publication, and canon remain unchanged until a selected goal requires a narrower decision.
+- The older dated sections below are preserved history and do not reopen preview review or D3 input.
+
 ## Cross-terminal Sync & Development Readiness Snapshot — 2026-07-25 JST
 
 - Sync authority: this terminal started at `f5fba013061263fe22c019e25754453998e62ab3`, fetched the two new remote commits `b7703b4` and `76dbe86`, and fast-forwarded with `git pull --ff-only origin master`. The synchronized base is `HEAD = origin/master = 76dbe8690011830d07e32c321d83035c97cd26c7`, ahead/behind `0 / 0`.

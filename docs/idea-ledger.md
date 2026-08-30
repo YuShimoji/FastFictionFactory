@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-08-30 Project goal reset
+
+- Purpose: Replace the accumulated implementation-led route with a user-selected FastFictionFactory outcome.
+- Effect: Makes the old D3 route reference-only and keeps the existing story, review, extraction, pipeline, and media assets available as inputs rather than assuming one of them is the product goal.
+- Requirements: Proposals must distinguish what the user can accomplish, what current assets can support, what new work each direction needs, and what remains a human, rights, production, or publication decision.
+- State: Goal selection is pending. No proposal has been adopted in project files.
+- Owner: User for the product outcome; development work may resume autonomously after the selected direction fixes the next observable result.
+- Next move: Present a small comparison of materially different goal directions and recommend one from current evidence without treating the recommendation as selection.
+
 ## 2026-07-25 Synchronized Supervisor Handoff
 
 - Purpose: Give a supervising AI an exact, current restart point after receiving the PLANNER007 toolchain readback and parity successor.

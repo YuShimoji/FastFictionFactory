@@ -1,5 +1,9 @@
 # Current Status Packet
 
+## Current review state — 2026-08-30 JST
+
+The unchanged accepted preview is not awaiting renewed review. The D3 page keeps it only as optional reference evidence and requests neither playback, Pass / Fail, nor owner/scope input. The next user decision is the FastFictionFactory project-goal reset; no replacement goal has been adopted yet. `docs/review/current-basis-review-burden.md` owns this current routing, and the dated packets below remain historical evidence.
+
 ## Live Sync / Development Readiness — 2026-07-25 JST
 
 | Item | Verified state |

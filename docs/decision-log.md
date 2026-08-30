@@ -1,5 +1,14 @@
 # Decision Log
 
+## 2026-08-30 — Remove the unchanged-preview gate and defer D3 inputs until goal reset
+
+- Decision: Stop treating playback of `fff-private-previsualization-timeline-001` as current confirmation work. Keep the exact media as optional reference evidence without asking for Pass / Fail.
+- Reason: The current handoff already says that matching hashes do not require renewed viewing, while the D3 page required playback before showing inputs. The repeated artifact did not establish a criterion for the user's current request.
+- D3 effect: Remove the playback unlock and the material/acquisition/voice/scope form from the current queue. Preserve silent, zero-volume, hidden-pause, and exit-pause behavior if the optional video is played.
+- Validation repair: Classify `private-materialized-motion-previs-result.json` as a descendant result so its presence does not invalidate the preserved predecessor baseline used by the resumable private pipeline.
+- Routing: Set the current-basis next decision to `project_goal_reset` while preserving the protected root manifest bytes and treating its prior route as historical input. Do not select a new product goal, production owner, provider, rights route, render route, publication route, or canon value in this decision.
+- User decision: Choose the next project goal from proposals grounded in the current repository assets.
+
 ## 2026-07-25 — Adopt the PLANNER007 parity successor as the synchronized base
 
 - Decision: Treat `76dbe8690011830d07e32c321d83035c97cd26c7` (`Record PLANNER007 handoff parity`) as the exact synchronized restart base after `git fetch --prune origin` and `git pull --ff-only origin master`.

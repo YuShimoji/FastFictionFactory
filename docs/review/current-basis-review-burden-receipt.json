@@ -1,8 +1,8 @@
 {
-  "schemaVersion": "fff.currentBasisReviewBurdenResult.v1",
+  "schemaVersion": "fff.currentBasisReviewBurdenResult.v2",
   "mission_id": "FFF-CURRENT-BASIS-REVIEW-BURDEN-20260825-001",
   "artifact_id": "fff-current-basis-review-burden-001",
-  "generated_at": "2026-08-25T00:00:00+09:00",
+  "generated_at": "2026-08-30T00:00:00+09:00",
   "passed": true,
   "source": {
     "checkout_branch": "codex/fastfiction-handoff-20260803",
@@ -121,33 +121,37 @@
   "review_burden": {
     "stale_questions_removed": 2,
     "critical_path_decision_steps_removed": 2,
-    "current_human_questions": 0,
+    "current_human_questions": 1,
     "predecessor_review_replays_required": 0,
     "board_cards_issued": 0,
-    "summary": "Removed the stale repeat accept/revise request and stale repeat owner_asset_plan_decision while preserving all future human authority gates."
+    "summary": "Removed the stale repeat accept/revise request, stale repeat owner_asset_plan_decision, and unchanged-preview playback gate; the remaining user decision is the project goal reset."
   },
   "current_routing": {
     "closed_decisions_skipped": [
       "private_preview_accept_revise",
       "owner_asset_plan_decision"
     ],
-    "next_reachable_stage": "D3_PRODUCTION_INPUT_CONTRACT",
-    "next_decision": "production_input_contract_authorization",
+    "next_reachable_stage": "PROJECT_GOAL_RESET",
+    "next_decision": "project_goal_reset",
     "cockpit_entry_path": "public/cockpit/d3-production-input.html",
-    "state_after_cockpit_entry": "OWNER_SCOPE_REQUIRED",
+    "state_after_cockpit_entry": "REFERENCE_ONLY_NO_HUMAN_ACTION",
+    "playback_required": false,
+    "pass_fail_required": false,
+    "owner_scope_input_required_now": false,
     "media_qa_safety": {
       "muted_before_play_or_seek": true,
       "volume": 0,
       "hidden_playback": false,
       "pause_on_exit": true
     },
-    "remaining_human_blocker": "Exact owner and scope authority for material write/acquisition and voice/provider inputs",
-    "root_manifest_routing_repaired": true,
+    "remaining_human_blocker": "Selection of the next project goal after a proposal grounded in current assets",
+    "root_manifest_routing_superseded": true,
+    "root_manifest_historical_next_decision": "production_input_contract_authorization",
     "historical_handoff_pending_text_is_current": false
   },
   "current_human_question": {
-    "required_now": false,
-    "question": null,
+    "required_now": true,
+    "question": "Which project goal should FastFictionFactory adopt next?",
     "board_issue_status": "not_issued"
   },
   "protected_dirty_state": {
