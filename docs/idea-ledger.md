@@ -1,5 +1,14 @@
 # Idea Ledger
 
+## 2026-08-13 CASE_DIGEST validation unlock
+
+- Purpose: Re-establish one trustworthy clean-checkout gate for the accepted 180-second CASE_DIGEST while preventing result files from self-approving their way into historical authority.
+- Effect: Adds current/legacy Sharp entrypoint compatibility and an explicit descendant-registration guard without changing the CASE_DIGEST story, images, timing, HTML, MP4, subtitle state, acceptance scope, or default selection.
+- Requirements: Keep the 76 baseline paths/hashes exact, keep the five approved descendants registered, fail every unregistered result closed, preserve mutation-free validation, and keep Densou source/canon outside this lane.
+- State: Implemented locally on the unintegrated control-plane worktree; focused control 23/23, CASE_DIGEST 14/14, and canonical root gate pass.
+- Owner: Repository/control-plane maintainer for review and later integration; human reviewer owns the next exact A/V experience judgment; production, music, voice/effects, rights, release, and canon owners retain independent gates.
+- Next move: Use the exact 180-second CASE_DIGEST review target once, then route any content finding by timestamp/cue rather than reopening validator or Densou intake work.
+
 ## 2026-07-27 Two-branch integration handoff
 
 - Purpose: Preserve exact, evidence-backed restart state for the completed local control-plane and Writer branch tips without silently integrating or publishing either.
@@ -13,7 +22,7 @@
 
 - Purpose: Let clean-checkout workers resolve the accepted CASE_DIGEST state through one read-only root command.
 - Effect: Separates active/default selection, accepted successor scope, archived/rejected status, byte self-integrity, current registration, human acceptance, and production/rights/release state.
-- Requirements: Preserve all product/media bytes and both quarantines; require CASE_DIGEST validator plus dedicated 14/14; protect the 76-result baseline as a subset; keep normal validation mutation-free.
+- Requirements: Preserve all product/media bytes and both quarantines; require CASE_DIGEST validator plus dedicated 14/14; protect the 76-result baseline as a subset; require explicit manifest approval for every additive descendant; keep normal validation mutation-free.
 - State: Implemented as bounded support in `fff-case-digest-control-plane-convergence-001`; not a product gate.
 - Owner: Repository/control-plane maintainer for validator continuity; human owners retain production subtitle, voice, effects, rights, production, release, and canon decisions.
 - Next move: Keep this support contract as the restart health gate; Writer Source Adaptation v0 and Decision Workspace v1 now exist on a separate validated local branch and require explicit integration authority before becoming canonical.

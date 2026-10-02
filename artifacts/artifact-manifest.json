@@ -85,11 +85,12 @@
         "excluded_nonresult": []
       },
       "forward_rules": {
-        "well_formed_passing_non_authority_result": "accepted_additive_descendant",
+        "manifest_registered_well_formed_passing_non_authority_result": "accepted_additive_descendant",
+        "unregistered_result": "BLOCK_SAFETY",
         "explicit_archive_or_superseded_result": "archived_or_superseded_nonbaseline",
         "current_authority_requires_explicit_registration": true,
         "baseline_artifact_id_collision_fails": true,
-        "inventory_growth_without_collision_is_allowed": true
+        "inventory_growth_when_explicitly_registered_without_collision_is_allowed": true
       }
     },
     "integration_evidence": {

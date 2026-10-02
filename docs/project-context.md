@@ -1,5 +1,13 @@
 # Project Context
 
+## CASE_DIGEST validation unlock — 2026-08-13 JST
+
+- Live `master` remains clean and equal to `origin/master` at `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`; this unintegrated control-plane worktree remains the implementation lane.
+- The canonical CASE_DIGEST control-plane gate is green again on the current bundled runtime. The CASE_DIGEST loader accepts both the current Sharp `dist/index.mjs` export and the historical `lib/index.js` layout without installing or upgrading dependencies.
+- The 76-result Readiness baseline remains byte-immutable. The five current additive descendants are explicitly manifest-approved; a new result cannot enter the accepted descendant class merely by setting `passed=true`.
+- Live focused control tests pass `23/23`, CASE_DIGEST tests pass `14/14`, the root result reports `current_path_pass=true` and `mutation_detected=false`, and the accepted CASE_DIGEST HTML/MP4/model/result identities remain unchanged.
+- Product/default/human-acceptance, production subtitle, voice/effects, rights, production, release/publication, and canon state are unchanged. Densou source authority remains a separate `UNBOUND` lane and is not an input to this control-plane result.
+
 ## CASE_DIGEST authority and two-branch integration audit — 2026-07-27 JST
 
 - Remote restart authority is exact `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`, with canonical `master` at parity `0 / 0`. The audited implementation tips are control-plane `197d23d47760e727126f7ad7e3e4e3120b2ae98c` and Writer `a49b07c94a75fcda8bf8e85f4cd995af8018622d`; the containing handoff successor is the current control-plane branch `HEAD`. Both branches have no upstream and are absent from remote refs.
@@ -10,7 +18,7 @@
 - On the unintegrated control-plane branch, the manifest-owned read-only health command separates current-path validity, stored artifact self-integrity, and non-blocking historical debt. It requires the active preview validator, CASE_DIGEST validator, the dedicated CASE_DIGEST 14/14 tests, and both quarantine identities; predecessor artifacts are checked without requiring them to remain the unique current successor.
 - The Asset / Rights Readiness inventory is a protected 76-result subset, not a permanent total-count assertion. All 76 baseline paths and hashes must remain exact; five later valid product results are accepted as additive descendants.
 - Historical `.serena/project.yml` dirty SHA evidence remains historical only. A clean checkout is not required to reproduce machine-local bytes.
-- Control-plane validation passes its root gate, focused tests 21/21, and CASE_DIGEST 14/14. The Writer branch implements `fff-writer-source-adaptation-v0-001` and `fff-writer-decision-workspace-v1-001`; read-only CLI checks report writes 0 and focused tests pass 31/31. Those results are local branch evidence, not canonical integration.
+- Control-plane validation originally passed its root gate, focused tests 21/21, and CASE_DIGEST 14/14. The current 2026-08-13 refresh supersedes that test-count snapshot with `23/23` focused control tests while preserving the Writer branch evidence and integration boundary below.
 - The complete base-relative path sets are disjoint: control-plane 16 paths, Writer 51 paths, intersection 0. Recommended integration order is the control-plane branch including this handoff successor, then the Writer branch. Integration and push remain unauthorized and pending.
 
 PowerShell 5.1 validation after entering the control-plane worktree:

@@ -1,5 +1,13 @@
 # Next Terminal Handoff
 
+## Start here — 2026-08-13 validation unlock and exact A/V transition
+
+`master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e` は clean、ahead/behind `0 / 0` のままです。本 worktree `codex/fff-case-digest-control-plane-convergence-v1` には、既存3コミットの未統合 control-plane candidate に対するローカル hardening が未commitで残っています。`validate-case-digest-control-plane`、focused control `23/23`、CASE_DIGEST `14/14`、`git diff --check` は通過し、baseline `76/76` と CASE_DIGEST HTML/MP4/model/result の identity は不変です。未登録 result は `passed=true` でも additive descendant に昇格できません。
+
+次の content review locator は、別 ref `codex/densou-source-unbound-hardening-v1@428a65b` の `artifacts/private-raster-case-digest-audio-continuation-20260812-001/review.html` です。この package は物理的な ref 名と異なり、receipt 上 `NON_DENSOU_CASE_DIGEST`、`actual_densou_source_used=false` です。MP4 は 180.000秒 / 5400 frames、video/audio/subtitle 各1 stream、payload 5/5 の size/SHA と A/V decode-to-null が通り、親 CASE と decoded picture および subtitle 11 packet が一致します。音声は provisional であり、本検証では一切再生していません。
+
+この locator に対する次の人間動作は一度の全編 A/V review だけです。まず artifact/lane/hash を照合し、次に narration が既存11 caption の意図を変えないか、続いて3分間の理解・間・声の適合を視聴覚で判断し、最後に timestamp/cue 付きの限定 verdict を残します。Densou source を再要求せず、この ref を merge/cherry-pick せず、voice/audio、rights、production、release/publication、canon を同時に承認しないでください。
+
 ## Start here — CASE_DIGEST and local branch integration audit (2026-07-27 JST)
 
 Exact remote restart base is `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`, ahead/behind `0 / 0`. Two clean, local-only branches are intentionally outside that canonical base:
@@ -26,7 +34,7 @@ The expected state is:
 - completed: whole-story composition and CASE_DIGEST comprehension/review-caption readability;
 - still closed: production subtitle selection, final voice integration, effects, rights, production acceptance, release/publication, and final canon.
 
-The root command must report CASE_DIGEST validator PASS, dedicated tests `14/14`, archive self-integrity separately, readiness baseline `76/76` with five additive descendant results, and `mutation_detected=false`. Fresh focused control tests pass 21/21. A historical `.serena/project.yml` dirty SHA is evidence from an old terminal, not a current checkout requirement.
+The root command must report CASE_DIGEST validator PASS, dedicated tests `14/14`, archive self-integrity separately, readiness baseline `76/76` with five explicitly registered additive descendant results, and `mutation_detected=false`. The 2026-08-13 focused control suite passes `23/23`; an unregistered well-formed result fails closed. A historical `.serena/project.yml` dirty SHA is evidence from an old terminal, not a current checkout requirement.
 
 The Writer branch now contains two verified local artifacts: Source Adaptation v0 preserves exact source/authority, selects among six bounded formats, rejects the quarantined linear-lore SHORT_DRAMA, and compiles a compatible Handoff only when safe; Decision Workspace v1 ingests Markdown, applies only explicit writer-authorized decisions, and creates a candidate-only successor without overwriting v0. Its read-only CLI checks report writes 0 and focused tests pass 31/31. This is fixture-bounded mechanism evidence, not arbitrary-novel adaptation, project canon, literary-quality proof, or a production-ready script.
 

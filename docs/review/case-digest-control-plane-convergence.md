@@ -37,7 +37,7 @@ It also reports archived/predecessor self-integrity without borrowing current-su
 
 The materialized-motion result retains the old `.serena/project.yml` dirty SHA as historical evidence. Current validation deliberately does not consume dirty-file fingerprints; committed clean-checkout state is sufficient.
 
-The Asset / Rights Readiness result still owns the exact 76-file historical baseline. Current validation checks each path, byte size, and SHA256 as a protected subset. It does not require a fixed current count: the five later valid product results are additive descendants, and future well-formed passing descendants may be added without replacing a baseline identity.
+The Asset / Rights Readiness result still owns the exact 76-file historical baseline. Current validation checks each path, byte size, and SHA256 as a protected subset. It does not require a fixed current count: the five later valid product results are manifest-approved additive descendants. A future descendant must be both explicitly registered and well-formed/passing; a result cannot approve itself with `passed=true`.
 
 The predecessor commit contained 85 `*-result.json` artifacts. The earlier summary named only 76 protected baseline results and five additive descendants, leaving four support/authority results out of the arithmetic. The complete predecessor partition is:
 
@@ -52,7 +52,7 @@ The predecessor commit contained 85 `*-result.json` artifacts. The earlier summa
 
 The four formerly omitted identities are `fff-asset-rights-readiness-packet-001`, `fff-private-previsualization-timeline-001`, `fff-resumable-private-pipeline-001`, and `fff-case-digest-control-plane-convergence-001`. Their classification yields `76 + 5 + 1 + 3 = 85`, with no unclassified or multiply classified result. The integration-evidence result adds one explicit support class, so the final working inventory is 86 rather than changing any protected or product result.
 
-The root output now exposes the observed total, every class count, unclassified and duplicate counts, baseline missing and hash-mismatch counts, and a dynamic aggregate inventory hash. A well-formed passing non-authority result may increase the total as an additive descendant; a baseline identity collision or an unregistered current-authority claim fails closed.
+The root output now exposes the observed total, every class count, unclassified and duplicate counts, baseline missing and hash-mismatch counts, and a dynamic aggregate inventory hash. Only a manifest-registered, well-formed passing non-authority result may increase the total as an additive descendant; an unregistered result, baseline identity collision, or unregistered current-authority claim fails closed.
 
 Exact Git comparison is recorded in `artifacts/case-digest-control-plane-integration-evidence-result.json`. The 85-result inventory remains frozen at control predecessor `dab9810961b64f1e31420f18797e897e1ef05819`; integration compatibility is audited at complete local tips `197d23d47760e727126f7ad7e3e4e3120b2ae98c` and `a49b07c94a75fcda8bf8e85f4cd995af8018622d`. Their 16-path and 51-path base diffs have zero direct intersection, and the declared handoff-refresh paths also intersect Writer at zero. Integration remains pending and unauthorized, with the control-plane handoff successor recommended before Writer.
 

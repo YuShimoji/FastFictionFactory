@@ -1,10 +1,18 @@
 # Decision Log
 
+## 2026-08-13 — Restore current CASE_DIGEST validation without relaxing descendant approval
+
+- Decision: Keep the existing control-plane separation, update only the CASE_DIGEST Sharp loader for the current bundled package export, and require explicit manifest registration in addition to a well-formed passing result before any nonbaseline result is accepted as an additive descendant.
+- Reason: The live runtime moved Sharp's ESM entry from the historical `lib/index.js` layout to `dist/index.mjs`, while `passed=true` alone is not sufficient approval evidence for append-only authority.
+- Effect: Current and legacy bundled Sharp layouts both validate without dependency installation; the 76 protected baseline results remain exact; the five existing descendants remain accepted; an unregistered well-formed result now fails as both unclassified and `UNREGISTERED_ADDITIVE_DESCENDANT`.
+- Verification: syntax 2/2, focused control tests 23/23, CASE_DIGEST 14/14, root `current_path_pass=true`, mutation 0, and CASE_DIGEST product identities unchanged.
+- Boundary: no merge/push/default promotion, media regeneration, Densou source use, production subtitle/voice/effects decision, rights decision, production acceptance, release/publication, or canon decision.
+
 ## 2026-07-27 — Record complete local branch tips without integrating them
 
 - Decision: Treat `197d23d47760e727126f7ad7e3e4e3120b2ae98c` and `a49b07c94a75fcda8bf8e85f4cd995af8018622d` as audited local inputs while keeping `master` at exact `origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`.
 - Evidence: both branches descend directly from `bcdf84e`, each is two commits ahead of the base, both worktrees are clean, neither has an upstream or remote ref, and their complete 16-path / 51-path diffs have zero intersection.
-- Validation: control root gate, focused control tests 21/21, CASE_DIGEST 14/14, Writer read-only CLI checks with writes 0, and Writer focused tests 31/31 pass without worktree mutation.
+- Validation: the original audit recorded focused control tests 21/21 and CASE_DIGEST 14/14; the 2026-08-13 entry above records the current 23/23 control count. Writer read-only CLI checks and focused 31/31 remain historical local-branch evidence, not canonical integration.
 - Integration rule: if separately authorized, integrate the control-plane handoff successor first and the Writer tip second, then run the combined targeted validation set. This record does not authorize merge, rebase, cherry-pick, push, publication, or product/default/canon promotion.
 - Product boundary: Writer Source Adaptation v0 and Decision Workspace v1 are implemented local mechanism evidence, not canonical integration, arbitrary-novel support, project canon, literary-quality acceptance, production-ready script status, or production/release authority.
 
@@ -12,7 +20,7 @@
 
 - Decision: Keep `fff-private-previsualization-timeline-001` active/default and `fff-private-raster-case-digest-001` accepted/default-off; make CASE_DIGEST validation and its dedicated 14/14 tests mandatory in the canonical root command.
 - Decision: Validate rejected/superseded packages by their own stored bytes and source identities without requiring each predecessor to remain the unique current successor.
-- Decision: Treat the Readiness Packet's 76 historical results as an immutable path/hash subset and allow valid additive descendants. Historical machine-local `.serena` dirty fingerprints remain evidence only.
+- Decision: Treat the Readiness Packet's 76 historical results as an immutable path/hash subset and allow only manifest-approved, well-formed passing additive descendants. A result cannot approve itself with `passed=true`; historical machine-local `.serena` dirty fingerprints remain evidence only.
 - Effect: A clean checkout can obtain one trustworthy current-state result without reviving rejected motion, reopening completed clarity review, or treating inventory growth as corruption.
 - Boundaries: No product package, media, default selection, human acceptance, production subtitle, voice, effects, rights, production, release, publication, or canon state changes.
 - Forward route: Writer Source Adaptation is the next product-bearing family; this bounded support decision neither starts nor gates it.

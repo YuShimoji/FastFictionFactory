@@ -3,6 +3,7 @@
 import { createHash } from "node:crypto";
 import { execFile as execFileCallback } from "node:child_process";
 import {
+  access,
   copyFile,
   mkdir,
   mkdtemp,
@@ -302,7 +303,25 @@ function bundledNodeModules() {
 }
 
 async function loadSharp() {
-  const modulePath = path.join(bundledNodeModules(), "sharp", "lib", "index.js");
+  const packageRoot = path.join(bundledNodeModules(), "sharp");
+  const candidates = [
+    path.join(packageRoot, "dist", "index.mjs"),
+    path.join(packageRoot, "lib", "index.js"),
+    path.join(packageRoot, "dist", "index.cjs")
+  ];
+  let modulePath = null;
+  for (const candidate of candidates) {
+    try {
+      await access(candidate);
+      modulePath = candidate;
+      break;
+    } catch {
+      // Continue through the known bundled Sharp layouts.
+    }
+  }
+  if (!modulePath) {
+    throw new Error(`Bundled sharp entrypoint not found under ${packageRoot}`);
+  }
   const imported = await import(pathToFileURL(modulePath).href);
   return imported.default || imported;
 }

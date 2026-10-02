@@ -1122,15 +1122,12 @@ function evaluateCaseDigestResultInventoryModel(model) {
     if (record.declared_nonresult === true) {
       memberClasses.add("excluded_nonresult");
     } else if (
+      record.archived_or_superseded &&
       !record.claims_current_authority &&
       !baselineArtifactIds.has(record.artifact_id) &&
       record.well_formed_passing
     ) {
-      memberClasses.add(
-        record.archived_or_superseded
-          ? "archived_or_superseded_nonbaseline"
-          : "accepted_additive_descendant"
-      );
+      memberClasses.add("archived_or_superseded_nonbaseline");
     }
   }
 
@@ -1151,6 +1148,17 @@ function evaluateCaseDigestResultInventoryModel(model) {
     .map((record) => record.path);
   const unclassifiedPaths = records
     .filter((record) => memberships.get(record.path).size === 0)
+    .map((record) => record.path);
+  const unregisteredAdditiveDescendantPaths = records
+    .filter(
+      (record) =>
+        memberships.get(record.path).size === 0 &&
+        record.well_formed_passing &&
+        !record.claims_current_authority &&
+        !record.archived_or_superseded &&
+        record.declared_nonresult !== true &&
+        !baselineArtifactIds.has(record.artifact_id)
+    )
     .map((record) => record.path);
   const duplicateClassificationPaths = records
     .filter((record) => memberships.get(record.path).size > 1)
@@ -1284,6 +1292,14 @@ function evaluateCaseDigestResultInventoryModel(model) {
       )
     );
   }
+  if (unregisteredAdditiveDescendantPaths.length > 0) {
+    failures.push(
+      caseDigestInventoryFailure(
+        "UNREGISTERED_ADDITIVE_DESCENDANT",
+        unregisteredAdditiveDescendantPaths.join(", ")
+      )
+    );
+  }
   if (duplicateClassificationPaths.length > 0) {
     failures.push(
       caseDigestInventoryFailure(
@@ -1373,6 +1389,8 @@ function evaluateCaseDigestResultInventoryModel(model) {
     class_counts: classCounts,
     classified_result_total: classifiedResultTotal,
     unclassified_result_count: unclassifiedPaths.length,
+    unregistered_additive_descendant_count:
+      unregisteredAdditiveDescendantPaths.length,
     duplicate_classification_count: duplicateClassificationPaths.length,
     baseline_missing_count: missingBaselinePaths.length,
     baseline_hash_mismatch_count: hashMismatchPaths.length,
@@ -1392,6 +1410,8 @@ function evaluateCaseDigestResultInventoryModel(model) {
     ),
     classes,
     unclassified_paths: unclassifiedPaths,
+    unregistered_additive_descendant_paths:
+      unregisteredAdditiveDescendantPaths,
     duplicate_classifications: duplicateClassificationPaths,
     missing_baseline_paths: missingBaselinePaths,
     baseline_hash_mismatch_paths: hashMismatchPaths,

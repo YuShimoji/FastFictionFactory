@@ -68,6 +68,9 @@ function validModel() {
         })
       ],
       explicit_classes: {
+        accepted_additive_descendant: [
+          "artifacts/additive-result.json"
+        ],
         current_control_plane_result: [
           "artifacts/current-control-result.json"
         ],
@@ -176,11 +179,31 @@ test("valid additive descendant may increase the total", () => {
       sha256: "1".repeat(64)
     })
   );
+  model.inventory.explicit_classes.accepted_additive_descendant.push(
+    "artifacts/future-additive-result.json"
+  );
   model.inventory.reported_total = 6;
   const run = runAudit(model);
   assert.equal(run.status, 0);
   assert.equal(run.result.passed, true);
   assert.equal(run.result.inventory.accepted_additive_descendant_count, 2);
+});
+
+test("well-formed result still requires explicit descendant approval", () => {
+  const model = validModel();
+  model.inventory.records.push(
+    observed({
+      path: "artifacts/unapproved-result.json",
+      artifact_id: "fff-unapproved-001",
+      byte_size: 330,
+      sha256: "4".repeat(64)
+    })
+  );
+  model.inventory.reported_total = 6;
+  const run = runAudit(model);
+  assert.notEqual(run.status, 0);
+  assert.ok(failureCodes(run).includes("UNREGISTERED_ADDITIVE_DESCENDANT"));
+  assert.ok(failureCodes(run).includes("UNCLASSIFIED_RESULT"));
 });
 
 test("unregistered current-authority result fails closed", () => {

@@ -1,5 +1,22 @@
 # Current Status Packet
 
+## CASE_DIGEST validation unlock — 2026-08-13 JST
+
+| 判断対象 | ライブ確認結果 |
+| --- | --- |
+| Canonical Git | clean `master = origin/master = bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`; ahead/behind `0 / 0` |
+| 実装レーン | unintegrated `codex/fff-case-digest-control-plane-convergence-v1`; existing three-commit candidate plus current local validation hardening |
+| 現行 gate | `validate-case-digest-control-plane` PASS; `current_path_pass=true`; `mutation_detected=false` |
+| 不変 core | Readiness baseline `76/76`; missing 0; hash mismatch 0 |
+| 承認済み追加 result | manifest 登録済み 5件; unclassified 0; duplicate 0; 未登録の自己申告 PASS は fail-closed |
+| CASE_DIGEST | validator PASS; dedicated tests `14/14`; active/default は従来 preview、accepted successor は default-off CASE_DIGEST |
+| Focused control | convergence `10/10` + integration inventory `13/13` = `23/23` |
+| Runtime 復元 | Sharp の現行 `dist/index.mjs` と旧 `lib/index.js` の両配置に対応; dependency install/upgrade なし |
+| 製品 identity | HTML / MP4 / model / result の SHA256 は mutation 前後で不変 |
+| 別境界 | Densou actual source は `UNBOUND`; 本 gate、CASE_DIGEST acceptance、Writer transition の根拠に使用しない |
+| 次の content transition | 別 ref `codex/densou-source-unbound-hardening-v1@428a65b` に置かれた `artifacts/private-raster-case-digest-audio-continuation-20260812-001/review.html`; package 自身は `NON_DENSOU_CASE_DIGEST` と明記され、親 CASE の picture/subtitle を変更しない provisional A/V review 候補 |
+| A/V の実測境界 | payload 5/5 の size/SHA、180.000秒、5400 frames、video/audio/subtitle 各1 stream、decode-to-null、親との decoded video hash と subtitle 11 packet の一致を確認; 音声再生と creative acceptance は未実施 |
+
 ## CASE_DIGEST authority and local branch audit — 2026-07-27 JST
 
 | Decision dimension | Verified state |
@@ -26,7 +43,7 @@ $manifest = Get-Content -LiteralPath .\artifacts\artifact-manifest.json -Encodin
 Invoke-Expression $manifest.validation_command
 ```
 
-Its concise JSON separates `current_path_pass`, current/default identity, accepted successor identity, archive self-integrity, non-blocking debt, failures, revision, and mutation detection. Fresh validation passed the root gate, control focused tests 21/21, and CASE_DIGEST 14/14 with mutation 0. The Writer branch passed two read-only CLI checks with writes 0 and focused tests 31/31. Historical `.serena` dirty bytes and predecessor successor-exclusivity are not clean-checkout requirements. The Readiness Packet's 76 historical results are protected as a path/hash subset, while five valid later results remain additive descendants.
+Its concise JSON separates `current_path_pass`, current/default identity, accepted successor identity, archive self-integrity, non-blocking debt, failures, revision, and mutation detection. The original branch audit passed control focused tests 21/21; the 2026-08-13 live refresh above supersedes that count with 23/23 and makes additive-descendant approval explicit. The Writer branch evidence remains local-only and unintegrated. Historical `.serena` dirty bytes and predecessor successor-exclusivity are not clean-checkout requirements.
 
 ## Transition Continuity and Narrative Clarity Candidate — 2026-07-26 JST
 

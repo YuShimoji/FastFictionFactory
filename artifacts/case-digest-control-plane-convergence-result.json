@@ -181,6 +181,10 @@
       "status": "PASS"
     },
     {
+      "command": "node --check tools/fff-private-raster-case-digest.mjs",
+      "status": "PASS"
+    },
+    {
       "command": "node --test tests/fff-case-digest-control-plane-convergence.test.mjs",
       "status": "PASS",
       "passed": 10,
@@ -189,8 +193,8 @@
     {
       "command": "node --test tests/fff-case-digest-control-plane-integration-evidence.test.mjs",
       "status": "PASS",
-      "passed": 11,
-      "total": 11
+      "passed": 13,
+      "total": 13
     },
     {
       "command": "node --test tests/fff-private-raster-case-digest.test.mjs",

@@ -21,7 +21,7 @@ The predecessor inventory SHA256 is `361e16663e2da86e18c5c30c853fc23c8a598460c06
 
 ## Forward behavior
 
-Every `artifacts/**/*-result.json` file is enumerated recursively. The registry provides explicit authority and support classes; the validator derives protected-baseline membership from the 76-file Readiness authority and accepts a new result only when it is a well-formed passing non-authority result with a noncolliding artifact identity. An unclassified result, duplicate membership, missing or changed baseline file, incorrect total, baseline identity collision, or unregistered current-authority claim blocks safety. Inventory growth alone does not.
+Every `artifacts/**/*-result.json` file is enumerated recursively. The registry provides explicit authority, support, and accepted-descendant classes; the validator derives protected-baseline membership from the 76-file Readiness authority and accepts a new descendant only when its path is explicitly registered, its result is well-formed/passing, and its artifact identity does not collide. An unregistered result cannot approve itself with `passed=true`. Unclassified or duplicate membership, missing or changed baseline files, incorrect totals, baseline identity collisions, and unregistered current-authority claims block safety. Registered inventory growth alone does not.
 
 ## Writer compatibility and integration boundary
 
@@ -31,7 +31,7 @@ The semantic intersection is limited to the accepted/default-off CASE_DIGEST ide
 
 The Writer tip contains two locally complete but unintegrated support/product-planning artifacts. `fff-writer-source-adaptation-v0-001` converts three explicitly annotated local input envelopes into source packets, authority ledgers, six-format selection, source-bound Narrative IR, and compatible Editorial Handoff input; it refuses the quarantined linear-lore SHORT_DRAMA and leaves unordered fragments unresolved. `fff-writer-decision-workspace-v1-001` adds real Markdown intake and explicit accept/reject/defer/replace records, then creates a candidate-only successor without overwriting its v0 predecessor. The fixture proves the mechanism, not project canon, arbitrary-novel adaptation, literary quality, or a production-ready script.
 
-Fresh branch-local validation passed: control root gate, focused control tests 21/21, CASE_DIGEST 14/14, Writer read-only CLI checks with writes 0, and Writer focused tests 31/31. Both worktrees remained clean after validation.
+The original branch-local validation passed the control root gate, focused control tests 21/21, CASE_DIGEST 14/14, Writer read-only CLI checks with writes 0, and Writer focused tests 31/31. The 2026-08-13 live refresh adds an explicit-descendant negative regression and passes the updated focused control count `23/23` plus CASE_DIGEST `14/14`. Writer evidence remains the earlier local-branch snapshot and is not reclassified as current integration.
 
 Recommended integration order is the control-plane audited tip plus this containing handoff successor, then the Writer audited tip. After integration, run Node syntax for all three tools, the root control-plane validator, both control-plane focused tests, CASE_DIGEST 14/14, both Writer focused tests, and `git diff --check`. Integration and push status remain `pending` / `not_authorized`; no cherry-pick, merge, push, default promotion, production action, rights action, release, publication, or canon effect is performed here.
 

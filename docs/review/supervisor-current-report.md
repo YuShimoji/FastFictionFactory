@@ -1,6 +1,16 @@
 # 監修 AI 向け現状報告と長期目標案
 
-更新日: 2026-07-27 JST
+更新日: 2026-08-13 JST
+
+## 2026-08-13 Validation unlock と次の content review
+
+canonical `master` は `origin/master` と同じ `bcdf84e4d89f26bf41d288f8282d7ae50911cc1e`、clean、ahead/behind `0 / 0` です。実装は未統合の `codex/fff-case-digest-control-plane-convergence-v1` に限定しました。過去の `.serena/project.yml` の machine-local dirty hash と、Readiness 76件の immutable historical core、manifest が明示承認する5件の additive descendant を分離し、未登録の result が `passed=true` だけで authority に入る経路を閉じました。現行 bundled Sharp の `dist/index.mjs` と旧 `lib/index.js` の両方を探索するため、依存追加・upgrade・lockfile変更なしで CASE_DIGEST validator が復旧しています。
+
+最終ローカル gate は syntax 2/2、control focused 23/23、CASE_DIGEST 14/14、root `current_path_pass=true`、baseline 76/76、missing/hash mismatch/unclassified/duplicate すべて0、validator mutation 0、`git diff --check` PASS です。CASE_DIGEST の HTML `f109b85d...5eef`、MP4 `0fb679b5...df1`、model `d2255f43...c66`、result `69d4a879...48b2` は clean master と同一で、active/default preview、scoped acceptance、default-off、story/image/timing/subtitle、production/rights/release/canon は変えていません。
+
+次の review 対象は、別 ref `codex/densou-source-unbound-hardening-v1@428a65b` にある `artifacts/private-raster-case-digest-audio-continuation-20260812-001/review.html` です。これは ref の名前にかかわらず package/receipt 上 `NON_DENSOU_CASE_DIGEST`、`actual_densou_source_used=false` で、Densou source/canon の根拠ではありません。payload 5/5 の size/SHA、MP4 180.000秒 / 5400 frames / 960x540、video/audio/subtitle 各1 stream、A/V decode-to-null、親 CASE と decoded picture hash・subtitle 11 packet の一致をライブ確認しました。headless review 入口も `autoplay=false`、muted、paused、controlsあり、11 cue 表と未受入境界を表示します。今回は音を一切出しておらず、voice/audio の視聴覚 acceptance はまだ人間所有です。
+
+提案する人間動作は、この exact locator を一度だけ全編視聴し、`IDENTITY → INTENT → EXPERIENCE → INTEGRITY` の順で、accept または timestamp/cue 付きの限定 finding を一つの verdict にすることです。Densou branch の merge、source再要求、voice採用、rights、production、publication、canon はこの動作に含めません。
 
 ## 2026-07-27 CASE_DIGEST authority and two-branch handoff
 
@@ -10,7 +20,7 @@
 
 一方で、production subtitle selection、final voice integration、effects、rights、production acceptance、release/publication、final canon は別 gate のままです。`fff-private-materialized-motion-previs-001` は rejected/archive-only/non-successor、旧 clarity narrative は quarantine 維持です。accepted raster bytes と terminal-frame transition evidence の保存は narrative 採用を意味しません。
 
-`fff-case-digest-control-plane-convergence-001` は current-state の読解と clean-checkout validation を直す bounded support であり、product progress や gate ではありません。root health は current path、archive self-integrity、historical debt を分離し、CASE_DIGEST validator と dedicated 14/14 を必須化します。Readiness の 76 baseline は protected subset として保持し、5件の正当な descendant result を許可します。過去端末の `.serena` dirty SHA は current requirement ではありません。再検証は root gate、control focused 21/21、CASE_DIGEST 14/14、mutation 0 で通過しました。
+`fff-case-digest-control-plane-convergence-001` は current-state の読解と clean-checkout validation を直す bounded support であり、product progress や gate ではありません。root health は current path、archive self-integrity、historical debt を分離し、CASE_DIGEST validator と dedicated 14/14 を必須化します。Readiness の 76 baseline は protected subset として保持し、manifest に明示登録された5件の descendant result だけを許可します。過去端末の `.serena` dirty SHA は current requirement ではありません。2026-08-13 のライブ再検証は current/legacy Sharp layout 対応後に root gate、control focused 23/23、CASE_DIGEST 14/14、mutation 0 で通過し、未登録の自己申告 PASS result を fail-closed にしました。
 
 Writer branch は Source Adaptation v0 と Decision Workspace v1 まで実装済みです。前者は source span / authority / six-format decision / Narrative IR / Editorial Handoff input をローカルかつprovider-neutralに接続し、linear-loreと順序不明fragmentを安全に停止します。後者は実Markdown intakeと明示的な accept / reject / defer / replace recordからcandidate-only successorを作り、predecessorを上書きしません。read-only CLIはwrites 0、focused testsは31/31です。ただしfixture-bounded mechanism proofであり、任意小説対応、project canon、文学的品質、production-ready scriptを意味しません。
 
