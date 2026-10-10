@@ -16,4 +16,6 @@ Read these repo-local files before changing product behavior or review claims:
 
 If a referenced file is missing, treat it as stale context, not as a blocker.
 
+For Cloud environment setup or Cloud development, also read `docs/CODEX_CLOUD.md`.
+
 For residual work, report purpose, effect, requirements, state, owner, and next move.
