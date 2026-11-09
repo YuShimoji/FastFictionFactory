@@ -67,3 +67,19 @@ To write the candidate to a separate review file:
 ```powershell
 node .\tools\generate-doc-nav.mjs --out .\build\doc-nav-candidate.yml
 ```
+
+## 成果一覧 (Deliverables)
+
+タスクの成果は、ここに載る画像/動画で示す。載らず進展が確かめられないタスクは完了にしない。状態の正本は [`review/current-status.md`](review/current-status.md)、各版の詳細は [`../artifacts/ARTIFACTS.md`](../artifacts/ARTIFACTS.md)。
+
+| 成果 | 種別 | 開く |
+| --- | --- | --- |
+| Private Raster CASE_DIGEST (受理済み・既定オフの後継) | 動画 | [mp4](../artifacts/private-raster-case-digest/private-raster-case-digest.mp4) |
+| Private Previsualization Timeline (現行の既定) | 動画 / 一覧 | [mp4](../artifacts/private-previsualization-timeline/private-previsualization-timeline.mp4), [contact sheet](../artifacts/private-previsualization-timeline/private-previsualization-contact-sheet.jpg) |
+| Private Full Raster Candidate | 動画 / 一覧 | [mp4](../artifacts/private-full-raster-candidate/private-full-raster-candidate.mp4), [contact sheet](../artifacts/private-full-raster-candidate/private-full-raster-candidate-contact-sheet.jpg) |
+| Private Full Raster Clarity Candidate | 動画 | [mp4](../artifacts/private-full-raster-clarity-candidate/private-full-raster-clarity-candidate.mp4) |
+| Private Materialized Motion Previs (却下・archive専用) | 動画 / 一覧 | [mp4](../artifacts/private-materialized-motion-previs/private-materialized-motion-previs.mp4), [contact sheet](../artifacts/private-materialized-motion-previs/private-materialized-motion-previs-contact-sheet.jpg) |
+| High-Fidelity Raster Pilot | 画像一覧 | [contact sheet](../artifacts/high-fidelity-raster-pilot/high-fidelity-raster-pilot-contact-sheet.jpg) |
+| Integrated Visual Production Package | 画像一覧 | [contact sheet](../artifacts/integrated-visual-production-package/integrated-visual-production-package-contact-sheet.jpg) |
+| Composition Board / Pilot / Counterexample / Expansion | 画像一覧 | [beat2 board](../artifacts/beat2-composition-board/beat2-composition-board-contact-sheet.jpg), [beat2 treatment](../artifacts/beat2-visual-treatment-pilot/beat2-visual-treatment-contact-sheet.jpg), [beat4](../artifacts/beat4-composition-counterexample/beat4-composition-counterexample-contact-sheet.jpg), [wave1](../artifacts/composition-expansion-wave1/composition-expansion-wave1-contact-sheet.jpg), [wave2](../artifacts/composition-expansion-wave2/composition-expansion-wave2-contact-sheet.jpg) |
+| Review workbench (画面) | 画像 | [current](../artifacts/fff-current-review-screenshot.png), [contact sheet](../artifacts/fff-review-contact-sheet.png), [layout audit](../artifacts/layout-lab-visual-audit-contact-sheet.png) |
