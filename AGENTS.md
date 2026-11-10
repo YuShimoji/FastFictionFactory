@@ -15,3 +15,7 @@ Read these repo-local files before changing product behavior or review claims:
 If a referenced file is missing, treat it as stale context, not as a blocker.
 
 For residual work, report purpose, effect, requirements, state, owner, and next move.
+
+共通の開発思想は `~/.claude/docs/ops/principles.md`（正本は Recordinator の `docs/PRINCIPLES.md`）。文書・作業場所を増やす前に読む。
+
+growth-baseline: files=415 md=128 worktrees=1
